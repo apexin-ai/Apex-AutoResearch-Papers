@@ -1,0 +1,1 @@
+See remote: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/scale/14b_t10_a075_s43_fp32/analysis/5method_leadlag.json\n\nSummary: PermG fwd=6/8, rev=5/8. DiffXCorr fwd=7/8, rev=7/8. Threshold=0/8. TY=1/8. K>=3=5/8, K>=4=0/8.\nDrift: ppl +347.8%, entropy -34.2%, ece +3174%, mauve -10.8%, distinct1 -17.7%

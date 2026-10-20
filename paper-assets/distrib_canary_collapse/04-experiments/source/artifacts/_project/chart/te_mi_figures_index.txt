@@ -1,0 +1,5 @@
+Figures at westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/analysis/transfer_entropy/
+- fig1_mi_vs_alpha.{pdf,png} — MI(canary, downstream) across alpha, 8 pairs
+- fig2_te_vs_alpha.{pdf,png} — TE(canary→downstream) across alpha, 8 pairs  
+- fig3_mi_te_gap.{pdf,png} — MI minus TE gap across alpha
+- fig4_comparison_a050_a060.{pdf,png} — Bar chart MI/TE_fwd/TE_rev for all pairs at alpha=0.50 vs 0.60

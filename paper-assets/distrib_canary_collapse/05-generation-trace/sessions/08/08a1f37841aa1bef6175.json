@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08a1f37841aa1bef6175",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d34 early stopping rule",
+  "task_key": "worker_analysis_d34_early_stopping_rule_20260520T184918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d34_early_stopping_rule_20260520T184918_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "8453fb6ee208304cdc16736e9615d428ae86f60a6b0046f5c927479186ba09ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figures look good. The scatter plot visually confirms the core finding — detected (green) and not-detected (red) points overlap heavily in drift space, especially at α=0.60 where s42 is detected but s43 is not despite near-identical gen-1 drift.\n\n## Summary\n\n**Negative result**: Gen-1 metric drifts cannot predict final detection outcome.\n\n| Model | LOOCV AUROC |\n|-------|-------------|\n| Random Forest (best) | 0.682 |\n| Logistic Regression | 0.523 |\n| Decision Tree | 0.477 |\n| **α alone (baseline)** | **0.773** |\n\nThe α-alone baseline outperforms all drift-based models, confirming that gen-1 drift adds no predictive signal beyond what's already known from the experimental design. Key confounds: (1) C4 vs WikiText produce very different drift patterns, (2) seed-level variability at α=0.10 and α=0.60 makes the detection boundary intrinsically noisy.\n\n**Recommendation: NOT REPORTED** (AUROC < 0.70).\n\nAll artifacts saved to `artifacts/early_stopping/`:\n- `rule.json` — data + model parameters\n- `early_stopping_report.md` — full analysis\n- 5 figure pairs (PDF + PNG): ROC, scatter, 4-feature, predicted prob, feature importance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d34-early-stopping-rule.md"
+}

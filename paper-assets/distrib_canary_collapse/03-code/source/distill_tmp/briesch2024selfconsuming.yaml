@@ -1,0 +1,30 @@
+paper_key: "briesch2024selfconsuming"
+title: "Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["Full Synthetic cycle", "Balanced cycle", "Incremental cycle", "Expanding cycle"]
+  metrics:
+    - {name: "syntactic correctness", direction: "higher_better"}
+    - {name: "semantic correctness", direction: "higher_better"}
+    - {name: "Levenshtein diversity", direction: "higher_better"}
+    - {name: "unique expression count", direction: "higher_better"}
+  datasets:
+    - {name: "Logic expression dataset", size: "10K unique Boolean expressions"}
+  ablation_dimensions:
+    - data_cycle_regime (full_synthetic, balanced, incremental, expanding)
+    - synthetic_data_proportion
+    - generation_count
+  training_recipe: {model: "GPT-style transformer (6L, 6H, 384d, ~10.6M params)", training: "from scratch"}
+  method_family: "self_consuming_loop_analysis"
+
+positioning:
+  core_claim: "LLM diversity collapse confirmed: correctness may improve initially but diversity declines depending on synthetic data proportion. Full synthetic loop collapses within <10 generations."
+  key_results: "Full synthetic: collapse <10 gens; fresh human data slows but cannot halt decline"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "114032919bf399e25e13",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check missing 3 experiments status",
+  "task_key": "worker_check_missing_3_experiments_status_20260520T072532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_missing_3_experiments_status_20260520T072532_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "ebaa1575f78dc5f9d4b3c089be44c60d01553a2d4d6465acffb6faa601e1ab96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 实验 | 状态 | 进度 | step | 预估剩余 |\n|------|------|------|------|----------|\n| smollm3_3b_wiki_a100_s43_fp32 (17855) | running | gen 4/10 | 4204/5000 (84%) | ~11min 完成当前 gen，剩余 6 gen × ~60min ≈ **6h** |\n| data_strategy_ablation_s43 (19828) | running | gen 6/10 | featurizing (gen 6 刚开始) | 剩余 4 gen × ~11min ≈ **45min** |\n| scale_14b_a050_s42_fp32 (19828) | running | gen 1/10 | 1986/5000 (40%) | ~41min 完成当前 gen，剩余 9 gen × ~58min ≈ **9h** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-missing-3-experiments-status.md"
+}

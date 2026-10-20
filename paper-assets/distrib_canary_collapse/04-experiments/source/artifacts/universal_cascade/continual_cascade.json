@@ -1,0 +1,65 @@
+{
+  "domain": "pythia_pretraining",
+  "threshold_pct": 5.0,
+  "n_checkpoints": 20,
+  "onset_table": {
+    "token_entropy": {
+      "onset_idx": 8,
+      "onset_label": "step128",
+      "pct_at_onset": 18.8,
+      "baseline": 10.625558,
+      "final": 4.034487,
+      "total_pct_change": -62.0
+    },
+    "ece": {
+      "onset_idx": 5,
+      "onset_label": "step16",
+      "pct_at_onset": 20538.7,
+      "baseline": 0.00025,
+      "final": 0.074663,
+      "total_pct_change": 29804.0
+    },
+    "distinct_1": {
+      "onset_idx": 5,
+      "onset_label": "step16",
+      "pct_at_onset": 11.7,
+      "baseline": 0.789491,
+      "final": 0.3172,
+      "total_pct_change": -59.8
+    },
+    "distinct_2": {
+      "onset_idx": 6,
+      "onset_label": "step32",
+      "pct_at_onset": 44.6,
+      "baseline": 0.955158,
+      "final": 0.701184,
+      "total_pct_change": -26.6
+    },
+    "distinct_3": {
+      "onset_idx": 6,
+      "onset_label": "step32",
+      "pct_at_onset": 38.6,
+      "baseline": 0.969374,
+      "final": 0.882834,
+      "total_pct_change": -8.9
+    },
+    "perplexity": {
+      "onset_idx": 4,
+      "onset_label": "step8",
+      "pct_at_onset": 11.7,
+      "baseline": 60041.443838,
+      "final": 42.075218,
+      "total_pct_change": -99.9
+    }
+  },
+  "cascade_order": [
+    "perplexity",
+    "ece",
+    "distinct_1",
+    "distinct_2",
+    "distinct_3",
+    "token_entropy"
+  ],
+  "kendall_tau": -0.667,
+  "kendall_p": 0.333
+}

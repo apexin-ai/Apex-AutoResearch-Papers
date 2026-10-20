@@ -1,0 +1,36 @@
+{
+  "exp_id": "c4_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:54.299Z",
+    "updated_at": "2026-05-19T14:39:28.881Z",
+    "hypothesis": "Claim 2 跨域验证：C4 数据集 α=0.75 regime boundary fp32。WikiText α=0.75 PermG 预期 ~83%，C4 验证 canary lead-lag 跨域泛化性。plan_035。",
+    "parent": "alpha_sweep_a075_s42_fp32",
+    "spec": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "151771",
+      "log_path": "~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log",
+      "submitted_at": "2026-05-19T14:39:27.727Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:2",
+    "pid": "151771",
+    "log_path": "~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\""
+    }
+  },
+  "timestamp": "2026-05-19T14:39:29.512302+00:00",
+  "trigger": "update_registry"
+}

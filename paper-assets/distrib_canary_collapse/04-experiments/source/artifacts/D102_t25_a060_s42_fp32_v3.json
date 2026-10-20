@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "alpha": 0.6,
+    "seed": 42,
+    "n_gens": 26,
+    "data_dir": "results/phase_diagram/t25_a060_s42_fp32",
+    "methods": ["naive_xcorr","diff_xcorr","threshold_onset","perm_granger","ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy","ece"],
+    "downstreams": ["distinct_1","distinct_2","distinct_3","mauve"],
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 5,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 8,
+    "diff_xcorr_fdr_reverse_sig": 8,
+    "threshold_forward_sig": 6,
+    "ty_forward_sig": 4,
+    "robust_pairs": 6
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 2, "methods": ["diff","threshold"]},
+    {"pair": "token_entropy<distinct_2", "votes": 4, "methods": ["diff","threshold","perm","ty"]},
+    {"pair": "token_entropy<distinct_3", "votes": 4, "methods": ["diff","threshold","perm","ty"]},
+    {"pair": "token_entropy<mauve", "votes": 1, "methods": ["ty"]},
+    {"pair": "ece<distinct_1", "votes": 4, "methods": ["naive","diff","threshold","perm"]},
+    {"pair": "ece<distinct_2", "votes": 3, "methods": ["diff","threshold","perm"]},
+    {"pair": "ece<distinct_3", "votes": 3, "methods": ["diff","threshold","perm"]},
+    {"pair": "ece<mauve", "votes": 3, "methods": ["naive","diff","ty"]}
+  ],
+  "forward_detail": {
+    "token_entropy<distinct_1": {
+      "naive_xcorr": {"r": -0.775, "lag": 5, "p": 3.7e-05, "sig": true},
+      "diff_xcorr": {"r": 0.888, "lag": -5, "p": 0.0, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 5, "lead_time": 4, "sig": true},
+      "perm_granger": {"f": 556.435, "p": 0.0388, "p_fdr": 0.0517, "sig_fdr": false},
+      "ty_granger": {"f": 2.86, "p": 0.0519, "sig": false, "dmax": 1}
+    },
+    "token_entropy<distinct_2": {
+      "naive_xcorr": {"r": -0.824, "lag": 5, "p": 7.1e-06, "sig": true},
+      "diff_xcorr": {"r": 0.876, "lag": -4, "p": 0.0, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 6, "lead_time": 5, "sig": true},
+      "perm_granger": {"f": 381.484, "p_fdr": 0.1872, "sig_fdr": true},
+      "ty_granger": {"f": null, "p": 0.0, "sig": true, "dmax": 1}
+    },
+    "token_entropy<distinct_3": {
+      "naive_xcorr": {"r": -0.860, "lag": 5, "sig": true},
+      "diff_xcorr": {"r": 0.886, "lag": -4, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 8, "lead_time": 7, "sig": true},
+      "perm_granger": {"f": 194.576, "p_fdr": 0.1872, "sig_fdr": true},
+      "ty_granger": {"p": 0.0, "sig": true, "dmax": 1}
+    },
+    "token_entropy<mauve": {
+      "naive_xcorr": {"r": -0.875, "lag": 3, "sig": true},
+      "diff_xcorr": {"r": 0.503, "lag": 4, "p_fdr": 0.0228, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "perm_granger": {"f": 1.873, "p_fdr": 0.1872, "sig_fdr": false},
+      "ty_granger": {"p": 0.0097, "sig": true, "dmax": 1}
+    },
+    "ece<distinct_1": {
+      "naive_xcorr": {"r": 0.969, "lag": -1, "sig": true},
+      "diff_xcorr": {"r": 0.937, "lag": -5, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 5, "lead_time": 4, "sig": true},
+      "perm_granger": {"f": 267.223, "p_fdr": 0.1872, "sig_fdr": true},
+      "ty_granger": {"p": 0.5967, "sig": false, "dmax": 1}
+    },
+    "ece<distinct_2": {
+      "naive_xcorr": {"r": 0.946, "lag": 2, "sig": true},
+      "diff_xcorr": {"r": 0.927, "lag": -4, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 6, "lead_time": 5, "sig": true},
+      "perm_granger": {"f": 198.901, "p_fdr": 0.1872, "sig_fdr": true},
+      "ty_granger": {"p": 0.5187, "sig": false, "dmax": 0}
+    },
+    "ece<distinct_3": {
+      "naive_xcorr": {"r": 0.947, "lag": 2, "sig": true},
+      "diff_xcorr": {"r": 0.938, "lag": -4, "p_fdr": 0.0, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": 8, "lead_time": 7, "sig": true},
+      "perm_granger": {"f": 126.023, "p_fdr": 0.1872, "sig_fdr": true},
+      "ty_granger": {"p": 0.5125, "sig": false, "dmax": 0}
+    },
+    "ece<mauve": {
+      "naive_xcorr": {"r": 0.865, "lag": -3, "sig": true},
+      "diff_xcorr": {"r": 0.465, "lag": -3, "p_fdr": 0.0291, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": null, "downstream_onset": 1, "lead_time": null, "sig": false},
+      "perm_granger": {"f": 1.678, "p_fdr": 0.1872, "sig_fdr": false},
+      "ty_granger": {"p": 0.0002, "sig": true, "dmax": 1}
+    }
+  }
+}

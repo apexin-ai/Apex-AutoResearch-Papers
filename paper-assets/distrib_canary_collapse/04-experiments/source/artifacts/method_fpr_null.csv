@@ -1,0 +1,8 @@
+method,fpr,sig_pairs,total_pairs,note
+naive_xcorr,0.750,6,8,D111 direction-checked; still high FPR under null
+diff_in_diff,0.000,0,8,D111 direction-checked; all peak_lag ≤ 0 under null
+threshold_3sigma,0.375,3,8,D111 direction-checked; moderate FPR under null
+permutation_granger,0.000,0,8,zero FPR — primary indicator
+toda_yamamoto,0.125,1,8,D111 direction-checked; low FPR under null
+K_ge3_consensus,0.125,1,8,D111-corrected; much lower than pre-correction 0.375
+K_ge4_consensus,0.000,0,8,strict consensus eliminates FPR

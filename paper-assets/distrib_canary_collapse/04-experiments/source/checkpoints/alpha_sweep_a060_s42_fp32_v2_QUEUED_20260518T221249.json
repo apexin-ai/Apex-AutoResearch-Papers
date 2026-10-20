@@ -1,0 +1,16 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:11:35.152Z",
+    "updated_at": "2026-05-18T22:12:49.698Z",
+    "hypothesis": "fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。",
+    "parent": "alpha_sweep_a060_s42_fp32"
+  },
+  "timestamp": "2026-05-18T22:12:49.850855+00:00",
+  "trigger": "update_registry"
+}

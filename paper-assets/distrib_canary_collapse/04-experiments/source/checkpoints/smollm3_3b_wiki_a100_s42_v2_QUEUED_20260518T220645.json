@@ -1,0 +1,28 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:54:58.834Z",
+    "updated_at": "2026-05-18T22:06:45.024Z",
+    "hypothesis": "SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s42_fp32\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "399348",
+      "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v2.log",
+      "submitted_at": "2026-05-18T21:55:14.219Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T22:06:45.179765+00:00",
+  "trigger": "update_registry"
+}

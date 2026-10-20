@@ -1,0 +1,46 @@
+{
+  "exp_id": "alpha_sweep_a048_s43_fp32",
+  "alpha": 0.48,
+  "seed": 43,
+  "model": "Pythia-410M",
+  "n_generations": 11,
+  "analysis_version": "D102+D105+D111",
+  "threshold_criterion": "true_3sigma_d105",
+  "n_perm": 5000,
+  "results": {
+    "PermG_fwd": "0/8",
+    "PermG_rev": "0/8",
+    "DiffXCorr_fwd": "5/8",
+    "DiffXCorr_rev": "5/8",
+    "threshold_onset_3sigma": "0/8",
+    "TY_fwd": "2/8",
+    "K_ge3": "0/8",
+    "K_ge4": "0/8",
+    "robust_pairs": []
+  },
+  "drift_pct": {
+    "token_entropy": -19.0,
+    "ece": 834.9,
+    "perplexity": 18.1,
+    "distinct_1": -35.2,
+    "distinct_2": -47.5,
+    "distinct_3": -47.7,
+    "mauve": -15.8
+  },
+  "cross_seed_comparison": {
+    "s42_PermG_fwd": "0/8",
+    "s43_PermG_fwd": "0/8",
+    "agreement": true,
+    "conclusion": "alpha=0.48 blind zone confirmed across 2 seeds"
+  },
+  "consensus_detail": {
+    "token_entropy<distinct_1": {"votes": 1, "methods": ["diff"]},
+    "token_entropy<distinct_2": {"votes": 0, "methods": []},
+    "token_entropy<distinct_3": {"votes": 0, "methods": []},
+    "token_entropy<mauve": {"votes": 0, "methods": []},
+    "ece<distinct_1": {"votes": 2, "methods": ["diff", "ty"]},
+    "ece<distinct_2": {"votes": 1, "methods": ["ty"]},
+    "ece<distinct_3": {"votes": 1, "methods": ["naive"]},
+    "ece<mauve": {"votes": 1, "methods": ["naive"]}
+  }
+}

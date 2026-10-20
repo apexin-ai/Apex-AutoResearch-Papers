@@ -1,0 +1,97 @@
+paper_key: "guo2024linguistic"
+title: "The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text"
+venue: "NAACL 2024 Findings"
+full_text_available: true
+
+research:
+  baselines: []  # intrinsic study - each iteration compared to human data (Gen 0)
+  metrics:
+    - {name: "Type-Token Ratio (TTR)", direction: "higher_better"}
+    - {name: "Distinct-n (n=2,3)", direction: "higher_better"}
+    - {name: "1-Self-BLEU", direction: "higher_better"}
+    - {name: "Semantic diversity (cosine distance)", direction: "higher_better"}
+    - {name: "Syntactic diversity (WL kernel distance)", direction: "higher_better"}
+    - {name: "Perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "XL-SUM", size: "306K", task: "news summarization"}
+    - {name: "ACL Anthology", size: "40.5K", task: "scientific abstract generation"}
+    - {name: "WritingPrompts", size: "272.6K", task: "story generation"}
+  ablation_dimensions:
+    - task_entropy_level (low/medium/high creativity)
+    - mitigation_strategy (filtering vs mixing human data)
+    - diversity_dimension (lexical vs semantic vs syntactic)
+    - iteration_number (1-6)
+  training_recipe:
+    optimizer: "AdamW"
+    epochs_per_iteration: 5
+    hardware: "2x NVIDIA RTX A6000"
+    base_model: "OPT-350M"
+    iterations: 6
+  method_family: "recursive_finetuning_analysis"
+
+positioning:
+  core_claim: "Syntactic diversity suffers most severely under recursive synthetic training, more than lexical or semantic diversity — first work to measure and demonstrate this with novel WL-kernel syntactic diversity metrics."
+  key_results: "Story gen TTR: 0.84%→0.61% (↓73% from human 2.23%); Syntactic diversity: 4.23→1.96 (↓60%); Semantic diversity most stable; Quality filtering amplifies diversity loss"
+  limitations:
+    - "English-only; metrics may not generalize to other languages"
+    - "Only OPT-350M tested; larger scales not explored (700 GPU-hrs for story gen alone)"
+    - "Cannot simulate realistic web-scale contamination setting"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Data scarcity crisis — world's entire high-quality text is ~17T tokens, major models already consuming 2T. Practitioners turning to synthetic data."
+  tension: "Prior work showed model collapse (tail vanishing), but nobody measured HOW diversity declines across linguistic dimensions."
+  key_insight: "Section 4 — syntactic diversity declines far more severely than lexical or semantic. Form degrades faster than content. Revealed via novel WL-kernel metric on dependency trees."
+  argument_chain: "data scarcity → synthetic training necessity → recursive training simulation → comprehensive diversity metrics (lexical/semantic/syntactic) → syntactic decline most severe → mitigation strategies fail"
+  contribution_framing: "3 contributions: (1) first comprehensive metrics across 3 diversity dimensions, (2) empirical evaluation across 3 NLG tasks with varying creativity, (3) mitigation analysis"
+  intro_structure: "4 paragraphs: P1=data scarcity motivation, P2=prior work on model collapse, P3=research questions, P4=contributions"
+  notable_technique: "Stratifying tasks by 'creativity demand' (low/medium/high entropy) creates natural gradient showing diversity loss scales with task freedom"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Recursive training cycle diagram: Data(0)→Model(1)→Data(1)→Model(2)→..."
+    narrative_role: "Establishes the iterative contamination process being studied"
+    design_elements: ["cycle arrows", "numbered iterations", "data/model alternation"]
+    visual_style: "Simple flowchart with numbered nodes"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Distinct-3 and syntactic diversity across iterations under mitigation strategies"
+      how_gain_highlighted: "Shows mitigation strategies barely move curves vs no-intervention baseline"
+      design_note: "Dual y-axis for different metrics; mitigation failure is visually obvious"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Word frequency histograms across iterations"
+      how_gain_highlighted: "Low-frequency word bins shrink visibly across iterations"
+      design_note: "Histogram overlay makes tail disappearance concrete and intuitive"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      dimensions_varied: ["iteration number"]
+      design_note: "t-SNE of syntactic embeddings showing spatial compaction — visually compelling proof of diversity collapse"
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      dimensions_varied: ["iteration number"]
+      design_note: "t-SNE of semantic embeddings — less compaction, supporting claim that semantic diversity is more robust"
+  figure_narrative_role: "Fig1(process setup) → Fig3(word-level evidence) → Fig4(syntactic collapse visualization) → Fig5(semantic stability contrast) → Fig2(mitigation failure)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "iterations (0-6)"
+    col_axis: "metrics grouped by diversity dimension"
+    row_organization: "by_iteration"
+    col_organization: "grouped_by_metric_type"
+    highlight_strategy: "arrows showing direction of change from human baseline"
+    statistical_reporting: "single run values"
+    num_baselines: 0  # intrinsic comparison to human data
+    design_note: "Rows are iterations not methods; columns grouped by lexical/semantic/syntactic — readers see degradation trajectory per dimension"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "Table 1 shows example model outputs across iterations"
+    reason: "Qualitative examples in main text to make abstract metrics concrete"

@@ -1,0 +1,37 @@
+{
+  "exp_id": "t20_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:34:23.102Z",
+    "updated_at": "2026-05-20T10:19:30.486Z",
+    "hypothesis": "D126 Track 1: T=20 extended generation at α=0.75 detection regime。T=11 下 PermG=6/8，T=20 提供 2× 数据点提升 Granger 统计功效。predict→verify 关键数据：理论预测 α≥0.75 在 detection regime 应展示最强最稳定的 PermG 信号，T=20 验证这一预测。当前 T=20 覆盖 α=0.50/0.60/1.00，α=0.75 是缺失的 detection boundary 数据点。",
+    "parent": "alpha_sweep_a075_s42_fp32",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.75 --output_dir results/t20/a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "322146",
+      "log_path": "~/runs/distrib_canary_collapse/t20_a075_s42_fp32.log",
+      "submitted_at": "2026-05-20T10:18:58.839Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "num_generations": 20,
+      "checkpoint_source": "N/A (training from pretrained base)",
+      "eval_data": "N/A (training experiment)"
+    }
+  },
+  "timestamp": "2026-05-20T10:19:30.790509+00:00",
+  "trigger": "update_registry"
+}

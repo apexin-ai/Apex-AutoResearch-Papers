@@ -1,0 +1,20 @@
+alpha,seed,model,dataset,precision,PermG_fwd,PermG_rev,K3_3sigma,K4_3sigma,naive_D111,diff_D111,thresh_3sigma,TY,n_gen,notes
+0.00,42,pythia-410m,wikitext,fp32,0/8,0/8,1/8,0/8,2/8,4/8,4/8,2/8,11,null experiment; K3 M037-provisional
+0.05,42,pythia-410m,wikitext,fp32,0/8,0/8,3/8,0/8,4/8,3/8,5/8,3/8,11,blind zone; K3 M037-provisional
+0.10,42,pythia-410m,wikitext,fp32,0/8,0/8,3/8,1/8,3/8,5/8,5/8,3/8,11,blind zone; K3 M037-provisional
+0.25,42,pythia-410m,wikitext,fp32,0/8,0/8,1/8,0/8,1/8,1/8,5/8,3/8,11,blind zone
+0.30,42,pythia-410m,wikitext,fp32,0/8,0/8,3/8,0/8,3/8,1/8,8/8,5/8,11,blind zone
+0.35,42,pythia-410m,wikitext,fp32,0/8,0/8,2/8,0/8,0/8,4/8,8/8,4/8,11,blind zone
+0.40,42,pythia-410m,wikitext,fp32,0/8,0/8,3/8,1/8,4/8,3/8,8/8,4/8,11,blind zone
+0.45,42,pythia-410m,wikitext,fp32,0/8,0/8,1/8,0/8,1/8,3/8,8/8,1/8,11,blind zone boundary
+0.50,42,pythia-410m,wikitext,fp32,6/8,0/8,6/8,5/8,3/8,6/8,8/8,4/8,11,onset; PermG step 0->6/8
+0.60,42,pythia-410m,wikitext,fp32,3/8,0/8,8/8,4/8,3/8,8/8,8/8,8/8,11,sync collapse D108; PermG non-monotonic dip
+0.75,42,pythia-410m,wikitext,fp32,6/8,0/8,7/8,6/8,7/8,6/8,8/8,8/8,11,detection regime
+1.00,42,pythia-410m,wikitext,fp32,6/8,0/8,6/8,6/8,7/8,6/8,8/8,3/8,11,full synthetic
+0.00,43,pythia-410m,wikitext,fp32,0/8,—,0/8,—,—,—,—,1/8,11,registry data
+0.10,43,pythia-410m,wikitext,fp32,0/8,0/8,4/8,4/8,4/8,6/8,4/8,6/8,11,blind zone
+0.25,43,pythia-410m,wikitext,fp32,0/8,0/8,0/8,0/8,0/8,0/8,4/8,4/8,11,blind zone
+0.50,43,pythia-410m,wikitext,fp32,6/8,0/8,6/8,5/8,2/8,6/8,8/8,5/8,11,onset confirmed cross-seed
+0.60,43,pythia-410m,wikitext,fp32,0/8,0/8,4/8,0/8,1/8,6/8,8/8,4/8,10,sync collapse; T=10 (timeout)
+0.75,43,pythia-410m,wikitext,fp32,5/8,0/8,7/8,5/8,2/8,6/8,8/8,6/8,11,detection regime cross-seed
+1.00,43,pythia-410m,wikitext,fp32,6/8,0/8,6/8,—,0/8,0/8,8/8,6/8,11,registry data (pythia410m_wiki_a100_s43_fp32)

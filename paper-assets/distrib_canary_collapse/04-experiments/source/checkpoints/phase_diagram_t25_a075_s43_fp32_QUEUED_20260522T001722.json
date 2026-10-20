@@ -1,0 +1,29 @@
+{
+  "exp_id": "phase_diagram_t25_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:57:48.937Z",
+    "updated_at": "2026-05-22T00:17:22.349Z",
+    "hypothesis": "T=25 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(25)≈0.232. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=25 and seed robustness of high-α detection.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "714857",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32.log",
+      "submitted_at": "2026-05-22T00:17:04.528Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "parent": "phase_diagram_t25_a075_s42_fp32"
+  },
+  "timestamp": "2026-05-22T00:17:22.784402+00:00",
+  "trigger": "update_registry"
+}

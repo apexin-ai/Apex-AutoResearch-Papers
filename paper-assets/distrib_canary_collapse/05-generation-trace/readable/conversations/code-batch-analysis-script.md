@@ -1,0 +1,1685 @@
+# code batch analysis script
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_code_batch_analysis_script_20260519T011324.jsonl`
+- **Structured JSON:** [`a167b3896e681101c7fe.json`](../../sessions/a1/a167b3896e681101c7fe.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T01:17:32.098153+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T01:17:32.098478+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T01:17:32.098642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T01:17:32.098790+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T01:17:32.098923+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T01:17:32.099066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nchange_point_analysis.py\\nchange_point_supplement.py\\ngen_single_method_table.py\\ntransfer_entropy_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T01:17:32.099202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*analysis*\" -o -name \"*lead*lag*\" -o -name \"*granger*\" -o -name \"*mmct*\" -o -name \"*xcorr*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*analysis*\" -o -name \"*lead*lag*\" -o -name \"*granger*\" -o -name \"*mmct*\" -o -name \"*xcorr*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T01:17:32.099367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/mmct\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/__pycache__/transfer_entropy_analysis.cpython-312.pyc\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T01:17:32.099513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T01:17:32.099690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Self-contained 5-method lead-lag analysis for GPT-2m s43.\\\"\\\"\\\"\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nDATA_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16\\\"\\n\\n\\ndef load_series(data_dir):\\n    with open(os.path.join(data_dir, \\\"all_metrics.json\\\")) as f:\\n        data = json.load(f)\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(a
+…[truncated 1660 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T01:17:32.099847+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T01:17:32.099992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"431 /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T01:17:32.100118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T01:17:32.100236+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T01:17:32.100558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available alpha-sweep conditions.\\n\\nScans results/alpha_sweep/ for conditions with 5method_leadlag.json,\\nruns MMCT in 4 modes (uniform/weighted x forward/bidirectional),\\noutputs JSON results and markdown reports.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True,  \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True,  \\\"bidirectional\\\": False, \\\"name\\\": \\\"weighted_forward\\\"},\\n    {\\\"weighted\\\": True,  \\\"bidirectional\\\": True,  \\\"name\\\": \\\"weighted_bidirectional\\\"},\\n]\\n\\n\\ndef discover_conditions():\\n    \\\"\\\"\\\"Scan alpha_sweep directory for conditions with 5method analysis.\\\"\\\"\\\"\\n    conditions = {}\\n    for entry in sorted(os.listdir(BASE_DIR)):\\n        if not entry.startswith(\\\"a\\\") or \\\"_s\\\" not in entry:\\n            continue\\n        analysis = os.path.join(BASE_DIR, entry, \\\"analysis\\\",\\n                                \\\"5method_leadlag.json\\\")\\n        if not os.path.exists(analysis):\\n            continue\\n        parts = entry.split(\\\"_\\\")\\n        alpha_str = parts[0]\\n        seed = int(parts[1][1
+…[truncated 7584 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T01:17:32.100726+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"detrending_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T01:17:32.100850+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T01:17:32.100985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_c4\\ndry_run\\ngeneralize\\nintervention\\nscale_check\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T01:17:32.101106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -n 330 /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -n 330 /root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T01:17:32.101387+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"diff_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n        \\\"all_lags\\\": all_lags,\\n    }\\n\\n\\n# Method 3: Threshold onset detection\\ndef threshold_onset(c, d, cn, dn, sigma_mult=3):\\n    x, y = orient(c, cn), orient(d, dn)\\n    gen0_c, gen0_d = x[0], y[0]\\n    std_c = np.std(np.diff(x)) if len(x) > 1 else 1e-12\\n    std_d = np.std(np.diff(y)) if len(y) > 1 else 1e-12\\n    if std_c < 1e-12:\\n        std_c = abs(gen0_c) * 0.01 if abs(gen0_c) > 1e-12 else 1e-6\\n    if std_d < 1e-12:\\n        std_d = abs(gen0_d) * 0.01 if abs(gen0_d) > 1e-12 else 1e-6\\n    thresh_c = gen0_c + sigma_mult * std_c\\n    thresh_d = gen0_d + sigma_mult * std_d\\n    onset_c, onset_d = None, None\\n    for i in range(1, len(x)):\\n        if onset_c is None and x[i] > thresh_c:\\n            onset_c = i\\n        if onset_d is None and y[i] > thresh_d:\\n            onset_d = i\\n    if onset_c is not None and onset_d is not None:\\n        lead = onset_d - onset_c\\n        significant = lead > 0\\n    elif onset_c is not None and onset_d is None:\\n        lead = len(x) - onset_c\\n        significant = True\\n    else:\\n        lead = 0\\n        significant = False\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"onset_canary\\\": onset_c,\\n        \\\"onset_downstream\\\": onset_d,\\n        \\\"lead_time\\\": int(lead) if lead is not None else None,\\n        \\\"threshold_canary\\\": round(float(thresh_c), 6),\\n        \\\"
+…[truncated 7334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T01:17:32.101551+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/mmct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/mmct/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T01:17:32.101682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nconsensus_test.py\\nmethods.py\\nnull_distribution.py\\nrun_mmct.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T01:17:32.101812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T01:17:32.101963+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nSingle methods have uncontrolled FPR on short time series (T~11).\\nMMCT aggregates K=5 methods into a consensus score calibrated against\\nalpha=0.00 null data to control false positive rate.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted: consensus = inverse-FPR-weighted sum (down-weights noisy methods)\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n\\n    @property\\n    def mode_name(self):\\n        w = \\\"weighted\\\" if self.weighted else \\\"uniform\\\"\\n        d =
+…[truncated 209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T01:17:32.102103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/mvp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/mvp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T01:17:32.102225+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/mvp/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T01:17:32.102383+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"all_metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"all_metrics.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T01:17:32.102519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s43_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep_c4/a050_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T01:17:32.102641+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T01:17:32.102796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from 5method_leadlag.json rather than\\nre-running statistical tests. Handles two JSON layouts:\\n  Format A (a000): pair has top-level canary/downstream + forward/reverse dicts\\n  Format B (a025+): pair has forward/reverse dicts with canary/downstream inside\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\\"\\\"\\\"\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef _find_pair(results, canary, downstream):\\n    \\\"\\\"\\\"Find the pair dict, handling both JSON formats.\\\"\\\"\\\"\\n    for pair in results[\\\"pairs\\\"]:\\n        # Format A: canary/downstream at pair level\\n        if pair.get(\\\"canary\\\") == canary and pair.get(\\\"downstream\\\") == downstream:\\n            return pair\\n        # Format B: canary/downstream inside forward\\n        fwd = pair.get(\\\"forward\\\", {})\\n        if fwd.get(\\\"canary\\\") == canary and fwd.get(\\\"downstream\\\") == downstream:\\n            return pair\\n    return None\\n\\n\\ndef extract_method_significance(results, canary, downstream,\\n                                 direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Extract per-method significance for one pair.\\n\\n    Returns dict mapping method name to bool (significant or not).\\n    \\\"
+…[truncated 947 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T01:17:32.102942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T01:17:32.103099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Null distribution construction from alpha=0.00 data.\\n\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\ndistribution of consensus scores under H0. Supports both uniform and\\nweighted consensus modes. Per-method FPR profiles are computed for\\ninverse-FPR weighting.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom pathlib import Path\\n\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\n                      extract_method_significance)\\n\\n\\nclass NullDistribution:\\n    \\\"\\\"\\\"Empirical null distribution for MMCT consensus scores.\\\"\\\"\\\"\\n\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\n        \\\"\\\"\\\"\\n        Args:\\n            null_dirs: list of paths to alpha=0.00 experiment directories\\n            n_bootstrap: bootstrap resamples for p-value CI\\n            seed: random seed for reproducibility\\n        \\\"\\\"\\\"\\n        self.null_dirs = null_dirs\\n        self.n_bootstrap = n_bootstrap\\n        self.seed = seed\\n\\n        self._per_pair_sigs = {}\\n        self._load_null_data()\\n        self._compute_fpr_profile()\\n        self._build_distributions()\\n\\n    def _load_null_data(self):\\n        for d in self.null_dirs:\\n            results = load_5method_results(d)\\n            for canary, downstream in METRIC_PAIRS:\\n                key = (canary, downstream)\\n                if key not in self._per_pair_sigs:\\n                    self._per_pair_sigs[key] = {\\\"forward\\\": [], \\\"reverse\\\": []}\\n\\n                fwd = extract_method_significance(\\n                    results, canary, downstream, \\\"forward\\\")\\n                rev = extract_method_significance(\\n                    results, canary, downstream, \\\"reverse\\\")\\n                self._per_pair_sigs[key][\\\"forward\\\"].append(fwd)\\n                self._per_pair_sigs[key][\\\"reverse\\\"].append(rev)
+…[truncated 1460 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T01:17:32.103236+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T01:17:32.103404+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2574140627143287,\\n    \\\"self_bleu\\\": 0.010543616635719037,\\n    \\\"distinct_1\\\": 0.09168133838527256,\\n    \\\"distinct_2\\\": 0.5037403044169668,\\n    \\\"distinct_3\\\": 0.834135219998215,\\n    \\\"ece\\\": 0.012302233603174888,\\n    \\\"effective_rank\\\": 48.33042169248714,\\n    \\\"perplexity\\\": 27.680778028190417,\\n    \\\"mauve\\\": 0.02971236352592673,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.1\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.881645027448021,\\n    \\\"self_bleu\\\": 0.010562120783565677,\\n    \\\"distinct_1\\\": 0.08966348877486606,\\n    \\\"distinct_2\\\": 0.49554471070969,\\n    \\\"distinct_3\\\": 0.8242068630624798,\\n    \\\"ece\\\": 0.003252925732723398,\\n    \\\"effective_rank\\\": 48.02988335191283,\\n    \\\"perplexity\\\": 17.183682272314822,\\n    \\\"mauve\\\": 0.030051398641171824,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T01:17:32.103538+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -80 /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -80 /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T01:17:32.103701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        self._null_sig_vectors_fwd = []\\n        self._null_sig_vectors_rev = []\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            weights = self.get_weights(key)\\n\\n            for sig in self._per_pair_sigs[key][\\\"forward\\\"]:\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\n                weighted_fwd.append(\\n                    self.consensus_score_weighted(sig, weights))\\n                self._null_sig_vectors_fwd.append((key, sig))\\n\\n            for sig in self._per_pair_sigs[key][\\\"reverse\\\"]:\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\n                weighted_rev.append(\\n                    self.consensus_score_weighted(sig, weights))\\n                self._null_sig_vectors_rev.append((key, sig))\\n\\n        self.null_uniform_fwd = np.array(uniform_fwd)\\n        self.null_uniform_rev = np.array(uniform_rev)\\n        self.null_weighted_fwd = np.array(weighted_fwd)\\n        self.null_weighted_rev = np.array(weighted_rev)\\n\\n    def p_value(self, observed_score, weighted=False, direction=\\\"forward\\\"):\\n        \\\"\\\"\\\"Compute p-value = P(C_null >= C_obs) with bootstrap CI.\\n\\n        Returns (p_value, ci_lower, ci_upper).\\n        \\\"\\\"\\\"\\n        if weighted:\\n            null = (self.null_weighted_fwd if direction == \\\"forward\\\"\\n                    else self.null_weighted_rev)\\n        else:\\n            null = (self.null_uniform_fwd if direction == \\\"forward\\\"\\n                    else self.null_uniform_rev)\\n\\n        n = len(null)\\n        p = (np.sum(null >= observed_score) + 1) / (n + 1)\\n\\n        rng = np.random.default_rng(self.seed)\\n        boot_p = np.empty(self.n_bootstrap)\\n        for i in range(self.n_bootstrap):\\n            sample = rng.choice(null, size=n, replace=True)\\n            boot_p[i] = (np.sum(sample >= observed_score) + 
+…[truncated 2056 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T01:17:32.103840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -120 /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -120 /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T01:17:32.104029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Modes:\\n  - uniform: consensus = count of significant methods\\n  - weighted: consensus = inverse-FPR-weighted sum (down-weights noisy methods)\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n\\n    @property\\n    def mode_name(self):\\n        w = \\\"weighted\\\" if self.weighted else \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        \\\"\\\"\\\"Run MMCT on one pair using pre-computed 5method results.\\n\\n        Args:\\
+…[truncated 2499 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T01:17:32.104195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"a000*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"a000*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T01:17:32.104339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T01:17:32.104457+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -5 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -5 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T01:17:32.104577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 0.1,\\n  \\\"seed\\\": 43,\\n  \\\"precision\\\": \\\"bf16\\\",\\n  \\\"n_generations\\\": 11,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T01:17:32.104735+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/metrics.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/metrics.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T01:17:32.104880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Canary and downstream metrics for model collapse detection.\\n\\nComputes per-generation metrics on held-out data and generated samples.\\nAll compute_* functions share the signature:\\n    (model, tokenizer, eval_dataset, gen_dataset=None, **kwargs) -> float | dict\\n\\nDependencies: torch, transformers, mauve-text, nltk\\n\\\"\\\"\\\"\\n\\nimport math\\nfrom collections import Counter\\nfrom itertools import combinations\\n\\nimport numpy as np\\nimport torch\\nfrom nltk.translate.bleu_score import SmoothingFunction, sentence_bleu\\n\\n\\n# ---------------------------------------------------------------------------\\n# Text-surface metrics\\n# ---------------------------------------------------------------------------\\n\\ndef compute_token_entropy(model, tokenizer, eval_dataset, gen_dataset=None,\\n                          max_samples=512, max_length=256, batch_size=8):\\n    \\\"\\\"\\\"Mean next-token entropy of `model` on `eval_dataset` (held-out real text).\\n\\n    Lower entropy over generations signals the model is becoming overly\\n    confident / less diverse — a collapse canary.\\n    \\\"\\\"\\\"\\n    model.eval()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T01:17:32.105010+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T01:17:32.105131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s43_bf16\\na010_s43_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T01:17:32.105246+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080 -name \"all_metrics.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080 -name \"all_metrics.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T01:17:32.105383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T01:17:32.105501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T01:17:32.105617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config.json\\ngen_0\\ngen_1\\ngen_2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T01:17:32.105847+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py << 'PYEOF'\n\"\"\"Batch lead-lag analysis for distributional canary collapse experiments.\n\nReads all_metrics.json from an experiment directory, runs 5-method lead-lag\nanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\nruns full MMCT if null directories are provided.\n\nUsage:\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\n        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\n\nInput:  {exp_dir}/all_metrics.json\nOutput: {exp_dir}/analysis_results.json (or --output path)\n\nDependencies: numpy, scipy, statsmodels\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport traceback\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.tsa.stattools import adfuller\n\nN_PERM = 5000\nALPHA_SIG = 0.05\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n\nHIGHER_IS_WORSE = {\"ece\", \"perplexity\"}\nLOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\n\nALL_METRICS = [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\",\n               \"distinct_3\", \"effective_rank\", \"mauve\"]\n\n\ndef load_series(data_dir):\n    path = os.path.join(data_dir, \"all_metrics.json\")\n    with open(path) as f:\n        data = json.load(f)\n    data.sort(key=lambda x: x[\"generation\"])\n    out = {}\n    for k in ALL_METRICS:\n        vals = []\n        for d in data:\n            v = d.get(k)\n            vals.append(v if v is not None else np.nan)\n        out[k] = np.array(vals, dtype=float)\n    return out, len(data)\n\n\ndef orient(series, name):\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n\n\ndef compute_drift(series_dict, n_gens):\n    drift = {}\n    for k in ALL_METRICS:\n        s = series_dict.get(k)\n        if s is None or len(s) < 2:\n            drift[k] = None\n            continue\n        v0, v_last = s[0], s[-1]\n        if abs(v0) < 1e-12:\n            drift[k] = None\n        else:\n            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\n    return drift\n\n\ndef bh_fdr(p_values, alpha=0.05):\n    pv = np.array(p_values, dtype=float)\n    n = len(pv)\n    valid = ~np.isnan(pv)\n    adjusted = np.full(n, np.nan)\n    if valid.sum() == 0:\n        return adjusted.tolist(), [False] * n\n    idx = np.where(valid)[0]\n    p_valid = pv[idx]\n    sorted_idx = np.argsort(p_valid)\n    ranks = np.empty_like(sorted_idx)\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\n    m = len(p_valid)\n    adj = p_valid * m / ranks\n    adj_sorted = adj[sorted_idx].copy()\n    for i in range(m - 2, -1, -1):\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\n    adj_sorted = np.minimum(adj_sorted, 1.0)\n    adj_final = np.empty(m)\n    adj_final[sorted_idx] = adj_sorted\n    for i, ix in enumerate(idx):\n        adjusted[ix] = adj_final[i]\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\n    return adjusted.tolist(), significant\n\n\n# ── Method 1: Naive cross-correlation ──\n\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\n    x, y = orient(c, cn), orient(d, dn)\n    n = len(x)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"naive_xcorr\", \"peak_lag\": None, \"r\": None,\n                \"p_value\": None, \"significant\": False, \"note\": \"NaN in data\"}\n    best_lag, best_r, best_p = 0, 0.0, 1.0\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            a, b = x[lag:], y[:n - lag]\n        else:\n            a, b = x[:n + lag], y[-lag:]\n        if len(a) < 4:\n            continue\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n            continue\n        r, p = stats.pearsonr(a, b)\n        if abs(r) > abs(best_r):\n            best_lag, best_r, best_p = lag, r, p\n    return {\n        \"method\": \"naive_xcorr\",\n        \"peak_lag\": int(best_lag),\n        \"r\": round(float(best_r), 4),\n        \"p_value\": round(float(best_p), 6),\n        \"significant\": bool(best_p < ALPHA_SIG),\n    }\n\n\n# ── Method 2: Differenced cross-correlation ──\n\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"diff_xcorr\", \"peak_lag\": None, \"r\": None,\n                \"p_value\": None, \"significant\": False, \"note\": \"NaN in data\"}\n    dx, dy = np.diff(x), np.diff(y)\n    n = len(dx)\n    best_lag, best_r, best_p = 0, 0.0, 1.0\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            a, b = dx[lag:], dy[:n - lag]\n        else:\n            a, b = dx[:n + lag], dy[-lag:]\n        if len(a) < 4:\n            continue\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n            continue\n        r, p = stats.pearsonr(a, b)\n        if abs(r) > abs(best_r):\n            best_lag, best_r, best_p = lag, r, p\n    return {\n        \"method\": \"diff_xcorr\",\n        \"peak_lag\": int(best_lag),\n        \"r\": round(float(best_r), 4),\n        \"p_value\": round(float(best_p), 6),\n        \"significant\": bool(best_p < ALPHA_SIG),\n    }\n\n\n# ── Method 3: Threshold onset detection ──\n\ndef threshold_onset(c, d, cn, dn, sigma_mult=3):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"threshold_onset\", \"onset_canary\": None,\n                \"onset_downstream\": None, \"lead_time\": None, \"significant\": False,\n                \"note\": \"NaN in data\"}\n    gen0_c, gen0_d = x[0], y[0]\n    std_c = np.std(np.diff(x)) if len(x) > 1 else 1e-12\n    std_d = np.std(np.diff(y)) if len(y) > 1 else 1e-12\n    if std_c < 1e-12:\n        std_c = abs(gen0_c) * 0.01 if abs(gen0_c) > 1e-12 else 1e-6\n    if std_d < 1e-12:\n        std_d = abs(gen0_d) * 0.01 if abs(gen0_d) > 1e-12 else 1e-6\n    thresh_c = gen0_c + sigma_mult * std_c\n    thresh_d = gen0_d + sigma_mult * std_d\n    onset_c, onset_d = None, None\n    for i in range(1, len(x)):\n        if onset_c is None and x[i] > thresh_c:\n            onset_c = i\n        if onset_d is None and y[i] > thresh_d:\n            onset_d = i\n    if onset_c is not None and onset_d is not None:\n        lead = onset_d - onset_c\n        significant = lead > 0\n    elif onset_c is not None and onset_d is None:\n        lead = len(x) - onset_c\n        significant = True\n    else:\n        lead = 0\n        significant = False\n    return {\n        \"method\": \"threshold_onset\",\n        \"onset_canary\": onset_c,\n        \"onset_downstream\": onset_d,\n        \"lead_time\": int(lead) if lead is not None else None,\n        \"significant\": significant,\n    }\n\n\n# ── Method 4: Permutation Granger ──\n\ndef _build_lag_matrix(y, x, max_lag):\n    T = len(y)\n    n = T - max_lag\n    Y = y[max_lag:]\n    cols_r = [np.ones(n)]\n    for lag in range(1, max_lag + 1):\n        cols_r.append(y[max_lag - lag: T - lag])\n    cols_u = list(cols_r)\n    for lag in range(1, max_lag + 1):\n        cols_u.append(x[max_lag - lag: T - lag])\n    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\n\n\ndef _granger_f_stat(y, x, max_lag):\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n    n = len(Y)\n    q = max_lag\n    try:\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n    except np.linalg.LinAlgError:\n        return np.nan\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n    k_u = X_u.shape[1]\n    df_resid = n - k_u\n    if df_resid <= 0 or rss_u < 1e-15:\n        return np.nan\n    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n\n\ndef perm_granger(x, y, max_lag=1, n_perm=N_PERM, seed=42, difference=True):\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"NaN in data\"}\n    if difference:\n        x, y = np.diff(x), np.diff(y)\n    T = len(x)\n    if T <= max_lag + 2:\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": f\"T={T} too short\"}\n    f_obs = _granger_f_stat(y, x, max_lag)\n    if np.isnan(f_obs):\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"F-stat failed\"}\n    rng = np.random.default_rng(seed)\n    null_f = np.empty(n_perm)\n    for i in range(n_perm):\n        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n    valid = null_f[~np.isnan(null_f)]\n    if len(valid) == 0:\n        return {\"method\": \"perm_granger\", \"f_stat\": round(float(f_obs), 4),\n                \"p_value\": None, \"significant\": False}\n    p = (np.sum(valid >= f_obs) + 1) / (len(valid) + 1)\n    return {\n        \"method\": \"perm_granger\",\n        \"f_stat\": round(float(f_obs), 4),\n        \"p_value\": round(float(p), 6),\n        \"significant\": bool(p < ALPHA_SIG),\n    }\n\n\n# ── Method 5: Toda-Yamamoto Granger ──\n\ndef _determine_d_max(series, max_d=2, alpha=0.05):\n    for d in range(max_d + 1):\n        try:\n            result = adfuller(series, maxlag=min(3, len(series) // 3 - 1),\n                              regression=\"ct\", autolag=\"AIC\")\n            if result[1] < alpha:\n                return d\n            series = np.diff(series)\n        except Exception:\n            return d\n    return max_d\n\n\ndef ty_granger(c, d, cn, dn, max_lag=1):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"NaN in data\"}\n    d_max = max(_determine_d_max(x), _determine_d_max(y))\n    p_total = max_lag + d_max\n    T = len(x)\n    n = T - p_total\n    if n <= p_total + 2:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"d_max\": int(d_max),\n                \"note\": f\"T={T} too short for d_max={d_max}, p={p_total}\"}\n    Y = y[p_total:]\n    cols_r = [np.ones(n)]\n    for lag in range(1, p_total + 1):\n        cols_r.append(y[p_total - lag: T - lag])\n    for lag in range(max_lag + 1, p_total + 1):\n        cols_r.append(x[p_total - lag: T - lag])\n    cols_u = list(cols_r)\n    for lag in range(1, max_lag + 1):\n        cols_u.append(x[p_total - lag: T - lag])\n    X_r = np.column_stack(cols_r)\n    X_u = np.column_stack(cols_u)\n    try:\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n    except np.linalg.LinAlgError:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"lstsq failed\"}\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n    df_resid = n - X_u.shape[1]\n    if df_resid <= 0 or rss_u < 1e-15:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": f\"df_resid={df_resid}\"}\n    q = max_lag\n    W = n * (rss_r - rss_u) / rss_u\n    p_val = 1.0 - stats.chi2.cdf(W, q)\n    return {\n        \"method\": \"ty_granger\",\n        \"chi2\": round(float(W), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"d_max\": int(d_max),\n        \"df_resid\": int(df_resid),\n        \"significant\": bool(p_val < ALPHA_SIG),\n    }\n\n\n# ── Run all 5 methods on one pair ──\n\ndef run_pair(series, cn, dn):\n    c, d = series[cn], series[dn]\n    results = {}\n    results[\"naive_xcorr\"] = naive_xcorr(c, d, cn, dn)\n    results[\"diff_xcorr\"] = diff_xcorr(c, d, cn, dn)\n    results[\"threshold_onset\"] = threshold_onset(c, d, cn, dn)\n    # forward: canary -> downstream (x=canary causes y=downstream)\n    results[\"perm_granger_fwd\"] = perm_granger(orient(c, cn), orient(d, dn),\n                                                seed=42, difference=True)\n    results[\"perm_granger_fwd\"][\"direction\"] = \"forward\"\n    # reverse: downstream -> canary\n    results[\"perm_granger_rev\"] = perm_granger(orient(d, dn), orient(c, cn),\n                                                seed=42, difference=True)\n    results[\"perm_granger_rev\"][\"direction\"] = \"reverse\"\n    results[\"ty_granger\"] = ty_granger(c, d, cn, dn)\n    return results\n\n\n# ── Apply BH FDR across 8 pairs ──\n\ndef apply_fdr_correction(all_pair_results):\n    for method_key, p_key in [(\"diff_xcorr\", \"p_value\"),\n                               (\"perm_granger_fwd\", \"p_value\"),\n                               (\"perm_granger_rev\", \"p_value\")]:\n        pvals = []\n        for pr in all_pair_results:\n            r = pr[\"results\"].get(method_key, {})\n            p = r.get(p_key)\n            pvals.append(p if p is not None else np.nan)\n        adj, sig = bh_fdr(pvals)\n        for i, pr in enumerate(all_pair_results):\n            r = pr[\"results\"].get(method_key, {})\n            r[\"p_fdr\"] = round(adj[i], 6) if not np.isnan(adj[i]) else None\n            r[\"significant_fdr\"] = sig[i]\n\n\n# ── Consensus counting ──\n\ndef compute_consensus(pair_result):\n    r = pair_result[\"results\"]\n    votes = 0\n    methods_sig = []\n    if r[\"naive_xcorr\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"naive\")\n    if r[\"diff_xcorr\"].get(\"significant_fdr\", r[\"diff_xcorr\"].get(\"significant\", False)):\n        votes += 1; methods_sig.append(\"diff\")\n    if r[\"threshold_onset\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"thresh\")\n    if r[\"perm_granger_fwd\"].get(\"significant_fdr\", r[\"perm_granger_fwd\"].get(\"significant\", False)):\n        votes += 1; methods_sig.append(\"pg_fwd\")\n    if r[\"ty_granger\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"ty\")\n    return votes, methods_sig\n\n\n# ── MMCT (full, if null dirs available) ──\n\ndef run_mmct_full(exp_dir, null_dirs):\n    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n    from mmct.null_distribution import NullDistribution\n    from mmct.consensus_test import MMCT\n    from mmct.methods import METRIC_PAIRS as MMCT_PAIRS\n\n    null_dist = NullDistribution(null_dirs, n_bootstrap=10000, seed=42)\n    mmct = MMCT(null_dist, weighted=True, bidirectional=False, alpha=0.05)\n\n    n_sig = 0\n    n_total = 0\n    pair_results = []\n    for canary, downstream in MMCT_PAIRS:\n        try:\n            result = mmct.test_from_precomputed(exp_dir, canary, downstream)\n            r = result.to_dict()\n            pair_results.append(r)\n            n_total += 1\n            if r[\"significant\"]:\n                n_sig += 1\n        except Exception:\n            n_total += 1\n    detection_rate = n_sig / n_total if n_total > 0 else 0.0\n    return {\n        \"mode\": \"weighted_pair_forward\",\n        \"detection_rate\": round(detection_rate, 4),\n        \"sig\": n_sig,\n        \"total\": n_total,\n        \"pair_results\": pair_results,\n    }\n\n\n# ── Main ──\n\ndef analyze(exp_dir, output_path=None, null_dirs=None):\n    print(f\"Loading data from {exp_dir}\")\n    series, n_gens = load_series(exp_dir)\n    print(f\"  {n_gens} generations loaded\")\n\n    # 1. Drift\n    print(\"Computing drift...\")\n    drift = compute_drift(series, n_gens)\n\n    # 2. Lead-lag (5 methods, 8 pairs)\n    print(\"Running 5-method lead-lag analysis...\")\n    all_pairs = []\n    for cn in CANARIES:\n        for dn in DOWNSTREAMS:\n            try:\n                r = run_pair(series, cn, dn)\n                all_pairs.append({\"canary\": cn, \"downstream\": dn, \"results\": r})\n            except Exception as e:\n                print(f\"  WARN: {cn}->{dn} failed: {e}\")\n                all_pairs.append({\"canary\": cn, \"downstream\": dn,\n                                  \"results\": {}, \"error\": str(e)})\n\n    apply_fdr_correction(all_pairs)\n\n    # Count summary\n    naive_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"naive_xcorr\", {}).get(\"significant\", False))\n    diff_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"diff_xcorr\", {}).get(\"significant_fdr\",\n                    p[\"results\"].get(\"diff_xcorr\", {}).get(\"significant\", False)))\n    thresh_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"threshold_onset\", {}).get(\"significant\", False))\n    pg_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"perm_granger_fwd\", {}).get(\"significant_fdr\",\n                  p[\"results\"].get(\"perm_granger_fwd\", {}).get(\"significant\", False)))\n    pg_rev = sum(1 for p in all_pairs if p[\"results\"].get(\"perm_granger_rev\", {}).get(\"significant_fdr\",\n                  p[\"results\"].get(\"perm_granger_rev\", {}).get(\"significant\", False)))\n    ty_sig = sum(1 for p in all_pairs if p[\"results\"].get(\"ty_granger\", {}).get(\"significant\", False))\n\n    consensus_counts = []\n    for p in all_pairs:\n        votes, methods = compute_consensus(p)\n        consensus_counts.append({\"pair\": f\"{p['canary']}->{p['downstream']}\",\n                                  \"votes\": votes, \"methods\": methods})\n    k4 = sum(1 for c in consensus_counts if c[\"votes\"] >= 4)\n    total = len(all_pairs)\n\n    lead_lag = {\n        \"naive_xcorr\": {\"forward\": naive_fwd, \"total\": total},\n        \"diff_xcorr\": {\"forward\": diff_fwd, \"total\": total},\n        \"threshold_onset\": {\"forward\": thresh_fwd, \"total\": total},\n        \"perm_granger_fwd\": {\"sig\": pg_fwd, \"total\": total},\n        \"perm_granger_rev\": {\"sig\": pg_rev, \"total\": total},\n        \"ty_granger\": {\"sig\": ty_sig, \"total\": total},\n        \"consensus_k4\": {\"sig\": k4, \"total\": total},\n    }\n\n    # 3. MMCT\n    mmct_result = None\n    if null_dirs:\n        print(\"Running full MMCT (weighted_pair_forward)...\")\n        try:\n            # MMCT requires pre-computed 5method_leadlag.json\n            # First save the lead-lag results in the format MMCT expects\n            analysis_dir = os.path.join(exp_dir, \"analysis\")\n            os.makedirs(analysis_dir, exist_ok=True)\n            _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir)\n            mmct_result = run_mmct_full(exp_dir, null_dirs)\n        except Exception as e:\n            print(f\"  MMCT failed: {e}\")\n            traceback.print_exc()\n            mmct_result = {\"mode\": \"weighted_pair_forward\", \"error\": str(e)}\n    else:\n        print(\"No null_dirs provided, using simple K>=4 consensus as MMCT proxy\")\n        mmct_result = {\n            \"mode\": \"weighted_pair_forward\",\n            \"detection_rate\": round(k4 / total, 4) if total > 0 else 0.0,\n            \"note\": \"simple_consensus_k4 (no null distribution)\",\n        }\n\n    # 4. Build output\n    output = {\n        \"exp_dir\": exp_dir,\n        \"n_generations\": n_gens,\n        \"drift_pct\": drift,\n        \"lead_lag\": lead_lag,\n        \"mmct\": mmct_result,\n        \"consensus_detail\": consensus_counts,\n        \"pair_details\": _clean(all_pairs),\n    }\n\n    if output_path is None:\n        output_path = os.path.join(exp_dir, \"analysis_results.json\")\n    os.makedirs(os.path.dirname(output_path) or \".\", exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {output_path}\")\n\n    # Print summary\n    print(f\"\\n{'='*60}\")\n    print(f\"SUMMARY: {exp_dir}\")\n    print(f\"{'='*60}\")\n    print(f\"Generations: {n_gens}\")\n    print(f\"\\nDrift (gen0->gen{n_gens-1}):\")\n    for k, v in drift.items():\n        if v is not None:\n            print(f\"  {k:20s}: {v:+.2f}%\")\n    print(f\"\\nLead-lag (forward significant / total):\")\n    for method, counts in lead_lag.items():\n        key = \"forward\" if \"forward\" in counts else \"sig\"\n        print(f\"  {method:20s}: {counts[key]}/{counts['total']}\")\n    print(f\"\\nMMCT: {mmct_result.get('mode', 'N/A')}, \"\n          f\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\")\n\n    return output\n\n\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\n    \"\"\"Save lead-lag results in the format expected by MMCT module.\"\"\"\n    pairs_out = []\n    for p in all_pairs:\n        r = p[\"results\"]\n        pair_entry = {\n            \"canary\": p[\"canary\"],\n            \"downstream\": p[\"downstream\"],\n            \"forward\": {},\n            \"reverse\": {},\n        }\n        for method in [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"ty_granger\"]:\n            if method in r:\n                pair_entry[\"forward\"][method] = r[method]\n        if \"perm_granger_fwd\" in r:\n            pair_entry[\"forward\"][\"perm_granger\"] = r[\"perm_granger_fwd\"]\n        if \"perm_granger_rev\" in r:\n            pair_entry[\"reverse\"][\"perm_granger\"] = r[\"perm_granger_rev\"]\n        pairs_out.append(pair_entry)\n\n    output = {\n        \"n_generations\": n_gens,\n        \"data_dir\": exp_dir,\n        \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\",\n                     \"perm_granger\", \"ty_granger\"],\n        \"pairs\": pairs_out,\n    }\n    path = os.path.join(analysis_dir, \"5method_leadlag.json\")\n    with open(path, \"w\") as f:\n        json.dump(_clean(output), f, indent=2)\n\n\ndef _clean(obj):\n    if isinstance(obj, (np.floating, np.float64, np.float32)):\n        return float(obj)\n    if isinstance(obj, (np.integer,)):\n        return int(obj)\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    if isinstance(obj, dict):\n        return {k: _clean(v) for k, v in obj.items()}\n    if isinstance(obj, list):\n        return [_clean(v) for v in obj]\n    if isinstance(obj, np.ndarray):\n        return [_clean(v) for v in obj.tolist()]\n    return obj\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Batch lead-lag analysis\")\n    parser.add_argument(\"--exp_dir\", required=True,\n                        help=\"Experiment results directory with all_metrics.json\")\n    parser.add_argument(\"--output\", default=None,\n                        help=\"Output JSON path (default: {exp_dir}/analysis_results.json)\")\n    parser.add_argument(\"--null_dirs\", nargs=\"+\", default=None,\n                        help=\"Alpha=0.00 directories for full MMCT null distribution\")\n    args = parser.parse_args()\n    analyze(args.exp_dir, args.output, args.null_dirs)\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat > /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py << 'PYEOF'\n\"\"\"Batch lead-lag analysis for distributional canary collapse experiments.\n\nReads all_metrics.json from an experiment directory, runs 5-method lead-lag\nanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\nruns full MMCT if null directories are provided.\n\nUsage:\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\n        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\n\nInput:  {exp_dir}/all_metrics.json\nOutput: {exp_dir}/analysis_results.json (or --output path)\n\nDependencies: numpy, scipy, statsmodels\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport traceback\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.tsa.stattools import adfuller\n\nN_PERM = 5000\nALPHA_SIG = 0.05\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n\nHIGHER_IS_WORSE = {\"ece\", \"perplexity\"}\nLOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\n\nALL_METRICS = [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\",\n               \"distinct_3\", \"effective_rank\", \"mauve\"]\n\n\ndef load_series(data_dir):\n    path = os.path.join(data_dir, \"all_metrics.json\")\n    with open(path) as f:\n        data = json.load(f)\n    data.sort(key=lambda x: x[\"generation\"])\n    out = {}\n    for k in ALL_METRICS:\n        vals = []\n        for d in data:\n            v = d.get(k)\n            vals.append(v if v is not None else np.nan)\n        out[k] = np.array(vals, dtype=float)\n    return out, len(data)\n\n\ndef orient(series, name):\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n\n\ndef compute_drift(series_dict, n_gens):\n    drift = {}\n    for k in ALL_METRICS:\n        s = series_dict.get(k)\n        if s is None or len(s) < 2:\n            drift[k] = None\n            continue\n        v0, v_last = s[0], s[-1]\n        if abs(v0) < 1e-12:\n            drift[k] = None\n        else:\n            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\n    return drift\n\n\ndef bh_fdr(p_values, alpha=0.05):\n    pv = np.array(p_values, dtype=float)\n    n = len(pv)\n    valid = ~np.isnan(pv)\n    adjusted = np.full(n, np.nan)\n    if valid.sum() == 0:\n        return adjusted.tolist(), [False] * n\n    idx = np.where(valid)[0]\n    p_valid = pv[idx]\n    sorted_idx = np.argsort(p_valid)\n    ranks = np.empty_like(sorted_idx)\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\n    m = len(p_valid)\n    adj = p_valid * m / ranks\n    adj_sorted = adj[sorted_idx].copy()\n    for i in range(m - 2, -1, -1):\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\n    adj_sorted = np.minimum(adj_sorted, 1.0)\n    adj_final = np.empty(m)\n    adj_final[sorted_idx] = adj_sorted\n    for i, ix in enumerate(idx):\n        adjusted[ix] = adj_final[i]\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\n    return adjusted.tolist(), significant\n\n\n# ── Method 1: Naive cross-correlation ──\n\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\n    x, y = orient(c, cn), orient(d, dn)\n    n = len(x)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"naive_xcorr\", \"peak_lag\": None, \"r\": None,\n                \"p_value\": None, \"significant\": False, \"note\": \"NaN in data\"}\n    best_lag, best_r, best_p = 0, 0.0, 1.0\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            a, b = x[lag:], y[:n - lag]\n        else:\n            a, b = x[:n + lag], y[-lag:]\n        if len(a) < 4:\n            continue\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n            continue\n        r, p = stats.pearsonr(a, b)\n        if abs(r) > abs(best_r):\n            best_lag, best_r, best_p = lag, r, p\n    return {\n        \"method\": \"naive_xcorr\",\n        \"peak_lag\": int(best_lag),\n        \"r\": round(float(best_r), 4),\n        \"p_value\": round(float(best_p), 6),\n        \"significant\": bool(best_p < ALPHA_SIG),\n    }\n\n\n# ── Method 2: Differenced cross-correlation ──\n\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"diff_xcorr\", \"peak_lag\": None, \"r\": None,\n                \"p_value\": None, \"significant\": False, \"note\": \"NaN in data\"}\n    dx, dy = np.diff(x), np.diff(y)\n    n = len(dx)\n    best_lag, best_r, best_p = 0, 0.0, 1.0\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            a, b = dx[lag:], dy[:n - lag]\n        else:\n            a, b = dx[:n + lag], dy[-lag:]\n        if len(a) < 4:\n            continue\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n            continue\n        r, p = stats.pearsonr(a, b)\n        if abs(r) > abs(best_r):\n            best_lag, best_r, best_p = lag, r, p\n    return {\n        \"method\": \"diff_xcorr\",\n        \"peak_lag\": int(best_lag),\n        \"r\": round(float(best_r), 4),\n        \"p_value\": round(float(best_p), 6),\n        \"significant\": bool(best_p < ALPHA_SIG),\n    }\n\n\n# ── Method 3: Threshold onset detection ──\n\ndef threshold_onset(c, d, cn, dn, sigma_mult=3):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"threshold_onset\", \"onset_canary\": None,\n                \"onset_downstream\": None, \"lead_time\": None, \"significant\": False,\n                \"note\": \"NaN in data\"}\n    gen0_c, gen0_d = x[0], y[0]\n    std_c = np.std(np.diff(x)) if len(x) > 1 else 1e-12\n    std_d = np.std(np.diff(y)) if len(y) > 1 else 1e-12\n    if std_c < 1e-12:\n        std_c = abs(gen0_c) * 0.01 if abs(gen0_c) > 1e-12 else 1e-6\n    if std_d < 1e-12:\n        std_d = abs(gen0_d) * 0.01 if abs(gen0_d) > 1e-12 else 1e-6\n    thresh_c = gen0_c + sigma_mult * std_c\n    thresh_d = gen0_d + sigma_mult * std_d\n    onset_c, onset_d = None, None\n    for i in range(1, len(x)):\n        if onset_c is None and x[i] > thresh_c:\n            onset_c = i\n        if onset_d is None and y[i] > thresh_d:\n            onset_d = i\n    if onset_c is not None and onset_d is not None:\n        lead = onset_d - onset_c\n        significant = lead > 0\n    elif onset_c is not None and onset_d is None:\n        lead = len(x) - onset_c\n        significant = True\n    else:\n        lead = 0\n        significant = False\n    return {\n        \"method\": \"threshold_onset\",\n        \"onset_canary\": onset_c,\n        \"onset_downstream\": onset_d,\n        \"lead_time\": int(lead) if lead is not None else None,\n        \"significant\": significant,\n    }\n\n\n# ── Method 4: Permutation Granger ──\n\ndef _build_lag_matrix(y, x, max_lag):\n    T = len(y)\n    n = T - max_lag\n    Y = y[max_lag:]\n    cols_r = [np.ones(n)]\n    for lag in range(1, max_lag + 1):\n        cols_r.append(y[max_lag - lag: T - lag])\n    cols_u = list(cols_r)\n    for lag in range(1, max_lag + 1):\n        cols_u.append(x[max_lag - lag: T - lag])\n    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\n\n\ndef _granger_f_stat(y, x, max_lag):\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n    n = len(Y)\n    q = max_lag\n    try:\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n    except np.linalg.LinAlgError:\n        return np.nan\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n    k_u = X_u.shape[1]\n    df_resid = n - k_u\n    if df_resid <= 0 or rss_u < 1e-15:\n        return np.nan\n    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n\n\ndef perm_granger(x, y, max_lag=1, n_perm=N_PERM, seed=42, difference=True):\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"NaN in data\"}\n    if difference:\n        x, y = np.diff(x), np.diff(y)\n    T = len(x)\n    if T <= max_lag + 2:\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": f\"T={T} too short\"}\n    f_obs = _granger_f_stat(y, x, max_lag)\n    if np.isnan(f_obs):\n        return {\"method\": \"perm_granger\", \"f_stat\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"F-stat failed\"}\n    rng = np.random.default_rng(seed)\n    null_f = np.empty(n_perm)\n    for i in range(n_perm):\n        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n    valid = null_f[~np.isnan(null_f)]\n    if len(valid) == 0:\n        return {\"method\": \"perm_granger\", \"f_stat\": round(float(f_obs), 4),\n                \"p_value\": None, \"significant\": False}\n    p = (np.sum(valid >= f_obs) + 1) / (len(valid) + 1)\n    return {\n        \"method\": \"perm_granger\",\n        \"f_stat\": round(float(f_obs), 4),\n        \"p_value\": round(float(p), 6),\n        \"significant\": bool(p < ALPHA_SIG),\n    }\n\n\n# ── Method 5: Toda-Yamamoto Granger ──\n\ndef _determine_d_max(series, max_d=2, alpha=0.05):\n    for d in range(max_d + 1):\n        try:\n            result = adfuller(series, maxlag=min(3, len(series) // 3 - 1),\n                              regression=\"ct\", autolag=\"AIC\")\n            if result[1] < alpha:\n                return d\n            series = np.diff(series)\n        except Exception:\n            return d\n    return max_d\n\n\ndef ty_granger(c, d, cn, dn, max_lag=1):\n    x, y = orient(c, cn), orient(d, dn)\n    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"NaN in data\"}\n    d_max = max(_determine_d_max(x), _determine_d_max(y))\n    p_total = max_lag + d_max\n    T = len(x)\n    n = T - p_total\n    if n <= p_total + 2:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"d_max\": int(d_max),\n                \"note\": f\"T={T} too short for d_max={d_max}, p={p_total}\"}\n    Y = y[p_total:]\n    cols_r = [np.ones(n)]\n    for lag in range(1, p_total + 1):\n        cols_r.append(y[p_total - lag: T - lag])\n    for lag in range(max_lag + 1, p_total + 1):\n        cols_r.append(x[p_total - lag: T - lag])\n    cols_u = list(cols_r)\n    for lag in range(1, max_lag + 1):\n        cols_u.append(x[p_total - lag: T - lag])\n    X_r = np.column_stack(cols_r)\n    X_u = np.column_stack(cols_u)\n    try:\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n    except np.linalg.LinAlgError:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": \"lstsq failed\"}\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n    df_resid = n - X_u.shape[1]\n    if df_resid <= 0 or rss_u < 1e-15:\n        return {\"method\": \"ty_granger\", \"chi2\": None, \"p_value\": None,\n                \"significant\": False, \"note\": f\"df_resid={df_resid}\"}\n    q = max_lag\n    W = n * (rss_r - rss_u) / rss_u\n    p_val = 1.0 - stats.chi2.cdf(W, q)\n    return {\n        \"method\": \"ty_granger\",\n        \"chi2\": round(float(W), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"d_max\": int(d_max),\n        \"df_resid\": int(df_resid),\n        \"significant\": bool(p_val < ALPHA_SIG),\n    }\n\n\n# ── Run all 5 methods on one pair ──\n\ndef run_pair(series, cn, dn):\n    c, d = series[cn], series[dn]\n    results = {}\n    results[\"naive_xcorr\"] = naive_xcorr(c, d, cn, dn)\n    results[\"diff_xcorr\"] = diff_xcorr(c, d, cn, dn)\n    results[\"threshold_onset\"] = threshold_onset(c, d, cn, dn)\n    # forward: canary -> downstream (x=canary causes y=downstream)\n    results[\"perm_granger_fwd\"] = perm_granger(orient(c, cn), orient(d, dn),\n                                                seed=42, difference=True)\n    results[\"perm_granger_fwd\"][\"direction\"] = \"forward\"\n    # reverse: downstream -> canary\n    results[\"perm_granger_rev\"] = perm_granger(orient(d, dn), orient(c, cn),\n                                                seed=42, difference=True)\n    results[\"perm_granger_rev\"][\"direction\"] = \"reverse\"\n    results[\"ty_granger\"] = ty_granger(c, d, cn, dn)\n    return results\n\n\n# ── Apply BH FDR across 8 pairs ──\n\ndef apply_fdr_correction(all_pair_results):\n    for method_key, p_key in [(\"diff_xcorr\", \"p_value\"),\n                               (\"perm_granger_fwd\", \"p_value\"),\n                               (\"perm_granger_rev\", \"p_value\")]:\n        pvals = []\n        for pr in all_pair_results:\n            r = pr[\"results\"].get(method_key, {})\n            p = r.get(p_key)\n            pvals.append(p if p is not None else np.nan)\n        adj, sig = bh_fdr(pvals)\n        for i, pr in enumerate(all_pair_results):\n            r = pr[\"results\"].get(method_key, {})\n            r[\"p_fdr\"] = round(adj[i], 6) if not np.isnan(adj[i]) else None\n            r[\"significant_fdr\"] = sig[i]\n\n\n# ── Consensus counting ──\n\ndef compute_consensus(pair_result):\n    r = pair_result[\"results\"]\n    votes = 0\n    methods_sig = []\n    if r[\"naive_xcorr\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"naive\")\n    if r[\"diff_xcorr\"].get(\"significant_fdr\", r[\"diff_xcorr\"].get(\"significant\", False)):\n        votes += 1; methods_sig.append(\"diff\")\n    if r[\"threshold_onset\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"thresh\")\n    if r[\"perm_granger_fwd\"].get(\"significant_fdr\", r[\"perm_granger_fwd\"].get(\"significant\", False)):\n        votes += 1; methods_sig.append(\"pg_fwd\")\n    if r[\"ty_granger\"].get(\"significant\", False):\n        votes += 1; methods_sig.append(\"ty\")\n    return votes, methods_sig\n\n\n# ── MMCT (full, if null dirs available) ──\n\ndef run_mmct_full(exp_dir, null_dirs):\n    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n    from mmct.null_distribution import NullDistribution\n    from mmct.consensus_test import MMCT\n    from mmct.methods import METRIC_PAIRS as MMCT_PAIRS\n\n    null_dist = NullDistribution(null_dirs, n_bootstrap=10000, seed=42)\n    mmct = MMCT(null_dist, weighted=True, bidirectional=False, alpha=0.05)\n\n    n_sig = 0\n    n_total = 0\n    pair_results = []\n    for canary, downstream in MMCT_PAIRS:\n        try:\n            result = mmct.test_from_precomputed(exp_dir, canary, downstream)\n            r = result.to_dict()\n            pair_results.append(r)\n            n_total += 1\n            if r[\"significant\"]:\n                n_sig += 1\n        except Exception:\n            n_total += 1\n    detection_rate = n_sig / n_total if n_total > 0 else 0.0\n    return {\n        \"mode\": \"weighted_pair_forward\",\n        \"detection_rate\": round(detection_rate, 4),\n        \"sig\": n_sig,\n        \"total\": n_total,\n        \"pair_results\": pair_results,\n    }\n\n\n# ── Main ──\n\ndef analyze(exp_dir, output_path=None, null_dirs=None):\n    print(f\"Loading data from {exp_dir}\")\n    series, n_gens = load_series(exp_dir)\n    print(f\"  {n_gens} generations loaded\")\n\n    # 1. Drift\n    print(\"Computing drift...\")\n    drift = compute_drift(series, n_gens)\n\n    # 2. Lead-lag (5 methods, 8 pairs)\n    print(\"Running 5-method lead-lag analysis...\")\n    all_pairs = []\n    for cn in CANARIES:\n        for dn in DOWNSTREAMS:\n            try:\n                r = run_pair(series, cn, dn)\n                all_pairs.append({\"canary\": cn, \"downstream\": dn, \"results\": r})\n            except Exception as e:\n                print(f\"  WARN: {cn}->{dn} failed: {e}\")\n                all_pairs.append({\"canary\": cn, \"downstream\": dn,\n                                  \"results\": {}, \"error\": str(e)})\n\n    apply_fdr_correction(all_pairs)\n\n    # Count summary\n    naive_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"naive_xcorr\", {}).get(\"significant\", False))\n    diff_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"diff_xcorr\", {}).get(\"significant_fdr\",\n                    p[\"results\"].get(\"diff_xcorr\", {}).get(\"significant\", False)))\n    thresh_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"threshold_onset\", {}).get(\"significant\", False))\n    pg_fwd = sum(1 for p in all_pairs if p[\"results\"].get(\"perm_granger_fwd\", {}).get(\"significant_fdr\",\n                  p[\"results\"].get(\"perm_granger_fwd\", {}).get(\"significant\", False)))\n    pg_rev = sum(1 for p in all_pairs if p[\"results\"].get(\"perm_granger_rev\", {}).get(\"significant_fdr\",\n                  p[\"results\"].get(\"perm_granger_rev\", {}).get(\"significant\", False)))\n    ty_sig = sum(1 for p in all_pairs if p[\"results\"].get(\"ty_granger\", {}).get(\"significant\", False))\n\n    consensus_counts = []\n    for p in all_pairs:\n        votes, methods = compute_consensus(p)\n        consensus_counts.append({\"pair\": f\"{p['canary']}->{p['downstream']}\",\n                                  \"votes\": votes, \"methods\": methods})\n    k4 = sum(1 for c in consensus_counts if c[\"votes\"] >= 4)\n    total = len(all_pairs)\n\n    lead_lag = {\n        \"naive_xcorr\": {\"forward\": naive_fwd, \"total\": total},\n        \"diff_xcorr\": {\"forward\": diff_fwd, \"total\": total},\n        \"threshold_onset\": {\"forward\": thresh_fwd, \"total\": total},\n        \"perm_granger_fwd\": {\"sig\": pg_fwd, \"total\": total},\n        \"perm_granger_rev\": {\"sig\": pg_rev, \"total\": total},\n        \"ty_granger\": {\"sig\": ty_sig, \"total\": total},\n        \"consensus_k4\": {\"sig\": k4, \"total\": total},\n    }\n\n    # 3. MMCT\n    mmct_result = None\n    if null_dirs:\n        print(\"Running full MMCT (weighted_pair_forward)...\")\n        try:\n            # MMCT requires pre-computed 5method_leadlag.json\n            # First save the lead-lag results in the format MMCT expects\n            analysis_dir = os.path.join(exp_dir, \"analysis\")\n            os.makedirs(analysis_dir, exist_ok=True)\n            _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir)\n            mmct_result = run_mmct_full(exp_dir, null_dirs)\n        except Exception as e:\n            print(f\"  MMCT failed: {e}\")\n            traceback.print_exc()\n            mmct_result = {\"mode\": \"weighted_pair_forward\", \"error\": str(e)}\n    else:\n        print(\"No null_dirs provided, using simple K>=4 consensus as MMCT proxy\")\n        mmct_result = {\n            \"mode\": \"weighted_pair_forward\",\n            \"detection_rate\": round(k4 / total, 4) if total > 0 else 0.0,\n            \"note\": \"simple_consensus_k4 (no null distribution)\",\n        }\n\n    # 4. Build output\n    output = {\n        \"exp_dir\": exp_dir,\n        \"n_generations\": n_gens,\n        \"drift_pct\": drift,\n        \"lead_lag\": lead_lag,\n        \"mmct\": mmct_result,\n        \"consensus_detail\": consensus_counts,\n        \"pair_details\": _clean(all_pairs),\n    }\n\n    if output_path is None:\n        output_path = os.path.join(exp_dir, \"analysis_results.json\")\n    os.makedirs(os.path.dirname(output_path) or \".\", exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {output_path}\")\n\n    # Print summary\n    print(f\"\\n{'='*60}\")\n    print(f\"SUMMARY: {exp_dir}\")\n    print(f\"{'='*60}\")\n    print(f\"Generations: {n_gens}\")\n    print(f\"\\nDrift (gen0->gen{n_gens-1}):\")\n    for k, v in drift.items():\n        if v is not None:\n            print(f\"  {k:20s}: {v:+.2f}%\")\n    print(f\"\\nLead-lag (forward significant / total):\")\n    for method, counts in lead_lag.items():\n        key = \"forward\" if \"forward\" in counts else \"sig\"\n        print(f\"  {method:20s}: {counts[key]}/{counts['total']}\")\n    print(f\"\\nMMCT: {mmct_result.get('mode', 'N/A')}, \"\n          f\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\")\n\n    return output\n\n\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\n    \"\"\"Save lead-lag results in the format expected by MMCT module.\"\"\"\n    pairs_out = []\n    for p in all_pairs:\n        r = p[\"results\"]\n        pair_entry = {\n            \"canary\": p[\"canary\"],\n            \"downstream\": p[\"downstream\"],\n            \"forward\": {},\n            \"reverse\": {},\n        }\n        for method in [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"ty_granger\"]:\n            if method in r:\n                pair_entry[\"forward\"][method] = r[method]\n        if \"perm_granger_fwd\" in r:\n            pair_entry[\"forward\"][\"perm_granger\"] = r[\"perm_granger_fwd\"]\n        if \"perm_granger_rev\" in r:\n            pair_entry[\"reverse\"][\"perm_granger\"] = r[\"perm_granger_rev\"]\n        pairs_out.append(pair_entry)\n\n    output = {\n        \"n_generations\": n_gens,\n        \"data_dir\": exp_dir,\n        \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\",\n                     \"perm_granger\", \"ty_granger\"],\n        \"pairs\": pairs_out,\n    }\n    path = os.path.join(analysis_dir, \"5method_leadlag.json\")\n    with open(path, \"w\") as f:\n        json.dump(_clean(output), f, indent=2)\n\n\ndef _clean(obj):\n    if isinstance(obj, (np.floating, np.float64, np.float32)):\n        return float(obj)\n    if isinstance(obj, (np.integer,)):\n        return int(obj)\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    if isinstance(obj, dict):\n        return {k: _clean(v) for k, v in obj.items()}\n    if isinstance(obj, list):\n        return [_clean(v) for v in obj]\n    if isinstance(obj, np.ndarray):\n        return [_clean(v) for v in obj.tolist()]\n    return obj\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Batch lead-lag analysis\")\n    parser.add_argument(\"--exp_dir\", required=True,\n                        help=\"Experiment results directory with all_metrics.json\")\n    parser.add_argument(\"--output\", default=None,\n                        help=\"Output JSON path (default: {exp_dir}/analysis_results.json)\")\n    parser.add_argument(\"--null_dirs\", nargs=\"+\", default=None,\n                        help=\"Alpha=0.00 directories for full MMCT null distribution\")\n    args = parser.parse_args()\n    analyze(args.exp_dir, args.output, args.null_dirs)\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T01:17:32.106211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T01:17:32.106383+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 --output /tmp/test_analysis.json 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 --output /tmp/test_analysis.json 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T01:17:32.106524+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/a010_s43_bf16\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: /tmp/test_analysis.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/a010_s43_bf16\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -13.11%\\n  ece                 : -61.17%\\n  perplexity          : -38.88%\\n  distinct_1          : -29.14%\\n  distinct_2          : -40.27%\\n  distinct_3          : -31.89%\\n  effective_rank      : +23.51%\\n  mauve               : -46.27%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 7/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 4/8\\n  perm_granger_fwd    : 0/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 5/8\\n  consensus_k4        : 3/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.375\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T01:17:32.106669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -60 /tmp/test_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -60 /tmp/test_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T01:17:32.106821+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a010_s43_bf16\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -13.11,\\n    \\\"ece\\\": -61.17,\\n    \\\"perplexity\\\": -38.88,\\n    \\\"distinct_1\\\": -29.14,\\n    \\\"distinct_2\\\": -40.27,\\n    \\\"distinct_3\\\": -31.89,\\n    \\\"effective_rank\\\": 23.51,\\n    \\\"mauve\\\": -46.27\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 4,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 5,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.375,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_batch_analysis_script_20260519T011324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-19T01:17:32.106990+00:00_
+
+脚本运行正常，输出格式符合要求。
+
+**已完成**：`/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py` 已部署到 westd-17855 并通过 dry-run 验证（用 `a010_s43_bf16` 数据，11 gens，~4s 完成）。
+
+功能概要：
+- `--exp_dir` 读取 `all_metrics.json`，计算 8 指标 drift%
+- 5 方法 × 8 对（canary: token_entropy/ece × diversity: distinct_1/2/3/mauve），含 BH FDR 校正
+- K>=4 consensus 计数；`--null_dirs` 可选开启完整 MMCT
+- 单模块失败不影响其他模块，缺失数据处理已覆盖
+
+实验完成后用法：
+```bash
+python batch_analysis.py --exp_dir results/alpha_sweep/a005_s42_fp32_v3_d080
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_batch_analysis_script_20260519T011324"
+}
+```
+
+</details>
+
+---

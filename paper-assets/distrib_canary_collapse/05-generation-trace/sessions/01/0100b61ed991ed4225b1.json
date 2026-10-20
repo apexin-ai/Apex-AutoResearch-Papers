@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0100b61ed991ed4225b1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t15 a050 s43 cuda1",
+  "task_key": "worker_ops_deploy-t15-a050-s43-cuda1_20260523T024900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t15-a050-s43-cuda1_20260523T024900_result.json",
+    "occurrence": 1,
+    "bytes": 285,
+    "sha256": "248beb5d7801d4fd86e3b13d7182759b31cb0c5d01911e34a115a43d0c1a2dc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 750075\n- **GPU**: cuda:1，显存占用 10284 MiB\n- **Log**: `/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a050_s43_fp32_14b/train.log`\n- **状态**: Generation 0 (baseline) 已启动，registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t15-a050-s43-cuda1.md"
+}

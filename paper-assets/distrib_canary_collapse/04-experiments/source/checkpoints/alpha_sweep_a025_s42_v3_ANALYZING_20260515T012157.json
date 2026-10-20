@@ -1,0 +1,65 @@
+{
+  "exp_id": "alpha_sweep_a025_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:04:05.726Z",
+    "updated_at": "2026-05-15T01:21:57.228Z",
+    "spec": {
+      "hypothesis": "α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持",
+      "model_name": "EleutherAI/pythia-410m",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "seed": 42,
+      "synthetic_ratio": 0.25,
+      "num_generations": 10,
+      "steps_per_gen": 5000,
+      "parent": "alpha_sweep_a025_s42_v2 (failed, data corruption)",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "53069",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T01:18:42.377Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T01:18:43.329069+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen0_token_entropy": 3.2342,
+      "gen10_token_entropy": 3.1017,
+      "gen0_ece": 0.0108,
+      "gen10_ece": 0.01942,
+      "gen0_perplexity": 26.95,
+      "gen10_perplexity": 22.32,
+      "gen0_distinct_1": 0.0982,
+      "gen10_distinct_1": 0.0586,
+      "gen0_distinct_2": 0.5178,
+      "gen10_distinct_2": 0.2219,
+      "gen0_distinct_3": 0.8127,
+      "gen10_distinct_3": 0.3263,
+      "token_entropy_drift_pct": -4.1,
+      "ece_drift_pct": 79.7,
+      "perplexity_drift_pct": -17.2,
+      "distinct_1_drift_pct": -40.3,
+      "distinct_2_drift_pct": -57.1,
+      "distinct_3_drift_pct": -59.9
+    }
+  },
+  "timestamp": "2026-05-15T01:21:57.285941+00:00",
+  "trigger": "update_registry"
+}

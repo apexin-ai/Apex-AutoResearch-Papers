@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1c65f59e29eddf72d5b8",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "research track a theory revalidation",
+  "task_key": "worker_research_track-a-theory-revalidation_20260522T043532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-a-theory-revalidation_20260522T043532.log",
+    "occurrence": 1,
+    "bytes": 823164,
+    "sha256": "65ed0b9ad34f170f8c00c6c2649638874bc10d52c5e203b1337ddaca41568b44"
+  },
+  "statistics": {
+    "messages": 175,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 175,
+      "chunks": [
+        {
+          "path": "1c65f59e29eddf72d5b8-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "1c65f59e29eddf72d5b8-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-track-a-theory-revalidation.md"
+}

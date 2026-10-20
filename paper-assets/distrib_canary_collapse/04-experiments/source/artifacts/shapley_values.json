@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-05-17T17:53:40.307746",
+  "description": "True Shapley values (2^5=32 coalition enumeration)",
+  "threshold_rule": "K=max(1,|S|-1)",
+  "fpr_data": "24 obs (alpha=0.0, seeds 42/43/44, 8 pairs/seed)",
+  "fnr_data": "24 obs (alpha=1.0, seeds 42/43/44/45, 6 ref pairs/seed)",
+  "reference_pairs": [
+    "token_entropy->distinct_1",
+    "token_entropy->distinct_2",
+    "token_entropy->distinct_3",
+    "ece->distinct_1",
+    "ece->distinct_2",
+    "ece->distinct_3"
+  ],
+  "methods": [
+    "naive_xcorr",
+    "diff_xcorr",
+    "threshold_onset",
+    "perm_granger",
+    "ty_granger"
+  ],
+  "shapley_fpr": {
+    "naive_xcorr": 0.3479166666666667,
+    "diff_xcorr": 0.049305555555555554,
+    "threshold_onset": -0.0652777777777778,
+    "perm_granger": -0.19374999999999995,
+    "ty_granger": -0.13819444444444445
+  },
+  "shapley_fnr": {
+    "naive_xcorr": -0.21041666666666667,
+    "diff_xcorr": -0.21041666666666667,
+    "threshold_onset": -0.21041666666666667,
+    "perm_granger": -0.21041666666666667,
+    "ty_granger": -0.15833333333333333
+  },
+  "all_strategies": {
+    "K=ceil(0.8*|S|)": {
+      "shapley_fpr": {
+        "naive_xcorr": 0.19166666666666668,
+        "diff_xcorr": 0.02847222222222223,
+        "threshold_onset": -0.03402777777777778,
+        "perm_granger": -0.11041666666666669,
+        "ty_granger": -0.07569444444444445
+      },
+      "shapley_fnr": {
+        "naive_xcorr": -0.2416666666666667,
+        "diff_xcorr": -0.2416666666666667,
+        "threshold_onset": -0.2416666666666667,
+        "perm_granger": -0.2416666666666667,
+        "ty_granger": -0.03333333333333331
+      }
+    },
+    "K=max(1,|S|-1)": {
+      "shapley_fpr": {
+        "naive_xcorr": 0.3479166666666667,
+        "diff_xcorr": 0.049305555555555554,
+        "threshold_onset": -0.0652777777777778,
+        "perm_granger": -0.19374999999999995,
+        "ty_granger": -0.13819444444444445
+      },
+      "shapley_fnr": {
+        "naive_xcorr": -0.21041666666666667,
+        "diff_xcorr": -0.21041666666666667,
+        "threshold_onset": -0.21041666666666667,
+        "perm_granger": -0.21041666666666667,
+        "ty_granger": -0.15833333333333333
+      }
+    },
+    "K=4 fixed": {
+      "shapley_fpr": {
+        "naive_xcorr": 0.0,
+        "diff_xcorr": 0.0,
+        "threshold_onset": 0.0,
+        "perm_granger": 0.0,
+        "ty_granger": 0.0
+      },
+      "shapley_fnr": {
+        "naive_xcorr": -0.21041666666666664,
+        "diff_xcorr": -0.21041666666666664,
+        "threshold_onset": -0.21041666666666664,
+        "perm_granger": -0.21041666666666664,
+        "ty_granger": -0.15833333333333333
+      }
+    }
+  }
+}

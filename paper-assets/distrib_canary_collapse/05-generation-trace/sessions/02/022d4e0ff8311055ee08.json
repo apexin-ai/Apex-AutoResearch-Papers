@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "022d4e0ff8311055ee08",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code c2 opt13b a050",
+  "task_key": "worker_code_c2_opt13b_a050_20260525T000904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c2_opt13b_a050_20260525T000904_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "078395e5a604cb48561ef762f47ea3b577a9e565bb3df35395a4ad15d15f4387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并运行中。\n\n**汇总：**\n- **exp_id**: `c2_opt13b_a050_s42_fp32`\n- **服务器**: westd-19828, cuda:0\n- **PID**: 32378 (python 进程已在运行，7.8GB RSS)\n- **tmux session**: `c2_opt13b_a050_s42_fp32`\n- **log**: `~/runs/distrib_canary_collapse/c2_opt13b_a050_s42_fp32.log`\n- **配置**: OPT-1.3B, α=0.50, seed=42, 10 gen × 5000 steps, fp32\n- **磁盘**: 74G 可用 (充足)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c2-opt13b-a050.md"
+}

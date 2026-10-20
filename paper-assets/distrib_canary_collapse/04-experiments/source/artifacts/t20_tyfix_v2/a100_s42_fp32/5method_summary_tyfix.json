@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "alpha": 1.0,
+    "seed": 42,
+    "n_gens": 21,
+    "data_dir": "results/t20/a100_s42_fp32",
+    "note": "post TY direction fix (causing=0,caused=1)",
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 6,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 6,
+    "diff_xcorr_fdr_reverse_sig": 6,
+    "threshold_forward_sig": 6,
+    "ty_forward_sig": 2,
+    "robust_pairs": 6
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy<distinct_2", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy<distinct_3", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy<mauve", "votes": 1, "methods": ["naive"]},
+    {"pair": "ece<distinct_1", "votes": 5, "methods": ["naive", "diff", "threshold", "perm", "ty"]},
+    {"pair": "ece<distinct_2", "votes": 5, "methods": ["naive", "diff", "threshold", "perm", "ty"]},
+    {"pair": "ece<distinct_3", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece<mauve", "votes": 1, "methods": ["naive"]}
+  ],
+  "ty_forward_detail": [
+    {"pair": "token_entropy<distinct_1", "f_stat": 1.8959, "p_value": 0.1598, "significant": false},
+    {"pair": "token_entropy<distinct_2", "f_stat": 0.05, "p_value": 0.9513, "significant": false},
+    {"pair": "token_entropy<distinct_3", "f_stat": 1.7377, "p_value": 0.1944, "significant": false},
+    {"pair": "token_entropy<mauve", "f_stat": 0.5689, "p_value": 0.5726, "significant": false},
+    {"pair": "ece<distinct_1", "f_stat": 5.3158, "p_value": 0.0066, "significant": true},
+    {"pair": "ece<distinct_2", "f_stat": 3.9189, "p_value": 0.0221, "significant": true},
+    {"pair": "ece<distinct_3", "f_stat": 2.9989, "p_value": 0.0525, "significant": false},
+    {"pair": "ece<mauve", "f_stat": 1.448, "p_value": 0.2521, "significant": false}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "alpha_sweep_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:30:38.128Z",
+    "updated_at": "2026-05-19T18:49:37.621Z",
+    "hypothesis": "PermG onset 精化至 ±0.025：α=0.40 PermG=0/8, α=0.50 PermG=6/8。α=0.45 如果 PermG=0/8 → onset ∈ [0.45, 0.50]；如果 PermG>0 → onset ∈ [0.40, 0.45]。Claim 2 dose-response boundary。",
+    "parent": "alpha_sweep_a040_s42_fp32_v2",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.45",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32"
+    }
+  },
+  "timestamp": "2026-05-19T18:49:37.828191+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_a070_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:19:32.175Z",
+    "updated_at": "2026-05-21T01:22:55.347Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.70 --output_dir results/alpha_sweep/a070_s42_fp32\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "413167",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a070_s42_fp32.log",
+      "submitted_at": "2026-05-21T01:19:31.627Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Sync dip recovery point: α=0.70 should show restored PermG detection (>0/8) if the sync collapse dip ends at α=0.65, confirming the dip boundary is [0.55,0.65] with abrupt recovery"
+  },
+  "timestamp": "2026-05-21T01:22:55.701793+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,128 @@
+{
+  "data": {
+    "t10_only": {
+      "alpha": [0.0, 0.05, 0.1, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.75, 1.0],
+      "permg_fwd": [0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6],
+      "rate": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.75, 0.75, 0.75],
+      "n_pairs": 8,
+      "source": "s42 canonical, 17855 re-analyzed, excl alpha=0.60"
+    },
+    "t20_only": {
+      "alpha": [0.45, 0.5, 0.75, 1.0],
+      "permg_fwd": [5, 6, 6, 6],
+      "rate": [0.625, 0.75, 0.75, 0.75],
+      "n_pairs": 8,
+      "source": "s42 17855, excl alpha=0.60 sync dip"
+    },
+    "t10_t20_combined": {
+      "alpha": [0.0, 0.05, 0.1, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.75, 1.0, 0.45, 0.5, 0.75, 1.0],
+      "permg_fwd": [0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 6, 6, 6],
+      "rate": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.75, 0.75, 0.75, 0.625, 0.75, 0.75, 0.75],
+      "n_obs": 15,
+      "note": "T=10 has 11 points + T=20 has 4 points = 15 total"
+    }
+  },
+  "fits": {
+    "sigmoid_t10": {
+      "k": 477.989522,
+      "k_se": 474.521221,
+      "alpha_c": 0.482649,
+      "alpha_c_se": 1.20763,
+      "y_max": 0.750062,
+      "y_max_se": 0.095464,
+      "AIC": 32.992,
+      "BIC": 34.186,
+      "NLL": 13.496,
+      "converged": true
+    },
+    "sigmoid_combined": {
+      "k": 279.269864,
+      "k_se": 527.559575,
+      "alpha_c": 0.451205,
+      "alpha_c_se": 0.000509,
+      "y_max": 0.75,
+      "y_max_se": 0.0625,
+      "AIC": 79.859,
+      "BIC": 81.983,
+      "NLL": 36.929,
+      "converged": true
+    },
+    "probit_t10": {
+      "k": 183.722346,
+      "k_se": 335.555957,
+      "alpha_c": 0.47984,
+      "alpha_c_se": 1.779037,
+      "y_max": 0.750026,
+      "y_max_se": 0.094782,
+      "AIC": 32.992,
+      "BIC": 34.186,
+      "NLL": 13.496,
+      "converged": true
+    },
+    "probit_combined": {
+      "k": 102.559872,
+      "k_se": 338.82607,
+      "alpha_c": 0.452051,
+      "alpha_c_se": 0.007845,
+      "y_max": 0.750018,
+      "y_max_se": 0.062497,
+      "AIC": 79.859,
+      "BIC": 81.983,
+      "NLL": 36.929,
+      "converged": true
+    },
+    "gen_logistic_t10": {
+      "k": 232.486346,
+      "k_se": 475.101364,
+      "alpha_c": 0.445449,
+      "alpha_c_se": 5.008776,
+      "y_max": 0.750078,
+      "y_max_se": 0.099136,
+      "nu": 0.011426,
+      "nu_se": 10.944841,
+      "AIC": 34.992,
+      "BIC": 36.584,
+      "NLL": 13.496,
+      "converged": true
+    },
+    "gen_logistic_combined": {
+      "k": 597.730179,
+      "k_se": 400.713233,
+      "alpha_c": 0.452013,
+      "alpha_c_se": 0.258765,
+      "y_max": 0.750012,
+      "y_max_se": 0.062498,
+      "nu": 1.674191,
+      "nu_se": 135.885161,
+      "AIC": 81.859,
+      "BIC": 84.691,
+      "NLL": 36.929,
+      "converged": true
+    }
+  },
+  "comparison": {
+    "t20_effect_on_k": "k changed from 477.99 to 279.27 (-41.6%)",
+    "t20_effect_on_alpha_c": "alpha_c shifted from 0.4826 to 0.4512 (delta=-0.0314)",
+    "best_model_t10": "probit (AIC=32.99)",
+    "all_AIC_t10": {
+      "probit": 32.99,
+      "sigmoid": 32.99,
+      "gen_logistic": 34.99
+    },
+    "best_model_combined": "probit (AIC=79.86)",
+    "all_AIC_combined": {
+      "probit": 79.86,
+      "sigmoid": 79.86,
+      "gen_logistic": 81.86
+    },
+    "t10_transition_width": "90% transition spans alpha=[0.478, 0.487], width=0.0092",
+    "combined_transition_width": "90% transition spans alpha=[0.443, 0.459], width=0.0158",
+    "t20_a045_impact": "T=20 alpha=0.45 has rate=5/8=0.625, while T=10 alpha=0.45 has rate=0/8=0.000. This single point introduces sub-plateau signal below the T=10 threshold, forcing a less steep (more gradual) transition.",
+    "data_verification_notes": {
+      "t10_confirmed": "All T=10 s42 values verified from d120_recompiled.csv (17855 re-analyzed versions)",
+      "t10_multi_seed_discrepancies": "alpha=0.10 s43=3/8 (s42=0/8); alpha=0.75 s43=5/8 s44=0/8 (s42=6/8, s44 possibly unreanalyzed on 19828)",
+      "t20_confirmed": "All T=20 values verified from d120 rows 68-72",
+      "alpha_055_excluded": "a055_s42 on 19828 shows permg=0 but may be unreanalyzed (same pattern as a050_s42 on 19828=0 vs 17855=6)"
+    }
+  }
+}

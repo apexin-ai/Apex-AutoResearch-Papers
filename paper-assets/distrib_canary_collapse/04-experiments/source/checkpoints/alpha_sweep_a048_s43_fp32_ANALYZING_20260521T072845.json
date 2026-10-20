@@ -1,0 +1,75 @@
+{
+  "exp_id": "alpha_sweep_a048_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:47:28.294Z",
+    "updated_at": "2026-05-21T07:28:45.346Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.48 --output_dir results/alpha_sweep/a048_s43_fp32",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "635179",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a048_s43_fp32.log",
+      "submitted_at": "2026-05-21T02:47:27.714Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43
+    },
+    "hypothesis": "Multi-seed validation at phase boundary: α=0.48 s43 replicates s42 result at the critical transition point. If s42 shows detection (>0/8) and s43 agrees, confirms α_c<0.48 is seed-robust; if they disagree, transition sharpness is seed-dependent.",
+    "reproduce": {
+      "finished_at": "2026-05-21T07:12:55.464Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T07:13:00.825616+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "DiffXCorr_fwd": "5/8",
+      "DiffXCorr_rev": "5/8",
+      "threshold_onset_3sigma": "0/8",
+      "TY_fwd": "2/8",
+      "K_ge3": "0/8",
+      "K_ge4": "0/8",
+      "robust_pairs": [],
+      "n_generations": 11,
+      "alpha": 0.48,
+      "seed": 43,
+      "threshold_criterion": "true_3sigma_d105",
+      "n_perm": 5000,
+      "analysis_version": "D102+D105+D111",
+      "drift_token_entropy_pct": -19,
+      "drift_ece_pct": 834.9,
+      "drift_perplexity_pct": 18.1,
+      "drift_distinct_1_pct": -35.2,
+      "drift_distinct_2_pct": -47.5,
+      "drift_distinct_3_pct": -47.7,
+      "drift_mauve_pct": -15.8,
+      "onset_token_entropy": 1,
+      "onset_ece": 3,
+      "onset_distinct_1": null,
+      "onset_distinct_2": null,
+      "onset_distinct_3": null,
+      "onset_mauve": null
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T07:28:45.854245+00:00",
+  "trigger": "update_registry"
+}

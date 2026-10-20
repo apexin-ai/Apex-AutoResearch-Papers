@@ -1,0 +1,28 @@
+{
+  "exp_id": "method_ablation_phase1",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:49:16.519Z",
+    "updated_at": "2026-05-14T23:49:37.295Z",
+    "spec": {
+      "plan_id": "plan_002",
+      "hypothesis": "lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论",
+      "command": "python method_ablation.py + python permutation_granger.py (差分版)",
+      "server": "westd-19828",
+      "data_path": "results/mvp/rep_{42,43,44,45}/all_metrics.json",
+      "data_count": 4,
+      "model_name": "N/A (analysis on MVP data)",
+      "seed": "42,43,44,45",
+      "checkpoint_path": "N/A",
+      "log_path": "results/mvp/analysis/method_ablation.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T23:49:37.295Z"
+  },
+  "timestamp": "2026-05-14T23:49:37.326747+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c4f7f666d919dcdd4e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gpt2m a025 5method b3",
+  "task_key": "worker_analysis_gpt2m_a025_5method_b3_20260516T083010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_a025_5method_b3_20260516T083010_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "cf22e77f5d0313c7513fdd83ad792d1581d76f3e89afcae486ad279178accc8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three subtasks complete. Summary:\n\n**A. Registry updated** — gen_wiki_gpt2m_a025_s42 marked DONE with full metrics.\n\n**B. Effective_rank investigation conclusion** — NOT a bug. GPT-2m starts with extremely low ER (2.37, nearly rank-2 representations), so collapse *destroys* structure → ER rises. Dose-response is monotonic (α=0.25: +258%, α=1.0: +1027%). Pythia starts high (46.6) so collapse mildly concentrates → ER drops. Implication: effective_rank direction is model-dependent; recommend caveat in paper or restrict canary list to token_entropy + ECE.\n\n**C. 5-method lead-lag results:**\n- 1/8 pairs Tier 3, 7/8 pairs Tier 2 (weaker than gpt2m_a100's 6/6 Tier 3)\n- Permutation Granger: 0/8 sig (underpowered at T=11 + weak α=0.25 signal)\n- Threshold onset clearly shows canary leading by 5-6 generations\n- Perplexity improves (decreases) at α=0.25, so perplexity pairs fail threshold detection\n\nArtifact registered: `art_20260516_48a33f`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2m-a025-5method-b3.md"
+}

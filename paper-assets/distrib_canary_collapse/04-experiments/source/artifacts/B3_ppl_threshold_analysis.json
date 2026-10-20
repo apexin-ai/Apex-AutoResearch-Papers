@@ -1,0 +1,154 @@
+{
+  "gen0_baselines": {
+    "perplexity": 26.949,
+    "token_entropy": 3.2342
+  },
+  "entropy_threshold_analysis": {
+    "threshold_type": "-15% from gen 0",
+    "threshold_value": 2.7491,
+    "trigger_generation": 1,
+    "per_generation_drop_pct": {
+      "gen_0": 0.0,
+      "gen_1": 40.9,
+      "gen_2": 54.8,
+      "gen_3": 58.6,
+      "gen_4": 60.4,
+      "gen_5": 60.1,
+      "gen_6": 62.1,
+      "gen_7": 61.8,
+      "gen_8": 61.4,
+      "gen_9": 61.7,
+      "gen_10": 62.1
+    }
+  },
+  "ppl_relative_threshold_analysis": {
+    "+10%": {
+      "threshold_value": 29.644,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+15%": {
+      "threshold_value": 30.991,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+20%": {
+      "threshold_value": 32.339,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+30%": {
+      "threshold_value": 35.034,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+50%": {
+      "threshold_value": 40.424,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+75%": {
+      "threshold_value": 47.161,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+100%": {
+      "threshold_value": 53.898,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "+150%": {
+      "threshold_value": 67.373,
+      "trigger_generation": 2,
+      "trigger_ppl": 162.151
+    },
+    "+200%": {
+      "threshold_value": 80.847,
+      "trigger_generation": 2,
+      "trigger_ppl": 162.151
+    }
+  },
+  "ppl_absolute_threshold_analysis": {
+    "ppl>28": {
+      "threshold_value": 28,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "ppl>30": {
+      "threshold_value": 30,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "ppl>35": {
+      "threshold_value": 35,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "ppl>40": {
+      "threshold_value": 40,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    },
+    "ppl>50": {
+      "threshold_value": 50,
+      "trigger_generation": 1,
+      "trigger_ppl": 57.415
+    }
+  },
+  "ppl_trajectory": {
+    "gen_0": {
+      "ppl": 26.949,
+      "pct_rise_from_gen0": 0.0
+    },
+    "gen_1": {
+      "ppl": 57.415,
+      "pct_rise_from_gen0": 113.1
+    },
+    "gen_2": {
+      "ppl": 162.151,
+      "pct_rise_from_gen0": 501.7
+    },
+    "gen_3": {
+      "ppl": 279.174,
+      "pct_rise_from_gen0": 935.9
+    },
+    "gen_4": {
+      "ppl": 394.018,
+      "pct_rise_from_gen0": 1362.1
+    },
+    "gen_5": {
+      "ppl": 508.854,
+      "pct_rise_from_gen0": 1788.2
+    },
+    "gen_6": {
+      "ppl": 598.726,
+      "pct_rise_from_gen0": 2121.7
+    },
+    "gen_7": {
+      "ppl": 722.577,
+      "pct_rise_from_gen0": 2581.3
+    },
+    "gen_8": {
+      "ppl": 814.682,
+      "pct_rise_from_gen0": 2923.1
+    },
+    "gen_9": {
+      "ppl": 934.959,
+      "pct_rise_from_gen0": 3369.4
+    },
+    "gen_10": {
+      "ppl": 1017.811,
+      "pct_rise_from_gen0": 3676.8
+    }
+  },
+  "key_comparison": {
+    "can_ppl_trigger_at_gen1": true,
+    "minimum_ppl_threshold_for_gen1": "+113% or lower",
+    "gen1_ppl_value": 57.415,
+    "gen1_ppl_rise_pct": 113.1,
+    "gen1_entropy_drop_pct": 40.9,
+    "optimal_ppl_threshold": "+50% (triggers gen 1, reasonable margin above normal variance)",
+    "entropy_advantage": "Entropy is a zero-cost byproduct of generation (no held-out eval needed); PPL requires separate clean test set + full forward pass. Both trigger at gen 1."
+  },
+  "summary": "A perplexity threshold CAN trigger at generation 1, the same as entropy-based detection. Gen-0 PPL is 26.9 and gen-1 PPL is 57.4 (+113%), so any threshold below +113% (including +10%, +20%, +50%) would fire at gen 1. However, the paper's entropy-based advantage is not about threshold sensitivity per se\u2014it is that token entropy computed from the model's output distribution is an intrinsic metric requiring no held-out evaluation set, whereas perplexity requires a separate clean test set and a full forward pass. The entropy canary detects distributional narrowing (mode collapse) directly, while PPL detects its downstream consequence (degraded generalization). Both trigger at the same generation in this setting, but entropy is architecturally preferable as a zero-cost byproduct of generation."
+}

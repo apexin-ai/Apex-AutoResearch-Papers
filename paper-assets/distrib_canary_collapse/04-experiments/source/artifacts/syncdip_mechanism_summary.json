@@ -1,0 +1,42 @@
+{
+  "hypothesis": "α=0.60 sync-dip caused by time-scale synchronization (lag→0)",
+  "experiments_analyzed": [
+    "T15_a045_s42",
+    "T15_a050_s42",
+    "T15_a060_s42",
+    "T15_a075_s42",
+    "T20_a060_s42",
+    "T10_a060_s42"
+  ],
+  "peak_lags": {
+    "T15_a045_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": -4},
+    "T15_a050_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": -6},
+    "T15_a060_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": -3},
+    "T15_a075_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": -5},
+    "T20_a060_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": 1},
+    "T10_a060_s42": {"distinct_1": -1, "distinct_2": -1, "mauve": -3}
+  },
+  "decay_rates": {
+    "T15_a045_s42": {"tau_canary": 0.1, "tau_distinct_1": 4.01, "tau_distinct_2": 5.83, "tau_mauve": 100.0},
+    "T15_a050_s42": {"tau_canary": 0.1, "tau_distinct_1": 3.21, "tau_distinct_2": 4.12, "tau_mauve": 26.76},
+    "T15_a060_s42": {"tau_canary": 0.1, "tau_distinct_1": 2.73, "tau_distinct_2": 3.25, "tau_mauve": 18.94},
+    "T15_a075_s42": {"tau_canary": 0.1, "tau_distinct_1": 2.25, "tau_distinct_2": 2.61, "tau_mauve": 100.0},
+    "T20_a060_s42": {"tau_canary": 0.1, "tau_distinct_1": 2.70, "tau_distinct_2": 3.20, "tau_mauve": 10.94},
+    "T10_a060_s42": {"tau_canary": 0.1, "tau_distinct_1": 3.00, "tau_distinct_2": 3.66, "tau_mauve": 100.0}
+  },
+  "tau_ratios": {
+    "T15_a045_s42": 366.14,
+    "T15_a050_s42": 113.61,
+    "T15_a060_s42": 83.06,
+    "T15_a075_s42": 349.52,
+    "T20_a060_s42": 56.17,
+    "T10_a060_s42": 355.52
+  },
+  "statistical_tests": {
+    "peak_lag_mannwhitney_p": 1.0,
+    "alpha060_abs_peak_lags": [1, 1, 1, 1, 1, 1],
+    "other_abs_peak_lags": [1, 1, 1, 1, 1, 1]
+  },
+  "conclusion": "NOT SUPPORTED: No evidence of lag reduction at α=0.60",
+  "mechanistic_insight": "token_entropy (canary) exhibits step-function behavior: drops immediately at gen 0->1 (tau~0.1) then stays flat. This means there is NO temporal variation in canary after gen 1 for Granger to exploit. The peak_lag=-1 is universal across all alpha values and reflects this immediate step, not gradual sync-dip. The PermG=0/8 at alpha=0.60 likely has a different explanation than time-scale synchronization."
+}

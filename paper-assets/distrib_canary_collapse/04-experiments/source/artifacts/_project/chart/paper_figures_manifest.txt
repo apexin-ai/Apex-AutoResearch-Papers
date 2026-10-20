@@ -1,0 +1,6 @@
+Files on westd-19828:/root/autodl-tmp/distrib_canary_collapse/docs/paper/figures/
+- differencing_dmax.pdf (20KB) — d_max grouped bar chart (α=0.75, 3 seeds)
+- consensus_heatmap.pdf (21KB) — K-of-5 votes heatmap (8 pairs × 3 seeds, α=0.75 only)
+- regime_map.pdf (29KB) — α regime classification concept figure
+- metric_trajectory.pdf (21KB) — token_entropy + distinct_1 drift (α=0.00/0.25/0.50/0.75, multi-seed ±std)
+- consensus_workflow.pdf (37KB) — 5-method filtering pipeline flowchart

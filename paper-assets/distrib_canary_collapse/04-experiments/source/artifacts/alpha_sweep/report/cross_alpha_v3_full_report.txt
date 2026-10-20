@@ -1,0 +1,39 @@
+Cross-Alpha v3 Full Analysis Report (2026-05-15)
+=================================================
+Gen range: gen_0 to gen_10 (11 points)
+Full JSON: server westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json
+
+DOSE-RESPONSE (gen0→gen10 drift%)
+α      d1%      d2%      d3%      entropy%   ECE%      PPL%
+0.00   -13.78   -9.77    -4.52    -5.10      +51.70    -21.68
+0.25   -40.34   -57.14   -59.85   -4.10      +79.72    -17.19
+0.50   -37.28   -51.46   -52.35   -18.62     +842.79   +21.13
+
+Non-monotonic dose-response confirmed: α=0.25 collapse > α=0.50 across d1/d2/d3.
+
+GRANGER CAUSALITY (12 tests, BH FDR, 2500 perms, max_lag=1, differenced)
+α      direction        F-stat    p_raw    p_fdr
+0.00   entropy→d1       48.35     0.058    0.174   (null control, not significant)
+0.00   ECE→d1           0.002     0.949    0.949
+0.00   d1→entropy       0.211     0.789    0.861
+0.00   d1→ECE           0.835     0.338    0.451
+0.25   entropy→d1       163.24    0.015    0.093   (raw sig, FDR n.s.)
+0.25   ECE→d1           1.777     0.228    0.390
+0.25   d1→entropy       7.828     0.023    0.093   (bidirectional at raw level)
+0.25   d1→ECE           0.737     0.459    0.551
+0.50   entropy→d1       127.48    0.098    0.234
+0.50   ECE→d1           79.24     0.021    0.093   (ECE raw p < entropy raw p at α=0.50)
+0.50   d1→entropy       1.999     0.224    0.390
+0.50   d1→ECE           1.574     0.282    0.422
+
+0/12 FDR-significant. Qualitative pattern: entropy leads at α=0.25, ECE leads at α=0.50.
+
+CROSS-CORRELATION PEAK LAG
+α=0.00: entropy_vs_d1 lag=+1 r=0.94, ece_vs_d1 lag=-2 r=0.70
+α=0.25: entropy_vs_d1 lag=+1 r=0.80, ece_vs_d1 lag=-3 r=-0.57
+α=0.50: entropy_vs_d1 lag=+1 r=0.88, ece_vs_d1 lag=+1 r=-0.95
+
+PER-GEN VELOCITY
+α=0.00: cum_drift=-13.78%, mean_v=-0.00135, max_drop gen1→gen2
+α=0.25: cum_drift=-40.34%, mean_v=-0.00396, max_drop gen1→gen2 (-0.0173)
+α=0.50: cum_drift=-37.28%, mean_v=-0.00366, max_drop gen1→gen2 (-0.0148)

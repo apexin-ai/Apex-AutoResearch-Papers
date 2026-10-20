@@ -1,0 +1,22 @@
+dreams:
+  dream_20260514T184925:
+    dream_id: dream_20260514T184925
+    project: distrib_canary_collapse
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 62133
+    chat_id: oc_150c7ce908e05d7932315e0288cf5bfb
+    card_message_id: om_x100b6f55dd48d4a0c4d9e8f1e85f2eb
+    started_at: '2026-05-14T18:49:25+00:00'
+    updated_at: '2026-05-14T19:34:15+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: a2b96abd6c47786aeccef5f35d05bf710b03c6db88796da5998af105cc1e0585

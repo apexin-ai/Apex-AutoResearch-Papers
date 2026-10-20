@@ -1,0 +1,3083 @@
+# analysis d059 mvp reverse reanalysis
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 105
+- **Recorded user turns:** 0
+- **Tool calls:** 52
+- **Original source:** `logs/chats/worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449.jsonl`
+- **Structured JSON:** [`daabd49cc21c3fec6380.json`](../../sessions/da/daabd49cc21c3fec6380.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+105 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T03:41:37.993132+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T03:41:37.993430+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T03:41:37.993610+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T03:41:37.993744+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T03:41:37.993880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_analysis\\nanalysis\\nbootstrap_ty_dryrun.json\\nbootstrap_ty_results.json\\ndetrending\\ndose_response_drift.csv\\ngeneralize\\nmethod_ablation_phase2_panel.json\\nmethod_ablation_phase2_report.md\\nperm_granger_power_bootstrap.json\\nrebuttal\\nshapley_values.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T03:41:37.994050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method causal analysis for generalize experiments.\\n\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\nbut targets results/generalize/{experiment}/all_metrics.json.\\n\\nUsage:\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\n    python analyze_generalize.py  # all experiments in results/generalize/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nfrom datetime import datetime\\n\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nfrom method_ablation import (\\n    CANARY, DOWNSTREAM,\\n    extract as ma_extract,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nMA_METHODS = {\\n    \\\"naive_pearson\\\": naive_pearson,\\n    \\\"differenced_xcorr\\\": diff_xcorr,\\n    \\\"threshold_onset\\\": threshold_lead,\\n    \\\"toda_yamamoto\\\": toda_yamamoto,\\n    \\\"permutation_granger\\\": perm_granger,\\n}\\n\\nMETRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\",\\n           \\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\"]\\n\\nclass NumpyEncoder(json.JSONEncoder):\\n    def default(self, obj):\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, (np.floating,)):\\n            return float(obj)\\n        if isinstance(obj, np.ndarray):\\n            return obj.tolist()\\n        return super().default(obj)\\n\\n\\ndef assemble_all_metrics(exp_dir):\\n    \\\"\\\"\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\"\\\"\\\"\\n    all_path = os.path.join(exp_dir, \\\"all_metrics.json\
+…[truncated 1340 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T03:41:37.994207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T03:41:37.994436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return 
+…[truncated 2108 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T03:41:37.994599+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'generalize_pythia410m_wiki_a100_s42'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'generalize_pythia410m_wiki_a100_s42'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T03:41:37.994731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1441}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T03:41:37.994878+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T03:41:37.995004+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T03:41:37.995120+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T03:41:37.995240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_alpha_analysis.json\\ncross_alpha_analysis.md\\ncross_alpha_v3_full.json\\ncross_alpha_v4.json\\ncross_alpha_v4_report.md\\ncross_alpha_v5.json\\ncross_alpha_v5_report.md\\ncross_alpha_v6.json\\ncross_alpha_v6_report.md\\nd028_fpr_null_control.json\\nd028_fpr_null_control_full.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T03:41:37.995398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T03:41:37.995666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences se
+…[truncated 7407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T03:41:37.995833+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"unified_generalize_all.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"unified_generalize_all.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T03:41:37.995985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T03:41:37.996137+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/mvp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/mvp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T03:41:37.996273+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/mvp/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T03:41:37.996396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"perm_granger\\|reverse\\|rev\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"perm_granger\\|reverse\\|rev\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T03:41:37.996514+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T03:41:37.996627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"reverse\\|rev\\|_rev\" /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"reverse\\|rev\\|_rev\" /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T03:41:37.996748+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T03:41:37.996859+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T03:41:37.997088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia1b_c4_a100_s42\\\": {\\n    \\\"experiment\\\": \\\"pythia1b_c4_a100_s42\\\",\\n    \\\"label\\\": \\\"C4 Domain\\\",\\n    \\\"n_generations\\\": 11,\\n    \\\"params\\\": {\\n      \\\"n_perm\\\": 5000,\\n      \\\"xcorr_max_lag\\\": 5,\\n      \\\"granger_max_lag\\\": 1,\\n      \\\"alpha\\\": 0.05\\n    },\\n    \\\"pairs\\\": {\\n      \\\"token_entropy->mauve\\\": {\\n        \\\"naive_pearson\\\": {\\n          \\\"raw\\\": {\\n            \\\"method\\\": \\\"naive_pearson\\\",\\n            \\\"peak_lag\\\": -1,\\n            \\\"r\\\": -0.9554,\\n            \\\"p_value\\\": 1.6e-05,\\n            \\\"significant\\\": true\\n          },\\n          \\\"p_raw\\\": 1.6e-05,\\n          \\\"p_fdr_permethod\\\": 3.2e-05,\\n          \\\"p_fdr_pooled\\\": 5.7e-05,\\n          \\\"sig_raw\\\": true,\\n          \\\"sig_fdr_permethod\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n        },\\n        \\\"differenced_xcorr\\\": {\\n          \\\"raw\\\": {\\n            \\\"method\\\": \\\"differenced_xcorr\\\",\\n            \\\"peak_lag\\\": -1,\\n            \\\"r\\\": -0.9227,\\n            \\\"p_value\\\": 0.000392,\\n            \\\"significant\\\": true\\n          },\\n          \\\"p_raw\\\": 0.000392,\\n          \\\"p_fdr_permethod\\\": 0.000523,\\n          \\\"p_fdr_pooled\\\": 0.000784,\\n          \\\"sig_raw\\\": true,\\n          \\\"sig_fdr_permethod\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"raw\\\": {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": 1,\\n            \\\"downstream_onset\\\": null,\\n            \\\"lead_time\\\": null,\\n            \\\"significant\\\": false,\\n            \\\"note\\\": \\\"onset not detected for: downstream\\\"\\n          },\\n          \\\"p_raw\\\": null,\\n          \\\"p_fdr_permethod\\\": null,\\n          \\\"
+…[truncated 5384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T03:41:37.997273+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -type d -maxdepth 2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -type d -maxdepth 2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T03:41:37.997436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/analysis_s44\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep_analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/detrending\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/rebuttal\\n/root/autodl-tmp/distrib_canary_collapse/results/rebuttal/nperm_10k\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43\\n/root/autodl
+…[truncated 260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T03:41:37.997623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rn \"reverse\" /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -rn \"reverse\" /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T03:41:37.997778+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T03:41:37.997898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rn \"reverse\\|_rev\\|rev_\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -rn \"reverse\\|_rev\\|rev_\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T03:41:37.998017+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T03:41:37.998136+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"alpha_sweep*\" -type d -maxdepth 2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"alpha_sweep*\" -type d -maxdepth 2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T03:41:37.998275+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep_analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T03:41:37.998446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"a100*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"a100*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T03:41:37.998570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T03:41:37.998681+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T03:41:37.998802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42\\na000_s43\\na000_s44\\na025_3seed_unified_summary.txt\\na025_s43\\na025_s44\\na050_s42\\na050_s43\\na050_s44\\na075_s42\\na075_s43\\na075_s44\\nalpha_monotonicity.png\\nanalysis\\nanalysis_s44\\nanalysis_summary.json\\npooled_panel_results.json\\npooled_panel_summary.txt\\nty_3seed_a025_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T03:41:37.998917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"all_metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"all_metrics.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T03:41:37.999042+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T03:41:37.999167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rn \"reverse\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -rn \"reverse\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T03:41:37.999300+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T03:41:37.999454+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": "0",
+  "fields": "['exp_id', 'status', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "limit": "0",
+    "fields": "['exp_id', 'status', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T03:41:37.999937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"RUNNING\"}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"RUNNING\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.011, \"perplexity\": 26.9, \"distinct_1\": 0.098, \"distinct_2\": 0.518, \"mauve\": 0.034}, \"gen9\": {\"token_entropy\": 1.239, \"ece\": 0.417, \"perplexity\": 935, \"distinct_1\": 0.072, \"distinct_2\": 0.35, \"mauve\": 0.031}, \"table5_8pairs_UNIFIED\": {\"note\": \"统一参数 n_perm=5000, xcorr_lag=5, granger_lag=1, raw p<0.05\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"8/8\", \"threshold_onset\": \"8/8\", \"permg_fwd\": \"6/8\", \"permg_rev\": \"3/8\", \"ty_granger\": \"4/8\", \"consensus_ge3\": \"8/8\", \"consensus_ge4\": \"6/8\", \"permg_rev_detail\": \"ece→d1(0.0274), ece→d2(0.0286), ece→d3(0.0306) — borderline reverse\", \"permg_fwd_detail\": \"entropy→d1(0.0002), entropy→d2(0.0012), entropy→d3(0.0012), ece→d1(0.0002), ece→d2(0.0006), ece→d3(0.0006)\"}, \"table5_8pairs_OLD\": {\"naive_xcorr\": \"7/8\", \"diff_xcorr_fdr\": \"6/8\", \"threshold_onset\": \"6/8\", \"permg_fwd_fdr\": \"6/8\", \"permg_rev_fdr\": \"0/8\", \"ty_granger\": \"6/8\", \"consensus_ge4\": \"6/8\", \"note\": \"OLD: different n_perm, max_lag, possibly different FDR scope\"}}}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"metrics\": {\"table5_8pairs\": {\"naive_xcorr\": \"8/8\", \"diff_xcorr_fdr\": \"8/8\", \"threshold_onset\": \"8/8\", \"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"ty_granger\": \"5/8\", \"consensus_ge4\": \"8/8\", \"token_entropy_rev\": \"0/4\"}, \"vs_s42\": {\"s42_permg_rev\": \"3/8\", \"s43_permg_rev\": \"0/8\", \"note\": \"ECE bidirectionality from s42 (rev=3/8) NOT replicated in s43 (rev=0/8). Unidirectionality is cleaner in s43.\"}, \"drift\": {\"token_entropy_pct\": -56.9, \"perplexity_pct\": 7624}, \"analysis_params_warning\": \"n_per
+…[truncated 20782 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T03:41:38.000128+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"rep_*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"rep_*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T03:41:38.000276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T03:41:38.000401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"mvp*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"mvp*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T03:41:38.000518+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"a100*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"a100*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T03:41:38.000632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T03:41:38.000743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T03:41:38.000878+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"mvp*\" -type d -maxdepth 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"mvp*\" -type d -maxdepth 3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T03:41:38.000995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T03:41:38.001110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"rep_4*\" -type d -maxdepth 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"rep_4*\" -type d -maxdepth 4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T03:41:38.001225+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T03:41:38.001355+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"rep_42\" -type d -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"rep_42\" -type d -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T03:41:38.001469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T03:41:38.001602+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"pythia410m*s4*\" -type d -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"pythia410m*s4*\" -type d -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T03:41:38.001718+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T03:41:38.001828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"mvp_v4*\" -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"mvp_v4*\" -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T03:41:38.001941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T03:41:38.002045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T03:41:38.002161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\nreverse_permg_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T03:41:38.002330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/reverse_permg_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/reverse_permg_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T03:41:38.002517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia410m_wiki_a100_s42\\\",\\n  \\\"direction\\\": \\\"reverse\\\",\\n  \\\"hypothesis\\\": \\\"H0: downstream does NOT Granger-cause canary\\\",\\n  \\\"parameters\\\": {\\n    \\\"max_lag\\\": 1,\\n    \\\"n_perm\\\": 1000,\\n    \\\"seed\\\": 42,\\n    \\\"fdr_method\\\": \\\"fdr_bh\\\",\\n    \\\"fdr_q\\\": 0.05\\n  },\\n  \\\"n_generations\\\": 11,\\n  \\\"results\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"pair_label\\\": \\\"token_entropy <- distinct_1\\\",\\n      \\\"f_stat\\\": 0.4907,\\n      \\\"p_raw\\\": 0.496503,\\n      \\\"effect_size_f2\\\": 0.0818,\\n      \\\"p_fdr\\\": 0.5777085714285715,\\n      \\\"sig_fdr\\\": false\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"pair_label\\\": \\\"token_entropy <- distinct_2\\\",\\n      \\\"f_stat\\\": 0.4953,\\n      \\\"p_raw\\\": 0.476523,\\n      \\\"effect_size_f2\\\": 0.0825,\\n      \\\"p_fdr\\\": 0.5777085714285715,\\n      \\\"sig_fdr\\\": false\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"pair_label\\\": \\\"token_entropy <- distinct_3\\\",\\n      \\\"f_stat\\\": 0.4193,\\n      \\\"p_raw\\\": 0.505495,\\n      \\\"effect_size_f2\\\": 0.0699,\\n      \\\"p_fdr\\\": 0.5777085714285715,\\n      \\\"sig_fdr\\\": false\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"pair_label\\\": \\\"token_entropy <- mauve\\\",\\n      \\\"f_stat\\\": 0.1121,\\n      \\\"p_raw\\\": 0.735265,\\n      \\\"effect_size_f2\\\": 0.0187,\\n      \\\"p_fdr\\\": 0.735265,\\n      \\\"sig_fdr\\\": false\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"pair_label\\\": \\\"ece 
+…[truncated 1375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T03:41:38.002657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T03:41:38.002790+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\",\\n  \\\"data_dir\\\": \\\"data/wikitext103_5k\\\",\\n  \\\"dataset\\\": \\\"wikitext-103-v1\\\",\\n  \\\"synthetic_ratio\\\": 1.0,\\n  \\\"num_generations\\\": 10,\\n  \\\"steps_per_gen\\\": 5000,\\n  \\\"output_dir\\\": \\\"results/generalize/pythia410m_wiki_a100_s42\\\",\\n  \\\"seed\\\": 42,\\n  \\\"batch_size\\\": 4,\\n  \\\"max_length\\\": 512,\\n  \\\"lr\\\": 5e-05,\\n  \\\"gen_max_new_tokens\\\": 256,\\n  \\\"gen_batch_size\\\": 16,\\n  \\\"top_p\\\": 0.95,\\n  \\\"accumulate\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T03:41:38.002914+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*pythia410m*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*pythia410m*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T03:41:38.003033+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T03:41:38.003145+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s43*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s43*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T03:41:38.003277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T03:41:38.003443+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"run_mvp*\" -o -name \"run_generalize*\" -o -name \"run_experiment*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"run_mvp*\" -o -name \"run_generalize*\" -o -name \"run_experiment*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T03:41:38.003565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/run_mvp.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T03:41:38.003685+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s44*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s44*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T03:41:38.003806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T03:41:38.003930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s45*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*s45*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T03:41:38.004047+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T03:41:38.004157+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*410m*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp -name \"all_metrics.json\" -path \"*410m*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T03:41:38.004284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T03:41:38.004440+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_mvp.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_mvp.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-18T03:41:38.004554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-18T03:41:38.004728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env bash\\n# Run MVP experiment: 3 repetitions with different seeds.\\n# Each rep runs iterative_train.py with 100% synthetic ratio for 10 generations.\\n#\\n# Usage:\\n#   bash run_mvp.sh                    # default settings\\n#   bash run_mvp.sh --steps_per_gen 5000  # override any iterative_train.py arg\\n\\nset -euo pipefail\\n\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"${BASH_SOURCE[0]}\\\")\\\" && pwd)\\\"\\nSEEDS=(42 43 44)\\nDATA_DIR=\\\"${DATA_DIR:-data/wikitext103}\\\"\\nRESULTS_DIR=\\\"${RESULTS_DIR:-results/mvp}\\\"\\n\\n# Step 1: Prepare data (idempotent — skips if already exists)\\nif [ ! -d \\\"$DATA_DIR/train\\\" ]; then\\n    echo \\\"=== Preparing data ===\\\"\\n    python \\\"$SCRIPT_DIR/prepare_data.py\\\" --output_dir \\\"$DATA_DIR\\\"\\nfi\\n\\n# Step 2: Run each repetition\\nfor SEED in \\\"${SEEDS[@]}\\\"; do\\n    OUTPUT=\\\"$RESULTS_DIR/rep_${SEED}\\\"\\n\\n    if [ -f \\\"$OUTPUT/all_metrics.json\\\" ]; then\\n        echo \\\"=== Seed $SEED already completed, skipping ===\\\"\\n        continue\\n    fi\\n\\n    echo \\\"=== Running seed=$SEED ===\\\"\\n    python \\\"$SCRIPT_DIR/iterative_train.py\\\" \\\\\\n        --data_dir \\\"$DATA_DIR\\\" \\\\\\n        --output_dir \\\"$OUTPUT\\\" \\\\\\n        --seed \\\"$SEED\\\" \\\\\\n        --synthetic_ratio 1.0 \\\\\\n        --num_generations 10 \\\\\\n        --steps_per_gen 10000 \\\\\\n        \\\"$@\\\"\\n\\n    echo \\\"=== Seed $SEED complete ===\\\"\\ndone\\n\\n# Step 3: Analyze results\\necho \\\"=== Analyzing results ===\\\"\\npython \\\"$SCRIPT_DIR/analyze_mvp.py\\\" \\\\\\n    --results_dir \\\"$RESULTS_DIR\\\" \\\\\\n    --seeds 42 43 44\\n\\necho \\\"=== MVP experiment complete ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T03:41:38.004961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2341948700181407,\\n    \\\"self_bleu\\\": 0.010194395218435404,\\n    \\\"distinct_1\\\": 0.0982156685333268,\\n    \\\"distinct_2\\\": 0.5178027030111348,\\n    \\\"distinct_3\\\": 0.8127277321747353,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"mauve\\\": 0.03406737671684175,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.9098595778823262,\\n    \\\"self_bleu\\\": 0.01031278388147428,\\n    \\\"distinct_1\\\": 0.09752517633628247,\\n    \\\"distinct_2\\\": 0.5140825545933428,\\n    \\\"distinct_3\\\": 0.8103854590526204,\\n    \\\"ece\\\": 0.208130714273666,\\n    \\\"effective_rank\\\": 79.07801965874336,\\n    \\\"perplexity\\\": 57.415087830113066,\\n    \\\"mauve\\\": 0.03232946507236373,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.461120731052046,\\n    \\\"self_bleu\\\": 0.011297906012857408,\\n    \\\"distinct_1\\\": 0.08194223014161117,\\n    \\\"distinct_2\\\": 0.4303622367238482,\\n    \\\"distinct_3\\\": 0.7113103146443253,\\n    \\\"ece\\\": 0.32384718687024117,\\n    \\\"effective_rank\\\": 94.26403978105184,\\n    \\\"perplexity\\\": 162.15146517739177,\\n    \\\"mauve\\\": 0.03271421237572583,\\n    \\\"generation\\\": 2\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.3379048795413062,\\n    \\\"self_bleu\\\": 0.011861813681763178,\\n    \\\"distinct_1\\\": 0.0762890625,\\n    \\\"distinct_2\\\": 0.39083899092961666,\\n    \\\"distinct_3\\\": 0.6552993015515868,\\n    \\\"ece\\\": 0.3614661790680833,\\n    \\\"effective_rank\\\": 98.3263913412653,\\n    \\\"perplexity\\\": 279.17422239898826,\\n    \\\"mauve\\\": 0.033574966218825136,\\n    \\\"generation\\\": 3\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.2805270546405083,\\n    \\\"self_bleu\\\": 0.01226897679686967,\\n    \\\"distinct_1\\\": 0.074296875,\
+…[truncated 3071 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T03:41:38.005166+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\nfrom permutation_granger import permutation_granger_test\n\n# Load seed 42 data\nwith open('results/generalize/pythia410m_wiki_a100_s42/all_metrics.json') as f:\n    metrics = json.load(f)\n\nmetrics = sorted(metrics, key=lambda x: x['generation'])\n\n# Extract time series\ndef extract(name):\n    return np.array([m[name] for m in metrics])\n\ncanaries = ['token_entropy', 'ece']\ndownstreams = ['distinct_1', 'distinct_2', 'distinct_3', 'perplexity']\n\n# D057 unified params\nN_PERM = 5000\nMAX_LAG = 1\nALPHA = 0.05\n\nprint('=== MVP Seed 42 Reverse Permutation Granger (D057 Unified Params) ===')\nprint(f'n_perm={N_PERM}, max_lag={MAX_LAG}, raw p<{ALPHA} (no FDR)')\nprint(f'T={len(metrics)} generations')\nprint()\n\nresults = []\nfor canary in canaries:\n    c = extract(canary)\n    for ds in downstreams:\n        d = extract(ds)\n        # REVERSE: downstream -> canary (d Granger-causes c)\n        res = permutation_granger_test(x=d, y=c, max_lag=MAX_LAG, n_perm=N_PERM, seed=42)\n        p = res['p_value']\n        sig = p < ALPHA if p is not None else False\n        sig_str = '*' if sig else ' '\n        print(f'  {ds:>12} -> {canary:<16}  F={res[\\\"f_stat\\\"]:8.4f}  p={p:.4f}  {sig_str}')\n        results.append({\n            'direction': f'{ds}->{canary}',\n            'f_stat': res['f_stat'],\n            'p_value': p,\n            'significant': sig,\n            'effect_size_f2': res.get('effect_size_f2'),\n        })\n    print()\n\n# Summary\nent_rev = sum(1 for r in results if 'token_entropy' in r['direction'] and r['significant'])\nece_rev = sum(1 for r in results if 'ece' in r['direction'] and r['significant'])\ntotal = sum(1 for r in results if r['significant'])\nprint(f'token_entropy reverse: {ent_rev}/4')\nprint(f'ECE reverse: {ece_rev}/4')\nprint(f'Total reverse: {total}/8')\nprint()\n\n# Also print forward for comparison\nprint('=== Forward direction (canary -> downstream) for comparison ===')\nfor canary in canaries:\n    c = extract(canary)\n    for ds in downstreams:\n        d = extract(ds)\n        # FORWARD: canary -> downstream (c Granger-causes d)\n        res = permutation_granger_test(x=c, y=d, max_lag=MAX_LAG, n_perm=N_PERM, seed=42)\n        p = res['p_value']\n        sig = p < ALPHA if p is not None else False\n        sig_str = '*' if sig else ' '\n        print(f'  {canary:>16} -> {ds:<12}  F={res[\\\"f_stat\\\"]:8.4f}  p={p:.4f}  {sig_str}')\n    print()\n\n# Dump results as JSON\nprint()\nprint('=== JSON results ===')\nprint(json.dumps(results, indent=2))\n\"\n",
+  "account": "root",
+  "timeout": "300000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\nfrom permutation_granger import permutation_granger_test\n\n# Load seed 42 data\nwith open('results/generalize/pythia410m_wiki_a100_s42/all_metrics.json') as f:\n    metrics = json.load(f)\n\nmetrics = sorted(metrics, key=lambda x: x['generation'])\n\n# Extract time series\ndef extract(name):\n    return np.array([m[name] for m in metrics])\n\ncanaries = ['token_entropy', 'ece']\ndownstreams = ['distinct_1', 'distinct_2', 'distinct_3', 'perplexity']\n\n# D057 unified params\nN_PERM = 5000\nMAX_LAG = 1\nALPHA = 0.05\n\nprint('=== MVP Seed 42 Reverse Permutation Granger (D057 Unified Params) ===')\nprint(f'n_perm={N_PERM}, max_lag={MAX_LAG}, raw p<{ALPHA} (no FDR)')\nprint(f'T={len(metrics)} generations')\nprint()\n\nresults = []\nfor canary in canaries:\n    c = extract(canary)\n    for ds in downstreams:\n        d = extract(ds)\n        # REVERSE: downstream -> canary (d Granger-causes c)\n        res = permutation_granger_test(x=d, y=c, max_lag=MAX_LAG, n_perm=N_PERM, seed=42)\n        p = res['p_value']\n        sig = p < ALPHA if p is not None else False\n        sig_str = '*' if sig else ' '\n        print(f'  {ds:>12} -> {canary:<16}  F={res[\\\"f_stat\\\"]:8.4f}  p={p:.4f}  {sig_str}')\n        results.append({\n            'direction': f'{ds}->{canary}',\n            'f_stat': res['f_stat'],\n            'p_value': p,\n            'significant': sig,\n            'effect_size_f2': res.get('effect_size_f2'),\n        })\n    print()\n\n# Summary\nent_rev = sum(1 for r in results if 'token_entropy' in r['direction'] and r['significant'])\nece_rev = sum(1 for r in results if 'ece' in r['direction'] and r['significant'])\ntotal = sum(1 for r in results if r['significant'])\nprint(f'token_entropy reverse: {ent_rev}/4')\nprint(f'ECE reverse: {ece_rev}/4')\nprint(f'Total reverse: {total}/8')\nprint()\n\n# Also print forward for comparison\nprint('=== Forward direction (canary -> downstream) for comparison ===')\nfor canary in canaries:\n    c = extract(canary)\n    for ds in downstreams:\n        d = extract(ds)\n        # FORWARD: canary -> downstream (c Granger-causes d)\n        res = permutation_granger_test(x=c, y=d, max_lag=MAX_LAG, n_perm=N_PERM, seed=42)\n        p = res['p_value']\n        sig = p < ALPHA if p is not None else False\n        sig_str = '*' if sig else ' '\n        print(f'  {canary:>16} -> {ds:<12}  F={res[\\\"f_stat\\\"]:8.4f}  p={p:.4f}  {sig_str}')\n    print()\n\n# Dump results as JSON\nprint()\nprint('=== JSON results ===')\nprint(json.dumps(results, indent=2))\n\"\n",
+    "account": "root",
+    "timeout": "300000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T03:41:38.005394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== MVP Seed 42 Reverse Permutation Granger (D057 Unified Params) ===\\nn_perm=5000, max_lag=1, raw p<0.05 (no FDR)\\nT=11 generations\\n\\n    distinct_1 -> token_entropy     F=  0.4907  p=0.4921   \\n    distinct_2 -> token_entropy     F=  0.4953  p=0.4805   \\n    distinct_3 -> token_entropy     F=  0.4193  p=0.5047   \\n    perplexity -> token_entropy     F=  0.0014  p=0.9658   \\n\\n    distinct_1 -> ece               F= 59.6706  p=0.0274  *\\n    distinct_2 -> ece               F= 37.5922  p=0.0286  *\\n    distinct_3 -> ece               F= 25.2940  p=0.0306  *\\n    perplexity -> ece               F=  6.9095  p=0.1418   \\n\\ntoken_entropy reverse: 0/4\\nECE reverse: 3/4\\nTotal reverse: 3/8\\n\\n=== Forward direction (canary -> downstream) for comparison ===\\n     token_entropy -> distinct_1    F=2853.5078  p=0.0002  *\\n     token_entropy -> distinct_2    F=1582.0850  p=0.0012  *\\n     token_entropy -> distinct_3    F=999.5082  p=0.0012  *\\n     token_entropy -> perplexity    F=  0.6865  p=0.5841   \\n\\n               ece -> distinct_1    F=7088.6313  p=0.0002  *\\n               ece -> distinct_2    F=1311.7010  p=0.0006  *\\n               ece -> distinct_3    F=791.3768  p=0.0006  *\\n               ece -> perplexity    F=  0.0936  p=0.8040   \\n\\n\\n=== JSON results ===\\n[\\n  {\\n    \\\"direction\\\": \\\"distinct_1->token_entropy\\\",\\n    \\\"f_stat\\\": 0.4907,\\n    \\\"p_value\\\": 0.492102,\\n    \\\"significant\\\": false,\\n    \\\"effect_size_f2\\\": 0.0818\\n  },\\n  {\\n    \\\"direction\\\": \\\"distinct_2->token_entropy\\\",\\n    \\\"f_stat\\\": 0.4953,\\n    \\\"p_value\\\": 0.480504,\\n    \\\"significant\\\": false,\\n    \\\"effect_size_f2\\\": 0.0825\\n  },\\n  {\\n    \\\"direction\\\": \\\"distinct_3->token_entropy\\\",\\n    \\\"f_stat\\\": 0.4193,\\n    \\\"p_value\\\": 0.504699,\\n    \\\"significant\\\": false,\\n    \\\"effect_size_f2\\\": 0.0699\\n  },\\n  {\\n 
+…[truncated 1094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T03:41:38.005596+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T03:41:38.005731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generalize_5method_results.json\\nunified_generalize_all.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T03:41:38.005853+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rn \"reverse\\|_rev\\|rev_\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -rn \"reverse\\|_rev\\|rev_\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T03:41:38.005972+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T03:41:38.006086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"reverse\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"reverse\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T03:41:38.006208+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T03:41:38.006344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"rev\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"rev\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T03:41:38.006461+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T03:41:38.006603+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"permutation_granger*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"permutation_granger*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-18T03:41:38.006717+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*reverse*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*reverse*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-18T03:41:38.006831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/__pycache__/permutation_granger.cpython-312.pyc\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T03:41:38.006943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/reverse_permg_results.json\\n/root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T03:41:38.007054+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T03:41:38.007274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Reverse Permutation Granger test for Pythia-410M generalize experiment.\\n\\nForward: H0: canary does NOT Granger-cause downstream\\nReverse: H0: downstream does NOT Granger-cause canary\\n\\nTests 8 canonical pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\nfrom permutation_granger import permutation_granger_test\\n\\nDATA_PATH = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\",\\n                         \\\"pythia410m_wiki_a100_s42\\\", \\\"all_metrics.json\\\")\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                  \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nMAX_LAG = 1\\nN_PERM = 1000\\nSEED = 42\\nFDR_Q = 0.05\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef extract(metrics_list, name):\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef main():\\n    with open(DATA_PATH) as f:\\n        metrics_list = json.load(f)\\n\\n    print(f\\\"Loaded {len(metrics_list)} generations from {DATA_PATH}\\\")\\n    print(f\\\"Parameters: max_lag={MAX_LAG}, n_perm={N_PERM}, seed={SEED}\\\")\\n    print()\\n\\n    # --- Forward sanity check (2 pairs) ---\\n    print(\\\"=\\\" * 70)\\n    print(\\\"FORWARD SANITY CHECK (canary -> downstream)\\\")\\n    print(\\\"-\\\" * 70)\\n    for 
+…[truncated 5628 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T03:41:38.007480+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "artifacts/d059*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "artifacts/d059*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T03:41:38.007608+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T03:41:38.007738+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d059_mvp_reverse_reanalysis.md",
+  "content": "# D059: MVP 4-seed Reverse Reanalysis (D057 Unified Params)\n\n## Parameters\n- n_perm = 5000\n- max_lag = 1 (Granger)\n- significance: raw p < 0.05 (no BH FDR)\n- 8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, perplexity} reverse direction\n\n## Data Availability\n\n| Seed | α=1.0 per-generation data | Status |\n|------|---------------------------|--------|\n| 42   | `results/generalize/pythia410m_wiki_a100_s42/all_metrics.json` | Available (T=11) |\n| 43   | Cleaned up from server | UNAVAILABLE |\n| 44   | Cleaned up from server | UNAVAILABLE |\n| 45   | Cleaned up from server | UNAVAILABLE |\n\nOnly seed 42 has full per-generation time-series data. Seeds 43-45 mvp_v4 experiments completed (registry DONE) but output directories were removed. Only summary gen0/gen10 metrics survive in registry.\n\n## Seed 42 Results (D057 Unified Params)\n\n### Reverse direction (downstream -> canary)\n\n| Pair (reverse) | F-stat | p-value | Significant |\n|---|---|---|---|\n| distinct_1 -> token_entropy | 0.4907 | 0.4921 | No |\n| distinct_2 -> token_entropy | 0.4953 | 0.4805 | No |\n| distinct_3 -> token_entropy | 0.4193 | 0.5047 | No |\n| perplexity -> token_entropy | 0.0014 | 0.9658 | No |\n| distinct_1 -> ece | 59.6706 | **0.0274** | **Yes** |\n| distinct_2 -> ece | 37.5922 | **0.0286** | **Yes** |\n| distinct_3 -> ece | 25.2940 | **0.0306** | **Yes** |\n| perplexity -> ece | 6.9095 | 0.1418 | No |\n\n### Forward direction (canary -> downstream) for comparison\n\n| Pair (forward) | F-stat | p-value | Significant |\n|---|---|---|---|\n| token_entropy -> distinct_1 | 2853.51 | **0.0002** | **Yes** |\n| token_entropy -> distinct_2 | 1582.09 | **0.0012** | **Yes** |\n| token_entropy -> distinct_3 | 999.51 | **0.0012** | **Yes** |\n| token_entropy -> perplexity | 0.69 | 0.5841 | No |\n| ece -> distinct_1 | 7088.63 | **0.0002** | **Yes** |\n| ece -> distinct_2 | 1311.70 | **0.0006** | **Yes** |\n| ece -> distinct_3 | 791.38 | **0.0006** | **Yes** |\n| ece -> perplexity | 0.09 | 0.8040 | No |\n\n### Seed 42 Summary\n- token_entropy reverse: **0/4**\n- ECE reverse: **3/4** (d1, d2, d3 all significant; ppl not)\n- Total reverse: **3/8**\n- Forward: **6/8** (all diversity pairs; perplexity pairs not significant in either direction)\n\n## Seeds 43-45: Cannot Reanalyze\n\nPer-generation data (gen_0 through gen_10 metrics) for seeds 43-45 at α=1.0 no longer exists on the server. The mvp_v4_rep43/44/45 experiments completed, but only summary drift metrics survive in the registry. Time-series data needed for Granger analysis is lost.\n\n## Explanation of Old \"0/24\" Claim\n\nThe old Case Study \"0/24 reverse significant\" came from:\n- **3 seeds** (42, 43, 44) per `run_mvp.sh` (not 4 seeds)\n- **8 pairs** per seed: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\n- **Old params**: n_perm=1000, BH FDR correction\n- 3 x 8 = 24 total tests\n\nFor seed 42, the old analysis found ece←d1/d2/d3 raw p ≈ 0.032-0.036, but BH FDR correction (8 tests) pushed them above 0.05. Hence 0/8 per seed, 0/24 total.\n\n## Why Numbers Changed\n\n| Factor | Old analysis | D057 unified |\n|---|---|---|\n| n_perm | 1000 | 5000 |\n| 4th downstream | mauve | perplexity |\n| Multiple testing | BH FDR (8 tests) | raw p < 0.05 |\n| Seed 42 reverse result | 0/8 (FDR) | **3/8** (raw) |\n\nThe discrepancy is driven entirely by **FDR correction removal**. With n_perm=5000, the ece←diversity raw p-values are 0.027-0.031 (borderline). Under BH FDR with 8 tests, the threshold for rank 3-4 is 0.019-0.025, so these get rejected. Without FDR, they pass at 0.05.\n\n## Recommended Paper Numbers\n\n**Option A (conservative, only seed 42 available):**\n> \"Under unified parameters (n_perm=5000, max_lag=1, raw p<0.05), the Baseline configuration shows 3/8 reverse-significant pairs in seed 42, all involving ECE as the response variable (p=0.027-0.031). Token entropy shows no reverse causality (0/4, all p>0.48). Seeds 43-45 could not be reanalyzed due to data unavailability.\"\n\n**Option B (if we only report what we can verify):**\n- Table 7 Baseline PG_rev = 3/8 (seed 42 only)\n- Case study should NOT claim \"0/24\" or \"0/32\" since:\n  1. The old \"0/24\" used different params (FDR, n_perm=1000, mauve)\n  2. Seeds 43-45 cannot be verified with D057 params\n\n**Key interpretive point:** The 3/8 reverse significance is exclusively ECE←diversity. Token entropy shows clean unidirectionality (0/4 reverse, 3/4 forward for diversity). The ECE bidirectionality may reflect genuine feedback (diversity decline affects calibration) rather than spurious signal, since the forward F-statistics (791-7089) are 13-119x larger than reverse F-statistics (25-60).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d059_mvp_reverse_reanalysis.md",
+    "content": "# D059: MVP 4-seed Reverse Reanalysis (D057 Unified Params)\n\n## Parameters\n- n_perm = 5000\n- max_lag = 1 (Granger)\n- significance: raw p < 0.05 (no BH FDR)\n- 8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, perplexity} reverse direction\n\n## Data Availability\n\n| Seed | α=1.0 per-generation data | Status |\n|------|---------------------------|--------|\n| 42   | `results/generalize/pythia410m_wiki_a100_s42/all_metrics.json` | Available (T=11) |\n| 43   | Cleaned up from server | UNAVAILABLE |\n| 44   | Cleaned up from server | UNAVAILABLE |\n| 45   | Cleaned up from server | UNAVAILABLE |\n\nOnly seed 42 has full per-generation time-series data. Seeds 43-45 mvp_v4 experiments completed (registry DONE) but output directories were removed. Only summary gen0/gen10 metrics survive in registry.\n\n## Seed 42 Results (D057 Unified Params)\n\n### Reverse direction (downstream -> canary)\n\n| Pair (reverse) | F-stat | p-value | Significant |\n|---|---|---|---|\n| distinct_1 -> token_entropy | 0.4907 | 0.4921 | No |\n| distinct_2 -> token_entropy | 0.4953 | 0.4805 | No |\n| distinct_3 -> token_entropy | 0.4193 | 0.5047 | No |\n| perplexity -> token_entropy | 0.0014 | 0.9658 | No |\n| distinct_1 -> ece | 59.6706 | **0.0274** | **Yes** |\n| distinct_2 -> ece | 37.5922 | **0.0286** | **Yes** |\n| distinct_3 -> ece | 25.2940 | **0.0306** | **Yes** |\n| perplexity -> ece | 6.9095 | 0.1418 | No |\n\n### Forward direction (canary -> downstream) for comparison\n\n| Pair (forward) | F-stat | p-value | Significant |\n|---|---|---|---|\n| token_entropy -> distinct_1 | 2853.51 | **0.0002** | **Yes** |\n| token_entropy -> distinct_2 | 1582.09 | **0.0012** | **Yes** |\n| token_entropy -> distinct_3 | 999.51 | **0.0012** | **Yes** |\n| token_entropy -> perplexity | 0.69 | 0.5841 | No |\n| ece -> distinct_1 | 7088.63 | **0.0002** | **Yes** |\n| ece -> distinct_2 | 1311.70 | **0.0006** | **Yes** |\n| ece -> distinct_3 | 791.38 | **0.0006** | **Yes** |\n| ece -> perplexity | 0.09 | 0.8040 | No |\n\n### Seed 42 Summary\n- token_entropy reverse: **0/4**\n- ECE reverse: **3/4** (d1, d2, d3 all significant; ppl not)\n- Total reverse: **3/8**\n- Forward: **6/8** (all diversity pairs; perplexity pairs not significant in either direction)\n\n## Seeds 43-45: Cannot Reanalyze\n\nPer-generation data (gen_0 through gen_10 metrics) for seeds 43-45 at α=1.0 no longer exists on the server. The mvp_v4_rep43/44/45 experiments completed, but only summary drift metrics survive in the registry. Time-series data needed for Granger analysis is lost.\n\n## Explanation of Old \"0/24\" Claim\n\nThe old Case Study \"0/24 reverse significant\" came from:\n- **3 seeds** (42, 43, 44) per `run_mvp.sh` (not 4 seeds)\n- **8 pairs** per seed: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\n- **Old params**: n_perm=1000, BH FDR correction\n- 3 x 8 = 24 total tests\n\nFor seed 42, the old analysis found ece←d1/d2/d3 raw p ≈ 0.032-0.036, but BH FDR correction (8 tests) pushed them above 0.05. Hence 0/8 per seed, 0/24 total.\n\n## Why Numbers Changed\n\n| Factor | Old analysis | D057 unified |\n|---|---|---|\n| n_perm | 1000 | 5000 |\n| 4th downstream | mauve | perplexity |\n| Multiple testing | BH FDR (8 tests) | raw p < 0.05 |\n| Seed 42 reverse result | 0/8 (FDR) | **3/8** (raw) |\n\nThe discrepancy is driven entirely by **FDR correction removal**. With n_perm=5000, the ece←diversity raw p-values are 0.027-0.031 (borderline). Under BH FDR with 8 tests, the threshold for rank 3-4 is 0.019-0.025, so these get rejected. Without FDR, they pass at 0.05.\n\n## Recommended Paper Numbers\n\n**Option A (conservative, only seed 42 available):**\n> \"Under unified parameters (n_perm=5000, max_lag=1, raw p<0.05), the Baseline configuration shows 3/8 reverse-significant pairs in seed 42, all involving ECE as the response variable (p=0.027-0.031). Token entropy shows no reverse causality (0/4, all p>0.48). Seeds 43-45 could not be reanalyzed due to data unavailability.\"\n\n**Option B (if we only report what we can verify):**\n- Table 7 Baseline PG_rev = 3/8 (seed 42 only)\n- Case study should NOT claim \"0/24\" or \"0/32\" since:\n  1. The old \"0/24\" used different params (FDR, n_perm=1000, mauve)\n  2. Seeds 43-45 cannot be verified with D057 params\n\n**Key interpretive point:** The 3/8 reverse significance is exclusively ECE←diversity. Token entropy shows clean unidirectionality (0/4 reverse, 3/4 forward for diversity). The ECE bidirectionality may reflect genuine feedback (diversity decline affects calibration) rather than spurious signal, since the forward F-statistics (791-7089) are 13-119x larger than reverse F-statistics (25-60).\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T03:41:38.007930+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d059_mvp_reverse_reanalysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T03:41:38.008065+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "d059_mvp_reverse_reanalysis",
+  "type": "report",
+  "description": "MVP 4-seed reverse Permutation Granger reanalysis with D057 unified params. Seed 42: 3/8 reverse sig (ece←d1/d2/d3). Seeds 43-45 data unavailable.",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d059_mvp_reverse_reanalysis.md",
+  "tags": "['d059', 'reverse', 'permutation-granger', 'unified-params', 'mvp']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "d059_mvp_reverse_reanalysis",
+    "type": "report",
+    "description": "MVP 4-seed reverse Permutation Granger reanalysis with D057 unified params. Seed 42: 3/8 reverse sig (ece←d1/d2/d3). Seeds 43-45 data unavailable.",
+    "project": "distrib_canary_collapse",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d059_mvp_reverse_reanalysis.md",
+    "tags": "['d059', 'reverse', 'permutation-granger', 'unified-params', 'mvp']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T03:41:38.008213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_21d9ee\", \"name\": \"d059_mvp_reverse_reanalysis\", \"type\": \"report\", \"description\": \"MVP 4-seed reverse Permutation Granger reanalysis with D057 unified params. Seed 42: 3/8 reverse sig (ece←d1/d2/d3). Seeds 43-45 data unavailable.\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/d059_mvp_reverse_reanalysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T03:41:25.544975+00:00\", \"tags\": [\"d059\", \"reverse\", \"permutation-granger\", \"unified-params\", \"mvp\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-18T03:41:38.008399+00:00_
+
+## 结果
+
+**Seed 42 (D057 统一参数, n_perm=5000, max_lag=1, raw p<0.05):**
+
+| 方向 | 结果 |
+|------|------|
+| token_entropy reverse | **0/4** (all p > 0.48) |
+| ECE reverse | **3/4** (d1→ece p=0.0274, d2→ece p=0.0286, d3→ece p=0.0306; ppl→ece p=0.14) |
+| **Total reverse** | **3/8** |
+| Forward 对比 | 6/8 (F-stat 比 reverse 大 13-119 倍) |
+
+**Seeds 43-45: 无法重分析。** α=1.0 的逐代数据已从服务器清除，registry 只保留了 gen0/gen10 摘要指标，无法运行 Granger 时序分析。
+
+**"0/24" 来源解释:** 旧分析用 3 seeds × 8 pairs = 24，参数为 n_perm=1000 + BH FDR + mauve。Seed 42 的 ece←diversity raw p≈0.032-0.036 在 FDR 校正后变为不显著，故 0/24。D057 统一参数取消 FDR 且提升 n_perm 至 5000 后，这 3 个 pair 变为显著。
+
+**论文建议:** Table 7 Baseline PG_rev 应写 3/8（仅 seed 42 可验证），Case Study 不能再写 "0/24"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_d059_mvp_reverse_reanalysis_20260518T033449"
+}
+```
+
+</details>
+
+---

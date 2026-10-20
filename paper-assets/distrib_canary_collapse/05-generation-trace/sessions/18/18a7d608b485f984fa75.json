@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18a7d608b485f984fa75",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "data effrank trajectories",
+  "task_key": "worker_data_effrank_trajectories_20260519T031353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_effrank_trajectories_20260519T031353_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "be156b37d130052b7f7c697a3d33ca49e524c9a604ed70c5398722f58ed9aee7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/effrank_trajectories.csv`。\n\n数据来源：\n- `pythia410m_a050_s42` ← `results/alpha_sweep/a050_s42/all_metrics.json`\n- `pythia14b_a050_s42` ← `results/scale_check/pythia14b_a050_s42/all_metrics.json`\n- `pythia410m_a100_s42` ← `results/generalize/pythia410m_wiki_a100_s42/all_metrics.json`\n\n三个实验均有 gen 0-10 共 11 代完整的 `effective_rank` 字段，无缺失。数值保留 4 位小数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-effrank-trajectories.md"
+}

@@ -1,0 +1,966 @@
+# cron hook data strategy ablation s43 20260521T013817 699263
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 3
+- **Tool calls:** 11
+- **Original source:** `logs/chats/archive/cron_hook_data_strategy_ablation_s43_20260521T013817_699263.jsonl`
+- **Structured JSON:** [`f5793a6489864d695c4a.json`](../../sessions/f5/f5793a6489864d695c4a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 1 · 2026-05-20T09:27:08.445994+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: data_strategy_ablation_s43
+- project: distrib_canary_collapse
+- server: westd-19828
+- log_path: ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-20T09:27:22.480604+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-20T09:27:22.481684+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T09:27:25.297558+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T09:27:25.851565+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T09:27:26.253383+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T09:27:26.253740+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T09:27:26.366576+00:00_
+
+Error: result (245,042 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1069
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T09:27:43.685674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 7, \"results\": [{\"exp_id\": \"smollm3_3b_wiki_a100_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=211078)\"]}, {\"exp_id\": \"scale_14b_a050_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=538774)\"]}, {\"exp_id\": \"alpha_sweep_a045_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=280215)\"]}, {\"exp_id\": \"alpha_sweep_a060_s42_fp32_v4\", \"success\": true, \"actions\": [\"Job still running (pid=295535)\"]}, {\"exp_id\": \"t20_a100_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=301936)\"]}, {\"exp_id\": \"t20_a050_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=302503)\"]}, {\"exp_id\": \"t20_a060_s42_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=311201)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 17834
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T09:27:43.736675+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T09:27:09Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 122 个实验 — ANALYZING 1, DONE 107, PREPARING 7, RUNNING 7\\n**DONE 分布**: failed 9, killed 23, negative 2, success 73\\n\\n### GPU 占用\\n- **实际运行**: 7 张 — westd-17855:cuda:3(smollm3_3b_wiki_a100_s43_fp32), westd-19828:cuda:1(scale_14b_a050_s42_fp32), westd-17855:cuda:0(alpha_sweep_a045_s43_fp32), westd-17855:cuda:5(alpha_sweep_a060_s42_fp32_v4), westd-17855:cuda:2(t20_a100_s42_fp32), westd-17855:cuda:1(t20_a050_s42_fp32), westd-17855:cuda:4(t20_a060_s42_fp32)\\n\\n### 💾 磁盘余量\\n- **westd-19828**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-17855**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `smollm3_3b_wiki_a100_s43_fp32` | westd-17855 | cuda:3 | 211078 | `—` |\\n| `scale_14b_a050_s42_fp32` | westd-19828 | cuda:1 | 538774 | `~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log` |\\n| `alpha_sweep_a045_s43_fp32` | westd-17855 | cuda:0 | 280215 | `~/runs/distrib_canary_collapse/alpha_sweep_a045_s43_fp32.log` |\\n| `alpha_sweep_a060_s42_fp32_v4` | westd-17855 | cuda:5 | 295535 | `…ns/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v4.log` |\\n| `t20_a100_s42_fp32` | westd-17855 | cuda:2 | 301936 | `~/runs/distrib_canary_collapse/t20_a100_s42_fp32.log` |\\n| `t20_a050_s42_fp32` | westd-17855 | cuda:1 | 302503 | `~/runs/distrib_canary_collapse/t20_a050_s42_fp32.log` |\\n| `t20_a060_s42_fp32` | westd-17855 | cuda:4 | 311201 | `~/runs/distrib_canary_collapse/t20_a060_s42_f
+…[truncated 5237 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 17483
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T09:27:43.737442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-20 09:00 UTC | 更新原因: D127 七条分析战线全部派出 + D126 进展整合 + GPU 表更新\\n\\n> **阶段**: Day 2 推进中 — D126 机制性升级 + D127 预测-验证分析 + 8/8 GPU active\\n\\n## 核心方向（D122 Reframe + D124 Null FPR + D126 机制升级 + D127 预测验证）\\n**PermG-primary + mechanistic explanation + predict-then-verify**:\\n1. **PermG** — primary metric。null FPR=0/24(0%)（唯一），blind zone FPR=0%，step function at α=0.50，12/14 cross-arch\\n2. **理论动机** — H(p_t) 连续泛函 leads D_t 阈值函数 → 推导 4-regime 预测（blind/onset/sync/detection）→ 实验验证\\n3. **Tail canary** — effective_rank 缩小 blind zone [0,0.45]→[0,0.25)（D126 Track 2）\\n4. **Intervention** — 15% entropy drop 最优阈值，zero false alarm（D126 Track 4a）\\n5. **Failure mode** — SmolLM3 entropy-diversity decoupling（U-shape entropy vs monotonic diversity）（D126 Track 5）\\n6. **Dose-response 4-regime**: Blind(≤0.45)→Onset(0.50)→Sync collapse(~0.60 dip)→Detection(≥0.75)\\n\\n**Target**: EMNLP 2026 ARR June cycle, ~24 days\\n\\n## ✅ Day 1 完成项（精简）\\n- D120 统一管线 20 exp + D122 PermG-primary framing + D123 TY 修复\\n- Claim 4 cross-scale (1.4B) + Padding 审计 PASS + Table 7 全审（14/17 完成）\\n\\n## ✅ Day 2 进展\\n- **D124 Null FPR**: PermG=0/24(3 seeds), diff=9/24(37.5%), threshold=6/24(25%), TY=2/24(8.3%), K≥3=2/24(8.3%)\\n- **D125 v3_d080**: α=0.05 排除 + α=0.60 v4 标准重跑中 (cuda:5)\\n- **D126 Tracks 2/4a/5 完成**: effective_rank blind zone shrink + 15% threshold + failure mode decoupling\\n- **D127 派出**: 7 条分析战线 — C(理论→Paper Agent) + A/B/D/E/F/G(Agent 并行)\\n- **M046 canonical sweep**: ✅ 完成，双服务器 D120 标准统一，Table 7 修正 (1.4B s42 K≥3 1→3)\\n- **data_strategy_ablation_s42**: accumulate PermG=0/8（V-shape recovery breaks lead-lag）vs replace 6/8\\n\\n## 📊 Null FPR Table (D124, α=0.0, 3 seeds × 8 pairs = 24 tests)\\n| Method | FP/24 | FPR | 评价 |\\n|--------|-------|-----|------|\\n| **PermG** | **0**
+…[truncated 4541 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 17483
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T09:27:50.678476+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'data_strategy_ablation_s43'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'data_strategy_ablation_s43'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T09:27:51.283443+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'data_strategy_ablation_s42'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'data_strategy_ablation_s42'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T09:27:51.535417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.789}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T09:27:52.348489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8051}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1065
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T09:28:05.740843+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, info in exps.items():\n    if 'data_strategy' in eid or 'ablation' in eid:\n        print(f'{eid}: status={info.get(\\\"status\\\")}, conclusion={info.get(\\\"conclusion\\\")}')\n        print(f'  hypothesis: {info.get(\\\"hypothesis\\\", \\\"N/A\\\")[:200]}')\n        print(f'  metrics: {info.get(\\\"metrics\\\", {})}')\n        print(f'  spec: {info.get(\\\"spec\\\", {})}')\n        print(f'  parent: {info.get(\\\"parent\\\", \\\"N/A\\\")}')\n        print()\n\"\n",
+  "description": "Search registry for data_strategy experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, info in exps.items():\n    if 'data_strategy' in eid or 'ablation' in eid:\n        print(f'{eid}: status={info.get(\\\"status\\\")}, conclusion={info.get(\\\"conclusion\\\")}')\n        print(f'  hypothesis: {info.get(\\\"hypothesis\\\", \\\"N/A\\\")[:200]}')\n        print(f'  metrics: {info.get(\\\"metrics\\\", {})}')\n        print(f'  spec: {info.get(\\\"spec\\\", {})}')\n        print(f'  parent: {info.get(\\\"parent\\\", \\\"N/A\\\")}')\n        print()\n\"\n",
+    "description": "Search registry for data_strategy experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T09:28:05.942125+00:00_
+
+data_strategy_ablation_s43: status=ANALYZING, conclusion=None
+  hypothesis: 数据累积策略 ablation cross-seed：accumulate 模式 α=0.50 seed=43。验证 s42 结果（data_strategy_ablation_s42）的 seed robustness。如果 s42/s43 PermG 一致 → accumulate 效果 seed-robust；如果不同 → 策略效果 seed-sensitive。Baseline: alph
+  metrics: {'data_strategy': 'accumulate', 'baseline_exp': 'alpha_sweep_a050_s43_fp32'}
+  spec: {'command': 'bash -c "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate"', 'server': 'westd-19828', 'gpu': ['cuda:0'], 'pid': '531127', 'log_path': '~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log', 'submitted_at': '2026-05-20T05:05:18.046Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': 'data/wikitext103_5k', 'data_count': 5000, 'model_name': 'EleutherAI/pythia-410m', 'seed': 43, 'precision': 'fp32', 'data_strategy': 'accumulate', 'checkpoint_source': 'N/A - training from scratch, parent is derivation chain only', 'eval_data': 'N/A - training experiment not eval'}
+  parent: data_strategy_ablation_s42
+
+data_strategy_ablation_s42: status=DONE, conclusion=success
+  hypothesis: 数据累积策略（accumulate：每代叠加所有前几代生成文本）会通过缓冲训练数据多样性，减弱 canary→downstream 的 lead-lag 时序耦合，相比 replace 模式（每代只用上一代输出）降低 5-method 检测率。
+  metrics: {'accumulate_permg_fwd': '0/8', 'replace_permg_fwd': '6/8', 'accumulate_K_gte3': '0/8', 'replace_K_gte3': '6/8', 'accumulate_TY': '4/8', 'replace_TY': '4/8', 'accumulate_entropy_drift': '-2.4%', 're
+…[truncated 5224 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T09:28:17.723855+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T09:28:17.724485+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T09:28:36.926492+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\neid = 'alpha_sweep_a050_s43_fp32'\nif eid in exps:\n    info = exps[eid]\n    print(f'{eid}: status={info.get(\\\"status\\\")}, conclusion={info.get(\\\"conclusion\\\")}')\n    print(f'  metrics: {json.dumps(info.get(\\\"metrics\\\", {}), indent=2)}')\n    print(f'  spec: {json.dumps(info.get(\\\"spec\\\", {}), indent=2)}')\n\"\n",
+  "description": "Get alpha_sweep_a050_s43_fp32 baseline details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-b8775438/36258d3d-f51b-4dd4-9fa5-c3373886d55d/tool-results/mcp-agent-ml-research-read_registry-1779269246285.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\neid = 'alpha_sweep_a050_s43_fp32'\nif eid in exps:\n    info = exps[eid]\n    print(f'{eid}: status={info.get(\\\"status\\\")}, conclusion={info.get(\\\"conclusion\\\")}')\n    print(f'  metrics: {json.dumps(info.get(\\\"metrics\\\", {}), indent=2)}')\n    print(f'  spec: {json.dumps(info.get(\\\"spec\\\", {}), indent=2)}')\n\"\n",
+    "description": "Get alpha_sweep_a050_s43_fp32 baseline details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T09:28:37.084529+00:00_
+
+alpha_sweep_a050_s43_fp32: status=DONE, conclusion=success
+  metrics: {
+  "token_entropy_gen0": 3.2342,
+  "token_entropy_gen10": 2.7227,
+  "token_entropy_drift_pct": -15.81,
+  "ece_gen0": 0.0108,
+  "ece_gen10": 0.0842,
+  "ece_drift_pct": 679.56,
+  "distinct_1_gen0": 0.0929,
+  "distinct_1_gen10": 0.066,
+  "distinct_1_drift_pct": -29,
+  "perplexity_gen0": 26.95,
+  "perplexity_gen10": 31.58,
+  "perplexity_drift_pct": 17.17,
+  "mauve_drift_pct": -23.54,
+  "PermG_fwd": "6/8",
+  "PermG_rev": "0/8",
+  "naive_xcorr_fwd_D111": "2/8",
+  "diff_xcorr_fwd_D111": "6/8",
+  "threshold_onset_3sigma": "8/8",
+  "TY_granger": "5/8",
+  "K3_3sigma": "6/8",
+  "K4_3sigma": "5/8",
+  "perm_granger_fdr_forward_sig": "6/8",
+  "D105_D111_compliant": true,
+  "M035_direction": "peak_lag < 0",
+  "precision": "fp32",
+  "n_perm": 5000,
+  "pair_config": "canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]"
+}
+  spec: {
+  "command": "iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --synthetic_ratio 0.50",
+  "server": "westd-17855",
+  "gpu": [
+    "cuda:3"
+  ],
+  "pid": "96593",
+  "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log",
+  "submitted_at": "2026-05-19T05:31:00.668Z",
+  "submitted_via": "submit_training_job",
+  "backend": "tmux",
+  "account": "root",
+  "data_path": "data/wikitext103_5k",
+  "data_count": 5000,
+  "model_name": "EleutherAI/pythia-410m",
+  "seed": 43,
+  "checkpoint_source": "EleutherAI/pythia-410m",
+  "eval_data": "data/wikitext103_5k",
+  "wall_clock_seconds": 15529.3,
+  "gpu_hours": 4.31
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "Bash",
+  "elapsed_ms": 158
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T09:29:15.528468+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:data_strategy_ablation_s43",
+  "project": "distrib_canary_collapse",
+  "task_prompt": "## 任务：分析 data_strategy_ablation_s43 实验结果\n\n### 背景\n这是 accumulate 数据策略的 cross-seed (s43) 验证实验。Parent 是 data_strategy_ablation_s42。\n\n**s42 结果**（对比基准）：\n- accumulate PermG=0/8, K≥3=0/8（lead-lag 完全被抑制）\n- replace PermG=6/8, K≥3=6/8（正常检测）\n- accumulate entropy_drift=-2.4%, replace entropy_drift=-16.3%\n- accumulate ece_drift=+89%, replace ece_drift=+703%\n- accumulate distinct1_drift=-27%, replace distinct1_drift=-29%\n\n**s43 的 replace 基线**（alpha_sweep_a050_s43_fp32，已完成）：\n- PermG=6/8, K≥3=6/8, TY=5/8\n- entropy_drift=-15.81%, ece_drift=+679.56%, distinct1_drift=-29%\n\n### 实验详情\n- exp_id: data_strategy_ablation_s43\n- server: westd-19828\n- log_path: ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log\n- 结果目录: /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43\n- 模型: Pythia-410M, seed=43, α=0.50, accumulate 模式\n- 训练命令含 --accumulate flag\n\n### 执行步骤\n\n1. **SSH 读取日志尾部**（ssh_read_only 到 westd-19828）：\n   ```\n   tail -100 ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log\n   ```\n   确认训练正常完成（10 generations）。\n\n2. **检查结果文件**：\n   ```\n   ls -la /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43/\n   ls /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43/gen_*/\n   ```\n\n3. **运行统一分析管线**。项目代码在 `/root/autodl-tmp/distrib_canary_collapse/`。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。\n\n   运行分析脚本（与 s42 ablation 分析一致的管线）：\n   ```bash\n   cd /root/autodl-tmp/distrib_canary_collapse\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   python -u compute_granger_matrix.py \\\n     --results_dir results/ablation/accumulate_a050_s43 \\\n     --n_perm 5000 \\\n     --output_dir results/ablation/accumulate_a050_s43/analysis\n   ```\n\n   如果 compute_granger_matrix.py 不存在或参数不对，先检查 s42 的分析是怎么做的：\n   ```\n   ls /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s42/analysis/\n   ```\n   参考 s42 的分析文件结构和使用的脚本。\n\n   也可以检查项目中有哪些分析脚本：\n   ```\n   ls /root/autodl-tmp/distrib_canary_collapse/*.py | head -20\n   ```\n\n4. **提取关键指标**（与 s42 对齐）：\n   - PermG_fwd (x/8)\n   - PermG_rev (x/8)\n   - K≥3 consensus (x/8)\n   - K≥4 consensus (x/8)\n   - TY Granger (x/8)\n   - token_entropy drift %\n   - ece drift %\n   - distinct_1 drift %\n   - 如果有 all_metrics.json 可以直接读取各 gen 的指标\n\n5. **对比分析**：\n   与 s42 accumulate 结果对比（核心问题：s43 是否也 PermG=0/8？）\n   与 replace 基线 alpha_sweep_a050_s43_fp32 对比\n\n### 产出\n在 artifacts 目录写分析报告：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/data_strategy_ablation_s43/report/analysis_report.md`\n\n报告内容：\n- 训练是否正常完成\n- 所有关键指标（表格形式）\n- 与 s42 accumulate 的对比\n- 与 replace baseline 的对比\n- 结论：accumulate 策略的 seed robustness 判定\n\n### 硬约束\n- D105: 全局 true 3σ\n- D086: per-alpha BH FDR, n_perm=5000\n- D102: 统一 8-pair (canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve])\n- D111: peak_lag<0\n- 精度: fp32\n",
+  "tool_groups": "['ssh', 'registry', 'knowledge']",
+  "context": "项目路径: /root/autodl-tmp/distrib_canary_collapse/\n服务器: westd-19828\n环境: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n分析标准: D105 3σ + D086 BH FDR + D102 8-pair + D111 peak_lag&lt;0 + n_perm=5000"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:data_strategy_ablation_s43",
+    "project": "distrib_canary_collapse",
+    "task_prompt": "## 任务：分析 data_strategy_ablation_s43 实验结果\n\n### 背景\n这是 accumulate 数据策略的 cross-seed (s43) 验证实验。Parent 是 data_strategy_ablation_s42。\n\n**s42 结果**（对比基准）：\n- accumulate PermG=0/8, K≥3=0/8（lead-lag 完全被抑制）\n- replace PermG=6/8, K≥3=6/8（正常检测）\n- accumulate entropy_drift=-2.4%, replace entropy_drift=-16.3%\n- accumulate ece_drift=+89%, replace ece_drift=+703%\n- accumulate distinct1_drift=-27%, replace distinct1_drift=-29%\n\n**s43 的 replace 基线**（alpha_sweep_a050_s43_fp32，已完成）：\n- PermG=6/8, K≥3=6/8, TY=5/8\n- entropy_drift=-15.81%, ece_drift=+679.56%, distinct1_drift=-29%\n\n### 实验详情\n- exp_id: data_strategy_ablation_s43\n- server: westd-19828\n- log_path: ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log\n- 结果目录: /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43\n- 模型: Pythia-410M, seed=43, α=0.50, accumulate 模式\n- 训练命令含 --accumulate flag\n\n### 执行步骤\n\n1. **SSH 读取日志尾部**（ssh_read_only 到 westd-19828）：\n   ```\n   tail -100 ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log\n   ```\n   确认训练正常完成（10 generations）。\n\n2. **检查结果文件**：\n   ```\n   ls -la /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43/\n   ls /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s43/gen_*/\n   ```\n\n3. **运行统一分析管线**。项目代码在 `/root/autodl-tmp/distrib_canary_collapse/`。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。\n\n   运行分析脚本（与 s42 ablation 分析一致的管线）：\n   ```bash\n   cd /root/autodl-tmp/distrib_canary_collapse\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   python -u compute_granger_matrix.py \\\n     --results_dir results/ablation/accumulate_a050_s43 \\\n     --n_perm 5000 \\\n     --output_dir results/ablation/accumulate_a050_s43/analysis\n   ```\n\n   如果 compute_granger_matrix.py 不存在或参数不对，先检查 s42 的分析是怎么做的：\n   ```\n   ls /root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s42/analysis/\n   ```\n   参考 s42 的分析文件结构和使用的脚本。\n\n   也可以检查项目中有哪些分析脚本：\n   ```\n   ls /root/autodl-tmp/distrib_canary_collapse/*.py | head -20\n   ```\n\n4. **提取关键指标**（与 s42 对齐）：\n   - PermG_fwd (x/8)\n   - PermG_rev (x/8)\n   - K≥3 consensus (x/8)\n   - K≥4 consensus (x/8)\n   - TY Granger (x/8)\n   - token_entropy drift %\n   - ece drift %\n   - distinct_1 drift %\n   - 如果有 all_metrics.json 可以直接读取各 gen 的指标\n\n5. **对比分析**：\n   与 s42 accumulate 结果对比（核心问题：s43 是否也 PermG=0/8？）\n   与 replace 基线 alpha_sweep_a050_s43_fp32 对比\n\n### 产出\n在 artifacts 目录写分析报告：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/data_strategy_ablation_s43/report/analysis_report.md`\n\n报告内容：\n- 训练是否正常完成\n- 所有关键指标（表格形式）\n- 与 s42 accumulate 的对比\n- 与 replace baseline 的对比\n- 结论：accumulate 策略的 seed robustness 判定\n\n### 硬约束\n- D105: 全局 true 3σ\n- D086: per-alpha BH FDR, n_perm=5000\n- D102: 统一 8-pair (canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve])\n- D111: peak_lag<0\n- 精度: fp32\n",
+    "tool_groups": "['ssh', 'registry', 'knowledge']",
+    "context": "项目路径: /root/autodl-tmp/distrib_canary_collapse/\n服务器: westd-19828\n环境: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n分析标准: D105 3σ + D086 BH FDR + D102 8-pair + D111 peak_lag&lt;0 + n_perm=5000"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T09:29:18.648433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_data_strategy_ablation_s43_20260520T092916\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_data_strategy_ablation_s43_20260520T092916.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_data_strategy_ablation_s43_20260520T092916 started. Use get_worker_status('worker_analysis_data_strategy_ablation_s43_20260520T092916') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3119
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-20T09:29:22.650417+00:00_
+
+Worker 已派出分析 `data_strategy_ablation_s43`。Worker 完成后系统会回调，届时我会更新 registry、刷新 report.md 并向 Director 汇报结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:data_strategy_ablation_s43"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 25 · 2026-05-20T09:29:22.656698+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: data_strategy_ablation_s43
+- project: distrib_canary_collapse
+- server: westd-19828
+- log_path: ~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T09:29:40.499587+00:00_
+
+已在处理中——上一轮已派 Worker `worker_analysis_data_strategy_ablation_s43_20260520T092916` 分析此实验，等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:data_strategy_ablation_s43"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 27 · 2026-05-21T01:37:19.760407+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:data_strategy_ablation_s43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-21T01:38:17.554656+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- westd-17855 GPU 白名单: cuda:0-5（6卡全分配）；westd-19828 GPU 白名单: cuda:0-1（2卡）
+- 所有训练必须 fp32（D079: 小模型≤3B fp32），bf16 仅用于特定已批准实验
+- 分析管线硬约束: D105 全局 true 3σ + D086 BH FDR n_perm=5000 + D102 统一 8-pair + D111 peak_lag<0
+- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）
+- v3_d080 变体数据已从 dose-response 主图排除（D125）
+
+### 2. 🖥️ 基础设施快照
+- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)，工作目录 `/root/autodl-tmp/distrib_canary_collapse`
+  - Python: `/root/miniconda3/bin/python`，conda base 环境
+  - 活跃进程: smollm3_3b_s43(cuda:3,PID211078), alpha_sweep_a045_s43(cuda:0,PID280215), alpha_sweep_a060_v4(cuda:5,PID295535), t20_a100_s42(cuda:2,PID301936), t20_a050_s42(cuda:1,PID302503), t20_a060_s42(cuda:4,PID311201)
+- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同路径
+  - 活跃进程: scale_14b_a050_s42(cuda:1,PID538774)
+  - cuda:0 刚释放（data_strategy_ablation_s43 完成）
+- HF cache: `/root/autodl-tmp/.hf_cache`，TRANSFORMERS_OFFLINE=1
+- 磁盘: 两台服务器 /usr/bin/nvidia-smi 分区 ~816-817GB 可用（3% 已用）
+
+### 3. 📊 当前状态
+**刚做的**: data_strategy_ablation_s43 (accumulate α=0.50 s43) CRON 回调到达，已派 Worker `worker_analysis_data_strategy_ablation_s43_20260520T092916` 去 westd-19828 分析结果。**Worker 尚未回调**。
+
+**RUNNING 实验** (7个):
+| exp_id | server:gpu | 摘要 |
+|--------|-----------|------|
+| smollm3_3b_wiki_a100_s43_fp32 | 17855:cuda:3 | SmolLM3-3B cross-seed s43, Table 7 |
+| scale_14b_a050_s42_fp32 | 19828:cuda:1 | Pythia-1.4B α=0.50 boundary regime |
+| alpha_sweep_a045_s43_fp32 | 17855:cuda:0 | onset boundary cross-seed |
+| alpha_sweep_a060_s42_fp32_v4 | 17855:cuda:5 | D125 替代 v3_d080 |
+| t20_a100_s42_fp32 | 17855:cuda:2 | T=20 extended α=1.0 |
+| t20_a050_s42_fp32 | 17855:cuda:1 | T=20 extended α=0.50 onset |
+| t20_a060_s42_fp32 | 17855:cuda:4 | T=20 extended α=0.60 dip |
+
+**PREPARING** (7个): generalize_pythia1b_c4_a100_s43_v2, alpha_sweep_a010_s42_bf16, scale_14b_a050_s42_bf16, interv_react_s43, gen_gpt2m_a100_s43, qwen35_dryrun_launch, scale_69b_a100_s43_fp32
+
+**等待中**:
+- Worker `worker_analysis_data_strategy_ablation_s43` 回调 → 分析 accumulate s43 结果
+- 7 个 RUNNING 实验的 cron 监控（reconcile 确认全部 still running）
+
+### 4. 📋 待办（条件触发式）
+- Worker analysis s43 回调 → 读分析报告 → update_registry(conclusion=success/negative, metrics) → 与 s42 对比 → 汇报 Director（s42: accumulate PermG=0/8 vs replace 6/8，核心问题是 s43 是否一致）
+- alpha_sweep_a045_s43 完成 → 分析 onset boundary cross-seed → 更新 Table 7 dose-response
+- alpha_sweep_a060_v4 完成 → 替代 v3_d080 → 补 dose-response α=0.60 数据点
+- t20 三个实验完成 → D127 Track G TE reanalysis + 检验 PermG 在长序列下是否保持/增强
+- smollm3_3b_s43 完成 → Table 7 SmolLM3 cross-seed 行
+- scale_14b_a050 完成 → 1.4B scale boundary regime 验证
+- westd-19828:cuda:0 已空闲 → 可排 PREPARING 队列中的实验（优先 scale_69b_a100_s43_fp32 或 interv_react_s43）
+- D127 A-G 分析战线完成 → 整合到论文 narrative
+
+### 5. 🎯 战略上下文
+- **目标**: EMNLP 2026 ARR June cycle，~24 天
+- **核心 framing**: PermG-primary + mechanistic explanation + predict-then-verify。PermG null FPR=0/24(唯一0%)是最强卖点
+- **Dose-response 4-regime**: Blind(≤0.45)→Onset(0.50)→Sync collapse(~0.60 dip)→Detection(≥0.75)。α=0.60 的 PermG 非单调 dip 是 D108/D119 确认的 robust 现象
+- **D128**: Dual-Canary Detection Hierarchy 框架 — data_strategy_ablation 是其中关键证据（accumulate 抑制 lead-lag = V-shape recovery breaks temporal coupling）
+- **Table 7 状态**: 14/17 行完成，SmolLM3 s43 + 1.4B boundary 在跑
+- **易错点**:
+  - data_strategy_ablation 对比时注意：s43 的 replace 基线是 alpha_sweep_a050_s43_fp32（PermG=6/8），不是 s42 的 replace
+  - SmolLM3 是已知 failure mode（entropy-diversity decoupling），不要按正常模型解读
+  - TY Granger 已降级为 supplementary（D121/D123），PermG 是 primary
+  - v3_d080 数据已排除（D125），不要引用
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:data_strategy_ablation_s43"
+}
+```
+
+</details>
+
+---

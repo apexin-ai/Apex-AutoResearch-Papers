@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02d357165f5c1fd7bb1d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260515T181221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260515T181221_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "c83137c12c4bb8854f480c8c9b79ee6210c2cdf8874bd466e6717f10ad165181"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "41 条全部写入，括号匹配无误。文件按 9 个 category 分组，BibTeX key 与 literature_map.yaml 中的 id 一一对应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

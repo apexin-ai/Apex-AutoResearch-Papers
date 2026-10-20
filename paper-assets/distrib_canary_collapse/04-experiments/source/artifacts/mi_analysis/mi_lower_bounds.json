@@ -1,0 +1,1086 @@
+{
+  "0.05": {
+    "alpha": 0.05,
+    "seeds": {
+      "42": {
+        "exp": "a005_s42_fp32_v3_d080",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.304214,
+            "mi_ksg_bits": 0.177787,
+            "pearson_r": 0.586591,
+            "bootstrap_ci_95": [
+              0.032804,
+              3.742192
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.293906,
+            "mi_ksg_bits": 0.407306,
+            "pearson_r": 0.578489,
+            "bootstrap_ci_95": [
+              0.015077,
+              3.781192
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.25571,
+            "mi_ksg_bits": 0.264286,
+            "pearson_r": 0.546323,
+            "bootstrap_ci_95": [
+              0.002689,
+              3.049354
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.075019,
+            "mi_ksg_bits": 0.029145,
+            "pearson_r": 0.314281,
+            "bootstrap_ci_95": [
+              0.000987,
+              0.964723
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.304214,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.177787,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.293906,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.407306,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.25571,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.264286,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.075019,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.029145,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "max_mi_gaussian": 0.304214,
+      "mean_mi_gaussian": 0.232212
+    }
+  },
+  "0.10": {
+    "alpha": 0.1,
+    "seeds": {
+      "42": {
+        "exp": "a010_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.126943,
+            "mi_ksg_bits": 0.185802,
+            "pearson_r": 0.401703,
+            "bootstrap_ci_95": [
+              0.003057,
+              2.34853
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.108204,
+            "mi_ksg_bits": 0.202196,
+            "pearson_r": 0.373222,
+            "bootstrap_ci_95": [
+              0.003071,
+              2.218692
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.065973,
+            "mi_ksg_bits": 0.324242,
+            "pearson_r": 0.295635,
+            "bootstrap_ci_95": [
+              0.001518,
+              1.938476
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.054723,
+            "mi_ksg_bits": 0.0,
+            "pearson_r": 0.270288,
+            "bootstrap_ci_95": [
+              0.000268,
+              0.674358
+            ]
+          }
+        }
+      },
+      "43": {
+        "exp": "a010_s43_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.13338,
+            "mi_ksg_bits": 0.519516,
+            "pearson_r": 0.410872,
+            "bootstrap_ci_95": [
+              0.002326,
+              3.470361
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.12868,
+            "mi_ksg_bits": 0.459716,
+            "pearson_r": 0.404206,
+            "bootstrap_ci_95": [
+              0.002024,
+              3.542001
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.109852,
+            "mi_ksg_bits": 0.395076,
+            "pearson_r": 0.375843,
+            "bootstrap_ci_95": [
+              0.002055,
+              3.154332
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.28772,
+            "mi_ksg_bits": 0.360466,
+            "pearson_r": 0.573514,
+            "bootstrap_ci_95": [
+              0.008118,
+              2.187063
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.130161,
+        "mi_gaussian_std": 0.003219,
+        "mi_ksg_mean": 0.352659,
+        "mi_ksg_std": 0.166857,
+        "n_seeds": 2
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.118442,
+        "mi_gaussian_std": 0.010238,
+        "mi_ksg_mean": 0.330956,
+        "mi_ksg_std": 0.12876,
+        "n_seeds": 2
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.087912,
+        "mi_gaussian_std": 0.02194,
+        "mi_ksg_mean": 0.359659,
+        "mi_ksg_std": 0.035417,
+        "n_seeds": 2
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.171222,
+        "mi_gaussian_std": 0.116499,
+        "mi_ksg_mean": 0.180233,
+        "mi_ksg_std": 0.180233,
+        "n_seeds": 2
+      },
+      "max_mi_gaussian": 0.171222,
+      "mean_mi_gaussian": 0.126934
+    }
+  },
+  "0.25": {
+    "alpha": 0.25,
+    "seeds": {
+      "42": {
+        "exp": "a025_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.019468,
+            "mi_ksg_bits": 0.41657,
+            "pearson_r": 0.163177,
+            "bootstrap_ci_95": [
+              0.000449,
+              2.089729
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.005967,
+            "mi_ksg_bits": 0.549026,
+            "pearson_r": 0.090765,
+            "bootstrap_ci_95": [
+              0.000287,
+              1.992271
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.000861,
+            "mi_ksg_bits": 0.568543,
+            "pearson_r": 0.03454,
+            "bootstrap_ci_95": [
+              0.000272,
+              1.802324
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.012184,
+            "mi_ksg_bits": 0.248152,
+            "pearson_r": -0.129415,
+            "bootstrap_ci_95": [
+              7.4e-05,
+              1.217437
+            ]
+          }
+        }
+      },
+      "43": {
+        "exp": "a025_s43_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.033504,
+            "mi_ksg_bits": 0.583271,
+            "pearson_r": 0.213035,
+            "bootstrap_ci_95": [
+              0.000307,
+              2.543306
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.013958,
+            "mi_ksg_bits": 0.504787,
+            "pearson_r": 0.138435,
+            "bootstrap_ci_95": [
+              0.000375,
+              2.784628
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.00573,
+            "mi_ksg_bits": 0.520453,
+            "pearson_r": 0.088951,
+            "bootstrap_ci_95": [
+              0.000289,
+              2.453839
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.001558,
+            "mi_ksg_bits": 0.282814,
+            "pearson_r": -0.046455,
+            "bootstrap_ci_95": [
+              9.5e-05,
+              1.41666
+            ]
+          }
+        }
+      },
+      "44": {
+        "exp": "a025_s44_fp32",
+        "T": 10,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.003714,
+            "mi_ksg_bits": 0.438018,
+            "pearson_r": 0.071661,
+            "bootstrap_ci_95": [
+              0.00033,
+              1.722917
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 4e-06,
+            "mi_ksg_bits": 0.64635,
+            "pearson_r": -0.002321,
+            "bootstrap_ci_95": [
+              0.000142,
+              2.008478
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.00261,
+            "mi_ksg_bits": 0.711272,
+            "pearson_r": -0.060097,
+            "bootstrap_ci_95": [
+              0.000182,
+              2.227832
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.058616,
+            "mi_ksg_bits": 0.423591,
+            "pearson_r": -0.279367,
+            "bootstrap_ci_95": [
+              0.00013,
+              2.889053
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.018895,
+        "mi_gaussian_std": 0.012168,
+        "mi_ksg_mean": 0.479287,
+        "mi_ksg_std": 0.074048,
+        "n_seeds": 3
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.006643,
+        "mi_gaussian_std": 0.005717,
+        "mi_ksg_mean": 0.566721,
+        "mi_ksg_std": 0.059132,
+        "n_seeds": 3
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.003067,
+        "mi_gaussian_std": 0.002014,
+        "mi_ksg_mean": 0.600089,
+        "mi_ksg_std": 0.081032,
+        "n_seeds": 3
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.02412,
+        "mi_gaussian_std": 0.024776,
+        "mi_ksg_mean": 0.318186,
+        "mi_ksg_std": 0.075864,
+        "n_seeds": 3
+      },
+      "max_mi_gaussian": 0.02412,
+      "mean_mi_gaussian": 0.013181
+    }
+  },
+  "0.30": {
+    "alpha": 0.3,
+    "seeds": {
+      "42": {
+        "exp": "a030_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.084553,
+            "mi_ksg_bits": 0.637034,
+            "pearson_r": 0.332576,
+            "bootstrap_ci_95": [
+              0.012318,
+              3.221411
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.060108,
+            "mi_ksg_bits": 0.493701,
+            "pearson_r": 0.282754,
+            "bootstrap_ci_95": [
+              0.007358,
+              3.252505
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.039831,
+            "mi_ksg_bits": 0.436712,
+            "pearson_r": 0.231777,
+            "bootstrap_ci_95": [
+              0.002779,
+              3.646938
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.004994,
+            "mi_ksg_bits": 0.166181,
+            "pearson_r": -0.083059,
+            "bootstrap_ci_95": [
+              5.1e-05,
+              2.452479
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.084553,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.637034,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.060108,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.493701,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.039831,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.436712,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.004994,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.166181,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "max_mi_gaussian": 0.084553,
+      "mean_mi_gaussian": 0.047371
+    }
+  },
+  "0.35": {
+    "alpha": 0.35,
+    "seeds": {
+      "42": {
+        "exp": "a035_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.132537,
+            "mi_ksg_bits": 0.566044,
+            "pearson_r": 0.409687,
+            "bootstrap_ci_95": [
+              0.031708,
+              2.404915
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.095797,
+            "mi_ksg_bits": 0.334911,
+            "pearson_r": 0.35265,
+            "bootstrap_ci_95": [
+              0.021713,
+              2.545572
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.066293,
+            "mi_ksg_bits": 0.223795,
+            "pearson_r": 0.296319,
+            "bootstrap_ci_95": [
+              0.013924,
+              2.897111
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.000443,
+            "mi_ksg_bits": 0.024201,
+            "pearson_r": 0.024791,
+            "bootstrap_ci_95": [
+              3.1e-05,
+              1.706933
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.132537,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.566044,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.095797,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.334911,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.066293,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.223795,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.000443,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.024201,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "max_mi_gaussian": 0.132537,
+      "mean_mi_gaussian": 0.073768
+    }
+  },
+  "0.40": {
+    "alpha": 0.4,
+    "seeds": {
+      "42": {
+        "exp": "a040_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.159292,
+            "mi_ksg_bits": 0.545799,
+            "pearson_r": 0.445133,
+            "bootstrap_ci_95": [
+              0.046191,
+              1.995281
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.116264,
+            "mi_ksg_bits": 0.426147,
+            "pearson_r": 0.385821,
+            "bootstrap_ci_95": [
+              0.033555,
+              2.067182
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.083133,
+            "mi_ksg_bits": 0.304673,
+            "pearson_r": 0.32993,
+            "bootstrap_ci_95": [
+              0.023546,
+              2.424915
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.000269,
+            "mi_ksg_bits": 0.012699,
+            "pearson_r": 0.019323,
+            "bootstrap_ci_95": [
+              2.6e-05,
+              1.885879
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.159292,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.545799,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.116264,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.426147,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.083133,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.304673,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.000269,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.012699,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "max_mi_gaussian": 0.159292,
+      "mean_mi_gaussian": 0.08974
+    }
+  },
+  "0.45": {
+    "alpha": 0.45,
+    "seeds": {
+      "42": {
+        "exp": "a045_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.154818,
+            "mi_ksg_bits": 0.385499,
+            "pearson_r": 0.439493,
+            "bootstrap_ci_95": [
+              0.033563,
+              1.72918
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.119534,
+            "mi_ksg_bits": 0.290829,
+            "pearson_r": 0.390778,
+            "bootstrap_ci_95": [
+              0.02577,
+              1.717433
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.090198,
+            "mi_ksg_bits": 0.225824,
+            "pearson_r": 0.34284,
+            "bootstrap_ci_95": [
+              0.019252,
+              1.677857
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.004478,
+            "mi_ksg_bits": 0.022379,
+            "pearson_r": 0.078663,
+            "bootstrap_ci_95": [
+              6.1e-05,
+              1.005833
+            ]
+          }
+        }
+      },
+      "43": {
+        "exp": "a045_s43_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.215264,
+            "mi_ksg_bits": 0.447433,
+            "pearson_r": 0.507946,
+            "bootstrap_ci_95": [
+              0.078901,
+              1.603734
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.15171,
+            "mi_ksg_bits": 0.42089,
+            "pearson_r": 0.435512,
+            "bootstrap_ci_95": [
+              0.054218,
+              1.770498
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.112895,
+            "mi_ksg_bits": 0.288279,
+            "pearson_r": 0.380622,
+            "bootstrap_ci_95": [
+              0.040755,
+              1.986675
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.007078,
+            "mi_ksg_bits": 0.156396,
+            "pearson_r": 0.098815,
+            "bootstrap_ci_95": [
+              0.000119,
+              1.426401
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.185041,
+        "mi_gaussian_std": 0.030223,
+        "mi_ksg_mean": 0.416466,
+        "mi_ksg_std": 0.030967,
+        "n_seeds": 2
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.135622,
+        "mi_gaussian_std": 0.016088,
+        "mi_ksg_mean": 0.35586,
+        "mi_ksg_std": 0.065031,
+        "n_seeds": 2
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.101546,
+        "mi_gaussian_std": 0.011349,
+        "mi_ksg_mean": 0.257052,
+        "mi_ksg_std": 0.031227,
+        "n_seeds": 2
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.005778,
+        "mi_gaussian_std": 0.0013,
+        "mi_ksg_mean": 0.089388,
+        "mi_ksg_std": 0.067008,
+        "n_seeds": 2
+      },
+      "max_mi_gaussian": 0.185041,
+      "mean_mi_gaussian": 0.106997
+    }
+  },
+  "0.50": {
+    "alpha": 0.5,
+    "seeds": {
+      "42": {
+        "exp": "a050_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.152683,
+            "mi_ksg_bits": 0.943529,
+            "pearson_r": 0.436765,
+            "bootstrap_ci_95": [
+              0.029612,
+              2.182041
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.112832,
+            "mi_ksg_bits": 0.806598,
+            "pearson_r": 0.380524,
+            "bootstrap_ci_95": [
+              0.018623,
+              2.182435
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.044951,
+            "mi_ksg_bits": 0.355834,
+            "pearson_r": 0.24579,
+            "bootstrap_ci_95": [
+              0.003731,
+              2.548186
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.062828,
+            "mi_ksg_bits": 0.081711,
+            "pearson_r": 0.288812,
+            "bootstrap_ci_95": [
+              0.001754,
+              0.944459
+            ]
+          }
+        }
+      },
+      "43": {
+        "exp": "a050_s43_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.158657,
+            "mi_ksg_bits": 0.668105,
+            "pearson_r": 0.44434,
+            "bootstrap_ci_95": [
+              0.024943,
+              2.189264
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.11087,
+            "mi_ksg_bits": 0.541947,
+            "pearson_r": 0.37745,
+            "bootstrap_ci_95": [
+              0.015567,
+              2.327156
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.04374,
+            "mi_ksg_bits": 0.321484,
+            "pearson_r": 0.242558,
+            "bootstrap_ci_95": [
+              0.003207,
+              2.56654
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.203395,
+            "mi_ksg_bits": 0.108306,
+            "pearson_r": 0.495682,
+            "bootstrap_ci_95": [
+              0.024101,
+              1.343558
+            ]
+          }
+        }
+      },
+      "44": {
+        "exp": "a050_s44_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.172498,
+            "mi_ksg_bits": 0.620952,
+            "pearson_r": 0.461183,
+            "bootstrap_ci_95": [
+              0.037808,
+              2.282822
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.116567,
+            "mi_ksg_bits": 0.820442,
+            "pearson_r": 0.386284,
+            "bootstrap_ci_95": [
+              0.021578,
+              1.948353
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.050053,
+            "mi_ksg_bits": 0.584416,
+            "pearson_r": 0.258913,
+            "bootstrap_ci_95": [
+              0.005905,
+              2.566386
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.085207,
+            "mi_ksg_bits": 0.181846,
+            "pearson_r": 0.333785,
+            "bootstrap_ci_95": [
+              0.00165,
+              1.257253
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.16128,
+        "mi_gaussian_std": 0.008299,
+        "mi_ksg_mean": 0.744195,
+        "mi_ksg_std": 0.142258,
+        "n_seeds": 3
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.113423,
+        "mi_gaussian_std": 0.002363,
+        "mi_ksg_mean": 0.722996,
+        "mi_ksg_std": 0.128145,
+        "n_seeds": 3
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.046248,
+        "mi_gaussian_std": 0.002736,
+        "mi_ksg_mean": 0.420578,
+        "mi_ksg_std": 0.116697,
+        "n_seeds": 3
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.117143,
+        "mi_gaussian_std": 0.06167,
+        "mi_ksg_mean": 0.123954,
+        "mi_ksg_std": 0.042351,
+        "n_seeds": 3
+      },
+      "max_mi_gaussian": 0.16128,
+      "mean_mi_gaussian": 0.109523
+    }
+  },
+  "0.60": {
+    "alpha": 0.6,
+    "seeds": {
+      "42": {
+        "exp": "a060_s42_fp32_v4",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.230941,
+            "mi_ksg_bits": 0.587123,
+            "pearson_r": 0.523413,
+            "bootstrap_ci_95": [
+              0.085946,
+              1.745832
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.193631,
+            "mi_ksg_bits": 0.586602,
+            "pearson_r": 0.485202,
+            "bootstrap_ci_95": [
+              0.072615,
+              1.561662
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.156247,
+            "mi_ksg_bits": 0.480222,
+            "pearson_r": 0.441307,
+            "bootstrap_ci_95": [
+              0.058774,
+              1.457072
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.002076,
+            "mi_ksg_bits": 0.007807,
+            "pearson_r": 0.053604,
+            "bootstrap_ci_95": [
+              4.2e-05,
+              1.126425
+            ]
+          }
+        }
+      },
+      "43": {
+        "exp": "a060_s43_fp32",
+        "T": 10,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.274694,
+            "mi_ksg_bits": 0.315847,
+            "pearson_r": 0.562752,
+            "bootstrap_ci_95": [
+              0.104317,
+              1.719469
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.219222,
+            "mi_ksg_bits": 0.374585,
+            "pearson_r": 0.511928,
+            "bootstrap_ci_95": [
+              0.08674,
+              1.43011
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.181696,
+            "mi_ksg_bits": 0.291287,
+            "pearson_r": 0.471875,
+            "bootstrap_ci_95": [
+              0.07215,
+              1.327001
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.027303,
+            "mi_ksg_bits": 0.0,
+            "pearson_r": 0.192723,
+            "bootstrap_ci_95": [
+              0.003071,
+              2.047631
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.252818,
+        "mi_gaussian_std": 0.021876,
+        "mi_ksg_mean": 0.451485,
+        "mi_ksg_std": 0.135638,
+        "n_seeds": 2
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.206427,
+        "mi_gaussian_std": 0.012796,
+        "mi_ksg_mean": 0.480594,
+        "mi_ksg_std": 0.106008,
+        "n_seeds": 2
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.168972,
+        "mi_gaussian_std": 0.012725,
+        "mi_ksg_mean": 0.385754,
+        "mi_ksg_std": 0.094467,
+        "n_seeds": 2
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.014689,
+        "mi_gaussian_std": 0.012614,
+        "mi_ksg_mean": 0.003903,
+        "mi_ksg_std": 0.003903,
+        "n_seeds": 2
+      },
+      "max_mi_gaussian": 0.252818,
+      "mean_mi_gaussian": 0.160726
+    }
+  },
+  "0.75": {
+    "alpha": 0.75,
+    "seeds": {
+      "42": {
+        "exp": "a075_s42_fp32",
+        "T": 11,
+        "metrics": {
+          "distinct_1": {
+            "mi_gaussian_bits": 0.317677,
+            "mi_ksg_bits": 0.317684,
+            "pearson_r": 0.596839,
+            "bootstrap_ci_95": [
+              0.003596,
+              2.09016
+            ]
+          },
+          "distinct_2": {
+            "mi_gaussian_bits": 0.267234,
+            "mi_ksg_bits": 0.169616,
+            "pearson_r": 0.556405,
+            "bootstrap_ci_95": [
+              0.009694,
+              1.781811
+            ]
+          },
+          "distinct_3": {
+            "mi_gaussian_bits": 0.223628,
+            "mi_ksg_bits": 0.131362,
+            "pearson_r": 0.516298,
+            "bootstrap_ci_95": [
+              0.018834,
+              1.536134
+            ]
+          },
+          "mauve": {
+            "mi_gaussian_bits": 0.004681,
+            "mi_ksg_bits": 0.001822,
+            "pearson_r": -0.080423,
+            "bootstrap_ci_95": [
+              4.3e-05,
+              0.79327
+            ]
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "distinct_1": {
+        "mi_gaussian_mean": 0.317677,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.317684,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_2": {
+        "mi_gaussian_mean": 0.267234,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.169616,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "distinct_3": {
+        "mi_gaussian_mean": 0.223628,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.131362,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "mauve": {
+        "mi_gaussian_mean": 0.004681,
+        "mi_gaussian_std": null,
+        "mi_ksg_mean": 0.001822,
+        "mi_ksg_std": null,
+        "n_seeds": 1
+      },
+      "max_mi_gaussian": 0.317677,
+      "mean_mi_gaussian": 0.203305
+    }
+  }
+}

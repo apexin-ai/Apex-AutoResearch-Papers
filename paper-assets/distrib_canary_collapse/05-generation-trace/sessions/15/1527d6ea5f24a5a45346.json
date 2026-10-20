@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1527d6ea5f24a5a45346",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "infra model prep gemma qwen w17",
+  "task_key": "worker_infra_model_prep_gemma_qwen_w17_20260518T173632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_prep_gemma_qwen_w17_20260518T173632.log",
+    "occurrence": 1,
+    "bytes": 955419,
+    "sha256": "cc2ce1600a79a7ab33df3dd07e34554fba1bf80c72a84a995fd76dbff90ad84a"
+  },
+  "statistics": {
+    "messages": 857,
+    "user_turns": 0,
+    "tool_calls": 396,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 396,
+      "tool_result": 396,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 857,
+      "chunks": [
+        {
+          "path": "1527d6ea5f24a5a45346-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1527d6ea5f24a5a45346-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1527d6ea5f24a5a45346-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1527d6ea5f24a5a45346-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1527d6ea5f24a5a45346-part-0005.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-model-prep-gemma-qwen-w17.md"
+}

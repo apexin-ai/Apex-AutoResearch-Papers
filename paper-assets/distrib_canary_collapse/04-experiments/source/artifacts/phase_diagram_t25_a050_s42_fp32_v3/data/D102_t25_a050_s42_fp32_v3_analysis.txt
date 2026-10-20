@@ -1,0 +1,28 @@
+5-Method Lead-Lag Analysis Summary
+Alpha=0.5, Seed=42, Generations=26
+============================================================
+
+Robust pairs (>=3/5 methods agree): 6/8
+
+Per-method forward significance:
+  Perm Granger (FDR): 6/8
+  Diff XCorr (FDR):   6/8
+  Threshold Onset:    6/8
+  TY Granger:         6/8
+
+Consensus detail:
+  token_entropy→distinct_1  4/5  [diff, threshold, perm, ty]
+  token_entropy→distinct_2  4/5  [diff, threshold, perm, ty]
+  token_entropy→distinct_3  4/5  [diff, threshold, perm, ty]
+  token_entropy→mauve       0/5  [none]
+  ece→distinct_1            5/5  [naive, diff, threshold, perm, ty]
+  ece→distinct_2            3/5  [diff, threshold, perm]
+  ece→distinct_3            4/5  [diff, threshold, perm, ty]
+  ece→mauve                 2/5  [naive, ty]
+
+Perm Granger reverse: 0/8
+Final MAUVE (gen_24): 0.024
+
+NOTE: Phase Diagram grid 20/20 COMPLETE.
+α=0.50 PermG across all T: T=5→0/8, T=10→6/8, T=15→6/8, T=20→6/8, T=25→6/8
+6/8 ceiling confirmed for all T≥10.

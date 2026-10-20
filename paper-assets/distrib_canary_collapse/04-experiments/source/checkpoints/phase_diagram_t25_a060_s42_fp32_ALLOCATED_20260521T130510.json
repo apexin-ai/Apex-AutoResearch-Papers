@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase_diagram_t25_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:23:26.745Z",
+    "updated_at": "2026-05-21T13:05:09.675Z",
+    "hypothesis": "Phase Diagram T=25 α=0.60: At T=10, α=0.60 falls in the sync-dip (PermG=0/8). At T=25, theory predicts α_c(25)≈0.232, far below 0.60. If PermG>0/8, confirms the sync-dip is a finite-T artifact that dissolves with longer training. If 0/8 despite 25 generations, the sync-dip is a structural phenomenon independent of T, challenging the α_c(T) framework."
+  },
+  "timestamp": "2026-05-21T13:05:10.018958+00:00",
+  "trigger": "update_registry"
+}

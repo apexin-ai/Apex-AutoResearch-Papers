@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "003041d2709315ac5717",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure d150 sr framework",
+  "task_key": "worker_figure_d150_sr_framework_20260520T150420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_d150_sr_framework_20260520T150420_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "35784e3e8703994d0091ee032d440e6abef913bc9de950351aaaa9a2fa9c79d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Regime bar is clean and readable at print resolution. All four labels are clearly separated. The figure is ready.\n\n**Output files:**\n- `docs/paper/figures/fig_sr_framework.pdf` — vector for LaTeX\n- `docs/paper/figures/fig_sr_framework.png` — 2208×879 @ 300 DPI\n\n**Structure:**\n- (a) S(α): monotonic concave increase (blue)\n- (b) R(α): non-monotonic with synchronization collapse dip at α≈0.58 (red)\n- (c) D(α) = S·R: 4-regime dose-response with color-coded regime bar (Blind → Onset → Collapse → Detection)\n\nGeneration script: `docs/paper/figures/gen_sr_framework.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-d150-sr-framework.md"
+}

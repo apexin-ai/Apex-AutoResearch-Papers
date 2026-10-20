@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 42,
+    "n_gens": 11,
+    "model": "OPT-1.3B",
+    "data_dir": "results/c2_opt13b/a050_s42_fp32",
+    "threshold_criterion": "true_3sigma_d105",
+    "n_perm": 5000,
+    "basis": "8-pair (6-pair distinct subset noted)"
+  },
+  "summary_8pair": {
+    "perm_granger_fdr_forward_sig": 0,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 2,
+    "diff_xcorr_fdr_reverse_sig": 2,
+    "threshold_forward_sig": 0,
+    "ty_forward_sig": 1,
+    "robust_pairs": 0
+  },
+  "summary_6pair": {
+    "perm_granger_fdr_forward_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 2,
+    "threshold_forward_sig": 0,
+    "ty_forward_sig": 1,
+    "robust_pairs": 0,
+    "note": "Excluding mauve pairs: only distinct_1/2/3 downstreams"
+  },
+  "consensus_6pair": [
+    {"pair": "token_entropy<distinct_1", "votes": 2, "methods": ["diff", "ty"]},
+    {"pair": "token_entropy<distinct_2", "votes": 0, "methods": []},
+    {"pair": "token_entropy<distinct_3", "votes": 0, "methods": []},
+    {"pair": "ece<distinct_1", "votes": 2, "methods": ["naive", "diff"]},
+    {"pair": "ece<distinct_2", "votes": 0, "methods": []},
+    {"pair": "ece<distinct_3", "votes": 0, "methods": []}
+  ],
+  "perm_granger_details_forward": {
+    "token_entropy<distinct_1": {"f_stat": 375.66, "p_raw": 0.0842, "p_fdr": 0.1122},
+    "token_entropy<distinct_2": {"f_stat": 162.83, "p_raw": 0.1694, "p_fdr": 0.7548},
+    "token_entropy<distinct_3": {"f_stat": 46.03, "p_raw": 0.3483, "p_fdr": 0.7548},
+    "ece<distinct_1": {"f_stat": 128.05, "p_raw": 0.1056, "p_fdr": 0.7548},
+    "ece<distinct_2": {"f_stat": 57.87, "p_raw": 0.2478, "p_fdr": 0.7548},
+    "ece<distinct_3": {"f_stat": 27.29, "p_raw": 0.3643, "p_fdr": 0.7548}
+  },
+  "threshold_onset_3sigma": {
+    "token_entropy<distinct_1": {"canary_onset": 1, "downstream_onset": null, "significant": false},
+    "token_entropy<distinct_2": {"canary_onset": 1, "downstream_onset": null, "significant": false},
+    "token_entropy<distinct_3": {"canary_onset": 1, "downstream_onset": null, "significant": false},
+    "ece<distinct_1": {"canary_onset": null, "downstream_onset": null, "significant": false},
+    "ece<distinct_2": {"canary_onset": null, "downstream_onset": null, "significant": false},
+    "ece<distinct_3": {"canary_onset": null, "downstream_onset": null, "significant": false}
+  },
+  "diversity_trajectory": {
+    "distinct_1": [0.103, 0.104, 0.086, 0.078, 0.073, 0.071, 0.069, 0.067, 0.066, 0.066, 0.065],
+    "distinct_2": [0.525, 0.526, 0.445, 0.395, 0.355, 0.333, 0.311, 0.296, 0.287, 0.282, 0.280],
+    "distinct_3": [0.818, 0.821, 0.732, 0.661, 0.590, 0.550, 0.506, 0.476, 0.456, 0.446, 0.439]
+  },
+  "comparison_pythia410m_a050": {
+    "pythia_permg_fwd": "6/8 (reference)",
+    "opt13b_permg_fwd": "0/8",
+    "gap": "Cross-architecture transition region does NOT replicate Pythia signal"
+  }
+}

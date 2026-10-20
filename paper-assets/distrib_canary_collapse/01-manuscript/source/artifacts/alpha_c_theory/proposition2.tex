@@ -1,0 +1,26 @@
+\begin{proposition}[Detection Phase Boundary]
+\label{prop:phase-boundary}
+Under the assumption that the causal signal strength follows
+$S(\alpha) = c \cdot \alpha^\beta$ with $\beta < 1$,
+the critical contamination ratio at which PermG achieves detection power $\pi^*$ satisfies:
+\begin{equation}
+\alpha_c(T) \;=\; A \cdot T^{-1/(2\beta)},
+\end{equation}
+where $\beta$ governs signal sub-linearity, and $A = (z^* \sigma / c)^{1/\beta}$ with
+$z^* = \Phi^{-1}(\pi^*)$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+At the detection threshold, $\text{Power}(\alpha_c, T) = \pi^*$. Since $\alpha_c$ lies
+below the non-monotonic dip region, the signal model applies directly. From the power
+function $\text{Power} = \Phi(S(\alpha) \cdot \sqrt{T} / \sigma)$, setting
+$S(\alpha_c) \cdot \sqrt{T} / \sigma = z^*$ and substituting the signal model yields
+$c\, \alpha_c^\beta = z^* \sigma / \sqrt{T}$. Solving for $\alpha_c$
+gives the stated form with exponent $\gamma = 1/(2\beta)$.
+\end{proof}
+
+% D102 Cross-T validation (Pythia-410M, WikiText, PermG):
+% α_∞ ≈ 0, β = 0.24, γ = 1/(2β) = 2.08
+% Train: T={10,20}, Test: T={5,15}
+% Cross-T MAE = 0.106, 95% CI coverage = 6/6
+% Predictions: α_c(5) ≥ 1.0 (undetectable); any nonzero α produces signal

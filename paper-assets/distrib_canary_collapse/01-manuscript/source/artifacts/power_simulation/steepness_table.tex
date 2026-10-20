@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\small
+\caption{Onset steepness comparison at $T{=}10$. Sigmoid $P(\alpha) = P_{\max} / (1 + e^{-k(\alpha - \alpha_0)})$ fitted to observed detection fractions and to simulated detection rates under two smooth-signal null hypotheses ($H_0$: linear, $H_0'$: concave $\beta{=}0.5$). Both nulls are calibrated to match observed detection at $(\alpha{=}0.75, T{=}20)$. The observed onset is ${\approx}3{\times}$ steeper than either smooth model predicts; CI lower-bound ratios ${\geq}1.5$ confirm non-overlap.}
+\label{tab:steepness}
+\begin{tabular}{lcccc}
+\toprule
+Model & $k$ (steepness) & 95\% CI & $P_{\max}$ & $R^2$ \\
+\midrule
+Observed           & 15.7  & $[9.4, 28.2]$   & 0.69 & 0.969 \\
+$H_0$ (linear)     & 6.14  & $[5.82, 6.45]$  & 0.63 & 0.9998 \\
+$H_0'$ (concave)   & 4.93  & $[4.22, 5.65]$  & 0.37 & 0.9974 \\
+\midrule
+\multicolumn{5}{l}{\textit{Steepness ratios (point estimate [CI lower bound]):}} \\
+$k_{\text{obs}} / k_{H_0}$   & \multicolumn{4}{l}{$2.56\times$ $[1.46\times]$} \\
+$k_{\text{obs}} / k_{H_0'}$  & \multicolumn{4}{l}{$3.18\times$ $[1.66\times]$} \\
+\bottomrule
+\end{tabular}
+\end{table}

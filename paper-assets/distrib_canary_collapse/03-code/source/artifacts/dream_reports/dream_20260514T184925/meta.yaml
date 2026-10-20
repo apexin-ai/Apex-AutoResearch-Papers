@@ -1,0 +1,2932 @@
+dream_id: dream_20260514T184925
+project: distrib_canary_collapse
+venue: ''
+focus: ''
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: α-sweep 揭示清晰的 predictability phase transition——低 α 下 canary→perplexity
+        lead 出现，phase diagram 有明确 boundary，方法论贡献强
+      key_assumptions:
+      - canary→diversity lead (1-2 gen) 在所有 α 和 seeds 一致复现
+      - canary→perplexity lead 在 α≤0.50 下出现 (≥1 gen lead, p<0.05)
+      - phase diagram 存在清晰的 α* 阈值分隔 predictable/unpredictable regime
+      - Toda-Yamamoto 推翻 >30% naive 显著关联——方法论贡献不可替代
+      - cross-domain (C4) 和 scale (1.4B) spot-check 保持 canary ranking
+      number_ranges:
+        canary_diversity_lead_gen:
+        - 1.5
+        - 3.0
+        canary_perplexity_lead_gen_low_alpha:
+        - 1.0
+        - 2.5
+        TY_significance_rate_canary_diversity:
+        - 0.85
+        - 1.0
+        naive_false_positive_overturned_pct:
+        - 30
+        - 55
+        cross_seed_consistency:
+        - 4
+        - 4
+        effect_size_r_canary_diversity:
+        - 0.95
+        - 0.99
+        phase_boundary_alpha_star:
+        - 0.5
+        - 0.75
+      narrative_direction: '原始 framing 完全成立——三条 claims 无需调整。Headline: ''canary metrics
+        predict diversity collapse 1-3 gen ahead; predictability phase diagram reveals
+        α* boundary above which perplexity becomes predictable.'' 方法论贡献独立成立（naive
+        corr 高伪阳性率）。AAAI full paper，无需 fallback venue。'
+    median:
+      tier: median
+      meaning: canary→diversity 稳固，canary→perplexity 仅在最低 α 下边际显著或仅对部分 canary 成立，phase
+        diagram 存在但 boundary 模糊
+      key_assumptions:
+      - canary→diversity lead 跨 α 一致 (1-2 gen)
+      - canary→perplexity lead 仅在 α=0.25 出现且效应较弱 (lag=1, 部分 seeds)
+      - phase boundary 不是 sharp transition 而是 gradual degradation
+      - Toda-Yamamoto 推翻 15-29% naive 显著关联——有价值但非 dramatic
+      - C4 保持 canary ranking 但 lead time 缩短；1.4B 结果 noisy
+      number_ranges:
+        canary_diversity_lead_gen:
+        - 1.0
+        - 2.0
+        canary_perplexity_lead_gen_low_alpha:
+        - 0.0
+        - 1.0
+        TY_significance_rate_canary_diversity:
+        - 0.65
+        - 0.85
+        naive_false_positive_overturned_pct:
+        - 15
+        - 29
+        cross_seed_consistency:
+        - 3
+        - 4
+        effect_size_r_canary_diversity:
+        - 0.88
+        - 0.95
+        phase_boundary_alpha_star:
+        - 0.25
+        - 0.5
+      narrative_direction: 'Claim 1 保持不变。Claim 2 软化——从 ''phase diagram with clear
+        boundary'' 降为 ''regime-dependent gradient: canary lead degrades monotonically
+        with α, providing actionable warning only below α≈0.5''。Claim 3 从 ''naive
+        corr produces high false positive rate'' 软化为 ''TY provides more conservative
+        but reliable estimates''。需补充 intervention 实验 (plan_007) 以增强实用价值叙事。可能需要额外 scale/domain
+        数据点来补强。仍投 AAAI，但准备 EMNLP Findings 作为 realistic fallback。'
+    worst:
+      tier: worst
+      meaning: canary→diversity lead 存在但 seed-dependent 或 α-dependent，canary→perplexity
+        在所有 α 下均不显著，方法论差异不大
+      key_assumptions:
+      - canary→diversity lead 在 α=1.0 下稳定 (MVP 已验证) 但在低 α 下缩短至 ≤1 gen 或跨 seed 不一致
+      - canary→perplexity lead 在所有 α 下均不成立——collapse 维度之间 fundamentally decoupled
+      - Toda-Yamamoto 与 naive 结论一致率 >85%——方法论 ablation 成为 negative result
+      - effective_rank/self_bleu 之外，ECE 或 entropy 之一在低 α 下也开始失效
+      - C4 或 1.4B 上 canary ranking 不保持
+      number_ranges:
+        canary_diversity_lead_gen:
+        - 0.5
+        - 1.5
+        canary_perplexity_lead_gen_low_alpha:
+        - 0.0
+        - 0.0
+        TY_significance_rate_canary_diversity:
+        - 0.4
+        - 0.65
+        naive_false_positive_overturned_pct:
+        - 3
+        - 14
+        cross_seed_consistency:
+        - 2
+        - 3
+        effect_size_r_canary_diversity:
+        - 0.75
+        - 0.88
+        phase_boundary_alpha_star: null
+      narrative_direction: Reframe 为 'Taxonomy of Collapse Decoupling'——核心贡献变为证明 diversity
+        collapse 和 quality collapse 是 fundamentally independent failure modes with
+        distinct dynamics，canary 仅 track diversity channel。这本身是 novel finding（与隐含假设'collapse
+        is monolithic'相矛盾）。Phase diagram 变为 'decoupling diagram' 而非 'predictability
+        diagram'。方法论贡献转为 systematic negative result：证明 naive correlation 与 robust
+        方法给出相同结论（正面解读：practitioners 不需要复杂统计工具）。叙事锚点从 'early warning system' 转为 'understanding
+        collapse geometry'。仍冲 AAAI——systematic empirical study + surprising negative
+        results + collapse taxonomy 在 ML 方法论 track 有空间，但需要更多 analytical depth（可能加
+        theoretical argument for why decoupling occurs）。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dream_reports/dream_20260514T184925/best/paper.pdf
+  imagined_experiments:
+  - name: α-sweep (α∈{0.25, 0.50, 0.75})
+    plan_id: plan_001
+    description: 'Pythia-410M × WikiText-103 × α∈{0.25, 0.50, 0.75} × 3 seeds × 10
+      gen iterative training。 每代计算 ECE、token_entropy、effective_rank、self_bleu、distinct_1/2/3、perplexity。
+      Toda-Yamamoto panel temporal precedence 检验所有 canary→target 对。
+
+      '
+    expected_results:
+      alpha_0.25_gen10_perplexity: 68.4
+      alpha_0.25_gen10_token_entropy: 2.41
+      alpha_0.25_gen10_ece: 0.138
+      alpha_0.25_gen10_distinct_1: 0.312
+      alpha_0.25_gen10_distinct_2: 0.681
+      alpha_0.25_canary_diversity_lead_gen: 2.7
+      alpha_0.25_canary_perplexity_lead_gen: 2.0
+      alpha_0.25_TY_canary_to_diversity_p: 0.002
+      alpha_0.25_TY_canary_to_perplexity_p: 0.018
+      alpha_0.25_effect_size_r_ece_distinct1: 0.97
+      alpha_0.50_gen10_perplexity: 189.3
+      alpha_0.50_gen10_token_entropy: 1.94
+      alpha_0.50_gen10_ece: 0.247
+      alpha_0.50_gen10_distinct_1: 0.198
+      alpha_0.50_gen10_distinct_2: 0.512
+      alpha_0.50_canary_diversity_lead_gen: 2.0
+      alpha_0.50_canary_perplexity_lead_gen: 1.3
+      alpha_0.50_TY_canary_to_diversity_p: 0.001
+      alpha_0.50_TY_canary_to_perplexity_p: 0.032
+      alpha_0.50_effect_size_r_ece_distinct1: 0.96
+      alpha_0.75_gen10_perplexity: 512.7
+      alpha_0.75_gen10_token_entropy: 1.52
+      alpha_0.75_gen10_ece: 0.361
+      alpha_0.75_gen10_distinct_1: 0.112
+      alpha_0.75_gen10_distinct_2: 0.402
+      alpha_0.75_canary_diversity_lead_gen: 1.7
+      alpha_0.75_canary_perplexity_lead_gen: 0.3
+      alpha_0.75_TY_canary_to_diversity_p: 0.003
+      alpha_0.75_TY_canary_to_perplexity_p: 0.214
+      alpha_0.75_effect_size_r_ece_distinct1: 0.96
+      phase_boundary_alpha_star: 0.6
+      cross_seed_consistency_diversity_lead: 3/3 seeds at all α
+      cross_seed_consistency_perplexity_lead: 3/3 seeds at α≤0.50; 1/3 at α=0.75
+    result_rationale: 'α 控制每代训练数据中合成数据的比例。低 α 下真实数据作为 anchor 减缓 distribution drift，
+      collapse 从 catastrophic（α=1.0 时 gen10 ppl>1000）变为 gradual（α=0.25 时 gen10 ppl~68）。
+      渐进退化使不同 metric family 的 onset timing 解耦——calibration（ECE）和 token distribution
+      （entropy）对微小 distribution shift 最敏感（单代内 KL divergence 变化即可触发 2σ onset）， 而 diversity（distinct_n）需要
+      vocabulary 实质收缩才反映，perplexity 则需 loss landscape 发生结构性改变。在 α=1.0（MVP）下三者近乎同步崩溃（1-2
+      gen window），因为 drift 速度 压倒了 sensitivity 差异。降低 α 拉长 collapse timeline，sensitivity
+      差异被放大： ECE onset 出现在 gen 2-3 而 distinct_1 onset 在 gen 5-6（α=0.25），产生 ~2.7 gen
+      lead。 Perplexity 的可预测性取决于 drift 是否足够慢让 canary signal 积累足够 lead——α=0.25/0.50
+      下 drift rate 允许 1-2 gen canary→perplexity lead，但 α=0.75 时 drift 过快， perplexity
+      几乎与 canary 同步变化，TY 检验不再显著（p=0.214）。 Phase boundary α*≈0.60 是 perplexity lead
+      从统计显著跌落到不显著的转折点—— 这是 drift rate 与 metric sensitivity gap 的临界平衡点。
+
+      '
+    tables:
+    - name: 'Table 1: α-sweep Summary Statistics (mean ± std across seeds)'
+      columns:
+      - α
+      - gen10_ppl
+      - gen10_entropy
+      - gen10_ece
+      - gen10_d1
+      - gen10_d2
+      - canary→d1 lead (gen)
+      - canary→ppl lead (gen)
+      - TY p (canary→d1)
+      - TY p (canary→ppl)
+      rows:
+      - - '0.25'
+        - 68.4±4.1
+        - 2.41±0.05
+        - 0.138±0.009
+        - 0.312±0.018
+        - 0.681±0.022
+        - 2.7±0.3
+        - 2.0±0.4
+        - <0.005
+        - '0.018'
+      - - '0.50'
+        - 189.3±12.6
+        - 1.94±0.07
+        - 0.247±0.015
+        - 0.198±0.014
+        - 0.512±0.019
+        - 2.0±0.2
+        - 1.3±0.3
+        - <0.005
+        - '0.032'
+      - - '0.75'
+        - 512.7±31.4
+        - 1.52±0.09
+        - 0.361±0.021
+        - 0.112±0.011
+        - 0.402±0.025
+        - 1.7±0.2
+        - 0.3±0.5
+        - <0.005
+        - '0.214'
+      - - 1.00 (MVP)
+        - 1024.7±16.8
+        - 1.27±0.06
+        - 0.420±0.012
+        - 0.075±0.008
+        - 0.365±0.015
+        - 1.5±0.3
+        - 0.0±0.2
+        - <0.001
+        - '0.487'
+    - name: 'Table 2: Toda-Yamamoto Panel Results — All Canary→Target Pairs'
+      columns:
+      - canary
+      - target
+      - α=0.25 (lag, p)
+      - α=0.50 (lag, p)
+      - α=0.75 (lag, p)
+      - α=1.0 (lag, p)
+      rows:
+      - - ECE
+        - distinct_1
+        - (-3, <0.001)
+        - (-2, <0.001)
+        - (-2, 0.003)
+        - (-2, <0.001)
+      - - ECE
+        - distinct_2
+        - (-3, 0.002)
+        - (-2, 0.002)
+        - (-2, 0.006)
+        - (-1, 0.004)
+      - - token_entropy
+        - distinct_1
+        - (-2, 0.003)
+        - (-2, 0.004)
+        - (-1, 0.012)
+        - (-1, 0.003)
+      - - token_entropy
+        - distinct_2
+        - (-3, 0.004)
+        - (-2, 0.006)
+        - (-2, 0.018)
+        - (-1, 0.009)
+      - - ECE
+        - perplexity
+        - (-2, 0.015)
+        - (-1, 0.032)
+        - (0, 0.187)
+        - (0, 0.412)
+      - - token_entropy
+        - perplexity
+        - (-2, 0.021)
+        - (-1, 0.041)
+        - (0, 0.238)
+        - (-5*, 0.063)
+      - - effective_rank
+        - distinct_1
+        - (0, 0.342)
+        - (0, 0.287)
+        - (0, 0.415)
+        - (0, 0.523)
+      - - self_bleu
+        - distinct_1
+        - (0, 0.178)
+        - (0, 0.221)
+        - (-1, 0.089)
+        - (0, 0.156)
+    figures_description:
+    - 'Fig 1: Predictability Phase Diagram — x-axis α∈[0,1], y-axis target metric
+      (distinct_1, distinct_2, perplexity)。每个 cell 色标 = TY-estimated lead time (gen)，灰色
+      = not significant。清晰可见 α*≈0.60 处 perplexity 行从有色变灰的 boundary。diversity 行全程有色。'
+    - 'Fig 2: 四面板 collapse trajectory — 每面板一个 α，x-axis generation, y-axis 标准化 metric
+      (z-score)。ECE 和 entropy 曲线领先 distinct_1/2，低 α 下 gap 明显加宽。Perplexity 曲线在 α≤0.50
+      面板中可见延迟，在 α≥0.75 中与 canary 同步。'
+    - 'Fig 3: Canary lead time vs α — x-axis α, y-axis TY-estimated lead (gen)。canary→diversity
+      线近乎单调递增（随 α 降低 lead 增加），canary→perplexity 线在 α*≈0.60 处 drop to zero。误差带 = seed
+      std。'
+    analysis: 'α-sweep 是全文核心实验。Phase diagram 将三条 claims 统一为一张图： diversity 通道全 regime
+      可预测（Claim 1），perplexity 通道 regime-dependent（Claim 2）， α* boundary 明确。effective_rank
+      和 self_bleu 在所有 α 下均不显著—— 与 MVP 结论一致，排除选择偏差质疑。3 seeds 在所有 α 下 diversity lead
+      一致性 3/3， perplexity lead 在 α≤0.50 下 3/3，α=0.75 下仅 1/3（边界行为，符合 phase transition
+      预期）。
+
+      '
+  - name: '方法论 ablation: Naive vs Robust 检验'
+    plan_id: plan_002
+    description: '在 MVP 4-seed 数据 + α-sweep 9 runs 数据上，对比四种 lead-lag 量化方法： (i) naive
+      Pearson lag-correlation (ii) 差分后 cross-correlation (iii) threshold-based onset
+      lead (iv) Toda-Yamamoto panel temporal precedence。 统计所有方法对所有 canary→target pair
+      的显著性判定，量化伪显著被推翻比例。
+
+      '
+    expected_results:
+      total_pairs_tested: 104
+      naive_pearson_significant_count: 71
+      differenced_xcorr_significant_count: 48
+      threshold_onset_significant_count: 39
+      TY_significant_count: 42
+      naive_overturned_by_TY_pct: 40.8
+      naive_overturned_by_TY_count: 29
+      false_positive_category_breakdown:
+        effective_rank_pairs: 12
+        self_bleu_pairs: 8
+        canary_to_ppl_high_alpha: 6
+        spurious_reverse_direction: 3
+      TY_unique_significant_not_in_naive: 0
+      method_agreement_TY_vs_threshold: 0.88
+    result_rationale: '非平稳时间序列（所有 metric 在 iterative training 中趋势性退化）的 Pearson correlation
+      产生 spurious regression——两个独立但都有趋势的序列可以 |r|>0.9。naive 方法对所有 "都在下降"的 metric pair
+      报告显著，包括 effective_rank→diversity（实际无 lead-lag 关系， 只是共享下降趋势）和 canary→perplexity
+      at α≥0.75（同步崩溃无因果方向）。 差分后去趋势消除部分伪关联但对短序列（10 gen）power 不足，false negative 较多。
+      TY 方法在 VAR 框架中检验 Granger non-causality，自动处理非平稳性（通过 augmented lag），对真正的 lead-lag
+      关系（canary→diversity）保持高 power（p<0.005）， 对无方向性的同步崩溃正确报告不显著（p>0.05）。~41% 的 naive
+      显著关联被推翻， 主要来自三类：(1) 失败 canary 族的伪关联（effective_rank、self_bleu 与任何 target）， (2)
+      高 α 下 canary→perplexity 的同步崩溃被误判为 lead， (3) 少数反向因果（target→canary）被 naive 双向
+      correlation 报告为显著。
+
+      '
+    tables:
+    - name: 'Table 3: Method Comparison — Significant Pair Counts'
+      columns:
+      - Method
+      - Significant pairs
+      - Agrees w/ TY
+      - Disagrees w/ TY
+      - False positive vs TY
+      - False negative vs TY
+      rows:
+      - - Naive Pearson
+        - 71/104
+        - '42'
+        - '29'
+        - 29 (40.8%)
+        - '0'
+      - - Differenced XCorr
+        - 48/104
+        - '36'
+        - '12'
+        - 12 (16.9%)
+        - '6'
+      - - Threshold Onset
+        - 39/104
+        - '37'
+        - '2'
+        - 2 (2.8%)
+        - '5'
+      - - Toda-Yamamoto
+        - 42/104
+        - —
+        - —
+        - —
+        - —
+    - name: 'Table 4: Breakdown of Naive False Positives Overturned by TY'
+      columns:
+      - Category
+      - Count
+      - Example pair
+      rows:
+      - - Failed canary (eff_rank/self_bleu) → any target
+        - '20'
+        - effective_rank→distinct_1 at α=0.50
+      - - canary→perplexity at α≥0.75
+        - '6'
+        - ECE→ppl at α=0.75
+      - - Reverse direction (target→canary)
+        - '3'
+        - distinct_1→ECE at α=1.0
+    figures_description:
+    - 'Fig 4: Agreement matrix heatmap — 4 methods × 104 pairs，binary significant/not。visual
+      clustering 显示 naive 方法在右上角大片''显著''区域被其他三种方法一致判定为不显著。'
+    - 'Fig 5: Naive |r| vs TY p-value scatter — 每个 pair 一点，color = truly significant
+      (TY) vs overturned。右上区域（高 |r| 但 TY p>0.05）包含所有 spurious regression 案例。'
+    analysis: '~41% 伪显著率远超 30% 阈值，方法论贡献独立成立。这直接回应 reviewer concern "为什么不用简单相关"——答案是简单方法在这个
+      setting 下系统性高估 canary 预测能力， 尤其是对失败 canary 和高 α regime。Threshold onset 与 TY 一致性高（88%），
+      但 TY 提供 p-value 和方向性检验，统计论证更强。
+
+      '
+  - name: MVP 结果 formalization (max_lag=7)
+    plan_id: plan_003
+    description: '在 MVP 4-seed (α=1.0) 数据上重跑 TY 检验，max_lag 从 5 增大到 7， 验证 token_entropy→perplexity
+      的 lag=-5 是否为截断伪影。 统一 2σ onset 定义，输出 paper-ready 数值。
+
+      '
+    expected_results:
+      max_lag_7_ece_to_distinct1_lag: -2
+      max_lag_7_ece_to_distinct1_p: 0.0004
+      max_lag_7_entropy_to_distinct1_lag: -1
+      max_lag_7_entropy_to_distinct1_p: 0.0018
+      max_lag_7_entropy_to_ppl_lag: -5
+      max_lag_7_entropy_to_ppl_p: 0.071
+      max_lag_7_ece_to_ppl_lag: 0
+      max_lag_7_ece_to_ppl_p: 0.412
+      onset_2sigma_ece: gen 2.1±0.3
+      onset_2sigma_entropy: gen 2.4±0.4
+      onset_2sigma_distinct1: gen 3.8±0.5
+      onset_2sigma_distinct2: gen 4.2±0.4
+      onset_2sigma_ppl: gen 2.3±0.3
+      cross_seed_consistency: 4/4 seeds for canary→diversity
+    result_rationale: '在 α=1.0 (100% self-consuming) 下 collapse 极快，perplexity onset（gen
+      ~2.3） 与 canary onset（gen ~2.1-2.4）几乎同步——drift rate 太快，metric sensitivity 差异
+      不足以产生可检测的 lead。max_lag=7 不改变 canary→diversity 的结论（lag=-2/-1 稳定）， 因为 diversity
+      onset 确实延后到 gen 3.8-4.2。token_entropy→ppl 的 lag=-5 在 max_lag=7 下保持但 p 值从边界上升到
+      0.071——这不是截断伪影而是统计 noise， 因为 100% SC 下两者实际同步崩溃（onset 差 <0.3 gen），VAR 模型在短序列上
+      拟合出的 lag=-5 缺乏统计支撑。这进一步支持 Claim 2 的 regime-dependent 叙事。
+
+      '
+    tables:
+    - name: 'Table S1: MVP (α=1.0) TY Results — max_lag=5 vs max_lag=7'
+      columns:
+      - Pair
+      - max_lag=5 (lag, p)
+      - max_lag=7 (lag, p)
+      - Conclusion
+      rows:
+      - - ECE→distinct_1
+        - (-2, <0.001)
+        - (-2, 0.0004)
+        - Stable — genuine lead
+      - - ECE→distinct_2
+        - (-1, 0.003)
+        - (-1, 0.004)
+        - Stable
+      - - entropy→distinct_1
+        - (-1, 0.002)
+        - (-1, 0.0018)
+        - Stable
+      - - entropy→ppl
+        - (-5, 0.052)
+        - (-5, 0.071)
+        - Not significant — noise
+      - - ECE→ppl
+        - (0, 0.38)
+        - (0, 0.412)
+        - Not significant — synchronous
+    figures_description:
+    - 'Fig S1: MVP 4-seed collapse trajectories — standardized z-score，带 2σ onset
+      标记线。可视化 ECE/entropy onset 领先 distinct_1/2 但与 perplexity 同步。'
+    analysis: 'max_lag=7 确认 MVP 核心结论不变。entropy→ppl lag=-5 是噪声非截断—— 在 α=1.0 下 canary
+      不 lead perplexity 的结论更加稳固， 为 α-sweep 中低 α 下 lead 出现提供对比 baseline。
+
+      '
+  - name: C4 Cross-domain Validation
+    plan_id: plan_004
+    description: 'Pythia-410M × C4 × α=0.50 × 3 seeds × 10 gen。验证 WikiText-103 上 确认的
+      canary ranking 和 lead time 是否在不同 domain 数据上保持。
+
+      '
+    expected_results:
+      c4_alpha050_gen10_perplexity: 211.8
+      c4_alpha050_gen10_token_entropy: 1.88
+      c4_alpha050_gen10_ece: 0.261
+      c4_alpha050_gen10_distinct_1: 0.183
+      c4_alpha050_gen10_distinct_2: 0.494
+      c4_alpha050_canary_diversity_lead_gen: 1.8
+      c4_alpha050_canary_perplexity_lead_gen: 1.0
+      c4_alpha050_TY_ece_to_d1_p: 0.003
+      c4_alpha050_TY_entropy_to_d1_p: 0.006
+      c4_alpha050_TY_ece_to_ppl_p: 0.044
+      canary_ranking_preserved: true
+      rank_correlation_wiki_vs_c4: 0.94
+    result_rationale: 'Canary metric 的 lead 机制是 distribution-level 的——ECE 检测 calibration
+      drift， token entropy 检测 vocabulary concentration——这两个现象在任何 iterative self-consuming
+      训练中都会发生，不依赖于 domain-specific 的 token 分布。C4 是 web crawl 数据， vocabulary 更多样、初始
+      distinct_n 更高，但 iterative training 仍然驱动 mode collapse（vocabulary 收缩到高频 pattern）。绝对指标值会因
+      domain 差异 而不同（C4 初始 perplexity 稍高、entropy 稍低因为 web text 噪声更大）， 但相对 ranking（ECE
+      和 entropy 领先 diversity，diversity 领先 perplexity） 和 lead time 量级（~1.8 gen for
+      diversity, ~1.0 gen for perplexity at α=0.50） 应保持，因为底层的 distributional drift
+      dynamics 是 model-intrinsic 而非 data-specific。 Rank correlation 0.94 反映个别 pair
+      的精确 lag 可能差 ±0.5 gen 但排序一致。
+
+      '
+    tables:
+    - name: 'Table 5: Cross-domain Comparison (α=0.50)'
+      columns:
+      - Metric pair
+      - WikiText-103 (lag, p)
+      - C4 (lag, p)
+      - Δlag
+      rows:
+      - - ECE→distinct_1
+        - (-2, <0.001)
+        - (-2, 0.003)
+        - '0'
+      - - entropy→distinct_1
+        - (-2, 0.004)
+        - (-2, 0.006)
+        - '0'
+      - - ECE→ppl
+        - (-1, 0.032)
+        - (-1, 0.044)
+        - '0'
+      - - entropy→ppl
+        - (-1, 0.041)
+        - (-1, 0.058)
+        - '0'
+      - - eff_rank→distinct_1
+        - (0, 0.287)
+        - (0, 0.334)
+        - '0'
+    figures_description:
+    - 'Fig 6: Side-by-side collapse trajectories — WikiText-103 vs C4 at α=0.50。形态相似，绝对值不同，onset
+      timing 保持。'
+    analysis: 'C4 验证 canary ranking 的 domain-invariance。ECE 和 entropy 在两个 domain 上
+      对 diversity 的 lead 一致（lag=-2），对 perplexity 的 lead 也一致（lag=-1）。 effective_rank
+      在两个 domain 均失败，排除其作为 canary 的可能。 这支持 canary 机制是 model-intrinsic 的论断。
+
+      '
+  - name: Pythia-1.4B Scale Spot-check
+    plan_id: plan_005
+    description: 'Pythia-1.4B × WikiText-103 × α=0.50 × 3 seeds × 10 gen。 验证 canary
+      lead 是否在 3.4× 参数量下保持。
+
+      '
+    expected_results:
+      scale_1.4b_gen10_perplexity: 142.5
+      scale_1.4b_gen10_token_entropy: 2.12
+      scale_1.4b_gen10_ece: 0.198
+      scale_1.4b_gen10_distinct_1: 0.241
+      scale_1.4b_gen10_distinct_2: 0.589
+      scale_1.4b_canary_diversity_lead_gen: 2.3
+      scale_1.4b_canary_perplexity_lead_gen: 1.5
+      scale_1.4b_TY_ece_to_d1_p: 0.002
+      scale_1.4b_TY_entropy_to_d1_p: 0.004
+      scale_1.4b_TY_ece_to_ppl_p: 0.028
+      canary_ranking_preserved: true
+      lead_time_scaling_trend: slightly longer at larger scale
+    result_rationale: '更大模型有更高的初始 capacity 和更好的 calibration（gen0 ECE 更低）， collapse
+      在每代的 marginal degradation 更小（模型能更好地 fit 混合数据）， 但 cumulative drift 仍然驱动最终退化。关键推断：如果每代
+      drift 更小， 不同 metric family 的 sensitivity gap 有更多代数来积累差异—— ECE 可能在 gen 2 就 onset
+      而 distinct_1 在 gen 4.5， 比 410M 的 gen 2.5/4.0 差距更大，lead time 从 2.0 增加到 ~2.3 gen。
+      Perplexity 也更渐进（gen10 ppl 142 vs 410M 的 189）， canary→ppl lead 从 1.3 增加到 ~1.5
+      gen。这个 scaling trend（更大模型→更长 lead time） 如果成立将是一个有吸引力的 finding——意味着 canary 在实际部署的大模型上
+      预警窗口更宽，实用价值更高。3/3 seed consistency 因为更大模型的 variance 更低。
+
+      '
+    tables:
+    - name: 'Table 6: Scale Comparison at α=0.50'
+      columns:
+      - Model
+      - gen10_ppl
+      - canary→d1 lead
+      - canary→ppl lead
+      - TY p (ECE→d1)
+      - TY p (ECE→ppl)
+      rows:
+      - - Pythia-410M
+        - '189.3'
+        - 2.0 gen
+        - 1.3 gen
+        - <0.005
+        - '0.032'
+      - - Pythia-1.4B
+        - '142.5'
+        - 2.3 gen
+        - 1.5 gen
+        - '0.002'
+        - '0.028'
+    figures_description:
+    - 'Fig 7: 410M vs 1.4B collapse trajectory overlay — 1.4B 曲线更平缓但形态一致，onset 标记显示
+      1.4B 的 canary-target gap 更宽。'
+    analysis: 'Scale spot-check 确认 canary lead 跨规模保持，且有 lead time 随 scale 增加的趋势。 虽然单点验证不能
+      claim scaling law，但方向性结论支持实用价值论述。 Limitation 中需注明：仅验证到 1.4B，更大规模（7B+）是 future
+      work。
+
+      '
+  - name: Extended Run 20 gen (α=1.0, max_lag=10)
+    plan_id: plan_006
+    description: 'Pythia-410M × WikiText-103 × α=1.0 × 20 gen × 2 seeds。 验证 entropy→ppl
+      lag=-5 是否为 max_lag 截断伪影。
+
+      '
+    expected_results:
+      gen20_perplexity: 4287.3
+      gen20_token_entropy: 0.68
+      gen20_ece: 0.512
+      gen20_distinct_1: 0.024
+      gen20_distinct_2: 0.108
+      extended_TY_entropy_to_ppl_lag: 0
+      extended_TY_entropy_to_ppl_p: 0.523
+      extended_TY_ece_to_d1_lag: -2
+      extended_TY_ece_to_d1_p: 0.0002
+      canary_diversity_lead_gen_20gen: 1.8
+      collapse_saturation_gen: 12
+    result_rationale: '延长到 20 gen 提供两个信息：(1) max_lag=10 下 entropy→ppl 仍无显著 lead（lag=0,
+      p=0.52）， 确认 α=1.0 下 canary 不 lead perplexity 是 genuine 结论非截断伪影—— 因为 100% SC
+      的 drift rate 太快，所有 metrics 在 gen 1-5 内同步急剧退化； (2) gen 12 后 collapse 趋于饱和（perplexity
+      增长率下降，因为模型输出已近乎 deterministic），这个 saturation 行为为 phase diagram 增加了一个维度—— 不仅
+      α 影响可预测性，generation depth 也有影响（但 best tier 下这是 supplementary observation，不是
+      main claim）。canary→diversity lead 在 20 gen 下保持（~1.8 gen）， 确认 diversity 通道的可预测性在极端
+      regime 和长 horizon 下稳健。
+
+      '
+    tables:
+    - name: 'Table S2: Extended Run TY Results (max_lag=10)'
+      columns:
+      - Pair
+      - 10-gen (lag, p)
+      - 20-gen (lag, p)
+      - Conclusion
+      rows:
+      - - entropy→ppl
+        - (-5, 0.071)
+        - (0, 0.523)
+        - No lead — confirmed
+      - - ECE→distinct_1
+        - (-2, 0.0004)
+        - (-2, 0.0002)
+        - Stable lead — confirmed
+      - - ECE→ppl
+        - (0, 0.412)
+        - (0, 0.487)
+        - No lead — confirmed
+    figures_description:
+    - 'Fig S2: 20-gen collapse trajectory — 所有 metrics 在 gen 12 后进入饱和平台，canary→diversity
+      lead 在前 10 gen 内建立并保持。'
+    analysis: 'Extended run 排除截断伪影质疑。α=1.0 下 canary→ppl 的 absence 是 robust 结论， 不受
+      max_lag 或 sequence length 影响。结果放 supplementary 即可。
+
+      '
+  - name: CRS Intervention 实验
+    plan_id: plan_007
+    description: 'CRS-predictive intervention vs no-intervention baseline。 Pythia-410M
+      × α=0.75 × 3 seeds × 10 gen。 当 ECE 2σ onset 触发时自动增加 real data ratio。
+
+      '
+    expected_results:
+      no_intervention_gen10_distinct1: 0.112
+      crs_intervention_gen10_distinct1: 0.198
+      diversity_preservation_pct: 76.8
+      intervention_trigger_gen: gen 3.2±0.4
+      post_intervention_alpha_effective: 0.52
+      gen10_perplexity_no_intervention: 512.7
+      gen10_perplexity_crs: 341.2
+      perplexity_reduction_pct: 33.4
+    result_rationale: 'CRS 在 ECE onset（~gen 3）时将 α 从 0.75 降到 ~0.52（增加 real data 比例），
+      等效于将训练轨迹从 α=0.75 regime "切换"到 α≈0.50 regime。 从 α-sweep 数据我们知道 α=0.50 的 gen10
+      distinct_1 ≈ 0.198 vs α=0.75 的 0.112， 所以 intervention 后的 gen10 diversity 应接近
+      α=0.50 的水平。 Perplexity 也相应改善（从 ~513 降到 ~341，接近 α=0.50 和 α=0.75 的中间值， 因为前 3 代仍在
+      α=0.75 下训练积累了部分 drift）。 76.8% diversity preservation = (0.198 - 0.112) / (0.312
+      - 0.112) × 100%， 即恢复了从 α=0.75 到 α=0.25 baseline 之间 ~77% 的 diversity gap。 这不是
+      perfect recovery 因为前几代的 drift 不可逆，但足以证明 predictive intervention 的实用价值——canary
+      提供的 1-2 gen 预警窗口转化为可操作的 diversity 保护。
+
+      '
+    tables:
+    - name: 'Table 7: Intervention Results (α=0.75, mean across 3 seeds)'
+      columns:
+      - Condition
+      - gen10_d1
+      - gen10_d2
+      - gen10_ppl
+      - gen10_ece
+      rows:
+      - - No intervention (α=0.75)
+        - 0.112±0.011
+        - 0.402±0.025
+        - 512.7±31.4
+        - 0.361±0.021
+      - - CRS-predictive (trigger @ ECE onset)
+        - 0.198±0.015
+        - 0.524±0.020
+        - 341.2±22.7
+        - 0.253±0.018
+      - - Oracle (α=0.50 throughout)
+        - 0.198±0.014
+        - 0.512±0.019
+        - 189.3±12.6
+        - 0.247±0.015
+    figures_description:
+    - 'Fig 8: Intervention trajectory — no-intervention vs CRS vs oracle (α=0.50)。vertical
+      dashed line at intervention trigger gen。CRS 轨迹在 trigger 后弯向 oracle 轨迹但不完全重合（前几代
+      drift 残留）。'
+    analysis: 'Intervention 实验将 canary 的预测能力转化为可操作的 collapse mitigation。 CRS 的 diversity
+      preservation 接近 oracle level 说明 ECE onset 的 timing 足够早。 Perplexity 恢复不如 oracle
+      因为前 3 代在高 α 下的 calibration drift 不可逆。 P2 优先级——如果时间紧可砍，但如果包含将显著提升 practical contribution。
+
+      '
+  - name: Accumulate vs Replace 数据策略 Ablation
+    plan_id: plan_008
+    description: 'α=0.50 下 accumulate（保留所有历史生成数据）vs replace（每代仅用最新生成数据） 对比 × 3 seeds
+      × 10 gen。
+
+      '
+    expected_results:
+      replace_gen10_distinct1: 0.198
+      accumulate_gen10_distinct1: 0.267
+      replace_gen10_ppl: 189.3
+      accumulate_gen10_ppl: 124.8
+      accumulate_canary_diversity_lead: 2.5
+      replace_canary_diversity_lead: 2.0
+      accumulate_canary_ppl_lead: 1.8
+      replace_canary_ppl_lead: 1.3
+      accumulate_collapse_rate_reduction_pct: 34.2
+    result_rationale: 'Accumulate 模式保留所有历史生成数据，训练集 diversity 衰减更慢—— 每代新增的合成数据只占总数据的
+      1/(gen+1) 而非 replace 模式下的 α 比例， effective contamination ratio 随代数递减。Fu et al.
+      理论预测 accumulate 在 足够代数后收敛（distribution drift bounded），而 replace 可能发散。 在 10 gen
+      内，accumulate 的 gen10 metrics 显著优于 replace（distinct_1 0.267 vs 0.198）， collapse
+      更渐进意味着 metric sensitivity gap 有更多代数积累—— canary→diversity lead 从 2.0 增加到 2.5
+      gen，canary→ppl lead 从 1.3 增加到 1.8 gen。 这对 practical implication 有意义：accumulate
+      策略不仅减缓 collapse， 还扩大了 canary 预警窗口。
+
+      '
+    tables:
+    - name: 'Table 8: Data Strategy Comparison (α=0.50)'
+      columns:
+      - Strategy
+      - gen10_d1
+      - gen10_ppl
+      - canary→d1 lead
+      - canary→ppl lead
+      rows:
+      - - Replace
+        - 0.198±0.014
+        - 189.3±12.6
+        - 2.0 gen
+        - 1.3 gen
+      - - Accumulate
+        - 0.267±0.016
+        - 124.8±9.3
+        - 2.5 gen
+        - 1.8 gen
+    figures_description:
+    - 'Fig S3: Accumulate vs Replace trajectories — accumulate 曲线更平缓，onset delay 更大，canary-target
+      gap 可视化更宽。'
+    analysis: Accumulate ablation 验证 Fu et al. 理论预测的同时发现一个新 finding： 数据策略不仅影响 collapse
+      severity，还影响 canary lead time—— 更渐进的 collapse 给予更长的预警窗口。P2 优先级但如果包含增加 paper
+      depth。
+  review_report: '---
+
+    dream_id: dream_20260514T184925
+
+    tier: best
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-14T19:20:17.780806+00:00
+
+    ---
+
+
+
+    # Dream Review Report: Distributional Canary Collapse
+
+
+    **Paper:** Distributional Canary Collapse: Predictability Phase Diagrams for Early
+    Warning in Iterative Synthetic Data Training
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-14
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+    - **R1:** Methods and Experiments
+
+    - **R2:** Novelty and Related Work
+
+
+    ---
+
+
+    ## R1 Review: Methods and Experiments
+
+
+    ### Summary
+
+    The paper applies Toda-Yamamoto temporal precedence testing to characterize which
+    metrics lead model collapse in iterative self-consuming training, sweeping the
+    synthetic mixing ratio α. Experimental coverage is comprehensive (8 experiments),
+    but critical statistical concerns around short time series, sparse phase boundary
+    estimation, and absent multiple-testing corrections weaken confidence in the quantitative
+    claims.
+
+
+    ### Strengths
+
+    - **S1:** Correct identification that non-stationarity invalidates naive Pearson
+    correlation; TY is an appropriate methodological choice.
+
+    - **S2:** Comprehensive experiment suite — all 8 planned experiments are present
+    (α-sweep, cross-domain, cross-scale, extended runs, intervention, data strategy
+    ablation, methodological ablation).
+
+    - **S3:** Reporting of null results (effective_rank, self_bleu fail as canaries)
+    adds credibility and avoids cherry-picking.
+
+    - **S4:** The CRS intervention translates the diagnostic finding into actionable
+    mitigation.
+
+    - **S5:** Extended 20-gen run and max_lag=7 robustness checks proactively address
+    truncation-artifact concerns.
+
+
+    ### Weaknesses
+
+    - **W1 (Critical): Severely short time series for VAR fitting.** With T=10 and
+    max_lag=7, a bivariate VAR(8) has ~34 parameters estimated from 10 observations.
+    Effective degrees of freedom are near zero. Simulation studies typically recommend
+    T≥50 for reliable TY inference. The paper does not discuss this fundamental limitation.
+
+    - **W2 (Major): No multiple comparison correction.** 104 canary→target pairs are
+    tested at p<0.05. With ~62 truly null pairs, ~3 false positives are expected.
+    Key marginal results (ECE→ppl at α=0.50, p=0.032; entropy→ppl at α=0.50, p=0.041)
+    might not survive Bonferroni or BH correction.
+
+    - **W3 (Major): Phase boundary α\*≈0.60 from 4 data points.** The boundary is
+    interpolated between α=0.50 (significant) and α=0.75 (not significant), yielding
+    a range [0.50, 0.75], not a precise value. No uncertainty interval or confidence
+    region is provided.
+
+    - **W4 (Moderate): 3 seeds is marginal.** "3/3 seeds consistent" sounds robust
+    but carries limited statistical weight (n=3 gives only 87.5% power to detect a
+    95%-true positive rate).
+
+    - **W5 (Moderate): 2σ onset definition is fragile.** std(m_0) estimated from 3
+    initializations is highly noisy. No sensitivity analysis on threshold choice (1.5σ,
+    3σ) is provided.
+
+    - **W6 (Major): No figures.** The design planned 8+ figures including the actual
+    phase diagram, trajectory panels, and scatter plots. A paper centered on a "phase
+    diagram" that lacks the diagram is critically incomplete.
+
+    - **W7 (Minor): 1-epoch fine-tuning confound.** The degree of optimization per
+    generation affects drift rate. Sensitivity to training duration is not explored.
+
+    - **W8 (Minor): 50k tokens per generation.** No analysis of metric estimation
+    variance from sampling noise.
+
+
+    ### Detailed Scores
+
+    | Aspect | Score |
+
+    |--------|-------|
+
+    | Methodological Soundness | 3/6 |
+
+    | Experimental Rigor | 4/6 |
+
+    | Statistical Validity | 2/6 |
+
+    | Reproducibility | 4/6 |
+
+    | Experiment Coverage | 5/6 |
+
+    | Presentation Quality | 2/6 |
+
+
+    ### Questions for Authors
+
+    1. With T=10 and max_lag=7, the bivariate VAR(8) has more parameters than observations.
+    Can you provide simulation evidence that TY testing has adequate size and power
+    at this sample size?
+
+    2. Why is no multiple comparison correction applied? Would canary→perplexity results
+    at α=0.50 (p=0.032, 0.041) survive Holm-Bonferroni correction?
+
+    3. How sensitive is the 2σ onset to threshold choice? How stable is it with std
+    estimated from only 3 seeds?
+
+    4. Why are no figures included? The phase diagram is the paper''s central concept.
+
+    5. Have you tested whether the panel fixed-effects assumption (common lag structure
+    across seeds) holds?
+
+
+    ### R1 Overall Score: 3/6
+
+    ### R1 Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper extends Du et al.''s informal observation that ECE leads accuracy degradation
+    into a systematic, statistically grounded study across contamination regimes.
+    The contributions are solid but primarily incremental — formalizing and extending
+    a known observation rather than revealing a fundamentally new phenomenon. Important
+    related work from complex systems theory is missing.
+
+
+    ### Strengths
+
+    - **S1:** Clean problem formulation — "which metrics, how far ahead, under what
+    conditions" — that structures a space previous work left informal.
+
+    - **S2:** The phase-boundary concept (predictable vs. unpredictable regimes) is
+    a useful conceptual framework.
+
+    - **S3:** The 41% FP rate finding for naive correlation is independently valuable
+    for the community.
+
+    - **S4:** Honest negative results (failed canaries) add depth.
+
+    - **S5:** The accumulate-extends-lead-time finding is a genuinely novel minor
+    observation connecting data strategy to early-warning window.
+
+
+    ### Weaknesses
+
+    - **W1 (Major): Incremental over Du et al.** The core finding — ECE leads downstream
+    degradation — was already observed by Du et al. This paper formalizes it with
+    TY testing, adds token entropy, and maps regime dependence. Valuable but primarily
+    quantitative refinement of a known qualitative observation.
+
+    - **W2 (Major): "Phase diagram" framing is overstatement.** In physics, phase
+    diagrams map continuous parameter spaces with well-characterized transitions (finite-size
+    scaling, order parameters, universality). Four α values on a single axis with
+    a transition inferred between two points is an α-sweep with a threshold observation,
+    not a phase diagram.
+
+    - **W3 (Moderate): TY is off-the-shelf, not methodological innovation.** The contribution
+    is appropriate application, not method development. The paper should be more explicit
+    about this.
+
+    - **W4 (Major): Missing critical related work.** The critical slowing down / early-warning
+    indicators literature (Scheffer et al. 2009, 2012) from ecology and climate science
+    is the intellectual ancestor of this work — it established frameworks for which
+    indicators lead tipping points. Also missing: recent theoretical model collapse
+    analyses (Seddik et al. 2024, Gerstgrasser et al. 2024, Dey et al. 2024).
+
+    - **W5 (Minor): CRS intervention is too simplistic** to constitute a meaningful
+    contribution (threshold trigger → reduce α is the obvious response).
+
+    - **W6 (Moderate): Incomplete bibliography.** Multiple "?" citation placeholders
+    on page 1 suggest broken references.
+
+    - **W7 (Moderate): Limited validation breadth.** Two models from the same family
+    (Pythia), two English text datasets, autoregressive LMs only — insufficient for
+    the generality claimed. The "model-intrinsic" claim (Section 5.4) is supported
+    by one cross-domain check at a single α value.
+
+
+    ### Detailed Scores
+
+    | Aspect | Score |
+
+    |--------|-------|
+
+    | Novelty | 3/6 |
+
+    | Related Work Coverage | 3/6 |
+
+    | Positioning and Framing | 3/6 |
+
+    | Significance and Impact | 4/6 |
+
+    | Breadth of Validation | 3/6 |
+
+
+    ### Questions for Authors
+
+    1. How does this relate to the critical slowing down / early-warning indicators
+    literature (Scheffer et al.)? Rising autocorrelation and variance as tipping-point
+    warnings is well-established in other fields.
+
+    2. Would you consider renaming from "phase diagram" to "predictability sweep"
+    or "regime analysis" to match the evidence?
+
+    3. Can you provide a theoretical argument for why α*≈0.60 should generalize beyond
+    Pythia + WikiText?
+
+    4. What is the incremental actionable insight over Du et al.''s recommendation
+    to monitor ECE?
+
+    5. Please fix the broken references ("?") on page 1.
+
+
+    ### Missing References
+
+    - Scheffer et al. (2009, 2012) — Early-warning signals for critical transitions
+
+    - Seddik et al. (2024) — Theoretical model collapse in Gaussian mixtures
+
+    - Gerstgrasser et al. (2024) — Model collapse analysis with drift characterization
+
+    - Dey et al. (2024) — Curse of recursion and model collapse
+
+    - Broader Granger causality application literature
+
+
+    ### R2 Overall Score: 3/6
+
+    ### R2 Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+    - **R1→R2:** R1''s central concern is that TY testing on T=10 is severely underpowered
+    (parameters ≈ observations), undermining the statistical foundation. No multiple
+    comparison correction is applied. No figures are present.
+
+    - **R2→R1:** R2''s central concern is incrementality over Du et al. and overstatement
+    via the "phase diagram" framing. Important related work from complex systems theory
+    is absent.
+
+
+    ### Step 3: Convergence
+
+
+    **Points of Agreement:**
+
+    1. The research question is well-motivated and the TY methodology is appropriate
+    in principle.
+
+    2. The "phase diagram" label overstates the evidence (4 α values, no uncertainty
+    quantification).
+
+    3. Experimental breadth (8 experiments) is a genuine strength.
+
+    4. Both reviewers converge on 3/6 (Weak Reject).
+
+    5. Broken references and absent figures are quality concerns.
+
+
+    **Synthesis of Concerns:**
+
+    R1 emphasizes statistical validity as the paper-killing weakness; R2 emphasizes
+    limited novelty. After cross-sharing, both agree these compound: if the statistical
+    evidence were unimpeachable, incremental novelty could be sufficient for a top
+    venue. If the novelty were groundbreaking, marginal statistics could be tolerated.
+    But weak statistics + incremental novelty together fall clearly below threshold.
+
+
+    **Key Issue:** The paper''s central value proposition is rigorous quantification
+    of a qualitatively known phenomenon (ECE leads collapse). If the quantification
+    itself is unreliable (T=10 for TY, no multiple testing correction, 3 seeds), the
+    paper''s raison d''être is undermined.
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    ### Overall Score: 3/6 (Weak Reject)
+
+
+    ### Score Justification
+
+    The paper addresses a relevant question — predicting model collapse onset — with
+    an appropriate statistical framework (Toda-Yamamoto) and commendable experimental
+    breadth (8 experiments covering α, domain, scale, horizon, intervention, data
+    strategy, methodology). The three claimed contributions (canary→diversity lead,
+    regime-dependent perplexity predictability, naive-correlation failure) are clearly
+    structured and mostly supported directionally.
+
+
+    However, critical weaknesses prevent acceptance at a top ML venue:
+
+
+    1. **Statistical foundation is unreliable.** TY testing on T=10 time series is
+    severely underpowered — the VAR model has roughly as many parameters as observations.
+    No multiple comparison correction is applied despite 104 hypothesis tests. The
+    "phase boundary" α*≈0.60 is interpolated from 4 points without uncertainty quantification.
+    These are not minor gaps; they undermine the quantitative claims that are the
+    paper''s core contribution.
+
+
+    2. **Novelty is incremental.** The core observation (ECE leads downstream degradation)
+    was already made by Du et al. The paper''s added value is formalization, regime
+    mapping, and TY methodology — valuable but primarily quantitative refinement.
+    The "phase diagram" framing borrows prestige from statistical physics without
+    the underlying rigor (only 4 α values, no universality analysis, no finite-size
+    scaling analogue).
+
+
+    3. **Presentation is incomplete.** No figures in a paper centered on a "phase
+    diagram." Broken references ("?") on page 1. These suggest the paper was submitted
+    in a draft state.
+
+
+    4. **Related work has significant gaps.** The critical slowing down / tipping-point
+    literature (Scheffer et al.) is the natural intellectual context for this work
+    and is entirely absent. Recent theoretical model collapse analyses are also missing.
+
+
+    ### Actionable Recommendations for Revision
+
+    1. **Address statistical power:** Run simulations showing TY has adequate size/power
+    at T=10 with your specific VAR structure, or increase to T≥20 generations for
+    the core α-sweep (the 20-gen extension shows this is feasible).
+
+    2. **Apply multiple comparison correction:** At minimum BH correction within each
+    α; report adjusted p-values.
+
+    3. **Finer α resolution for phase boundary:** Add α∈{0.40, 0.55, 0.60, 0.65, 0.70}
+    to characterize α* with an uncertainty interval.
+
+    4. **Add figures:** The phase diagram (Fig 1 from design), trajectory panels (Fig
+    2), and lead-time vs α plot (Fig 3) are essential.
+
+    5. **Cite critical slowing down literature:** Scheffer et al. provides the intellectual
+    framework; position this work as applying tipping-point early-warning theory to
+    model collapse.
+
+    6. **Moderate the "phase diagram" framing:** Call it a "predictability regime
+    map" or "α-dependent predictability analysis" until finer resolution justifies
+    the phase diagram label.
+
+    7. **Fix broken references** and add missing citations.
+
+    8. **Broaden validation:** At minimum, one non-Pythia architecture (e.g., LLaMA,
+    GPT-2) and one non-English dataset.
+
+
+    ### Verdict
+
+    The paper identifies a real phenomenon and makes useful contributions to how model
+    collapse should be monitored and analyzed. With major revisions — particularly
+    stronger statistical evidence, finer α resolution, proper multiple testing correction,
+    and complete figures — this could become a solid contribution. In its current
+    form, it falls below the acceptance threshold for a top ML venue.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dream_reports/dream_20260514T184925/median/paper.pdf
+  imagined_experiments:
+  - name: α-sweep predictability phase diagram
+    plan_id: plan_001
+    description: 'Pythia-410M × WikiText-103 × α∈{0.25, 0.50, 0.75} × 10 gen × 3 seeds.
+      Run Toda-Yamamoto panel temporal precedence for all canary→target pairs at each
+      α.
+
+      '
+    expected_results:
+      alpha_025_canary_diversity_lead_gen: 2.0
+      alpha_025_canary_diversity_TY_pval_median: 0.003
+      alpha_025_canary_diversity_seeds_significant: 3/3
+      alpha_025_canary_perplexity_lead_gen: 1.0
+      alpha_025_canary_perplexity_TY_pval_median: 0.042
+      alpha_025_canary_perplexity_seeds_significant: 2/3
+      alpha_025_gen10_perplexity: 78.5
+      alpha_025_gen10_distinct_1: 0.142
+      alpha_025_gen10_token_entropy: 2.61
+      alpha_025_gen10_ece: 0.089
+      alpha_050_canary_diversity_lead_gen: 1.0
+      alpha_050_canary_diversity_TY_pval_median: 0.008
+      alpha_050_canary_diversity_seeds_significant: 3/3
+      alpha_050_canary_perplexity_lead_gen: 0.0
+      alpha_050_canary_perplexity_TY_pval_median: 0.31
+      alpha_050_canary_perplexity_seeds_significant: 0/3
+      alpha_050_gen10_perplexity: 185.3
+      alpha_050_gen10_distinct_1: 0.108
+      alpha_050_gen10_token_entropy: 2.18
+      alpha_050_gen10_ece: 0.167
+      alpha_075_canary_diversity_lead_gen: 1.0
+      alpha_075_canary_diversity_TY_pval_median: 0.017
+      alpha_075_canary_diversity_seeds_significant: 3/3
+      alpha_075_canary_perplexity_lead_gen: 0.0
+      alpha_075_canary_perplexity_TY_pval_median: 0.58
+      alpha_075_canary_perplexity_seeds_significant: 0/3
+      alpha_075_gen10_perplexity: 512.7
+      alpha_075_gen10_distinct_1: 0.083
+      alpha_075_gen10_token_entropy: 1.68
+      alpha_075_gen10_ece: 0.312
+      effective_rank_lead_any_alpha: not significant
+      self_bleu_lead_any_alpha: not significant
+    result_rationale: 'α=0.25 保留 75% 真实数据，collapse 进程最慢。diversity 退化需要更多代数积累才显现， 给
+      canary（ECE/entropy 对分布偏移更敏感）提供 2 gen 的领先窗口。perplexity 在此 regime 下也是渐进恶化而非突变，canary
+      有机会以 ~1 gen 领先，但效应弱——因为 75% 真实数据的 锚定效应使 perplexity 变化幅度小，信噪比低，仅 2/3 seeds 达到显著。
+      α=0.50 是过渡区：collapse 加速，canary→diversity 仍有 1 gen lead（diversity 指标的 累积性质使其滞后于
+      distributional shift），但 perplexity 开始与 canary 近同步恶化， TY 无法分离 temporal precedence。
+      α=0.75 接近 full SC：collapse 动力学加速到 canary 和 diversity 几乎同代恶化，仅因 diversity 的定义性滞后保留
+      1 gen lead；perplexity 与 canary 完全同步崩溃。 effective_rank 和 self_bleu 在所有 α 下均无显著
+      lead——与 MVP 一致，这两个指标要么 噪声太大（self_bleu 的 sampling variance），要么对 synthetic data
+      drift 不够敏感 （effective_rank 在 embedding space 退化前不变化）。
+
+      '
+    tables:
+    - name: 'Table 2: Toda-Yamamoto lead-lag results across α'
+      columns:
+      - α
+      - canary_family
+      - target
+      - TY_lead_gen
+      - TY_p_median
+      - seeds_sig
+      - effect_size_r
+      rows:
+      - - 0.25
+        - ECE
+        - distinct_1
+        - 2
+        - 0.002
+        - 3/3
+        - 0.93
+      - - 0.25
+        - token_entropy
+        - distinct_1
+        - 2
+        - 0.004
+        - 3/3
+        - 0.91
+      - - 0.25
+        - ECE
+        - perplexity
+        - 1
+        - 0.038
+        - 2/3
+        - 0.72
+      - - 0.25
+        - token_entropy
+        - perplexity
+        - 1
+        - 0.047
+        - 2/3
+        - 0.68
+      - - 0.5
+        - ECE
+        - distinct_1
+        - 1
+        - 0.006
+        - 3/3
+        - 0.9
+      - - 0.5
+        - token_entropy
+        - distinct_1
+        - 1
+        - 0.01
+        - 3/3
+        - 0.88
+      - - 0.5
+        - ECE
+        - perplexity
+        - 0
+        - 0.28
+        - 0/3
+        - 0.31
+      - - 0.5
+        - token_entropy
+        - perplexity
+        - 0
+        - 0.35
+        - 0/3
+        - 0.25
+      - - 0.75
+        - ECE
+        - distinct_1
+        - 1
+        - 0.014
+        - 3/3
+        - 0.89
+      - - 0.75
+        - token_entropy
+        - distinct_1
+        - 1
+        - 0.019
+        - 3/3
+        - 0.88
+      - - 0.75
+        - ECE
+        - perplexity
+        - 0
+        - 0.52
+        - 0/3
+        - 0.14
+      - - 0.75
+        - token_entropy
+        - perplexity
+        - 0
+        - 0.63
+        - 0/3
+        - 0.09
+    - name: 'Table S1: Failed canary families across α'
+      columns:
+      - α
+      - canary_family
+      - target
+      - TY_p_median
+      - failure_reason
+      rows:
+      - - 0.25
+        - effective_rank
+        - distinct_1
+        - 0.41
+        - rank plateau until gen 6-7
+      - - 0.25
+        - self_bleu
+        - distinct_1
+        - 0.55
+        - high sampling variance
+      - - 0.5
+        - effective_rank
+        - distinct_1
+        - 0.38
+        - rank plateau until gen 5
+      - - 0.5
+        - self_bleu
+        - distinct_1
+        - 0.62
+        - high sampling variance
+      - - 0.75
+        - effective_rank
+        - distinct_1
+        - 0.29
+        - noisy but borderline
+      - - 0.75
+        - self_bleu
+        - distinct_1
+        - 0.48
+        - sampling variance + floor effect
+    figures_description:
+    - 'Fig 2: Predictability phase diagram. X-axis: α (0.25–1.0). Y-axis: TY-estimated
+      lead (gen). 两条曲线: canary→diversity (从 2 gen 单调降至 ~1 gen) 和 canary→perplexity
+      (从 ~1 gen 降至 0). 灰色 shading 标注 ''predictable zone'' (α<0.5) vs ''synchronous
+      collapse zone'' (α>0.5). Boundary 是渐变带而非 sharp line.'
+    - 'Fig 3: Per-α metric trajectories. 3×2 panel (3 α × 2 targets). 每个 panel 叠加
+      ECE (red), token_entropy (blue), distinct_1 (black dashed). 可视化 lead 如何随 α 收缩.'
+    - 'Fig S1: Per-seed scatter for α=0.25 canary→perplexity, showing 2/3 seeds significant,
+      1 seed nonsignificant (p=0.11).'
+    analysis: 'Phase diagram 的核心发现：canary→diversity lead 是 monotonically decreasing
+      function of α, 从 α=0.25 的 2 gen 到 α=0.75/1.0 的 ~1 gen。这意味着 early warning window
+      随 contamination ratio 缩短但不消失——即使在 α=0.75 仍有 1 gen lead for diversity。 canary→perplexity
+      的 boundary 在 α≈0.25-0.50 之间：仅在 α=0.25 可检测到 marginal lead， 且 cross-seed consistency
+      仅 2/3。这定义了 phase diagram 的 "partially predictable" 区域。 narrative: "we map the
+      boundary of predictability" 而非 "we show canaries predict collapse"。
+
+      '
+  - name: '方法论 ablation: naive correlation vs Toda-Yamamoto'
+    plan_id: plan_002
+    description: '在 MVP 4-seed (α=1.0) + plan_001 α-sweep 数据上，对比四种方法: (i) naive Pearson
+      lag-correlation, (ii) 差分后 cross-correlation, (iii) threshold-based lead time
+      (2σ onset), (iv) Toda-Yamamoto panel temporal precedence. 量化各方法的 Type I error
+      rate 和伪显著比例。
+
+      '
+    expected_results:
+      total_pairwise_associations_tested: 96
+      naive_pearson_significant_count: 71
+      differenced_xcorr_significant_count: 52
+      threshold_2sigma_significant_count: 58
+      TY_significant_count: 54
+      naive_overturned_by_TY_count: 19
+      naive_overturned_by_TY_pct: 20.0
+      naive_only_significant_examples: effective_rank→distinct_1 (α=0.75), self_bleu→perplexity
+        (α=0.50), ECE→perplexity (α=0.50)
+      TY_and_differenced_agree_pct: 85.0
+      threshold_vs_TY_concordance_pct: 78.0
+    result_rationale: 'Naive Pearson correlation 在非平稳时间序列上 inflate Type I error，因为两个共同趋势
+      的序列（如都单调恶化的指标）即使无因果关系也会产生高相关。在 α=1.0 (MVP) 数据中， 所有指标都单调恶化，naive 方法会将几乎所有 pair
+      标记为显著。在 α=0.50/0.75 中， 部分指标（如 effective_rank）前期平台后期骤降，与 diversity 的单调下降产生虚假的
+      lag correlation。 TY 通过在 VAR 中加入额外 lag 吸收非平稳性，只检测 Granger-causal temporal precedence。
+      预计 ~20% 的 naive 显著关联被推翻——主要是 (1) failed canary families (effective_rank, self_bleu)
+      的虚假显著, (2) canary→perplexity 在 α≥0.50 的虚假显著。 20% 而非更高，因为 canary→diversity 的
+      lead 是 genuine 的（即使 naive 也能捕捉）， 所以大部分真阳性在两种方法下一致。差分法与 TY 85% 一致因为差分也处理了一阶非平稳，
+      但 TY 对高阶整合更 robust。
+
+      '
+    tables:
+    - name: 'Table 3: Method comparison — significance rates'
+      columns:
+      - Method
+      - Significant_pairs
+      - Total_pairs
+      - Rate
+      - Overturned_by_TY
+      rows:
+      - - Naive Pearson
+        - 71
+        - 96
+        - 74.0%
+        - 19 (20%)
+      - - Differenced XCorr
+        - 52
+        - 96
+        - 54.2%
+        - 3 (3%)
+      - - Threshold (2σ)
+        - 58
+        - 96
+        - 60.4%
+        - 8 (8%)
+      - - Toda-Yamamoto
+        - 54
+        - 96
+        - 56.3%
+        - —
+    - name: 'Table 4: Overturned associations breakdown'
+      columns:
+      - canary_family
+      - target
+      - α
+      - naive_p
+      - TY_p
+      - diagnosis
+      rows:
+      - - effective_rank
+        - distinct_1
+        - 0.75
+        - 0.008
+        - 0.29
+        - 'spurious: co-trending'
+      - - effective_rank
+        - distinct_2
+        - 0.5
+        - 0.012
+        - 0.38
+        - 'spurious: co-trending'
+      - - self_bleu
+        - perplexity
+        - 0.5
+        - 0.015
+        - 0.55
+        - 'spurious: shared nonstationary trend'
+      - - self_bleu
+        - distinct_1
+        - 0.75
+        - 0.021
+        - 0.48
+        - 'spurious: variance-driven'
+      - - ECE
+        - perplexity
+        - 0.5
+        - 0.031
+        - 0.28
+        - 'spurious: co-trending without lead'
+      - - token_entropy
+        - perplexity
+        - 0.5
+        - 0.034
+        - 0.35
+        - 'spurious: co-trending without lead'
+    figures_description:
+    - 'Fig 4: Bar chart. 每个 method 的 significant pair 数量，colored by genuine (TY-confirmed)
+      vs overturned. 直观展示 naive inflation.'
+    - 'Fig S2: Heatmap. 4 methods × 24 canary-target-α combinations. Cell color =
+      p-value. 突出 naive 与 TY 不一致的 cells.'
+    analysis: '20% overturned rate 证明 naive correlation 在非平稳训练指标上不可靠，但不是灾难性的。 方法论贡献的叙事：TY
+      提供 "more conservative but reliable" 估计，特别在 failed canary families 上避免了误导性结论。如果直接用
+      naive correlation 写论文，会错误声称 effective_rank 和 self_bleu 也是 viable canaries。这足以作为
+      methodological contribution 但不应过分渲染。
+
+      '
+  - name: MVP 结果 formalization (max_lag=7)
+    plan_id: plan_003
+    description: '在 MVP 4-seed 100% SC 数据上，max_lag 从 5 增大到 7，重跑 TY 检验。 确认 ECE/token_entropy→diversity
+      的 lead time 精确值。 用 2σ signal onset 定义交叉验证。
+
+      '
+    expected_results:
+      ECE_to_distinct1_lead_maxlag5: 1
+      ECE_to_distinct1_lead_maxlag7: 1
+      token_entropy_to_distinct1_lead_maxlag5: 1
+      token_entropy_to_distinct1_lead_maxlag7: 2
+      ECE_to_distinct2_lead_maxlag7: 1
+      token_entropy_to_distinct2_lead_maxlag7: 1
+      ECE_to_perplexity_lead_maxlag7: 0
+      truncation_artifact_detected: partial — token_entropy→distinct_1 增加 1 gen at
+        maxlag=7
+      cross_seed_consistency_maxlag7: 4/4 for ECE→distinct_1; 3/4 for token_entropy→distinct_1
+        at lag=2
+      effect_size_r_ECE_distinct1: 0.94
+      effect_size_r_token_entropy_distinct1: 0.91
+      signal_onset_2sigma_ECE_gen: 2.0
+      signal_onset_2sigma_distinct1_gen: 3.5
+      signal_onset_2sigma_perplexity_gen: 2.0
+    result_rationale: '在 α=1.0 (100% SC) 下，collapse 进程快速：10 gen 的 time series 很短，max_lag=5
+      消耗大量自由度。增大到 max_lag=7 后，token_entropy→distinct_1 的 lead 从 1 增到 2 gen ——说明 max_lag=5
+      确实存在 mild truncation。但 ECE→distinct_1 不变（lag=1），因为 ECE 的响应更即时（calibration error
+      在 distribution shift 第一代就跳变）。 canary→perplexity 在 max_lag=7 下仍无显著 lead (lag=0)，确认
+      100% SC 下 perplexity 与 canary 同步崩溃不是截断伪影而是 genuine 同步性。 2σ onset 分析显示 ECE 在
+      gen 2 就超出 baseline 2σ，distinct_1 在 gen 3-4 才 显著偏离——视觉上也能看出 ~1.5 gen lead，与 TY
+      的 1-2 gen 一致。
+
+      '
+    tables:
+    - name: 'Table 1: MVP lead-lag summary (max_lag=7)'
+      columns:
+      - canary
+      - target
+      - TY_lead_gen
+      - p_value_median
+      - seeds_sig
+      - effect_r
+      - truncation_vs_lag5
+      rows:
+      - - ECE
+        - distinct_1
+        - 1
+        - 0.001
+        - 4/4
+        - 0.94
+        - unchanged
+      - - ECE
+        - distinct_2
+        - 1
+        - 0.002
+        - 4/4
+        - 0.92
+        - unchanged
+      - - token_entropy
+        - distinct_1
+        - 2
+        - 0.003
+        - 3/4
+        - 0.91
+        - +1 gen (was 1)
+      - - token_entropy
+        - distinct_2
+        - 1
+        - 0.004
+        - 4/4
+        - 0.9
+        - unchanged
+      - - ECE
+        - perplexity
+        - 0
+        - 0.48
+        - 0/4
+        - 0.12
+        - unchanged
+      - - token_entropy
+        - perplexity
+        - 0
+        - 0.55
+        - 0/4
+        - 0.08
+        - unchanged
+      - - effective_rank
+        - distinct_1
+        - —
+        - 0.37
+        - 0/4
+        - —
+        - —
+      - - self_bleu
+        - distinct_1
+        - —
+        - 0.61
+        - 0/4
+        - —
+        - —
+    figures_description:
+    - 'Fig 1: 4-seed overlay of ECE, token_entropy, distinct_1, distinct_2, perplexity
+      over 10 gen (α=1.0). Error bands = ±1σ across seeds. Vertical dashed lines mark
+      2σ onset for each metric. Visual lead ~1-2 gen for canary→diversity.'
+    - 'Fig S3: max_lag sensitivity plot. X-axis: max_lag (3–7). Y-axis: TY-estimated
+      lead. 每条线一个 canary-target pair. 展示 token_entropy→distinct_1 在 lag=5→7 时 lead
+      增加.'
+    analysis: 'Truncation 效应存在但 mild：仅影响 token_entropy→distinct_1 一个 pair (+1 gen)。
+      核心结论不变：ECE 和 token_entropy lead diversity 1-2 gen，不 lead perplexity。 建议主文报告
+      max_lag=7 结果，附录给出 sensitivity analysis。
+
+      '
+  - name: C4 cross-domain validation
+    plan_id: plan_004
+    description: 'Pythia-410M × C4 × α=0.50 × 3 seeds × 10 gen. 验证 canary ranking
+      (ECE > token_entropy > failed families) 是否跨域保持, 以及 lead time 是否缩短。
+
+      '
+    expected_results:
+      canary_ranking_preserved: true
+      ECE_to_distinct1_lead_gen: 1.0
+      token_entropy_to_distinct1_lead_gen: 1.0
+      ECE_to_distinct1_TY_pval_median: 0.012
+      seeds_significant_ECE_distinct1: 3/3
+      ECE_to_perplexity_lead_gen: 0.0
+      gen10_perplexity_C4: 210.5
+      gen10_distinct_1_C4: 0.098
+      collapse_speed_vs_wiki: slightly faster
+      lead_time_vs_wiki_alpha050: same (1 gen) or shorter
+      effect_size_r_ECE_distinct1: 0.88
+    result_rationale: 'C4 比 WikiText-103 更多样（web crawl vs curated Wikipedia），但 Pythia
+      在 the Pile 上预训练（包含部分 web text），所以 C4 并非完全 out-of-distribution。在 α=0.50 下， canary
+      ranking 应保持因为 ECE 和 token_entropy 检测的是分布偏移的通用信号（calibration degradation 和 entropy
+      collapse），不依赖特定数据集的词汇分布。 Lead time 可能缩短到 1 gen（WikiText 在 α=0.50 也是 1 gen），因为
+      C4 的 higher initial diversity 意味着 diversity 指标的下降需要更大的分布偏移才开始——但同时 canary 也需要更大偏移才触发
+      2σ，两个效应部分抵消。 Effect size 略低 (0.88 vs 0.90) 因为 C4 的 heterogeneity 增加噪声。 Collapse
+      略快因为 C4 子集的 domain 多样性使得 mode collapse 更容易发生（模型 倾向 collapse 到高频 domain patterns）。
+
+      '
+    tables:
+    - name: 'Table 5: C4 vs WikiText-103 comparison (α=0.50)'
+      columns:
+      - metric
+      - WikiText_gen10
+      - C4_gen10
+      - delta_pct
+      rows:
+      - - perplexity
+        - 185.3
+        - 210.5
+        - +13.6%
+      - - distinct_1
+        - 0.108
+        - 0.098
+        - -9.3%
+      - - ECE
+        - 0.167
+        - 0.178
+        - +6.6%
+      - - token_entropy
+        - 2.18
+        - 2.09
+        - -4.1%
+      - - ECE→distinct_1 lead (gen)
+        - 1
+        - 1
+        - '0'
+      - - ECE→distinct_1 TY p
+        - 0.008
+        - 0.012
+        - —
+      - - ECE→distinct_1 effect_r
+        - 0.9
+        - 0.88
+        - '-0.02'
+    figures_description:
+    - 'Fig 5: Side-by-side trajectory comparison WikiText vs C4 at α=0.50. Same axes,
+      same metrics. 视觉上确认 ranking 和 lead 保持.'
+    analysis: 'C4 验证了 canary ranking 的 domain-independence：ECE 和 token_entropy 仍是最佳
+      canary。 Lead time 在 α=0.50 下保持 1 gen（未缩短也未延长），effect size 略降但仍 >0.85。 这足以支撑
+      "canary ranking transfers across domains" 的 claim，但需诚实报告 effect size 的下降。不宜
+      over-claim "universal canary"。
+
+      '
+  - name: Pythia-1.4B scale spot-check
+    plan_id: plan_005
+    description: 'Pythia-1.4B × WikiText-103 × α=0.50 × 3 seeds × 10 gen. 验证 canary
+      lead 是否跨规模保持。
+
+      '
+    expected_results:
+      canary_ranking_preserved: true
+      ECE_to_distinct1_lead_gen: 1.0
+      ECE_to_distinct1_TY_pval_median: 0.029
+      seeds_significant_ECE_distinct1: 2/3
+      token_entropy_to_distinct1_lead_gen: 1.0
+      token_entropy_to_distinct1_TY_pval_median: 0.038
+      seeds_significant_token_entropy_distinct1: 2/3
+      ECE_to_perplexity_lead_gen: 0.0
+      gen10_perplexity_1_4B: 142.8
+      gen10_distinct_1_1_4B: 0.121
+      gen10_ECE_1_4B: 0.131
+      cross_seed_variance_vs_410M: higher
+      effect_size_r_ECE_distinct1: 0.85
+      collapse_speed_vs_410M: slower
+    result_rationale: '1.4B 参数量是 410M 的 ~3.4 倍。更大模型在 iterative SC 下 collapse 更慢（更大的
+      representation capacity 和更好的 initial calibration 提供 buffer）。这意味着： (1) 各指标的绝对变化幅度更小（gen10
+      perplexity 142 vs 185），信噪比降低； (2) canary lead 保持（1 gen）因为 lead 源于指标类型的本质差异（分布指标
+      vs 多样性 指标的响应速度），与模型规模无关； (3) cross-seed variance 更高因为 1.4B 训练的随机性更大（更大参数空间 +
+      相同数据量 = 更多局部最优的变异），导致仅 2/3 seeds 达到显著。 Effect size 下降到 0.85 因为 slower collapse
+      = 更平缓的趋势 = 更弱的统计信号。 结果 "noisy but directionally consistent" —— 符合 median 档预期。
+
+      '
+    tables:
+    - name: 'Table 6: Scale comparison 410M vs 1.4B (α=0.50, WikiText)'
+      columns:
+      - metric
+      - 410M_gen10
+      - 1.4B_gen10
+      - delta_pct
+      rows:
+      - - perplexity
+        - 185.3
+        - 142.8
+        - -22.9%
+      - - distinct_1
+        - 0.108
+        - 0.121
+        - +12.0%
+      - - ECE
+        - 0.167
+        - 0.131
+        - -21.6%
+      - - token_entropy
+        - 2.18
+        - 2.41
+        - +10.6%
+      - - ECE→distinct_1 lead
+        - 1
+        - 1
+        - '0'
+      - - ECE→distinct_1 TY p
+        - 0.008
+        - 0.029
+        - '+0.021'
+      - - ECE→distinct_1 effect_r
+        - 0.9
+        - 0.85
+        - '-0.05'
+      - - ECE→distinct_1 seeds_sig
+        - 3/3
+        - 2/3
+        - '-1'
+    figures_description:
+    - 'Fig 6: 410M vs 1.4B trajectory overlay at α=0.50. Dual y-axis for perplexity
+      (left) and distinct_1 (right). Shaded ±1σ bands. 1.4B bands visibly wider.'
+    analysis: 'Scaling trend: canary ranking and lead direction preserved, but statistical
+      power drops. 这是 expected tradeoff——更大模型 collapse 更慢 = 信号更弱 = 需要更多 gen 或更多 seeds。
+      Paper 应报告为 "directionally consistent scaling trend" 并标注 limitation： 完整 scale
+      validation 需要更长训练和更多 seeds（留作 future work）。 不宜用 1.4B 结果 over-claim scaling law。
+
+      '
+  - name: Extended run 20 gen (max_lag truncation check)
+    plan_id: plan_006
+    description: 'Pythia-410M × WikiText-103 × α=1.0 × 20 gen × 2 seeds. 增大 max_lag
+      到 10，检验 token_entropy→perplexity 的 lag=-5 是否为截断伪影。
+
+      '
+    expected_results:
+      token_entropy_to_perplexity_lead_maxlag5: 0
+      token_entropy_to_perplexity_lead_maxlag10: 0
+      ECE_to_distinct1_lead_maxlag10: 2
+      token_entropy_to_distinct1_lead_maxlag10: 2
+      gen20_perplexity: 4280.5
+      gen20_distinct_1: 0.018
+      gen20_token_entropy: 0.72
+      gen20_ECE: 0.623
+      collapse_saturation_gen: 14
+      post_saturation_behavior: all metrics plateau at floor/ceiling after gen ~14
+      seeds_consistent: 2/2
+    result_rationale: '20 gen 在 α=1.0 下提供足够长的序列来排除 max_lag truncation。如果 token_entropy
+      真的 lead perplexity，更长序列 + 更大 max_lag 应该能检测到。预计仍然 lead=0： 在 100% SC 下，perplexity
+      和 canary 的恶化由同一个机制驱动（distribution collapse → simultaneous calibration loss +
+      fluency loss），没有 temporal separation。 这不是检测力不足，而是 genuine 同步性。 新发现：gen ~14 后所有指标
+      saturate（distinct_1 接近 0，entropy 接近 ln(1)=0， perplexity 增长放缓因为模型已完全 degenerate）。20
+      gen 提供了完整的 collapse trajectory 包括 saturation phase，对 paper 的 Fig 1 有展示价值。 canary→diversity
+      lead 增大到 2 gen (max_lag=10)，与 plan_003 的 max_lag=7 一致， 确认更大 max_lag 能检测到更长 lead。
+
+      '
+    tables:
+    - name: 'Table S2: Extended run lead-lag (max_lag=10)'
+      columns:
+      - canary
+      - target
+      - lead_lag5
+      - lead_lag7
+      - lead_lag10
+      - conclusion
+      rows:
+      - - ECE
+        - distinct_1
+        - 1
+        - 1
+        - 2
+        - mild truncation at lag≤7
+      - - token_entropy
+        - distinct_1
+        - 1
+        - 2
+        - 2
+        - truncation confirmed at lag=5
+      - - ECE
+        - perplexity
+        - 0
+        - 0
+        - 0
+        - genuine synchrony, not truncation
+      - - token_entropy
+        - perplexity
+        - 0
+        - 0
+        - 0
+        - genuine synchrony, not truncation
+    figures_description:
+    - 'Fig S4: 20-gen trajectory (α=1.0). Full collapse curve including saturation
+      phase. Vertical line at gen ~14 marking saturation onset.'
+    - 'Fig S5: TY lead estimate as function of max_lag (3–10). Shows canary→diversity
+      lead stabilizing at 2 for max_lag≥7, canary→perplexity flat at 0.'
+    analysis: 'Extended run 解决了 two questions: (1) max_lag truncation 对 canary→diversity
+      有 mild 影响 (lead=1→2)，对 canary→perplexity 无影响 (stays 0); (2) 100% SC 的 complete
+      collapse trajectory 包括 saturation at gen ~14。 建议主文报告 max_lag=7 或 10 的结果（避免已知截断的
+      max_lag=5），附录给出 sensitivity。
+
+      '
+  - name: CRS intervention experiment
+    plan_id: plan_007
+    description: 'CRS-predictive intervention vs no-intervention baseline. Pythia-410M
+      × WikiText-103 × α=0.75 × 3 seeds × 10 gen. CRS 在 ECE 超过 threshold 时 trigger
+      re-weighting to increase real data ratio.
+
+      '
+    expected_results:
+      baseline_gen10_distinct_1: 0.083
+      baseline_gen10_perplexity: 512.7
+      baseline_gen10_ECE: 0.312
+      intervention_gen10_distinct_1: 0.118
+      intervention_gen10_perplexity: 324.6
+      intervention_gen10_ECE: 0.195
+      diversity_preserved_pct: 42.2
+      perplexity_reduction_pct: 36.7
+      intervention_trigger_gen_median: 3.0
+      intervention_trigger_gen_range:
+      - 2
+      - 4
+      false_trigger_rate: 0.0
+      seeds_with_improvement: 3/3
+    result_rationale: 'α=0.75 是一个有意义的测试点：collapse 足够严重以展示 intervention 效果，但不至于 像 α=1.0
+      那样 catastrophic（无法挽救）。CRS 基于 ECE threshold 触发（ECE 在 gen 2-4 超过 2σ baseline）。触发后，CRS
+      将有效 α 从 0.75 降到 ~0.50（增加真实 数据比例），从而减缓后续 collapse。 预计 diversity 保留 ~42%（不是完全挽救，因为
+      (1) 触发前已有 2-3 gen 的损伤， (2) CRS 只调整比例不改变训练动态）。Perplexity 改善更大 (~37%) 因为 perplexity
+      对数据质量比例的响应更直接。 所有 3 seeds 都有改善因为 ECE threshold 的 trigger 是 reliable 的（plan_001
+      确认 ECE 在 α=0.75 下 3/3 seeds 显著 lead diversity）。 这个实验的价值不在于 CRS 本身的 novelty，而是证明
+      "predictive monitoring enables actionable intervention"——将 canary lead 从学术发现转化为实用工具。
+
+      '
+    tables:
+    - name: 'Table 7: Intervention comparison at α=0.75'
+      columns:
+      - condition
+      - gen10_distinct_1
+      - gen10_ppl
+      - gen10_ECE
+      - diversity_preserved
+      rows:
+      - - no-intervention
+        - 0.083
+        - 512.7
+        - 0.312
+        - —
+      - - CRS-predictive
+        - 0.118
+        - 324.6
+        - 0.195
+        - 42.2%
+      - - oracle (α=0.50 from start)
+        - 0.108
+        - 185.3
+        - 0.167
+        - benchmark
+    figures_description:
+    - 'Fig 7: Intervention timeline. X-axis: gen. Two trajectory bundles (no-intervention
+      red, CRS blue). Vertical line at trigger gen. Shows divergence after intervention.'
+    - 'Fig S6: Per-seed trigger gen distribution and post-trigger trajectory variance.'
+    analysis: 'Intervention 实验将 canary lead 的学术发现转化为 actionable tool。42% diversity
+      preservation 不是 dramatic 但 non-trivial。关键 insight：CRS 的效果上限受限于 trigger latency（ECE
+      需要 2-3 gen 才触发）和干预力度（仅调整混合比例）。 Paper 应将此定位为 "proof of concept for predictive
+      monitoring" 而非 "complete solution to model collapse"。与 DCES (reactive) 的对比：CRS
+      在 trigger gen 就 干预，DCES 需要等到 diversity 本身下降才反应（多 1-2 gen 延迟）。
+
+      '
+  - name: Accumulate vs Replace 数据策略 ablation
+    plan_id: plan_008
+    description: 'α=0.50 下 accumulate (保留所有历史生成数据) vs replace (每代只用最新生成数据) × Pythia-410M
+      × WikiText-103 × 3 seeds × 10 gen. 验证 Fu et al. 理论（accumulate 保证收敛）并测 canary
+      行为差异。
+
+      '
+    expected_results:
+      replace_gen10_distinct_1: 0.108
+      replace_gen10_perplexity: 185.3
+      replace_ECE_to_distinct1_lead: 1
+      accumulate_gen10_distinct_1: 0.135
+      accumulate_gen10_perplexity: 112.4
+      accumulate_ECE_to_distinct1_lead: 1
+      accumulate_collapse_speed: ~40% slower
+      accumulate_canary_ranking_preserved: true
+      accumulate_canary_lead_preserved: true
+      accumulate_effect_size_vs_replace: lower (0.82 vs 0.90)
+    result_rationale: 'Accumulate 模式通过保留所有历史数据稀释了 synthetic contamination 的有效比例——
+      到 gen 10，累积数据中真实数据仍占相当比例（不像 replace 模式每代都是 α=0.50 fresh synthetic）。Fu et al.
+      的理论预测 accumulate 最终收敛到 fixed point 而非 diverge，empirically 表现为 collapse 速度减慢
+      ~40%。 Canary ranking 和 lead 保持（1 gen）因为 lead 的机制（指标类型的响应速度差异） 不依赖 data strategy。但
+      effect size 降低因为 slower collapse = 更平缓的趋势 = 更弱的 temporal precedence signal。
+      这个实验的主要价值是 (1) 验证 Fu et al. 理论预测, (2) 证明 canary 行为对 data strategy robust, (3)
+      为 practitioner 提供 actionable recommendation（accumulate 优于 replace）。
+
+      '
+    tables:
+    - name: 'Table 8: Accumulate vs Replace (α=0.50)'
+      columns:
+      - strategy
+      - gen10_distinct_1
+      - gen10_ppl
+      - collapse_rate
+      - ECE→d1_lead
+      - effect_r
+      rows:
+      - - replace
+        - 0.108
+        - 185.3
+        - 1.0x (baseline)
+        - 1
+        - 0.9
+      - - accumulate
+        - 0.135
+        - 112.4
+        - 0.6x
+        - 1
+        - 0.82
+    figures_description:
+    - 'Fig S7: Accumulate vs Replace trajectories. 4 metrics × 2 strategies. Accumulate
+      curves visibly flatter.'
+    analysis: Accumulate 减缓 collapse 但不消除——符合 Fu et al. 的收敛到 degraded fixed point
+      的预测。Canary lead 保持是 positive result，说明监控策略对 data pipeline 选择 robust。 Effect
+      size 降低是 expected tradeoff。Paper 中定位为 supplementary ablation， 不作为主要贡献。
+  review_report: '---
+
+    dream_id: dream_20260514T184925
+
+    tier: median
+
+    overall_score: 3/6 Weak Reject
+
+    timestamp: 2026-05-14T19:25:55.713107+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: "Mapping the Predictability Boundary of Model Collapse: Calibration
+    Canaries and Regime-Dependent Early Warning in Iterative Synthetic Data Training"
+
+
+    **Review mode**: full (2 reviewers, complete roundtable)
+
+
+    ---
+
+
+    ## R1: Methods & Experiments
+
+
+    ### Summary
+
+    The paper proposes a Toda-Yamamoto (TY) panel temporal precedence framework to
+    identify which metrics predict model collapse in iterative self-consuming training
+    across contamination regimes. The experimental coverage spans 8 experiments (α-sweep,
+    methodological ablation, cross-domain, scale spot-check, extended run, CRS intervention,
+    data strategy ablation). However, the core statistical methodology is applied
+    to extremely short time series (10–20 data points), raising fundamental concerns
+    about inference validity.
+
+
+    ### Strengths
+
+    - S1: **Systematic experimental design.** All 8 planned experiments are reported,
+    covering a well-structured matrix (4 canary families × 2+ targets × 4 α values
+    × 3–4 seeds).
+
+    - S2: **Honest null-result reporting.** Two of four canary families (effective_rank,
+    self_BLEU) fail across all conditions. These are reported in full with plausible
+    failure mechanisms rather than omitted.
+
+    - S3: **Methodological ablation is independently valuable.** Demonstrating that
+    naive Pearson correlation inflates significance substantially on non-stationary
+    training trajectories (Table 3) is a genuine cautionary contribution for future
+    model collapse studies.
+
+    - S4: **Phase diagram framing is intellectually honest.** The paper explicitly
+    maps where canary signals work and where they fail, rather than overclaiming universal
+    predictive power.
+
+
+    ### Weaknesses
+
+    - W1: **(Critical) Degrees-of-freedom issue with TY on 10-point series.** A bivariate
+    VAR(k + d_max) with k=2 has ~14 parameters. With T=10, the effective sample size
+    for estimation is 6–7 points — severely over-parameterized. The Wald test''s χ²
+    approximation requires T >> parameters, which is not satisfied. This undermines
+    all p-values in Tables 1–2. The 20-gen extended run partially alleviates this
+    but covers only α=1.0 with 2 seeds.
+
+    - W2: **(Major) No multiple comparisons correction.** Table 2 reports TY p-values
+    for 32 tests (8 canary-target pairs × 4 α). No Bonferroni, Holm, or FDR correction
+    is applied. The phase boundary claim relies on marginal associations (p≈0.04 at
+    α=0.25) that would not survive correction.
+
+    - W3: **(Major) "≥2/3 seeds significant" threshold is ad hoc.** With only 3 seeds,
+    2/3 is the minimum possible majority. Given inflated Type I error from W1, the
+    joint false-positive probability is non-trivial. No formal panel test or meta-analytic
+    combination is used.
+
+    - W4: **(Major) Effect size "r" undefined.** The paper reports r > 0.88–0.94 without
+    defining what "r" measures. If this is peak cross-correlation at optimal lag,
+    it conflates shared non-stationary trend with genuine lead-lag structure and is
+    not a meaningful temporal precedence effect size.
+
+    - W5: **(Moderate) CRS intervention baseline is confounded.** CRS triggers on
+    ECE threshold and reduces α, but a simple reactive baseline (check current-generation
+    ECE, reduce α when it rises) would trigger at the same time. The value of temporal
+    precedence prediction over reactive monitoring is not demonstrated.
+
+
+    ### Questions for Authors
+
+    - Q1: Can you validate TY p-values against bootstrap-based p-values or Monte Carlo
+    simulations under the null at T=10?
+
+    - Q2: Can you provide raw per-seed metric trajectories for independent verification?
+
+    - Q3: What is the formal definition of effect size "r"?
+
+    - Q4: Why does CRS require lead-time prediction rather than simple reactive monitoring?
+
+
+    ### Soundness: 2/4 | Presentation: 3/4 | Overall: 3/6 (Weak Reject) | Confidence:
+    4/5
+
+
+    ---
+
+
+    ## R2: Novelty & Related Work
+
+
+    ### Summary
+
+    The paper extends Du et al.''s informal observation that ECE precedes accuracy
+    degradation in SC training into a systematic multi-metric, multi-regime framework
+    using Toda-Yamamoto temporal precedence testing. The contribution is methodologically
+    well-conceived but primarily incremental in novelty — formalizing and quantifying
+    a qualitatively known phenomenon rather than uncovering a fundamentally new one.
+
+
+    ### Strengths
+
+    - S1: **Well-structured research question.** The three-part decomposition — "which
+    metrics, how far ahead, under what conditions" — provides a clean organizational
+    framework for a space that prior work left informal.
+
+    - S2: **The naive-vs-TY false-positive finding is broadly valuable.** Demonstrating
+    ~20% spurious significance from naive correlation on non-stationary training metrics
+    is a useful methodological warning independent of the specific canary results.
+
+    - S3: **Regime-dependent framing turns null results into evidence.** Presenting
+    the canary→perplexity failure as a mapped boundary rather than a limitation is
+    scientifically mature.
+
+    - S4: **Accumulate-extends-lead-time is a novel minor finding.** Connecting data
+    strategy to monitoring window width is new and practically relevant.
+
+
+    ### Weaknesses
+
+    - W1: **(Major) Incremental over Du et al.** The headline finding — ECE leads
+    downstream degradation — was already observed by Du et al. The extensions (formal
+    TY testing, token entropy as second canary, regime dependence, panel comparison)
+    are valuable but quantitatively refine a known qualitative observation. The distance
+    between "informal observation" and "formal TY test on the same phenomenon" is
+    narrower than the paper''s framing implies.
+
+    - W2: **(Major) "Phase diagram" framing overstated.** The paper has 4 discrete
+    α values on a single axis with a "boundary" interpolated between α=0.50 and α=0.75.
+    This is an α-sweep with a threshold observation, not a phase diagram in the physics
+    sense. The precision claim of "α* ≈ 0.60" is unjustified; the data supports only
+    "somewhere in [0.50, 0.75]." "Regime-dependent analysis" would be a more honest
+    descriptor.
+
+    - W3: **(Major) Critical missing related work.** The tipping-point early-warning
+    literature (Scheffer et al., "Early-warning signals for critical transitions,"
+    Nature 2009; Science 2012) is the intellectual ancestor of this work and is uncited.
+    That body of work established general conditions under which early-warning indicators
+    succeed or fail — precisely this paper''s central question applied to a different
+    domain.
+
+    - W4: **(Moderate) TY is off-the-shelf, not methodological innovation.** Listing
+    the TY procedure as a "methodological contribution" overstates the case. TY is
+    a 1995 econometric technique. The contribution is appropriate application and
+    the empirical finding that naive methods fail 20% of the time, not method development.
+
+    - W5: **(Moderate) Narrow validation.** Two Pythia models (same family/tokenizer/pretraining),
+    two English text datasets, autoregressive LMs only. Claims about the mechanism
+    being "model-intrinsic" rest on one cross-domain check at a single α value. At
+    minimum, one architecturally distinct model is needed.
+
+    - W6: **(Moderate) Additional missing references.** Seddik et al. (2024) on theoretical
+    collapse in Gaussian mixtures; Gerstgrasser et al. (2024) on accumulation strategies;
+    Ovadia et al. (NeurIPS 2019) on calibration under distribution shift; Tank et
+    al. (IEEE TPAMI 2022) on neural Granger causality.
+
+    - W7: **(Minor) CRS is trivially obvious.** Monitor ECE, reduce α when it crosses
+    threshold — this is the most obvious intervention. Giving it a subsection and
+    abstract prominence is disproportionate.
+
+
+    ### Questions for Authors
+
+    - Q1: How does the predictability boundary relate to critical slowing down (Scheffer
+    et al.)?
+
+    - Q2: What is the incremental actionable insight beyond Du et al.''s "monitor
+    ECE" recommendation?
+
+    - Q3: Can you provide theoretical or empirical argument for why α* generalizes
+    beyond Pythia + WikiText?
+
+
+    ### Novelty: 2/4 | Significance: 3/4 | Overall: 3/6 (Weak Reject) | Confidence:
+    4/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    R1 and R2 exchanged reviews. Key observations:
+
+
+    - **Full agreement on overall assessment (3/6, Weak Reject)** — arrived at independently.
+
+    - **Complementary concerns**: R1''s statistical rigor issues (DOF, multiple comparisons,
+    bootstrap validation) and R2''s novelty/positioning concerns (incremental over
+    Du et al., missing Scheffer et al., phase diagram overstatement) are orthogonal
+    and mutually reinforcing.
+
+    - **Shared positive assessment**: Both highlight honest null-result reporting
+    and the methodological ablation as genuine value.
+
+    - **Shared CRS concern**: R1 flags the confounded baseline; R2 flags the trivial
+    intervention design. Both agree CRS prominence is disproportionate.
+
+
+    ### Step 3: Convergence
+
+
+    After discussion, reviewers converge on the following:
+
+
+    1. **The research question is important and well-posed.** Understanding which
+    metrics predict collapse and under what conditions is a valuable question for
+    the model collapse community.
+
+    2. **The framework design is sound in conception** but the statistical execution
+    has serious gaps (DOF at T=10, no multiple comparisons correction, undefined effect
+    size).
+
+    3. **Novelty is incremental** — the paper''s primary contribution is formalizing
+    Du et al.''s observation with appropriate (but off-the-shelf) time-series methodology.
+
+    4. **The strongest contribution is the methodological ablation** (naive vs TY,
+    20% overturned), which provides an independently valuable cautionary result.
+
+    5. **The paper has a clear path to improvement**: longer generation horizons (20+
+    as default), bootstrap-calibrated p-values, FDR correction, finer α grid near
+    boundary, missing references (Scheffer et al.), and an architecturally distinct
+    model would address the main concerns.
+
+    6. **The phase diagram framing should be softened** to "regime-dependent analysis"
+    — the data has 4 α values, insufficient for phase-diagram language.
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Overall Score: 3/6 (Weak Reject)**
+
+
+    **Verdict**: The paper addresses a genuinely important question — mapping the
+    predictability boundaries of model collapse — with a well-designed experimental
+    framework. The honest reporting of negative results and the methodological ablation
+    showing naive correlation''s unreliability are real contributions. However, two
+    interacting categories of concern prevent acceptance:
+
+
+    **(A) Statistical rigor (R1):** The Toda-Yamamoto procedure on 10-point time series
+    operates outside its validity regime. With ~14 VAR parameters and 6–7 effective
+    observations, the χ² approximation underlying all reported p-values is unreliable.
+    The absence of multiple comparisons correction is problematic given that the phase
+    boundary claim hinges on marginal p-values (p≈0.04) at α=0.25. The effect size
+    metric is undefined. These are not minor presentation issues — they undermine
+    confidence in the quantitative claims.
+
+
+    **(B) Incremental novelty (R2):** The headline finding (ECE leads collapse) was
+    qualitatively established by Du et al. The paper''s extensions — formal testing,
+    second canary family, regime characterization — are valuable but the combined
+    novelty falls below the threshold for a top venue. The missing connection to the
+    tipping-point early-warning literature (Scheffer et al.) is a significant positioning
+    gap. The "phase diagram" framing overpromises relative to 4 discrete α values.
+
+
+    **Key strengths worth preserving in revision:**
+
+    - Systematic canary comparison with honest negative results
+
+    - Methodological ablation showing 20% spurious associations
+
+    - Regime-dependent framing of predictability
+
+
+    **Required for revision:**
+
+    1. Bootstrap or permutation-based p-values to validate TY at T=10 (or increase
+    T to 20+ as default)
+
+    2. FDR correction across the full test battery
+
+    3. Formal definition and justification of effect size metric
+
+    4. Cite and position within Scheffer et al.''s tipping-point framework
+
+    5. Finer α grid (6+ values) to justify "phase diagram/boundary" language, or soften
+    to "regime analysis"
+
+    6. At least one non-Pythia model architecture
+
+    7. Reactive intervention baseline for CRS comparison
+
+    8. Soften "phase diagram" to "regime-dependent analysis" unless finer grid is
+    provided
+
+
+    **Scores Summary:**
+
+
+    | Dimension | R1 | R2 | Consolidated |
+
+    |-----------|----|----|-------------|
+
+    | Soundness | 2/4 | — | 2/4 |
+
+    | Novelty | — | 2/4 | 2/4 |
+
+    | Significance | — | 3/4 | 2.5/4 |
+
+    | Presentation | 3/4 | — | 3/4 |
+
+    | Overall | 3/6 | 3/6 | **3/6 (Weak Reject)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dream_reports/dream_20260514T184925/worst/paper.pdf
+  imagined_experiments:
+  - name: α-sweep predictability phase diagram
+    plan_id: plan_001
+    description: 'α∈{0.25, 0.50, 0.75} × Pythia-410M × WikiText-103 × 10 gen × 3 seeds，
+      测试 canary→diversity 和 canary→perplexity 的 lead-lag 在不同 contamination regime
+      下的表现。
+
+      '
+    expected_results:
+      alpha_025_ece_distinct1_lag_mean: -0.67
+      alpha_025_ece_distinct1_lag_std: 0.58
+      alpha_025_ece_distinct1_r_mean: 0.78
+      alpha_025_ece_distinct1_p_significant_seeds: 1
+      alpha_025_entropy_distinct1_lag_mean: -0.33
+      alpha_025_entropy_distinct1_p_significant_seeds: 1
+      alpha_025_ece_perplexity_lag_mean: 0.0
+      alpha_025_ece_perplexity_p_significant_seeds: 0
+      alpha_025_entropy_perplexity_p_significant_seeds: 0
+      alpha_025_gen10_perplexity: 42.5
+      alpha_025_gen10_distinct1: 0.088
+      alpha_025_gen10_entropy: 2.85
+      alpha_025_gen10_ece: 0.045
+      alpha_050_ece_distinct1_lag_mean: -1.0
+      alpha_050_ece_distinct1_lag_std: 0.82
+      alpha_050_ece_distinct1_r_mean: 0.82
+      alpha_050_ece_distinct1_p_significant_seeds: 2
+      alpha_050_entropy_distinct1_lag_mean: -0.67
+      alpha_050_entropy_distinct1_p_significant_seeds: 2
+      alpha_050_ece_perplexity_lag_mean: 0.0
+      alpha_050_ece_perplexity_p_significant_seeds: 0
+      alpha_050_entropy_perplexity_p_significant_seeds: 0
+      alpha_050_gen10_perplexity: 78.3
+      alpha_050_gen10_distinct1: 0.082
+      alpha_050_gen10_entropy: 2.45
+      alpha_050_gen10_ece: 0.12
+      alpha_075_ece_distinct1_lag_mean: -1.33
+      alpha_075_ece_distinct1_lag_std: 0.58
+      alpha_075_ece_distinct1_r_mean: 0.86
+      alpha_075_ece_distinct1_p_significant_seeds: 2
+      alpha_075_entropy_distinct1_lag_mean: -1.0
+      alpha_075_entropy_distinct1_p_significant_seeds: 3
+      alpha_075_ece_perplexity_lag_mean: 0.0
+      alpha_075_ece_perplexity_p_significant_seeds: 0
+      alpha_075_entropy_perplexity_p_significant_seeds: 0
+      alpha_075_gen10_perplexity: 285.6
+      alpha_075_gen10_distinct1: 0.074
+      alpha_075_gen10_entropy: 1.78
+      alpha_075_gen10_ece: 0.28
+      phase_boundary_alpha_star: null
+      canary_perplexity_significant_any_alpha: false
+      cross_seed_consistency_mean: 2.0
+    result_rationale: '在 worst 档下，canary→perplexity decoupling 是 fundamental 而非 regime-dependent。
+      原因：perplexity 退化由模型权重空间的 mode collapse 驱动（高频 token 概率集中）， 而 diversity collapse
+      由生成分布的 support shrinkage 驱动——这是两个独立的退化通道。 低 α 下 diversity 退化本身变慢（真实数据持续注入维持分布
+      support），导致 canary→diversity 的 lead time 缩短（从 α=1.0 的 ~1.5 gen 缩至 α=0.25 的 <1
+      gen）且 signal-to-noise 恶化。 α=0.25 下 10 代训练中 distinct_1 仅下降 ~11%，ECE 变化更小，cross-correlation
+      在如此 gentle 的曲线上无法可靠检测 lead-lag。α=0.50 下退化更明显但 3 seeds 仍有 1 个因初始化 差异不显著。perplexity
+      在所有 α 下都走独立轨迹——α=0.25 下几乎不退化，α=0.75 下退化 但与 diversity 不同步、无 lead-lag 结构。这使得 phase
+      diagram 无法画出有意义的 α* 边界， 只能描述为 ''decoupling across all regimes''。
+
+      '
+    tables:
+    - name: 'Table 2: Cross-correlation summary across α regimes'
+      description: '行: canary-target 对 (ece→distinct_1, entropy→distinct_1, ece→ppl,
+        entropy→ppl)； 列: α=0.25/0.50/0.75/1.0，每格显示 mean_lag ± std, mean_r, #significant_seeds/total。
+        关键观察：canary→diversity 行从左到右 lag 绝对值递增、显著 seed 数递增； canary→perplexity 行全为 ''—''（不显著）。
+
+        '
+    - name: 'Table 3: Metric trajectories at generation 10 across α'
+      description: '行: α=0.25/0.50/0.75/1.0；列: perplexity, token_entropy, ece, distinct_1,
+        distinct_2。 展示 perplexity 在低 α 下几乎不退化而 diversity 已开始下滑的 decoupling 证据。
+
+        '
+    figures_description:
+    - 'Fig 2: Decoupling diagram (替代原 predictability phase diagram)。x 轴 α，y 轴 ''lead
+      time (gen)''。两条带：canary→diversity (蓝，带 seed 误差棒) 从 α=0.25 的 ~0.5 gen 升至 α=1.0
+      的 ~1.5 gen；canary→perplexity (红，虚线) 在 y=0 处平坦，标注 ''n.s.''。无 α* 转折点。'
+    - 'Fig 3: 3×3 小图阵列 (α × seed)，每图画 normalized entropy/ece/distinct_1/perplexity
+      四条轨迹。展示 seed-to-seed variability：α=0.25 下部分 seed 的 canary 和 diversity 几乎平坦、无明显
+      lead 结构。'
+    - 'Fig S1: 每个 α 的 cross-correlogram heatmap (lag vs metric pair)，显示 canary→perplexity
+      在所有 lag 处均无显著峰。'
+    analysis: 'α-sweep 在 worst 档下产生的核心 finding 是 negative result：canary→perplexity
+      lead 在任何 α 下都不存在。这否定了原始 Claim 2 的乐观假设（''低 α 下 canary→perplexity 恢复''）。 但 canary→diversity
+      lead 确实存在，只是 fragile——低 α 下 SNR 不足、跨 seed 不一致。 叙事转向：collapse 不是 monolithic process，而是至少两个独立通道（diversity
+      channel 和 quality channel）以不同速率、不同机制退化。Canary 指标（ECE/entropy）仅 track diversity
+      channel 是因为它们测量的是输出分布的集中度（与 support shrinkage 直接相关）， 而 perplexity 测量的是对 held-out
+      真实数据的 likelihood（与权重退化相关）。 这个 decoupling 本身是 novel finding，可以用 information-theoretic
+      argument 支撑： entropy 和 ECE 是生成分布的 intrinsic 统计量，而 perplexity 是 cross-distribution
+      统计量， 两者没有必然的 temporal coupling。
+
+      '
+  - name: '方法论 ablation: naive vs Toda-Yamamoto'
+    plan_id: plan_002
+    description: '在 MVP 4-seed (α=1.0) + α-sweep 数据上对比 (i) naive Pearson lag-corr
+      (ii) 差分后 cross-corr (iii) threshold-based lead time (iv) Toda-Yamamoto panel
+      temporal precedence，量化伪显著关联被推翻比例。
+
+      '
+    expected_results:
+      naive_significant_pairs_alpha1: 24
+      ty_significant_pairs_alpha1: 18
+      naive_overturned_by_ty_alpha1: 6
+      overturned_pct_alpha1: 25.0
+      naive_overturned_by_ty_good_canaries_alpha1: 1
+      overturned_pct_good_canaries_alpha1: 3.1
+      naive_significant_pairs_sweep: 36
+      ty_significant_pairs_sweep: 28
+      naive_overturned_by_ty_sweep: 5
+      overturned_pct_sweep: 13.9
+      ty_naive_agreement_rate_overall: 0.88
+      ty_naive_agreement_rate_good_canaries: 0.94
+      ty_canary_diversity_significance_rate: 0.55
+      ty_granger_direction_consistent: true
+    result_rationale: '在 worst 档下，naive 与 Toda-Yamamoto 的一致率 >85%，方法论 ablation 成为
+      negative result。 原因有二：(1) 在 α=1.0 的强 collapse regime 下，趋势极其单调（entropy 从 3.2
+      直降到 1.3）， 即使有伪回归风险，方向和 ranking 不会被推翻——趋势太强以至于方法论差异被淹没。 (2) 在低 α 下，信号本身就弱（ECE
+      变化 <0.05），naive 和 robust 方法都给出不显著—— agreement 来自双方都检测不到信号，而非双方都检测到相同信号。被推翻的
+      case 集中在 effective_rank/self_bleu 等非单调指标上（这些指标的 naive correlation 因非平稳性而虚高），
+      但这些指标已在 MVP 中标记为失败，推翻它们不增加信息量。对于 ECE/entropy→distinct_1/2 这些核心对，推翻率仅 ~3%——practitioner
+      用 naive Pearson 就够了。Toda-Yamamoto 的 TY_significance_rate 仅 55% 是因为低 α 下时间序列太短（10
+      代）且变化太温和， 即使存在真实 lead 也通不过严格的 chi-square 检验。
+
+      '
+    tables:
+    - name: 'Table 4: Method agreement matrix'
+      description: '上半部：α=1.0，行为 metric pair，列为四种方法的结论 (significant/not, lag estimate)。
+        下半部：α-sweep 汇总，同样格式。最后一行汇总 agreement rate。 关键 takeaway：核心 canary 对的 agreement
+        >94%，差异集中在已知失败指标。
+
+        '
+    - name: 'Table S2: Individual pair-wise comparison detail'
+      description: '完整 48-row 表 (每个 canary-target-α-seed 组合一行)，标注 naive 给出显著而 TY 推翻的
+        case。
+
+        '
+    figures_description:
+    - 'Fig 4: Scatter plot，x 轴 naive Pearson r，y 轴 TY chi-square test statistic。核心
+      canary 对 (蓝点) 聚集在右上角 (双方显著)；失败指标 (红×) 散布在右下 (naive 显著但 TY 不显著)；低 α 弱信号 (灰点)
+      在左下 (双方不显著)。对角带标注 ''88% agreement zone''。'
+    analysis: '方法论 ablation 在 worst 档下的核心结论是 negative result：对于行为良好的 canary 指标 (ECE,
+      token_entropy) 和行为良好的 target (distinct_1/2)，naive Pearson lag-correlation 与
+      Toda-Yamamoto 给出本质相同的结论。正面解读是 practitioner-friendly：不需要复杂的 时间序列因果推断工具，简单的 cross-correlation
+      在 iterative training 的单调退化场景下 就足够可靠。但这削弱了 paper 的 Claim 3（methodological rigor
+      的独立贡献），叙事上 需要 reframe 为 ''we rigorously validated that simple methods suffice
+      for this problem class'' 而非 ''we provide a superior methodology''。对 AAAI 审稿人来说，systematic
+      negative result 本身有方法论价值，但需要更深的 theoretical argument（为什么在此问题类下 spurious regression
+      不是问题——可能因为 training dynamics 的单调性提供了 natural detrending）。
+
+      '
+  - name: MVP 结果 formalization (max_lag=7)
+    plan_id: plan_003
+    description: '将 4-seed 100% SC 结果按 paper 格式整理，max_lag 从 5 增大到 7 重跑验证截断效应， signal
+      onset 用 2σ 标准重新定义。
+
+      '
+    expected_results:
+      ece_distinct1_lag_maxlag7_mean: -2.5
+      ece_distinct1_lag_maxlag7_std: 0.58
+      ece_distinct2_lag_maxlag7_mean: -1.25
+      ece_distinct2_lag_maxlag7_std: 0.5
+      entropy_distinct1_lag_maxlag7_mean: -1.25
+      entropy_distinct1_lag_maxlag7_std: 0.5
+      entropy_perplexity_lag_maxlag7_mean: -5.5
+      entropy_perplexity_lag_maxlag7_p_mean: 0.09
+      entropy_perplexity_lag_maxlag7_significant_seeds: 1
+      ece_onset_gen_mean: 1.5
+      entropy_onset_gen_mean: 1.75
+      distinct1_onset_gen_mean: 3.0
+      distinct2_onset_gen_mean: 3.25
+      perplexity_onset_gen_mean: 2.5
+      onset_based_lead_ece_distinct1: 1.5
+      onset_based_lead_entropy_distinct1: 1.25
+    result_rationale: '在 worst 档下，扩大 max_lag 不会 qualitatively 改变结论：canary→diversity
+      lead 稍有 调整（ece→distinct_1 从 -2.25 变为 -2.5），但 canary→perplexity 仍不显著。 原因：10 代数据只有
+      10 个数据点，max_lag=7 意味着仅 3 个有效自由度用于检验， 统计 power 极低。entropy→perplexity 的 lag=-5.5
+      看起来像是在极少数据点上的 噪声拟合——1/4 seeds 碰巧 p<0.05 是 Type I error 的预期频率。2σ onset 分析 会给出更直观的
+      lead time 估计（~1.5 gen for ece→distinct_1），与 cross-correlation 结果大致一致但 confidence
+      interval 更宽。这个实验在 worst 档下主要是 housekeeping—— 不改变任何核心结论，只是让 reporting 更严谨。
+
+      '
+    tables:
+    - name: 'Table 1: Lead-lag summary (max_lag=5 vs max_lag=7)'
+      description: '对比表，每行一个 canary-target 对，列为 max_lag=5 和 max_lag=7 下的 lag, r, p。
+        展示结论稳定性——核心 canary→diversity 对不受 max_lag 影响。
+
+        '
+    - name: 'Table S1: 2σ onset generation for each metric × seed'
+      description: '4 seeds × 7 metrics，每格标注 onset generation (first gen where metric
+        deviates >2σ from gen0)。Lead time = target_onset - canary_onset。
+
+        '
+    figures_description:
+    - 'Fig 1: 4-panel (一个 per seed) 展示所有指标的 normalized 轨迹 (gen 0-10)。垂直虚线标注各指标的 2σ
+      onset。ECE/entropy 的 onset 线一致在 distinct_1/2 之前 1-2 gen。Perplexity onset 与 canary
+      onset 无一致 ordering。'
+    analysis: 'Formalization 确认 MVP 结论的稳定性。在 worst 档下，max_lag=7 没有揭示被截断的 更长 lead——这是预期的，因为
+      10-point 时间序列本身不支持可靠的长 lag 估计。 2σ onset 方法提供了 model-free 的 lead time 估计，与 cross-correlation
+      方法 给出一致结论（~1.5 gen lead for canary→diversity），增强了结果的 robustness。 但 onset 方法也暴露了
+      distinct_3 的不稳定性（onset gen 跨 seed 变化 ±2 gen）， 支持将 distinct_3 放入 supplementary
+      的决定。
+
+      '
+  - name: C4 cross-domain validation
+    plan_id: plan_004
+    description: 'C4 数据集 × Pythia-410M × α=0.50 × 3 seeds × 10 gen，验证 canary ranking
+      和 lead-lag 结构是否跨域转移。
+
+      '
+    expected_results:
+      c4_ece_distinct1_lag_mean: -0.33
+      c4_ece_distinct1_lag_std: 0.58
+      c4_ece_distinct1_r_mean: 0.72
+      c4_ece_distinct1_p_significant_seeds: 1
+      c4_entropy_distinct1_lag_mean: -0.67
+      c4_entropy_distinct1_p_significant_seeds: 1
+      c4_ece_perplexity_p_significant_seeds: 0
+      c4_gen10_perplexity: 62.8
+      c4_gen10_distinct1: 0.085
+      c4_gen10_entropy: 2.62
+      c4_gen10_ece: 0.088
+      c4_canary_ranking_preserved: false
+      c4_entropy_leads_ece: true
+    result_rationale: '在 worst 档下，C4 上 canary ranking 不保持。原因：C4 是 web-crawled 数据，
+      分布比 WikiText-103 (Wikipedia) 更 heterogeneous。Pythia-410M 在 C4 subsets 上的 合成训练中，模型不会像在
+      WikiText 上那样快速收敛到窄 mode——C4 的多样性提供了 natural regularization，使 diversity collapse
+      更慢。ECE 在 C4 上变化更小是因为 模型 calibration 在 diverse 数据上退化更慢（模型在不同 domain 间分散注意力， 不会过度自信于某一
+      domain）。而 token_entropy 可能反而变化更明显（因为 C4 的 long-tail token distribution 比 Wikipedia
+      更脆弱——合成训练会更快剪掉 rare domain 的 tokens）。这导致 canary ranking 反转：WikiText 上 ECE 是更好的
+      canary， C4 上 entropy 更敏感。更根本地，α=0.50 下 C4 的退化幅度太小（gen10 perplexity 仅从 ~30 升至
+      ~63，distinct_1 仅下降 ~15%），cross-correlation 在这么 gentle 的 曲线上几乎没有 statistical
+      power 检测 lead-lag。
+
+      '
+    tables:
+    - name: 'Table 5: WikiText vs C4 canary behavior comparison (α=0.50)'
+      description: '行: metric pair，列: WikiText (lag, r, sig seeds) vs C4 (lag, r,
+        sig seeds)。 标注 ranking 反转（ECE vs entropy 哪个 lead 更大）。
+
+        '
+    figures_description:
+    - 'Fig 5: 双列对比 (WikiText 左, C4 右)。上行: normalized 轨迹；下行: cross-correlogram。展示 C4
+      上信号更弱、ranking 不同。'
+    analysis: 'Cross-domain validation 在 worst 档下给出 partial negative result：canary→diversity
+      的存在性跨域保持（entropy 仍 lead distinct_1），但 canary 的 ranking 和 lead time 不保持。这意味着
+      paper 不能 claim ''ECE is the best canary''——最佳 canary 是 domain-dependent。叙事上可以
+      reframe 为 ''the canary phenomenon is real but the optimal canary instrument
+      is data-dependent''，这实际上 strengthens the ''collapse taxonomy'' 论文——不同 data distribution
+      上 collapse 的 geometry 不同。但这也意味着 不能给 practitioners 一个简单的 ''use ECE as your canary''
+      建议。
+
+      '
+  - name: Pythia-1.4B scale spot-check
+    plan_id: plan_005
+    description: 'Pythia-1.4B × α=0.50 × 3 seeds × 10 gen，验证 canary lead 是否跨规模保持。
+
+      '
+    expected_results:
+      scale_ece_distinct1_lag_mean: -0.33
+      scale_ece_distinct1_lag_std: 0.58
+      scale_ece_distinct1_r_mean: 0.76
+      scale_ece_distinct1_p_significant_seeds: 1
+      scale_entropy_distinct1_lag_mean: -0.33
+      scale_entropy_distinct1_p_significant_seeds: 1
+      scale_gen10_perplexity: 55.2
+      scale_gen10_distinct1: 0.087
+      scale_gen10_entropy: 2.71
+      scale_gen10_ece: 0.075
+      scale_collapse_rate_vs_410m: 0.65
+      scale_canary_lead_preserved: false
+    result_rationale: '在 worst 档下，1.4B 上 canary ranking 不保持。原因：更大的模型有更多参数来 ''absorb''
+      合成数据的 distribution shift——1.4B 在 α=0.50 下 10 代内不会产生 足够强的 collapse signal 来检测
+      lead-lag。gen10 perplexity 仅从 ~22 升至 ~55 (×2.5 而非 410M 的 ×2.9)，distinct_1 下降仅
+      ~13%。这比 410M 的退化更温和， cross-correlation 的 statistical power 更低。此外，1.4B 的 capacity
+      使得 ECE 变化极小（模型 well-calibrated 的时间更长），而 entropy 变化也更缓慢——两个 canary 的 lead 都缩短到
+      <1 gen 且不显著。本质上，α=0.50 × 10 gen 对 1.4B 来说 exposure 不足——可能需要 α=0.75 或 20+ gen
+      才能看到可靠的 lead-lag。 但我们 budget 只够 spot-check 一个条件，选了 α=0.50 后无法补充。
+
+      '
+    tables:
+    - name: 'Table 6: Scale comparison (410M vs 1.4B, α=0.50)'
+      description: '行: metric pair，列: 410M (lag, r, sig seeds) vs 1.4B (lag, r, sig
+        seeds)。 最后一行: collapse rate ratio (1.4B/410M)。
+
+        '
+    figures_description:
+    - 'Fig 6: 双列对比 (410M 左, 1.4B 右)。Normalized 轨迹展示 1.4B 的 collapse 更慢更温和，canary onset
+      更晚。注释标注 ''1.4B at gen 10 ≈ 410M at gen 6-7 in collapse severity''。'
+    analysis: 'Scale check 在 worst 档下给出 negative result：canary lead 不跨规模保持 （在 α=0.50
+      × 10 gen 的实验窗口内）。但这不一定意味着 canary 在大模型上失效—— 可能只是 exposure 不足。Limitation section
+      需要诚实讨论：我们无法区分 ''canary lead disappears at scale'' 和 ''canary lead exists but
+      our experiment window is too short to detect it at scale''。建议在 paper 中标注为 inconclusive
+      而非 negative， 并指出 scaling trend（collapse rate 与 model size 的关系）本身是 useful data
+      point for the collapse taxonomy。如果 worst 档成真，这个实验主要贡献是 calibrating expectations
+      for practitioners：410M-level results 不能直接 extrapolate to larger models。
+
+      '
+  - name: Extended run (20 gen, max_lag=10)
+    plan_id: plan_006
+    description: 'Pythia-410M × α=1.0 × 20 gen × 2 seeds，验证 entropy→perplexity 的 lag=-5
+      是否为截断伪影，max_lag 增大到 10。
+
+      '
+    expected_results:
+      ext_entropy_perplexity_lag_maxlag10_seed1: -7.0
+      ext_entropy_perplexity_lag_maxlag10_seed2: -3.0
+      ext_entropy_perplexity_lag_maxlag10_mean: -5.0
+      ext_entropy_perplexity_lag_maxlag10_std: 2.83
+      ext_entropy_perplexity_r_mean: 0.68
+      ext_entropy_perplexity_p_mean: 0.14
+      ext_entropy_perplexity_p_significant_seeds: 0
+      ext_ece_distinct1_lag_maxlag10_mean: -2.0
+      ext_gen15_perplexity: 2850.0
+      ext_gen20_perplexity: 8420.0
+      ext_gen15_entropy: 0.85
+      ext_gen20_entropy: 0.62
+      ext_gen15_distinct1: 0.042
+      ext_gen20_distinct1: 0.028
+      ext_entropy_saturation_gen: 8
+      ext_perplexity_saturation: false
+    result_rationale: '在 worst 档下，extended run 揭示 lag=-5 确实是伪影但不是截断伪影——是 saturation
+      伪影。原因：entropy 和 ECE 在 gen 8-10 后接近物理下界（entropy→0，ECE→~0.5）， 变化速率趋零。而 perplexity
+      持续指数增长无上界。这意味着在 gen 10 之后， 两个时间序列的形状 fundamentally 不同（一个饱和一个发散），cross-correlation
+      在 gen 10+ 的数据上无法给出有意义的 lag 估计。lag=-5 在 MVP 中的出现是因为 entropy 的早期快速下降阶段 (gen 1-5)
+      与 perplexity 的后期快速上升阶段 (gen 5-10) 恰好在 lag=5 处对齐——但这是 curve shape coincidence
+      而非因果 lead。max_lag=10 下两个 seeds 给出 -7 和 -3（std=2.83），进一步说明这个 lag 没有 seed-stable
+      的 含义。20 gen 数据的真正价值是展示 collapse trajectory 的完整形状：entropy saturates → distinct_n
+      continues to decline slowly → perplexity diverges。 三个通道的 asymptotic behavior
+      完全不同，强化 decoupling narrative。
+
+      '
+    tables:
+    - name: 'Table S3: Extended trajectory (gen 0-20) key metrics'
+      description: '20 行 × 6 列 (gen, perplexity, entropy, ece, distinct_1, distinct_2)，
+        标注 saturation 转折点。
+
+        '
+    figures_description:
+    - 'Fig S2: 三个 panel。(a) 0-20 gen 的 raw 轨迹 (log scale for perplexity)。(b) 各指标的
+      per-generation 变化率 (Δmetric/gen)——展示 entropy 的变化率在 gen 8 后趋零而 perplexity 变化率持续增长。(c)
+      Cross-correlogram for lag -10 to +10——无显著峰。'
+    analysis: 'Extended run 在 worst 档下的核心价值不是解决 max_lag 截断问题（答案是 ''lag=-5 本来就不 real''），而是提供
+      collapse trajectory 的完整 anatomical picture。 Entropy/ECE saturation 而 perplexity
+      divergence 的现象是 decoupling thesis 的 最强证据：这两类指标测量的是不同的 quantity，它们的动力学 fundamentally
+      不同。 这支持 theoretical argument：canary 指标是生成分布的 marginal statistics， 在分布 support
+      收缩到某个 threshold 后就不再变化；而 perplexity 是 cross-entropy against ground truth，只要模型继续偏离真实分布就会持续增长。这个
+      asymmetry 是 decoupling 的 information-theoretic root cause。
+
+      '
+  - name: Intervention 实验
+    plan_id: plan_007
+    description: 'CRS-predictive (canary-triggered real data injection) vs no-intervention
+      baseline × Pythia-410M × α=0.75 × 3 seeds × 10 gen。
+
+      '
+    expected_results:
+      int_crs_gen10_distinct1_mean: 0.081
+      int_baseline_gen10_distinct1_mean: 0.074
+      int_diversity_preservation_pct: 9.5
+      int_crs_gen10_perplexity_mean: 270.3
+      int_baseline_gen10_perplexity_mean: 285.6
+      int_perplexity_improvement_pct: 5.4
+      int_crs_trigger_gen_mean: 2.3
+      int_crs_trigger_gen_std: 0.8
+      int_effect_significant: false
+      int_cross_seed_consistent: false
+    result_rationale: '在 worst 档下，intervention 效果 negligible。原因链：(1) canary→diversity
+      lead 在 α=0.75 下虽存在但仅 ~1 gen 且 seed-dependent——intervention 的 trigger timing
+      不稳定（gen 2-3 ± 0.8）；(2) trigger 后注入真实数据仅 partially offset 一代的 合成污染，但不改变后续各代继续累积
+      synthetic data 的趋势；(3) 更根本地， 1 gen 的 lead time 意味着 intervention 最多比 reactive
+      approach 早 1 代行动—— 在 10 代训练中，这个优势被噪声淹没。(4) Perplexity 不受 intervention 影响 是因为
+      CRS 是 diversity-channel 的干预（基于 canary signal 触发），而 perplexity 退化走的是 quality-channel——intervention
+      对错了通道。 1/3 seeds 中 CRS 比 baseline 差是因为 false trigger（canary noise 导致过早 或不当注入真实数据，反而干扰了训练稳定性）。
+
+      '
+    tables:
+    - name: 'Table 7: Intervention effect summary'
+      description: '行: metric (distinct_1, distinct_2, perplexity, entropy, ece)，
+        列: baseline mean±std, CRS mean±std, Δ%, p-value。全部 p>0.1。
+
+        '
+    figures_description:
+    - 'Fig 7: 3×2 panel (3 seeds × baseline/CRS)。每 panel 画 distinct_1 和 perplexity
+      轨迹。Vertical arrow 标注 CRS trigger point。展示 trigger timing 的 seed-to-seed 变异和
+      intervention 后轨迹无显著分叉。'
+    analysis: 'Intervention 实验在 worst 档下是 negative result：CRS-triggered intervention
+      不显著优于 no-intervention baseline。这削弱了 paper 的实用性主张，但与 worst 档 的 decoupling narrative
+      一致——如果 canary 只 lead diversity 且 lead time <1.5 gen， 基于 canary 的 intervention
+      就没有足够的 anticipation window 来有效干预。 这实际上是 worst 档叙事的一个 coherent conclusion：early
+      warning is possible (for diversity) but not actionable (lead too short and domain-dependent)。
+      Paper 可以诚实报告这个 negative result 并讨论 what intervention strategy WOULD work（e.g.,
+      continuous proportional correction 而非 threshold-triggered injection），作为 future
+      work。P2 优先级意味着可以砍掉这个实验如果时间紧。
+
+      '
+  - name: '数据策略 ablation: accumulate vs replace'
+    plan_id: plan_008
+    description: 'α=0.50 下 accumulate (每代保留所有历史合成数据) vs replace (每代只用当代合成数据) × 3 seeds
+      × 10 gen，验证 Fu et al. accumulate 理论 + canary 行为差异。
+
+      '
+    expected_results:
+      acc_gen10_perplexity_mean: 48.3
+      rep_gen10_perplexity_mean: 78.3
+      acc_gen10_distinct1_mean: 0.091
+      rep_gen10_distinct1_mean: 0.082
+      acc_gen10_entropy_mean: 2.78
+      rep_gen10_entropy_mean: 2.45
+      acc_ece_distinct1_lag_mean: -0.33
+      acc_ece_distinct1_p_significant_seeds: 0
+      rep_ece_distinct1_lag_mean: -1.0
+      rep_ece_distinct1_p_significant_seeds: 2
+      acc_collapse_rate_ratio: 0.55
+      canary_behavior_qualitatively_different: true
+    result_rationale: '在 worst 档下，accumulate 策略确实大幅减缓 collapse（与 Fu et al. 理论一致），
+      但 canary lead-lag 结构在 accumulate 下消失。原因：accumulate 模式下每代的 training data 中合成数据比例被历史数据稀释（gen
+      10 时只有 ~9% 的数据是最新代 合成的，其余是累积的 gen 1-9 + 真实数据），退化变得极其 gradual 且近似线性。 在这种 gentle、quasi-linear
+      的退化曲线上，所有指标几乎同步缓慢下降， cross-correlation 检测不到 lead-lag（因为 lead-lag 的检测依赖于不同指标的
+      非线性 response timing 差异——当 forcing 太弱时，所有指标都在 linear response regime，相位差消失）。这给
+      worst 档叙事增加了另一个 dimension：canary lead 不仅 regime-dependent (on α) 而且 strategy-dependent
+      (on data mixing)。 Practitioners 用 accumulate 策略时 canary 指标仍可作为 monitoring tool
+      (absolute level 可以 track collapse severity) 但不提供 predictive lead。
+
+      '
+    tables:
+    - name: 'Table S4: Accumulate vs replace trajectory comparison'
+      description: '行: generation (0-10)，列: 两组的 perplexity, entropy, ece, distinct_1。
+        标注 collapse rate ratio 和 lead-lag 检测结果。
+
+        '
+    figures_description:
+    - 'Fig S3: 双列 (accumulate 左, replace 右)。上行: raw 轨迹。下行: cross-correlogram。展示 accumulate
+      的 correlogram 无显著峰（接近 flat），replace 的 correlogram 有明确负 lag 峰。'
+    analysis: 数据策略 ablation 在 worst 档下的发现是：Fu et al. 的 accumulate 策略有效减缓 collapse（确认理论预测），但同时消除了
+      canary 的 predictive lead。这是一个 paradox：最需要 early warning 的 regime (replace, fast
+      collapse) 是 canary 最有效的 regime；不太需要 early warning 的 regime (accumulate, slow
+      collapse) 是 canary 失效的 regime。这个 observation 可以作为 discussion section 的 interesting
+      point，连接到 worst 档的 overarching narrative：canary 的实用性 受限于 collapse dynamics 的
+      'sharpness'——只有当退化足够非线性时，不同指标的 response timing 差异才能产生可检测的 lead-lag。这为 theoretical
+      argument 提供了 intuition：lead-lag 是非线性 response 的 emergent property。
+  review_report: '---
+
+    dream_id: dream_20260514T184925
+
+    tier: worst
+
+    overall_score: 2.5/6 Reject
+
+    timestamp: 2026-05-14T19:34:04.809958+00:00
+
+    ---
+
+
+    # Consolidated Review Report
+
+
+    **Paper**: Taxonomy of Collapse Decoupling: Diversity and Quality Degrade Through
+    Independent Channels in Iterative Synthetic Training
+
+    **Reviewers**: R1 (Methods + Experiments), R2 (Novelty + Related Work)
+
+    **Review Mode**: Full roundtable (independent → cross-share → convergence → synthesis)
+
+
+    ---
+
+
+    ## Consensus Assessment
+
+
+    Both reviewers agree that the paper''s central claim — that diversity and quality
+    degradation are temporally decoupled in iterative synthetic training — rests on
+    underpowered statistical evidence and, to the extent the claim holds, may be predictable
+    from first principles rather than constituting a genuine discovery. The experimental
+    apparatus is methodologically competent but insufficient in scale (10 time points,
+    3 seeds) to support the causal and taxonomic conclusions drawn. While the topic
+    is timely and the execution honest, the paper does not clear the bar for a top
+    venue in its current form.
+
+
+    ## Agreed Strengths
+
+
+    - **Methodological competence**: The use of Toda-Yamamoto causality testing for
+    training dynamics is a reasonable methodological choice, and the statistical framework
+    is correctly implemented given the data available.
+
+    - **Honest reporting of negative results**: Both reviewers credit the authors
+    for transparently reporting failed interventions, inconclusive scale experiments,
+    and domain-dependent rankings rather than overfitting a narrative.
+
+    - **Full execution of experimental plan**: All 8 planned experiments were completed,
+    demonstrating thoroughness in the research process.
+
+    - **Timely topic**: Model collapse and synthetic data feedback loops are an active
+    and important area; systematic investigation of canary metrics is worthwhile.
+
+
+    ## Agreed Weaknesses
+
+
+    1. **Fatal statistical power limitations** (highest severity): With only 10 time
+    points and 3 seeds, TY tests lack the power to distinguish "no causal relationship"
+    from "insufficient data to detect one." Non-significance at conventional thresholds
+    cannot confirm the null hypothesis of decoupling. Both reviewers identify this
+    as the most damaging issue — R1 raised it initially and R2 endorsed it as even
+    more fundamental than the predictability concern. The entire taxonomic framework
+    rests on this underpowered foundation.
+
+
+    2. **Predictability of the core finding**: The decoupling between bounded intrinsic
+    metrics (distinct-n) and unbounded extrinsic metrics (perplexity) follows from
+    their different asymptotic behaviors. Section 5.1''s information-theoretic argument
+    is informal and does not constrain the early-generation temporal dynamics that
+    the experiments aim to characterize. The paper confirms an expected property rather
+    than uncovering a surprising one.
+
+
+    3. **Fatally confounded intervention experiment**: The CRS intervention (Section
+    4.7) lacks a random-timing baseline control. Without it, any observed effect (or
+    non-effect) is uninterpretable — the intervention is confounded with training
+    stage, data composition shifts, and other temporal factors.
+
+
+    4. **Critically thin related work**: Approximately 10 references is far below
+    the standard for a top venue paper in this area. Both reviewers note the absence
+    of competing canary metrics (surplexity, spectral alignment, embedding-based measures),
+    position papers on collapse definitions, and relevant NeurIPS/ICLR 2025 work on
+    iterative training dynamics.
+
+
+    5. **Accumulation of inconclusive experiments without sufficient positive contribution**:
+    The scale experiment is uninterpretable at the reported thresholds. The cross-domain
+    ranking reversal is not statistically meaningful with 3 seeds. The one positive
+    finding (1–2 generation diversity lead) is modest and potentially confounded by
+    shared trend.
+
+
+    6. **Narrow canary metric coverage**: The paper relies on distinct-n as the primary
+    diversity target. Neither reviewer is confident that the decoupling taxonomy would
+    hold under spectral, embedding-based, or other recently proposed canary metrics
+    — a question the paper cannot currently address.
+
+
+    ## Points of Divergence
+
+
+    **Monitoring paradox**: R1 considers the finding that canary metrics become less
+    predictive precisely when they would be most useful (under accumulate-style training)
+    to be a genuinely valuable practitioner insight. R2 suspects this is an artifact
+    of the same power issue — accumulation slows dynamics, reducing signal-to-noise
+    ratio. This disagreement is partially resolvable with a higher-powered replication.
+
+
+    **Value of experimental breadth**: R1 views the 8-experiment breadth as a partial
+    positive (completeness and honesty). R2 views it as a liability ("8 inconclusive
+    experiments is worse than 3 well-powered ones"). Both positions are defensible,
+    but for a top venue, R2''s standard is more typical.
+
+
+    **Severity of the shared-trend confound**: R2 raised a concern that high correlation
+    values (r = 0.88–0.94) may conflate shared downward trend with genuine lead-lag
+    structure, potentially undermining even the canary→diversity lead — the paper''s
+    single positive finding. This requires detrending analysis to resolve.
+
+
+    ## Key Questions for Authors
+
+
+    1. **Power analysis**: Can you provide a formal power analysis for TY tests at
+    T=10, k=3 seeds? What is the minimum detectable effect size? If you cannot reject
+    canary→perplexity, what effect sizes can you rule out?
+
+
+    2. **Detrending**: Have you verified that the high cross-correlations (0.88–0.94)
+    and the 1–2 generation diversity lead survive after removing shared monotonic
+    trends (e.g., first-differencing or HP filtering)?
+
+
+    3. **Alternative canary metrics**: Would the decoupling taxonomy hold if distinct-n
+    were replaced with spectral alignment, embedding diversity (Vendi score), or surplexity?
+
+
+    4. **Intervention control**: Why was a random-timing baseline omitted from the
+    intervention experiment?
+
+
+    5. **Formal info-theoretic argument**: Can the informal argument in Section 5.1
+    be tightened into a theorem with stated assumptions? Under what conditions does
+    boundedness of the canary imply temporal decoupling from an unbounded quality
+    metric in the finite-horizon regime?
+
+
+    ## Suggestions for Improvement
+
+
+    1. **Increase statistical power substantially**: Extend to 20–30 generations and
+    10+ seeds, or adopt panel TY tests pooling across seeds.
+
+    2. **Apply detrending before lead-lag analysis**: Use first-differenced or HP-filtered
+    series for cross-correlation and TY tests to separate genuine causal leads from
+    shared trend artifacts.
+
+    3. **Add competing canary metrics**: Include 2–3 alternatives (spectral alignment,
+    Vendi score, surplexity) to test whether the taxonomy is metric-specific or general.
+
+    4. **Add random-timing baseline to intervention**: Establish a proper control
+    condition for the CRS experiment.
+
+    5. **Expand related work to 30+ references**: Cover competing canary metrics,
+    recent collapse taxonomy papers, and NeurIPS/ICLR 2025 literature.
+
+    6. **Formalize or remove the information-theoretic argument**: Either prove the
+    §5.1 claim as a theorem or reframe it as hypothesis.
+
+    7. **Consider reframing as methodological contribution**: The TY-for-training-dynamics
+    application and monitoring paradox may be more publishable as a methods paper
+    than as a taxonomic discovery.
+
+
+    ## Individual Reviewer Scores
+
+
+    | Criterion | R1 | R2 |
+
+    |---|---|---|
+
+    | Soundness | 2/4 | — |
+
+    | Empirical methodology | 2/4 | — |
+
+    | Reproducibility | 3/4 | — |
+
+    | Novelty | — | 2/4 |
+
+    | Significance | — | 1.5/4 |
+
+    | Related work coverage | — | 1.5/4 |
+
+    | Confidence | 4/5 | 4/5 |
+
+    | **Overall** | **3/6** | **2/6** |
+
+
+    ## Consolidated Score
+
+
+    **Score: 2.5/6 (Reject)**
+
+
+    **Recommendation**: Reject
+
+
+    The core statistical apparatus lacks the power to support the taxonomic claims,
+    the main finding is arguably predictable from first principles, and the related
+    work coverage falls well below venue standards. The paper addresses a relevant
+    problem and is executed honestly, but the contribution in its current form — a
+    taxonomy built on underpowered null results — does not meet the acceptance threshold.
+    A substantially revised version with higher-powered experiments, detrending analysis,
+    multiple canary metrics, and proper intervention controls could become a solid
+    contribution.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-14T19:34:15+00:00'

@@ -1,0 +1,85 @@
+{
+  "exp_id": "alpha_sweep_a000_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:29:13.444Z",
+    "updated_at": "2026-05-16T18:49:21.663Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "198833",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log",
+      "submitted_at": "2026-05-16T14:31:15.017Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 15486.6,
+      "gpu_hours": 4.3
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "198833",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\"",
+      "finished_at": "2026-05-16T18:44:57.867Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T18:44:59.745869+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen0": {
+        "token_entropy": 3.2342,
+        "ece": 0.0108,
+        "perplexity": 26.949,
+        "distinct_1": 0.0983,
+        "distinct_2": 0.5132,
+        "distinct_3": 0.8057,
+        "effective_rank": 46.613
+      },
+      "gen10": {
+        "token_entropy": 3.0907,
+        "ece": 0.0148,
+        "perplexity": 21.469,
+        "distinct_1": 0.0847,
+        "distinct_2": 0.4631,
+        "distinct_3": 0.7672,
+        "effective_rank": 43.72
+      },
+      "drift_pct": {
+        "token_entropy": -4.4,
+        "ece": 37.2,
+        "perplexity": -20.3,
+        "distinct_1": -13.9,
+        "distinct_2": -9.8,
+        "distinct_3": -4.8,
+        "effective_rank": -6.2
+      },
+      "five_method": {
+        "perm_granger_fdr_sig": "0/8",
+        "ty_sig": "1/8 (df_resid=1 unreliable)",
+        "robust_pairs_ge3": "0/8",
+        "fpr_controlled": true
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/",
+    "completed_at": "2026-05-16T18:49:21.663Z"
+  },
+  "timestamp": "2026-05-16T18:49:21.737133+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2245 @@
+# analysis d017 f value audit
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_d017-f-value-audit_20260515T174116.log`
+- **Structured JSON:** [`549701a5b2a1e1167ce0.json`](../../sessions/54/549701a5b2a1e1167ce0.json)
+
+## Before a recorded user message
+
+46 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "49b32b65-3c13-490f-a94c-3a59f4a02852",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778876400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7d07ee9e-6630-45df-8cd8-fb27a7520aa4",
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH into a server and find specific F-statistic values from Granger causality analysis results to verify which column (undifferenced vs first-differenced) the F=612-2615 range belongs to in their paper figure.
+
+Let me search for the relevant data files on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "25148d33-d530-42fd-be85-c12f594d011f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EevJf8mih3TGbW6hFLjavo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11911,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11911
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我来 SSH 到服务器查找 D017 相关的 Granger F 统计量数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "a2159cc9-74b3-4bcd-8559-62bd5bde42a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EevJf8mih3TGbW6hFLjavo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11911,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11911
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UdBcFAJZC5JjXxh1xCBNGm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "2350fffe-7f90-4b7d-a525-4fd66ef0c391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EevJf8mih3TGbW6hFLjavo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11911,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11911
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T17:41:31.348Z_
+
+<details><summary>↩ Tool result · `toolu_01UdBcFAJZC5JjXxh1xCBNGm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "772ed7b9-fe07-4a69-aa6c-9b88c6c7c60f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EVGyAC2XMBo1GiwAbYKo8U`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/data -name \"*.json\" -path \"*granger*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "87a842bd-f7ba-4b7e-98f2-7193d60f409b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sm6VtWMUQggaNiyXUREpef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 23752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TEuKG1A3nqVi1zpY8jPthU`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/data/mvp/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "088efa66-37be-4ce7-be6f-2bdb759da4ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sm6VtWMUQggaNiyXUREpef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 23752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:41:35.680Z_
+
+<details><summary>↩ Tool result · `toolu_01EVGyAC2XMBo1GiwAbYKo8U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "5ab15484-3792-4227-9237-839e406daab2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WgzrkvRnwT7V5E7JjAoNCv`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*method_ablation*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "07a958c3-1787-44c4-ba6e-ac5b5287bf26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sm6VtWMUQggaNiyXUREpef",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 23752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T17:41:36.220Z_
+
+<details><summary>↩ Tool result · `toolu_01TEuKG1A3nqVi1zpY8jPthU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/data/mvp/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "bdf3f52e-c807-495f-ab67-2b5d87022615",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/data/mvp/analysis/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/data/mvp/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T17:41:36.754Z_
+
+<details><summary>↩ Tool result · `toolu_01WgzrkvRnwT7V5E7JjAoNCv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/__pycache__/method_ablation.cpython-312.pyc\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "d736069b-6e5d-4d13-b577-ff7b128bd1d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/__pycache__/method_ablation.cpython-312.pyc\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md\\\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/__pycache__/method_ablation.cpython-312.pyc\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+找到了 method_ablation 相关文件。让我查看这些 JSON 文件的内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "6b652b75-31e3-4b3e-93de-ddfa18e2dc0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNWGv4ETnjAww823QG37F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 24292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 914
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C1ZGw35TULEa86YX6Mq9Yt`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "298a61a0-50a8-485a-8294-7272615d7d7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNWGv4ETnjAww823QG37F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 24292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 914
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T17:41:40.808Z_
+
+<details><summary>↩ Tool result · `toolu_01C1ZGw35TULEa86YX6Mq9Yt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      43,\\n      44,\\n      45\\n    ],\\n    \\\"alpha\\\": 0.05,\\n    \\\"canary_metrics\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"self_bleu\\\",\\n      \\\"ece\\\",\\n      \\\"effective_rank\\\"\\n    ],\\n    \\\"downstream_metrics\\\": [\\n      \\\"perplexity\\\",\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\"\\n    ],\\n    \\\"methods\\\": [\\n      \\\"naive_pearson: raw-level Pearson lag-correlation\\\",\\n      \\\"differenced_xcorr: first-differenced cross-correlation\\\",\\n      \\\"threshold_onset: 2-sigma signal-onset lead time\\\",\\n      \\\"toda_yamamoto: augmented-lag Granger causality (Wald F-test)\\\",\\n      \\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\"\\n    ]\\n  },\\n  \\\"summary\\\": {\\n    \\\"total_pairs\\\": 16,\\n    \\\"naive_significant\\\": 16,\\n    \\\"differenced_significant\\\": 14,\\n    \\\"threshold_significant\\\": 9,\\n    \\\"ty_significant\\\": 4,\\n    \\\"perm_granger_significant\\\": 6,\\n    \\\"spurious_count\\\": 12,\\n    \\\"spurious_rate\\\": 0.75,\\n    \\\"spurious_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      }\\n    ],\\n    \\\"robust_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      }\\n    ],\\n    \\\"naive_only_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      }\\n    ],\\n    \\\"dual_classification\\\": {\\n      \\\"note\\\": \\\"TY demoted per D013/D015 (power=0.05-0.20 at T=10)\\\",\\n      \\\"with_ty_5method\\\": {\\n        \\\"spurious_count\\\": 12,\\n        \\\"spurious_rate\\\": 0.75,\\n        \\\"robust_count\\\": 4\\n      },\\n      \\\"without_ty_4method\\\": {\\n        \\\"spurious_count\\\": 10,\\n        \\\"spurious_rate\\\": 0.625,\\n        \\\"robust_count\\\": 6\\n      },\\n      \\\"flipped_pairs\\\": [\\n        {\\n          \\\"canary\\\": \\\"ece\\\",\\n          \\\"downstream\\\": \\\"distinct_2\\\",\\n          \\\"spurious_5method\\\": true,\\n          \\\"robust_4method\\\": true,\\n          \\\"methods_agree_5\\\": 4,\\n          \\\"methods_agree_4\\\": 4,\\n          \\\"spurious_reason_5method\\\": \\\"toda_yamamoto n.s.\\\"\\n        },\\n        {\\n          \\\"canary\\\": \\\"ece\\\",\\n          \\\"downstream\\\": \\\"distinct_3\\\",\\n          \\\"spurious_5method\\\": true,\\n          \\\"robust_4method\\\": true,\\n          \\\"methods_agree_5\\\": 4,\\n          \\\"methods_agree_4\\\": 4,\\n          \\\"spurious_reason_5method\\\": \\\"toda_yamamoto n.s.\\\"\\n        }\\n      ]\\n    }\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"naive_pearson\\\": {\\n            \\\"method\\\": \\\"naive_pearson\\\",\\n            \\\"peak_lag\\\": 3,\\n            \\\"r\\\": 0.8027,\\n            \\\"significant\\\": true,\\n            \\\"effect_size_r\\\": 0.8027,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.01648,\\n            \\\"p_fdr\\\": 0.0182,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"dif\\n\\n... [截断: 输出过长，省略 152963 字符] ...\\n\\ne\\\",\\n            \\\"p_raw\\\": 0.126873,\\n            \\\"p_fdr\\\": 0.198,\\n            \\\"significant_fdr\\\": false\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"naive_pearson\\\": {\\n            \\\"method\\\": \\\"naive_pearson\\\",\\n            \\\"peak_lag\\\": -1,\\n            \\\"r\\\": -0.8187,\\n            \\\"significant\\\": true,\\n            \\\"effect_size_r\\\": 0.8187,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.003772,\\n            \\\"p_fdr\\\": 0.0047,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"differenced_xcorr\\\": {\\n            \\\"method\\\": \\\"differenced_xcorr\\\",\\n            \\\"peak_lag\\\": -3,\\n            \\\"r\\\": -0.7335,\\n            \\\"significant\\\": false,\\n            \\\"effect_size_r\\\": 0.7335,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.060616,\\n            \\\"p_fdr\\\": 0.0669,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"threshold_onset\\\": {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": null,\\n            \\\"downstream_onset\\\": 4,\\n            \\\"lead_time\\\": null,\\n            \\\"significant\\\": false,\\n            \\\"note\\\": \\\"onset not detected for: canary\\\",\\n            \\\"effect_size\\\": null,\\n            \\\"effect_size_type\\\": null,\\n            \\\"effect_size_label\\\": null\\n          },\\n          \\\"toda_yamamoto\\\": {\\n            \\\"method\\\": \\\"toda_yamamoto\\\",\\n            \\\"p\\\": 1,\\n            \\\"d_max\\\": 2,\\n            \\\"k\\\": 3,\\n            \\\"wald_F\\\": 0.0136,\\n            \\\"significant\\\": false,\\n            \\\"df_resid\\\": 1,\\n            \\\"d_canary\\\": 2,\\n            \\\"d_downstream\\\": 0,\\n            \\\"effect_size_f2\\\": 0.0136,\\n            \\\"effect_size_type\\\": \\\"cohens_f2\\\",\\n            \\\"effect_size_label\\\": \\\"negligible\\\",\\n            \\\"p_raw\\\": 0.926183,\\n            \\\"p_fdr\\\": 0.9409,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"permutation_granger\\\": {\\n            \\\"method\\\": \\\"permutation_granger\\\",\\n            \\\"f_stat\\\": 11.8051,\\n            \\\"significant\\\": false,\\n            \\\"effect_size_f2\\\": 1.9675,\\n            \\\"null_mean\\\": 3.1238,\\n            \\\"null_std\\\": 9.5974,\\n            \\\"n_perm\\\": 1000,\\n            \\\"effect_size\\\": 1.9675,\\n            \\\"effect_size_type\\\": \\\"cohens_f2\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.103896,\\n            \\\"p_fdr\\\": 0.1797,\\n            \\\"significant_fdr\\\": false\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"naive_pearson\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"differenced_xcorr\\\": {\\n          \\\"sig_seeds\\\": 3,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"sig_seeds\\\": 0,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"toda_yamamoto\\\": {\\n          \\\"sig_seeds\\\": 2,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"sig_seeds\\\": 2,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        }\\n      },\\n      \\\"robust_5method\\\": false,\\n      \\\"spurious_5method\\\": true,\\n      \\\"spurious_reason_5method\\\": \\\"threshold_onset n.s., toda_yamamoto n.s., permutation_granger n.s.\\\",\\n      \\\"methods_agree_5\\\": 2,\\n      \\\"robust_4method\\\": false,\\n      \\\"spurious_4method\\\": true,\\n      \\\"methods_agree_4\\\": 2,\\n      \\\"spurious\\\": true,\\n      \\\"robust\\\": false,\\n      \\\"naive_only\\\": false\\n    }\\n  ],\\n  \\\"fdr_correction\\\": {\\n    \\\"method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"per_method\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 63,\\n        \\\"fdr_significant\\\": 63\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 55,\\n        \\\"fdr_significant\\\": 53\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 26,\\n        \\\"fdr_significant\\\": 24\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 34,\\n        \\\"fdr_significant\\\": 27\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "f418d804-ea7b-44d9-bacf-f0e244ba4cc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      43,\\\\n      44,\\\\n      45\\\\n    ],\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"canary_metrics\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"self_bleu\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"effective_rank\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstream_metrics\\\\\\\": [\\\\n      \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_pearson: raw-level Pearson lag-correlation\\\\\\\",\\\\n      \\\\\\\"differenced_xcorr: first-differenced cross-correlation\\\\\\\",\\\\n      \\\\\\\"threshold_onset: 2-sigma signal-onset lead time\\\\\\\",\\\\n      \\\\\\\"toda_yamamoto: augmented-lag Granger causality (Wald F-test)\\\\\\\",\\\\n      \\\\\\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_pairs\\\\\\\": 16,\\\\n    \\\\\\\"naive_significant\\\\\\\": 16,\\\\n    \\\\\\\"differenced_significant\\\\\\\": 14,\\\\n    \\\\\\\"threshold_significant\\\\\\\": 9,\\\\n    \\\\\\\"ty_significant\\\\\\\": 4,\\\\n    \\\\\\\"perm_granger_significant\\\\\\\": 6,\\\\n    \\\\\\\"spurious_count\\\\\\\": 12,\\\\n    \\\\\\\"spurious_rate\\\\\\\": 0.75,\\\\n    \\\\\\\"spurious_pairs\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"effective_rank\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"effective_rank\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"effective_rank\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"effective_rank\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"robust_pairs\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"naive_only_pairs\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"dual_classification\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"TY demoted per D013/D015 (power=0.05-0.20 at T=10)\\\\\\\",\\\\n      \\\\\\\"with_ty_5method\\\\\\\": {\\\\n        \\\\\\\"spurious_count\\\\\\\": 12,\\\\n        \\\\\\\"spurious_rate\\\\\\\": 0.75,\\\\n        \\\\\\\"robust_count\\\\\\\": 4\\\\n      },\\\\n      \\\\\\\"without_ty_4method\\\\\\\": {\\\\n        \\\\\\\"spurious_count\\\\\\\": 10,\\\\n        \\\\\\\"spurious_rate\\\\\\\": 0.625,\\\\n        \\\\\\\"robust_count\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"flipped_pairs\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n          \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n          \\\\\\\"spurious_5method\\\\\\\": true,\\\\n          \\\\\\\"robust_4method\\\\\\\": true,\\\\n          \\\\\\\"methods_agree_5\\\\\\\": 4,\\\\n          \\\\\\\"methods_agree_4\\\\\\\": 4,\\\\n          \\\\\\\"spurious_reason_5method\\\\\\\": \\\\\\\"toda_yamamoto n.s.\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n          \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n          \\\\\\\"spurious_5method\\\\\\\": true,\\\\n          \\\\\\\"robust_4method\\\\\\\": true,\\\\n          \\\\\\\"methods_agree_5\\\\\\\": 4,\\\\n          \\\\\\\"methods_agree_4\\\\\\\": 4,\\\\n          \\\\\\\"spurious_reason_5method\\\\\\\": \\\\\\\"toda_yamamoto n.s.\\\\\\\"\\\\n        }\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 42,\\\\n          \\\\\\\"naive_pearson\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n            \\\\\\\"peak_lag\\\\\\\": 3,\\\\n            \\\\\\\"r\\\\\\\": 0.8027,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.8027,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.01648,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0182,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"dif\\\\n\\\\n... [截断: 输出过长，省略 152963 字符] ...\\\\n\\\\ne\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.126873,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.198,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 45,\\\\n          \\\\\\\"naive_pearson\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n            \\\\\\\"peak_lag\\\\\\\": -1,\\\\n            \\\\\\\"r\\\\\\\": -0.8187,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.8187,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.003772,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0047,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n            \\\\\\\"peak_lag\\\\\\\": -3,\\\\n            \\\\\\\"r\\\\\\\": -0.7335,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.7335,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.060616,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0669,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"threshold_onset\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": null,\\\\n            \\\\\\\"downstream_onset\\\\\\\": 4,\\\\n            \\\\\\\"lead_time\\\\\\\": null,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"onset not detected for: canary\\\\\\\",\\\\n            \\\\\\\"effect_size\\\\\\\": null,\\\\n            \\\\\\\"effect_size_type\\\\\\\": null,\\\\n            \\\\\\\"effect_size_label\\\\\\\": null\\\\n          },\\\\n          \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n            \\\\\\\"p\\\\\\\": 1,\\\\n            \\\\\\\"d_max\\\\\\\": 2,\\\\n            \\\\\\\"k\\\\\\\": 3,\\\\n            \\\\\\\"wald_F\\\\\\\": 0.0136,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"df_resid\\\\\\\": 1,\\\\n            \\\\\\\"d_canary\\\\\\\": 2,\\\\n            \\\\\\\"d_downstream\\\\\\\": 0,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.0136,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"cohens_f2\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"negligible\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.926183,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.9409,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 11.8051,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 1.9675,\\\\n            \\\\\\\"null_mean\\\\\\\": 3.1238,\\\\n            \\\\\\\"null_std\\\\\\\": 9.5974,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"effect_size\\\\\\\": 1.9675,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"cohens_f2\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.103896,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.1797,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          }\\\\n        }\\\\n      ],\\\\n      \\\\\\\"summary\\\\\\\": {\\\\n        \\\\\\\"naive_pearson\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 3,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 0,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 2,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 2,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"robust_5method\\\\\\\": false,\\\\n      \\\\\\\"spurious_5method\\\\\\\": true,\\\\n      \\\\\\\"spurious_reason_5method\\\\\\\": \\\\\\\"threshold_onset n.s., toda_yamamoto n.s., permutation_granger n.s.\\\\\\\",\\\\n      \\\\\\\"methods_agree_5\\\\\\\": 2,\\\\n      \\\\\\\"robust_4method\\\\\\\": false,\\\\n      \\\\\\\"spurious_4method\\\\\\\": true,\\\\n      \\\\\\\"methods_agree_4\\\\\\\": 2,\\\\n      \\\\\\\"spurious\\\\\\\": true,\\\\n      \\\\\\\"robust\\\\\\\": false,\\\\n      \\\\\\\"naive_only\\\\\\\": false\\\\n    }\\\\n  ],\\\\n  \\\\\\\"fdr_correction\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"per_method\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 64,\\\\n        \\\\\\\"raw_significant\\\\\\\": 63,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 63\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 64,\\\\n        \\\\\\\"raw_significant\\\\\\\": 55,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 53\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 64,\\\\n        \\\\\\\"raw_significant\\\\\\\": 26,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 24\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 64,\\\\n        \\\\\\\"raw_significant\\\\\\\": 34,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 27\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      43,\\n      44,\\n      45\\n    ],\\n    \\\"alpha\\\": 0.05,\\n    \\\"canary_metrics\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"self_bleu\\\",\\n      \\\"ece\\\",\\n      \\\"effective_rank\\\"\\n    ],\\n    \\\"downstream_metrics\\\": [\\n      \\\"perplexity\\\",\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\"\\n    ],\\n    \\\"methods\\\": [\\n      \\\"naive_pearson: raw-level Pearson lag-correlation\\\",\\n      \\\"differenced_xcorr: first-differenced cross-correlation\\\",\\n      \\\"threshold_onset: 2-sigma signal-onset lead time\\\",\\n      \\\"toda_yamamoto: augmented-lag Granger causality (Wald F-test)\\\",\\n      \\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\"\\n    ]\\n  },\\n  \\\"summary\\\": {\\n    \\\"total_pairs\\\": 16,\\n    \\\"naive_significant\\\": 16,\\n    \\\"differenced_significant\\\": 14,\\n    \\\"threshold_significant\\\": 9,\\n    \\\"ty_significant\\\": 4,\\n    \\\"perm_granger_significant\\\": 6,\\n    \\\"spurious_count\\\": 12,\\n    \\\"spurious_rate\\\": 0.75,\\n    \\\"spurious_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"effective_rank\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      }\\n    ],\\n    \\\"robust_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_2\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_3\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"ece\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      }\\n    ],\\n    \\\"naive_only_pairs\\\": [\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"perplexity\\\"\\n      },\\n      {\\n        \\\"canary\\\": \\\"self_bleu\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\"\\n      }\\n    ],\\n    \\\"dual_classification\\\": {\\n      \\\"note\\\": \\\"TY demoted per D013/D015 (power=0.05-0.20 at T=10)\\\",\\n      \\\"with_ty_5method\\\": {\\n        \\\"spurious_count\\\": 12,\\n        \\\"spurious_rate\\\": 0.75,\\n        \\\"robust_count\\\": 4\\n      },\\n      \\\"without_ty_4method\\\": {\\n        \\\"spurious_count\\\": 10,\\n        \\\"spurious_rate\\\": 0.625,\\n        \\\"robust_count\\\": 6\\n      },\\n      \\\"flipped_pairs\\\": [\\n        {\\n          \\\"canary\\\": \\\"ece\\\",\\n          \\\"downstream\\\": \\\"distinct_2\\\",\\n          \\\"spurious_5method\\\": true,\\n          \\\"robust_4method\\\": true,\\n          \\\"methods_agree_5\\\": 4,\\n          \\\"methods_agree_4\\\": 4,\\n          \\\"spurious_reason_5method\\\": \\\"toda_yamamoto n.s.\\\"\\n        },\\n        {\\n          \\\"canary\\\": \\\"ece\\\",\\n          \\\"downstream\\\": \\\"distinct_3\\\",\\n          \\\"spurious_5method\\\": true,\\n          \\\"robust_4method\\\": true,\\n          \\\"methods_agree_5\\\": 4,\\n          \\\"methods_agree_4\\\": 4,\\n          \\\"spurious_reason_5method\\\": \\\"toda_yamamoto n.s.\\\"\\n        }\\n      ]\\n    }\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"naive_pearson\\\": {\\n            \\\"method\\\": \\\"naive_pearson\\\",\\n            \\\"peak_lag\\\": 3,\\n            \\\"r\\\": 0.8027,\\n            \\\"significant\\\": true,\\n            \\\"effect_size_r\\\": 0.8027,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.01648,\\n            \\\"p_fdr\\\": 0.0182,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"dif\\n\\n... [截断: 输出过长，省略 152963 字符] ...\\n\\ne\\\",\\n            \\\"p_raw\\\": 0.126873,\\n            \\\"p_fdr\\\": 0.198,\\n            \\\"significant_fdr\\\": false\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"naive_pearson\\\": {\\n            \\\"method\\\": \\\"naive_pearson\\\",\\n            \\\"peak_lag\\\": -1,\\n            \\\"r\\\": -0.8187,\\n            \\\"significant\\\": true,\\n            \\\"effect_size_r\\\": 0.8187,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.003772,\\n            \\\"p_fdr\\\": 0.0047,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"differenced_xcorr\\\": {\\n            \\\"method\\\": \\\"differenced_xcorr\\\",\\n            \\\"peak_lag\\\": -3,\\n            \\\"r\\\": -0.7335,\\n            \\\"significant\\\": false,\\n            \\\"effect_size_r\\\": 0.7335,\\n            \\\"effect_size_type\\\": \\\"pearson_r\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.060616,\\n            \\\"p_fdr\\\": 0.0669,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"threshold_onset\\\": {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": null,\\n            \\\"downstream_onset\\\": 4,\\n            \\\"lead_time\\\": null,\\n            \\\"significant\\\": false,\\n            \\\"note\\\": \\\"onset not detected for: canary\\\",\\n            \\\"effect_size\\\": null,\\n            \\\"effect_size_type\\\": null,\\n            \\\"effect_size_label\\\": null\\n          },\\n          \\\"toda_yamamoto\\\": {\\n            \\\"method\\\": \\\"toda_yamamoto\\\",\\n            \\\"p\\\": 1,\\n            \\\"d_max\\\": 2,\\n            \\\"k\\\": 3,\\n            \\\"wald_F\\\": 0.0136,\\n            \\\"significant\\\": false,\\n            \\\"df_resid\\\": 1,\\n            \\\"d_canary\\\": 2,\\n            \\\"d_downstream\\\": 0,\\n            \\\"effect_size_f2\\\": 0.0136,\\n            \\\"effect_size_type\\\": \\\"cohens_f2\\\",\\n            \\\"effect_size_label\\\": \\\"negligible\\\",\\n            \\\"p_raw\\\": 0.926183,\\n            \\\"p_fdr\\\": 0.9409,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"permutation_granger\\\": {\\n            \\\"method\\\": \\\"permutation_granger\\\",\\n            \\\"f_stat\\\": 11.8051,\\n            \\\"significant\\\": false,\\n            \\\"effect_size_f2\\\": 1.9675,\\n            \\\"null_mean\\\": 3.1238,\\n            \\\"null_std\\\": 9.5974,\\n            \\\"n_perm\\\": 1000,\\n            \\\"effect_size\\\": 1.9675,\\n            \\\"effect_size_type\\\": \\\"cohens_f2\\\",\\n            \\\"effect_size_label\\\": \\\"large\\\",\\n            \\\"p_raw\\\": 0.103896,\\n            \\\"p_fdr\\\": 0.1797,\\n            \\\"significant_fdr\\\": false\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"naive_pearson\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"differenced_xcorr\\\": {\\n          \\\"sig_seeds\\\": 3,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"sig_seeds\\\": 0,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"toda_yamamoto\\\": {\\n          \\\"sig_seeds\\\": 2,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"sig_seeds\\\": 2,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        }\\n      },\\n      \\\"robust_5method\\\": false,\\n      \\\"spurious_5method\\\": true,\\n      \\\"spurious_reason_5method\\\": \\\"threshold_onset n.s., toda_yamamoto n.s., permutation_granger n.s.\\\",\\n      \\\"methods_agree_5\\\": 2,\\n      \\\"robust_4method\\\": false,\\n      \\\"spurious_4method\\\": true,\\n      \\\"methods_agree_4\\\": 2,\\n      \\\"spurious\\\": true,\\n      \\\"robust\\\": false,\\n      \\\"naive_only\\\": false\\n    }\\n  ],\\n  \\\"fdr_correction\\\": {\\n    \\\"method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"per_method\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 63,\\n        \\\"fdr_significant\\\": 63\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 55,\\n        \\\"fdr_significant\\\": 53\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 26,\\n        \\\"fdr_significant\\\": 24\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"total_tests\\\": 64,\\n        \\\"raw_significant\\\": 34,\\n        \\\"fdr_significant\\\": 27\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HyTD9auUF4r1tqsGLBzDg5`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "e4e4f1b4-22d6-49b4-b0bc-97ca8cf6c3d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNWGv4ETnjAww823QG37F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 24292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 914
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:41:41.500Z_
+
+<details><summary>↩ Tool result · `toolu_01HyTD9auUF4r1tqsGLBzDg5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"d_max_0\\\": {\\n    \\\"token_entropy_to_perplexity\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 15.9803,\\n        \\\"p\\\": 0.005206,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 36.1898,\\n        \\\"p\\\": 0.000534,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 22.1524,\\n        \\\"p\\\": 0.002191,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 25.5238,\\n        \\\"p\\\": 0.001476,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_1\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 311.6695,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 199.4927,\\n        \\\"p\\\": 2e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 501.0795,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 388.4396,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_2\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 115.4437,\\n        \\\"p\\\": 1.3e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 113.9303,\\n        \\\"p\\\": 1.4e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 549.5467,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 187.3592,\\n        \\\"p\\\": 3e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_3\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 101.3651,\\n        \\\"p\\\": 2e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 110.5467,\\n        \\\"p\\\": 1.5e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 232.1888,\\n        \\\"p\\\": 1e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 138.6459,\\n        \\\"p\\\": 7e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"self_bleu_to_perplexity\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 2.6688,\\n        \\\"p\\\": 0.146353,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 1.3791,\\n        \\\"p\\\": 0.278657,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 1,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 0.1021,\\n        \\\"p\\\": 0.758641,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n  \\n\\n... [截断: 输出过长，省略 41746 字符] ...\\n\\n\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3243,\\n            \\\"p\\\": 0.59951,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"flips\\\": {\\n        \\\"d_max_0\\\": true,\\n        \\\"d_max_adaptive\\\": false,\\n        \\\"d_max_1\\\": false\\n      }\\n    },\\n    \\\"ece_distinct3_analysis\\\": {\\n      \\\"d_max_0\\\": {\\n        \\\"majority_verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 74.0303,\\n            \\\"p\\\": 5.7e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 113.3453,\\n            \\\"p\\\": 1.4e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 235.8841,\\n            \\\"p\\\": 1e-06,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 116.5025,\\n            \\\"p\\\": 1.3e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"d_max_adaptive\\\": {\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 74.0303,\\n            \\\"p\\\": 5.7e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 113.3453,\\n            \\\"p\\\": 1.4e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 2.0081,\\n            \\\"p\\\": 0.22942,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3769,\\n            \\\"p\\\": 0.572459,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"d_max_1\\\": {\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 0.4578,\\n            \\\"p\\\": 0.535769,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 0.4737,\\n            \\\"p\\\": 0.529116,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 2.0081,\\n            \\\"p\\\": 0.22942,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3769,\\n            \\\"p\\\": 0.572459,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"flips\\\": {\\n        \\\"d_max_0\\\": true,\\n        \\\"d_max_adaptive\\\": false,\\n        \\\"d_max_1\\\": false\\n      }\\n    },\\n    \\\"token_entropy_perplexity_analysis\\\": {\\n      \\\"d_max_0\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 15.9803,\\n          \\\"p\\\": 0.005206,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 36.1898,\\n          \\\"p\\\": 0.000534,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 22.1524,\\n          \\\"p\\\": 0.002191,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 25.5238,\\n          \\\"p\\\": 0.001476,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"SIGNIFICANT\\\"\\n      },\\n      \\\"d_max_adaptive\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 1.3162,\\n          \\\"p\\\": 0.315231,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 0.079,\\n          \\\"p\\\": 0.792566,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 0.7029,\\n          \\\"p\\\": 0.448982,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 2.2189,\\n          \\\"p\\\": 0.210569,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n      },\\n      \\\"d_max_1\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 1.3162,\\n          \\\"p\\\": 0.315231,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 0.079,\\n          \\\"p\\\": 0.792566,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 0.7029,\\n          \\\"p\\\": 0.448982,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 2.2189,\\n          \\\"p\\\": 0.210569,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "326445df-c447-4a68-813e-827367e127c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"d_max_0\\\\\\\": {\\\\n    \\\\\\\"token_entropy_to_perplexity\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 15.9803,\\\\n        \\\\\\\"p\\\\\\\": 0.005206,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"seed_43\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 36.1898,\\\\n        \\\\\\\"p\\\\\\\": 0.000534,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"seed_44\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 22.1524,\\\\n        \\\\\\\"p\\\\\\\": 0.002191,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"seed_45\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 25.5238,\\\\n        \\\\\\\"p\\\\\\\": 0.001476,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy_to_distinct_1\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 311.6695,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_43\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 199.4927,\\\\n        \\\\\\\"p\\\\\\\": 2e-06,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_44\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 501.0795,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_45\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 388.4396,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy_to_distinct_2\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 115.4437,\\\\n        \\\\\\\"p\\\\\\\": 1.3e-05,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_43\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 113.9303,\\\\n        \\\\\\\"p\\\\\\\": 1.4e-05,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_44\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 549.5467,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_45\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 187.3592,\\\\n        \\\\\\\"p\\\\\\\": 3e-06,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy_to_distinct_3\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 101.3651,\\\\n        \\\\\\\"p\\\\\\\": 2e-05,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_43\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 110.5467,\\\\n        \\\\\\\"p\\\\\\\": 1.5e-05,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_44\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 232.1888,\\\\n        \\\\\\\"p\\\\\\\": 1e-06,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"seed_45\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 138.6459,\\\\n        \\\\\\\"p\\\\\\\": 7e-06,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"self_bleu_to_perplexity\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 2.6688,\\\\n        \\\\\\\"p\\\\\\\": 0.146353,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"seed_43\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 1.3791,\\\\n        \\\\\\\"p\\\\\\\": 0.278657,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"d_max_used\\\\\\\": 0,\\\\n        \\\\\\\"d_canary\\\\\\\": 1,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"seed_44\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 0.1021,\\\\n        \\\\\\\"p\\\\\\\": 0.758641,\\\\n        \\\\\\\"df_resid\\\\\\\": 7,\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 41746 字符] ...\\\\n\\\\n\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_45\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 0.3243,\\\\n            \\\\\\\"p\\\\\\\": 0.59951,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"flips\\\\\\\": {\\\\n        \\\\\\\"d_max_0\\\\\\\": true,\\\\n        \\\\\\\"d_max_adaptive\\\\\\\": false,\\\\n        \\\\\\\"d_max_1\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece_distinct3_analysis\\\\\\\": {\\\\n      \\\\\\\"d_max_0\\\\\\\": {\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"per_seed\\\\\\\": {\\\\n          \\\\\\\"seed_42\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 74.0303,\\\\n            \\\\\\\"p\\\\\\\": 5.7e-05,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_43\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 113.3453,\\\\n            \\\\\\\"p\\\\\\\": 1.4e-05,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_44\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 235.8841,\\\\n            \\\\\\\"p\\\\\\\": 1e-06,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_45\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 116.5025,\\\\n            \\\\\\\"p\\\\\\\": 1.3e-05,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"d_max_adaptive\\\\\\\": {\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"per_seed\\\\\\\": {\\\\n          \\\\\\\"seed_42\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 74.0303,\\\\n            \\\\\\\"p\\\\\\\": 5.7e-05,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_43\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 113.3453,\\\\n            \\\\\\\"p\\\\\\\": 1.4e-05,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_44\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 2.0081,\\\\n            \\\\\\\"p\\\\\\\": 0.22942,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_45\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 0.3769,\\\\n            \\\\\\\"p\\\\\\\": 0.572459,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"d_max_1\\\\\\\": {\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n        \\\\\\\"per_seed\\\\\\\": {\\\\n          \\\\\\\"seed_42\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 0.4578,\\\\n            \\\\\\\"p\\\\\\\": 0.535769,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_43\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 0.4737,\\\\n            \\\\\\\"p\\\\\\\": 0.529116,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_44\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 2.0081,\\\\n            \\\\\\\"p\\\\\\\": 0.22942,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          },\\\\n          \\\\\\\"seed_45\\\\\\\": {\\\\n            \\\\\\\"F\\\\\\\": 0.3769,\\\\n            \\\\\\\"p\\\\\\\": 0.572459,\\\\n            \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"flips\\\\\\\": {\\\\n        \\\\\\\"d_max_0\\\\\\\": true,\\\\n        \\\\\\\"d_max_adaptive\\\\\\\": false,\\\\n        \\\\\\\"d_max_1\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy_perplexity_analysis\\\\\\\": {\\\\n      \\\\\\\"d_max_0\\\\\\\": {\\\\n        \\\\\\\"seed_42\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 15.9803,\\\\n          \\\\\\\"p\\\\\\\": 0.005206,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_43\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 36.1898,\\\\n          \\\\\\\"p\\\\\\\": 0.000534,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_44\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 22.1524,\\\\n          \\\\\\\"p\\\\\\\": 0.002191,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_45\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 25.5238,\\\\n          \\\\\\\"p\\\\\\\": 0.001476,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n      },\\\\n      \\\\\\\"d_max_adaptive\\\\\\\": {\\\\n        \\\\\\\"seed_42\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 1.3162,\\\\n          \\\\\\\"p\\\\\\\": 0.315231,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_43\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 0.079,\\\\n          \\\\\\\"p\\\\\\\": 0.792566,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_44\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 0.7029,\\\\n          \\\\\\\"p\\\\\\\": 0.448982,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_45\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 2.2189,\\\\n          \\\\\\\"p\\\\\\\": 0.210569,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n      },\\\\n      \\\\\\\"d_max_1\\\\\\\": {\\\\n        \\\\\\\"seed_42\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 1.3162,\\\\n          \\\\\\\"p\\\\\\\": 0.315231,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_43\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 0.079,\\\\n          \\\\\\\"p\\\\\\\": 0.792566,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_44\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 0.7029,\\\\n          \\\\\\\"p\\\\\\\": 0.448982,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"seed_45\\\\\\\": {\\\\n          \\\\\\\"F\\\\\\\": 2.2189,\\\\n          \\\\\\\"p\\\\\\\": 0.210569,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"majority_verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"d_max_0\\\": {\\n    \\\"token_entropy_to_perplexity\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 15.9803,\\n        \\\"p\\\": 0.005206,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 36.1898,\\n        \\\"p\\\": 0.000534,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 22.1524,\\n        \\\"p\\\": 0.002191,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 25.5238,\\n        \\\"p\\\": 0.001476,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_1\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 311.6695,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 199.4927,\\n        \\\"p\\\": 2e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 501.0795,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 388.4396,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_2\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 115.4437,\\n        \\\"p\\\": 1.3e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 113.9303,\\n        \\\"p\\\": 1.4e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 549.5467,\\n        \\\"p\\\": 0.0,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 187.3592,\\n        \\\"p\\\": 3e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"token_entropy_to_distinct_3\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 101.3651,\\n        \\\"p\\\": 2e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 110.5467,\\n        \\\"p\\\": 1.5e-05,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 232.1888,\\n        \\\"p\\\": 1e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      },\\n      \\\"seed_45\\\": {\\n        \\\"F\\\": 138.6459,\\n        \\\"p\\\": 7e-06,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 0\\n      }\\n    },\\n    \\\"self_bleu_to_perplexity\\\": {\\n      \\\"seed_42\\\": {\\n        \\\"F\\\": 2.6688,\\n        \\\"p\\\": 0.146353,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_43\\\": {\\n        \\\"F\\\": 1.3791,\\n        \\\"p\\\": 0.278657,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"d_max_used\\\": 0,\\n        \\\"d_canary\\\": 1,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"seed_44\\\": {\\n        \\\"F\\\": 0.1021,\\n        \\\"p\\\": 0.758641,\\n        \\\"df_resid\\\": 7,\\n        \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n  \\n\\n... [截断: 输出过长，省略 41746 字符] ...\\n\\n\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3243,\\n            \\\"p\\\": 0.59951,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"flips\\\": {\\n        \\\"d_max_0\\\": true,\\n        \\\"d_max_adaptive\\\": false,\\n        \\\"d_max_1\\\": false\\n      }\\n    },\\n    \\\"ece_distinct3_analysis\\\": {\\n      \\\"d_max_0\\\": {\\n        \\\"majority_verdict\\\": \\\"SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 74.0303,\\n            \\\"p\\\": 5.7e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 113.3453,\\n            \\\"p\\\": 1.4e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 235.8841,\\n            \\\"p\\\": 1e-06,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 116.5025,\\n            \\\"p\\\": 1.3e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"d_max_adaptive\\\": {\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 74.0303,\\n            \\\"p\\\": 5.7e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 113.3453,\\n            \\\"p\\\": 1.4e-05,\\n            \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 2.0081,\\n            \\\"p\\\": 0.22942,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3769,\\n            \\\"p\\\": 0.572459,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"d_max_1\\\": {\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\",\\n        \\\"per_seed\\\": {\\n          \\\"seed_42\\\": {\\n            \\\"F\\\": 0.4578,\\n            \\\"p\\\": 0.535769,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_43\\\": {\\n            \\\"F\\\": 0.4737,\\n            \\\"p\\\": 0.529116,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_44\\\": {\\n            \\\"F\\\": 2.0081,\\n            \\\"p\\\": 0.22942,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          },\\n          \\\"seed_45\\\": {\\n            \\\"F\\\": 0.3769,\\n            \\\"p\\\": 0.572459,\\n            \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n          }\\n        }\\n      },\\n      \\\"flips\\\": {\\n        \\\"d_max_0\\\": true,\\n        \\\"d_max_adaptive\\\": false,\\n        \\\"d_max_1\\\": false\\n      }\\n    },\\n    \\\"token_entropy_perplexity_analysis\\\": {\\n      \\\"d_max_0\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 15.9803,\\n          \\\"p\\\": 0.005206,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 36.1898,\\n          \\\"p\\\": 0.000534,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 22.1524,\\n          \\\"p\\\": 0.002191,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 25.5238,\\n          \\\"p\\\": 0.001476,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"SIGNIFICANT\\\"\\n      },\\n      \\\"d_max_adaptive\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 1.3162,\\n          \\\"p\\\": 0.315231,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 0.079,\\n          \\\"p\\\": 0.792566,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 0.7029,\\n          \\\"p\\\": 0.448982,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 2.2189,\\n          \\\"p\\\": 0.210569,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n      },\\n      \\\"d_max_1\\\": {\\n        \\\"seed_42\\\": {\\n          \\\"F\\\": 1.3162,\\n          \\\"p\\\": 0.315231,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_43\\\": {\\n          \\\"F\\\": 0.079,\\n          \\\"p\\\": 0.792566,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_44\\\": {\\n          \\\"F\\\": 0.7029,\\n          \\\"p\\\": 0.448982,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"seed_45\\\": {\\n          \\\"F\\\": 2.2189,\\n          \\\"p\\\": 0.210569,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"majority_verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L2a9y3xwgBSGRaRhmRboBu`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "d6374b68-6132-4555-adc6-8a65e03a0916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeNWGv4ETnjAww823QG37F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 24292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 914
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T17:41:42.205Z_
+
+<details><summary>↩ Tool result · `toolu_01L2a9y3xwgBSGRaRhmRboBu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"timestamp\\\": \\\"2026-05-15T16:57:34.478890\\\",\\n    \\\"alphas\\\": [\\n      0.0,\\n      0.25,\\n      0.5,\\n      1.0\\n    ],\\n    \\\"n_alphas\\\": 4,\\n    \\\"n_runs\\\": 7,\\n    \\\"n_panel_rows\\\": 56,\\n    \\\"canary_metrics\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstream_metrics\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"perplexity\\\"\\n    ],\\n    \\\"methods\\\": [\\n      \\\"naive\\\",\\n      \\\"differenced\\\",\\n      \\\"threshold\\\",\\n      \\\"permutation_granger\\\",\\n      \\\"TY\\\"\\n    ],\\n    \\\"n_permutations\\\": 1000,\\n    \\\"note\\\": \\\"alpha=0.75 RUNNING, alpha=0.10/0.60 QUEUED. Panel covers alpha={0.0, 0.25, 0.50, 1.0}. Update when alpha=0.75 completes.\\\"\\n  },\\n  \\\"method_alpha_sig_rates\\\": {\\n    \\\"0.0\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 4,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.5\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 5,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.625\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      }\\n    },\\n    \\\"0.25\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 3,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.375\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 5,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.625\\n      }\\n    },\\n    \\\"0.5\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      }\\n    },\\n    \\\"1.0\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 24,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 0.75\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 19,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 0.5938\\n      }\\n    }\\n  },\\n  \\\"pair_verdicts\\\": [\\n    {\\n      \\\"alpha\\\": 0.0,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_seeds\\\": 0,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": false\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig_seeds\\\": 0,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": false\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 0.25,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 0.5,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_\\n\\n... [截断: 输出过长，省略 86844 字符] ...\\n\\n\\\": 0.992008,\\n          \\\"f_stat\\\": 0.0001,\\n          \\\"effect_size_f2\\\": 0.0\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.210569,\\n          \\\"wald_F\\\": 2.2189,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.995,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 3e-06,\\n          \\\"stat\\\": 0.9804,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 1,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 3\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.001998,\\n          \\\"f_stat\\\": 1220.9025,\\n          \\\"effect_size_f2\\\": 203.4837\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.027607,\\n          \\\"wald_F\\\": 11.4716,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.997,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.9944,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 2,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 4\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.001998,\\n          \\\"f_stat\\\": 613.5965,\\n          \\\"effect_size_f2\\\": 102.2661\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.59951,\\n          \\\"wald_F\\\": 0.3243,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.9863,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"stat\\\": 0.9875,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 2,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 4\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.003996,\\n          \\\"f_stat\\\": 298.8323,\\n          \\\"effect_size_f2\\\": 49.8054\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.572459,\\n          \\\"wald_F\\\": 0.3769,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.000621,\\n          \\\"stat\\\": 0.9361,\\n          \\\"peak_lag\\\": 3\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.007085,\\n          \\\"stat\\\": -0.8177,\\n          \\\"peak_lag\\\": 1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 5,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 7\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.674326,\\n          \\\"f_stat\\\": 0.189,\\n          \\\"effect_size_f2\\\": 0.0315\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.167366,\\n          \\\"wald_F\\\": 2.8376,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "15417206-7c8b-4a43-9405-83c3366bb8fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-15T16:57:34.478890\\\\\\\",\\\\n    \\\\\\\"alphas\\\\\\\": [\\\\n      0.0,\\\\n      0.25,\\\\n      0.5,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"n_alphas\\\\\\\": 4,\\\\n    \\\\\\\"n_runs\\\\\\\": 7,\\\\n    \\\\\\\"n_panel_rows\\\\\\\": 56,\\\\n    \\\\\\\"canary_metrics\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstream_metrics\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"perplexity\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive\\\\\\\",\\\\n      \\\\\\\"differenced\\\\\\\",\\\\n      \\\\\\\"threshold\\\\\\\",\\\\n      \\\\\\\"permutation_granger\\\\\\\",\\\\n      \\\\\\\"TY\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_permutations\\\\\\\": 1000,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"alpha=0.75 RUNNING, alpha=0.10/0.60 QUEUED. Panel covers alpha={0.0, 0.25, 0.50, 1.0}. Update when alpha=0.75 completes.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method_alpha_sig_rates\\\\\\\": {\\\\n    \\\\\\\"0.0\\\\\\\": {\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 8,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 4,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.5\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 5,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.625\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 0,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 0,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.25\\\\\\\": {\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 8,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 2,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.25\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 3,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.375\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 2,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.25\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 5,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.625\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 8,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 8,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 8,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 2,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.25\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 0,\\\\n        \\\\\\\"total\\\\\\\": 8,\\\\n        \\\\\\\"rate\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"1.0\\\\\\\": {\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 32,\\\\n        \\\\\\\"total\\\\\\\": 32,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 32,\\\\n        \\\\\\\"total\\\\\\\": 32,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 32,\\\\n        \\\\\\\"total\\\\\\\": 32,\\\\n        \\\\\\\"rate\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 24,\\\\n        \\\\\\\"total\\\\\\\": 32,\\\\n        \\\\\\\"rate\\\\\\\": 0.75\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig\\\\\\\": 19,\\\\n        \\\\\\\"total\\\\\\\": 32,\\\\n        \\\\\\\"rate\\\\\\\": 0.5938\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pair_verdicts\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 0.0,\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"n_seeds\\\\\\\": 1,\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 0,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 0,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 0.25,\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"n_seeds\\\\\\\": 1,\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"TY\\\\\\\": {\\\\n        \\\\\\\"sig_seeds\\\\\\\": 1,\\\\n        \\\\\\\"total_seeds\\\\\\\": 1,\\\\n        \\\\\\\"verdict\\\\\\\": true\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 0.5,\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"n_seeds\\\\\\\": 1,\\\\n      \\\\\\\"naive\\\\\\\": {\\\\n        \\\\\\\"sig_\\\\n\\\\n... [截断: 输出过长，省略 86844 字符] ...\\\\n\\\\n\\\\\\\": 0.992008,\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0001,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"TY\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_value\\\\\\\": 0.210569,\\\\n          \\\\\\\"wald_F\\\\\\\": 2.2189,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"seed\\\\\\\": 45,\\\\n      \\\\\\\"run_id\\\\\\\": \\\\\\\"mvp_s45\\\\\\\",\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"methods\\\\\\\": {\\\\n        \\\\\\\"naive\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"stat\\\\\\\": 0.995,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 3e-06,\\\\n          \\\\\\\"stat\\\\\\\": 0.9804,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"threshold\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001998,\\\\n          \\\\\\\"f_stat\\\\\\\": 1220.9025,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 203.4837\\\\n        },\\\\n        \\\\\\\"TY\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.027607,\\\\n          \\\\\\\"wald_F\\\\\\\": 11.4716,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"seed\\\\\\\": 45,\\\\n      \\\\\\\"run_id\\\\\\\": \\\\\\\"mvp_s45\\\\\\\",\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"methods\\\\\\\": {\\\\n        \\\\\\\"naive\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"stat\\\\\\\": 0.997,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"stat\\\\\\\": 0.9944,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"threshold\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"lead_time\\\\\\\": 2,\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001998,\\\\n          \\\\\\\"f_stat\\\\\\\": 613.5965,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 102.2661\\\\n        },\\\\n        \\\\\\\"TY\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_value\\\\\\\": 0.59951,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.3243,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"seed\\\\\\\": 45,\\\\n      \\\\\\\"run_id\\\\\\\": \\\\\\\"mvp_s45\\\\\\\",\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"methods\\\\\\\": {\\\\n        \\\\\\\"naive\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"stat\\\\\\\": 0.9863,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 1e-06,\\\\n          \\\\\\\"stat\\\\\\\": 0.9875,\\\\n          \\\\\\\"peak_lag\\\\\\\": -1\\\\n        },\\\\n        \\\\\\\"threshold\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"lead_time\\\\\\\": 2,\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003996,\\\\n          \\\\\\\"f_stat\\\\\\\": 298.8323,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 49.8054\\\\n        },\\\\n        \\\\\\\"TY\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_value\\\\\\\": 0.572459,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.3769,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"alpha\\\\\\\": 1.0,\\\\n      \\\\\\\"seed\\\\\\\": 45,\\\\n      \\\\\\\"run_id\\\\\\\": \\\\\\\"mvp_s45\\\\\\\",\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"methods\\\\\\\": {\\\\n        \\\\\\\"naive\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000621,\\\\n          \\\\\\\"stat\\\\\\\": 0.9361,\\\\n          \\\\\\\"peak_lag\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_value\\\\\\\": 0.007085,\\\\n          \\\\\\\"stat\\\\\\\": -0.8177,\\\\n          \\\\\\\"peak_lag\\\\\\\": 1\\\\n        },\\\\n        \\\\\\\"threshold\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"lead_time\\\\\\\": 5,\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 7\\\\n        },\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_value\\\\\\\": 0.674326,\\\\n          \\\\\\\"f_stat\\\\\\\": 0.189,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 0.0315\\\\n        },\\\\n        \\\\\\\"TY\\\\\\\": {\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_value\\\\\\\": 0.167366,\\\\n          \\\\\\\"wald_F\\\\\\\": 2.8376,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4\\\\n        }\\\\n      }\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"timestamp\\\": \\\"2026-05-15T16:57:34.478890\\\",\\n    \\\"alphas\\\": [\\n      0.0,\\n      0.25,\\n      0.5,\\n      1.0\\n    ],\\n    \\\"n_alphas\\\": 4,\\n    \\\"n_runs\\\": 7,\\n    \\\"n_panel_rows\\\": 56,\\n    \\\"canary_metrics\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstream_metrics\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"perplexity\\\"\\n    ],\\n    \\\"methods\\\": [\\n      \\\"naive\\\",\\n      \\\"differenced\\\",\\n      \\\"threshold\\\",\\n      \\\"permutation_granger\\\",\\n      \\\"TY\\\"\\n    ],\\n    \\\"n_permutations\\\": 1000,\\n    \\\"note\\\": \\\"alpha=0.75 RUNNING, alpha=0.10/0.60 QUEUED. Panel covers alpha={0.0, 0.25, 0.50, 1.0}. Update when alpha=0.75 completes.\\\"\\n  },\\n  \\\"method_alpha_sig_rates\\\": {\\n    \\\"0.0\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 4,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.5\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 5,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.625\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      }\\n    },\\n    \\\"0.25\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 3,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.375\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 5,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.625\\n      }\\n    },\\n    \\\"0.5\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.25\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate\\\": 0.0\\n      }\\n    },\\n    \\\"1.0\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig\\\": 32,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 1.0\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig\\\": 24,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 0.75\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig\\\": 19,\\n        \\\"total\\\": 32,\\n        \\\"rate\\\": 0.5938\\n      }\\n    }\\n  },\\n  \\\"pair_verdicts\\\": [\\n    {\\n      \\\"alpha\\\": 0.0,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_seeds\\\": 0,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": false\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig_seeds\\\": 0,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": false\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 0.25,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig_seeds\\\": 1,\\n        \\\"total_seeds\\\": 1,\\n        \\\"verdict\\\": true\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 0.5,\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"n_seeds\\\": 1,\\n      \\\"naive\\\": {\\n        \\\"sig_\\n\\n... [截断: 输出过长，省略 86844 字符] ...\\n\\n\\\": 0.992008,\\n          \\\"f_stat\\\": 0.0001,\\n          \\\"effect_size_f2\\\": 0.0\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.210569,\\n          \\\"wald_F\\\": 2.2189,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.995,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 3e-06,\\n          \\\"stat\\\": 0.9804,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 1,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 3\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.001998,\\n          \\\"f_stat\\\": 1220.9025,\\n          \\\"effect_size_f2\\\": 203.4837\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.027607,\\n          \\\"wald_F\\\": 11.4716,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.997,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.9944,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 2,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 4\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.001998,\\n          \\\"f_stat\\\": 613.5965,\\n          \\\"effect_size_f2\\\": 102.2661\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.59951,\\n          \\\"wald_F\\\": 0.3243,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.0,\\n          \\\"stat\\\": 0.9863,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"stat\\\": 0.9875,\\n          \\\"peak_lag\\\": -1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 2,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 4\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.003996,\\n          \\\"f_stat\\\": 298.8323,\\n          \\\"effect_size_f2\\\": 49.8054\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.572459,\\n          \\\"wald_F\\\": 0.3769,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    },\\n    {\\n      \\\"alpha\\\": 1.0,\\n      \\\"seed\\\": 45,\\n      \\\"run_id\\\": \\\"mvp_s45\\\",\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"methods\\\": {\\n        \\\"naive\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.000621,\\n          \\\"stat\\\": 0.9361,\\n          \\\"peak_lag\\\": 3\\n        },\\n        \\\"differenced\\\": {\\n          \\\"significant\\\": true,\\n          \\\"p_value\\\": 0.007085,\\n          \\\"stat\\\": -0.8177,\\n          \\\"peak_lag\\\": 1\\n        },\\n        \\\"threshold\\\": {\\n          \\\"significant\\\": true,\\n          \\\"lead_time\\\": 5,\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 7\\n        },\\n        \\\"permutation_granger\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.674326,\\n          \\\"f_stat\\\": 0.189,\\n          \\\"effect_size_f2\\\": 0.0315\\n        },\\n        \\\"TY\\\": {\\n          \\\"significant\\\": false,\\n          \\\"p_value\\\": 0.167366,\\n          \\\"wald_F\\\": 2.8376,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the data. Now I need to extract the specific F-statistic values I need. Let me focus on the key files.
+
+The main file is `method_ablation.json` which has the per-seed data. But it was truncated. The `method_ablation_dmax_sensitivity.json` has the d_max sensitivity analysis which is relevant.
+
+Let me also look at the `method_ablation_phase2_panel.json` which has the phase 2 data including permutation_granger f_stat values.
+
+From the data I've seen so far:
+
+
+Now I'm examining the d_max sensitivity results, particularly the d_max=0 case which represents standard Granger causality on undifferenced data. Looking at the token_entropy→perplexity relationship, I'm seeing F-statistics ranging from about 16 to 36 across the different seeds, with consistently significant p-values below 0.005.
+
+For the distinctness metrics, the F-statistics are substantially higher—token_entropy→distinct_1 shows values between 200-500, distinct_2 ranges from 114-550, and distinct_3 falls between 101-232. These much larger F-values suggest stronger causal relationships with the distinctness measures compared to perplexity, though I'm noticing considerable variability across seeds, particularly in the distinct_2 case where seed_44 produces an outlier value of 549.55.
+
+Now I need to focus specifically on the permutation_granger method rather than the Toda-Yamamoto approach. Looking at the method descriptions, permutation_granger is already the differenced version with shuffle permutation testing, so I should verify whether the phase2 panel data results reflect this differenced specification or if there's a distinction I'm missing between the method definitions and actual implementation. I need to figure out whether the permutation_granger values in the phase2 data are differenced or undifferenced, and I should check the method_ablation.json file more carefully since it was truncated. Let me also look at how the fig_differencing_dmax figure is actually constructed to understand what data it's using. for canary→diversity
+
+I need to find:
+1. The permutation Granger F-stats for canary→diversity in both undifferenced and differenced settings
+2. The permutation Granger F-stats for canary→perplexity in both settings
+
+From `method_ablation.json`:
+- The `permutation_granger` method is described as "differenced + shuffle permutation Granger"
+
+So in method_ablation.json, the permutation_granger is **already first-differenced**.
+
+Now I need to find the **undifferenced** permutation Granger results. These might be in a different file, or the d_max_0 TY results might serve as the "undifferenced" Granger test.
+
+Wait, let me look at the dmax_sensitivity file more carefully. The d_max_0 means TY with d_max=0, which is essentially a standard Granger test without augmentation. But this is the TY method, not the permutation Granger method.
+
+The fig_differencing_dmax figure might be comparing undifferenced versus first-differenced Granger tests, or it could be showing how the permutation Granger method performs across different differencing levels. I should check the figure generation script to understand what's actually being compared.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "845de3b2-fa03-428d-957d-0ebdbc46824c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsmDKPEmq43Zp785tASLFv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14393,
+      "cache_read_input_tokens": 25206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+数据量很大，被截断了。让我精确提取 permutation_granger 的 f_stat 值，并查找图表生成代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "e6ac0961-7628-4155-a6d6-f9c5b0c35943",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsmDKPEmq43Zp785tASLFv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14393,
+      "cache_read_input_tokens": 25206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BWMGgnzPabg3ukusWQ8Yad`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*fig*differenc*\" -o -name \"*differenc*fig*\" -o -name \"*fig_differencing*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "45b0f7c0-727c-4c74-bc5e-9c4a83bd59ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsmDKPEmq43Zp785tASLFv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14393,
+      "cache_read_input_tokens": 25206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T17:42:14.926Z_
+
+<details><summary>↩ Tool result · `toolu_01BWMGgnzPabg3ukusWQ8Yad`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "9cc263ca-2167-4a23-b7d6-73f89361dab2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0155mzA7rFsCy9UMPCkYLUof`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*.py\" -path \"*fig*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "640e69cf-60d2-43da-91f7-2ed3d6413941",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsmDKPEmq43Zp785tASLFv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14393,
+      "cache_read_input_tokens": 25206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T17:42:15.923Z_
+
+<details><summary>↩ Tool result · `toolu_0155mzA7rFsCy9UMPCkYLUof`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "485c59ca-bf18-42e2-a010-cbda5b67a8e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019yVvT9Tt7HSUKKy9djJsfe`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rl \"612\" /root/autodl-tmp/distrib_canary_collapse/results/ --include=\"*.json\" --include=\"*.md\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "8f6dd4cb-15e9-45d7-86a1-9ebe685db29c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsmDKPEmq43Zp785tASLFv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14393,
+      "cache_read_input_tokens": 25206,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T17:42:17.043Z_
+
+<details><summary>↩ Tool result · `toolu_019yVvT9Tt7HSUKKy9djJsfe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/metrics.json\\n/root/autodl\\n\\n... [截断: 输出过长，省略 7603 字符] ...\\n\\nalpha_sweep/a025_s43/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_11/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_12/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v4.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v5.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/tokenizer.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "47c7524d-cd74-4e11-82e6-207631add2b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_5/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_6/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_7/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_8/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_5/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_6/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_7/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_8/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_5/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_7/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_8/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/metrics.json\\\\n/root/autodl\\\\n\\\\n... [截断: 输出过长，省略 7603 字符] ...\\\\n\\\\nalpha_sweep/a025_s43/gen_8/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_6/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_7/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_8/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_11/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_12/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v4.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v5.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/vocab.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/vocab.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/vocab.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/vocab.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/vocab.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/tokenizer.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_1/metrics.json\\n/root/autodl\\n\\n... [截断: 输出过长，省略 7603 字符] ...\\n\\nalpha_sweep/a025_s43/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_6/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_7/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_8/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_11/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_12/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v4.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v5.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/vocab.json\\n/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42/gen_5/checkpoint/tokenizer.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's a `permutation_granger.json` file. Let me look at that. Also, I need to extract the permutation_granger f_stat values from the method_ablation.json for the canary→diversity pairs. The output was truncated, so let me use python to extract just the values I need.
+
+Let me look at:
+1. `permutation_granger.json` - this likely has the raw permutation Granger results
+2. The figure code - I need to find the figure generation script
+3. 
+
+Now I'm pulling out the specific f_stat values from method_ablation.json for those canary→diversity pairs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "3cf47ce2-4a2d-41a3-8fd7-1326e56d702e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djzpezp9T5xUap4mp7xRV7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5517,
+      "cache_read_input_tokens": 39599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WtSS5Hfu4EpbgGjkz3wa1C`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "71102fa6-01a1-4594-b39d-473011117550",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djzpezp9T5xUap4mp7xRV7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5517,
+      "cache_read_input_tokens": 39599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T17:42:23.496Z_
+
+<details><summary>↩ Tool result · `toolu_01WtSS5Hfu4EpbgGjkz3wa1C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"permutation_granger\\\",\\n  \\\"config\\\": {\\n    \\\"max_lag\\\": 1,\\n    \\\"n_perm\\\": 1000,\\n    \\\"permutation_method\\\": \\\"shuffle\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"fdr_method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"fdr_scope\\\": \\\"per_seed (8 pairs corrected together)\\\",\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"perplexity\\\"\\n    ],\\n    \\\"note\\\": \\\"difference=True uses first-differencing to remove non-stationarity\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 612.1209,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 21.5396,\\n            \\\"null_std\\\": 102.2766,\\n            \\\"effect_size_f2\\\": 102.0202,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.010989,\\n            \\\"p_fdr\\\": 0.025574,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 311.6695,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 10.7937,\\n            \\\"null_std\\\": 48.4648,\\n            \\\"effect_size_f2\\\": 44.5242,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.006993,\\n            \\\"p_fdr\\\": 0.011988,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 43,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 2614.7812,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 13.2016,\\n            \\\"null_std\\\": 80.8342,\\n            \\\"effect_size_f2\\\": 435.7969,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.000999,\\n            \\\"p_fdr\\\": 0.001332,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 199.4927,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 9.4004,\\n            \\\"null_std\\\": 41.3019,\\n            \\\"effect_size_f2\\\": 28.499,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.007992,\\n            \\\"p_fdr\\\": 0.014842,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 44,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 1369.7604,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 18.5391,\\n            \\\"null_std\\\": 88.5656,\\n            \\\"effect_size_f2\\\": 228.2934,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.001998,\\n            \\\"p_fdr\\\": 0.003996,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 501.0795,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 10.3721,\\n            \\\"null_std\\\": 69.6944,\\n            \\\"effect_size_f2\\\": 71.5828,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.002997,\\n            \\\"p_fdr\\\": 0.004795,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 752.8218,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 15.2321,\\n            \\\"null_std\\\": 71.0982,\\n            \\\"effect_size_f2\\\": 125.4703,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.003996,\\n            \\\"p_fdr\\\": 0.006394,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 388.4396,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 5.8806,\\n            \\\"null_std\\\": 24.9045,\\n            \\\"effect_size_f2\\\": 55.4914,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.001998,\\n            \\\"p_fdr\\\": 0.003197,\\n            \\\"significant_fdr\\\": true\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"differenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"undifferenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\n\\n... [截断: 输出过长，省略 20912 字符] ...\\n\\n        \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.0044,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.2505,\\n            \\\"null_std\\\": 1.8549,\\n            \\\"effect_size_f2\\\": 0.0007,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.96004,\\n            \\\"p_fdr\\\": 0.96004,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 12.1512,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8392,\\n            \\\"null_std\\\": 4.4062,\\n            \\\"effect_size_f2\\\": 1.7359,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.038961,\\n            \\\"p_fdr\\\": 0.044527,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 43,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.5056,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.4085,\\n            \\\"null_std\\\": 2.3739,\\n            \\\"effect_size_f2\\\": 0.0843,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.537463,\\n            \\\"p_fdr\\\": 0.614243,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 24.9212,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.9446,\\n            \\\"null_std\\\": 5.1786,\\n            \\\"effect_size_f2\\\": 3.5602,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.012987,\\n            \\\"p_fdr\\\": 0.014842,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 44,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.6074,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8275,\\n            \\\"null_std\\\": 4.5182,\\n            \\\"effect_size_f2\\\": 0.1012,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.345654,\\n            \\\"p_fdr\\\": 0.395033,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 15.1192,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 2.5569,\\n            \\\"null_std\\\": 7.7794,\\n            \\\"effect_size_f2\\\": 2.1599,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.037962,\\n            \\\"p_fdr\\\": 0.042957,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.189,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.2922,\\n            \\\"null_std\\\": 2.0779,\\n            \\\"effect_size_f2\\\": 0.0315,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.674326,\\n            \\\"p_fdr\\\": 0.770658,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 17.5448,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8801,\\n            \\\"null_std\\\": 5.4657,\\n            \\\"effect_size_f2\\\": 2.5064,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.027972,\\n            \\\"p_fdr\\\": 0.030969,\\n            \\\"significant_fdr\\\": true\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"differenced\\\": {\\n          \\\"sig_seeds\\\": 0,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"undifferenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        }\\n      }\\n    }\\n  ],\\n  \\\"fdr_correction\\\": {\\n    \\\"method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"scope\\\": \\\"per_seed (8 p-values per seed corrected together)\\\",\\n    \\\"per_mode\\\": {\\n      \\\"differenced\\\": {\\n        \\\"total_tests\\\": 32,\\n        \\\"raw_significant\\\": 24,\\n        \\\"fdr_significant\\\": 24\\n      },\\n      \\\"undifferenced\\\": {\\n        \\\"total_tests\\\": 32,\\n        \\\"raw_significant\\\": 31,\\n        \\\"fdr_significant\\\": 31\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "ef2e7ed2-97d3-42a8-9767-5d77f04da076",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"max_lag\\\\\\\": 1,\\\\n    \\\\\\\"n_perm\\\\\\\": 1000,\\\\n    \\\\\\\"permutation_method\\\\\\\": \\\\\\\"shuffle\\\\\\\",\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"fdr_method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n    \\\\\\\"fdr_scope\\\\\\\": \\\\\\\"per_seed (8 pairs corrected together)\\\\\\\",\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"perplexity\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"difference=True uses first-differencing to remove non-stationarity\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 42,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 612.1209,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 21.5396,\\\\n            \\\\\\\"null_std\\\\\\\": 102.2766,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 102.0202,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.010989,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.025574,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 311.6695,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 10.7937,\\\\n            \\\\\\\"null_std\\\\\\\": 48.4648,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 44.5242,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.006993,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.011988,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 43,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 2614.7812,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 13.2016,\\\\n            \\\\\\\"null_std\\\\\\\": 80.8342,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 435.7969,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.000999,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.001332,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 199.4927,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 9.4004,\\\\n            \\\\\\\"null_std\\\\\\\": 41.3019,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 28.499,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.007992,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.014842,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 44,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 1369.7604,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 18.5391,\\\\n            \\\\\\\"null_std\\\\\\\": 88.5656,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 228.2934,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.001998,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.003996,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 501.0795,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 10.3721,\\\\n            \\\\\\\"null_std\\\\\\\": 69.6944,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 71.5828,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.002997,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.004795,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 45,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 752.8218,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 15.2321,\\\\n            \\\\\\\"null_std\\\\\\\": 71.0982,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 125.4703,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.003996,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.006394,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 388.4396,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 5.8806,\\\\n            \\\\\\\"null_std\\\\\\\": 24.9045,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 55.4914,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.001998,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.003197,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        }\\\\n      ],\\\\n      \\\\\\\"summary\\\\\\\": {\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"undifferenced\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\n\\\\n... [截断: 输出过长，省略 20912 字符] ...\\\\n\\\\n        \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"per_seed\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 42,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 0.0044,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.2505,\\\\n            \\\\\\\"null_std\\\\\\\": 1.8549,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.0007,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.96004,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.96004,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 12.1512,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.8392,\\\\n            \\\\\\\"null_std\\\\\\\": 4.4062,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 1.7359,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.038961,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.044527,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 43,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 0.5056,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.4085,\\\\n            \\\\\\\"null_std\\\\\\\": 2.3739,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.0843,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.537463,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.614243,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 24.9212,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.9446,\\\\n            \\\\\\\"null_std\\\\\\\": 5.1786,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 3.5602,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.012987,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.014842,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 44,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 0.6074,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.8275,\\\\n            \\\\\\\"null_std\\\\\\\": 4.5182,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.1012,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.345654,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.395033,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 15.1192,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 2.5569,\\\\n            \\\\\\\"null_std\\\\\\\": 7.7794,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 2.1599,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.037962,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.042957,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        },\\\\n        {\\\\n          \\\\\\\"seed\\\\\\\": 45,\\\\n          \\\\\\\"differenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 0.189,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.2922,\\\\n            \\\\\\\"null_std\\\\\\\": 2.0779,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.0315,\\\\n            \\\\\\\"significant\\\\\\\": false,\\\\n            \\\\\\\"differenced\\\\\\\": true,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.674326,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.770658,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"undifferenced\\\\\\\": {\\\\n            \\\\\\\"f_stat\\\\\\\": 17.5448,\\\\n            \\\\\\\"n_perm\\\\\\\": 1000,\\\\n            \\\\\\\"null_mean\\\\\\\": 1.8801,\\\\n            \\\\\\\"null_std\\\\\\\": 5.4657,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 2.5064,\\\\n            \\\\\\\"significant\\\\\\\": true,\\\\n            \\\\\\\"differenced\\\\\\\": false,\\\\n            \\\\\\\"p_raw\\\\\\\": 0.027972,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.030969,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n          }\\\\n        }\\\\n      ],\\\\n      \\\\\\\"summary\\\\\\\": {\\\\n        \\\\\\\"differenced\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 0,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"NOT_SIGNIFICANT\\\\\\\"\\\\n        },\\\\n        \\\\\\\"undifferenced\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n          \\\\\\\"total\\\\\\\": 4,\\\\n          \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"fdr_correction\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"scope\\\\\\\": \\\\\\\"per_seed (8 p-values per seed corrected together)\\\\\\\",\\\\n    \\\\\\\"per_mode\\\\\\\": {\\\\n      \\\\\\\"differenced\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 32,\\\\n        \\\\\\\"raw_significant\\\\\\\": 24,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 24\\\\n      },\\\\n      \\\\\\\"undifferenced\\\\\\\": {\\\\n        \\\\\\\"total_tests\\\\\\\": 32,\\\\n        \\\\\\\"raw_significant\\\\\\\": 31,\\\\n        \\\\\\\"fdr_significant\\\\\\\": 31\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"permutation_granger\\\",\\n  \\\"config\\\": {\\n    \\\"max_lag\\\": 1,\\n    \\\"n_perm\\\": 1000,\\n    \\\"permutation_method\\\": \\\"shuffle\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"fdr_method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"fdr_scope\\\": \\\"per_seed (8 pairs corrected together)\\\",\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"perplexity\\\"\\n    ],\\n    \\\"note\\\": \\\"difference=True uses first-differencing to remove non-stationarity\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 612.1209,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 21.5396,\\n            \\\"null_std\\\": 102.2766,\\n            \\\"effect_size_f2\\\": 102.0202,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.010989,\\n            \\\"p_fdr\\\": 0.025574,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 311.6695,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 10.7937,\\n            \\\"null_std\\\": 48.4648,\\n            \\\"effect_size_f2\\\": 44.5242,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.006993,\\n            \\\"p_fdr\\\": 0.011988,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 43,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 2614.7812,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 13.2016,\\n            \\\"null_std\\\": 80.8342,\\n            \\\"effect_size_f2\\\": 435.7969,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.000999,\\n            \\\"p_fdr\\\": 0.001332,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 199.4927,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 9.4004,\\n            \\\"null_std\\\": 41.3019,\\n            \\\"effect_size_f2\\\": 28.499,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.007992,\\n            \\\"p_fdr\\\": 0.014842,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 44,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 1369.7604,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 18.5391,\\n            \\\"null_std\\\": 88.5656,\\n            \\\"effect_size_f2\\\": 228.2934,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.001998,\\n            \\\"p_fdr\\\": 0.003996,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 501.0795,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 10.3721,\\n            \\\"null_std\\\": 69.6944,\\n            \\\"effect_size_f2\\\": 71.5828,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.002997,\\n            \\\"p_fdr\\\": 0.004795,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 752.8218,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 15.2321,\\n            \\\"null_std\\\": 71.0982,\\n            \\\"effect_size_f2\\\": 125.4703,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.003996,\\n            \\\"p_fdr\\\": 0.006394,\\n            \\\"significant_fdr\\\": true\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 388.4396,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 5.8806,\\n            \\\"null_std\\\": 24.9045,\\n            \\\"effect_size_f2\\\": 55.4914,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.001998,\\n            \\\"p_fdr\\\": 0.003197,\\n            \\\"significant_fdr\\\": true\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"differenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        },\\n        \\\"undifferenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\n\\n... [截断: 输出过长，省略 20912 字符] ...\\n\\n        \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"perplexity\\\",\\n      \\\"per_seed\\\": [\\n        {\\n          \\\"seed\\\": 42,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.0044,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.2505,\\n            \\\"null_std\\\": 1.8549,\\n            \\\"effect_size_f2\\\": 0.0007,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.96004,\\n            \\\"p_fdr\\\": 0.96004,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 12.1512,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8392,\\n            \\\"null_std\\\": 4.4062,\\n            \\\"effect_size_f2\\\": 1.7359,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.038961,\\n            \\\"p_fdr\\\": 0.044527,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 43,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.5056,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.4085,\\n            \\\"null_std\\\": 2.3739,\\n            \\\"effect_size_f2\\\": 0.0843,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.537463,\\n            \\\"p_fdr\\\": 0.614243,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 24.9212,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.9446,\\n            \\\"null_std\\\": 5.1786,\\n            \\\"effect_size_f2\\\": 3.5602,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.012987,\\n            \\\"p_fdr\\\": 0.014842,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 44,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.6074,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8275,\\n            \\\"null_std\\\": 4.5182,\\n            \\\"effect_size_f2\\\": 0.1012,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.345654,\\n            \\\"p_fdr\\\": 0.395033,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 15.1192,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 2.5569,\\n            \\\"null_std\\\": 7.7794,\\n            \\\"effect_size_f2\\\": 2.1599,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.037962,\\n            \\\"p_fdr\\\": 0.042957,\\n            \\\"significant_fdr\\\": true\\n          }\\n        },\\n        {\\n          \\\"seed\\\": 45,\\n          \\\"differenced\\\": {\\n            \\\"f_stat\\\": 0.189,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.2922,\\n            \\\"null_std\\\": 2.0779,\\n            \\\"effect_size_f2\\\": 0.0315,\\n            \\\"significant\\\": false,\\n            \\\"differenced\\\": true,\\n            \\\"p_raw\\\": 0.674326,\\n            \\\"p_fdr\\\": 0.770658,\\n            \\\"significant_fdr\\\": false\\n          },\\n          \\\"undifferenced\\\": {\\n            \\\"f_stat\\\": 17.5448,\\n            \\\"n_perm\\\": 1000,\\n            \\\"null_mean\\\": 1.8801,\\n            \\\"null_std\\\": 5.4657,\\n            \\\"effect_size_f2\\\": 2.5064,\\n            \\\"significant\\\": true,\\n            \\\"differenced\\\": false,\\n            \\\"p_raw\\\": 0.027972,\\n            \\\"p_fdr\\\": 0.030969,\\n            \\\"significant_fdr\\\": true\\n          }\\n        }\\n      ],\\n      \\\"summary\\\": {\\n        \\\"differenced\\\": {\\n          \\\"sig_seeds\\\": 0,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"NOT_SIGNIFICANT\\\"\\n        },\\n        \\\"undifferenced\\\": {\\n          \\\"sig_seeds\\\": 4,\\n          \\\"total\\\": 4,\\n          \\\"verdict\\\": \\\"SIGNIFICANT\\\"\\n        }\\n      }\\n    }\\n  ],\\n  \\\"fdr_correction\\\": {\\n    \\\"method\\\": \\\"benjamini-hochberg\\\",\\n    \\\"alpha\\\": 0.05,\\n    \\\"scope\\\": \\\"per_seed (8 p-values per seed corrected together)\\\",\\n    \\\"per_mode\\\": {\\n      \\\"differenced\\\": {\\n        \\\"total_tests\\\": 32,\\n        \\\"raw_significant\\\": 24,\\n        \\\"fdr_significant\\\": 24\\n      },\\n      \\\"undifferenced\\\": {\\n        \\\"total_tests\\\": 32,\\n        \\\"raw_significant\\\": 31,\\n        \\\"fdr_significant\\\": 31\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016e8y5R6aaxXGVZkJCUZgyp`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*.py\" -path \"*plot*\" -o -name \"*.py\" -path \"*figure*\" -o -name \"*.py\" -path \"*viz*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "f4b5aab7-5b2f-4c85-abb9-f07a4b65b657",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djzpezp9T5xUap4mp7xRV7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5517,
+      "cache_read_input_tokens": 39599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T17:42:24.410Z_
+
+<details><summary>↩ Tool result · `toolu_016e8y5R6aaxXGVZkJCUZgyp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "388ec97c-faf4-45ed-80f8-3f7ce063ad87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key file: `permutation_granger.json` which contains both differenced and undifferenced permutation Granger F-statistics for all pairs.
+
+Let me extract the key numbers I need. The output was truncated but I got the critical parts. Let me now extract the remaining pairs. I still need:
+- token_entropy→perplexity (both differenced and undifferenced)
+- The ece→distinct_1/2/3 pairs (both differenced and undifferenced)
+
+From what I've seen:
+
+**token_entropy→distinct_1:**
+
+
+The F-statistics show a clear pattern: the differenced values range from 612 to 2615, while the undifferenced values are much lower at 199 to 501. This means the figure's Panel (a) has the labeling reversed if it's placing the 612-2615 range in the Undifferenced column. Now I need to pull the token_entropy→distinct_2 data to continue the comparison. I'm retrieving the specific correlation data for the missing metric pairs to complete the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "386c4a45-1fbc-4d21-bd4b-a4218b48c68b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012k5bkjwyXeYh9yLRhXfBUs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4756,
+      "cache_read_input_tokens": 45116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4756
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+找到了关键文件 `permutation_granger.json`，里面同时有 differenced 和 undifferenced 两组数据。输出被截断了，让我提取剩余的配对数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "0ead8d1a-9029-47ab-94b3-b71ee3587546",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012k5bkjwyXeYh9yLRhXfBUs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4756,
+      "cache_read_input_tokens": 45116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4756
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lr8WAW33qBpncBRLBzeivt`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json') as f:\n    d = json.load(f)\nfor pair in d['pairs']:\n    c, ds = pair['canary'], pair['downstream']\n    for mode in ['differenced','undifferenced']:\n        fvals = [s[mode]['f_stat'] for s in pair['per_seed']]\n        pvals = [s[mode]['p_raw'] for s in pair['per_seed']]\n        sig = pair['summary'][mode]['verdict']\n        print(f'{c}->{ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "bb932209-ca6e-42ba-b149-4aed8cc6a71c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012k5bkjwyXeYh9yLRhXfBUs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4756,
+      "cache_read_input_tokens": 45116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4756
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T17:42:40.788Z_
+
+<details><summary>↩ Tool result · `toolu_01Lr8WAW33qBpncBRLBzeivt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "dab587ba-6cb3-49fe-984b-14f7fc554e11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UxwtHoVniZXJLs76KhnKq4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "78aeae3c-3f7a-4c9c-8f8f-192ae286bbc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXvoAB2B7wxShAW4pqsgQj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 49872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 968
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T17:42:43.602Z_
+
+<details><summary>↩ Tool result · `toolu_01UxwtHoVniZXJLs76KhnKq4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "f17bf737-5839-4f45-b285-b3018e12a6e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RNS6Kj64GkiPKTnJSctSG8`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json') as f:\n    d = json.load(f)\nfor pair in d['pairs']:\n    c, ds = pair['canary'], pair['downstream']\n    for mode in ['differenced','undifferenced']:\n        fvals = [s[mode]['f_stat'] for s in pair['per_seed']]\n        pvals = [s[mode]['p_raw'] for s in pair['per_seed']]\n        sig = pair['summary'][mode]['verdict']\n        print(f'{c} -> {ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "c31fffd4-8fa6-4e37-982b-a7fb82cbebb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtJnKT81qC5rAa1Jk8bPy1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 344,
+      "cache_read_input_tokens": 50840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 344
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T17:42:52.134Z_
+
+<details><summary>↩ Tool result · `toolu_01RNS6Kj64GkiPKTnJSctSG8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor pair in d[\\\\'pairs\\\\']:\\\\n    c, ds = pair[\\\\'canary\\\\'], pair[\\\\'downstream\\\\']\\\\n    for mode in [\\\\'differenced\\\\',\\\\'undifferenced\\\\']:\\\\n        fvals = [s[mode][\\\\'f_stat\\\\'] for s in pair[\\\\'per_seed\\\\']]\\\\n        pvals = [s[mode][\\\\'p_raw\\\\'] for s in pair[\\\\'per_seed\\\\']]\\\\n        sig = pair[\\\\'summary\\\\'][mode][\\\\'verdict\\\\']\\\\n        print(f\\\\'{c} -> {ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "27c9a3ba-3989-4673-b74a-80db9cf22e9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nfor pair in d[\\\\\\\\'pairs\\\\\\\\']:\\\\\\\\n    c, ds = pair[\\\\\\\\'canary\\\\\\\\'], pair[\\\\\\\\'downstream\\\\\\\\']\\\\\\\\n    for mode in [\\\\\\\\'differenced\\\\\\\\',\\\\\\\\'undifferenced\\\\\\\\']:\\\\\\\\n        fvals = [s[mode][\\\\\\\\'f_stat\\\\\\\\'] for s in pair[\\\\\\\\'per_seed\\\\\\\\']]\\\\\\\\n        pvals = [s[mode][\\\\\\\\'p_raw\\\\\\\\'] for s in pair[\\\\\\\\'per_seed\\\\\\\\']]\\\\\\\\n        sig = pair[\\\\\\\\'summary\\\\\\\\'][mode][\\\\\\\\'verdict\\\\\\\\']\\\\\\\\n        print(f\\\\\\\\'{c} -> {ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor pair in d[\\\\'pairs\\\\']:\\\\n    c, ds = pair[\\\\'canary\\\\'], pair[\\\\'downstream\\\\']\\\\n    for mode in [\\\\'differenced\\\\',\\\\'undifferenced\\\\']:\\\\n        fvals = [s[mode][\\\\'f_stat\\\\'] for s in pair[\\\\'per_seed\\\\']]\\\\n        pvals = [s[mode][\\\\'p_raw\\\\'] for s in pair[\\\\'per_seed\\\\']]\\\\n        sig = pair[\\\\'summary\\\\'][mode][\\\\'verdict\\\\']\\\\n        print(f\\\\'{c} -> {ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 is not on the PATH. This is an AutoDL instance with conda. Let me use the conda python.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "50e6b36d-f298-49e6-87fb-7d2066d2460a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UopyhgekzGy6o9QXqBbRab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 51184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015ZHuWTkz4sxg31Sb9Yco7F`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/permutation_granger.json') as f:\n    d = json.load(f)\nfor pair in d['pairs']:\n    c, ds = pair['canary'], pair['downstream']\n    for mode in ['differenced','undifferenced']:\n        fvals = [s[mode]['f_stat'] for s in pair['per_seed']]\n        pvals = [s[mode]['p_raw'] for s in pair['per_seed']]\n        sig = pair['summary'][mode]['verdict']\n        print(f'{c} -> {ds} [{mode}]: F={min(fvals):.1f}-{max(fvals):.1f}, p={min(pvals):.6f}-{max(pvals):.6f}, {sig}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "16c52a98-34a4-4177-8eb4-0e8d0ea76b4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UopyhgekzGy6o9QXqBbRab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 51184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T17:42:58.728Z_
+
+<details><summary>↩ Tool result · `toolu_015ZHuWTkz4sxg31Sb9Yco7F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"token_entropy -> distinct_1 [differenced]: F=612.1-2614.8, p=0.000999-0.010989, SIGNIFICANT\\ntoken_entropy -> distinct_1 [undifferenced]: F=199.5-501.1, p=0.001998-0.007992, SIGNIFICANT\\ntoken_entropy -> distinct_2 [differenced]: F=226.1-1798.1, p=0.000999-0.015984, SIGNIFICANT\\ntoken_entropy -> distinct_2 [undifferenced]: F=113.9-549.5, p=0.000999-0.011988, SIGNIFICANT\\ntoken_entropy -> distinct_3 [differenced]: F=95.1-737.5, p=0.000999-0.026973, SIGNIFICANT\\ntoken_entropy -> distinct_3 [undifferenced]: F=101.4-232.2, p=0.001998-0.010989, SIGNIFICANT\\ntoken_entropy -> perplexity [differenced]: F=0.0-0.3, p=0.469530-0.992008, NOT_SIGNIFICANT\\ntoken_entropy -> perplexity [undifferenced]: F=16.0-36.2, p=0.014985-0.051948, SIGNIFICANT\\nece -> distinct_1 [differenced]: F=566.8-6124.0, p=0.000999-0.001998, SIGNIFICANT\\nece -> distinct_1 [undifferenced]: F=83.6-3369.5, p=0.000999-0.004995, SIGNIFICANT\\nece -> distinct_2 [differenced]: F=171.3-7642.7, p=0.000999-0.008991, SIGNIFICANT\\nece -> distinct_2 [undifferenced]: F=124.2-248.9, p=0.000999-0.001998, SIGNIFICANT\\nece -> distinct_3 [differenced]: F=70.8-920.6, p=0.000999-0.015984, SIGNIFICANT\\nece -> distinct_3 [undifferenced]: F=74.0-235.9, p=0.000999-0.005994, SIGNIFICANT\\nece -> perplexity [differenced]: F=0.0-0.6, p=0.345654-0.960040, NOT_SIGNIFICANT\\nece -> perplexity [undifferenced]: F=12.2-24.9, p=0.012987-0.038961, SIGNIFICANT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "e35a70f1-9109-4398-941d-ba38f9be081f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"token_entropy -> distinct_1 [differenced]: F=612.1-2614.8, p=0.000999-0.010989, SIGNIFICANT\\\\ntoken_entropy -> distinct_1 [undifferenced]: F=199.5-501.1, p=0.001998-0.007992, SIGNIFICANT\\\\ntoken_entropy -> distinct_2 [differenced]: F=226.1-1798.1, p=0.000999-0.015984, SIGNIFICANT\\\\ntoken_entropy -> distinct_2 [undifferenced]: F=113.9-549.5, p=0.000999-0.011988, SIGNIFICANT\\\\ntoken_entropy -> distinct_3 [differenced]: F=95.1-737.5, p=0.000999-0.026973, SIGNIFICANT\\\\ntoken_entropy -> distinct_3 [undifferenced]: F=101.4-232.2, p=0.001998-0.010989, SIGNIFICANT\\\\ntoken_entropy -> perplexity [differenced]: F=0.0-0.3, p=0.469530-0.992008, NOT_SIGNIFICANT\\\\ntoken_entropy -> perplexity [undifferenced]: F=16.0-36.2, p=0.014985-0.051948, SIGNIFICANT\\\\nece -> distinct_1 [differenced]: F=566.8-6124.0, p=0.000999-0.001998, SIGNIFICANT\\\\nece -> distinct_1 [undifferenced]: F=83.6-3369.5, p=0.000999-0.004995, SIGNIFICANT\\\\nece -> distinct_2 [differenced]: F=171.3-7642.7, p=0.000999-0.008991, SIGNIFICANT\\\\nece -> distinct_2 [undifferenced]: F=124.2-248.9, p=0.000999-0.001998, SIGNIFICANT\\\\nece -> distinct_3 [differenced]: F=70.8-920.6, p=0.000999-0.015984, SIGNIFICANT\\\\nece -> distinct_3 [undifferenced]: F=74.0-235.9, p=0.000999-0.005994, SIGNIFICANT\\\\nece -> perplexity [differenced]: F=0.0-0.6, p=0.345654-0.960040, NOT_SIGNIFICANT\\\\nece -> perplexity [undifferenced]: F=12.2-24.9, p=0.012987-0.038961, SIGNIFICANT\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"token_entropy -> distinct_1 [differenced]: F=612.1-2614.8, p=0.000999-0.010989, SIGNIFICANT\\ntoken_entropy -> distinct_1 [undifferenced]: F=199.5-501.1, p=0.001998-0.007992, SIGNIFICANT\\ntoken_entropy -> distinct_2 [differenced]: F=226.1-1798.1, p=0.000999-0.015984, SIGNIFICANT\\ntoken_entropy -> distinct_2 [undifferenced]: F=113.9-549.5, p=0.000999-0.011988, SIGNIFICANT\\ntoken_entropy -> distinct_3 [differenced]: F=95.1-737.5, p=0.000999-0.026973, SIGNIFICANT\\ntoken_entropy -> distinct_3 [undifferenced]: F=101.4-232.2, p=0.001998-0.010989, SIGNIFICANT\\ntoken_entropy -> perplexity [differenced]: F=0.0-0.3, p=0.469530-0.992008, NOT_SIGNIFICANT\\ntoken_entropy -> perplexity [undifferenced]: F=16.0-36.2, p=0.014985-0.051948, SIGNIFICANT\\nece -> distinct_1 [differenced]: F=566.8-6124.0, p=0.000999-0.001998, SIGNIFICANT\\nece -> distinct_1 [undifferenced]: F=83.6-3369.5, p=0.000999-0.004995, SIGNIFICANT\\nece -> distinct_2 [differenced]: F=171.3-7642.7, p=0.000999-0.008991, SIGNIFICANT\\nece -> distinct_2 [undifferenced]: F=124.2-248.9, p=0.000999-0.001998, SIGNIFICANT\\nece -> distinct_3 [differenced]: F=70.8-920.6, p=0.000999-0.015984, SIGNIFICANT\\nece -> distinct_3 [undifferenced]: F=74.0-235.9, p=0.000999-0.005994, SIGNIFICANT\\nece -> perplexity [differenced]: F=0.0-0.6, p=0.345654-0.960040, NOT_SIGNIFICANT\\nece -> perplexity [undifferenced]: F=12.2-24.9, p=0.012987-0.038961, SIGNIFICANT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+数据完整了。结论非常清晰：
+
+## 结果
+
+| 方向 | 处理方式 | F 统计量范围 | p 值范围 | 来源文件 |
+|------|----------|-------------|---------|---------|
+| **canary→diversity** | | | | |
+| token_entropy→distinct_1 | **differenced** | **612–2615** | 0.001–0.011 | permutation_granger.json |
+| token_entropy→distinct_1 | undifferenced | 200–501 | 0.002–0.008 | 同上 |
+| token_entropy→distinct_2 | differenced | 226–1798 | 0.001–0.016 | 同上 |
+| token_entropy→distinct_2 | undifferenced | 114–550 | 0.001–0.012 | 同上 |
+| token_entropy→distinct_3 | differenced | 95–738 | 0.001–0.027 | 同上 |
+| token_entropy→distinct_3 | undifferenced | 101–232 | 0.002–0.011 | 同上 |
+| ece→distinct_1 | differenced | 567–6124 | 0.001–0.002 | 同上 |
+| ece→distinct_1 | undifferenced | 84–3370 | 0.001–0.005 | 同上 |
+| ece→distinct_2 | differenced | 171–7643 | 0.001–0.009 | 同上 |
+| ece→distinct_2 | undifferenced | 124–249 | 0.001–0.002 | 同上 |
+| ece→distinct_3 | differenced | 71–921 | 0.001–0.016 | 同上 |
+| ece→distinct_3 | undifferenced | 74–236 | 0.001–0.006 | 同上 |
+| **canary→perplexity** | | | | |
+| token_entropy→perplexity | undifferenced | 16–36 | 0.015–0.052 | 同上 |
+| token_entropy→perplexity | **differenced** | **≈0–0.3** | **0.47–0.99** | 同上 |
+| ece→perplexity | undifferenced | 12–25 | 0.013–0.039 | 同上 |
+| ece→perplexity | **differenced** | **≈0–0.6** | **0.35–0.96** | 同上 |
+
+---
+
+## 结论
+
+**F=612–2615 属于 First-Differenced，不是 Undifferenced。**
+
+- `token_entropy→distinct_1` 的 **differenced** F 范围恰好是 612.1–2614.8，与论文标注的 "F=612-2615" 精确吻合
+- 同一对的 **undifferenced** F 范围是 199.5–501.1，远小于 612
+
+**图 Panel (a) 标注有误**：如果 F=612-2615 被标在 Undifferenced 列，需要移到 First-Differenced 列。paper_framing.md 的说法（"差分後仍 4/4 seed 顯著，F=612-2615"）是正确的。
+
+canary→perplexity 方向的标注是正确的：undifferenced F=16-36，differenced F≈0（p=0.99）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "uuid": "a17b9e1d-ae5c-4502-a9e9-278c6214957f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvbdQVcdvfPqz7eTaKJf9G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 51921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1060
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 46_
+
+数据完整了。结论非常清晰：
+
+## 结果
+
+| 方向 | 处理方式 | F 统计量范围 | p 值范围 | 来源文件 |
+|------|----------|-------------|---------|---------|
+| **canary→diversity** | | | | |
+| token_entropy→distinct_1 | **differenced** | **612–2615** | 0.001–0.011 | permutation_granger.json |
+| token_entropy→distinct_1 | undifferenced | 200–501 | 0.002–0.008 | 同上 |
+| token_entropy→distinct_2 | differenced | 226–1798 | 0.001–0.016 | 同上 |
+| token_entropy→distinct_2 | undifferenced | 114–550 | 0.001–0.012 | 同上 |
+| token_entropy→distinct_3 | differenced | 95–738 | 0.001–0.027 | 同上 |
+| token_entropy→distinct_3 | undifferenced | 101–232 | 0.002–0.011 | 同上 |
+| ece→distinct_1 | differenced | 567–6124 | 0.001–0.002 | 同上 |
+| ece→distinct_1 | undifferenced | 84–3370 | 0.001–0.005 | 同上 |
+| ece→distinct_2 | differenced | 171–7643 | 0.001–0.009 | 同上 |
+| ece→distinct_2 | undifferenced | 124–249 | 0.001–0.002 | 同上 |
+| ece→distinct_3 | differenced | 71–921 | 0.001–0.016 | 同上 |
+| ece→distinct_3 | undifferenced | 74–236 | 0.001–0.006 | 同上 |
+| **canary→perplexity** | | | | |
+| token_entropy→perplexity | undifferenced | 16–36 | 0.015–0.052 | 同上 |
+| token_entropy→perplexity | **differenced** | **≈0–0.3** | **0.47–0.99** | 同上 |
+| ece→perplexity | undifferenced | 12–25 | 0.013–0.039 | 同上 |
+| ece→perplexity | **differenced** | **≈0–0.6** | **0.35–0.96** | 同上 |
+
+---
+
+## 结论
+
+**F=612–2615 属于 First-Differenced，不是 Undifferenced。**
+
+- `token_entropy→distinct_1` 的 **differenced** F 范围恰好是 612.1–2614.8，与论文标注的 "F=612-2615" 精确吻合
+- 同一对的 **undifferenced** F 范围是 199.5–501.1，远小于 612
+
+**图 Panel (a) 标注有误**：如果 F=612-2615 被标在 Undifferenced 列，需要移到 First-Differenced 列。paper_framing.md 的说法（"差分後仍 4/4 seed 顯著，F=612-2615"）是正确的。
+
+canary→perplexity 方向的标注是正确的：undifferenced F=16-36，differenced F≈0（p=0.99）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 108481,
+  "duration_api_ms": 106397,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "86653a84-42a8-41b5-93c3-31d4d68213ec",
+  "total_cost_usd": 0.5918175,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 41140,
+    "cache_read_input_tokens": 373623,
+    "output_tokens": 5838,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41140,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 937,
+        "cache_read_input_tokens": 51921,
+        "cache_creation_input_tokens": 1060,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1060
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1761,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001856,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 5838,
+      "cacheReadInputTokens": 373623,
+      "cacheCreationInputTokens": 41140,
+      "webSearchRequests": 0,
+      "costUSD": 0.5899615,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "410e086c-b2e9-455b-a065-650d0cf1d19c"
+}
+```
+
+</details>
+
+---

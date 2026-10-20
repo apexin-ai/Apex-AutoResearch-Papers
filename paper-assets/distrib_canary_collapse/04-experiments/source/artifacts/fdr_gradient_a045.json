@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-05-20T12:00:00Z",
+  "description": "Complete fdr_p values for α=0.45 across 2 seeds × 8 pairs",
+  "seeds": {
+    "s42": {
+      "pairs": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "fdr_p": 0.093581, "raw_p": 0.070186, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "distinct_2", "fdr_p": 0.091181, "raw_p": 0.034193, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "fdr_p": 0.091181, "raw_p": 0.031194, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "mauve", "fdr_p": 0.211158, "raw_p": 0.211158, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_1", "fdr_p": 0.093581, "raw_p": 0.063987, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_2", "fdr_p": 0.093581, "raw_p": 0.052190, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_3", "fdr_p": 0.091181, "raw_p": 0.030594, "significant_fdr": false},
+        {"canary": "ece", "downstream": "mauve", "fdr_p": 0.211158, "raw_p": 0.198960, "significant_fdr": false}
+      ],
+      "min_fdr_p": 0.091181,
+      "sig_count": 0
+    },
+    "s43": {
+      "pairs": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "fdr_p": 0.058921, "raw_p": 0.030794, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "distinct_2", "fdr_p": 0.058921, "raw_p": 0.039792, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "fdr_p": 0.058921, "raw_p": 0.044191, "significant_fdr": false},
+        {"canary": "token_entropy", "downstream": "mauve", "fdr_p": 0.098952, "raw_p": 0.086583, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_1", "fdr_p": 0.058921, "raw_p": 0.023395, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_2", "fdr_p": 0.058921, "raw_p": 0.034593, "significant_fdr": false},
+        {"canary": "ece", "downstream": "distinct_3", "fdr_p": 0.058921, "raw_p": 0.021996, "significant_fdr": false},
+        {"canary": "ece", "downstream": "mauve", "fdr_p": 0.104979, "raw_p": 0.104979, "significant_fdr": false}
+      ],
+      "min_fdr_p": 0.058921,
+      "sig_count": 0
+    }
+  },
+  "cross_seed_summary": {
+    "min_fdr_p_range": [0.058921, 0.091181],
+    "both_seeds_zero_sig": true
+  }
+}

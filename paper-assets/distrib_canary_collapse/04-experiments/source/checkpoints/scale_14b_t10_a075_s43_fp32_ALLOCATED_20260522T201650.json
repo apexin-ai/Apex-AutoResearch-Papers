@@ -1,0 +1,16 @@
+{
+  "exp_id": "scale_14b_t10_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:12:24.032Z",
+    "updated_at": "2026-05-22T20:16:50.446Z",
+    "hypothesis": "Cross-seed verification: Pythia-1.4B T=10 α=0.75 seed 43. s42 gave PermG 5/8 — if s43 also ≥5/8, confirms scale-robust detection at high α is not seed-dependent. KEY: validates Scenario B (onset shift) narrative.",
+    "parent": "scale_14b_t10_a075_s42_fp32_v2"
+  },
+  "timestamp": "2026-05-22T20:16:50.882164+00:00",
+  "trigger": "update_registry"
+}

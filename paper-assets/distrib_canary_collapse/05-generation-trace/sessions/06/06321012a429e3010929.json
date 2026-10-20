@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06321012a429e3010929",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk emergency 17855",
+  "task_key": "worker_ops_disk_emergency_17855_20260521T192620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_emergency_17855_20260521T192620_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "a7633d76ba3f9721482c346d11e73d78b47faeedff42504c6c460da3f0c38d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. 磁盘状态\n\n| | 容量 | 已用 | 可用 | 使用率 |\n|---|---|---|---|---|\n| **清理前** | 350G | 350G | 1.2M | 100% |\n| **清理后** | 350G | 212G | **139G** | 61% |\n\n**释放 ~138G**，分三步：\n- phase_diagram 已完成实验 checkpoint: ~21G\n- alpha_sweep 全部 checkpoint: ~103G\n- phase_diagram 崩溃/运行实验旧 checkpoint: ~14G\n\n所有 JSON 文件（all_metrics.json 等）完好未动。\n\n### 2. GPU 进程状态\n\n| GPU | 状态 | VRAM | 利用率 | PID |\n|---|---|---|---|---|\n| 0 | 空闲 | 0 MiB | 0% | — |\n| 1 | **运行中** | 14,535 MiB | 77% | 546624 |\n| 2 | **运行中** | 7,453 MiB | 71% | 550489 |\n| **3** | **空闲** | 0 MiB | 0% | — |\n| 4 | 空闲 | 0 MiB | 0% | — |\n| 5 | **运行中** | 14,237 MiB | 95% | 519277 |\n\n### 3. 实验存活状态\n\n**仍在运行（磁盘清理后恢复写入）：**\n- **t25_a045_s42_fp32** — gen_12/13 在 03:28 更新，正在推进（~gen_14/25）\n- **t15_a060_s43_fp32** — gen_1 在 03:28 更新，正在推进（~gen_2/15）\n- 第三个 GPU 5 进程（PID 519277）— 活跃（95% 利用率）\n\n**因磁盘满崩溃（EXIT_CODE = \"No space left on device\"）：**\n- **t25_a060_s42_fp32★** — 崩溃于 gen_15/24（03:24），**GPU 3 已空闲，需要重启**\n- **t25_a050_s42_fp32** — 崩溃于 gen_14（03:21）\n- **t20_a060_s43_fp32** — 崩溃于 gen_3（03:23）\n\n**未开始：**\n- **t15_a045_s43_fp32** — 只有 config.json，无 gen 目录\n\n### 4. 关键发现\n\n**t25_a060★ 已因磁盘满崩溃**，停在 gen_15（需要跑到 gen_24）。GPU 3 现已空闲，磁盘空间已充足（139G），需要决定是否重启。另有 2 个实验同样崩溃。3 个仍在运行的实验在磁盘清理后已恢复正常写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-emergency-17855.md"
+}

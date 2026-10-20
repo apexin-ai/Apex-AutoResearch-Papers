@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cb2afbf72ae198d8fe6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t10 a075 s43",
+  "task_key": "worker_analysis_d102-t10-a075-s43_20260522T070343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t10-a075-s43_20260522T070343_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "cd0b7a70ac2e36ef874478c790b07bbb9fe2b4d8ce940515ec9164e4b0b0adf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 分析完成。Registry 已有记录（之前已标记 DONE/success），artifact 已注册。\n\n## 结果\n\n| Method | Forward | Reverse |\n|--------|---------|---------|\n| **PermG FDR** | **6/8** | 0/8 |\n| Diff xcorr FDR | 7/8 | 7/8 |\n| Threshold onset | 0/8 | — |\n| TY Granger | 0/8 | — |\n| Robust (≥3/5) | 4/8 | — |\n\n**Cross-seed 一致**：s43 PermG=6/8 完全匹配 s42 基准。6 个显著 pair 均为 distinct_1/2/3（mauve 对两个 canary 都不显著），fwd≫rev 方向性不对称保持。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t10-a075-s43.md"
+}

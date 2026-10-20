@@ -1,0 +1,3 @@
+Files on westd-17855:
+- /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase3/method_regime_matrix.csv
+- /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase3/method_regime_matrix.json

@@ -1,0 +1,37 @@
+{
+  "exp_id": "alpha_sweep_a025_s44_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:18:29.952Z",
+    "updated_at": "2026-05-19T13:51:03.180Z",
+    "hypothesis": "D098 3-seed onset 确認：α=0.25 fp32 第三个 seed 验证，3-seed 一致性支撑 regime map 中 α=0.25 作为 blind zone 上界的 claim",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s44_fp32 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "124519",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log",
+      "submitted_at": "2026-05-19T09:53:53.279Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 44,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:51:02.768Z"
+    }
+  },
+  "timestamp": "2026-05-19T13:51:03.354626+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0512a20e185880caba50",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra status check and act",
+  "task_key": "worker_infra_status-check-and-act_20260514T133359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_status-check-and-act_20260514T133359_result.json",
+    "occurrence": 1,
+    "bytes": 3686,
+    "sha256": "92d42b85bfd6e65253162124148137e1cb93a2fdb085601e3f84f4efb94e4196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## MVP 实验状态报告\n\n### 状态：rep_42, rep_43 均已完成 | rep_44 正在训练\n\n- **rep_42**: 11 代完成, EXIT_CODE=0 (May 14 20:15)\n- **rep_43**: 11 代完成, EXIT_CODE=0 (May 14 20:13)  \n- **rep_44**: PID 30672, CUDA:0, 正在 gen_0 初始化阶段（生成合成数据中）\n- **GPU**: 双卡 97GB (A100-80G×2), rep44 启动前两卡空闲\n\n---\n\n### 每代关键指标\n\n#### rep_42\n\n| gen | token_entropy | ECE | self_bleu | distinct_2 | perplexity | eff_rank | mauve |\n|-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 0 | 3.234 | 0.011 | 0.010 | 0.518 | 26.9 | 46.6 | 0.034 |\n| 1 | 1.908 | 0.204 | 0.010 | 0.514 | 55.9 | 79.6 | 0.032 |\n| 2 | 1.480 | 0.323 | 0.011 | 0.428 | 160.4 | 95.4 | 0.031 |\n| 3 | 1.380 | 0.358 | 0.012 | 0.390 | 281.6 | 90.0 | 0.036 |\n| 4 | 1.331 | 0.377 | 0.013 | 0.366 | 394.1 | 88.3 | 0.031 |\n| 5 | 1.306 | 0.390 | 0.013 | 0.356 | 486.5 | 88.8 | 0.031 |\n| 6 | 1.302 | 0.397 | 0.013 | 0.349 | 586.8 | 91.1 | 0.028 |\n| 7 | 1.296 | 0.402 | 0.013 | 0.340 | 694.6 | 91.7 | 0.031 |\n| 8 | 1.319 | 0.403 | 0.014 | 0.339 | 786.3 | 90.8 | 0.029 |\n| 9 | 1.264 | 0.416 | 0.013 | 0.337 | 917.6 | 88.4 | 0.031 |\n| 10 | 1.276 | 0.417 | 0.013 | 0.335 | 1003.7 | 96.2 | 0.030 |\n\n#### rep_43\n\n| gen | token_entropy | ECE | self_bleu | distinct_2 | perplexity | eff_rank | mauve |\n|-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 0 | 3.234 | 0.011 | 0.011 | 0.513 | 26.9 | 46.6 | 0.034 |\n| 1 | 1.909 | 0.205 | 0.011 | 0.518 | 55.5 | 78.4 | 0.030 |\n| 2 | 1.466 | 0.322 | 0.012 | 0.428 | 158.7 | 94.3 | 0.034 |\n| 3 | 1.325 | 0.361 | 0.012 | 0.385 | 279.7 | 99.3 | 0.033 |\n| 4 | 1.280 | 0.382 | 0.012 | 0.365 | 395.1 | 102.1 | 0.031 |\n| 5 | 1.269 | 0.394 | 0.012 | 0.354 | 502.0 | 81.1 | 0.030 |\n| 6 | 1.252 | 0.402 | 0.013 | 0.346 | 608.7 | 80.1 | 0.032 |\n| 7 | 1.255 | 0.407 | 0.014 | 0.339 | 696.0 | 87.8 | 0.031 |\n| 8 | 1.257 | 0.412 | 0.013 | 0.334 | 815.9 | 84.3 | 0.029 |\n| 9 | 1.250 | 0.418 | 0.013 | 0.332 | 909.4 | 82.1 | 0.028 |\n| 10 | 1.260 | 0.420 | 0.014 | 0.330 | 1014.7 | 82.2 | 0.032 |\n\n---\n\n### analyze_mvp.py 完整结果\n\n**Verdict: STRONG PASS**\n\n> 2 canary families (ece, token_entropy) each have >= 1 SIGNIFICANT LEAD pair.\n\n**前处理结果**:\n- MAUVE: demoted to supplementary (floor_effect — Gen 0 < 0.10)\n- effective_rank: inconclusive (slopes 方向不一致: seed 42: +0.81, seed 43: -1.90)\n\n**Significant Lead Pairs (6 对)**:\n\n| canary | downstream | mean_lag | lag_std | seed 42 (|r|, p) | seed 43 (|r|, p) |\n|--------|-----------|:---:|:---:|:---:|:---:|\n| token_entropy | distinct_1 | -1.0 | 0.0 | 0.993, p=0.0036 | 0.994, p=0.0028 |\n| token_entropy | distinct_2 | -1.0 | 0.0 | 0.968, p=0.0231 | 0.970, p=0.0197 |\n| token_entropy | distinct_3 | -3.0 | 2.0 | 0.953, p=0.0224 | 0.941, p=0.0392 |\n| ece | distinct_1 | -2.0 | 0.0 | 0.998, p=0.0000 | 0.995, p=0.0000 |\n| ece | distinct_2 | -1.0 | 0.0 | 0.996, p=0.0005 | 0.997, p=0.0001 |\n| ece | distinct_3 | -3.0 | 2.0 | 0.991, p=0.0008 | 0.987, p=0.0013 |\n\n**Weak Lead Pairs (1 对)**:\n- token_entropy → perplexity: mean_lag=-5.0, lag_std=0.0 (p=0.12/0.08, 未过 0.05 阈值)\n\n**No Lead Pairs (9 对)**: self_bleu 全部 NO LEAD（lag 方向不一致），effective_rank 全部 NO LEAD/WEAK（相关性弱且方向不一致）\n\n**产出文件**: `results/mvp/analysis/` 下的 `metric_trends.png`, `cross_correlation.png`, `lead_time_table.csv`, `analysis_summary.json`\n\n---\n\n### rep_44 训练状态\n\n- PID: **30672**\n- GPU: CUDA:0\n- 当前阶段: gen_0 数据生成（padding_side warning 是正常的）\n- 日志: `~/runs/distrib_canary_collapse/mvp_v4_rep44.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-status-check-and-act.md"
+}

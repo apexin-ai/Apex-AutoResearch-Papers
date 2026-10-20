@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7a4fe8fc30942b1b79",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops unify d102 scripts",
+  "task_key": "worker_ops_unify-d102-scripts_20260522T174341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unify-d102-scripts_20260522T174341.log",
+    "occurrence": 1,
+    "bytes": 643099,
+    "sha256": "a4efe838f266bcb9a05464179abbe2d34b7a68d6154696b47019290b59048119"
+  },
+  "statistics": {
+    "messages": 166,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 51,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "0b7a4fe8fc30942b1b79-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "0b7a4fe8fc30942b1b79-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-unify-d102-scripts.md"
+}

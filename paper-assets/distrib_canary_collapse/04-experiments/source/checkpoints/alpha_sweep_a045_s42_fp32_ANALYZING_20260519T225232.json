@@ -1,0 +1,70 @@
+{
+  "exp_id": "alpha_sweep_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:30:38.128Z",
+    "updated_at": "2026-05-19T22:52:31.778Z",
+    "hypothesis": "At α=0.45 (between blind α=0.40 and detected α=0.50), PermG fwd will be 0/8 if onset threshold is above 0.45, narrowing the onset boundary to [0.45, 0.50].",
+    "parent": "alpha_sweep_a040_s42_fp32_v2",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.45 --output_dir results/alpha_sweep/a045_s42_fp32",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "checkpoint_path": "results/alpha_sweep/a045_s42_fp32/gen_10/checkpoint/",
+      "log_path": "results/alpha_sweep/a045_s42_fp32/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T22:42:02.573Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T22:42:06.533436+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg_fwd": 0,
+      "permg_rev": 0,
+      "k_ge3": 3,
+      "k_ge4": 0,
+      "naive_xcorr": 7,
+      "diff_xcorr": 3,
+      "threshold_onset": 8,
+      "ty_granger": 1,
+      "total_pairs": 8,
+      "drift_entropy_pct": -18.73,
+      "drift_ece_pct": 770.37,
+      "drift_d1_pct": -35.39,
+      "drift_d2_pct": -47.87,
+      "drift_d3_pct": -47.79,
+      "drift_perplexity_pct": 12.19,
+      "drift_mauve_pct": -24.89,
+      "drift_effrank_pct": 23.41,
+      "gen0_token_entropy": 3.2342,
+      "gen10_token_entropy": 2.6283,
+      "gen0_ece": 0.0108,
+      "gen10_ece": 0.094,
+      "gen0_distinct_1": 0.098,
+      "gen10_distinct_1": 0.0633,
+      "gen0_perplexity": 26.949,
+      "gen10_perplexity": 30.234,
+      "gen0_mauve": 0.0311,
+      "gen10_mauve": 0.0234,
+      "onset_boundary": "[0.45, 0.50]"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T22:52:32.029590+00:00",
+  "trigger": "update_registry"
+}

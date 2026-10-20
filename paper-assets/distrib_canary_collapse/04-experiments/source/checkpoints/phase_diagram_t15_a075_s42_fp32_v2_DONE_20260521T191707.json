@@ -1,0 +1,64 @@
+{
+  "exp_id": "phase_diagram_t15_a075_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:48:52.749Z",
+    "updated_at": "2026-05-21T19:17:07.538Z",
+    "hypothesis": "Phase Diagram T=15 α=0.75: theory predicts α_c(15)≈0.304, α=0.75 is well above threshold. At T=10 α=0.75 yields PermG=6/8, at T=20 also 6/8. If T=15 shows similar detection (≥6/8), confirms monotonic detection power across T for high contamination. Maps the T=15 row at α=0.75. Retry of v1 which failed due to missing HF_HOME in command.",
+    "parent": "phase_diagram_t15_a075_s42_fp32",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s42_fp32 --seed 42\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "513367",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s42_fp32_v2.log",
+      "submitted_at": "2026-05-21T12:49:25.166Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "EleutherAI/pythia-410m",
+      "eval_data": "data/wikitext103_5k",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a075_s42_fp32",
+      "wall_clock_seconds": 23262.4,
+      "gpu_hours": 6.46
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T19:13:23.859Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T19:13:31.538314+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg": "6/8",
+      "robust_pairs_K3": "6/8",
+      "diff_xcorr_fdr": "7/8",
+      "threshold_onset": "4/8",
+      "ty_granger": "4/8",
+      "perm_reverse": "0/8",
+      "ppl_gen0": 26.95,
+      "ppl_gen15": 86.9,
+      "ece_gen15": 0.217,
+      "eff_rank_gen15": 76.2
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T19:17:07.538Z"
+  },
+  "timestamp": "2026-05-21T19:17:07.893451+00:00",
+  "trigger": "update_registry"
+}

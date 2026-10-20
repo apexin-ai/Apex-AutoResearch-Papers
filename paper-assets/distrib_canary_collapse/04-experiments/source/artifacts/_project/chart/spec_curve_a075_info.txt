@@ -1,0 +1,2 @@
+Specification curve figure for alpha=0.75 (detection regime).
+Server path: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/spec_curve_analysis/spec_curve_a075.{pdf,png}

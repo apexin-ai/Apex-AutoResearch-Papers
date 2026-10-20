@@ -1,0 +1,6 @@
+\section*{Ethical Considerations}
+
+This work uses only publicly available datasets (WikiText-103) and open-weight models (Pythia, GPT-2, OPT, Qwen2.5, SmolLM3); no private data, human subjects, or crowd-sourced annotations are involved.
+We do not release models trained on synthetic data, as they exhibit reduced diversity and calibration.
+Our finding of a blind zone below $\alpha_c \approx 0.50$, where substantial quality degradation proceeds undetected, highlights a practical risk: practitioners relying solely on canary-based monitoring may receive false assurance that their training pipelines are uncontaminated.
+We encourage pairing statistical detection with complementary safeguards such as data provenance tracking and periodic human evaluation.

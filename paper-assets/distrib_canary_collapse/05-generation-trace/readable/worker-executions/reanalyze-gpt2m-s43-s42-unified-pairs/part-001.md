@@ -1,0 +1,7814 @@
+# reanalyze gpt2m s43 s42 unified pairs — Part 1 of 2
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+[Transcript overview](../reanalyze-gpt2m-s43-s42-unified-pairs.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/8a/8aeb408fc97587cbad4a.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+164 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "21d4aed9-5457-49d2-b98e-0acfb38e78f3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779219600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bce03b6e-c790-4437-86f1-9f6684e5eebe",
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task. I need to:
+
+1. Check and rerun lead-lag analysis for GPT-2m s43 with unified downstream pair configuration
+2. Check and potentially rerun for GPT-2m s42
+3. Update registry with new results
+
+Let me begin by SSH-ing to the server to check the current state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "cb2859c0-109f-49af-ae0d-602a95813db3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEUPxqa5atW7ZCgWrGg7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13313
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5_
+
+开始执行。先检查 s43 当前的 pair 配置和分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "66157e46-3eec-498e-8683-93cdc63410f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEUPxqa5atW7ZCgWrGg7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13313
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HNTzcsG1kKEnig5gbricLx`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "df2fadec-cc9e-4a99-8220-a2984b1bfa63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEUPxqa5atW7ZCgWrGg7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13313
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7 · 2026-05-19T15:32:53.461Z_
+
+<details><summary>↩ Tool result · `toolu_01HNTzcsG1kKEnig5gbricLx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "75de7250-f233-466a-8fa7-aa985b786e7d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hs4ic1utQEYEPHVAJCTD7N`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json\nwith open('results/gen_wiki_gpt2m_a100_s43/analysis_results.json') as f:\n    data = json.load(f)\nif 'pair_results' in data:\n    print('Pairs:', list(data['pair_results'].keys()))\nelif 'lead_lag' in data:\n    print('Keys:', list(data['lead_lag'].keys()))\nelse:\n    print('Top keys:', list(data.keys()))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "d9f76f28-e2be-4127-84c3-1f4a2b6e268c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSNiqFaYmsqgdme6SY1aWZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 25154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 993
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9 · 2026-05-19T15:33:01.797Z_
+
+<details><summary>↩ Tool result · `toolu_01Hs4ic1utQEYEPHVAJCTD7N`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "939f1dac-a967-4bf1-80b9-c08c64e61ca1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DqVkvYYh8tm5zZqccyQcVu`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -120 /root/autodl-tmp/distrib_canary_collapse/analysis/run_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b6a49c29-736f-4e28-be3e-55acd5156125",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSNiqFaYmsqgdme6SY1aWZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 25154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 993
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 11 · 2026-05-19T15:33:03.351Z_
+
+<details><summary>↩ Tool result · `toolu_01DqVkvYYh8tm5zZqccyQcVu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/distrib_canary_collapse/analysis/run_analysis.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "33cd5faa-3c71-47f2-a3f8-ef271737d9a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/distrib_canary_collapse/analysis/run_analysis.py' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/distrib_canary_collapse/analysis/run_analysis.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to avoid `&&` in ssh_read_only. Let me also find the correct path for the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b1b1e078-653e-4a7e-8e6b-99f2f6aa4d7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdfVpxAwjj5xV7YwehfqZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 26147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 13_
+
+需要避开 `&&` 和找到正确的文件路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f56ac251-e9b0-4471-a108-65c9cb30aa6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdfVpxAwjj5xV7YwehfqZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 26147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016uirURDjY71dLJQzAa6aGs`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"import json; data=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis_results.json')); print('Pairs:', list(data.get('pair_results',{}).keys()) or list(data.get('lead_lag',{}).keys()) or list(data.keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "6f002ed6-123a-463c-9423-8536423ba9f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdfVpxAwjj5xV7YwehfqZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 26147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 15 · 2026-05-19T15:33:08.408Z_
+
+<details><summary>↩ Tool result · `toolu_016uirURDjY71dLJQzAa6aGs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c7758ea4-f7fa-4de3-bae5-cc54a16f7795",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VoqX5UpvdXZpNNeE42s4xN`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"run_analysis.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e6efdb0e-3d01-4da1-8f02-f126370c1e93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdfVpxAwjj5xV7YwehfqZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 26147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UjccfVPUYsTmDUGmSscsbE`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "30886d0e-7b09-4b50-a7b1-6441bc674429",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdfVpxAwjj5xV7YwehfqZt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 26147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 624
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 18 · 2026-05-19T15:33:09.826Z_
+
+<details><summary>↩ Tool result · `toolu_01VoqX5UpvdXZpNNeE42s4xN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c19ac318-0ac6-481f-a549-e8435720bc4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-19T15:33:10.673Z_
+
+<details><summary>↩ Tool result · `toolu_01UjccfVPUYsTmDUGmSscsbE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_analysis\\nanalysis\\nbootstrap_ty_dryrun.json\\nbootstrap_ty_results.json\\ndetrending\\ndose_response_drift.csv\\ngen_wiki_gpt2m_a100_s43\\ngeneralize\\nintervention\\nlag_sensitivity\\nlag_sensitivity_log.txt\\nmethod_ablation_phase2_panel.json\\nmethod_ablation_phase2_report.md\\nmethod_ablation_phase3_panel.json\\nmethod_ablation_phase3_report.md\\nperm_granger_power_bootstrap.json\\nrebuttal\\nscale_check\\nshapley_values.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b42520bf-0d98-4d7e-9d39-5e6dc57890b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_sweep\\\\nalpha_sweep_analysis\\\\nanalysis\\\\nbootstrap_ty_dryrun.json\\\\nbootstrap_ty_results.json\\\\ndetrending\\\\ndose_response_drift.csv\\\\ngen_wiki_gpt2m_a100_s43\\\\ngeneralize\\\\nintervention\\\\nlag_sensitivity\\\\nlag_sensitivity_log.txt\\\\nmethod_ablation_phase2_panel.json\\\\nmethod_ablation_phase2_report.md\\\\nmethod_ablation_phase3_panel.json\\\\nmethod_ablation_phase3_report.md\\\\nperm_granger_power_bootstrap.json\\\\nrebuttal\\\\nscale_check\\\\nshapley_values.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_analysis\\nanalysis\\nbootstrap_ty_dryrun.json\\nbootstrap_ty_results.json\\ndetrending\\ndose_response_drift.csv\\ngen_wiki_gpt2m_a100_s43\\ngeneralize\\nintervention\\nlag_sensitivity\\nlag_sensitivity_log.txt\\nmethod_ablation_phase2_panel.json\\nmethod_ablation_phase2_report.md\\nmethod_ablation_phase3_panel.json\\nmethod_ablation_phase3_report.md\\nperm_granger_power_bootstrap.json\\nrebuttal\\nscale_check\\nshapley_values.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No `run_analysis.py` found. Let me look for analysis scripts and check the s43 analysis results more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "cb27d38c-6fd8-4645-a784-b98d68d5b678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AkNq2vVfLJofCDawmWtYv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 26771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 21_
+
+没找到 `run_analysis.py`。让我找分析脚本和读取 s43 的 analysis_results.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c520f50a-ad93-4de9-94e5-402fcdcaad2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AkNq2vVfLJofCDawmWtYv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 26771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014MBXM5SGxDQ3Lv182ex3AY`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*.py\" -path \"*/analysis/*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "36ce70f6-095c-4e94-93d3-097a64807fb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AkNq2vVfLJofCDawmWtYv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 26771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 23 · 2026-05-19T15:33:17.580Z_
+
+<details><summary>↩ Tool result · `toolu_014MBXM5SGxDQ3Lv182ex3AY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2ecd248c-c89c-4e7e-b4c6-e92c57c6c303",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018CkhWGHdT32qaJg3TY5M2r`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8c6f4057-115d-450a-9fc8-4d696c3c6b57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AkNq2vVfLJofCDawmWtYv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 26771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-19T15:33:18.542Z_
+
+<details><summary>↩ Tool result · `toolu_018CkhWGHdT32qaJg3TY5M2r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "1dc5ed16-c868-416c-8bb3-764887f669b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nanalysis\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Eq3tQf1tVJKxckUmhqJ3L`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c29c789a-8779-4cac-9d92-c980956eeb06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AkNq2vVfLJofCDawmWtYv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 26771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-19T15:33:19.161Z_
+
+<details><summary>↩ Tool result · `toolu_014Eq3tQf1tVJKxckUmhqJ3L`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c3c17137-8a29-4e51-bd88-4f7add37a52a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis_results.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis results are in an `analysis` subdirectory within the s43 results. Let me check there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e5cdd7da-2d29-462f-b966-2124da35ea9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYPAZhayfL8QEMjjhNG8oq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 27745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 29_
+
+分析结果在 `analysis` 子目录里。让我查看。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e88a57a9-e58d-4431-9f80-cf8d190f1e6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYPAZhayfL8QEMjjhNG8oq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 27745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017AB6FCKMCYYL7jArAPWg27`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "eb7d4e74-9fec-4bc7-9a11-743f79fdcb00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYPAZhayfL8QEMjjhNG8oq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 27745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 31 · 2026-05-19T15:33:23.961Z_
+
+<details><summary>↩ Tool result · `toolu_017AB6FCKMCYYL7jArAPWg27`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b1984434-cbed-4ae7-a93a-c57566e9524a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5method_leadlag.json\\\\n5method_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YQQEhiR3Vr7UX7RBTGpycL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"lead_lag*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "44af328e-fde7-4983-b8e8-13700cb856b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYPAZhayfL8QEMjjhNG8oq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 27745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-19T15:33:24.507Z_
+
+<details><summary>↩ Tool result · `toolu_01YQQEhiR3Vr7UX7RBTGpycL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2b4931c2-fa06-48a1-b55e-9a48deedb0d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EfZM3ZdkhAcotPF5EpHroD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "060a9c7a-1be4-4c74-9b55-d867a605ba56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHG8qJRrMtAmsMKxFmDQAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 28760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NVGDG6iowFs7ztZNfLwGn2`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "cf88e69c-22f0-455c-af8f-c26c2b540b2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHG8qJRrMtAmsMKxFmDQAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 28760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 36 · 2026-05-19T15:33:28.584Z_
+
+<details><summary>↩ Tool result · `toolu_01EfZM3ZdkhAcotPF5EpHroD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 1.0,\\n  \\\"seed\\\": 43,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9823,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.8655,\\n              \\\"p\\\": 0.025905\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.8762,\\n              \\\"p\\\": 0.009687\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9819,\\n              \\\"p\\\": 1.5e-05\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9823,\\n              \\\"p\\\": 2e-06\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9816,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.8452,\\n              \\\"p\\\": 0.001052\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.917,\\n              \\\"p\\\": 0.000188\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.9524,\\n              \\\"p\\\": 7.4e-05\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.9532,\\n              \\\"p\\\": 0.000248\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.9542,\\n              \\\"p\\\": 0.000841\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.9533,\\n              \\\"p\\\": 0.003217\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.9889,\\n          \\\"p_value\\\": 2.5e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.1751,\\n              \\\"p\\\": 0.778166\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7481,\\n              \\\"p\\\": 0.087187\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9889,\\n              \\\"p\\\": 2.5e-05\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9381,\\n              \\\"p\\\": 0.000567\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9528,\\n              \\\"p\\\": 7.2e-05\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.0243,\\n              \\\"p\\\": 0.946776\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.1043,\\n              \\\"p\\\": 0.789473\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.2559,\\n              \\\"p\\\": 0.540648\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1979,\\n              \\\"p\\\": 0.670535\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.1375,\\n              \\\"p\\\": 0.795078\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0066,\\n              \\\"p\\\": 0.991546\\n            }\\n          ],\\n          \\\"fdr_p\\\": 5e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": null,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"3x_sigma_drift\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 319.3451,\\n          \\\"p_value\\\": 0.003599,\\n          \\\"significant\\\": true,\\n          \\\"n_perm\\\": 5000,\\n          \\\"effect_size_f2\\\": 53.2242,\\n          \\\"fdr_p\\\": 0.007198,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"wald_F\\\": 0.1113,\\n          \\\"p_value\\\": 0.755381,\\n          \\\"\\n\\n... [截断: 输出过长，省略 53418 字符] ...\\n\\n6\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8465,\\n              \\\"p\\\": 0.008026\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.8909,\\n              \\\"p\\\": 0.007108\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.9248,\\n              \\\"p\\\": 0.008273\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 2,\\n          \\\"r\\\": -0.9804,\\n          \\\"p_value\\\": 1.9e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.8559,\\n              \\\"p\\\": 0.064231\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.9021,\\n              \\\"p\\\": 0.013904\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.9049,\\n              \\\"p\\\": 0.005087\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.9122,\\n              \\\"p\\\": 0.001584\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.8692,\\n              \\\"p\\\": 0.002339\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.9076,\\n              \\\"p\\\": 0.000285\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.9575,\\n              \\\"p\\\": 5e-05\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.9804,\\n              \\\"p\\\": 1.9e-05\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.9474,\\n              \\\"p\\\": 0.001185\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7697,\\n              \\\"p\\\": 0.073433\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.0392,\\n              \\\"p\\\": 0.950081\\n            }\\n          ],\\n          \\\"fdr_p\\\": 5e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 3,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true,\\n          \\\"threshold\\\": \\\"3x_sigma_drift\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.9757,\\n          \\\"p_value\\\": 0.384323,\\n          \\\"significant\\\": false,\\n          \\\"n_perm\\\": 5000,\\n          \\\"effect_size_f2\\\": 0.1626,\\n          \\\"fdr_p\\\": 0.384323,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"wald_F\\\": 1.2506,\\n          \\\"p_value\\\": 0.464485,\\n          \\\"significant\\\": false,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 1,\\n          \\\"df_resid\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192perplexity\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192perplexity\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 8,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 5,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 8,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 8,\\n    \\\"threshold_forward_sig\\\": 0,\\n    \\\"ty_forward_sig\\\": 4,\\n    \\\"robust_pairs\\\": 4\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "51ede3f6-56cc-46ba-a606-be87dc90197a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alpha\\\\\\\": 1.0,\\\\n  \\\\\\\"seed\\\\\\\": 43,\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\\\\\\",\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"naive_xcorr\\\\\\\",\\\\n    \\\\\\\"diff_xcorr\\\\\\\",\\\\n    \\\\\\\"threshold_onset\\\\\\\",\\\\n    \\\\\\\"perm_granger\\\\\\\",\\\\n    \\\\\\\"ty_granger\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"fdr_alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"3x_sigma_drift\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.9823,\\\\n          \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.8655,\\\\n              \\\\\\\"p\\\\\\\": 0.025905\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.8762,\\\\n              \\\\\\\"p\\\\\\\": 0.009687\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.9819,\\\\n              \\\\\\\"p\\\\\\\": 1.5e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.9823,\\\\n              \\\\\\\"p\\\\\\\": 2e-06\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9816,\\\\n              \\\\\\\"p\\\\\\\": 0.0\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.8452,\\\\n              \\\\\\\"p\\\\\\\": 0.001052\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.917,\\\\n              \\\\\\\"p\\\\\\\": 0.000188\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.9524,\\\\n              \\\\\\\"p\\\\\\\": 7.4e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.9532,\\\\n              \\\\\\\"p\\\\\\\": 0.000248\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.9542,\\\\n              \\\\\\\"p\\\\\\\": 0.000841\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.9533,\\\\n              \\\\\\\"p\\\\\\\": 0.003217\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -3,\\\\n          \\\\\\\"r\\\\\\\": 0.9889,\\\\n          \\\\\\\"p_value\\\\\\\": 2.5e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.1751,\\\\n              \\\\\\\"p\\\\\\\": 0.778166\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7481,\\\\n              \\\\\\\"p\\\\\\\": 0.087187\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.9889,\\\\n              \\\\\\\"p\\\\\\\": 2.5e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.9381,\\\\n              \\\\\\\"p\\\\\\\": 0.000567\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9528,\\\\n              \\\\\\\"p\\\\\\\": 7.2e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.0243,\\\\n              \\\\\\\"p\\\\\\\": 0.946776\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.1043,\\\\n              \\\\\\\"p\\\\\\\": 0.789473\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.2559,\\\\n              \\\\\\\"p\\\\\\\": 0.540648\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.1979,\\\\n              \\\\\\\"p\\\\\\\": 0.670535\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.1375,\\\\n              \\\\\\\"p\\\\\\\": 0.795078\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0066,\\\\n              \\\\\\\"p\\\\\\\": 0.991546\\\\n            }\\\\n          ],\\\\n          \\\\\\\"fdr_p\\\\\\\": 5e-05,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": null,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 3,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"3x_sigma_drift\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 319.3451,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003599,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 53.2242,\\\\n          \\\\\\\"fdr_p\\\\\\\": 0.007198,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"wald_F\\\\\\\": 0.1113,\\\\n          \\\\\\\"p_value\\\\\\\": 0.755381,\\\\n          \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 53418 字符] ...\\\\n\\\\n6\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8465,\\\\n              \\\\\\\"p\\\\\\\": 0.008026\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.8909,\\\\n              \\\\\\\"p\\\\\\\": 0.007108\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.9248,\\\\n              \\\\\\\"p\\\\\\\": 0.008273\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 2,\\\\n          \\\\\\\"r\\\\\\\": -0.9804,\\\\n          \\\\\\\"p_value\\\\\\\": 1.9e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": -0.8559,\\\\n              \\\\\\\"p\\\\\\\": 0.064231\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": -0.9021,\\\\n              \\\\\\\"p\\\\\\\": 0.013904\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.9049,\\\\n              \\\\\\\"p\\\\\\\": 0.005087\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.9122,\\\\n              \\\\\\\"p\\\\\\\": 0.001584\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": -0.8692,\\\\n              \\\\\\\"p\\\\\\\": 0.002339\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.9076,\\\\n              \\\\\\\"p\\\\\\\": 0.000285\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.9575,\\\\n              \\\\\\\"p\\\\\\\": 5e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.9804,\\\\n              \\\\\\\"p\\\\\\\": 1.9e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.9474,\\\\n              \\\\\\\"p\\\\\\\": 0.001185\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7697,\\\\n              \\\\\\\"p\\\\\\\": 0.073433\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.0392,\\\\n              \\\\\\\"p\\\\\\\": 0.950081\\\\n            }\\\\n          ],\\\\n          \\\\\\\"fdr_p\\\\\\\": 5e-05,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 3,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 4,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"3x_sigma_drift\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.9757,\\\\n          \\\\\\\"p_value\\\\\\\": 0.384323,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 0.1626,\\\\n          \\\\\\\"fdr_p\\\\\\\": 0.384323,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"wald_F\\\\\\\": 1.2506,\\\\n          \\\\\\\"p_value\\\\\\\": 0.464485,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"k\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 8,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 5,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 8,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 8,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 4,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 4\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 1.0,\\n  \\\"seed\\\": 43,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9823,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.8655,\\n              \\\"p\\\": 0.025905\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.8762,\\n              \\\"p\\\": 0.009687\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9819,\\n              \\\"p\\\": 1.5e-05\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9823,\\n              \\\"p\\\": 2e-06\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9816,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.8452,\\n              \\\"p\\\": 0.001052\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.917,\\n              \\\"p\\\": 0.000188\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.9524,\\n              \\\"p\\\": 7.4e-05\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.9532,\\n              \\\"p\\\": 0.000248\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.9542,\\n              \\\"p\\\": 0.000841\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.9533,\\n              \\\"p\\\": 0.003217\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.9889,\\n          \\\"p_value\\\": 2.5e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.1751,\\n              \\\"p\\\": 0.778166\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7481,\\n              \\\"p\\\": 0.087187\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9889,\\n              \\\"p\\\": 2.5e-05\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9381,\\n              \\\"p\\\": 0.000567\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9528,\\n              \\\"p\\\": 7.2e-05\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.0243,\\n              \\\"p\\\": 0.946776\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.1043,\\n              \\\"p\\\": 0.789473\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.2559,\\n              \\\"p\\\": 0.540648\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1979,\\n              \\\"p\\\": 0.670535\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.1375,\\n              \\\"p\\\": 0.795078\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0066,\\n              \\\"p\\\": 0.991546\\n            }\\n          ],\\n          \\\"fdr_p\\\": 5e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": null,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"3x_sigma_drift\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 319.3451,\\n          \\\"p_value\\\": 0.003599,\\n          \\\"significant\\\": true,\\n          \\\"n_perm\\\": 5000,\\n          \\\"effect_size_f2\\\": 53.2242,\\n          \\\"fdr_p\\\": 0.007198,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"wald_F\\\": 0.1113,\\n          \\\"p_value\\\": 0.755381,\\n          \\\"\\n\\n... [截断: 输出过长，省略 53418 字符] ...\\n\\n6\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8465,\\n              \\\"p\\\": 0.008026\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.8909,\\n              \\\"p\\\": 0.007108\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.9248,\\n              \\\"p\\\": 0.008273\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 2,\\n          \\\"r\\\": -0.9804,\\n          \\\"p_value\\\": 1.9e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.8559,\\n              \\\"p\\\": 0.064231\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.9021,\\n              \\\"p\\\": 0.013904\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.9049,\\n              \\\"p\\\": 0.005087\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.9122,\\n              \\\"p\\\": 0.001584\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.8692,\\n              \\\"p\\\": 0.002339\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.9076,\\n              \\\"p\\\": 0.000285\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.9575,\\n              \\\"p\\\": 5e-05\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.9804,\\n              \\\"p\\\": 1.9e-05\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.9474,\\n              \\\"p\\\": 0.001185\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7697,\\n              \\\"p\\\": 0.073433\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.0392,\\n              \\\"p\\\": 0.950081\\n            }\\n          ],\\n          \\\"fdr_p\\\": 5e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 3,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true,\\n          \\\"threshold\\\": \\\"3x_sigma_drift\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.9757,\\n          \\\"p_value\\\": 0.384323,\\n          \\\"significant\\\": false,\\n          \\\"n_perm\\\": 5000,\\n          \\\"effect_size_f2\\\": 0.1626,\\n          \\\"fdr_p\\\": 0.384323,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"wald_F\\\": 1.2506,\\n          \\\"p_value\\\": 0.464485,\\n          \\\"significant\\\": false,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 1,\\n          \\\"df_resid\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy\\\\u2192perplexity\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece\\\\u2192perplexity\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 8,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 5,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 8,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 8,\\n    \\\"threshold_forward_sig\\\": 0,\\n    \\\"ty_forward_sig\\\": 4,\\n    \\\"robust_pairs\\\": 4\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 37 · 2026-05-19T15:33:29.145Z_
+
+<details><summary>↩ Tool result · `toolu_01NVGDG6iowFs7ztZNfLwGn2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=1.0, Seed=43, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 4/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 8/8\\n  Diff XCorr (FDR):   8/8\\n  Threshold Onset:    0/8\\n  TY Granger:         4/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\n  token_entropy→perplexity  2/5  [diff, perm]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            3/5  [diff, perm, ty]\\n  ece→distinct_3            3/5  [diff, perm, ty]\\n  ece→perplexity            2/5  [diff, perm]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7c9de2cc-3e12-4490-835e-3dbbb64fc7e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5-Method Lead-Lag Analysis Summary\\\\nAlpha=1.0, Seed=43, Generations=11\\\\n============================================================\\\\n\\\\nRobust pairs (>=3/5 methods agree): 4/8\\\\n\\\\nPer-method forward significance:\\\\n  Perm Granger (FDR): 8/8\\\\n  Diff XCorr (FDR):   8/8\\\\n  Threshold Onset:    0/8\\\\n  TY Granger:         4/8\\\\n\\\\nConsensus detail:\\\\n  token_entropy→distinct_1  2/5  [diff, perm]\\\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\\\n  token_entropy→perplexity  2/5  [diff, perm]\\\\n  ece→distinct_1            2/5  [diff, perm]\\\\n  ece→distinct_2            3/5  [diff, perm, ty]\\\\n  ece→distinct_3            3/5  [diff, perm, ty]\\\\n  ece→perplexity            2/5  [diff, perm]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=1.0, Seed=43, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 4/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 8/8\\n  Diff XCorr (FDR):   8/8\\n  Threshold Onset:    0/8\\n  TY Granger:         4/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\n  token_entropy→perplexity  2/5  [diff, perm]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            3/5  [diff, perm, ty]\\n  ece→distinct_3            3/5  [diff, perm, ty]\\n  ece→perplexity            2/5  [diff, perm]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the issue clearly. The s43 analysis currently has 8 pairs:
+- token_entropy→distinct_1 (2/5)
+- token_entropy→distinct_2 (3/5)
+- token_entropy→distinct_3 (4/5)
+- **token_entropy→perplexity** (2/5) — this is the problematic one
+- ece→distinct_1 (2/5)
+
+
+- ece→distinct_2 (3/5)
+- ece→distinct_3 (3/5)
+- **ece→perplexity** (2/5) — this is the problematic one
+
+I need to swap out both perplexity pairs for mauve pairs instead, giving me the target set: entropy→d1, entropy→d2, entropy→d3, entropy→mauve, ece→d1, ece→d2, ece→d3, ece→mauve. Now I need to locate the analysis script that generated this configuration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "463ff2a2-dde8-45f0-a3b7-ba1cc8f3c5aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJbTibpSXroL5tY6eAjsR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5099,
+      "cache_read_input_tokens": 29292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5099
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 39_
+
+确认 s43 当前包含 →perplexity pair，需替换为 →mauve。现在找分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8fd87842-567f-47cf-bf77-b5f0913ccb18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJbTibpSXroL5tY6eAjsR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5099,
+      "cache_read_input_tokens": 29292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5099
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VEGnqqVaFxo2JG5xvawYdu`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "02267941-1989-448c-aab9-4f83a2120885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJbTibpSXroL5tY6eAjsR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5099,
+      "cache_read_input_tokens": 29292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5099
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 41 · 2026-05-19T15:33:38.159Z_
+
+<details><summary>↩ Tool result · `toolu_01VEGnqqVaFxo2JG5xvawYdu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/dmax_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py\\n/root/autodl-tmp/distrib_canary_collapse/bootstrap_ty_validation.py\\n/root/autodl-tmp/distrib_canary_collapse/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/run_lag_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_extended.py\\n/root/autodl-tmp/distrib_canary_collapse/pooled_panel_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_drift.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_dose_response.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/resume_plan006_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/leadlag_gpt2m_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/debug_ty.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/ty_audit.py\\n/root/autodl-tmp/distrib_canary_collapse/ty_3seed_a025.py\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine.py\\n/root/autodl-tmp/distrib_canary_collapse/perm_granger_power_bootstrap.py\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_a025_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s44_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s43_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s42_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_paper_figures.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/gen_single_method_table.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_supplement.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_single_method_table.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/shapley_figure_final.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py\\n/root/autodl-tmp/distrib_canary_collapse/mauve_supplement_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_opt1b_full.py\\n/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_gen7_metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_conditional_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/_generate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/cusum_monitor.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/calibrate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/evaluate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/run_csmp.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/eval_gradual.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\n/root/autodl-tmp/distrib_canary_collapse/per_alpha_fdr.py\\n/root/autodl-tmp/distrib_canary_collapse/intervention_effect_comparison.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_a010_fp32.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "065f3b25-9512-4021-89d5-061334f10596",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/metrics.py\\\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py\\\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\\\n/root/autodl-tmp/distrib_canary_collapse/dmax_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py\\\\n/root/autodl-tmp/distrib_canary_collapse/bootstrap_ty_validation.py\\\\n/root/autodl-tmp/distrib_canary_collapse/detrending_utils.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_lag_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_extended.py\\\\n/root/autodl-tmp/distrib_canary_collapse/pooled_panel_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/extract_drift.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gen_dose_response.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\\\n/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n/root/autodl-tmp/distrib_canary_collapse/resume_plan006_s42.py\\\\n/root/autodl-tmp/distrib_canary_collapse/leadlag_gpt2m_s42.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/debug_ty.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v4.py\\\\n/root/autodl-tmp/distrib_canary_collapse/ty_audit.py\\\\n/root/autodl-tmp/distrib_canary_collapse/ty_3seed_a025.py\\\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine.py\\\\n/root/autodl-tmp/distrib_canary_collapse/perm_granger_power_bootstrap.py\\\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_a025_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/a075_s44_leadlag.py\\\\n/root/autodl-tmp/distrib_canary_collapse/a075_s43_leadlag.py\\\\n/root/autodl-tmp/distrib_canary_collapse/a075_s42_leadlag.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gen_paper_figures.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/gen_single_method_table.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_supplement.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gen_single_method_table.py\\\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley.py\\\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py\\\\n/root/autodl-tmp/distrib_canary_collapse/shapley_figure_final.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\\\n/root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mauve_supplement_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_opt1b_full.py\\\\n/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/compute_gen7_metrics.py\\\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_conditional_granger.py\\\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004.py\\\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_8pair_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/_generate.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/__init__.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/cusum_monitor.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/calibrate.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/evaluate.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/run_csmp.py\\\\n/root/autodl-tmp/distrib_canary_collapse/csmp/eval_gradual.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\\\n/root/autodl-tmp/distrib_canary_collapse/per_alpha_fdr.py\\\\n/root/autodl-tmp/distrib_canary_collapse/intervention_effect_comparison.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_a010_fp32.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/dmax_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py\\n/root/autodl-tmp/distrib_canary_collapse/bootstrap_ty_validation.py\\n/root/autodl-tmp/distrib_canary_collapse/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/run_lag_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_extended.py\\n/root/autodl-tmp/distrib_canary_collapse/pooled_panel_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_drift.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_dose_response.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/resume_plan006_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/leadlag_gpt2m_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/debug_ty.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/ty_audit.py\\n/root/autodl-tmp/distrib_canary_collapse/ty_3seed_a025.py\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine.py\\n/root/autodl-tmp/distrib_canary_collapse/perm_granger_power_bootstrap.py\\n/root/autodl-tmp/distrib_canary_collapse/ground_truth_redefine_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_a025_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s44_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s43_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/a075_s42_leadlag.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_paper_figures.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/gen_single_method_table.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_supplement.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_single_method_table.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/shapley_figure_final.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/reverse_permg_pythia410m.py\\n/root/autodl-tmp/distrib_canary_collapse/mauve_supplement_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_opt1b_full.py\\n/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_gen7_metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_conditional_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_m004_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/_generate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/cusum_monitor.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/calibrate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/evaluate.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/run_csmp.py\\n/root/autodl-tmp/distrib_canary_collapse/csmp/eval_gradual.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\n/root/autodl-tmp/distrib_canary_collapse/per_alpha_fdr.py\\n/root/autodl-tmp/distrib_canary_collapse/intervention_effect_comparison.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_a010_fp32.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see `gpt2m_8pair_analysis.py` which sounds exactly like what I need. Let me also check `run_5method_analysis.py` and `gpt2m_8pair_analysis.py`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8e21375d-9a80-4599-99bf-bf5fe7b4238e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016UuZh19XtTcyjnKbme2gnb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2790,
+      "cache_read_input_tokens": 34391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2790
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 43_
+
+找到了 `gpt2m_8pair_analysis.py`，看起来就是需要的。同时查看它和 `run_5method_analysis.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2d83e6a1-105c-482d-8fe9-4591724819f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016UuZh19XtTcyjnKbme2gnb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2790,
+      "cache_read_input_tokens": 34391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2790
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Etctzz2uSsKZM2PFzR7nQL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/gpt2m_8pair_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "42f62c46-39bb-4b35-b16a-5f0c90e0fc90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016UuZh19XtTcyjnKbme2gnb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2790,
+      "cache_read_input_tokens": 34391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2790
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-19T15:33:44.254Z_
+
+<details><summary>↩ Tool result · `toolu_01Etctzz2uSsKZM2PFzR7nQL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"8-pair Table 7 analysis for GPT-2-medium WikiText-103 experiment.\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE)\\n\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\nfrom permutation_granger import permutation_granger_test\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\nSHORT = {\\\"token_entropy\\\": \\\"ent\\\", \\\"ece\\\": \\\"ece\\\", \\\"perplexity\\\": \\\"ppl\\\",\\n         \\\"distinct_1\\\": \\\"d1\\\", \\\"distinct_2\\\": \\\"d2\\\", \\\"distinct_3\\\": \\\"d3\\\"}\\n\\nEXP_DIR = os.path.join(BASE, \\\"results\\\", \\\"generalize\\\", \\\"gpt2m_wiki_a100_s42\\\")\\nDATA_PATH = os.path.join(EXP_DIR, \\\"all_metrics.json\\\")\\n\\nN_PERM = 5000\\nALPHA = 0.05\\nXCORR_LAG = 5\\nGRANGER_LAG = 1\\n\\nwith open(DATA_PATH) as f:\\n    metrics_list = json.load(f)\\nmetrics_list = sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])\\nn_gens = len(metrics_list)\\n\\nprint(f\\\"Loaded {n_gens} generations from {DATA_PATH}\\\")\\n\\n# ── Drift analysis ──\\nall_metric_names = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\",\\n                    \\\"self_bleu\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\ngen0 = metrics_list[0]\\ngen10 = metrics_list[-1]\\n\\nprint(\\\"\\\\n## Drift Analysis (gen0 -> gen10)\\\")\\nprint(f\\\"{'Metric':<20s} {'Gen0':>14s} {'Gen10':>14s} {'Change%':>10s}\\\")\\nprint(\\\"-\\\" * 60)\\ndrift_data = {}\\nfor m in all_metric_names:\\n    v0, v10 = gen0[m], gen10[m]\\n    if abs(v0) > 1e-12:\\n        pct = (v10 - v0) / abs(v0) * 100\\n    else:\\n        pct = 0.0\\n    drift_data[m] = {\\\"gen0\\\": v0, \\\"gen10\\\": v10, \\\"drift_pct\\\": round(pct, 2)}\\n    print(f\\\"{m:<20s} {v0:>14.6f} {v10:>14.6f} {pct:>+10.1f}%\\\")\\n\\n# ── Per-pair analysis ──\\nprint(\\\"\\\\n## 8-Pair Analysis (n_perm=5000)\\\")\\nprint(f\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\")\\nprint(f\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\")\\n\\nresults = {}\\ndiff_pvals = []\\npair_keys = []\\n\\nfor cn in CANARIES:\\n    for dn in DOWNSTREAMS:\\n        c = extract(metrics_list, cn)\\n        d = extract(metrics_list, dn)\\n        pk = f\\\"{SHORT[cn]}->{SHORT[dn]}\\\"\\n        pair_keys.append(pk)\\n\\n        res_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_LAG)\\n        res_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_LAG)\\n        res_thresh = threshold_lead(c, d, cn, dn)\\n        res_ty = toda_yamamoto(c, d, cn, dn)\\n\\n        co = orient(c, cn)\\n        do_ = orient(d, dn)\\n        res_pg_fwd = permutation_granger_test(co, do_, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\n        res_pg_rev = permutation_granger_test(do_, co, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\n\\n        diff_pvals.append(res_diff.get(\\\"p_value\\\", 1.0))\\n\\n        results[pk] = {\\n            \\\"naive\\\": res_naive,\\n            \\\"diff\\\": res_diff,\\n            \\\"thresh\\\": res_thresh,\\n            \\\"ty\\\": res_ty,\\n            \\\"pg_fwd\\\": res_pg_fwd,\\n            \\\"pg_rev\\\": res_pg_rev,\\n        }\\n\\n# Apply FDR to Diff p-values\\ndiff_pvals_arr = np.array(diff_pvals)\\nreject_fdr, pvals_fdr, _, _ = multipletests(diff_pvals_arr, alpha=ALPHA, method='fdr_bh')\\n\\nfor i, pk in enumerate(pair_keys):\\n    results[pk][\\\"diff\\\"][\\\"p_fdr\\\"] = float(pvals_fdr[i])\\n    results[pk][\\\"diff\\\"][\\\"sig_fdr\\\"] = bool(reject_fdr[i])\\n\\n# ── Print and count ──\\ncounts = {\\\"Naive\\\": 0, \\\"Diff\\\": 0, \\\"Thresh\\\": 0, \\\"PG_fwd\\\": 0, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 0}\\n\\nfor pk in pair_keys:\\n    r = results[pk]\\n    naive_p = r[\\\"naive\\\"].get(\\\"p_value\\\", 1.0)\\n    naive_sig = naive_p < ALPHA if naive_p is not None else False\\n\\n    diff_sig = r[\\\"diff\\\"][\\\"sig_fdr\\\"]  # FDR-corrected\\n\\n    thresh_sig = r[\\\"thresh\\\"].get(\\\"significant\\\", False)\\n    thresh_lt = r[\\\"thresh\\\"].get(\\\"lead_time\\\")\\n\\n    ty_p = r[\\\"ty\\\"].get(\\\"p_value\\\", 1.0)\\n    ty_sig = ty_p < ALPHA if ty_p is not None else False\\n\\n    pg_fwd_p = r[\\\"pg_fwd\\\"].get(\\\"p_value\\\", 1.0)\\n    pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\n\\n    pg_rev_p = r[\\\"pg_rev\\\"].get(\\\"p_value\\\", 1.0)\\n    pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\n\\n    k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\n\\n    if naive_sig: counts[\\\"Naive\\\"] += 1\\n    if diff_sig: counts[\\\"Diff\\\"] += 1\\n    if thresh_sig: counts[\\\"Thresh\\\"] += 1\\n    if pg_fwd_sig: counts[\\\"PG_fwd\\\"] += 1\\n    if pg_rev_sig: counts[\\\"PG_rev\\\"] += 1\\n    if ty_sig: counts[\\\"TY\\\"] += 1\\n    if k_fwd >= 4: counts[\\\"K>=4\\\"] += 1\\n\\n    ns = f\\\"{naive_p:.4f}\\\" if naive_p is not None else \\\"N/A\\\"\\n    ds = f\\\"{r['diff']['p_fdr']:.4f}\\\"\\n    ts = f\\\"L={thresh_lt}\\\" if thresh_sig else \\\"x\\\"\\n    tys = f\\\"{ty_p:.4f}\\\" if ty_p is not None else \\\"N/A\\\"\\n    pfs = f\\\"{pg_fwd_p:.4f}\\\" if pg_fwd_p is not None else \\\"N/A\\\"\\n    prs = f\\\"{pg_rev_p:.4f}\\\" if pg_rev_p is not None else \\\"N/A\\\"\\n\\n    nm = \\\"Y\\\" if naive_sig else \\\"N\\\"\\n    dm = \\\"Y\\\" if diff_sig else \\\"N\\\"\\n    tm = \\\"Y\\\" if ty_sig else \\\"N\\\"\\n    pfm = \\\"Y\\\" if pg_fwd_sig else \\\"N\\\"\\n    prm = \\\"Y\\\" if pg_rev_sig else \\\"N\\\"\\n\\n    print(f\\\"| {pk:<10s} | {ns} {nm} | {ds} {dm} | {ts:<6s} | {tys} {tm} | {pfs} {pfm} | {prs} {prm} | {k_fwd}/5 |\\\")\\n\\nprint(f\\\"\\\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\\")\\nprint(f\\\"| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\\")\\nprint(f\\\"|-------|------|--------|--------|--------|-----|------|\\\")\\nprint(f\\\"| {counts['Naive']}/8 | {counts['Diff']}/8 | {counts['Thresh']}/8 | {counts['PG_fwd']}/8 | {counts['PG_rev']}/8 | {counts['TY']}/8 | {counts['K>=4']}/8 |\\\")\\n\\n# ── Save JSON ──\\nclass NE(json.JSONEncoder):\\n    def default(self, o):\\n        if isinstance(o, (np.integer,)): return int(o)\\n        if isinstance(o, (np.floating,)): return float(o)\\n        if isinstance(o, np.ndarray): return o.tolist()\\n        if isinstance(o, np.bool_): return bool(o)\\n        return super().default(o)\\n\\nout_dir = os.path.join(EXP_DIR, \\\"analysis\\\")\\nos.makedirs(out_dir, exist_ok=True)\\noutput = {\\n    \\\"experiment\\\": \\\"gpt2m_wiki_a100_s42\\\",\\n    \\\"model\\\": \\\"gpt2-medium\\\",\\n    \\\"dataset\\\": \\\"wikitext103_5k\\\",\\n    \\\"alpha_mix\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_generations\\\": n_gens,\\n    \\\"parameters\\\": {\\\"n_perm\\\": N_PERM, \\\"xcorr_lag\\\": XCORR_LAG, \\\"granger_lag\\\": GRANGER_LAG},\\n    \\\"table7_row\\\": counts,\\n    \\\"drift\\\": drift_data,\\n    \\\"per_pair\\\": results,\\n}\\nout_path = os.path.join(out_dir, \\\"gpt2m_8pair_table7.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2, cls=NE)\\nprint(f\\\"\\\\nSaved: {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f19f2826-8cd6-4f1a-81b8-43918c46afd6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"8-pair Table 7 analysis for GPT-2-medium WikiText-103 experiment.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\nsys.path.insert(0, BASE)\\\\n\\\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\nSHORT = {\\\\\\\"token_entropy\\\\\\\": \\\\\\\"ent\\\\\\\", \\\\\\\"ece\\\\\\\": \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\": \\\\\\\"ppl\\\\\\\",\\\\n         \\\\\\\"distinct_1\\\\\\\": \\\\\\\"d1\\\\\\\", \\\\\\\"distinct_2\\\\\\\": \\\\\\\"d2\\\\\\\", \\\\\\\"distinct_3\\\\\\\": \\\\\\\"d3\\\\\\\"}\\\\n\\\\nEXP_DIR = os.path.join(BASE, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\", \\\\\\\"gpt2m_wiki_a100_s42\\\\\\\")\\\\nDATA_PATH = os.path.join(EXP_DIR, \\\\\\\"all_metrics.json\\\\\\\")\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\nXCORR_LAG = 5\\\\nGRANGER_LAG = 1\\\\n\\\\nwith open(DATA_PATH) as f:\\\\n    metrics_list = json.load(f)\\\\nmetrics_list = sorted(metrics_list, key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\nn_gens = len(metrics_list)\\\\n\\\\nprint(f\\\\\\\"Loaded {n_gens} generations from {DATA_PATH}\\\\\\\")\\\\n\\\\n# ── Drift analysis ──\\\\nall_metric_names = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n                    \\\\\\\"self_bleu\\\\\\\", \\\\\\\"effective_rank\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\ngen0 = metrics_list[0]\\\\ngen10 = metrics_list[-1]\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n## Drift Analysis (gen0 -> gen10)\\\\\\\")\\\\nprint(f\\\\\\\"{'Metric':<20s} {'Gen0':>14s} {'Gen10':>14s} {'Change%':>10s}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 60)\\\\ndrift_data = {}\\\\nfor m in all_metric_names:\\\\n    v0, v10 = gen0[m], gen10[m]\\\\n    if abs(v0) > 1e-12:\\\\n        pct = (v10 - v0) / abs(v0) * 100\\\\n    else:\\\\n        pct = 0.0\\\\n    drift_data[m] = {\\\\\\\"gen0\\\\\\\": v0, \\\\\\\"gen10\\\\\\\": v10, \\\\\\\"drift_pct\\\\\\\": round(pct, 2)}\\\\n    print(f\\\\\\\"{m:<20s} {v0:>14.6f} {v10:>14.6f} {pct:>+10.1f}%\\\\\\\")\\\\n\\\\n# ── Per-pair analysis ──\\\\nprint(\\\\\\\"\\\\\\\\n## 8-Pair Analysis (n_perm=5000)\\\\\\\")\\\\nprint(f\\\\\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\\\\\")\\\\nprint(f\\\\\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\\\\\")\\\\n\\\\nresults = {}\\\\ndiff_pvals = []\\\\npair_keys = []\\\\n\\\\nfor cn in CANARIES:\\\\n    for dn in DOWNSTREAMS:\\\\n        c = extract(metrics_list, cn)\\\\n        d = extract(metrics_list, dn)\\\\n        pk = f\\\\\\\"{SHORT[cn]}->{SHORT[dn]}\\\\\\\"\\\\n        pair_keys.append(pk)\\\\n\\\\n        res_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_LAG)\\\\n        res_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_LAG)\\\\n        res_thresh = threshold_lead(c, d, cn, dn)\\\\n        res_ty = toda_yamamoto(c, d, cn, dn)\\\\n\\\\n        co = orient(c, cn)\\\\n        do_ = orient(d, dn)\\\\n        res_pg_fwd = permutation_granger_test(co, do_, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\\\n        res_pg_rev = permutation_granger_test(do_, co, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\\\n\\\\n        diff_pvals.append(res_diff.get(\\\\\\\"p_value\\\\\\\", 1.0))\\\\n\\\\n        results[pk] = {\\\\n            \\\\\\\"naive\\\\\\\": res_naive,\\\\n            \\\\\\\"diff\\\\\\\": res_diff,\\\\n            \\\\\\\"thresh\\\\\\\": res_thresh,\\\\n            \\\\\\\"ty\\\\\\\": res_ty,\\\\n            \\\\\\\"pg_fwd\\\\\\\": res_pg_fwd,\\\\n            \\\\\\\"pg_rev\\\\\\\": res_pg_rev,\\\\n        }\\\\n\\\\n# Apply FDR to Diff p-values\\\\ndiff_pvals_arr = np.array(diff_pvals)\\\\nreject_fdr, pvals_fdr, _, _ = multipletests(diff_pvals_arr, alpha=ALPHA, method='fdr_bh')\\\\n\\\\nfor i, pk in enumerate(pair_keys):\\\\n    results[pk][\\\\\\\"diff\\\\\\\"][\\\\\\\"p_fdr\\\\\\\"] = float(pvals_fdr[i])\\\\n    results[pk][\\\\\\\"diff\\\\\\\"][\\\\\\\"sig_fdr\\\\\\\"] = bool(reject_fdr[i])\\\\n\\\\n# ── Print and count ──\\\\ncounts = {\\\\\\\"Naive\\\\\\\": 0, \\\\\\\"Diff\\\\\\\": 0, \\\\\\\"Thresh\\\\\\\": 0, \\\\\\\"PG_fwd\\\\\\\": 0, \\\\\\\"PG_rev\\\\\\\": 0, \\\\\\\"TY\\\\\\\": 0, \\\\\\\"K>=4\\\\\\\": 0}\\\\n\\\\nfor pk in pair_keys:\\\\n    r = results[pk]\\\\n    naive_p = r[\\\\\\\"naive\\\\\\\"].get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n    naive_sig = naive_p < ALPHA if naive_p is not None else False\\\\n\\\\n    diff_sig = r[\\\\\\\"diff\\\\\\\"][\\\\\\\"sig_fdr\\\\\\\"]  # FDR-corrected\\\\n\\\\n    thresh_sig = r[\\\\\\\"thresh\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False)\\\\n    thresh_lt = r[\\\\\\\"thresh\\\\\\\"].get(\\\\\\\"lead_time\\\\\\\")\\\\n\\\\n    ty_p = r[\\\\\\\"ty\\\\\\\"].get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n    ty_sig = ty_p < ALPHA if ty_p is not None else False\\\\n\\\\n    pg_fwd_p = r[\\\\\\\"pg_fwd\\\\\\\"].get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n    pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\\\n\\\\n    pg_rev_p = r[\\\\\\\"pg_rev\\\\\\\"].get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n    pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\\\n\\\\n    k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\\\n\\\\n    if naive_sig: counts[\\\\\\\"Naive\\\\\\\"] += 1\\\\n    if diff_sig: counts[\\\\\\\"Diff\\\\\\\"] += 1\\\\n    if thresh_sig: counts[\\\\\\\"Thresh\\\\\\\"] += 1\\\\n    if pg_fwd_sig: counts[\\\\\\\"PG_fwd\\\\\\\"] += 1\\\\n    if pg_rev_sig: counts[\\\\\\\"PG_rev\\\\\\\"] += 1\\\\n    if ty_sig: counts[\\\\\\\"TY\\\\\\\"] += 1\\\\n    if k_fwd >= 4: counts[\\\\\\\"K>=4\\\\\\\"] += 1\\\\n\\\\n    ns = f\\\\\\\"{naive_p:.4f}\\\\\\\" if naive_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n    ds = f\\\\\\\"{r['diff']['p_fdr']:.4f}\\\\\\\"\\\\n    ts = f\\\\\\\"L={thresh_lt}\\\\\\\" if thresh_sig else \\\\\\\"x\\\\\\\"\\\\n    tys = f\\\\\\\"{ty_p:.4f}\\\\\\\" if ty_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n    pfs = f\\\\\\\"{pg_fwd_p:.4f}\\\\\\\" if pg_fwd_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n    prs = f\\\\\\\"{pg_rev_p:.4f}\\\\\\\" if pg_rev_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n\\\\n    nm = \\\\\\\"Y\\\\\\\" if naive_sig else \\\\\\\"N\\\\\\\"\\\\n    dm = \\\\\\\"Y\\\\\\\" if diff_sig else \\\\\\\"N\\\\\\\"\\\\n    tm = \\\\\\\"Y\\\\\\\" if ty_sig else \\\\\\\"N\\\\\\\"\\\\n    pfm = \\\\\\\"Y\\\\\\\" if pg_fwd_sig else \\\\\\\"N\\\\\\\"\\\\n    prm = \\\\\\\"Y\\\\\\\" if pg_rev_sig else \\\\\\\"N\\\\\\\"\\\\n\\\\n    print(f\\\\\\\"| {pk:<10s} | {ns} {nm} | {ds} {dm} | {ts:<6s} | {tys} {tm} | {pfs} {pfm} | {prs} {prm} | {k_fwd}/5 |\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\\\\\\")\\\\nprint(f\\\\\\\"| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\\\\\\")\\\\nprint(f\\\\\\\"|-------|------|--------|--------|--------|-----|------|\\\\\\\")\\\\nprint(f\\\\\\\"| {counts['Naive']}/8 | {counts['Diff']}/8 | {counts['Thresh']}/8 | {counts['PG_fwd']}/8 | {counts['PG_rev']}/8 | {counts['TY']}/8 | {counts['K>=4']}/8 |\\\\\\\")\\\\n\\\\n# ── Save JSON ──\\\\nclass NE(json.JSONEncoder):\\\\n    def default(self, o):\\\\n        if isinstance(o, (np.integer,)): return int(o)\\\\n        if isinstance(o, (np.floating,)): return float(o)\\\\n        if isinstance(o, np.ndarray): return o.tolist()\\\\n        if isinstance(o, np.bool_): return bool(o)\\\\n        return super().default(o)\\\\n\\\\nout_dir = os.path.join(EXP_DIR, \\\\\\\"analysis\\\\\\\")\\\\nos.makedirs(out_dir, exist_ok=True)\\\\noutput = {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"gpt2m_wiki_a100_s42\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"gpt2-medium\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"wikitext103_5k\\\\\\\",\\\\n    \\\\\\\"alpha_mix\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n    \\\\\\\"parameters\\\\\\\": {\\\\\\\"n_perm\\\\\\\": N_PERM, \\\\\\\"xcorr_lag\\\\\\\": XCORR_LAG, \\\\\\\"granger_lag\\\\\\\": GRANGER_LAG},\\\\n    \\\\\\\"table7_row\\\\\\\": counts,\\\\n    \\\\\\\"drift\\\\\\\": drift_data,\\\\n    \\\\\\\"per_pair\\\\\\\": results,\\\\n}\\\\nout_path = os.path.join(out_dir, \\\\\\\"gpt2m_8pair_table7.json\\\\\\\")\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(output, f, indent=2, cls=NE)\\\\nprint(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"8-pair Table 7 analysis for GPT-2-medium WikiText-103 experiment.\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE)\\n\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\nfrom permutation_granger import permutation_granger_test\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\nSHORT = {\\\"token_entropy\\\": \\\"ent\\\", \\\"ece\\\": \\\"ece\\\", \\\"perplexity\\\": \\\"ppl\\\",\\n         \\\"distinct_1\\\": \\\"d1\\\", \\\"distinct_2\\\": \\\"d2\\\", \\\"distinct_3\\\": \\\"d3\\\"}\\n\\nEXP_DIR = os.path.join(BASE, \\\"results\\\", \\\"generalize\\\", \\\"gpt2m_wiki_a100_s42\\\")\\nDATA_PATH = os.path.join(EXP_DIR, \\\"all_metrics.json\\\")\\n\\nN_PERM = 5000\\nALPHA = 0.05\\nXCORR_LAG = 5\\nGRANGER_LAG = 1\\n\\nwith open(DATA_PATH) as f:\\n    metrics_list = json.load(f)\\nmetrics_list = sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])\\nn_gens = len(metrics_list)\\n\\nprint(f\\\"Loaded {n_gens} generations from {DATA_PATH}\\\")\\n\\n# ── Drift analysis ──\\nall_metric_names = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\",\\n                    \\\"self_bleu\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\ngen0 = metrics_list[0]\\ngen10 = metrics_list[-1]\\n\\nprint(\\\"\\\\n## Drift Analysis (gen0 -> gen10)\\\")\\nprint(f\\\"{'Metric':<20s} {'Gen0':>14s} {'Gen10':>14s} {'Change%':>10s}\\\")\\nprint(\\\"-\\\" * 60)\\ndrift_data = {}\\nfor m in all_metric_names:\\n    v0, v10 = gen0[m], gen10[m]\\n    if abs(v0) > 1e-12:\\n        pct = (v10 - v0) / abs(v0) * 100\\n    else:\\n        pct = 0.0\\n    drift_data[m] = {\\\"gen0\\\": v0, \\\"gen10\\\": v10, \\\"drift_pct\\\": round(pct, 2)}\\n    print(f\\\"{m:<20s} {v0:>14.6f} {v10:>14.6f} {pct:>+10.1f}%\\\")\\n\\n# ── Per-pair analysis ──\\nprint(\\\"\\\\n## 8-Pair Analysis (n_perm=5000)\\\")\\nprint(f\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\")\\nprint(f\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\")\\n\\nresults = {}\\ndiff_pvals = []\\npair_keys = []\\n\\nfor cn in CANARIES:\\n    for dn in DOWNSTREAMS:\\n        c = extract(metrics_list, cn)\\n        d = extract(metrics_list, dn)\\n        pk = f\\\"{SHORT[cn]}->{SHORT[dn]}\\\"\\n        pair_keys.append(pk)\\n\\n        res_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_LAG)\\n        res_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_LAG)\\n        res_thresh = threshold_lead(c, d, cn, dn)\\n        res_ty = toda_yamamoto(c, d, cn, dn)\\n\\n        co = orient(c, cn)\\n        do_ = orient(d, dn)\\n        res_pg_fwd = permutation_granger_test(co, do_, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\n        res_pg_rev = permutation_granger_test(do_, co, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\\n\\n        diff_pvals.append(res_diff.get(\\\"p_value\\\", 1.0))\\n\\n        results[pk] = {\\n            \\\"naive\\\": res_naive,\\n            \\\"diff\\\": res_diff,\\n            \\\"thresh\\\": res_thresh,\\n            \\\"ty\\\": res_ty,\\n            \\\"pg_fwd\\\": res_pg_fwd,\\n            \\\"pg_rev\\\": res_pg_rev,\\n        }\\n\\n# Apply FDR to Diff p-values\\ndiff_pvals_arr = np.array(diff_pvals)\\nreject_fdr, pvals_fdr, _, _ = multipletests(diff_pvals_arr, alpha=ALPHA, method='fdr_bh')\\n\\nfor i, pk in enumerate(pair_keys):\\n    results[pk][\\\"diff\\\"][\\\"p_fdr\\\"] = float(pvals_fdr[i])\\n    results[pk][\\\"diff\\\"][\\\"sig_fdr\\\"] = bool(reject_fdr[i])\\n\\n# ── Print and count ──\\ncounts = {\\\"Naive\\\": 0, \\\"Diff\\\": 0, \\\"Thresh\\\": 0, \\\"PG_fwd\\\": 0, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 0}\\n\\nfor pk in pair_keys:\\n    r = results[pk]\\n    naive_p = r[\\\"naive\\\"].get(\\\"p_value\\\", 1.0)\\n    naive_sig = naive_p < ALPHA if naive_p is not None else False\\n\\n    diff_sig = r[\\\"diff\\\"][\\\"sig_fdr\\\"]  # FDR-corrected\\n\\n    thresh_sig = r[\\\"thresh\\\"].get(\\\"significant\\\", False)\\n    thresh_lt = r[\\\"thresh\\\"].get(\\\"lead_time\\\")\\n\\n    ty_p = r[\\\"ty\\\"].get(\\\"p_value\\\", 1.0)\\n    ty_sig = ty_p < ALPHA if ty_p is not None else False\\n\\n    pg_fwd_p = r[\\\"pg_fwd\\\"].get(\\\"p_value\\\", 1.0)\\n    pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\n\\n    pg_rev_p = r[\\\"pg_rev\\\"].get(\\\"p_value\\\", 1.0)\\n    pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\n\\n    k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\n\\n    if naive_sig: counts[\\\"Naive\\\"] += 1\\n    if diff_sig: counts[\\\"Diff\\\"] += 1\\n    if thresh_sig: counts[\\\"Thresh\\\"] += 1\\n    if pg_fwd_sig: counts[\\\"PG_fwd\\\"] += 1\\n    if pg_rev_sig: counts[\\\"PG_rev\\\"] += 1\\n    if ty_sig: counts[\\\"TY\\\"] += 1\\n    if k_fwd >= 4: counts[\\\"K>=4\\\"] += 1\\n\\n    ns = f\\\"{naive_p:.4f}\\\" if naive_p is not None else \\\"N/A\\\"\\n    ds = f\\\"{r['diff']['p_fdr']:.4f}\\\"\\n    ts = f\\\"L={thresh_lt}\\\" if thresh_sig else \\\"x\\\"\\n    tys = f\\\"{ty_p:.4f}\\\" if ty_p is not None else \\\"N/A\\\"\\n    pfs = f\\\"{pg_fwd_p:.4f}\\\" if pg_fwd_p is not None else \\\"N/A\\\"\\n    prs = f\\\"{pg_rev_p:.4f}\\\" if pg_rev_p is not None else \\\"N/A\\\"\\n\\n    nm = \\\"Y\\\" if naive_sig else \\\"N\\\"\\n    dm = \\\"Y\\\" if diff_sig else \\\"N\\\"\\n    tm = \\\"Y\\\" if ty_sig else \\\"N\\\"\\n    pfm = \\\"Y\\\" if pg_fwd_sig else \\\"N\\\"\\n    prm = \\\"Y\\\" if pg_rev_sig else \\\"N\\\"\\n\\n    print(f\\\"| {pk:<10s} | {ns} {nm} | {ds} {dm} | {ts:<6s} | {tys} {tm} | {pfs} {pfm} | {prs} {prm} | {k_fwd}/5 |\\\")\\n\\nprint(f\\\"\\\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\\")\\nprint(f\\\"| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\\")\\nprint(f\\\"|-------|------|--------|--------|--------|-----|------|\\\")\\nprint(f\\\"| {counts['Naive']}/8 | {counts['Diff']}/8 | {counts['Thresh']}/8 | {counts['PG_fwd']}/8 | {counts['PG_rev']}/8 | {counts['TY']}/8 | {counts['K>=4']}/8 |\\\")\\n\\n# ── Save JSON ──\\nclass NE(json.JSONEncoder):\\n    def default(self, o):\\n        if isinstance(o, (np.integer,)): return int(o)\\n        if isinstance(o, (np.floating,)): return float(o)\\n        if isinstance(o, np.ndarray): return o.tolist()\\n        if isinstance(o, np.bool_): return bool(o)\\n        return super().default(o)\\n\\nout_dir = os.path.join(EXP_DIR, \\\"analysis\\\")\\nos.makedirs(out_dir, exist_ok=True)\\noutput = {\\n    \\\"experiment\\\": \\\"gpt2m_wiki_a100_s42\\\",\\n    \\\"model\\\": \\\"gpt2-medium\\\",\\n    \\\"dataset\\\": \\\"wikitext103_5k\\\",\\n    \\\"alpha_mix\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_generations\\\": n_gens,\\n    \\\"parameters\\\": {\\\"n_perm\\\": N_PERM, \\\"xcorr_lag\\\": XCORR_LAG, \\\"granger_lag\\\": GRANGER_LAG},\\n    \\\"table7_row\\\": counts,\\n    \\\"drift\\\": drift_data,\\n    \\\"per_pair\\\": results,\\n}\\nout_path = os.path.join(out_dir, \\\"gpt2m_8pair_table7.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2, cls=NE)\\nprint(f\\\"\\\\nSaved: {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qv8s5MqXLe7SAGKeov2eNq`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "0f6f49fd-b474-479b-8b2f-a011e9158859",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016UuZh19XtTcyjnKbme2gnb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2790,
+      "cache_read_input_tokens": 34391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2790
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 47 · 2026-05-19T15:33:45.466Z_
+
+<details><summary>↩ Tool result · `toolu_01Qv8s5MqXLe7SAGKeov2eNq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "cfd994dc-15a9-4bec-aefb-3a4da9ad9ca8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] for d in data])\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see both scripts:
+
+1. `gpt2m_8pair_analysis.py` - This is for s42, targeting `results/generalize/gpt2m_wiki_a100_s42`. It uses `DOWNSTREAMS = ["perplexity", "distinct_1", "distinct_2", "distinct_3"]`.
+
+2. `run_5method_analysis.py` - The general CLI version, also uses `DOWNSTREAMS = ["distinct_1", "distinct_2", "distinct_3", "perplexity"]`.
+
+
+Both scripts include `perplexity` in their downstream metrics, so I need to swap it out for `mauve` in both cases—s43 was analyzed with the 5method script and s42 with the 8pair script. Let me verify whether the `all_metrics.json` files actually contain the `mauve` data I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "543e26de-70ab-4e54-a1a7-c9cad156aab2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Z2NiJdbfu98jseguzz95d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5236,
+      "cache_read_input_tokens": 37181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5236
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 49_
+
+确认两个脚本都用了 perplexity 作为 downstream。让我检查 s43 和 s42 的 all_metrics.json 中是否有 mauve 指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7d7aa149-80d9-4679-8813-fddb3324626e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Z2NiJdbfu98jseguzz95d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5236,
+      "cache_read_input_tokens": 37181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5236
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L6QRoPQ9BeBjYG9CCAurwk`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json')); print([k for k in d[0].keys()])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "0e5f896e-41c3-4fac-89c4-eccad8129aba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Z2NiJdbfu98jseguzz95d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5236,
+      "cache_read_input_tokens": 37181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5236
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 51 · 2026-05-19T15:33:55.157Z_
+
+<details><summary>↩ Tool result · `toolu_01L6QRoPQ9BeBjYG9CCAurwk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "eaad616b-e2c4-45f9-8f76-00ccd0b9e001",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HUGRYjvrXQWtK5VEJqBkC6`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "24acc3e9-6d5d-48ee-833c-ef0d8cf5dd77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Z2NiJdbfu98jseguzz95d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5236,
+      "cache_read_input_tokens": 37181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5236
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 53 · 2026-05-19T15:33:56.208Z_
+
+<details><summary>↩ Tool result · `toolu_01HUGRYjvrXQWtK5VEJqBkC6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "1a73bf43-10c8-4189-9044-a277934ac1a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis\\\\ngpt2m_wiki_a100_s42\\\\nopt1b_wiki_a100_s42\\\\npythia14b_wiki_a100_s42\\\\npythia14b_wiki_a100_s43\\\\npythia1b_c4_a100_s42\\\\npythia1b_c4_a100_s43\\\\npythia410m_wiki_a100_s42\\\\nsmollm3_3b_wiki_a100_s42\\\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M99ccnrF6QYdz5EjnTJh6t`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -o \"mauve\" /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "1f2350f1-3397-4733-90a5-76adcb7d11d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011N1jK1NJG7w3H4ygVXTZY8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 42417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 55 · 2026-05-19T15:34:00.039Z_
+
+<details><summary>↩ Tool result · `toolu_01M99ccnrF6QYdz5EjnTJh6t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "223dd273-271e-4c30-b031-44ec11e7b423",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\nmauve\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"mauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\nmauve\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AShigrbF8ty9qVqEkHEqBK`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "9e68be50-a976-4064-b259-aef8a7919c4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011N1jK1NJG7w3H4ygVXTZY8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 42417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 57 · 2026-05-19T15:34:00.963Z_
+
+<details><summary>↩ Tool result · `toolu_01AShigrbF8ty9qVqEkHEqBK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009677021320739129,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"distinct_1\\\": 0.10304158396270703,\\n    \\\"distinct_2\\\": 0.5512864861303288,\\n    \\\"distinct_3\\\": 0.856912243133056,\\n    \\\"mauve\\\": 0.034106201015521614,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.5934668336222537,\\n    \\\"self_bleu\\\": 0.009798118375625125,\\n    \\\"ece\\\": 0.22824870777481956,\\n    \\\"effective_rank\\\": 2.699120207334199,\\n    \\\"perplexity\\\": 83.20952766621089,\\n    \\\"distinct_1\\\": 0.10298294288575509,\\n    \\\"distinct_2\\\": 0.5512907859634721,\\n    \\\"distinct_3\\\": 0.8600522064617809,\\n    \\\"mauve\\\": 0.032434318002211804,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "185d9b46-af2e-41fc-979c-5a42713a7857",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.5714236302655937,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009677021320739129,\\\\n    \\\\\\\"ece\\\\\\\": 0.011165005425486723,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.3722373141584847,\\\\n    \\\\\\\"perplexity\\\\\\\": 32.63152881690869,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.10304158396270703,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5512864861303288,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.856912243133056,\\\\n    \\\\\\\"mauve\\\\\\\": 0.034106201015521614,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.5934668336222537,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009798118375625125,\\\\n    \\\\\\\"ece\\\\\\\": 0.22824870777481956,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.699120207334199,\\\\n    \\\\\\\"perplexity\\\\\\\": 83.20952766621089,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.10298294288575509,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5512907859634721,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8600522064617809,\\\\n    \\\\\\\"mauve\\\\\\\": 0.032434318002211804,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009677021320739129,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"distinct_1\\\": 0.10304158396270703,\\n    \\\"distinct_2\\\": 0.5512864861303288,\\n    \\\"distinct_3\\\": 0.856912243133056,\\n    \\\"mauve\\\": 0.034106201015521614,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.5934668336222537,\\n    \\\"self_bleu\\\": 0.009798118375625125,\\n    \\\"ece\\\": 0.22824870777481956,\\n    \\\"effective_rank\\\": 2.699120207334199,\\n    \\\"perplexity\\\": 83.20952766621089,\\n    \\\"distinct_1\\\": 0.10298294288575509,\\n    \\\"distinct_2\\\": 0.5512907859634721,\\n    \\\"distinct_3\\\": 0.8600522064617809,\\n    \\\"mauve\\\": 0.032434318002211804,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016DGm9fSTW53TeDu9YLyw8b`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -30 /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8e180779-9998-4f51-8586-aeb4d7d0617b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011N1jK1NJG7w3H4ygVXTZY8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 42417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 59 · 2026-05-19T15:34:01.855Z_
+
+<details><summary>↩ Tool result · `toolu_016DGm9fSTW53TeDu9YLyw8b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009416174177092937,\\n    \\\"distinct_1\\\": 0.10438217196075171,\\n    \\\"distinct_2\\\": 0.5483082347267149,\\n    \\\"distinct_3\\\": 0.844118478604334,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"mauve\\\": 0.031453640812650854,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.6619039705526137,\\n    \\\"self_bleu\\\": 0.009189199530506422,\\n    \\\"distinct_1\\\": 0.1041694653412144,\\n    \\\"distinct_2\\\": 0.5488274854537669,\\n    \\\"distinct_3\\\": 0.8451327433628318,\\n    \\\"ece\\\": 0.22732727795367996,\\n    \\\"effective_rank\\\": 2.682961572877425,\\n    \\\"perplexity\\\": 99.13115657163468,\\n    \\\"mauve\\\": 0.031515119768772866,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.9516518203810497,\\n    \\\"self_bleu\\\": 0.01182562523555886,\\n    \\\"distinct_1\\\": 0.0959220232647282,\\n    \\\"distinct_2\\\": 0.5053585956567995,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c4286b61-86fc-44ac-80d0-d225a2831c0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.5714236302655937,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009416174177092937,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.10438217196075171,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5483082347267149,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.844118478604334,\\\\n    \\\\\\\"ece\\\\\\\": 0.011165005425486723,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.3722373141584847,\\\\n    \\\\\\\"perplexity\\\\\\\": 32.63152881690869,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031453640812650854,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.6619039705526137,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009189199530506422,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.1041694653412144,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5488274854537669,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8451327433628318,\\\\n    \\\\\\\"ece\\\\\\\": 0.22732727795367996,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.682961572877425,\\\\n    \\\\\\\"perplexity\\\\\\\": 99.13115657163468,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031515119768772866,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.9516518203810497,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01182562523555886,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0959220232647282,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5053585956567995,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009416174177092937,\\n    \\\"distinct_1\\\": 0.10438217196075171,\\n    \\\"distinct_2\\\": 0.5483082347267149,\\n    \\\"distinct_3\\\": 0.844118478604334,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"mauve\\\": 0.031453640812650854,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.6619039705526137,\\n    \\\"self_bleu\\\": 0.009189199530506422,\\n    \\\"distinct_1\\\": 0.1041694653412144,\\n    \\\"distinct_2\\\": 0.5488274854537669,\\n    \\\"distinct_3\\\": 0.8451327433628318,\\n    \\\"ece\\\": 0.22732727795367996,\\n    \\\"effective_rank\\\": 2.682961572877425,\\n    \\\"perplexity\\\": 99.13115657163468,\\n    \\\"mauve\\\": 0.031515119768772866,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.9516518203810497,\\n    \\\"self_bleu\\\": 0.01182562523555886,\\n    \\\"distinct_1\\\": 0.0959220232647282,\\n    \\\"distinct_2\\\": 0.5053585956567995,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both s43 and s42 have `mauve` data in their all_metrics.json files. Now I need to:
+
+1. Modify `run_5method_analysis.py` to replace `perplexity` with `mauve` in DOWNSTREAMS
+2. Run it for s43
+3. Modify `gpt2m_8pair_analysis.py` to replace `perplexity` with `mauve` in DOWNSTREAMS
+4. Run it for s42
+
+Actually, looking more carefully, the s43 analysis was done with `run_5method_analysis.py`, and the s42 analysis was done with `gpt2m_8pair_analysis.py`. 
+
+Both produce similar outputs. I should check if these scripts accept downstream parameters from the command line rather than modifying the files directly, since I don't want to permanently change them. Let me examine the rest of the `run_5method_analysis.py` file to see how it's structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "fced81c4-07a0-450e-b8e0-0c6d61d4c36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PqkNkguJ6V8sqYaNYd7Wu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1796,
+      "cache_read_input_tokens": 43380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 61_
+
+两个实验都有 mauve 数据。让我看 `run_5method_analysis.py` 是否支持命令行指定 downstream。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "0a6a4dde-8538-4c5a-a390-79bdac6b8c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PqkNkguJ6V8sqYaNYd7Wu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1796,
+      "cache_read_input_tokens": 43380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EX4nsAc1ZJq1JDewjrNLrX`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -200 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f83cc413-44d8-496a-8b24-c1084eac880b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PqkNkguJ6V8sqYaNYd7Wu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1796,
+      "cache_read_input_tokens": 43380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 63 · 2026-05-19T15:34:10.193Z_
+
+<details><summary>↩ Tool result · `toolu_01EX4nsAc1ZJq1JDewjrNLrX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\",\\n        },\\n        \\\"pairs\\\": [],\\n    }\\n\\n    # Collect all p-values for FDR\\n    perm_p_fwd = []\\n    perm_p_rev = []\\n    diff_p_fwd = []\\n    diff_p_rev = []\\n    pair_results = []\\n\\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            c, d = series[cn], series[dn]\\n\\n            # Forward: canary -> downstream\\n            fwd_naive = naive_xcorr(c, d, cn, dn)\\n            fwd_diff = diff_xcorr(c, d, cn, dn)\\n            fwd_onset = threshold_onset(c, d, cn, dn)\\n            fwd_perm = perm_granger(c, d, cn, dn, seed)\\n            fwd_ty = ty_granger(c, d, cn, dn)\\n\\n            # Reverse: downstream -> canary\\n            rev_naive = naive_xcorr(d, c, dn, cn)\\n            rev_diff = diff_xcorr(d, c, dn, cn)\\n            rev_onset = threshold_onset(d, c, dn, cn)\\n            rev_perm = perm_granger(d, c, dn, cn, seed)\\n            rev_ty = ty_granger(d, c, dn, cn)\\n\\n            perm_p_fwd.append(fwd_perm[\\\"p_value\\\"] if fwd_perm[\\\"p_value\\\"] is not None else np.nan)\\n            perm_p_rev.append(rev_perm[\\\"p_value\\\"] if rev_perm[\\\"p_value\\\"] is not None else np.nan)\\n            diff_p_fwd.append(fwd_diff[\\\"p_value\\\"] if fwd_diff[\\\"p_value\\\"] is not None else np.nan)\\n            diff_p_rev.append(rev_diff[\\\"p_value\\\"] if rev_diff[\\\"p_value\\\"] is not None else np.nan)\\n\\n            pair_results.append({\\n                \\\"canary\\\": cn, \\\"downstream\\\": dn,\\n                \\\"forward\\\": {\\n                    \\\"naive_xcorr\\\": fwd_naive, \\\"diff_xcorr\\\": fwd_diff,\\n                    \\\"threshold_onset\\\": fwd_onset, \\\"perm_granger\\\": fwd_perm,\\n                    \\\"ty_granger\\\": fwd_ty,\\n                },\\n                \\\"reverse\\\": {\\n                    \\\"canary\\\": dn, \\\"downstream\\\": cn,\\n                    \\\"naive_xcorr\\\": rev_naive, \\\"diff_xcorr\\\": rev_diff,\\n                    \\\"threshold_onset\\\": rev_onset, \\\"perm_granger\\\": rev_perm,\\n                    \\\"ty_granger\\\": rev_ty,\\n                },\\n            })\\n\\n    # Apply BH FDR correction\\n    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_p_fwd, ALPHA)\\n    perm_adj_rev, perm_sig_rev = bh_fdr(perm_p_rev, ALPHA)\\n    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_p_fwd, ALPHA)\\n    diff_adj_rev, diff_sig_rev = bh_fdr(diff_p_rev, ALPHA)\\n\\n    for i, pair in enumerate(pair_results):\\n        pair[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"fdr_p\\\"] = perm_adj_fwd[i]\\n        pair[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_fwd[i]\\n        pair[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"fdr_p\\\"] = diff_adj_fwd[i]\\n        pair[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_fwd[i]\\n        pair[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"fdr_p\\\"] = perm_adj_rev[i]\\n        pair[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_rev[i]\\n        pair[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"fdr_p\\\"] = diff_adj_rev[i]\\n        pair[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_rev[i]\\n\\n    all_results[\\\"pairs\\\"] = pair_results\\n\\n    # Print forward table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"FORWARD (canary → downstream)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        nr = f\\\"{f['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(f['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{f['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(f['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_gr\\n\\n... [截断: 输出过长，省略 2108 字符] ...\\n\\nr[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n    all_results[\\\"summary\\\"] = {\\n        \\\"perm_granger_fdr_forward_sig\\\": sum(perm_sig_fwd),\\n        \\\"perm_granger_fdr_reverse_sig\\\": sum(perm_sig_rev),\\n        \\\"diff_xcorr_fdr_forward_sig\\\": sum(diff_sig_fwd),\\n        \\\"diff_xcorr_fdr_reverse_sig\\\": sum(diff_sig_rev),\\n        \\\"threshold_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"threshold_onset\\\"][\\\"significant\\\"]),\\n        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n        \\\"robust_pairs\\\": sum(1 for c in consensus if c[\\\"votes\\\"] >= 3),\\n    }\\n    print(f\\\"\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\")\\n    print(f\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\")\\n\\n    # Save\\n    out_dir = os.path.join(data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n\\n    def clean(obj):\\n        if isinstance(obj, (np.floating, np.float64)):\\n            return float(obj)\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, np.bool_):\\n            return bool(obj)\\n        if isinstance(obj, dict):\\n            return {k: clean(v) for k, v in obj.items()}\\n        if isinstance(obj, list):\\n            return [clean(v) for v in obj]\\n        return obj\\n\\n    json_path = os.path.join(out_dir, \\\"5method_leadlag.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(clean(all_results), f, indent=2)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    # Text summary\\n    summary_path = os.path.join(out_dir, \\\"5method_summary.txt\\\")\\n    with open(summary_path, \\\"w\\\") as f:\\n        f.write(f\\\"5-Method Lead-Lag Analysis Summary\\\\n\\\")\\n        f.write(f\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\n\\\")\\n        f.write(f\\\"{'='*60}\\\\n\\\\n\\\")\\n        f.write(f\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Per-method forward significance:\\\\n\\\")\\n        f.write(f\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Consensus detail:\\\\n\\\")\\n        for c in consensus:\\n            f.write(f\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\n\\\")\\n    print(f\\\"Saved: {summary_path}\\\")\\n\\n    return all_results\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"5-method lead-lag analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\", required=True, help=\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\")\\n    parser.add_argument(\\\"--alpha\\\", type=float, required=True, help=\\\"Alpha value (e.g. 0.0, 0.75)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, required=True, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Check data availability without running analysis\\\")\\n    args = parser.parse_args()\\n    run(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2bbca620-ba61-4ae1-9b44-5e9d80ceece9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"3x_sigma_drift\\\\\\\",\\\\n        },\\\\n        \\\\\\\"pairs\\\\\\\": [],\\\\n    }\\\\n\\\\n    # Collect all p-values for FDR\\\\n    perm_p_fwd = []\\\\n    perm_p_rev = []\\\\n    diff_p_fwd = []\\\\n    diff_p_rev = []\\\\n    pair_results = []\\\\n\\\\n    for cn in CANARIES:\\\\n        for dn in DOWNSTREAMS:\\\\n            c, d = series[cn], series[dn]\\\\n\\\\n            # Forward: canary -> downstream\\\\n            fwd_naive = naive_xcorr(c, d, cn, dn)\\\\n            fwd_diff = diff_xcorr(c, d, cn, dn)\\\\n            fwd_onset = threshold_onset(c, d, cn, dn)\\\\n            fwd_perm = perm_granger(c, d, cn, dn, seed)\\\\n            fwd_ty = ty_granger(c, d, cn, dn)\\\\n\\\\n            # Reverse: downstream -> canary\\\\n            rev_naive = naive_xcorr(d, c, dn, cn)\\\\n            rev_diff = diff_xcorr(d, c, dn, cn)\\\\n            rev_onset = threshold_onset(d, c, dn, cn)\\\\n            rev_perm = perm_granger(d, c, dn, cn, seed)\\\\n            rev_ty = ty_granger(d, c, dn, cn)\\\\n\\\\n            perm_p_fwd.append(fwd_perm[\\\\\\\"p_value\\\\\\\"] if fwd_perm[\\\\\\\"p_value\\\\\\\"] is not None else np.nan)\\\\n            perm_p_rev.append(rev_perm[\\\\\\\"p_value\\\\\\\"] if rev_perm[\\\\\\\"p_value\\\\\\\"] is not None else np.nan)\\\\n            diff_p_fwd.append(fwd_diff[\\\\\\\"p_value\\\\\\\"] if fwd_diff[\\\\\\\"p_value\\\\\\\"] is not None else np.nan)\\\\n            diff_p_rev.append(rev_diff[\\\\\\\"p_value\\\\\\\"] if rev_diff[\\\\\\\"p_value\\\\\\\"] is not None else np.nan)\\\\n\\\\n            pair_results.append({\\\\n                \\\\\\\"canary\\\\\\\": cn, \\\\\\\"downstream\\\\\\\": dn,\\\\n                \\\\\\\"forward\\\\\\\": {\\\\n                    \\\\\\\"naive_xcorr\\\\\\\": fwd_naive, \\\\\\\"diff_xcorr\\\\\\\": fwd_diff,\\\\n                    \\\\\\\"threshold_onset\\\\\\\": fwd_onset, \\\\\\\"perm_granger\\\\\\\": fwd_perm,\\\\n                    \\\\\\\"ty_granger\\\\\\\": fwd_ty,\\\\n                },\\\\n                \\\\\\\"reverse\\\\\\\": {\\\\n                    \\\\\\\"canary\\\\\\\": dn, \\\\\\\"downstream\\\\\\\": cn,\\\\n                    \\\\\\\"naive_xcorr\\\\\\\": rev_naive, \\\\\\\"diff_xcorr\\\\\\\": rev_diff,\\\\n                    \\\\\\\"threshold_onset\\\\\\\": rev_onset, \\\\\\\"perm_granger\\\\\\\": rev_perm,\\\\n                    \\\\\\\"ty_granger\\\\\\\": rev_ty,\\\\n                },\\\\n            })\\\\n\\\\n    # Apply BH FDR correction\\\\n    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_p_fwd, ALPHA)\\\\n    perm_adj_rev, perm_sig_rev = bh_fdr(perm_p_rev, ALPHA)\\\\n    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_p_fwd, ALPHA)\\\\n    diff_adj_rev, diff_sig_rev = bh_fdr(diff_p_rev, ALPHA)\\\\n\\\\n    for i, pair in enumerate(pair_results):\\\\n        pair[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"fdr_p\\\\\\\"] = perm_adj_fwd[i]\\\\n        pair[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = perm_sig_fwd[i]\\\\n        pair[\\\\\\\"forward\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"fdr_p\\\\\\\"] = diff_adj_fwd[i]\\\\n        pair[\\\\\\\"forward\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = diff_sig_fwd[i]\\\\n        pair[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"fdr_p\\\\\\\"] = perm_adj_rev[i]\\\\n        pair[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = perm_sig_rev[i]\\\\n        pair[\\\\\\\"reverse\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"fdr_p\\\\\\\"] = diff_adj_rev[i]\\\\n        pair[\\\\\\\"reverse\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = diff_sig_rev[i]\\\\n\\\\n    all_results[\\\\\\\"pairs\\\\\\\"] = pair_results\\\\n\\\\n    # Print forward table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"FORWARD (canary → downstream)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\\\\\")\\\\n    print(f\\\\\\\"{'-'*100}\\\\\\\")\\\\n    for i, pair in enumerate(pair_results):\\\\n        f = pair[\\\\\\\"forward\\\\\\\"]\\\\n        label = f\\\\\\\"{pair['canary']}→{pair['downstream']}\\\\\\\"\\\\n        nr = f\\\\\\\"{f['naive_xcorr']['r']:.3f}\\\\\\\"\\\\n        nl = str(f['naive_xcorr']['peak_lag'])\\\\n        dr = f\\\\\\\"{f['diff_xcorr']['r']:.3f}\\\\\\\"\\\\n        dl = str(f['diff_xcorr']['peak_lag'])\\\\n        dfdr = f\\\\\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\\\n        pf = f\\\\\\\"{f['perm_granger']['f_stat']:.3f}\\\\\\\" if f['perm_granger']['f_stat'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        pfdr = f\\\\\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if f['perm_granger'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        psig = \\\\\\\"*\\\\\\\" if f['perm_granger'].get('significant_fdr') else \\\\\\\"\\\\\\\"\\\\n        tyf = f\\\\\\\"{f['ty_gr\\\\n\\\\n... [截断: 输出过长，省略 2108 字符] ...\\\\n\\\\nr[\\\\\\\"forward\\\\\\\"]\\\\n        votes = 0\\\\n        methods_sig = []\\\\n        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] > 0:\\\\n            votes += 1; methods_sig.append(\\\\\\\"naive\\\\\\\")\\\\n        if f[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"diff\\\\\\\")\\\\n        if f[\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"threshold\\\\\\\")\\\\n        if f[\\\\\\\"perm_granger\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"perm\\\\\\\")\\\\n        if f[\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"ty\\\\\\\")\\\\n        label = f\\\\\\\"{pair['canary']}→{pair['downstream']}\\\\\\\"\\\\n        consensus.append({\\\\\\\"pair\\\\\\\": label, \\\\\\\"votes\\\\\\\": votes, \\\\\\\"methods\\\\\\\": methods_sig})\\\\n        print(f\\\\\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"consensus\\\\\\\"] = consensus\\\\n    all_results[\\\\\\\"summary\\\\\\\"] = {\\\\n        \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": sum(perm_sig_fwd),\\\\n        \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": sum(perm_sig_rev),\\\\n        \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": sum(diff_sig_fwd),\\\\n        \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": sum(diff_sig_rev),\\\\n        \\\\\\\"threshold_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"ty_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"robust_pairs\\\\\\\": sum(1 for c in consensus if c[\\\\\\\"votes\\\\\\\"] >= 3),\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_dir = os.path.join(data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n\\\\n    def clean(obj):\\\\n        if isinstance(obj, (np.floating, np.float64)):\\\\n            return float(obj)\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, np.bool_):\\\\n            return bool(obj)\\\\n        if isinstance(obj, dict):\\\\n            return {k: clean(v) for k, v in obj.items()}\\\\n        if isinstance(obj, list):\\\\n            return [clean(v) for v in obj]\\\\n        return obj\\\\n\\\\n    json_path = os.path.join(out_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(clean(all_results), f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n    # Text summary\\\\n    summary_path = os.path.join(out_dir, \\\\\\\"5method_summary.txt\\\\\\\")\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(f\\\\\\\"5-Method Lead-Lag Analysis Summary\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"{'='*60}\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Per-method forward significance:\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Consensus detail:\\\\\\\\n\\\\\\\")\\\\n        for c in consensus:\\\\n            f.write(f\\\\\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\\\\\n\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {summary_path}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"5-method lead-lag analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n    run(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\",\\n        },\\n        \\\"pairs\\\": [],\\n    }\\n\\n    # Collect all p-values for FDR\\n    perm_p_fwd = []\\n    perm_p_rev = []\\n    diff_p_fwd = []\\n    diff_p_rev = []\\n    pair_results = []\\n\\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            c, d = series[cn], series[dn]\\n\\n            # Forward: canary -> downstream\\n            fwd_naive = naive_xcorr(c, d, cn, dn)\\n            fwd_diff = diff_xcorr(c, d, cn, dn)\\n            fwd_onset = threshold_onset(c, d, cn, dn)\\n            fwd_perm = perm_granger(c, d, cn, dn, seed)\\n            fwd_ty = ty_granger(c, d, cn, dn)\\n\\n            # Reverse: downstream -> canary\\n            rev_naive = naive_xcorr(d, c, dn, cn)\\n            rev_diff = diff_xcorr(d, c, dn, cn)\\n            rev_onset = threshold_onset(d, c, dn, cn)\\n            rev_perm = perm_granger(d, c, dn, cn, seed)\\n            rev_ty = ty_granger(d, c, dn, cn)\\n\\n            perm_p_fwd.append(fwd_perm[\\\"p_value\\\"] if fwd_perm[\\\"p_value\\\"] is not None else np.nan)\\n            perm_p_rev.append(rev_perm[\\\"p_value\\\"] if rev_perm[\\\"p_value\\\"] is not None else np.nan)\\n            diff_p_fwd.append(fwd_diff[\\\"p_value\\\"] if fwd_diff[\\\"p_value\\\"] is not None else np.nan)\\n            diff_p_rev.append(rev_diff[\\\"p_value\\\"] if rev_diff[\\\"p_value\\\"] is not None else np.nan)\\n\\n            pair_results.append({\\n                \\\"canary\\\": cn, \\\"downstream\\\": dn,\\n                \\\"forward\\\": {\\n                    \\\"naive_xcorr\\\": fwd_naive, \\\"diff_xcorr\\\": fwd_diff,\\n                    \\\"threshold_onset\\\": fwd_onset, \\\"perm_granger\\\": fwd_perm,\\n                    \\\"ty_granger\\\": fwd_ty,\\n                },\\n                \\\"reverse\\\": {\\n                    \\\"canary\\\": dn, \\\"downstream\\\": cn,\\n                    \\\"naive_xcorr\\\": rev_naive, \\\"diff_xcorr\\\": rev_diff,\\n                    \\\"threshold_onset\\\": rev_onset, \\\"perm_granger\\\": rev_perm,\\n                    \\\"ty_granger\\\": rev_ty,\\n                },\\n            })\\n\\n    # Apply BH FDR correction\\n    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_p_fwd, ALPHA)\\n    perm_adj_rev, perm_sig_rev = bh_fdr(perm_p_rev, ALPHA)\\n    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_p_fwd, ALPHA)\\n    diff_adj_rev, diff_sig_rev = bh_fdr(diff_p_rev, ALPHA)\\n\\n    for i, pair in enumerate(pair_results):\\n        pair[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"fdr_p\\\"] = perm_adj_fwd[i]\\n        pair[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_fwd[i]\\n        pair[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"fdr_p\\\"] = diff_adj_fwd[i]\\n        pair[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_fwd[i]\\n        pair[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"fdr_p\\\"] = perm_adj_rev[i]\\n        pair[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_rev[i]\\n        pair[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"fdr_p\\\"] = diff_adj_rev[i]\\n        pair[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_rev[i]\\n\\n    all_results[\\\"pairs\\\"] = pair_results\\n\\n    # Print forward table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"FORWARD (canary → downstream)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        nr = f\\\"{f['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(f['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{f['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(f['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_gr\\n\\n... [截断: 输出过长，省略 2108 字符] ...\\n\\nr[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n    all_results[\\\"summary\\\"] = {\\n        \\\"perm_granger_fdr_forward_sig\\\": sum(perm_sig_fwd),\\n        \\\"perm_granger_fdr_reverse_sig\\\": sum(perm_sig_rev),\\n        \\\"diff_xcorr_fdr_forward_sig\\\": sum(diff_sig_fwd),\\n        \\\"diff_xcorr_fdr_reverse_sig\\\": sum(diff_sig_rev),\\n        \\\"threshold_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"threshold_onset\\\"][\\\"significant\\\"]),\\n        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n        \\\"robust_pairs\\\": sum(1 for c in consensus if c[\\\"votes\\\"] >= 3),\\n    }\\n    print(f\\\"\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\")\\n    print(f\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\")\\n\\n    # Save\\n    out_dir = os.path.join(data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n\\n    def clean(obj):\\n        if isinstance(obj, (np.floating, np.float64)):\\n            return float(obj)\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, np.bool_):\\n            return bool(obj)\\n        if isinstance(obj, dict):\\n            return {k: clean(v) for k, v in obj.items()}\\n        if isinstance(obj, list):\\n            return [clean(v) for v in obj]\\n        return obj\\n\\n    json_path = os.path.join(out_dir, \\\"5method_leadlag.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(clean(all_results), f, indent=2)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    # Text summary\\n    summary_path = os.path.join(out_dir, \\\"5method_summary.txt\\\")\\n    with open(summary_path, \\\"w\\\") as f:\\n        f.write(f\\\"5-Method Lead-Lag Analysis Summary\\\\n\\\")\\n        f.write(f\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\n\\\")\\n        f.write(f\\\"{'='*60}\\\\n\\\\n\\\")\\n        f.write(f\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Per-method forward significance:\\\\n\\\")\\n        f.write(f\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Consensus detail:\\\\n\\\")\\n        for c in consensus:\\n            f.write(f\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\n\\\")\\n    print(f\\\"Saved: {summary_path}\\\")\\n\\n    return all_results\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"5-method lead-lag analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\", required=True, help=\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\")\\n    parser.add_argument(\\\"--alpha\\\", type=float, required=True, help=\\\"Alpha value (e.g. 0.0, 0.75)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, required=True, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Check data availability without running analysis\\\")\\n    args = parser.parse_args()\\n    run(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `run_5method_analysis.py` script has DOWNSTREAMS hardcoded at the top. It doesn't support command-line specification of downstream metrics. I need to either:
+
+1. Modify the script to accept `--downstream_metrics` argument
+2. Or create a temporary modified version
+
+The cleanest approach: modify the DOWNSTREAMS constant in `run_5method_analysis.py` to replace `perplexity` with `mauve`, run the analysis, then also need to update `LOWER_IS_WORSE` since mauve is different from perplexity in direction (mauve higher = better, perplexity higher = worse).
+
+
+I need to check the metric orientation carefully. Since higher mauve scores indicate better quality, mauve belongs in `LOWER_IS_WORSE` rather than `HIGHER_IS_WORSE`. I also need to add the mauve shorthand to the `SHORT` dictionary that maps metric names to their abbreviated forms.
+
+For the implementation, I could modify the scripts directly on the server, run the analysis for both s43 and s42, then restore them—but the cleanest approach is probably to create a small wrapper script that makes the necessary changes, executes the analysis, and handles cleanup automatically. I need to figure out the cleanest way to run this analysis with different constants. Creating a wrapper script that imports the analysis functions and overrides the DOWNSTREAMS constant seems better than modifying and reverting the original file, since the run function relies on module-level constants. Let me check how the constants are actually used in the code to make sure this approach will work.
+
+Looking at how CANARIES and DOWNSTREAMS are referenced throughout the module, monkey-patching them before calling run() should work. But I also need to handle the HIGHER_IS_WORSE and LOWER_IS_WORSE dictionaries—I'll need to remove perplexity from one and add mauve to the other, plus make similar updates in the other analysis file.
+
+Rather than modifying files directly, I'll write a Python script that monkey-patches all these module constants at runtime, avoiding any file modifications altogether.
+
+Writing monkey-patch script... the module's global namespace, and the `orient` function will pick up the updated value when it's called.
+
+For `load_series`, it iterates over `CANARIES + DOWNSTREAMS`, so updating `r5.DOWNSTREAMS` will affect that too. I'll write a Python script to execute on s43 that handles these monkey-patches, and since it'll be lengthy, I should write it to a temp file first and then run it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7d79e20b-b936-4fd6-88fc-1466b5ec8b7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKe5wS8PGAg3r7UkRyJWqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4250,
+      "cache_read_input_tokens": 45176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4250
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 65_
+
+`run_5method_analysis.py` 的 DOWNSTREAMS 是硬编码的。我用 monkey-patch 方式运行，不修改源文件。先跑 s43。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "a155f882-0dee-4cc9-ad2f-f8268d02c276",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKe5wS8PGAg3r7UkRyJWqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4250,
+      "cache_read_input_tokens": 45176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4250
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JXybgfSsrZcBQXWMR7e73m`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/rerun_s43_unified.py << 'PYEOF'\nimport sys, os\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\nos.chdir(\"/root/autodl-tmp/distrib_canary_collapse\")\n\nimport run_5method_analysis as r5\nimport argparse\n\n# Override: replace perplexity with mauve\nr5.DOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nr5.LOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\nr5.HIGHER_IS_WORSE = {\"ece\"}\n\nargs = argparse.Namespace(\n    data_dir=\"results/gen_wiki_gpt2m_a100_s43\",\n    alpha=1.0,\n    seed=43,\n    dry_run=False\n)\nr5.run(args)\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/rerun_s43_unified.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f0523ba0-e67c-4da3-b1d6-6cd45fd0ed7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKe5wS8PGAg3r7UkRyJWqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4250,
+      "cache_read_input_tokens": 45176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4250
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 67 · 2026-05-19T15:34:54.939Z_
+
+<details><summary>↩ Tool result · `toolu_01JXybgfSsrZcBQXWMR7e73m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=43\\nData: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.982    -2   0.989    -3   0.0001   None 319.345   0.0072        *   0.111  0.7554     1\\ntoken_entropy→distinct_2    0.957    -2   0.987    -3   0.0001   None  82.082   0.0139        * 180.695  0.0000     0\\ntoken_entropy→distinct_3    0.925     4   0.907    -4   0.0168   None  66.951   0.0139        * 265.386  0.0000     0\\ntoken_entropy→mauve         0.839    -2   0.489    -2   0.2388   None   1.687   0.3307            1.076  0.4883     2\\nece→distinct_1              0.997    -1   0.990    -1   0.0000     -1 308.821   0.0027        *   7.256  0.0544     1\\nece→distinct_2              0.997    -2   1.000    -2   0.0000     -1 298.210   0.0027        * 480.817  0.0000     0\\nece→distinct_3              0.969    -5   0.984    -3   0.0001     -1 444.212   0.0027        * 306.156  0.0000     0\\nece→mauve                   0.818    -2   0.471    -2   0.2388      3   0.595   0.4925            0.025  0.9007     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.982     2   0.989     3   0.0001   None  25.152   0.0064        *   0.136  0.7312     1\\ndistinct_2��token_entropy    0.957     2   0.987     3   0.0001   None 632.526   0.0008        * 461.391  0.0000     0\\ndistinct_3→token_entropy    0.925    -4   0.907     4   0.0168   None 126.674   0.0008        * 488.650  0.0000     0\\nmauve→token_entropy         0.839     2   0.489     2   0.2388   None   0.056   0.8150            4.845  0.2715     2\\ndistinct_1→ece              0.997     1   0.990     1   0.0000      1  21.209   0.0464        *   2.128  0.2184     1\\ndistinct_2→ece              0.997     2   1.000     2   0.0000      1   3.951   0.1064            0.210  0.6603     0\\ndistinct_3→ece              0.969     5   0.984     3   0.0001      1   2.615   0.1568            1.407  0.2742     0\\nmauve→ece                   0.818     2   0.471     2   0.2388     -3   4.457   0.1049            8.262  0.2131     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\n  token_entropy→mauve       0/5  [none]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            3/5  [diff, perm, ty]\\n  ece→distinct_3            3/5  [diff, perm, ty]\\n  ece→mauve                 1/5  [threshold]\\n\\n  Robust pairs (>=3/5 methods): 4/8\\n  Perm Granger FDR sig (fwd): 6/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5860d067-15a0-45b3-827e-c7bfd95c2325",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"====================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=43\\\\nData: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\\\n====================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary → downstream)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy→distinct_1    0.982    -2   0.989    -3   0.0001   None 319.345   0.0072        *   0.111  0.7554     1\\\\ntoken_entropy→distinct_2    0.957    -2   0.987    -3   0.0001   None  82.082   0.0139        * 180.695  0.0000     0\\\\ntoken_entropy→distinct_3    0.925     4   0.907    -4   0.0168   None  66.951   0.0139        * 265.386  0.0000     0\\\\ntoken_entropy→mauve         0.839    -2   0.489    -2   0.2388   None   1.687   0.3307            1.076  0.4883     2\\\\nece→distinct_1              0.997    -1   0.990    -1   0.0000     -1 308.821   0.0027        *   7.256  0.0544     1\\\\nece→distinct_2              0.997    -2   1.000    -2   0.0000     -1 298.210   0.0027        * 480.817  0.0000     0\\\\nece→distinct_3              0.969    -5   0.984    -3   0.0001     -1 444.212   0.0027        * 306.156  0.0000     0\\\\nece→mauve                   0.818    -2   0.471    -2   0.2388      3   0.595   0.4925            0.025  0.9007     2\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream → canary)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1→token_entropy    0.982     2   0.989     3   0.0001   None  25.152   0.0064        *   0.136  0.7312     1\\\\ndistinct_2��token_entropy    0.957     2   0.987     3   0.0001   None 632.526   0.0008        * 461.391  0.0000     0\\\\ndistinct_3→token_entropy    0.925    -4   0.907     4   0.0168   None 126.674   0.0008        * 488.650  0.0000     0\\\\nmauve→token_entropy         0.839     2   0.489     2   0.2388   None   0.056   0.8150            4.845  0.2715     2\\\\ndistinct_1→ece              0.997     1   0.990     1   0.0000      1  21.209   0.0464        *   2.128  0.2184     1\\\\ndistinct_2→ece              0.997     2   1.000     2   0.0000      1   3.951   0.1064            0.210  0.6603     0\\\\ndistinct_3→ece              0.969     5   0.984     3   0.0001      1   2.615   0.1568            1.407  0.2742     0\\\\nmauve→ece                   0.818     2   0.471     2   0.2388     -3   4.457   0.1049            8.262  0.2131     2\\\\n\\\\n====================================================================================================\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy→distinct_1  2/5  [diff, perm]\\\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\\\n  token_entropy→mauve       0/5  [none]\\\\n  ece→distinct_1            2/5  [diff, perm]\\\\n  ece→distinct_2            3/5  [diff, perm, ty]\\\\n  ece→distinct_3            3/5  [diff, perm, ty]\\\\n  ece→mauve                 1/5  [threshold]\\\\n\\\\n  Robust pairs (>=3/5 methods): 4/8\\\\n  Perm Granger FDR sig (fwd): 6/8\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_leadlag.json\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=43\\nData: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.982    -2   0.989    -3   0.0001   None 319.345   0.0072        *   0.111  0.7554     1\\ntoken_entropy→distinct_2    0.957    -2   0.987    -3   0.0001   None  82.082   0.0139        * 180.695  0.0000     0\\ntoken_entropy→distinct_3    0.925     4   0.907    -4   0.0168   None  66.951   0.0139        * 265.386  0.0000     0\\ntoken_entropy→mauve         0.839    -2   0.489    -2   0.2388   None   1.687   0.3307            1.076  0.4883     2\\nece→distinct_1              0.997    -1   0.990    -1   0.0000     -1 308.821   0.0027        *   7.256  0.0544     1\\nece→distinct_2              0.997    -2   1.000    -2   0.0000     -1 298.210   0.0027        * 480.817  0.0000     0\\nece→distinct_3              0.969    -5   0.984    -3   0.0001     -1 444.212   0.0027        * 306.156  0.0000     0\\nece→mauve                   0.818    -2   0.471    -2   0.2388      3   0.595   0.4925            0.025  0.9007     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.982     2   0.989     3   0.0001   None  25.152   0.0064        *   0.136  0.7312     1\\ndistinct_2��token_entropy    0.957     2   0.987     3   0.0001   None 632.526   0.0008        * 461.391  0.0000     0\\ndistinct_3→token_entropy    0.925    -4   0.907     4   0.0168   None 126.674   0.0008        * 488.650  0.0000     0\\nmauve→token_entropy         0.839     2   0.489     2   0.2388   None   0.056   0.8150            4.845  0.2715     2\\ndistinct_1→ece              0.997     1   0.990     1   0.0000      1  21.209   0.0464        *   2.128  0.2184     1\\ndistinct_2→ece              0.997     2   1.000     2   0.0000      1   3.951   0.1064            0.210  0.6603     0\\ndistinct_3→ece              0.969     5   0.984     3   0.0001      1   2.615   0.1568            1.407  0.2742     0\\nmauve→ece                   0.818     2   0.471     2   0.2388     -3   4.457   0.1049            8.262  0.2131     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  4/5  [naive, diff, perm, ty]\\n  token_entropy→mauve       0/5  [none]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            3/5  [diff, perm, ty]\\n  ece→distinct_3            3/5  [diff, perm, ty]\\n  ece→mauve                 1/5  [threshold]\\n\\n  Robust pairs (>=3/5 methods): 4/8\\n  Perm Granger FDR sig (fwd): 6/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+s43 done. Key results:
+
+**Old (with perplexity):**
+- token_entropy→distinct_1: 2/5
+- token_entropy→distinct_2: 3/5
+- token_entropy→distinct_3: 4/5
+- token_entropy→perplexity: 2/5
+- ece→distinct_1: 2/5
+- ece→distinct_2: 3/5
+- ece→distinct_3: 3/5
+- ece→perplexity: 2/5
+- Robust (≥3): 4/8
+
+
+- PermG fwd: 8/8
+
+**New (with mauve):**
+- token_entropy→distinct_1: 2/5
+- token_entropy→distinct_2: 3/5
+- token_entropy→distinct_3: 4/5
+- token_entropy→mauve: 0/5
+- ece→distinct_1: 2/5
+- ece→distinct_2: 3/5
+- ece→distinct_3: 3/5
+- ece→mauve: 1/5
+- Robust (≥3): 4/8
+- PermG fwd: 6/8
+
+Swapping mauve for perplexity shows the mauve pairs aren't statistically significant, and the forward permutation test drops from 8/8 to 6/8.
+
+The mauve metric is too noisy with only 11 generations to be reliable at the distribution level. The four robust pairs from distinct_2 and distinct_3 remain the strongest signals. Now I'm checking the s42 seed results from the gpt2m_wiki_a100 experiment to see how the findings generalize.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f4ff3be1-e89e-4a51-ae2a-3dbb03e04cc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K1767dNwfCw8S8hkMRLSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 49426,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 69_
+
+s43 完成。现在检查 s42 的当前 pair 配置，然后同样重跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f23ddcc0-15ea-4c65-a2e7-76718afd004c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K1767dNwfCw8S8hkMRLSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 49426,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WtoHgig9q615iyX933Sxt6`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "45b3915e-8d59-4501-b864-b2bf3a8a4963",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K1767dNwfCw8S8hkMRLSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 49426,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 71 · 2026-05-19T15:35:05.605Z_
+
+<details><summary>↩ Tool result · `toolu_01WtoHgig9q615iyX933Sxt6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_summary.txt\\ngpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "3ce86e89-9565-41b3-ade2-aa9d96f8d13e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5method_leadlag.json\\\\n5method_summary.txt\\\\ngpt2m_8pair_table7.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_summary.txt\\ngpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Unb9Ak31TaPi8muKpNH7P`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "228e2bde-9aab-4213-acbb-4f106e142ab6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K1767dNwfCw8S8hkMRLSE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 49426,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 73 · 2026-05-19T15:35:06.372Z_
+
+<details><summary>↩ Tool result · `toolu_013Unb9Ak31TaPi8muKpNH7P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=1.0, Seed=42, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 2/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 6/8\\n  Diff XCorr (FDR):   8/8\\n  Threshold Onset:    0/8\\n  TY Granger:         2/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\n  token_entropy→perplexity  1/5  [diff]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            2/5  [diff, perm]\\n  ece→perplexity            1/5  [diff]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "0ce7c35c-c06a-47c7-850b-790843819418",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5-Method Lead-Lag Analysis Summary\\\\nAlpha=1.0, Seed=42, Generations=11\\\\n============================================================\\\\n\\\\nRobust pairs (>=3/5 methods agree): 2/8\\\\n\\\\nPer-method forward significance:\\\\n  Perm Granger (FDR): 6/8\\\\n  Diff XCorr (FDR):   8/8\\\\n  Threshold Onset:    0/8\\\\n  TY Granger:         2/8\\\\n\\\\nConsensus detail:\\\\n  token_entropy→distinct_1  2/5  [diff, perm]\\\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\\\n  token_entropy→perplexity  1/5  [diff]\\\\n  ece→distinct_1            2/5  [diff, perm]\\\\n  ece→distinct_2            2/5  [diff, perm]\\\\n  ece→distinct_3            2/5  [diff, perm]\\\\n  ece→perplexity            1/5  [diff]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=1.0, Seed=42, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 2/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 6/8\\n  Diff XCorr (FDR):   8/8\\n  Threshold Onset:    0/8\\n  TY Granger:         2/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\n  token_entropy→perplexity  1/5  [diff]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            2/5  [diff, perm]\\n  ece→perplexity            1/5  [diff]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+s42 also has perplexity pairs. Let me rerun it with mauve.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "4971ace6-f2dd-47a9-96fe-6260d4868c72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEzvbJknXVr3LMACR8Rhaa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 53413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 75_
+
+s42 也包含 →perplexity pair。重跑 s42。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "4ddbf357-4b4e-4041-9b6b-db6dba48b297",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEzvbJknXVr3LMACR8Rhaa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 53413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WMzB9FMoXp9Lo2M1zwiddr`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/rerun_s42_unified.py << 'PYEOF'\nimport sys, os\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\nos.chdir(\"/root/autodl-tmp/distrib_canary_collapse\")\n\nimport run_5method_analysis as r5\nimport argparse\n\n# Override: replace perplexity with mauve\nr5.DOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nr5.LOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\nr5.HIGHER_IS_WORSE = {\"ece\"}\n\nargs = argparse.Namespace(\n    data_dir=\"results/generalize/gpt2m_wiki_a100_s42\",\n    alpha=1.0,\n    seed=42,\n    dry_run=False\n)\nr5.run(args)\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/rerun_s42_unified.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "69711a85-2518-4b2f-8d33-e724ee4e43f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEzvbJknXVr3LMACR8Rhaa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 53413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 77 · 2026-05-19T15:35:15.979Z_
+
+<details><summary>↩ Tool result · `toolu_01WMzB9FMoXp9Lo2M1zwiddr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=42\\nData: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.998    -1   1.000    -1   0.0000   None 18016.638   0.0020        *   4.875  0.2707     2\\ntoken_entropy→distinct_2    0.996    -1   0.999    -2   0.0000   None 3474.838   0.0032        * 320.706  0.0000     0\\ntoken_entropy→distinct_3    0.996    -2   0.996    -2   0.0000   None 1632.173   0.0032        * 366.483  0.0000     0\\ntoken_entropy→mauve        -0.955     4  -0.597    -1   0.0899   None   3.653   0.1300            0.571  0.5881     2\\nece→distinct_1              0.973    -1   0.917    -1   0.0007     -1 4052.025   0.0020        *   2.244  0.3747     2\\nece→distinct_2              0.990    -1   0.973    -1   0.0000     -2 805.609   0.0020        *  26.511  0.1221     2\\nece→distinct_3              0.993    -1   0.972    -1   0.0000     -2 383.049   0.0020        *   2.823  0.3418     2\\nece→mauve                  -0.920     4  -0.629    -1   0.0792     -2   3.454   0.1300            0.250  0.7048     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.998     1   1.000     1   0.0000   None  17.540   0.1213            4.430  0.2824     2\\ndistinct_2→token_entropy    0.996     1   0.999     2   0.0000   None   8.633   0.1213            0.797  0.4017     0\\ndistinct_3→token_entropy    0.996     2   0.996     2   0.0000   None   8.010   0.1213            1.022  0.3458     0\\nmauve→token_entropy        -0.955    -4  -0.597     1   0.0899   None   3.352   0.1300            0.013  0.9272     2\\ndistinct_1→ece              0.973     1   0.917     1   0.0007      1 398.765   0.0256        *   2.853  0.3403     2\\ndistinct_2→ece              0.990     1   0.973     1   0.0000      2  60.453   0.0427        *   2.372  0.3666     2\\ndistinct_3→ece              0.993     1   0.972     1   0.0000      2  58.902   0.0336        *   1.561  0.4297     2\\nmauve→ece                  -0.920    -4  -0.629     1   0.0792      2   3.886   0.1213            3.817  0.3012     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\n  token_entropy→mauve       1/5  [naive]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            2/5  [diff, perm]\\n  ece→mauve                 1/5  [naive]\\n\\n  Robust pairs (>=3/5 methods): 2/8\\n  Perm Granger FDR sig (fwd): 6/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e3eaab6b-6358-4891-9f20-4d7e1e58f925",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"====================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=42\\\\nData: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42\\\\n====================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary → downstream)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy→distinct_1    0.998    -1   1.000    -1   0.0000   None 18016.638   0.0020        *   4.875  0.2707     2\\\\ntoken_entropy→distinct_2    0.996    -1   0.999    -2   0.0000   None 3474.838   0.0032        * 320.706  0.0000     0\\\\ntoken_entropy→distinct_3    0.996    -2   0.996    -2   0.0000   None 1632.173   0.0032        * 366.483  0.0000     0\\\\ntoken_entropy→mauve        -0.955     4  -0.597    -1   0.0899   None   3.653   0.1300            0.571  0.5881     2\\\\nece→distinct_1              0.973    -1   0.917    -1   0.0007     -1 4052.025   0.0020        *   2.244  0.3747     2\\\\nece→distinct_2              0.990    -1   0.973    -1   0.0000     -2 805.609   0.0020        *  26.511  0.1221     2\\\\nece→distinct_3              0.993    -1   0.972    -1   0.0000     -2 383.049   0.0020        *   2.823  0.3418     2\\\\nece→mauve                  -0.920     4  -0.629    -1   0.0792     -2   3.454   0.1300            0.250  0.7048     2\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream → canary)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1→token_entropy    0.998     1   1.000     1   0.0000   None  17.540   0.1213            4.430  0.2824     2\\\\ndistinct_2→token_entropy    0.996     1   0.999     2   0.0000   None   8.633   0.1213            0.797  0.4017     0\\\\ndistinct_3→token_entropy    0.996     2   0.996     2   0.0000   None   8.010   0.1213            1.022  0.3458     0\\\\nmauve→token_entropy        -0.955    -4  -0.597     1   0.0899   None   3.352   0.1300            0.013  0.9272     2\\\\ndistinct_1→ece              0.973     1   0.917     1   0.0007      1 398.765   0.0256        *   2.853  0.3403     2\\\\ndistinct_2→ece              0.990     1   0.973     1   0.0000      2  60.453   0.0427        *   2.372  0.3666     2\\\\ndistinct_3→ece              0.993     1   0.972     1   0.0000      2  58.902   0.0336        *   1.561  0.4297     2\\\\nmauve→ece                  -0.920    -4  -0.629     1   0.0792      2   3.886   0.1213            3.817  0.3012     2\\\\n\\\\n====================================================================================================\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy→distinct_1  2/5  [diff, perm]\\\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\\\n  token_entropy→mauve       1/5  [naive]\\\\n  ece→distinct_1            2/5  [diff, perm]\\\\n  ece→distinct_2            2/5  [diff, perm]\\\\n  ece→distinct_3            2/5  [diff, perm]\\\\n  ece→mauve                 1/5  [naive]\\\\n\\\\n  Robust pairs (>=3/5 methods): 2/8\\\\n  Perm Granger FDR sig (fwd): 6/8\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_leadlag.json\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=42\\nData: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.998    -1   1.000    -1   0.0000   None 18016.638   0.0020        *   4.875  0.2707     2\\ntoken_entropy→distinct_2    0.996    -1   0.999    -2   0.0000   None 3474.838   0.0032        * 320.706  0.0000     0\\ntoken_entropy→distinct_3    0.996    -2   0.996    -2   0.0000   None 1632.173   0.0032        * 366.483  0.0000     0\\ntoken_entropy→mauve        -0.955     4  -0.597    -1   0.0899   None   3.653   0.1300            0.571  0.5881     2\\nece→distinct_1              0.973    -1   0.917    -1   0.0007     -1 4052.025   0.0020        *   2.244  0.3747     2\\nece→distinct_2              0.990    -1   0.973    -1   0.0000     -2 805.609   0.0020        *  26.511  0.1221     2\\nece→distinct_3              0.993    -1   0.972    -1   0.0000     -2 383.049   0.0020        *   2.823  0.3418     2\\nece→mauve                  -0.920     4  -0.629    -1   0.0792     -2   3.454   0.1300            0.250  0.7048     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.998     1   1.000     1   0.0000   None  17.540   0.1213            4.430  0.2824     2\\ndistinct_2→token_entropy    0.996     1   0.999     2   0.0000   None   8.633   0.1213            0.797  0.4017     0\\ndistinct_3→token_entropy    0.996     2   0.996     2   0.0000   None   8.010   0.1213            1.022  0.3458     0\\nmauve→token_entropy        -0.955    -4  -0.597     1   0.0899   None   3.352   0.1300            0.013  0.9272     2\\ndistinct_1→ece              0.973     1   0.917     1   0.0007      1 398.765   0.0256        *   2.853  0.3403     2\\ndistinct_2→ece              0.990     1   0.973     1   0.0000      2  60.453   0.0427        *   2.372  0.3666     2\\ndistinct_3→ece              0.993     1   0.972     1   0.0000      2  58.902   0.0336        *   1.561  0.4297     2\\nmauve→ece                  -0.920    -4  -0.629     1   0.0792      2   3.886   0.1213            3.817  0.3012     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  2/5  [diff, perm]\\n  token_entropy→distinct_2  3/5  [diff, perm, ty]\\n  token_entropy→distinct_3  3/5  [diff, perm, ty]\\n  token_entropy→mauve       1/5  [naive]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            2/5  [diff, perm]\\n  ece→mauve                 1/5  [naive]\\n\\n  Robust pairs (>=3/5 methods): 2/8\\n  Perm Granger FDR sig (fwd): 6/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both s43 and s42 are done. Now let me also update the `gpt2m_8pair_table7.json` for s42, since that's a separate file used for table generation. Let me run the table7 analysis too.
+
+Actually, let me first check what's in that file to understand its format and see if it needs updating too.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c17dfa68-3d2d-466a-b897-f3a3d8d0388a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VNwHQu6pidohWoAtkPHnT3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1926,
+      "cache_read_input_tokens": 54667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 79_
+
+两个 seed 的分析都完成了。现在更新 s42 的 `gpt2m_8pair_table7.json`（之前用 `gpt2m_8pair_analysis.py` 生成的）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "6bdb6905-60c9-4255-b18a-60e572d8cfcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VNwHQu6pidohWoAtkPHnT3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1926,
+      "cache_read_input_tokens": 54667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HvcouLKDmnCYPrKE1MmVo3`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/rerun_s42_table7.py << 'PYEOF'\n\"\"\"8-pair Table 7 analysis for GPT-2-medium WikiText-103 - unified pairs (mauve instead of ppl).\"\"\"\nimport json, os, sys\nimport numpy as np\nfrom statsmodels.stats.multitest import multipletests\n\nBASE = \"/root/autodl-tmp/distrib_canary_collapse\"\nsys.path.insert(0, BASE)\n\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\nfrom permutation_granger import permutation_granger_test\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nSHORT = {\"token_entropy\": \"ent\", \"ece\": \"ece\", \"mauve\": \"mauve\",\n         \"distinct_1\": \"d1\", \"distinct_2\": \"d2\", \"distinct_3\": \"d3\"}\n\nEXP_DIR = os.path.join(BASE, \"results\", \"generalize\", \"gpt2m_wiki_a100_s42\")\nDATA_PATH = os.path.join(EXP_DIR, \"all_metrics.json\")\n\nN_PERM = 5000\nALPHA = 0.05\nXCORR_LAG = 5\nGRANGER_LAG = 1\n\nwith open(DATA_PATH) as f:\n    metrics_list = json.load(f)\nmetrics_list = sorted(metrics_list, key=lambda x: x[\"generation\"])\nn_gens = len(metrics_list)\n\nprint(f\"Loaded {n_gens} generations from {DATA_PATH}\")\n\n# ── Drift analysis ──\nall_metric_names = [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\",\n                    \"self_bleu\", \"effective_rank\", \"mauve\"]\ngen0 = metrics_list[0]\ngen10 = metrics_list[-1]\n\nprint(\"\\n## Drift Analysis (gen0 -> gen10)\")\nprint(f\"{'Metric':<20s} {'Gen0':>14s} {'Gen10':>14s} {'Change%':>10s}\")\nprint(\"-\" * 60)\ndrift_data = {}\nfor m in all_metric_names:\n    v0, v10 = gen0[m], gen10[m]\n    if abs(v0) > 1e-12:\n        pct = (v10 - v0) / abs(v0) * 100\n    else:\n        pct = 0.0\n    drift_data[m] = {\"gen0\": v0, \"gen10\": v10, \"drift_pct\": round(pct, 2)}\n    print(f\"{m:<20s} {v0:>14.6f} {v10:>14.6f} {pct:>+10.1f}%\")\n\n# ── Per-pair analysis ──\nprint(\"\\n## 8-Pair Analysis (n_perm=5000)\")\nprint(f\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\")\nprint(f\"|------|---------|--------|--------|------|----------|----------|--------|\")\n\nresults = {}\ndiff_pvals = []\npair_keys = []\n\nfor cn in CANARIES:\n    for dn in DOWNSTREAMS:\n        c = extract(metrics_list, cn)\n        d = extract(metrics_list, dn)\n        pk = f\"{SHORT[cn]}->{SHORT[dn]}\"\n        pair_keys.append(pk)\n\n        res_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_LAG)\n        res_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_LAG)\n        res_thresh = threshold_lead(c, d, cn, dn)\n        res_ty = toda_yamamoto(c, d, cn, dn)\n\n        co = orient(c, cn)\n        do_ = orient(d, dn)\n        res_pg_fwd = permutation_granger_test(co, do_, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\n        res_pg_rev = permutation_granger_test(do_, co, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\n\n        diff_pvals.append(res_diff.get(\"p_value\", 1.0))\n\n        results[pk] = {\n            \"naive\": res_naive,\n            \"diff\": res_diff,\n            \"thresh\": res_thresh,\n            \"ty\": res_ty,\n            \"pg_fwd\": res_pg_fwd,\n            \"pg_rev\": res_pg_rev,\n        }\n\n# Apply FDR to Diff p-values\ndiff_pvals_arr = np.array(diff_pvals)\nreject_fdr, pvals_fdr, _, _ = multipletests(diff_pvals_arr, alpha=ALPHA, method='fdr_bh')\n\nfor i, pk in enumerate(pair_keys):\n    results[pk][\"diff\"][\"p_fdr\"] = float(pvals_fdr[i])\n    results[pk][\"diff\"][\"sig_fdr\"] = bool(reject_fdr[i])\n\n# ── Print and count ──\ncounts = {\"Naive\": 0, \"Diff\": 0, \"Thresh\": 0, \"PG_fwd\": 0, \"PG_rev\": 0, \"TY\": 0, \"K>=4\": 0}\n\nfor pk in pair_keys:\n    r = results[pk]\n    naive_p = r[\"naive\"].get(\"p_value\", 1.0)\n    naive_sig = naive_p < ALPHA if naive_p is not None else False\n    diff_sig = r[\"diff\"][\"sig_fdr\"]\n    thresh_sig = r[\"thresh\"].get(\"significant\", False)\n    thresh_lt = r[\"thresh\"].get(\"lead_time\")\n    ty_p = r[\"ty\"].get(\"p_value\", 1.0)\n    ty_sig = ty_p < ALPHA if ty_p is not None else False\n    pg_fwd_p = r[\"pg_fwd\"].get(\"p_value\", 1.0)\n    pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\n    pg_rev_p = r[\"pg_rev\"].get(\"p_value\", 1.0)\n    pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\n    k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\n\n    if naive_sig: counts[\"Naive\"] += 1\n    if diff_sig: counts[\"Diff\"] += 1\n    if thresh_sig: counts[\"Thresh\"] += 1\n    if pg_fwd_sig: counts[\"PG_fwd\"] += 1\n    if pg_rev_sig: counts[\"PG_rev\"] += 1\n    if ty_sig: counts[\"TY\"] += 1\n    if k_fwd >= 4: counts[\"K>=4\"] += 1\n\n    ns = f\"{naive_p:.4f}\" if naive_p is not None else \"N/A\"\n    ds = f\"{r['diff']['p_fdr']:.4f}\"\n    ts = f\"L={thresh_lt}\" if thresh_sig else \"x\"\n    tys = f\"{ty_p:.4f}\" if ty_p is not None else \"N/A\"\n    pfs = f\"{pg_fwd_p:.4f}\" if pg_fwd_p is not None else \"N/A\"\n    prs = f\"{pg_rev_p:.4f}\" if pg_rev_p is not None else \"N/A\"\n    nm = \"Y\" if naive_sig else \"N\"\n    dm = \"Y\" if diff_sig else \"N\"\n    tm = \"Y\" if ty_sig else \"N\"\n    pfm = \"Y\" if pg_fwd_sig else \"N\"\n    prm = \"Y\" if pg_rev_sig else \"N\"\n\n    print(f\"| {pk:<10s} | {ns} {nm} | {ds} {dm} | {ts:<6s} | {tys} {tm} | {pfs} {pfm} | {prs} {prm} | {k_fwd}/5 |\")\n\nprint(f\"\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\")\nprint(f\"| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\")\nprint(f\"|-------|------|--------|--------|--------|-----|------|\")\nprint(f\"| {counts['Naive']}/8 | {counts['Diff']}/8 | {counts['Thresh']}/8 | {counts['PG_fwd']}/8 | {counts['PG_rev']}/8 | {counts['TY']}/8 | {counts['K>=4']}/8 |\")\n\n# ── Save JSON ──\nclass NE(json.JSONEncoder):\n    def default(self, o):\n        if isinstance(o, (np.integer,)): return int(o)\n        if isinstance(o, (np.floating,)): return float(o)\n        if isinstance(o, np.ndarray): return o.tolist()\n        if isinstance(o, np.bool_): return bool(o)\n        return super().default(o)\n\nout_dir = os.path.join(EXP_DIR, \"analysis\")\nos.makedirs(out_dir, exist_ok=True)\noutput = {\n    \"experiment\": \"gpt2m_wiki_a100_s42\",\n    \"model\": \"gpt2-medium\",\n    \"dataset\": \"wikitext103_5k\",\n    \"alpha_mix\": 1.0,\n    \"seed\": 42,\n    \"n_generations\": n_gens,\n    \"parameters\": {\"n_perm\": N_PERM, \"xcorr_lag\": XCORR_LAG, \"granger_lag\": GRANGER_LAG},\n    \"table7_row\": counts,\n    \"drift\": drift_data,\n    \"per_pair\": results,\n}\nout_path = os.path.join(out_dir, \"gpt2m_8pair_table7.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2, cls=NE)\nprint(f\"\\nSaved: {out_path}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/rerun_s42_table7.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "346ac8fd-1868-46e2-be01-24e34440ebe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VNwHQu6pidohWoAtkPHnT3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1926,
+      "cache_read_input_tokens": 54667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 81 · 2026-05-19T15:36:02.959Z_
+
+<details><summary>↩ Tool result · `toolu_01HvcouLKDmnCYPrKE1MmVo3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n\\n## Drift Analysis (gen0 -> gen10)\\nMetric                         Gen0          Gen10    Change%\\n------------------------------------------------------------\\ntoken_entropy              3.571424       0.479393      -86.6%\\nece                        0.011165       0.521620    +4571.9%\\nperplexity                32.631529   16520.549052   +50527.6%\\ndistinct_1                 0.104382       0.091789      -12.1%\\ndistinct_2                 0.548308       0.471683      -14.0%\\ndistinct_3                 0.844118       0.739426      -12.4%\\nself_bleu                  0.009416       0.011851      +25.9%\\neffective_rank             2.372237      25.001834     +953.9%\\nmauve                      0.031454       0.033925       +7.9%\\n\\n## 8-Pair Analysis (n_perm=5000)\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\n|------|---------|--------|--------|------|----------|----------|--------|\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\n| ent->mauve | 0.0008 Y | 0.0899 N | L=4    | 0.3674 N | 0.1300 N | 0.1300 N | 2/5 |\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\n| ece->mauve | 0.0033 Y | 0.0792 N | L=3    | 0.0744 N | 0.1166 N | 0.0880 N | 2/5 |\\n\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\n|-------|------|--------|--------|--------|-----|------|\\n| 8/8 | 6/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8d744bc5-7258-422b-bd8e-9c6372f41d12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\\\n\\\\n## Drift Analysis (gen0 -> gen10)\\\\nMetric                         Gen0          Gen10    Change%\\\\n------------------------------------------------------------\\\\ntoken_entropy              3.571424       0.479393      -86.6%\\\\nece                        0.011165       0.521620    +4571.9%\\\\nperplexity                32.631529   16520.549052   +50527.6%\\\\ndistinct_1                 0.104382       0.091789      -12.1%\\\\ndistinct_2                 0.548308       0.471683      -14.0%\\\\ndistinct_3                 0.844118       0.739426      -12.4%\\\\nself_bleu                  0.009416       0.011851      +25.9%\\\\neffective_rank             2.372237      25.001834     +953.9%\\\\nmauve                      0.031454       0.033925       +7.9%\\\\n\\\\n## 8-Pair Analysis (n_perm=5000)\\\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\\n|------|---------|--------|--------|------|----------|----------|--------|\\\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\\\n| ent->mauve | 0.0008 Y | 0.0899 N | L=4    | 0.3674 N | 0.1300 N | 0.1300 N | 2/5 |\\\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\\\n| ece->mauve | 0.0033 Y | 0.0792 N | L=3    | 0.0744 N | 0.1166 N | 0.0880 N | 2/5 |\\\\n\\\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\\\n|-------|------|--------|--------|--------|-----|------|\\\\n| 8/8 | 6/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n\\n## Drift Analysis (gen0 -> gen10)\\nMetric                         Gen0          Gen10    Change%\\n------------------------------------------------------------\\ntoken_entropy              3.571424       0.479393      -86.6%\\nece                        0.011165       0.521620    +4571.9%\\nperplexity                32.631529   16520.549052   +50527.6%\\ndistinct_1                 0.104382       0.091789      -12.1%\\ndistinct_2                 0.548308       0.471683      -14.0%\\ndistinct_3                 0.844118       0.739426      -12.4%\\nself_bleu                  0.009416       0.011851      +25.9%\\neffective_rank             2.372237      25.001834     +953.9%\\nmauve                      0.031454       0.033925       +7.9%\\n\\n## 8-Pair Analysis (n_perm=5000)\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\n|------|---------|--------|--------|------|----------|----------|--------|\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\n| ent->mauve | 0.0008 Y | 0.0899 N | L=4    | 0.3674 N | 0.1300 N | 0.1300 N | 2/5 |\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\n| ece->mauve | 0.0033 Y | 0.0792 N | L=3    | 0.0744 N | 0.1166 N | 0.0880 N | 2/5 |\\n\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\n|-------|------|--------|--------|--------|-----|------|\\n| 8/8 | 6/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the MMCT results for both seeds if they exist, and update the registry. Let me first check for MMCT results.
+
+Actually, looking at the task requirements again:
+- PermG fwd/rev (per pair + total) ✓ (done above)
+- K≥4 consensus ✓
+- MMCT detection rate - need to check if MMCT was run
+- 每个 pair 的具体 vote ✓
+
+Let me check for MMCT results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "bb2b4862-95f4-408a-94fe-1e3748ca126f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPwNnNfHFHeC3QgNvZpTeV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4119,
+      "cache_read_input_tokens": 56593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 83_
+
+两个 seed 的 5-method 分析都完成了。现在检查是否有 MMCT 结果需要更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5b878f1a-1c28-41be-b398-9752b904e3cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPwNnNfHFHeC3QgNvZpTeV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4119,
+      "cache_read_input_tokens": 56593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014XyKTMN4uF9UWV8n3eZWcy`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43 -name \"*mmct*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "9998dfae-4645-43ea-bab2-541737dbbe9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPwNnNfHFHeC3QgNvZpTeV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4119,
+      "cache_read_input_tokens": 56593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-19T15:36:12.097Z_
+
+<details><summary>↩ Tool result · `toolu_014XyKTMN4uF9UWV8n3eZWcy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5aa344fd-ffb3-4472-b5c5-5a900adb5edd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R6h5ArS5H3nr2WxfqDsRfU`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42 -name \"*mmct*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e4dbd3ea-2f27-4cd6-b6a3-8b9b677e92fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPwNnNfHFHeC3QgNvZpTeV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4119,
+      "cache_read_input_tokens": 56593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4119
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 87 · 2026-05-19T15:36:12.994Z_
+
+<details><summary>↩ Tool result · `toolu_01R6h5ArS5H3nr2WxfqDsRfU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "84c268ce-685b-4d4c-9952-661e2efcc716",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 88_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No MMCT results for either seed. Let me check if MMCT is available and run it for both. But first, let me look at how MMCT is typically run in this project.
+
+Actually, looking at the task more carefully, it mentions "MMCT detection rate" as something to report. Let me check if there are MMCT results elsewhere that could be referenced, or if I need to run MMCT.
+
+Let me look at the MMCT module and find out how it was run for other experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e71f3134-d287-42f2-a5ed-c967997cdb58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG4P17E3QBDeneuG4hD34J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 60712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 89_
+
+没有 MMCT 结果。让我检查 MMCT 分析脚本，看如何为这两个 seed 运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "94021d9c-7ff4-45cf-af70-56545efb4f1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG4P17E3QBDeneuG4hD34J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 60712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018yKJYNsfp5fKntU6b3nHN8`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "d1bdc4c6-1ed5-4ccf-be85-3f651fd21ed8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG4P17E3QBDeneuG4hD34J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 60712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-19T15:36:20.613Z_
+
+<details><summary>↩ Tool result · `toolu_018yKJYNsfp5fKntU6b3nHN8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available conditions.\\n\\nUses unified 5-method analysis data (from unified_analysis.py) with\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\nRuns MMCT in 6 modes and generates all output files.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nGENERALIZE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\"unified_data\\\")\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_bidirectional\\\"},\\n]\\n\\nTABLE7_CONDITIONS = [\\n    {\\\"label\\\": \\\"Baseline\\\", \\\"model\\\": \\\"Pythia-410M\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia410m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: GPT-2m\\\", \\\"model\\\": \\\"GPT-2m\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"gpt2m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: OPT\\\", \\\"model\\\": \\\"OPT-1.3B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"opt1b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s42\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s43\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s43\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s42\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s43\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s43\\\"},\\n]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c8113e67-e4cd-4eb8-bf9f-fed01cbb0f22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Run MMCT across all available conditions.\\\\n\\\\nUses unified 5-method analysis data (from unified_analysis.py) with\\\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\\\nRuns MMCT in 6 modes and generates all output files.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom datetime import datetime\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\\\\\"\\\\nGENERALIZE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\\\\\"\\\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\\\\\"unified_data\\\\\\\")\\\\n\\\\nNULL_DIRS = [\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s42\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s43\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s44\\\\\\\"),\\\\n]\\\\n\\\\nMODES = [\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"uniform_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"uniform_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_pair_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"global\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_global_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"global\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_global_bidirectional\\\\\\\"},\\\\n]\\\\n\\\\nTABLE7_CONDITIONS = [\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Baseline\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia410m_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Arch: GPT-2m\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"GPT-2m\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"gpt2m_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Arch: OPT\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"OPT-1.3B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"opt1b_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Scale: 1.4B s42\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia14b_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Scale: 1.4B s43\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia14b_wiki_a100_s43\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Domain: C4 s42\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"C4\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Domain: C4 s43\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"C4\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia1b_c4_a100_s43\\\\\\\"},\\\\n]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available conditions.\\n\\nUses unified 5-method analysis data (from unified_analysis.py) with\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\nRuns MMCT in 6 modes and generates all output files.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nGENERALIZE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\"unified_data\\\")\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_bidirectional\\\"},\\n]\\n\\nTABLE7_CONDITIONS = [\\n    {\\\"label\\\": \\\"Baseline\\\", \\\"model\\\": \\\"Pythia-410M\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia410m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: GPT-2m\\\", \\\"model\\\": \\\"GPT-2m\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"gpt2m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: OPT\\\", \\\"model\\\": \\\"OPT-1.3B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"opt1b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s42\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s43\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s43\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s42\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s43\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s43\\\"},\\n]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AUbCSa1NvqPLeusPfvYwgs`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c1ef71a9-93e6-4a69-90eb-02da9433c36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG4P17E3QBDeneuG4hD34J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 60712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-19T15:36:21.163Z_
+
+<details><summary>↩ Tool result · `toolu_01AUbCSa1NvqPLeusPfvYwgs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\"\\\"\\\"\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nNULL_DIRS = [\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n]\\n\\n# s43 bf16 forward significance (from 5method analysis)\\nS43_FWD = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": True, \\\"ty_granger\\\": False},\\n}\\n\\n# s43 bf16 reverse significance\\nS43_REV = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n}\\n\\nprint(\\\"Building null distribution...\\\")\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\nprint(f\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\")\\nprint(f\\\"  Global FPR: {null_dist.global_fpr}\\\")\\n\\nfor mode_name, weighted, bidirectional in [\\n    (\\\"weighted_forward\\\", True, False),\\n]:\\n    print(f\\\"\\\\n--- Mode: {mode_name} ---\\\")\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\n    n_sig = 0\\n    for canary, downstream in METRIC_PAIRS:\\n        fwd_sig = S43_FWD[(canary, downstream)]\\n        pair_key = (canary, downstream)\\n        if weighted:\\n            weights = null_dist.get_weights(pair_key)\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\"forward\\\")\\n        sig = p < 0.05\\n        n_sig += sig\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f45bd516-c874-4531-8798-7dd455c95cbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nNULL_DIRS = [\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\\\\\",\\\\n]\\\\n\\\\n# s43 bf16 forward significance (from 5method analysis)\\\\nS43_FWD = {\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_3\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"perplexity\\\\\\\"):  {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_1\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_2\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_3\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": True, \\\\\\\"ty_granger\\\\\\\": False},\\\\n}\\\\n\\\\n# s43 bf16 reverse significance\\\\nS43_REV = {\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_3\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"perplexity\\\\\\\"):  {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_1\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_2\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_3\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n}\\\\n\\\\nprint(\\\\\\\"Building null distribution...\\\\\\\")\\\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\\\nprint(f\\\\\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\\\\\")\\\\nprint(f\\\\\\\"  Global FPR: {null_dist.global_fpr}\\\\\\\")\\\\n\\\\nfor mode_name, weighted, bidirectional in [\\\\n    (\\\\\\\"weighted_forward\\\\\\\", True, False),\\\\n]:\\\\n    print(f\\\\\\\"\\\\\\\\n--- Mode: {mode_name} ---\\\\\\\")\\\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\\\n    n_sig = 0\\\\n    for canary, downstream in METRIC_PAIRS:\\\\n        fwd_sig = S43_FWD[(canary, downstream)]\\\\n        pair_key = (canary, downstream)\\\\n        if weighted:\\\\n            weights = null_dist.get_weights(pair_key)\\\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n        sig = p < 0.05\\\\n        n_sig += sig\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\"\\\"\\\"\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nNULL_DIRS = [\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n]\\n\\n# s43 bf16 forward significance (from 5method analysis)\\nS43_FWD = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": True, \\\"ty_granger\\\": False},\\n}\\n\\n# s43 bf16 reverse significance\\nS43_REV = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n}\\n\\nprint(\\\"Building null distribution...\\\")\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\nprint(f\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\")\\nprint(f\\\"  Global FPR: {null_dist.global_fpr}\\\")\\n\\nfor mode_name, weighted, bidirectional in [\\n    (\\\"weighted_forward\\\", True, False),\\n]:\\n    print(f\\\"\\\\n--- Mode: {mode_name} ---\\\")\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\n    n_sig = 0\\n    for canary, downstream in METRIC_PAIRS:\\n        fwd_sig = S43_FWD[(canary, downstream)]\\n        pair_key = (canary, downstream)\\n        if weighted:\\n            weights = null_dist.get_weights(pair_key)\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\"forward\\\")\\n        sig = p < 0.05\\n        n_sig += sig\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The MMCT analysis uses hardcoded forward/reverse significance dictionaries that are manually constructed from the 5-method analysis results. The `run_mmct_s43.py` has hardcoded perplexity pairs and bf16 results that look like they're from an older run.
+
+Let me look at the MMCT module more closely to understand how to run it with the new pair configuration. I need to:
+1. Read the new 5method results for both seeds
+2. Construct the correct fwd/rev significance dicts
+3. Run MMCT
+
+Let me also check what `METRIC_PAIRS` is defined as in the mmct module.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "4ec1e27b-3ab4-4087-9584-fbe093e777ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PzfoC3myGSqccNKwRrZxdN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4035,
+      "cache_read_input_tokens": 61467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SUb6iDxpbYnYWoKaLwfTs9`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"METRIC_PAIRS\" /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "fc9003d0-1dc1-44d8-bf9d-892c86c976bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PzfoC3myGSqccNKwRrZxdN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4035,
+      "cache_read_input_tokens": 61467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XCsGzy7yzsoR6e4fMXrRYt`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -40 /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "be2f4fb4-fbf1-4383-a0fb-78a1881fddd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PzfoC3myGSqccNKwRrZxdN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4035,
+      "cache_read_input_tokens": 61467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 97 · 2026-05-19T15:36:29.086Z_
+
+<details><summary>↩ Tool result · `toolu_01SUb6iDxpbYnYWoKaLwfTs9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:METRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n78:    for canary, downstream in METRIC_PAIRS:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "54613439-0ca5-41b6-8ddd-b4bc77f2c005",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19:METRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\\\n78:    for canary, downstream in METRIC_PAIRS:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"19:METRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n78:    for canary, downstream in METRIC_PAIRS:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 98 · 2026-05-19T15:36:29.633Z_
+
+<details><summary>↩ Tool result · `toolu_01XCsGzy7yzsoR6e4fMXrRYt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from JSON files. Supports:\\n  - Original 5method_leadlag.json (two formats A and B)\\n  - Unified unified_5method.json (from unified_analysis.py)\\n\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n_UNIFIED_DATA_DIR = None\\n\\n\\ndef set_unified_data_dir(path):\\n    global _UNIFIED_DATA_DIR\\n    _UNIFIED_DATA_DIR = path\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\n    \\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\n    \\\"\\\"\\\"\\n    if _UNIFIED_DATA_DIR:\\n        name = Path(data_dir).name\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\"{name}.json\\\"\\n        if unified_path.exists():\\n            with open(unified_path) as f:\\n                return json.load(f)\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "eb862b8d-6aa3-4c74-a766-99b68f8a05f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified wrapper for 5 lead-lag detection methods.\\\\n\\\\nReads pre-computed results from JSON files. Supports:\\\\n  - Original 5method_leadlag.json (two formats A and B)\\\\n  - Unified unified_5method.json (from unified_analysis.py)\\\\n\\\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nMETHOD_NAMES = [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n                \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]\\\\n\\\\nCANARY_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM_METRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\\\n\\\\n_UNIFIED_DATA_DIR = None\\\\n\\\\n\\\\ndef set_unified_data_dir(path):\\\\n    global _UNIFIED_DATA_DIR\\\\n    _UNIFIED_DATA_DIR = path\\\\n\\\\n\\\\ndef load_5method_results(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 5-method lead-lag results for one condition.\\\\n    \\\\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if _UNIFIED_DATA_DIR:\\\\n        name = Path(data_dir).name\\\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\\\\\"{name}.json\\\\\\\"\\\\n        if unified_path.exists():\\\\n            with open(unified_path) as f:\\\\n                return json.load(f)\\\\n    path = Path(data_dir) / \\\\\\\"analysis\\\\\\\" / \\\\\\\"5method_leadlag.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from JSON files. Supports:\\n  - Original 5method_leadlag.json (two formats A and B)\\n  - Unified unified_5method.json (from unified_analysis.py)\\n\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n_UNIFIED_DATA_DIR = None\\n\\n\\ndef set_unified_data_dir(path):\\n    global _UNIFIED_DATA_DIR\\n    _UNIFIED_DATA_DIR = path\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\n    \\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\n    \\\"\\\"\\\"\\n    if _UNIFIED_DATA_DIR:\\n        name = Path(data_dir).name\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\"{name}.json\\\"\\n        if unified_path.exists():\\n            with open(unified_path) as f:\\n                return json.load(f)\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The MMCT module has `DOWNSTREAM_METRICS = ["distinct_1", "distinct_2", "distinct_3", "perplexity"]` hardcoded. I need to monkey-patch this too when running MMCT.
+
+Actually, the MMCT uses pre-computed 5-method results, and the `run_mmct_s43.py` script hardcodes the significance values. Since the 5-method analysis has been rerun, I need to write a new MMCT runner that:
+1. Uses the updated 5method_leadlag.json (which now has mauve instead of perplexity)
+
+
+2. Overrides `DOWNSTREAM_METRICS` and `METRIC_PAIRS` in the mmct.methods module
+
+I'm realizing the MMCT is more involved than I initially thought—it needs null distributions from alpha=0 baselines, and those would also need to match the updated pair configuration. Computing null scores for the mauve pairs from the alpha=0 data would require reworking the entire null distribution pipeline, which is getting quite involved. For now, I should focus on the 5-method analysis with the unified pairs since that's already complete.
+
+Let me check whether the alpha=0 data even includes mauve metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "28d8d655-0f8e-420a-85b5-c14e07ab6e06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkcRuh61qPvwsdowGQVWhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 100_
+
+MMCT 也需要更新 pair 配置。先检查 alpha=0 基线数据是否有 mauve。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "d7c3fa43-f051-42ce-bceb-06f7c24e9636",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkcRuh61qPvwsdowGQVWhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FzW6QSL5LDf82cWsq8Jw5g`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -c \"mauve\" /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "578e36a9-dd60-4021-835c-1f50a80e31fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkcRuh61qPvwsdowGQVWhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 102 · 2026-05-19T15:36:40.734Z_
+
+<details><summary>↩ Tool result · `toolu_01FzW6QSL5LDf82cWsq8Jw5g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5cc70ca9-ce9f-4cc6-9271-69d57224e7c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0179ttn4Fe3n5119s8jh44MD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -c \"mauve\" /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "73cbd566-eb2a-481c-8663-81bd39472845",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkcRuh61qPvwsdowGQVWhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 104 · 2026-05-19T15:36:41.756Z_
+
+<details><summary>↩ Tool result · `toolu_0179ttn4Fe3n5119s8jh44MD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "39b23a21-792c-439a-a918-c498465e6fb1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RNzzf6RHeAqLr4vJH94TtL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -c \"mauve\" /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "648cf631-8ab3-44d6-b83a-897502e8dbca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkcRuh61qPvwsdowGQVWhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 106 · 2026-05-19T15:36:42.441Z_
+
+<details><summary>↩ Tool result · `toolu_01RNzzf6RHeAqLr4vJH94TtL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "edaaa596-250e-4b38-9f73-4bd12a34a0e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 107_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All three null baselines have mauve data (11 values each = 11 generations). Now I need to understand the MMCT pipeline better to rerun it.
+
+Let me read the full mmct methods, null distribution, and consensus test modules to understand how the whole thing works.
+
+Actually, let me look at the MMCT more carefully. The null distribution is built from alpha=0 runs (where there's no contamination). The MMCT tests whether the observed consensus score is higher than expected under the null. 
+
+But the null distribution also needs to be built using the same pair configuration. The current null distribution computation likely uses the old pairs. 
+
+
+I need to rerun the 5-method analysis on the alpha=0 data with mauve pairs instead of the old ones, then build the null distribution from those results, and finally run MMCT against it. Let me check the null_distribution.py code to see exactly what inputs it requires.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "ecae0515-d55e-4361-8898-1908f579968d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRcddADRAR8Gw9grLiEBgC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 66708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QpXn2q3yUpbsT2FJVoaUhA`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7aaceda3-70f2-4b00-a02b-bf66bb986d95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRcddADRAR8Gw9grLiEBgC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 66708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 109 · 2026-05-19T15:36:52.846Z_
+
+<details><summary>↩ Tool result · `toolu_01QpXn2q3yUpbsT2FJVoaUhA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Null distribution construction from alpha=0.00 data.\\n\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\nand global weighted consensus modes.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom pathlib import Path\\n\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\n                      extract_method_significance)\\n\\n\\nclass NullDistribution:\\n    \\\"\\\"\\\"Empirical null distribution for MMCT consensus scores.\\\"\\\"\\\"\\n\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\n        self.null_dirs = null_dirs\\n        self.n_bootstrap = n_bootstrap\\n        self.seed = seed\\n\\n        self._per_pair_sigs = {}\\n        self._load_null_data()\\n        self._compute_fpr_profile()\\n        self._build_distributions()\\n        self._precompute_bootstrap()\\n\\n    def _load_null_data(self):\\n        for d in self.null_dirs:\\n            results = load_5method_results(d)\\n            for canary, downstream in METRIC_PAIRS:\\n                key = (canary, downstream)\\n                if key not in self._per_pair_sigs:\\n                    self._per_pair_sigs[key] = {\\\"forward\\\": [], \\\"reverse\\\": []}\\n\\n                fwd = extract_method_significance(\\n                    results, canary, downstream, \\\"forward\\\")\\n                rev = extract_method_significance(\\n                    results, canary, downstream, \\\"reverse\\\")\\n                self._per_pair_sigs[key][\\\"forward\\\"].append(fwd)\\n                self._per_pair_sigs[key][\\\"reverse\\\"].append(rev)\\n\\n    def _compute_fpr_profile(self):\\n        self.fpr_profile = {}\\n        self.global_fpr = {}\\n\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\n        total_obs = 0\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            sigs_list = self._per_pair_sigs[key][\\\"forward\\\"]\\n            n_seeds = len(sigs_list)\\n            pair_fpr = {}\\n            for method in METHOD_NAMES:\\n                n_sig = sum(1 for s in sigs_list if s[method])\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\n                method_sig_counts[method] += n_sig\\n            self.fpr_profile[key] = pair_fpr\\n            total_obs += n_seeds\\n\\n        for method in METHOD_NAMES:\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\n                                       if total_obs > 0 else 0.0)\\n\\n    def get_weights(self, pair_key, epsilon=0.01):\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def get_global_weights(self, epsilon=0.01):\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def consensus_score_uniform(self, sig_dict):\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\n\\n    def consensus_score_weighted(self, sig_dict, weights):\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\n        if total_w == 0:\\n            return 0.0\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\n                    for m in METHOD_NAMES) / total_w)\\n\\n    def _build_distributions(self):\\n        uniform_fwd, uniform_rev = [], []\\n        wpair_fwd, wpair_rev = [], []\\n        wglobal_fwd, wglobal_rev = [], []\\n\\n        global_weights = self.get_global_weights()\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            pair_weights = self.get_weights(key)\\n\\n            for sig in self._per_pair_sigs[key][\\\"forward\\\"]:\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\n                wpair_fwd.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_fwd.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n            for sig in self._per_pair_sigs[key][\\\"reverse\\\"]:\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\n                wpair_rev.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_rev.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\n\\n    def _precompute_bootstrap(self):\\n        rng = np.random.default_rng(self.seed)\\n        n = len(self.null_uniform_fwd)\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\n\\n    def p_value(self, observed_score, weighted=False, direction=\\\"forward\\\",\\n                weighted_mode=\\\"pair\\\"):\\n        if weighted:\\n            if weighted_mode == \\\"global\\\":\\n                null = (self.null_weighted_global_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_global_rev)\\n            else:\\n                null = (self.null_weighted_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_rev)\\n        else:\\n            null = (self.null_uniform_fwd if direction == \\\"forward\\\"\\n                    else self.null_uniform_rev)\\n\\n        n = len(null)\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\n\\n        boot_samples = null[self._boot_indices]\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\n\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\n        return p, ci_lo, ci_hi\\n\\n    def to_dict(self):\\n        return {\\n            \\\"null_dirs\\\": self.null_dirs,\\n            \\\"n_null_observations\\\": int(len(self.null_uniform_fwd)),\\n            \\\"n_seeds_per_pair\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": len(self._per_pair_sigs[k][\\\"forward\\\"])\\n                for k in self._per_pair_sigs},\\n            \\\"global_fpr\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\n            \\\"global_weights\\\": {m: round(v, 4)\\n                               for m, v in self.get_global_weights().items()},\\n            \\\"per_pair_fpr\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": {m: round(v, 4) for m, v in fpr.items()}\\n                for k, fpr in self.fpr_profile.items()},\\n            \\\"null_scores_uniform_fwd\\\": self.null_uniform_fwd.tolist(),\\n            \\\"null_scores_uniform_rev\\\": self.null_uniform_rev.tolist(),\\n            \\\"null_scores_uniform_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_uniform_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_uniform_fwd.std()), 4),\\n                \\\"min\\\": int(self.null_uniform_fwd.min()),\\n                \\\"max\\\": int(self.null_uniform_fwd.max()),\\n            },\\n            \\\"null_scores_weighted_pair_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\n            \\\"null_scores_weighted_pair_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_fwd.max()), 4),\\n            },\\n            \\\"null_scores_weighted_global_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\n            \\\"null_scores_weighted_global_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\n            },\\n            \\\"n_bootstrap\\\": self.n_bootstrap,\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "a33ca27f-b5cd-4fba-902b-fb45704be224",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Null distribution construction from alpha=0.00 data.\\\\n\\\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\\\nand global weighted consensus modes.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\\\n                      extract_method_significance)\\\\n\\\\n\\\\nclass NullDistribution:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Empirical null distribution for MMCT consensus scores.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\\\n        self.null_dirs = null_dirs\\\\n        self.n_bootstrap = n_bootstrap\\\\n        self.seed = seed\\\\n\\\\n        self._per_pair_sigs = {}\\\\n        self._load_null_data()\\\\n        self._compute_fpr_profile()\\\\n        self._build_distributions()\\\\n        self._precompute_bootstrap()\\\\n\\\\n    def _load_null_data(self):\\\\n        for d in self.null_dirs:\\\\n            results = load_5method_results(d)\\\\n            for canary, downstream in METRIC_PAIRS:\\\\n                key = (canary, downstream)\\\\n                if key not in self._per_pair_sigs:\\\\n                    self._per_pair_sigs[key] = {\\\\\\\"forward\\\\\\\": [], \\\\\\\"reverse\\\\\\\": []}\\\\n\\\\n                fwd = extract_method_significance(\\\\n                    results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n                rev = extract_method_significance(\\\\n                    results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n                self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"].append(fwd)\\\\n                self._per_pair_sigs[key][\\\\\\\"reverse\\\\\\\"].append(rev)\\\\n\\\\n    def _compute_fpr_profile(self):\\\\n        self.fpr_profile = {}\\\\n        self.global_fpr = {}\\\\n\\\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\\\n        total_obs = 0\\\\n\\\\n        for key in METRIC_PAIRS:\\\\n            key = tuple(key)\\\\n            sigs_list = self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"]\\\\n            n_seeds = len(sigs_list)\\\\n            pair_fpr = {}\\\\n            for method in METHOD_NAMES:\\\\n                n_sig = sum(1 for s in sigs_list if s[method])\\\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\\\n                method_sig_counts[method] += n_sig\\\\n            self.fpr_profile[key] = pair_fpr\\\\n            total_obs += n_seeds\\\\n\\\\n        for method in METHOD_NAMES:\\\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\\\n                                       if total_obs > 0 else 0.0)\\\\n\\\\n    def get_weights(self, pair_key, epsilon=0.01):\\\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\\\n                for m in METHOD_NAMES}\\\\n\\\\n    def get_global_weights(self, epsilon=0.01):\\\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\\\n                for m in METHOD_NAMES}\\\\n\\\\n    def consensus_score_uniform(self, sig_dict):\\\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\\\n\\\\n    def consensus_score_weighted(self, sig_dict, weights):\\\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\\\n        if total_w == 0:\\\\n            return 0.0\\\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\\\n                    for m in METHOD_NAMES) / total_w)\\\\n\\\\n    def _build_distributions(self):\\\\n        uniform_fwd, uniform_rev = [], []\\\\n        wpair_fwd, wpair_rev = [], []\\\\n        wglobal_fwd, wglobal_rev = [], []\\\\n\\\\n        global_weights = self.get_global_weights()\\\\n\\\\n        for key in METRIC_PAIRS:\\\\n            key = tuple(key)\\\\n            pair_weights = self.get_weights(key)\\\\n\\\\n            for sig in self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"]:\\\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\\\n                wpair_fwd.append(\\\\n                    self.consensus_score_weighted(sig, pair_weights))\\\\n                wglobal_fwd.append(\\\\n                    self.consensus_score_weighted(sig, global_weights))\\\\n\\\\n            for sig in self._per_pair_sigs[key][\\\\\\\"reverse\\\\\\\"]:\\\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\\\n                wpair_rev.append(\\\\n                    self.consensus_score_weighted(sig, pair_weights))\\\\n                wglobal_rev.append(\\\\n                    self.consensus_score_weighted(sig, global_weights))\\\\n\\\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\\\n\\\\n    def _precompute_bootstrap(self):\\\\n        rng = np.random.default_rng(self.seed)\\\\n        n = len(self.null_uniform_fwd)\\\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\\\n\\\\n    def p_value(self, observed_score, weighted=False, direction=\\\\\\\"forward\\\\\\\",\\\\n                weighted_mode=\\\\\\\"pair\\\\\\\"):\\\\n        if weighted:\\\\n            if weighted_mode == \\\\\\\"global\\\\\\\":\\\\n                null = (self.null_weighted_global_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                        else self.null_weighted_global_rev)\\\\n            else:\\\\n                null = (self.null_weighted_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                        else self.null_weighted_rev)\\\\n        else:\\\\n            null = (self.null_uniform_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                    else self.null_uniform_rev)\\\\n\\\\n        n = len(null)\\\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\\\n\\\\n        boot_samples = null[self._boot_indices]\\\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\\\n\\\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\\\n        return p, ci_lo, ci_hi\\\\n\\\\n    def to_dict(self):\\\\n        return {\\\\n            \\\\\\\"null_dirs\\\\\\\": self.null_dirs,\\\\n            \\\\\\\"n_null_observations\\\\\\\": int(len(self.null_uniform_fwd)),\\\\n            \\\\\\\"n_seeds_per_pair\\\\\\\": {\\\\n                f\\\\\\\"{k[0]}__{k[1]}\\\\\\\": len(self._per_pair_sigs[k][\\\\\\\"forward\\\\\\\"])\\\\n                for k in self._per_pair_sigs},\\\\n            \\\\\\\"global_fpr\\\\\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\\\n            \\\\\\\"global_weights\\\\\\\": {m: round(v, 4)\\\\n                               for m, v in self.get_global_weights().items()},\\\\n            \\\\\\\"per_pair_fpr\\\\\\\": {\\\\n                f\\\\\\\"{k[0]}__{k[1]}\\\\\\\": {m: round(v, 4) for m, v in fpr.items()}\\\\n                for k, fpr in self.fpr_profile.items()},\\\\n            \\\\\\\"null_scores_uniform_fwd\\\\\\\": self.null_uniform_fwd.tolist(),\\\\n            \\\\\\\"null_scores_uniform_rev\\\\\\\": self.null_uniform_rev.tolist(),\\\\n            \\\\\\\"null_scores_uniform_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_uniform_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_uniform_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": int(self.null_uniform_fwd.min()),\\\\n                \\\\\\\"max\\\\\\\": int(self.null_uniform_fwd.max()),\\\\n            },\\\\n            \\\\\\\"null_scores_weighted_pair_fwd\\\\\\\": [\\\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\\\n            \\\\\\\"null_scores_weighted_pair_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_weighted_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_weighted_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": round(float(self.null_weighted_fwd.min()), 4),\\\\n                \\\\\\\"max\\\\\\\": round(float(self.null_weighted_fwd.max()), 4),\\\\n            },\\\\n            \\\\\\\"null_scores_weighted_global_fwd\\\\\\\": [\\\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\\\n            \\\\\\\"null_scores_weighted_global_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\\\n                \\\\\\\"max\\\\\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\\\n            },\\\\n            \\\\\\\"n_bootstrap\\\\\\\": self.n_bootstrap,\\\\n        }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Null distribution construction from alpha=0.00 data.\\n\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\nand global weighted consensus modes.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom pathlib import Path\\n\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\n                      extract_method_significance)\\n\\n\\nclass NullDistribution:\\n    \\\"\\\"\\\"Empirical null distribution for MMCT consensus scores.\\\"\\\"\\\"\\n\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\n        self.null_dirs = null_dirs\\n        self.n_bootstrap = n_bootstrap\\n        self.seed = seed\\n\\n        self._per_pair_sigs = {}\\n        self._load_null_data()\\n        self._compute_fpr_profile()\\n        self._build_distributions()\\n        self._precompute_bootstrap()\\n\\n    def _load_null_data(self):\\n        for d in self.null_dirs:\\n            results = load_5method_results(d)\\n            for canary, downstream in METRIC_PAIRS:\\n                key = (canary, downstream)\\n                if key not in self._per_pair_sigs:\\n                    self._per_pair_sigs[key] = {\\\"forward\\\": [], \\\"reverse\\\": []}\\n\\n                fwd = extract_method_significance(\\n                    results, canary, downstream, \\\"forward\\\")\\n                rev = extract_method_significance(\\n                    results, canary, downstream, \\\"reverse\\\")\\n                self._per_pair_sigs[key][\\\"forward\\\"].append(fwd)\\n                self._per_pair_sigs[key][\\\"reverse\\\"].append(rev)\\n\\n    def _compute_fpr_profile(self):\\n        self.fpr_profile = {}\\n        self.global_fpr = {}\\n\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\n        total_obs = 0\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            sigs_list = self._per_pair_sigs[key][\\\"forward\\\"]\\n            n_seeds = len(sigs_list)\\n            pair_fpr = {}\\n            for method in METHOD_NAMES:\\n                n_sig = sum(1 for s in sigs_list if s[method])\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\n                method_sig_counts[method] += n_sig\\n            self.fpr_profile[key] = pair_fpr\\n            total_obs += n_seeds\\n\\n        for method in METHOD_NAMES:\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\n                                       if total_obs > 0 else 0.0)\\n\\n    def get_weights(self, pair_key, epsilon=0.01):\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def get_global_weights(self, epsilon=0.01):\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def consensus_score_uniform(self, sig_dict):\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\n\\n    def consensus_score_weighted(self, sig_dict, weights):\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\n        if total_w == 0:\\n            return 0.0\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\n                    for m in METHOD_NAMES) / total_w)\\n\\n    def _build_distributions(self):\\n        uniform_fwd, uniform_rev = [], []\\n        wpair_fwd, wpair_rev = [], []\\n        wglobal_fwd, wglobal_rev = [], []\\n\\n        global_weights = self.get_global_weights()\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            pair_weights = self.get_weights(key)\\n\\n            for sig in self._per_pair_sigs[key][\\\"forward\\\"]:\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\n                wpair_fwd.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_fwd.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n            for sig in self._per_pair_sigs[key][\\\"reverse\\\"]:\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\n                wpair_rev.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_rev.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\n\\n    def _precompute_bootstrap(self):\\n        rng = np.random.default_rng(self.seed)\\n        n = len(self.null_uniform_fwd)\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\n\\n    def p_value(self, observed_score, weighted=False, direction=\\\"forward\\\",\\n                weighted_mode=\\\"pair\\\"):\\n        if weighted:\\n            if weighted_mode == \\\"global\\\":\\n                null = (self.null_weighted_global_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_global_rev)\\n            else:\\n                null = (self.null_weighted_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_rev)\\n        else:\\n            null = (self.null_uniform_fwd if direction == \\\"forward\\\"\\n                    else self.null_uniform_rev)\\n\\n        n = len(null)\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\n\\n        boot_samples = null[self._boot_indices]\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\n\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\n        return p, ci_lo, ci_hi\\n\\n    def to_dict(self):\\n        return {\\n            \\\"null_dirs\\\": self.null_dirs,\\n            \\\"n_null_observations\\\": int(len(self.null_uniform_fwd)),\\n            \\\"n_seeds_per_pair\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": len(self._per_pair_sigs[k][\\\"forward\\\"])\\n                for k in self._per_pair_sigs},\\n            \\\"global_fpr\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\n            \\\"global_weights\\\": {m: round(v, 4)\\n                               for m, v in self.get_global_weights().items()},\\n            \\\"per_pair_fpr\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": {m: round(v, 4) for m, v in fpr.items()}\\n                for k, fpr in self.fpr_profile.items()},\\n            \\\"null_scores_uniform_fwd\\\": self.null_uniform_fwd.tolist(),\\n            \\\"null_scores_uniform_rev\\\": self.null_uniform_rev.tolist(),\\n            \\\"null_scores_uniform_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_uniform_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_uniform_fwd.std()), 4),\\n                \\\"min\\\": int(self.null_uniform_fwd.min()),\\n                \\\"max\\\": int(self.null_uniform_fwd.max()),\\n            },\\n            \\\"null_scores_weighted_pair_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\n            \\\"null_scores_weighted_pair_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_fwd.max()), 4),\\n            },\\n            \\\"null_scores_weighted_global_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\n            \\\"null_scores_weighted_global_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\n            },\\n            \\\"n_bootstrap\\\": self.n_bootstrap,\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full MMCT pipeline:
+
+1. `NullDistribution` loads the alpha=0 5method results using `load_5method_results()`
+2. It iterates over `METRIC_PAIRS` (which has perplexity)
+3. It needs the alpha=0 5method results to also have the same pair configuration
+
+So the flow is:
+1. First, rerun the alpha=0 5method analyses with mauve instead of perplexity
+2. Then build the null distribution from those
+3. Then run MMCT for s43 and s42
+
+
+4. Let me check whether the alpha=0 analyses are already available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "a13bbb2c-3e81-4edb-9999-42ab76c75626",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yhqBAVvDbjyDjXVx5JJcp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3499,
+      "cache_read_input_tokens": 67773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3499
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 111_
+
+需要先为 alpha=0 基线重跑 5-method 分析（用 mauve 替换 perplexity），才能构建 MMCT null distribution。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e73af368-e90d-4dbb-a9ed-aa439387e405",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yhqBAVvDbjyDjXVx5JJcp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3499,
+      "cache_read_input_tokens": 67773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3499
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01G6rZfwJ3SvkZxAoUwbMxVy`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/rerun_null_unified.py << 'PYEOF'\nimport sys, os\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\nos.chdir(\"/root/autodl-tmp/distrib_canary_collapse\")\n\nimport run_5method_analysis as r5\nimport argparse\n\n# Override: replace perplexity with mauve\nr5.DOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nr5.LOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\nr5.HIGHER_IS_WORSE = {\"ece\"}\n\nfor seed in [42, 43, 44]:\n    print(f\"\\n{'='*60}\")\n    print(f\"Rerunning alpha=0 seed={seed}\")\n    print(f\"{'='*60}\")\n    args = argparse.Namespace(\n        data_dir=f\"results/alpha_sweep/a000_s{seed}\",\n        alpha=0.0,\n        seed=seed,\n        dry_run=False\n    )\n    r5.run(args)\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/rerun_null_unified.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b5d8046b-480e-4362-8895-199851ba7609",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yhqBAVvDbjyDjXVx5JJcp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3499,
+      "cache_read_input_tokens": 67773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3499
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 113 · 2026-05-19T15:37:13.378Z_
+
+<details><summary>↩ Tool result · `toolu_01G6rZfwJ3SvkZxAoUwbMxVy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nRerunning alpha=0 seed=42\\n============================================================\\n====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=42\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.902    -5   0.941    -1   0.0013   None  48.353   0.2144            0.048  0.8624     2\\ntoken_entropy→distinct_2   -0.826     2   0.918    -4   0.0318   None  16.790   0.2144            0.063  0.8431     2\\ntoken_entropy→distinct_3   -0.816     2   0.909    -4   0.0318   None   5.023   0.2144            0.142  0.7708     2\\ntoken_entropy→mauve        -0.757     2  -0.569     5   0.3164   None   0.823   0.7257            0.504  0.6070     2\\nece→distinct_1              0.817    -4  -0.704     2   0.0823      3   0.002   0.9498           20.863  0.1372     2\\nece→distinct_2              0.778     4  -0.514     2   0.2316      2   0.391   0.7257            2.431  0.3631     2\\nece→distinct_3              0.826     4   0.548    -3   0.2316      2   0.968   0.7257          11048.106  0.0061     2\\nece→mauve                   0.819     4   0.841    -3   0.0353      0   0.015   0.9498            1.275  0.4614     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.902     5   0.941     1   0.0013   None   0.211   0.9854            3.337  0.3188     2\\ndistinct_2→token_entropy   -0.826    -2   0.918     4   0.0318   None   0.002   0.9854            0.219  0.7216     2\\ndistinct_3→token_entropy   -0.816    -2   0.909     4   0.0318   None   0.000   0.9854            1.157  0.4767     2\\nmauve→token_entropy        -0.757    -2  -0.569    -5   0.3164   None   0.377   0.9854            0.015  0.9228     2\\ndistinct_1→ece              0.817     4  -0.704    -2   0.0823     -3   0.835   0.9438            0.609  0.5782     2\\ndistinct_2→ece              0.778    -4  -0.514    -2   0.2316     -2   0.837   0.9438            1.358  0.4515     2\\ndistinct_3→ece              0.826    -4   0.548     3   0.2316     -2   1.669   0.9438            0.096  0.8091     2\\nmauve→ece                   0.819    -4   0.841     3   0.0353      0   0.098   0.9854            0.034  0.8834     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  1/5  [diff]\\n  token_entropy→distinct_2  2/5  [naive, diff]\\n  token_entropy→distinct_3  2/5  [naive, diff]\\n  token_entropy→mauve       1/5  [naive]\\n  ece→distinct_1            1/5  [threshold]\\n  ece→distinct_2            2/5  [naive, threshold]\\n  ece→distinct_3            3/5  [naive, threshold, ty]\\n  ece→mauve                 2/5  [naive, diff]\\n\\n  Robust pairs (>=3/5 methods): 1/8\\n  Perm Granger FDR sig (fwd): 0/8\\n\\nSaved\\n\\n... [截断: 输出过长，省略 4569 字符] ...\\n\\n===============================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=44\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.914    -5   0.972    -5   0.0230   None   7.236   0.1845            2.561  0.1848     1\\ntoken_entropy→distinct_2    0.852    -1   0.933    -1   0.0020   None  63.024   0.1264            0.695  0.4514     1\\ntoken_entropy→distinct_3    0.824    -1   0.678    -1   0.0717   None   6.593   0.1264            0.051  0.8583     2\\ntoken_entropy→mauve        -0.968    -5  -0.943    -5   0.0429   None   0.018   0.8866            0.054  0.8543     2\\nece→distinct_1              0.819     5   0.890     5   0.0717      6   0.824   0.4991            0.044  0.8443     1\\nece→distinct_2              0.737     1   0.861     5   0.0812   None   0.025   0.8866            0.380  0.5709     1\\nece→distinct_3              0.690     2   0.561     5   0.3247     -1   1.546   0.4156            0.933  0.5110     2\\nece→mauve                   0.613     4   0.594     4   0.2442      1   1.748   0.4156            7.059  0.2292     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.914     5   0.972     5   0.0230   None   7.140   0.2999            0.106  0.7606     1\\ndistinct_2→token_entropy    0.852     1   0.933     1   0.0020   None   4.103   0.2999            2.963  0.1603     1\\ndistinct_3→token_entropy    0.824     1   0.678     1   0.0717   None   1.467   0.3479            0.121  0.7872     2\\nmauve→token_entropy        -0.968     5  -0.943     5   0.0429   None   2.729   0.2999            0.167  0.7529     2\\ndistinct_1→ece              0.819    -5   0.890    -5   0.0717     -6   2.551   0.2999            3.470  0.1360     1\\ndistinct_2→ece              0.737    -1   0.861    -5   0.0812   None   0.601   0.5071            0.432  0.5467     1\\ndistinct_3→ece              0.690    -2   0.561    -5   0.3247      1   0.076   0.7784            1.889  0.4005     2\\nmauve→ece                   0.613    -4   0.594    -4   0.2442     -1   1.620   0.3479            0.375  0.6501     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  1/5  [diff]\\n  token_entropy→distinct_2  1/5  [diff]\\n  token_entropy→distinct_3  0/5  [none]\\n  token_entropy→mauve       1/5  [diff]\\n  ece→distinct_1            2/5  [naive, threshold]\\n  ece→distinct_2            1/5  [naive]\\n  ece→distinct_3            1/5  [naive]\\n  ece→mauve                 1/5  [threshold]\\n\\n  Robust pairs (>=3/5 methods): 0/8\\n  Perm Granger FDR sig (fwd): 0/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "d4b12505-cc7b-46af-abab-c98e8efc14c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nRerunning alpha=0 seed=42\\\\n============================================================\\\\n====================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=42\\\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\\n====================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary → downstream)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy→distinct_1    0.902    -5   0.941    -1   0.0013   None  48.353   0.2144            0.048  0.8624     2\\\\ntoken_entropy→distinct_2   -0.826     2   0.918    -4   0.0318   None  16.790   0.2144            0.063  0.8431     2\\\\ntoken_entropy→distinct_3   -0.816     2   0.909    -4   0.0318   None   5.023   0.2144            0.142  0.7708     2\\\\ntoken_entropy→mauve        -0.757     2  -0.569     5   0.3164   None   0.823   0.7257            0.504  0.6070     2\\\\nece→distinct_1              0.817    -4  -0.704     2   0.0823      3   0.002   0.9498           20.863  0.1372     2\\\\nece→distinct_2              0.778     4  -0.514     2   0.2316      2   0.391   0.7257            2.431  0.3631     2\\\\nece→distinct_3              0.826     4   0.548    -3   0.2316      2   0.968   0.7257          11048.106  0.0061     2\\\\nece→mauve                   0.819     4   0.841    -3   0.0353      0   0.015   0.9498            1.275  0.4614     2\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream → canary)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1→token_entropy    0.902     5   0.941     1   0.0013   None   0.211   0.9854            3.337  0.3188     2\\\\ndistinct_2→token_entropy   -0.826    -2   0.918     4   0.0318   None   0.002   0.9854            0.219  0.7216     2\\\\ndistinct_3→token_entropy   -0.816    -2   0.909     4   0.0318   None   0.000   0.9854            1.157  0.4767     2\\\\nmauve→token_entropy        -0.757    -2  -0.569    -5   0.3164   None   0.377   0.9854            0.015  0.9228     2\\\\ndistinct_1→ece              0.817     4  -0.704    -2   0.0823     -3   0.835   0.9438            0.609  0.5782     2\\\\ndistinct_2→ece              0.778    -4  -0.514    -2   0.2316     -2   0.837   0.9438            1.358  0.4515     2\\\\ndistinct_3→ece              0.826    -4   0.548     3   0.2316     -2   1.669   0.9438            0.096  0.8091     2\\\\nmauve→ece                   0.819    -4   0.841     3   0.0353      0   0.098   0.9854            0.034  0.8834     2\\\\n\\\\n====================================================================================================\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy→distinct_1  1/5  [diff]\\\\n  token_entropy→distinct_2  2/5  [naive, diff]\\\\n  token_entropy→distinct_3  2/5  [naive, diff]\\\\n  token_entropy→mauve       1/5  [naive]\\\\n  ece→distinct_1            1/5  [threshold]\\\\n  ece→distinct_2            2/5  [naive, threshold]\\\\n  ece→distinct_3            3/5  [naive, threshold, ty]\\\\n  ece→mauve                 2/5  [naive, diff]\\\\n\\\\n  Robust pairs (>=3/5 methods): 1/8\\\\n  Perm Granger FDR sig (fwd): 0/8\\\\n\\\\nSaved\\\\n\\\\n... [截断: 输出过长，省略 4569 字符] ...\\\\n\\\\n===============================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=44\\\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\\n====================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary → downstream)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy→distinct_1    0.914    -5   0.972    -5   0.0230   None   7.236   0.1845            2.561  0.1848     1\\\\ntoken_entropy→distinct_2    0.852    -1   0.933    -1   0.0020   None  63.024   0.1264            0.695  0.4514     1\\\\ntoken_entropy→distinct_3    0.824    -1   0.678    -1   0.0717   None   6.593   0.1264            0.051  0.8583     2\\\\ntoken_entropy→mauve        -0.968    -5  -0.943    -5   0.0429   None   0.018   0.8866            0.054  0.8543     2\\\\nece→distinct_1              0.819     5   0.890     5   0.0717      6   0.824   0.4991            0.044  0.8443     1\\\\nece→distinct_2              0.737     1   0.861     5   0.0812   None   0.025   0.8866            0.380  0.5709     1\\\\nece→distinct_3              0.690     2   0.561     5   0.3247     -1   1.546   0.4156            0.933  0.5110     2\\\\nece→mauve                   0.613     4   0.594     4   0.2442      1   1.748   0.4156            7.059  0.2292     2\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream → canary)\\\\n====================================================================================================\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1→token_entropy    0.914     5   0.972     5   0.0230   None   7.140   0.2999            0.106  0.7606     1\\\\ndistinct_2→token_entropy    0.852     1   0.933     1   0.0020   None   4.103   0.2999            2.963  0.1603     1\\\\ndistinct_3→token_entropy    0.824     1   0.678     1   0.0717   None   1.467   0.3479            0.121  0.7872     2\\\\nmauve→token_entropy        -0.968     5  -0.943     5   0.0429   None   2.729   0.2999            0.167  0.7529     2\\\\ndistinct_1→ece              0.819    -5   0.890    -5   0.0717     -6   2.551   0.2999            3.470  0.1360     1\\\\ndistinct_2→ece              0.737    -1   0.861    -5   0.0812   None   0.601   0.5071            0.432  0.5467     1\\\\ndistinct_3→ece              0.690    -2   0.561    -5   0.3247      1   0.076   0.7784            1.889  0.4005     2\\\\nmauve→ece                   0.613    -4   0.594    -4   0.2442     -1   1.620   0.3479            0.375  0.6501     2\\\\n\\\\n====================================================================================================\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy→distinct_1  1/5  [diff]\\\\n  token_entropy→distinct_2  1/5  [diff]\\\\n  token_entropy→distinct_3  0/5  [none]\\\\n  token_entropy→mauve       1/5  [diff]\\\\n  ece→distinct_1            2/5  [naive, threshold]\\\\n  ece→distinct_2            1/5  [naive]\\\\n  ece→distinct_3            1/5  [naive]\\\\n  ece→mauve                 1/5  [threshold]\\\\n\\\\n  Robust pairs (>=3/5 methods): 0/8\\\\n  Perm Granger FDR sig (fwd): 0/8\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nRerunning alpha=0 seed=42\\n============================================================\\n====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=42\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.902    -5   0.941    -1   0.0013   None  48.353   0.2144            0.048  0.8624     2\\ntoken_entropy→distinct_2   -0.826     2   0.918    -4   0.0318   None  16.790   0.2144            0.063  0.8431     2\\ntoken_entropy→distinct_3   -0.816     2   0.909    -4   0.0318   None   5.023   0.2144            0.142  0.7708     2\\ntoken_entropy→mauve        -0.757     2  -0.569     5   0.3164   None   0.823   0.7257            0.504  0.6070     2\\nece→distinct_1              0.817    -4  -0.704     2   0.0823      3   0.002   0.9498           20.863  0.1372     2\\nece→distinct_2              0.778     4  -0.514     2   0.2316      2   0.391   0.7257            2.431  0.3631     2\\nece→distinct_3              0.826     4   0.548    -3   0.2316      2   0.968   0.7257          11048.106  0.0061     2\\nece→mauve                   0.819     4   0.841    -3   0.0353      0   0.015   0.9498            1.275  0.4614     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.902     5   0.941     1   0.0013   None   0.211   0.9854            3.337  0.3188     2\\ndistinct_2→token_entropy   -0.826    -2   0.918     4   0.0318   None   0.002   0.9854            0.219  0.7216     2\\ndistinct_3→token_entropy   -0.816    -2   0.909     4   0.0318   None   0.000   0.9854            1.157  0.4767     2\\nmauve→token_entropy        -0.757    -2  -0.569    -5   0.3164   None   0.377   0.9854            0.015  0.9228     2\\ndistinct_1→ece              0.817     4  -0.704    -2   0.0823     -3   0.835   0.9438            0.609  0.5782     2\\ndistinct_2→ece              0.778    -4  -0.514    -2   0.2316     -2   0.837   0.9438            1.358  0.4515     2\\ndistinct_3→ece              0.826    -4   0.548     3   0.2316     -2   1.669   0.9438            0.096  0.8091     2\\nmauve→ece                   0.819    -4   0.841     3   0.0353      0   0.098   0.9854            0.034  0.8834     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  1/5  [diff]\\n  token_entropy→distinct_2  2/5  [naive, diff]\\n  token_entropy→distinct_3  2/5  [naive, diff]\\n  token_entropy→mauve       1/5  [naive]\\n  ece→distinct_1            1/5  [threshold]\\n  ece→distinct_2            2/5  [naive, threshold]\\n  ece→distinct_3            3/5  [naive, threshold, ty]\\n  ece→mauve                 2/5  [naive, diff]\\n\\n  Robust pairs (>=3/5 methods): 1/8\\n  Perm Granger FDR sig (fwd): 0/8\\n\\nSaved\\n\\n... [截断: 输出过长，省略 4569 字符] ...\\n\\n===============================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.0 | seed=44\\nData: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\n====================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary → downstream)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy→distinct_1    0.914    -5   0.972    -5   0.0230   None   7.236   0.1845            2.561  0.1848     1\\ntoken_entropy→distinct_2    0.852    -1   0.933    -1   0.0020   None  63.024   0.1264            0.695  0.4514     1\\ntoken_entropy→distinct_3    0.824    -1   0.678    -1   0.0717   None   6.593   0.1264            0.051  0.8583     2\\ntoken_entropy→mauve        -0.968    -5  -0.943    -5   0.0429   None   0.018   0.8866            0.054  0.8543     2\\nece→distinct_1              0.819     5   0.890     5   0.0717      6   0.824   0.4991            0.044  0.8443     1\\nece→distinct_2              0.737     1   0.861     5   0.0812   None   0.025   0.8866            0.380  0.5709     1\\nece→distinct_3              0.690     2   0.561     5   0.3247     -1   1.546   0.4156            0.933  0.5110     2\\nece→mauve                   0.613     4   0.594     4   0.2442      1   1.748   0.4156            7.059  0.2292     2\\n\\n====================================================================================================\\nREVERSE (downstream → canary)\\n====================================================================================================\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1→token_entropy    0.914     5   0.972     5   0.0230   None   7.140   0.2999            0.106  0.7606     1\\ndistinct_2→token_entropy    0.852     1   0.933     1   0.0020   None   4.103   0.2999            2.963  0.1603     1\\ndistinct_3→token_entropy    0.824     1   0.678     1   0.0717   None   1.467   0.3479            0.121  0.7872     2\\nmauve→token_entropy        -0.968     5  -0.943     5   0.0429   None   2.729   0.2999            0.167  0.7529     2\\ndistinct_1→ece              0.819    -5   0.890    -5   0.0717     -6   2.551   0.2999            3.470  0.1360     1\\ndistinct_2→ece              0.737    -1   0.861    -5   0.0812   None   0.601   0.5071            0.432  0.5467     1\\ndistinct_3→ece              0.690    -2   0.561    -5   0.3247      1   0.076   0.7784            1.889  0.4005     2\\nmauve→ece                   0.613    -4   0.594    -4   0.2442     -1   1.620   0.3479            0.375  0.6501     2\\n\\n====================================================================================================\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy→distinct_1  1/5  [diff]\\n  token_entropy→distinct_2  1/5  [diff]\\n  token_entropy→distinct_3  0/5  [none]\\n  token_entropy→mauve       1/5  [diff]\\n  ece→distinct_1            2/5  [naive, threshold]\\n  ece→distinct_2            1/5  [naive]\\n  ece→distinct_3            1/5  [naive]\\n  ece→mauve                 1/5  [threshold]\\n\\n  Robust pairs (>=3/5 methods): 0/8\\n  Perm Granger FDR sig (fwd): 0/8\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 114_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The null baselines are rerun. Now I can run MMCT for both s43 and s42 with the unified pair configuration.
+
+Let me now write and run the MMCT script. I need to:
+1. Monkey-patch `mmct.methods.DOWNSTREAM_METRICS` and `METRIC_PAIRS`
+2. Build the null distribution
+3. Run MMCT for s43 and s42
+
+Let me also look at the consensus_test.py to understand the MMCT class interface.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "546abe55-de8b-43f9-a212-1cd50382afd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwaQgus1gMZ4WkZLWP4ESQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3389,
+      "cache_read_input_tokens": 71272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 115_
+
+Null baselines 重跑完成。现在构建 MMCT 并为 s43/s42 运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e188eb16-f2c2-4126-ae0d-fd50c4ee9118",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwaQgus1gMZ4WkZLWP4ESQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3389,
+      "cache_read_input_tokens": 71272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T4eER6KC46K7SFFiiTnSGu`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2c56870f-fe08-4b32-a490-7a6332eb604b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwaQgus1gMZ4WkZLWP4ESQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3389,
+      "cache_read_input_tokens": 71272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 117 · 2026-05-19T15:37:20.601Z_
+
+<details><summary>↩ Tool result · `toolu_01T4eER6KC46K7SFFiiTnSGu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\"pair\\\"):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n        self.weighted_mode = weighted_mode\\n\\n    @property\\n    def mode_name(self):\\n        if self.weighted:\\n            w = f\\\"weighted_{self.weighted_mode}\\\"\\n        else:\\n            w = \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        results = load_5method_results(data_dir)\\n        fwd_sig = extract_method_significance(\\n            results, canary, downstream, \\\"forward\\\")\\n\\n        pair_key = (canary, downstream)\\n\\n        if self.weighted:\\n            if self.weighted_mode == \\\"global\\\":\\n                weights = self.null.get_global_weights()\\n            else:\\n                weights = self.null.get_weights(pair_key)\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            weights = None\\n            score = self.null.consensus_score_uniform(fwd_sig)\\n\\n        p, ci_lo, ci_hi = self.null.p_value(\\n            score, weighted=self.weighted, direction=\\\"forward\\\",\\n            weighted_mode=self.weighted_mode)\\n\\n        significant = p < self.alpha\\n\\n        reverse_p = None\\n        reverse_score = None\\n        reverse_sig_dict = None\\n\\n        if self.bidirectional:\\n            rev_sig = extract_method_significance(\\n                results, canary, downstream, \\\"reverse\\\")\\n            if self.weighted:\\n                reverse_score = self.null.consensus_score_weighted(\\n                    rev_sig, weights)\\n            else:\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\n\\n            reverse_p, _, _ = self.null.p_value(\\n                reverse_score, weighted=self.weighted, direction=\\\"reverse\\\",\\n                weighted_mode=self.weighted_mode)\\n            reverse_sig_dict = rev_sig\\n\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\n\\n        return MMCTResult(\\n            canary=canary,\\n            downstream=downstream,\\n            consensus_score=round(score, 6),\\n            p_value=round(p, 6),\\n            ci_lower=round(ci_lo, 6),\\n            ci_upper=round(ci_hi, 6),\\n            method_results=fwd_sig,\\n            significant=significant,\\n            alpha=self.alpha,\\n            mode=self.mode_name,\\n            weights=weights,\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\n            reverse_consensus_score=(round(reverse_score, 6)\\n                                     if reverse_score is not None else None),\\n            reverse_method_results=reverse_sig_dict,\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "6330ce70-69b0-42b7-8e51-22292d6521aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test (MMCT) core implementation.\\\\n\\\\nModes:\\\\n  - uniform: consensus = count of significant methods\\\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\\\n  - forward-only: test canary -> downstream direction only\\\\n  - bidirectional: require forward significant AND reverse non-significant\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom dataclasses import dataclass, field, asdict\\\\nfrom typing import Optional\\\\n\\\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\\\nfrom .null_distribution import NullDistribution\\\\n\\\\n\\\\n@dataclass\\\\nclass MMCTResult:\\\\n    canary: str\\\\n    downstream: str\\\\n    consensus_score: float\\\\n    p_value: float\\\\n    ci_lower: float\\\\n    ci_upper: float\\\\n    method_results: dict\\\\n    significant: bool\\\\n    alpha: float = 0.05\\\\n    mode: str = \\\\\\\"uniform_forward\\\\\\\"\\\\n    weights: Optional[dict] = None\\\\n    reverse_p_value: Optional[float] = None\\\\n    reverse_consensus_score: Optional[float] = None\\\\n    reverse_method_results: Optional[dict] = None\\\\n\\\\n    def to_dict(self):\\\\n        d = asdict(self)\\\\n        if d[\\\\\\\"weights\\\\\\\"]:\\\\n            d[\\\\\\\"weights\\\\\\\"] = {k: round(v, 4) for k, v in d[\\\\\\\"weights\\\\\\\"].items()}\\\\n        return d\\\\n\\\\n\\\\nclass MMCT:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_distribution, weighted=False,\\\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\\\\\"pair\\\\\\\"):\\\\n        self.null = null_distribution\\\\n        self.weighted = weighted\\\\n        self.bidirectional = bidirectional\\\\n        self.alpha = alpha\\\\n        self.weighted_mode = weighted_mode\\\\n\\\\n    @property\\\\n    def mode_name(self):\\\\n        if self.weighted:\\\\n            w = f\\\\\\\"weighted_{self.weighted_mode}\\\\\\\"\\\\n        else:\\\\n            w = \\\\\\\"uniform\\\\\\\"\\\\n        d = \\\\\\\"bidirectional\\\\\\\" if self.bidirectional else \\\\\\\"forward\\\\\\\"\\\\n        return f\\\\\\\"{w}_{d}\\\\\\\"\\\\n\\\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\\\n        results = load_5method_results(data_dir)\\\\n        fwd_sig = extract_method_significance(\\\\n            results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n\\\\n        pair_key = (canary, downstream)\\\\n\\\\n        if self.weighted:\\\\n            if self.weighted_mode == \\\\\\\"global\\\\\\\":\\\\n                weights = self.null.get_global_weights()\\\\n            else:\\\\n                weights = self.null.get_weights(pair_key)\\\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            weights = None\\\\n            score = self.null.consensus_score_uniform(fwd_sig)\\\\n\\\\n        p, ci_lo, ci_hi = self.null.p_value(\\\\n            score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\",\\\\n            weighted_mode=self.weighted_mode)\\\\n\\\\n        significant = p < self.alpha\\\\n\\\\n        reverse_p = None\\\\n        reverse_score = None\\\\n        reverse_sig_dict = None\\\\n\\\\n        if self.bidirectional:\\\\n            rev_sig = extract_method_significance(\\\\n                results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n            if self.weighted:\\\\n                reverse_score = self.null.consensus_score_weighted(\\\\n                    rev_sig, weights)\\\\n            else:\\\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\\\n\\\\n            reverse_p, _, _ = self.null.p_value(\\\\n                reverse_score, weighted=self.weighted, direction=\\\\\\\"reverse\\\\\\\",\\\\n                weighted_mode=self.weighted_mode)\\\\n            reverse_sig_dict = rev_sig\\\\n\\\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\\\n\\\\n        return MMCTResult(\\\\n            canary=canary,\\\\n            downstream=downstream,\\\\n            consensus_score=round(score, 6),\\\\n            p_value=round(p, 6),\\\\n            ci_lower=round(ci_lo, 6),\\\\n            ci_upper=round(ci_hi, 6),\\\\n            method_results=fwd_sig,\\\\n            significant=significant,\\\\n            alpha=self.alpha,\\\\n            mode=self.mode_name,\\\\n            weights=weights,\\\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\\\n            reverse_consensus_score=(round(reverse_score, 6)\\\\n                                     if reverse_score is not None else None),\\\\n            reverse_method_results=reverse_sig_dict,\\\\n        )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\"pair\\\"):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n        self.weighted_mode = weighted_mode\\n\\n    @property\\n    def mode_name(self):\\n        if self.weighted:\\n            w = f\\\"weighted_{self.weighted_mode}\\\"\\n        else:\\n            w = \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        results = load_5method_results(data_dir)\\n        fwd_sig = extract_method_significance(\\n            results, canary, downstream, \\\"forward\\\")\\n\\n        pair_key = (canary, downstream)\\n\\n        if self.weighted:\\n            if self.weighted_mode == \\\"global\\\":\\n                weights = self.null.get_global_weights()\\n            else:\\n                weights = self.null.get_weights(pair_key)\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            weights = None\\n            score = self.null.consensus_score_uniform(fwd_sig)\\n\\n        p, ci_lo, ci_hi = self.null.p_value(\\n            score, weighted=self.weighted, direction=\\\"forward\\\",\\n            weighted_mode=self.weighted_mode)\\n\\n        significant = p < self.alpha\\n\\n        reverse_p = None\\n        reverse_score = None\\n        reverse_sig_dict = None\\n\\n        if self.bidirectional:\\n            rev_sig = extract_method_significance(\\n                results, canary, downstream, \\\"reverse\\\")\\n            if self.weighted:\\n                reverse_score = self.null.consensus_score_weighted(\\n                    rev_sig, weights)\\n            else:\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\n\\n            reverse_p, _, _ = self.null.p_value(\\n                reverse_score, weighted=self.weighted, direction=\\\"reverse\\\",\\n                weighted_mode=self.weighted_mode)\\n            reverse_sig_dict = rev_sig\\n\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\n\\n        return MMCTResult(\\n            canary=canary,\\n            downstream=downstream,\\n            consensus_score=round(score, 6),\\n            p_value=round(p, 6),\\n            ci_lower=round(ci_lo, 6),\\n            ci_upper=round(ci_hi, 6),\\n            method_results=fwd_sig,\\n            significant=significant,\\n            alpha=self.alpha,\\n            mode=self.mode_name,\\n            weights=weights,\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\n            reverse_consensus_score=(round(reverse_score, 6)\\n                                     if reverse_score is not None else None),\\n            reverse_method_results=reverse_sig_dict,\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 118_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I also need to see `extract_method_significance` to understand the data format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "df8ab9dc-6082-4fdc-8993-b8c161ec673d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnmohF2TDLMiyiFAh4DMcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 74661,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017MEvZifb3xiG4evyvmxEH9`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n -A 50 \"def extract_method_significance\" /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "ab144a11-43bd-4467-8d35-34bff2abe68f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnmohF2TDLMiyiFAh4DMcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 74661,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-19T15:37:24.590Z_
+
+<details><summary>↩ Tool result · `toolu_017MEvZifb3xiG4evyvmxEH9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"56:def extract_method_significance(results, canary, downstream,\\n57-                                 direction=\\\"forward\\\"):\\n58-    \\\"\\\"\\\"Extract per-method significance for one pair.\\\"\\\"\\\"\\n59-    pair = _find_pair(results, canary, downstream)\\n60-    if pair is None:\\n61-        raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\n62-\\n63-    source = pair.get(direction, {})\\n64-\\n65-    sig = {}\\n66-    for method in METHOD_NAMES:\\n67-        if method in source:\\n68-            sig[method] = bool(source[method].get(\\\"significant\\\", False))\\n69-        else:\\n70-            sig[method] = False\\n71-    return sig\\n72-\\n73-\\n74-def get_all_pair_significances(data_dir, direction=\\\"forward\\\"):\\n75-    \\\"\\\"\\\"Get significance for all 8 pairs from one condition.\\\"\\\"\\\"\\n76-    results = load_5method_results(data_dir)\\n77-    out = {}\\n78-    for canary, downstream in METRIC_PAIRS:\\n79-        out[(canary, downstream)] = extract_method_significance(\\n80-            results, canary, downstream, direction)\\n81-    return out\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "bc9e73a6-5683-4f38-b876-658568362e9a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"56:def extract_method_significance(results, canary, downstream,\\\\n57-                                 direction=\\\\\\\"forward\\\\\\\"):\\\\n58-    \\\\\\\"\\\\\\\"\\\\\\\"Extract per-method significance for one pair.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n59-    pair = _find_pair(results, canary, downstream)\\\\n60-    if pair is None:\\\\n61-        raise ValueError(f\\\\\\\"Pair ({canary}, {downstream}) not found\\\\\\\")\\\\n62-\\\\n63-    source = pair.get(direction, {})\\\\n64-\\\\n65-    sig = {}\\\\n66-    for method in METHOD_NAMES:\\\\n67-        if method in source:\\\\n68-            sig[method] = bool(source[method].get(\\\\\\\"significant\\\\\\\", False))\\\\n69-        else:\\\\n70-            sig[method] = False\\\\n71-    return sig\\\\n72-\\\\n73-\\\\n74-def get_all_pair_significances(data_dir, direction=\\\\\\\"forward\\\\\\\"):\\\\n75-    \\\\\\\"\\\\\\\"\\\\\\\"Get significance for all 8 pairs from one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n76-    results = load_5method_results(data_dir)\\\\n77-    out = {}\\\\n78-    for canary, downstream in METRIC_PAIRS:\\\\n79-        out[(canary, downstream)] = extract_method_significance(\\\\n80-            results, canary, downstream, direction)\\\\n81-    return out\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"56:def extract_method_significance(results, canary, downstream,\\n57-                                 direction=\\\"forward\\\"):\\n58-    \\\"\\\"\\\"Extract per-method significance for one pair.\\\"\\\"\\\"\\n59-    pair = _find_pair(results, canary, downstream)\\n60-    if pair is None:\\n61-        raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\n62-\\n63-    source = pair.get(direction, {})\\n64-\\n65-    sig = {}\\n66-    for method in METHOD_NAMES:\\n67-        if method in source:\\n68-            sig[method] = bool(source[method].get(\\\"significant\\\", False))\\n69-        else:\\n70-            sig[method] = False\\n71-    return sig\\n72-\\n73-\\n74-def get_all_pair_significances(data_dir, direction=\\\"forward\\\"):\\n75-    \\\"\\\"\\\"Get significance for all 8 pairs from one condition.\\\"\\\"\\\"\\n76-    results = load_5method_results(data_dir)\\n77-    out = {}\\n78-    for canary, downstream in METRIC_PAIRS:\\n79-        out[(canary, downstream)] = extract_method_significance(\\n80-            results, canary, downstream, direction)\\n81-    return out\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 121_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything I need to run MMCT. The key thing is I need to monkey-patch `mmct.methods.DOWNSTREAM_METRICS` and `METRIC_PAIRS` before importing/using NullDistribution and MMCT. Let me write a comprehensive script.
+
+The MMCT needs:
+1. Null distribution built from alpha=0 data (just rerun with mauve pairs)
+2. Test condition data (s43 and s42)
+
+Since the 5method_leadlag.json files have been updated for both null (alpha=0) and test conditions (s43, s42), I just need to point MMCT at the right directories.
+
+
+I'll start by patching the METRIC_PAIRS in the mmct.methods module right at the beginning of the script before anything else gets imported.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b66f8d3f-2103-439c-ad63-ae73379bf1bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1ACZscLZbwGiHzX3osZD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 76361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 122_
+
+现在运行 MMCT（统一 pair 配置）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "351d257f-87ba-42d9-b88a-c0ed209343df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1ACZscLZbwGiHzX3osZD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 76361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U8Vrt3FafDrum2WJtkHeUP`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/run_mmct_unified.py << 'PYEOF'\n\"\"\"MMCT with unified pairs (mauve instead of perplexity) for GPT-2m s43 and s42.\"\"\"\nimport sys, json, os\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\nos.chdir(\"/root/autodl-tmp/distrib_canary_collapse\")\n\n# Monkey-patch BEFORE importing MMCT modules\nimport mmct.methods as mm\nmm.DOWNSTREAM_METRICS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nmm.METRIC_PAIRS = [(c, d) for c in mm.CANARY_METRICS for d in mm.DOWNSTREAM_METRICS]\n\nfrom mmct.null_distribution import NullDistribution\nfrom mmct.consensus_test import MMCT\n\nNULL_DIRS = [\n    \"results/alpha_sweep/a000_s42\",\n    \"results/alpha_sweep/a000_s43\",\n    \"results/alpha_sweep/a000_s44\",\n]\n\nprint(\"Building null distribution from alpha=0 data (unified pairs)...\")\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\nprint(f\"  Null observations: {len(null_dist.null_uniform_fwd)}\")\nprint(f\"  Global FPR: {null_dist.global_fpr}\")\n\nMODES = [\n    (\"uniform_forward\", False, False, \"pair\"),\n    (\"uniform_bidirectional\", False, True, \"pair\"),\n    (\"weighted_pair_forward\", True, False, \"pair\"),\n    (\"weighted_pair_bidirectional\", True, True, \"pair\"),\n    (\"weighted_global_forward\", True, False, \"global\"),\n    (\"weighted_global_bidirectional\", True, True, \"global\"),\n]\n\nCONDITIONS = [\n    (\"GPT-2m s43\", \"results/gen_wiki_gpt2m_a100_s43\"),\n    (\"GPT-2m s42\", \"results/generalize/gpt2m_wiki_a100_s42\"),\n]\n\nfor cond_name, data_dir in CONDITIONS:\n    print(f\"\\n{'='*80}\")\n    print(f\"MMCT: {cond_name} ({data_dir})\")\n    print(f\"{'='*80}\")\n    \n    all_mode_results = {}\n    for mode_name, weighted, bidirectional, weighted_mode in MODES:\n        mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional, weighted_mode=weighted_mode)\n        results = []\n        n_sig = 0\n        for canary, downstream in mm.METRIC_PAIRS:\n            r = mmct.test_from_precomputed(data_dir, canary, downstream)\n            results.append(r)\n            if r.significant:\n                n_sig += 1\n        \n        print(f\"\\n--- {mode_name}: {n_sig}/{len(mm.METRIC_PAIRS)} pairs significant ---\")\n        for r in results:\n            sig_mark = \"*\" if r.significant else \" \"\n            rev_info = f\" rev_p={r.reverse_p_value:.4f}\" if r.reverse_p_value is not None else \"\"\n            print(f\"  {sig_mark} {r.canary:>14s}→{r.downstream:<12s} score={r.consensus_score:.4f} p={r.p_value:.4f}{rev_info}\")\n        \n        all_mode_results[mode_name] = {\n            \"n_significant\": n_sig,\n            \"n_pairs\": len(mm.METRIC_PAIRS),\n            \"detection_rate\": n_sig / len(mm.METRIC_PAIRS),\n            \"per_pair\": [r.to_dict() for r in results],\n        }\n    \n    # Save\n    out_dir = os.path.join(data_dir, \"analysis\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"mmct_unified_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump({\n            \"condition\": cond_name,\n            \"data_dir\": data_dir,\n            \"pairs\": [f\"{c}→{d}\" for c, d in mm.METRIC_PAIRS],\n            \"null_info\": {\n                \"n_obs\": len(null_dist.null_uniform_fwd),\n                \"global_fpr\": null_dist.global_fpr,\n            },\n            \"modes\": all_mode_results,\n        }, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\nprint(\"\\nDone.\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/run_mmct_unified.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "de9b4103-2138-4038-9787-7a7ec0077ed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1ACZscLZbwGiHzX3osZD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 76361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 124 · 2026-05-19T15:37:47.355Z_
+
+<details><summary>↩ Tool result · `toolu_01U8Vrt3FafDrum2WJtkHeUP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Building null distribution from alpha=0 data (unified pairs)...\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"/tmp/run_mmct_unified.py\\\", line 21, in &lt;module>\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 24, in __init__\\n    self._load_null_data()\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 37, in _load_null_data\\n    fwd = extract_method_significance(\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\\", line 61, in extract_method_significance\\n    raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\nValueError: Pair (token_entropy, perplexity) not found\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "3cd1e36f-cf6c-453e-a7cd-976b927d0035",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Building null distribution from alpha=0 data (unified pairs)...\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/tmp/run_mmct_unified.py\\\\\\\", line 21, in &lt;module>\\\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\\\\\", line 24, in __init__\\\\n    self._load_null_data()\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\\\\\", line 37, in _load_null_data\\\\n    fwd = extract_method_significance(\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\\\\\\", line 61, in extract_method_significance\\\\n    raise ValueError(f\\\\\\\"Pair ({canary}, {downstream}) not found\\\\\\\")\\\\nValueError: Pair (token_entropy, perplexity) not found\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"Building null distribution from alpha=0 data (unified pairs)...\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"/tmp/run_mmct_unified.py\\\", line 21, in &lt;module>\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 24, in __init__\\n    self._load_null_data()\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 37, in _load_null_data\\n    fwd = extract_method_significance(\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\\", line 61, in extract_method_significance\\n    raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\nValueError: Pair (token_entropy, perplexity) not found\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 125_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The problem is that `null_distribution.py` imports `METRIC_PAIRS` from `mmct.methods` at import time:
+
+```python
+from .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,
+                      extract_method_significance)
+```
+
+So when I monkey-patch `mm.METRIC_PAIRS`, the `null_distribution.py` module already has its own reference to the old `METRIC_PAIRS`. I need to also patch the reference in `null_distribution`.
+
+
+I'll patch the reference in the `null_distribution` module directly to fix this.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "ca44b233-e318-4e97-9e32-1628b21b2bd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVBFmrPtFjoepaeSaQkogi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1933,
+      "cache_read_input_tokens": 76968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1933
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 126_
+
+`METRIC_PAIRS` 在 import 时被复制了。需要也 patch `null_distribution` 模块内的引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b865aea4-181e-477d-a89d-7e041c0229ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVBFmrPtFjoepaeSaQkogi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1933,
+      "cache_read_input_tokens": 76968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1933
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JSr914q7eYdQ3rLukYgyLd`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/run_mmct_unified.py << 'PYEOF'\n\"\"\"MMCT with unified pairs (mauve instead of perplexity) for GPT-2m s43 and s42.\"\"\"\nimport sys, json, os\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\nos.chdir(\"/root/autodl-tmp/distrib_canary_collapse\")\n\n# Monkey-patch BEFORE importing MMCT modules\nimport mmct.methods as mm\nNEW_DOWNSTREAM = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nNEW_PAIRS = [(c, d) for c in mm.CANARY_METRICS for d in NEW_DOWNSTREAM]\n\nmm.DOWNSTREAM_METRICS = NEW_DOWNSTREAM\nmm.METRIC_PAIRS = NEW_PAIRS\n\nfrom mmct import null_distribution as nd\nfrom mmct import consensus_test as ct\n\n# Also patch the imported references in submodules\nnd.METRIC_PAIRS = NEW_PAIRS\n# ct doesn't directly iterate METRIC_PAIRS, it just calls methods\n\nfrom mmct.null_distribution import NullDistribution\nfrom mmct.consensus_test import MMCT\n\nNULL_DIRS = [\n    \"results/alpha_sweep/a000_s42\",\n    \"results/alpha_sweep/a000_s43\",\n    \"results/alpha_sweep/a000_s44\",\n]\n\nprint(\"Building null distribution from alpha=0 data (unified pairs)...\")\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\nprint(f\"  Null observations: {len(null_dist.null_uniform_fwd)}\")\nprint(f\"  Global FPR: {null_dist.global_fpr}\")\n\nMODES = [\n    (\"uniform_forward\", False, False, \"pair\"),\n    (\"uniform_bidirectional\", False, True, \"pair\"),\n    (\"weighted_pair_forward\", True, False, \"pair\"),\n    (\"weighted_pair_bidirectional\", True, True, \"pair\"),\n    (\"weighted_global_forward\", True, False, \"global\"),\n    (\"weighted_global_bidirectional\", True, True, \"global\"),\n]\n\nCONDITIONS = [\n    (\"GPT-2m s43\", \"results/gen_wiki_gpt2m_a100_s43\"),\n    (\"GPT-2m s42\", \"results/generalize/gpt2m_wiki_a100_s42\"),\n]\n\nfor cond_name, data_dir in CONDITIONS:\n    print(f\"\\n{'='*80}\")\n    print(f\"MMCT: {cond_name} ({data_dir})\")\n    print(f\"{'='*80}\")\n    \n    all_mode_results = {}\n    for mode_name, weighted, bidirectional, weighted_mode in MODES:\n        mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional, weighted_mode=weighted_mode)\n        results = []\n        n_sig = 0\n        for canary, downstream in NEW_PAIRS:\n            r = mmct.test_from_precomputed(data_dir, canary, downstream)\n            results.append(r)\n            if r.significant:\n                n_sig += 1\n        \n        print(f\"\\n--- {mode_name}: {n_sig}/{len(NEW_PAIRS)} pairs significant ---\")\n        for r in results:\n            sig_mark = \"*\" if r.significant else \" \"\n            rev_info = f\" rev_p={r.reverse_p_value:.4f}\" if r.reverse_p_value is not None else \"\"\n            print(f\"  {sig_mark} {r.canary:>14s}->{r.downstream:<12s} score={r.consensus_score:.4f} p={r.p_value:.4f}{rev_info}\")\n        \n        all_mode_results[mode_name] = {\n            \"n_significant\": n_sig,\n            \"n_pairs\": len(NEW_PAIRS),\n            \"detection_rate\": n_sig / len(NEW_PAIRS),\n            \"per_pair\": [r.to_dict() for r in results],\n        }\n    \n    # Save\n    out_dir = os.path.join(data_dir, \"analysis\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"mmct_unified_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump({\n            \"condition\": cond_name,\n            \"data_dir\": data_dir,\n            \"pairs\": [f\"{c}->{d}\" for c, d in NEW_PAIRS],\n            \"null_info\": {\n                \"n_obs\": len(null_dist.null_uniform_fwd),\n                \"global_fpr\": null_dist.global_fpr,\n            },\n            \"modes\": all_mode_results,\n        }, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\nprint(\"\\nDone.\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /tmp/run_mmct_unified.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "810ba1a5-bffd-44a9-959d-b1b973d6a4de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVBFmrPtFjoepaeSaQkogi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1933,
+      "cache_read_input_tokens": 76968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1933
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 128 · 2026-05-19T15:38:06.077Z_
+
+<details><summary>↩ Tool result · `toolu_01JSr914q7eYdQ3rLukYgyLd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Building null distribution from alpha=0 data (unified pairs)...\\n  Null observations: 24\\n  Global FPR: {'naive_xcorr': 0.9166666666666666, 'diff_xcorr': 0.5, 'threshold_onset': 0.2916666666666667, 'perm_granger': 0.16666666666666666, 'ty_granger': 0.08333333333333333}\\n\\n================================================================================\\nMMCT: GPT-2m s43 (results/gen_wiki_gpt2m_a100_s43)\\n================================================================================\\n\\n--- uniform_forward: 4/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000\\n               ece->distinct_1   score=3.0000 p=0.2400\\n  *            ece->distinct_2   score=4.0000 p=0.0400\\n  *            ece->distinct_3   score=4.0000 p=0.0400\\n               ece->mauve        score=2.0000 p=0.7600\\n\\n--- uniform_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.1200\\n     token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\n  *            ece->distinct_2   score=4.0000 p=0.0400 rev_p=0.1200\\n  *            ece->distinct_3   score=4.0000 p=0.0400 rev_p=0.1200\\n               ece->mauve        score=2.0000 p=0.7600 rev_p=0.9600\\n\\n--- weighted_pair_forward: 6/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\n  *            ece->distinct_2   score=0.9901 p=0.0400\\n  *            ece->distinct_3   score=0.9855 p=0.0400\\n               ece->mauve        score=0.0218 p=0.2000\\n\\n--- weighted_pair_bidirectional: 2/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.0800\\n     token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\n  *            ece->distinct_2   score=0.9901 p=0.0400 rev_p=0.0800\\n               ece->distinct_3   score=0.9855 p=0.0400 rev_p=0.0400\\n               ece->mauve        score=0.0218 p=0.2000 rev_p=0.2800\\n\\n--- weighted_global_forward: 4/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000\\n               ece->distinct_1   score=0.3708 p=0.2400\\n  *            ece->distinct_2   score=0.8602 p=0.0400\\n  *            ece->distinct_3   score=0.8602 p=0.0400\\n               ece->mauve        score=0.1843 p=0.4800\\n\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.1200\\n     token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\n  *            ece->distinct_2   score=0.8602 p=0.0400 rev_p=0.1200\\n  *            ece->distinct_3   score=0.8602 p=0.0400 rev_p=0.1200\\n               ece->mauve        score=0.1843 p=0.4800 rev_p=0.9600\\n\\nSaved: results/gen_wiki_gpt2m_a100_s43/analysis/mmct_unified_results.json\\n\\n================================================================================\\nMMCT: GPT-2m s42 (results/generalize/gpt2m_wiki_a100_s42)\\n================================================================================\\n\\n--- uniform_forward: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000\\n               ece->distinct_1   score=3.0000 p=0.2400\\n               ece->distinct_2   score=3.0000 p=0.2400\\n               ece->distinct_3   score=3.0000 p=0.2400\\n               ece->mauve        score=1.0000 p=1.0000\\n\\n--- uniform_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.5200\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.5200\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->distinct_2   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->distinct_3   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->mauve        score=1.0000 p=1.0000 rev_p=0.5200\\n\\n--- weighted_pair_forward: 6/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\n  *            ece->distinct_2   score=0.6612 p=0.0400\\n  *            ece->distinct_3   score=0.9710 p=0.0400\\n               ece->mauve        score=0.0146 p=0.4400\\n\\n--- weighted_pair_bidirectional: 3/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.3200\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.4400\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\n               ece->distinct_2   score=0.6612 p=0.0400 rev_p=0.0400\\n               ece->distinct_3   score=0.9710 p=0.0400 rev_p=0.0400\\n               ece->mauve        score=0.0146 p=0.4400 rev_p=0.1600\\n\\n--- weighted_global_forward: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000\\n               ece->distinct_1   score=0.3708 p=0.2400\\n               ece->distinct_2   score=0.3708 p=0.2400\\n               ece->distinct_3   score=0.3708 p=0.2400\\n               ece->mauve        score=0.0445 p=1.0000\\n\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.5200\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.5200\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->distinct_2   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->distinct_3   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->mauve        score=0.0445 p=1.0000 rev_p=0.1600\\n\\nSaved: results/generalize/gpt2m_wiki_a100_s42/analysis/mmct_unified_results.json\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5bb54dfb-acc7-4946-b7e0-2c7a29565a66",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Building null distribution from alpha=0 data (unified pairs)...\\\\n  Null observations: 24\\\\n  Global FPR: {'naive_xcorr': 0.9166666666666666, 'diff_xcorr': 0.5, 'threshold_onset': 0.2916666666666667, 'perm_granger': 0.16666666666666666, 'ty_granger': 0.08333333333333333}\\\\n\\\\n================================================================================\\\\nMMCT: GPT-2m s43 (results/gen_wiki_gpt2m_a100_s43)\\\\n================================================================================\\\\n\\\\n--- uniform_forward: 4/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\\\n     token_entropy->mauve        score=1.0000 p=1.0000\\\\n               ece->distinct_1   score=3.0000 p=0.2400\\\\n  *            ece->distinct_2   score=4.0000 p=0.0400\\\\n  *            ece->distinct_3   score=4.0000 p=0.0400\\\\n               ece->mauve        score=2.0000 p=0.7600\\\\n\\\\n--- uniform_bidirectional: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.1200\\\\n     token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.0400\\\\n     token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.0400\\\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\\\n  *            ece->distinct_2   score=4.0000 p=0.0400 rev_p=0.1200\\\\n  *            ece->distinct_3   score=4.0000 p=0.0400 rev_p=0.1200\\\\n               ece->mauve        score=2.0000 p=0.7600 rev_p=0.9600\\\\n\\\\n--- weighted_pair_forward: 6/8 pairs significant ---\\\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\\\n     token_entropy->mauve        score=0.0048 p=0.9200\\\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\\\n  *            ece->distinct_2   score=0.9901 p=0.0400\\\\n  *            ece->distinct_3   score=0.9855 p=0.0400\\\\n               ece->mauve        score=0.0218 p=0.2000\\\\n\\\\n--- weighted_pair_bidirectional: 2/8 pairs significant ---\\\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.0800\\\\n     token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.0400\\\\n     token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.0400\\\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\\\n  *            ece->distinct_2   score=0.9901 p=0.0400 rev_p=0.0800\\\\n               ece->distinct_3   score=0.9855 p=0.0400 rev_p=0.0400\\\\n               ece->mauve        score=0.0218 p=0.2000 rev_p=0.2800\\\\n\\\\n--- weighted_global_forward: 4/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\\\n     token_entropy->mauve        score=0.0445 p=1.0000\\\\n               ece->distinct_1   score=0.3708 p=0.2400\\\\n  *            ece->distinct_2   score=0.8602 p=0.0400\\\\n  *            ece->distinct_3   score=0.8602 p=0.0400\\\\n               ece->mauve        score=0.1843 p=0.4800\\\\n\\\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.1200\\\\n     token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.0400\\\\n     token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.0400\\\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\\\n  *            ece->distinct_2   score=0.8602 p=0.0400 rev_p=0.1200\\\\n  *            ece->distinct_3   score=0.8602 p=0.0400 rev_p=0.1200\\\\n               ece->mauve        score=0.1843 p=0.4800 rev_p=0.9600\\\\n\\\\nSaved: results/gen_wiki_gpt2m_a100_s43/analysis/mmct_unified_results.json\\\\n\\\\n================================================================================\\\\nMMCT: GPT-2m s42 (results/generalize/gpt2m_wiki_a100_s42)\\\\n================================================================================\\\\n\\\\n--- uniform_forward: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\\\n     token_entropy->mauve        score=1.0000 p=1.0000\\\\n               ece->distinct_1   score=3.0000 p=0.2400\\\\n               ece->distinct_2   score=3.0000 p=0.2400\\\\n               ece->distinct_3   score=3.0000 p=0.2400\\\\n               ece->mauve        score=1.0000 p=1.0000\\\\n\\\\n--- uniform_bidirectional: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.5200\\\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.5200\\\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.5200\\\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\\\n               ece->distinct_2   score=3.0000 p=0.2400 rev_p=0.0400\\\\n               ece->distinct_3   score=3.0000 p=0.2400 rev_p=0.0400\\\\n               ece->mauve        score=1.0000 p=1.0000 rev_p=0.5200\\\\n\\\\n--- weighted_pair_forward: 6/8 pairs significant ---\\\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\\\n     token_entropy->mauve        score=0.0048 p=0.9200\\\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\\\n  *            ece->distinct_2   score=0.6612 p=0.0400\\\\n  *            ece->distinct_3   score=0.9710 p=0.0400\\\\n               ece->mauve        score=0.0146 p=0.4400\\\\n\\\\n--- weighted_pair_bidirectional: 3/8 pairs significant ---\\\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.3200\\\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.5200\\\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.4400\\\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\\\n               ece->distinct_2   score=0.6612 p=0.0400 rev_p=0.0400\\\\n               ece->distinct_3   score=0.9710 p=0.0400 rev_p=0.0400\\\\n               ece->mauve        score=0.0146 p=0.4400 rev_p=0.1600\\\\n\\\\n--- weighted_global_forward: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\\\n     token_entropy->mauve        score=0.0445 p=1.0000\\\\n               ece->distinct_1   score=0.3708 p=0.2400\\\\n               ece->distinct_2   score=0.3708 p=0.2400\\\\n               ece->distinct_3   score=0.3708 p=0.2400\\\\n               ece->mauve        score=0.0445 p=1.0000\\\\n\\\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.5200\\\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.5200\\\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.5200\\\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\\\n               ece->distinct_2   score=0.3708 p=0.2400 rev_p=0.0400\\\\n               ece->distinct_3   score=0.3708 p=0.2400 rev_p=0.0400\\\\n               ece->mauve        score=0.0445 p=1.0000 rev_p=0.1600\\\\n\\\\nSaved: results/generalize/gpt2m_wiki_a100_s42/analysis/mmct_unified_results.json\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Building null distribution from alpha=0 data (unified pairs)...\\n  Null observations: 24\\n  Global FPR: {'naive_xcorr': 0.9166666666666666, 'diff_xcorr': 0.5, 'threshold_onset': 0.2916666666666667, 'perm_granger': 0.16666666666666666, 'ty_granger': 0.08333333333333333}\\n\\n================================================================================\\nMMCT: GPT-2m s43 (results/gen_wiki_gpt2m_a100_s43)\\n================================================================================\\n\\n--- uniform_forward: 4/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000\\n               ece->distinct_1   score=3.0000 p=0.2400\\n  *            ece->distinct_2   score=4.0000 p=0.0400\\n  *            ece->distinct_3   score=4.0000 p=0.0400\\n               ece->mauve        score=2.0000 p=0.7600\\n\\n--- uniform_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.1200\\n     token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\n  *            ece->distinct_2   score=4.0000 p=0.0400 rev_p=0.1200\\n  *            ece->distinct_3   score=4.0000 p=0.0400 rev_p=0.1200\\n               ece->mauve        score=2.0000 p=0.7600 rev_p=0.9600\\n\\n--- weighted_pair_forward: 6/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\n  *            ece->distinct_2   score=0.9901 p=0.0400\\n  *            ece->distinct_3   score=0.9855 p=0.0400\\n               ece->mauve        score=0.0218 p=0.2000\\n\\n--- weighted_pair_bidirectional: 2/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.0800\\n     token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\n  *            ece->distinct_2   score=0.9901 p=0.0400 rev_p=0.0800\\n               ece->distinct_3   score=0.9855 p=0.0400 rev_p=0.0400\\n               ece->mauve        score=0.0218 p=0.2000 rev_p=0.2800\\n\\n--- weighted_global_forward: 4/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000\\n               ece->distinct_1   score=0.3708 p=0.2400\\n  *            ece->distinct_2   score=0.8602 p=0.0400\\n  *            ece->distinct_3   score=0.8602 p=0.0400\\n               ece->mauve        score=0.1843 p=0.4800\\n\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.1200\\n     token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.0400\\n     token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\n  *            ece->distinct_2   score=0.8602 p=0.0400 rev_p=0.1200\\n  *            ece->distinct_3   score=0.8602 p=0.0400 rev_p=0.1200\\n               ece->mauve        score=0.1843 p=0.4800 rev_p=0.9600\\n\\nSaved: results/gen_wiki_gpt2m_a100_s43/analysis/mmct_unified_results.json\\n\\n================================================================================\\nMMCT: GPT-2m s42 (results/generalize/gpt2m_wiki_a100_s42)\\n================================================================================\\n\\n--- uniform_forward: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400\\n     token_entropy->mauve        score=1.0000 p=1.0000\\n               ece->distinct_1   score=3.0000 p=0.2400\\n               ece->distinct_2   score=3.0000 p=0.2400\\n               ece->distinct_3   score=3.0000 p=0.2400\\n               ece->mauve        score=1.0000 p=1.0000\\n\\n--- uniform_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=3.0000 p=0.2400 rev_p=0.5200\\n  *  token_entropy->distinct_2   score=4.0000 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=4.0000 p=0.0400 rev_p=0.5200\\n     token_entropy->mauve        score=1.0000 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->distinct_2   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->distinct_3   score=3.0000 p=0.2400 rev_p=0.0400\\n               ece->mauve        score=1.0000 p=1.0000 rev_p=0.5200\\n\\n--- weighted_pair_forward: 6/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400\\n     token_entropy->mauve        score=0.0048 p=0.9200\\n  *            ece->distinct_1   score=0.5073 p=0.0400\\n  *            ece->distinct_2   score=0.6612 p=0.0400\\n  *            ece->distinct_3   score=0.9710 p=0.0400\\n               ece->mauve        score=0.0146 p=0.4400\\n\\n--- weighted_pair_bidirectional: 3/8 pairs significant ---\\n  *  token_entropy->distinct_1   score=0.4988 p=0.0400 rev_p=0.3200\\n  *  token_entropy->distinct_2   score=0.5122 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=0.5086 p=0.0400 rev_p=0.4400\\n     token_entropy->mauve        score=0.0048 p=0.9200 rev_p=0.8400\\n               ece->distinct_1   score=0.5073 p=0.0400 rev_p=0.0400\\n               ece->distinct_2   score=0.6612 p=0.0400 rev_p=0.0400\\n               ece->distinct_3   score=0.9710 p=0.0400 rev_p=0.0400\\n               ece->mauve        score=0.0146 p=0.4400 rev_p=0.1600\\n\\n--- weighted_global_forward: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400\\n     token_entropy->mauve        score=0.0445 p=1.0000\\n               ece->distinct_1   score=0.3708 p=0.2400\\n               ece->distinct_2   score=0.3708 p=0.2400\\n               ece->distinct_3   score=0.3708 p=0.2400\\n               ece->mauve        score=0.0445 p=1.0000\\n\\n--- weighted_global_bidirectional: 2/8 pairs significant ---\\n     token_entropy->distinct_1   score=0.3708 p=0.2400 rev_p=0.5200\\n  *  token_entropy->distinct_2   score=0.8602 p=0.0400 rev_p=0.5200\\n  *  token_entropy->distinct_3   score=0.8602 p=0.0400 rev_p=0.5200\\n     token_entropy->mauve        score=0.0445 p=1.0000 rev_p=0.9600\\n               ece->distinct_1   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->distinct_2   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->distinct_3   score=0.3708 p=0.2400 rev_p=0.0400\\n               ece->mauve        score=0.0445 p=1.0000 rev_p=0.1600\\n\\nSaved: results/generalize/gpt2m_wiki_a100_s42/analysis/mmct_unified_results.json\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 129_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All analyses are complete. Now I need to update the registry. Let me load the tool for that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "bfb8e219-19e9-4c6d-915d-40c28b43777e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VS2VfT4U2ArvRiuYfFEBQ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4903,
+      "cache_read_input_tokens": 78901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4903
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 130_
+
+所有分析完成。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "f083e17b-0c24-4d45-8a6c-68656e9311a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VS2VfT4U2ArvRiuYfFEBQ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4903,
+      "cache_read_input_tokens": 78901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4903
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015PaCM5qQkcNVRnsSiy8tqw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "6d39b8dc-f6a0-4ec7-b8ff-766f3a6a7312",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VS2VfT4U2ArvRiuYfFEBQ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4903,
+      "cache_read_input_tokens": 78901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4903
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 132 · 2026-05-19T15:38:10.578Z_
+
+<details><summary>↩ Tool result · `toolu_015PaCM5qQkcNVRnsSiy8tqw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "ef1d72f2-2e92-4422-b2c2-7f77c2c84de0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01X29ufmtfooPHHRFSKnbKeS`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "gen_gpt2m_a100_s43_fp32"
+  },
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8238fb2c-04d8-43b0-8185-4d9400a0d418",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCfBcSBb5g9tToLFHCwhhx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 83804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 134 · 2026-05-19T15:38:14.748Z_
+
+<details><summary>↩ Tool result · `toolu_01X29ufmtfooPHHRFSKnbKeS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2827}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2f15384d-6755-4925-b5c7-2ad6ccea46c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2827}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2827}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01V5btDGmmkorB5bqzVAjCr9`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "gen_wiki_gpt2m_a100_s42_v4"
+  },
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "79ae48c5-87ed-4967-8e9a-2280d077256f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCfBcSBb5g9tToLFHCwhhx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 83804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 136 · 2026-05-19T15:38:15.555Z_
+
+<details><summary>↩ Tool result · `toolu_01V5btDGmmkorB5bqzVAjCr9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3413}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "15bd7be8-90ae-47e5-b99a-4b67248da68f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3413}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3413}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 137_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The exact IDs don't match. Let me search for GPT-2m experiments in the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "3ca83979-df38-4c83-849e-387ad25e2048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6yTeePNZCZNqyk66oKuKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 449,
+      "cache_read_input_tokens": 84895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 138_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BJfnZVQj5fvnsGC1CzexBn`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics"
+  ],
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "47730e44-461a-46fc-93f7-9c4c3afa07cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6yTeePNZCZNqyk66oKuKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 449,
+      "cache_read_input_tokens": 84895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 139 · 2026-05-19T15:38:19.866Z_
+
+<details><summary>↩ Tool result · `toolu_01BJfnZVQj5fvnsGC1CzexBn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5584}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "624bc8d3-dd08-4e06-a5b1-ba3433b04ab4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"generations\\\": 11, \\\"d1_drift_pct\\\": -24.9, \\\"token_entropy_drift_pct\\\": -83.6, \\\"perm_granger_fwd\\\": \\\"8/8\\\", \\\"perm_granger_rev\\\": \\\"5/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_rev\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"robust_pairs_K3\\\": \\\"4/8\\\", \\\"robust_pairs_K4\\\": \\\"1/8\\\", \\\"token_entropy\\\": {\\\"gen0\\\": 3.571, \\\"gen10\\\": 0.587}, \\\"distinct_1\\\": {\\\"gen0\\\": 0.103, \\\"gen10\\\": 0.0774}, \\\"distinct_2\\\": {\\\"gen0\\\": 0.5513, \\\"gen10\\\": 0.3696}, \\\"distinct_3\\\": {\\\"gen0\\\": 0.8569, \\\"gen10\\\": 0.6285}, \\\"perplexity\\\": {\\\"gen0\\\": 32.63, \\\"gen10\\\": 15024}, \\\"ece\\\": {\\\"gen0\\\": 0.011, \\\"gen10\\\": 0.517}, \\\"effective_rank\\\": {\\\"gen0\\\": 2.37, \\\"gen10\\\": 33.34}, \\\"mauve\\\": {\\\"gen0\\\": 0.034, \\\"gen10\\\": 0.028}}}, \\\"opt13b_wiki_a100_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.95, \\\"d2\\\": -53.35, \\\"d3\\\": -54.8, \\\"entropy\\\": -4.94, \\\"ece\\\": 64.77, \\\"ppl\\\": -18.38, \\\"mauve\\\": -35.59, \\\"eff_rank\\\": -1.99}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0983, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen10_abs\\\": {\\\"token_entropy\\\": 3.069, \\\"distinct_1\\\": 0.0595, \\\"perplexity\\\": 21.95, \\\"ece\\\": 0.0218}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_detection_rate\\\": 0, \\\"ty_granger\\\": \\\"6/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"4/8\\\"}, \\\"max_consensus_votes\\\": 3, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 1.1782, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.4237, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 941.94, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.0794, \\\"gen0_distinct_2\\\": 0.5141, \\\"gen10_distinct_2\\\": 0.4025, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.6639, \\\"gen0_effective_rank\\\": 46.61, \\\"gen10_effective_rank\\\": 108.26, \\\"gen0_mauve\\\": 0.0311, \\\"gen10_mauve\\\": 0.0343, \\\"token_entropy_drift_pct\\\": -63.57, \\\"ece_drift_pct\\\": 3821.86, \\\"perplexity_drift_pct\\\": 3395.29, \\\"distinct_1_drift_pct\\\": -18.97, \\\"distinct_2_drift_pct\\\": -21.72, \\\"distinct_3_drift_pct\\\": -18.31, \\\"effective_rank_drift_pct\\\": 132.26, \\\"mauve_drift_pct\\\": 10.29, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_sig\\\": \\\"6/8\\\", \\\"naive_xcorr_fwd\\\": \\\"6/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side\\\": \\\"left (D093 fix)\\\", \\\"n_generations\\\": 11, \\\"baseline_mvp_v4_rep42_gen10_ppl\\\": 1003.7, \\\"baseline_mvp_v4_rep42_gen10_entropy\\\": 1.276, \\\"baseline_mvp_v4_rep42_gen10_d1\\\": 0.0704, \\\"gen10_d1_vs_baseline_pct\\\": 12.8, \\\"gen10_ppl_vs_baseline_pct\\\": -6.2}}, \\\"c4_a050_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a035_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"c4_a075_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.098, \\\"distinct_2\\\": 0.5141, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.0311}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.283, \\\"ece\\\": 0.2145, \\\"perplexity\\\": 77.697, \\\"distinct_1\\\": 0.0731, \\\"distinct_2\\\": 0.357, \\\"distinct_3\\\": 0.5957, \\\"effective_rank\\\": 78.06, \\\"mauve\\\": 0.0299}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -29.41, \\\"ece\\\": 1885.41, \\\"perplexity\\\": 188.31, \\\"distinct_1\\\": -25.38, \\\"distinct_2\\\": -30.55, \\\"distinct_3\\\": -26.7, \\\"effective_rank\\\": 67.47, \\\"mauve\\\": -3.73}, \\\"lead_lag\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"6/8\\\", \\\"MMCT_detection\\\": 0.75, \\\"TY_granger\\\": \\\"8/8\\\", \\\"naive_xcorr\\\": \\\"7/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"8/8\\\"}, \\\"asymmetry\\\": \\\"strong (fwd=6, rev=0)\\\"}}, \\\"alpha_sweep_a030_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.35, \\\"d2\\\": -53.44, \\\"d3\\\": -55.35, \\\"entropy\\\": -4.11, \\\"ece\\\": 68.01, \\\"ppl\\\": -16.27, \\\"mauve\\\": -40.63, \\\"eff_rank\\\": -0.87}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0974, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen9_abs\\\": {\\\"token_entropy\\\": 3.101, \\\"distinct_1\\\": 0.06, \\\"perplexity\\\": 22.57, \\\"ece\\\": 0.0182}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"0/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger\\\": \\\"1/8\\\"}, \\\"mmct_detection_rate\\\": 0}}, \\\"interv_react_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"permg_fwd_fdr\\\": \\\"8/8\\\", \\\"permg_rev_fdr\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"8/8\\\", \\\"mmct_uniform_fwd\\\": 1, \\\"d1_drift_pct\\\": -32.5, \\\"d2_drift_pct\\\": -45.99, \\\"d3_drift_pct\\\": -47.21, \\\"entropy_drift_pct\\\": -54.03, \\\"ece_drift_pct\\\": 5643.53, \\\"mauve_drift_pct\\\": -22.89, \\\"ppl_drift_pct\\\": 5968.54, \\\"ppl_gen0\\\": 20.55, \\\"ppl_gen10\\\": 1247.19, \\\"ty_granger_sig\\\": \\\"6/8\\\"}}, \\\"alpha_sweep_a060_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.234, \\\"token_entropy_gen10\\\": 2.697, \\\"token_entropy_drift_pct\\\": -16.61, \\\"distinct_1_gen0\\\": 0.0915, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -27.93, \\\"distinct_2_drift_pct\\\": -34.64, \\\"distinct_3_drift_pct\\\": -30.6, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0874, \\\"ece_drift_pct\\\": 709.03, \\\"perplexity_gen0\\\": 26.949, \\\"perplexity_gen10\\\": 31.424, \\\"perplexity_drift_pct\\\": 16.61, \\\"effective_rank_drift_pct\\\": 25.06, \\\"mauve_drift_pct\\\": -13.88, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000}}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 2.699, \\\"token_entropy_gen10\\\": 1.187, \\\"token_entropy_drift_pct\\\": -56, \\\"distinct_1_gen0\\\": 0.0941, \\\"distinct_1_gen10\\\": 0.0703, \\\"distinct_1_drift_pct\\\": -25.31, \\\"distinct_2_drift_pct\\\": -36.67, \\\"distinct_3_drift_pct\\\": -34.85, \\\"ece_gen0\\\": 0.0155, \\\"ece_gen10\\\": 0.3962, \\\"ece_drift_pct\\\": 2454.63, \\\"perplexity_gen0\\\": 15.83, \\\"perplexity_gen10\\\": 450.79, \\\"perplexity_drift_pct\\\": 2748.57, \\\"effective_rank_drift_pct\\\": 73.34, \\\"mauve_drift_pct\\\": -14.57, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"7/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"bf16\\\", \\\"training_hours\\\": 13, \\\"n_perm\\\": 5000}}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.05, \\\"final_eff_rank\\\": 44.8, \\\"final_mauve\\\": 0.031, \\\"precision\\\": \\\"fp32\\\", \\\"intervention_trigger_gen\\\": 1, \\\"recovery_gen\\\": 2, \\\"token_entropy_drift\\\": -5.74, \\\"ece_drift\\\": 55.78, \\\"perplexity_drift\\\": -22.76, \\\"distinct_1_drift\\\": -7.97, \\\"distinct_2_drift\\\": -5.22, \\\"distinct_3_drift\\\": -3.9, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75}}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 45.41, \\\"final_entropy\\\": 2.48, \\\"final_eff_rank\\\": 69.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -23.36, \\\"ece_drift\\\": 1260.23, \\\"perplexity_drift\\\": 68.52, \\\"distinct_1_drift\\\": -28.17, \\\"distinct_2_drift\\\": -37.22, \\\"distinct_3_drift\\\": -35.35, \\\"perm_granger_fwd\\\": \\\"3/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"7/8\\\", \\\"mmct_wpair_fwd\\\": 0.875}}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0}}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -4.49, \\\"distinct_1_drift\\\": -22.08, \\\"distinct_2_drift\\\": -23.47, \\\"distinct_3_drift\\\": -16.39, \\\"perplexity_drift\\\": -18.04, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"0/8 (C003 corrected)\\\", \\\"precision\\\": \\\"fp32\\\", \\\"blind_zone_confirmed_fp32\\\": true, \\\"vs_bf16_note\\\": \\\"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\\\"}}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\"}}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 30, \\\"total\\\": 102, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5584}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5584}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 140_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found `gen_gpt2m_a100_s43_fp32` in the registry. Let me also look for the s42 entry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "1e90a81b-fae1-4b9f-a15b-cea20abcfe72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2m4LN7BfRb7Xh13nUr5Qt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6801,
+      "cache_read_input_tokens": 85344,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 141_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014WsuAr2Kcsb2fqgWqnKry7`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics"
+  ],
+  "limit": 30,
+  "filters": {
+    "status": "DONE"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "b257db26-a1b7-467d-a0ab-93a4b62eba4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2m4LN7BfRb7Xh13nUr5Qt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6801,
+      "cache_read_input_tokens": 85344,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 142 · 2026-05-19T15:38:27.024Z_
+
+<details><summary>↩ Tool result · `toolu_014WsuAr2Kcsb2fqgWqnKry7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 87, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2964}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c001bf06-9b51-4038-a858-e2b74143fe96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"generations\\\": 11, \\\"d1_drift_pct\\\": -24.9, \\\"token_entropy_drift_pct\\\": -83.6, \\\"perm_granger_fwd\\\": \\\"8/8\\\", \\\"perm_granger_rev\\\": \\\"5/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_rev\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"robust_pairs_K3\\\": \\\"4/8\\\", \\\"robust_pairs_K4\\\": \\\"1/8\\\", \\\"token_entropy\\\": {\\\"gen0\\\": 3.571, \\\"gen10\\\": 0.587}, \\\"distinct_1\\\": {\\\"gen0\\\": 0.103, \\\"gen10\\\": 0.0774}, \\\"distinct_2\\\": {\\\"gen0\\\": 0.5513, \\\"gen10\\\": 0.3696}, \\\"distinct_3\\\": {\\\"gen0\\\": 0.8569, \\\"gen10\\\": 0.6285}, \\\"perplexity\\\": {\\\"gen0\\\": 32.63, \\\"gen10\\\": 15024}, \\\"ece\\\": {\\\"gen0\\\": 0.011, \\\"gen10\\\": 0.517}, \\\"effective_rank\\\": {\\\"gen0\\\": 2.37, \\\"gen10\\\": 33.34}, \\\"mauve\\\": {\\\"gen0\\\": 0.034, \\\"gen10\\\": 0.028}}}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.95, \\\"d2\\\": -53.35, \\\"d3\\\": -54.8, \\\"entropy\\\": -4.94, \\\"ece\\\": 64.77, \\\"ppl\\\": -18.38, \\\"mauve\\\": -35.59, \\\"eff_rank\\\": -1.99}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0983, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen10_abs\\\": {\\\"token_entropy\\\": 3.069, \\\"distinct_1\\\": 0.0595, \\\"perplexity\\\": 21.95, \\\"ece\\\": 0.0218}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_detection_rate\\\": 0, \\\"ty_granger\\\": \\\"6/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"4/8\\\"}, \\\"max_consensus_votes\\\": 3, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 1.1782, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.4237, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 941.94, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.0794, \\\"gen0_distinct_2\\\": 0.5141, \\\"gen10_distinct_2\\\": 0.4025, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.6639, \\\"gen0_effective_rank\\\": 46.61, \\\"gen10_effective_rank\\\": 108.26, \\\"gen0_mauve\\\": 0.0311, \\\"gen10_mauve\\\": 0.0343, \\\"token_entropy_drift_pct\\\": -63.57, \\\"ece_drift_pct\\\": 3821.86, \\\"perplexity_drift_pct\\\": 3395.29, \\\"distinct_1_drift_pct\\\": -18.97, \\\"distinct_2_drift_pct\\\": -21.72, \\\"distinct_3_drift_pct\\\": -18.31, \\\"effective_rank_drift_pct\\\": 132.26, \\\"mauve_drift_pct\\\": 10.29, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_sig\\\": \\\"6/8\\\", \\\"naive_xcorr_fwd\\\": \\\"6/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side\\\": \\\"left (D093 fix)\\\", \\\"n_generations\\\": 11, \\\"baseline_mvp_v4_rep42_gen10_ppl\\\": 1003.7, \\\"baseline_mvp_v4_rep42_gen10_entropy\\\": 1.276, \\\"baseline_mvp_v4_rep42_gen10_d1\\\": 0.0704, \\\"gen10_d1_vs_baseline_pct\\\": 12.8, \\\"gen10_ppl_vs_baseline_pct\\\": -6.2}}, \\\"alpha_sweep_a040_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.098, \\\"distinct_2\\\": 0.5141, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.0311}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.283, \\\"ece\\\": 0.2145, \\\"perplexity\\\": 77.697, \\\"distinct_1\\\": 0.0731, \\\"distinct_2\\\": 0.357, \\\"distinct_3\\\": 0.5957, \\\"effective_rank\\\": 78.06, \\\"mauve\\\": 0.0299}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -29.41, \\\"ece\\\": 1885.41, \\\"perplexity\\\": 188.31, \\\"distinct_1\\\": -25.38, \\\"distinct_2\\\": -30.55, \\\"distinct_3\\\": -26.7, \\\"effective_rank\\\": 67.47, \\\"mauve\\\": -3.73}, \\\"lead_lag\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"6/8\\\", \\\"MMCT_detection\\\": 0.75, \\\"TY_granger\\\": \\\"8/8\\\", \\\"naive_xcorr\\\": \\\"7/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"8/8\\\"}, \\\"asymmetry\\\": \\\"strong (fwd=6, rev=0)\\\"}}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.35, \\\"d2\\\": -53.44, \\\"d3\\\": -55.35, \\\"entropy\\\": -4.11, \\\"ece\\\": 68.01, \\\"ppl\\\": -16.27, \\\"mauve\\\": -40.63, \\\"eff_rank\\\": -0.87}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0974, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen9_abs\\\": {\\\"token_entropy\\\": 3.101, \\\"distinct_1\\\": 0.06, \\\"perplexity\\\": 22.57, \\\"ece\\\": 0.0182}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"0/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger\\\": \\\"1/8\\\"}, \\\"mmct_detection_rate\\\": 0}}, \\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"permg_fwd_fdr\\\": \\\"8/8\\\", \\\"permg_rev_fdr\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"8/8\\\", \\\"mmct_uniform_fwd\\\": 1, \\\"d1_drift_pct\\\": -32.5, \\\"d2_drift_pct\\\": -45.99, \\\"d3_drift_pct\\\": -47.21, \\\"entropy_drift_pct\\\": -54.03, \\\"ece_drift_pct\\\": 5643.53, \\\"mauve_drift_pct\\\": -22.89, \\\"ppl_drift_pct\\\": 5968.54, \\\"ppl_gen0\\\": 20.55, \\\"ppl_gen10\\\": 1247.19, \\\"ty_granger_sig\\\": \\\"6/8\\\"}}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.234, \\\"token_entropy_gen10\\\": 2.697, \\\"token_entropy_drift_pct\\\": -16.61, \\\"distinct_1_gen0\\\": 0.0915, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -27.93, \\\"distinct_2_drift_pct\\\": -34.64, \\\"distinct_3_drift_pct\\\": -30.6, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0874, \\\"ece_drift_pct\\\": 709.03, \\\"perplexity_gen0\\\": 26.949, \\\"perplexity_gen10\\\": 31.424, \\\"perplexity_drift_pct\\\": 16.61, \\\"effective_rank_drift_pct\\\": 25.06, \\\"mauve_drift_pct\\\": -13.88, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000}}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 2.699, \\\"token_entropy_gen10\\\": 1.187, \\\"token_entropy_drift_pct\\\": -56, \\\"distinct_1_gen0\\\": 0.0941, \\\"distinct_1_gen10\\\": 0.0703, \\\"distinct_1_drift_pct\\\": -25.31, \\\"distinct_2_drift_pct\\\": -36.67, \\\"distinct_3_drift_pct\\\": -34.85, \\\"ece_gen0\\\": 0.0155, \\\"ece_gen10\\\": 0.3962, \\\"ece_drift_pct\\\": 2454.63, \\\"perplexity_gen0\\\": 15.83, \\\"perplexity_gen10\\\": 450.79, \\\"perplexity_drift_pct\\\": 2748.57, \\\"effective_rank_drift_pct\\\": 73.34, \\\"mauve_drift_pct\\\": -14.57, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"7/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"bf16\\\", \\\"training_hours\\\": 13, \\\"n_perm\\\": 5000}}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.05, \\\"final_eff_rank\\\": 44.8, \\\"final_mauve\\\": 0.031, \\\"precision\\\": \\\"fp32\\\", \\\"intervention_trigger_gen\\\": 1, \\\"recovery_gen\\\": 2, \\\"token_entropy_drift\\\": -5.74, \\\"ece_drift\\\": 55.78, \\\"perplexity_drift\\\": -22.76, \\\"distinct_1_drift\\\": -7.97, \\\"distinct_2_drift\\\": -5.22, \\\"distinct_3_drift\\\": -3.9, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75}}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 45.41, \\\"final_entropy\\\": 2.48, \\\"final_eff_rank\\\": 69.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -23.36, \\\"ece_drift\\\": 1260.23, \\\"perplexity_drift\\\": 68.52, \\\"distinct_1_drift\\\": -28.17, \\\"distinct_2_drift\\\": -37.22, \\\"distinct_3_drift\\\": -35.35, \\\"perm_granger_fwd\\\": \\\"3/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"7/8\\\", \\\"mmct_wpair_fwd\\\": 0.875}}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0}}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -4.49, \\\"distinct_1_drift\\\": -22.08, \\\"distinct_2_drift\\\": -23.47, \\\"distinct_3_drift\\\": -16.39, \\\"perplexity_drift\\\": -18.04, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"0/8 (C003 corrected)\\\", \\\"precision\\\": \\\"fp32\\\", \\\"blind_zone_confirmed_fp32\\\": true, \\\"vs_bf16_note\\\": \\\"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\\\"}}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\"}}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"scale_14b_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_g0\\\": 2.946, \\\"token_entropy_g10\\\": 2.227, \\\"token_entropy_drift_pct\\\": -24.4, \\\"distinct_1_g0\\\": 0.0993, \\\"distinct_1_g10\\\": 0.0636, \\\"distinct_1_drift_pct\\\": -36, \\\"distinct_2_g0\\\": 0.521, \\\"distinct_2_g10\\\": 0.262, \\\"distinct_2_drift_pct\\\": -49.7, \\\"distinct_3_g0\\\": 0.813, \\\"distinct_3_g10\\\": 0.408, \\\"distinct_3_drift_pct\\\": -49.8, \\\"perplexity_g0\\\": 19.68, \\\"perplexity_g10\\\": 35.14, \\\"perplexity_drift_pct\\\": 78.6, \\\"mauve_g0\\\": 0.033, \\\"mauve_g10\\\": 0.024, \\\"mauve_drift_pct\\\": -28.2, \\\"ece_g0\\\": 0.007, \\\"ece_g10\\\": 0.153, \\\"effective_rank_g0\\\": 50.76, \\\"effective_rank_g10\\\": 82.21, \\\"num_generations\\\": 11}}, \\\"conditional_granger_d061\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"alpha_points\\\": 7, \\\"methods\\\": 5, \\\"total_pairs\\\": \\\"8-32 per alpha\\\", \\\"permG_step_change\\\": \\\"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\\\", \\\"TY_only_at_alpha100\\\": \\\"59% FDR-corrected\\\", \\\"blind_zone_confirmed\\\": \\\"alpha=0.10 same as null (permG/TY=0%)\\\", \\\"fdr_flips_at_a050\\\": 12}}, \\\"interv_pred_a075_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -22.54, \\\"gen0_ppl\\\": 27.68, \\\"gen0_entropy\\\": 3.2574, \\\"gen0_distinct_1\\\": 0.0917, \\\"gen0_ece\\\": 0.0123, \\\"gen1_ppl\\\": 24.65, \\\"gen1_entropy\\\": 2.5233, \\\"gen1_distinct_1\\\": 0.0897, \\\"gen1_ece\\\": 0.0469, \\\"gen2_ppl\\\": 17.49, \\\"gen2_entropy\\\": 2.9029, \\\"gen10_ppl\\\": 16.68, \\\"gen10_entropy\\\": 2.8169, \\\"gen10_eff_rank\\\": 58.8, \\\"gen10_mauve\\\": 0.0299, \\\"recovery_complete_by_gen\\\": 2, \\\"converges_to_alpha0_baseline\\\": true, \\\"precision_note\\\": \\\"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\\\", \\\"cross_seed_note\\\": \\\"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\\\"}}, \\\"smollm3_3b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 30, \\\"total\\\": 87, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2964}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 87, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2964}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 143_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found `gen_gpt2m_a100_s43_fp32`. Let me now search for the s42 generalize experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "ef9b0d95-9e77-4fce-b164-1e0b5d12dbba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSMEXRGqmWHRAE9XPYuerP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7694,
+      "cache_read_input_tokens": 92145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7694
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 144_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DG8XexQ52n2UAsBjCkA1Tu`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics"
+  ],
+  "limit": 30,
+  "filters": {
+    "status": "DONE"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "51e8e2c7-25e2-4258-8e21-10535787993b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSMEXRGqmWHRAE9XPYuerP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7694,
+      "cache_read_input_tokens": 92145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7694
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 145 · 2026-05-19T15:38:32.887Z_
+
+<details><summary>↩ Tool result · `toolu_01DG8XexQ52n2UAsBjCkA1Tu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 87, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2755}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "665f2cc6-9eb3-45af-91b8-60a5e7ed3b48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"generations\\\": 11, \\\"d1_drift_pct\\\": -24.9, \\\"token_entropy_drift_pct\\\": -83.6, \\\"perm_granger_fwd\\\": \\\"8/8\\\", \\\"perm_granger_rev\\\": \\\"5/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_rev\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"robust_pairs_K3\\\": \\\"4/8\\\", \\\"robust_pairs_K4\\\": \\\"1/8\\\", \\\"token_entropy\\\": {\\\"gen0\\\": 3.571, \\\"gen10\\\": 0.587}, \\\"distinct_1\\\": {\\\"gen0\\\": 0.103, \\\"gen10\\\": 0.0774}, \\\"distinct_2\\\": {\\\"gen0\\\": 0.5513, \\\"gen10\\\": 0.3696}, \\\"distinct_3\\\": {\\\"gen0\\\": 0.8569, \\\"gen10\\\": 0.6285}, \\\"perplexity\\\": {\\\"gen0\\\": 32.63, \\\"gen10\\\": 15024}, \\\"ece\\\": {\\\"gen0\\\": 0.011, \\\"gen10\\\": 0.517}, \\\"effective_rank\\\": {\\\"gen0\\\": 2.37, \\\"gen10\\\": 33.34}, \\\"mauve\\\": {\\\"gen0\\\": 0.034, \\\"gen10\\\": 0.028}}}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.95, \\\"d2\\\": -53.35, \\\"d3\\\": -54.8, \\\"entropy\\\": -4.94, \\\"ece\\\": 64.77, \\\"ppl\\\": -18.38, \\\"mauve\\\": -35.59, \\\"eff_rank\\\": -1.99}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0983, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen10_abs\\\": {\\\"token_entropy\\\": 3.069, \\\"distinct_1\\\": 0.0595, \\\"perplexity\\\": 21.95, \\\"ece\\\": 0.0218}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_detection_rate\\\": 0, \\\"ty_granger\\\": \\\"6/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"4/8\\\"}, \\\"max_consensus_votes\\\": 3, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 1.1782, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.4237, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 941.94, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.0794, \\\"gen0_distinct_2\\\": 0.5141, \\\"gen10_distinct_2\\\": 0.4025, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.6639, \\\"gen0_effective_rank\\\": 46.61, \\\"gen10_effective_rank\\\": 108.26, \\\"gen0_mauve\\\": 0.0311, \\\"gen10_mauve\\\": 0.0343, \\\"token_entropy_drift_pct\\\": -63.57, \\\"ece_drift_pct\\\": 3821.86, \\\"perplexity_drift_pct\\\": 3395.29, \\\"distinct_1_drift_pct\\\": -18.97, \\\"distinct_2_drift_pct\\\": -21.72, \\\"distinct_3_drift_pct\\\": -18.31, \\\"effective_rank_drift_pct\\\": 132.26, \\\"mauve_drift_pct\\\": 10.29, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_sig\\\": \\\"6/8\\\", \\\"naive_xcorr_fwd\\\": \\\"6/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side\\\": \\\"left (D093 fix)\\\", \\\"n_generations\\\": 11, \\\"baseline_mvp_v4_rep42_gen10_ppl\\\": 1003.7, \\\"baseline_mvp_v4_rep42_gen10_entropy\\\": 1.276, \\\"baseline_mvp_v4_rep42_gen10_d1\\\": 0.0704, \\\"gen10_d1_vs_baseline_pct\\\": 12.8, \\\"gen10_ppl_vs_baseline_pct\\\": -6.2}}, \\\"alpha_sweep_a040_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.098, \\\"distinct_2\\\": 0.5141, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.0311}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.283, \\\"ece\\\": 0.2145, \\\"perplexity\\\": 77.697, \\\"distinct_1\\\": 0.0731, \\\"distinct_2\\\": 0.357, \\\"distinct_3\\\": 0.5957, \\\"effective_rank\\\": 78.06, \\\"mauve\\\": 0.0299}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -29.41, \\\"ece\\\": 1885.41, \\\"perplexity\\\": 188.31, \\\"distinct_1\\\": -25.38, \\\"distinct_2\\\": -30.55, \\\"distinct_3\\\": -26.7, \\\"effective_rank\\\": 67.47, \\\"mauve\\\": -3.73}, \\\"lead_lag\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"6/8\\\", \\\"MMCT_detection\\\": 0.75, \\\"TY_granger\\\": \\\"8/8\\\", \\\"naive_xcorr\\\": \\\"7/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"8/8\\\"}, \\\"asymmetry\\\": \\\"strong (fwd=6, rev=0)\\\"}}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.35, \\\"d2\\\": -53.44, \\\"d3\\\": -55.35, \\\"entropy\\\": -4.11, \\\"ece\\\": 68.01, \\\"ppl\\\": -16.27, \\\"mauve\\\": -40.63, \\\"eff_rank\\\": -0.87}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0974, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen9_abs\\\": {\\\"token_entropy\\\": 3.101, \\\"distinct_1\\\": 0.06, \\\"perplexity\\\": 22.57, \\\"ece\\\": 0.0182}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"0/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger\\\": \\\"1/8\\\"}, \\\"mmct_detection_rate\\\": 0}}, \\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"permg_fwd_fdr\\\": \\\"8/8\\\", \\\"permg_rev_fdr\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"8/8\\\", \\\"mmct_uniform_fwd\\\": 1, \\\"d1_drift_pct\\\": -32.5, \\\"d2_drift_pct\\\": -45.99, \\\"d3_drift_pct\\\": -47.21, \\\"entropy_drift_pct\\\": -54.03, \\\"ece_drift_pct\\\": 5643.53, \\\"mauve_drift_pct\\\": -22.89, \\\"ppl_drift_pct\\\": 5968.54, \\\"ppl_gen0\\\": 20.55, \\\"ppl_gen10\\\": 1247.19, \\\"ty_granger_sig\\\": \\\"6/8\\\"}}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.234, \\\"token_entropy_gen10\\\": 2.697, \\\"token_entropy_drift_pct\\\": -16.61, \\\"distinct_1_gen0\\\": 0.0915, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -27.93, \\\"distinct_2_drift_pct\\\": -34.64, \\\"distinct_3_drift_pct\\\": -30.6, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0874, \\\"ece_drift_pct\\\": 709.03, \\\"perplexity_gen0\\\": 26.949, \\\"perplexity_gen10\\\": 31.424, \\\"perplexity_drift_pct\\\": 16.61, \\\"effective_rank_drift_pct\\\": 25.06, \\\"mauve_drift_pct\\\": -13.88, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000}}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 2.699, \\\"token_entropy_gen10\\\": 1.187, \\\"token_entropy_drift_pct\\\": -56, \\\"distinct_1_gen0\\\": 0.0941, \\\"distinct_1_gen10\\\": 0.0703, \\\"distinct_1_drift_pct\\\": -25.31, \\\"distinct_2_drift_pct\\\": -36.67, \\\"distinct_3_drift_pct\\\": -34.85, \\\"ece_gen0\\\": 0.0155, \\\"ece_gen10\\\": 0.3962, \\\"ece_drift_pct\\\": 2454.63, \\\"perplexity_gen0\\\": 15.83, \\\"perplexity_gen10\\\": 450.79, \\\"perplexity_drift_pct\\\": 2748.57, \\\"effective_rank_drift_pct\\\": 73.34, \\\"mauve_drift_pct\\\": -14.57, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"7/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"bf16\\\", \\\"training_hours\\\": 13, \\\"n_perm\\\": 5000}}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.05, \\\"final_eff_rank\\\": 44.8, \\\"final_mauve\\\": 0.031, \\\"precision\\\": \\\"fp32\\\", \\\"intervention_trigger_gen\\\": 1, \\\"recovery_gen\\\": 2, \\\"token_entropy_drift\\\": -5.74, \\\"ece_drift\\\": 55.78, \\\"perplexity_drift\\\": -22.76, \\\"distinct_1_drift\\\": -7.97, \\\"distinct_2_drift\\\": -5.22, \\\"distinct_3_drift\\\": -3.9, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75}}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 45.41, \\\"final_entropy\\\": 2.48, \\\"final_eff_rank\\\": 69.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -23.36, \\\"ece_drift\\\": 1260.23, \\\"perplexity_drift\\\": 68.52, \\\"distinct_1_drift\\\": -28.17, \\\"distinct_2_drift\\\": -37.22, \\\"distinct_3_drift\\\": -35.35, \\\"perm_granger_fwd\\\": \\\"3/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"7/8\\\", \\\"mmct_wpair_fwd\\\": 0.875}}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0}}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -4.49, \\\"distinct_1_drift\\\": -22.08, \\\"distinct_2_drift\\\": -23.47, \\\"distinct_3_drift\\\": -16.39, \\\"perplexity_drift\\\": -18.04, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"0/8 (C003 corrected)\\\", \\\"precision\\\": \\\"fp32\\\", \\\"blind_zone_confirmed_fp32\\\": true, \\\"vs_bf16_note\\\": \\\"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\\\"}}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\"}}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"scale_14b_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_g0\\\": 2.946, \\\"token_entropy_g10\\\": 2.227, \\\"token_entropy_drift_pct\\\": -24.4, \\\"distinct_1_g0\\\": 0.0993, \\\"distinct_1_g10\\\": 0.0636, \\\"distinct_1_drift_pct\\\": -36, \\\"distinct_2_g0\\\": 0.521, \\\"distinct_2_g10\\\": 0.262, \\\"distinct_2_drift_pct\\\": -49.7, \\\"distinct_3_g0\\\": 0.813, \\\"distinct_3_g10\\\": 0.408, \\\"distinct_3_drift_pct\\\": -49.8, \\\"perplexity_g0\\\": 19.68, \\\"perplexity_g10\\\": 35.14, \\\"perplexity_drift_pct\\\": 78.6, \\\"mauve_g0\\\": 0.033, \\\"mauve_g10\\\": 0.024, \\\"mauve_drift_pct\\\": -28.2, \\\"ece_g0\\\": 0.007, \\\"ece_g10\\\": 0.153, \\\"effective_rank_g0\\\": 50.76, \\\"effective_rank_g10\\\": 82.21, \\\"num_generations\\\": 11}}, \\\"conditional_granger_d061\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"alpha_points\\\": 7, \\\"methods\\\": 5, \\\"total_pairs\\\": \\\"8-32 per alpha\\\", \\\"permG_step_change\\\": \\\"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\\\", \\\"TY_only_at_alpha100\\\": \\\"59% FDR-corrected\\\", \\\"blind_zone_confirmed\\\": \\\"alpha=0.10 same as null (permG/TY=0%)\\\", \\\"fdr_flips_at_a050\\\": 12}}, \\\"interv_pred_a075_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -22.54, \\\"gen0_ppl\\\": 27.68, \\\"gen0_entropy\\\": 3.2574, \\\"gen0_distinct_1\\\": 0.0917, \\\"gen0_ece\\\": 0.0123, \\\"gen1_ppl\\\": 24.65, \\\"gen1_entropy\\\": 2.5233, \\\"gen1_distinct_1\\\": 0.0897, \\\"gen1_ece\\\": 0.0469, \\\"gen2_ppl\\\": 17.49, \\\"gen2_entropy\\\": 2.9029, \\\"gen10_ppl\\\": 16.68, \\\"gen10_entropy\\\": 2.8169, \\\"gen10_eff_rank\\\": 58.8, \\\"gen10_mauve\\\": 0.0299, \\\"recovery_complete_by_gen\\\": 2, \\\"converges_to_alpha0_baseline\\\": true, \\\"precision_note\\\": \\\"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\\\", \\\"cross_seed_note\\\": \\\"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\\\"}}, \\\"smollm3_3b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 30, \\\"total\\\": 87, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2755}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}}, \"count\": 30, \"total\": 87, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2755}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 146_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I don't see a direct experiment ID for s42 generalize. Let me search more specifically. The s42 GPT-2m experiment might be under a different name. Let me grep for "gpt2m" in the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "d6e4c989-b0af-4ed6-81f5-487daa49e3b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Va8K5iDJUf8cWBWVWJLVbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7693,
+      "cache_read_input_tokens": 99839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7693
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 147_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Pmm6Kj1z1rS9DQenbsfGcm`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "exp_id",
+    "status"
+  ],
+  "limit": 102
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "2074623c-931c-4b94-ad2b-da41de8ba87c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Va8K5iDJUf8cWBWVWJLVbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7693,
+      "cache_read_input_tokens": 99839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7693
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 148 · 2026-05-19T15:38:39.435Z_
+
+<details><summary>↩ Tool result · `toolu_01Pmm6Kj1z1rS9DQenbsfGcm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\"}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\"}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\"}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\"}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\"}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\"}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42\": {\"status\": \"PREPARING\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\"}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"PREPARING\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"PREPARING\"}, \"interv_react_s43\": {\"status\": \"PREPARING\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"PREPARING\"}, \"intervention_predictive_s42\": {\"status\": \"DONE\"}, \"intervention_reactive_s42\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\"}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\"}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\"}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\"}, \"mvp_v4_rep45\": {\"status\": \"DONE\"}, \"mvp_v4_rep43\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\"}, \"mvp_v2_rep44\": {\"status\": \"DONE\"}, \"mvp_rep44\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\"}, \"plan_006_s43\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\"}, \"plan_006_s42\": {\"status\": \"DONE\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\"}, \"method_ablation_phase2\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\"}, \"method_ablation_phase1\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\"}, \"mvp_v3_rep43\": {\"status\": \"DONE\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\"}, \"mvp_rep43\": {\"status\": \"DONE\"}, \"mvp_rep42\": {\"status\": \"DONE\"}}, \"count\": 102, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2795}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "6bc80827-6ebb-4e42-b6e5-57f6e6e4f50c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"opt13b_wiki_a100_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"c4_a050_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a035_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"c4_a075_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a030_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_react_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"scale_14b_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"conditional_granger_d061\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_react_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_gpt2m_a100_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"qwen35_dryrun_launch\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"alpha_sweep_a060_s42_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_c4_a050_s42_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_opt13b_a100_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_c4_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42_bf16\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_a050_s42_bf16\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"interv_react_s43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"gen_gpt2m_a100_s43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"intervention_predictive_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"intervention_reactive_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia14b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia410m_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia1b_c4_a100_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_opt1b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia1b_c4_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia14b_wiki_a100_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"generalize_pythia1b_c4_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v4_rep45\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v4_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v4_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a000_s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a000_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v2_rep44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v4_rep44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v3_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v3_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v2_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v2_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 102, \\\"total\\\": 102, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2795}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\"}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\"}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\"}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\"}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\"}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\"}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42\": {\"status\": \"PREPARING\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\"}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"PREPARING\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"PREPARING\"}, \"interv_react_s43\": {\"status\": \"PREPARING\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"PREPARING\"}, \"intervention_predictive_s42\": {\"status\": \"DONE\"}, \"intervention_reactive_s42\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\"}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\"}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\"}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\"}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\"}, \"mvp_v4_rep45\": {\"status\": \"DONE\"}, \"mvp_v4_rep43\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\"}, \"mvp_v2_rep44\": {\"status\": \"DONE\"}, \"mvp_rep44\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\"}, \"plan_006_s43\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\"}, \"plan_006_s42\": {\"status\": \"DONE\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\"}, \"method_ablation_phase2\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\"}, \"method_ablation_phase1\": {\"status\": \"DONE\"}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\"}, \"mvp_v3_rep43\": {\"status\": \"DONE\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\"}, \"mvp_rep43\": {\"status\": \"DONE\"}, \"mvp_rep42\": {\"status\": \"DONE\"}}, \"count\": 102, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2795}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 149_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found `gen_wiki_gpt2m_a100_s42_v4`. Now let me update both registry entries with the unified pair results.
+
+For s43 (`gen_gpt2m_a100_s43_fp32`):
+- Old: perm_granger_fwd: "8/8", perm_granger_rev: "5/8", robust_pairs_K3: "4/8", robust_pairs_K4: "1/8"
+- New (unified): perm_granger_fwd: "6/8", perm_granger_rev: "4/8", robust_pairs_K3: "4/8", robust_pairs_K4: "0/8"
+
+
+- MMCT uniform_fwd: 4/8 = 0.5
+
+Now checking the old metrics for s42 before applying the unified results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e58178ae-7466-4f15-8f6c-b5efd7f12a2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ReQi5pjxQGfbRk8VB6H39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 107532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018HQP8VAsAmyyYf44UyMDQB`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "gen_wiki_gpt2m_a100_s42_v4"
+  },
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7a0fadf0-34ac-4729-8ed1-b9eff04b8719",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ReQi5pjxQGfbRk8VB6H39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 107532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 151 · 2026-05-19T15:38:47.764Z_
+
+<details><summary>↩ Tool result · `toolu_018HQP8VAsAmyyYf44UyMDQB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2761}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "cf38b52e-36fb-407b-a82f-24e5db936486",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2761}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2761}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 152_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014vVhFEMt9uPQA4rB5w464f`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "gen_wiki_gpt2m_a100_s42_v4"
+  },
+  "limit": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "847c46ed-a9cd-4164-aedd-7f2197bc7194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MiApKt8mGsLhCMYQnRWfTV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 110252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 439
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 153 · 2026-05-19T15:38:51.878Z_
+
+<details><summary>↩ Tool result · `toolu_014vVhFEMt9uPQA4rB5w464f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.277}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "5778131b-7075-465c-a98b-b30d7f76558b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.277}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.277}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 154_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The filter doesn't work that way - it's matching exp_id as a field value but the exp_id is the key. Let me try to read that specific experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "dca2ae80-86a5-4ed9-a9c7-034ce7da620d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLtEuJDAs6RA6LaNvd4tGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 220,
+      "cache_read_input_tokens": 110691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 220
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 155_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KQuDvQZ8Ma8HQaNxxqGCTu`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics"
+  ],
+  "limit": 102
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "7adcd2f4-924f-4e23-9fcf-a505293694b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLtEuJDAs6RA6LaNvd4tGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 220,
+      "cache_read_input_tokens": 110691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 220
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 156 · 2026-05-19T15:38:56.434Z_
+
+<details><summary>↩ Tool result · `toolu_01KQuDvQZ8Ma8HQaNxxqGCTu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\"}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_gen0\": 0.5665, \"distinct_2_gen10\": 0.3422, \"distinct_2_delta_pct\": -39.6, \"distinct_3_gen0\": 0.8652, \"distinct_3_gen10\": 0.5756, \"distinct_3_delta_pct\": -33.5, \"ece_gen0\": 0.0111, \"ece_gen10\": 0.0716, \"ece_delta_pct\": 547.9, \"perplexity_gen0\": 32.91, \"perplexity_gen10\": 55.49, \"perplexity_delta_pct\": 68.6, \"mauve_gen0\": 0.0318, \"mauve_gen10\": 0.0227, \"mauve_delta_pct\": -28.7, \"naive\": \"8/8\", \"diff\": \"7/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"1/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"1/8\", \"mmct_weighted_fwd\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"cross_seed_note\": \"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\", \"precision_note\": \"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\"}}, \"interv_pred_a075_s42\": {\"status\": \"PREPARING\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2574, \"ece\": 0.0123, \"perplexity\": 27.68, \"distinct_1\": 0.0914, \"distinct_2\": 0.5043, \"distinct_3\": 0.8329}, \"gen10\": {\"token_entropy\": 2.6404, \"ece\": 0.0426, \"perplexity\": 20.27, \"distinct_1\": 0.0663, \"distinct_2\": 0.3157, \"distinct_3\": 0.5707}, \"drift_pct\": {\"token_entropy\": -18.9, \"ece\": 246.5, \"perplexity\": -26.8, \"distinct_1\": -27.5, \"distinct_2\": -37.4, \"distinct_3\": -31.5}, \"lead_lag_unified_2sigma\": {\"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"6/8\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"consensus_K4\": \"6/8\"}, \"mmct\": {\"uniform_forward\": \"0/8\", \"uniform_bidirectional\": \"0/8\", \"weighted_pair_forward\": \"6/8\", \"weighted_pair_bidirectional\": \"6/8\", \"weighted_global_forward\": \"0/8\", \"weighted_global_bidirectional\": \"0/8\"}}}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"PREPARING\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"PREPARING\"}, \"interv_react_s43\": {\"status\": \"PREPARING\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"PREPARING\"}, \"intervention_predictive_s42\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true}}, \"intervention_reactive_s42\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true}}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"final_ppl\": 16520.5, \"final_entropy_drift\": \"-86.6%\", \"final_ppl_drift\": \"+50527.6%\", \"note_m004\": \"Analyzed with fixed script, n_perm=5000 confirmed.\"}}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"7/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"5/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"5/8\", \"note_m004\": \"M004 confirmed: identical to old values. No flip.\"}}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"4/8\", \"k_gte4\": \"6/8\", \"note_m004\": \"M004 confirmed: identical to old values. No flip.\"}}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"0/8\", \"ty\": \"3/8\", \"k_gte4\": \"6/8\", \"note_m004\": \"First complete Table 7 row with unified params. ent→d3 PG_fwd p=0.0500 boundary.\"}}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"note_m004\": \"M004 rerun: PG fully stable. Diff 8→6 is non-n_perm change (diff_xcorr doesn't use permutation). K≥4 unchanged.\", \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"2/8\", \"ty\": \"6/8\", \"k_gte4\": \"6/8\", \"old_diff\": \"8/8\", \"old_diff_note\": \"ent→ppl p=0.103, ece→ppl p=0.137 lost significance in new run\"}}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"note_m004\": \"M004 rerun confirmed PG stable. Old Diff/PG_fwd/Thresh used mauve as 4th downstream, new uses perplexity (consistent with other conditions). Awaiting Director decision on downstream unification.\", \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"3/8\", \"k_gte4\": \"6/8\", \"old_naive\": \"8/8\", \"old_diff\": \"8/8\", \"old_thresh\": \"6/8\", \"old_pg_fwd\": \"8/8\", \"old_pg_rev\": \"4/8\", \"old_ty\": \"4/8\", \"old_k_gte4\": \"7/8\", \"old_note\": \"old values used mauve as 4th downstream + n_perm=1000\"}}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"2/8\", \"ty\": \"4/8\", \"k_gte4\": \"6/8\", \"total_sig\": \"46/80\", \"pg_rev_detail\": \"d2→ece p=0.037, d3→ece p=0.022\", \"final_ppl\": 801.5, \"final_entropy\": 1.2795, \"final_eff_rank\": 96.3, \"final_mauve\": 0.0273}}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\", \"metrics\": {\"perm_granger_fdr_fwd\": \"3/8\", \"perm_granger_fdr_rev\": \"0/8\", \"consensus_ge3\": \"0/8\", \"consensus_ge4\": \"0/8\", \"naive_xcorr_fwd\": \"4/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"ece_d1_fdr_p\": 0.016, \"ece_d2_fdr_p\": 0.0408, \"ece_d3_fdr_p\": 0.0536, \"ece_ppl_fdr_p\": 0.0475, \"entropy_d1_fdr_p\": 0.0862, \"entropy_d2_fdr_p\": 0.0862, \"entropy_d3_fdr_p\": 0.0862, \"entropy_ppl_fdr_p\": 0.0862, \"cross_seed_note\": \"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\"}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen10_token_entropy\": 2.672, \"gen10_ece\": 0.097, \"gen10_perplexity\": 32.633, \"gen0_distinct_1\": 0.09833, \"gen0_distinct_2\": 0.5132, \"gen0_distinct_3\": 0.8057, \"gen10_distinct_1\": 0.0624, \"gen10_distinct_2\": 0.2617, \"gen10_distinct_3\": 0.4126, \"token_entropy_drift_pct\": -17.4, \"ece_drift_pct\": 799, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -36.5, \"distinct_2_drift_pct\": -49, \"distinct_3_drift_pct\": -48.8, \"cross_seed_note\": \"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\", \"metrics\": \"{\\n  \\\"gen0\\\": {\\n    \\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.01080, \\\"perplexity\\\": 26.949,\\n    \\\"distinct_1\\\": 0.09809, \\\"distinct_2\\\": 0.51324, \\\"distinct_3\\\": 0.80577,\\n    \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.02954\\n  },\\n  \\\"gen10\\\": {\\n    \\\"token_entropy\\\": 3.0721, \\\"ece\\\": 0.01804, \\\"perplexity\\\": 21.984,\\n    \\\"distinct_1\\\": 0.05884, \\\"distinct_2\\\": 0.22703, \\\"distinct_3\\\": 0.33644,\\n    \\\"effective_rank\\\": 44.354, \\\"mauve\\\": 0.01753\\n  },\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.01, \\\"ece\\\": +67.0, \\\"perplexity\\\": -18.42,\\n    \\\"distinct_1\\\": -40.01, \\\"distinct_2\\\": -55.77, \\\"distinct_3\\\": -58.24,\\n    \\\"effective_rank\\\": -4.85, \\\"mauve\\\": -40.65\\n  }\\n}\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.5714, \"ece\": 0.0112, \"perplexity\": 32.63, \"distinct_1\": 0.1044, \"distinct_2\": 0.5483, \"distinct_3\": 0.8441, \"effective_rank\": 2.3722, \"mauve\": 0.0315}, \"gen10\": {\"token_entropy\": 2.3999, \"ece\": 0.0583, \"perplexity\": 18.12, \"distinct_1\": 0.0799, \"distinct_2\": 0.375, \"distinct_3\": 0.5893, \"effective_rank\": 8.4833, \"mauve\": 0.0282}, \"drift_pct\": {\"token_entropy\": -32.81, \"ece\": 422, \"perplexity\": -44.47, \"distinct_1\": -23.47, \"distinct_2\": -31.6, \"distinct_3\": -30.19, \"effective_rank\": 257.6, \"mauve\": -10.48}, \"lead_lag_consensus\": {\"tier3_pairs\": 1, \"tier2_pairs\": 7, \"perm_granger_sig\": \"0/8\", \"ty_sig\": \"1/8\"}}}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127}, \"gen10\": {\"token_entropy\": 2.336, \"ece\": 0.206, \"perplexity\": 76.35, \"distinct_1\": 0.067, \"distinct_2\": 0.309, \"distinct_3\": 0.508}, \"drift_pct\": {\"token_entropy\": -27.8, \"ece\": 1774, \"perplexity\": 183.4, \"distinct_1\": -31.8, \"distinct_2\": -39.9, \"distinct_3\": -37.5}}}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127, \"effective_rank\": 46.61}, \"gen10\": {\"token_entropy\": 2.349, \"ece\": 0.204, \"perplexity\": 76.08, \"distinct_1\": 0.0666, \"distinct_2\": 0.2984, \"distinct_3\": 0.4838, \"effective_rank\": 79.4}, \"drift_pct\": {\"token_entropy\": -27.4, \"ece\": 1789, \"perplexity\": 182.4, \"distinct_1\": -32.3, \"distinct_2\": -41.9, \"distinct_3\": -40, \"effective_rank\": 70.4}}}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}}, \"mvp_v2_rep44\": {\"status\": \"DONE\"}, \"mvp_rep44\": {\"status\": \"DONE\", \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\"}, \"plan_006_s43\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -86.5, \"ece_drift_pct\": 4543, \"perplexity_drift_pct\": 44703, \"distinct_1_drift_pct\": -12.4, \"distinct_2_drift_pct\": -14.7, \"distinct_3_drift_pct\": -12.7, \"five_method_forward_consensus\": \"6/6 pairs at 4/5 methods (Tier 3)\", \"five_method_reverse_consensus\": \"0/6 pairs\", \"naive_xcorr_forward\": \"|r|>0.98, all sig\", \"diff_xcorr_forward\": \"all p_fdr<0.001\", \"diff_xcorr_reverse\": \"all p>0.18 (clean directional separation)\", \"threshold_onset_entropy\": \"gen 1 (earliest canary)\", \"threshold_onset_ece\": \"gen 1-2\", \"threshold_onset_diversity\": \"gen 3\", \"perm_granger_forward\": \"p_fdr=0.003, BH corrected\", \"ty_granger_forward\": \"0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\", \"entropy_leads_diversity_lag\": \"1-2 gen\", \"ece_leads_diversity_lag\": \"1 gen\", \"diversity_plateau_from\": \"gen5\", \"cross_arch_note\": \"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\"}}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098088, \"gen0_distinct_2\": 0.513235, \"gen0_distinct_3\": 0.805767, \"gen10_token_entropy\": 1.22049, \"gen10_ece\": 0.42369, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.073102, \"gen10_distinct_2\": 0.363737, \"gen10_distinct_3\": 0.607502, \"token_entropy_drift_pct\": -62.2629, \"ece_drift_pct\": 3821.2402, \"perplexity_drift_pct\": 3733.7659, \"distinct_1_drift_pct\": -25.473, \"distinct_2_drift_pct\": -29.1286, \"distinct_3_drift_pct\": -24.6057}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}}, \"plan_006_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}}, \"plan_006_s42_resume\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"mvp_v3_rep43\": {\"status\": \"DONE\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\"}, \"mvp_rep43\": {\"status\": \"DONE\"}, \"mvp_rep42\": {\"status\": \"DONE\"}}, \"count\": 102, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2825}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "8b5570b8-0907-4a78-bbdb-9cfff08ff25c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"generations\\\": 11, \\\"d1_drift_pct\\\": -24.9, \\\"token_entropy_drift_pct\\\": -83.6, \\\"perm_granger_fwd\\\": \\\"8/8\\\", \\\"perm_granger_rev\\\": \\\"5/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_rev\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"robust_pairs_K3\\\": \\\"4/8\\\", \\\"robust_pairs_K4\\\": \\\"1/8\\\", \\\"token_entropy\\\": {\\\"gen0\\\": 3.571, \\\"gen10\\\": 0.587}, \\\"distinct_1\\\": {\\\"gen0\\\": 0.103, \\\"gen10\\\": 0.0774}, \\\"distinct_2\\\": {\\\"gen0\\\": 0.5513, \\\"gen10\\\": 0.3696}, \\\"distinct_3\\\": {\\\"gen0\\\": 0.8569, \\\"gen10\\\": 0.6285}, \\\"perplexity\\\": {\\\"gen0\\\": 32.63, \\\"gen10\\\": 15024}, \\\"ece\\\": {\\\"gen0\\\": 0.011, \\\"gen10\\\": 0.517}, \\\"effective_rank\\\": {\\\"gen0\\\": 2.37, \\\"gen10\\\": 33.34}, \\\"mauve\\\": {\\\"gen0\\\": 0.034, \\\"gen10\\\": 0.028}}}, \\\"opt13b_wiki_a100_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.95, \\\"d2\\\": -53.35, \\\"d3\\\": -54.8, \\\"entropy\\\": -4.94, \\\"ece\\\": 64.77, \\\"ppl\\\": -18.38, \\\"mauve\\\": -35.59, \\\"eff_rank\\\": -1.99}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0983, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen10_abs\\\": {\\\"token_entropy\\\": 3.069, \\\"distinct_1\\\": 0.0595, \\\"perplexity\\\": 21.95, \\\"ece\\\": 0.0218}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_detection_rate\\\": 0, \\\"ty_granger\\\": \\\"6/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"threshold_onset\\\": \\\"4/8\\\"}, \\\"max_consensus_votes\\\": 3, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 1.1782, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.4237, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 941.94, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.0794, \\\"gen0_distinct_2\\\": 0.5141, \\\"gen10_distinct_2\\\": 0.4025, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.6639, \\\"gen0_effective_rank\\\": 46.61, \\\"gen10_effective_rank\\\": 108.26, \\\"gen0_mauve\\\": 0.0311, \\\"gen10_mauve\\\": 0.0343, \\\"token_entropy_drift_pct\\\": -63.57, \\\"ece_drift_pct\\\": 3821.86, \\\"perplexity_drift_pct\\\": 3395.29, \\\"distinct_1_drift_pct\\\": -18.97, \\\"distinct_2_drift_pct\\\": -21.72, \\\"distinct_3_drift_pct\\\": -18.31, \\\"effective_rank_drift_pct\\\": 132.26, \\\"mauve_drift_pct\\\": 10.29, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_sig\\\": \\\"6/8\\\", \\\"naive_xcorr_fwd\\\": \\\"6/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side\\\": \\\"left (D093 fix)\\\", \\\"n_generations\\\": 11, \\\"baseline_mvp_v4_rep42_gen10_ppl\\\": 1003.7, \\\"baseline_mvp_v4_rep42_gen10_entropy\\\": 1.276, \\\"baseline_mvp_v4_rep42_gen10_d1\\\": 0.0704, \\\"gen10_d1_vs_baseline_pct\\\": 12.8, \\\"gen10_ppl_vs_baseline_pct\\\": -6.2}}, \\\"c4_a050_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a035_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"c4_a075_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.098, \\\"distinct_2\\\": 0.5141, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.0311}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.283, \\\"ece\\\": 0.2145, \\\"perplexity\\\": 77.697, \\\"distinct_1\\\": 0.0731, \\\"distinct_2\\\": 0.357, \\\"distinct_3\\\": 0.5957, \\\"effective_rank\\\": 78.06, \\\"mauve\\\": 0.0299}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -29.41, \\\"ece\\\": 1885.41, \\\"perplexity\\\": 188.31, \\\"distinct_1\\\": -25.38, \\\"distinct_2\\\": -30.55, \\\"distinct_3\\\": -26.7, \\\"effective_rank\\\": 67.47, \\\"mauve\\\": -3.73}, \\\"lead_lag\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"6/8\\\", \\\"MMCT_detection\\\": 0.75, \\\"TY_granger\\\": \\\"8/8\\\", \\\"naive_xcorr\\\": \\\"7/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"8/8\\\"}, \\\"asymmetry\\\": \\\"strong (fwd=6, rev=0)\\\"}}, \\\"alpha_sweep_a030_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a040_s42_fp32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"drift_pct\\\": {\\\"d1\\\": -38.35, \\\"d2\\\": -53.44, \\\"d3\\\": -55.35, \\\"entropy\\\": -4.11, \\\"ece\\\": 68.01, \\\"ppl\\\": -16.27, \\\"mauve\\\": -40.63, \\\"eff_rank\\\": -0.87}, \\\"gen0_abs\\\": {\\\"token_entropy\\\": 3.234, \\\"distinct_1\\\": 0.0974, \\\"perplexity\\\": 26.95, \\\"ece\\\": 0.0108}, \\\"gen9_abs\\\": {\\\"token_entropy\\\": 3.101, \\\"distinct_1\\\": 0.06, \\\"perplexity\\\": 22.57, \\\"ece\\\": 0.0182}, \\\"lead_lag\\\": {\\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"0/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger\\\": \\\"1/8\\\"}, \\\"mmct_detection_rate\\\": 0}}, \\\"interv_react_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"permg_fwd_fdr\\\": \\\"8/8\\\", \\\"permg_rev_fdr\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"8/8\\\", \\\"mmct_uniform_fwd\\\": 1, \\\"d1_drift_pct\\\": -32.5, \\\"d2_drift_pct\\\": -45.99, \\\"d3_drift_pct\\\": -47.21, \\\"entropy_drift_pct\\\": -54.03, \\\"ece_drift_pct\\\": 5643.53, \\\"mauve_drift_pct\\\": -22.89, \\\"ppl_drift_pct\\\": 5968.54, \\\"ppl_gen0\\\": 20.55, \\\"ppl_gen10\\\": 1247.19, \\\"ty_granger_sig\\\": \\\"6/8\\\"}}, \\\"alpha_sweep_a060_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.234, \\\"token_entropy_gen10\\\": 2.697, \\\"token_entropy_drift_pct\\\": -16.61, \\\"distinct_1_gen0\\\": 0.0915, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -27.93, \\\"distinct_2_drift_pct\\\": -34.64, \\\"distinct_3_drift_pct\\\": -30.6, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0874, \\\"ece_drift_pct\\\": 709.03, \\\"perplexity_gen0\\\": 26.949, \\\"perplexity_gen10\\\": 31.424, \\\"perplexity_drift_pct\\\": 16.61, \\\"effective_rank_drift_pct\\\": 25.06, \\\"mauve_drift_pct\\\": -13.88, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75, \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000}}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 2.699, \\\"token_entropy_gen10\\\": 1.187, \\\"token_entropy_drift_pct\\\": -56, \\\"distinct_1_gen0\\\": 0.0941, \\\"distinct_1_gen10\\\": 0.0703, \\\"distinct_1_drift_pct\\\": -25.31, \\\"distinct_2_drift_pct\\\": -36.67, \\\"distinct_3_drift_pct\\\": -34.85, \\\"ece_gen0\\\": 0.0155, \\\"ece_gen10\\\": 0.3962, \\\"ece_drift_pct\\\": 2454.63, \\\"perplexity_gen0\\\": 15.83, \\\"perplexity_gen10\\\": 450.79, \\\"perplexity_drift_pct\\\": 2748.57, \\\"effective_rank_drift_pct\\\": 73.34, \\\"mauve_drift_pct\\\": -14.57, \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"perm_granger_fwd\\\": \\\"7/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_detection_rate\\\": 0.75, \\\"precision\\\": \\\"bf16\\\", \\\"training_hours\\\": 13, \\\"n_perm\\\": 5000}}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.05, \\\"final_eff_rank\\\": 44.8, \\\"final_mauve\\\": 0.031, \\\"precision\\\": \\\"fp32\\\", \\\"intervention_trigger_gen\\\": 1, \\\"recovery_gen\\\": 2, \\\"token_entropy_drift\\\": -5.74, \\\"ece_drift\\\": 55.78, \\\"perplexity_drift\\\": -22.76, \\\"distinct_1_drift\\\": -7.97, \\\"distinct_2_drift\\\": -5.22, \\\"distinct_3_drift\\\": -3.9, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": 0.75}}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 45.41, \\\"final_entropy\\\": 2.48, \\\"final_eff_rank\\\": 69.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -23.36, \\\"ece_drift\\\": 1260.23, \\\"perplexity_drift\\\": 68.52, \\\"distinct_1_drift\\\": -28.17, \\\"distinct_2_drift\\\": -37.22, \\\"distinct_3_drift\\\": -35.35, \\\"perm_granger_fwd\\\": \\\"3/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"8/8\\\", \\\"consensus_k4\\\": \\\"7/8\\\", \\\"mmct_wpair_fwd\\\": 0.875}}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0}}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -4.49, \\\"distinct_1_drift\\\": -22.08, \\\"distinct_2_drift\\\": -23.47, \\\"distinct_3_drift\\\": -16.39, \\\"perplexity_drift\\\": -18.04, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"0/8 (C003 corrected)\\\", \\\"precision\\\": \\\"fp32\\\", \\\"blind_zone_confirmed_fp32\\\": true, \\\"vs_bf16_note\\\": \\\"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\\\"}}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\"}}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"smollm3_3b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"scale_14b_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_g0\\\": 2.946, \\\"token_entropy_g10\\\": 2.227, \\\"token_entropy_drift_pct\\\": -24.4, \\\"distinct_1_g0\\\": 0.0993, \\\"distinct_1_g10\\\": 0.0636, \\\"distinct_1_drift_pct\\\": -36, \\\"distinct_2_g0\\\": 0.521, \\\"distinct_2_g10\\\": 0.262, \\\"distinct_2_drift_pct\\\": -49.7, \\\"distinct_3_g0\\\": 0.813, \\\"distinct_3_g10\\\": 0.408, \\\"distinct_3_drift_pct\\\": -49.8, \\\"perplexity_g0\\\": 19.68, \\\"perplexity_g10\\\": 35.14, \\\"perplexity_drift_pct\\\": 78.6, \\\"mauve_g0\\\": 0.033, \\\"mauve_g10\\\": 0.024, \\\"mauve_drift_pct\\\": -28.2, \\\"ece_g0\\\": 0.007, \\\"ece_g10\\\": 0.153, \\\"effective_rank_g0\\\": 50.76, \\\"effective_rank_g10\\\": 82.21, \\\"num_generations\\\": 11}}, \\\"conditional_granger_d061\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"alpha_points\\\": 7, \\\"methods\\\": 5, \\\"total_pairs\\\": \\\"8-32 per alpha\\\", \\\"permG_step_change\\\": \\\"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\\\", \\\"TY_only_at_alpha100\\\": \\\"59% FDR-corrected\\\", \\\"blind_zone_confirmed\\\": \\\"alpha=0.10 same as null (permG/TY=0%)\\\", \\\"fdr_flips_at_a050\\\": 12}}, \\\"interv_pred_a075_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -22.54, \\\"gen0_ppl\\\": 27.68, \\\"gen0_entropy\\\": 3.2574, \\\"gen0_distinct_1\\\": 0.0917, \\\"gen0_ece\\\": 0.0123, \\\"gen1_ppl\\\": 24.65, \\\"gen1_entropy\\\": 2.5233, \\\"gen1_distinct_1\\\": 0.0897, \\\"gen1_ece\\\": 0.0469, \\\"gen2_ppl\\\": 17.49, \\\"gen2_entropy\\\": 2.9029, \\\"gen10_ppl\\\": 16.68, \\\"gen10_entropy\\\": 2.8169, \\\"gen10_eff_rank\\\": 58.8, \\\"gen10_mauve\\\": 0.0299, \\\"recovery_complete_by_gen\\\": 2, \\\"converges_to_alpha0_baseline\\\": true, \\\"precision_note\\\": \\\"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\\\", \\\"cross_seed_note\\\": \\\"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\\\"}}, \\\"smollm3_3b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_react_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_gpt2m_a100_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.6021, \\\"token_entropy_gen10\\\": 3.0035, \\\"token_entropy_delta_pct\\\": -16.6, \\\"distinct_1_gen0\\\": 0.1092, \\\"distinct_1_gen10\\\": 0.0724, \\\"distinct_1_delta_pct\\\": -33.7, \\\"distinct_2_gen0\\\": 0.5665, \\\"distinct_2_gen10\\\": 0.3422, \\\"distinct_2_delta_pct\\\": -39.6, \\\"distinct_3_gen0\\\": 0.8652, \\\"distinct_3_gen10\\\": 0.5756, \\\"distinct_3_delta_pct\\\": -33.5, \\\"ece_gen0\\\": 0.0111, \\\"ece_gen10\\\": 0.0716, \\\"ece_delta_pct\\\": 547.9, \\\"perplexity_gen0\\\": 32.91, \\\"perplexity_gen10\\\": 55.49, \\\"perplexity_delta_pct\\\": 68.6, \\\"mauve_gen0\\\": 0.0318, \\\"mauve_gen10\\\": 0.0227, \\\"mauve_delta_pct\\\": -28.7, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"7/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"1/8\\\", \\\"pg_rev\\\": \\\"0/8\\\", \\\"ty\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"1/8\\\", \\\"mmct_weighted_fwd\\\": \\\"6/8\\\", \\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"cross_seed_note\\\": \\\"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\\\", \\\"precision_note\\\": \\\"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\\\"}}, \\\"interv_pred_a075_s42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"qwen35_dryrun_launch\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"alpha_sweep_a060_s42_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2574, \\\"ece\\\": 0.0123, \\\"perplexity\\\": 27.68, \\\"distinct_1\\\": 0.0914, \\\"distinct_2\\\": 0.5043, \\\"distinct_3\\\": 0.8329}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.6404, \\\"ece\\\": 0.0426, \\\"perplexity\\\": 20.27, \\\"distinct_1\\\": 0.0663, \\\"distinct_2\\\": 0.3157, \\\"distinct_3\\\": 0.5707}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -18.9, \\\"ece\\\": 246.5, \\\"perplexity\\\": -26.8, \\\"distinct_1\\\": -27.5, \\\"distinct_2\\\": -37.4, \\\"distinct_3\\\": -31.5}, \\\"lead_lag_unified_2sigma\\\": {\\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"6/8\\\", \\\"perm_granger_fwd\\\": \\\"8/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"consensus_K4\\\": \\\"6/8\\\"}, \\\"mmct\\\": {\\\"uniform_forward\\\": \\\"0/8\\\", \\\"uniform_bidirectional\\\": \\\"0/8\\\", \\\"weighted_pair_forward\\\": \\\"6/8\\\", \\\"weighted_pair_bidirectional\\\": \\\"6/8\\\", \\\"weighted_global_forward\\\": \\\"0/8\\\", \\\"weighted_global_bidirectional\\\": \\\"0/8\\\"}}}, \\\"alpha_sweep_c4_a050_s42_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.136, \\\"token_entropy_gen10\\\": 1.94, \\\"token_entropy_delta_pct\\\": -38.2, \\\"distinct_1_gen0\\\": 0.111, \\\"distinct_1_gen10\\\": 0.089, \\\"distinct_1_delta_pct\\\": -20.3, \\\"perplexity_gen0\\\": 24.4, \\\"perplexity_gen10\\\": 122.8, \\\"perplexity_delta_pct\\\": 402, \\\"mauve_gen0\\\": 0.691, \\\"mauve_gen10\\\": 0.078, \\\"ece_gen0\\\": 0.011, \\\"ece_gen10\\\": 0.259, \\\"diff_xcorr_te_d1_lag\\\": 1, \\\"diff_xcorr_te_d1_r\\\": 0.914, \\\"permg_fwd_fdr_sig\\\": \\\"0/8\\\", \\\"permg_rev_fdr_sig\\\": \\\"0/8\\\"}}, \\\"gen_opt13b_a100_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"interv_pred_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_c4_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42_bf16\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_a050_s42_bf16\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"interv_react_s43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"gen_gpt2m_a100_s43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"intervention_predictive_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 1, \\\"trigger_entropy_drop_pct\\\": -40.71, \\\"gen0_ppl\\\": 26.95, \\\"gen0_entropy\\\": 3.234, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen0_ece\\\": 0.0108, \\\"gen1_ppl\\\": 56.99, \\\"gen1_entropy\\\": 1.918, \\\"gen1_distinct_1\\\": 0.0975, \\\"gen1_ece\\\": 0.205, \\\"gen2_ppl\\\": 20.81, \\\"gen2_entropy\\\": 3.055, \\\"gen10_ppl\\\": 21.29, \\\"gen10_entropy\\\": 3.079, \\\"gen10_eff_rank\\\": 44.1, \\\"gen10_mauve\\\": 0.0272, \\\"recovery_complete_by_gen\\\": 2, \\\"vs_reactive_trigger_advantage\\\": \\\"1 gen earlier\\\", \\\"vs_reactive_peak_ppl_reduction\\\": \\\"63% (56.99 vs 157.09)\\\", \\\"vs_reactive_recovery_advantage\\\": \\\"1 gen faster (Gen 2 vs Gen 4)\\\", \\\"converges_to_alpha0_baseline\\\": true}}, \\\"intervention_reactive_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"trigger_gen\\\": 2, \\\"trigger_distinct1_drop_pct\\\": -15.58, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen0_ppl\\\": 26.95, \\\"gen0_entropy\\\": 3.234, \\\"gen2_distinct_1\\\": 0.0823, \\\"gen2_ppl\\\": 157.09, \\\"gen2_entropy\\\": 1.478, \\\"gen10_distinct_1\\\": 0.0844, \\\"gen10_ppl\\\": 21.24, \\\"gen10_entropy\\\": 3.071, \\\"gen10_ece\\\": 0.0152, \\\"gen10_mauve\\\": 0.0289, \\\"distinct_1_drift_pct\\\": -14.1, \\\"ppl_drift_pct\\\": -21.2, \\\"entropy_drift_pct\\\": -5, \\\"vs_no_intervention_ppl_gen10\\\": 1003.73, \\\"vs_no_intervention_distinct1_gen10\\\": 0.0704, \\\"recovery_complete_by_gen\\\": 4, \\\"converges_to_alpha0_baseline\\\": true}}, \\\"gen_wiki_gpt2m_a100_s42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"8/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"5/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"final_ppl\\\": 16520.5, \\\"final_entropy_drift\\\": \\\"-86.6%\\\", \\\"final_ppl_drift\\\": \\\"+50527.6%\\\", \\\"note_m004\\\": \\\"Analyzed with fixed script, n_perm=5000 confirmed.\\\"}}, \\\"generalize_pythia14b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"naive\\\": \\\"7/8\\\", \\\"diff\\\": \\\"6/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"5/8\\\", \\\"pg_rev\\\": \\\"0/8\\\", \\\"ty\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"5/8\\\", \\\"note_m004\\\": \\\"M004 confirmed: identical to old values. No flip.\\\"}}, \\\"generalize_pythia410m_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"8/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"4/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"note_m004\\\": \\\"M004 confirmed: identical to old values. No flip.\\\"}}, \\\"generalize_pythia1b_c4_a100_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"6/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"0/8\\\", \\\"ty\\\": \\\"3/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"note_m004\\\": \\\"First complete Table 7 row with unified params. ent→d3 PG_fwd p=0.0500 boundary.\\\"}}, \\\"generalize_opt1b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"note_m004\\\": \\\"M004 rerun: PG fully stable. Diff 8→6 is non-n_perm change (diff_xcorr doesn't use permutation). K≥4 unchanged.\\\", \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"6/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"2/8\\\", \\\"ty\\\": \\\"6/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"old_diff\\\": \\\"8/8\\\", \\\"old_diff_note\\\": \\\"ent→ppl p=0.103, ece→ppl p=0.137 lost significance in new run\\\"}}, \\\"generalize_pythia1b_c4_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"note_m004\\\": \\\"M004 rerun confirmed PG stable. Old Diff/PG_fwd/Thresh used mauve as 4th downstream, new uses perplexity (consistent with other conditions). Awaiting Director decision on downstream unification.\\\", \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"6/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"3/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"old_naive\\\": \\\"8/8\\\", \\\"old_diff\\\": \\\"8/8\\\", \\\"old_thresh\\\": \\\"6/8\\\", \\\"old_pg_fwd\\\": \\\"8/8\\\", \\\"old_pg_rev\\\": \\\"4/8\\\", \\\"old_ty\\\": \\\"4/8\\\", \\\"old_k_gte4\\\": \\\"7/8\\\", \\\"old_note\\\": \\\"old values used mauve as 4th downstream + n_perm=1000\\\"}}, \\\"generalize_pythia14b_wiki_a100_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"6/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"2/8\\\", \\\"ty\\\": \\\"4/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"total_sig\\\": \\\"46/80\\\", \\\"pg_rev_detail\\\": \\\"d2→ece p=0.037, d3→ece p=0.022\\\", \\\"final_ppl\\\": 801.5, \\\"final_entropy\\\": 1.2795, \\\"final_eff_rank\\\": 96.3, \\\"final_mauve\\\": 0.0273}}, \\\"generalize_pythia1b_c4_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"perm_granger_fdr_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fdr_rev\\\": \\\"0/8\\\", \\\"consensus_ge3\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"0/8\\\", \\\"naive_xcorr_fwd\\\": \\\"4/8\\\", \\\"diff_xcorr_fdr_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"ece_d1_fdr_p\\\": 0.016, \\\"ece_d2_fdr_p\\\": 0.0408, \\\"ece_d3_fdr_p\\\": 0.0536, \\\"ece_ppl_fdr_p\\\": 0.0475, \\\"entropy_d1_fdr_p\\\": 0.0862, \\\"entropy_d2_fdr_p\\\": 0.0862, \\\"entropy_d3_fdr_p\\\": 0.0862, \\\"entropy_ppl_fdr_p\\\": 0.0862, \\\"cross_seed_note\\\": \\\"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\\\"}}, \\\"mvp_v4_rep45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098574, \\\"gen0_distinct_2\\\": 0.51463, \\\"gen0_distinct_3\\\": 0.808362, \\\"gen10_token_entropy\\\": 1.31536, \\\"gen10_ece\\\": 0.41654, \\\"gen10_perplexity\\\": 1016.22, \\\"gen10_distinct_1\\\": 0.069859, \\\"gen10_distinct_2\\\": 0.329549, \\\"gen10_distinct_3\\\": 0.543743, \\\"token_entropy_drift_pct\\\": -59.3296, \\\"ece_drift_pct\\\": 3755.0671, \\\"perplexity_drift_pct\\\": 3670.9063, \\\"distinct_1_drift_pct\\\": -29.1304, \\\"distinct_2_drift_pct\\\": -35.9639, \\\"distinct_3_drift_pct\\\": -32.7352}}, \\\"mvp_v4_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098334, \\\"gen0_distinct_2\\\": 0.513178, \\\"gen0_distinct_3\\\": 0.805669, \\\"gen10_token_entropy\\\": 1.25961, \\\"gen10_ece\\\": 0.41951, \\\"gen10_perplexity\\\": 1014.66, \\\"gen10_distinct_1\\\": 0.070383, \\\"gen10_distinct_2\\\": 0.329651, \\\"gen10_distinct_3\\\": 0.539571, \\\"token_entropy_drift_pct\\\": -61.0534, \\\"ece_drift_pct\\\": 3782.5544, \\\"perplexity_drift_pct\\\": 3665.1176, \\\"distinct_1_drift_pct\\\": -28.4246, \\\"distinct_2_drift_pct\\\": -35.7628, \\\"distinct_3_drift_pct\\\": -33.0282}}, \\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen10_token_entropy\\\": 2.672, \\\"gen10_ece\\\": 0.097, \\\"gen10_perplexity\\\": 32.633, \\\"gen0_distinct_1\\\": 0.09833, \\\"gen0_distinct_2\\\": 0.5132, \\\"gen0_distinct_3\\\": 0.8057, \\\"gen10_distinct_1\\\": 0.0624, \\\"gen10_distinct_2\\\": 0.2617, \\\"gen10_distinct_3\\\": 0.4126, \\\"token_entropy_drift_pct\\\": -17.4, \\\"ece_drift_pct\\\": 799, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -36.5, \\\"distinct_2_drift_pct\\\": -49, \\\"distinct_3_drift_pct\\\": -48.8, \\\"cross_seed_note\\\": \\\"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\\\"}}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": \\\"{\\\\n  \\\\\\\"gen0\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2342, \\\\\\\"ece\\\\\\\": 0.01080, \\\\\\\"perplexity\\\\\\\": 26.949,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09809, \\\\\\\"distinct_2\\\\\\\": 0.51324, \\\\\\\"distinct_3\\\\\\\": 0.80577,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.613, \\\\\\\"mauve\\\\\\\": 0.02954\\\\n  },\\\\n  \\\\\\\"gen10\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0721, \\\\\\\"ece\\\\\\\": 0.01804, \\\\\\\"perplexity\\\\\\\": 21.984,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.05884, \\\\\\\"distinct_2\\\\\\\": 0.22703, \\\\\\\"distinct_3\\\\\\\": 0.33644,\\\\n    \\\\\\\"effective_rank\\\\\\\": 44.354, \\\\\\\"mauve\\\\\\\": 0.01753\\\\n  },\\\\n  \\\\\\\"drift_pct\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": -5.01, \\\\\\\"ece\\\\\\\": +67.0, \\\\\\\"perplexity\\\\\\\": -18.42,\\\\n    \\\\\\\"distinct_1\\\\\\\": -40.01, \\\\\\\"distinct_2\\\\\\\": -55.77, \\\\\\\"distinct_3\\\\\\\": -58.24,\\\\n    \\\\\\\"effective_rank\\\\\\\": -4.85, \\\\\\\"mauve\\\\\\\": -40.65\\\\n  }\\\\n}\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}}, \\\"mvp_v4_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098216, \\\"gen0_distinct_2\\\": 0.517803, \\\"gen0_distinct_3\\\": 0.812728, \\\"gen10_token_entropy\\\": 1.27592, \\\"gen10_ece\\\": 0.41734, \\\"gen10_perplexity\\\": 1003.73, \\\"gen10_distinct_1\\\": 0.070383, \\\"gen10_distinct_2\\\": 0.335471, \\\"gen10_distinct_3\\\": 0.555579, \\\"token_entropy_drift_pct\\\": -60.5491, \\\"ece_drift_pct\\\": 3762.4711, \\\"perplexity_drift_pct\\\": 3624.5595, \\\"distinct_1_drift_pct\\\": -28.3386, \\\"distinct_2_drift_pct\\\": -35.2126, \\\"distinct_3_drift_pct\\\": -31.6402}}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.5714, \\\"ece\\\": 0.0112, \\\"perplexity\\\": 32.63, \\\"distinct_1\\\": 0.1044, \\\"distinct_2\\\": 0.5483, \\\"distinct_3\\\": 0.8441, \\\"effective_rank\\\": 2.3722, \\\"mauve\\\": 0.0315}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.3999, \\\"ece\\\": 0.0583, \\\"perplexity\\\": 18.12, \\\"distinct_1\\\": 0.0799, \\\"distinct_2\\\": 0.375, \\\"distinct_3\\\": 0.5893, \\\"effective_rank\\\": 8.4833, \\\"mauve\\\": 0.0282}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -32.81, \\\"ece\\\": 422, \\\"perplexity\\\": -44.47, \\\"distinct_1\\\": -23.47, \\\"distinct_2\\\": -31.6, \\\"distinct_3\\\": -30.19, \\\"effective_rank\\\": 257.6, \\\"mauve\\\": -10.48}, \\\"lead_lag_consensus\\\": {\\\"tier3_pairs\\\": 1, \\\"tier2_pairs\\\": 7, \\\"perm_granger_sig\\\": \\\"0/8\\\", \\\"ty_sig\\\": \\\"1/8\\\"}}}, \\\"alpha_sweep_a075_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.234, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.95, \\\"distinct_1\\\": 0.0982, \\\"distinct_2\\\": 0.5178, \\\"distinct_3\\\": 0.8127}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.336, \\\"ece\\\": 0.206, \\\"perplexity\\\": 76.35, \\\"distinct_1\\\": 0.067, \\\"distinct_2\\\": 0.309, \\\"distinct_3\\\": 0.508}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -27.8, \\\"ece\\\": 1774, \\\"perplexity\\\": 183.4, \\\"distinct_1\\\": -31.8, \\\"distinct_2\\\": -39.9, \\\"distinct_3\\\": -37.5}}}, \\\"alpha_sweep_a075_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.234, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.95, \\\"distinct_1\\\": 0.0982, \\\"distinct_2\\\": 0.5178, \\\"distinct_3\\\": 0.8127, \\\"effective_rank\\\": 46.61}, \\\"gen10\\\": {\\\"token_entropy\\\": 2.349, \\\"ece\\\": 0.204, \\\"perplexity\\\": 76.08, \\\"distinct_1\\\": 0.0666, \\\"distinct_2\\\": 0.2984, \\\"distinct_3\\\": 0.4838, \\\"effective_rank\\\": 79.4}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -27.4, \\\"ece\\\": 1789, \\\"perplexity\\\": 182.4, \\\"distinct_1\\\": -32.3, \\\"distinct_2\\\": -41.9, \\\"distinct_3\\\": -40, \\\"effective_rank\\\": 70.4}}}, \\\"alpha_sweep_a000_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.0981, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8058, \\\"effective_rank\\\": 46.613}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0957, \\\"ece\\\": 0.0134, \\\"perplexity\\\": 21.616, \\\"distinct_1\\\": 0.0838, \\\"distinct_2\\\": 0.4665, \\\"distinct_3\\\": 0.7749, \\\"effective_rank\\\": 44.498}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -4.3, \\\"ece\\\": 24, \\\"perplexity\\\": -19.8, \\\"distinct_1\\\": -14.6, \\\"distinct_2\\\": -9.1, \\\"distinct_3\\\": -3.8, \\\"effective_rank\\\": -4.5}, \\\"five_method\\\": {\\\"perm_granger_fdr_sig\\\": \\\"0/8\\\", \\\"ty_sig\\\": \\\"0/8\\\", \\\"robust_pairs_ge3\\\": \\\"0/8\\\", \\\"fpr_controlled\\\": true}}}, \\\"alpha_sweep_a000_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.0983, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.613}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0907, \\\"ece\\\": 0.0148, \\\"perplexity\\\": 21.469, \\\"distinct_1\\\": 0.0847, \\\"distinct_2\\\": 0.4631, \\\"distinct_3\\\": 0.7672, \\\"effective_rank\\\": 43.72}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -4.4, \\\"ece\\\": 37.2, \\\"perplexity\\\": -20.3, \\\"distinct_1\\\": -13.9, \\\"distinct_2\\\": -9.8, \\\"distinct_3\\\": -4.8, \\\"effective_rank\\\": -6.2}, \\\"five_method\\\": {\\\"perm_granger_fdr_sig\\\": \\\"0/8\\\", \\\"ty_sig\\\": \\\"1/8 (df_resid=1 unreliable)\\\", \\\"robust_pairs_ge3\\\": \\\"0/8\\\", \\\"fpr_controlled\\\": true}}}, \\\"mvp_v2_rep44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen10_token_entropy\\\": 1.2205, \\\"gen10_ece\\\": 0.4237, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.0731, \\\"gen10_distinct_2\\\": 0.3637, \\\"gen10_distinct_3\\\": 0.6075}}, \\\"alpha_sweep_a025_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -86.5, \\\"ece_drift_pct\\\": 4543, \\\"perplexity_drift_pct\\\": 44703, \\\"distinct_1_drift_pct\\\": -12.4, \\\"distinct_2_drift_pct\\\": -14.7, \\\"distinct_3_drift_pct\\\": -12.7, \\\"five_method_forward_consensus\\\": \\\"6/6 pairs at 4/5 methods (Tier 3)\\\", \\\"five_method_reverse_consensus\\\": \\\"0/6 pairs\\\", \\\"naive_xcorr_forward\\\": \\\"|r|>0.98, all sig\\\", \\\"diff_xcorr_forward\\\": \\\"all p_fdr<0.001\\\", \\\"diff_xcorr_reverse\\\": \\\"all p>0.18 (clean directional separation)\\\", \\\"threshold_onset_entropy\\\": \\\"gen 1 (earliest canary)\\\", \\\"threshold_onset_ece\\\": \\\"gen 1-2\\\", \\\"threshold_onset_diversity\\\": \\\"gen 3\\\", \\\"perm_granger_forward\\\": \\\"p_fdr=0.003, BH corrected\\\", \\\"ty_granger_forward\\\": \\\"0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\\\", \\\"entropy_leads_diversity_lag\\\": \\\"1-2 gen\\\", \\\"ece_leads_diversity_lag\\\": \\\"1 gen\\\", \\\"diversity_plateau_from\\\": \\\"gen5\\\", \\\"cross_arch_note\\\": \\\"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\\\"}}, \\\"mvp_v4_rep44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098088, \\\"gen0_distinct_2\\\": 0.513235, \\\"gen0_distinct_3\\\": 0.805767, \\\"gen10_token_entropy\\\": 1.22049, \\\"gen10_ece\\\": 0.42369, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.073102, \\\"gen10_distinct_2\\\": 0.363737, \\\"gen10_distinct_3\\\": 0.607502, \\\"token_entropy_drift_pct\\\": -62.2629, \\\"ece_drift_pct\\\": 3821.2402, \\\"perplexity_drift_pct\\\": 3733.7659, \\\"distinct_1_drift_pct\\\": -25.473, \\\"distinct_2_drift_pct\\\": -29.1286, \\\"distinct_3_drift_pct\\\": -24.6057}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.337, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.2063, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 76.03, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0661, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.3037, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.5011, \\\"token_entropy_drift_pct\\\": -27.7, \\\"ece_drift_pct\\\": 1809.5, \\\"perplexity_drift_pct\\\": 182.1, \\\"distinct_1_drift_pct\\\": -32.7, \\\"distinct_2_drift_pct\\\": -41.3, \\\"distinct_3_drift_pct\\\": -38.4, \\\"granger_ece_to_d1_p_fdr\\\": 0.046, \\\"granger_ece_to_d2_p_fdr\\\": 0.046, \\\"granger_entropy_to_d2_p_fdr\\\": 0.048, \\\"granger_entropy_to_d1_p_fdr\\\": 0.054, \\\"granger_fdr_sig_count\\\": \\\"3/8\\\", \\\"consensus_robust_pairs\\\": \\\"11/16\\\", \\\"xcorr_entropy_d1_lag\\\": 2, \\\"xcorr_entropy_d1_r\\\": 0.973}}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, \\\"mvp_v3_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v3_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v2_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_v2_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_rep42\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 102, \\\"total\\\": 102, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2825}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"generations\": 11, \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"5/8\", \"diff_xcorr_fwd\": \"8/8\", \"diff_xcorr_rev\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}}}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 1.1782, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.4237, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 941.94, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0794, \"gen0_distinct_2\": 0.5141, \"gen10_distinct_2\": 0.4025, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.6639, \"gen0_effective_rank\": 46.61, \"gen10_effective_rank\": 108.26, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0343, \"token_entropy_drift_pct\": -63.57, \"ece_drift_pct\": 3821.86, \"perplexity_drift_pct\": 3395.29, \"distinct_1_drift_pct\": -18.97, \"distinct_2_drift_pct\": -21.72, \"distinct_3_drift_pct\": -18.31, \"effective_rank_drift_pct\": 132.26, \"mauve_drift_pct\": 10.29, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_sig\": \"6/8\", \"naive_xcorr_fwd\": \"6/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"fp32\", \"padding_side\": \"left (D093 fix)\", \"n_generations\": 11, \"baseline_mvp_v4_rep42_gen10_ppl\": 1003.7, \"baseline_mvp_v4_rep42_gen10_entropy\": 1.276, \"baseline_mvp_v4_rep42_gen10_d1\": 0.0704, \"gen10_d1_vs_baseline_pct\": 12.8, \"gen10_ppl_vs_baseline_pct\": -6.2}}, \"c4_a050_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"RUNNING\"}, \"c4_a075_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\"}}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0}}, \"interv_react_s43_fp32\": {\"status\": \"RUNNING\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000}}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 2.699, \"token_entropy_gen10\": 1.187, \"token_entropy_drift_pct\": -56, \"distinct_1_gen0\": 0.0941, \"distinct_1_gen10\": 0.0703, \"distinct_1_drift_pct\": -25.31, \"distinct_2_drift_pct\": -36.67, \"distinct_3_drift_pct\": -34.85, \"ece_gen0\": 0.0155, \"ece_gen10\": 0.3962, \"ece_drift_pct\": 2454.63, \"perplexity_gen0\": 15.83, \"perplexity_gen10\": 450.79, \"perplexity_drift_pct\": 2748.57, \"effective_rank_drift_pct\": 73.34, \"mauve_drift_pct\": -14.57, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"7/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_detection_rate\": 0.75, \"precision\": \"bf16\", \"training_hours\": 13, \"n_perm\": 5000}}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\"}}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\"}}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {\"status\": \"DONE\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"metrics\": {\"alpha_points\": 7, \"methods\": 5, \"total_pairs\": \"8-32 per alpha\", \"permG_step_change\": \"0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)\", \"TY_only_at_alpha100\": \"59% FDR-corrected\", \"blind_zone_confirmed\": \"alpha=0.10 same as null (permG/TY=0%)\", \"fdr_flips_at_a050\": 12}}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\"}}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\"}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_gen0\": 0.5665, \"distinct_2_gen10\": 0.3422, \"distinct_2_delta_pct\": -39.6, \"distinct_3_gen0\": 0.8652, \"distinct_3_gen10\": 0.5756, \"distinct_3_delta_pct\": -33.5, \"ece_gen0\": 0.0111, \"ece_gen10\": 0.0716, \"ece_delta_pct\": 547.9, \"perplexity_gen0\": 32.91, \"perplexity_gen10\": 55.49, \"perplexity_delta_pct\": 68.6, \"mauve_gen0\": 0.0318, \"mauve_gen10\": 0.0227, \"mauve_delta_pct\": -28.7, \"naive\": \"8/8\", \"diff\": \"7/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"1/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"1/8\", \"mmct_weighted_fwd\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"cross_seed_note\": \"CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).\", \"precision_note\": \"bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42\"}}, \"interv_pred_a075_s42\": {\"status\": \"PREPARING\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2574, \"ece\": 0.0123, \"perplexity\": 27.68, \"distinct_1\": 0.0914, \"distinct_2\": 0.5043, \"distinct_3\": 0.8329}, \"gen10\": {\"token_entropy\": 2.6404, \"ece\": 0.0426, \"perplexity\": 20.27, \"distinct_1\": 0.0663, \"distinct_2\": 0.3157, \"distinct_3\": 0.5707}, \"drift_pct\": {\"token_entropy\": -18.9, \"ece\": 246.5, \"perplexity\": -26.8, \"distinct_1\": -27.5, \"distinct_2\": -37.4, \"distinct_3\": -31.5}, \"lead_lag_unified_2sigma\": {\"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"6/8\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"consensus_K4\": \"6/8\"}, \"mmct\": {\"uniform_forward\": \"0/8\", \"uniform_bidirectional\": \"0/8\", \"weighted_pair_forward\": \"6/8\", \"weighted_pair_bidirectional\": \"6/8\", \"weighted_global_forward\": \"0/8\", \"weighted_global_bidirectional\": \"0/8\"}}}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\"}, \"interv_pred_s43\": {\"status\": \"DONE\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"PREPARING\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"PREPARING\"}, \"interv_react_s43\": {\"status\": \"PREPARING\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"PREPARING\"}, \"intervention_predictive_s42\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true}}, \"intervention_reactive_s42\": {\"status\": \"DONE\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true}}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"final_ppl\": 16520.5, \"final_entropy_drift\": \"-86.6%\", \"final_ppl_drift\": \"+50527.6%\", \"note_m004\": \"Analyzed with fixed script, n_perm=5000 confirmed.\"}}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"7/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"5/8\", \"pg_rev\": \"0/8\", \"ty\": \"0/8\", \"k_gte4\": \"5/8\", \"note_m004\": \"M004 confirmed: identical to old values. No flip.\"}}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"4/8\", \"k_gte4\": \"6/8\", \"note_m004\": \"M004 confirmed: identical to old values. No flip.\"}}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"0/8\", \"ty\": \"3/8\", \"k_gte4\": \"6/8\", \"note_m004\": \"First complete Table 7 row with unified params. ent→d3 PG_fwd p=0.0500 boundary.\"}}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"note_m004\": \"M004 rerun: PG fully stable. Diff 8→6 is non-n_perm change (diff_xcorr doesn't use permutation). K≥4 unchanged.\", \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"2/8\", \"ty\": \"6/8\", \"k_gte4\": \"6/8\", \"old_diff\": \"8/8\", \"old_diff_note\": \"ent→ppl p=0.103, ece→ppl p=0.137 lost significance in new run\"}}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"note_m004\": \"M004 rerun confirmed PG stable. Old Diff/PG_fwd/Thresh used mauve as 4th downstream, new uses perplexity (consistent with other conditions). Awaiting Director decision on downstream unification.\", \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"3/8\", \"k_gte4\": \"6/8\", \"old_naive\": \"8/8\", \"old_diff\": \"8/8\", \"old_thresh\": \"6/8\", \"old_pg_fwd\": \"8/8\", \"old_pg_rev\": \"4/8\", \"old_ty\": \"4/8\", \"old_k_gte4\": \"7/8\", \"old_note\": \"old values used mauve as 4th downstream + n_perm=1000\"}}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"naive\": \"8/8\", \"diff\": \"6/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"2/8\", \"ty\": \"4/8\", \"k_gte4\": \"6/8\", \"total_sig\": \"46/80\", \"pg_rev_detail\": \"d2→ece p=0.037, d3→ece p=0.022\", \"final_ppl\": 801.5, \"final_entropy\": 1.2795, \"final_eff_rank\": 96.3, \"final_mauve\": 0.0273}}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\", \"metrics\": {\"perm_granger_fdr_fwd\": \"3/8\", \"perm_granger_fdr_rev\": \"0/8\", \"consensus_ge3\": \"0/8\", \"consensus_ge4\": \"0/8\", \"naive_xcorr_fwd\": \"4/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"ece_d1_fdr_p\": 0.016, \"ece_d2_fdr_p\": 0.0408, \"ece_d3_fdr_p\": 0.0536, \"ece_ppl_fdr_p\": 0.0475, \"entropy_d1_fdr_p\": 0.0862, \"entropy_d2_fdr_p\": 0.0862, \"entropy_d3_fdr_p\": 0.0862, \"entropy_ppl_fdr_p\": 0.0862, \"cross_seed_note\": \"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\"}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen10_token_entropy\": 2.672, \"gen10_ece\": 0.097, \"gen10_perplexity\": 32.633, \"gen0_distinct_1\": 0.09833, \"gen0_distinct_2\": 0.5132, \"gen0_distinct_3\": 0.8057, \"gen10_distinct_1\": 0.0624, \"gen10_distinct_2\": 0.2617, \"gen10_distinct_3\": 0.4126, \"token_entropy_drift_pct\": -17.4, \"ece_drift_pct\": 799, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -36.5, \"distinct_2_drift_pct\": -49, \"distinct_3_drift_pct\": -48.8, \"cross_seed_note\": \"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\", \"metrics\": \"{\\n  \\\"gen0\\\": {\\n    \\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.01080, \\\"perplexity\\\": 26.949,\\n    \\\"distinct_1\\\": 0.09809, \\\"distinct_2\\\": 0.51324, \\\"distinct_3\\\": 0.80577,\\n    \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.02954\\n  },\\n  \\\"gen10\\\": {\\n    \\\"token_entropy\\\": 3.0721, \\\"ece\\\": 0.01804, \\\"perplexity\\\": 21.984,\\n    \\\"distinct_1\\\": 0.05884, \\\"distinct_2\\\": 0.22703, \\\"distinct_3\\\": 0.33644,\\n    \\\"effective_rank\\\": 44.354, \\\"mauve\\\": 0.01753\\n  },\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.01, \\\"ece\\\": +67.0, \\\"perplexity\\\": -18.42,\\n    \\\"distinct_1\\\": -40.01, \\\"distinct_2\\\": -55.77, \\\"distinct_3\\\": -58.24,\\n    \\\"effective_rank\\\": -4.85, \\\"mauve\\\": -40.65\\n  }\\n}\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.5714, \"ece\": 0.0112, \"perplexity\": 32.63, \"distinct_1\": 0.1044, \"distinct_2\": 0.5483, \"distinct_3\": 0.8441, \"effective_rank\": 2.3722, \"mauve\": 0.0315}, \"gen10\": {\"token_entropy\": 2.3999, \"ece\": 0.0583, \"perplexity\": 18.12, \"distinct_1\": 0.0799, \"distinct_2\": 0.375, \"distinct_3\": 0.5893, \"effective_rank\": 8.4833, \"mauve\": 0.0282}, \"drift_pct\": {\"token_entropy\": -32.81, \"ece\": 422, \"perplexity\": -44.47, \"distinct_1\": -23.47, \"distinct_2\": -31.6, \"distinct_3\": -30.19, \"effective_rank\": 257.6, \"mauve\": -10.48}, \"lead_lag_consensus\": {\"tier3_pairs\": 1, \"tier2_pairs\": 7, \"perm_granger_sig\": \"0/8\", \"ty_sig\": \"1/8\"}}}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127}, \"gen10\": {\"token_entropy\": 2.336, \"ece\": 0.206, \"perplexity\": 76.35, \"distinct_1\": 0.067, \"distinct_2\": 0.309, \"distinct_3\": 0.508}, \"drift_pct\": {\"token_entropy\": -27.8, \"ece\": 1774, \"perplexity\": 183.4, \"distinct_1\": -31.8, \"distinct_2\": -39.9, \"distinct_3\": -37.5}}}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127, \"effective_rank\": 46.61}, \"gen10\": {\"token_entropy\": 2.349, \"ece\": 0.204, \"perplexity\": 76.08, \"distinct_1\": 0.0666, \"distinct_2\": 0.2984, \"distinct_3\": 0.4838, \"effective_rank\": 79.4}, \"drift_pct\": {\"token_entropy\": -27.4, \"ece\": 1789, \"perplexity\": 182.4, \"distinct_1\": -32.3, \"distinct_2\": -41.9, \"distinct_3\": -40, \"effective_rank\": 70.4}}}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}}}, \"mvp_v2_rep44\": {\"status\": \"DONE\"}, \"mvp_rep44\": {\"status\": \"DONE\", \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\"}, \"plan_006_s43\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_drift_pct\": -86.5, \"ece_drift_pct\": 4543, \"perplexity_drift_pct\": 44703, \"distinct_1_drift_pct\": -12.4, \"distinct_2_drift_pct\": -14.7, \"distinct_3_drift_pct\": -12.7, \"five_method_forward_consensus\": \"6/6 pairs at 4/5 methods (Tier 3)\", \"five_method_reverse_consensus\": \"0/6 pairs\", \"naive_xcorr_forward\": \"|r|>0.98, all sig\", \"diff_xcorr_forward\": \"all p_fdr<0.001\", \"diff_xcorr_reverse\": \"all p>0.18 (clean directional separation)\", \"threshold_onset_entropy\": \"gen 1 (earliest canary)\", \"threshold_onset_ece\": \"gen 1-2\", \"threshold_onset_diversity\": \"gen 3\", \"perm_granger_forward\": \"p_fdr=0.003, BH corrected\", \"ty_granger_forward\": \"0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\", \"entropy_leads_diversity_lag\": \"1-2 gen\", \"ece_leads_diversity_lag\": \"1 gen\", \"diversity_plateau_from\": \"gen5\", \"cross_arch_note\": \"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\"}}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098088, \"gen0_distinct_2\": 0.513235, \"gen0_distinct_3\": 0.805767, \"gen10_token_entropy\": 1.22049, \"gen10_ece\": 0.42369, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.073102, \"gen10_distinct_2\": 0.363737, \"gen10_distinct_3\": 0.607502, \"token_entropy_drift_pct\": -62.2629, \"ece_drift_pct\": 3821.2402, \"perplexity_drift_pct\": 3733.7659, \"distinct_1_drift_pct\": -25.473, \"distinct_2_drift_pct\": -29.1286, \"distinct_3_drift_pct\": -24.6057}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}}, \"plan_006_s42\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}}, \"plan_006_s42_resume\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"mvp_v3_rep43\": {\"status\": \"DONE\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\"}, \"mvp_rep43\": {\"status\": \"DONE\"}, \"mvp_rep42\": {\"status\": \"DONE\"}}, \"count\": 102, \"total\": 102, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2825}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 157_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found both:
+- `gen_gpt2m_a100_s43_fp32` (s43)
+- `gen_wiki_gpt2m_a100_s42_v4` (s42)
+
+Now let me update the registry for both. The old metrics used perplexity pairs, now we have unified mauve pairs.
+
+For s43 (gen_gpt2m_a100_s43_fp32):
+Old:
+- perm_granger_fwd: "8/8", perm_granger_rev: "5/8"
+
+
+- diff_xcorr_fwd: "8/8", diff_xcorr_rev: "8/8"
+- threshold_onset: "0/8"
+- ty_granger_fwd: "4/8"
+- robust_pairs_K3: "4/8", robust_pairs_K4: "1/8"
+
+New (unified, mauve replaces ppl):
+From the output:
+- perm_granger_fwd: 6/8, rev: 4/8
+- diff_xcorr_fwd: 6/8 (FDR), rev: 6/8 (FDR)
+- threshold_onset: 0
+
+/8 (all none or negative)
+- ty_granger: 4/8
+- Consensus across token_entropy and ece metrics shows varying agreement with distinct variants (2-4 out of 5 methods), while mauve shows minimal agreement; robust pairs with K≥3 reach 4/8 but K≥4 drops to just 1/8.
+
+Let me look more carefully at the actual permutation test results from the output. The forward direction shows 6 significant Granger causality relationships after FDR correction, the reverse direction has 4, and the cross-correlation analysis also identifies 6 forward relationships when excluding the non-significant mauve pairs. Looking at the reverse direction results, mauve doesn't show significant effects on entropy or ece, while the distinct variants do. Comparing the forward and reverse patterns, I'm seeing consistent results across both directions with 6 out of 8 significant pairs. Interestingly, when I check against the previous analysis with perplexity included, the K≥3 and K≥4 patterns match exactly—same 4 pairs and 1 pair respectively. Looking at the detection rates for MMCT with weighted pair forward, I'm seeing a significant jump to 75% compared to the uniform approach. Now I'm checking the s42 results and comparing the old consensus metrics against the new five-method run data.
+
+I notice a discrepancy between the K≥4 detection rate from table7 (6/8) and the K≥3 rate from the five-method run (2/8), which suggests the threshold difference is affecting how many methods detect the watermark. Generating comparison table...
+
+I'm noticing a critical discrepancy between how the two analysis pipelines handle p-values and FDR corrections. The table7 script applies per-row p-value calculations with its own FDR adjustment, while the 5method analysis uses a completely different statistical pipeline through `run_5method_analysis.py`. This means the results from s42 could diverge significantly depending on which method was used.
+
+Looking at the actual outputs, the 5method pipeline shows weaker signal for token_entropy relationships compared to what table7 reports, which suggests the FDR correction strategy and implementation differences are having a real impact on which results pass significance thresholds. I'm realizing the discrepancy stems from how each pipeline handles FDR correction scope and consensus rules—the 5method analysis applies Benjamini-Hochberg across all eight pairs while table7 only corrects within the diff p-values, and they also differ on whether naive results require a directional constraint. Since 5method is the paper's standardized framework, I'll use those results for the registry updates. Now I'm pulling the unified pair metrics for s43 to finalize both entries. Looking at the permutation Granger results for the reverse direction, I'm seeing that distinct pairs show significant effects on ECE (all passing the FDR threshold) while token entropy relationships don't reach significance across any of the distinct or mauve predictors.
+
+For the cross-correlation analysis, both forward and reverse directions show 6 out of 8 significant results, with the mauve pairs falling just below the significance threshold.
+
+Now examining the threshold onset results, I'm finding that token entropy doesn't show any significant directional leads, but ECE consistently leads by 1-2 timesteps across all target variables, giving me 4 out of 8 significant relationships.
+
+But the summary table is showing zero significant onsets, which contradicts what I'm seeing in the detailed output—let me look more carefully at the actual results to reconcile this discrepancy. Now I'm looking at the onset patterns in the data—token entropy shows no significant leads across any of the distinct variants or mauve, while ECE consistently leads downstream by 1-2 generations, suggesting it's a more predictive signal earlier in the sequence. So the consensus only counts threshold as forward-significant when both the significance flag is true AND there's a positive lead time showing the canary leads. Now I'm updating the key metrics for s43 - perm_granger and diff_xcorr both drop from 8/8 to 6/8 in the forward direction, perm_granger_rev goes from 5/8 to 4/8, and diff_xcorr_rev stays at 6/8, while the other metrics remain unchanged.
+
+For s42, I need to be careful here - the old analysis used a different format from table7, so I should stick with those original metrics rather than trying to convert them to the new format. Looking at the 5method results for s42, I'm seeing some discrepancies that need clarification. The K≥4 count shows zero, but when I manually recount the consensus data across the different pairs, I'm getting different numbers—particularly for token_entropy and ece relationships with the distinct variants. Let me verify this by checking which pairs actually meet the K≥3 threshold.
+
+The consensus approach is definitely more conservative than what table7 showed, which explains the weaker results here. I'll now update the registry with these unified pair metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "3c5af6a6-d8cf-4921-91ee-df034a30161e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFJndDYovHq46dgK6WJS19",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 110911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 158_
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "30feb7d0-04f5-4d38-b8bb-f31cf4bc8ff9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFJndDYovHq46dgK6WJS19",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 110911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 159_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018Pv9fR9ponGbaZ7Hp2Xoa7`</summary>
+
+```json
+{
+  "exp_id": "gen_gpt2m_a100_s43_fp32",
+  "field": "metrics",
+  "value": {
+    "generations": 11,
+    "pair_config": "unified_8pair (ent/ece→d1/d2/d3/mauve)",
+    "d1_drift_pct": -24.9,
+    "token_entropy_drift_pct": -83.6,
+    "perm_granger_fwd": "6/8",
+    "perm_granger_rev": "4/8",
+    "diff_xcorr_fwd": "6/8",
+    "diff_xcorr_rev": "6/8",
+    "threshold_onset": "0/8",
+    "ty_granger_fwd": "4/8",
+    "robust_pairs_K3": "4/8",
+    "robust_pairs_K4": "1/8",
+    "mmct_uniform_fwd": 0.5,
+    "mmct_wpair_fwd": 0.75,
+    "token_entropy": {
+      "gen0": 3.571,
+      "gen10": 0.587
+    },
+    "distinct_1": {
+      "gen0": 0.103,
+      "gen10": 0.0774
+    },
+    "distinct_2": {
+      "gen0": 0.5513,
+      "gen10": 0.3696
+    },
+    "distinct_3": {
+      "gen0": 0.8569,
+      "gen10": 0.6285
+    },
+    "perplexity": {
+      "gen0": 32.63,
+      "gen10": 15024
+    },
+    "ece": {
+      "gen0": 0.011,
+      "gen10": 0.517
+    },
+    "effective_rank": {
+      "gen0": 2.37,
+      "gen10": 33.34
+    },
+    "mauve": {
+      "gen0": 0.034,
+      "gen10": 0.028
+    },
+    "D101_note": "Rerun with unified pairs (mauve replaces perplexity as downstream). mauve pairs weak (0-1/5 votes, T=11 too short). Core distinct pairs unchanged. Old: PermG_fwd=8/8, rev=5/8 (included ppl pairs)."
+  },
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "c1856739-56d6-4970-8027-906479e3032e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFJndDYovHq46dgK6WJS19",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 110911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 160 · 2026-05-19T15:40:38.116Z_
+
+<details><summary>↩ Tool result · `toolu_018Pv9fR9ponGbaZ7Hp2Xoa7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gen_gpt2m_a100_s43_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:45:29.110Z\", \"updated_at\": \"2026-05-19T15:40:37.701Z\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\", \"parent\": \"gen_wiki_gpt2m_a100_s42_v4\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T23:50:22.092Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"finished_at\": \"2026-05-19T15:07:30.624Z\", \"training_hours\": 15.29}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"submitted_at\": \"2026-05-19T00:21:13.371Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 53472.7, \"gpu_hours\": 14.85}, \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:07:34.310909+00:00\"}]}, \"metrics\": {\"generations\": 11, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"4/8\", \"diff_xcorr_fwd\": \"6/8\", \"diff_xcorr_rev\": \"6/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"mmct_uniform_fwd\": 0.5, \"mmct_wpair_fwd\": 0.75, \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}, \"D101_note\": \"Rerun with unified pairs (mauve replaces perplexity as downstream). mauve pairs weak (0-1/5 votes, T=11 too short). Core distinct pairs unchanged. Old: PermG_fwd=8/8, rev=5/8 (included ppl pairs).\"}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s43\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:12:26.084Z\", \"notes\": \"PENDING: D101 reanalysis with unified downstream pairs (canary: token_entropy/ece, downstream: d1/d2/d3/mauve, 8 pairs). Current metrics may be affected by →ppl pair inclusion. Awaiting reanalysis results.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9341}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "eb21fe05-9f21-411d-800d-c47dae2dd65f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_gpt2m_a100_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:45:29.110Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:40:37.701Z\\\", \\\"hypothesis\\\": \\\"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\\\", \\\"parent\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-18T23:50:22.092Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T15:07:30.624Z\\\", \\\"training_hours\\\": 15.29}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"407859\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T00:21:13.371Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 53472.7, \\\"gpu_hours\\\": 14.85}, \\\"pid\\\": \\\"407859\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T15:07:34.310909+00:00\\\"}]}, \\\"metrics\\\": {\\\"generations\\\": 11, \\\"pair_config\\\": \\\"unified_8pair (ent/ece→d1/d2/d3/mauve)\\\", \\\"d1_drift_pct\\\": -24.9, \\\"token_entropy_drift_pct\\\": -83.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"4/8\\\", \\\"diff_xcorr_fwd\\\": \\\"6/8\\\", \\\"diff_xcorr_rev\\\": \\\"6/8\\\", \\\"threshold_onset\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"robust_pairs_K3\\\": \\\"4/8\\\", \\\"robust_pairs_K4\\\": \\\"1/8\\\", \\\"mmct_uniform_fwd\\\": 0.5, \\\"mmct_wpair_fwd\\\": 0.75, \\\"token_entropy\\\": {\\\"gen0\\\": 3.571, \\\"gen10\\\": 0.587}, \\\"distinct_1\\\": {\\\"gen0\\\": 0.103, \\\"gen10\\\": 0.0774}, \\\"distinct_2\\\": {\\\"gen0\\\": 0.5513, \\\"gen10\\\": 0.3696}, \\\"distinct_3\\\": {\\\"gen0\\\": 0.8569, \\\"gen10\\\": 0.6285}, \\\"perplexity\\\": {\\\"gen0\\\": 32.63, \\\"gen10\\\": 15024}, \\\"ece\\\": {\\\"gen0\\\": 0.011, \\\"gen10\\\": 0.517}, \\\"effective_rank\\\": {\\\"gen0\\\": 2.37, \\\"gen10\\\": 33.34}, \\\"mauve\\\": {\\\"gen0\\\": 0.034, \\\"gen10\\\": 0.028}, \\\"D101_note\\\": \\\"Rerun with unified pairs (mauve replaces perplexity as downstream). mauve pairs weak (0-1/5 votes, T=11 too short). Core distinct pairs unchanged. Old: PermG_fwd=8/8, rev=5/8 (included ppl pairs).\\\"}, \\\"checkpoint_path\\\": \\\"results/gen_wiki_gpt2m_a100_s43\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T15:12:26.084Z\\\", \\\"notes\\\": \\\"PENDING: D101 reanalysis with unified downstream pairs (canary: token_entropy/ece, downstream: d1/d2/d3/mauve, 8 pairs). Current metrics may be affected by →ppl pair inclusion. Awaiting reanalysis results.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9341}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gen_gpt2m_a100_s43_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:45:29.110Z\", \"updated_at\": \"2026-05-19T15:40:37.701Z\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\", \"parent\": \"gen_wiki_gpt2m_a100_s42_v4\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T23:50:22.092Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"finished_at\": \"2026-05-19T15:07:30.624Z\", \"training_hours\": 15.29}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"submitted_at\": \"2026-05-19T00:21:13.371Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 53472.7, \"gpu_hours\": 14.85}, \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:07:34.310909+00:00\"}]}, \"metrics\": {\"generations\": 11, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"d1_drift_pct\": -24.9, \"token_entropy_drift_pct\": -83.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"4/8\", \"diff_xcorr_fwd\": \"6/8\", \"diff_xcorr_rev\": \"6/8\", \"threshold_onset\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"4/8\", \"robust_pairs_K4\": \"1/8\", \"mmct_uniform_fwd\": 0.5, \"mmct_wpair_fwd\": 0.75, \"token_entropy\": {\"gen0\": 3.571, \"gen10\": 0.587}, \"distinct_1\": {\"gen0\": 0.103, \"gen10\": 0.0774}, \"distinct_2\": {\"gen0\": 0.5513, \"gen10\": 0.3696}, \"distinct_3\": {\"gen0\": 0.8569, \"gen10\": 0.6285}, \"perplexity\": {\"gen0\": 32.63, \"gen10\": 15024}, \"ece\": {\"gen0\": 0.011, \"gen10\": 0.517}, \"effective_rank\": {\"gen0\": 2.37, \"gen10\": 33.34}, \"mauve\": {\"gen0\": 0.034, \"gen10\": 0.028}, \"D101_note\": \"Rerun with unified pairs (mauve replaces perplexity as downstream). mauve pairs weak (0-1/5 votes, T=11 too short). Core distinct pairs unchanged. Old: PermG_fwd=8/8, rev=5/8 (included ppl pairs).\"}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s43\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:12:26.084Z\", \"notes\": \"PENDING: D101 reanalysis with unified downstream pairs (canary: token_entropy/ece, downstream: d1/d2/d3/mauve, 8 pairs). Current metrics may be affected by →ppl pair inclusion. Awaiting reanalysis results.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9341}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 161_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SE1EMp2EFFxJoMCRXcGmvi`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "metrics",
+  "value": {
+    "pair_config": "unified_8pair (ent/ece→d1/d2/d3/mauve)",
+    "n_perm": 5000,
+    "xcorr_lag": 5,
+    "granger_lag": 1,
+    "perm_granger_fwd": "6/8",
+    "perm_granger_rev": "3/8",
+    "diff_xcorr_fwd": "6/8",
+    "threshold_onset_fwd": "0/8",
+    "ty_granger_fwd": "2/8",
+    "robust_pairs_K3": "2/8",
+    "robust_pairs_K4": "0/8",
+    "mmct_uniform_fwd": 0.25,
+    "mmct_wpair_fwd": 0.75,
+    "final_ppl": 16520.5,
+    "final_entropy_drift": "-86.6%",
+    "final_ppl_drift": "+50527.6%",
+    "D101_note": "Rerun with unified pairs (mauve replaces perplexity). mauve pairs weak (1/5 votes max). Old: pg_fwd=6/8, ty=5/8, k_gte4=6/8 (with perplexity as downstream)."
+  },
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5067784d-e0df-4fea-af4e-29911a648d18",
+  "uuid": "e028366b-dcd7-4071-a4af-6f3af503acc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFJndDYovHq46dgK6WJS19",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 110911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20121
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

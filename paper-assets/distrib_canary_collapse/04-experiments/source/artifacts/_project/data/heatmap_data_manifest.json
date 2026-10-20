@@ -1,0 +1,268 @@
+{
+  "manifest_version": "1.0",
+  "generated": "2026-05-21",
+  "grid": {
+    "T_values": [5, 10, 15, 20, 25],
+    "alpha_values": [0.45, 0.50, 0.60, 0.75],
+    "total_cells": 20,
+    "completed": 15,
+    "running": 5
+  },
+  "metric": "perm_granger_fdr_forward_sig (PermG fwd)",
+  "total_pairs": 8,
+  "cells": [
+    {
+      "T": 5, "alpha": 0.45, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "phase_diagram_t05_a045_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a045_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 6
+    },
+    {
+      "T": 5, "alpha": 0.50, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "phase_diagram_t05_a050_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a050_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 6
+    },
+    {
+      "T": 5, "alpha": 0.60, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "phase_diagram_t05_a060_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a060_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 6
+    },
+    {
+      "T": 5, "alpha": 0.75, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "phase_diagram_t05_a075_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a075_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 6
+    },
+    {
+      "T": 10, "alpha": 0.45, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "alpha_sweep_a045_s43_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a045_s43_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 11,
+      "note": "T=10 default from alpha_sweep. a045_s42_fp32 also available (PermG=0/8)."
+    },
+    {
+      "T": 10, "alpha": 0.50, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "alpha_sweep_a050_s43_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 11
+    },
+    {
+      "T": 10, "alpha": 0.60, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "alpha_sweep_a060_s42_fp32_v4",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v4",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 11,
+      "note": "Sync-dip structural: PermG=0/8 across all T values."
+    },
+    {
+      "T": 10, "alpha": 0.75, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "alpha_sweep_a075_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 11,
+      "note": "a075_s43 shows 5/8 (seed variance); s42 is primary with 6/8."
+    },
+    {
+      "T": 15, "alpha": 0.45, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "phase_diagram_t15_a045_s42_fp32",
+      "server": "westd-19828",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 16,
+      "note": "Corrected from 8/8 (old script) to 6/8 using run_5method_analysis_d102.py with true_3sigma_d105."
+    },
+    {
+      "T": 15, "alpha": 0.50, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "phase_diagram_t15_a050_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a050_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 16
+    },
+    {
+      "T": 15, "alpha": 0.60, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "phase_diagram_t15_a060_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 16,
+      "note": "Sync-dip structural."
+    },
+    {
+      "T": 15, "alpha": 0.75, "status": "RUNNING",
+      "PermG_fwd": null, "PermG_score": null,
+      "registry_id": "phase_diagram_t15_a075_s42_fp32_v2",
+      "server": "unknown",
+      "results_dir": null,
+      "analysis_file": null,
+      "analysis_exists": false,
+      "note": "v1 on westd-17855 completed 16 gens but FAILED (empty metrics). v2 RUNNING."
+    },
+    {
+      "T": 20, "alpha": 0.45, "status": "DONE",
+      "PermG_fwd": "5/8", "PermG_score": 5,
+      "registry_id": "t20_a045_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/t20/a045_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 21
+    },
+    {
+      "T": 20, "alpha": 0.50, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "t20_a050_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 21
+    },
+    {
+      "T": 20, "alpha": 0.60, "status": "DONE",
+      "PermG_fwd": "0/8", "PermG_score": 0,
+      "registry_id": "t20_a060_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/t20/a060_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 21,
+      "note": "Sync-dip structural. Near-miss: te→d1 raw p=0.048, FDR p=0.064."
+    },
+    {
+      "T": 20, "alpha": 0.75, "status": "DONE",
+      "PermG_fwd": "6/8", "PermG_score": 6,
+      "registry_id": "t20_a075_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/t20/a075_s42_fp32",
+      "analysis_file": "analysis/5method_leadlag.json",
+      "analysis_exists": true,
+      "all_metrics_exists": true,
+      "n_gens": 21
+    },
+    {
+      "T": 25, "alpha": 0.45, "status": "RUNNING",
+      "PermG_fwd": null, "PermG_score": null,
+      "registry_id": "phase_diagram_t25_a045_s42_fp32_v2",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a045_s42_fp32",
+      "analysis_file": null,
+      "analysis_exists": false,
+      "progress": "14/26 gens",
+      "note": "v1 FAILED, v2 RUNNING. 14 gen dirs on 17855 (from v1 or v2)."
+    },
+    {
+      "T": 25, "alpha": 0.50, "status": "RUNNING",
+      "PermG_fwd": null, "PermG_score": null,
+      "registry_id": "phase_diagram_t25_a050_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32",
+      "analysis_file": null,
+      "analysis_exists": false,
+      "progress": "14/26 gens"
+    },
+    {
+      "T": 25, "alpha": 0.60, "status": "RUNNING",
+      "PermG_fwd": null, "PermG_score": null,
+      "registry_id": "phase_diagram_t25_a060_s42_fp32",
+      "server": "westd-17855",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a060_s42_fp32",
+      "analysis_file": null,
+      "analysis_exists": false,
+      "progress": "15/26 gens"
+    },
+    {
+      "T": 25, "alpha": 0.75, "status": "RUNNING",
+      "PermG_fwd": null, "PermG_score": null,
+      "registry_id": "phase_diagram_t25_a075_s42_fp32",
+      "server": "westd-19828",
+      "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a075_s42_fp32",
+      "analysis_file": null,
+      "analysis_exists": false,
+      "progress": "15/26 gens"
+    }
+  ],
+  "heatmap_grid": {
+    "description": "PermG_score matrix [T_idx][alpha_idx], null = pending",
+    "T_axis": [5, 10, 15, 20, 25],
+    "alpha_axis": [0.45, 0.50, 0.60, 0.75],
+    "matrix": [
+      [0, 0, 0, 0],
+      [0, 6, 0, 6],
+      [6, 6, 0, null],
+      [5, 6, 0, 6],
+      [null, null, null, null]
+    ]
+  },
+  "data_locations": {
+    "T5_experiments": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_*",
+    "T10_experiments": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a0*",
+    "T15_experiments_17855": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_*",
+    "T15_a045_on_19828": "westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s42_fp32",
+    "T20_experiments": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/t20/a0*",
+    "T25_experiments_17855": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_*",
+    "T25_a075_on_19828": "westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a075_s42_fp32"
+  },
+  "existing_local_artifacts": {
+    "heatmap_script": "artifacts/phase_diagram_draft.py",
+    "heatmap_pdf": "artifacts/phase_diagram_draft.pdf",
+    "heatmap_png": "artifacts/phase_diagram_draft.png",
+    "note": "Existing script has 14 data points (missing T=15 α=0.60/0.75, T=25 all). Now 15 completed — script needs update to add T=15 α=0.60 (0/8)."
+  },
+  "discrepancies": {
+    "completed_count": "User stated 13/20 completed, actual verified count is 15/20. Difference: T=15 α=0.60 (0/8) and one other cell may have been counted as pending when task was created.",
+    "T10_a075_seed_variance": "a075_s42_fp32=6/8, a075_s43=5/8. Using s42 (6/8) as primary."
+  }
+}

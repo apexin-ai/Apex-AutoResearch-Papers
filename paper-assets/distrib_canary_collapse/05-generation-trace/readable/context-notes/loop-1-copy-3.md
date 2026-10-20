@@ -1,0 +1,82 @@
+# reviewer / loop_1.md
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_1.md`
+- **Structured JSON:** [`f78d62b0dfb80389af75.json`](../../sessions/f7/f78d62b0dfb80389af75.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_wall_time
+updated: '2026-05-14T08:30:28+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 项目未配置 `execution.gpu_ids` 白名单，但实际约定两张卡（cuda:0 + cuda:1）各跑一个 rep，不可两个 rep 挤同一张卡
+- `iterative_train.py` 无 `--device` 参数，GPU 隔离完全依赖 `submit_training_job` 设置 `CUDA_VISIBLE_DEVICES`——手动 `python iterative_train.py` 会默认全跑 cuda:0
+- MAUVE `device_id` 已改为 `torch.cuda.current_device()`，不要回退到硬编码 `0`
+- AutoDL 根分区只有 ~30GB，模型/数据/HF cache 必须在 `/root/autodl-tmp/`
+- perplexity 计算已修复（`labels[attention_mask==0]=-100`），verify_gen01 的数值（ppl=315/1664）是旧版带 padding bug 的，不可与 v4 直接对比
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`autodl-rtx6000`（SSH 账号 root），2× NVIDIA RTX PRO 6000 Blackwell 96GB
+- 工作目录：`/root/autodl-tmp/distrib_canary_collapse`
+- Python：`/root/miniconda3/bin/python`（conda base，Python 3.12.3，PyTorch 2.10.0+cu128）
+- HF cache：`/root/autodl-tmp/.hf_cache`，HF_ENDPOINT=`https://hf-mirror.com`
+- 数据集：`/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k/`（train/eval/prompts 各 5000 条）
+- 模型：EleutherAI/pythia-410m（从 HF mirror 下载，缓存在 HF_HOME）
+- 结果目录：`results/mvp/rep_{42,43,44}`
+- 日志目录：`~/runs/distrib_canary_collapse/mvp_v4_rep{42,43}.log`
+- 无 W&B 配置
+- 活跃进程（截至 handoff 前）：
+  - mvp_v4_rep42: PID 13683, tmux=mvp_v4_rep42, cuda:0
+  - mvp_v4_rep43: PID 13763, tmux=mvp_v4_rep43, cuda:1
+
+### 3. 📊 当前状态
+v4 实验第 4 次尝试终于成功启动（v1 killed for param fix, v2 MAUVE crash, v3 same crash + stdout lost）。
+
+**Registry RUNNING/PREPARING:**
+- `mvp_v4_rep42` ALLOCATED — seed=42, GPU 0, 上次检查时 Gen 1 MAUVE featurizing 中
+- `mvp_v4_rep43` ALLOCATED — seed=43, GPU 1, 上次检查时已完成 Gen 1 (ppl=55.45, entropy=1.909, eff_rank=78.4, mauve=0.030)，进入 Gen 2 生成
+- `mvp_v4_rep44` PREPARING — seed=44, 待前两个之一完成后启动
+
+**预估完成时间**：每 rep 约 4-5 小时（10 gen），rep42+43 并行 → 约 UTC 12:00-13:00 完成，rep44 串行再 4-5h → 约 UTC 17:00。
+
+**等待中**：无 pending worker 通知。下一个触发点是 rep42 或 rep43 完成时的 worker_done 通知。
+
+### 4. 📋 待办
+- rep42 或 rep43 完成 → 立即审查 all_metrics.json 的 10-gen 趋势：(a) perplexity 是否单调上升、(b) effective_rank 方向是否反转（verify 中 Gen0→1 +71% 反常上升，需看后续是否回落）、(c) MAUVE 是否有足够动态范围
+- rep42+rep43 都完成 → 交叉对比两个 seed 的 metric 趋势一致性，初判 MVP pass/fail
+- rep44 启动 → 确认 GPU 隔离正确、日志可见
+- 3 reps 全部完成 → 审查 analyze_mvp.py 的 cross-correlation 输出，验证 pass/fail 判定逻辑
+- 如果任一 rep 中途 crash → 检查是否又是 MAUVE FAISS 问题（虽然 Gen 0 已通过，但后续 gen 的 generated text 可能更短/更重复导致有效样本数下降）
+
+### 5. 🎯 战略上下文
+- **核心假设**：≥1 族 canary 指标在 100% SC full replacement 下对 downstream 指标有 ≥1 gen 时序领先性
+- **MVP pass/fail**：≥1 canary 族在 3/3 reps 均领先 downstream ≥1 gen + cross-correlation 峰在负 lag
+- **决策链**：D001(MVP 设计) → D002(ECE=next-token calib, SC=full replace) → D003(AAAI 2027 ~Aug 2026) → D004(n_prompts 5000, steps 5000)
+- **目标 venue**：AAAI 2027（DDL ~2026-08），~2.5 个月
+- **初步信号积极**：Gen 0→1 中 token_entropy(-41%) 和 ECE(+18x) 剧烈变化，而 MAUVE/self_bleu 几乎不动——支持 canary 先于 downstream
+- **容易判错的事**：
+  - effective_rank 在 Gen 0→1 反常上升（+71%），不要急着标 bug——可能是先发散后坍缩的非单调行为，等 10 gen 完整数据再判断
+  - FAISS warning（"clustering N points to K centroids"）不是 crash，是正常 warning，MAUVE 仍能出数
+  - verify_gen01 的 perplexity 数值（315/1664）是旧版 padding bug 产物，v4 的 55.45 才是正确的
+  - `run_mvp.sh` 仍有旧参数 `steps_per_gen=10000`，不要用它直接启动
+
+
+---

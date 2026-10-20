@@ -1,0 +1,29 @@
+{
+  "exp_id": "data_strategy_ablation_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:27:03.682Z",
+    "updated_at": "2026-05-20T04:28:29.101Z",
+    "hypothesis": "数据累积策略 ablation：accumulate 模式下（每代训练数据叠加所有前几代生成文本）α=0.50 的 canary lead-lag 与 replace 模式（当前默认：每代只用上一代输出）对比。如果 accumulate 模式 PermG 显著不同 → 数据策略是方法论核心设计选择，影响 collapse 动态；如果 PermG 相近 → 方法对数据策略鲁棒。Baseline: alpha_sweep_a050_s42_fp32 (replace, PermG=6/8)。",
+    "parent": "alpha_sweep_a050_s42_fp32",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "266485",
+      "log_path": "~/runs/distrib_canary_collapse/data_strategy_ablation_s42.log",
+      "submitted_at": "2026-05-20T04:28:15.287Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T04:28:29.416364+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "gen_gpt2m_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:14:35.399Z",
+    "updated_at": "2026-05-21T09:52:11.651Z",
+    "hypothesis": "D157 cross-seed validation: GPT-2-medium fp32 s43 replicates s42 fp32 result (PermG 6/8). If s43 fp32 also ≥5/8, precision-dependent claim upgrades from single-seed to 2-seed consistent. Tests whether GPT-2m canary detection is seed-robust under fp32.",
+    "spec": {
+      "command": "python run_iterative_generation.py --model gpt2-medium --dataset wikitext --alpha 1.00 --seed 43 --n_gen 10 --fp32",
+      "server": "westd-17855",
+      "gpu": "cuda:1",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1",
+      "data_count": "4.4M tokens",
+      "model_name": "gpt2-medium",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-21T09:52:11.970711+00:00",
+  "trigger": "update_registry"
+}

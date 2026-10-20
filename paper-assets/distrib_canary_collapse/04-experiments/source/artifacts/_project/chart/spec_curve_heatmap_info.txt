@@ -1,0 +1,3 @@
+Heatmap figure: alpha x specification detection rates.
+Server path: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/spec_curve_analysis/spec_curve_heatmap.{pdf,png}
+16 alpha values (0.00-0.75) x 18 specifications sorted by mean detection rate.

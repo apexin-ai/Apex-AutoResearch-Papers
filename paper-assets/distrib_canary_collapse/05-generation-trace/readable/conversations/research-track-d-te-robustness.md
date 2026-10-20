@@ -1,0 +1,754 @@
+# research track d te robustness
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_research_track-d-te-robustness_20260522T043828.jsonl`
+- **Structured JSON:** [`caf7516bbd5936a19c7c.json`](../../sessions/ca/caf7516bbd5936a19c7c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T04:43:04.425361+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T04:43:04.426057+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T04:43:04.426322+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T04:43:04.426698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Transfer Entropy analysis: Discrete (pyinform) + Symbolic TE (ordinal patterns).\\n\\nInvestigates whether TE can break through PermG sync-dip blind spot at alpha=0.60.\\nTwo methods:\\n1. Discrete TE (pyinform): quantile-binned, standard\\n2. Symbolic TE: ordinal pattern encoding (Staniek & Lehnertz 2008), robust for T<20\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom itertools import permutations\\nfrom pyinform import transfer_entropy as pyinform_te\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nRESULTS_ROOT = Path(\\\"/root/autodl-tmp/distrib_canary_collapse/results\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts\\\")\\n\\nEXPERIMENTS = {\\n    \\\"T10_a060_s42\\\": {\\\"path\\\": \\\"alpha_sweep/a060_s42_fp32_v4\\\", \\\"T\\\": 10, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T15_a060_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a060_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T20_a060_s42\\\": {\\\"path\\\": \\\"t20/a060_s42_fp32\\\", \\\"T\\\": 20, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T10_a045_s42\\\": {\\\"path\\\": \\\"alpha_sweep/a045_s42_fp32\\\", \\\"T\\\": 10, \\\"alpha\\\": 0.45, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T15_a050_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a050_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.50, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T15_a075_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a075_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.75, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T05_a050_s42\\\": {\\\"path\\\": \\\"phase_diagram/t05_a050_s42_fp32\\\", \\
+…[truncated 7473 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T04:43:04.426898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T04:43:04.427477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"discrete\\\": [\\n    {\\n      \\\"experiment\\\": \\\"T10_a060_s42\\\",\\n      \\\"T\\\": 10,\\n      \\\"alpha\\\": 0.6,\\n      \\\"category\\\": \\\"sync-dip\\\",\\n      \\\"PermG\\\": \\\"0/8\\\",\\n      \\\"metric\\\": \\\"distinct_1\\\",\\n      \\\"lag\\\": 1,\\n      \\\"TE_c2d\\\": 0.12451,\\n      \\\"TE_d2c\\\": 0.67549,\\n      \\\"p_c2d\\\": 0.99,\\n      \\\"p_d2c\\\": 0.6533,\\n      \\\"null95_c2d\\\": 0.6,\\n      \\\"sig_c2d\\\": false,\\n      \\\"sig_d2c\\\": false\\n    },\\n    {\\n      \\\"experiment\\\": \\\"T10_a060_s42\\\",\\n      \\\"T\\\": 10,\\n      \\\"alpha\\\": 0.6,\\n      \\\"category\\\": \\\"sync-dip\\\",\\n      \\\"PermG\\\": \\\"0/8\\\",\\n      \\\"metric\\\": \\\"distinct_1\\\",\\n      \\\"lag\\\": 2,\\n      \\\"TE_c2d\\\": 0.0,\\n      \\\"TE_d2c\\\": 0.3061,\\n      \\\"p_c2d\\\": 1.0,\\n      \\\"p_d2c\\\": 0.8267,\\n      \\\"null95_c2d\\\": 0.52832,\\n      \\\"sig_c2d\\\": false,\\n      \\\"sig_d2c\\\": false\\n    },\\n    {\\n      \\\"experiment\\\": \\\"T10_a060_s42\\\",\\n      \\\"T\\\": 10,\\n      \\\"alpha\\\": 0.6,\\n      \\\"category\\\": \\\"sync-dip\\\",\\n      \\\"PermG\\\": \\\"0/8\\\",\\n      \\\"metric\\\": \\\"mauve\\\",\\n      \\\"lag\\\": 1,\\n      \\\"TE_c2d\\\": 0.04902,\\n      \\\"TE_d2c\\\": 0.6,\\n      \\\"p_c2d\\\": 1.0,\\n      \\\"p_d2c\\\": 0.6967,\\n      \\\"null95_c2d\\\": 0.6,\\n      \\\"sig_c2d\\\": false,\\n      \\\"sig_d2c\\\": false\\n    },\\n    {\\n      \\\"experiment\\\": \\\"T10_a060_s42\\\",\\n      \\\"T\\\": 10,\\n      \\\"alpha\\\": 0.6,\\n      \\\"category\\\": \\\"sync-dip\\\",\\n      \\\"PermG\\\": \\\"0/8\\\",\\n      \\\"metric\\\": \\\"mauve\\\",\\n      \\\"lag\\\": 2,\\n      \\\"TE_c2d\\\": 0.0,\\n      \\\"TE_d2c\\\": 0.3061,\\n      \\\"p_c2d\\\": 1.0,\\n      \\\"p_d2c\\\": 0.8067,\\n      \\\"null95_c2d\\\": 0.52832,\\n      \\\"sig_c2d\\\": false,\\n      \\\"sig_d2c\\\": 
+…[truncated 9447 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T04:43:04.427745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*a045*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*a045*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T04:43:04.428165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a045_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a045_s43_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/t20/a045_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a045_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a045_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s43_fp32/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T04:43:04.428467+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*t15*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*t15*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T04:43:04.428658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a050_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a075_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s43_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s43_fp32/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T04:43:04.428860+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*a060*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -path \"*a060*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:43:04.429169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s43_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v4/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/t20/a060_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a060_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s43_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t20_a060_s43_fp32/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T04:43:04.429471+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:43:04.429833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Transfer Entropy analysis: Discrete (pyinform) + Symbolic TE (ordinal patterns).\\n\\nInvestigates whether TE can break through PermG sync-dip blind spot at alpha=0.60.\\nTwo methods:\\n1. Discrete TE (pyinform): quantile-binned, standard\\n2. Symbolic TE: ordinal pattern encoding (Staniek & Lehnertz 2008), robust for T<20\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom itertools import permutations\\nfrom pyinform import transfer_entropy as pyinform_te\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nRESULTS_ROOT = Path(\\\"/root/autodl-tmp/distrib_canary_collapse/results\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts\\\")\\n\\nEXPERIMENTS = {\\n    \\\"T10_a060_s42\\\": {\\\"path\\\": \\\"alpha_sweep/a060_s42_fp32_v4\\\", \\\"T\\\": 10, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T15_a060_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a060_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T20_a060_s42\\\": {\\\"path\\\": \\\"t20/a060_s42_fp32\\\", \\\"T\\\": 20, \\\"alpha\\\": 0.60, \\\"category\\\": \\\"sync-dip\\\", \\\"PermG\\\": \\\"0/8\\\"},\\n    \\\"T10_a045_s42\\\": {\\\"path\\\": \\\"alpha_sweep/a045_s42_fp32\\\", \\\"T\\\": 10, \\\"alpha\\\": 0.45, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T15_a050_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a050_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.50, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T15_a075_s42\\\": {\\\"path\\\": \\\"phase_diagram/t15_a075_s42_fp32\\\", \\\"T\\\": 15, \\\"alpha\\\": 0.75, \\\"category\\\": \\\"positive\\\", \\\"PermG\\\": \\\"6/8\\\"},\\n    \\\"T05_a050_s42\\\": {\\\"path\\\": \\\"phase_diagram/t05_a050_s42_fp32\\\", \\
+…[truncated 4354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T04:43:04.430125+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -n +150 /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -n +150 /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T04:43:04.430556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    rng = np.random.default_rng(42)\\n    te_null = []\\n    for _ in range(n_perm):\\n        shift = rng.integers(1, len(source))\\n        src_perm = np.roll(source, shift)\\n        te_null.append(symbolic_te(src_perm, target, m=m, lag=lag))\\n    te_null = np.array(te_null)\\n    p = float(np.mean(te_null >= te_obs))\\n    return te_obs, p, float(np.percentile(te_null, 95))\\n\\n\\n# === Main ===\\n\\ndef main():\\n    all_results = {\\\"discrete\\\": [], \\\"symbolic\\\": []}\\n\\n    for exp_name, info in EXPERIMENTS.items():\\n        print(f\\\"Processing {exp_name} (T={info['T']})...\\\")\\n        try:\\n            series = load_series(info[\\\"path\\\"])\\n        except Exception as e:\\n            print(f\\\"  SKIP: {e}\\\")\\n            continue\\n\\n        canary = series[\\\"token_entropy\\\"]\\n\\n        for metric in DOWNSTREAM_METRICS:\\n            downstream = series[metric]\\n\\n            for lag in [1, 2]:\\n                # Method 1: Discrete TE (pyinform)\\n                te_cd, p_cd, ci_cd = discrete_te_bootstrap(canary, downstream, k=lag)\\n                te_dc, p_dc, ci_dc = discrete_te_bootstrap(downstream, canary, k=lag)\\n                all_results[\\\"discrete\\\"].append({\\n                    \\\"experiment\\\": exp_name, \\\"T\\\": info[\\\"T\\\"], \\\"alpha\\\": info[\\\"alpha\\\"],\\n                    \\\"category\\\": info[\\\"category\\\"], \\\"PermG\\\": info[\\\"PermG\\\"],\\n                    \\\"metric\\\": metric, \\\"lag\\\": lag,\\n                    \\\"TE_c2d\\\": round(te_cd, 5) if not np.isnan(te_cd) else None,\\n                    \\\"TE_d2c\\\": round(te_dc, 5) if not np.isnan(te_dc) else None,\\n                    \\\"p_c2d\\\": round(p_cd, 4) if not np.isnan(p_cd) else None,\\n                    \\\"p_d2c\\\": round(p_dc, 4) if not np.isnan(p_dc) else None,\\n                    \\\"null95_c2d\\\": round(ci_cd, 5) if not np.isnan(ci_cd) 
+…[truncated 6523 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T04:43:04.431074+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_robustness.py\n\"\"\"Transfer Entropy Robustness Verification.\n\n4 conditions x 6 experiments (3 sync-dip + 3 positive control):\n1. Original (m=2, 500 surrogates) — reproduce baseline\n2. Detrended (first-difference, m=2, 500 surrogates) — remove shared trend\n3. m=3 (m=3, 500 surrogates) — richer ordinal patterns\n4. High surrogates (m=2, 2000 surrogates) — tighter p-values\n\"\"\"\n\nimport json\nimport numpy as np\nfrom pathlib import Path\nfrom itertools import permutations\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Patch\n\nRESULTS_ROOT = Path(\"/root/autodl-tmp/distrib_canary_collapse/results\")\nOUTPUT_DIR = Path(\"/root/autodl-tmp/distrib_canary_collapse/artifacts\")\n\nEXPERIMENTS = {\n    \"T10_a060_s42\": {\"path\": \"alpha_sweep/a060_s42_fp32_v4\", \"T\": 10, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T15_a060_s42\": {\"path\": \"phase_diagram/t15_a060_s42_fp32\", \"T\": 15, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T20_a060_s42\": {\"path\": \"t20/a060_s42_fp32\", \"T\": 20, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T15_a045_s43\": {\"path\": \"phase_diagram/t15_a045_s43_fp32\", \"T\": 15, \"alpha\": 0.45, \"category\": \"positive\", \"PermG\": \"6/8\"},\n    \"T15_a050_s42\": {\"path\": \"phase_diagram/t15_a050_s42_fp32\", \"T\": 15, \"alpha\": 0.50, \"category\": \"positive\", \"PermG\": \"6/8\"},\n    \"T15_a075_s42\": {\"path\": \"phase_diagram/t15_a075_s42_fp32\", \"T\": 15, \"alpha\": 0.75, \"category\": \"positive\", \"PermG\": \"6/8\"},\n}\n\nDOWNSTREAM_METRICS = [\"distinct_1\", \"mauve\"]\n\nCONDITIONS = [\n    (\"original\",        {\"m\": 2, \"n_perm\": 500,  \"detrend\": False}),\n    (\"detrended\",       {\"m\": 2, \"n_perm\": 500,  \"detrend\": True}),\n    (\"m3\",              {\"m\": 3, \"n_perm\": 500,  \"detrend\": False}),\n    (\"high_surrogates\", {\"m\": 2, \"n_perm\": 2000, \"detrend\": False}),\n]\n\n\ndef load_series(exp_path):\n    fpath = RESULTS_ROOT / exp_path / \"all_metrics.json\"\n    with open(fpath) as f:\n        data = json.load(f)\n    return {k: np.array([d[k] for d in data]) for k in [\"token_entropy\"] + DOWNSTREAM_METRICS}\n\n\ndef ordinal_pattern(x, m=2):\n    n = len(x)\n    if n < m:\n        return np.array([])\n    perms = list(permutations(range(m)))\n    perm_to_idx = {p: i for i, p in enumerate(perms)}\n    symbols = []\n    for i in range(n - m + 1):\n        window = x[i:i + m]\n        ranks = tuple(np.argsort(np.argsort(window)))\n        symbols.append(perm_to_idx[ranks])\n    return np.array(symbols)\n\n\ndef symbolic_te(source, target, m=2, lag=1):\n    src_sym = ordinal_pattern(source, m=m)\n    tgt_sym = ordinal_pattern(target, m=m)\n    n = min(len(src_sym), len(tgt_sym))\n    if n < lag + 2:\n        return 0.0\n    tgt_future = tgt_sym[lag:n]\n    tgt_past = tgt_sym[:n - lag]\n    src_past = src_sym[:n - lag]\n    n_eff = len(tgt_future)\n    if n_eff < 3:\n        return 0.0\n\n    def entropy_joint(*arrays):\n        combined = np.column_stack(arrays)\n        _, counts = np.unique(combined, axis=0, return_counts=True)\n        probs = counts / counts.sum()\n        return -np.sum(probs * np.log2(probs + 1e-15))\n\n    H_Yf_Yp = entropy_joint(tgt_future, tgt_past)\n    H_Yp = entropy_joint(tgt_past)\n    H_Yf_Yp_Xp = entropy_joint(tgt_future, tgt_past, src_past)\n    H_Yp_Xp = entropy_joint(tgt_past, src_past)\n    te = H_Yf_Yp + H_Yp_Xp - H_Yp - H_Yf_Yp_Xp\n    return max(te, 0.0)\n\n\ndef symbolic_te_bootstrap(source, target, m=2, lag=1, n_perm=500):\n    te_obs = symbolic_te(source, target, m=m, lag=lag)\n    rng = np.random.default_rng(42)\n    te_null = []\n    for _ in range(n_perm):\n        shift = rng.integers(1, len(source))\n        src_perm = np.roll(source, shift)\n        te_null.append(symbolic_te(src_perm, target, m=m, lag=lag))\n    te_null = np.array(te_null)\n    p = float(np.mean(te_null >= te_obs))\n    return te_obs, p, float(np.percentile(te_null, 95)), float(np.median(te_null))\n\n\ndef main():\n    results = []\n\n    for exp_name, info in EXPERIMENTS.items():\n        print(f\"Loading {exp_name}...\")\n        try:\n            series = load_series(info[\"path\"])\n        except Exception as e:\n            print(f\"  SKIP: {e}\")\n            continue\n\n        canary_raw = series[\"token_entropy\"]\n\n        for metric in DOWNSTREAM_METRICS:\n            downstream_raw = series[metric]\n\n            for cond_name, cond in CONDITIONS:\n                m = cond[\"m\"]\n                n_perm = cond[\"n_perm\"]\n\n                if cond[\"detrend\"]:\n                    canary = np.diff(canary_raw)\n                    downstream = np.diff(downstream_raw)\n                else:\n                    canary = canary_raw\n                    downstream = downstream_raw\n\n                te_cd, p_cd, null95_cd, null_med_cd = symbolic_te_bootstrap(\n                    canary, downstream, m=m, lag=1, n_perm=n_perm)\n                te_dc, p_dc, null95_dc, null_med_dc = symbolic_te_bootstrap(\n                    downstream, canary, m=m, lag=1, n_perm=n_perm)\n\n                row = {\n                    \"experiment\": exp_name,\n                    \"T\": info[\"T\"],\n                    \"alpha\": info[\"alpha\"],\n                    \"category\": info[\"category\"],\n                    \"PermG\": info[\"PermG\"],\n                    \"metric\": metric,\n                    \"condition\": cond_name,\n                    \"m\": m,\n                    \"n_perm\": n_perm,\n                    \"detrend\": cond[\"detrend\"],\n                    \"TE_c2d\": round(te_cd, 5),\n                    \"TE_d2c\": round(te_dc, 5),\n                    \"p_c2d\": round(p_cd, 4),\n                    \"p_d2c\": round(p_dc, 4),\n                    \"null95_c2d\": round(null95_cd, 5),\n                    \"null_median_c2d\": round(null_med_cd, 5),\n                    \"sig_c2d\": bool(p_cd < 0.05),\n                    \"sig_d2c\": bool(p_dc < 0.05),\n                }\n                results.append(row)\n                sig_mark = \"*\" if row[\"sig_c2d\"] else \" \"\n                print(f\"  {cond_name:16s} {metric:10s} TE={te_cd:.4f} p={p_cd:.4f} {sig_mark}\")\n\n    # Save JSON\n    with open(OUTPUT_DIR / \"transfer_entropy_robustness.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nJSON saved to {OUTPUT_DIR / 'transfer_entropy_robustness.json'}\")\n\n    # Print comparison table\n    print_table(results)\n\n    # Key diagnostic: detrend effect on controls\n    print_diagnostic(results)\n\n    # Figure\n    plot_robustness(results)\n    print(f\"\\nFigure saved to {OUTPUT_DIR / 'transfer_entropy_robustness.pdf'}\")\n\n\ndef print_table(results):\n    print(\"\\n\" + \"=\" * 130)\n    print(\"SYMBOLIC TE ROBUSTNESS — 4 CONDITIONS COMPARISON (lag=1, canary→downstream)\")\n    print(\"=\" * 130)\n    print(f\"{'Experiment':<16} {'Cat':<10} {'Metric':<10} {'Condition':<18} \"\n          f\"{'m':>2} {'TE_c2d':>8} {'p_c2d':>8} {'null95':>8} {'Sig':>4}\")\n    print(\"-\" * 130)\n    for r in results:\n        sig = \"*\" if r[\"sig_c2d\"] else \"\"\n        print(f\"{r['experiment']:<16} {r['category']:<10} {r['metric']:<10} {r['condition']:<18} \"\n              f\"{r['m']:>2} {r['TE_c2d']:>8.5f} {r['p_c2d']:>8.4f} {r['null95_c2d']:>8.5f} {sig:>4}\")\n\n    # Category x Condition summary\n    print(\"\\n\" + \"=\" * 90)\n    print(\"SUMMARY: sig_pairs (c2d, p<0.05) per category × condition\")\n    print(\"=\" * 90)\n    for cond_name, _ in CONDITIONS:\n        for cat in [\"sync-dip\", \"positive\"]:\n            cat_cond = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == cond_name]\n            n_sig = sum(1 for r in cat_cond if r[\"sig_c2d\"])\n            n_total = len(cat_cond)\n            p_vals = [r[\"p_c2d\"] for r in cat_cond]\n            p_min = min(p_vals) if p_vals else 1.0\n            p_med = float(np.median(p_vals)) if p_vals else 1.0\n            te_mean = float(np.mean([r[\"TE_c2d\"] for r in cat_cond])) if cat_cond else 0.0\n            print(f\"  {cond_name:18s} {cat:>10}: sig={n_sig}/{n_total}  \"\n                  f\"p_min={p_min:.4f}  p_med={p_med:.4f}  TE_mean={te_mean:.5f}\")\n\n\ndef print_diagnostic(results):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"KEY DIAGNOSTIC: Does detrending eliminate sync-dip significance?\")\n    print(\"=\" * 90)\n\n    for cat in [\"sync-dip\", \"positive\"]:\n        orig = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == \"original\"]\n        detr = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == \"detrended\"]\n        n_orig = sum(1 for r in orig if r[\"sig_c2d\"])\n        n_detr = sum(1 for r in detr if r[\"sig_c2d\"])\n        print(f\"\\n  {cat}: original sig={n_orig}/{len(orig)}, detrended sig={n_detr}/{len(detr)}\")\n        if cat == \"sync-dip\":\n            if n_detr >= n_orig * 0.5:\n                print(\"  → ROBUST: significance survives detrending → genuine nonlinear coupling\")\n            elif n_detr > 0:\n                print(\"  → PARTIAL: some significance survives → mixed signal\")\n            else:\n                print(\"  → FRAGILE: significance lost → likely shared-trend artifact\")\n\n    # Check if controls gain significance after detrending\n    detr_pos = [r for r in results if r[\"category\"] == \"positive\" and r[\"condition\"] == \"detrended\"]\n    n_detr_pos = sum(1 for r in detr_pos if r[\"sig_c2d\"])\n    print(f\"\\n  Positive controls detrended sig: {n_detr_pos}/{len(detr_pos)}\")\n    if n_detr_pos > 0:\n        print(\"  → Controls show detrended TE → 'reversed significance' hypothesis not supported\")\n    else:\n        print(\"  → Controls remain non-significant → linear coupling interpretation holds\")\n\n\ndef plot_robustness(results):\n    fig, axes = plt.subplots(2, 2, figsize=(16, 12))\n    fig.suptitle(\"Symbolic TE Robustness: 4 Conditions\\n\"\n                 \"canary → downstream, lag=1\",\n                 fontsize=13, fontweight='bold')\n\n    cond_names = [c[0] for c in CONDITIONS]\n    cond_labels = [\"Original\\n(m=2, 500 surr)\", \"Detrended\\n(Δ, m=2, 500)\",\n                   \"m=3\\n(m=3, 500 surr)\", \"High Surr\\n(m=2, 2000)\"]\n    cat_colors = {\"sync-dip\": \"#e74c3c\", \"positive\": \"#27ae60\"}\n\n    for idx, metric in enumerate(DOWNSTREAM_METRICS):\n        # Top row: p-values heatmap style\n        ax_p = axes[0, idx]\n        # Bottom row: TE values\n        ax_te = axes[1, idx]\n\n        exp_names = list(EXPERIMENTS.keys())\n        n_exp = len(exp_names)\n        n_cond = len(cond_names)\n        bar_width = 0.18\n\n        for ci, cond_name in enumerate(cond_names):\n            te_vals = []\n            p_vals = []\n            colors = []\n            edge_colors = []\n            for exp_name in exp_names:\n                r = [x for x in results if x[\"experiment\"] == exp_name\n                     and x[\"metric\"] == metric and x[\"condition\"] == cond_name]\n                if r:\n                    r = r[0]\n                    te_vals.append(r[\"TE_c2d\"])\n                    p_vals.append(r[\"p_c2d\"])\n                    colors.append(cat_colors[r[\"category\"]])\n                    edge_colors.append(\"black\" if r[\"sig_c2d\"] else \"gray\")\n                else:\n                    te_vals.append(0)\n                    p_vals.append(1)\n                    colors.append(\"white\")\n                    edge_colors.append(\"gray\")\n\n            x_pos = np.arange(n_exp) + ci * bar_width\n\n            # TE bars\n            bars = ax_te.bar(x_pos, te_vals, bar_width, color=colors, alpha=0.8,\n                            edgecolor=edge_colors, linewidth=0.8, label=cond_labels[ci] if idx == 0 else None)\n\n            # Mark significant with *\n            for i, (tv, pv) in enumerate(zip(te_vals, p_vals)):\n                if pv < 0.05:\n                    ax_te.text(x_pos[i], tv + 0.005, '*', ha='center', fontsize=12,\n                              fontweight='bold', color='black')\n                    if pv < 0.001:\n                        ax_te.text(x_pos[i], tv + 0.015, '*', ha='center', fontsize=8,\n                                  color='black')\n\n            # p-value bars (log scale)\n            p_plot = [-np.log10(max(pv, 0.0004)) for pv in p_vals]\n            ax_p.bar(x_pos, p_plot, bar_width, color=colors, alpha=0.8,\n                    edgecolor=edge_colors, linewidth=0.8)\n\n        # p-value significance line\n        ax_p.axhline(y=-np.log10(0.05), color='red', linestyle='--', linewidth=1, label='p=0.05')\n        ax_p.axhline(y=-np.log10(0.001), color='darkred', linestyle=':', linewidth=1, label='p=0.001')\n\n        center = np.arange(n_exp) + bar_width * (n_cond - 1) / 2\n        ax_p.set_xticks(center)\n        ax_p.set_xticklabels(exp_names, rotation=45, ha='right', fontsize=8)\n        ax_p.set_ylabel(\"-log₁₀(p)\")\n        ax_p.set_title(f\"p-values: canary → {metric}\")\n        ax_p.legend(fontsize=7, loc='upper right')\n\n        ax_te.set_xticks(center)\n        ax_te.set_xticklabels(exp_names, rotation=45, ha='right', fontsize=8)\n        ax_te.set_ylabel(\"TE (bits)\")\n        ax_te.set_title(f\"TE magnitude: canary → {metric}\")\n        ax_te.axhline(y=0, color='black', linewidth=0.3)\n\n    # Legend\n    legend_elements = [\n        Patch(facecolor=cat_colors[\"sync-dip\"], label=\"sync-dip (α=0.60, PermG=0/8)\"),\n        Patch(facecolor=cat_colors[\"positive\"], label=\"positive ctrl (PermG=6/8)\"),\n    ]\n    fig.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.97), fontsize=9)\n\n    # Condition legend on bottom TE plot\n    axes[1, 0].legend(fontsize=7, loc='upper right')\n\n    plt.tight_layout(rect=[0, 0, 1, 0.92])\n    plt.savefig(OUTPUT_DIR / \"transfer_entropy_robustness.pdf\", dpi=150, bbox_inches='tight')\n    plt.savefig(OUTPUT_DIR / \"transfer_entropy_robustness.png\", dpi=150, bbox_inches='tight')\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_robustness.py\n\"\"\"Transfer Entropy Robustness Verification.\n\n4 conditions x 6 experiments (3 sync-dip + 3 positive control):\n1. Original (m=2, 500 surrogates) — reproduce baseline\n2. Detrended (first-difference, m=2, 500 surrogates) — remove shared trend\n3. m=3 (m=3, 500 surrogates) — richer ordinal patterns\n4. High surrogates (m=2, 2000 surrogates) — tighter p-values\n\"\"\"\n\nimport json\nimport numpy as np\nfrom pathlib import Path\nfrom itertools import permutations\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Patch\n\nRESULTS_ROOT = Path(\"/root/autodl-tmp/distrib_canary_collapse/results\")\nOUTPUT_DIR = Path(\"/root/autodl-tmp/distrib_canary_collapse/artifacts\")\n\nEXPERIMENTS = {\n    \"T10_a060_s42\": {\"path\": \"alpha_sweep/a060_s42_fp32_v4\", \"T\": 10, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T15_a060_s42\": {\"path\": \"phase_diagram/t15_a060_s42_fp32\", \"T\": 15, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T20_a060_s42\": {\"path\": \"t20/a060_s42_fp32\", \"T\": 20, \"alpha\": 0.60, \"category\": \"sync-dip\", \"PermG\": \"0/8\"},\n    \"T15_a045_s43\": {\"path\": \"phase_diagram/t15_a045_s43_fp32\", \"T\": 15, \"alpha\": 0.45, \"category\": \"positive\", \"PermG\": \"6/8\"},\n    \"T15_a050_s42\": {\"path\": \"phase_diagram/t15_a050_s42_fp32\", \"T\": 15, \"alpha\": 0.50, \"category\": \"positive\", \"PermG\": \"6/8\"},\n    \"T15_a075_s42\": {\"path\": \"phase_diagram/t15_a075_s42_fp32\", \"T\": 15, \"alpha\": 0.75, \"category\": \"positive\", \"PermG\": \"6/8\"},\n}\n\nDOWNSTREAM_METRICS = [\"distinct_1\", \"mauve\"]\n\nCONDITIONS = [\n    (\"original\",        {\"m\": 2, \"n_perm\": 500,  \"detrend\": False}),\n    (\"detrended\",       {\"m\": 2, \"n_perm\": 500,  \"detrend\": True}),\n    (\"m3\",              {\"m\": 3, \"n_perm\": 500,  \"detrend\": False}),\n    (\"high_surrogates\", {\"m\": 2, \"n_perm\": 2000, \"detrend\": False}),\n]\n\n\ndef load_series(exp_path):\n    fpath = RESULTS_ROOT / exp_path / \"all_metrics.json\"\n    with open(fpath) as f:\n        data = json.load(f)\n    return {k: np.array([d[k] for d in data]) for k in [\"token_entropy\"] + DOWNSTREAM_METRICS}\n\n\ndef ordinal_pattern(x, m=2):\n    n = len(x)\n    if n < m:\n        return np.array([])\n    perms = list(permutations(range(m)))\n    perm_to_idx = {p: i for i, p in enumerate(perms)}\n    symbols = []\n    for i in range(n - m + 1):\n        window = x[i:i + m]\n        ranks = tuple(np.argsort(np.argsort(window)))\n        symbols.append(perm_to_idx[ranks])\n    return np.array(symbols)\n\n\ndef symbolic_te(source, target, m=2, lag=1):\n    src_sym = ordinal_pattern(source, m=m)\n    tgt_sym = ordinal_pattern(target, m=m)\n    n = min(len(src_sym), len(tgt_sym))\n    if n < lag + 2:\n        return 0.0\n    tgt_future = tgt_sym[lag:n]\n    tgt_past = tgt_sym[:n - lag]\n    src_past = src_sym[:n - lag]\n    n_eff = len(tgt_future)\n    if n_eff < 3:\n        return 0.0\n\n    def entropy_joint(*arrays):\n        combined = np.column_stack(arrays)\n        _, counts = np.unique(combined, axis=0, return_counts=True)\n        probs = counts / counts.sum()\n        return -np.sum(probs * np.log2(probs + 1e-15))\n\n    H_Yf_Yp = entropy_joint(tgt_future, tgt_past)\n    H_Yp = entropy_joint(tgt_past)\n    H_Yf_Yp_Xp = entropy_joint(tgt_future, tgt_past, src_past)\n    H_Yp_Xp = entropy_joint(tgt_past, src_past)\n    te = H_Yf_Yp + H_Yp_Xp - H_Yp - H_Yf_Yp_Xp\n    return max(te, 0.0)\n\n\ndef symbolic_te_bootstrap(source, target, m=2, lag=1, n_perm=500):\n    te_obs = symbolic_te(source, target, m=m, lag=lag)\n    rng = np.random.default_rng(42)\n    te_null = []\n    for _ in range(n_perm):\n        shift = rng.integers(1, len(source))\n        src_perm = np.roll(source, shift)\n        te_null.append(symbolic_te(src_perm, target, m=m, lag=lag))\n    te_null = np.array(te_null)\n    p = float(np.mean(te_null >= te_obs))\n    return te_obs, p, float(np.percentile(te_null, 95)), float(np.median(te_null))\n\n\ndef main():\n    results = []\n\n    for exp_name, info in EXPERIMENTS.items():\n        print(f\"Loading {exp_name}...\")\n        try:\n            series = load_series(info[\"path\"])\n        except Exception as e:\n            print(f\"  SKIP: {e}\")\n            continue\n\n        canary_raw = series[\"token_entropy\"]\n\n        for metric in DOWNSTREAM_METRICS:\n            downstream_raw = series[metric]\n\n            for cond_name, cond in CONDITIONS:\n                m = cond[\"m\"]\n                n_perm = cond[\"n_perm\"]\n\n                if cond[\"detrend\"]:\n                    canary = np.diff(canary_raw)\n                    downstream = np.diff(downstream_raw)\n                else:\n                    canary = canary_raw\n                    downstream = downstream_raw\n\n                te_cd, p_cd, null95_cd, null_med_cd = symbolic_te_bootstrap(\n                    canary, downstream, m=m, lag=1, n_perm=n_perm)\n                te_dc, p_dc, null95_dc, null_med_dc = symbolic_te_bootstrap(\n                    downstream, canary, m=m, lag=1, n_perm=n_perm)\n\n                row = {\n                    \"experiment\": exp_name,\n                    \"T\": info[\"T\"],\n                    \"alpha\": info[\"alpha\"],\n                    \"category\": info[\"category\"],\n                    \"PermG\": info[\"PermG\"],\n                    \"metric\": metric,\n                    \"condition\": cond_name,\n                    \"m\": m,\n                    \"n_perm\": n_perm,\n                    \"detrend\": cond[\"detrend\"],\n                    \"TE_c2d\": round(te_cd, 5),\n                    \"TE_d2c\": round(te_dc, 5),\n                    \"p_c2d\": round(p_cd, 4),\n                    \"p_d2c\": round(p_dc, 4),\n                    \"null95_c2d\": round(null95_cd, 5),\n                    \"null_median_c2d\": round(null_med_cd, 5),\n                    \"sig_c2d\": bool(p_cd < 0.05),\n                    \"sig_d2c\": bool(p_dc < 0.05),\n                }\n                results.append(row)\n                sig_mark = \"*\" if row[\"sig_c2d\"] else \" \"\n                print(f\"  {cond_name:16s} {metric:10s} TE={te_cd:.4f} p={p_cd:.4f} {sig_mark}\")\n\n    # Save JSON\n    with open(OUTPUT_DIR / \"transfer_entropy_robustness.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nJSON saved to {OUTPUT_DIR / 'transfer_entropy_robustness.json'}\")\n\n    # Print comparison table\n    print_table(results)\n\n    # Key diagnostic: detrend effect on controls\n    print_diagnostic(results)\n\n    # Figure\n    plot_robustness(results)\n    print(f\"\\nFigure saved to {OUTPUT_DIR / 'transfer_entropy_robustness.pdf'}\")\n\n\ndef print_table(results):\n    print(\"\\n\" + \"=\" * 130)\n    print(\"SYMBOLIC TE ROBUSTNESS — 4 CONDITIONS COMPARISON (lag=1, canary→downstream)\")\n    print(\"=\" * 130)\n    print(f\"{'Experiment':<16} {'Cat':<10} {'Metric':<10} {'Condition':<18} \"\n          f\"{'m':>2} {'TE_c2d':>8} {'p_c2d':>8} {'null95':>8} {'Sig':>4}\")\n    print(\"-\" * 130)\n    for r in results:\n        sig = \"*\" if r[\"sig_c2d\"] else \"\"\n        print(f\"{r['experiment']:<16} {r['category']:<10} {r['metric']:<10} {r['condition']:<18} \"\n              f\"{r['m']:>2} {r['TE_c2d']:>8.5f} {r['p_c2d']:>8.4f} {r['null95_c2d']:>8.5f} {sig:>4}\")\n\n    # Category x Condition summary\n    print(\"\\n\" + \"=\" * 90)\n    print(\"SUMMARY: sig_pairs (c2d, p<0.05) per category × condition\")\n    print(\"=\" * 90)\n    for cond_name, _ in CONDITIONS:\n        for cat in [\"sync-dip\", \"positive\"]:\n            cat_cond = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == cond_name]\n            n_sig = sum(1 for r in cat_cond if r[\"sig_c2d\"])\n            n_total = len(cat_cond)\n            p_vals = [r[\"p_c2d\"] for r in cat_cond]\n            p_min = min(p_vals) if p_vals else 1.0\n            p_med = float(np.median(p_vals)) if p_vals else 1.0\n            te_mean = float(np.mean([r[\"TE_c2d\"] for r in cat_cond])) if cat_cond else 0.0\n            print(f\"  {cond_name:18s} {cat:>10}: sig={n_sig}/{n_total}  \"\n                  f\"p_min={p_min:.4f}  p_med={p_med:.4f}  TE_mean={te_mean:.5f}\")\n\n\ndef print_diagnostic(results):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"KEY DIAGNOSTIC: Does detrending eliminate sync-dip significance?\")\n    print(\"=\" * 90)\n\n    for cat in [\"sync-dip\", \"positive\"]:\n        orig = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == \"original\"]\n        detr = [r for r in results if r[\"category\"] == cat and r[\"condition\"] == \"detrended\"]\n        n_orig = sum(1 for r in orig if r[\"sig_c2d\"])\n        n_detr = sum(1 for r in detr if r[\"sig_c2d\"])\n        print(f\"\\n  {cat}: original sig={n_orig}/{len(orig)}, detrended sig={n_detr}/{len(detr)}\")\n        if cat == \"sync-dip\":\n            if n_detr >= n_orig * 0.5:\n                print(\"  → ROBUST: significance survives detrending → genuine nonlinear coupling\")\n            elif n_detr > 0:\n                print(\"  → PARTIAL: some significance survives → mixed signal\")\n            else:\n                print(\"  → FRAGILE: significance lost → likely shared-trend artifact\")\n\n    # Check if controls gain significance after detrending\n    detr_pos = [r for r in results if r[\"category\"] == \"positive\" and r[\"condition\"] == \"detrended\"]\n    n_detr_pos = sum(1 for r in detr_pos if r[\"sig_c2d\"])\n    print(f\"\\n  Positive controls detrended sig: {n_detr_pos}/{len(detr_pos)}\")\n    if n_detr_pos > 0:\n        print(\"  → Controls show detrended TE → 'reversed significance' hypothesis not supported\")\n    else:\n        print(\"  → Controls remain non-significant → linear coupling interpretation holds\")\n\n\ndef plot_robustness(results):\n    fig, axes = plt.subplots(2, 2, figsize=(16, 12))\n    fig.suptitle(\"Symbolic TE Robustness: 4 Conditions\\n\"\n                 \"canary → downstream, lag=1\",\n                 fontsize=13, fontweight='bold')\n\n    cond_names = [c[0] for c in CONDITIONS]\n    cond_labels = [\"Original\\n(m=2, 500 surr)\", \"Detrended\\n(Δ, m=2, 500)\",\n                   \"m=3\\n(m=3, 500 surr)\", \"High Surr\\n(m=2, 2000)\"]\n    cat_colors = {\"sync-dip\": \"#e74c3c\", \"positive\": \"#27ae60\"}\n\n    for idx, metric in enumerate(DOWNSTREAM_METRICS):\n        # Top row: p-values heatmap style\n        ax_p = axes[0, idx]\n        # Bottom row: TE values\n        ax_te = axes[1, idx]\n\n        exp_names = list(EXPERIMENTS.keys())\n        n_exp = len(exp_names)\n        n_cond = len(cond_names)\n        bar_width = 0.18\n\n        for ci, cond_name in enumerate(cond_names):\n            te_vals = []\n            p_vals = []\n            colors = []\n            edge_colors = []\n            for exp_name in exp_names:\n                r = [x for x in results if x[\"experiment\"] == exp_name\n                     and x[\"metric\"] == metric and x[\"condition\"] == cond_name]\n                if r:\n                    r = r[0]\n                    te_vals.append(r[\"TE_c2d\"])\n                    p_vals.append(r[\"p_c2d\"])\n                    colors.append(cat_colors[r[\"category\"]])\n                    edge_colors.append(\"black\" if r[\"sig_c2d\"] else \"gray\")\n                else:\n                    te_vals.append(0)\n                    p_vals.append(1)\n                    colors.append(\"white\")\n                    edge_colors.append(\"gray\")\n\n            x_pos = np.arange(n_exp) + ci * bar_width\n\n            # TE bars\n            bars = ax_te.bar(x_pos, te_vals, bar_width, color=colors, alpha=0.8,\n                            edgecolor=edge_colors, linewidth=0.8, label=cond_labels[ci] if idx == 0 else None)\n\n            # Mark significant with *\n            for i, (tv, pv) in enumerate(zip(te_vals, p_vals)):\n                if pv < 0.05:\n                    ax_te.text(x_pos[i], tv + 0.005, '*', ha='center', fontsize=12,\n                              fontweight='bold', color='black')\n                    if pv < 0.001:\n                        ax_te.text(x_pos[i], tv + 0.015, '*', ha='center', fontsize=8,\n                                  color='black')\n\n            # p-value bars (log scale)\n            p_plot = [-np.log10(max(pv, 0.0004)) for pv in p_vals]\n            ax_p.bar(x_pos, p_plot, bar_width, color=colors, alpha=0.8,\n                    edgecolor=edge_colors, linewidth=0.8)\n\n        # p-value significance line\n        ax_p.axhline(y=-np.log10(0.05), color='red', linestyle='--', linewidth=1, label='p=0.05')\n        ax_p.axhline(y=-np.log10(0.001), color='darkred', linestyle=':', linewidth=1, label='p=0.001')\n\n        center = np.arange(n_exp) + bar_width * (n_cond - 1) / 2\n        ax_p.set_xticks(center)\n        ax_p.set_xticklabels(exp_names, rotation=45, ha='right', fontsize=8)\n        ax_p.set_ylabel(\"-log₁₀(p)\")\n        ax_p.set_title(f\"p-values: canary → {metric}\")\n        ax_p.legend(fontsize=7, loc='upper right')\n\n        ax_te.set_xticks(center)\n        ax_te.set_xticklabels(exp_names, rotation=45, ha='right', fontsize=8)\n        ax_te.set_ylabel(\"TE (bits)\")\n        ax_te.set_title(f\"TE magnitude: canary → {metric}\")\n        ax_te.axhline(y=0, color='black', linewidth=0.3)\n\n    # Legend\n    legend_elements = [\n        Patch(facecolor=cat_colors[\"sync-dip\"], label=\"sync-dip (α=0.60, PermG=0/8)\"),\n        Patch(facecolor=cat_colors[\"positive\"], label=\"positive ctrl (PermG=6/8)\"),\n    ]\n    fig.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.97), fontsize=9)\n\n    # Condition legend on bottom TE plot\n    axes[1, 0].legend(fontsize=7, loc='upper right')\n\n    plt.tight_layout(rect=[0, 0, 1, 0.92])\n    plt.savefig(OUTPUT_DIR / \"transfer_entropy_robustness.pdf\", dpi=150, bbox_inches='tight')\n    plt.savefig(OUTPUT_DIR / \"transfer_entropy_robustness.png\", dpi=150, bbox_inches='tight')\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:43:04.431684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T04:43:04.432226+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse/artifacts && python transfer_entropy_robustness.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse/artifacts && python transfer_entropy_robustness.py 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T04:43:04.432968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading T10_a060_s42...\\n  original         distinct_1 TE=0.0000 p=1.0000  \\n  detrended        distinct_1 TE=0.1432 p=0.7780  \\n  m3               distinct_1 TE=0.0000 p=1.0000  \\n  high_surrogates  distinct_1 TE=0.0000 p=1.0000  \\n  original         mauve      TE=0.5394 p=0.0000 *\\n  detrended        mauve      TE=0.4056 p=0.1120  \\n  m3               mauve      TE=0.7500 p=0.5420  \\n  high_surrogates  mauve      TE=0.5394 p=0.0000 *\\nLoading T15_a060_s42...\\n  original         distinct_1 TE=0.1256 p=0.0720  \\n  detrended        distinct_1 TE=0.0127 p=0.8880  \\n  m3               distinct_1 TE=0.2903 p=0.6180  \\n  high_surrogates  distinct_1 TE=0.1256 p=0.0740  \\n  original         mauve      TE=0.4956 p=0.0000 *\\n  detrended        mauve      TE=0.2528 p=0.1260  \\n  m3               mauve      TE=0.9811 p=0.5880  \\n  high_surrogates  mauve      TE=0.4956 p=0.0000 *\\nLoading T20_a060_s42...\\n  original         distinct_1 TE=0.1224 p=0.0000 *\\n  detrended        distinct_1 TE=0.0640 p=0.6860  \\n  m3               distinct_1 TE=0.3167 p=0.2720  \\n  high_surrogates  distinct_1 TE=0.1224 p=0.0000 *\\n  original         mauve      TE=0.3275 p=0.0000 *\\n  detrended        mauve      TE=0.1674 p=0.2060  \\n  m3               mauve      TE=0.8344 p=0.2980  \\n  high_surrogates  mauve      TE=0.3275 p=0.0000 *\\nLoading T15_a045_s43...\\n  original         distinct_1 TE=0.0000 p=1.0000  \\n  detrended        distinct_1 TE=0.0127 p=0.6520  \\n  m3               distinct_1 TE=0.0000 p=1.0000  \\n  high_surrogates  distinct_1 TE=0.0000 p=1.0000  \\n  original         mauve      TE=0.1568 p=0.0740  \\n  detrended        mauve      TE=0.0236 p=1.0000  \\n  m3               mauve      TE=0.2151 p=0.3460  \\n  high_surrogates  mauve      TE=0.1568 p=0.0715  \\nLoading T15_a050_s42...\\n  original         distinct_1 TE=0.0527 p=0.3260  \\n  detrended        distinct_1 TE=0.4916 p=0.0000 *\\n  m3        
+…[truncated 6448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T04:43:04.433319+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/",
+  "description": "List alpha_c_theory directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/",
+    "description": "List alpha_c_theory directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T04:43:04.433530+00:00_
+
+derivation.md
+fig_theory_comparison.pdf
+fig_theory_comparison.png
+proposition2.tex
+theory_verification.json
+verify_theory.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T04:43:04.433699+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/te_robustness_summary.txt",
+  "content": "Transfer Entropy Robustness Verification — Results Summary\n===========================================================\nDate: 2026-05-22\nServer: westd-17855\nScript: artifacts/transfer_entropy_robustness.py\n\nExperiments:\n  Sync-dip (α=0.60, PermG=0/8): T10_a060_s42, T15_a060_s42, T20_a060_s42\n  Positive ctrl (PermG=6/8):     T15_a045_s43*, T15_a050_s42, T15_a075_s42\n  (* s43 used because T15_a045_s42 data not available)\n\n4 Conditions (all Symbolic TE, lag=1, canary→downstream):\n  1. Original:        m=2, 500 surrogates\n  2. Detrended:       first-difference (np.diff), m=2, 500 surrogates\n  3. m=3:             m=3, 500 surrogates\n  4. High surrogates: m=2, 2000 surrogates\n\n=== Results Summary ===\n\nCondition          | sync-dip sig | positive sig | Interpretation\n-------------------|-------------|-------------|----------------\nOriginal           | 4/6         | 0/6         | Reproduces baseline\nDetrended          | 0/6         | 1/6         | ALL sync-dip significance lost\nm=3                | 0/6         | 0/6         | No significance (sample size issue?)\nHigh surrogates    | 4/6         | 0/6         | Same as original, tighter p\n\n=== Key Diagnostic ===\n\n1. DETRENDING ELIMINATES SYNC-DIP SIGNIFICANCE\n   - Original: 4/6 pairs significant (p<0.001 for mauve pairs)\n   - After first-difference: 0/6 significant (p_min=0.112)\n   - Conclusion: Original TE signal was driven by shared monotonic downward\n     trend (canary↓ + downstream↓), NOT genuine nonlinear information transfer.\n   - The m=2 ordinal patterns (only \"up\"/\"down\") are dominated by the shared\n     trend direction, inflating apparent TE.\n\n2. m=3 SHOWS NO SIGNIFICANCE\n   - All 12 pairs non-significant with m=3 (6 patterns vs 2).\n   - Caveat: with T=10-20 data points and m=3, effective series length is\n     T-2=8-18, yielding very few ordinal patterns. Low statistical power may\n     contribute, but the direction matches the detrending result.\n\n3. POSITIVE CONTROLS MOSTLY UNCHANGED\n   - Controls remain non-significant across all conditions (0/6),\n     except T15_a050_s42 distinct_1 detrended (p=0.000) — isolated anomaly.\n   - This single detrended-significant control pair does not support a\n     \"reversed significance\" interpretation.\n\n4. HIGH SURROGATES CONFIRM ORIGINAL\n   - 2000 surrogates produce identical significance pattern to 500.\n   - Original p-values were already well-resolved.\n\n=== Implications for Paper ===\n\nThe Symbolic TE finding (4/6 sync-dip pairs significant) is NOT robust to\ndetrending. It should NOT be presented as evidence of nonlinear causal coupling\nin the sync-dip regime.\n\nOptions:\n  a) Remove TE claim entirely from the paper.\n  b) Report TE result WITH the detrending caveat as a transparency/honesty point:\n     \"Symbolic TE detects shared-trend coupling but not trend-independent\n     information transfer, consistent with the linear shared-cause interpretation.\"\n  c) Use the negative detrending result as SUPPORTING evidence that the sync-dip\n     phenomenon is driven by shared linear dynamics (shared trend), not nonlinear\n     causal mechanisms — which actually strengthens the PermG-based interpretation.\n\nRecommendation: Option (c) — reframe TE as a diagnostic that confirms the\nshared-trend nature of the coupling, rather than claiming nonlinear causation.\n\n=== Raw Numbers (sync-dip, canary→downstream, lag=1) ===\n\nExp             Metric      Orig_p   Detrend_p  m3_p    Hi_p\nT10_a060_s42    distinct_1  1.0000   0.7780     1.0000  1.0000\nT10_a060_s42    mauve       0.0000   0.1120     0.5420  0.0000\nT15_a060_s42    distinct_1  0.0720   0.8880     0.6180  0.0740\nT15_a060_s42    mauve       0.0000   0.1260     0.5880  0.0000\nT20_a060_s42    distinct_1  0.0000   0.6860     0.2720  0.0000\nT20_a060_s42    mauve       0.0000   0.2060     0.2980  0.0000\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/te_robustness_summary.txt",
+    "content": "Transfer Entropy Robustness Verification — Results Summary\n===========================================================\nDate: 2026-05-22\nServer: westd-17855\nScript: artifacts/transfer_entropy_robustness.py\n\nExperiments:\n  Sync-dip (α=0.60, PermG=0/8): T10_a060_s42, T15_a060_s42, T20_a060_s42\n  Positive ctrl (PermG=6/8):     T15_a045_s43*, T15_a050_s42, T15_a075_s42\n  (* s43 used because T15_a045_s42 data not available)\n\n4 Conditions (all Symbolic TE, lag=1, canary→downstream):\n  1. Original:        m=2, 500 surrogates\n  2. Detrended:       first-difference (np.diff), m=2, 500 surrogates\n  3. m=3:             m=3, 500 surrogates\n  4. High surrogates: m=2, 2000 surrogates\n\n=== Results Summary ===\n\nCondition          | sync-dip sig | positive sig | Interpretation\n-------------------|-------------|-------------|----------------\nOriginal           | 4/6         | 0/6         | Reproduces baseline\nDetrended          | 0/6         | 1/6         | ALL sync-dip significance lost\nm=3                | 0/6         | 0/6         | No significance (sample size issue?)\nHigh surrogates    | 4/6         | 0/6         | Same as original, tighter p\n\n=== Key Diagnostic ===\n\n1. DETRENDING ELIMINATES SYNC-DIP SIGNIFICANCE\n   - Original: 4/6 pairs significant (p<0.001 for mauve pairs)\n   - After first-difference: 0/6 significant (p_min=0.112)\n   - Conclusion: Original TE signal was driven by shared monotonic downward\n     trend (canary↓ + downstream↓), NOT genuine nonlinear information transfer.\n   - The m=2 ordinal patterns (only \"up\"/\"down\") are dominated by the shared\n     trend direction, inflating apparent TE.\n\n2. m=3 SHOWS NO SIGNIFICANCE\n   - All 12 pairs non-significant with m=3 (6 patterns vs 2).\n   - Caveat: with T=10-20 data points and m=3, effective series length is\n     T-2=8-18, yielding very few ordinal patterns. Low statistical power may\n     contribute, but the direction matches the detrending result.\n\n3. POSITIVE CONTROLS MOSTLY UNCHANGED\n   - Controls remain non-significant across all conditions (0/6),\n     except T15_a050_s42 distinct_1 detrended (p=0.000) — isolated anomaly.\n   - This single detrended-significant control pair does not support a\n     \"reversed significance\" interpretation.\n\n4. HIGH SURROGATES CONFIRM ORIGINAL\n   - 2000 surrogates produce identical significance pattern to 500.\n   - Original p-values were already well-resolved.\n\n=== Implications for Paper ===\n\nThe Symbolic TE finding (4/6 sync-dip pairs significant) is NOT robust to\ndetrending. It should NOT be presented as evidence of nonlinear causal coupling\nin the sync-dip regime.\n\nOptions:\n  a) Remove TE claim entirely from the paper.\n  b) Report TE result WITH the detrending caveat as a transparency/honesty point:\n     \"Symbolic TE detects shared-trend coupling but not trend-independent\n     information transfer, consistent with the linear shared-cause interpretation.\"\n  c) Use the negative detrending result as SUPPORTING evidence that the sync-dip\n     phenomenon is driven by shared linear dynamics (shared trend), not nonlinear\n     causal mechanisms — which actually strengthens the PermG-based interpretation.\n\nRecommendation: Option (c) — reframe TE as a diagnostic that confirms the\nshared-trend nature of the coupling, rather than claiming nonlinear causation.\n\n=== Raw Numbers (sync-dip, canary→downstream, lag=1) ===\n\nExp             Metric      Orig_p   Detrend_p  m3_p    Hi_p\nT10_a060_s42    distinct_1  1.0000   0.7780     1.0000  1.0000\nT10_a060_s42    mauve       0.0000   0.1120     0.5420  0.0000\nT15_a060_s42    distinct_1  0.0720   0.8880     0.6180  0.0740\nT15_a060_s42    mauve       0.0000   0.1260     0.5880  0.0000\nT20_a060_s42    distinct_1  0.0000   0.6860     0.2720  0.0000\nT20_a060_s42    mauve       0.0000   0.2060     0.2980  0.0000\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T04:43:04.433920+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/te_robustness_summary.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_track-d-te-robustness_20260522T043828",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-22T04:43:04.434104+00:00_
+
+完成。结果汇总：
+
+**Original 复现成功**: sync-dip 4/6 显著, 正对照 0/6 — 与原结果一致
+
+**去趋势 (一阶差分)**: sync-dip **0/6** 显著 — 全部显著性消失。原始 TE 信号是共享单调下降趋势的 artifact，不是真正的非线性信息传递。m=2 ordinal patterns 只编码升/降，被共享趋势主导。
+
+**m=3**: 0/6 显著 — 方向一致，但 T=10-20 下有效序列太短（8-18 个 pattern），统计功效不足也是原因之一。
+
+**High surrogates (2000)**: 4/6 显著 — 与 500 surrogates 完全一致，p 值已充分解析。
+
+**结论**: Symbolic TE 的 sync-dip 显著性不鲁棒，经不起去趋势检验。建议论文中不以此为非线性因果证据，而将负面去趋势结果重新定位为「确认 sync-dip 耦合是线性共享趋势驱动」的诊断证据，反而加强 PermG 解释框架。
+
+产出文件：
+- 远程: `artifacts/transfer_entropy_robustness.{py,json,pdf,png}`
+- 本地: `artifacts/alpha_c_theory/te_robustness_summary.txt`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_track-d-te-robustness_20260522T043828"
+}
+```
+
+</details>
+
+---

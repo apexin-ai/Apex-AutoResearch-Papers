@@ -1,0 +1,54 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Training language models on their own output across successive generations leads to progressive distribution degradation, a phenomenon variously termed model collapse~\cite{shumailov2024curse} or Model Autophagy Disorder~\cite{alemohammad2024mad}.
+Tail modes vanish, lexical diversity narrows, and calibration deteriorates as each generation's output becomes the next generation's training data.
+As large language models become ubiquitous content generators, the fraction of machine-generated text on the web grows steadily, making iterative training collapse---where models are unwittingly trained on the output of earlier model generations---a practical concern for the long-term stability of language model ecosystems.
+
+A natural follow-up question is whether cheap-to-compute statistics---\emph{canary metrics}---can provide early warning of impending collapse, analogous to early-warning signals for critical transitions in ecological and climate systems~\cite{scheffer2009early,scheffer2012anticipating}.
+Several recent studies have pursued this direction: \citet{du2026geometric} informally observe that expected calibration error rises before accuracy degrades; SIGMA~\cite{sigma2026spectral} proposes spectral indicators of distributional shift; and DCES~\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.
+Yet the statistical methodology underlying these lead-lag claims---whether a canary metric genuinely \emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends---has received little scrutiny.
+
+We identify several methodological deficiencies that pervade existing lead-lag analyses of iterative training collapse:
+(1)~no differencing tests to rule out spurious regression arising from shared non-stationary trends---a well-known hazard when correlating co-trending time series;
+(2)~no multi-method cross-validation---conclusions rest on a single statistical method whose implicit assumptions about stationarity and directionality are rarely examined;
+(3)~no multiple comparison correction (e.g., Benjamini--Hochberg FDR control), increasing the risk of false discoveries when testing many metric pairs simultaneously; and
+(4)~no regime-dependent analysis, despite the possibility that the same statistical test yields opposite conclusions at different contamination levels.
+The closest predecessor is \citet{du2026geometric}, who observe that calibration error rises before accuracy degrades in iteratively trained language models.
+Their analysis, however, is limited to a single metric pair, spans only 1--3 generations, and reports informal visual comparisons without statistical tests---leaving open the question of whether the observed lead is genuine or an artifact of shared trends.
+The early-warning framework of \citet{scheffer2009early,scheffer2012anticipating}---widely adopted in ecology for anticipating tipping points---provides the theoretical motivation for canary-based prediction, but has not been systematically applied to iterative training collapse with the methodological rigor that short, noisy time series demand~\cite{boettiger2012limits}.
+
+We address these gaps through a systematic case study of canary prediction of diversity collapse---the progressive loss of lexical diversity in model-generated text across training generations.
+Using Pythia-410M across five contamination levels ($\alpha \in \{0.00, 0.25, 0.50, 0.75, 1.00\}$) and up to four random seeds, we expose three methodological pitfalls that undermine naive lead-lag analysis:
+\begin{enumerate}
+    \item \textbf{Method sensitivity.} Applied to the same data (16 candidate canary$\to$downstream pairs, including candidates later excluded; \S\ref{sec:case_study}), five lead-lag detection methods yield FDR significance rates ranging from 100\% (naive cross-correlation) to 25\% (Toda--Yamamoto Granger causality), with inter-method agreement of Cohen's $\kappa{=}0.185$ (poor agreement).
+    \item \textbf{Spurious regression.} Canary$\to$perplexity associations appear near-universal in undifferenced analysis but vanish entirely after first-differencing ($F{\approx}0$, $p{=}0.99$), revealing them as artifacts of co-trending rather than genuine temporal precedence.
+    \item \textbf{Regime dependence.} Permutation Granger tests find 24/24 canary$\to$diversity pairs FDR-significant at full synthetic replacement ($\alpha{=}1.0$) but 0/8 at $\alpha{\leq}0.50$, demonstrating that detectability depends sharply on the contamination level.
+\end{enumerate}
+To move beyond single-method analysis, we propose a multi-method consensus framework with empirically calibrated thresholds, requiring agreement across multiple independent statistical methods and random seeds before classifying a lead-lag relationship as robust.
+
+The framework's utility is demonstrated by its calibration on built-in experimental controls.
+Naive cross-correlation identifies 100\% of canary--collapse metric pairs as FDR-significant; the consensus pipeline (requiring ${\geq}4/5$ methods and ${\geq}3/4$ seeds) retains only those pairs independently validated by the first-differencing diagnostic.
+On reference extremes, the framework achieves a false positive rate of 0\% at the $\alpha{=}0.0$ null control (where individual methods reach up to 100\% FPR) and a false negative rate of 0\% against six ground-truth pairs at $\alpha{=}1.0$.
+Applying the framework, we identify token entropy as a one-generation-ahead canary for diversity collapse at $\alpha{=}1.0$, validated by the full consensus pipeline, with cross-correlation $|r|{>}0.99$ and directional asymmetry confirmed by 0/24 reverse-direction FDR-significant pairs; preliminary single-seed evidence at $\alpha{=}0.75$ awaits multi-seed confirmation.
+We note that Granger precedence establishes temporal predictive improvement, not true causality~\cite{shojaie2022granger}.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Systematic exposure of three methodological pitfalls} in lead-lag analysis of iterative training collapse.
+    We quantify each pitfall: method choice alone swings significance from 100\% to 25\% with a spurious-signal rate of 75\%; first-differencing eliminates canary$\to$perplexity associations entirely; and the same Granger test shifts from 24/24 FDR-significant pairs to 0/8 across contamination levels.
+    These results demonstrate that single-method, single-regime analyses---the current norm in this literature---are unreliable.
+
+    \item \textbf{A multi-method consensus framework} with empirically calibrated thresholds and four-tier practical guidance ranging from exploratory ($K{\geq}1/5$) to conservative ($K{=}5/5$).
+    The framework achieves FPR${=}$0\% and FNR${=}$0\% on reference extremes, providing robustness against miscalibration of any individual method.
+
+    \item \textbf{Application of the framework to identify token entropy} as a one-generation-ahead canary for diversity collapse at $\alpha{=}1.0$ (with preliminary single-seed evidence at $\alpha{=}0.75$), scoped precisely to diversity metrics (distinct-$n$) rather than model collapse broadly, with a tiered practical guide mapping contamination regimes to recommended analysis strategies.
+\end{enumerate}
+
+The remainder of this paper is organized as follows.
+\S\ref{sec:related_work} surveys related work on model collapse, early-warning signals, and lead-lag methodology.
+\S\ref{sec:background} establishes the formal setup, notation, and the five detection methods used throughout.
+\S\ref{sec:method} distills the three methodological pitfalls into a unified diagnostic framework, presents the multi-method consensus pipeline, and reports its empirical calibration.
+\S\ref{sec:experiments} provides full experimental results: method sensitivity analysis (\S\ref{sec:method_sensitivity}), regime-dependent detectability (\S\ref{sec:regime}), a case study of canary prediction of diversity collapse (\S\ref{sec:case_study}), and consensus framework validation (\S\ref{sec:consensus_validation}).
+\S\ref{sec:discussion} discusses limitations---including the short time-series constraint, single-model scope, and the distinction between Granger precedence and causality---and outlines directions for future work.
+\S\ref{sec:conclusion} concludes.

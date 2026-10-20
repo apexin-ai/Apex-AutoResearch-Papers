@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11f1b9226f36bd449c13",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code mmct implementation v2",
+  "task_key": "worker_code_mmct_implementation_v2_20260518T153850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mmct_implementation_v2_20260518T153850_result.json",
+    "occurrence": 1,
+    "bytes": 1915,
+    "sha256": "99be10cb4c1f5692cb7e4ae42ae6943c2c163026ff2c84880e600a01017f1a1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files created and validated. Summary of results:\n\n**Files created on remote server** (`/root/autodl-tmp/distrib_canary_collapse/`):\n\n| File | Purpose |\n|------|---------|\n| `mmct/__init__.py` | Package init |\n| `mmct/methods.py` | Wrapper for 5method_leadlag.json (handles both JSON formats) |\n| `mmct/null_distribution.py` | Null distribution from α=0.00, per-method FPR, vectorized bootstrap |\n| `mmct/consensus_test.py` | MMCT class with weighted/bidirectional params |\n| `mmct/run_mmct.py` | Full sweep runner, generates 4 output files |\n| `artifacts/mmct_results/mmct_results.json` | Full results (332KB) |\n| `artifacts/mmct_results/null_distribution.json` | Null distribution + FPR profiles |\n| `artifacts/mmct_results/mmct_report.md` | Per-condition tables |\n| `artifacts/mmct_results/fpr_fnr_comparison.md` | 4-way tradeoff comparison |\n\n**Key findings:**\n\n| Mode | FPR (α=0.00) | Det. α=0.25 | Det. α=0.50 | Det. α=0.75 |\n|------|-------------|-------------|-------------|-------------|\n| uniform_forward | **0.000** | 0.000 | 0.000 | 0.333 |\n| uniform_bidirectional | **0.000** | 0.000 | 0.000 | 0.333 |\n| weighted_forward | **0.000** | 0.438 | 0.542 | **0.875** |\n| weighted_bidirectional | **0.000** | 0.125 | 0.167 | 0.375 |\n\n- All 4 modes achieve perfect Type I error control (0/24 FP at α=0.00)\n- **Weighted forward** is the best power mode: 87.5% detection at α=0.75 while maintaining FPR=0\n- naive_xcorr has 95.8% FPR on null data, confirming the paper's core finding that single methods are unreliable\n- Weighted consensus dramatically improves power by up-weighting low-FPR methods (threshold_onset, perm_granger get 100x weight vs naive_xcorr at 1x)\n- Bidirectional filter is conservative, reducing detection rate because some reverse correlations also appear significant\n- No α=1.0 data was available; α=0.25 only has 2 seeds (s43, s44)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mmct-implementation-v2.md"
+}

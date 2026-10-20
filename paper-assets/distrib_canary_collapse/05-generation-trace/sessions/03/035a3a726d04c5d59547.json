@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "035a3a726d04c5d59547",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops m046 canonical sweep 17855",
+  "task_key": "worker_ops_m046_canonical_sweep_17855_20260520T084753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m046_canonical_sweep_17855_20260520T084753_result.json",
+    "occurrence": 1,
+    "bytes": 1437,
+    "sha256": "e3639acad1ec61862d7a6393d763ec4ba110c0f38a938b5470a32495508b9561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n| exp_dir | PermG (old→new) | TY (old→new) | K≥3 (old→new) | K≥4 (new) | 变化? |\n|---------|-----------------|--------------|----------------|-----------|-------|\n| `scale_check/pythia69b_wiki_a100_s42` | 7→7 | 1→1 | 5→5 | 0 | **无** |\n| `scale_check/pythia69b_wiki_a100_s43` | 6→6 | 0→0 | 6→6 | 0 | **无** |\n| `generalize/qwen35_08b_wiki_a100_s42_fp32_v2` | 8→8 | 6→6 | 6→6 | 3 | **无** |\n| `generalize/qwen35_08b_wiki_a100_s43_fp32` | 6→6 | 0→0 | 6→6 | 0 | **无** |\n| `generalize/gpt2m_wiki_a100_s43_bf16` | N/A→0 | N/A→3 | N/A→0 | 0 | **新建**（之前无分析） |\n| `padding_robustness/a100_s42_fp32` | 6→6 | 0→0 | 6→6 | 0 | **无** |\n| `generalize/pythia410m_wiki_a100_s43` | 6→6 | 4→4 | 6→6 | 4 | **无** |\n\n**smollm3_3b_wiki_a100_s43_17855**: 仅 5 gen，数据不足，Perm Granger 全 N/A，K≥3=0。不可用。\n\n### 17855 上缺失的实验\n\n以下任务中列出的目录在 17855 上**不存在**（可能在 19828 上）：\n- `gen_gpt2m_a100_s42_fp32` (GPT-2m s42)\n- `generalize_pythia410m_wiki_a100_s42` (Pythia-410m s42)\n- `smollm3_3b_wiki_a100_s42_v3` (SmolLM3 s42)\n\n### 结论\nD123 TY-fixed 脚本重跑后，**所有 7 个完整实验的 PermG / TY / K≥3 均与旧值完全一致**，无任何数值变化。gpt2m_s43_bf16 为新生成的分析（PermG=0, K≥3=0，信号极弱）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m046-canonical-sweep-17855.md"
+}

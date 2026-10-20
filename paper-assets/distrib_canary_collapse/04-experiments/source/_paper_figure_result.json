@@ -1,0 +1,1038 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/fig_phase_diagram.pdf",
+      "caption": "Detection phase diagram (Pythia-410M, fp32, PermG direction-checked). Each cell shows the number of FDR-significant canary$\\to$diversity pairs (of~8) at a given contamination strength~$\\alpha$ and obs",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure*",
+      "image_path": "figures/fig_framework.pdf",
+      "caption": "Analytical framework. (a)~Iterative contamination loop: each generation trains on an $\\alpha$-fraction synthetic mixture, from which canary (entropy) and downstream (distinct-$n$) metrics are extracte",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure*",
+      "image_path": "figures/metric_trajectory.pdf",
+      "caption": "Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead across all fo",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "figures/fig_dose_response.pdf",
+      "caption": "PermG dose-response profile (Pythia-410M, $T{=}10$, fp32). Sigmoid fit (shaded 95\\% CI) yields $\\alpha_c{=}0.483$. Three confirmed regimes: blind ($\\alpha{\\leq}0.45$, 0/8), onset ($\\alpha{\\approx}0.50",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "5",
+      "env_type": "figure",
+      "image_path": "figures/fig_method_comparison.pdf",
+      "caption": "Method sensitivity: FDR-significant forward pairs (\\%) across contamination levels (Pythia-410M, seed~42, fp32). PermG (dark blue) achieves 0\\% null-control FPR with stable 75\\% detection at $\\alpha \\",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "6",
+      "env_type": "figure",
+      "image_path": "figures/fig_intervention.pdf",
+      "caption": "Canary-triggered intervention (Pythia-410M, $\\alpha{=}1.0$). Predictive cessation on entropy (generation~1) reduces peak perplexity by 64\\% versus reactive triggering on distinct-1 (generation~2).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "figures/fig_window_sensitivity.pdf",
+      "caption": "Consensus stability across minimum observation windows $T_{\\min} \\in \\{5, \\ldots, 10\\}$. Left: $K{\\geq}3$ consensus count at $\\alpha{=}0.75$ (3 seeds). Right: per-method detection count across $T_{\\mi",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "figures/fig_spec_curve.pdf",
+      "caption": "Specification curve analysis (1{,}160 configurations). Each point is one analytical specification (method $\\times$ pair $\\times$ seed); lines trace detection rates across contamination levels. Bottom ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "figures/fig_cusum_monitoring.pdf",
+      "caption": "CUSUM sequential monitoring of token entropy at two contamination levels ($\\alpha{=}0.50$, $\\alpha{=}0.75$; seed~42). Null control limits calibrated from $\\alpha{=}0.0$ runs. At both operating points,",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure",
+      "image_path": "figures/fig_14b_phase.pdf",
+      "caption": "Pythia-1.4B phase diagram (PermG forward, 6-pair basis). Each cell shows per-seed detection fractions (s42\\,|\\,s44 for $T{=}10$; s42\\,|\\,s43 for $T{=}15$). The detection boundary ($\\alpha_c \\approx 0.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.5",
+      "env_type": "figure",
+      "image_path": "figures/fig_per_method_phase.pdf",
+      "caption": "Per-method detection heatmaps (Pythia-410M, seed~42, fp32, $T \\in \\{10, 20\\}$). Each panel shows forward-direction detection rate (\\%) across contamination levels for one method. PermG exhibits the sh",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.6",
+      "env_type": "figure*",
+      "image_path": "figures/permg_power_curve.pdf",
+      "caption": "PermG detection power as a function of coupling strength $\\beta$ for five observation lengths ($T{=}6$--$20$; 100 replications $\\times$ 5{,}000 permutations, BH FDR $q{=}0.05$). Power increases with b",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.7",
+      "env_type": "figure",
+      "image_path": "figures/fig_ar1_diagnostic.pdf",
+      "caption": "Empirical AR(1) coefficients by contamination level (Pythia-410M, seed~42, $T{=}10$). (a)~Token entropy: raw $\\varphi$ transitions from anti-correlated ($-0.51$) at $\\alpha{=}0$ to near-unity ($1.00$)",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.8",
+      "env_type": "figure*",
+      "image_path": "figures/fig_shapley_contribution.pdf",
+      "caption": "Shapley value decomposition of each method's marginal contribution to FPR (positive bars, red) and FNR (negative bars, green/blue), computed from 6 null seeds (36 pairs) and 45 signal experiments (270",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.9",
+      "env_type": "figure",
+      "image_path": "figures/fig_null_fpr_diagnostic.pdf",
+      "caption": "Null-control FPR by method ($\\alpha{=}0.0$, 6~seeds, 6-pair basis). Bars: pooled FPR (rejections/36); dots: per-seed FPR. Naive XCorr (91.7\\%) and Toda--Yamamoto (38.9\\%) vastly exceed the 5\\% nominal",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.10",
+      "env_type": "figure",
+      "image_path": "figures/fig_bootstrap_fpr.pdf",
+      "caption": "Bootstrap distribution of PermG FPR (10{,}000 resamples, 6 null seeds). Mean FPR $= 11.1\\%$ (red line); bootstrap percentile 95\\% CI $[0.0\\%, 22.2\\%]$ (orange band). The Clopper--Pearson cluster-adjus",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.11",
+      "env_type": "figure",
+      "image_path": "figures/fig_detection_surface.pdf",
+      "caption": "Detection rate surface over the $\\alpha \\times T$ operating space (PermG forward, 3 seeds). Contour lines indicate 25\\%, 50\\%, and 75\\% detection rates. The fitted power-law boundary $\\alpha_c(T)$ (da",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.12",
+      "env_type": "figure",
+      "image_path": "figures/fig_channel_effect.pdf",
+      "caption": "Channel effect size asymmetry. (a)~First-differencing retains comparable correlation magnitude for diversity ($95.2\\%$) and perplexity ($100.2\\%$) channels, ruling out blanket power loss. (b)~Despite ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.13",
+      "env_type": "figure",
+      "image_path": "figures/fig_cascade_onset.pdf",
+      "caption": "Cascade onset timeline (Pythia-410M, WikiText, fp32, 5\\% threshold). Token entropy and ECE reach onset at generation~1 (Phase~1, blue shading), while distinct-$n$ metrics follow at generation~2 (Phase",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.14",
+      "env_type": "figure*",
+      "image_path": "figures/fig_cross_arch_heatmap.pdf",
+      "caption": "Cross-architecture PermG forward detection rates at $\\alpha{=}1.0$ across 15 model-seed combinations spanning five families (Pythia, GPT-2, OPT, Qwen, SmolLM3; 345M--6.9B). Dark bars: PermG forward de",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.15",
+      "env_type": "figure",
+      "image_path": "figures/fig_fpr_sensitivity.pdf",
+      "caption": "Null-control false positive rates by detection method (Pythia-410M, seed~42, 8-pair basis). PermG achieves the lowest FPR among directional methods; Naive XCorr exceeds 90\\%. Dashed line: 5\\% nominal ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "5",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "6",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.5",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.6",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.7",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.8",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.9",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.10",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.11",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.12",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.13",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.14",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.15",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/_latex_iso_k2dte57o/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{fig:phase_transition} has no matching \\label",
+          "location": "experiments_reframe.tex:8"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "discussion.tex:22"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross_arch_fpr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:pitfalls} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:detectability} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:ar1_diagnostic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:drift} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:drift_summary} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:gpt2m_null_fpr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:te_mi} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:background} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cross_arch_heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cascade_onset} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:scale_14b} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:joint-sigmoid} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:per_method_phase} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:bootstrap_fpr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:change_point} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:window_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cusum_monitoring} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{ass:mode_amp} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:permg_power} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:channel_effect} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:null_fpr_diagnostic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:spec_curve} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:alpha-c} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:mixing} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:fpr_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:nonstationarity_sim} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{prop:phase-boundary} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:detection_surface} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:14b_phase} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:15"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:81"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:136"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:224"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:264"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:284"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:309"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:364"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:454"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:572"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:696"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:723"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:822"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:850"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:977"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1060"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1232"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1304"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1344"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1364"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments_reframe.tex:85"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "2 critical, 57 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "background.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 6
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 10,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 11,
+          "num_cites": 4
+        },
+        {
+          "file": "discussion_reframe.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 3
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 87,
+          "num_cites": 7
+        },
+        {
+          "file": "experiments_reframe.tex",
+          "role": "other",
+          "num_numbers": 82,
+          "num_cites": 0
+        },
+        {
+          "file": "intro_reframe.tex",
+          "role": "other",
+          "num_numbers": 32,
+          "num_cites": 9
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 14,
+          "num_cites": 9
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 1
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 54,
+          "num_cites": 10
+        },
+        {
+          "file": "method_reframe.tex",
+          "role": "other",
+          "num_numbers": 30,
+          "num_cites": 7
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 23
+        },
+        {
+          "file": "related_work_reframe.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 17
+        },
+        {
+          "file": "theory.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 2
+        }
+      ],
+      "critical": [
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 62.5 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 2.8 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 3.4, but result section reports 3.45. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'briesch2023large' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'feng2024beyond' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hataya2023will' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2025verification' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'marchi2025challenging' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'marcinkevics2022neural' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mitchell2023detectgpt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'padmakumar2024writing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'page1954continuous' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'pillutla2021mauve' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'schreiber2000measuring' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'seddik2026statistical' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'shapley1953value' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zeng2025kangci' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\alpha",
+              "\\geq",
+              "\\leq"
+            ],
+            "background": [
+              "\\alpha",
+              "\\cdots",
+              "\\geq",
+              "\\in",
+              "\\ldots",
+              "\\to"
+            ],
+            "conclusion": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "discussion": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq"
+            ],
+            "discussion_reframe": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "experiments_reframe": [
+              "\\Delta",
+              "\\Phi",
+              "\\alpha",
+              "\\approx",
+              "\\cdot",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "intro_reframe": [
+              "\\Delta",
+              "\\Phi",
+              "\\alpha",
+              "\\approx",
+              "\\cdot",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\alpha",
+              "\\diamond",
+              "\\gamma",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\propto",
+              "\\star",
+              "\\to"
+            ],
+            "limitations": [
+              "\\alpha",
+              "\\geq",
+              "\\leq"
+            ],
+            "method": [
+              "\\Delta",
+              "\\Phi",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\beta",
+              "\\cdot",
+              "\\epsilon",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\infty",
+              "\\kappa",
+              "\\leq",
+              "\\min",
+              "\\pi",
+              "\\pm",
+              "\\propto",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\varphi"
+            ],
+            "method_reframe": [
+              "\\Phi",
+              "\\alpha",
+              "\\approx",
+              "\\bigl",
+              "\\bigr",
+              "\\cdot",
+              "\\epsilon",
+              "\\geq",
+              "\\hat",
+              "\\kappa",
+              "\\leq",
+              "\\max",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "related_work": [
+              "\\leq"
+            ],
+            "related_work_reframe": [
+              "\\leq"
+            ],
+            "theory": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\epsilon",
+              "\\gamma",
+              "\\geq",
+              "\\infty",
+              "\\min",
+              "\\sigma",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 2,
+        "warning": 15,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_figure_backups/20260524_155556",
+  "error": "",
+  "timestamp": "2026-05-24T16:13:07.155683+00:00"
+}

@@ -1,0 +1,319 @@
+{
+  "analysis": "alpha_0.60_non-monotonic_anomaly",
+  "data_source": "artifacts/_project/data/dose_response_d120_recompiled.csv",
+  "filters": {
+    "model": "gpt2",
+    "domain": "wikitext",
+    "precision": "fp32",
+    "category": "alpha_sweep"
+  },
+  "cross_seed_alpha060": {
+    "rows": [
+      {
+        "experiment": "a060_s42_fp32_v3_d080",
+        "seed": 42,
+        "permg_fwd_fdr": 3,
+        "permg_rev_fdr": 0,
+        "permg_rate": 0.375,
+        "n_pairs": 8,
+        "consensus_ge3": 3,
+        "consensus_ge4": 2,
+        "consensus_ge5": 0,
+        "naive_fwd": 3,
+        "diffxcorr_fwd_fdr": 8,
+        "threshold_fwd": 0,
+        "ty_fwd": 5
+      },
+      {
+        "experiment": "a060_s42_fp32_v4",
+        "seed": 42,
+        "permg_fwd_fdr": 0,
+        "permg_rev_fdr": 0,
+        "permg_rate": 0.0,
+        "n_pairs": 8,
+        "consensus_ge3": 0,
+        "consensus_ge4": 0,
+        "consensus_ge5": 0,
+        "naive_fwd": 2,
+        "diffxcorr_fwd_fdr": 6,
+        "threshold_fwd": 0,
+        "ty_fwd": 1
+      },
+      {
+        "experiment": "a060_s43_fp32",
+        "seed": 43,
+        "permg_fwd_fdr": 0,
+        "permg_rev_fdr": 0,
+        "permg_rate": 0.0,
+        "n_pairs": 8,
+        "consensus_ge3": 0,
+        "consensus_ge4": 0,
+        "consensus_ge5": 0,
+        "naive_fwd": 1,
+        "diffxcorr_fwd_fdr": 6,
+        "threshold_fwd": 0,
+        "ty_fwd": 1
+      }
+    ],
+    "latest_versions": {
+      "seed_42": {
+        "experiment": "a060_s42_fp32_v4",
+        "permg_fwd_fdr": 0,
+        "consensus_ge3": 0,
+        "note": "Updated from v3_d080 (permg=3, consensus_ge3=3) to v4 (permg=0, consensus_ge3=0)"
+      },
+      "seed_43": {
+        "experiment": "a060_s43_fp32",
+        "permg_fwd_fdr": 0,
+        "consensus_ge3": 0
+      }
+    },
+    "dip_consistent_across_seeds": true,
+    "version_change_note": "K>=3 changed from 3/8 to 0/8 when seed=42 was re-run with v4 (d120 recompilation). Both seeds now show 0/8."
+  },
+  "detection_rates_per_alpha": {
+    "0.00": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a000_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a000_s43"
+        },
+        {
+          "seed": 44,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a000_s44"
+        }
+      ]
+    },
+    "0.05": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a005_s42_fp32_v3_d080"
+        }
+      ]
+    },
+    "0.10": {
+      "mean_detection_rate": 0.1875,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a010_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 3,
+          "n_pairs": 8,
+          "rate": 0.375,
+          "experiment": "a010_s43_fp32"
+        }
+      ]
+    },
+    "0.25": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a025_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a025_s43_fp32"
+        },
+        {
+          "seed": 44,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a025_s44_fp32"
+        }
+      ]
+    },
+    "0.30": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a030_s42_fp32"
+        }
+      ]
+    },
+    "0.35": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a035_s42_fp32"
+        }
+      ]
+    },
+    "0.40": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a040_s42_fp32"
+        }
+      ]
+    },
+    "0.45": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a045_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a045_s43_fp32"
+        }
+      ]
+    },
+    "0.50": {
+      "mean_detection_rate": 0.75,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 6,
+          "n_pairs": 8,
+          "rate": 0.75,
+          "experiment": "a050_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 6,
+          "n_pairs": 8,
+          "rate": 0.75,
+          "experiment": "a050_s43_fp32"
+        },
+        {
+          "seed": 44,
+          "permg_fwd_fdr": 6,
+          "n_pairs": 8,
+          "rate": 0.75,
+          "experiment": "a050_s44_fp32"
+        }
+      ]
+    },
+    "0.55": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a055_s42_fp32"
+        }
+      ]
+    },
+    "0.60": {
+      "mean_detection_rate": 0.0,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a060_s42_fp32_v4"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a060_s43_fp32"
+        }
+      ]
+    },
+    "0.75": {
+      "mean_detection_rate": 0.4583333333333333,
+      "seeds": [
+        {
+          "seed": 42,
+          "permg_fwd_fdr": 6,
+          "n_pairs": 8,
+          "rate": 0.75,
+          "experiment": "a075_s42_fp32"
+        },
+        {
+          "seed": 43,
+          "permg_fwd_fdr": 5,
+          "n_pairs": 8,
+          "rate": 0.625,
+          "experiment": "a075_s43"
+        },
+        {
+          "seed": 44,
+          "permg_fwd_fdr": 0,
+          "n_pairs": 8,
+          "rate": 0.0,
+          "experiment": "a075_s44"
+        }
+      ]
+    }
+  },
+  "sigmoid_fit": {
+    "function": "P(det) = 1 / (1 + exp(-k*(alpha - alpha_c)))",
+    "excluding_alpha060": {
+      "k": 5.6576,
+      "alpha_c": 0.7652,
+      "R_squared": 0.285619,
+      "predicted_at_060": 0.2819,
+      "n_points": 11
+    },
+    "including_alpha060": {
+      "k": 5.5973,
+      "alpha_c": 0.8227,
+      "R_squared": 0.204672,
+      "n_points": 12
+    },
+    "difference": {
+      "delta_k": 0.0603,
+      "delta_alpha_c": -0.0575,
+      "delta_R_squared": 0.080947
+    }
+  },
+  "text_summary": "The non-monotonic dip at alpha=0.60 is consistent across all available seeds: both seed=42 (v4) and seed=43 yield 0/8 PermG detections and consensus_ge3=0, confirming the anomaly is not a single-seed artifact. A sigmoid fit excluding alpha=0.60 yields alpha_c=0.765, k=5.7, R\u00b2=0.2856, predicting P(det)=0.282 at alpha=0.60\u2014substantially above the observed 0.000. Including the alpha=0.60 point degrades the fit (alpha_c=0.823, k=5.6, R\u00b2=0.2047; \u0394R\u00b2=0.0809), confirming it is a genuine outlier relative to the monotonic sigmoid trend. The version change from K>=3=3/8 to 0/8 reflects re-running seed=42 with corrected d120 recompilation data (v4), which strengthened rather than weakened the anomaly."
+}

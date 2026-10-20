@@ -1,0 +1,532 @@
+meta:
+  title: "A Detection Phase Transition in Iterative Training Collapse"
+  venue: EMNLP 2026
+  track: main
+  deadline: "2026-06-15 (ARR submission)"
+  format: "ACL/EMNLP two-column, 8 pages main text + unlimited references/appendix"
+  template: "acl2023"
+  template_note: "EMNLP 2026 沿用 ACL 格式。Reframe 不改模板。"
+  core_claim: "Causal detectability of iterative training collapse undergoes a near-discontinuous phase transition at α_c=0.487 (sigmoid R²=0.883, Δα≈0.02), predicted by a signal-times-resolution framework that explains the four-regime dose-response and confirmed across 14 model-seed combinations spanning five families (345M–6.9B)."
+  word_budget_total: 3500
+  citation_budget: 35-40
+  status: pending_approval
+  created_at: "2026-05-20"
+  reframe_from: "Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse"
+  reframe_rationale: >
+    D130: 从 Methodology Paper 转型为 Discovery Paper。
+    Detection phase transition 升格为核心发现 (C1)；
+    S×R theory 升格为理论贡献 (C2)；
+    MMCT 降级为 evaluation tool (C3)；
+    Canary-based cessation 保留为 practical contribution (C4)。
+    当前 39 页正文须压缩至 8 页主文 + 无限附录。
+
+# ============================================================
+# Contributions (D130 四贡献结构)
+# ============================================================
+contributions:
+  C1:
+    label: "Detection Phase Transition"
+    summary: "Near-discontinuous onset of causal detectability at α_c=0.487 (sigmoid R²=0.883, k≥200, Δα≈0.02) despite only 0.15pp cumulative contamination difference across the boundary."
+    primary_evidence: "Sigmoid regression on 12-point α grid; 0/8→6/8 jump; power-law ΔAIC=18.2"
+    status: established
+
+  C2:
+    label: "S×R Theory"
+    summary: "Detectability(α) ∝ S(α) × R(α) framework predicts four regimes: blind (α≤0.45), onset (α≈0.50), synchronous dip (α≈0.60), detection (α≥0.75). Per-generation signal threshold explains why cumulative contamination is irrelevant."
+    primary_evidence: "Empirical four-regime dose-response matches predictions; dual-seed confirmation at α=0.60"
+    status: established
+    note: "paper_framing.md C2 confirms 4 regimes (blind/onset/sync dip/detection). OQ01 resolved."
+
+  C3:
+    label: "Multi-Method Evaluation Toolkit"
+    summary: "Five-method comparison through MMCT identifies PermG as the only method with zero null-control FPR and high sensitivity. Three pitfalls (method sensitivity 62.5%, spurious regression, regime dependence) condition all subsequent interpretation."
+    primary_evidence: "FPR=0%/FNR=0% at reference extremes; κ=0.185; Shapley analysis"
+    status: established
+    note: "Downgraded from C1 (old plan) to C3 (supporting tool). Detailed MMCT formalization → appendix."
+
+  C4:
+    label: "Canary-Based Predictive Cessation"
+    summary: "15% entropy threshold fires one generation earlier than reactive cessation, reducing peak perplexity by 58% (bootstrap CI 29–64%). Validated across 410M and 1.4B."
+    primary_evidence: "Intervention experiments at α=1.0; cross-scale replication"
+    status: established
+
+# ============================================================
+# Story Arc
+# ============================================================
+story_arc:
+  hook: "Two training runs with 99.75% vs 99.90% cumulative synthetic contamination produce categorically different detection outcomes (0/8 vs 6/8 Granger-significant pairs)."
+  gap: "Existing canary studies lack methodological rigor AND miss the fact that detectability itself has a phase transition — it is not gradual but near-discontinuous."
+  insight: "Causal coupling between canary and downstream metrics emerges abruptly at a critical contamination threshold (α_c=0.487), explained by the competition between rising signal strength and non-monotonic temporal resolution."
+  mechanism: "The S×R framework: Detectability ∝ Signal × Resolution. Signal rises monotonically; resolution dips at intermediate α due to relaxation time matching, creating a four-regime dose-response."
+  evidence: "α_c=0.487, sigmoid R²=0.883, Δα≈0.02; 13/15 cross-architecture conditions; 24/24 forward, 0/24 reverse."
+
+# ============================================================
+# Paper Outline (8 pages main text)
+# ============================================================
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    dependencies: [results, theory_and_method, introduction]
+    core_bullets:
+      - "Hook: Method choice inflates spurious rates to 62.5%; the right method reveals a detection phase transition"
+      - "Discovery: Near-discontinuous onset at α_c=0.487 (sigmoid R²=0.883, Δα≈0.02) despite <0.2pp cumulative contamination difference"
+      - "Theory: S×R framework predicts four regimes including non-monotonic synchronous dip"
+      - "Validation: 13/15 cross-architecture conditions (5 families, 345M–6.9B); directional asymmetry 24/24 fwd, 0/24 rev"
+      - "Application: Entropy-based cessation reduces peak perplexity 58%, fires one generation earlier"
+
+  - section: introduction
+    word_budget: 700
+    page_budget: 1.3
+    dependencies: []
+    core_bullets:
+      - "Hook: 99.75% vs 99.90% cumulative contamination → 0/8 vs 6/8 detection (specific, surprising)"
+      - "Context: Model collapse is established; canary metrics proposed but methodology weak"
+      - "Gap: No prior work maps detectability as a function of contamination level; implicit assumption that detection scales smoothly with contamination"
+      - "Discovery: Near-discontinuous onset at α_c=0.487 — a detection phase transition"
+      - "C1: Phase transition (α_c, sigmoid, Δα)"
+      - "C2: S×R theory predicting four-regime structure"
+      - "C3: Multi-method toolkit identifying PermG (downgraded from prior framing)"
+      - "C4: Canary-based cessation (58% perplexity reduction)"
+      - "Scoping: Granger precedence ≠ causality; diversity metrics only"
+    figures: [fig_phase_transition]
+    citation_hints:
+      - "shumailov2024curse, alemohammad2024mad — collapse foundations"
+      - "scheffer2009early, boettiger2012limits — EWS theoretical motivation"
+      - "shojaie2022granger — Granger methodology"
+
+  - section: background_and_related_work
+    word_budget: 450
+    page_budget: 0.85
+    dependencies: [introduction]
+    core_bullets:
+      - "Iterative training loop: M_t, D_synth, α mixing (2–3 sentences, compressed from current §3)"
+      - "Model collapse: shumailov, alemohammad, dohmatob, truong — 1–2 sentences each"
+      - "Canary/monitoring: du2026geometric, SIGMA, DCES — 1 sentence each + shared limitations"
+      - "EWS/tipping points: scheffer, boettiger — detection power in short series"
+      - "Granger methodology: granger1969, shojaie2022 — brief"
+      - "Differentiation from du2026geometric: multi-metric, multi-method, regime mapping, method sensitivity as finding"
+    tables: []
+    figures: []
+    appendix_refs: ["Full method comparison table (Table A.x) in Appendix"]
+
+  - section: theory_and_method
+    word_budget: 900
+    page_budget: 1.7
+    dependencies: [background_and_related_work]
+    subsections:
+      - name: "Signal × Resolution Framework"
+        word_budget: 550
+        core_bullets:
+          - "Continuous vs discrete response: entropy smooth functional, distinct-n counting statistic with threshold τ_n"
+          - "Detectability(α) ∝ S(α) × R(α) — Eq.(1)"
+          - "S monotonic; R non-monotonic (relaxation time matching at intermediate α)"
+          - "Four regime predictions: blind, onset, synchronous dip, detection"
+          - "Per-generation signal threshold: Δh(g) ∝ α · d_TV; cumulative contamination irrelevant"
+          - "D133 Statistical Power Theory: Power(α,T) = Φ(S(α)×R(α)×√T/σ); α_c is power threshold not physical phase transition"
+          - "Three testable T=20 predictions: (1) α_c left-shift, (2) transition smoothing, (3) method-dependent α_c"
+          - "Effective rank mechanistic chain: H↓ → erank↓ → tail below τ_n → D_k↓"
+          - "Cross-disciplinary: hormesis dose-response [1 sentence], zero-lag GC failure [1 sentence]"
+          - "Speculative connections: gu2024cmr scaling law, gu2025datamixing phase transitions, truong2025entropy universality classes [2 sentences]"
+      - name: "Multi-Method Evaluation"
+        word_budget: 350
+        core_bullets:
+          - "Three pitfalls in 1 condensed paragraph: method sensitivity (62.5%, κ=0.185), spurious regression (canary→ppl F≈0 after differencing), regime dependence (0/8→6/8)"
+          - "Five methods: naive XCorr, diff XCorr, threshold onset, PermG, TY — listed with 1-sentence characterization each"
+          - "Key comparison table (tab_method_summary): null FPR + detection rates"
+          - "PermG recommendation: zero FPR, high sensitivity, clean directional separation"
+          - "MMCT formalization → Appendix A; main text states result only"
+          - "FPR=0%/FNR=0% at reference extremes (1 sentence)"
+    tables: [tab_method_summary]
+    figures: []
+    registry_refs: [method_ablation_phase1, method_ablation_phase2]
+
+  - section: results
+    word_budget: 1000
+    page_budget: 2.3
+    dependencies: [theory_and_method]
+    subsections:
+      - name: "Detection Phase Transition"
+        word_budget: 450
+        core_bullets:
+          - "12-point α grid: 0/8 through α=0.45, 6/8 at α=0.50 (dual-seed), dip 0–3/8 at 0.60, 5–6/8 at ≥0.75"
+          - "Sigmoid regression: α_c=0.487, k≥200, R²=0.883 vs power-law 0.808, ΔAIC=18.2"
+          - "Cumulative contamination paradox: C(0.45,10)=99.75% vs C(0.50,10)=99.90% → 0/8 vs 6/8"
+          - "Four-regime dose-response (Figure 2): confirms S×R predictions"
+          - "Non-monotonic dip at α=0.60: dual-seed confirmed; synchronous collapse zone"
+          - "Canary blind spot at α=0.10: distinct-1 ↓39.6% but entropy indistinguishable from null"
+          - "Onset boundary narrowed to ≤0.05-wide interval via α=0.35/0.40/0.45 probing"
+        figures: [fig_dose_response]
+        registry_refs: [alpha_sweep_a000_s42, alpha_sweep_a025_s42_v3, alpha_sweep_a050_s42, alpha_sweep_a075_s42, mvp_v4_rep42]
+
+      - name: "Cross-Architecture Validation"
+        word_budget: 300
+        core_bullets:
+          - "15 conditions, 5 families (Pythia/GPT-2/OPT/Qwen/SmolLM3/Padding), 345M–6.9B"
+          - "PermG fwd ≥6/8 in 13/15 (86%); K≥3 in 10/14"
+          - "Directional asymmetry: 24/24 forward, 0/24 reverse on WikiText-103 at α=1.0"
+          - "Domain-dependent: C4 exhibits bidirectional coupling (PermG rev 7/8 at α=0.50, s42 only; 3/4 conditions unidirectional)"
+          - "C4 collapse mode qualitatively different: perplexity-dominated (ppl +3617% at α=0.25) vs WikiText diversity-dominated — 'regime structure exists in both domains but collapse mode differs' (constraint #47)"
+          - "Onset boundary α_c≈0.50 consistent across all five families"
+          - "Exceptions: Pythia-1.4B s42 (seed-dependent), SmolLM3 (canary metric splitting — ECE only, constraint #46)"
+        tables: [tab_generalization]
+        registry_refs: [cross_architecture_experiments]
+
+      - name: "Canary-Based Intervention"
+        word_budget: 250
+        core_bullets:
+          - "Predictive cessation: 15% entropy threshold triggers at gen 1; reactive at gen 2"
+          - "Peak perplexity reduced 58% (bootstrap CI 29–64%, 2 seed-precision pairs)"
+          - "Cross-scale: 410M (s42 fp32, s43 bf16) and 1.4B (s42 fp32) — identical pattern"
+          - "Threshold fires at α=0.75 (entropy ↓31.6% at gen 1) and α=0.60 (↓31.3%)"
+          - "At α=0.60, threshold succeeds where formal Granger fails (synchronous zone)"
+        figures: [fig_metric_trajectory]
+        registry_refs: [intervention_experiments]
+
+  - section: discussion_and_conclusion
+    word_budget: 450
+    page_budget: 0.85
+    dependencies: [results]
+    core_bullets:
+      - "Granger ≠ causation (1 sentence, cite shojaie2022)"
+      - "Four-layer detection taxonomy: (1) dimensionality/erank onset ~0.10, (2) instability/variance onset ~0.25, (3) coupling/PermG onset ~0.50, (4) dynamical/AC1 onset ~0.50 suggestive"
+      - "Suggestive CSD: AC1 +0.30 jump at onset, variance 10× at α=0.25 — not conclusive at T=11"
+      - "Practical utility paradox: works best at high α; continuous monitoring resolves this"
+      - "Domain-dependent directionality: WikiText unidirectional, C4 bidirectional"
+      - "Prevention paradox under intervention (brief)"
+      - "Summary: 3–4 sentences recapping C1–C4"
+      - "Future work: longer T, multivariate VAR, >7B models, accumulate mode, CSD with T≥50"
+
+  - section: limitations
+    word_budget: 400
+    dependencies: [discussion_and_conclusion]
+    core_bullets:
+      - "Scale ≤1.4B; 7B+ untested (compute cost)"
+      - "Data: 5K WikiText-103 subset; C4 pre-training confound"
+      - "Short T=10 (11 points); T≥20 would improve power"
+      - "Bivariate Granger ≠ causality; cannot exclude confounders"
+      - "Replace-only protocol; accumulate mode untested"
+      - "Scoped to diversity metrics (distinct-n), not model collapse broadly"
+      - "Regime boundary ±0.05 uncertainty; sigmoid sharpness at other scales open"
+      - "Intervention only at α=1.0; 15% threshold at partial contamination unvalidated"
+    note: "Does not count toward 8-page limit per EMNLP 2026 rules"
+
+# ============================================================
+# Visualization Plan
+# ============================================================
+visualization_plan:
+  # --- Main text (3 figures) ---
+  - fig_id: fig_phase_transition
+    type: statistical
+    tool: matplotlib
+    description: "HERO FIGURE: Sigmoid fit to PermG forward detection rate across 12 α levels, showing near-discontinuous onset at α_c=0.487."
+    narrative_intent: "Causal detectability jumps from 0/8 to 6/8 within a Δα≈0.02 interval despite cumulative contamination barely changing — this is a detection phase transition, not a gradual onset."
+    design_notes:
+      - "Pattern A: regime bands — four zones (blind/onset/dip/detection) as shaded vertical bands"
+      - "Sigmoid curve overlaid on empirical data points with error bars where multi-seed"
+      - "Annotate α_c=0.487, R²=0.883 on curve"
+      - "Inset or margin annotation: C(0.45)=99.75% vs C(0.50)=99.90%"
+      - "Dual y-axis or right margin: cumulative contamination C scale"
+    placement: "Figure 1, Introduction"
+    aspect_ratio: "single column (3.25in × 2.5in)"
+    data_source: "artifacts/phase_transition/; registry alpha_sweep experiments"
+    output_path: "projects/distrib_canary_collapse/figures/paper/fig_phase_transition.pdf"
+    status: DONE_REMOTE
+    note: "Exists on westd-17855. Need transfer + possible redesign for hero placement."
+
+  - fig_id: fig_dose_response
+    type: statistical
+    tool: matplotlib
+    description: "Four-regime dose-response: PermG forward detection rate vs α across full 12-point grid."
+    narrative_intent: "The non-monotonic profile confirms S×R theory predictions: blind→onset→synchronous dip→detection, with the dip at α≈0.60 confirming relaxation time matching."
+    design_notes:
+      - "Pattern A: regime bands (4 zones) matching fig_phase_transition colors"
+      - "Per-seed points where dual/triple-seed available (not just mean)"
+      - "Orange diamond or distinct marker for α=0.60 dip"
+      - "Consistent color scheme with fig_phase_transition"
+    placement: "Results §5.1"
+    aspect_ratio: "single column (3.25in × 2.5in)"
+    data_source: "registry: alpha_sweep_* experiments"
+    output_path: "projects/distrib_canary_collapse/figures/paper/fig_dose_response.pdf"
+    status: DONE
+    artifact_id: art_20260515_06ffe6
+    note: "Existing fig_regime_map. May need relabeling/restyling for discovery framing."
+
+  - fig_id: fig_metric_trajectory
+    type: statistical
+    tool: matplotlib
+    description: "Token entropy and distinct-1 trajectories at α=1.0 (4 seeds), showing one-generation canary lead."
+    narrative_intent: "Token entropy drops at generation 1, one full generation before diversity responds — this visible temporal offset is what the canary-based cessation exploits."
+    design_notes:
+      - "Dual panel or normalized overlay"
+      - "Vertical annotations: gen 1 (canary fires), gen 2 (diversity responds)"
+      - "4-seed individual traces with shaded inter-seed range"
+      - "Clean, minimal — let the temporal offset speak"
+    placement: "Results §5.3"
+    aspect_ratio: "single column (3.25in × 2.5in)"
+    data_source: "registry: mvp_v4_rep42, mvp_v4_rep43, mvp_v4_rep44, mvp_v4_rep45"
+    output_path: "projects/distrib_canary_collapse/figures/paper/fig_metric_trajectory.pdf"
+    status: TODO
+
+  # --- Appendix figures (moved from main) ---
+  - fig_id: fig_consensus_heatmap
+    type: heatmap
+    tool: matplotlib
+    description: "Method×regime consensus heatmap — moved to Appendix"
+    placement: "Appendix C: Method Sensitivity Details"
+    status: DONE
+    artifact_id: art_20260515_97707a
+
+  - fig_id: fig_differencing_dmax
+    type: multi_panel
+    tool: matplotlib
+    description: "First-differencing diagnostic + d_max sensitivity — moved to Appendix"
+    placement: "Appendix C: Method Sensitivity Details"
+    status: TODO
+
+  - fig_id: fig_consensus_workflow
+    type: multi_panel
+    tool: matplotlib
+    description: "Consensus pipeline funnel diagram — moved to Appendix"
+    placement: "Appendix B: MMCT Formalization"
+    status: DONE
+    artifact_id: art_20260515_390d50
+
+  - fig_id: fig_shapley
+    type: statistical
+    tool: matplotlib
+    description: "Shapley method contribution decomposition — moved to Appendix"
+    placement: "Appendix D: Shapley Analysis"
+    status: DONE
+
+# ============================================================
+# Table Plan
+# ============================================================
+table_plan:
+  # --- Main text (2 tables) ---
+  - table_id: tab_method_summary
+    type: comparison
+    caption: "Lead-lag detection method comparison. Null-control FPR and forward detection rates across contamination levels. PermG is the only method with zero FPR and consistent detection at α≥0.50."
+    columns: ["Method", "FPR (null)", "α=0.50", "α=0.75", "α=1.0"]
+    data_source: "registry: method_ablation_phase2; existing tab_method_comparison"
+    placement: "Theory+Method §4.2"
+    notes: "Compressed from 6-column table. 5 methods, focus on key α levels."
+
+  - table_id: tab_generalization
+    type: comparison
+    caption: "Cross-architecture detection at α=1.0. PermG fwd ≥6/8 in 13/15 confirmed conditions across six model families (345M–6.9B)."
+    columns: ["Model", "Params", "Domain", "PermG (fwd)"]
+    data_source: "registry: cross-architecture experiments"
+    placement: "Results §5.2"
+    notes: "Compressed. Group by family. 14 rows + footnotes for exceptions. K≥3 column FROZEN per M037 audit (threshold_onset 2σ/3σ inconsistency + TY/diff script divergence). Use PermG-only as primary indicator per constraint #50. K≥3 may be restored after unified script audit."
+
+  # --- Appendix tables (moved from main) ---
+  - table_id: tab_drift_summary
+    type: metric_comparison
+    caption: "Metric drift across contamination levels"
+    placement: "Appendix E: Drift and Raw Data"
+    data_source: "registry: alpha_sweep experiments"
+    notes: "Currently main text Table 1. Moves to appendix in reframe."
+
+  - table_id: tab_fpr_fnr
+    type: calibration
+    caption: "FPR/FNR calibration for individual methods and consensus"
+    placement: "Appendix B: Calibration Details"
+
+  - table_id: tab_practical_guidance
+    type: guidance
+    caption: "4-tier practical guidance tiers"
+    placement: "Appendix B: Calibration Details"
+
+  - table_id: tab_single_method_errors
+    type: comparison
+    caption: "Single-method inference errors across α levels"
+    placement: "Appendix C: Method Sensitivity"
+
+  - table_id: tab_cross_arch_regime
+    type: comparison
+    caption: "Cross-architecture regime map at α=0.25 and 1.0"
+    placement: "Appendix F: Cross-Architecture Details"
+
+  - table_id: tab_mmct_ablation
+    type: comparison
+    caption: "MMCT per-method detection rates"
+    placement: "Appendix B: MMCT Formalization"
+
+  - table_id: tab_mmct_cross
+    type: comparison
+    caption: "MMCT cross-condition stability"
+    placement: "Appendix B: MMCT Formalization"
+
+  - table_id: tab_method_comparison_full
+    type: comparison
+    caption: "Full methodological comparison of canary analyses in literature"
+    placement: "Appendix or Related Work"
+    notes: "Current tab:method-comparison. May stay in compressed RW or move to appendix."
+
+# ============================================================
+# Literature Strategy
+# ============================================================
+literature_strategy:
+  note: "No new literature search needed for reframe. Existing literature_map.yaml sufficient. Focus on compression and re-prioritization."
+  citation_budget: 35-40
+  macro_context: "Model collapse → detection phase transition → S×R theory → early-warning signals → Granger methodology"
+  micro_clusters:
+    - cluster_name: core_collapse
+      must_cite: [shumailov2024curse, alemohammad2024mad, dohmatob2024tale, truong2025entropy]
+      target_count: 4
+    - cluster_name: canary_monitoring
+      must_cite: [du2026geometric, sigma2026spectral]
+      target_count: 3
+    - cluster_name: data_mixing
+      must_cite: [kazdan2025collapse, dey2024breaking]
+      target_count: 2
+    - cluster_name: early_warning
+      must_cite: [scheffer2009early, boettiger2012limits, dakos2012methods]
+      target_count: 3
+    - cluster_name: granger_methodology
+      must_cite: [granger1969investigating, shojaie2022granger, toda1995statistical, granger1974spurious]
+      target_count: 4
+    - cluster_name: phase_transition_theory
+      must_cite: [gu2024cmr, gu2025datamixing, calabrese2003hormesis, titus2020speeding, deshpande2010instantaneous]
+      target_count: 5
+      note: "gu2025datamixing = Gu et al. 2025, NeurIPS Spotlight, arXiv:2505.18091 — data mixing phase transitions. Pending Director verification of venue."
+    - cluster_name: analytical_robustness
+      must_cite: [simonsohn2020specification, bell2022modeling]
+      target_count: 2
+    - cluster_name: diversity_metrics
+      must_cite: [li2016diversity, biderman2023pythia]
+      target_count: 2
+
+# ============================================================
+# Writing Order (Reframe = mini Full Draft, all sections rewritten)
+# ============================================================
+writing_order:
+  - step: 1
+    section: results
+    rationale: "Hero section. Lock down phase transition numbers, cross-architecture table, intervention data. All other sections reference these."
+  - step: 2
+    section: theory_and_method
+    rationale: "S×R framework predicts results; method comparison justifies PermG. Depends on knowing exact result numbers."
+  - step: 3
+    section: introduction
+    rationale: "Frames the discovery. Needs final numbers from Results + theoretical context from Theory."
+  - step: 4
+    section: background_and_related_work
+    rationale: "Position paper. Needs Introduction's framing to determine emphasis."
+  - step: 5
+    section: discussion_and_conclusion
+    rationale: "Implications, taxonomy, future work. After all results and theory finalized."
+  - step: 6
+    section: limitations
+    rationale: "Honest scope assessment. After all claims finalized."
+  - step: 7
+    section: abstract
+    rationale: "Last — summarizes everything."
+
+# ============================================================
+# Appendix Strategy
+# ============================================================
+appendix_strategy:
+  note: >
+    Current 39-page paper compresses to 8 pages main text.
+    Appendix absorbs all detailed formalizations, secondary analyses,
+    and expanded tables. Main text references appendix sections explicitly.
+  structure:
+    - id: "Appendix A"
+      title: "Experimental Setup Details"
+      content: "Full training hyperparameters, metric definitions, statistical test parameters. Expanded from current §5.1."
+    - id: "Appendix B"
+      title: "MMCT Formalization and Calibration"
+      content: "Algorithm 1, FPR-inverse weighting equations, FPR/FNR tables, practical guidance tiers, MMCT ablation tables, consensus workflow figure."
+    - id: "Appendix C"
+      title: "Method Sensitivity Analysis"
+      content: "Five-method ablation details, differencing diagnostic figure, d_max sensitivity, inter-method agreement (κ), consensus heatmap, single-method error table."
+    - id: "Appendix D"
+      title: "Shapley Decomposition and Power Analysis"
+      content: "Shapley figure, bootstrap power analysis, transfer entropy results."
+    - id: "Appendix E"
+      title: "Metric Drift and Raw Data"
+      content: "Drift summary table, distinct-3 results, canary blind spot details."
+    - id: "Appendix F"
+      title: "Cross-Architecture Details"
+      content: "Per-condition method-level breakdown, SmolLM3 case study, cross-architecture regime table, Pythia-1.4B seed sensitivity."
+    - id: "Appendix G"
+      title: "Extended Discussion"
+      content: "Token entropy vs perplexity, NLP-specific constraints, prevention paradox details, change-point analysis, sequential monitoring (CUSUM), observation window sensitivity."
+    - id: "Appendix H"
+      title: "Intervention Details"
+      content: "Full intervention trajectories, bf16 vs fp32 comparison, threshold sensitivity."
+
+# ============================================================
+# Presentation Constraints
+# ============================================================
+presentation_constraints:
+  # Inherited from old plan
+  - id: PC01
+    source: D038
+    rule: "α=0.75 vs α=1.0 consensus scores cannot be directly compared (different standards: single-seed vs 4-seed)"
+  - id: PC07
+    source: paper_framing
+    rule: "Cannot claim canary predicts model collapse; only diversity collapse"
+  - id: PC10
+    source: paper_framing
+    rule: "f² effect size: Cohen benchmarks forbidden (df_resid<20); permutation p-value is primary inference evidence"
+  - id: PC11
+    source: paper_framing
+    rule: "Granger precedence ≠ true causality; Discussion must state this"
+  - id: PC14
+    source: paper_framing
+    rule: "Strength words restricted: single dataset → no 'consistently outperforms'/'state-of-the-art'; no stat test → no 'significantly'"
+  # New D130 constraints
+  - id: PC_D130_01
+    source: D130
+    rule: "Phase transition is core discovery (C1); MMCT downgraded to C3"
+  - id: PC_D130_02
+    source: D130
+    rule: "'detection phase transition' OK on own data; 'phase transition' alone too strong"
+  - id: PC_D130_03
+    source: D130
+    rule: "CSD = 'suggestive' not 'confirmed' at T=11"
+  - id: PC_D130_04
+    source: D130
+    rule: "'robust across architectures' OK; 'universal' too strong"
+  - id: PC_D130_05
+    source: D130
+    rule: "Main text ≤8 pages strictly; unlimited appendix and references"
+  - id: PC_D130_06
+    source: paper_framing
+    rule: "'first-order phase transition' / 'phase transition' (physical sense) FORBIDDEN on own data. Only 'detection phase transition' / 'sharp onset' / 'near-discontinuous onset' allowed."
+  - id: PC_M037
+    source: M037
+    rule: "Dose-response figures/tables ONLY use PermG column. K≥3 FROZEN until unified script audit (threshold 2σ/3σ + TY/diff script divergence). PermG is the sole cross-script consistent method."
+  - id: PC_D079
+    source: D079
+    rule: "Table + dose-response main axis fp32 only. ≤3B fp32 mandatory. 6.9B bf16 discussed separately with 'bf16; scale vs precision confounded' caveat."
+
+# ============================================================
+# Open Questions (for Director decision)
+# ============================================================
+open_questions:
+  - id: OQ01
+    question: "Regime count: 4 or 5?"
+    status: RESOLVED
+    resolution: "paper_framing.md C2 confirms 4 regimes (blind/onset/sync dip/detection). No split needed."
+
+  - id: OQ02
+    question: >
+      Gu citations: paper_framing.md references both gu2024cmr (EMNLP 2024, arXiv:2407.17467)
+      AND gu2025datamixing (NeurIPS 2025 Spotlight, arXiv:2505.18091). The latter was
+      previously removed as unverified. Framing now includes it — should we restore the
+      bib entry? Need verified venue/DOI.
+    recommendation: "Restore gu2025datamixing as framing includes it. Add bib entry with arXiv:2505.18091. Mark venue as 'NeurIPS 2025 Spotlight (to appear)' pending final proceedings."
+
+  - id: OQ03
+    question: "fig_phase_transition.pdf exists only on westd-17855. Needs transfer to local for compilation."
+    action: "Spawn Worker to transfer, or flag for Main Agent."
+
+  - id: OQ04
+    question: >
+      Current main.tex uses basic article class with geometry package.
+      For EMNLP 2026, should we switch to official acl2023.sty two-column format
+      to verify 8-page fit during rewrite?
+    recommendation: "Yes — switch to acl2023.sty before writing to catch overflow early."

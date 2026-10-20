@@ -1,0 +1,2855 @@
+# analysis qwen35 v2 completion
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_analysis_qwen35_v2_completion_20260519T131813.log`
+- **Structured JSON:** [`c1e7a6aab085a1b4c0c2.json`](../../sessions/c1/c1e7a6aab085a1b4c0c2.json)
+
+## Before a recorded user message
+
+56 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "09759ac3-3ac3-41d1-a2ba-d9084456d0ec",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779213000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "86c0ad7b-e7c7-4462-b665-04af506121d0",
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the experiment status on the server. I'll do multiple things in parallel: check the process, find results, and read the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "f60c76b6-f5d5-4673-97c7-8004d62cb569",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hmsLNdiqe6FMAj1vkAWgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13207,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13207
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始检查实验状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "0a876d43-319a-472d-9860-b618b740511b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hmsLNdiqe6FMAj1vkAWgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13207,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13207
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KbhvSQkNkvimT8qyUbt2jn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__register_artifact",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "e5d48f7c-a254-4116-bc10-92db8691a454",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hmsLNdiqe6FMAj1vkAWgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13207,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13207
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T13:18:28.778Z_
+
+<details><summary>↩ Tool result · `toolu_01KbhvSQkNkvimT8qyUbt2jn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "0ed389e5-d65f-4f69-935d-4cb71162cb6a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the process status, find results, and read the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "8b9af4ff-fb54-4f37-9695-404dcda959ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+并行检查进程状态、结果目录和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "121aa4c7-0119-4528-99ac-1101d287c176",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Td1vwCV5n4hYigCN3Tpnre`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ps -p 74455 -o pid,stat,etime,cmd 2>/dev/null || echo \"PROCESS_GONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "a22e05cc-23cb-4af1-854a-82e92634d23c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T13:18:32.860Z_
+
+<details><summary>↩ Tool result · `toolu_01Td1vwCV5n4hYigCN3Tpnre`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "0d162262-0bc0-4361-afc2-0b5b2946beda",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JM5L5DwnhMAXJZde3SVNtK`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"all_metrics.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "9bcf23c6-543d-4ad2-a396-610955af2ff2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T13:18:33.849Z_
+
+<details><summary>↩ Tool result · `toolu_01JM5L5DwnhMAXJZde3SVNtK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "4e30ba24-1e68-4fdd-954b-f484953ae9c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015LkWxKpPTfDkW97L1YcDu4`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 1 -type d -name \"*qwen35*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "e29b766a-95f4-4ece-a147-efa79d5313ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SrgnvaXkBXRhQ53EzLrpBq`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -50 /root/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log 2>/dev/null || echo \"LOG_NOT_FOUND\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "828368d2-fbac-43f9-b50e-c884bc40e6cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T13:18:36.467Z_
+
+<details><summary>↩ Tool result · `toolu_015LkWxKpPTfDkW97L1YcDu4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "8abdc1d2-ccb9-4933-b8f4-2d717c45db55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T13:18:36.473Z_
+
+<details><summary>↩ Tool result · `toolu_01SrgnvaXkBXRhQ53EzLrpBq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "73e26501-16db-47fb-b444-227f86c6ab70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0162JCeEtbtRs8oUuHzJaq7a`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "qwen35_08b_wiki_a100_s42_v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "078efbce-6f7e-41c8-b03b-3d9c47dd847a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9DkiTZp2HJTW2hFYkgaQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 25048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T13:18:37.138Z_
+
+<details><summary>↩ Tool result · `toolu_0162JCeEtbtRs8oUuHzJaq7a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2539}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "07ee253e-b3f7-4a02-9933-cce69754ea53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2539}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2539}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Okay, several issues:
+1. `||` is blocked in ssh_read_only - need to use simple commands without shell metacharacters
+2. The `find` with `>` redirect is also blocked
+3. The find for qwen35 directories returned empty - no results directory matching that pattern
+4. The registry has no matching experiment with that exact exp_id
+
+Let me retry with corrected commands and also check what directories exist in results/.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "e7e74858-3174-43f2-99f2-ecb36d06ff24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+结果目录未找到 `*qwen35*`，registry 中也没匹配。重新检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "48db6fb5-0b65-483d-a24c-ed2608950792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017XuBS9JQpMESdgrtxGxx87`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ps -p 74455 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "1f34aaf9-e1e8-45f3-a5fa-9df87c4683cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T13:18:44.776Z_
+
+<details><summary>↩ Tool result · `toolu_017XuBS9JQpMESdgrtxGxx87`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "9e349386-3053-4e43-af6b-36a156adf6f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016yrbY7VEKFHnv1TkaN7ay6`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "7661136a-675e-40f0-a94c-e089751fcba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T13:18:45.553Z_
+
+<details><summary>↩ Tool result · `toolu_016yrbY7VEKFHnv1TkaN7ay6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_c4\\ndry_run\\ngeneralize\\nintervention\\npadding_robustness\\nscale_check\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "094e69d8-8cc6-4dc6-b33a-9f80f6d8cb47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_sweep\\\\nalpha_sweep_c4\\\\ndry_run\\\\ngeneralize\\\\nintervention\\\\npadding_robustness\\\\nscale_check\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_c4\\ndry_run\\ngeneralize\\nintervention\\npadding_robustness\\nscale_check\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RDm5MdzWEy6Fgh9QwCnhZ4`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -50 /root/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "fa60642c-6ee0-4bbb-aba3-53db4d5ad963",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T13:18:46.914Z_
+
+<details><summary>↩ Tool result · `toolu_01RDm5MdzWEy6Fgh9QwCnhZ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 28%|██▊       | 1400/5000 [12:54<32:51,  1.83it/s]\\r 28%|██▊       | 1401/5000 [12:55<33:11,  1.81it/s]\\r 28%|██▊       | 1402/5000 [12:55<33:08,  1.81it/s]\\r 28%|██▊       | 1403/5000 [12:56<33:00,  1.82it/s]\\r 28%|██▊       | 1404/5000 [12:57<33:11,  1.81it/s]\\r 28%|██▊       | 1405/5000 [12:57<32:59,  1.82it/s]\\r 28%|██▊       | 1406/5000 [12:58<33:05,  1.81it/s]\\r 28%|██▊       | 1407/5000 [12:58<32:44,  1.83it/s]\\r 28%|██▊       | 1408/5000 [12:59<32:56,  1.82it/s]\\r 28%|██▊       | 1409/5000 [12:59<32:41,  1.83it/s]\\r 28%|██▊       | 1410/5000 [13:00<32:42,  1.83it/s]\\r 28%|██▊       | 1411/5000 [13:00<32:46,  1.83it/s]\\r 28%|██▊       | 1412/5000 [13:01<32:32,  1.84it/s]\\r 28%|██▊       | 1413/5000 [13:01<32:53,  1.82it/s]\\r 28%|██▊       | 1414/5000 [13:02<32:36,  1.83it/s]\\r 28%|██▊       | 1415/5000 [13:03<32:51,  1.82it/s]\\r 28%|██▊       | 1416/5000 [13:03<32:43,  1.82it/s]\\r 28%|██��       | 1417/5000 [13:04<32:40,  1.83it/s]\\r 28%|██▊       | 1418/5000 [13:04<32:48,  1.82it/s]\\r 28%|██▊       | 1419/5000 [13:05<32:40,  1.83it/s]\\r 28%|██▊       | 1420/5000 [13:05<32:46,  1.82it/s]\\r 28%|██▊       | 1421/5000 [13:06<32:28,  1.84it/s]\\r 28%|██▊       | 1422/5000 [13:06<32:40,  1.83it/s]\\r 28%|██▊       | 1423/5000 [13:07<32:47,  1.82it/s]\\r 28%|██▊       | 1424/5000 [13:08<32:33,  1.83it/s]\\r 28%|██▊       | 1425/5000 [13:08<32:40,  1.82it/s]\\r 29%|██▊       | 1426/5000 [13:09<32:32,  1.83it/s]\\r 29%|██▊       | 1427/5000 [13:09<32:45,  1.82it/s]\\r 29%|██▊       | 1428/5000 [13:10<32:31,  1.83it/s]\\r 29%|██▊       | 1429/5000 [13:10<35:51,  1.66it/s]\\r 29%|██▊       | 1430/5000 [13:11<35:14,  1.69it/s]\\r 29%|██▊       | 1431/5000 [13:12<34:11,  1.74it/s]\\r 29%|██▊       | 1432/5000 [13:12<34:01,  1.75it/s]\\r 29%|██▊       | 1433/5000 [13:13<33:35,  1.77it/s]\\r 29%|██▊       | 1434/5000 [13:13<33:16,  1.79it/s]\\r 29%|██▊       | 1435/5000 [13:14<33:10,  1.79it/s]\\r 29%|██▊       | 1436/5000 [13:14<32:49,  1.81it/s]\\r 29%|██▊       | 1437/5000 [13:15<32:51,  1.81it/s]\\r 29%|██▉       | 1438/5000 [13:15<32:29,  1.83it/s]\\r 29%|██▉       | 1439/5000 [13:16<32:40,  1.82it/s]\\r 29%|██▉       | 1440/5000 [13:16<32:34,  1.82it/s]\\r 29%|██▉       | 1441/5000 [13:17<32:30,  1.82it/s]\\r 29%|██▉       | 1442/5000 [13:18<32:36,  1.82it/s]\\r 29%|██▉       | 1443/5000 [13:18<32:20,  1.83it/s]\\r 29%|██▉       | 1444/5000 [13:19<32:34,  1.82it/s]\\r 29%|██▉       | 1445/5000 [13:19<32:24,  1.83it/s]\\r 29%|██▉       | 1446/5000 [13:20<32:38,  1.81it/s]\\r 29%|██▉       | 1447/5000 [13:20<32:39,  1.81it/s]\\r 29%|██▉       | 1448/5000 [13:21<32:32,  1.82it/s]\\r 29%|██▉       | 1449/5000 [13:21<32:38,  1.81it/s]\\r 29%|██▉       | 1450/5000 [13:22<32:27,  1.82it/s]\\r 29%|██▉       | 1451/5000 [13:23<32:45,  1.81it/s]\\r 29%|██▉       | 1452/5000 [13:23<32:38,  1.81it/s]\\r 29%|██▉       | 1453/5000 [13:24<32:34,  1.81it/s]\\r 29%|██▉       | 1454/5000 [13:24<32:52,  1.80it/s]\\r 29%|██▉       | 1455/5000 [13:25<32:36,  1.81it/s]\\r 29%|██▉       | 1456/5000 [13:25<32:47,  1.80it/s]\\r 29%|██▉       | 1457/5000 [13:26<32:28,  1.82it/s]\\r 29%|██▉       | 1458/5000 [13:26<32:34,  1.81it/s]\\r 29%|██▉       | 1459/5000 [13:27<32:39,  1.81it/s]\\r 29%|██▉       | 1460/5000 [13:28<32:34,  1.81it/s]\\r 29%|██▉       | 1461/5000 [13:28<32:46,  1.80it/s]\\r 29%|██▉       | 1462/5000 [13:29<32:30,  1.81it/s]\\r 29%|██▉       | 1463/5000 [13:29<32:36,  1.81it/s]\\r 29%|██▉       | 1464/5000 [13:30<32:24,  1.82it/s]\\r 29%|██▉       | 1465/5000 [13:30<32:27,  1.82it/s]\\r 29%|██▉       | 1466/5000 [13:31<32:24,  1.82it/s]\\r 29%|██▉       | 1467/5000 [13:31<32:27,  1.81it/s]\\r 29%|██▉       | 1468/5000 [13:32<32:41,  1.80it/s]\\r 29%|██▉       | 1469/5000 [13:32<32:24,  1.82it/s]\\r 29%|██▉       | 1470/5000 [13:33<32:30,  1.81it/s]\\r 29%|██▉       | 1471/5000 [13:34<32:20,  1.82it/s]\\r 29%|██▉       | 1472/5000 [13:34<32:17,  1.82it/s]\\r 29%|██▉       | 1473/5000 [13:35<32:15,  1.82it/s]\\r 29%|██▉       | 1474/5000 [13:35<32:12,  1.82it/s]\\r 30%|██▉       | 1475/5000 [13:36<32:19,  1.82it/s]\\r 30%|██▉       | 1476/5000 [13:36<32:06,  1.83\\n\\n... [截断: 输出过长，省略 211921 字符] ...\\n\\n███▎  | 1136/1564 [00:15<00:06, 70.60it/s]\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 70.66it/s]\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 70.73it/s]\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 70.77it/s]\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 70.76it/s]\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 70.75it/s]\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.66it/s]\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.61it/s]\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.67it/s]\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:17<00:05, 70.77it/s]\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.80it/s]\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 70.85it/s]\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.80it/s]\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.83it/s]\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.99it/s]\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.98it/s]\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.97it/s]\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.90it/s]\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:18<00:04, 70.85it/s]\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.73it/s]\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.71it/s]\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 70.83it/s]\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 70.82it/s]\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 70.82it/s]\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.84it/s]\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.73it/s]\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 71.01it/s]\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.96it/s]\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.87it/s]\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.80it/s]\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.82it/s]\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 70.76it/s]\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 70.70it/s]\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 70.95it/s]\\rFeaturizing q:  92%|█████████▏| 1432/1564 [00:20<00:01, 70.96it/s]\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 70.97it/s]\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.00it/s]\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 70.90it/s]\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 70.85it/s]\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 70.76it/s]\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 70.75it/s]\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 70.81it/s]\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 70.80it/s]\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.79it/s]\\rFeaturizing q:  97%|█���███████▋| 1512/1564 [00:21<00:00, 70.79it/s]\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 70.82it/s]\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 70.72it/s]\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.60it/s]\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.41it/s]\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.26it/s]\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\rFeaturizing q: 100%|██████████| 1564/1564 [00:22<00:00, 70.97it/s]\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\n  ppl=1247.19, entropy=1.3693, eff_rank=103.3, mauve=0.0225\\n\\nAll metrics saved to results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/all_metrics.json\\nSentinel written: results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/EXIT_CODE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "f8bdabdf-4713-4e65-bfbb-42f2abd82129",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 28%|██▊       | 1400/5000 [12:54<32:51,  1.83it/s]\\\\r 28%|██▊       | 1401/5000 [12:55<33:11,  1.81it/s]\\\\r 28%|██▊       | 1402/5000 [12:55<33:08,  1.81it/s]\\\\r 28%|██▊       | 1403/5000 [12:56<33:00,  1.82it/s]\\\\r 28%|██▊       | 1404/5000 [12:57<33:11,  1.81it/s]\\\\r 28%|██▊       | 1405/5000 [12:57<32:59,  1.82it/s]\\\\r 28%|██▊       | 1406/5000 [12:58<33:05,  1.81it/s]\\\\r 28%|██▊       | 1407/5000 [12:58<32:44,  1.83it/s]\\\\r 28%|██▊       | 1408/5000 [12:59<32:56,  1.82it/s]\\\\r 28%|██▊       | 1409/5000 [12:59<32:41,  1.83it/s]\\\\r 28%|██▊       | 1410/5000 [13:00<32:42,  1.83it/s]\\\\r 28%|██▊       | 1411/5000 [13:00<32:46,  1.83it/s]\\\\r 28%|██▊       | 1412/5000 [13:01<32:32,  1.84it/s]\\\\r 28%|██▊       | 1413/5000 [13:01<32:53,  1.82it/s]\\\\r 28%|██▊       | 1414/5000 [13:02<32:36,  1.83it/s]\\\\r 28%|██▊       | 1415/5000 [13:03<32:51,  1.82it/s]\\\\r 28%|██▊       | 1416/5000 [13:03<32:43,  1.82it/s]\\\\r 28%|██��       | 1417/5000 [13:04<32:40,  1.83it/s]\\\\r 28%|██▊       | 1418/5000 [13:04<32:48,  1.82it/s]\\\\r 28%|██▊       | 1419/5000 [13:05<32:40,  1.83it/s]\\\\r 28%|██▊       | 1420/5000 [13:05<32:46,  1.82it/s]\\\\r 28%|██▊       | 1421/5000 [13:06<32:28,  1.84it/s]\\\\r 28%|██▊       | 1422/5000 [13:06<32:40,  1.83it/s]\\\\r 28%|██▊       | 1423/5000 [13:07<32:47,  1.82it/s]\\\\r 28%|██▊       | 1424/5000 [13:08<32:33,  1.83it/s]\\\\r 28%|██▊       | 1425/5000 [13:08<32:40,  1.82it/s]\\\\r 29%|██▊       | 1426/5000 [13:09<32:32,  1.83it/s]\\\\r 29%|██▊       | 1427/5000 [13:09<32:45,  1.82it/s]\\\\r 29%|██▊       | 1428/5000 [13:10<32:31,  1.83it/s]\\\\r 29%|██▊       | 1429/5000 [13:10<35:51,  1.66it/s]\\\\r 29%|██▊       | 1430/5000 [13:11<35:14,  1.69it/s]\\\\r 29%|██▊       | 1431/5000 [13:12<34:11,  1.74it/s]\\\\r 29%|██▊       | 1432/5000 [13:12<34:01,  1.75it/s]\\\\r 29%|██▊       | 1433/5000 [13:13<33:35,  1.77it/s]\\\\r 29%|██▊       | 1434/5000 [13:13<33:16,  1.79it/s]\\\\r 29%|██▊       | 1435/5000 [13:14<33:10,  1.79it/s]\\\\r 29%|██▊       | 1436/5000 [13:14<32:49,  1.81it/s]\\\\r 29%|██▊       | 1437/5000 [13:15<32:51,  1.81it/s]\\\\r 29%|██▉       | 1438/5000 [13:15<32:29,  1.83it/s]\\\\r 29%|██▉       | 1439/5000 [13:16<32:40,  1.82it/s]\\\\r 29%|██▉       | 1440/5000 [13:16<32:34,  1.82it/s]\\\\r 29%|██▉       | 1441/5000 [13:17<32:30,  1.82it/s]\\\\r 29%|██▉       | 1442/5000 [13:18<32:36,  1.82it/s]\\\\r 29%|██▉       | 1443/5000 [13:18<32:20,  1.83it/s]\\\\r 29%|██▉       | 1444/5000 [13:19<32:34,  1.82it/s]\\\\r 29%|██▉       | 1445/5000 [13:19<32:24,  1.83it/s]\\\\r 29%|██▉       | 1446/5000 [13:20<32:38,  1.81it/s]\\\\r 29%|██▉       | 1447/5000 [13:20<32:39,  1.81it/s]\\\\r 29%|██▉       | 1448/5000 [13:21<32:32,  1.82it/s]\\\\r 29%|██▉       | 1449/5000 [13:21<32:38,  1.81it/s]\\\\r 29%|██▉       | 1450/5000 [13:22<32:27,  1.82it/s]\\\\r 29%|██▉       | 1451/5000 [13:23<32:45,  1.81it/s]\\\\r 29%|██▉       | 1452/5000 [13:23<32:38,  1.81it/s]\\\\r 29%|██▉       | 1453/5000 [13:24<32:34,  1.81it/s]\\\\r 29%|██▉       | 1454/5000 [13:24<32:52,  1.80it/s]\\\\r 29%|██▉       | 1455/5000 [13:25<32:36,  1.81it/s]\\\\r 29%|██▉       | 1456/5000 [13:25<32:47,  1.80it/s]\\\\r 29%|██▉       | 1457/5000 [13:26<32:28,  1.82it/s]\\\\r 29%|██▉       | 1458/5000 [13:26<32:34,  1.81it/s]\\\\r 29%|██▉       | 1459/5000 [13:27<32:39,  1.81it/s]\\\\r 29%|██▉       | 1460/5000 [13:28<32:34,  1.81it/s]\\\\r 29%|██▉       | 1461/5000 [13:28<32:46,  1.80it/s]\\\\r 29%|██▉       | 1462/5000 [13:29<32:30,  1.81it/s]\\\\r 29%|██▉       | 1463/5000 [13:29<32:36,  1.81it/s]\\\\r 29%|██▉       | 1464/5000 [13:30<32:24,  1.82it/s]\\\\r 29%|██▉       | 1465/5000 [13:30<32:27,  1.82it/s]\\\\r 29%|██▉       | 1466/5000 [13:31<32:24,  1.82it/s]\\\\r 29%|██▉       | 1467/5000 [13:31<32:27,  1.81it/s]\\\\r 29%|██▉       | 1468/5000 [13:32<32:41,  1.80it/s]\\\\r 29%|██▉       | 1469/5000 [13:32<32:24,  1.82it/s]\\\\r 29%|██▉       | 1470/5000 [13:33<32:30,  1.81it/s]\\\\r 29%|██▉       | 1471/5000 [13:34<32:20,  1.82it/s]\\\\r 29%|██▉       | 1472/5000 [13:34<32:17,  1.82it/s]\\\\r 29%|██▉       | 1473/5000 [13:35<32:15,  1.82it/s]\\\\r 29%|██▉       | 1474/5000 [13:35<32:12,  1.82it/s]\\\\r 30%|██▉       | 1475/5000 [13:36<32:19,  1.82it/s]\\\\r 30%|██▉       | 1476/5000 [13:36<32:06,  1.83\\\\n\\\\n... [截断: 输出过长，省略 211921 字符] ...\\\\n\\\\n███▎  | 1136/1564 [00:15<00:06, 70.60it/s]\\\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 70.66it/s]\\\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 70.73it/s]\\\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 70.77it/s]\\\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 70.76it/s]\\\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 70.75it/s]\\\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.66it/s]\\\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.61it/s]\\\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.67it/s]\\\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:17<00:05, 70.77it/s]\\\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.80it/s]\\\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 70.85it/s]\\\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.80it/s]\\\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.83it/s]\\\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.99it/s]\\\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.98it/s]\\\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.97it/s]\\\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.90it/s]\\\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:18<00:04, 70.85it/s]\\\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.73it/s]\\\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.71it/s]\\\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 70.83it/s]\\\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 70.82it/s]\\\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 70.82it/s]\\\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.84it/s]\\\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.73it/s]\\\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 71.01it/s]\\\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.96it/s]\\\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.87it/s]\\\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.83it/s]\\\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.83it/s]\\\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.80it/s]\\\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.82it/s]\\\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.83it/s]\\\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 70.76it/s]\\\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 70.70it/s]\\\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 70.95it/s]\\\\rFeaturizing q:  92%|█████████▏| 1432/1564 [00:20<00:01, 70.96it/s]\\\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 70.97it/s]\\\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.00it/s]\\\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 70.90it/s]\\\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 70.85it/s]\\\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 70.76it/s]\\\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 70.75it/s]\\\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 70.81it/s]\\\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 70.80it/s]\\\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.79it/s]\\\\rFeaturizing q:  97%|█���███████▋| 1512/1564 [00:21<00:00, 70.79it/s]\\\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 70.82it/s]\\\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 70.72it/s]\\\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.60it/s]\\\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.41it/s]\\\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.26it/s]\\\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\\\rFeaturizing q: 100%|██████████| 1564/1564 [00:22<00:00, 70.97it/s]\\\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\\\n  ppl=1247.19, entropy=1.3693, eff_rank=103.3, mauve=0.0225\\\\n\\\\nAll metrics saved to results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/all_metrics.json\\\\nSentinel written: results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/EXIT_CODE\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 28%|██▊       | 1400/5000 [12:54<32:51,  1.83it/s]\\r 28%|██▊       | 1401/5000 [12:55<33:11,  1.81it/s]\\r 28%|██▊       | 1402/5000 [12:55<33:08,  1.81it/s]\\r 28%|██▊       | 1403/5000 [12:56<33:00,  1.82it/s]\\r 28%|██▊       | 1404/5000 [12:57<33:11,  1.81it/s]\\r 28%|██▊       | 1405/5000 [12:57<32:59,  1.82it/s]\\r 28%|██▊       | 1406/5000 [12:58<33:05,  1.81it/s]\\r 28%|██▊       | 1407/5000 [12:58<32:44,  1.83it/s]\\r 28%|██▊       | 1408/5000 [12:59<32:56,  1.82it/s]\\r 28%|██▊       | 1409/5000 [12:59<32:41,  1.83it/s]\\r 28%|██▊       | 1410/5000 [13:00<32:42,  1.83it/s]\\r 28%|██▊       | 1411/5000 [13:00<32:46,  1.83it/s]\\r 28%|██▊       | 1412/5000 [13:01<32:32,  1.84it/s]\\r 28%|██▊       | 1413/5000 [13:01<32:53,  1.82it/s]\\r 28%|██▊       | 1414/5000 [13:02<32:36,  1.83it/s]\\r 28%|██▊       | 1415/5000 [13:03<32:51,  1.82it/s]\\r 28%|██▊       | 1416/5000 [13:03<32:43,  1.82it/s]\\r 28%|██��       | 1417/5000 [13:04<32:40,  1.83it/s]\\r 28%|██▊       | 1418/5000 [13:04<32:48,  1.82it/s]\\r 28%|██▊       | 1419/5000 [13:05<32:40,  1.83it/s]\\r 28%|██▊       | 1420/5000 [13:05<32:46,  1.82it/s]\\r 28%|██▊       | 1421/5000 [13:06<32:28,  1.84it/s]\\r 28%|██▊       | 1422/5000 [13:06<32:40,  1.83it/s]\\r 28%|██▊       | 1423/5000 [13:07<32:47,  1.82it/s]\\r 28%|██▊       | 1424/5000 [13:08<32:33,  1.83it/s]\\r 28%|██▊       | 1425/5000 [13:08<32:40,  1.82it/s]\\r 29%|██▊       | 1426/5000 [13:09<32:32,  1.83it/s]\\r 29%|██▊       | 1427/5000 [13:09<32:45,  1.82it/s]\\r 29%|██▊       | 1428/5000 [13:10<32:31,  1.83it/s]\\r 29%|██▊       | 1429/5000 [13:10<35:51,  1.66it/s]\\r 29%|██▊       | 1430/5000 [13:11<35:14,  1.69it/s]\\r 29%|██▊       | 1431/5000 [13:12<34:11,  1.74it/s]\\r 29%|██▊       | 1432/5000 [13:12<34:01,  1.75it/s]\\r 29%|██▊       | 1433/5000 [13:13<33:35,  1.77it/s]\\r 29%|██▊       | 1434/5000 [13:13<33:16,  1.79it/s]\\r 29%|██▊       | 1435/5000 [13:14<33:10,  1.79it/s]\\r 29%|██▊       | 1436/5000 [13:14<32:49,  1.81it/s]\\r 29%|██▊       | 1437/5000 [13:15<32:51,  1.81it/s]\\r 29%|██▉       | 1438/5000 [13:15<32:29,  1.83it/s]\\r 29%|██▉       | 1439/5000 [13:16<32:40,  1.82it/s]\\r 29%|██▉       | 1440/5000 [13:16<32:34,  1.82it/s]\\r 29%|██▉       | 1441/5000 [13:17<32:30,  1.82it/s]\\r 29%|██▉       | 1442/5000 [13:18<32:36,  1.82it/s]\\r 29%|██▉       | 1443/5000 [13:18<32:20,  1.83it/s]\\r 29%|██▉       | 1444/5000 [13:19<32:34,  1.82it/s]\\r 29%|██▉       | 1445/5000 [13:19<32:24,  1.83it/s]\\r 29%|██▉       | 1446/5000 [13:20<32:38,  1.81it/s]\\r 29%|██▉       | 1447/5000 [13:20<32:39,  1.81it/s]\\r 29%|██▉       | 1448/5000 [13:21<32:32,  1.82it/s]\\r 29%|██▉       | 1449/5000 [13:21<32:38,  1.81it/s]\\r 29%|██▉       | 1450/5000 [13:22<32:27,  1.82it/s]\\r 29%|██▉       | 1451/5000 [13:23<32:45,  1.81it/s]\\r 29%|██▉       | 1452/5000 [13:23<32:38,  1.81it/s]\\r 29%|██▉       | 1453/5000 [13:24<32:34,  1.81it/s]\\r 29%|██▉       | 1454/5000 [13:24<32:52,  1.80it/s]\\r 29%|██▉       | 1455/5000 [13:25<32:36,  1.81it/s]\\r 29%|██▉       | 1456/5000 [13:25<32:47,  1.80it/s]\\r 29%|██▉       | 1457/5000 [13:26<32:28,  1.82it/s]\\r 29%|██▉       | 1458/5000 [13:26<32:34,  1.81it/s]\\r 29%|██▉       | 1459/5000 [13:27<32:39,  1.81it/s]\\r 29%|██▉       | 1460/5000 [13:28<32:34,  1.81it/s]\\r 29%|██▉       | 1461/5000 [13:28<32:46,  1.80it/s]\\r 29%|██▉       | 1462/5000 [13:29<32:30,  1.81it/s]\\r 29%|██▉       | 1463/5000 [13:29<32:36,  1.81it/s]\\r 29%|██▉       | 1464/5000 [13:30<32:24,  1.82it/s]\\r 29%|██▉       | 1465/5000 [13:30<32:27,  1.82it/s]\\r 29%|██▉       | 1466/5000 [13:31<32:24,  1.82it/s]\\r 29%|██▉       | 1467/5000 [13:31<32:27,  1.81it/s]\\r 29%|██▉       | 1468/5000 [13:32<32:41,  1.80it/s]\\r 29%|██▉       | 1469/5000 [13:32<32:24,  1.82it/s]\\r 29%|██▉       | 1470/5000 [13:33<32:30,  1.81it/s]\\r 29%|██▉       | 1471/5000 [13:34<32:20,  1.82it/s]\\r 29%|██▉       | 1472/5000 [13:34<32:17,  1.82it/s]\\r 29%|██▉       | 1473/5000 [13:35<32:15,  1.82it/s]\\r 29%|██▉       | 1474/5000 [13:35<32:12,  1.82it/s]\\r 30%|██▉       | 1475/5000 [13:36<32:19,  1.82it/s]\\r 30%|██▉       | 1476/5000 [13:36<32:06,  1.83\\n\\n... [截断: 输出过长，省略 211921 字符] ...\\n\\n███▎  | 1136/1564 [00:15<00:06, 70.60it/s]\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 70.66it/s]\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 70.73it/s]\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 70.77it/s]\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 70.76it/s]\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 70.75it/s]\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.66it/s]\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.61it/s]\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.67it/s]\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:17<00:05, 70.77it/s]\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.80it/s]\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 70.85it/s]\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.80it/s]\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.83it/s]\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.99it/s]\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.98it/s]\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.97it/s]\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.90it/s]\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:18<00:04, 70.85it/s]\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.73it/s]\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.71it/s]\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 70.83it/s]\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 70.82it/s]\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 70.82it/s]\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.84it/s]\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.73it/s]\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 71.01it/s]\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.96it/s]\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.87it/s]\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.80it/s]\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.82it/s]\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.83it/s]\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 70.76it/s]\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 70.70it/s]\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 70.95it/s]\\rFeaturizing q:  92%|█████████▏| 1432/1564 [00:20<00:01, 70.96it/s]\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 70.97it/s]\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.00it/s]\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 70.90it/s]\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 70.85it/s]\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 70.76it/s]\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 70.75it/s]\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 70.81it/s]\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 70.80it/s]\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.79it/s]\\rFeaturizing q:  97%|█���███████▋| 1512/1564 [00:21<00:00, 70.79it/s]\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 70.82it/s]\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 70.72it/s]\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.60it/s]\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.41it/s]\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.26it/s]\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\rFeaturizing q: 100%|██████████| 1564/1564 [00:22<00:00, 70.97it/s]\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\n  ppl=1247.19, entropy=1.3693, eff_rank=103.3, mauve=0.0225\\n\\nAll metrics saved to results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/all_metrics.json\\nSentinel written: results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/EXIT_CODE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013rU4YxGiJ2BMJPzAZF89SG`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "b1674e56-27fb-4a4d-8620-54a72f38f080",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DsbPyEt3yctbN5SDi9oFSb`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "status": "ANALYZING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "09d75984-0e67-4b4c-a773-5202cf973177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbrgfKBhN6YtTk7xZJuqE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 27465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T13:18:47.576Z_
+
+<details><summary>↩ Tool result · `toolu_013rU4YxGiJ2BMJPzAZF89SG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 14535 MiB, 82716 MiB\\n1, 0 MiB, 97251 MiB\\n2, 14237 MiB, 83014 MiB\\n3, 14503 MiB, 82748 MiB\\n4, 14237 MiB, 83014 MiB\\n5, 14237 MiB, 83014 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "53936479-330a-485b-9646-ab4924b9ed57",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 14535 MiB, 82716 MiB\\\\n1, 0 MiB, 97251 MiB\\\\n2, 14237 MiB, 83014 MiB\\\\n3, 14503 MiB, 82748 MiB\\\\n4, 14237 MiB, 83014 MiB\\\\n5, 14237 MiB, 83014 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 14535 MiB, 82716 MiB\\n1, 0 MiB, 97251 MiB\\n2, 14237 MiB, 83014 MiB\\n3, 14503 MiB, 82748 MiB\\n4, 14237 MiB, 83014 MiB\\n5, 14237 MiB, 83014 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T13:18:47.837Z_
+
+<details><summary>↩ Tool result · `toolu_01DsbPyEt3yctbN5SDi9oFSb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2525}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "6e7e9228-b6b8-41f9-8af2-84bcaaea4911",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2525}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2525}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+1. **Process PID 74455**: GONE (exit code 1 from ps)
+2. **Results directory**: `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` (not matching the `*qwen35*` pattern in my first search because it's under `generalize/` subdirectory)
+3. **Log shows**: EXIT_CODE=0, all_metrics.json saved, last gen metrics: ppl=1247.19, entropy=1.3693, eff_rank=103.3, mauve=0.0225
+
+
+4. **GPU cuda:1**: Already freed (0 MiB used)
+5. **Registry**: No matching experiment found with ANALYZING status
+
+The process has already exited and the GPU is free. I need to load the all_metrics.json file and search the registry more broadly to find how this experiment was actually registered.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "6661155c-2c74-461a-acaf-c0c6ce8d850d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1JBH5S9CJajBkBCrRcQi5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6563,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6563
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+实验已完成，EXIT_CODE=0，进程已终止，GPU cuda:1 已释放（0 MiB）。实际结果目录在 `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/`。读取分析结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "26cd0f12-77af-4b89-93ca-4786845382a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1JBH5S9CJajBkBCrRcQi5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6563,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6563
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MZSKkAVV8HCh4ffUekCnTz`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "1b0102b5-84b1-40c7-aeed-efae4d295675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1JBH5S9CJajBkBCrRcQi5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6563,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6563
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T13:18:59.620Z_
+
+<details><summary>↩ Tool result · `toolu_01MZSKkAVV8HCh4ffUekCnTz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 2.9784035315726842,\\n    \\\"self_bleu\\\": 0.014186681190268008,\\n    \\\"ece\\\": 0.007362920948044142,\\n    \\\"effective_rank\\\": 43.5974578011143,\\n    \\\"perplexity\\\": 20.551716206021087,\\n    \\\"distinct_1\\\": 0.09399566772945214,\\n    \\\"distinct_2\\\": 0.45898912867110175,\\n    \\\"distinct_3\\\": 0.7409033011788186,\\n    \\\"mauve\\\": 0.029141430820494373,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.504923915446302,\\n    \\\"self_bleu\\\": 0.013609837305761412,\\n    \\\"ece\\\": 0.2891885472299428,\\n    \\\"effective_rank\\\": 81.65531732905686,\\n    \\\"perplexity\\\": 111.30059577047254,\\n    \\\"distinct_1\\\": 0.09409915632431023,\\n    \\\"distinct_2\\\": 0.457013722057087,\\n    \\\"distinct_3\\\": 0.7350684886883724,\\n    \\\"mauve\\\": 0.029702189615614577,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.2013919094772532,\\n    \\\"self_bleu\\\": 0.015106087586569778,\\n    \\\"ece\\\": 0.38257237966497115,\\n    \\\"effective_rank\\\": 93.50481016912873,\\n    \\\"perplexity\\\": 327.81136216689936,\\n    \\\"distinct_1\\\": 0.0786054873759087,\\n    \\\"distinct_2\\\": 0.3679228321959837,\\n    \\\"distinct_3\\\": 0.6234678881871053,\\n    \\\"mauve\\\": 0.031042170833869072,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.162568346055451,\\n    \\\"self_bleu\\\": 0.016380325643250496,\\n    \\\"ece\\\": 0.4068137051940556,\\n    \\\"effective_rank\\\": 97.66434396124271,\\n    \\\"perplexity\\\": 511.7731562146988,\\n    \\\"distinct_1\\\": 0.072984375,\\n    \\\"distinct_2\\\": 0.32751818373581043,\\n    \\\"distinct_3\\\": 0.5539070922983171,\\n    \\\"mauve\\\": 0.029892465281356743,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.1802501750833951,\\n    \\\"self_bleu\\\": 0.016111397542226975,\\n    \\\"ece\\\": 0.41553675177354965,\\n    \\\"effective_rank\\\": 98.95899065932815,\\n    \\\"perplexity\\\": 700.345154257002,\\n    \\\"distinct_1\\\": 0.070890625,\\n    \\\"distinct_2\\\": 0.30761959077805295,\\n    \\\"distinct_3\\\": 0.5150939858435288,\\n    \\\"mauve\\\": 0.028343632282426347,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.201763802783488,\\n    \\\"self_bleu\\\": 0.01815436781433855,\\n    \\\"ece\\\": 0.41971449700650376,\\n    \\\"effective_rank\\\": 100.29239598134666,\\n    \\\"perplexity\\\": 820.052661693592,\\n    \\\"distinct_1\\\": 0.0684453125,\\n    \\\"distinct_2\\\": 0.28478347487089745,\\n    \\\"distinct_3\\\": 0.46873388646697606,\\n    \\\"mauve\\\": 0.026797207774688473,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.212452959633168,\\n    \\\"self_bleu\\\": 0.02017730646777485,\\n    \\\"ece\\\": 0.42276462599126097,\\n    \\\"effective_rank\\\": 101.22015155234232,\\n    \\\"perplexity\\\": 906.5940345302087,\\n    \\\"distinct_1\\\": 0.0665859375,\\n    \\\"distinct_2\\\": 0.270228673661513,\\n    \\\"distinct_3\\\": 0.44060063438491226,\\n    \\\"mauve\\\": 0.02555089268851954,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.2501811163202792,\\n    \\\"self_bleu\\\": 0.019516632686325194,\\n    \\\"ece\\\": 0.4237363923193943,\\n    \\\"effective_rank\\\": 100.74112878438618,\\n    \\\"perplexity\\\": 994.7376948727441,\\n    \\\"distinct_1\\\": 0.06540625,\\n    \\\"distinct_2\\\": 0.26304893006976615,\\n    \\\"distinct_3\\\": 0.42445194456163376,\\n    \\\"mauve\\\": 0.02409276905769476,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.312030782953369,\\n    \\\"self_bleu\\\": 0.01876834333221985,\\n    \\\"ece\\\": 0.42396773668860693,\\n    \\\"effective_rank\\\": 102.59601148263303,\\n    \\\"perplexity\\\": 1087.4968406573337,\\n    \\\"distinct_1\\\": 0.064359375,\\n    \\\"distinct_2\\\": 0.2546582395174962,\\n    \\\"distinct_3\\\": 0.40777199643744433,\\n    \\\"mauve\\\": 0.024420485008776145,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.3574231989695562,\\n    \\\"self_bleu\\\": 0.018267216144813313,\\n    \\\"ece\\\": 0.4236003730982128,\\n    \\\"effective_rank\\\": 101.85227407160762,\\n    \\\"perplexity\\\": 1140.6672002580867,\\n    \\\"distinct_1\\\": 0.0636796875,\\n    \\\"distinct_2\\\": 0.2479472495878874,\\n    \\\"distinct_3\\\": 0.39059985312270507,\\n    \\\"mauve\\\": 0.023039043980222274,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.369282592386947,\\n    \\\"self_bleu\\\": 0.02029244822887307,\\n    \\\"ece\\\": 0.4228912515272687,\\n    \\\"effective_rank\\\": 103.27000448981086,\\n    \\\"perplexity\\\": 1247.1892448092653,\\n    \\\"distinct_1\\\": 0.0634453125,\\n    \\\"distinct_2\\\": 0.24789256166063797,\\n    \\\"distinct_3\\\": 0.3911232988015438,\\n    \\\"mauve\\\": 0.022472009073218807,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "d39b0a7d-2a05-4d4e-90d2-ed359c2dd0cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.9784035315726842,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014186681190268008,\\\\n    \\\\\\\"ece\\\\\\\": 0.007362920948044142,\\\\n    \\\\\\\"effective_rank\\\\\\\": 43.5974578011143,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.551716206021087,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09399566772945214,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.45898912867110175,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7409033011788186,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029141430820494373,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.504923915446302,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.013609837305761412,\\\\n    \\\\\\\"ece\\\\\\\": 0.2891885472299428,\\\\n    \\\\\\\"effective_rank\\\\\\\": 81.65531732905686,\\\\n    \\\\\\\"perplexity\\\\\\\": 111.30059577047254,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09409915632431023,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.457013722057087,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7350684886883724,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029702189615614577,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.2013919094772532,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.015106087586569778,\\\\n    \\\\\\\"ece\\\\\\\": 0.38257237966497115,\\\\n    \\\\\\\"effective_rank\\\\\\\": 93.50481016912873,\\\\n    \\\\\\\"perplexity\\\\\\\": 327.81136216689936,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0786054873759087,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3679228321959837,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6234678881871053,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031042170833869072,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.162568346055451,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.016380325643250496,\\\\n    \\\\\\\"ece\\\\\\\": 0.4068137051940556,\\\\n    \\\\\\\"effective_rank\\\\\\\": 97.66434396124271,\\\\n    \\\\\\\"perplexity\\\\\\\": 511.7731562146988,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.072984375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.32751818373581043,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5539070922983171,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029892465281356743,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.1802501750833951,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.016111397542226975,\\\\n    \\\\\\\"ece\\\\\\\": 0.41553675177354965,\\\\n    \\\\\\\"effective_rank\\\\\\\": 98.95899065932815,\\\\n    \\\\\\\"perplexity\\\\\\\": 700.345154257002,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.070890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.30761959077805295,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5150939858435288,\\\\n    \\\\\\\"mauve\\\\\\\": 0.028343632282426347,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.201763802783488,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01815436781433855,\\\\n    \\\\\\\"ece\\\\\\\": 0.41971449700650376,\\\\n    \\\\\\\"effective_rank\\\\\\\": 100.29239598134666,\\\\n    \\\\\\\"perplexity\\\\\\\": 820.052661693592,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0684453125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.28478347487089745,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.46873388646697606,\\\\n    \\\\\\\"mauve\\\\\\\": 0.026797207774688473,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.212452959633168,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.02017730646777485,\\\\n    \\\\\\\"ece\\\\\\\": 0.42276462599126097,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.22015155234232,\\\\n    \\\\\\\"perplexity\\\\\\\": 906.5940345302087,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0665859375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.270228673661513,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.44060063438491226,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02555089268851954,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.2501811163202792,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.019516632686325194,\\\\n    \\\\\\\"ece\\\\\\\": 0.4237363923193943,\\\\n    \\\\\\\"effective_rank\\\\\\\": 100.74112878438618,\\\\n    \\\\\\\"perplexity\\\\\\\": 994.7376948727441,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06540625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.26304893006976615,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.42445194456163376,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02409276905769476,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.312030782953369,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01876834333221985,\\\\n    \\\\\\\"ece\\\\\\\": 0.42396773668860693,\\\\n    \\\\\\\"effective_rank\\\\\\\": 102.59601148263303,\\\\n    \\\\\\\"perplexity\\\\\\\": 1087.4968406573337,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.064359375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.2546582395174962,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.40777199643744433,\\\\n    \\\\\\\"mauve\\\\\\\": 0.024420485008776145,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.3574231989695562,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.018267216144813313,\\\\n    \\\\\\\"ece\\\\\\\": 0.4236003730982128,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.85227407160762,\\\\n    \\\\\\\"perplexity\\\\\\\": 1140.6672002580867,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0636796875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.2479472495878874,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.39059985312270507,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023039043980222274,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.369282592386947,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.02029244822887307,\\\\n    \\\\\\\"ece\\\\\\\": 0.4228912515272687,\\\\n    \\\\\\\"effective_rank\\\\\\\": 103.27000448981086,\\\\n    \\\\\\\"perplexity\\\\\\\": 1247.1892448092653,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0634453125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.24789256166063797,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.3911232988015438,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022472009073218807,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 1.0\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 2.9784035315726842,\\n    \\\"self_bleu\\\": 0.014186681190268008,\\n    \\\"ece\\\": 0.007362920948044142,\\n    \\\"effective_rank\\\": 43.5974578011143,\\n    \\\"perplexity\\\": 20.551716206021087,\\n    \\\"distinct_1\\\": 0.09399566772945214,\\n    \\\"distinct_2\\\": 0.45898912867110175,\\n    \\\"distinct_3\\\": 0.7409033011788186,\\n    \\\"mauve\\\": 0.029141430820494373,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.504923915446302,\\n    \\\"self_bleu\\\": 0.013609837305761412,\\n    \\\"ece\\\": 0.2891885472299428,\\n    \\\"effective_rank\\\": 81.65531732905686,\\n    \\\"perplexity\\\": 111.30059577047254,\\n    \\\"distinct_1\\\": 0.09409915632431023,\\n    \\\"distinct_2\\\": 0.457013722057087,\\n    \\\"distinct_3\\\": 0.7350684886883724,\\n    \\\"mauve\\\": 0.029702189615614577,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.2013919094772532,\\n    \\\"self_bleu\\\": 0.015106087586569778,\\n    \\\"ece\\\": 0.38257237966497115,\\n    \\\"effective_rank\\\": 93.50481016912873,\\n    \\\"perplexity\\\": 327.81136216689936,\\n    \\\"distinct_1\\\": 0.0786054873759087,\\n    \\\"distinct_2\\\": 0.3679228321959837,\\n    \\\"distinct_3\\\": 0.6234678881871053,\\n    \\\"mauve\\\": 0.031042170833869072,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.162568346055451,\\n    \\\"self_bleu\\\": 0.016380325643250496,\\n    \\\"ece\\\": 0.4068137051940556,\\n    \\\"effective_rank\\\": 97.66434396124271,\\n    \\\"perplexity\\\": 511.7731562146988,\\n    \\\"distinct_1\\\": 0.072984375,\\n    \\\"distinct_2\\\": 0.32751818373581043,\\n    \\\"distinct_3\\\": 0.5539070922983171,\\n    \\\"mauve\\\": 0.029892465281356743,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.1802501750833951,\\n    \\\"self_bleu\\\": 0.016111397542226975,\\n    \\\"ece\\\": 0.41553675177354965,\\n    \\\"effective_rank\\\": 98.95899065932815,\\n    \\\"perplexity\\\": 700.345154257002,\\n    \\\"distinct_1\\\": 0.070890625,\\n    \\\"distinct_2\\\": 0.30761959077805295,\\n    \\\"distinct_3\\\": 0.5150939858435288,\\n    \\\"mauve\\\": 0.028343632282426347,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.201763802783488,\\n    \\\"self_bleu\\\": 0.01815436781433855,\\n    \\\"ece\\\": 0.41971449700650376,\\n    \\\"effective_rank\\\": 100.29239598134666,\\n    \\\"perplexity\\\": 820.052661693592,\\n    \\\"distinct_1\\\": 0.0684453125,\\n    \\\"distinct_2\\\": 0.28478347487089745,\\n    \\\"distinct_3\\\": 0.46873388646697606,\\n    \\\"mauve\\\": 0.026797207774688473,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.212452959633168,\\n    \\\"self_bleu\\\": 0.02017730646777485,\\n    \\\"ece\\\": 0.42276462599126097,\\n    \\\"effective_rank\\\": 101.22015155234232,\\n    \\\"perplexity\\\": 906.5940345302087,\\n    \\\"distinct_1\\\": 0.0665859375,\\n    \\\"distinct_2\\\": 0.270228673661513,\\n    \\\"distinct_3\\\": 0.44060063438491226,\\n    \\\"mauve\\\": 0.02555089268851954,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.2501811163202792,\\n    \\\"self_bleu\\\": 0.019516632686325194,\\n    \\\"ece\\\": 0.4237363923193943,\\n    \\\"effective_rank\\\": 100.74112878438618,\\n    \\\"perplexity\\\": 994.7376948727441,\\n    \\\"distinct_1\\\": 0.06540625,\\n    \\\"distinct_2\\\": 0.26304893006976615,\\n    \\\"distinct_3\\\": 0.42445194456163376,\\n    \\\"mauve\\\": 0.02409276905769476,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.312030782953369,\\n    \\\"self_bleu\\\": 0.01876834333221985,\\n    \\\"ece\\\": 0.42396773668860693,\\n    \\\"effective_rank\\\": 102.59601148263303,\\n    \\\"perplexity\\\": 1087.4968406573337,\\n    \\\"distinct_1\\\": 0.064359375,\\n    \\\"distinct_2\\\": 0.2546582395174962,\\n    \\\"distinct_3\\\": 0.40777199643744433,\\n    \\\"mauve\\\": 0.024420485008776145,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.3574231989695562,\\n    \\\"self_bleu\\\": 0.018267216144813313,\\n    \\\"ece\\\": 0.4236003730982128,\\n    \\\"effective_rank\\\": 101.85227407160762,\\n    \\\"perplexity\\\": 1140.6672002580867,\\n    \\\"distinct_1\\\": 0.0636796875,\\n    \\\"distinct_2\\\": 0.2479472495878874,\\n    \\\"distinct_3\\\": 0.39059985312270507,\\n    \\\"mauve\\\": 0.023039043980222274,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.369282592386947,\\n    \\\"self_bleu\\\": 0.02029244822887307,\\n    \\\"ece\\\": 0.4228912515272687,\\n    \\\"effective_rank\\\": 103.27000448981086,\\n    \\\"perplexity\\\": 1247.1892448092653,\\n    \\\"distinct_1\\\": 0.0634453125,\\n    \\\"distinct_2\\\": 0.24789256166063797,\\n    \\\"distinct_3\\\": 0.3911232988015438,\\n    \\\"mauve\\\": 0.022472009073218807,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 1.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SuzSjMtxtY23rt6iWpQgkH`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "4f81aecb-2b84-4f39-ab5f-14ab1a883f58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1JBH5S9CJajBkBCrRcQi5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6563,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6563
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T13:19:00.464Z_
+
+<details><summary>↩ Tool result · `toolu_01SuzSjMtxtY23rt6iWpQgkH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis_results.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "2199bf26-8d6a-4ab3-8265-a8c8b46d0385",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nanalysis_results.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis_results.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01CTuZYKziqsbc44D7NAKPio`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "qwen35_08b_wiki_a100_s42_fp32_v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "35050a2d-376f-4240-a69f-3454b113cc6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1JBH5S9CJajBkBCrRcQi5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6563,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6563
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T13:19:01.284Z_
+
+<details><summary>↩ Tool result · `toolu_01CTuZYKziqsbc44D7NAKPio`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4311}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "fcb2556a-9d04-463d-b488-e41ca0f1e246",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4311}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4311}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I have the all_metrics.json. Now let me also read the analysis_results.json which likely has the 5-method analysis (PermG, K≥4, MMCT, etc.). Let me also check the registry with a broader search to find the actual experiment name.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "61a7ebf3-a268-4ebf-ab77-83ab12a529ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiwNvYjDqAkkcwF8GeENLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 35267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+all_metrics.json 已有。还需要读 analysis_results.json（5-method 分析）。同时查 registry 中实际的实验名。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "0dc3f67c-6cb5-425b-8086-341629b02e90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiwNvYjDqAkkcwF8GeENLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 35267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NZFXVLnNEm6byuoRinZUXv`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "f09df49c-a86f-4ef1-9273-166aa3870a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiwNvYjDqAkkcwF8GeENLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 35267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T13:19:07.359Z_
+
+<details><summary>↩ Tool result · `toolu_01NZFXVLnNEm6byuoRinZUXv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -54.03,\\n    \\\"ece\\\": 5643.53,\\n    \\\"perplexity\\\": 5968.54,\\n    \\\"distinct_1\\\": -32.5,\\n    \\\"distinct_2\\\": -45.99,\\n    \\\"distinct_3\\\": -47.21,\\n    \\\"effective_rank\\\": 136.87,\\n    \\\"mauve\\\": -22.89\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 1.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9466,\\n          \\\"p_value\\\": 0.004194,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9902,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 530.5218,\\n          \\\"p_value\\\": 0.004199,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016796,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0366,\\n          \\\"p_value\\\": 0.833633,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.968206,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 2.1667,\\n          \\\"p_value\\\": 0.141033,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": false\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n        \\n\\n... [截断: 输出过长，省略 5944 字符] ...\\n\\neak_lag\\\": -1,\\n          \\\"r\\\": 0.9774,\\n          \\\"p_value\\\": 6e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 1.6e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 160.011,\\n          \\\"p_value\\\": 0.008598,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.022928,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 9.9923,\\n          \\\"p_value\\\": 0.095581,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.20116,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 54.6706,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": 0.9226,\\n          \\\"p_value\\\": 0.00307,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9202,\\n          \\\"p_value\\\": 0.000437,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.000699,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 64.2091,\\n          \\\"p_value\\\": 0.023195,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.036527,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5.2695,\\n          \\\"p_value\\\": 0.10058,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.20116,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 5.5909,\\n          \\\"p_value\\\": 0.018054,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8767,\\n          \\\"p_value\\\": 0.021866,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.889,\\n          \\\"p_value\\\": 0.017803,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.018146,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 6,\\n          \\\"lead_time\\\": 5,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 8.2094,\\n          \\\"p_value\\\": 0.04759,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.04759,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 11.2686,\\n          \\\"p_value\\\": 0.011998,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.095984,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 211.0483,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "eda70eed-2de0-4b74-9dd7-9112495cf86c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"drift_pct\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": -54.03,\\\\n    \\\\\\\"ece\\\\\\\": 5643.53,\\\\n    \\\\\\\"perplexity\\\\\\\": 5968.54,\\\\n    \\\\\\\"distinct_1\\\\\\\": -32.5,\\\\n    \\\\\\\"distinct_2\\\\\\\": -45.99,\\\\n    \\\\\\\"distinct_3\\\\\\\": -47.21,\\\\n    \\\\\\\"effective_rank\\\\\\\": 136.87,\\\\n    \\\\\\\"mauve\\\\\\\": -22.89\\\\n  },\\\\n  \\\\\\\"lead_lag\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"diff_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"ty_granger\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"consensus_k4\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    }\\\\n  },\\\\n  \\\\\\\"mmct\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n    \\\\\\\"detection_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"simple_consensus_k4 (no null distribution)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"consensus_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"pair_details\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9466,\\\\n          \\\\\\\"p_value\\\\\\\": 0.004194,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9902,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.0,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 530.5218,\\\\n          \\\\\\\"p_value\\\\\\\": 0.004199,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.016796,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0366,\\\\n          \\\\\\\"p_value\\\\\\\": 0.833633,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.968206,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 2.1667,\\\\n          \\\\\\\"p_value\\\\\\\": 0.141033,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n        \\\\n\\\\n... [截断: 输出过长，省略 5944 字符] ...\\\\n\\\\neak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9774,\\\\n          \\\\\\\"p_value\\\\\\\": 6e-06,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 1.6e-05,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 160.011,\\\\n          \\\\\\\"p_value\\\\\\\": 0.008598,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.022928,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 9.9923,\\\\n          \\\\\\\"p_value\\\\\\\": 0.095581,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.20116,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 54.6706,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -4,\\\\n          \\\\\\\"r\\\\\\\": 0.9226,\\\\n          \\\\\\\"p_value\\\\\\\": 0.00307,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9202,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000437,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.000699,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 64.2091,\\\\n          \\\\\\\"p_value\\\\\\\": 0.023195,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.036527,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 5.2695,\\\\n          \\\\\\\"p_value\\\\\\\": 0.10058,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.20116,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 5.5909,\\\\n          \\\\\\\"p_value\\\\\\\": 0.018054,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"mauve\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.8767,\\\\n          \\\\\\\"p_value\\\\\\\": 0.021866,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 4,\\\\n          \\\\\\\"r\\\\\\\": -0.889,\\\\n          \\\\\\\"p_value\\\\\\\": 0.017803,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.018146,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 6,\\\\n          \\\\\\\"lead_time\\\\\\\": 5,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 8.2094,\\\\n          \\\\\\\"p_value\\\\\\\": 0.04759,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.04759,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 11.2686,\\\\n          \\\\\\\"p_value\\\\\\\": 0.011998,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.095984,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 211.0483,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -54.03,\\n    \\\"ece\\\": 5643.53,\\n    \\\"perplexity\\\": 5968.54,\\n    \\\"distinct_1\\\": -32.5,\\n    \\\"distinct_2\\\": -45.99,\\n    \\\"distinct_3\\\": -47.21,\\n    \\\"effective_rank\\\": 136.87,\\n    \\\"mauve\\\": -22.89\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 1.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9466,\\n          \\\"p_value\\\": 0.004194,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9902,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 530.5218,\\n          \\\"p_value\\\": 0.004199,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016796,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0366,\\n          \\\"p_value\\\": 0.833633,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.968206,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 2.1667,\\n          \\\"p_value\\\": 0.141033,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": false\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n        \\n\\n... [截断: 输出过长，省略 5944 字符] ...\\n\\neak_lag\\\": -1,\\n          \\\"r\\\": 0.9774,\\n          \\\"p_value\\\": 6e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 1.6e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 160.011,\\n          \\\"p_value\\\": 0.008598,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.022928,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 9.9923,\\n          \\\"p_value\\\": 0.095581,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.20116,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 54.6706,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": 0.9226,\\n          \\\"p_value\\\": 0.00307,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9202,\\n          \\\"p_value\\\": 0.000437,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.000699,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 64.2091,\\n          \\\"p_value\\\": 0.023195,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.036527,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5.2695,\\n          \\\"p_value\\\": 0.10058,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.20116,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 5.5909,\\n          \\\"p_value\\\": 0.018054,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8767,\\n          \\\"p_value\\\": 0.021866,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.889,\\n          \\\"p_value\\\": 0.017803,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.018146,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 6,\\n          \\\"lead_time\\\": 5,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 8.2094,\\n          \\\"p_value\\\": 0.04759,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.04759,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 11.2686,\\n          \\\"p_value\\\": 0.011998,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.095984,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 211.0483,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014ZxSkZJe63SMixSYkEiaaV`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": 30,
+  "fields": [
+    "exp_id",
+    "status",
+    "hypothesis"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "14faca0c-2dde-4477-b27d-a4629e359c8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiwNvYjDqAkkcwF8GeENLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 35267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T13:19:08.066Z_
+
+<details><summary>↩ Tool result · `toolu_014ZxSkZJe63SMixSYkEiaaV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 第三个 seed 验证，3-seed 一致性支撑 regime map 中 α=0.25 作为 blind zone 上界的 claim\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"α=0.75 pre-D080 为 fp16，fp32 重跑将提供 D079 合规的权威数据。PermG 预期保持 ~83%（high regime），但 drift magnitude 可能因 fp32 精度改变\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D096 PermG 非单调性验证：α=0.60 fp32 s42 仅 PermG=3/8，低于 α=0.50 的 6/8。补 s43 确认是单 seed 方差还是系统性非单调。如果 s43 PermG ≈ 6/8 则 s42 是 outlier；如果 s43 也低则非单调性是真实现象。\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s42 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s43/s44.\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s44.\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16.\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.\"}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\"}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\", \"hypothesis\": \"D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\"}, \"gen_gpt2m_a100_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\"}, \"conditional_granger_d061\": {\"status\": \"DONE\", \"hypothesis\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"hypothesis\": \"Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"hypothesis\": \"Intervention predictive multi-seed s43 (bf16): Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\"}}, \"count\": 30, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4892}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "3e2696ce-0878-4e06-8a83-20f3638ce93a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).\\\"}, \\\"alpha_sweep_a025_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D098 3-seed onset 确認：α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定\\\"}, \\\"alpha_sweep_a025_s44_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D098 3-seed onset 确認：α=0.25 fp32 第三个 seed 验证，3-seed 一致性支撑 regime map 中 α=0.25 作为 blind zone 上界的 claim\\\"}, \\\"alpha_sweep_a075_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"α=0.75 pre-D080 为 fp16，fp32 重跑将提供 D079 合规的权威数据。PermG 预期保持 ~83%（high regime），但 drift magnitude 可能因 fp32 精度改变\\\"}, \\\"alpha_sweep_a060_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D096 PermG 非单调性验证：α=0.60 fp32 s42 仅 PermG=3/8，低于 α=0.50 的 6/8。补 s43 确认是单 seed 方差还是系统性非单调。如果 s43 PermG ≈ 6/8 则 s42 是 outlier；如果 s43 也低则非单调性是真实现象。\\\"}, \\\"padding_robustness_a100_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\\\"}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\\\"}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D091: α=0.50 fp32 s42 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s43/s44.\\\"}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s44.\\\"}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\\\"}, \\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\\\"}, \\\"scale_69b_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16.\\\"}, \\\"interv_pred_a075_s42_fp32_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.\\\"}, \\\"alpha_sweep_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.\\\"}, \\\"alpha_sweep_a005_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\\\"}, \\\"alpha_sweep_a010_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\\\"}, \\\"alpha_sweep_a005_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。\\\"}, \\\"alpha_sweep_a060_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\\\"}, \\\"smollm3_3b_wiki_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.\\\"}, \\\"alpha_sweep_a010_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\\\"}, \\\"qwen35_08b_wiki_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\\\"}, \\\"smollm3_3b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\\\"}, \\\"interv_pred_a075_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\\\"}, \\\"alpha_sweep_a060_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\\\"}, \\\"gen_gpt2m_a100_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\\\"}, \\\"scale_14b_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\\\"}, \\\"conditional_granger_d061\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。\\\"}, \\\"method_ablation_phase3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。\\\"}, \\\"interv_pred_a075_s42_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.\\\"}, \\\"interv_pred_s43_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Intervention predictive multi-seed s43 (bf16): Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\\\"}}, \\\"count\\\": 30, \\\"total\\\": 94, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4892}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 第三个 seed 验证，3-seed 一致性支撑 regime map 中 α=0.25 作为 blind zone 上界的 claim\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"α=0.75 pre-D080 为 fp16，fp32 重跑将提供 D079 合规的权威数据。PermG 预期保持 ~83%（high regime），但 drift magnitude 可能因 fp32 精度改变\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D096 PermG 非单调性验证：α=0.60 fp32 s42 仅 PermG=3/8，低于 α=0.50 的 6/8。补 s43 确认是单 seed 方差还是系统性非单调。如果 s43 PermG ≈ 6/8 则 s42 是 outlier；如果 s43 也低则非单调性是真实现象。\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s42 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s43/s44.\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s44.\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16.\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.\"}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"hypothesis\": \"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\"}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"RUNNING\", \"hypothesis\": \"D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"hypothesis\": \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\"}, \"gen_gpt2m_a100_s43_fp32\": {\"status\": \"RUNNING\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\"}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\"}, \"conditional_granger_d061\": {\"status\": \"DONE\", \"hypothesis\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"hypothesis\": \"Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"hypothesis\": \"Intervention predictive multi-seed s43 (bf16): Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\"}}, \"count\": 30, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4892}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize:
+
+1. **Registry**: The experiment `qwen35_08b_wiki_a100_s42_v2` already has status **DONE** in the registry. The hypothesis is about the D080 fix (fp32 dtype bug fix).
+
+2. **Process**: PID 74455 is gone.
+
+3. **GPU cuda:1**: Already freed (0 MiB used).
+
+4. **Results**: Complete, with all_metrics.json and analysis_results.json already generated.
+
+5. **Analysis results** - the key metrics:
+   - **K≥4 (consensus_k4)**: **8/8** — all pairs show strong lead-lag consensus!
+   - **PermG fwd**: 8/8 significant
+   - **PermG rev**: 0/8 significant (correct directionality — forward only)
+   - **TY Granger**: 6/8 significant (but see C003 constraint about TY at low α)
+   - **MMCT**: detection_rate = 1.0 (100%)
+   - **Threshold onset**: 8/8, all showing canary leads downstream
+   
+   **Drift metrics** (gen 0 → gen 10):
+   - token_entropy: -
+
+54.03% (massive collapse)
+   - ece: +5643.53% (calibration error explodes)
+   - perplexity: +5968.54% (from 20.6 → 1247.2)
+   - distinct_1: -32.5%
+   - distinct_2: -45.99%
+   - distinct_3: -47.21%
+   - effective_rank: +136.87%
+   - mauve: -22.89%
+
+   **Pair details** (8 pairs, all K≥4):
+   - token_entropy→distinct_1: 4 votes (naive, diff, thresh, pg_fwd)
+   - token_entropy→distinct_2: 5 votes (naive, diff, thresh, pg_fwd, ty)
+   - token_entropy→distinct_3: 4 votes (naive, diff, thresh, pg_fwd)
+   - token_entropy→mauve: 5 votes (naive, diff, thresh, pg_fwd, ty)
+   - ece→distinct_1: 5 votes (naive, diff, thresh, pg_fwd, ty)
+   - ece→distinct_2: 5 votes (naive, diff, thresh, pg_fwd, ty)
+   - ece→distinct_3: 5 votes (naive, diff, thresh, pg_fwd, ty)
+   - ece→mauve: 5 votes (naive, diff, thresh, pg_fwd, ty)
+
+All 8 pairs hit K≥4 with perfect consistency across methods, confirming the canary lead-lag pattern holds across Qwen3.5-0.8B as the seventh architecture family. PermG shows complete forward significance with no reverse causality, and the MMCT detection rate is 100%, validating the cross-architecture generalization.
+
+Now I need to verify whether the metrics and conclusion are already stored in the registry since it's marked DONE, and review the registry fields to ensure everything's properly recorded.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "1460172e-c73d-4acd-9cc4-b9c0664221a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToCL83ascQFYVDaGFSVcTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 39234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Registry 中该实验已是 **DONE**。进程已终止，GPU 已释放。检查 registry 是否已有完整 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "e6b73b65-622c-48a9-923a-cd2d47f62997",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToCL83ascQFYVDaGFSVcTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 39234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01T5GdnF3ThK1AG7apvb6Buy`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "qwen35_08b_wiki_a100_s42_v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "cb55a4ef-3292-4fd0-b13e-47d1a14cbb3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToCL83ascQFYVDaGFSVcTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 39234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T13:19:30.655Z_
+
+<details><summary>↩ Tool result · `toolu_01T5GdnF3ThK1AG7apvb6Buy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8297}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "7a422fe0-6420-401b-99ea-8cdbcc98f31d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8297}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8297}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Hmm, filtering by exp_id doesn't seem to work. But in the broader read (limit=30), we can see the experiment. Let me use the exact field for filtering. Maybe the filter is case-sensitive or doesn't support exp_id as filter.
+
+Actually looking at the data returned by limit=30, the key is "qwen35_08b_wiki_a100_s42_v2" and it has status: DONE. Let me read it with a different approach - maybe exp_id filter doesn't work. Let me read with limit=0 to get all and search.
+ 
+Wait, the registry shows status=DONE now, but the user reported it as ANALYZING with the process still consuming 34.8GB VRAM. It looks like the experiment has already completed and the registry was updated by another process. The output files exist with an EXIT_CODE of 0, and the GPU memory has been freed, so the analysis must have finished.
+
+Let me check if the registry entry has all the required fields populated with the metrics and conclusions, since filtering by exp_id isn't returning what I need. I'll try a different query approach to retrieve the complete record.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "82805ee8-6216-4312-a0db-2058ab8fedf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TB8HsQXCDcKHRYCcZQu8NY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 47485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1055
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Registry filter by exp_id 不工作。直接用不同方式获取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "089fb178-23de-4323-b624-9a4f3e6507ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TB8HsQXCDcKHRYCcZQu8NY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 47485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1055
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016ZdfdDZPW5dXP9G7CjpWjD`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion",
+    "metrics",
+    "checkpoint_path",
+    "log_path"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "26cf33d7-9e15-4d13-b977-38c602ec3d8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TB8HsQXCDcKHRYCcZQu8NY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 47485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1055
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T13:19:46.391Z_
+
+<details><summary>↩ Tool result · `toolu_016ZdfdDZPW5dXP9G7CjpWjD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}, \"checkpoint_path\": \"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"checkpoint_path\": \"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}, \"conclusion\": \"success\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}, \"checkpoint_path\": \"results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"conclusion\": \"success\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}, \"conclusion\": \"success\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}}, \"count\": 5, \"total\": 81, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2623}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "891cf66e-f1a5-4cbc-b8c3-c6904df08b97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen35_08b_wiki_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"permg_fwd_fdr\\\": \\\"8/8\\\", \\\"permg_rev_fdr\\\": \\\"0/8\\\", \\\"consensus_ge4\\\": \\\"8/8\\\", \\\"mmct_uniform_fwd\\\": 1, \\\"d1_drift_pct\\\": -32.5, \\\"d2_drift_pct\\\": -45.99, \\\"d3_drift_pct\\\": -47.21, \\\"entropy_drift_pct\\\": -54.03, \\\"ece_drift_pct\\\": 5643.53, \\\"mauve_drift_pct\\\": -22.89, \\\"ppl_drift_pct\\\": 5968.54, \\\"ppl_gen0\\\": 20.55, \\\"ppl_gen10\\\": 1247.19, \\\"ty_granger_sig\\\": \\\"6/8\\\"}, \\\"checkpoint_path\\\": \\\"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\\\"}, \\\"alpha_sweep_a025_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7075, \\\"token_entropy_drift_pct\\\": -16.3, \\\"distinct_1_gen0\\\": 0.0916, \\\"distinct_1_gen10\\\": 0.0649, \\\"distinct_1_drift_pct\\\": -29.2, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.46, \\\"perplexity_drift_pct\\\": 16.8, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0868, \\\"ece_drift_pct\\\": 703.4, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"n_perm\\\": 5000, \\\"padding_side\\\": \\\"right (D093 fix NOT applied)\\\"}, \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_s43_fp32/gen_10\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\\\", \\\"metrics\\\": {\\\"token_entropy_gen0\\\": 3.2342, \\\"token_entropy_gen10\\\": 2.7227, \\\"token_entropy_drift_pct\\\": -15.8, \\\"distinct_1_gen0\\\": 0.0929, \\\"distinct_1_gen10\\\": 0.066, \\\"distinct_1_drift_pct\\\": -29, \\\"perplexity_gen0\\\": 26.95, \\\"perplexity_gen10\\\": 31.58, \\\"perplexity_drift_pct\\\": 17.2, \\\"ece_gen0\\\": 0.0108, \\\"ece_gen10\\\": 0.0842, \\\"ece_drift_pct\\\": 679.6, \\\"perm_granger_fwd\\\": \\\"6/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"6/8\\\", \\\"mmct_wpair_fwd\\\": \\\"6/8\\\", \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"pre-D093\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a010_s42_fp32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true}}}, \\\"count\\\": 5, \\\"total\\\": 81, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2623}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"permg_fwd_fdr\": \"8/8\", \"permg_rev_fdr\": \"0/8\", \"consensus_ge4\": \"8/8\", \"mmct_uniform_fwd\": 1, \"d1_drift_pct\": -32.5, \"d2_drift_pct\": -45.99, \"d3_drift_pct\": -47.21, \"entropy_drift_pct\": -54.03, \"ece_drift_pct\": 5643.53, \"mauve_drift_pct\": -22.89, \"ppl_drift_pct\": 5968.54, \"ppl_gen0\": 20.55, \"ppl_gen10\": 1247.19, \"ty_granger_sig\": \"6/8\"}, \"checkpoint_path\": \"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"checkpoint_path\": \"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\"}, \"conclusion\": \"success\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\"}, \"checkpoint_path\": \"results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"conclusion\": \"success\"}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.8, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.2, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.6, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"5/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"padding_side_fix\": \"pre-D093\"}, \"conclusion\": \"success\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true}}}, \"count\": 5, \"total\": 81, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2623}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry already has the experiment fully populated:
+- status: DONE
+- conclusion: success
+- metrics: All populated
+- checkpoint_path: set
+- log_path: set
+
+So the experiment was already fully processed. The user's task description said "registry 已是 ANALYZING" but it's now DONE with all metrics populated.
+
+Let me summarize:
+
+**Status summary:**
+- Process PID 74455: GONE (terminated)
+- GPU cuda:1: 0 MiB used (already freed)
+- Registry: DONE, conclusion=success, all metrics populated
+
+
+- Exit code 0 with all analysis files generated
+
+Now I'm looking at the results across all methods. The consensus approach with K≥4 achieved perfect validation across all architectures, and the permutation tests show the expected asymmetry with forward causality detected but reverse causality correctly rejected. The Granger causality found 6 out of 8 significant relationships, while the MMCT method achieved perfect detection with a rate of 1.0.
+
+Examining the drift metrics from generation 0 to 10, token entropy dropped significantly while perplexity and ECE increased dramatically, suggesting the model's outputs became less diverse and more concentrated. The consensus voting across methods reveals consistent patterns, with token entropy emerging as a strong predictor of diversity metrics like distinct_1, distinct_2, and distinct_3, as well as MAUVE scores, with most methods agreeing on these relationships.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "a2bdf12a-31ee-46ff-9c6f-6ec5213f4dd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QHikhZ5q2Aqy11G28BtPEL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 48540,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2808
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+全部任务已由先前 session 完成。以下是完整状态报告：
+
+---
+
+## qwen35_08b_wiki_a100_s42_v2 — 完成报告
+
+### 状态
+| 项目 | 状态 |
+|------|------|
+| PID 74455 | 已终止 |
+| GPU cuda:1 | 已释放 (0 MiB) |
+| EXIT_CODE | 0 |
+| Registry | **DONE**, conclusion=**success** |
+| 结果目录 | `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` (gen_0 ~ gen_10 + all_metrics.json + analysis_results.json) |
+
+### 5-Method Lead-Lag 分析
+
+| 方法 | 结果 |
+|------|------|
+| **PermG fwd** | **8/8** (全部 FDR 显著) |
+| **PermG rev** | **0/8** (正确方向性) |
+| **K≥4 consensus** | **8/8** |
+| **MMCT detection** | **1.0** (100%) |
+| TY Granger | 6/8 |
+
+### Consensus Detail (8/8 pairs, 全部 ≥4 votes)
+
+| Pair | Votes | Methods |
+|------|-------|---------|
+| token_entropy → distinct_1 | 4 | naive, diff, thresh, pg_fwd |
+| token_entropy → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |
+| token_entropy → distinct_3 | 4 | naive, diff, thresh, pg_fwd |
+| token_entropy → mauve | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → mauve | 5 | naive, diff, thresh, pg_fwd, ty |
+
+### Drift (gen 0 → gen 10)
+
+| Metric | Gen 0 | Gen 10 | Drift % |
+|--------|-------|--------|---------|
+| token_entropy | 2.978 | 1.369 | **-54.03%** |
+| ece | 0.007 | 0.423 | **+5643.53%** |
+| perplexity | 20.55 | 1247.19 | **+5968.54%** |
+| distinct_1 | 0.094 | 0.063 | -32.50% |
+| distinct_2 | 0.459 | 0.248 | -45.99% |
+| distinct_3 | 0.741 | 0.391 | -47.21% |
+| effective_rank | 43.60 | 103.27 | +136.87% |
+| mauve | 0.029 | 0.022 | -22.89% |
+
+### Conclusion 判断
+
+**Success** — Qwen3.5-0.8B（第 7 个架构族）完美确认跨架构泛化：
+- K≥4 = 8/8（满分），所有 canary-downstream pair 均显示 lead-lag 因果结构
+- PermG 方向性完美：fwd 8/8, rev 0/8，排除反向因果
+- MMCT 检测率 100%
+- Collapse 信号极强：entropy 在 gen 1 即剧烈下降（2.978→1.505，-49.5%），downstream diversity 在 gen 2 开始追随下降，onset lead time = 1 gen（所有 8 pairs 一致）
+- fp32 精度下 collapse magnitude 极大（ppl +5969%），与其他 α=1.0 fp32 实验一致
+
+**无需进一步操作**——进程、GPU、registry 均已处理完毕。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "uuid": "e2983b4b-284d-455d-85ba-1c39d5896b70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QHikhZ5q2Aqy11G28BtPEL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 48540,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2808
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 56_
+
+全部任务已由先前 session 完成。以下是完整状态报告：
+
+---
+
+## qwen35_08b_wiki_a100_s42_v2 — 完成报告
+
+### 状态
+| 项目 | 状态 |
+|------|------|
+| PID 74455 | 已终止 |
+| GPU cuda:1 | 已释放 (0 MiB) |
+| EXIT_CODE | 0 |
+| Registry | **DONE**, conclusion=**success** |
+| 结果目录 | `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` (gen_0 ~ gen_10 + all_metrics.json + analysis_results.json) |
+
+### 5-Method Lead-Lag 分析
+
+| 方法 | 结果 |
+|------|------|
+| **PermG fwd** | **8/8** (全部 FDR 显著) |
+| **PermG rev** | **0/8** (正确方向性) |
+| **K≥4 consensus** | **8/8** |
+| **MMCT detection** | **1.0** (100%) |
+| TY Granger | 6/8 |
+
+### Consensus Detail (8/8 pairs, 全部 ≥4 votes)
+
+| Pair | Votes | Methods |
+|------|-------|---------|
+| token_entropy → distinct_1 | 4 | naive, diff, thresh, pg_fwd |
+| token_entropy → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |
+| token_entropy → distinct_3 | 4 | naive, diff, thresh, pg_fwd |
+| token_entropy → mauve | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |
+| ece → mauve | 5 | naive, diff, thresh, pg_fwd, ty |
+
+### Drift (gen 0 → gen 10)
+
+| Metric | Gen 0 | Gen 10 | Drift % |
+|--------|-------|--------|---------|
+| token_entropy | 2.978 | 1.369 | **-54.03%** |
+| ece | 0.007 | 0.423 | **+5643.53%** |
+| perplexity | 20.55 | 1247.19 | **+5968.54%** |
+| distinct_1 | 0.094 | 0.063 | -32.50% |
+| distinct_2 | 0.459 | 0.248 | -45.99% |
+| distinct_3 | 0.741 | 0.391 | -47.21% |
+| effective_rank | 43.60 | 103.27 | +136.87% |
+| mauve | 0.029 | 0.022 | -22.89% |
+
+### Conclusion 判断
+
+**Success** — Qwen3.5-0.8B（第 7 个架构族）完美确认跨架构泛化：
+- K≥4 = 8/8（满分），所有 canary-downstream pair 均显示 lead-lag 因果结构
+- PermG 方向性完美：fwd 8/8, rev 0/8，排除反向因果
+- MMCT 检测率 100%
+- Collapse 信号极强：entropy 在 gen 1 即剧烈下降（2.978→1.505，-49.5%），downstream diversity 在 gen 2 开始追随下降，onset lead time = 1 gen（所有 8 pairs 一致）
+- fp32 精度下 collapse magnitude 极大（ppl +5969%），与其他 α=1.0 fp32 实验一致
+
+**无需进一步操作**——进程、GPU、registry 均已处理完毕。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 109803,
+  "duration_api_ms": 108932,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "6532c00e-7a67-43c2-9b14-806b2f578750",
+  "total_cost_usd": 0.52965475,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 39507,
+    "cache_read_input_tokens": 263584,
+    "output_tokens": 5929,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39507,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1776,
+        "cache_read_input_tokens": 48540,
+        "cache_creation_input_tokens": 2808,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2808
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2554,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002659,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 5929,
+      "cacheReadInputTokens": 263584,
+      "cacheCreationInputTokens": 39507,
+      "webSearchRequests": 0,
+      "costUSD": 0.52699575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "99bbad83-158f-498e-803e-0a0e6f61fa90"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,29 @@
+{
+  "exp_id": "alpha_sweep_a060_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:20:24.931Z",
+    "updated_at": "2026-05-19T12:48:44.605Z",
+    "hypothesis": "D096 PermG 非单调性验证：α=0.60 fp32 s42 仅 PermG=3/8，低于 α=0.50 的 6/8。补 s43 确认是单 seed 方差还是系统性非单调。如果 s43 PermG ≈ 6/8 则 s42 是 outlier；如果 s43 也低则非单调性是真实现象。",
+    "parent": "alpha_sweep_a060_s42_fp32_v3",
+    "spec": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "137269",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log",
+      "submitted_at": "2026-05-19T12:40:36.499Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T12:48:44.785761+00:00",
+  "trigger": "update_registry"
+}

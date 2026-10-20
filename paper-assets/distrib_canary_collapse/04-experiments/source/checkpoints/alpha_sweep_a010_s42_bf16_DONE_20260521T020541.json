@@ -1,0 +1,36 @@
+{
+  "exp_id": "alpha_sweep_a010_s42_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:26:31.462Z",
+    "updated_at": "2026-05-21T02:05:40.658Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --bf16 --output_dir results/alpha_sweep/a010_s42_bf16",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "397830",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_bf16.log",
+      "submitted_at": "2026-05-20T23:05:30.943Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "wall_clock_seconds": 10809.7,
+      "gpu_hours": 3.0
+    },
+    "hypothesis": "α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T02:05:40.658Z"
+  },
+  "timestamp": "2026-05-21T02:05:41.043933+00:00",
+  "trigger": "update_registry"
+}

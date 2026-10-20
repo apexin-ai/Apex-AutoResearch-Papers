@@ -1,0 +1,44 @@
+{
+  "dgp": {
+    "T": 11,
+    "ar_coef": 0.5,
+    "n_reps": 1000,
+    "n_perms_for_perm_test": 200,
+    "burn_in": 50
+  },
+  "results": {
+    "small": {
+      "beta": 0.1,
+      "raw_power": 0.117,
+      "diff_power": 0.075,
+      "perm_power": 0.087,
+      "diff_loss_pct": "35.9%",
+      "perm_retention_pct": "74.4%"
+    },
+    "medium": {
+      "beta": 0.3,
+      "raw_power": 0.201,
+      "diff_power": 0.131,
+      "perm_power": 0.16,
+      "diff_loss_pct": "34.8%",
+      "perm_retention_pct": "79.6%"
+    },
+    "large": {
+      "beta": 0.6,
+      "raw_power": 0.458,
+      "diff_power": 0.25,
+      "perm_power": 0.387,
+      "diff_loss_pct": "45.4%",
+      "perm_retention_pct": "84.5%"
+    }
+  },
+  "empirical_effect_size": {
+    "source": "a050_s42_fp32 token_entropy->perplexity",
+    "xcorr_lag1": -0.5906,
+    "beta_hat_standardized": -0.5857,
+    "f_statistic": 38.4613,
+    "cohens_f2": 4.8077
+  },
+  "conclusion": "First-differencing loses 39% power on average relative to raw levels at T=11. Permutation Granger retains 80% of raw-levels power without differencing requirement.",
+  "elapsed_seconds": 897.5
+}

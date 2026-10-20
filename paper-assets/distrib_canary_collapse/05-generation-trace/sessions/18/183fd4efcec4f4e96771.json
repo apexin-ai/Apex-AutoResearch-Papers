@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "183fd4efcec4f4e96771",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops c4 mc collect results",
+  "task_key": "worker_ops_c4_mc_collect_results_20260521T041249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c4_mc_collect_results_20260521T041249_result.json",
+    "occurrence": 1,
+    "bytes": 2141,
+    "sha256": "ed49706babb399883c6e7e591493fdb5d55d256b65ee3f3bd65842174ef8ec89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MC 已完成（2000 reps × 1000 perms，52 min）。结果保存至本地 `artifacts/c4_first_diff_montecarlo.json`。\n\n## 关键结果\n\n### Size Control (β=0.0, α=0.05)\n\n| Condition | Raw Perm FPR | Diff Perm FPR |\n|-----------|-------------|---------------|\n| T=11, φ=0.5 | 0.074 | 0.066 |\n| T=11, φ=0.87 | **0.103** | 0.058 |\n| T=21, φ=0.5 | 0.059 | 0.053 |\n| T=21, φ=0.87 | **0.118** | 0.053 |\n\n**Raw permutation 在 near-unit-root (φ=0.87) 下严重 inflate**——FPR 达 10-12%，是名义 5% 的 2 倍多。First-differencing 修复了这个问题，所有条件下 diff FPR ≈ 0.05-0.07，size control 良好。\n\n### Power (Raw vs Diff Permutation)\n\n| Condition | Raw Perm | Diff Perm | Power Loss |\n|-----------|----------|-----------|------------|\n| T=11, φ=0.5, β=0.46 | 0.266 | 0.144 | **45.8%** |\n| T=11, φ=0.5, β=0.92 | 0.622 | 0.349 | **44.0%** |\n| T=11, φ=0.87, β=0.46 | 0.306 | 0.100 | **67.4%** |\n| T=11, φ=0.87, β=0.92 | 0.642 | 0.261 | **59.3%** |\n| T=21, φ=0.5, β=0.46 | 0.540 | 0.300 | **44.5%** |\n| T=21, φ=0.5, β=0.92 | 0.944 | 0.745 | **21.1%** |\n| T=21, φ=0.87, β=0.46 | 0.705 | 0.233 | **67.0%** |\n| T=21, φ=0.87, β=0.92 | 0.972 | 0.667 | **31.4%** |\n\n### 核心发现\n\n1. **Size-power tradeoff 明确**：Raw perm 在 φ=0.87 下 FPR inflated（10-12%），所以其 \"power\" 部分是虚高的。Diff perm 修正了 size 但代价是 power loss 21-67%。\n\n2. **φ 对 power loss 影响显著**：φ=0.87 时 power loss 59-67%（T=11）和 31-67%（T=21），远大于 φ=0.5 时的 44-46%（T=11）和 21-45%（T=21）。Near-unit-root 过程的信号被 differencing 消除得更多。\n\n3. **T=21 vs T=11 的 power gain**：T 翻倍使 raw power 几乎翻倍（如 φ=0.5 β=0.46: 0.27→0.54），diff power 也翻倍（0.14→0.30）。强信号 (β=0.92) + T=21 下 diff perm 仍能达到 0.67-0.74 的 power。\n\n4. **实用含义**：对于 T=11 的实验（我们的实际 setting），diff perm 在 φ=0.87 β=0.46 下 power 仅 10%——几乎无检测力。这解释了为什么某些实验在 differencing 后信号消失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c4-mc-collect-results.md"
+}

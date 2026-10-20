@@ -1,0 +1,418 @@
+{
+  "calibration_version": "v1",
+  "date": "2026-05-15",
+  "fpr_table": {
+    "description": "FPR at alpha=0.0 null control (seed=42 only, 8 pairs)",
+    "note": "Single seed — seed_threshold dimension N/A for FPR. Only method_threshold varies.",
+    "method_thresholds": [1, 2, 3, 4, 5],
+    "methods_order": ["naive_pearson", "differenced_xcorr", "threshold_onset", "toda_yamamoto", "permutation_granger"],
+    "null_control_pairs": [
+      "token_entropy->distinct_1",
+      "token_entropy->distinct_2",
+      "token_entropy->distinct_3",
+      "token_entropy->perplexity",
+      "ece->distinct_1",
+      "ece->distinct_2",
+      "ece->distinct_3",
+      "ece->perplexity"
+    ],
+    "data": [
+      {
+        "method_threshold": 1,
+        "sig_pairs": 8,
+        "total": 8,
+        "fpr": 1.0,
+        "sig_pair_labels": [
+          "token_entropy->distinct_1",
+          "token_entropy->distinct_2",
+          "token_entropy->distinct_3",
+          "token_entropy->perplexity",
+          "ece->distinct_1",
+          "ece->distinct_2",
+          "ece->distinct_3",
+          "ece->perplexity"
+        ],
+        "methods_detail": {
+          "naive": 8,
+          "differenced": 4,
+          "threshold": 5,
+          "permutation_granger": 0,
+          "TY": 0
+        }
+      },
+      {
+        "method_threshold": 2,
+        "sig_pairs": 6,
+        "total": 8,
+        "fpr": 0.75,
+        "sig_pair_labels": [
+          "token_entropy->distinct_1",
+          "token_entropy->distinct_2",
+          "token_entropy->distinct_3",
+          "token_entropy->perplexity",
+          "ece->distinct_1",
+          "ece->distinct_3"
+        ],
+        "methods_detail": {
+          "naive": 8,
+          "differenced": 4,
+          "threshold": 5,
+          "permutation_granger": 0,
+          "TY": 0
+        }
+      },
+      {
+        "method_threshold": 3,
+        "sig_pairs": 3,
+        "total": 8,
+        "fpr": 0.375,
+        "sig_pair_labels": [
+          "token_entropy->distinct_1",
+          "token_entropy->distinct_2",
+          "token_entropy->distinct_3"
+        ],
+        "methods_detail": {
+          "naive": 8,
+          "differenced": 4,
+          "threshold": 5,
+          "permutation_granger": 0,
+          "TY": 0
+        }
+      },
+      {
+        "method_threshold": 4,
+        "sig_pairs": 0,
+        "total": 8,
+        "fpr": 0.0,
+        "sig_pair_labels": [],
+        "methods_detail": {
+          "naive": 8,
+          "differenced": 4,
+          "threshold": 5,
+          "permutation_granger": 0,
+          "TY": 0
+        }
+      },
+      {
+        "method_threshold": 5,
+        "sig_pairs": 0,
+        "total": 8,
+        "fpr": 0.0,
+        "sig_pair_labels": [],
+        "methods_detail": {
+          "naive": 8,
+          "differenced": 4,
+          "threshold": 5,
+          "permutation_granger": 0,
+          "TY": 0
+        }
+      }
+    ]
+  },
+  "fnr_table": {
+    "description": "FNR at alpha=1.0 (4 seeds, 16 pairs, 6 robust ground truth)",
+    "ground_truth_robust_6": [
+      "token_entropy→distinct_1",
+      "token_entropy→distinct_2",
+      "token_entropy→distinct_3",
+      "ece→distinct_1",
+      "ece→distinct_2",
+      "ece→distinct_3"
+    ],
+    "note": "Ground truth positive = 6 pairs classified ROBUST at default (4/5 methods, 3/4 seeds). FNR_all_16 treats all 16 alpha=1.0 pairs as positives.",
+    "rows": [
+      {
+        "method_threshold": 1,
+        "seed_threshold": 1,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 1,
+        "seed_threshold": 2,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 1,
+        "seed_threshold": 3,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 1,
+        "seed_threshold": 4,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 2,
+        "seed_threshold": 1,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 2,
+        "seed_threshold": 2,
+        "robust_count_of_16": 16,
+        "fnr_all_16": 0.0,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 2,
+        "seed_threshold": 3,
+        "robust_count_of_16": 13,
+        "fnr_all_16": 0.1875,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→perplexity", "effective_rank→distinct_1"
+        ]
+      },
+      {
+        "method_threshold": 2,
+        "seed_threshold": 4,
+        "robust_count_of_16": 8,
+        "fnr_all_16": 0.5,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 3,
+        "seed_threshold": 1,
+        "robust_count_of_16": 15,
+        "fnr_all_16": 0.0625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity", "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→distinct_1", "effective_rank→distinct_2", "effective_rank→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 3,
+        "seed_threshold": 2,
+        "robust_count_of_16": 9,
+        "fnr_all_16": 0.4375,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→perplexity",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 3,
+        "seed_threshold": 3,
+        "robust_count_of_16": 8,
+        "fnr_all_16": 0.5,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 3,
+        "seed_threshold": 4,
+        "robust_count_of_16": 8,
+        "fnr_all_16": 0.5,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→perplexity", "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→perplexity", "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 4,
+        "seed_threshold": 1,
+        "robust_count_of_16": 10,
+        "fnr_all_16": 0.375,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "self_bleu→distinct_1", "self_bleu→distinct_2", "self_bleu→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3",
+          "effective_rank→distinct_1"
+        ]
+      },
+      {
+        "method_threshold": 4,
+        "seed_threshold": 2,
+        "robust_count_of_16": 6,
+        "fnr_all_16": 0.625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 4,
+        "seed_threshold": 3,
+        "robust_count_of_16": 6,
+        "fnr_all_16": 0.625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 4,
+        "seed_threshold": 4,
+        "robust_count_of_16": 6,
+        "fnr_all_16": 0.625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 5,
+        "seed_threshold": 1,
+        "robust_count_of_16": 6,
+        "fnr_all_16": 0.625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 5,
+        "seed_threshold": 2,
+        "robust_count_of_16": 6,
+        "fnr_all_16": 0.625,
+        "robust_count_of_6": 6,
+        "fnr_robust_6": 0.0,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3",
+          "ece→distinct_1", "ece→distinct_2", "ece→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 5,
+        "seed_threshold": 3,
+        "robust_count_of_16": 3,
+        "fnr_all_16": 0.8125,
+        "robust_count_of_6": 3,
+        "fnr_robust_6": 0.5,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2", "token_entropy→distinct_3"
+        ]
+      },
+      {
+        "method_threshold": 5,
+        "seed_threshold": 4,
+        "robust_count_of_16": 2,
+        "fnr_all_16": 0.875,
+        "robust_count_of_6": 2,
+        "fnr_robust_6": 0.6667,
+        "robust_pairs": [
+          "token_entropy→distinct_1", "token_entropy→distinct_2"
+        ]
+      }
+    ]
+  },
+  "recommended_config": {
+    "method_threshold": 4,
+    "seed_threshold": 3,
+    "rationale": "FPR=0.0 (no false positives at alpha=0.0), FNR_robust=0.0 (all 6 confirmed ROBUST pairs detected). Achieves perfect separation on available data. Lowering to 3/5 methods inflates detections from 6 to 8 (adds token_entropy→perplexity, ece→perplexity) while FPR rises to 0.375."
+  },
+  "practical_guidance": [
+    {
+      "config": "1/5 methods, 1/4 seeds",
+      "fpr": 1.0,
+      "fnr_all_16": 0.0,
+      "fnr_robust_6": 0.0,
+      "use_case": "Exploratory screening"
+    },
+    {
+      "config": "3/5 methods, 2/4 seeds",
+      "fpr": 0.375,
+      "fnr_all_16": 0.4375,
+      "fnr_robust_6": 0.0,
+      "use_case": "Standard analysis"
+    },
+    {
+      "config": "4/5 methods, 3/4 seeds",
+      "fpr": 0.0,
+      "fnr_all_16": 0.625,
+      "fnr_robust_6": 0.0,
+      "use_case": "Publication-grade (our default)"
+    },
+    {
+      "config": "5/5 methods, 4/4 seeds",
+      "fpr": 0.0,
+      "fnr_all_16": 0.875,
+      "fnr_robust_6": 0.6667,
+      "use_case": "Conservative / safety-critical"
+    }
+  ]
+}

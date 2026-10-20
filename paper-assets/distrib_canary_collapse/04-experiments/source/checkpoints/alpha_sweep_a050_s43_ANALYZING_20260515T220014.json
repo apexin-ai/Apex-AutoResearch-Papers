@@ -1,0 +1,35 @@
+{
+  "exp_id": "alpha_sweep_a050_s43",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:58:45.880Z",
+    "updated_at": "2026-05-15T22:00:14.862Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "134860",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log",
+      "submitted_at": "2026-05-15T17:40:27.060Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "pid": "134860",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\"",
+      "finished_at": "2026-05-15T22:00:14.725Z"
+    }
+  },
+  "timestamp": "2026-05-15T22:00:14.915436+00:00",
+  "trigger": "update_registry"
+}

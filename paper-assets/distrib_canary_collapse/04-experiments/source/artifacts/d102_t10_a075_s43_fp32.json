@@ -1,0 +1,47 @@
+{
+  "exp_id": "phase_diagram_t10_a075_s43_fp32",
+  "analysis": "d102_5method_leadlag",
+  "config": {
+    "alpha": 0.75,
+    "seed": 43,
+    "T": 10,
+    "model": "pythia-410m",
+    "precision": "fp32",
+    "n_gens": 11,
+    "threshold_criterion": "true_3sigma_d105",
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "canaries": ["token_entropy", "ece"],
+    "n_perm": 5000
+  },
+  "summary": {
+    "PermG_fwd": 6,
+    "PermG_rev": 0,
+    "total_pairs": 8,
+    "asymmetry": "strong",
+    "robust_pairs_ge3": 4,
+    "diff_xcorr_fdr_fwd": 7,
+    "diff_xcorr_fdr_rev": 7,
+    "threshold_fwd": 0,
+    "ty_fwd": 0
+  },
+  "consensus": [
+    {"pair": "token_entropy→distinct_1", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "token_entropy→distinct_2", "votes": "2/5", "methods": ["diff", "perm"]},
+    {"pair": "token_entropy→distinct_3", "votes": "2/5", "methods": ["diff", "perm"]},
+    {"pair": "token_entropy→mauve", "votes": "1/5", "methods": ["diff"]},
+    {"pair": "ece→distinct_1", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→distinct_2", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→distinct_3", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→mauve", "votes": "0/5", "methods": []}
+  ],
+  "parent_comparison": {
+    "parent": "alpha_sweep_a075_s42_fp32",
+    "parent_PermG_fwd": 6,
+    "parent_PermG_rev": 0,
+    "match": true,
+    "seed_robust": true
+  },
+  "server": "westd-17855",
+  "output_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32",
+  "analysis_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32/analysis/5method_leadlag.json"
+}

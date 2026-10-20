@@ -1,0 +1,59 @@
+{
+  "exp_id": "alpha_sweep_a005_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-18T20:52:49.138Z",
+    "updated_at": "2026-05-20T09:15:11.610Z",
+    "hypothesis": "α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。",
+    "parent": "alpha_sweep_a010_s42_v2",
+    "server": "westd-17855",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-17855",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-18T20:56:02.420Z",
+      "finished_at": "2026-05-18T23:56:36.428Z",
+      "training_hours": 3.01
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "completed_at": "2026-05-18T22:07:45.970Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T22:07:49.417515+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T23:56:42.687842+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "FAILED EXIT_CODE=127 (第2次): 提交命令缺少 conda 激活（裸 `python` 在非交互 shell 找不到）。已知模式，见 memory.md \"westd-17855 环境提交规范\"。正确模板需 `bash -c '... source conda.sh && conda activate base && ...'`。将用正确模板重新提交。"
+      }
+    },
+    "notes": "D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Killed and resubmitting as v3",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.05 --output_dir results/alpha_sweep/a005_s42_fp32_v3\"",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "output_dir": "results/alpha_sweep/a005_s42_fp32_v3",
+      "checkpoint_source": "EleutherAI/pythia-410m",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T09:15:12.037539+00:00",
+  "trigger": "update_registry"
+}

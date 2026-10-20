@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ceb412fc0a6493a46d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "reanalyze d102 pythia410m opt1b",
+  "task_key": "worker_reanalyze_d102_pythia410m_opt1b_20260519T154931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_d102_pythia410m_opt1b_20260519T154931_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "4cbab9b4fd1cf6a3b08617b46d16cb23b624e71ed8f0255de2c538a89b590d5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是新旧对比：\n\n---\n\n## Pythia-410M (`generalize_pythia410m_wiki_a100_s42`)\n\n| 指标 | 旧 (→ppl) | 新 (→mauve) | 变化 |\n|------|----------|------------|------|\n| PermG fwd | 6/8 | 6/8 | = |\n| PermG rev | 0/8 | 0/8 | = |\n| Diff fwd FDR | 8/8 | **6/8** | **-2** |\n| Diff rev FDR | 8/8 | **6/8** | **-2** |\n| Threshold | 0/8 | 0/8 | = |\n| TY fwd | 2/8 | **1/8** | **-1** |\n| K≥3 (MMCT) | 2/8 (25%) | **1/8 (12.5%)** | **-1** |\n| K≥4 | 0/8 | 0/8 | = |\n\nmauve pairs 全灭：token_entropy→mauve 0/5，ece→mauve 1/5（仅 naive）。\n\n---\n\n## OPT-1.3B (`generalize_opt1b_wiki_a100_s42`)\n\n| 指标 | 旧 (→ppl) | 新 (→mauve) | 变化 |\n|------|----------|------------|------|\n| PermG fwd | 6/8 | 6/8 | = |\n| PermG rev | 0/8 | 0/8 | = |\n| Diff fwd FDR | 8/8 | **7/8** | **-1** |\n| Diff rev FDR | 8/8 | **7/8** | **-1** |\n| Threshold | 1/8 | **2/8** | **+1** |\n| TY fwd | 0/8 | 0/8 | = |\n| K≥3 (MMCT) | 2/8 (25%) | 2/8 (25%) | = |\n| K≥4 | 0/8 | 0/8 | = |\n\nOPT-1.3B 相对稳健——K≥3 不变（distinct pairs 撑住），mauve pairs 弱但 ece→mauve threshold 意外 sig。\n\n---\n\n**跨模型一致性**：3个模型（GPT-2m/Pythia-410M/OPT-1.3B）统一 →mauve 后，K≥4 全部 0/8，PermG fwd 稳定 6/8。mauve 作为 downstream 在所有模型上都不产生 lead-lag 信号——canary 指标对 mauve 没有预测力，与 D101 GPT-2m 先例完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/reanalyze-d102-pythia410m-opt1b.md"
+}

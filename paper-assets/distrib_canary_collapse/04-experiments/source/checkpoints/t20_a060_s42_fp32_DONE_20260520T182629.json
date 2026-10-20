@@ -1,0 +1,65 @@
+{
+  "exp_id": "t20_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:16:22.779Z",
+    "updated_at": "2026-05-20T18:26:29.470Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "311201",
+      "log_path": "~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log",
+      "submitted_at": "2026-05-20T09:16:58.221Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 32971.2,
+      "gpu_hours": 9.16
+    },
+    "hypothesis": "T=20 extended generation at α=0.60: Tests whether the non-monotonic PermG dip at α=0.60 (observed in T=11) persists with longer time series. T=20 provides 2× more data points for Granger causality, potentially resolving whether the dip is real signal attenuation or statistical power issue.",
+    "parent": "alpha_sweep_a060_s42_fp32_v4",
+    "server": "westd-17855",
+    "gpu": "cuda:4",
+    "account": "root",
+    "pid": "311201",
+    "log_path": "~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-20T17:38:49.066Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T17:38:57.392271+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd_fdr": "0/8",
+      "PermG_rev_fdr": "0/8",
+      "DiffXCorr_fdr_fwd": "6/8",
+      "DiffXCorr_fdr_rev": "6/8",
+      "Threshold_3sigma": "6/8",
+      "TY_Granger": "3/8",
+      "K_ge3": "3/8",
+      "verdict": "PASS",
+      "predicted_permg": 0,
+      "observed_permg": 0,
+      "note": "Sync-dip structural: T=10→T=20 PermG still 0/8. Lead-lag exists (DiffXCorr 6/8) but PermG cannot capture. te→d1 raw p=0.048, FDR p=0.064 near-miss."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "results/t20/a060_s42_fp32/gen_20",
+    "completed_at": "2026-05-20T18:26:29.470Z"
+  },
+  "timestamp": "2026-05-20T18:26:29.751945+00:00",
+  "trigger": "update_registry"
+}

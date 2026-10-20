@@ -1,0 +1,321 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{xcolor}
+
+\title{Mapping the Predictability Boundary of Model Collapse:\\Calibration Canaries and Regime-Dependent Early Warning in Iterative Synthetic Data Training}
+
+\author{Anonymous Authors}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Iterative training on self-generated synthetic data leads to progressive model collapse, yet no systematic framework quantifies \emph{which} metrics predict collapse, \emph{how far in advance}, and \emph{under what contamination regimes}. We address this gap through a Toda-Yamamoto panel temporal precedence analysis of four candidate canary families (ECE, token entropy, effective rank, self-BLEU) against downstream collapse indicators (lexical diversity, perplexity) across contamination ratios $\alpha \in \{0.25, 0.50, 0.75, 1.0\}$. Our experiments on Pythia-410M/1.4B with WikiText-103 and C4 reveal three findings: (1)~ECE and token entropy reliably lead diversity collapse by 1--2 generations ($p<0.005$, effect size $r>0.88$, robust across seeds), (2)~predictability is regime-dependent---canary$\to$perplexity lead exists only at $\alpha=0.25$ and vanishes at higher contamination, defining a gradual degradation zone around $\alpha \in [0.25, 0.5]$, and (3)~Toda-Yamamoto overturns 20\% of naive correlation-based associations, demonstrating the necessity of proper time-series methodology for non-stationary training metrics. A proof-of-concept CRS intervention triggered by canary thresholds preserves 42\% of diversity at $\alpha=0.75$, translating temporal precedence into actionable monitoring.
+\end{abstract}
+
+\section{Introduction}
+
+Training language models on their own generated outputs across successive generations---the iterative self-consuming (SC) loop---leads to progressive degradation known as model collapse \citep{shumailov2024model}. Recent work has proposed monitoring tools such as spectral analysis (SIGMA) and reactive interventions (DCES), but a fundamental question remains unanswered: which cheaply computable metrics provide \emph{genuine temporal precedence} over collapse indicators, and under what conditions does this predictability hold?
+
+Du et al.\ informally observed that expected calibration error (ECE) may precede accuracy degradation by 1--3 generations, but their analysis lacked formal time-series testing, multi-family comparison, and regime characterization. We aim to fill this gap by systematically mapping the \emph{predictability boundary} of model collapse---delineating which collapse dimensions are predictable (diversity), which are not (perplexity under extreme contamination), and where the transition lies.
+
+Our contributions are:
+\begin{enumerate}
+    \item A Toda-Yamamoto panel analysis establishing ECE and token entropy as robust canaries for diversity collapse with 1--2 generation lead time across four seeds, two datasets, and two model scales.
+    \item A predictability phase diagram showing that canary$\to$perplexity lead is regime-dependent: detectable only at $\alpha=0.25$ with marginal significance, absent at $\alpha \geq 0.50$.
+    \item A methodological ablation demonstrating that 20\% of naive correlation-based lead-lag claims are overturned by proper non-stationary time-series analysis.
+    \item A proof-of-concept Canary-Response System (CRS) that leverages predictive monitoring to preserve 42\% of diversity relative to unmonitored collapse.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{Model Collapse.} Shumailov et al.\ established that iterative training on model-generated data leads to loss of distributional tails. Subsequent work formalized convergence properties: accumulate strategies converge to degraded fixed points while replace strategies may diverge \citep{fu2024iterative}. Dohmatob et al.\ provided scaling laws for collapse onset.
+
+\paragraph{Monitoring and Intervention.} SIGMA employs spectral monitoring of weight matrices but does not quantify temporal precedence of observable metrics. DCES triggers intervention reactively when diversity drops below a threshold, incurring 1--2 generations of delay relative to predictive approaches. Truong \& Truong showed that standard early-warning indicators fail under first-order phase transitions in specific regimes.
+
+\paragraph{Calibration as Early Signal.} Du et al.\ observed ECE preceding accuracy loss in 1--3 generation SC experiments but provided no formal statistical test, no comparison across canary families, and no regime characterization. Our work extends this observation into a systematic framework with proper time-series methodology.
+
+\section{Method}
+
+\subsection{Experimental Setup}
+
+We study iterative self-consuming training using Pythia-410M (primary) and Pythia-1.4B (scale check) on WikiText-103 and C4. At each generation $t$, the model $M_t$ generates synthetic text that contaminates the training set for $M_{t+1}$ at ratio $\alpha$ (fraction of synthetic data). We track metrics across 10--20 generations with multiple random seeds.
+
+\subsection{Canary Families and Target Metrics}
+
+We evaluate four candidate \textbf{canary families}:
+\begin{itemize}
+    \item \textbf{ECE} (Expected Calibration Error): measures miscalibration via binned confidence-accuracy gaps
+    \item \textbf{Token entropy}: Shannon entropy of the output token distribution
+    \item \textbf{Effective rank}: dimensionality of the representation space via singular value spectrum
+    \item \textbf{Self-BLEU}: intra-generation repetition measured by BLEU overlap among samples
+\end{itemize}
+
+Target collapse indicators are \textbf{distinct-1/2} (lexical diversity) and \textbf{perplexity} (on held-out real data).
+
+\subsection{Toda-Yamamoto Panel Temporal Precedence}
+
+Standard Granger causality tests require stationary series. Training metrics are inherently non-stationary (trending). The Toda-Yamamoto (TY) procedure augments a VAR($k$) model with $d_{\max}$ extra lags to absorb integration order, then tests exclusion restrictions on the first $k$ lags via a Wald statistic that follows $\chi^2$ under the null of no temporal precedence---without requiring pre-differencing.
+
+For each (canary, target, $\alpha$, seed) tuple, we estimate the TY lead in generations and report the median $p$-value across seeds. We require significance in $\geq 2/3$ seeds for a claim. Effect size $r$ is computed from the Wald statistic.
+
+\section{Experiments}
+
+\subsection{MVP Formalization ($\alpha=1.0$, max\_lag=7)}
+
+We first formalize results under complete self-consumption ($\alpha=1.0$) with 4 seeds on WikiText-103, extending max\_lag from 5 to 7 to check truncation artifacts.
+
+\begin{table}[h]
+\centering
+\caption{MVP lead-lag summary (Pythia-410M, WikiText-103, $\alpha=1.0$, max\_lag=7)}
+\label{tab:mvp}
+\begin{tabular}{llccccc}
+\toprule
+Canary & Target & Lead (gen) & $p$-value & Seeds sig. & Effect $r$ & vs.\ lag=5 \\
+\midrule
+ECE & distinct\_1 & 1 & 0.001 & 4/4 & 0.94 & unchanged \\
+ECE & distinct\_2 & 1 & 0.002 & 4/4 & 0.92 & unchanged \\
+token\_entropy & distinct\_1 & 2 & 0.003 & 3/4 & 0.91 & +1 gen \\
+token\_entropy & distinct\_2 & 1 & 0.004 & 4/4 & 0.90 & unchanged \\
+ECE & perplexity & 0 & 0.48 & 0/4 & 0.12 & unchanged \\
+token\_entropy & perplexity & 0 & 0.55 & 0/4 & 0.08 & unchanged \\
+effective\_rank & distinct\_1 & --- & 0.37 & 0/4 & --- & --- \\
+self\_BLEU & distinct\_1 & --- & 0.61 & 0/4 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ECE and token entropy lead diversity collapse by 1--2 generations with large effect sizes ($r > 0.90$) and perfect or near-perfect cross-seed consistency. Neither canary leads perplexity: under 100\% self-consumption, calibration degradation and fluency loss occur synchronously. Effective rank and self-BLEU fail as canaries due to rank plateaus (gen 6--7 onset) and high sampling variance, respectively. The max\_lag=7 extension reveals mild truncation for token\_entropy$\to$distinct\_1 (+1 gen) but no change for other pairs, confirming that ECE's 1-gen lead is robust. The 2$\sigma$ signal onset analysis corroborates TY: ECE exceeds baseline at generation 2, distinct\_1 deviates at generation 3.5.
+
+\subsection{Predictability Phase Diagram ($\alpha$-Sweep)}
+
+We sweep $\alpha \in \{0.25, 0.50, 0.75\}$ with 3 seeds each to map how contamination ratio modulates canary lead time.
+
+\begin{table}[h]
+\centering
+\caption{Toda-Yamamoto lead-lag results across contamination ratios $\alpha$}
+\label{tab:phase}
+\begin{tabular}{cllcccc}
+\toprule
+$\alpha$ & Canary & Target & Lead (gen) & $p$-value & Seeds sig. & Effect $r$ \\
+\midrule
+0.25 & ECE & distinct\_1 & 2 & 0.002 & 3/3 & 0.93 \\
+0.25 & token\_entropy & distinct\_1 & 2 & 0.004 & 3/3 & 0.91 \\
+0.25 & ECE & perplexity & 1 & 0.038 & 2/3 & 0.72 \\
+0.25 & token\_entropy & perplexity & 1 & 0.047 & 2/3 & 0.68 \\
+\midrule
+0.50 & ECE & distinct\_1 & 1 & 0.006 & 3/3 & 0.90 \\
+0.50 & token\_entropy & distinct\_1 & 1 & 0.010 & 3/3 & 0.88 \\
+0.50 & ECE & perplexity & 0 & 0.28 & 0/3 & 0.31 \\
+0.50 & token\_entropy & perplexity & 0 & 0.35 & 0/3 & 0.25 \\
+\midrule
+0.75 & ECE & distinct\_1 & 1 & 0.014 & 3/3 & 0.89 \\
+0.75 & token\_entropy & distinct\_1 & 1 & 0.019 & 3/3 & 0.88 \\
+0.75 & ECE & perplexity & 0 & 0.52 & 0/3 & 0.14 \\
+0.75 & token\_entropy & perplexity & 0 & 0.63 & 0/3 & 0.09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The phase diagram reveals two key patterns. First, canary$\to$diversity lead is robust across all $\alpha$ values, decreasing from 2 generations at $\alpha=0.25$ to 1 generation at $\alpha \geq 0.50$---the early warning window shrinks with contamination but never vanishes. Second, canary$\to$perplexity lead exists only at $\alpha=0.25$ (marginal, $p \approx 0.04$, 2/3 seeds) and disappears entirely at higher contamination. This defines a gradual degradation zone around $\alpha \in [0.25, 0.5]$ rather than a sharp phase transition: at low contamination, perplexity degrades gradually enough for canaries to lead; at moderate-to-high contamination, perplexity collapses synchronously with calibration metrics.
+
+Terminal-state metrics at generation 10 further illustrate the degradation gradient: perplexity escalates from 78.5 ($\alpha=0.25$) to 512.7 ($\alpha=0.75$), while distinct\_1 drops from 0.142 to 0.083.
+
+\subsection{Methodological Ablation: Naive Correlation vs.\ Toda-Yamamoto}
+
+We compare four lead-lag estimation methods across all 96 pairwise (canary, target, $\alpha$, seed) associations from the MVP and $\alpha$-sweep data.
+
+\begin{table}[h]
+\centering
+\caption{Method comparison---significance rates and overturned associations}
+\label{tab:method}
+\begin{tabular}{lcccc}
+\toprule
+Method & Significant & Total & Rate & Overturned by TY \\
+\midrule
+Naive Pearson & 71 & 96 & 74.0\% & 19 (20\%) \\
+Differenced XCorr & 52 & 96 & 54.2\% & 3 (3\%) \\
+Threshold (2$\sigma$) & 58 & 96 & 60.4\% & 8 (8\%) \\
+Toda-Yamamoto & 54 & 96 & 56.3\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Representative overturned associations (naive significant, TY non-significant)}
+\label{tab:overturned}
+\begin{tabular}{llcccc}
+\toprule
+Canary & Target & $\alpha$ & Naive $p$ & TY $p$ & Diagnosis \\
+\midrule
+effective\_rank & distinct\_1 & 0.75 & 0.008 & 0.29 & co-trending \\
+effective\_rank & distinct\_2 & 0.50 & 0.012 & 0.38 & co-trending \\
+self\_BLEU & perplexity & 0.50 & 0.015 & 0.55 & shared trend \\
+self\_BLEU & distinct\_1 & 0.75 & 0.021 & 0.48 & variance-driven \\
+ECE & perplexity & 0.50 & 0.031 & 0.28 & co-trending w/o lead \\
+token\_entropy & perplexity & 0.50 & 0.034 & 0.35 & co-trending w/o lead \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Naive Pearson correlation declares 74\% of pairs significant---an inflation driven by shared non-stationary trends. TY overturns 20\% of these (19/96), primarily from failed canary families (effective\_rank, self\_BLEU) and canary$\to$perplexity pairs at $\alpha \geq 0.50$. Had we relied on naive correlation, we would have incorrectly claimed effective\_rank and self\_BLEU as viable canaries. Differenced cross-correlation agrees with TY at 85\%, confirming that first-order differencing addresses most (but not all) non-stationarity.
+
+\subsection{Cross-Domain Validation (C4)}
+
+We validate on C4 at $\alpha=0.50$ with Pythia-410M to test whether canary rankings transfer across data domains.
+
+\begin{table}[h]
+\centering
+\caption{C4 vs WikiText-103 comparison ($\alpha=0.50$, Pythia-410M, generation 10)}
+\label{tab:c4}
+\begin{tabular}{lccc}
+\toprule
+Metric & WikiText & C4 & $\Delta$\% \\
+\midrule
+Perplexity & 185.3 & 210.5 & +13.6\% \\
+distinct\_1 & 0.108 & 0.098 & $-$9.3\% \\
+ECE & 0.167 & 0.178 & +6.6\% \\
+token\_entropy & 2.18 & 2.09 & $-$4.1\% \\
+ECE$\to$distinct\_1 lead (gen) & 1 & 1 & 0 \\
+ECE$\to$distinct\_1 TY $p$ & 0.008 & 0.012 & --- \\
+ECE$\to$distinct\_1 effect $r$ & 0.90 & 0.88 & $-$0.02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Canary ranking is preserved: ECE and token entropy remain the top canary families with 1-generation lead, 3/3 seeds significant, and effect sizes $r \geq 0.88$. C4 exhibits slightly faster collapse (higher terminal perplexity, lower diversity) likely due to its greater domain heterogeneity accelerating mode collapse. The effect size reduction ($-0.02$) is minimal, supporting domain-transferability of the canary framework.
+
+\subsection{Scale Spot-Check (Pythia-1.4B)}
+
+We test whether canary behavior scales to Pythia-1.4B ($3.4\times$ parameters) at $\alpha=0.50$ on WikiText-103.
+
+\begin{table}[h]
+\centering
+\caption{Scale comparison: Pythia-410M vs 1.4B ($\alpha=0.50$, WikiText-103, generation 10)}
+\label{tab:scale}
+\begin{tabular}{lccc}
+\toprule
+Metric & 410M & 1.4B & $\Delta$\% \\
+\midrule
+Perplexity & 185.3 & 142.8 & $-$22.9\% \\
+distinct\_1 & 0.108 & 0.121 & +12.0\% \\
+ECE & 0.167 & 0.131 & $-$21.6\% \\
+ECE$\to$distinct\_1 lead & 1 & 1 & 0 \\
+ECE$\to$distinct\_1 TY $p$ & 0.008 & 0.029 & +0.021 \\
+ECE$\to$distinct\_1 effect $r$ & 0.90 & 0.85 & $-$0.05 \\
+ECE$\to$distinct\_1 seeds sig. & 3/3 & 2/3 & $-$1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Canary ranking and lead direction are preserved at 1.4B scale. The larger model collapses more slowly (22.9\% lower terminal perplexity, 12\% higher terminal diversity), which reduces statistical power: effect size drops to 0.85 and only 2/3 seeds reach significance. This is the expected tradeoff---larger representation capacity buffers against collapse, weakening the temporal signal. We report this as a directionally consistent scaling trend and note that full scale validation requires longer training horizons or more seeds.
+
+\subsection{Extended Run (20 Generations, Truncation Check)}
+
+To definitively rule out max\_lag truncation as an explanation for the null canary$\to$perplexity result, we extend to 20 generations at $\alpha=1.0$ with max\_lag=10.
+
+\begin{table}[h]
+\centering
+\caption{Extended run lead-lag analysis (20 gen, $\alpha=1.0$, max\_lag=10)}
+\label{tab:extended}
+\begin{tabular}{llcccc}
+\toprule
+Canary & Target & Lead (lag=5) & Lead (lag=7) & Lead (lag=10) & Conclusion \\
+\midrule
+ECE & distinct\_1 & 1 & 1 & 2 & mild truncation at lag$\leq$7 \\
+token\_entropy & distinct\_1 & 1 & 2 & 2 & truncation at lag=5 confirmed \\
+ECE & perplexity & 0 & 0 & 0 & genuine synchrony \\
+token\_entropy & perplexity & 0 & 0 & 0 & genuine synchrony \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 20-generation run confirms: (1)~canary$\to$diversity lead extends to 2 generations at max\_lag=10, meaning our standard 10-gen runs mildly underestimate the true lead; (2)~canary$\to$perplexity remains at 0 lead regardless of max\_lag, confirming genuine synchrony rather than truncation artifact. Collapse saturates at generation $\sim$14 (distinct\_1$=0.018$, perplexity$=4280.5$), after which all metrics plateau at floor/ceiling values.
+
+\subsection{CRS Intervention Experiment}
+
+We translate the canary lead finding into an actionable proof-of-concept: a Canary-Response System (CRS) that triggers data re-weighting when ECE exceeds a threshold at $\alpha=0.75$.
+
+\begin{table}[h]
+\centering
+\caption{CRS intervention vs.\ baselines ($\alpha=0.75$, Pythia-410M, WikiText-103)}
+\label{tab:intervention}
+\begin{tabular}{lcccc}
+\toprule
+Condition & distinct\_1 & Perplexity & ECE & Diversity preserved \\
+\midrule
+No intervention & 0.083 & 512.7 & 0.312 & --- \\
+CRS-predictive & 0.118 & 324.6 & 0.195 & 42.2\% \\
+Oracle ($\alpha{=}0.50$ from start) & 0.108 & 185.3 & 0.167 & (reference) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CRS triggers at generation 3 (median, range 2--4) with zero false triggers across 3 seeds. The intervention preserves 42.2\% of the diversity that would otherwise be lost, and reduces perplexity by 36.7\% relative to no-intervention. Notably, CRS achieves higher terminal distinct\_1 (0.118) than the oracle $\alpha=0.50$ baseline (0.108) because the early generations before trigger benefit from the higher initial $\alpha$'s data volume, while post-trigger re-weighting arrests further degradation.
+
+\subsection{Accumulate vs.\ Replace Data Strategy Ablation}
+
+We ablate the data accumulation strategy at $\alpha=0.50$ to verify canary robustness to pipeline design choices.
+
+\begin{table}[h]
+\centering
+\caption{Accumulate vs.\ Replace strategy ($\alpha=0.50$, Pythia-410M, WikiText-103)}
+\label{tab:strategy}
+\begin{tabular}{lccccc}
+\toprule
+Strategy & distinct\_1 & Perplexity & Collapse rate & ECE$\to$d1 lead & Effect $r$ \\
+\midrule
+Replace & 0.108 & 185.3 & 1.0$\times$ & 1 gen & 0.90 \\
+Accumulate & 0.135 & 112.4 & 0.6$\times$ & 1 gen & 0.82 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Accumulation slows collapse by $\sim$40\% (consistent with theoretical predictions that accumulate strategies converge to a degraded fixed point rather than diverging), but canary ranking and lead time are preserved. The lower effect size (0.82 vs.\ 0.90) reflects the weaker temporal signal from slower degradation. This confirms that our canary framework is robust to data pipeline strategy---practitioners using either approach can deploy the same monitoring.
+
+\section{Discussion}
+
+\paragraph{Null Results as Boundary Data.} The failure of canaries to predict perplexity at $\alpha \geq 0.50$ is not a limitation but a defining feature of the predictability phase diagram. Under high contamination, calibration loss and fluency loss share the same causal driver (distribution collapse) and manifest simultaneously. The $\alpha \in [0.25, 0.50]$ zone marks a gradual transition rather than a sharp phase boundary.
+
+\paragraph{Failed Canary Families.} Effective rank and self-BLEU fail across all regimes. Effective rank plateaus until generation 6--7 (insensitive to early distributional shift in token space), while self-BLEU suffers from high sampling variance that obscures any temporal signal. Full reporting of negative results prevents future work from pursuing these directions.
+
+\paragraph{Limitations.} (1)~Model scale is limited to Pythia-410M/1.4B; scaling trends are directional but not definitive. (2)~The 10-generation horizon may underestimate lead times at very low $\alpha$. (3)~CRS intervention is a proof-of-concept with simple threshold logic; production deployment would require adaptive thresholds. (4)~We study only autoregressive LMs; generalization to diffusion models or other architectures remains open.
+
+\section{Conclusion}
+
+We present the first systematic mapping of predictability boundaries in iterative model collapse. ECE and token entropy serve as reliable canaries for diversity degradation with 1--2 generation lead, robust across contamination ratios, data domains, model scales, and data strategies. The predictability phase diagram reveals regime-dependent structure: perplexity is forecastable only under low contamination ($\alpha=0.25$), with a gradual degradation zone at $\alpha \in [0.25, 0.5]$. Toda-Yamamoto temporal precedence analysis overturns 20\% of naive correlations, underscoring the necessity of proper non-stationary time-series methodology. A proof-of-concept CRS intervention demonstrates that canary lead translates into actionable monitoring, preserving 42\% of diversity at high contamination. These results provide practitioners with a principled framework for early-warning system design in synthetic data pipelines.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\section{Failed Canary Families}
+
+\begin{table}[h]
+\centering
+\caption{Failed canary families across contamination ratios}
+\label{tab:failed}
+\begin{tabular}{llccc}
+\toprule
+$\alpha$ & Canary & Target & TY $p$ & Failure reason \\
+\midrule
+0.25 & effective\_rank & distinct\_1 & 0.41 & rank plateau until gen 6--7 \\
+0.25 & self\_BLEU & distinct\_1 & 0.55 & high sampling variance \\
+0.50 & effective\_rank & distinct\_1 & 0.38 & rank plateau until gen 5 \\
+0.50 & self\_BLEU & distinct\_1 & 0.62 & high sampling variance \\
+0.75 & effective\_rank & distinct\_1 & 0.29 & noisy but borderline \\
+0.75 & self\_BLEU & distinct\_1 & 0.48 & variance + floor effect \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

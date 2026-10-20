@@ -1,0 +1,457 @@
+# research paper framing alignment check
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_research_paper_framing_alignment_check_20260515T081452.jsonl`
+- **Structured JSON:** [`b0123f1e787c38f11070.json`](../../sessions/b0/b0123f1e787c38f11070.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T08:17:41.175001+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T08:17:41.175286+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T08:17:41.175457+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T08:17:41.175744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/paper_framing.md\", \"content\": \"# Paper Framing — distrib_canary_collapse\\n\\n## Target Venue\\n- Primary: AAAI 2027 (expected deadline ~August 2026)\\n- Fallback: EMNLP 2026 Findings (ARR October cycle if AAAI timeline tight)\\n- Note: EMNLP 2026 Main ARR May deadline已过；AAAI 2027 给出充足实验时间\\n\\n## Core Claims (3 条)\\n\\n1. **Canary→Diversity Granger-Causal Precedence**: token_entropy 对 diversity 退化（distinct_1/2）具有 Granger-causal precedence——领先 1-2 代，差分后仍显著，证据来自多方法一致性：cross-correlation（lag=-1, std=0.0, |r|>0.99, p<0.004, 4/4 seed）、差分交叉相关（显著）、threshold onset（canary gen 1-2, diversity gen 3-4）、**permutation Granger（差分后仍 4/4 seed 显著，F=612-2615）**。论文可用措辞 (D025/D026 更新)：*\\\"We demonstrate Granger-causal precedence of canary metrics at α=1.0 (24/24 FDR-sig, 4 seeds). Consistent temporal precedence (cross-correlation lag=+1, r=0.80–0.94) is observed across all contamination levels, though formal Granger tests at intermediate α do not reach FDR-corrected significance at T=11 (power analysis: §X).\\\"*升级上限：Granger ≠ true causality（Granger 1969），Discussion 一句话声明；双变量模型无法排除未观测混淆因子（详见 Reviewer Concerns 表）。ECE 在 cross-correlation 和 permutation Granger 下同样领先（差分后 4/4 SIG），但跨方法一致性弱于 token_entropy，地位为 conditional secondary canary 待 plan_006 确认（详见约束 #9）。注意：TY Granger 在 N=11 下不可用于区分真/伪关联（见 Claim 3），核心证据链基于多方法一致性而非单一 TY 背书。\\n2. **Regime-Dependent Predictability**: 可预测性取决于 collapse 维度和 contamination regime——canary→diversity 在差分后仍 robust（6/6 pair × 4/4 seed），但 canary→perplexity **经差分检验确认为伪回归**（0/4 seed, F≈0, p=0.99），未差分时的\\\"信号\\\"（F=16-36）完全由共享非平稳趋势驱动（D017）。ECE→perplexity 的反向因果同理存疑。**Claim 2 reframing (D022)**: 从\\\"不同 α 下 lead time 不同\\\"升级为\\\"不同 α 下 **detectability** 不同\\\"——α=0.25 差分 Granger 0/8 FDR sig vs α=1.0 的 24/24，同一 pair 的统计可检测性随 contamination level 剧变。**Evidence strategy (Reviewer 共识)**：Primary = raw drift magnitude dose-response（distinct
+…[truncated 12747 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T08:17:41.175919+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "literature_map.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "literature_map.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T08:17:41.176481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/literature_map.yaml\", \"content\": \"papers:\\n  # ============================================================\\n  # CORE MODEL COLLAPSE\\n  # ============================================================\\n  - id: \\\"shumailov2024curse\\\"\\n    title: \\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\"\\n    authors: \\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson\\\"\\n    venue: \\\"Nature\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2305.17493\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失\\\"\\n      - \\\"区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）\\\"\\n      - \\\"三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合\\\"\\n      - \\\"在 VAE、GMM、LLM 上均验证了 collapse 的普遍性\\\"\\n    relevance_to_us: \\\"奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段\\\"\\n    metrics_studied: [\\\"perplexity\\\", \\\"distributional tail mass\\\"]\\n\\n  - id: \\\"alemohammad2024mad\\\"\\n    title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n    authors: \\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk\\\"\\n    venue: \\\"ICLR 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2307.01850\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"提出 Model Autophagy Disorder (MAD) 概念\\\"\\n      - \\\"autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降\\\"\\n      - \\\"在图像生成领域验证 self-consuming loop 的退化效应\\\"\\n    relevance_to_us: \\\"MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上\\\"\\n    metrics_studied:
+…[truncated 31794 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T08:17:41.176683+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T08:17:41.176813+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T08:17:41.176930+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T08:17:41.177492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-4\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-3\"}}, \"alpha_sweep_a050_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T06:58:45.880Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-2\"}}, \"alpha_sweep_a025_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T06:58:43.090Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-respon
+…[truncated 30772 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T08:17:41.177737+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/framing_alignment_check.md",
+  "content": "# Framing-Evidence Alignment Check (2026-05-15)\n\n## 1. 各 Claim 证据覆盖率\n\n### Claim 1: Canary→Diversity Granger-Causal Precedence — **中**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| α=1.0, 4 seeds | **完成** | 24/24 FDR-sig, cross-corr lag=-1 (std=0.0), permutation Granger 差分后 4/4 SIG |\n| α=0.50 | **完成** | 0/4 FDR-sig（严格方法全归零），仅 naive_xcorr 8/8 |\n| α=0.25 | **完成** | 类似 α=0.50，严格方法不过 FDR |\n| α=0.75 | **在跑** | gen 2/10, ETA ~3.5h。**Pivotal**: 决定 scope 是 \"α≥0.75\" 还是 \"α=1.0 only\" |\n| plan_006 (T=21) | **在跑** | gen 14/20, ETA ~3h。TY power 改善 + ECE co-primary 判定 |\n| 多架构验证 | **未做** | plan_010 (Pythia-1.4B / GPT-2) 仅 PREPARING |\n\n**评估**: α=1.0 证据坚实，但 scope 极窄。当前措辞 \"at high contamination levels\" 是审慎的，但若 α=0.75 也归零，\"high\" 实际上只意味着 \"full replacement\"——实用价值论述将非常困难。paper_framing.md 约束 #21 的措辞已正确预判了这一风险。\n\n**当前最大缺口**: α=0.75 结果（数小时内出）。\n\n---\n\n### Claim 2: Regime-Dependent Predictability — **中偏弱**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| Drift dose-response (5 α) | **完成** | d1: -13.8%@α=0 → -40.3%@α=0.25 → -37.3%@α=0.50 → ~-93%@α=1.0 |\n| 非单调性 (α=0.25 > α=0.50) | **单 seed** | 仅 seed=42，差值 3pp (40.3% vs 37.3%)，无置信区间 |\n| Detectability boundary | **完成** | α=1.0 24/24 vs α=0.50 0/4 FDR-sig，清晰二元分界 |\n| Perplexity 伪回归确认 | **完成** | D017: 差分后 0/8 SIG (F≈0, p=0.99) |\n| ECE regime switch | **单 seed** | α=0.25 gen1 下降 -14%（反向）；α=1.0 gen1 +2926% |\n| Multi-seed (α=0.25/0.50) | **QUEUED** | 4 runs 排队中，未开始 |\n\n**评估**: Detectability boundary 和 perplexity 伪回归是稳固的子发现。但非单调 dose-response（Claim 2 最吸引眼球的部分）仅有 3pp 差值、单 seed，统计上不可区分于噪声。paper_framing.md 约束 #23 已正确要求标注 \"observed at seed=42; multi-seed confirmation required\"，但主文若要将此作为 regime map 的 \"核心特征\"（约束 #22），multi-seed 是刚需。\n\n**当前最大缺口**: multi-seed 尚未开跑。这是 Weak Accept → Accept 的首要条件（约束 #23 原话）。\n\n---\n\n### Claim 3: Method × Regime Interaction — **强**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| Method ablation (5 methods) | **完成** | naive 16/16 → TY 4/16; spurious_rate 75%/62.5% |\n| 2×2 差分对比表 | **完成** | diversity 通道不变 (12/12→12/12)，perplexity 通道归零 (6-8/8→0/8) |\n| d_max sensitivity | **完成** | 0%↔94% spurious rate 震荡 |\n| TY power analysis | **完成** | T=10 power 0.05-0.20 (plan_009, N=1000 Monte Carlo) |\n| Method×regime 极端例证 | **完成** | α=0.50: naive_xcorr 100% sig vs strict 0% sig |\n| BH FDR 校正 | **完成** | 全 battery 已加 FDR，无结论翻转 |\n\n**评估**: 多层证据结构完整（Layer 1-3），无需额外实验即可成立。最强且最 novel 的 claim。paper_framing.md 约束 #25 正确识别了证据强度排序 (Claim 3 > 2 > 1)。\n\n**无重大缺口。**\n\n---\n\n## 2. 当前最大风险点（按严重性排序）\n\n1. **Multi-seed 全部 QUEUED（未跑）** — 非单调 dose-response 和 ECE regime switch 均为 point estimate。若 multi-seed 推翻非单调性，Claim 2 的 regime map 叙事需要大幅修改。这是唯一可能迫使论文结构性改写的风险。\n\n2. **α=0.75 结果（数小时内）** — 若也 null，Claim 1 scope 收缩至 \"α=1.0 only\"。论文标题/摘要中 \"canary prediction\" 的实用价值论述将依赖 pure boundary mapping 定位，reviewer 可能质疑 \"so what\"。\n\n3. **单模型 + 单数据集** — Pythia-410M × WikiText-103。plan_010（Pythia-1.4B/GPT-2）和 domain-transfer（C4）均未启动。Reviewer concern 表中已列出但无应对实验。这是 venue-specific 风险——AAAI 对 empirical breadth 容忍度稍高，但仍需至少 scale spot-check。\n\n4. **Scheffer et al. 未进 literature_map.yaml** — paper_framing.md 约束 #13 标注为 \"必引\"，Story Spine 中已提及，但 literature_map.yaml 中缺失。需补录。\n\n---\n\n## 3. 在跑/待跑实验对各 Claim 的贡献\n\n| 实验 | 状态 | Claim 1 | Claim 2 | Claim 3 | 说明 |\n|------|------|---------|---------|---------|------|\n| **α=0.75** | RUNNING (2/10) | **核心** | 高 | 中 | Claim 1 scope 扩展的唯一机会；Claim 2 regime boundary 精度提升 |\n| **plan_006** (20gen) | RUNNING (14/20) | 高 | 中 | 中 | T=21 提升 TY power（Claim 1 补充）；ECE co-primary 判定；长序列 diversity lead 稳定性 |\n| **multi-seed** (4 runs) | QUEUED | 低 | **核心** | 低 | 非单调性置信区间 = Claim 2 的生死线；ECE regime switch 可重复性 |\n\n优先级建议：multi-seed（a025_s43 优先）应在 α=0.75 完成后立即上 GPU。\n\n---\n\n## 4. Framing 措辞与证据强度匹配检查\n\n### 措辞已恰当的部分\n- Claim 1 主句限定 \"at high contamination levels\" — 与当前仅 α=1.0 稳固的证据匹配 ✓\n- Perplexity 通道用 \"spurious association confirmed by first-differencing\" — 措辞精确 ✓\n- \"Regime map\" 而非 \"phase diagram\" — 4-5 个 α 值不足以用物理学术语 ✓\n- CRS 降级为 illustration — 与 Dream 三档共识一致 ✓\n- TY 降级为辅助指标 — 有 plan_009 power analysis 支撑 ✓\n- f² 效应量禁用 Cohen 基准 — 正确处理小 df_resid 问题 ✓\n\n### 需要微调的措辞\n\n1. **Headline result template 中 \"1-2 generations ahead\"** — 当前仅 α=1.0 有此 lead，α=0.25/0.50 无显著 lead。建议加限定：\"at full synthetic replacement (α=1.0), token entropy exhibits ... 1-2 generations ahead\"。\n\n2. **Story Spine 中 \"predictability regime map delineates which collapse dimensions are forecastable\"** — 当前 regime map 只有 2 个非平凡点确认有/无 Granger sig（α=1.0 有, α=0.50 无），α=0.75 pending。若 α=0.75 null，map 退化为单点。建议加 \"preliminary\" 或明确说 \"identifies a detectability boundary between α=0.50 and α=1.0\"，而非暗示连续 mapping。\n\n3. **非单调 dose-response 在 Evidence strategy 中列为 \"Primary = raw drift magnitude dose-response\"** — 这是正确策略（方法无关），但主文中非单调性结论需显著标注单 seed 限制。当前约束 #23 已要求标注，但 Headline result template 中未提及非单调性，建议保持如此——在 multi-seed 确认前不放入 headline。\n\n4. **ECE \"conditional secondary canary\" 措辞** — paper_framing.md 说 \"secondary only in TY consistency; equivalent across all other methods\"。但约束 #20 揭示 ECE 在低 α 有反向信号。建议措辞更新为 \"conditional secondary: equivalent to token_entropy at α≥0.50 across non-TY methods, but unreliable at α=0.25 due to first-generation sign reversal\"。\n\n### 文献 contextualization 缺口\n\n| 文献 | Claim | 状态 |\n|------|-------|------|\n| Scheffer et al. 2009/2012 | Story Spine | paper_framing.md 已标注必引，**但 literature_map.yaml 中缺失** — 需补录 |\n| He et al. 2025 (golden ratio) | Claim 2 非单调性 | literature_map.yaml 已锚定 ✓ |\n| Xu & Cheng 2025 (mixing ratios) | Claim 2 regime boundary | literature_map.yaml 已锚定 ✓ |\n| Truong & Truong 2025 | Claim 2 (canary 失效边界) | literature_map.yaml 已收录 ✓ |\n| Chen et al. 2025 (scales) | Claim 1 (ECE 先驱) | literature_map.yaml 已收录，4 点差异化已写入 Story Spine ✓ |\n\n---\n\n## 5. Reviewer 攻击面预判\n\n按杀伤力排序：\n\n1. **\"Only works at α=1.0, who trains on 100% synthetic data?\"** — 若 α=0.75 null，这是致命攻击。应对：boundary mapping 贡献定位 + 引用 Dohmatob 2025 \"即使极小比例也触发 collapse\" 论证研究必要性。但 reviewer 可能不买账。\n\n2. **\"Single model, single dataset\"** — 无应对实验。plan_010 和 domain-transfer 均未启动。至少需要 Pythia-1.4B spot-check 一个核心条件。\n\n3. **\"Non-monotonic dose-response is noise\"** — 3pp 差值单 seed，reviewer 一句 \"within noise margin\" 即可驳回。multi-seed 是唯一解。\n\n4. **\"Granger ≠ causality, why not do intervention?\"** — paper_framing.md 已准备 Discussion 声明 + future work。CRS illustration 部分缓解但不消除。风险可控。\n\n5. **\"T=10 too short for any time-series inference\"** — plan_006 (T=21) 在跑，plan_009 已提供 power analysis。若 plan_006 完成且结论一致，此攻击面大幅缩小。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/framing_alignment_check.md",
+    "content": "# Framing-Evidence Alignment Check (2026-05-15)\n\n## 1. 各 Claim 证据覆盖率\n\n### Claim 1: Canary→Diversity Granger-Causal Precedence — **中**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| α=1.0, 4 seeds | **完成** | 24/24 FDR-sig, cross-corr lag=-1 (std=0.0), permutation Granger 差分后 4/4 SIG |\n| α=0.50 | **完成** | 0/4 FDR-sig（严格方法全归零），仅 naive_xcorr 8/8 |\n| α=0.25 | **完成** | 类似 α=0.50，严格方法不过 FDR |\n| α=0.75 | **在跑** | gen 2/10, ETA ~3.5h。**Pivotal**: 决定 scope 是 \"α≥0.75\" 还是 \"α=1.0 only\" |\n| plan_006 (T=21) | **在跑** | gen 14/20, ETA ~3h。TY power 改善 + ECE co-primary 判定 |\n| 多架构验证 | **未做** | plan_010 (Pythia-1.4B / GPT-2) 仅 PREPARING |\n\n**评估**: α=1.0 证据坚实，但 scope 极窄。当前措辞 \"at high contamination levels\" 是审慎的，但若 α=0.75 也归零，\"high\" 实际上只意味着 \"full replacement\"——实用价值论述将非常困难。paper_framing.md 约束 #21 的措辞已正确预判了这一风险。\n\n**当前最大缺口**: α=0.75 结果（数小时内出）。\n\n---\n\n### Claim 2: Regime-Dependent Predictability — **中偏弱**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| Drift dose-response (5 α) | **完成** | d1: -13.8%@α=0 → -40.3%@α=0.25 → -37.3%@α=0.50 → ~-93%@α=1.0 |\n| 非单调性 (α=0.25 > α=0.50) | **单 seed** | 仅 seed=42，差值 3pp (40.3% vs 37.3%)，无置信区间 |\n| Detectability boundary | **完成** | α=1.0 24/24 vs α=0.50 0/4 FDR-sig，清晰二元分界 |\n| Perplexity 伪回归确认 | **完成** | D017: 差分后 0/8 SIG (F≈0, p=0.99) |\n| ECE regime switch | **单 seed** | α=0.25 gen1 下降 -14%（反向）；α=1.0 gen1 +2926% |\n| Multi-seed (α=0.25/0.50) | **QUEUED** | 4 runs 排队中，未开始 |\n\n**评估**: Detectability boundary 和 perplexity 伪回归是稳固的子发现。但非单调 dose-response（Claim 2 最吸引眼球的部分）仅有 3pp 差值、单 seed，统计上不可区分于噪声。paper_framing.md 约束 #23 已正确要求标注 \"observed at seed=42; multi-seed confirmation required\"，但主文若要将此作为 regime map 的 \"核心特征\"（约束 #22），multi-seed 是刚需。\n\n**当前最大缺口**: multi-seed 尚未开跑。这是 Weak Accept → Accept 的首要条件（约束 #23 原话）。\n\n---\n\n### Claim 3: Method × Regime Interaction — **强**\n\n| 证据维度 | 状态 | 详情 |\n|----------|------|------|\n| Method ablation (5 methods) | **完成** | naive 16/16 → TY 4/16; spurious_rate 75%/62.5% |\n| 2×2 差分对比表 | **完成** | diversity 通道不变 (12/12→12/12)，perplexity 通道归零 (6-8/8→0/8) |\n| d_max sensitivity | **完成** | 0%↔94% spurious rate 震荡 |\n| TY power analysis | **完成** | T=10 power 0.05-0.20 (plan_009, N=1000 Monte Carlo) |\n| Method×regime 极端例证 | **完成** | α=0.50: naive_xcorr 100% sig vs strict 0% sig |\n| BH FDR 校正 | **完成** | 全 battery 已加 FDR，无结论翻转 |\n\n**评估**: 多层证据结构完整（Layer 1-3），无需额外实验即可成立。最强且最 novel 的 claim。paper_framing.md 约束 #25 正确识别了证据强度排序 (Claim 3 > 2 > 1)。\n\n**无重大缺口。**\n\n---\n\n## 2. 当前最大风险点（按严重性排序）\n\n1. **Multi-seed 全部 QUEUED（未跑）** — 非单调 dose-response 和 ECE regime switch 均为 point estimate。若 multi-seed 推翻非单调性，Claim 2 的 regime map 叙事需要大幅修改。这是唯一可能迫使论文结构性改写的风险。\n\n2. **α=0.75 结果（数小时内）** — 若也 null，Claim 1 scope 收缩至 \"α=1.0 only\"。论文标题/摘要中 \"canary prediction\" 的实用价值论述将依赖 pure boundary mapping 定位，reviewer 可能质疑 \"so what\"。\n\n3. **单模型 + 单数据集** — Pythia-410M × WikiText-103。plan_010（Pythia-1.4B/GPT-2）和 domain-transfer（C4）均未启动。Reviewer concern 表中已列出但无应对实验。这是 venue-specific 风险——AAAI 对 empirical breadth 容忍度稍高，但仍需至少 scale spot-check。\n\n4. **Scheffer et al. 未进 literature_map.yaml** — paper_framing.md 约束 #13 标注为 \"必引\"，Story Spine 中已提及，但 literature_map.yaml 中缺失。需补录。\n\n---\n\n## 3. 在跑/待跑实验对各 Claim 的贡献\n\n| 实验 | 状态 | Claim 1 | Claim 2 | Claim 3 | 说明 |\n|------|------|---------|---------|---------|------|\n| **α=0.75** | RUNNING (2/10) | **核心** | 高 | 中 | Claim 1 scope 扩展的唯一机会；Claim 2 regime boundary 精度提升 |\n| **plan_006** (20gen) | RUNNING (14/20) | 高 | 中 | 中 | T=21 提升 TY power（Claim 1 补充）；ECE co-primary 判定；长序列 diversity lead 稳定性 |\n| **multi-seed** (4 runs) | QUEUED | 低 | **核心** | 低 | 非单调性置信区间 = Claim 2 的生死线；ECE regime switch 可重复性 |\n\n优先级建议：multi-seed（a025_s43 优先）应在 α=0.75 完成后立即上 GPU。\n\n---\n\n## 4. Framing 措辞与证据强度匹配检查\n\n### 措辞已恰当的部分\n- Claim 1 主句限定 \"at high contamination levels\" — 与当前仅 α=1.0 稳固的证据匹配 ✓\n- Perplexity 通道用 \"spurious association confirmed by first-differencing\" — 措辞精确 ✓\n- \"Regime map\" 而非 \"phase diagram\" — 4-5 个 α 值不足以用物理学术语 ✓\n- CRS 降级为 illustration — 与 Dream 三档共识一致 ✓\n- TY 降级为辅助指标 — 有 plan_009 power analysis 支撑 ✓\n- f² 效应量禁用 Cohen 基准 — 正确处理小 df_resid 问题 ✓\n\n### 需要微调的措辞\n\n1. **Headline result template 中 \"1-2 generations ahead\"** — 当前仅 α=1.0 有此 lead，α=0.25/0.50 无显著 lead。建议加限定：\"at full synthetic replacement (α=1.0), token entropy exhibits ... 1-2 generations ahead\"。\n\n2. **Story Spine 中 \"predictability regime map delineates which collapse dimensions are forecastable\"** — 当前 regime map 只有 2 个非平凡点确认有/无 Granger sig（α=1.0 有, α=0.50 无），α=0.75 pending。若 α=0.75 null，map 退化为单点。建议加 \"preliminary\" 或明确说 \"identifies a detectability boundary between α=0.50 and α=1.0\"，而非暗示连续 mapping。\n\n3. **非单调 dose-response 在 Evidence strategy 中列为 \"Primary = raw drift magnitude dose-response\"** — 这是正确策略（方法无关），但主文中非单调性结论需显著标注单 seed 限制。当前约束 #23 已要求标注，但 Headline result template 中未提及非单调性，建议保持如此——在 multi-seed 确认前不放入 headline。\n\n4. **ECE \"conditional secondary canary\" 措辞** — paper_framing.md 说 \"secondary only in TY consistency; equivalent across all other methods\"。但约束 #20 揭示 ECE 在低 α 有反向信号。建议措辞更新为 \"conditional secondary: equivalent to token_entropy at α≥0.50 across non-TY methods, but unreliable at α=0.25 due to first-generation sign reversal\"。\n\n### 文献 contextualization 缺口\n\n| 文献 | Claim | 状态 |\n|------|-------|------|\n| Scheffer et al. 2009/2012 | Story Spine | paper_framing.md 已标注必引，**但 literature_map.yaml 中缺失** — 需补录 |\n| He et al. 2025 (golden ratio) | Claim 2 非单调性 | literature_map.yaml 已锚定 ✓ |\n| Xu & Cheng 2025 (mixing ratios) | Claim 2 regime boundary | literature_map.yaml 已锚定 ✓ |\n| Truong & Truong 2025 | Claim 2 (canary 失效边界) | literature_map.yaml 已收录 ✓ |\n| Chen et al. 2025 (scales) | Claim 1 (ECE 先驱) | literature_map.yaml 已收录，4 点差异化已写入 Story Spine ✓ |\n\n---\n\n## 5. Reviewer 攻击面预判\n\n按杀伤力排序：\n\n1. **\"Only works at α=1.0, who trains on 100% synthetic data?\"** — 若 α=0.75 null，这是致命攻击。应对：boundary mapping 贡献定位 + 引用 Dohmatob 2025 \"即使极小比例也触发 collapse\" 论证研究必要性。但 reviewer 可能不买账。\n\n2. **\"Single model, single dataset\"** — 无应对实验。plan_010 和 domain-transfer 均未启动。至少需要 Pythia-1.4B spot-check 一个核心条件。\n\n3. **\"Non-monotonic dose-response is noise\"** — 3pp 差值单 seed，reviewer 一句 \"within noise margin\" 即可驳回。multi-seed 是唯一解。\n\n4. **\"Granger ≠ causality, why not do intervention?\"** — paper_framing.md 已准备 Discussion 声明 + future work。CRS illustration 部分缓解但不消除。风险可控。\n\n5. **\"T=10 too short for any time-series inference\"** — plan_006 (T=21) 在跑，plan_009 已提供 power analysis。若 plan_006 完成且结论一致，此攻击面大幅缩小。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T08:17:41.178015+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/framing_alignment_check.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T08:17:41.178152+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "framing_alignment_check",
+  "type": "report",
+  "description": "Paper framing vs experiment evidence alignment check: per-claim coverage assessment, risk points, pending experiment contributions, framing wording adjustments",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/framing_alignment_check.md",
+  "tags": "['framing', 'alignment-check', 'paper-writing']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "framing_alignment_check",
+    "type": "report",
+    "description": "Paper framing vs experiment evidence alignment check: per-claim coverage assessment, risk points, pending experiment contributions, framing wording adjustments",
+    "project": "distrib_canary_collapse",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/framing_alignment_check.md",
+    "tags": "['framing', 'alignment-check', 'paper-writing']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T08:17:41.178324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_f4aaae\", \"name\": \"framing_alignment_check\", \"type\": \"report\", \"description\": \"Paper framing vs experiment evidence alignment check: per-claim coverage assessment, risk points, pending experiment contributions, framing wording adjustments\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/framing_alignment_check.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T08:17:30.567245+00:00\", \"tags\": [\"framing\", \"alignment-check\", \"paper-writing\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T08:17:41.178497+00:00_
+
+报告已写入 `artifacts/framing_alignment_check.md` 并注册。
+
+核心结论：
+
+- **Claim 3（method sensitivity）证据最强**，无重大缺口
+- **Claim 1（Granger precedence）证据在 α=1.0 坚实但 scope 极窄**，α=0.75（在跑，数小时内出）是 scope 扩展的唯一机会
+- **Claim 2（regime-dependent）最薄弱**——非单调 dose-response 仅 3pp 差值、单 seed，multi-seed 全部 QUEUED 未跑，这是 Weak Accept → Accept 的首要瓶颈
+- **literature_map.yaml 缺 Scheffer et al. 2009/2012**，paper_framing.md 约束 #13 标注为必引但未收录
+- Headline result template 和 regime map 措辞需要加限定词以匹配当前证据强度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_paper_framing_alignment_check_20260515T081452"
+}
+```
+
+</details>
+
+---

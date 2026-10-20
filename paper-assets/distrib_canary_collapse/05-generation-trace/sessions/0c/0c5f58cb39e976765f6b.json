@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5f58cb39e976765f6b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d063 narrative v2",
+  "task_key": "worker_paper_d063_narrative_v2_20260518T130716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d063_narrative_v2_20260518T130716_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "b15dd3ccb8882e6b3a3151209b9f4ce9d00575b31855bdec0ad97aefc30917a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All modifications complete. Summary:\n\n| # | File | Lines | Change |\n|---|------|-------|--------|\n| 1 | `experiments.tex` | L207-211 | Old: ECE secondary driven by TY Type II errors → New: ECE bidirectionality (0/28 vs 13/28 reverse, Claim 3 instantiation) |\n| 2 | `experiments.tex` | L366-372 | New `\\paragraph{Cross-condition patterns.}` inserted after architecture generalization: ppl 0/14 spurious, diversity 41/42 consensus, `% TODO` for Table 7 |\n| 3 | `discussion.tex` | L15-16 | Old: \"with 0 reverse-direction pairs significant across any architecture\" → New: canary-specific asymmetry (token_entropy 0/28 vs ECE 13/28 reverse) |\n| 4a/4b | `limitations.tex` | — | Already resolved: no \"preliminary\" exists, multi-seed α=0.75 already stated |\n\nVerification:\n- Em-dash (—): only in LaTeX comments (PLACEHOLDER lines), 0 in body text\n- En-dash ( – ): 0 matches\n- \"preliminary\": 0 matches in either file\n- -ing phrase endings: 0 in new text (3 fixed during editing)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d063-narrative-v2.md"
+}

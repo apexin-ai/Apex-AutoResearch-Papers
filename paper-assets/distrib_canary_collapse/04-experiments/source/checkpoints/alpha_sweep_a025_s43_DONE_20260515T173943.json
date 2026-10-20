@@ -1,0 +1,81 @@
+{
+  "exp_id": "alpha_sweep_a025_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:58:43.090Z",
+    "updated_at": "2026-05-15T17:39:43.623Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "121635",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log",
+      "submitted_at": "2026-05-15T13:16:31.189Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 15792.4,
+      "gpu_hours": 4.39
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "pid": "121635",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\"",
+      "finished_at": "2026-05-15T17:36:20.945Z"
+    },
+    "metrics": {
+      "gen0": {
+        "token_entropy": 3.2342,
+        "ece": 0.0108,
+        "perplexity": 26.949,
+        "distinct_1": 0.09833,
+        "distinct_2": 0.5132,
+        "distinct_3": 0.8057,
+        "effective_rank": 46.61,
+        "mauve": 0.03351
+      },
+      "gen10": {
+        "token_entropy": 3.0723,
+        "ece": 0.02146,
+        "perplexity": 21.899,
+        "distinct_1": 0.05849,
+        "distinct_2": 0.2236,
+        "distinct_3": 0.333,
+        "effective_rank": 45.37,
+        "mauve": 0.01871
+      },
+      "drift_pct": {
+        "token_entropy": -5,
+        "ece": 98.6,
+        "perplexity": -18.7,
+        "distinct_1": -40.5,
+        "distinct_2": -56.4,
+        "distinct_3": -58.7,
+        "effective_rank": -2.7,
+        "mauve": -44.2
+      }
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:36:22.072334+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint",
+    "completed_at": "2026-05-15T17:39:43.624Z"
+  },
+  "timestamp": "2026-05-15T17:39:43.699900+00:00",
+  "trigger": "update_registry"
+}

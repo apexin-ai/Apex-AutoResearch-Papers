@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f1c24fd2baf5591b250",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk check post restart",
+  "task_key": "worker_ops_disk-check-post-restart_20260521T193733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-check-post-restart_20260521T193733_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "afa9a10d97bedee64aa06e958ae2cb1f3dc1103238f55f743a070b0f9ea9b574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n17855: 61% used, 138G available — OK\n19828: 96% used,  11G available — WARNING ⚠️\n```\n\n**19828 可清理目录**（按大小排序）：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `generalize/` | 69G | 最大，清理收益最高 |\n| `alpha_sweep/` | 39G | |\n| `scale/` | 11G | |\n| `gen_opt13b_wiki_a100_s43_fp32/` | 9.9G | |\n| `phase_diagram/` | 9.4G | |\n| `scale_check/` | 5.4G | |\n| `intervention/` | 9.3G | |\n| `ablation/` | 3.2G | |\n| `gen_wiki_gpt2m_a100_s43/` | 2.8G | |\n\n19828 仅 11G 可用，远低于 30G 底线。清理 `generalize/` 或 `alpha_sweep/` 中已完成的实验可快速释放空间。需要指定清理哪些目录？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-check-post-restart.md"
+}

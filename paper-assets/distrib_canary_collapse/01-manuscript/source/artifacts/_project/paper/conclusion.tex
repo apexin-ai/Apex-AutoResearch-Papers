@@ -1,0 +1,15 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Lead-lag analysis in iterative training collapse is far more fragile than the current literature assumes.
+We demonstrated three pitfalls that undermine standard approaches: method choice alone swings FDR significance from 100\% to 25\% ($\kappa{=}0.185$), first-differencing exposes canary$\to$perplexity associations as entirely spurious ($F{\approx}0$, $p{=}0.99$), and regime dependence causes the same Granger test to shift from 24/24 to 0/8 significant pairs across contamination levels.
+These findings establish that single-method, single-regime analyses---the current default---cannot reliably distinguish genuine temporal precedence from statistical artifacts.
+
+Our multi-method consensus framework addresses this fragility by requiring convergent evidence across ${\geq}4/5$ independent methods and ${\geq}3/4$ random seeds.
+Calibrated on built-in experimental controls, the framework achieves 0\% false positive rate at the null control ($\alpha{=}0.0$) and 0\% false negative rate against ground-truth pairs at full contamination ($\alpha{=}1.0$), with four tiers of practical guidance scaling from exploratory screening to publication-grade claims.
+
+Applying the framework yields a concrete finding: token entropy serves as a one-generation-ahead canary for diversity collapse at $\alpha{=}1.0$ (with preliminary single-seed evidence at $\alpha{=}0.75$), with $|r|{>}0.99$ and complete directional asymmetry (0/24 reverse-direction FDR-significant pairs).
+This result is deliberately scoped to lexical diversity, not model collapse broadly, since the perplexity channel proved entirely spurious under differencing.
+
+The methodological pitfalls we expose are not specific to our experimental setting---they arise from generic properties of short, non-stationary time series---and the consensus framework transfers directly to any domain where multiple detection methods can be applied in parallel.
+Limitations and remaining gaps are discussed in \S\ref{sec:discussion}.

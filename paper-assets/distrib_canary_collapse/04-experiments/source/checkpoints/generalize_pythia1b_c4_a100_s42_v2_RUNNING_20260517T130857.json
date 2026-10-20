@@ -1,0 +1,32 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:06:55.402Z",
+    "updated_at": "2026-05-17T13:08:57.716Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "269777",
+      "log_path": "~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s42_v2.log",
+      "submitted_at": "2026-05-17T13:06:55.275Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 42
+    },
+    "hypothesis": "Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)"
+  },
+  "timestamp": "2026-05-17T13:08:57.807446+00:00",
+  "trigger": "update_registry"
+}

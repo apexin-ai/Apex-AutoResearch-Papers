@@ -1,0 +1,39 @@
+\section{Background}
+\label{sec:background}
+
+This section establishes the formal setup and notation used throughout the paper.
+
+\paragraph{Iterative training loop.}
+Let $M_0$ denote a pretrained language model and $\mathcal{D}_\text{real}$ a fixed corpus of human-written text.
+At each generation $t \geq 1$, the model $M_{t-1}$ generates a synthetic corpus $\mathcal{D}_\text{synth}^{(t-1)}$, and the next-generation model $M_t$ is fine-tuned on a mixture of $\alpha$ fraction synthetic data and $(1{-}\alpha)$ fraction real data:
+\begin{equation}
+    \mathcal{D}_\text{train}^{(t)} = \alpha \cdot \mathcal{D}_\text{synth}^{(t-1)} \;+\; (1{-}\alpha) \cdot \mathcal{D}_\text{real}, \quad \alpha \in [0, 1].
+    \label{eq:mixing}
+\end{equation}
+The contamination level $\alpha$ controls the fraction of machine-generated text in each training round.
+At $\alpha{=}1.0$, this reduces to the full-replacement paradigm of \citet{shumailov2024curse}, where each generation trains exclusively on the previous generation's output.
+Iterating this process for $T$ generations yields a trajectory $M_0 \to M_1 \to \cdots \to M_T$.
+
+\paragraph{Metric families.}
+We distinguish two families of metrics evaluated at each generation~$t$.
+\emph{Canary metrics} are cheap-to-compute statistics on the model's output distribution, hypothesized to change before downstream quality degrades---analogous to early-warning indicators studied in the context of critical transitions in dynamical systems \cite{scheffer2009early}.
+We consider two canary metrics: \emph{token entropy}, the average next-token prediction entropy over held-out samples, and \emph{expected calibration error} (ECE), which measures the discrepancy between predicted token probabilities and empirical correctness frequencies.
+\emph{Downstream metrics} capture generation quality directly.
+We use \emph{distinct-$n$} ($n \in \{1, 2, 3\}$), the ratio of unique $n$-grams to total $n$-grams in generated text \cite{li2016diversity}, as a measure of lexical diversity, and \emph{perplexity} on a held-out set as a measure of language modeling quality.
+Each metric produces a time series of $T{+}1$ observations (generations $0$ through $T$).
+
+\paragraph{The lead-lag testing problem.}
+Given two such time series $X = (x_0, \ldots, x_T)$ and $Y = (y_0, \ldots, y_T)$---for instance, a canary metric and a downstream metric---the central question is whether changes in $X$ temporally precede changes in $Y$.
+This requires more than measuring correlation: the test must establish \emph{directionality} ($X \to Y$ rather than $Y \to X$) and account for confounders such as shared non-stationary trends that can produce spurious associations.
+The classical framework for testing temporal predictive precedence is Granger causality \cite{granger1969investigating}, which asks whether past values of $X$ improve prediction of $Y$ beyond $Y$'s own history.
+We note that Granger precedence tests predictive improvement, not true causality \cite{shojaie2022granger}; this distinction is discussed further in \S\ref{sec:method}.
+
+\paragraph{Five detection methods.}
+We employ five lead-lag detection methods spanning a spectrum from permissive to conservative:
+(1)~\emph{naive cross-correlation}, which computes Pearson correlation on undifferenced series at lags up to~5;
+(2)~\emph{differenced cross-correlation}, which applies the same procedure to first-differenced series, removing shared linear trends;
+(3)~\emph{threshold onset detection}, which compares the generation at which each metric first exceeds a predefined deviation threshold;
+(4)~\emph{permutation Granger causality}, a non-parametric Granger test using 5{,}000 permutations on first-differenced series \cite{shojaie2022granger}; and
+(5)~\emph{Toda--Yamamoto Granger causality}, an augmented VAR approach that tests Granger precedence without requiring prior differencing \cite{granger1969investigating}.
+These methods differ in their assumptions about stationarity, their sensitivity to shared trends, and their statistical power at short time-series lengths.
+Their joint application forms the basis of the multi-method consensus framework developed in \S\ref{sec:method}.

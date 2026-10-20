@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp_v4_rep43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:48:50.161Z",
+    "updated_at": "2026-05-14T13:39:54.495Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_43\"",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "13758",
+      "log_path": "~/runs/distrib_canary_collapse/mvp_v4_rep43.log",
+      "submitted_at": "2026-05-14T07:51:36.759Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint",
+      "metrics_summary": {
+        "gen0_ppl": 26.9,
+        "gen10_ppl": 1014.7,
+        "gen0_entropy": 3.234,
+        "gen10_entropy": 1.26,
+        "gen0_ece": 0.011,
+        "gen10_ece": 0.42
+      },
+      "wall_clock_seconds": 20897.7,
+      "gpu_hours": 5.8
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T13:39:54.495Z"
+  },
+  "timestamp": "2026-05-14T13:39:54.511737+00:00",
+  "trigger": "update_registry"
+}

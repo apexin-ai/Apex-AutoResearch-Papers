@@ -1,0 +1,68 @@
+{
+  "exp_id": "phase_diagram_t15_a060_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:42:24.039Z",
+    "updated_at": "2026-05-22T00:52:14.538Z",
+    "hypothesis": "T=15 α=0.60 cross-seed validation for sync-dip robustness. s42=0/8 (PermG). If s43 also 0/8, sync-dip at T=15 gains dual-seed confirmation, joining T=10 (D148: s42=0/8, s43=0/8). Combined with T=20 s43 (RUNNING), could establish 3-T dual-seed sync-dip invariance.",
+    "parent": "phase_diagram_t15_a060_s42_fp32",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "546619",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t15_a060_s43_fp32.log",
+      "submitted_at": "2026-05-21T18:42:47.679Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "checkpoint_source": "phase_diagram_t15_a060_s42_fp32 (cross-seed replication)",
+      "eval_data": "data/wikitext103_5k",
+      "wall_clock_seconds": 22166.9,
+      "gpu_hours": 6.16
+    },
+    "metrics": {
+      "permg_significant": 0,
+      "permg_total": 8,
+      "permg_reverse_significant": 0,
+      "permg_reverse_total": 8,
+      "permg_robust_significant": 2,
+      "permg_robust_total": 8,
+      "downstreams": [
+        "distinct_1",
+        "distinct_2",
+        "distinct_3",
+        "mauve"
+      ],
+      "threshold_criterion": "true_3sigma_d105",
+      "script": "run_5method_analysis_d102.py"
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-22T00:50:01.573Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T00:50:09.921688+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s43_fp32",
+    "completed_at": "2026-05-22T00:52:14.538Z"
+  },
+  "timestamp": "2026-05-22T00:52:15.300928+00:00",
+  "trigger": "update_registry"
+}

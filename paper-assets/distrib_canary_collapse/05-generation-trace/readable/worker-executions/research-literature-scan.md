@@ -1,0 +1,3687 @@
+# research literature scan
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_research_literature-scan_20260515T042525.log`
+- **Structured JSON:** [`3d9f3284a216eb571b38.json`](../../sessions/3d/3d9f3284a216eb571b38.json)
+
+## Before a recorded user message
+
+55 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "92185a48-bd89-45a4-8f80-0902180bd4a5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778836800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "645e8311-3330-4f73-a8d7-5e6f04beec36",
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to do a literature scan for recent papers on model collapse, canary metrics, and related topics. Let me start by reading the current memory.md and checking for literature_map.yaml, then do web searches.
+
+Let me first load the MCP tools I'll need, and read the project files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "8b3cba64-790e-469a-9062-b07e1ed26e1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KGLagU95TXUxvVC3QyJWc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11225,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11225
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取项目文件，同时加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "8393763b-24db-400f-8546-39129315c2d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KGLagU95TXUxvVC3QyJWc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11225,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11225
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CjLkYsXSJs78MN1LjoRTME`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,WebSearch",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "ece3c4f9-97b9-4695-b3da-950a0e36ec56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KGLagU95TXUxvVC3QyJWc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11225,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11225
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T04:25:35.546Z_
+
+<details><summary>↩ Tool result · `toolu_01CjLkYsXSJs78MN1LjoRTME`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "4e23abfd-cbd8-4953-b3ce-9b5ea9120c79",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "WebSearch"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01P8dW74v1XvAkTc9iWMQGS9`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "9b8dbe0a-9eb5-4040-8638-a71727439607",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019C4f2rumjmM4mhYvX9ZtBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 23066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T04:25:38.457Z_
+
+<details><summary>↩ Tool result · `toolu_01P8dW74v1XvAkTc9iWMQGS9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-14 — MVP 代码设计决策\\n\\n- **训练方式**: 用 HF Trainer，每代独立训练 steps_per_gen 步（非 epoch-based），避免数据量波动导致训练量不一致\\n- **Generation 0 = baseline**: 不训练，只计算初始指标，作为后续 degradation 的参照\\n- **synthetic_ratio 控制混合**: 1.0 = 纯合成（MVP 压力测试），以 synthetic 为基准，ratio<1 时按比例补 real\\n- **Self-BLEU 采样**: 随机抽 500 pairs 而非全组合（O(n²) 太贵），固定 seed=0 保证可复现\\n- **Effective rank**: 用 mean-pooled last hidden states 的协方差矩阵，exp(entropy of normalized eigenvalues)\\n- **MAUVE**: 依赖 mauve-text 包，用 eval_dataset（真实）vs gen_dataset（合成）对比\\n- **ECE**: next-token calibration，10 bins，softmax max prob vs correctness\\n- **Cross-correlation 分析**: normalize 后翻转符号使 \\\"collapse direction\\\" 一致为正，peak lag 的符号决定 lead/lag\\n- **Metrics JSON 每代独立保存 + 汇总**: gen_N/metrics.json 做细粒度追溯，all_metrics.json 做分析输入\\n\\n## 2026-05-14 — AutoDL 服务器经验\\n\\n- **HF 下载不要用 network_turbo 代理**（会卡死），改用 `HF_ENDPOINT=https://hf-mirror.com` 直连国内镜像\\n- **pip install 可以用 network_turbo**\\n- **服务器默认没有 tmux**，需手动 apt 安装\\n- 环境：conda base, Python 3.12.3, PyTorch 2.10.0+cu128, 2× RTX PRO 6000 Blackwell 96GB\\n- **服务器名**: `westd-19828`（非 autodl-rtx6000），submit_training_job 必须用此名\\n\\n## 2026-05-14 — 参数修复 (D004)\\n\\n- 原始参数：n_prompts=1000, steps_per_gen=10000 → 40 epochs/gen，过拟合导致指标骤然击穿\\n- 修正参数：n_prompts=5000, steps_per_gen=5000 → 4 epochs/gen，合理 fine-tuning 量\\n- WikiText-103 test split 仅 ~1500 条 ≥64 words 段落，不够 5000 prompts，改为从 train split 取 prompt 前缀（prompts 仅做生成种子，不参与 loss）\\n- 新数据放 data/wikitext103_5k/ 避免影响正在跑的实验\\n\\n## 2026-05-14 — 文献调研核心发现\\n\\n- 最直接竞争者：chen2025scales (arXiv 2510.05133) 报告 \\\"calibration degradation precedes accuracy loss\\\"——ECE 在 iter 1 + 30% synthetic 时上升 75%，accuracy 未显著变化。但**未做 lead-lag 因果分析**，也没多指标 panel\\n- 8 个文献空白中最关键的 3 个：(1) 无人做 canary Granger causality / lead-lag 量化 (2) ECE 在 collapse 场景下几乎未被系统研究 (3) 多指标 panel 框架完全缺失\\n- Novelty 风险：如果 chen2025scales 团队扩展工作，会侵蚀 ECE-as-canary 的 novelty。需在方法论（Granger causality 框架）上尽快建立壁垒\\n- 共收录 31 篇论文（含补全的 6 篇）\\n- SIGMA (arXiv 2601.03385): Gram matrix 谱双轨监控，我们的 effective rank 是其简化版\\n- Truong & Truong: Class 1 凸反馈 entropy collapse 是一阶相变，canary 在此 regime 可能失效\\n- Fu et al. (ICLR 2025): 恒定 real data 比例保证 STL 收敛，α-sweep 理论基础\\n\\n## 2026-05-14 — 运维教训\\n\\n- **kill_job 只杀 tmux session，不杀子进程**。旧进程 (v1) 存活导致 v2 写同一输出目录死锁。后续 kill 后必须用 `ps aux | grep iterative_train` 确认子进程全部死亡，必要时 `kill -9 $(pgrep -f iterative_train)`\\n- **提交新实验前必须确认输出目录干净**，或使用不同的输出路径\\n- **analyze_mvp.py dry-run 验证通过**：cross-correlation 逻辑正确，token_entropy 和 effective_rank 在信噪比充足时检测准确\\n- **pgrep -a iterative_train 匹配不到训练进程**：因为进程名是 `python`，不是脚本名。用 `nvidia-smi` 或 `ps aux | grep python` 检查\\n- **nohup 启动的实验不写 EXIT_CODE 哨兵**，cron 检测到进程退出后无法判断成功/失败，误判为 failed（rep44 事故）。已在 iterative_train.py 添加 EXIT_CODE 哨兵机制\\n\\n## 2026-05-14 — MVP 4-Seed 正式分析（FINAL VERDICT）\\n\\n- **Overall: STRONG PASS** — 2 个 canary 家族 (token_entropy, ECE) 各自对 ≥1 个 diversity 指标有 SIGNIFICANT LEAD\\n- **最强结果 (4/4 seed 完全一致, std=0)**:\\n  - token_entropy → distinct_1: lag=-1, |r|=0.993–0.998, p=0.0006–0.0036\\n  - ece → distinct_2: lag=-1, |r|=0.995–0.997, p=0.0001–0.0023\\n- **Demoted**: MAUVE (floor effect), effective_rank (non-monotonic, 2+/2- across seeds)\\n- **Eliminated**: self_bleu (方向不一致), ece→perplexity (ECE 反而滞后 perplexity)\\n\\n## 2026-05-14 — ⚠️ Narrative 约束（4-seed 确认 + max_lag=7 验证 + 差分确认）\\n\\n- **Canary 仅能 lead diversity metrics (distinct_n)，不能 lead quality metric (perplexity)**\\n  - token_entropy→perplexity: lag=-5，4/4 seed 一致，但 p borderline（seed42 p=0.12）\\n  - **差分版 permutation Granger 最终确认**：canary→perplexity 全部 F→0, 完全不显著——旧结果 100% 由共享非平稳趋势驱动。这不是统计功效问题，是伪回归\\n  - ECE→perplexity: lag=+4.75（ECE 滞后 perplexity！完全反向）\\n  - 论文 claim 硬限：只能声称 \\\"canary predicts diversity collapse\\\"，不能声称 \\\"canary predicts perplexity\\\"\\n- **plan_006 dual-timescale 升级前景大幅降低**：差分后 F→0 说明关系是纯趋势驱动，更长序列不会改变。plan_006 仍值得跑（验证 diversity lead 在 T=20 下是否更稳健），但不应期望 perplexity channel 突破\\n\\n## 2026-05-14 — ⚠️ 方法论 Ablation 关键结论（plan_002 Phase 1）\\n\\n- **75% 伪回归率**：16/16 naive 显著 pair 中，12 个被 Toda-Yamamoto 推翻\\n- **token_entropy 是唯一 gold-standard canary**：对 distinct_1/2/3 均通过 Granger 因果检验（F=100-550, p<0.001, 4/4 seed）\\n- **ECE 因果预测力大幅缩水**：仅对 distinct_1 通过 TY（3/4 seed），distinct_2/3 的\\\"完美 cross-corr\\\"(lag=-1, std=0) 实为伪回归\\n- **所有 canary→perplexity 全部伪回归**——包括 token_entropy→perplexity (lag=-5)。非平稳驱动的假信号\\n- **self_bleu + effective_rank 完全失效**：100% 伪回归\\n- **Story 调整**：方法论贡献从 \\\"nice to have\\\" 变为 \\\"essential\\\"——naive 方法给出 100% 显著率实为 75% 伪信号\\n- 结果存：`results/mvp/analysis/method_ablation.json` + 服务器上 `method_ablation.py`\\n\\n## 2026-05-14 — ⚠️ Bootstrap TY Power Analysis（plan_009, CRITICAL）\\n\\n- **T=10 下 TY 效力严重不足**：d_max=0 power=0.205, d_max=1 power=0.09, d_max=adaptive power=0.05（≈随机）\\n- **T=20 仍不够**：d_max=1 power=0.172, 远低于 0.50 门槛\\n- **T=30 也不达标**：d_max=1 power=0.283; 唯有 d_max=0 达 0.606 但此时 Type I error 偏高 (0.081)\\n- **d_max 敏感性巨大**：所有 T 下 power range > 0.15\\n- **对论文影响**：(1) TY 不能作为核心证据，只能辅助; (2) 需要补充 permutation-based 或 bootstrap 推断作为替代; (3) limitation 必须透明报告; (4) 这反而强化 Claim 3——方法选择不仅改变结论，连检验本身的 power 也 regime-dependent\\n- **结果存**: `results/bootstrap_ty_results.json`\\n\\n## 2026-05-14 — ⚠️ Permutation Granger 差分版最终结论（D015 → Reviewer 修复）\\n\\n- **差分后 canary→diversity 全部保持显著**：token_entropy→distinct_1/2/3 和 ece→distinct_1/2/3 均 4/4 sig，F 值甚至上升（非伪回归，因果关系真实）\\n- **差分后 canary→perplexity 全部归零**：F→0, p→1。旧结果完全由共享非平稳趋势驱动。这是决定性证据\\n- **5-method ablation 最终排序**：naive 16/16 (100%) > differenced 14/16 (88%) > threshold 9/16 (56%) > permutation Granger 6/16 (38%) > TY 4/16 (25%)\\n- **ECE 地位回升**：差分版 permutation Granger 下 ece→distinct_1/2/3 全部 4/4 sig，比 TY (3/4) 更一致。ECE 作为 secondary canary 的证据比 TY-only 评估更强\\n- **Effect size 统一为 Cohen's f²**：所有分析脚本已统一（method_ablation.py, analyze_alpha_sweep.py, permutation_granger.py）\\n- **脚本**: `permutation_granger.py`（差分+shuffle），结果: `results/mvp/analysis/permutation_granger.json`（含 differenced 和 undifferenced 两组）\\n\\n## 2026-05-14 — mix_datasets bug 修复\\n\\n- **原逻辑**: 保全 synthetic，subsample real → 低 α 下 real 不足时比例静默偏移（α=0.25 变成实际 α=0.50）\\n- **修复后**: 双向 subsample（低 α: 保全 real + subsample syn; 高 α: 保全 syn + subsample real）+ shuffle(seed=seed) 避免位置偏差\\n- 14/14 测试通过，全 α 范围误差 <0.05\\n\\n## 2026-05-14 — plan_006 分析 checklist（20-gen extended run 完成时执行）\\n\\n- [ ] Full series cross-correlation: gen 0-20, max_lag=10, 所有 canary→downstream pair\\n- [ ] **Rolling-window 验证**: gen 5-20 子序列分析 token_entropy→perplexity，排除 gen 0→1 初始跳变\\n- [ ] 与 MVP 10-gen 结果对比：lag 值是否稳定，p-value 是否因样本量增大而达显著\\n- [ ] **主检验用 cross-corr + permutation Granger**（D015 决策），TY 仅 supplementary\\n- [ ] **注意**：差分版已证明 canary→perplexity 是纯趋势驱动。plan_006 的 perplexity channel 预期不会变显著，focus 转向验证 diversity lead 在更长序列下的稳健性\\n\", \"total_chars\": 6414, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "d4dce589-4192-4fdd-a284-5a7ebf70ad93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-14 — MVP 代码设计决策\\\\n\\\\n- **训练方式**: 用 HF Trainer，每代独立训练 steps_per_gen 步（非 epoch-based），避免数据量波动导致训练量不一致\\\\n- **Generation 0 = baseline**: 不训练，只计算初始指标，作为后续 degradation 的参照\\\\n- **synthetic_ratio 控制混合**: 1.0 = 纯合成（MVP 压力测试），以 synthetic 为基准，ratio<1 时按比例补 real\\\\n- **Self-BLEU 采样**: 随机抽 500 pairs 而非全组合（O(n²) 太贵），固定 seed=0 保证可复现\\\\n- **Effective rank**: 用 mean-pooled last hidden states 的协方差矩阵，exp(entropy of normalized eigenvalues)\\\\n- **MAUVE**: 依赖 mauve-text 包，用 eval_dataset（真实）vs gen_dataset（合成）对比\\\\n- **ECE**: next-token calibration，10 bins，softmax max prob vs correctness\\\\n- **Cross-correlation 分析**: normalize 后翻转符号使 \\\\\\\"collapse direction\\\\\\\" 一致为正，peak lag 的符号决定 lead/lag\\\\n- **Metrics JSON 每代独立保存 + 汇总**: gen_N/metrics.json 做细粒度追溯，all_metrics.json 做分析输入\\\\n\\\\n## 2026-05-14 — AutoDL 服务器经验\\\\n\\\\n- **HF 下载不要用 network_turbo 代理**（会卡死），改用 `HF_ENDPOINT=https://hf-mirror.com` 直连国内镜像\\\\n- **pip install 可以用 network_turbo**\\\\n- **服务器默认没有 tmux**，需手动 apt 安装\\\\n- 环境：conda base, Python 3.12.3, PyTorch 2.10.0+cu128, 2× RTX PRO 6000 Blackwell 96GB\\\\n- **服务器名**: `westd-19828`（非 autodl-rtx6000），submit_training_job 必须用此名\\\\n\\\\n## 2026-05-14 — 参数修复 (D004)\\\\n\\\\n- 原始参数：n_prompts=1000, steps_per_gen=10000 → 40 epochs/gen，过拟合导致指标骤然击穿\\\\n- 修正参数：n_prompts=5000, steps_per_gen=5000 → 4 epochs/gen，合理 fine-tuning 量\\\\n- WikiText-103 test split 仅 ~1500 条 ≥64 words 段落，不够 5000 prompts，改为从 train split 取 prompt 前缀（prompts 仅做生成种子，不参与 loss）\\\\n- 新数据放 data/wikitext103_5k/ 避免影响正在跑的实验\\\\n\\\\n## 2026-05-14 — 文献调研核心发现\\\\n\\\\n- 最直接竞争者：chen2025scales (arXiv 2510.05133) 报告 \\\\\\\"calibration degradation precedes accuracy loss\\\\\\\"——ECE 在 iter 1 + 30% synthetic 时上升 75%，accuracy 未显著变化。但**未做 lead-lag 因果分析**，也没多指标 panel\\\\n- 8 个文献空白中最关键的 3 个：(1) 无人做 canary Granger causality / lead-lag 量化 (2) ECE 在 collapse 场景下几乎未被系统研究 (3) 多指标 panel 框架完全缺失\\\\n- Novelty 风险：如果 chen2025scales 团队扩展工作，会侵蚀 ECE-as-canary 的 novelty。需在方法论（Granger causality 框架）上尽快建立壁垒\\\\n- 共收录 31 篇论文（含补全的 6 篇）\\\\n- SIGMA (arXiv 2601.03385): Gram matrix 谱双轨监控，我们的 effective rank 是其简化版\\\\n- Truong & Truong: Class 1 凸反馈 entropy collapse 是一阶相变，canary 在此 regime 可能失效\\\\n- Fu et al. (ICLR 2025): 恒定 real data 比例保证 STL 收敛，α-sweep 理论基础\\\\n\\\\n## 2026-05-14 — 运维教训\\\\n\\\\n- **kill_job 只杀 tmux session，不杀子进程**。旧进程 (v1) 存活导致 v2 写同一输出目录死锁。后续 kill 后必须用 `ps aux | grep iterative_train` 确认子进程全部死亡，必要时 `kill -9 $(pgrep -f iterative_train)`\\\\n- **提交新实验前必须确认输出目录干净**，或使用不同的输出路径\\\\n- **analyze_mvp.py dry-run 验证通过**：cross-correlation 逻辑正确，token_entropy 和 effective_rank 在信噪比充足时检测准确\\\\n- **pgrep -a iterative_train 匹配不到训练进程**：因为进程名是 `python`，不是脚本名。用 `nvidia-smi` 或 `ps aux | grep python` 检查\\\\n- **nohup 启动的实验不写 EXIT_CODE 哨兵**，cron 检测到进程退出后无法判断成功/失败，误判为 failed（rep44 事故）。已在 iterative_train.py 添加 EXIT_CODE 哨兵机制\\\\n\\\\n## 2026-05-14 — MVP 4-Seed 正式分析（FINAL VERDICT）\\\\n\\\\n- **Overall: STRONG PASS** — 2 个 canary 家族 (token_entropy, ECE) 各自对 ≥1 个 diversity 指标有 SIGNIFICANT LEAD\\\\n- **最强结果 (4/4 seed 完全一致, std=0)**:\\\\n  - token_entropy → distinct_1: lag=-1, |r|=0.993–0.998, p=0.0006–0.0036\\\\n  - ece → distinct_2: lag=-1, |r|=0.995–0.997, p=0.0001–0.0023\\\\n- **Demoted**: MAUVE (floor effect), effective_rank (non-monotonic, 2+/2- across seeds)\\\\n- **Eliminated**: self_bleu (方向不一致), ece→perplexity (ECE 反而滞后 perplexity)\\\\n\\\\n## 2026-05-14 — ⚠️ Narrative 约束（4-seed 确认 + max_lag=7 验证 + 差分确认）\\\\n\\\\n- **Canary 仅能 lead diversity metrics (distinct_n)，不能 lead quality metric (perplexity)**\\\\n  - token_entropy→perplexity: lag=-5，4/4 seed 一致，但 p borderline（seed42 p=0.12）\\\\n  - **差分版 permutation Granger 最终确认**：canary→perplexity 全部 F→0, 完全不显著——旧结果 100% 由共享非平稳趋势驱动。这不是统计功效问题，是伪回归\\\\n  - ECE→perplexity: lag=+4.75（ECE 滞后 perplexity！完全反向）\\\\n  - 论文 claim 硬限：只能声称 \\\\\\\"canary predicts diversity collapse\\\\\\\"，不能声称 \\\\\\\"canary predicts perplexity\\\\\\\"\\\\n- **plan_006 dual-timescale 升级前景大幅降低**：差分后 F→0 说明关系是纯趋势驱动，更长序列不会改变。plan_006 仍值得跑（验证 diversity lead 在 T=20 下是否更稳健），但不应期望 perplexity channel 突破\\\\n\\\\n## 2026-05-14 — ⚠️ 方法论 Ablation 关键结论（plan_002 Phase 1）\\\\n\\\\n- **75% 伪回归率**：16/16 naive 显著 pair 中，12 个被 Toda-Yamamoto 推翻\\\\n- **token_entropy 是唯一 gold-standard canary**：对 distinct_1/2/3 均通过 Granger 因果检验（F=100-550, p<0.001, 4/4 seed）\\\\n- **ECE 因果预测力大幅缩水**：仅对 distinct_1 通过 TY（3/4 seed），distinct_2/3 的\\\\\\\"完美 cross-corr\\\\\\\"(lag=-1, std=0) 实为伪回归\\\\n- **所有 canary→perplexity 全部伪回归**——包括 token_entropy→perplexity (lag=-5)。非平稳驱动的假信号\\\\n- **self_bleu + effective_rank 完全失效**：100% 伪回归\\\\n- **Story 调整**：方法论贡献从 \\\\\\\"nice to have\\\\\\\" 变为 \\\\\\\"essential\\\\\\\"——naive 方法给出 100% 显著率实为 75% 伪信号\\\\n- 结果存：`results/mvp/analysis/method_ablation.json` + 服务器上 `method_ablation.py`\\\\n\\\\n## 2026-05-14 — ⚠️ Bootstrap TY Power Analysis（plan_009, CRITICAL）\\\\n\\\\n- **T=10 下 TY 效力严重不足**：d_max=0 power=0.205, d_max=1 power=0.09, d_max=adaptive power=0.05（≈随机）\\\\n- **T=20 仍不够**：d_max=1 power=0.172, 远低于 0.50 门槛\\\\n- **T=30 也不达标**：d_max=1 power=0.283; 唯有 d_max=0 达 0.606 但此时 Type I error 偏高 (0.081)\\\\n- **d_max 敏感性巨大**：所有 T 下 power range > 0.15\\\\n- **对论文影响**：(1) TY 不能作为核心证据，只能辅助; (2) 需要补充 permutation-based 或 bootstrap 推断作为替代; (3) limitation 必须透明报告; (4) 这反而强化 Claim 3——方法选择不仅改变结论，连检验本身的 power 也 regime-dependent\\\\n- **结果存**: `results/bootstrap_ty_results.json`\\\\n\\\\n## 2026-05-14 — ⚠️ Permutation Granger 差分版最终结论（D015 → Reviewer 修复）\\\\n\\\\n- **差分后 canary→diversity 全部保持显著**：token_entropy→distinct_1/2/3 和 ece→distinct_1/2/3 均 4/4 sig，F 值甚至上升（非伪回归，因果关系真实）\\\\n- **差分后 canary→perplexity 全部归零**：F→0, p→1。旧结果完全由共享非平稳趋势驱动。这是决定性证据\\\\n- **5-method ablation 最终排序**：naive 16/16 (100%) > differenced 14/16 (88%) > threshold 9/16 (56%) > permutation Granger 6/16 (38%) > TY 4/16 (25%)\\\\n- **ECE 地位回升**：差分版 permutation Granger 下 ece→distinct_1/2/3 全部 4/4 sig，比 TY (3/4) 更一致。ECE 作为 secondary canary 的证据比 TY-only 评估更强\\\\n- **Effect size 统一为 Cohen's f²**：所有分析脚本已统一（method_ablation.py, analyze_alpha_sweep.py, permutation_granger.py）\\\\n- **脚本**: `permutation_granger.py`（差分+shuffle），结果: `results/mvp/analysis/permutation_granger.json`（含 differenced 和 undifferenced 两组）\\\\n\\\\n## 2026-05-14 — mix_datasets bug 修复\\\\n\\\\n- **原逻辑**: 保全 synthetic，subsample real → 低 α 下 real 不足时比例静默偏移（α=0.25 变成实际 α=0.50）\\\\n- **修复后**: 双向 subsample（低 α: 保全 real + subsample syn; 高 α: 保全 syn + subsample real）+ shuffle(seed=seed) 避免位置偏差\\\\n- 14/14 测试通过，全 α 范围误差 <0.05\\\\n\\\\n## 2026-05-14 — plan_006 分析 checklist（20-gen extended run 完成时执行）\\\\n\\\\n- [ ] Full series cross-correlation: gen 0-20, max_lag=10, 所有 canary→downstream pair\\\\n- [ ] **Rolling-window 验证**: gen 5-20 子序列分析 token_entropy→perplexity，排除 gen 0→1 初始跳变\\\\n- [ ] 与 MVP 10-gen 结果对比：lag 值是否稳定，p-value 是否因样本量增大而达显著\\\\n- [ ] **主检验用 cross-corr + permutation Granger**（D015 决策），TY 仅 supplementary\\\\n- [ ] **注意**：差分版已证明 canary→perplexity 是纯趋势驱动。plan_006 的 perplexity channel 预期不会变显著，focus 转向验证 diversity lead 在更长序列下的稳健性\\\\n\\\", \\\"total_chars\\\": 6414, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-14 — MVP 代码设计决策\\n\\n- **训练方式**: 用 HF Trainer，每代独立训练 steps_per_gen 步（非 epoch-based），避免数据量波动导致训练量不一致\\n- **Generation 0 = baseline**: 不训练，只计算初始指标，作为后续 degradation 的参照\\n- **synthetic_ratio 控制混合**: 1.0 = 纯合成（MVP 压力测试），以 synthetic 为基准，ratio<1 时按比例补 real\\n- **Self-BLEU 采样**: 随机抽 500 pairs 而非全组合（O(n²) 太贵），固定 seed=0 保证可复现\\n- **Effective rank**: 用 mean-pooled last hidden states 的协方差矩阵，exp(entropy of normalized eigenvalues)\\n- **MAUVE**: 依赖 mauve-text 包，用 eval_dataset（真实）vs gen_dataset（合成）对比\\n- **ECE**: next-token calibration，10 bins，softmax max prob vs correctness\\n- **Cross-correlation 分析**: normalize 后翻转符号使 \\\"collapse direction\\\" 一致为正，peak lag 的符号决定 lead/lag\\n- **Metrics JSON 每代独立保存 + 汇总**: gen_N/metrics.json 做细粒度追溯，all_metrics.json 做分析输入\\n\\n## 2026-05-14 — AutoDL 服务器经验\\n\\n- **HF 下载不要用 network_turbo 代理**（会卡死），改用 `HF_ENDPOINT=https://hf-mirror.com` 直连国内镜像\\n- **pip install 可以用 network_turbo**\\n- **服务器默认没有 tmux**，需手动 apt 安装\\n- 环境：conda base, Python 3.12.3, PyTorch 2.10.0+cu128, 2× RTX PRO 6000 Blackwell 96GB\\n- **服务器名**: `westd-19828`（非 autodl-rtx6000），submit_training_job 必须用此名\\n\\n## 2026-05-14 — 参数修复 (D004)\\n\\n- 原始参数：n_prompts=1000, steps_per_gen=10000 → 40 epochs/gen，过拟合导致指标骤然击穿\\n- 修正参数：n_prompts=5000, steps_per_gen=5000 → 4 epochs/gen，合理 fine-tuning 量\\n- WikiText-103 test split 仅 ~1500 条 ≥64 words 段落，不够 5000 prompts，改为从 train split 取 prompt 前缀（prompts 仅做生成种子，不参与 loss）\\n- 新数据放 data/wikitext103_5k/ 避免影响正在跑的实验\\n\\n## 2026-05-14 — 文献调研核心发现\\n\\n- 最直接竞争者：chen2025scales (arXiv 2510.05133) 报告 \\\"calibration degradation precedes accuracy loss\\\"——ECE 在 iter 1 + 30% synthetic 时上升 75%，accuracy 未显著变化。但**未做 lead-lag 因果分析**，也没多指标 panel\\n- 8 个文献空白中最关键的 3 个：(1) 无人做 canary Granger causality / lead-lag 量化 (2) ECE 在 collapse 场景下几乎未被系统研究 (3) 多指标 panel 框架完全缺失\\n- Novelty 风险：如果 chen2025scales 团队扩展工作，会侵蚀 ECE-as-canary 的 novelty。需在方法论（Granger causality 框架）上尽快建立壁垒\\n- 共收录 31 篇论文（含补全的 6 篇）\\n- SIGMA (arXiv 2601.03385): Gram matrix 谱双轨监控，我们的 effective rank 是其简化版\\n- Truong & Truong: Class 1 凸反馈 entropy collapse 是一阶相变，canary 在此 regime 可能失效\\n- Fu et al. (ICLR 2025): 恒定 real data 比例保证 STL 收敛，α-sweep 理论基础\\n\\n## 2026-05-14 — 运维教训\\n\\n- **kill_job 只杀 tmux session，不杀子进程**。旧进程 (v1) 存活导致 v2 写同一输出目录死锁。后续 kill 后必须用 `ps aux | grep iterative_train` 确认子进程全部死亡，必要时 `kill -9 $(pgrep -f iterative_train)`\\n- **提交新实验前必须确认输出目录干净**，或使用不同的输出路径\\n- **analyze_mvp.py dry-run 验证通过**：cross-correlation 逻辑正确，token_entropy 和 effective_rank 在信噪比充足时检测准确\\n- **pgrep -a iterative_train 匹配不到训练进程**：因为进程名是 `python`，不是脚本名。用 `nvidia-smi` 或 `ps aux | grep python` 检查\\n- **nohup 启动的实验不写 EXIT_CODE 哨兵**，cron 检测到进程退出后无法判断成功/失败，误判为 failed（rep44 事故）。已在 iterative_train.py 添加 EXIT_CODE 哨兵机制\\n\\n## 2026-05-14 — MVP 4-Seed 正式分析（FINAL VERDICT）\\n\\n- **Overall: STRONG PASS** — 2 个 canary 家族 (token_entropy, ECE) 各自对 ≥1 个 diversity 指标有 SIGNIFICANT LEAD\\n- **最强结果 (4/4 seed 完全一致, std=0)**:\\n  - token_entropy → distinct_1: lag=-1, |r|=0.993–0.998, p=0.0006–0.0036\\n  - ece → distinct_2: lag=-1, |r|=0.995–0.997, p=0.0001–0.0023\\n- **Demoted**: MAUVE (floor effect), effective_rank (non-monotonic, 2+/2- across seeds)\\n- **Eliminated**: self_bleu (方向不一致), ece→perplexity (ECE 反而滞后 perplexity)\\n\\n## 2026-05-14 — ⚠️ Narrative 约束（4-seed 确认 + max_lag=7 验证 + 差分确认）\\n\\n- **Canary 仅能 lead diversity metrics (distinct_n)，不能 lead quality metric (perplexity)**\\n  - token_entropy→perplexity: lag=-5，4/4 seed 一致，但 p borderline（seed42 p=0.12）\\n  - **差分版 permutation Granger 最终确认**：canary→perplexity 全部 F→0, 完全不显著——旧结果 100% 由共享非平稳趋势驱动。这不是统计功效问题，是伪回归\\n  - ECE→perplexity: lag=+4.75（ECE 滞后 perplexity！完全反向）\\n  - 论文 claim 硬限：只能声称 \\\"canary predicts diversity collapse\\\"，不能声称 \\\"canary predicts perplexity\\\"\\n- **plan_006 dual-timescale 升级前景大幅降低**：差分后 F→0 说明关系是纯趋势驱动，更长序列不会改变。plan_006 仍值得跑（验证 diversity lead 在 T=20 下是否更稳健），但不应期望 perplexity channel 突破\\n\\n## 2026-05-14 — ⚠️ 方法论 Ablation 关键结论（plan_002 Phase 1）\\n\\n- **75% 伪回归率**：16/16 naive 显著 pair 中，12 个被 Toda-Yamamoto 推翻\\n- **token_entropy 是唯一 gold-standard canary**：对 distinct_1/2/3 均通过 Granger 因果检验（F=100-550, p<0.001, 4/4 seed）\\n- **ECE 因果预测力大幅缩水**：仅对 distinct_1 通过 TY（3/4 seed），distinct_2/3 的\\\"完美 cross-corr\\\"(lag=-1, std=0) 实为伪回归\\n- **所有 canary→perplexity 全部伪回归**——包括 token_entropy→perplexity (lag=-5)。非平稳驱动的假信号\\n- **self_bleu + effective_rank 完全失效**：100% 伪回归\\n- **Story 调整**：方法论贡献从 \\\"nice to have\\\" 变为 \\\"essential\\\"——naive 方法给出 100% 显著率实为 75% 伪信号\\n- 结果存：`results/mvp/analysis/method_ablation.json` + 服务器上 `method_ablation.py`\\n\\n## 2026-05-14 — ⚠️ Bootstrap TY Power Analysis（plan_009, CRITICAL）\\n\\n- **T=10 下 TY 效力严重不足**：d_max=0 power=0.205, d_max=1 power=0.09, d_max=adaptive power=0.05（≈随机）\\n- **T=20 仍不够**：d_max=1 power=0.172, 远低于 0.50 门槛\\n- **T=30 也不达标**：d_max=1 power=0.283; 唯有 d_max=0 达 0.606 但此时 Type I error 偏高 (0.081)\\n- **d_max 敏感性巨大**：所有 T 下 power range > 0.15\\n- **对论文影响**：(1) TY 不能作为核心证据，只能辅助; (2) 需要补充 permutation-based 或 bootstrap 推断作为替代; (3) limitation 必须透明报告; (4) 这反而强化 Claim 3——方法选择不仅改变结论，连检验本身的 power 也 regime-dependent\\n- **结果存**: `results/bootstrap_ty_results.json`\\n\\n## 2026-05-14 — ⚠️ Permutation Granger 差分版最终结论（D015 → Reviewer 修复）\\n\\n- **差分后 canary→diversity 全部保持显著**：token_entropy→distinct_1/2/3 和 ece→distinct_1/2/3 均 4/4 sig，F 值甚至上升（非伪回归，因果关系真实）\\n- **差分后 canary→perplexity 全部归零**：F→0, p→1。旧结果完全由共享非平稳趋势驱动。这是决定性证据\\n- **5-method ablation 最终排序**：naive 16/16 (100%) > differenced 14/16 (88%) > threshold 9/16 (56%) > permutation Granger 6/16 (38%) > TY 4/16 (25%)\\n- **ECE 地位回升**：差分版 permutation Granger 下 ece→distinct_1/2/3 全部 4/4 sig，比 TY (3/4) 更一致。ECE 作为 secondary canary 的证据比 TY-only 评估更强\\n- **Effect size 统一为 Cohen's f²**：所有分析脚本已统一（method_ablation.py, analyze_alpha_sweep.py, permutation_granger.py）\\n- **脚本**: `permutation_granger.py`（差分+shuffle），结果: `results/mvp/analysis/permutation_granger.json`（含 differenced 和 undifferenced 两组）\\n\\n## 2026-05-14 — mix_datasets bug 修复\\n\\n- **原逻辑**: 保全 synthetic，subsample real → 低 α 下 real 不足时比例静默偏移（α=0.25 变成实际 α=0.50）\\n- **修复后**: 双向 subsample（低 α: 保全 real + subsample syn; 高 α: 保全 syn + subsample real）+ shuffle(seed=seed) 避免位置偏差\\n- 14/14 测试通过，全 α 范围误差 <0.05\\n\\n## 2026-05-14 — plan_006 分析 checklist（20-gen extended run 完成时执行）\\n\\n- [ ] Full series cross-correlation: gen 0-20, max_lag=10, 所有 canary→downstream pair\\n- [ ] **Rolling-window 验证**: gen 5-20 子序列分析 token_entropy→perplexity，排除 gen 0→1 初始跳变\\n- [ ] 与 MVP 10-gen 结果对比：lag 值是否稳定，p-value 是否因样本量增大而达显著\\n- [ ] **主检验用 cross-corr + permutation Granger**（D015 决策），TY 仅 supplementary\\n- [ ] **注意**：差分版已证明 canary→perplexity 是纯趋势驱动。plan_006 的 perplexity channel 预期不会变显著，focus 转向验证 diversity lead 在更长序列下的稳健性\\n\", \"total_chars\": 6414, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0152L5EqRnHT32YRVmdTAyGC`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "6a9c5217-d981-4e5c-9ce5-3f0eade36764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019C4f2rumjmM4mhYvX9ZtBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 23066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T04:25:39.163Z_
+
+<details><summary>↩ Tool result · `toolu_0152L5EqRnHT32YRVmdTAyGC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/literature_map.yaml\", \"content\": \"papers:\\n  # ============================================================\\n  # CORE MODEL COLLAPSE\\n  # ============================================================\\n  - id: \\\"shumailov2024curse\\\"\\n    title: \\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\"\\n    authors: \\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson\\\"\\n    venue: \\\"Nature\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2305.17493\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失\\\"\\n      - \\\"区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）\\\"\\n      - \\\"三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合\\\"\\n      - \\\"在 VAE、GMM、LLM 上均验证了 collapse 的普遍性\\\"\\n    relevance_to_us: \\\"奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段\\\"\\n    metrics_studied: [\\\"perplexity\\\", \\\"distributional tail mass\\\"]\\n\\n  - id: \\\"alemohammad2024mad\\\"\\n    title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n    authors: \\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk\\\"\\n    venue: \\\"ICLR 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2307.01850\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"提出 Model Autophagy Disorder (MAD) 概念\\\"\\n      - \\\"autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降\\\"\\n      - \\\"在图像生成领域验证 self-consuming loop 的退化效应\\\"\\n    relevance_to_us: \\\"MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上\\\"\\n    metrics_studied: [\\\"FID\\\", \\\"precision\\\", \\\"recall\\\", \\\"diversity\\\"]\\n\\n  - id: \\\"dohmatob2024tale\\\"\\n    title: \\\"A Tale of Tails: Model Collapse as a Change of Scaling Laws\\\"\\n    authors: \\\"Elvis Dohmatob, Yunzhen Feng, et al.\\\"\\n    venue: \\\"ICML 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2402.07043\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"通过 scaling laws 视角分析 model collapse：collapse 表现为 scaling law 的变化\\\"\\n      - \\\"发现 loss of scaling, shifted scaling, skill un-learning, grokking 等多种退化模式\\\"\\n      - \\\"混入少量干净数据可缓解 collapse 并引发 grokking 现象\\\"\\n      - \\\"在 transformer 算术任务和 Llama2 文本生成上验证\\\"\\n    relevance_to_us: \\\"scaling law 变化视角为我们提供了理论基础；grokking 现象暗示 canary 指标可能出现非单调行为\\\"\\n    metrics_studied: [\\\"test loss\\\", \\\"scaling exponents\\\"]\\n\\n  - id: \\\"dohmatob2025strong\\\"\\n    title: \\\"Strong Model Collapse\\\"\\n    authors: \\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\"\\n    venue: \\\"ICLR 2025 (Spotlight)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2410.04840\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"即使合成数据占比极小（1/1000），仍可导致 model collapse\\\"\\n      - \\\"更大的训练集并不能避免 collapse\\\"\\n      - \\\"更大的模型（random projection 近似下）反而可能放大 collapse\\\"\\n      - \\\"存在 interpolation threshold 的 double-descent 现象\\\"\\n    relevance_to_us: \\\"强化了早期检测的必要性——即使极小的合成数据比例也能触发 collapse，因此 canary 指标必须敏感\\\"\\n    metrics_studied: [\\\"test loss\\\", \\\"population risk\\\"]\\n\\n  - id: \\\"guo2024linguistic\\\"\\n    title: \\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\"\\n    authors: \\\"Yanzhu Guo, Guokan Shang, et al.\\\"\\n    venue: \\\"NAACL 2024 Findings\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2311.09807\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"evaluation\\\"\\n    key_findings:\\n      - \\\"递归微调中，linguistic diversity 在连续迭代中持续下降\\\"\\n      - \\\"创造性任务中 diversity 下降最显著\\\"\\n      - \\\"开发了覆盖 lexical、syntactic、semantic 三层的 diversity 指标体系\\\"\\n    relevance_to_us: \\\"其多层 diversity 指标体系可直接作为我们 canary 指标的候选集；创造性 vs 事实任务的差异可能影响 canary 灵敏度\\\"\\n    metrics_studied: [\\\"distinct-n\\\", \\\"type-token ratio\\\", \\\"syntactic diversity\\\", \\\"semantic diversity\\\"]\\n\\n  - id: \\\"briesch2024selfconsuming\\\"\\n    title: \\\"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\\\"\\n    authors: \\\"Martin Briesch, Dominik Sobania, Franz Rothlauf\\\"\\n    venue: \\\"arXiv (2311.16822)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2311.16822\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"首次系统研究 LLM 的 self-consuming training loop\\\"\\n      - \\\"full synthetic cycle（完全替换）导致单点 collapse；data augmentation cycle 导致 diversity 缓慢下降\\\"\\n      - \\\"expanding data cycle（累积）在 50 代内保持 diversity\\\"\\n    relevance_to_us: \\\"其不同 data cycle 策略的对比直接对应我们的 alpha（synthetic ratio）实验设置\\\"\\n    metrics_studied: [\\\"diversity\\\", \\\"quality\\\"]\\n\\n  - id: \\\"truong2025entropy\\\"\\n    title: \\\"Entropy Collapse: A Universal Failure Mode of Intelligent Systems\\\"\\n    authors: \\\"Truong Xuan Khanh, Truong Quynh Hoa\\\"\\n    venue: \\\"arXiv (2512.12381)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2512.12381\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"证明 entropy collapse 是一阶（不连续）相变，临界点 α_c(β) = 1/(1−β)，entropy 在临界点跳变 0.698 nats\\\"\\n      - \\\"两个 universality class：Class 1（凸反馈，如 power-law）不可逆 ν=1；Class 2（线性反馈）可逆 ν=1/2\\\"\\n      - \\\"因为是一阶相变，autocorrelation/variance 等传统 early-warning signal 在 collapse 前保持有限——无预警\\\"\\n    relevance_to_us: \\\"定义了 canary 失效的 regime boundary：Class 1 凸反馈系统中传统 canary 理论上无效。我们需证明我们的 canary 在 Class 2+ regime 或非纯反馈场景中有效\\\"\\n    gaps: \\\"理论框架高度抽象，未给出 LLM 具体场景下的 α/β 估计方法；未测试哪些 canary 在接近一阶相变时仍有部分预警能力\\\"\\n    metrics_studied: [\\\"entropy\\\", \\\"autocorrelation\\\", \\\"variance\\\"]\\n\\n  - id: \\\"wang2026contaminated\\\"\\n    title: \\\"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\\\"\\n    authors: \\\"Kevin Wang, Hongqian Niu, Didong Li\\\"\\n    venue: \\\"arXiv (2602.16065)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2602.16065\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"首个不限数据分布假设的正面理论结果：universal approximator 下 contaminated recursive training 仍可收敛\\\"\\n      - \\\"收敛速率 = min(baseline 模型收敛速率, 每轮真实数据比例)——真实数据比例是瓶颈\\\"\\n      - \\\"突破了先前仅限 discrete/Gaussian 分布的理论框架，适用于一般连续分布\\\"\\n    relevance_to_us: \\\"为 post-MVP α-sweep 实验提供理论上界：收敛速率由 real data fraction 决定，可预测不同 α 下的 collapse 速率\\\"\\n    gaps: \\\"universal approximator 假设在实际有限容量模型中不严格成立；未讨论 canary 指标行为\\\"\\n    metrics_studied: [\\\"convergence rate\\\", \\\"population risk\\\"]\\n\\n  # ============================================================\\n  # CANARY / EARLY WARNING METRICS\\n  # ============================================================\\n  - id: \\\"chen2025scales\\\"\\n    title: \\\"Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios\\\"\\n    authors: \\\"Anonymous\\\"\\n    venue: \\\"arXiv (2510.05133)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.05133\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"**Calibration degradation precedes accuracy loss** — ECE 是 collapse 的 early warning signal\\\"\\n      - \\\"20% synthetic data 以下性能稳定，30% 以上退化加速\\\"\\n      - \\\"大模型（6.9B-12B）比小模型（410M-1.4B）更鲁棒\\\"\\n      - \\\"推理任务比检索任务更易退化\\\"\\n      - \\\"iteration 1 + 30% synthetic 时 ECE 从 0.08 升至 0.14（+75%）\\\"\\n    relevance_to_us: \\\"**最直接的竞争者/先驱**。证实 ECE 可作为 canary，但未做 lead-lag 分析，未建立多指标 panel 框架\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"accuracy\\\", \\\"perplexity\\\"]\\n\\n  - id: \\\"gambetta2024surplexity\\\"\\n    title: \\\"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI\\\"\\n    authors: \\\"Daniele Gambetta et al.\\\"\\n    venue: \\\"arXiv (2410.12341)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.12341\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"提出 surplexity（model surprise 度量）同时用于检测 collapse 和过滤训练数据\\\"\\n      - \\\"用 semantic networks 分析文本重复性和语义多样性\\\"\\n      - \\\"用 next-token probability 定量衡量 diversity loss\\\"\\n      - \\\"高 surplexity 过滤策略至少与 human-data baseline 同效，且更能降低分布偏斜\\\"\\n      - \\\"不需要区分 human vs AI-generated data\\\"\\n    relevance_to_us: \\\"surplexity 可作为我们 canary 指标候选之一；其 semantic network 方法提供了 diversity 度量的另一视角\\\"\\n    metrics_studied: [\\\"surplexity\\\", \\\"semantic network metrics\\\", \\\"next-token probability\\\"]\\n\\n  - id: \\\"qiu2025spectral\\\"\\n    title: \\\"Spectral Alignment as Predictor of Loss Explosion in Neural Network Training\\\"\\n    authors: \\\"Haiquan Qiu, You Wu, Yingjie Tan, Yaqing Wang, Quanming Yao\\\"\\n    venue: \\\"arXiv (2510.04202)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.04202\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"Spectral Alignment (SA) 监控层输入与权重矩阵主奇异向量的分布对齐\\\"\\n      - \\\"SA sign diversity collapse 是 representational collapse 和训练发散的早期预测器\\\"\\n      - \\\"比 weight norm、gradient norm 等传统指标更早、更清晰地检测到训练失败\\\"\\n      - \\\"健康层的 SA 应有正负均衡分布，collapse 到单侧则预示不稳定\\\"\\n    relevance_to_us: \\\"SA 是潜在的高价值 canary 指标——专门设计为 early warning，可直接纳入我们的指标 panel\\\"\\n    metrics_studied: [\\\"spectral alignment\\\", \\\"weight norm\\\", \\\"gradient norm\\\"]\\n\\n  - id: \\\"he2025closer\\\"\\n    title: \\\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\\\"\\n    authors: \\\"Shiliang He et al.\\\"\\n    venue: \\\"NeurIPS 2025 (Spotlight)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2509.16499\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"识别 diffusion model collapse 中的 generalization → memorization 转变\\\"\\n      - \\\"**训练数据的 entropy 递减是 collapse 的直接驱动因素和清晰指标**\\\"\\n      - \\\"提出基于 entropy 的数据选择策略，有效缓解 collapse\\\"\\n    relevance_to_us: \\\"data entropy 作为 canary 的有效性已被验证（diffusion domain）；需测试是否在 LLM 场景同样有效\\\"\\n    metrics_studied: [\\\"entropy\\\", \\\"FID\\\", \\\"diversity\\\"]\\n\\n  - id: \\\"ba2024fill\\\"\\n    title: \\\"Fill In The Gaps: Model Calibration and Generalization with Synthetic Data\\\"\\n    authors: \\\"Yang Ba, Michelle V Mancenido, Rong Pan\\\"\\n    venue: \\\"EMNLP 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.10864\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"用 LLM 生成合成数据来修复 calibration 错误的 reliability diagram bins\\\"\\n      - \\\"推导了基于 PAC 框架的 ECE bound\\\"\\n      - \\\"合成数据可改善 calibration 但需精心设计生成策略\\\"\\n    relevance_to_us: \\\"ECE 的理论 bound 可为我们的 canary 阈值设定提供理论依据\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"accuracy\\\"]\\n\\n  - id: \\\"sigma2026spectral\\\"\\n    title: \\\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\\\"\\n    authors: \\\"Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue\\\"\\n    venue: \\\"arXiv (2601.03385)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2601.03385\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"基于 embedding Gram matrix 谱分析的 collapse 监控框架：Track I（确定性谱界）保守但鲁棒，Track II（随机谱缩放）灵敏但需采样\\\"\\n      - \\\"Track I/II 的分歧本身是 early-stage collapse 的诊断信号，早于表面重复性伪影\\\"\\n      - \\\"随机谱界使部分观测的 Gram matrix 也可用于大规模模型的可扩展监控\\\"\\n    relevance_to_us: \\\"最直接的 spectral canary 竞争者。我们的 effective rank 是其简化版（单一标量 vs 完整谱界）；需在 related work 中明确差异：SIGMA 提供双轨谱界，我们用单一 effective rank 换取更低计算开销和多指标 panel 集成\\\"\\n    gaps: \\\"未做 lead-lag 分析，未与 ECE/diversity 等非谱指标对比；Track I/II 的计算开销在 iterative loop 多轮场景下可能不可忽略\\\"\\n    metrics_studied: [\\\"Gram matrix eigenspectrum\\\", \\\"spectral norm bounds\\\"]\\n\\n  - id: \\\"kalinowski2026topology\\\"\\n    title: \\\"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index\\\"\\n    authors: \\\"Alexander Kalinowski\\\"\\n    venue: \\\"arXiv (2604.26984)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2604.26984\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出基于 Modular Morse Homology Maintenance (MMHM) 的在线拓扑监控方案，增量更新避免每轮重建\\\"\\n      - \\\"Collapse Index (CI) 组合多尺度拓扑特征，在 LLM fine-tuning 和 temporal KGE 训练中提供低延迟 early-warning\\\"\\n      - \\\"拓扑方法捕捉表示空间的各向异性和多尺度结构丧失\\\"\\n    relevance_to_us: \\\"topology-based monitoring 是与 spectral 方法正交的 collapse 检测路线。我们排除了该方法（计算开销高、可解释性弱），但 related work 需要对比说明选择 spectral/calibration panel 而非 topology 的理由\\\"\\n    gaps: \\\"计算开销显著高于 effective rank 等标量指标；未在 iterative synthetic training loop 场景下测试；与 ECE 等轻量 canary 无对比\\\"\\n    metrics_studied: [\\\"Collapse Index\\\", \\\"persistent homology features\\\"]\\n\\n  # ============================================================\\n  # DIVERSITY METRICS (BACKGROUND)\\n  # ============================================================\\n  - id: \\\"zhu2018texygen\\\"\\n    title: \\\"Texygen: A Benchmarking Platform for Text Generation Models\\\"\\n    authors: \\\"Yaoming Zhu et al.\\\"\\n    venue: \\\"SIGIR 2018\\\"\\n    year: 2018\\n    url: \\\"https://arxiv.org/abs/1802.01886\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 Self-BLEU 度量：计算生成句子间的 BLEU 相似度，Self-BLEU 越高多样性越低\\\"\\n      - \\\"成为文本生成多样性评估的标准基准之一\\\"\\n    relevance_to_us: \\\"Self-BLEU 是我们 diversity canary 的经典候选\\\"\\n    metrics_studied: [\\\"Self-BLEU\\\", \\\"BLEU\\\"]\\n\\n  - id: \\\"li2016diversity\\\"\\n    title: \\\"A Diversity-Promoting Objective Function for Neural Conversation Models\\\"\\n    authors: \\\"Jiwei Li et al.\\\"\\n    venue: \\\"NAACL 2016\\\"\\n    year: 2016\\n    url: \\\"https://arxiv.org/abs/1510.03055\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 distinct-1 / distinct-2 指标衡量生成文本的 n-gram 多样性\\\"\\n      - \\\"计算 unique n-gram 数占总 n-gram 数的比例\\\"\\n    relevance_to_us: \\\"distinct-n 是最廉价的 diversity canary 之一，计算开销极低\\\"\\n    metrics_studied: [\\\"distinct-1\\\", \\\"distinct-2\\\"]\\n\\n  # ============================================================\\n  # REPRESENTATION / SPECTRAL COLLAPSE\\n  # ============================================================\\n  - id: \\\"jing2022understanding\\\"\\n    title: \\\"Understanding Dimensional Collapse in Contrastive Self-supervised Learning\\\"\\n    authors: \\\"Li Jing et al.\\\"\\n    venue: \\\"ICLR 2022\\\"\\n    year: 2022\\n    url: \\\"https://openreview.net/forum?id=YevsQ05DEN7\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"定义 dimensional collapse：embedding 向量只跨越低维子空间\\\"\\n      - \\\"effective rank（基于归一化特征值 entropy 的指数）作为 collapse 度量\\\"\\n      - \\\"strong augmentation 和 implicit regularization 驱动低秩解\\\"\\n    relevance_to_us: \\\"effective rank 的定义和计算方式可直接迁移到我们的 embedding 空间监控\\\"\\n    metrics_studied: [\\\"effective rank\\\", \\\"singular value spectrum\\\"]\\n\\n  - id: \\\"noci2024mind\\\"\\n    title: \\\"Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Transformers\\\"\\n    authors: \\\"Lorenzo Noci et al.\\\"\\n    venue: \\\"NeurIPS 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.07799\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"用 Random Matrix Theory 分析 attention 层的 rank collapse\\\"\\n      - \\\"发现 attention matrix 最大两个奇异值之间的 spectral gap 是 width-collapse 的根因\\\"\\n      - \\\"rank collapse in depth: 所有 token 沿层收敛到单一表示\\\"\\n    relevance_to_us: \\\"spectral gap 作为另一种 spectral canary 候选；其 RMT 分析框架可启发我们的理论工作\\\"\\n    metrics_studied: [\\\"spectral gap\\\", \\\"singular values\\\", \\\"effective rank\\\"]\\n\\n  # ============================================================\\n  # DATA MIXING & ACCUMULATION\\n  # ============================================================\\n  - id: \\\"kazdan2025collapse\\\"\\n    title: \\\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\\\"\\n    authors: \\\"Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael Rafailov, David L. Donoho, Sanmi Koyejo\\\"\\n    venue: \\\"ICML 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2410.16713\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"系统对比 replace vs accumulate 场景\\\"\\n      - \\\"replace → collapse；accumulate → 可避免 collapse\\\"\\n      - \\\"发现 real data 和 synthetic data 之间存在非平凡的交互效应\\\"\\n      - \\\"synthetic data 的价值取决于 real data 的绝对数量\\\"\\n    relevance_to_us: \\\"直接对应我们的 alpha（mixing ratio）实验维度；其 replace vs accumulate 框架是我们实验设计的重要参考\\\"\\n    metrics_studied: [\\\"test loss\\\"]\\n\\n  - id: \\\"dey2024breaking\\\"\\n    title: \\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\"\\n    authors: \\\"Apratim Dey, David Donoho, et al.\\\"\\n    venue: \\\"ICML 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2404.01413\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"替换数据 → 发散 population risk；累积数据 → 避免发散\\\"\\n      - \\\"证明累积策略在多种模型（GMM, HMM, LLM）上有效\\\"\\n    relevance_to_us: \\\"为我们的 alpha 实验提供理论预测：累积 vs 替换是 collapse 速率的关键调节因子\\\"\\n    metrics_studied: [\\\"population risk\\\"]\\n\\n  - id: \\\"epstein2024howbad\\\"\\n    title: \\\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\\\"\\n    authors: \\\"Mohamed El Amine Epstein et al.\\\"\\n    venue: \\\"arXiv (2404.05090)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2404.05090\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"纯合成数据训练不可避免 collapse\\\"\\n      - \\\"给出 synthetic data 比例上界的估计——低于此比例可避免 collapse\\\"\\n      - \\\"递归训练使原始分布尾部消失\\\"\\n    relevance_to_us: \\\"其 mixing ratio 上界估计可对比我们实验中观测到的 canary 触发阈值\\\"\\n    metrics_studied: [\\\"perplexity\\\"]\\n\\n  - id: \\\"fu2025selfconsuming\\\"\\n    title: \\\"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops\\\"\\n    authors: \\\"Shi Fu, Yingjie Wang, Yuzhu Chen, Xinmei Tian, Dacheng Tao\\\"\\n    venue: \\\"ICLR 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2502.18865\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"引入 recursive stability 概念，首次给出 self-consuming loop 的泛化分析\\\"\\n      - \\\"恒定比例的真实数据即可保证 STL 收敛；同时给出最优合成数据量的 insight\\\"\\n      - \\\"模型架构和 real/synthetic 数据比例共同决定 STL 的成败\\\"\\n    relevance_to_us: \\\"为 post-MVP α-sweep（synthetic ratio 梯度）实验提供理论预期：50% accumulation 条件下收敛有理论保证\\\"\\n    gaps: \\\"理论分析限于特定 generalization bound 框架，未涉及 canary 指标的行为；未讨论不同 α 下 collapse 速率的精细结构\\\"\\n    metrics_studied: [\\\"generalization bound\\\", \\\"population risk\\\"]\\n\\n  - id: \\\"bakshi2026improvement\\\"\\n    title: \\\"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources\\\"\\n    authors: \\\"Soham Bakshi, Sunrit Chakraborty\\\"\\n    venue: \\\"arXiv (2602.10531)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2602.10531\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"αt（每轮混合权重）trajectory 和 nt（每轮样本量）scaling 的交互决定三种 regime：collapse / improvement / consistency\\\"\\n      - \\\"当 αt 衰减足够快且 nt 增长足够快时，迭代估计可收敛到真实分布（improvement regime）\\\"\\n      - \\\"αt 衰减不足或 nt 增长不足则进入 collapse regime；边界条件给出 consistency regime\\\"\\n      - \\\"在 next-token prediction 语言模型上分析完整迭代演化动态\\\"\\n    relevance_to_us: \\\"αt/nt 条件直接对应我们 α-sweep 实验的理论预期：不同 synthetic ratio 衰减曲线下 canary 应呈现不同时序模式\\\"\\n    gaps: \\\"理论结果基于渐近分析，有限代数下的 transient behavior 未充分刻画；未讨论哪些指标能区分三种 regime\\\"\\n    metrics_studied: [\\\"population risk\\\", \\\"total variation distance\\\"]\\n\\n  # ============================================================\\n  # MITIGATION & VERIFICATION\\n  # ============================================================\\n  - id: \\\"feng2025escaping\\\"\\n    title: \\\"Escaping Model Collapse via Synthetic Data Verification\\\"\\n    authors: \\\"Yunzhen Feng et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.16657\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"通过外部 verifier（human 或 better model）注入信息可避免 collapse\\\"\\n      - \\\"verifier-guided retraining 带来短期改善，但最终收敛到 verifier 的 knowledge center\\\"\\n      - \\\"除非 verifier 完全可靠，早期收益会 plateau 甚至逆转\\\"\\n    relevance_to_us: \\\"verification 作为 intervention 策略——如果 canary 触发，可考虑此类 reactive intervention\\\"\\n    metrics_studied: [\\\"test loss\\\"]\\n\\n  - id: \\\"barzilai2025consistency\\\"\\n    title: \\\"When Models Don't Collapse: On the Consistency of Iterative MLE\\\"\\n    authors: \\\"Daniel Barzilai, Ohad Shamir\\\"\\n    venue: \\\"ICML 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2505.19046\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"在标准 MLE 一致性假设下，即使 real data fraction 趋近零也可避免 collapse\\\"\\n      - \\\"但证明了某些情况下 collapse 可以任意快地发生——首次给出严格 collapse 反例\\\"\\n    relevance_to_us: \\\"理论上的 collapse 可发生任意快的结论强化了 early warning 的价值\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"dces2026counter\\\"\\n    title: \\\"Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling\\\"\\n    authors: \\\"Anonymous\\\"\\n    venue: \\\"MDPI Electronics (2026)\\\"\\n    year: 2026\\n    url: \\\"https://www.mdpi.com/2079-9292/15/4/869\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 DCES（dynamic center-edge sampling）数据选择框架\\\"\\n      - \\\"DCES 在 ECE（0.1058 vs 0.1200）和 entropy 保持上优于随机选择\\\"\\n    relevance_to_us: \\\"其 ECE 和 entropy 对比数据为我们的指标 baseline 提供参考\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"entropy\\\"]\\n\\n  # ============================================================\\n  # POSITION / SURVEY / EPISTEMICS\\n  # ============================================================\\n  - id: \\\"schaeffer2025position\\\"\\n    title: \\\"Position: Model Collapse Does Not Mean What You Think\\\"\\n    authors: \\\"Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo\\\"\\n    venue: \\\"arXiv (2503.03150)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2503.03150\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"文献中实际包含 8 种不同且有时矛盾的 model collapse 定义\\\"\\n      - \\\"许多 collapse 预测依赖于与现实不符的假设\\\"\\n      - \\\"多种 collapse 场景是可以轻易避免的\\\"\\n    relevance_to_us: \\\"提醒我们明确定义 collapse 的操作标准；不同定义可能需要不同的 canary 指标\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"wang2025epistemic\\\"\\n    title: \\\"Epistemic Diversity and Knowledge Collapse in Large Language Models\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv (2510.04226)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.04226\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"27 个 LLM 在 155 个主题上的 epistemic diversity 评估\\\"\\n      - \\\"所有模型的 epistemic diversity 低于基本 web 搜索\\\"\\n      - \\\"模型越大 epistemic diversity 反而越低；RAG 有正面效果\\\"\\n    relevance_to_us: \\\"knowledge collapse 维度可扩展我们对 diversity canary 的理解——不仅是 lexical/syntactic 还有 epistemic\\\"\\n    metrics_studied: [\\\"epistemic diversity\\\"]\\n\\n  # ============================================================\\n  # METHODOLOGY (GRANGER / LEAD-LAG)\\n  # ============================================================\\n  - id: \\\"shojaie2022granger\\\"\\n    title: \\\"Granger Causality: A Review and Recent Advances\\\"\\n    authors: \\\"Ali Shojaie, Emily B. Fox\\\"\\n    venue: \\\"Annual Review of Statistics and Its Application\\\"\\n    year: 2022\\n    url: \\\"https://arxiv.org/abs/2105.02675\\\"\\n    category: \\\"methodology\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"Granger causality 综述：从经典线性到非线性/neural 方法\\\"\\n      - \\\"Panel data 场景的 Granger causality 扩展\\\"\\n      - \\\"VAR 和 neural Granger causality 的对比\\\"\\n    relevance_to_us: \\\"为我们的 panel Granger causality 分析提供方法论基础\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"marcinkevics2022neural\\\"\\n    title: \\\"Granger Causality Using Neural Networks\\\"\\n    authors: \\\"Raphael Marcinkevics, Julia Vogt\\\"\\n    venue: \\\"arXiv (2208.03703)\\\"\\n    year: 2022\\n    url: \\\"https://arxiv.org/abs/2208.03703\\\"\\n    category: \\\"methodology\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"用 neural network 估计 Granger causality，突破线性假设\\\"\\n      - \\\"两个模型对比法：含/不含外生变量的预测误差差异即 Granger causality 证据\\\"\\n    relevance_to_us: \\\"我们的多指标时序可能存在非线性关系，neural Granger causality 是自然选择\\\"\\n    metrics_studied: []\\n\\ngaps:\\n  - \\\"无人系统做过 canary 指标的 lead-lag / Granger causality 分析——现有工作只在事后观察到指标变化，未量化哪些指标能提前多少步预测 collapse\\\"\\n  - \\\"ECE 在 collapse 场景下几乎未被系统研究——chen2025scales 是唯一报告 ECE 先于 accuracy 退化的工作，但未做因果分析\\\"\\n  - \\\"embedding effective rank 未在 iterative synthetic training 场景下被测试——仅在 contrastive learning/transformer 训练中研究过\\\"\\n  - \\\"多指标 panel 框架缺失——无人同时追踪 ECE + effective rank + diversity + perplexity 的时序行为并分析其 lead-lag 关系\\\"\\n  - \\\"alpha（synthetic ratio）对 canary 灵敏度的影响未被研究——现有工作只关注 alpha 对最终性能的影响，不关注 canary 的 lead time 如何随 alpha 变化\\\"\\n  - \\\"predictive intervention vs reactive intervention 缺少对比——没有工作量化 early warning 带来的实际干预收益\\\"\\n  - \\\"surplexity 和 spectral alignment 未在 iterative collapse 场景下交叉验证\\\"\\n  - \\\"跨任务 canary 普适性未知——reasoning vs retrieval vs creative tasks 中哪些 canary 更可靠\\\"\\n\\nnovelty_assessment: |\\n  我们项目的核心 novelty 在于：\\n\\n  1. **Panel Granger Causality 框架**：首次将多指标时序数据的因果分析方法应用于 model collapse 早期预警。\\n     现有工作（chen2025scales, gambetta2024surplexity）只是事后观察到某些指标先变化，\\n     但没有人做过系统的 lead-lag 量化分析。\\n\\n  2. **多指标 Canary Panel**：同时追踪 ECE、effective rank、Self-BLEU/distinct-n、\\n     perplexity、entropy、surplexity 等指标，分析其相互关系和各自的 lead time。\\n     现有工作都是单一指标或最多两三个指标的孤立分析。\\n\\n  3. **alpha-dependent Canary Sensitivity**：系统研究 synthetic ratio 如何影响各 canary\\n     指标的灵敏度和 lead time。dohmatob2025strong 证明极小的 alpha 就能触发 collapse，\\n     但没人研究 canary 在不同 alpha 下的行为。\\n\\n  4. **与已有工作的差异**：\\n     - vs chen2025scales: 他们发现 ECE 先退化但没有做因果分析；我们用 Granger causality 量化\\n     - vs gambetta2024surplexity: 他们提出 surplexity 用于检测和缓解 collapse；\\n       我们将其纳入更广的 panel 并研究其 lead-lag 特性\\n     - vs he2025closer: 他们在 diffusion 中用 entropy 作为指标；我们在 LLM 中测试更多指标\\n     - vs qiu2025spectral: 他们的 SA 用于训练 loss explosion 预警；\\n       我们将类似思路迁移到 iterative collapse 场景\\n\\n  5. **潜在风险**：chen2025scales 已经非常接近我们的方向。如果他们扩展到 lead-lag 分析，\\n     我们的 novelty 会被削弱。需要快速推进并在方法论（Granger causality）上建立壁垒。\\n\", \"total_chars\": 24089, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "c33c3f01-5e2a-4635-b795-41fc3a39c038",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/literature_map.yaml\\\", \\\"content\\\": \\\"papers:\\\\n  # ============================================================\\\\n  # CORE MODEL COLLAPSE\\\\n  # ============================================================\\\\n  - id: \\\\\\\"shumailov2024curse\\\\\\\"\\\\n    title: \\\\\\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\\\\\"\\\\n    authors: \\\\\\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson\\\\\\\"\\\\n    venue: \\\\\\\"Nature\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2305.17493\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失\\\\\\\"\\\\n      - \\\\\\\"区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）\\\\\\\"\\\\n      - \\\\\\\"三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合\\\\\\\"\\\\n      - \\\\\\\"在 VAE、GMM、LLM 上均验证了 collapse 的普遍性\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distributional tail mass\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"alemohammad2024mad\\\\\\\"\\\\n    title: \\\\\\\"Self-Consuming Generative Models Go MAD\\\\\\\"\\\\n    authors: \\\\\\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk\\\\\\\"\\\\n    venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2307.01850\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出 Model Autophagy Disorder (MAD) 概念\\\\\\\"\\\\n      - \\\\\\\"autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降\\\\\\\"\\\\n      - \\\\\\\"在图像生成领域验证 self-consuming loop 的退化效应\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"FID\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"diversity\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"dohmatob2024tale\\\\\\\"\\\\n    title: \\\\\\\"A Tale of Tails: Model Collapse as a Change of Scaling Laws\\\\\\\"\\\\n    authors: \\\\\\\"Elvis Dohmatob, Yunzhen Feng, et al.\\\\\\\"\\\\n    venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2402.07043\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"通过 scaling laws 视角分析 model collapse：collapse 表现为 scaling law 的变化\\\\\\\"\\\\n      - \\\\\\\"发现 loss of scaling, shifted scaling, skill un-learning, grokking 等多种退化模式\\\\\\\"\\\\n      - \\\\\\\"混入少量干净数据可缓解 collapse 并引发 grokking 现象\\\\\\\"\\\\n      - \\\\\\\"在 transformer 算术任务和 Llama2 文本生成上验证\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"scaling law 变化视角为我们提供了理论基础；grokking 现象暗示 canary 指标可能出现非单调行为\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"test loss\\\\\\\", \\\\\\\"scaling exponents\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"dohmatob2025strong\\\\\\\"\\\\n    title: \\\\\\\"Strong Model Collapse\\\\\\\"\\\\n    authors: \\\\\\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\\\\\"\\\\n    venue: \\\\\\\"ICLR 2025 (Spotlight)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2410.04840\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"即使合成数据占比极小（1/1000），仍可导致 model collapse\\\\\\\"\\\\n      - \\\\\\\"更大的训练集并不能避免 collapse\\\\\\\"\\\\n      - \\\\\\\"更大的模型（random projection 近似下）反而可能放大 collapse\\\\\\\"\\\\n      - \\\\\\\"存在 interpolation threshold 的 double-descent 现象\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"强化了早期检测的必要性——即使极小的合成数据比例也能触发 collapse，因此 canary 指标必须敏感\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"test loss\\\\\\\", \\\\\\\"population risk\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"guo2024linguistic\\\\\\\"\\\\n    title: \\\\\\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\\\\\"\\\\n    authors: \\\\\\\"Yanzhu Guo, Guokan Shang, et al.\\\\\\\"\\\\n    venue: \\\\\\\"NAACL 2024 Findings\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2311.09807\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"evaluation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"递归微调中，linguistic diversity 在连续迭代中持续下降\\\\\\\"\\\\n      - \\\\\\\"创造性任务中 diversity 下降最显著\\\\\\\"\\\\n      - \\\\\\\"开发了覆盖 lexical、syntactic、semantic 三层的 diversity 指标体系\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"其多层 diversity 指标体系可直接作为我们 canary 指标的候选集；创造性 vs 事实任务的差异可能影响 canary 灵敏度\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"distinct-n\\\\\\\", \\\\\\\"type-token ratio\\\\\\\", \\\\\\\"syntactic diversity\\\\\\\", \\\\\\\"semantic diversity\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"briesch2024selfconsuming\\\\\\\"\\\\n    title: \\\\\\\"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\\\\\\\"\\\\n    authors: \\\\\\\"Martin Briesch, Dominik Sobania, Franz Rothlauf\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2311.16822)\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2311.16822\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"首次系统研究 LLM 的 self-consuming training loop\\\\\\\"\\\\n      - \\\\\\\"full synthetic cycle（完全替换）导致单点 collapse；data augmentation cycle 导致 diversity 缓慢下降\\\\\\\"\\\\n      - \\\\\\\"expanding data cycle（累积）在 50 代内保持 diversity\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"其不同 data cycle 策略的对比直接对应我们的 alpha（synthetic ratio）实验设置\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"diversity\\\\\\\", \\\\\\\"quality\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"truong2025entropy\\\\\\\"\\\\n    title: \\\\\\\"Entropy Collapse: A Universal Failure Mode of Intelligent Systems\\\\\\\"\\\\n    authors: \\\\\\\"Truong Xuan Khanh, Truong Quynh Hoa\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2512.12381)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2512.12381\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"theoretical-foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"证明 entropy collapse 是一阶（不连续）相变，临界点 α_c(β) = 1/(1−β)，entropy 在临界点跳变 0.698 nats\\\\\\\"\\\\n      - \\\\\\\"两个 universality class：Class 1（凸反馈，如 power-law）不可逆 ν=1；Class 2（线性反馈）可逆 ν=1/2\\\\\\\"\\\\n      - \\\\\\\"因为是一阶相变，autocorrelation/variance 等传统 early-warning signal 在 collapse 前保持有限——无预警\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"定义了 canary 失效的 regime boundary：Class 1 凸反馈系统中传统 canary 理论上无效。我们需证明我们的 canary 在 Class 2+ regime 或非纯反馈场景中有效\\\\\\\"\\\\n    gaps: \\\\\\\"理论框架高度抽象，未给出 LLM 具体场景下的 α/β 估计方法；未测试哪些 canary 在接近一阶相变时仍有部分预警能力\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"entropy\\\\\\\", \\\\\\\"autocorrelation\\\\\\\", \\\\\\\"variance\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"wang2026contaminated\\\\\\\"\\\\n    title: \\\\\\\"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\\\\\\\"\\\\n    authors: \\\\\\\"Kevin Wang, Hongqian Niu, Didong Li\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2602.16065)\\\\\\\"\\\\n    year: 2026\\\\n    url: \\\\\\\"https://arxiv.org/abs/2602.16065\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"theoretical-foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"首个不限数据分布假设的正面理论结果：universal approximator 下 contaminated recursive training 仍可收敛\\\\\\\"\\\\n      - \\\\\\\"收敛速率 = min(baseline 模型收敛速率, 每轮真实数据比例)——真实数据比例是瓶颈\\\\\\\"\\\\n      - \\\\\\\"突破了先前仅限 discrete/Gaussian 分布的理论框架，适用于一般连续分布\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"为 post-MVP α-sweep 实验提供理论上界：收敛速率由 real data fraction 决定，可预测不同 α 下的 collapse 速率\\\\\\\"\\\\n    gaps: \\\\\\\"universal approximator 假设在实际有限容量模型中不严格成立；未讨论 canary 指标行为\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"convergence rate\\\\\\\", \\\\\\\"population risk\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # CANARY / EARLY WARNING METRICS\\\\n  # ============================================================\\\\n  - id: \\\\\\\"chen2025scales\\\\\\\"\\\\n    title: \\\\\\\"Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios\\\\\\\"\\\\n    authors: \\\\\\\"Anonymous\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2510.05133)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2510.05133\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"**Calibration degradation precedes accuracy loss** — ECE 是 collapse 的 early warning signal\\\\\\\"\\\\n      - \\\\\\\"20% synthetic data 以下性能稳定，30% 以上退化加速\\\\\\\"\\\\n      - \\\\\\\"大模型（6.9B-12B）比小模型（410M-1.4B）更鲁棒\\\\\\\"\\\\n      - \\\\\\\"推理任务比检索任务更易退化\\\\\\\"\\\\n      - \\\\\\\"iteration 1 + 30% synthetic 时 ECE 从 0.08 升至 0.14（+75%）\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"**最直接的竞争者/先驱**。证实 ECE 可作为 canary，但未做 lead-lag 分析，未建立多指标 panel 框架\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"ECE\\\\\\\", \\\\\\\"accuracy\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"gambetta2024surplexity\\\\\\\"\\\\n    title: \\\\\\\"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI\\\\\\\"\\\\n    authors: \\\\\\\"Daniele Gambetta et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2410.12341)\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2410.12341\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出 surplexity（model surprise 度量）同时用于检测 collapse 和过滤训练数据\\\\\\\"\\\\n      - \\\\\\\"用 semantic networks 分析文本重复性和语义多样性\\\\\\\"\\\\n      - \\\\\\\"用 next-token probability 定量衡量 diversity loss\\\\\\\"\\\\n      - \\\\\\\"高 surplexity 过滤策略至少与 human-data baseline 同效，且更能降低分布偏斜\\\\\\\"\\\\n      - \\\\\\\"不需要区分 human vs AI-generated data\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"surplexity 可作为我们 canary 指标候选之一；其 semantic network 方法提供了 diversity 度量的另一视角\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"surplexity\\\\\\\", \\\\\\\"semantic network metrics\\\\\\\", \\\\\\\"next-token probability\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"qiu2025spectral\\\\\\\"\\\\n    title: \\\\\\\"Spectral Alignment as Predictor of Loss Explosion in Neural Network Training\\\\\\\"\\\\n    authors: \\\\\\\"Haiquan Qiu, You Wu, Yingjie Tan, Yaqing Wang, Quanming Yao\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2510.04202)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2510.04202\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"Spectral Alignment (SA) 监控层输入与权重矩阵主奇异向量的分布对齐\\\\\\\"\\\\n      - \\\\\\\"SA sign diversity collapse 是 representational collapse 和训练发散的早期预测器\\\\\\\"\\\\n      - \\\\\\\"比 weight norm、gradient norm 等传统指标更早、更清晰地检测到训练失败\\\\\\\"\\\\n      - \\\\\\\"健康层的 SA 应有正负均衡分布，collapse 到单侧则预示不稳定\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"SA 是潜在的高价值 canary 指标——专门设计为 early warning，可直接纳入我们的指标 panel\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"spectral alignment\\\\\\\", \\\\\\\"weight norm\\\\\\\", \\\\\\\"gradient norm\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"he2025closer\\\\\\\"\\\\n    title: \\\\\\\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\\\\\\\"\\\\n    authors: \\\\\\\"Shiliang He et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025 (Spotlight)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2509.16499\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"识别 diffusion model collapse 中的 generalization → memorization 转变\\\\\\\"\\\\n      - \\\\\\\"**训练数据的 entropy 递减是 collapse 的直接驱动因素和清晰指标**\\\\\\\"\\\\n      - \\\\\\\"提出基于 entropy 的数据选择策略，有效缓解 collapse\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"data entropy 作为 canary 的有效性已被验证（diffusion domain）；需测试是否在 LLM 场景同样有效\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"entropy\\\\\\\", \\\\\\\"FID\\\\\\\", \\\\\\\"diversity\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"ba2024fill\\\\\\\"\\\\n    title: \\\\\\\"Fill In The Gaps: Model Calibration and Generalization with Synthetic Data\\\\\\\"\\\\n    authors: \\\\\\\"Yang Ba, Michelle V Mancenido, Rong Pan\\\\\\\"\\\\n    venue: \\\\\\\"EMNLP 2024\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2410.10864\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"用 LLM 生成合成数据来修复 calibration 错误的 reliability diagram bins\\\\\\\"\\\\n      - \\\\\\\"推导了基于 PAC 框架的 ECE bound\\\\\\\"\\\\n      - \\\\\\\"合成数据可改善 calibration 但需精心设计生成策略\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"ECE 的理论 bound 可为我们的 canary 阈值设定提供理论依据\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"ECE\\\\\\\", \\\\\\\"accuracy\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"sigma2026spectral\\\\\\\"\\\\n    title: \\\\\\\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\\\\\\\"\\\\n    authors: \\\\\\\"Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2601.03385)\\\\\\\"\\\\n    year: 2026\\\\n    url: \\\\\\\"https://arxiv.org/abs/2601.03385\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"direct-competitor\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"基于 embedding Gram matrix 谱分析的 collapse 监控框架：Track I（确定性谱界）保守但鲁棒，Track II（随机谱缩放）灵敏但需采样\\\\\\\"\\\\n      - \\\\\\\"Track I/II 的分歧本身是 early-stage collapse 的诊断信号，早于表面重复性伪影\\\\\\\"\\\\n      - \\\\\\\"随机谱界使部分观测的 Gram matrix 也可用于大规模模型的可扩展监控\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"最直接的 spectral canary 竞争者。我们的 effective rank 是其简化版（单一标量 vs 完整谱界）；需在 related work 中明确差异：SIGMA 提供双轨谱界，我们用单一 effective rank 换取更低计算开销和多指标 panel 集成\\\\\\\"\\\\n    gaps: \\\\\\\"未做 lead-lag 分析，未与 ECE/diversity 等非谱指标对比；Track I/II 的计算开销在 iterative loop 多轮场景下可能不可忽略\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"Gram matrix eigenspectrum\\\\\\\", \\\\\\\"spectral norm bounds\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"kalinowski2026topology\\\\\\\"\\\\n    title: \\\\\\\"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index\\\\\\\"\\\\n    authors: \\\\\\\"Alexander Kalinowski\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2604.26984)\\\\\\\"\\\\n    year: 2026\\\\n    url: \\\\\\\"https://arxiv.org/abs/2604.26984\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出基于 Modular Morse Homology Maintenance (MMHM) 的在线拓扑监控方案，增量更新避免每轮重建\\\\\\\"\\\\n      - \\\\\\\"Collapse Index (CI) 组合多尺度拓扑特征，在 LLM fine-tuning 和 temporal KGE 训练中提供低延迟 early-warning\\\\\\\"\\\\n      - \\\\\\\"拓扑方法捕捉表示空间的各向异性和多尺度结构丧失\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"topology-based monitoring 是与 spectral 方法正交的 collapse 检测路线。我们排除了该方法（计算开销高、可解释性弱），但 related work 需要对比说明选择 spectral/calibration panel 而非 topology 的理由\\\\\\\"\\\\n    gaps: \\\\\\\"计算开销显著高于 effective rank 等标量指标；未在 iterative synthetic training loop 场景下测试；与 ECE 等轻量 canary 无对比\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"Collapse Index\\\\\\\", \\\\\\\"persistent homology features\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # DIVERSITY METRICS (BACKGROUND)\\\\n  # ============================================================\\\\n  - id: \\\\\\\"zhu2018texygen\\\\\\\"\\\\n    title: \\\\\\\"Texygen: A Benchmarking Platform for Text Generation Models\\\\\\\"\\\\n    authors: \\\\\\\"Yaoming Zhu et al.\\\\\\\"\\\\n    venue: \\\\\\\"SIGIR 2018\\\\\\\"\\\\n    year: 2018\\\\n    url: \\\\\\\"https://arxiv.org/abs/1802.01886\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出 Self-BLEU 度量：计算生成句子间的 BLEU 相似度，Self-BLEU 越高多样性越低\\\\\\\"\\\\n      - \\\\\\\"成为文本生成多样性评估的标准基准之一\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"Self-BLEU 是我们 diversity canary 的经典候选\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"Self-BLEU\\\\\\\", \\\\\\\"BLEU\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"li2016diversity\\\\\\\"\\\\n    title: \\\\\\\"A Diversity-Promoting Objective Function for Neural Conversation Models\\\\\\\"\\\\n    authors: \\\\\\\"Jiwei Li et al.\\\\\\\"\\\\n    venue: \\\\\\\"NAACL 2016\\\\\\\"\\\\n    year: 2016\\\\n    url: \\\\\\\"https://arxiv.org/abs/1510.03055\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出 distinct-1 / distinct-2 指标衡量生成文本的 n-gram 多样性\\\\\\\"\\\\n      - \\\\\\\"计算 unique n-gram 数占总 n-gram 数的比例\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"distinct-n 是最廉价的 diversity canary 之一，计算开销极低\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"distinct-1\\\\\\\", \\\\\\\"distinct-2\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # REPRESENTATION / SPECTRAL COLLAPSE\\\\n  # ============================================================\\\\n  - id: \\\\\\\"jing2022understanding\\\\\\\"\\\\n    title: \\\\\\\"Understanding Dimensional Collapse in Contrastive Self-supervised Learning\\\\\\\"\\\\n    authors: \\\\\\\"Li Jing et al.\\\\\\\"\\\\n    venue: \\\\\\\"ICLR 2022\\\\\\\"\\\\n    year: 2022\\\\n    url: \\\\\\\"https://openreview.net/forum?id=YevsQ05DEN7\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"定义 dimensional collapse：embedding 向量只跨越低维子空间\\\\\\\"\\\\n      - \\\\\\\"effective rank（基于归一化特征值 entropy 的指数）作为 collapse 度量\\\\\\\"\\\\n      - \\\\\\\"strong augmentation 和 implicit regularization 驱动低秩解\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"effective rank 的定义和计算方式可直接迁移到我们的 embedding 空间监控\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"effective rank\\\\\\\", \\\\\\\"singular value spectrum\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"noci2024mind\\\\\\\"\\\\n    title: \\\\\\\"Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Transformers\\\\\\\"\\\\n    authors: \\\\\\\"Lorenzo Noci et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2024\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2410.07799\\\\\\\"\\\\n    category: \\\\\\\"canary-metrics\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"用 Random Matrix Theory 分析 attention 层的 rank collapse\\\\\\\"\\\\n      - \\\\\\\"发现 attention matrix 最大两个奇异值之间的 spectral gap 是 width-collapse 的根因\\\\\\\"\\\\n      - \\\\\\\"rank collapse in depth: 所有 token 沿层收敛到单一表示\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"spectral gap 作为另一种 spectral canary 候选；其 RMT 分析框架可启发我们的理论工作\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"spectral gap\\\\\\\", \\\\\\\"singular values\\\\\\\", \\\\\\\"effective rank\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # DATA MIXING & ACCUMULATION\\\\n  # ============================================================\\\\n  - id: \\\\\\\"kazdan2025collapse\\\\\\\"\\\\n    title: \\\\\\\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\\\\\\\"\\\\n    authors: \\\\\\\"Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael Rafailov, David L. Donoho, Sanmi Koyejo\\\\\\\"\\\\n    venue: \\\\\\\"ICML 2025\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2410.16713\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"系统对比 replace vs accumulate 场景\\\\\\\"\\\\n      - \\\\\\\"replace → collapse；accumulate → 可避免 collapse\\\\\\\"\\\\n      - \\\\\\\"发现 real data 和 synthetic data 之间存在非平凡的交互效应\\\\\\\"\\\\n      - \\\\\\\"synthetic data 的价值取决于 real data 的绝对数量\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"直接对应我们的 alpha（mixing ratio）实验维度；其 replace vs accumulate 框架是我们实验设计的重要参考\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"test loss\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"dey2024breaking\\\\\\\"\\\\n    title: \\\\\\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\\\\\"\\\\n    authors: \\\\\\\"Apratim Dey, David Donoho, et al.\\\\\\\"\\\\n    venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2404.01413\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"替换数据 → 发散 population risk；累积数据 → 避免发散\\\\\\\"\\\\n      - \\\\\\\"证明累积策略在多种模型（GMM, HMM, LLM）上有效\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"为我们的 alpha 实验提供理论预测：累积 vs 替换是 collapse 速率的关键调节因子\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"population risk\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"epstein2024howbad\\\\\\\"\\\\n    title: \\\\\\\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\\\\\\\"\\\\n    authors: \\\\\\\"Mohamed El Amine Epstein et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2404.05090)\\\\\\\"\\\\n    year: 2024\\\\n    url: \\\\\\\"https://arxiv.org/abs/2404.05090\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"纯合成数据训练不可避免 collapse\\\\\\\"\\\\n      - \\\\\\\"给出 synthetic data 比例上界的估计——低于此比例可避免 collapse\\\\\\\"\\\\n      - \\\\\\\"递归训练使原始分布尾部消失\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"其 mixing ratio 上界估计可对比我们实验中观测到的 canary 触发阈值\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"perplexity\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"fu2025selfconsuming\\\\\\\"\\\\n    title: \\\\\\\"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops\\\\\\\"\\\\n    authors: \\\\\\\"Shi Fu, Yingjie Wang, Yuzhu Chen, Xinmei Tian, Dacheng Tao\\\\\\\"\\\\n    venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2502.18865\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"theoretical-foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"引入 recursive stability 概念，首次给出 self-consuming loop 的泛化分析\\\\\\\"\\\\n      - \\\\\\\"恒定比例的真实数据即可保证 STL 收敛；同时给出最优合成数据量的 insight\\\\\\\"\\\\n      - \\\\\\\"模型架构和 real/synthetic 数据比例共同决定 STL 的成败\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"为 post-MVP α-sweep（synthetic ratio 梯度）实验提供理论预期：50% accumulation 条件下收敛有理论保证\\\\\\\"\\\\n    gaps: \\\\\\\"理论分析限于特定 generalization bound 框架，未涉及 canary 指标的行为；未讨论不同 α 下 collapse 速率的精细结构\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"generalization bound\\\\\\\", \\\\\\\"population risk\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"bakshi2026improvement\\\\\\\"\\\\n    title: \\\\\\\"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources\\\\\\\"\\\\n    authors: \\\\\\\"Soham Bakshi, Sunrit Chakraborty\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2602.10531)\\\\\\\"\\\\n    year: 2026\\\\n    url: \\\\\\\"https://arxiv.org/abs/2602.10531\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"theoretical-foundation\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"αt（每轮混合权重）trajectory 和 nt（每轮样本量）scaling 的交互决定三种 regime：collapse / improvement / consistency\\\\\\\"\\\\n      - \\\\\\\"当 αt 衰减足够快且 nt 增长足够快时，迭代估计可收敛到真实分布（improvement regime）\\\\\\\"\\\\n      - \\\\\\\"αt 衰减不足或 nt 增长不足则进入 collapse regime；边界条件给出 consistency regime\\\\\\\"\\\\n      - \\\\\\\"在 next-token prediction 语言模型上分析完整迭代演化动态\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"αt/nt 条件直接对应我们 α-sweep 实验的理论预期：不同 synthetic ratio 衰减曲线下 canary 应呈现不同时序模式\\\\\\\"\\\\n    gaps: \\\\\\\"理论结果基于渐近分析，有限代数下的 transient behavior 未充分刻画；未讨论哪些指标能区分三种 regime\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"population risk\\\\\\\", \\\\\\\"total variation distance\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # MITIGATION & VERIFICATION\\\\n  # ============================================================\\\\n  - id: \\\\\\\"feng2025escaping\\\\\\\"\\\\n    title: \\\\\\\"Escaping Model Collapse via Synthetic Data Verification\\\\\\\"\\\\n    authors: \\\\\\\"Yunzhen Feng et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2510.16657\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"通过外部 verifier（human 或 better model）注入信息可避免 collapse\\\\\\\"\\\\n      - \\\\\\\"verifier-guided retraining 带来短期改善，但最终收敛到 verifier 的 knowledge center\\\\\\\"\\\\n      - \\\\\\\"除非 verifier 完全可靠，早期收益会 plateau 甚至逆转\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"verification 作为 intervention 策略——如果 canary 触发，可考虑此类 reactive intervention\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"test loss\\\\\\\"]\\\\n\\\\n  - id: \\\\\\\"barzilai2025consistency\\\\\\\"\\\\n    title: \\\\\\\"When Models Don't Collapse: On the Consistency of Iterative MLE\\\\\\\"\\\\n    authors: \\\\\\\"Daniel Barzilai, Ohad Shamir\\\\\\\"\\\\n    venue: \\\\\\\"ICML 2025\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2505.19046\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"在标准 MLE 一致性假设下，即使 real data fraction 趋近零也可避免 collapse\\\\\\\"\\\\n      - \\\\\\\"但证明了某些情况下 collapse 可以任意快地发生——首次给出严格 collapse 反例\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"理论上的 collapse 可发生任意快的结论强化了 early warning 的价值\\\\\\\"\\\\n    metrics_studied: []\\\\n\\\\n  - id: \\\\\\\"dces2026counter\\\\\\\"\\\\n    title: \\\\\\\"Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling\\\\\\\"\\\\n    authors: \\\\\\\"Anonymous\\\\\\\"\\\\n    venue: \\\\\\\"MDPI Electronics (2026)\\\\\\\"\\\\n    year: 2026\\\\n    url: \\\\\\\"https://www.mdpi.com/2079-9292/15/4/869\\\\\\\"\\\\n    category: \\\\\\\"data-mixing\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"提出 DCES（dynamic center-edge sampling）数据选择框架\\\\\\\"\\\\n      - \\\\\\\"DCES 在 ECE（0.1058 vs 0.1200）和 entropy 保持上优于随机选择\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"其 ECE 和 entropy 对比数据为我们的指标 baseline 提供参考\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"ECE\\\\\\\", \\\\\\\"entropy\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # POSITION / SURVEY / EPISTEMICS\\\\n  # ============================================================\\\\n  - id: \\\\\\\"schaeffer2025position\\\\\\\"\\\\n    title: \\\\\\\"Position: Model Collapse Does Not Mean What You Think\\\\\\\"\\\\n    authors: \\\\\\\"Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2503.03150)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2503.03150\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"文献中实际包含 8 种不同且有时矛盾的 model collapse 定义\\\\\\\"\\\\n      - \\\\\\\"许多 collapse 预测依赖于与现实不符的假设\\\\\\\"\\\\n      - \\\\\\\"多种 collapse 场景是可以轻易避免的\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"提醒我们明确定义 collapse 的操作标准；不同定义可能需要不同的 canary 指标\\\\\\\"\\\\n    metrics_studied: []\\\\n\\\\n  - id: \\\\\\\"wang2025epistemic\\\\\\\"\\\\n    title: \\\\\\\"Epistemic Diversity and Knowledge Collapse in Large Language Models\\\\\\\"\\\\n    authors: \\\\\\\"Wang et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2510.04226)\\\\\\\"\\\\n    year: 2025\\\\n    url: \\\\\\\"https://arxiv.org/abs/2510.04226\\\\\\\"\\\\n    category: \\\\\\\"core-collapse\\\\\\\"\\\\n    role: \\\\\\\"background\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"27 个 LLM 在 155 个主题上的 epistemic diversity 评估\\\\\\\"\\\\n      - \\\\\\\"所有模型的 epistemic diversity 低于基本 web 搜索\\\\\\\"\\\\n      - \\\\\\\"模型越大 epistemic diversity 反而越低；RAG 有正面效果\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"knowledge collapse 维度可扩展我们对 diversity canary 的理解——不仅是 lexical/syntactic 还有 epistemic\\\\\\\"\\\\n    metrics_studied: [\\\\\\\"epistemic diversity\\\\\\\"]\\\\n\\\\n  # ============================================================\\\\n  # METHODOLOGY (GRANGER / LEAD-LAG)\\\\n  # ============================================================\\\\n  - id: \\\\\\\"shojaie2022granger\\\\\\\"\\\\n    title: \\\\\\\"Granger Causality: A Review and Recent Advances\\\\\\\"\\\\n    authors: \\\\\\\"Ali Shojaie, Emily B. Fox\\\\\\\"\\\\n    venue: \\\\\\\"Annual Review of Statistics and Its Application\\\\\\\"\\\\n    year: 2022\\\\n    url: \\\\\\\"https://arxiv.org/abs/2105.02675\\\\\\\"\\\\n    category: \\\\\\\"methodology\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"Granger causality 综述：从经典线性到非线性/neural 方法\\\\\\\"\\\\n      - \\\\\\\"Panel data 场景的 Granger causality 扩展\\\\\\\"\\\\n      - \\\\\\\"VAR 和 neural Granger causality 的对比\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"为我们的 panel Granger causality 分析提供方法论基础\\\\\\\"\\\\n    metrics_studied: []\\\\n\\\\n  - id: \\\\\\\"marcinkevics2022neural\\\\\\\"\\\\n    title: \\\\\\\"Granger Causality Using Neural Networks\\\\\\\"\\\\n    authors: \\\\\\\"Raphael Marcinkevics, Julia Vogt\\\\\\\"\\\\n    venue: \\\\\\\"arXiv (2208.03703)\\\\\\\"\\\\n    year: 2022\\\\n    url: \\\\\\\"https://arxiv.org/abs/2208.03703\\\\\\\"\\\\n    category: \\\\\\\"methodology\\\\\\\"\\\\n    role: \\\\\\\"method-component\\\\\\\"\\\\n    key_findings:\\\\n      - \\\\\\\"用 neural network 估计 Granger causality，突破线性假设\\\\\\\"\\\\n      - \\\\\\\"两个模型对比法：含/不含外生变量的预测误差差异即 Granger causality 证据\\\\\\\"\\\\n    relevance_to_us: \\\\\\\"我们的多指标时序可能存在非线性关系，neural Granger causality 是自然选择\\\\\\\"\\\\n    metrics_studied: []\\\\n\\\\ngaps:\\\\n  - \\\\\\\"无人系统做过 canary 指标的 lead-lag / Granger causality 分析——现有工作只在事后观察到指标变化，未量化哪些指标能提前多少步预测 collapse\\\\\\\"\\\\n  - \\\\\\\"ECE 在 collapse 场景下几乎未被系统研究——chen2025scales 是唯一报告 ECE 先于 accuracy 退化的工作，但未做因果分析\\\\\\\"\\\\n  - \\\\\\\"embedding effective rank 未在 iterative synthetic training 场景下被测试——仅在 contrastive learning/transformer 训练中研究过\\\\\\\"\\\\n  - \\\\\\\"多指标 panel 框架缺失——无人同时追踪 ECE + effective rank + diversity + perplexity 的时序行为并分析其 lead-lag 关系\\\\\\\"\\\\n  - \\\\\\\"alpha（synthetic ratio）对 canary 灵敏度的影响未被研究——现有工作只关注 alpha 对最终性能的影响，不关注 canary 的 lead time 如何随 alpha 变化\\\\\\\"\\\\n  - \\\\\\\"predictive intervention vs reactive intervention 缺少对比——没有工作量化 early warning 带来的实际干预收益\\\\\\\"\\\\n  - \\\\\\\"surplexity 和 spectral alignment 未在 iterative collapse 场景下交叉验证\\\\\\\"\\\\n  - \\\\\\\"跨任务 canary 普适性未知——reasoning vs retrieval vs creative tasks 中哪些 canary 更可靠\\\\\\\"\\\\n\\\\nnovelty_assessment: |\\\\n  我们项目的核心 novelty 在于：\\\\n\\\\n  1. **Panel Granger Causality 框架**：首次将多指标时序数据的因果分析方法应用于 model collapse 早期预警。\\\\n     现有工作（chen2025scales, gambetta2024surplexity）只是事后观察到某些指标先变化，\\\\n     但没有人做过系统的 lead-lag 量化分析。\\\\n\\\\n  2. **多指标 Canary Panel**：同时追踪 ECE、effective rank、Self-BLEU/distinct-n、\\\\n     perplexity、entropy、surplexity 等指标，分析其相互关系和各自的 lead time。\\\\n     现有工作都是单一指标或最多两三个指标的孤立分析。\\\\n\\\\n  3. **alpha-dependent Canary Sensitivity**：系统研究 synthetic ratio 如何影响各 canary\\\\n     指标的灵敏度和 lead time。dohmatob2025strong 证明极小的 alpha 就能触发 collapse，\\\\n     但没人研究 canary 在不同 alpha 下的行为。\\\\n\\\\n  4. **与已有工作的差异**：\\\\n     - vs chen2025scales: 他们发现 ECE 先退化但没有做因果分析；我们用 Granger causality 量化\\\\n     - vs gambetta2024surplexity: 他们提出 surplexity 用于检测和缓解 collapse；\\\\n       我们将其纳入更广的 panel 并研究其 lead-lag 特性\\\\n     - vs he2025closer: 他们在 diffusion 中用 entropy 作为指标；我们在 LLM 中测试更多指标\\\\n     - vs qiu2025spectral: 他们的 SA 用于训练 loss explosion 预警；\\\\n       我们将类似思路迁移到 iterative collapse 场景\\\\n\\\\n  5. **潜在风险**：chen2025scales 已经非常接近我们的方向。如果他们扩展到 lead-lag 分析，\\\\n     我们的 novelty 会被削弱。需要快速推进并在方法论（Granger causality）上建立壁垒。\\\\n\\\", \\\"total_chars\\\": 24089, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/literature_map.yaml\", \"content\": \"papers:\\n  # ============================================================\\n  # CORE MODEL COLLAPSE\\n  # ============================================================\\n  - id: \\\"shumailov2024curse\\\"\\n    title: \\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\"\\n    authors: \\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson\\\"\\n    venue: \\\"Nature\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2305.17493\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失\\\"\\n      - \\\"区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）\\\"\\n      - \\\"三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合\\\"\\n      - \\\"在 VAE、GMM、LLM 上均验证了 collapse 的普遍性\\\"\\n    relevance_to_us: \\\"奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段\\\"\\n    metrics_studied: [\\\"perplexity\\\", \\\"distributional tail mass\\\"]\\n\\n  - id: \\\"alemohammad2024mad\\\"\\n    title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n    authors: \\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk\\\"\\n    venue: \\\"ICLR 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2307.01850\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"提出 Model Autophagy Disorder (MAD) 概念\\\"\\n      - \\\"autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降\\\"\\n      - \\\"在图像生成领域验证 self-consuming loop 的退化效应\\\"\\n    relevance_to_us: \\\"MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上\\\"\\n    metrics_studied: [\\\"FID\\\", \\\"precision\\\", \\\"recall\\\", \\\"diversity\\\"]\\n\\n  - id: \\\"dohmatob2024tale\\\"\\n    title: \\\"A Tale of Tails: Model Collapse as a Change of Scaling Laws\\\"\\n    authors: \\\"Elvis Dohmatob, Yunzhen Feng, et al.\\\"\\n    venue: \\\"ICML 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2402.07043\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"通过 scaling laws 视角分析 model collapse：collapse 表现为 scaling law 的变化\\\"\\n      - \\\"发现 loss of scaling, shifted scaling, skill un-learning, grokking 等多种退化模式\\\"\\n      - \\\"混入少量干净数据可缓解 collapse 并引发 grokking 现象\\\"\\n      - \\\"在 transformer 算术任务和 Llama2 文本生成上验证\\\"\\n    relevance_to_us: \\\"scaling law 变化视角为我们提供了理论基础；grokking 现象暗示 canary 指标可能出现非单调行为\\\"\\n    metrics_studied: [\\\"test loss\\\", \\\"scaling exponents\\\"]\\n\\n  - id: \\\"dohmatob2025strong\\\"\\n    title: \\\"Strong Model Collapse\\\"\\n    authors: \\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\"\\n    venue: \\\"ICLR 2025 (Spotlight)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2410.04840\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"即使合成数据占比极小（1/1000），仍可导致 model collapse\\\"\\n      - \\\"更大的训练集并不能避免 collapse\\\"\\n      - \\\"更大的模型（random projection 近似下）反而可能放大 collapse\\\"\\n      - \\\"存在 interpolation threshold 的 double-descent 现象\\\"\\n    relevance_to_us: \\\"强化了早期检测的必要性——即使极小的合成数据比例也能触发 collapse，因此 canary 指标必须敏感\\\"\\n    metrics_studied: [\\\"test loss\\\", \\\"population risk\\\"]\\n\\n  - id: \\\"guo2024linguistic\\\"\\n    title: \\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\"\\n    authors: \\\"Yanzhu Guo, Guokan Shang, et al.\\\"\\n    venue: \\\"NAACL 2024 Findings\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2311.09807\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"evaluation\\\"\\n    key_findings:\\n      - \\\"递归微调中，linguistic diversity 在连续迭代中持续下降\\\"\\n      - \\\"创造性任务中 diversity 下降最显著\\\"\\n      - \\\"开发了覆盖 lexical、syntactic、semantic 三层的 diversity 指标体系\\\"\\n    relevance_to_us: \\\"其多层 diversity 指标体系可直接作为我们 canary 指标的候选集；创造性 vs 事实任务的差异可能影响 canary 灵敏度\\\"\\n    metrics_studied: [\\\"distinct-n\\\", \\\"type-token ratio\\\", \\\"syntactic diversity\\\", \\\"semantic diversity\\\"]\\n\\n  - id: \\\"briesch2024selfconsuming\\\"\\n    title: \\\"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\\\"\\n    authors: \\\"Martin Briesch, Dominik Sobania, Franz Rothlauf\\\"\\n    venue: \\\"arXiv (2311.16822)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2311.16822\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"首次系统研究 LLM 的 self-consuming training loop\\\"\\n      - \\\"full synthetic cycle（完全替换）导致单点 collapse；data augmentation cycle 导致 diversity 缓慢下降\\\"\\n      - \\\"expanding data cycle（累积）在 50 代内保持 diversity\\\"\\n    relevance_to_us: \\\"其不同 data cycle 策略的对比直接对应我们的 alpha（synthetic ratio）实验设置\\\"\\n    metrics_studied: [\\\"diversity\\\", \\\"quality\\\"]\\n\\n  - id: \\\"truong2025entropy\\\"\\n    title: \\\"Entropy Collapse: A Universal Failure Mode of Intelligent Systems\\\"\\n    authors: \\\"Truong Xuan Khanh, Truong Quynh Hoa\\\"\\n    venue: \\\"arXiv (2512.12381)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2512.12381\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"证明 entropy collapse 是一阶（不连续）相变，临界点 α_c(β) = 1/(1−β)，entropy 在临界点跳变 0.698 nats\\\"\\n      - \\\"两个 universality class：Class 1（凸反馈，如 power-law）不可逆 ν=1；Class 2（线性反馈）可逆 ν=1/2\\\"\\n      - \\\"因为是一阶相变，autocorrelation/variance 等传统 early-warning signal 在 collapse 前保持有限——无预警\\\"\\n    relevance_to_us: \\\"定义了 canary 失效的 regime boundary：Class 1 凸反馈系统中传统 canary 理论上无效。我们需证明我们的 canary 在 Class 2+ regime 或非纯反馈场景中有效\\\"\\n    gaps: \\\"理论框架高度抽象，未给出 LLM 具体场景下的 α/β 估计方法；未测试哪些 canary 在接近一阶相变时仍有部分预警能力\\\"\\n    metrics_studied: [\\\"entropy\\\", \\\"autocorrelation\\\", \\\"variance\\\"]\\n\\n  - id: \\\"wang2026contaminated\\\"\\n    title: \\\"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\\\"\\n    authors: \\\"Kevin Wang, Hongqian Niu, Didong Li\\\"\\n    venue: \\\"arXiv (2602.16065)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2602.16065\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"首个不限数据分布假设的正面理论结果：universal approximator 下 contaminated recursive training 仍可收敛\\\"\\n      - \\\"收敛速率 = min(baseline 模型收敛速率, 每轮真实数据比例)——真实数据比例是瓶颈\\\"\\n      - \\\"突破了先前仅限 discrete/Gaussian 分布的理论框架，适用于一般连续分布\\\"\\n    relevance_to_us: \\\"为 post-MVP α-sweep 实验提供理论上界：收敛速率由 real data fraction 决定，可预测不同 α 下的 collapse 速率\\\"\\n    gaps: \\\"universal approximator 假设在实际有限容量模型中不严格成立；未讨论 canary 指标行为\\\"\\n    metrics_studied: [\\\"convergence rate\\\", \\\"population risk\\\"]\\n\\n  # ============================================================\\n  # CANARY / EARLY WARNING METRICS\\n  # ============================================================\\n  - id: \\\"chen2025scales\\\"\\n    title: \\\"Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios\\\"\\n    authors: \\\"Anonymous\\\"\\n    venue: \\\"arXiv (2510.05133)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.05133\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"**Calibration degradation precedes accuracy loss** — ECE 是 collapse 的 early warning signal\\\"\\n      - \\\"20% synthetic data 以下性能稳定，30% 以上退化加速\\\"\\n      - \\\"大模型（6.9B-12B）比小模型（410M-1.4B）更鲁棒\\\"\\n      - \\\"推理任务比检索任务更易退化\\\"\\n      - \\\"iteration 1 + 30% synthetic 时 ECE 从 0.08 升至 0.14（+75%）\\\"\\n    relevance_to_us: \\\"**最直接的竞争者/先驱**。证实 ECE 可作为 canary，但未做 lead-lag 分析，未建立多指标 panel 框架\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"accuracy\\\", \\\"perplexity\\\"]\\n\\n  - id: \\\"gambetta2024surplexity\\\"\\n    title: \\\"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI\\\"\\n    authors: \\\"Daniele Gambetta et al.\\\"\\n    venue: \\\"arXiv (2410.12341)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.12341\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"提出 surplexity（model surprise 度量）同时用于检测 collapse 和过滤训练数据\\\"\\n      - \\\"用 semantic networks 分析文本重复性和语义多样性\\\"\\n      - \\\"用 next-token probability 定量衡量 diversity loss\\\"\\n      - \\\"高 surplexity 过滤策略至少与 human-data baseline 同效，且更能降低分布偏斜\\\"\\n      - \\\"不需要区分 human vs AI-generated data\\\"\\n    relevance_to_us: \\\"surplexity 可作为我们 canary 指标候选之一；其 semantic network 方法提供了 diversity 度量的另一视角\\\"\\n    metrics_studied: [\\\"surplexity\\\", \\\"semantic network metrics\\\", \\\"next-token probability\\\"]\\n\\n  - id: \\\"qiu2025spectral\\\"\\n    title: \\\"Spectral Alignment as Predictor of Loss Explosion in Neural Network Training\\\"\\n    authors: \\\"Haiquan Qiu, You Wu, Yingjie Tan, Yaqing Wang, Quanming Yao\\\"\\n    venue: \\\"arXiv (2510.04202)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.04202\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"Spectral Alignment (SA) 监控层输入与权重矩阵主奇异向量的分布对齐\\\"\\n      - \\\"SA sign diversity collapse 是 representational collapse 和训练发散的早期预测器\\\"\\n      - \\\"比 weight norm、gradient norm 等传统指标更早、更清晰地检测到训练失败\\\"\\n      - \\\"健康层的 SA 应有正负均衡分布，collapse 到单侧则预示不稳定\\\"\\n    relevance_to_us: \\\"SA 是潜在的高价值 canary 指标——专门设计为 early warning，可直接纳入我们的指标 panel\\\"\\n    metrics_studied: [\\\"spectral alignment\\\", \\\"weight norm\\\", \\\"gradient norm\\\"]\\n\\n  - id: \\\"he2025closer\\\"\\n    title: \\\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\\\"\\n    authors: \\\"Shiliang He et al.\\\"\\n    venue: \\\"NeurIPS 2025 (Spotlight)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2509.16499\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"识别 diffusion model collapse 中的 generalization → memorization 转变\\\"\\n      - \\\"**训练数据的 entropy 递减是 collapse 的直接驱动因素和清晰指标**\\\"\\n      - \\\"提出基于 entropy 的数据选择策略，有效缓解 collapse\\\"\\n    relevance_to_us: \\\"data entropy 作为 canary 的有效性已被验证（diffusion domain）；需测试是否在 LLM 场景同样有效\\\"\\n    metrics_studied: [\\\"entropy\\\", \\\"FID\\\", \\\"diversity\\\"]\\n\\n  - id: \\\"ba2024fill\\\"\\n    title: \\\"Fill In The Gaps: Model Calibration and Generalization with Synthetic Data\\\"\\n    authors: \\\"Yang Ba, Michelle V Mancenido, Rong Pan\\\"\\n    venue: \\\"EMNLP 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.10864\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"用 LLM 生成合成数据来修复 calibration 错误的 reliability diagram bins\\\"\\n      - \\\"推导了基于 PAC 框架的 ECE bound\\\"\\n      - \\\"合成数据可改善 calibration 但需精心设计生成策略\\\"\\n    relevance_to_us: \\\"ECE 的理论 bound 可为我们的 canary 阈值设定提供理论依据\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"accuracy\\\"]\\n\\n  - id: \\\"sigma2026spectral\\\"\\n    title: \\\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\\\"\\n    authors: \\\"Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue\\\"\\n    venue: \\\"arXiv (2601.03385)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2601.03385\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"direct-competitor\\\"\\n    key_findings:\\n      - \\\"基于 embedding Gram matrix 谱分析的 collapse 监控框架：Track I（确定性谱界）保守但鲁棒，Track II（随机谱缩放）灵敏但需采样\\\"\\n      - \\\"Track I/II 的分歧本身是 early-stage collapse 的诊断信号，早于表面重复性伪影\\\"\\n      - \\\"随机谱界使部分观测的 Gram matrix 也可用于大规模模型的可扩展监控\\\"\\n    relevance_to_us: \\\"最直接的 spectral canary 竞争者。我们的 effective rank 是其简化版（单一标量 vs 完整谱界）；需在 related work 中明确差异：SIGMA 提供双轨谱界，我们用单一 effective rank 换取更低计算开销和多指标 panel 集成\\\"\\n    gaps: \\\"未做 lead-lag 分析，未与 ECE/diversity 等非谱指标对比；Track I/II 的计算开销在 iterative loop 多轮场景下可能不可忽略\\\"\\n    metrics_studied: [\\\"Gram matrix eigenspectrum\\\", \\\"spectral norm bounds\\\"]\\n\\n  - id: \\\"kalinowski2026topology\\\"\\n    title: \\\"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index\\\"\\n    authors: \\\"Alexander Kalinowski\\\"\\n    venue: \\\"arXiv (2604.26984)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2604.26984\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出基于 Modular Morse Homology Maintenance (MMHM) 的在线拓扑监控方案，增量更新避免每轮重建\\\"\\n      - \\\"Collapse Index (CI) 组合多尺度拓扑特征，在 LLM fine-tuning 和 temporal KGE 训练中提供低延迟 early-warning\\\"\\n      - \\\"拓扑方法捕捉表示空间的各向异性和多尺度结构丧失\\\"\\n    relevance_to_us: \\\"topology-based monitoring 是与 spectral 方法正交的 collapse 检测路线。我们排除了该方法（计算开销高、可解释性弱），但 related work 需要对比说明选择 spectral/calibration panel 而非 topology 的理由\\\"\\n    gaps: \\\"计算开销显著高于 effective rank 等标量指标；未在 iterative synthetic training loop 场景下测试；与 ECE 等轻量 canary 无对比\\\"\\n    metrics_studied: [\\\"Collapse Index\\\", \\\"persistent homology features\\\"]\\n\\n  # ============================================================\\n  # DIVERSITY METRICS (BACKGROUND)\\n  # ============================================================\\n  - id: \\\"zhu2018texygen\\\"\\n    title: \\\"Texygen: A Benchmarking Platform for Text Generation Models\\\"\\n    authors: \\\"Yaoming Zhu et al.\\\"\\n    venue: \\\"SIGIR 2018\\\"\\n    year: 2018\\n    url: \\\"https://arxiv.org/abs/1802.01886\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 Self-BLEU 度量：计算生成句子间的 BLEU 相似度，Self-BLEU 越高多样性越低\\\"\\n      - \\\"成为文本生成多样性评估的标准基准之一\\\"\\n    relevance_to_us: \\\"Self-BLEU 是我们 diversity canary 的经典候选\\\"\\n    metrics_studied: [\\\"Self-BLEU\\\", \\\"BLEU\\\"]\\n\\n  - id: \\\"li2016diversity\\\"\\n    title: \\\"A Diversity-Promoting Objective Function for Neural Conversation Models\\\"\\n    authors: \\\"Jiwei Li et al.\\\"\\n    venue: \\\"NAACL 2016\\\"\\n    year: 2016\\n    url: \\\"https://arxiv.org/abs/1510.03055\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 distinct-1 / distinct-2 指标衡量生成文本的 n-gram 多样性\\\"\\n      - \\\"计算 unique n-gram 数占总 n-gram 数的比例\\\"\\n    relevance_to_us: \\\"distinct-n 是最廉价的 diversity canary 之一，计算开销极低\\\"\\n    metrics_studied: [\\\"distinct-1\\\", \\\"distinct-2\\\"]\\n\\n  # ============================================================\\n  # REPRESENTATION / SPECTRAL COLLAPSE\\n  # ============================================================\\n  - id: \\\"jing2022understanding\\\"\\n    title: \\\"Understanding Dimensional Collapse in Contrastive Self-supervised Learning\\\"\\n    authors: \\\"Li Jing et al.\\\"\\n    venue: \\\"ICLR 2022\\\"\\n    year: 2022\\n    url: \\\"https://openreview.net/forum?id=YevsQ05DEN7\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"定义 dimensional collapse：embedding 向量只跨越低维子空间\\\"\\n      - \\\"effective rank（基于归一化特征值 entropy 的指数）作为 collapse 度量\\\"\\n      - \\\"strong augmentation 和 implicit regularization 驱动低秩解\\\"\\n    relevance_to_us: \\\"effective rank 的定义和计算方式可直接迁移到我们的 embedding 空间监控\\\"\\n    metrics_studied: [\\\"effective rank\\\", \\\"singular value spectrum\\\"]\\n\\n  - id: \\\"noci2024mind\\\"\\n    title: \\\"Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Transformers\\\"\\n    authors: \\\"Lorenzo Noci et al.\\\"\\n    venue: \\\"NeurIPS 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2410.07799\\\"\\n    category: \\\"canary-metrics\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"用 Random Matrix Theory 分析 attention 层的 rank collapse\\\"\\n      - \\\"发现 attention matrix 最大两个奇异值之间的 spectral gap 是 width-collapse 的根因\\\"\\n      - \\\"rank collapse in depth: 所有 token 沿层收敛到单一表示\\\"\\n    relevance_to_us: \\\"spectral gap 作为另一种 spectral canary 候选；其 RMT 分析框架可启发我们的理论工作\\\"\\n    metrics_studied: [\\\"spectral gap\\\", \\\"singular values\\\", \\\"effective rank\\\"]\\n\\n  # ============================================================\\n  # DATA MIXING & ACCUMULATION\\n  # ============================================================\\n  - id: \\\"kazdan2025collapse\\\"\\n    title: \\\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\\\"\\n    authors: \\\"Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael Rafailov, David L. Donoho, Sanmi Koyejo\\\"\\n    venue: \\\"ICML 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2410.16713\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"系统对比 replace vs accumulate 场景\\\"\\n      - \\\"replace → collapse；accumulate → 可避免 collapse\\\"\\n      - \\\"发现 real data 和 synthetic data 之间存在非平凡的交互效应\\\"\\n      - \\\"synthetic data 的价值取决于 real data 的绝对数量\\\"\\n    relevance_to_us: \\\"直接对应我们的 alpha（mixing ratio）实验维度；其 replace vs accumulate 框架是我们实验设计的重要参考\\\"\\n    metrics_studied: [\\\"test loss\\\"]\\n\\n  - id: \\\"dey2024breaking\\\"\\n    title: \\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\"\\n    authors: \\\"Apratim Dey, David Donoho, et al.\\\"\\n    venue: \\\"ICML 2024\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2404.01413\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"foundation\\\"\\n    key_findings:\\n      - \\\"替换数据 → 发散 population risk；累积数据 → 避免发散\\\"\\n      - \\\"证明累积策略在多种模型（GMM, HMM, LLM）上有效\\\"\\n    relevance_to_us: \\\"为我们的 alpha 实验提供理论预测：累积 vs 替换是 collapse 速率的关键调节因子\\\"\\n    metrics_studied: [\\\"population risk\\\"]\\n\\n  - id: \\\"epstein2024howbad\\\"\\n    title: \\\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\\\"\\n    authors: \\\"Mohamed El Amine Epstein et al.\\\"\\n    venue: \\\"arXiv (2404.05090)\\\"\\n    year: 2024\\n    url: \\\"https://arxiv.org/abs/2404.05090\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"纯合成数据训练不可避免 collapse\\\"\\n      - \\\"给出 synthetic data 比例上界的估计——低于此比例可避免 collapse\\\"\\n      - \\\"递归训练使原始分布尾部消失\\\"\\n    relevance_to_us: \\\"其 mixing ratio 上界估计可对比我们实验中观测到的 canary 触发阈值\\\"\\n    metrics_studied: [\\\"perplexity\\\"]\\n\\n  - id: \\\"fu2025selfconsuming\\\"\\n    title: \\\"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops\\\"\\n    authors: \\\"Shi Fu, Yingjie Wang, Yuzhu Chen, Xinmei Tian, Dacheng Tao\\\"\\n    venue: \\\"ICLR 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2502.18865\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"引入 recursive stability 概念，首次给出 self-consuming loop 的泛化分析\\\"\\n      - \\\"恒定比例的真实数据即可保证 STL 收敛；同时给出最优合成数据量的 insight\\\"\\n      - \\\"模型架构和 real/synthetic 数据比例共同决定 STL 的成败\\\"\\n    relevance_to_us: \\\"为 post-MVP α-sweep（synthetic ratio 梯度）实验提供理论预期：50% accumulation 条件下收敛有理论保证\\\"\\n    gaps: \\\"理论分析限于特定 generalization bound 框架，未涉及 canary 指标的行为；未讨论不同 α 下 collapse 速率的精细结构\\\"\\n    metrics_studied: [\\\"generalization bound\\\", \\\"population risk\\\"]\\n\\n  - id: \\\"bakshi2026improvement\\\"\\n    title: \\\"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources\\\"\\n    authors: \\\"Soham Bakshi, Sunrit Chakraborty\\\"\\n    venue: \\\"arXiv (2602.10531)\\\"\\n    year: 2026\\n    url: \\\"https://arxiv.org/abs/2602.10531\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"theoretical-foundation\\\"\\n    key_findings:\\n      - \\\"αt（每轮混合权重）trajectory 和 nt（每轮样本量）scaling 的交互决定三种 regime：collapse / improvement / consistency\\\"\\n      - \\\"当 αt 衰减足够快且 nt 增长足够快时，迭代估计可收敛到真实分布（improvement regime）\\\"\\n      - \\\"αt 衰减不足或 nt 增长不足则进入 collapse regime；边界条件给出 consistency regime\\\"\\n      - \\\"在 next-token prediction 语言模型上分析完整迭代演化动态\\\"\\n    relevance_to_us: \\\"αt/nt 条件直接对应我们 α-sweep 实验的理论预期：不同 synthetic ratio 衰减曲线下 canary 应呈现不同时序模式\\\"\\n    gaps: \\\"理论结果基于渐近分析，有限代数下的 transient behavior 未充分刻画；未讨论哪些指标能区分三种 regime\\\"\\n    metrics_studied: [\\\"population risk\\\", \\\"total variation distance\\\"]\\n\\n  # ============================================================\\n  # MITIGATION & VERIFICATION\\n  # ============================================================\\n  - id: \\\"feng2025escaping\\\"\\n    title: \\\"Escaping Model Collapse via Synthetic Data Verification\\\"\\n    authors: \\\"Yunzhen Feng et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.16657\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"通过外部 verifier（human 或 better model）注入信息可避免 collapse\\\"\\n      - \\\"verifier-guided retraining 带来短期改善，但最终收敛到 verifier 的 knowledge center\\\"\\n      - \\\"除非 verifier 完全可靠，早期收益会 plateau 甚至逆转\\\"\\n    relevance_to_us: \\\"verification 作为 intervention 策略——如果 canary 触发，可考虑此类 reactive intervention\\\"\\n    metrics_studied: [\\\"test loss\\\"]\\n\\n  - id: \\\"barzilai2025consistency\\\"\\n    title: \\\"When Models Don't Collapse: On the Consistency of Iterative MLE\\\"\\n    authors: \\\"Daniel Barzilai, Ohad Shamir\\\"\\n    venue: \\\"ICML 2025\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2505.19046\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"在标准 MLE 一致性假设下，即使 real data fraction 趋近零也可避免 collapse\\\"\\n      - \\\"但证明了某些情况下 collapse 可以任意快地发生——首次给出严格 collapse 反例\\\"\\n    relevance_to_us: \\\"理论上的 collapse 可发生任意快的结论强化了 early warning 的价值\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"dces2026counter\\\"\\n    title: \\\"Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling\\\"\\n    authors: \\\"Anonymous\\\"\\n    venue: \\\"MDPI Electronics (2026)\\\"\\n    year: 2026\\n    url: \\\"https://www.mdpi.com/2079-9292/15/4/869\\\"\\n    category: \\\"data-mixing\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"提出 DCES（dynamic center-edge sampling）数据选择框架\\\"\\n      - \\\"DCES 在 ECE（0.1058 vs 0.1200）和 entropy 保持上优于随机选择\\\"\\n    relevance_to_us: \\\"其 ECE 和 entropy 对比数据为我们的指标 baseline 提供参考\\\"\\n    metrics_studied: [\\\"ECE\\\", \\\"entropy\\\"]\\n\\n  # ============================================================\\n  # POSITION / SURVEY / EPISTEMICS\\n  # ============================================================\\n  - id: \\\"schaeffer2025position\\\"\\n    title: \\\"Position: Model Collapse Does Not Mean What You Think\\\"\\n    authors: \\\"Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo\\\"\\n    venue: \\\"arXiv (2503.03150)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2503.03150\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"文献中实际包含 8 种不同且有时矛盾的 model collapse 定义\\\"\\n      - \\\"许多 collapse 预测依赖于与现实不符的假设\\\"\\n      - \\\"多种 collapse 场景是可以轻易避免的\\\"\\n    relevance_to_us: \\\"提醒我们明确定义 collapse 的操作标准；不同定义可能需要不同的 canary 指标\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"wang2025epistemic\\\"\\n    title: \\\"Epistemic Diversity and Knowledge Collapse in Large Language Models\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv (2510.04226)\\\"\\n    year: 2025\\n    url: \\\"https://arxiv.org/abs/2510.04226\\\"\\n    category: \\\"core-collapse\\\"\\n    role: \\\"background\\\"\\n    key_findings:\\n      - \\\"27 个 LLM 在 155 个主题上的 epistemic diversity 评估\\\"\\n      - \\\"所有模型的 epistemic diversity 低于基本 web 搜索\\\"\\n      - \\\"模型越大 epistemic diversity 反而越低；RAG 有正面效果\\\"\\n    relevance_to_us: \\\"knowledge collapse 维度可扩展我们对 diversity canary 的理解——不仅是 lexical/syntactic 还有 epistemic\\\"\\n    metrics_studied: [\\\"epistemic diversity\\\"]\\n\\n  # ============================================================\\n  # METHODOLOGY (GRANGER / LEAD-LAG)\\n  # ============================================================\\n  - id: \\\"shojaie2022granger\\\"\\n    title: \\\"Granger Causality: A Review and Recent Advances\\\"\\n    authors: \\\"Ali Shojaie, Emily B. Fox\\\"\\n    venue: \\\"Annual Review of Statistics and Its Application\\\"\\n    year: 2022\\n    url: \\\"https://arxiv.org/abs/2105.02675\\\"\\n    category: \\\"methodology\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"Granger causality 综述：从经典线性到非线性/neural 方法\\\"\\n      - \\\"Panel data 场景的 Granger causality 扩展\\\"\\n      - \\\"VAR 和 neural Granger causality 的对比\\\"\\n    relevance_to_us: \\\"为我们的 panel Granger causality 分析提供方法论基础\\\"\\n    metrics_studied: []\\n\\n  - id: \\\"marcinkevics2022neural\\\"\\n    title: \\\"Granger Causality Using Neural Networks\\\"\\n    authors: \\\"Raphael Marcinkevics, Julia Vogt\\\"\\n    venue: \\\"arXiv (2208.03703)\\\"\\n    year: 2022\\n    url: \\\"https://arxiv.org/abs/2208.03703\\\"\\n    category: \\\"methodology\\\"\\n    role: \\\"method-component\\\"\\n    key_findings:\\n      - \\\"用 neural network 估计 Granger causality，突破线性假设\\\"\\n      - \\\"两个模型对比法：含/不含外生变量的预测误差差异即 Granger causality 证据\\\"\\n    relevance_to_us: \\\"我们的多指标时序可能存在非线性关系，neural Granger causality 是自然选择\\\"\\n    metrics_studied: []\\n\\ngaps:\\n  - \\\"无人系统做过 canary 指标的 lead-lag / Granger causality 分析——现有工作只在事后观察到指标变化，未量化哪些指标能提前多少步预测 collapse\\\"\\n  - \\\"ECE 在 collapse 场景下几乎未被系统研究——chen2025scales 是唯一报告 ECE 先于 accuracy 退化的工作，但未做因果分析\\\"\\n  - \\\"embedding effective rank 未在 iterative synthetic training 场景下被测试——仅在 contrastive learning/transformer 训练中研究过\\\"\\n  - \\\"多指标 panel 框架缺失——无人同时追踪 ECE + effective rank + diversity + perplexity 的时序行为并分析其 lead-lag 关系\\\"\\n  - \\\"alpha（synthetic ratio）对 canary 灵敏度的影响未被研究——现有工作只关注 alpha 对最终性能的影响，不关注 canary 的 lead time 如何随 alpha 变化\\\"\\n  - \\\"predictive intervention vs reactive intervention 缺少对比——没有工作量化 early warning 带来的实际干预收益\\\"\\n  - \\\"surplexity 和 spectral alignment 未在 iterative collapse 场景下交叉验证\\\"\\n  - \\\"跨任务 canary 普适性未知——reasoning vs retrieval vs creative tasks 中哪些 canary 更可靠\\\"\\n\\nnovelty_assessment: |\\n  我们项目的核心 novelty 在于：\\n\\n  1. **Panel Granger Causality 框架**：首次将多指标时序数据的因果分析方法应用于 model collapse 早期预警。\\n     现有工作（chen2025scales, gambetta2024surplexity）只是事后观察到某些指标先变化，\\n     但没有人做过系统的 lead-lag 量化分析。\\n\\n  2. **多指标 Canary Panel**：同时追踪 ECE、effective rank、Self-BLEU/distinct-n、\\n     perplexity、entropy、surplexity 等指标，分析其相互关系和各自的 lead time。\\n     现有工作都是单一指标或最多两三个指标的孤立分析。\\n\\n  3. **alpha-dependent Canary Sensitivity**：系统研究 synthetic ratio 如何影响各 canary\\n     指标的灵敏度和 lead time。dohmatob2025strong 证明极小的 alpha 就能触发 collapse，\\n     但没人研究 canary 在不同 alpha 下的行为。\\n\\n  4. **与已有工作的差异**：\\n     - vs chen2025scales: 他们发现 ECE 先退化但没有做因果分析；我们用 Granger causality 量化\\n     - vs gambetta2024surplexity: 他们提出 surplexity 用于检测和缓解 collapse；\\n       我们将其纳入更广的 panel 并研究其 lead-lag 特性\\n     - vs he2025closer: 他们在 diffusion 中用 entropy 作为指标；我们在 LLM 中测试更多指标\\n     - vs qiu2025spectral: 他们的 SA 用于训练 loss explosion 预警；\\n       我们将类似思路迁移到 iterative collapse 场景\\n\\n  5. **潜在风险**：chen2025scales 已经非常接近我们的方向。如果他们扩展到 lead-lag 分析，\\n     我们的 novelty 会被削弱。需要快速推进并在方法论（Granger causality）上建立壁垒。\\n\", \"total_chars\": 24089, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have both files. Now let me do the web searches in parallel for the 5 keyword combinations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "074830a9-4840-46ef-b5bc-4c18180e2e1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+已读取 memory.md 和 literature_map.yaml。现在并行搜索 5 组关键词。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "60d906d9-8ef8-41a4-ae42-89cb9693a4c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YG6PTpFhuqGdrj16qBztPT`</summary>
+
+```json
+{
+  "query": "\"model collapse\" synthetic data 2026 arXiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org",
+    "huggingface.co"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "22b4c03c-5649-45be-8007-56ea9712afb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SGbjtRLRYREKGB8bQJztPq`</summary>
+
+```json
+{
+  "query": "\"distributional collapse\" iterative training 2026 arXiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "9ac287cc-1a1d-49a7-b4cd-2b2585778e0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012zdyrpnmMmx5esVmqZLCnU`</summary>
+
+```json
+{
+  "query": "\"canary metric\" training degradation early warning arXiv 2026",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "7ce3193b-5a1c-40dd-bf51-394657bbb55b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YJyHkkMC5NatMs9x9dJzze`</summary>
+
+```json
+{
+  "query": "\"early warning\" LLM training collapse detection 2026 arXiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "0c33c29f-a822-4e4e-a550-fcde318373eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FWzVKKaLZLKMQZ8ESzVr3R`</summary>
+
+```json
+{
+  "query": "token entropy calibration ECE \"model collapse\" arXiv 2026",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "f76d4abc-140d-415f-a1a4-77a7d3ca5f63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgAabs9343FeN3p8fisWL1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16719,
+      "cache_read_input_tokens": 24369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T04:25:51.814Z_
+
+<details><summary>↩ Tool result · `toolu_01YG6PTpFhuqGdrj16qBztPT`</summary>
+
+```text
+Web search results for query: ""model collapse" synthetic data 2026 arXiv"
+
+Links: [{"title":"[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/abs/2404.01413"},{"title":"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence","url":"https://arxiv.org/abs/2510.16657"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"[2410.16713] Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World","url":"https://arxiv.org/abs/2410.16713"},{"title":"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse","url":"https://arxiv.org/abs/2404.05090"},{"title":"Strong Model Collapse Elvis Dohmatob1 e.dohmatob@meta.com Yunzhen Feng1,2,∗","url":"https://arxiv.org/pdf/2410.04840"},{"title":"[2505.08803] Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models","url":"https://arxiv.org/abs/2505.08803"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of","url":"https://arxiv.org/pdf/2404.01413"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"}]
+
+Here are the search results for "model collapse" synthetic data 2026 arXiv:
+
+## Key Findings:
+
+**Recent 2026 Research:**
+
+A March 2026 arXiv paper found that by injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse. The research shows that verifier-guided retraining can yield near-term improvements but ultimately drives the parameter estimate to the verifier's "knowledge center" in the long run.
+
+**The Core Problem:**
+
+Model collapse is a phenomenon under which performance progressively degrades with each model-data feedback iteration until fitted models become useless. The phenomenon refers to the deterioration in performance that occurs when new models are trained on synthetic data generated from previously trained models.
+
+**Potential Solutions:**
+
+Accumulating the successive generations of synthetic data alongside the original real data avoids model collapse; these results hold across a range of model sizes, architectures, and hyperparameters.
+
+**Multi-modal Perspectives (May 2025):**
+
+Recent research has expanded beyond single-modality studies. Studies on multi-modal vision-language generative systems show that model collapse exhibits distinct characteristics in the multi-modal context, such as improved vision-language alignment and increased variance in VLM image-captioning task.
+
+The search results reveal ongoing active research into both the mechanisms of model collapse and practical mitigation strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "2fbcc9d7-1b5f-4312-b003-6636b277212a",
+  "tool_use_result": {
+    "query": "\"model collapse\" synthetic data 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FMjcyMFuDSU3RMitS2QNPy",
+        "content": [
+          {
+            "title": "[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/abs/2404.01413"
+          },
+          {
+            "title": "[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence",
+            "url": "https://arxiv.org/abs/2510.16657"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "[2410.16713] Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World",
+            "url": "https://arxiv.org/abs/2410.16713"
+          },
+          {
+            "title": "[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse",
+            "url": "https://arxiv.org/abs/2404.05090"
+          },
+          {
+            "title": "Strong Model Collapse Elvis Dohmatob1 e.dohmatob@meta.com Yunzhen Feng1,2,∗",
+            "url": "https://arxiv.org/pdf/2410.04840"
+          },
+          {
+            "title": "[2505.08803] Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models",
+            "url": "https://arxiv.org/abs/2505.08803"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of",
+            "url": "https://arxiv.org/pdf/2404.01413"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v1"
+          }
+        ]
+      },
+      "Here are the search results for \"model collapse\" synthetic data 2026 arXiv:\n\n## Key Findings:\n\n**Recent 2026 Research:**\n\nA March 2026 arXiv paper found that by injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse. The research shows that verifier-guided retraining can yield near-term improvements but ultimately drives the parameter estimate to the verifier's \"knowledge center\" in the long run.\n\n**The Core Problem:**\n\nModel collapse is a phenomenon under which performance progressively degrades with each model-data feedback iteration until fitted models become useless. The phenomenon refers to the deterioration in performance that occurs when new models are trained on synthetic data generated from previously trained models.\n\n**Potential Solutions:**\n\nAccumulating the successive generations of synthetic data alongside the original real data avoids model collapse; these results hold across a range of model sizes, architectures, and hyperparameters.\n\n**Multi-modal Perspectives (May 2025):**\n\nRecent research has expanded beyond single-modality studies. Studies on multi-modal vision-language generative systems show that model collapse exhibits distinct characteristics in the multi-modal context, such as improved vision-language alignment and increased variance in VLM image-captioning task.\n\nThe search results reveal ongoing active research into both the mechanisms of model collapse and practical mitigation strategies."
+    ],
+    "durationSeconds": 6.984334965000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T04:25:52.701Z_
+
+<details><summary>↩ Tool result · `toolu_01SGbjtRLRYREKGB8bQJztPq`</summary>
+
+```text
+Web search results for query: ""distributional collapse" iterative training 2026 arXiv"
+
+Links: [{"title":"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/html/2605.07271"},{"title":"[2602.10531v1] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531v1"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/html/2602.10531"},{"title":"[2602.10531] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531"},{"title":"Rate of Model Collapse in Recursive Training","url":"https://arxiv.org/html/2412.17646v1"},{"title":"Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models","url":"https://arxiv.org/html/2505.08803"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"How to Synthesize Text Data without Model Collapse?","url":"https://arxiv.org/html/2412.14689v1"},{"title":"A Note on Shumailov et al. (2024): ‘AI Models Collapse When Trained on Recursively Generated Data’","url":"https://arxiv.org/html/2410.12954v1"},{"title":"A theoretical basis for model collapse in recursive training Research supported by a grant from Google Research Asia","url":"https://arxiv.org/html/2506.09401v4"}]
+
+Based on the search results, I found several relevant arXiv papers on "distributional collapse" and iterative training from 2026 and recent years:
+
+## Key Papers Found:
+
+1. **"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources"** (arXiv:2602.10531, February 2026)
+
+This paper examines iterative training from a statistical viewpoint, showing that improvement is possible when models are trained on data contaminated with synthetic samples, as long as there is fresh information from the true target distribution, specifically considering iterative training on samples from a mixture of true target and synthetic distributions. The paper analyzes the iterative evolution in a next-token prediction language model, showing that with appropriate sample sizes, one can avoid collapse and even recover the true target distribution.
+
+2. **"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions"** (arXiv:2605.07271, May 2026)
+
+This paper identifies a "severe distributional collapse" phenomenon where a model's predictions are dominated by a single option regardless of input during what they call the Silent Phase. The paper proposes Iterative Pruning (IP), a greedy layer-by-layer removal strategy to study performance collapse in language models.
+
+These papers explore different aspects of collapse phenomena in iterative training contexts, with the first focused on model collapse from synthetic data contamination and the second examining distributional collapse during layer pruning of large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "e778a880-fd22-4f55-9a30-03ceb1ec6080",
+  "tool_use_result": {
+    "query": "\"distributional collapse\" iterative training 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016NksMPvtLbxwvxihpRqZND",
+        "content": [
+          {
+            "title": "Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/html/2605.07271"
+          },
+          {
+            "title": "[2602.10531v1] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources",
+            "url": "https://arxiv.org/abs/2602.10531v1"
+          },
+          {
+            "title": "From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources",
+            "url": "https://arxiv.org/html/2602.10531"
+          },
+          {
+            "title": "[2602.10531] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources",
+            "url": "https://arxiv.org/abs/2602.10531"
+          },
+          {
+            "title": "Rate of Model Collapse in Recursive Training",
+            "url": "https://arxiv.org/html/2412.17646v1"
+          },
+          {
+            "title": "Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models",
+            "url": "https://arxiv.org/html/2505.08803"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "How to Synthesize Text Data without Model Collapse?",
+            "url": "https://arxiv.org/html/2412.14689v1"
+          },
+          {
+            "title": "A Note on Shumailov et al. (2024): ‘AI Models Collapse When Trained on Recursively Generated Data’",
+            "url": "https://arxiv.org/html/2410.12954v1"
+          },
+          {
+            "title": "A theoretical basis for model collapse in recursive training Research supported by a grant from Google Research Asia",
+            "url": "https://arxiv.org/html/2506.09401v4"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant arXiv papers on \"distributional collapse\" and iterative training from 2026 and recent years:\n\n## Key Papers Found:\n\n1. **\"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources\"** (arXiv:2602.10531, February 2026)\n\nThis paper examines iterative training from a statistical viewpoint, showing that improvement is possible when models are trained on data contaminated with synthetic samples, as long as there is fresh information from the true target distribution, specifically considering iterative training on samples from a mixture of true target and synthetic distributions. The paper analyzes the iterative evolution in a next-token prediction language model, showing that with appropriate sample sizes, one can avoid collapse and even recover the true target distribution.\n\n2. **\"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\"** (arXiv:2605.07271, May 2026)\n\nThis paper identifies a \"severe distributional collapse\" phenomenon where a model's predictions are dominated by a single option regardless of input during what they call the Silent Phase. The paper proposes Iterative Pruning (IP), a greedy layer-by-layer removal strategy to study performance collapse in language models.\n\nThese papers explore different aspects of collapse phenomena in iterative training contexts, with the first focused on model collapse from synthetic data contamination and the second examining distributional collapse during layer pruning of large language models."
+    ],
+    "durationSeconds": 6.923263394000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T04:25:55.125Z_
+
+<details><summary>↩ Tool result · `toolu_012zdyrpnmMmx5esVmqZLCnU`</summary>
+
+```text
+Web search results for query: ""canary metric" training degradation early warning arXiv 2026"
+
+Links: [{"title":"When “Better” Prompts Hurt: Evaluation-Driven Iteration for LLM Applications A Framework with Reproducible Local Experiments","url":"https://arxiv.org/html/2601.22025v1"},{"title":"arXiv:2306.00133v2 [cs.CR] 2 Jun 2023 A Note On Interpreting Canary Exposure","url":"https://arxiv.org/pdf/2306.00133"},{"title":"[2512.13767] Stability-Drift Early Warning for Cyber-Physical Systems Under Degradation Attacks","url":"https://arxiv.org/abs/2512.13767"},{"title":"Monitoring Machine Learning Systems: A Multivocal Literature Review","url":"https://arxiv.org/html/2509.14294v1"},{"title":"[2601.04170] Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions","url":"https://arxiv.org/abs/2601.04170"},{"title":"Memorization in Language Models through the Lens of Intrinsic Dimension","url":"https://arxiv.org/html/2506.09591v1"},{"title":"Learning to Stay Safe: Adaptive Regularization Against Safety Degradation during Fine-Tuning","url":"https://arxiv.org/html/2602.17546v1"},{"title":"Degradation-Aware and Structure-Preserving Diffusion for Real-World Image Super-Resolution","url":"https://arxiv.org/html/2604.11470v1"},{"title":"SwiftLearn: A Data-Efficient Training Method of Deep Learning Models using Importance Sampling","url":"https://arxiv.org/html/2311.15134"},{"title":"Quantifying Perovskite Solar Cell Degradation via Machine Learning from Spatially Resolved Multimodal Luminescence Time Series","url":"https://arxiv.org/html/2603.12857v1"}]
+
+Based on the search results, I found several relevant papers on arXiv from 2025-2026 related to early warning systems and degradation detection. Here's what the search uncovered:
+
+## Key Findings:
+
+**Early Warning for Degradation in Systems:**
+
+A paper on stability-drift early warning for cyber-physical systems demonstrates that a stability drift metric provided a consistent early warning signal several seconds before visible instability appeared, while remaining stable during nominal flight, suggesting stability drift can serve as a practical indicator of early degradation in UAV control systems.
+
+**Canary Metrics in Production Systems:**
+
+One recent paper discusses how "canary test cases that detect characteristic behaviors can reveal when a model's personality has shifted" as part of monitoring for model degradation. More specifically, the approach involves shipping behind a canary or feature flag exposing only 5–10% of traffic initially, monitoring latency, error rates, and user feedback signals for 24–48 hours, and implementing a "test, canary, monitor, rollback" loop that catches regressions while limiting blast radius.
+
+**Agent Drift Measurement:**
+
+A paper titled "Agent Drift" introduces the concept of agent drift as the progressive degradation of agent behavior, and presents the Agent Stability Index (ASI), a composite metric framework for quantifying drift across twelve dimensions, including response consistency, tool usage patterns, reasoning pathway stability, and inter-agent agreement rates.
+
+**Monitoring ML System Degradation:**
+
+A literature review on monitoring machine learning systems notes that monitoring enables early detection and mitigation of runtime issues in ML systems, such as data drift, performance degradation, delayed predictions, fairness violations, and safety violations.
+
+Would you like more specific information about any of these papers or research directions?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "5337622f-3690-4b8a-8d4b-d4da67adca18",
+  "tool_use_result": {
+    "query": "\"canary metric\" training degradation early warning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xvf1kMji1Fy93h9gne8nKP",
+        "content": [
+          {
+            "title": "When “Better” Prompts Hurt: Evaluation-Driven Iteration for LLM Applications A Framework with Reproducible Local Experiments",
+            "url": "https://arxiv.org/html/2601.22025v1"
+          },
+          {
+            "title": "arXiv:2306.00133v2 [cs.CR] 2 Jun 2023 A Note On Interpreting Canary Exposure",
+            "url": "https://arxiv.org/pdf/2306.00133"
+          },
+          {
+            "title": "[2512.13767] Stability-Drift Early Warning for Cyber-Physical Systems Under Degradation Attacks",
+            "url": "https://arxiv.org/abs/2512.13767"
+          },
+          {
+            "title": "Monitoring Machine Learning Systems: A Multivocal Literature Review",
+            "url": "https://arxiv.org/html/2509.14294v1"
+          },
+          {
+            "title": "[2601.04170] Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions",
+            "url": "https://arxiv.org/abs/2601.04170"
+          },
+          {
+            "title": "Memorization in Language Models through the Lens of Intrinsic Dimension",
+            "url": "https://arxiv.org/html/2506.09591v1"
+          },
+          {
+            "title": "Learning to Stay Safe: Adaptive Regularization Against Safety Degradation during Fine-Tuning",
+            "url": "https://arxiv.org/html/2602.17546v1"
+          },
+          {
+            "title": "Degradation-Aware and Structure-Preserving Diffusion for Real-World Image Super-Resolution",
+            "url": "https://arxiv.org/html/2604.11470v1"
+          },
+          {
+            "title": "SwiftLearn: A Data-Efficient Training Method of Deep Learning Models using Importance Sampling",
+            "url": "https://arxiv.org/html/2311.15134"
+          },
+          {
+            "title": "Quantifying Perovskite Solar Cell Degradation via Machine Learning from Spatially Resolved Multimodal Luminescence Time Series",
+            "url": "https://arxiv.org/html/2603.12857v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on arXiv from 2025-2026 related to early warning systems and degradation detection. Here's what the search uncovered:\n\n## Key Findings:\n\n**Early Warning for Degradation in Systems:**\n\nA paper on stability-drift early warning for cyber-physical systems demonstrates that a stability drift metric provided a consistent early warning signal several seconds before visible instability appeared, while remaining stable during nominal flight, suggesting stability drift can serve as a practical indicator of early degradation in UAV control systems.\n\n**Canary Metrics in Production Systems:**\n\nOne recent paper discusses how \"canary test cases that detect characteristic behaviors can reveal when a model's personality has shifted\" as part of monitoring for model degradation. More specifically, the approach involves shipping behind a canary or feature flag exposing only 5–10% of traffic initially, monitoring latency, error rates, and user feedback signals for 24–48 hours, and implementing a \"test, canary, monitor, rollback\" loop that catches regressions while limiting blast radius.\n\n**Agent Drift Measurement:**\n\nA paper titled \"Agent Drift\" introduces the concept of agent drift as the progressive degradation of agent behavior, and presents the Agent Stability Index (ASI), a composite metric framework for quantifying drift across twelve dimensions, including response consistency, tool usage patterns, reasoning pathway stability, and inter-agent agreement rates.\n\n**Monitoring ML System Degradation:**\n\nA literature review on monitoring machine learning systems notes that monitoring enables early detection and mitigation of runtime issues in ML systems, such as data drift, performance degradation, delayed predictions, fairness violations, and safety violations.\n\nWould you like more specific information about any of these papers or research directions?"
+    ],
+    "durationSeconds": 8.402391830000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T04:25:55.891Z_
+
+<details><summary>↩ Tool result · `toolu_01YJyHkkMC5NatMs9x9dJzze`</summary>
+
+```text
+Web search results for query: ""early warning" LLM training collapse detection 2026 arXiv"
+
+Links: [{"title":"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index","url":"https://arxiv.org/html/2604.26984"},{"title":"Scaling with Collapse: Efficient and Predictable Training of LLM Families","url":"https://arxiv.org/html/2509.25087v1"},{"title":"[2509.25087] Scaling with Collapse: Efficient and Predictable Training of LLM Families","url":"https://arxiv.org/abs/2509.25087"},{"title":"SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://www.arxiv.org/pdf/2601.03385v2"},{"title":"Anomaly Detection and Early Warning Mechanism for Intelligent Monitoring Systems in Multi-Cloud Environments Based on LLM","url":"https://arxiv.org/html/2506.07407v1"},{"title":"Internal Safety Collapse in Frontier Large Language Models Content Warning: This paper contains examples of harmful content.","url":"https://arxiv.org/html/2603.23509"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/html/2605.00435"},{"title":"Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability","url":"https://arxiv.org/html/2410.12341v2"},{"title":"Will LLMs Scaling Hit the Wall? Breaking Barriers via Distributed Resources on Massive Edge Devices","url":"https://arxiv.org/html/2503.08223v1"}]
+
+Based on the search results, I found several recent arXiv papers from 2026 addressing early warning detection and LLM training collapse:
+
+## Key Papers Found:
+
+**1. "Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index"** (arXiv:2604.26984, 2 weeks ago)
+
+This paper proposes an online, topology-aware monitor for evolving neural representations that couples Modular Morse Homology Maintenance with a composite Collapse Index, providing a low-latency early-warning signal suitable for in-training interventions across LLM fine-tuning and temporal knowledge graph embedding training. The Collapse Index gives a greater magnitude signal than competing approaches like IsoScore, occurring on average 1.36 epochs before the corresponding performance drop.
+
+**2. "Scaling with Collapse: Efficient and Predictable Training of LLM Families"** (arXiv:2509.25087, March 2, 2026)
+
+This paper demonstrates that deviation-from-collapse provides a sensitive, early diagnostic of training pathologies, and that predictability of collapsed curves enables early stopping in large-scale hyperparameter tuning. The authors show that collapse residuals provide a quantitative, scale-normalized early-warning signal and a practical aid for debugging at LLM scale.
+
+**3. "SIGMA: Spectral Insights for LLM Model Collapse"** (arXiv:2601.03385, January 19, 2026)
+
+This paper develops a framework allowing monitoring, estimation, and prediction of LLM behavior regarding model collapse through training iterations using spectral analysis of the Gram matrix.
+
+These papers represent cutting-edge work on detecting and monitoring training collapse in large language models using various mathematical and topological approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "ddc30e72-97b2-4833-b2b7-1070acdf9b2d",
+  "tool_use_result": {
+    "query": "\"early warning\" LLM training collapse detection 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TcNT8tfq5eZrs6u8i3nb4g",
+        "content": [
+          {
+            "title": "Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index",
+            "url": "https://arxiv.org/html/2604.26984"
+          },
+          {
+            "title": "Scaling with Collapse: Efficient and Predictable Training of LLM Families",
+            "url": "https://arxiv.org/html/2509.25087v1"
+          },
+          {
+            "title": "[2509.25087] Scaling with Collapse: Efficient and Predictable Training of LLM Families",
+            "url": "https://arxiv.org/abs/2509.25087"
+          },
+          {
+            "title": "SIGMA: Scalable Spectral Insights for LLM Model Collapse",
+            "url": "https://www.arxiv.org/pdf/2601.03385v2"
+          },
+          {
+            "title": "Anomaly Detection and Early Warning Mechanism for Intelligent Monitoring Systems in Multi-Cloud Environments Based on LLM",
+            "url": "https://arxiv.org/html/2506.07407v1"
+          },
+          {
+            "title": "Internal Safety Collapse in Frontier Large Language Models Content Warning: This paper contains examples of harmful content.",
+            "url": "https://arxiv.org/html/2603.23509"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/html/2605.00435"
+          },
+          {
+            "title": "Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability",
+            "url": "https://arxiv.org/html/2410.12341v2"
+          },
+          {
+            "title": "Will LLMs Scaling Hit the Wall? Breaking Barriers via Distributed Resources on Massive Edge Devices",
+            "url": "https://arxiv.org/html/2503.08223v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent arXiv papers from 2026 addressing early warning detection and LLM training collapse:\n\n## Key Papers Found:\n\n**1. \"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index\"** (arXiv:2604.26984, 2 weeks ago)\n\nThis paper proposes an online, topology-aware monitor for evolving neural representations that couples Modular Morse Homology Maintenance with a composite Collapse Index, providing a low-latency early-warning signal suitable for in-training interventions across LLM fine-tuning and temporal knowledge graph embedding training. The Collapse Index gives a greater magnitude signal than competing approaches like IsoScore, occurring on average 1.36 epochs before the corresponding performance drop.\n\n**2. \"Scaling with Collapse: Efficient and Predictable Training of LLM Families\"** (arXiv:2509.25087, March 2, 2026)\n\nThis paper demonstrates that deviation-from-collapse provides a sensitive, early diagnostic of training pathologies, and that predictability of collapsed curves enables early stopping in large-scale hyperparameter tuning. The authors show that collapse residuals provide a quantitative, scale-normalized early-warning signal and a practical aid for debugging at LLM scale.\n\n**3. \"SIGMA: Spectral Insights for LLM Model Collapse\"** (arXiv:2601.03385, January 19, 2026)\n\nThis paper develops a framework allowing monitoring, estimation, and prediction of LLM behavior regarding model collapse through training iterations using spectral analysis of the Gram matrix.\n\nThese papers represent cutting-edge work on detecting and monitoring training collapse in large language models using various mathematical and topological approaches."
+    ],
+    "durationSeconds": 8.204598466
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T04:25:56.100Z_
+
+<details><summary>↩ Tool result · `toolu_01FWzVKKaLZLKMQZ8ESzVr3R`</summary>
+
+```text
+Web search results for query: "token entropy calibration ECE "model collapse" arXiv 2026"
+
+Links: [{"title":"Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability","url":"https://arxiv.org/html/2410.12341v2"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"[2505.16441] Ranked Entropy Minimization for Continual Test-Time Adaptation","url":"https://arxiv.org/abs/2505.16441"},{"title":"Computer Science Apr 2024","url":"https://arxiv.org/list/cs/2024-04?show=2000&skip=560"},{"title":"[2507.04219] Model Collapse Is Not a Bug but a Feature in Machine Unlearning for LLMs","url":"https://arxiv.org/abs/2507.04219"},{"title":"[2410.04840] Strong Model Collapse","url":"https://arxiv.org/abs/2410.04840"},{"title":"Future of AI Models: A Computational perspective on Model collapse","url":"https://arxiv.org/html/2511.05535v1"},{"title":"[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/abs/2404.01413"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=675&show=2000"}]
+
+I found several relevant arXiv papers related to your search query about token entropy, calibration, ECE, and model collapse. Here are the key results:
+
+## Key Papers Found
+
+1. **"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"** (arXiv 2509.16499)
+   - Identifies that the declining entropy of synthetic training data serves as a clear indicator of model degradation
+   - Proposes entropy-based selection methods to construct training subsets, which effectively identify high-entropy subsets and decelerate the generalization-to-memorization transition
+
+2. **"Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability"** (arXiv 2410.12341)
+   - Linguistic entropy quantifies uncertainty within text, where low linguistic entropy indicates repetitive vocabulary and low information density
+   - Examines next-token probability and semantic networks to characterize model collapse
+
+3. **"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"** (arXiv 2404.01413)
+   - Shows that replacing data leads to increased test cross entropy as iterations increase, while accumulating data maintains equal or lower test cross entropy
+
+4. **"Ranked Entropy Minimization for Continual Test-Time Adaptation"** (arXiv 2505.16441)
+   - Observes that entropy minimization methods often suffer from model collapse, where models converge to predicting a single class due to trivial solutions
+
+5. **"Model Collapse Is Not a Bug but a Feature in Machine Unlearning for LLMs"** (arXiv 2507.04219)
+   - This 2026 paper explores model collapse in the context of machine unlearning
+
+These papers collectively address entropy metrics, calibration issues, and model collapse phenomena across language and diffusion models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "d7c01a99-ac1c-473e-934e-1f95df37da2c",
+  "tool_use_result": {
+    "query": "token entropy calibration ECE \"model collapse\" arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ef6BWx7yTLibhYZGZrrB2C",
+        "content": [
+          {
+            "title": "Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability",
+            "url": "https://arxiv.org/html/2410.12341v2"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v1"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "[2505.16441] Ranked Entropy Minimization for Continual Test-Time Adaptation",
+            "url": "https://arxiv.org/abs/2505.16441"
+          },
+          {
+            "title": "Computer Science Apr 2024",
+            "url": "https://arxiv.org/list/cs/2024-04?show=2000&skip=560"
+          },
+          {
+            "title": "[2507.04219] Model Collapse Is Not a Bug but a Feature in Machine Unlearning for LLMs",
+            "url": "https://arxiv.org/abs/2507.04219"
+          },
+          {
+            "title": "[2410.04840] Strong Model Collapse",
+            "url": "https://arxiv.org/abs/2410.04840"
+          },
+          {
+            "title": "Future of AI Models: A Computational perspective on Model collapse",
+            "url": "https://arxiv.org/html/2511.05535v1"
+          },
+          {
+            "title": "[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/abs/2404.01413"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=675&show=2000"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers related to your search query about token entropy, calibration, ECE, and model collapse. Here are the key results:\n\n## Key Papers Found\n\n1. **\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\"** (arXiv 2509.16499)\n   - Identifies that the declining entropy of synthetic training data serves as a clear indicator of model degradation\n   - Proposes entropy-based selection methods to construct training subsets, which effectively identify high-entropy subsets and decelerate the generalization-to-memorization transition\n\n2. **\"Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability\"** (arXiv 2410.12341)\n   - Linguistic entropy quantifies uncertainty within text, where low linguistic entropy indicates repetitive vocabulary and low information density\n   - Examines next-token probability and semantic networks to characterize model collapse\n\n3. **\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"** (arXiv 2404.01413)\n   - Shows that replacing data leads to increased test cross entropy as iterations increase, while accumulating data maintains equal or lower test cross entropy\n\n4. **\"Ranked Entropy Minimization for Continual Test-Time Adaptation\"** (arXiv 2505.16441)\n   - Observes that entropy minimization methods often suffer from model collapse, where models converge to predicting a single class due to trivial solutions\n\n5. **\"Model Collapse Is Not a Bug but a Feature in Machine Unlearning for LLMs\"** (arXiv 2507.04219)\n   - This 2026 paper explores model collapse in the context of machine unlearning\n\nThese papers collectively address entropy metrics, calibration issues, and model collapse phenomena across language and diffusion models."
+    ],
+    "durationSeconds": 7.7120487419999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the search results and identify new papers that aren't already in the literature_map.yaml. Let me also do a couple more targeted searches for very recent papers (May 2026).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "1092eb3d-69f9-43bd-88a8-a37c4fcae48b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+发现几篇可能的新论文。让我做更针对性的搜索，特别是 2026 年 5 月的最新论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "28176b3a-e87e-4518-a886-3be7de8d54fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018spFhRUbfLqhD4DgfVBD28`</summary>
+
+```json
+{
+  "query": "arxiv 2605 model collapse LLM synthetic data iterative training",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "60457e1b-734f-4279-a97b-e4400a337c82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W71UGVYhb3awCQbihVpWSf`</summary>
+
+```json
+{
+  "query": "\"mode collapse\" LLM generation geometric regulation 2026 arXiv",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "c32e6b0b-c3db-46c5-9d53-53191f6f8d5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014LBB1vT1YyAVnEFvfMHA3E`</summary>
+
+```json
+{
+  "query": "arXiv 2605.07271 layer pruning distributional collapse",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "df216385-e3b0-463a-84a7-b2e455d3e450",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018WKSfgRkX8xR7YgNT7hrfg`</summary>
+
+```json
+{
+  "query": "arXiv 2505.08803 multi-modal synthetic data model collapse VLM",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "e8a6d784-756f-4247-8e4b-7689e327c1eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CnWfme6v5n1Y4PUrvWHeaT`</summary>
+
+```json
+{
+  "query": "arXiv 2605.00435 escaping mode collapse LLM geometric regulation",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "7ff88c16-e03e-468b-9c9c-cb07751fdf89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99v84nNa6nHK2hnyu8jci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5412,
+      "cache_read_input_tokens": 41088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T04:26:09.223Z_
+
+<details><summary>↩ Tool result · `toolu_014LBB1vT1YyAVnEFvfMHA3E`</summary>
+
+```text
+Web search results for query: "arXiv 2605.07271 layer pruning distributional collapse"
+
+Links: [{"title":"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/html/2605.07271"},{"title":"[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/abs/2605.07271"},{"title":"Which Layer Causes Distribution Deviation? Entropy-Guided Adaptive Pruning for Diffusion and Flow Models","url":"https://arxiv.org/html/2511.21122"},{"title":"Layer Collapse in Diffusion Language Models","url":"https://arxiv.org/html/2605.06366v2"},{"title":"LaCo: Large Language Model Pruning via Layer Collapse","url":"https://arxiv.org/html/2402.11187v2"},{"title":"[2605.09577] Quadratic Forms in Gaussian Random Variables Theoretical Results and Applications","url":"https://arxiv.org/abs/2605.09577"},{"title":"[2402.11187] LaCo: Large Language Model Pruning via Layer Collapse","url":"https://arxiv.org/abs/2402.11187"},{"title":"LaCoOT: Layer Collapse through Optimal Transport","url":"https://arxiv.org/html/2406.08933v1"},{"title":"[2502.15790] Signal Collapse in One-Shot Pruning: When Sparse Models Fail to Distinguish Neural Representations","url":"https://arxiv.org/abs/2502.15790"},{"title":"[2605.07847] Measuring and Mitigating the Distributional Gap Between Real and Simulated User Behaviors","url":"https://arxiv.org/abs/2605.07847"}]
+
+Based on the search results, here's information about arXiv paper 2605.07271:
+
+## Paper Overview
+
+This paper, by Boyu Shi, Chang Liu, ChuanBao Gao, Xu Yang, and Xin Geng, examines how layer pruning efficiently reduces Large Language Model (LLM) computational costs but often triggers sudden performance collapse.
+
+## Key Findings
+
+The authors introduce two metrics—Decision Margin and Option Frequency—and an Iterative Pruning method to analyze layer-wise decision dynamics, revealing a sharp decision transition that partitions the network into two stages: a Silent Phase where the model cannot yet predict the correct answer, and a Decisive Phase where the correct prediction emerges.
+
+## Distributional Collapse
+
+The distributional collapse phenomenon is central to the paper's findings: In the Silent Phase, the paper observes a severe distributional collapse where the model's predictions are dominated by a single option regardless of the input. Conversely, the Decisive Phase exhibits a balanced distribution, indicating that the model has escaped its internal bias to form a structured decision.
+
+## Critical Insight on Layer Pruning
+
+The study finds that pruning the Decisive Phase has minimal impact, whereas pruning the Silent Phase triggers immediate performance collapse, highlighting its extreme sensitivity to structural changes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "acebc241-55be-4f93-93a3-e6ae307580ec",
+  "tool_use_result": {
+    "query": "arXiv 2605.07271 layer pruning distributional collapse",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HVY625eT13fu97NbrbffRa",
+        "content": [
+          {
+            "title": "Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/html/2605.07271"
+          },
+          {
+            "title": "[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/abs/2605.07271"
+          },
+          {
+            "title": "Which Layer Causes Distribution Deviation? Entropy-Guided Adaptive Pruning for Diffusion and Flow Models",
+            "url": "https://arxiv.org/html/2511.21122"
+          },
+          {
+            "title": "Layer Collapse in Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.06366v2"
+          },
+          {
+            "title": "LaCo: Large Language Model Pruning via Layer Collapse",
+            "url": "https://arxiv.org/html/2402.11187v2"
+          },
+          {
+            "title": "[2605.09577] Quadratic Forms in Gaussian Random Variables Theoretical Results and Applications",
+            "url": "https://arxiv.org/abs/2605.09577"
+          },
+          {
+            "title": "[2402.11187] LaCo: Large Language Model Pruning via Layer Collapse",
+            "url": "https://arxiv.org/abs/2402.11187"
+          },
+          {
+            "title": "LaCoOT: Layer Collapse through Optimal Transport",
+            "url": "https://arxiv.org/html/2406.08933v1"
+          },
+          {
+            "title": "[2502.15790] Signal Collapse in One-Shot Pruning: When Sparse Models Fail to Distinguish Neural Representations",
+            "url": "https://arxiv.org/abs/2502.15790"
+          },
+          {
+            "title": "[2605.07847] Measuring and Mitigating the Distributional Gap Between Real and Simulated User Behaviors",
+            "url": "https://arxiv.org/abs/2605.07847"
+          }
+        ]
+      },
+      "Based on the search results, here's information about arXiv paper 2605.07271:\n\n## Paper Overview\n\nThis paper, by Boyu Shi, Chang Liu, ChuanBao Gao, Xu Yang, and Xin Geng, examines how layer pruning efficiently reduces Large Language Model (LLM) computational costs but often triggers sudden performance collapse.\n\n## Key Findings\n\nThe authors introduce two metrics—Decision Margin and Option Frequency—and an Iterative Pruning method to analyze layer-wise decision dynamics, revealing a sharp decision transition that partitions the network into two stages: a Silent Phase where the model cannot yet predict the correct answer, and a Decisive Phase where the correct prediction emerges.\n\n## Distributional Collapse\n\nThe distributional collapse phenomenon is central to the paper's findings: In the Silent Phase, the paper observes a severe distributional collapse where the model's predictions are dominated by a single option regardless of the input. Conversely, the Decisive Phase exhibits a balanced distribution, indicating that the model has escaped its internal bias to form a structured decision.\n\n## Critical Insight on Layer Pruning\n\nThe study finds that pruning the Decisive Phase has minimal impact, whereas pruning the Silent Phase triggers immediate performance collapse, highlighting its extreme sensitivity to structural changes."
+    ],
+    "durationSeconds": 6.253452138000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T04:26:09.659Z_
+
+<details><summary>↩ Tool result · `toolu_01W71UGVYhb3awCQbihVpWSf`</summary>
+
+```text
+Web search results for query: ""mode collapse" LLM generation geometric regulation 2026 arXiv"
+
+Links: [{"title":"[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/abs/2605.00435"},{"title":"Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/html/2605.00435"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of","url":"https://arxiv.org/pdf/2404.01413"},{"title":"Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity","url":"https://arxiv.org/html/2510.01171v1"},{"title":"[2605.03196] Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability","url":"https://arxiv.org/abs/2605.03196"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"[2510.01171] Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity","url":"https://arxiv.org/abs/2510.01171"},{"title":"On the Fundamental Limits of LLMs at Scale","url":"https://arxiv.org/html/2511.12869v1"},{"title":"KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://arxiv.org/html/2510.20817v1"},{"title":"Model Collapse Demystified: The Case of Regression","url":"https://arxiv.org/html/2402.07712v1"}]
+
+Based on the search results, I found a highly relevant paper matching your query:
+
+## Primary Result
+
+"Escaping Mode Collapse in LLM Generation via Geometric Regulation" is an arXiv paper submitted on May 1, 2026 by Xin Du and Kumiko Tanaka-Ishii (arXiv ID: 2605.00435).
+
+### Paper Overview
+
+The paper addresses mode collapse in autoregressive text generation, which manifests as "behaviors ranging from explicit looping to gradual loss of diversity and premature trajectory convergence."
+
+### Key Contribution
+
+The authors take a dynamical-systems view and reinterpret mode collapse as reduced state-space accessibility caused by geometric collapse: during generation, the model's internal trajectory becomes confined to a low-dimensional region of its representation space.
+
+### Proposed Solution
+
+The paper proposes Reinforced Mode Regulation (RMR), a lightweight inference-time intervention that selectively attenuates the dominant self-reinforcing directions in the Transformer value cache by identifying a small low-rank subspace exhibiting unusually strong temporal persistence and applying principled thresholding to target only the most persistent directions.
+
+### Results
+
+RMR improves non-collapse rates from 8% to 56% at temperature 0.7 and from 5% to 33% at an entropy target of 1.0.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "4a30d1b5-ed43-49b8-9aa5-3a9f693a2c38",
+  "tool_use_result": {
+    "query": "\"mode collapse\" LLM generation geometric regulation 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TkyRiVtefTnTNE8SRpWF8s",
+        "content": [
+          {
+            "title": "[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/abs/2605.00435"
+          },
+          {
+            "title": "Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/html/2605.00435"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of",
+            "url": "https://arxiv.org/pdf/2404.01413"
+          },
+          {
+            "title": "Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity",
+            "url": "https://arxiv.org/html/2510.01171v1"
+          },
+          {
+            "title": "[2605.03196] Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability",
+            "url": "https://arxiv.org/abs/2605.03196"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "[2510.01171] Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity",
+            "url": "https://arxiv.org/abs/2510.01171"
+          },
+          {
+            "title": "On the Fundamental Limits of LLMs at Scale",
+            "url": "https://arxiv.org/html/2511.12869v1"
+          },
+          {
+            "title": "KL-Regularized Reinforcement Learning is Designed to Mode Collapse",
+            "url": "https://arxiv.org/html/2510.20817v1"
+          },
+          {
+            "title": "Model Collapse Demystified: The Case of Regression",
+            "url": "https://arxiv.org/html/2402.07712v1"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant paper matching your query:\n\n## Primary Result\n\n\"Escaping Mode Collapse in LLM Generation via Geometric Regulation\" is an arXiv paper submitted on May 1, 2026 by Xin Du and Kumiko Tanaka-Ishii (arXiv ID: 2605.00435).\n\n### Paper Overview\n\nThe paper addresses mode collapse in autoregressive text generation, which manifests as \"behaviors ranging from explicit looping to gradual loss of diversity and premature trajectory convergence.\"\n\n### Key Contribution\n\nThe authors take a dynamical-systems view and reinterpret mode collapse as reduced state-space accessibility caused by geometric collapse: during generation, the model's internal trajectory becomes confined to a low-dimensional region of its representation space.\n\n### Proposed Solution\n\nThe paper proposes Reinforced Mode Regulation (RMR), a lightweight inference-time intervention that selectively attenuates the dominant self-reinforcing directions in the Transformer value cache by identifying a small low-rank subspace exhibiting unusually strong temporal persistence and applying principled thresholding to target only the most persistent directions.\n\n### Results\n\nRMR improves non-collapse rates from 8% to 56% at temperature 0.7 and from 5% to 33% at an entropy target of 1.0."
+    ],
+    "durationSeconds": 7.235110844000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T04:26:10.281Z_
+
+<details><summary>↩ Tool result · `toolu_018spFhRUbfLqhD4DgfVBD28`</summary>
+
+```text
+Web search results for query: "arxiv 2605 model collapse LLM synthetic data iterative training"
+
+Links: [{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"When Models Don’t Collapse: On the Consistency of Iterative MLE","url":"https://arxiv.org/html/2505.19046"},{"title":"Escaping Model Collapse via Synthetic Data Verification:","url":"https://arxiv.org/pdf/2510.16657"},{"title":"Preprint. MODEL COLLAPSE IS NOT A BUG BUT A FEATURE IN","url":"https://arxiv.org/pdf/2507.04219"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/html/2602.10531v2"},{"title":"Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability","url":"https://arxiv.org/html/2410.12341v2"},{"title":"Explaining and Preventing Alignment Collapse in Iterative RLHF","url":"https://arxiv.org/html/2605.04266v1"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"},{"title":"Position: Model Collapse Does Not Mean What You Think","url":"https://arxiv.org/pdf/2503.03150"}]
+
+I found research on model collapse in LLMs with synthetic data and iterative training. Here are the key findings:
+
+## Core Problem
+
+Iteratively retraining a generative model on its self-generated synthetic data may keep deteriorating model performance, a phenomenon often coined model collapse.
+
+## Key Research Directions
+
+**Data Accumulation Strategy**: Research shows that when data accumulate with each iteration, model collapse is avoided, unlike when data are replaced with each model-fitting iteration. Theoretical work proves that if data instead accumulate, the test error has a finite upper bound independent of the number of iterations, meaning model collapse no longer occurs.
+
+**Synthetic Data Verification**: Practitioners often apply filtering steps to remove low-quality synthetic samples before retraining, using a knowledgeable "discriminator" (called a verifier) that evaluates candidate synthetic samples and filters out those low-quality samples.
+
+**Consistency of Iterative Training**: Recent theoretical research on maximum likelihood estimation (MLE) under iterative training with synthetic data, studying a natural setting where synthetic data is gradually added to the original dataset, establishes non-asymptotic bounds showing that collapse can be avoided even as the fraction of real data vanishes.
+
+**Statistical Perspectives**: Training on a mixture of true target and synthetic distributions with non-trivial mixture weight of the true distribution can avoid collapse and even recover the true target distribution under certain conditions.
+
+These papers highlight that model collapse is not inevitable—the outcome depends on how synthetic data is incorporated during iterative training cycles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "78cb2ca8-d7a7-4490-aad3-3a0efcd9fe06",
+  "tool_use_result": {
+    "query": "arxiv 2605 model collapse LLM synthetic data iterative training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BdGGkAkzVnbLFBMspRijy5",
+        "content": [
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "When Models Don’t Collapse: On the Consistency of Iterative MLE",
+            "url": "https://arxiv.org/html/2505.19046"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification:",
+            "url": "https://arxiv.org/pdf/2510.16657"
+          },
+          {
+            "title": "Preprint. MODEL COLLAPSE IS NOT A BUG BUT A FEATURE IN",
+            "url": "https://arxiv.org/pdf/2507.04219"
+          },
+          {
+            "title": "From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources",
+            "url": "https://arxiv.org/html/2602.10531v2"
+          },
+          {
+            "title": "Characterizing Model Collapse in Large Language Models Using Semantic Networks and Next-Token Probability",
+            "url": "https://arxiv.org/html/2410.12341v2"
+          },
+          {
+            "title": "Explaining and Preventing Alignment Collapse in Iterative RLHF",
+            "url": "https://arxiv.org/html/2605.04266v1"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v1"
+          },
+          {
+            "title": "Position: Model Collapse Does Not Mean What You Think",
+            "url": "https://arxiv.org/pdf/2503.03150"
+          }
+        ]
+      },
+      "I found research on model collapse in LLMs with synthetic data and iterative training. Here are the key findings:\n\n## Core Problem\n\nIteratively retraining a generative model on its self-generated synthetic data may keep deteriorating model performance, a phenomenon often coined model collapse.\n\n## Key Research Directions\n\n**Data Accumulation Strategy**: Research shows that when data accumulate with each iteration, model collapse is avoided, unlike when data are replaced with each model-fitting iteration. Theoretical work proves that if data instead accumulate, the test error has a finite upper bound independent of the number of iterations, meaning model collapse no longer occurs.\n\n**Synthetic Data Verification**: Practitioners often apply filtering steps to remove low-quality synthetic samples before retraining, using a knowledgeable \"discriminator\" (called a verifier) that evaluates candidate synthetic samples and filters out those low-quality samples.\n\n**Consistency of Iterative Training**: Recent theoretical research on maximum likelihood estimation (MLE) under iterative training with synthetic data, studying a natural setting where synthetic data is gradually added to the original dataset, establishes non-asymptotic bounds showing that collapse can be avoided even as the fraction of real data vanishes.\n\n**Statistical Perspectives**: Training on a mixture of true target and synthetic distributions with non-trivial mixture weight of the true distribution can avoid collapse and even recover the true target distribution under certain conditions.\n\nThese papers highlight that model collapse is not inevitable—the outcome depends on how synthetic data is incorporated during iterative training cycles."
+    ],
+    "durationSeconds": 8.811721861000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T04:26:10.677Z_
+
+<details><summary>↩ Tool result · `toolu_018WKSfgRkX8xR7YgNT7hrfg`</summary>
+
+```text
+Web search results for query: "arXiv 2505.08803 multi-modal synthetic data model collapse VLM"
+
+Links: [{"title":"[2505.08803] Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models","url":"https://arxiv.org/abs/2505.08803"},{"title":"Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models","url":"https://arxiv.org/html/2505.08803v1"},{"title":"Multi-modal Synthetic Data Training and Model Collapse","url":"https://arxiv.org/pdf/2505.08803"},{"title":"Artificial Intelligence May 2025","url":"https://www.arxiv.org/list/cs.AI/2025-05?skip=1900&show=25"},{"title":"Artificial Intelligence May 2025","url":"https://arxiv.org/list/cs.AI/2025-05?skip=1900&show=500"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=650&show=250"},{"title":"Self-Improvement in Multimodal Large Language Models: A Survey","url":"https://arxiv.org/html/2510.02665v1"},{"title":"[2505.22483] A Closer Look at Multimodal Representation Collapse","url":"https://arxiv.org/abs/2505.22483"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"[2305.17493] The Curse of Recursion: Training on Generated Data Makes Models Forget","url":"https://arxiv.org/abs/2305.17493"}]
+
+I found the paper you're looking for! Here's what I can tell you about arXiv:2505.08803:
+
+## Paper Overview
+
+The paper is titled "Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models" by Zizhao Hu, Mohammad Rostami, and Jesse Thomason, and was submitted on May 10, 2025.
+
+## Research Focus
+
+The paper addresses the limitation of existing model collapse research, which has been confined to single, unimodal models, by expanding the study to multi-modal vision-language generative systems, including VLMs and text-to-image diffusion models, as well as recursive generate-train loops with multiple models.
+
+## Key Findings
+
+The researchers found that model collapse, previously observed in single-modality generative models, exhibits distinct characteristics in the multi-modal context, such as improved vision-language alignment and increased variance in VLM image-captioning tasks.
+
+## Mitigation Strategies
+
+The paper identifies that general approaches such as increased decoding budgets, greater model diversity, and relabeling with frozen models can effectively mitigate model collapse, providing practical guidelines for reducing the risk in self-improving multi-agent AI systems and curating robust multi-modal synthetic datasets.
+
+You can access the paper directly at https://arxiv.org/abs/2505.08803.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "0e0a8b38-a109-4bc7-815f-766e241f5728",
+  "tool_use_result": {
+    "query": "arXiv 2505.08803 multi-modal synthetic data model collapse VLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P6UApSv1mNs9egxVXSXHro",
+        "content": [
+          {
+            "title": "[2505.08803] Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models",
+            "url": "https://arxiv.org/abs/2505.08803"
+          },
+          {
+            "title": "Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models",
+            "url": "https://arxiv.org/html/2505.08803v1"
+          },
+          {
+            "title": "Multi-modal Synthetic Data Training and Model Collapse",
+            "url": "https://arxiv.org/pdf/2505.08803"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025-05?skip=1900&show=25"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-05?skip=1900&show=500"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=650&show=250"
+          },
+          {
+            "title": "Self-Improvement in Multimodal Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2510.02665v1"
+          },
+          {
+            "title": "[2505.22483] A Closer Look at Multimodal Representation Collapse",
+            "url": "https://arxiv.org/abs/2505.22483"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "[2305.17493] The Curse of Recursion: Training on Generated Data Makes Models Forget",
+            "url": "https://arxiv.org/abs/2305.17493"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I can tell you about arXiv:2505.08803:\n\n## Paper Overview\n\nThe paper is titled \"Multi-modal Synthetic Data Training and Model Collapse: Insights from VLMs and Diffusion Models\" by Zizhao Hu, Mohammad Rostami, and Jesse Thomason, and was submitted on May 10, 2025.\n\n## Research Focus\n\nThe paper addresses the limitation of existing model collapse research, which has been confined to single, unimodal models, by expanding the study to multi-modal vision-language generative systems, including VLMs and text-to-image diffusion models, as well as recursive generate-train loops with multiple models.\n\n## Key Findings\n\nThe researchers found that model collapse, previously observed in single-modality generative models, exhibits distinct characteristics in the multi-modal context, such as improved vision-language alignment and increased variance in VLM image-captioning tasks.\n\n## Mitigation Strategies\n\nThe paper identifies that general approaches such as increased decoding budgets, greater model diversity, and relabeling with frozen models can effectively mitigate model collapse, providing practical guidelines for reducing the risk in self-improving multi-agent AI systems and curating robust multi-modal synthetic datasets.\n\nYou can access the paper directly at https://arxiv.org/abs/2505.08803."
+    ],
+    "durationSeconds": 6.711450022999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T04:26:11.105Z_
+
+<details><summary>↩ Tool result · `toolu_01CnWfme6v5n1Y4PUrvWHeaT`</summary>
+
+```text
+Web search results for query: "arXiv 2605.00435 escaping mode collapse LLM geometric regulation"
+
+Links: [{"title":"[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/abs/2605.00435"},{"title":"Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/html/2605.00435"},{"title":"Explaining and Preventing Alignment Collapse in Iterative RLHF","url":"https://arxiv.org/html/2605.04266v1"},{"title":"Safety Anchor: Defending Harmful Fine-tuning via Geometric Bottlenecks","url":"https://arxiv.org/html/2605.05995"},{"title":"[2605.12968] Controlling Logical Collapse in LLMs via Algebraic Ontology Projection over F2","url":"https://arxiv.org/abs/2605.12968"},{"title":"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training","url":"https://arxiv.org/abs/2502.08924"},{"title":"TruncProof: A Guardrail for LLM-based JSON Generation under Token-Length Constraints","url":"https://arxiv.org/html/2605.13076"},{"title":"Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity","url":"https://arxiv.org/html/2510.01171v1"},{"title":"Position: Model Collapse Does Not Mean What You Think","url":"https://arxiv.org/pdf/2503.03150"},{"title":"Decodable but Not Corrected by Fixed Residual-Stream Linear Steering: Evidence from Medical LLM Failure Regimes","url":"https://arxiv.org/html/2605.05715"}]
+
+Based on the search results, here's information about arXiv paper 2605.00435:
+
+## Paper Overview
+
+The paper is titled "Escaping Mode Collapse in LLM Generation via Geometric Regulation" by Xin Du and Kumiko Tanaka-Ishii, and it was submitted on May 1, 2026.
+
+## Main Contribution
+
+The paper takes a dynamical-systems view and reinterprets mode collapse as reduced state-space accessibility caused by geometric collapse: during generation, the model's internal trajectory becomes confined to a low-dimensional region of its representation space.
+
+The authors argue that mode collapse is not purely a token-level phenomenon and cannot be reliably solved by symbolic constraints or probability-only decoding heuristics.
+
+## Proposed Solution
+
+Guided by this perspective, the authors propose Reinforced Mode Regulation (RMR), a lightweight, online state-space intervention that regulates dominant self-reinforcing directions in the Transformer value cache (implemented as low-rank damping).
+
+The paper addresses a significant challenge in LLM generation where models exhibit behaviors like explicit looping, gradual loss of diversity, and premature trajectory convergence, and approaches this problem through the lens of geometric properties of the model's representation space rather than just token-level probabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "c8bb1e90-e96e-43e3-af97-d6aa08f925f9",
+  "tool_use_result": {
+    "query": "arXiv 2605.00435 escaping mode collapse LLM geometric regulation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W17yEzxpQwu5gL54WrHwQU",
+        "content": [
+          {
+            "title": "[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/abs/2605.00435"
+          },
+          {
+            "title": "Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/html/2605.00435"
+          },
+          {
+            "title": "Explaining and Preventing Alignment Collapse in Iterative RLHF",
+            "url": "https://arxiv.org/html/2605.04266v1"
+          },
+          {
+            "title": "Safety Anchor: Defending Harmful Fine-tuning via Geometric Bottlenecks",
+            "url": "https://arxiv.org/html/2605.05995"
+          },
+          {
+            "title": "[2605.12968] Controlling Logical Collapse in LLMs via Algebraic Ontology Projection over F2",
+            "url": "https://arxiv.org/abs/2605.12968"
+          },
+          {
+            "title": "[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training",
+            "url": "https://arxiv.org/abs/2502.08924"
+          },
+          {
+            "title": "TruncProof: A Guardrail for LLM-based JSON Generation under Token-Length Constraints",
+            "url": "https://arxiv.org/html/2605.13076"
+          },
+          {
+            "title": "Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity",
+            "url": "https://arxiv.org/html/2510.01171v1"
+          },
+          {
+            "title": "Position: Model Collapse Does Not Mean What You Think",
+            "url": "https://arxiv.org/pdf/2503.03150"
+          },
+          {
+            "title": "Decodable but Not Corrected by Fixed Residual-Stream Linear Steering: Evidence from Medical LLM Failure Regimes",
+            "url": "https://arxiv.org/html/2605.05715"
+          }
+        ]
+      },
+      "Based on the search results, here's information about arXiv paper 2605.00435:\n\n## Paper Overview\n\nThe paper is titled \"Escaping Mode Collapse in LLM Generation via Geometric Regulation\" by Xin Du and Kumiko Tanaka-Ishii, and it was submitted on May 1, 2026.\n\n## Main Contribution\n\nThe paper takes a dynamical-systems view and reinterprets mode collapse as reduced state-space accessibility caused by geometric collapse: during generation, the model's internal trajectory becomes confined to a low-dimensional region of its representation space.\n\nThe authors argue that mode collapse is not purely a token-level phenomenon and cannot be reliably solved by symbolic constraints or probability-only decoding heuristics.\n\n## Proposed Solution\n\nGuided by this perspective, the authors propose Reinforced Mode Regulation (RMR), a lightweight, online state-space intervention that regulates dominant self-reinforcing directions in the Transformer value cache (implemented as low-rank damping).\n\nThe paper addresses a significant challenge in LLM generation where models exhibit behaviors like explicit looping, gradual loss of diversity, and premature trajectory convergence, and approaches this problem through the lens of geometric properties of the model's representation space rather than just token-level probabilities."
+    ],
+    "durationSeconds": 6.816885662000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check a few more papers I spotted - the alignment collapse one (2605.04266) and see if there are any other May 2026 papers I missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "034de00e-9644-4397-841c-5b388cbfe349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WG1vUVY5LDfxtykt8gmUsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4602,
+      "cache_read_input_tokens": 46500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+发现更多线索。再搜几篇 May 2026 的新论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "0099e982-3336-47d2-90d3-eaced751cfb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WG1vUVY5LDfxtykt8gmUsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4602,
+      "cache_read_input_tokens": 46500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017JtuXGZxHfDZXGXBSEi4XL`</summary>
+
+```json
+{
+  "query": "arXiv 2605.04266 alignment collapse iterative RLHF",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "82374609-b7f2-4bec-b89c-aa57111c772a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WG1vUVY5LDfxtykt8gmUsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4602,
+      "cache_read_input_tokens": 46500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013PBc5us2iKP7SMv9grp4Xr`</summary>
+
+```json
+{
+  "query": "arXiv 2605.06366 layer collapse diffusion language models",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "b8a032ca-ba89-4362-b35a-59cef4428dec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WG1vUVY5LDfxtykt8gmUsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4602,
+      "cache_read_input_tokens": 46500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RNagcH7oY7UwKDpiK5cWBf`</summary>
+
+```json
+{
+  "query": "Granger causality training dynamics neural network monitoring 2026 arXiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "d64b6dd5-d382-4c14-81cb-72a7380f4bb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WG1vUVY5LDfxtykt8gmUsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4602,
+      "cache_read_input_tokens": 46500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T04:26:22.174Z_
+
+<details><summary>↩ Tool result · `toolu_013PBc5us2iKP7SMv9grp4Xr`</summary>
+
+```text
+Web search results for query: "arXiv 2605.06366 layer collapse diffusion language models"
+
+Links: [{"title":"Layer Collapse in Diffusion Language Models","url":"https://arxiv.org/html/2605.06366v2"},{"title":"[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/abs/2605.07271"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"},{"title":"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/html/2605.07271"},{"title":"Focus on the Core: Empowering Diffusion Large Language Models by Self-Contrast","url":"https://arxiv.org/html/2605.01373"},{"title":"[2605.10971] Steering Without Breaking: Mechanistically Informed Interventions for Discrete Diffusion Language Models","url":"https://arxiv.org/abs/2605.10971"},{"title":"[2605.05204] D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models","url":"https://arxiv.org/abs/2605.05204"},{"title":"Continuous Latent Diffusion Language Model","url":"https://arxiv.org/html/2605.06548"},{"title":"Consistent Diffusion Language Models","url":"https://arxiv.org/html/2605.00161"},{"title":"A Single Layer to Explain Them All: Understanding Massive Activations in Large Language Models","url":"https://arxiv.org/html/2605.08504"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Layer Collapse in Diffusion Language Models" is a recent paper (arXiv:2605.06366v2 from May 11, 2026) by researchers from Tübingen AI Center, Max Planck Institute for Intelligent Systems, and ELLIS Institute Tübingen.
+
+The paper's main findings are:
+
+The researchers identified a striking layer-collapse property in the LLaDA-8B model, where a few early layers exhibit highly similar, collapsed activation patterns dominated by a single large super-outlier that persists over a long token range. 
+
+Despite appearing redundant, this outlier is critical—pruning it causes the model's outputs to degrade into repetitive random token loops.
+
+The paper characterizes the activation dynamics of diffusion language models (DLMs), which have recently emerged as competitive alternatives to autoregressive (AR) language models, yet the differences in their activation dynamics remain poorly understood.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "0f6310e0-a90d-4346-a384-358bf739e952",
+  "tool_use_result": {
+    "query": "arXiv 2605.06366 layer collapse diffusion language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013YzF3FSywTGWdFXKXG6xLi",
+        "content": [
+          {
+            "title": "Layer Collapse in Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.06366v2"
+          },
+          {
+            "title": "[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/abs/2605.07271"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v1"
+          },
+          {
+            "title": "Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/html/2605.07271"
+          },
+          {
+            "title": "Focus on the Core: Empowering Diffusion Large Language Models by Self-Contrast",
+            "url": "https://arxiv.org/html/2605.01373"
+          },
+          {
+            "title": "[2605.10971] Steering Without Breaking: Mechanistically Informed Interventions for Discrete Diffusion Language Models",
+            "url": "https://arxiv.org/abs/2605.10971"
+          },
+          {
+            "title": "[2605.05204] D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models",
+            "url": "https://arxiv.org/abs/2605.05204"
+          },
+          {
+            "title": "Continuous Latent Diffusion Language Model",
+            "url": "https://arxiv.org/html/2605.06548"
+          },
+          {
+            "title": "Consistent Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.00161"
+          },
+          {
+            "title": "A Single Layer to Explain Them All: Understanding Massive Activations in Large Language Models",
+            "url": "https://arxiv.org/html/2605.08504"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"Layer Collapse in Diffusion Language Models\" is a recent paper (arXiv:2605.06366v2 from May 11, 2026) by researchers from Tübingen AI Center, Max Planck Institute for Intelligent Systems, and ELLIS Institute Tübingen.\n\nThe paper's main findings are:\n\nThe researchers identified a striking layer-collapse property in the LLaDA-8B model, where a few early layers exhibit highly similar, collapsed activation patterns dominated by a single large super-outlier that persists over a long token range. \n\nDespite appearing redundant, this outlier is critical—pruning it causes the model's outputs to degrade into repetitive random token loops.\n\nThe paper characterizes the activation dynamics of diffusion language models (DLMs), which have recently emerged as competitive alternatives to autoregressive (AR) language models, yet the differences in their activation dynamics remain poorly understood."
+    ],
+    "durationSeconds": 5.923919263000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T04:26:22.405Z_
+
+<details><summary>↩ Tool result · `toolu_017JtuXGZxHfDZXGXBSEi4XL`</summary>
+
+```text
+Web search results for query: "arXiv 2605.04266 alignment collapse iterative RLHF"
+
+Links: [{"title":"[2605.04266] Explaining and Preventing Alignment Collapse in Iterative RLHF","url":"https://arxiv.org/abs/2605.04266"},{"title":"Explaining and Preventing Alignment Collapse in Iterative RLHF","url":"https://arxiv.org/html/2605.04266"},{"title":"[2605.04266v1] Explaining and Preventing Alignment Collapse in Iterative RLHF","url":"https://arxiv.org/abs/2605.04266v1"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization","url":"https://arxiv.org/html/2405.16455v1"},{"title":"Why Is RLHF Alignment Shallow? A Gradient Analysis","url":"https://arxiv.org/html/2603.04851"},{"title":"IterAlign: Iterative Constitutional Alignment of Large Language Models","url":"https://arxiv.org/html/2403.18341"},{"title":"Solving the Inverse Alignment Problem for Efficient RLHF","url":"https://arxiv.org/html/2412.10529v1"},{"title":"Detecting Mode Collapse in Language Models via Narration","url":"https://arxiv.org/html/2402.04477v1"},{"title":"[2511.19504] Position: The Complexity of Perfect AI Alignment -- Formalizing the RLHF Trilemma","url":"https://arxiv.org/abs/2511.19504"},{"title":"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms","url":"https://arxiv.org/html/2406.02900v2"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found about arXiv 2605.04266:
+
+## Paper Overview
+
+The paper is titled "Explaining and Preventing Alignment Collapse in Iterative RLHF" and was submitted on May 5, 2026 by authors Etienne Gauthier, Francis Bach, and Michael I. Jordan.
+
+## Key Findings
+
+The paper addresses the fact that RLHF typically assumes a static reward model, but in iterative deployment, the policy generates the data on which the reward model is retrained, creating a feedback loop.
+
+Building on a Stackelberg game formulation, the authors derive an analytical decomposition of the policy's true optimization gradient into a standard policy gradient and a parameter-steering term that captures the policy's influence on the reward model's future parameters.
+
+## The Alignment Collapse Problem
+
+The paper shows that standard iterative RLHF, which drops the steering term entirely, suffers from alignment collapse: the policy systematically exploits the reward model's blind spots, producing low-quality, high-reward outputs whose feedback reinforces the very errors it exploits.
+
+## Proposed Solution
+
+To mitigate this problem, the authors propose foresighted policy optimization (FPO), a mechanism-design intervention that restores the missing steering term by regularizing the policy's parameter-steering effect on reward model updates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "0a702ace-1eab-43b7-af60-95a7aae17830",
+  "tool_use_result": {
+    "query": "arXiv 2605.04266 alignment collapse iterative RLHF",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EUD5fzUidbfbghPAL7oxyg",
+        "content": [
+          {
+            "title": "[2605.04266] Explaining and Preventing Alignment Collapse in Iterative RLHF",
+            "url": "https://arxiv.org/abs/2605.04266"
+          },
+          {
+            "title": "Explaining and Preventing Alignment Collapse in Iterative RLHF",
+            "url": "https://arxiv.org/html/2605.04266"
+          },
+          {
+            "title": "[2605.04266v1] Explaining and Preventing Alignment Collapse in Iterative RLHF",
+            "url": "https://arxiv.org/abs/2605.04266v1"
+          },
+          {
+            "title": "On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization",
+            "url": "https://arxiv.org/html/2405.16455v1"
+          },
+          {
+            "title": "Why Is RLHF Alignment Shallow? A Gradient Analysis",
+            "url": "https://arxiv.org/html/2603.04851"
+          },
+          {
+            "title": "IterAlign: Iterative Constitutional Alignment of Large Language Models",
+            "url": "https://arxiv.org/html/2403.18341"
+          },
+          {
+            "title": "Solving the Inverse Alignment Problem for Efficient RLHF",
+            "url": "https://arxiv.org/html/2412.10529v1"
+          },
+          {
+            "title": "Detecting Mode Collapse in Language Models via Narration",
+            "url": "https://arxiv.org/html/2402.04477v1"
+          },
+          {
+            "title": "[2511.19504] Position: The Complexity of Perfect AI Alignment -- Formalizing the RLHF Trilemma",
+            "url": "https://arxiv.org/abs/2511.19504"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms",
+            "url": "https://arxiv.org/html/2406.02900v2"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found about arXiv 2605.04266:\n\n## Paper Overview\n\nThe paper is titled \"Explaining and Preventing Alignment Collapse in Iterative RLHF\" and was submitted on May 5, 2026 by authors Etienne Gauthier, Francis Bach, and Michael I. Jordan.\n\n## Key Findings\n\nThe paper addresses the fact that RLHF typically assumes a static reward model, but in iterative deployment, the policy generates the data on which the reward model is retrained, creating a feedback loop.\n\nBuilding on a Stackelberg game formulation, the authors derive an analytical decomposition of the policy's true optimization gradient into a standard policy gradient and a parameter-steering term that captures the policy's influence on the reward model's future parameters.\n\n## The Alignment Collapse Problem\n\nThe paper shows that standard iterative RLHF, which drops the steering term entirely, suffers from alignment collapse: the policy systematically exploits the reward model's blind spots, producing low-quality, high-reward outputs whose feedback reinforces the very errors it exploits.\n\n## Proposed Solution\n\nTo mitigate this problem, the authors propose foresighted policy optimization (FPO), a mechanism-design intervention that restores the missing steering term by regularizing the policy's parameter-steering effect on reward model updates."
+    ],
+    "durationSeconds": 6.638343525000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T04:26:24.526Z_
+
+<details><summary>↩ Tool result · `toolu_01RNagcH7oY7UwKDpiK5cWBf`</summary>
+
+```text
+Web search results for query: "Granger causality training dynamics neural network monitoring 2026 arXiv"
+
+Links: [{"title":"On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data.","url":"https://arxiv.org/html/2506.20347v1"},{"title":"[2208.03703] Granger Causality using Neural Networks","url":"https://arxiv.org/abs/2208.03703"},{"title":"[1802.05842] Neural Granger Causality","url":"https://arxiv.org/abs/1802.05842"},{"title":"Granger Causality Using Neural Networks","url":"https://arxiv.org/html/2208.03703v2"},{"title":"[2506.20347v1] On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data","url":"https://arxiv.org/abs/2506.20347v1"},{"title":"Can multivariate Granger causality detect directed ...","url":"https://www.arxiv.org/pdf/2408.01528"},{"title":"Emergent Granger Causality in Neural Networks: Can Prediction Alone Reveal Structure?","url":"https://arxiv.org/html/2506.20347"},{"title":"GC-xLSTM: Neural Granger Causality with xLSTMs","url":"https://arxiv.org/html/2502.09981v1"},{"title":"Exploring Neural Granger Causality with xLSTMs: Unveiling Temporal Dependencies in Complex Data","url":"https://arxiv.org/html/2502.09981v4"},{"title":"Granger Causality Detection with Kolmogorov-Arnold Networks","url":"https://arxiv.org/html/2412.15373"}]
+
+Based on the search results, here are the relevant arXiv papers and findings related to Granger causality, training dynamics, neural network monitoring, and 2026 research:
+
+## Key Recent Papers (2025-2026)
+
+**1. "On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data" (2506.20347, June 2025)**
+
+This paper presents the idea that Granger Causality is essentially linked with prediction and if a deep learning model is used to model the time series collectively or jointly, a well regularized model may learn the true granger causal structure from the data. The authors propose to uncover the learned GC structure by comparing the model uncertainty or distribution of the residuals when the past of everything is used as compared to the one where a specific time series component is dropped from the model.
+
+**2. "GC-xLSTM: Neural Granger Causality with xLSTMs" (2502.09981, February 2025)**
+
+This work leverages the recently successful Extended Long Short-Term Memory (xLSTM) architecture and proposes Granger causal xLSTMs (GC-xLSTM). The joint optimization procedure ensures that the Granger causal relations are recovered in a robust fashion.
+
+**3. "Granger Causality Detection with Kolmogorov-Arnold Networks" (2412.15373, December 2024)**
+
+This paper introduces GC-KAN, a novel framework for Granger causality detection that combines the flexibility and interpretability of Kolmogorov-Arnold Networks with a sparsity-inducing proximal gradient approach.
+
+These papers demonstrate active research in monitoring neural network training dynamics through Granger causality analysis, with recent developments focusing on improved architectures and regularization techniques for uncovering causal structures in multivariate time series data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "46b9ef1d-f6fc-4bdc-a72f-29068b7b450e",
+  "tool_use_result": {
+    "query": "Granger causality training dynamics neural network monitoring 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BZaYehviuKKXucfq4A44fx",
+        "content": [
+          {
+            "title": "On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data.",
+            "url": "https://arxiv.org/html/2506.20347v1"
+          },
+          {
+            "title": "[2208.03703] Granger Causality using Neural Networks",
+            "url": "https://arxiv.org/abs/2208.03703"
+          },
+          {
+            "title": "[1802.05842] Neural Granger Causality",
+            "url": "https://arxiv.org/abs/1802.05842"
+          },
+          {
+            "title": "Granger Causality Using Neural Networks",
+            "url": "https://arxiv.org/html/2208.03703v2"
+          },
+          {
+            "title": "[2506.20347v1] On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data",
+            "url": "https://arxiv.org/abs/2506.20347v1"
+          },
+          {
+            "title": "Can multivariate Granger causality detect directed ...",
+            "url": "https://www.arxiv.org/pdf/2408.01528"
+          },
+          {
+            "title": "Emergent Granger Causality in Neural Networks: Can Prediction Alone Reveal Structure?",
+            "url": "https://arxiv.org/html/2506.20347"
+          },
+          {
+            "title": "GC-xLSTM: Neural Granger Causality with xLSTMs",
+            "url": "https://arxiv.org/html/2502.09981v1"
+          },
+          {
+            "title": "Exploring Neural Granger Causality with xLSTMs: Unveiling Temporal Dependencies in Complex Data",
+            "url": "https://arxiv.org/html/2502.09981v4"
+          },
+          {
+            "title": "Granger Causality Detection with Kolmogorov-Arnold Networks",
+            "url": "https://arxiv.org/html/2412.15373"
+          }
+        ]
+      },
+      "Based on the search results, here are the relevant arXiv papers and findings related to Granger causality, training dynamics, neural network monitoring, and 2026 research:\n\n## Key Recent Papers (2025-2026)\n\n**1. \"On the ability of Deep Neural Networks to Learn Granger Causality in Multi-Variate Time Series Data\" (2506.20347, June 2025)**\n\nThis paper presents the idea that Granger Causality is essentially linked with prediction and if a deep learning model is used to model the time series collectively or jointly, a well regularized model may learn the true granger causal structure from the data. The authors propose to uncover the learned GC structure by comparing the model uncertainty or distribution of the residuals when the past of everything is used as compared to the one where a specific time series component is dropped from the model.\n\n**2. \"GC-xLSTM: Neural Granger Causality with xLSTMs\" (2502.09981, February 2025)**\n\nThis work leverages the recently successful Extended Long Short-Term Memory (xLSTM) architecture and proposes Granger causal xLSTMs (GC-xLSTM). The joint optimization procedure ensures that the Granger causal relations are recovered in a robust fashion.\n\n**3. \"Granger Causality Detection with Kolmogorov-Arnold Networks\" (2412.15373, December 2024)**\n\nThis paper introduces GC-KAN, a novel framework for Granger causality detection that combines the flexibility and interpretability of Kolmogorov-Arnold Networks with a sparsity-inducing proximal gradient approach.\n\nThese papers demonstrate active research in monitoring neural network training dynamics through Granger causality analysis, with recent developments focusing on improved architectures and regularization techniques for uncovering causal structures in multivariate time series data."
+    ],
+    "durationSeconds": 7.2154127120000044
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also do one more search for the "scaling with collapse" paper (2509.25087) which appeared in search results and seemed relevant, and check for any very recent papers on synthetic data training collapse detection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "7cc836fc-1fe0-4acc-ae16-de2997863b15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011WQTeyqkZqKc9ng5Fkv8sf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2887,
+      "cache_read_input_tokens": 51102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2887
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+再查几篇关键候选论文的细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "5ac0ab8d-f9c4-42ef-ae45-df1ee69be6bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011WQTeyqkZqKc9ng5Fkv8sf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2887,
+      "cache_read_input_tokens": 51102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2887
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GP4AnN7N1c4YW74Vkyy7TF`</summary>
+
+```json
+{
+  "query": "arXiv 2509.25087 \"scaling with collapse\" LLM training predictable",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "e5d9019b-f93b-42f3-a198-8114e50970b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011WQTeyqkZqKc9ng5Fkv8sf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2887,
+      "cache_read_input_tokens": 51102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2887
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MZyjjLSwfWX19WcSgkuSpd`</summary>
+
+```json
+{
+  "query": "arXiv 2502.08924 \"escaping collapse\" \"weak data\" LLM training",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "895ec51c-6f2b-4173-a1b6-9a1487a2d77e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011WQTeyqkZqKc9ng5Fkv8sf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2887,
+      "cache_read_input_tokens": 51102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2887
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T04:26:36.851Z_
+
+<details><summary>↩ Tool result · `toolu_01GP4AnN7N1c4YW74Vkyy7TF`</summary>
+
+```text
+Web search results for query: "arXiv 2509.25087 "scaling with collapse" LLM training predictable"
+
+Links: [{"title":"[2509.25087] Scaling with Collapse: Efficient and Predictable Training of LLM Families","url":"https://arxiv.org/abs/2509.25087"},{"title":"Scaling with Collapse: Efficient and Predictable Training of LLM Families","url":"https://arxiv.org/html/2509.25087"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=2125&show=50"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=21925&show=500"},{"title":"Hyperparameter Transfer Enables Consistent Gains of Matrix-Preconditioned Optimizers Across Scales","url":"https://arxiv.org/html/2512.05620v1"},{"title":"Artificial Intelligence 2025","url":"https://arxiv.org/list/cs.AI/2025?skip=35225&show=500"},{"title":"Hyperparameter Transfer with Mixture-of-Experts Layers","url":"https://arxiv.org/html/2601.20205v1"},{"title":"Hyperparameter Transfer Enables Consistent Gains of ...","url":"https://www.arxiv.org/pdf/2512.05620"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://arxiv.org/html/2402.07043v1"}]
+
+Based on the search results, here's what I found about arXiv paper 2509.25087:
+
+## "Scaling with Collapse: Efficient and Predictable Training of LLM Families"
+
+Effective LLM training depends on predictable scaling of key quantities -- such as final loss and optimal hyperparameters -- with model and dataset size. This paper, authored by Shane Bergsma, Bin Claire Zhang, Nolan Dey, Shaheer Muhammad, Gurpreet Gosal, and Joel Hestness from Cerebras Systems, explores this predictability further.
+
+The key finding is that whole training loss curves can *collapse* onto a universal trajectory after a simple normalization, building on prior work by Qiu et al. (2025). The authors address an important practical question: whether this phenomenon persists for LLM families trained under *practical scaling recipes*, where width, depth, learning rate, batch size, and weight decay are scaled jointly.
+
+**Main Results:**
+
+Loss curves collapse across scales precisely when optimization hyperparameters are set optimally for the given data budget, in accordance with recent empirical scaling laws. Furthermore, Collapse therefore emerges as a signature of compute-efficient training.
+
+The paper demonstrates practical applications: deviation-from-collapse provides a sensitive, early diagnostic of training pathologies, and the predictability of collapsed curves enables early detection of training issues.
+
+The paper was submitted in September 2025 with a revised version released in March 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "e2298cea-3b33-45d2-9576-f17ef9c43f11",
+  "tool_use_result": {
+    "query": "arXiv 2509.25087 \"scaling with collapse\" LLM training predictable",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RURHwQLHZwBKxXGD7L3KbH",
+        "content": [
+          {
+            "title": "[2509.25087] Scaling with Collapse: Efficient and Predictable Training of LLM Families",
+            "url": "https://arxiv.org/abs/2509.25087"
+          },
+          {
+            "title": "Scaling with Collapse: Efficient and Predictable Training of LLM Families",
+            "url": "https://arxiv.org/html/2509.25087"
+          },
+          {
+            "title": "Machine Learning Sep 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-09?skip=2125&show=50"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=21925&show=500"
+          },
+          {
+            "title": "Hyperparameter Transfer Enables Consistent Gains of Matrix-Preconditioned Optimizers Across Scales",
+            "url": "https://arxiv.org/html/2512.05620v1"
+          },
+          {
+            "title": "Artificial Intelligence 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025?skip=35225&show=500"
+          },
+          {
+            "title": "Hyperparameter Transfer with Mixture-of-Experts Layers",
+            "url": "https://arxiv.org/html/2601.20205v1"
+          },
+          {
+            "title": "Hyperparameter Transfer Enables Consistent Gains of ...",
+            "url": "https://www.arxiv.org/pdf/2512.05620"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "A Tale of Tails: Model Collapse as a Change of Scaling Laws",
+            "url": "https://arxiv.org/html/2402.07043v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2509.25087:\n\n## \"Scaling with Collapse: Efficient and Predictable Training of LLM Families\"\n\nEffective LLM training depends on predictable scaling of key quantities -- such as final loss and optimal hyperparameters -- with model and dataset size. This paper, authored by Shane Bergsma, Bin Claire Zhang, Nolan Dey, Shaheer Muhammad, Gurpreet Gosal, and Joel Hestness from Cerebras Systems, explores this predictability further.\n\nThe key finding is that whole training loss curves can *collapse* onto a universal trajectory after a simple normalization, building on prior work by Qiu et al. (2025). The authors address an important practical question: whether this phenomenon persists for LLM families trained under *practical scaling recipes*, where width, depth, learning rate, batch size, and weight decay are scaled jointly.\n\n**Main Results:**\n\nLoss curves collapse across scales precisely when optimization hyperparameters are set optimally for the given data budget, in accordance with recent empirical scaling laws. Furthermore, Collapse therefore emerges as a signature of compute-efficient training.\n\nThe paper demonstrates practical applications: deviation-from-collapse provides a sensitive, early diagnostic of training pathologies, and the predictability of collapsed curves enables early detection of training issues.\n\nThe paper was submitted in September 2025 with a revised version released in March 2026."
+    ],
+    "durationSeconds": 7.669110855000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T04:26:36.953Z_
+
+<details><summary>↩ Tool result · `toolu_01MZyjjLSwfWX19WcSgkuSpd`</summary>
+
+```text
+Web search results for query: "arXiv 2502.08924 "escaping collapse" "weak data" LLM training"
+
+Links: [{"title":"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training","url":"https://arxiv.org/abs/2502.08924"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗","url":"https://arxiv.org/pdf/2502.08924"},{"title":"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.","url":"https://arxiv.org/html/2502.08924v2"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Escaping Model Collapse via Synthetic Data Verification:","url":"https://arxiv.org/pdf/2510.16657"},{"title":"Epistemic diversity across language models mitigates knowledge collapse","url":"https://arxiv.org/html/2512.15011v1"},{"title":"[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation","url":"https://arxiv.org/abs/2605.00435"},{"title":"When Sharpening Becomes Collapse: Sampling Bias and Semantic Coupling in RL with Verifiable Rewards","url":"https://arxiv.org/html/2601.15609v1"},{"title":"When Models Don’t Collapse: On the Consistency of Iterative MLE","url":"https://arxiv.org/html/2505.19046v1"},{"title":"Model Collapse in the Self-Consuming Chain of Diffusion Finetuning: A Novel Perspective from Quantitative Trait Modeling","url":"https://arxiv.org/html/2407.17493v3"}]
+
+I found the paper you were looking for. Here's what I found about arXiv 2502.08924:
+
+## Paper Overview
+
+The paper is titled "Escaping Collapse: The Strength of Weak Data for Large Language Model Training" and was submitted on February 13, 2025, with a revised version released on November 29, 2025.
+
+## Main Topic
+
+The paper addresses a critical problem in LLM training: while synthetic data has been found to be useful, studies have shown that without proper curation it can cause LLM performance to plateau, or even "collapse", after many training iterations.
+
+## Key Approach
+
+The authors formalize this question and develop a theoretical framework to investigate how much curation is needed in order to ensure that LLM performance continually improves, inspired by boosting, a classic machine learning technique that leverages a very weak learning algorithm to produce an arbitrarily good classifier.
+
+## Research Insight
+
+A necessary condition for avoiding model collapse is that synthetic data is curated in some way to inject signal that is exogenous to the system that produced the original data, which can come in many forms: identification of high-quality subsets of synthetic data, human rewrites of poor responses, or a separate model rating the responses.
+
+## Authors
+
+The paper was authored by Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei Vassilvitskii.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "f1ed2843-4e1b-4f44-a97a-9d3526a9519e",
+  "tool_use_result": {
+    "query": "arXiv 2502.08924 \"escaping collapse\" \"weak data\" LLM training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YHachKzHrWB7YAFJ5H9JuA",
+        "content": [
+          {
+            "title": "[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training",
+            "url": "https://arxiv.org/abs/2502.08924"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗",
+            "url": "https://arxiv.org/pdf/2502.08924"
+          },
+          {
+            "title": "Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.",
+            "url": "https://arxiv.org/html/2502.08924v2"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification:",
+            "url": "https://arxiv.org/pdf/2510.16657"
+          },
+          {
+            "title": "Epistemic diversity across language models mitigates knowledge collapse",
+            "url": "https://arxiv.org/html/2512.15011v1"
+          },
+          {
+            "title": "[2605.00435] Escaping Mode Collapse in LLM Generation via Geometric Regulation",
+            "url": "https://arxiv.org/abs/2605.00435"
+          },
+          {
+            "title": "When Sharpening Becomes Collapse: Sampling Bias and Semantic Coupling in RL with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2601.15609v1"
+          },
+          {
+            "title": "When Models Don’t Collapse: On the Consistency of Iterative MLE",
+            "url": "https://arxiv.org/html/2505.19046v1"
+          },
+          {
+            "title": "Model Collapse in the Self-Consuming Chain of Diffusion Finetuning: A Novel Perspective from Quantitative Trait Modeling",
+            "url": "https://arxiv.org/html/2407.17493v3"
+          }
+        ]
+      },
+      "I found the paper you were looking for. Here's what I found about arXiv 2502.08924:\n\n## Paper Overview\n\nThe paper is titled \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\" and was submitted on February 13, 2025, with a revised version released on November 29, 2025.\n\n## Main Topic\n\nThe paper addresses a critical problem in LLM training: while synthetic data has been found to be useful, studies have shown that without proper curation it can cause LLM performance to plateau, or even \"collapse\", after many training iterations.\n\n## Key Approach\n\nThe authors formalize this question and develop a theoretical framework to investigate how much curation is needed in order to ensure that LLM performance continually improves, inspired by boosting, a classic machine learning technique that leverages a very weak learning algorithm to produce an arbitrarily good classifier.\n\n## Research Insight\n\nA necessary condition for avoiding model collapse is that synthetic data is curated in some way to inject signal that is exogenous to the system that produced the original data, which can come in many forms: identification of high-quality subsets of synthetic data, human rewrites of poor responses, or a separate model rating the responses.\n\n## Authors\n\nThe paper was authored by Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei Vassilvitskii."
+    ],
+    "durationSeconds": 7.293298009999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me analyze what's new vs. what's already in the literature_map.yaml, focusing on papers from the 2026-05-01 to 2026-05-15 window.
+
+Papers already in literature_map.yaml (not new):
+- shumailov2024curse, alemohammad2024mad, dohmatob2024tale, dohmatob2025strong, guo2024linguistic, briesch2024selfconsuming, truong2025entropy, wang2026contaminated, chen2025scales, gambetta2024surplexity, qiu2025spectral, he2025closer, ba2024fill, sigma2026spectral, kalinowski2026topology, zhu2018texygen, li2016diversity, jing2022understanding, noci2024mind, kazdan2025collapse, dey2024breaking, epstein2024howbad, fu2025selfconsuming, bakshi2026improvement, feng2025escaping, barzilai2025consistency
+
+, dces2026counter, schaeffer2025position, wang2025epistemic, shojaie2022granger, marcinkevics2022neural
+
+Looking at the new papers that fall within the target window, I found arXiv:2605.00435 from May 1, 2026 by Du and Tanaka-Ishii on mode collapse in LLM generation, which proposes a geometric regulation approach called RMR to address representation space collapse.
+
+The second paper, arXiv:2605.04266 from May 5, 2026 by Gauthier, Bach, and Jordan, examines alignment collapse in iterative RLHF through the lens of feedback loops where the policy exploits reward model vulnerabilities—this parallels our iterative synthetic training setup, though the collapse mechanism differs.
+
+There's also arXiv:2605.07271 examining performance degradation in layer-pruned language models, which appears to be cut off but seems relevant to understanding collapse phenomena across different model modification approaches. Looking at this paper on multi-modal synthetic data and model collapse — it's from May 2025, not our target window of May 2026, so I should exclude it. Let me double-check the date range the user specified to make sure I'm filtering correctly.
+
+Now I'm identifying which papers actually fall within May 1-15, 2026: the ones with arxiv IDs starting with 2605 and submission dates in that range. I've got four papers that match — covering mode collapse geometric regulation, alignment collapse from iterative RLHF, layer collapse in diffusion language models, and performance collapse in layer-pruned LLMs. There are a few other papers on collapse-related topics from earlier periods that aren't in my existing literature map, but they fall outside the target window.
+
+I'm also noticing that while 2605.04266 focuses on RLHF alignment collapse rather than model collapse per se, it's still relevant because both mechanisms involve iterative feedback loops. And I should clarify that 2509.25087 uses "collapse" in a different context entirely — it's about loss curve normalization rather than actual model collapse, so it's orthogonal to what we're studying.
+
+The key finding here is that no existing papers are doing the specific combination of canary tokens and Granger causality analysis for model collapse, which is good for our project's novelty. and write the memory.md update.
+
+Here's my assessment of each new paper:
+
+**Within target window (May 1-15, 2026):**
+
+1. **Du & Tanaka-Ishii 2026 (2605.00435)** - "Escaping Mode Collapse in LLM Generation via Geometric Regulation"
+   - **Relationship**: orthogonal
+   - Mode collapse at inference time (generation), not iterative training. But their "geometric collapse = trajectory confined to low-dimensional subspace" connects to our effective rank metric concept.
+
+2. **Gauthier, Bach & Jordan 2026 (2605.04266)** - "Explaining and Preventing Alignment Collapse in Iterative RLHF"
+   - **Relationship**: complementary
+   - Iterative RLHF feedback loop → alignment collapse. Analogous loop structure to our synthetic data loop. Their Stackelberg game formulation and FPO solution could provide a theoretical lens for framing our findings.
+
+3. **Shi et al. 2026 (2605.07271)** - "Understanding Performance Collapse in Layer-Pruned LLMs via Decision Representation Transitions"
+   - **Relationship**: orthogonal
+   - Layer pruning collapse, not synthetic data. Their "distributional collapse" in Silent Phase is structurally different.
+
+4. **2605.06366** - "Layer Collapse in Diffusion Language Models"
+   - **Relationship**: orthogonal
+   - Architectural activation collapse in diffusion LMs, not synthetic data training.
+
+**Not in target window but new and potentially relevant:**
+
+5. **Bergsma et al. 2025/2026 (2509.25087)** - "Scaling with Collapse" (Cerebras)
+   - Uses "collapse" in a different sense (loss curve normalization).
+
+None of these are direct competitors to our canary-to-collapse prediction framework. No recent work addresses Granger causality for training dynamics monitoring or multi-metric canary panels for early warning. I'll update literature_map.yaml with the two most relevant entries—du2026geometric for the effective rank connection and gauthier2026alignment for the iterative feedback parallel—then append the new findings to memory.md.
+
+I need to reconstruct the full memory.md content with the new section added, since save_project_file requires the complete file rather than just appending.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "9c930524-01b4-4026-bb1b-31c318de5c37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6bv2kk6P5oPiDwz7brciU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2033,
+      "cache_read_input_tokens": 53989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+搜索完成。共 5 组关键词 × top 结果，筛选出 4 篇在目标时间窗口内的新论文（2026-05-01 至 2026-05-15），未发现直接竞争者。现在更新 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "53a98220-ec50-4028-8152-570f44fb3a43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6bv2kk6P5oPiDwz7brciU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2033,
+      "cache_read_input_tokens": 53989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01Jpp8txM9hpX7yTz9GvaThc`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 2026-05-14 — MVP 代码设计决策\n\n- **训练方式**: 用 HF Trainer，每代独立训练 steps_per_gen 步（非 epoch-based），避免数据量波动导致训练量不一致\n- **Generation 0 = baseline**: 不训练，只计算初始指标，作为后续 degradation 的参照\n- **synthetic_ratio 控制混合**: 1.0 = 纯合成（MVP 压力测试），以 synthetic 为基准，ratio<1 时按比例补 real\n- **Self-BLEU 采样**: 随机抽 500 pairs 而非全组合（O(n²) 太贵），固定 seed=0 保证可复现\n- **Effective rank**: 用 mean-pooled last hidden states 的协方差矩阵，exp(entropy of normalized eigenvalues)\n- **MAUVE**: 依赖 mauve-text 包，用 eval_dataset（真实）vs gen_dataset（合成）对比\n- **ECE**: next-token calibration，10 bins，softmax max prob vs correctness\n- **Cross-correlation 分析**: normalize 后翻转符号使 \"collapse direction\" 一致为正，peak lag 的符号决定 lead/lag\n- **Metrics JSON 每代独立保存 + 汇总**: gen_N/metrics.json 做细粒度追溯，all_metrics.json 做分析输入\n\n## 2026-05-14 — AutoDL 服务器经验\n\n- **HF 下载不要用 network_turbo 代理**（会卡死），改用 `HF_ENDPOINT=https://hf-mirror.com` 直连国内镜像\n- **pip install 可以用 network_turbo**\n- **服务器默认没有 tmux**，需手动 apt 安装\n- 环境：conda base, Python 3.12.3, PyTorch 2.10.0+cu128, 2× RTX PRO 6000 Blackwell 96GB\n- **服务器名**: `westd-19828`（非 autodl-rtx6000），submit_training_job 必须用此名\n\n## 2026-05-14 — 参数修复 (D004)\n\n- 原始参数：n_prompts=1000, steps_per_gen=10000 → 40 epochs/gen，过拟合导致指标骤然击穿\n- 修正参数：n_prompts=5000, steps_per_gen=5000 → 4 epochs/gen，合理 fine-tuning 量\n- WikiText-103 test split 仅 ~1500 条 ≥64 words 段落，不够 5000 prompts，改为从 train split 取 prompt 前缀（prompts 仅做生成种子，不参与 loss）\n- 新数据放 data/wikitext103_5k/ 避免影响正在跑的实验\n\n## 2026-05-14 — 文献调研核心发现\n\n- 最直接竞争者：chen2025scales (arXiv 2510.05133) 报告 \"calibration degradation precedes accuracy loss\"——ECE 在 iter 1 + 30% synthetic 时上升 75%，accuracy 未显著变化。但**未做 lead-lag 因果分析**，也没多指标 panel\n- 8 个文献空白中最关键的 3 个：(1) 无人做 canary Granger causality / lead-lag 量化 (2) ECE 在 collapse 场景下几乎未被系统研究 (3) 多指标 panel 框架完全缺失\n- Novelty 风险：如果 chen2025scales 团队扩展工作，会侵蚀 ECE-as-canary 的 novelty。需在方法论（Granger causality 框架）上尽快建立壁垒\n- 共收录 31 篇论文（含补全的 6 篇）\n- SIGMA (arXiv 2601.03385): Gram matrix 谱双轨监控，我们的 effective rank 是其简化版\n- Truong & Truong: Class 1 凸反馈 entropy collapse 是一阶相变，canary 在此 regime 可能失效\n- Fu et al. (ICLR 2025): 恒定 real data 比例保证 STL 收敛，α-sweep 理论基础\n\n## 2026-05-14 — 运维教训\n\n- **kill_job 只杀 tmux session，不杀子进程**。旧进程 (v1) 存活导致 v2 写同一输出目录死锁。后续 kill 后必须用 `ps aux | grep iterative_train` 确认子进程全部死亡，必要时 `kill -9 $(pgrep -f iterative_train)`\n- **提交新实验前必须确认输出目录干净**，或使用不同的输出路径\n- **analyze_mvp.py dry-run 验证通过**：cross-correlation 逻辑正确，token_entropy 和 effective_rank 在信噪比充足时检测准确\n- **pgrep -a iterative_train 匹配不到训练进程**：因为进程名是 `python`，不是脚本名。用 `nvidia-smi` 或 `ps aux | grep python` 检查\n- **nohup 启动的实验不写 EXIT_CODE 哨兵**，cron 检测到进程退出后无法判断成功/失败，误判为 failed（rep44 事故）。已在 iterative_train.py 添加 EXIT_CODE 哨兵机制\n\n## 2026-05-14 — MVP 4-Seed 正式分析（FINAL VERDICT）\n\n- **Overall: STRONG PASS** — 2 个 canary 家族 (token_entropy, ECE) 各自对 ≥1 个 diversity 指标有 SIGNIFICANT LEAD\n- **最强结果 (4/4 seed 完全一致, std=0)**：\n  - token_entropy → distinct_1: lag=-1, |r|=0.993–0.998, p=0.0006–0.0036\n  - ece → distinct_2: lag=-1, |r|=0.995–0.997, p=0.0001–0.0023\n- **Demoted**: MAUVE (floor effect), effective_rank (non-monotonic, 2+/2- across seeds)\n- **Eliminated**: self_bleu (方向不一致), ece→perplexity (ECE 反而滞后 perplexity)\n\n## 2026-05-14 — ⚠️ Narrative 约束（4-seed 确认 + max_lag=7 验证 + 差分确认）\n\n- **Canary 仅能 lead diversity metrics (distinct_n)，不能 lead quality metric (perplexity)**\n  - token_entropy→perplexity: lag=-5，4/4 seed 一致，但 p borderline（seed42 p=0.12）\n  - **差分版 permutation Granger 最终确认**：canary→perplexity 全部 F→0, 完全不显著——旧结果 100% 由共享非平稳趋势驱动。这不是统计功效问题，是伪回归\n  - ECE→perplexity: lag=+4.75（ECE 滞后 perplexity！完全反向）\n  - 论文 claim 硬限：只能声称 \"canary predicts diversity collapse\"，不能声称 \"canary predicts perplexity\"\n- **plan_006 dual-timescale 升级前景大幅降低**：差分后 F→0 说明关系是纯趋势驱动，更长序列不会改变。plan_006 仍值得跑（验证 diversity lead 在 T=20 下是否更稳健），但不应期望 perplexity channel 突破\n\n## 2026-05-14 — ⚠️ 方法论 Ablation 关键结论（plan_002 Phase 1）\n\n- **75% 伪回归率**：16/16 naive 显著 pair 中，12 个被 Toda-Yamamoto 推翻\n- **token_entropy 是唯一 gold-standard canary**：对 distinct_1/2/3 均通过 Granger 因果检验（F=100-550, p<0.001, 4/4 seed）\n- **ECE 因果预测力大幅缩水**：仅对 distinct_1 通过 TY（3/4 seed），distinct_2/3 的\"完美 cross-corr\"(lag=-1, std=0) 实为伪回归\n- **所有 canary→perplexity 全部伪回归**——包括 token_entropy→perplexity (lag=-5)。非平稳驱动的假信号\n- **self_bleu + effective_rank 完全失效**：100% 伪回归\n- **Story 调整**：方法论贡献从 \"nice to have\" 变为 \"essential\"——naive 方法给出 100% 显著率实为 75% 伪信号\n- 结果存：`results/mvp/analysis/method_ablation.json` + 服务器上 `method_ablation.py`\n\n## 2026-05-14 — ⚠️ Bootstrap TY Power Analysis（plan_009, CRITICAL）\n\n- **T=10 下 TY 效力严重不足**：d_max=0 power=0.205, d_max=1 power=0.09, d_max=adaptive power=0.05（≈随机）\n- **T=20 仍不够**：d_max=1 power=0.172, 远低于 0.50 门槛\n- **T=30 也不达标**：d_max=1 power=0.283; 唯有 d_max=0 达 0.606 但此时 Type I error 偏高 (0.081)\n- **d_max 敏感性巨大**：所有 T 下 power range > 0.15\n- **对论文影响**：(1) TY 不能作为核心证据，只能辅助; (2) 需要补充 permutation-based 或 bootstrap 推断作为替代; (3) limitation 必须透明报告; (4) 这反而强化 Claim 3——方法选择不仅改变结论，连检验本身的 power 也 regime-dependent\n- **结果存**: `results/bootstrap_ty_results.json`\n\n## 2026-05-14 — ⚠️ Permutation Granger 差分版最终结论（D015 → Reviewer 修复）\n\n- **差分后 canary→diversity 全部保持显著**：token_entropy→distinct_1/2/3 和 ece→distinct_1/2/3 均 4/4 sig，F 值甚至上升（非伪回归，因果关系真实）\n- **差分后 canary→perplexity 全部归零**：F→0, p→1。旧结果完全由共享非平稳趋势驱动。这是决定性证据\n- **5-method ablation 最终排序**：naive 16/16 (100%) > differenced 14/16 (88%) > threshold 9/16 (56%) > permutation Granger 6/16 (38%) > TY 4/16 (25%)\n- **ECE 地位回升**：差分版 permutation Granger 下 ece→distinct_1/2/3 全部 4/4 sig，比 TY (3/4) 更一致。ECE 作为 secondary canary 的证据比 TY-only 评估更强\n- **Effect size 统一为 Cohen's f²**：所有分析脚本已统一（method_ablation.py, analyze_alpha_sweep.py, permutation_granger.py）\n- **脚本**: `permutation_granger.py`（差分+shuffle），结果: `results/mvp/analysis/permutation_granger.json`（含 differenced 和 undifferenced 两组）\n\n## 2026-05-14 — mix_datasets bug 修复\n\n- **原逻辑**: 保全 synthetic，subsample real → 低 α 下 real 不足时比例静默偏移（α=0.25 变成实际 α=0.50）\n- **修复后**: 双向 subsample（低 α: 保全 real + subsample syn; 高 α: 保全 syn + subsample real）+ shuffle(seed=seed) 避免位置偏差\n- 14/14 测试通过，全 α 范围误差 <0.05\n\n## 2026-05-14 — plan_006 分析 checklist（20-gen extended run 完成时执行）\n\n- [ ] Full series cross-correlation: gen 0-20, max_lag=10, 所有 canary→downstream pair\n- [ ] **Rolling-window 验证**: gen 5-20 子序列分析 token_entropy→perplexity，排除 gen 0→1 初始跳变\n- [ ] 与 MVP 10-gen 结果对比：lag 值是否稳定，p-value 是否因样本量增大而达显著\n- [ ] **主检验用 cross-corr + permutation Granger**（D015 决策），TY 仅 supplementary\n- [ ] **注意**：差分版已证明 canary→perplexity 是纯趋势驱动。plan_006 的 perplexity channel 预期不会变显著，focus 转向验证 diversity lead 在更长序列下的稳健性\n\n## 2026-05-15 文献扫描\n\n**搜索范围**: arXiv 2026-05-01 至 2026-05-15，5 组关键词（model collapse synthetic data / distributional collapse iterative training / canary metric degradation / early warning LLM collapse / token entropy calibration ECE model collapse）\n\n**结论：未发现直接竞争者。** 过去两周无人发表 canary → collapse prediction 的 lead-lag / Granger causality 分析。我们的核心 novelty（多指标 canary panel + 因果分析框架）仍然安全。\n\n### 新论文（目标窗口内）\n\n1. **Du & Tanaka-Ishii (2605.00435)** — \"Escaping Mode Collapse in LLM Generation via Geometric Regulation\" [May 1, 2026]\n   - 将 mode collapse 重新解释为表示空间中的 geometric collapse：生成时模型内部轨迹被限制在低维子空间。提出 RMR（Reinforced Mode Regulation），在 value cache 中抑制 dominant self-reinforcing directions\n   - **关系: orthogonal** — 针对推理时 mode collapse，非迭代训练场景。但 \"geometric collapse = 低维子空间坍缩\" 与我们的 effective rank 指标在概念上有连接，可在 related work 中引用以说明 representation-space collapse 检测的跨场景通用性\n\n2. **Gauthier, Bach & Jordan (2605.04266)** — \"Explaining and Preventing Alignment Collapse in Iterative RLHF\" [May 5, 2026]\n   - 迭代 RLHF 中 policy 生成 reward model 的训练数据形成反馈环路 → alignment collapse（policy 系统性利用 reward model 盲区）。用 Stackelberg game 建模，提出 FPO（foresighted policy optimization）\n   - **关系: complementary** — 反馈环路结构与我们的 iterative synthetic training loop 类似（模型输出成为下一轮输入）。他们的 \"collapse = 反馈环路中的系统性退化\" 叙事支持我们的大框架。Stackelberg game 视角可能启发 canary 的博弈论解释\n\n3. **Shi et al. (2605.07271)** — \"Understanding Performance Collapse in Layer-Pruned LLMs via Decision Representation Transitions\" [May 2026]\n   - 层剪枝导致的 performance collapse。定义 Silent Phase（模型预测被单一选项主导 = distributional collapse）和 Decisive Phase。剪枝 Silent Phase 立即触发 collapse\n   - **关系: orthogonal** — 架构剪枝 collapse，非数据驱动。其 \"distributional collapse = 预测分布退化为单峰\" 的操作定义与我们 token entropy 下降检测的是同一现象的不同表现\n\n4. **Tübingen AI Center et al. (2605.06366)** — \"Layer Collapse in Diffusion Language Models\" [May 11, 2026]\n   - LLaDA-8B 中发现层级 activation collapse：少数早期层的 activation 被单个 super-outlier 主导。剪掉此 outlier 导致模型输出退化为重复随机 token\n   - **关系: orthogonal** — diffusion LM 的架构 collapse，与迭代合成数据训练无关\n\n### 窗口外但新发现的相关论文（已不在 literature_map 中）\n\n5. **Bergsma et al. (2509.25087, rev. Mar 2026)** — \"Scaling with Collapse: Efficient and Predictable Training of LLM Families\" [Cerebras]\n   - \"Collapse\" 此处指 loss curve 归一化后坍缩到通用轨迹（非 model collapse）。deviation-from-collapse 作为训练病理的早期诊断信号\n   - **关系: orthogonal** — 不同语境下的 \"collapse\"。但其 \"偏离通用轨迹 = 训练出问题\" 的监控思路与我们的 canary 理念相似\n\n### 对项目的影响评估\n\n- **Novelty 安全**：2 周内无人做 canary lead-lag 分析或多指标 panel，chen2025scales 仍是最接近竞争者且无更新\n- **值得引用**：Du & Tanaka-Ishii 的 geometric collapse 概念可强化我们 effective rank 的理论动机（尽管其已被 demoted）\n- **无需紧急调整路线图**\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "080cc014-606e-40d2-b398-0cacc0bff3cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6bv2kk6P5oPiDwz7brciU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2033,
+      "cache_read_input_tokens": 53989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T04:29:39.237Z_
+
+<details><summary>↩ Tool result · `toolu_01Jpp8txM9hpX7yTz9GvaThc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "ce4223d2-b35e-4456-955b-1a2bb0135856",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+memory.md 已更新。文献扫描结果：
+
+**目标窗口（2026-05-01 至 2026-05-15）内找到 4 篇新论文，均为 orthogonal 或 complementary，无直接竞争者。**
+
+| 论文 | arXiv ID | 关系 |
+|------|----------|------|
+| Du & Tanaka-Ishii — Geometric Mode Collapse | 2605.00435 | orthogonal（推理时 mode collapse，非迭代训练） |
+| Gauthier, Bach & Jordan — Alignment Collapse in RLHF | 2605.04266 | complementary（反馈环路结构类似） |
+| Shi et al. — Layer-Pruned LLM Collapse | 2605.07271 | orthogonal（架构剪枝 collapse） |
+| Tübingen — Layer Collapse in Diffusion LMs | 2605.06366 | orthogonal（diffusion LM activation collapse） |
+
+**核心结论**：过去 2 周无人发表 canary → collapse prediction 的 lead-lag/Granger causality 分析。我们的 novelty（多指标 canary panel + 因果分析框架）仍然安全。chen2025scales 仍是最接近的竞争者且无更新。
+
+`literature_map.yaml` 不可通过 save_project_file 直接写入——如果需要将 Du & Tanaka-Ishii (2605.00435) 和 Gauthier et al. (2605.04266) 加入 literature_map，需要用专用工具或手动更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "uuid": "ab76f97a-cc22-42e4-b7ca-dfb19fb57008",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBy1KB46Un56hD7gxoKNKC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7706,
+      "cache_read_input_tokens": 56022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7706
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 55_
+
+memory.md 已更新。文献扫描结果：
+
+**目标窗口（2026-05-01 至 2026-05-15）内找到 4 篇新论文，均为 orthogonal 或 complementary，无直接竞争者。**
+
+| 论文 | arXiv ID | 关系 |
+|------|----------|------|
+| Du & Tanaka-Ishii — Geometric Mode Collapse | 2605.00435 | orthogonal（推理时 mode collapse，非迭代训练） |
+| Gauthier, Bach & Jordan — Alignment Collapse in RLHF | 2605.04266 | complementary（反馈环路结构类似） |
+| Shi et al. — Layer-Pruned LLM Collapse | 2605.07271 | orthogonal（架构剪枝 collapse） |
+| Tübingen — Layer Collapse in Diffusion LMs | 2605.06366 | orthogonal（diffusion LM activation collapse） |
+
+**核心结论**：过去 2 周无人发表 canary → collapse prediction 的 lead-lag/Granger causality 分析。我们的 novelty（多指标 canary panel + 因果分析框架）仍然安全。chen2025scales 仍是最接近的竞争者且无更新。
+
+`literature_map.yaml` 不可通过 save_project_file 直接写入——如果需要将 Du & Tanaka-Ishii (2605.00435) 和 Gauthier et al. (2605.04266) 加入 literature_map，需要用专用工具或手动更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 257569,
+  "duration_api_ms": 338461,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "5aec5196-726f-41fb-9228-a3d7ade95d7e",
+  "total_cost_usd": 1.1811912500000004,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 51887,
+    "cache_read_input_tokens": 307977,
+    "output_tokens": 10099,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 51887,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 443,
+        "cache_read_input_tokens": 56022,
+        "cache_creation_input_tokens": 7706,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7706
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 264949,
+      "outputTokens": 7085,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 15,
+      "costUSD": 0.4503740000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 10099,
+      "cacheReadInputTokens": 307977,
+      "cacheCreationInputTokens": 51887,
+      "webSearchRequests": 0,
+      "costUSD": 0.7308172500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ae48a711-74a6-4606-a504-7b419aa94625"
+}
+```
+
+</details>
+
+---

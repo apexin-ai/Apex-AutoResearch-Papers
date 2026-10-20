@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e24fc43a024d3b6b62",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops registry old field cleanup r2",
+  "task_key": "worker_ops_registry_old_field_cleanup_r2_20260520T220005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_old_field_cleanup_r2_20260520T220005_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "e3c94634471c44a7724060dd6706cee6cc5cf307d1a376256f970bc5c5dbd9f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`a060_s43` 实际是 `alpha_sweep_a060_s43_fp32`，且它没有 `consensus_k3_3sigma` 字段（初始 grep 就没找到该字段名）。用户提到的这个字段可能已在之前的清理中删除了，或从未存在于 registry 中。\n\n**汇总：**\n\n| 操作 | 数量 |\n|------|------|\n| 删除的字段实例 | **30** |\n| 影响的实验 | **26** |\n| 残留旧字段 | **0** |\n\n删除的字段类型：\n- `ty_granger` 系列（ty_granger, ty_granger_fwd, ty_granger_forward, ty_granger_sig, TY_granger, TY_granger_fwd, TY_Granger_fwd, TY_Granger_rev）— 20 个实例\n- `K_ge3` 系列（K_ge3_3sigma, K_ge3_D116, K_ge3_rates, previous_K_ge3）— 6 个实例\n- `K_ge4` 系列（K_ge4_3sigma, K_ge4_D116, K_ge4_rates）— 4 个实例\n- `consensus_k3_3sigma` — 未在 registry 中找到，可能已在 Round 1 清理或从未写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-old-field-cleanup-r2-copy-2.md"
+}

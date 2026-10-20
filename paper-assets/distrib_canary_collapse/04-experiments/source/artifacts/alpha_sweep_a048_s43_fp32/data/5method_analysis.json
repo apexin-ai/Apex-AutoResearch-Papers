@@ -1,0 +1,76 @@
+{
+  "exp_id": "alpha_sweep_a048_s43_fp32",
+  "alpha": 0.48,
+  "seed": 43,
+  "precision": "fp32",
+  "model": "EleutherAI/pythia-410m",
+  "dataset": "wikitext103_5k",
+  "n_gens": 11,
+  "steps_per_gen": 5000,
+  "n_perm": 5000,
+  "analysis_version": "D102+D105+D111",
+  "threshold_criterion": "true_3sigma_d105",
+  "direction_filter": "peak_lag<0 (D111 corrected)",
+  "fdr_method": "BH q=0.05",
+  "wall_clock_seconds": 14510,
+  "wall_clock_human": "4.0h",
+  "checkpoint": "results/alpha_sweep/a048_s43_fp32/gen_10/checkpoint",
+  "summary": {
+    "perm_granger_fdr_forward_sig": 0,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 2,
+    "diff_xcorr_fdr_reverse_sig": 3,
+    "threshold_onset_3sigma_sig": 0,
+    "ty_forward_sig": 2,
+    "robust_pairs_K3": 0,
+    "robust_pairs_K4": 0
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "K": 1, "methods": ["diff"]},
+    {"pair": "token_entropy<distinct_2", "K": 0, "methods": []},
+    {"pair": "token_entropy<distinct_3", "K": 0, "methods": []},
+    {"pair": "token_entropy<mauve", "K": 0, "methods": []},
+    {"pair": "ece<distinct_1", "K": 2, "methods": ["diff", "ty"]},
+    {"pair": "ece<distinct_2", "K": 1, "methods": ["ty"]},
+    {"pair": "ece<distinct_3", "K": 1, "methods": ["naive"]},
+    {"pair": "ece<mauve", "K": 1, "methods": ["naive"]}
+  ],
+  "drift_pct": {
+    "token_entropy": -19.0,
+    "ece": 835.0,
+    "perplexity": 18.1,
+    "distinct_1": -35.2,
+    "distinct_2": -47.5,
+    "distinct_3": -47.6,
+    "mauve": -15.8
+  },
+  "onset_gens": {
+    "token_entropy": 1,
+    "ece": 3,
+    "perplexity": null,
+    "distinct_1": null,
+    "distinct_2": null,
+    "distinct_3": null,
+    "mauve": null
+  },
+  "interpretation": "s43 confirms s42 blind zone at alpha=0.48. PermG 0/8 both seeds. K>=3: 0/8 (s43) vs 1/8 (s42). Drift patterns similar across seeds (entropy -19%, ECE +835%, distinct_2 -47.5%) but insufficient for PermG detection. Phase transition alpha_c narrowed to (0.48, 0.50], width <=0.02. This is a true blind zone, not a seed artifact.",
+  "cross_seed_comparison": {
+    "s42": {
+      "perm_granger_fwd": 0,
+      "diff_xcorr_fwd": 1,
+      "threshold_onset_3sigma": 0,
+      "ty_fwd": 3,
+      "K_ge3": 1,
+      "K_ge4": 0
+    },
+    "s43": {
+      "perm_granger_fwd": 0,
+      "diff_xcorr_fwd": 2,
+      "threshold_onset_3sigma": 0,
+      "ty_fwd": 2,
+      "K_ge3": 0,
+      "K_ge4": 0
+    },
+    "agreement": "Both seeds PermG=0/8, K>=3<=1/8. Confirmed blind zone."
+  }
+}

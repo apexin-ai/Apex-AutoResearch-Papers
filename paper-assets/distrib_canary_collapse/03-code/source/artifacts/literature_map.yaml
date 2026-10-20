@@ -1,0 +1,501 @@
+papers:
+  # ============================================================
+  # CORE MODEL COLLAPSE
+  # ============================================================
+  - id: "shumailov2024curse"
+    title: "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+    authors: "Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson"
+    venue: "Nature"
+    year: 2024
+    url: "https://arxiv.org/abs/2305.17493"
+    category: "core-collapse"
+    role: "foundation"
+    key_findings:
+      - "定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失"
+      - "区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）"
+      - "三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合"
+      - "在 VAE、GMM、LLM 上均验证了 collapse 的普遍性"
+    relevance_to_us: "奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段"
+    metrics_studied: ["perplexity", "distributional tail mass"]
+
+  - id: "alemohammad2024mad"
+    title: "Self-Consuming Generative Models Go MAD"
+    authors: "Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk"
+    venue: "ICLR 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2307.01850"
+    category: "core-collapse"
+    role: "foundation"
+    key_findings:
+      - "提出 Model Autophagy Disorder (MAD) 概念"
+      - "autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降"
+      - "在图像生成领域验证 self-consuming loop 的退化效应"
+    relevance_to_us: "MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上"
+    metrics_studied: ["FID", "precision", "recall", "diversity"]
+
+  - id: "dohmatob2024tale"
+    title: "A Tale of Tails: Model Collapse as a Change of Scaling Laws"
+    authors: "Elvis Dohmatob, Yunzhen Feng, et al."
+    venue: "ICML 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2402.07043"
+    category: "core-collapse"
+    role: "foundation"
+    key_findings:
+      - "通过 scaling laws 视角分析 model collapse：collapse 表现为 scaling law 的变化"
+      - "发现 loss of scaling, shifted scaling, skill un-learning, grokking 等多种退化模式"
+      - "混入少量干净数据可缓解 collapse 并引发 grokking 现象"
+      - "在 transformer 算术任务和 Llama2 文本生成上验证"
+    relevance_to_us: "scaling law 变化视角为我们提供了理论基础；grokking 现象暗示 canary 指标可能出现非单调行为"
+    metrics_studied: ["test loss", "scaling exponents"]
+
+  - id: "dohmatob2025strong"
+    title: "Strong Model Collapse"
+    authors: "Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe"
+    venue: "ICLR 2025 (Spotlight)"
+    year: 2025
+    url: "https://arxiv.org/abs/2410.04840"
+    category: "core-collapse"
+    role: "foundation"
+    key_findings:
+      - "即使合成数据占比极小（1/1000），仍可导致 model collapse"
+      - "更大的训练集并不能避免 collapse"
+      - "更大的模型（random projection 近似下）反而可能放大 collapse"
+      - "存在 interpolation threshold 的 double-descent 现象"
+    relevance_to_us: "强化了早期检测的必要性——即使极小的合成数据比例也能触发 collapse，因此 canary 指标必须敏感"
+    metrics_studied: ["test loss", "population risk"]
+
+  - id: "guo2024linguistic"
+    title: "The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text"
+    authors: "Yanzhu Guo, Guokan Shang, et al."
+    venue: "NAACL 2024 Findings"
+    year: 2024
+    url: "https://arxiv.org/abs/2311.09807"
+    category: "core-collapse"
+    role: "evaluation"
+    key_findings:
+      - "递归微调中，linguistic diversity 在连续迭代中持续下降"
+      - "创造性任务中 diversity 下降最显著"
+      - "开发了覆盖 lexical、syntactic、semantic 三层的 diversity 指标体系"
+    relevance_to_us: "其多层 diversity 指标体系可直接作为我们 canary 指标的候选集；创造性 vs 事实任务的差异可能影响 canary 灵敏度"
+    metrics_studied: ["distinct-n", "type-token ratio", "syntactic diversity", "semantic diversity"]
+
+  - id: "briesch2024selfconsuming"
+    title: "Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop"
+    authors: "Martin Briesch, Dominik Sobania, Franz Rothlauf"
+    venue: "arXiv (2311.16822)"
+    year: 2024
+    url: "https://arxiv.org/abs/2311.16822"
+    category: "core-collapse"
+    role: "direct-competitor"
+    key_findings:
+      - "首次系统研究 LLM 的 self-consuming training loop"
+      - "full synthetic cycle（完全替换）导致单点 collapse；data augmentation cycle 导致 diversity 缓慢下降"
+      - "expanding data cycle（累积）在 50 代内保持 diversity"
+    relevance_to_us: "其不同 data cycle 策略的对比直接对应我们的 alpha（synthetic ratio）实验设置"
+    metrics_studied: ["diversity", "quality"]
+
+  # ============================================================
+  # CANARY / EARLY WARNING METRICS
+  # ============================================================
+  - id: "chen2025scales"
+    title: "Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios"
+    authors: "Anonymous"
+    venue: "arXiv (2510.05133)"
+    year: 2025
+    url: "https://arxiv.org/abs/2510.05133"
+    category: "canary-metrics"
+    role: "direct-competitor"
+    key_findings:
+      - "**Calibration degradation precedes accuracy loss** — ECE 是 collapse 的 early warning signal"
+      - "20% synthetic data 以下性能稳定，30% 以上退化加速"
+      - "大模型（6.9B-12B）比小模型（410M-1.4B）更鲁棒"
+      - "推理任务比检索任务更易退化"
+      - "iteration 1 + 30% synthetic 时 ECE 从 0.08 升至 0.14（+75%）"
+    relevance_to_us: "**最直接的竞争者/先驱**。证实 ECE 可作为 canary，但未做 lead-lag 分析，未建立多指标 panel 框架"
+    metrics_studied: ["ECE", "accuracy", "perplexity"]
+
+  - id: "gambetta2024surplexity"
+    title: "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI"
+    authors: "Daniele Gambetta et al."
+    venue: "arXiv (2410.12341)"
+    year: 2024
+    url: "https://arxiv.org/abs/2410.12341"
+    category: "canary-metrics"
+    role: "direct-competitor"
+    key_findings:
+      - "提出 surplexity（model surprise 度量）同时用于检测 collapse 和过滤训练数据"
+      - "用 semantic networks 分析文本重复性和语义多样性"
+      - "用 next-token probability 定量衡量 diversity loss"
+      - "高 surplexity 过滤策略至少与 human-data baseline 同效，且更能降低分布偏斜"
+      - "不需要区分 human vs AI-generated data"
+    relevance_to_us: "surplexity 可作为我们 canary 指标候选之一；其 semantic network 方法提供了 diversity 度量的另一视角"
+    metrics_studied: ["surplexity", "semantic network metrics", "next-token probability"]
+
+  - id: "qiu2025spectral"
+    title: "Spectral Alignment as Predictor of Loss Explosion in Neural Network Training"
+    authors: "Haiquan Qiu, You Wu, Yingjie Tan, Yaqing Wang, Quanming Yao"
+    venue: "arXiv (2510.04202)"
+    year: 2025
+    url: "https://arxiv.org/abs/2510.04202"
+    category: "canary-metrics"
+    role: "method-component"
+    key_findings:
+      - "Spectral Alignment (SA) 监控层输入与权重矩阵主奇异向量的分布对齐"
+      - "SA sign diversity collapse 是 representational collapse 和训练发散的早期预测器"
+      - "比 weight norm、gradient norm 等传统指标更早、更清晰地检测到训练失败"
+      - "健康层的 SA 应有正负均衡分布，collapse 到单侧则预示不稳定"
+    relevance_to_us: "SA 是潜在的高价值 canary 指标——专门设计为 early warning，可直接纳入我们的指标 panel"
+    metrics_studied: ["spectral alignment", "weight norm", "gradient norm"]
+
+  - id: "shi2025closer"
+    title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+    authors: "Lianghe Shi et al."
+    venue: "NeurIPS 2025 (Spotlight)"
+    year: 2025
+    url: "https://arxiv.org/abs/2509.16499"
+    category: "canary-metrics"
+    role: "direct-competitor"
+    key_findings:
+      - "识别 diffusion model collapse 中的 generalization → memorization 转变"
+      - "**训练数据的 entropy 递减是 collapse 的直接驱动因素和清晰指标**"
+      - "提出基于 entropy 的数据选择策略，有效缓解 collapse"
+    relevance_to_us: "data entropy 作为 canary 的有效性已被验证（diffusion domain）；需测试是否在 LLM 场景同样有效"
+    metrics_studied: ["entropy", "FID", "diversity"]
+
+  - id: "ba2024fill"
+    title: "Fill In The Gaps: Model Calibration and Generalization with Synthetic Data"
+    authors: "Yang Ba, Michelle V Mancenido, Rong Pan"
+    venue: "EMNLP 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2410.10864"
+    category: "canary-metrics"
+    role: "background"
+    key_findings:
+      - "用 LLM 生成合成数据来修复 calibration 错误的 reliability diagram bins"
+      - "推导了基于 PAC 框架的 ECE bound"
+      - "合成数据可改善 calibration 但需精心设计生成策略"
+    relevance_to_us: "ECE 的理论 bound 可为我们的 canary 阈值设定提供理论依据"
+    metrics_studied: ["ECE", "accuracy"]
+
+  # ============================================================
+  # DIVERSITY METRICS (BACKGROUND)
+  # ============================================================
+  - id: "zhu2018texygen"
+    title: "Texygen: A Benchmarking Platform for Text Generation Models"
+    authors: "Yaoming Zhu et al."
+    venue: "SIGIR 2018"
+    year: 2018
+    url: "https://arxiv.org/abs/1802.01886"
+    category: "canary-metrics"
+    role: "background"
+    key_findings:
+      - "提出 Self-BLEU 度量：计算生成句子间的 BLEU 相似度，Self-BLEU 越高多样性越低"
+      - "成为文本生成多样性评估的标准基准之一"
+    relevance_to_us: "Self-BLEU 是我们 diversity canary 的经典候选"
+    metrics_studied: ["Self-BLEU", "BLEU"]
+
+  - id: "li2016diversity"
+    title: "A Diversity-Promoting Objective Function for Neural Conversation Models"
+    authors: "Jiwei Li et al."
+    venue: "NAACL 2016"
+    year: 2016
+    url: "https://arxiv.org/abs/1510.03055"
+    category: "canary-metrics"
+    role: "background"
+    key_findings:
+      - "提出 distinct-1 / distinct-2 指标衡量生成文本的 n-gram 多样性"
+      - "计算 unique n-gram 数占总 n-gram 数的比例"
+    relevance_to_us: "distinct-n 是最廉价的 diversity canary 之一，计算开销极低"
+    metrics_studied: ["distinct-1", "distinct-2"]
+
+  # ============================================================
+  # REPRESENTATION / SPECTRAL COLLAPSE
+  # ============================================================
+  - id: "jing2022understanding"
+    title: "Understanding Dimensional Collapse in Contrastive Self-supervised Learning"
+    authors: "Li Jing et al."
+    venue: "ICLR 2022"
+    year: 2022
+    url: "https://openreview.net/forum?id=YevsQ05DEN7"
+    category: "canary-metrics"
+    role: "method-component"
+    key_findings:
+      - "定义 dimensional collapse：embedding 向量只跨越低维子空间"
+      - "effective rank（基于归一化特征值 entropy 的指数）作为 collapse 度量"
+      - "strong augmentation 和 implicit regularization 驱动低秩解"
+    relevance_to_us: "effective rank 的定义和计算方式可直接迁移到我们的 embedding 空间监控"
+    metrics_studied: ["effective rank", "singular value spectrum"]
+
+  - id: "noci2024mind"
+    title: "Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Transformers"
+    authors: "Lorenzo Noci et al."
+    venue: "NeurIPS 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2410.07799"
+    category: "canary-metrics"
+    role: "method-component"
+    key_findings:
+      - "用 Random Matrix Theory 分析 attention 层的 rank collapse"
+      - "发现 attention matrix 最大两个奇异值之间的 spectral gap 是 width-collapse 的根因"
+      - "rank collapse in depth: 所有 token 沿层收敛到单一表示"
+    relevance_to_us: "spectral gap 作为另一种 spectral canary 候选；其 RMT 分析框架可启发我们的理论工作"
+    metrics_studied: ["spectral gap", "singular values", "effective rank"]
+
+  # ============================================================
+  # DATA MIXING & ACCUMULATION
+  # ============================================================
+  - id: "kazdan2025collapse"
+    title: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+    authors: "Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael Rafailov, David L. Donoho, Sanmi Koyejo"
+    venue: "ICML 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2410.16713"
+    category: "data-mixing"
+    role: "foundation"
+    key_findings:
+      - "系统对比 replace vs accumulate 场景"
+      - "replace → collapse；accumulate → 可避免 collapse"
+      - "发现 real data 和 synthetic data 之间存在非平凡的交互效应"
+      - "synthetic data 的价值取决于 real data 的绝对数量"
+    relevance_to_us: "直接对应我们的 alpha（mixing ratio）实验维度；其 replace vs accumulate 框架是我们实验设计的重要参考"
+    metrics_studied: ["test loss"]
+
+  - id: "dey2024breaking"
+    title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+    authors: "Apratim Dey, David Donoho, et al."
+    venue: "ICML 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2404.01413"
+    category: "data-mixing"
+    role: "foundation"
+    key_findings:
+      - "替换数据 → 发散 population risk；累积数据 → 避免发散"
+      - "证明累积策略在多种模型（GMM, HMM, LLM）上有效"
+    relevance_to_us: "为我们的 alpha 实验提供理论预测：累积 vs 替换是 collapse 速率的关键调节因子"
+    metrics_studied: ["population risk"]
+
+  - id: "seddik2024howbad"
+    title: "How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse"
+    authors: "Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane"
+    venue: "arXiv (2404.05090)"
+    year: 2024
+    url: "https://arxiv.org/abs/2404.05090"
+    category: "data-mixing"
+    role: "background"
+    key_findings:
+      - "纯合成数据训练不可避免 collapse"
+      - "给出 synthetic data 比例上界的估计——低于此比例可避免 collapse"
+      - "递归训练使原始分布尾部消失"
+    relevance_to_us: "其 mixing ratio 上界估计可对比我们实验中观测到的 canary 触发阈值"
+    metrics_studied: ["perplexity"]
+
+  - id: "bakshi2026improvement"
+    title: "From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources"
+    authors: "Soham Bakshi et al."
+    venue: "arXiv (2602.10531)"
+    year: 2026
+    url: "https://arxiv.org/abs/2602.10531"
+    category: "data-mixing"
+    role: "background"
+    key_findings:
+      - "即使真实数据比例随时间衰减，只要非零就可能避免 collapse 并恢复真实分布"
+      - "在 next-token prediction 语言模型上分析混合训练的动态"
+    relevance_to_us: "提供了 decaying real data fraction 的理论保证，与我们的实验中 alpha 变化场景相关"
+    metrics_studied: ["population risk"]
+
+  # ============================================================
+  # DOSE-RESPONSE / OPTIMAL MIXING RATIO
+  # ============================================================
+  - id: "he2025golden"
+    title: "Golden Ratio Weighting Prevents Model Collapse"
+    authors: "Hengzhi He, Shirong Xu, Guang Cheng"
+    venue: "arXiv (2502.18049)"
+    year: 2025
+    url: "https://arxiv.org/abs/2502.18049"
+    category: "data-mixing"
+    role: "theoretical-foundation"
+    key_findings:
+      - "迭代训练中最优 real data 权重在 Gaussian/GLM/非参数估计中收敛到 1/φ ≈ 0.618（黄金比例倒数）"
+      - "**最优权重 w*(λ) 作为正则化参数的函数既非单调也非凸**"
+      - "在 Gaussian distribution estimation、GLM、nonparametric estimation 三个 setting 下均成立"
+    relevance_to_us: "**为 non-monotonic dose-response 提供理论先例**：如果最优权重本身非单调，risk landscape 也是非单调的——α=0.25 处可能存在 risk 局部最大值。但其理论限于 prediction risk，未涉及 diversity metrics"
+    metrics_studied: ["prediction risk", "mixing weight"]
+
+  - id: "xu2025overparametrization"
+    title: "Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression"
+    authors: "Shirong Xu, Guang Cheng"
+    venue: "arXiv (2509.22341)"
+    year: 2025
+    url: "https://arxiv.org/abs/2509.22341"
+    category: "data-mixing"
+    role: "theoretical-foundation"
+    key_findings:
+      - "过参数化插值学习下最优 real data 比例收敛到 1/φ"
+      - "Ridge 回归下最优比例受谱几何控制，至少为 1/2"
+      - "**w > 1/3 时 variance 随迭代单调递减；w < 1/3 时 variance 可能增长——存在临界阈值**"
+    relevance_to_us: "1/3 临界阈值与我们 α=0.25 (synthetic weight) 和 α=0.50 之间的行为差异有概念对应；'存在临界 mixing ratio 使行为质变'与我们的非单调观测一致"
+    metrics_studied: ["asymptotic risk", "variance", "mixing weight"]
+
+  - id: "gillman2024selfcorrecting"
+    title: "Self-Correcting Self-Consuming Loops for Generative Model Training"
+    authors: "Nate Gillman, Michael Freeman, Daksh Aggarwal, Chia-Hong Hsu, Calvin Luo, Yonglong Tian, Chen Sun"
+    venue: "ICML 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2402.07087"
+    category: "data-mixing"
+    role: "background"
+    key_findings:
+      - "引入 self-correction function 使 self-consuming loops 指数级更稳定"
+      - "即使 synthetic:real = 100:0 也能避免 collapse（有 self-correction 时）"
+      - "暗示 dose-response 关系可被 intervention 机制完全改变"
+    relevance_to_us: "表明不同 α 下可能存在质的不同 training dynamics，支持我们非单调观测的 regime-switch 解释"
+    metrics_studied: ["FID", "motion quality"]
+
+  # ============================================================
+  # MITIGATION & VERIFICATION
+  # ============================================================
+  - id: "feng2025escaping"
+    title: "Escaping Model Collapse via Synthetic Data Verification"
+    authors: "Yunzhen Feng et al."
+    venue: "NeurIPS 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2510.16657"
+    category: "data-mixing"
+    role: "background"
+    key_findings:
+      - "通过外部 verifier（human 或 better model）注入信息可避免 collapse"
+      - "verifier-guided retraining 带来短期改善，但最终收敛到 verifier 的 knowledge center"
+      - "除非 verifier 完全可靠，早期收益会 plateau 甚至逆转"
+    relevance_to_us: "verification 作为 intervention 策略——如果 canary 触发，可考虑此类 reactive intervention"
+    metrics_studied: ["test loss"]
+
+  - id: "barzilai2025consistency"
+    title: "When Models Don't Collapse: On the Consistency of Iterative MLE"
+    authors: "Daniel Barzilai, Ohad Shamir"
+    venue: "ICML 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2505.19046"
+    category: "core-collapse"
+    role: "background"
+    key_findings:
+      - "在标准 MLE 一致性假设下，即使 real data fraction 趋近零也可避免 collapse"
+      - "但证明了某些情况下 collapse 可以任意快地发生——首次给出严格 collapse 反例"
+    relevance_to_us: "理论上的 collapse 可发生任意快的结论强化了 early warning 的价值"
+    metrics_studied: []
+
+  - id: "dces2026counter"
+    title: "Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling"
+    authors: "Anonymous"
+    venue: "MDPI Electronics (2026)"
+    year: 2026
+    url: "https://www.mdpi.com/2079-9292/15/4/869"
+    category: "data-mixing"
+    role: "background"
+    key_findings:
+      - "提出 DCES（dynamic center-edge sampling）数据选择框架"
+      - "DCES 在 ECE（0.1058 vs 0.1200）和 entropy 保持上优于随机选择"
+    relevance_to_us: "其 ECE 和 entropy 对比数据为我们的指标 baseline 提供参考"
+    metrics_studied: ["ECE", "entropy"]
+
+  # ============================================================
+  # POSITION / SURVEY / EPISTEMICS
+  # ============================================================
+  - id: "schaeffer2025position"
+    title: "Position: Model Collapse Does Not Mean What You Think"
+    authors: "Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo"
+    venue: "arXiv (2503.03150)"
+    year: 2025
+    url: "https://arxiv.org/abs/2503.03150"
+    category: "core-collapse"
+    role: "background"
+    key_findings:
+      - "文献中实际包含 8 种不同且有时矛盾的 model collapse 定义"
+      - "许多 collapse 预测依赖于与现实不符的假设"
+      - "多种 collapse 场景是可以轻易避免的"
+    relevance_to_us: "提醒我们明确定义 collapse 的操作标准；不同定义可能需要不同的 canary 指标"
+    metrics_studied: []
+
+  - id: "wright2025epistemic"
+    title: "Epistemic Diversity and Knowledge Collapse in Large Language Models"
+    authors: "Wright, Dustin and Masud, Sarah and Moore, Jared and Yadav, Srishti and Antoniak, Maria and Park, Chan Young and Augenstein, Isabelle"
+    venue: "arXiv (2510.04226)"
+    year: 2025
+    url: "https://arxiv.org/abs/2510.04226"
+    category: "core-collapse"
+    role: "background"
+    key_findings:
+      - "27 个 LLM 在 155 个主题上的 epistemic diversity 评估"
+      - "所有模型的 epistemic diversity 低于基本 web 搜索"
+      - "模型越大 epistemic diversity 反而越低；RAG 有正面效果"
+    relevance_to_us: "knowledge collapse 维度可扩展我们对 diversity canary 的理解——不仅是 lexical/syntactic 还有 epistemic"
+    metrics_studied: ["epistemic diversity"]
+
+  # ============================================================
+  # METHODOLOGY (GRANGER / LEAD-LAG)
+  # ============================================================
+  - id: "shojaie2022granger"
+    title: "Granger Causality: A Review and Recent Advances"
+    authors: "Ali Shojaie, Emily B. Fox"
+    venue: "Annual Review of Statistics and Its Application"
+    year: 2022
+    url: "https://arxiv.org/abs/2105.02675"
+    category: "methodology"
+    role: "method-component"
+    key_findings:
+      - "Granger causality 综述：从经典线性到非线性/neural 方法"
+      - "Panel data 场景的 Granger causality 扩展"
+      - "VAR 和 neural Granger causality 的对比"
+    relevance_to_us: "为我们的 panel Granger causality 分析提供方法论基础"
+    metrics_studied: []
+
+  - id: "marcinkevics2022neural"
+    title: "Granger Causality Using Neural Networks"
+    authors: "Raphael Marcinkevics, Julia Vogt"
+    venue: "arXiv (2208.03703)"
+    year: 2022
+    url: "https://arxiv.org/abs/2208.03703"
+    category: "methodology"
+    role: "method-component"
+    key_findings:
+      - "用 neural network 估计 Granger causality，突破线性假设"
+      - "两个模型对比法：含/不含外生变量的预测误差差异即 Granger causality 证据"
+    relevance_to_us: "我们的多指标时序可能存在非线性关系，neural Granger causality 是自然选择"
+    metrics_studied: []
+
+gaps:
+  - "**非单调 dose-response 文献空白**——无人报告过 diversity collapse 与 synthetic ratio 之间的非单调关系；He2025/Xu2025 仅在 prediction risk 理论层面暗示非单调性，未在 LLM diversity metrics 上验证"
+  - "无人系统做过 canary 指标的 lead-lag / Granger causality 分析——现有工作只在事后观察到指标变化，未量化哪些指标能提前多少步预测 collapse"
+  - "ECE 在 collapse 场景下几乎未被系统研究——chen2025scales 是唯一报告 ECE 先于 accuracy 退化的工作，但未做因果分析"
+  - "embedding effective rank 未在 iterative synthetic training 场景下被测试——仅在 contrastive learning/transformer 训练中研究过"
+  - "多指标 panel 框架缺失——无人同时追踪 ECE + effective rank + diversity + perplexity 的时序行为并分析其 lead-lag 关系"
+  - "alpha（synthetic ratio）对 canary 灵敏度的影响未被研究——现有工作只关注 alpha 对最终性能的影响，不关注 canary 的 lead time 如何随 alpha 变化"
+  - "predictive intervention vs reactive intervention 缺少对比——没有工作量化 early warning 带来的实际干预收益"
+  - "surplexity 和 spectral alignment 未在 iterative collapse 场景下交叉验证"
+  - "跨任务 canary 普适性未知——reasoning vs retrieval vs creative tasks 中哪些 canary 更可靠"
+
+novelty_assessment: |
+  我们项目的核心 novelty 在于：
+
+  1. **Panel Granger Causality 框架**：首次将多指标时序数据的因果分析方法应用于 model collapse 早期预警。
+     现有工作（chen2025scales, gambetta2024surplexity）只是事后观察到某些指标先变化，
+     但没有人做过系统的 lead-lag 量化分析。
+
+  2. **多指标 Canary Panel**：同时追踪 ECE、effective rank、Self-BLEU/distinct-n、
+     perplexity、entropy、surplexity 等指标，分析其相互关系和各自的 lead time。
+     现有工作都是单一指标或最多两三个指标的孤立分析。
+
+  3. **alpha-dependent Canary Sensitivity**：系统研究 synthetic ratio 如何影响各 canary
+     指标的灵敏度和 lead time。dohmatob2025strong 证明极小的 alpha 就能触发 collapse，
+     但没人研究 canary 在不同 alpha 下的行为。
+
+  4. **与已有工作的差异**：
+     - vs chen2025scales: 他们发现 ECE 先退化但没有做因果分析；我们用 Granger causality 量化
+     - vs gambetta2024surplexity: 他们提出 surplexity 用于检测和缓解 collapse；
+       我们将其纳入更广的 panel 并研究其 lead-lag 特性
+     - vs shi2025closer: 他们在 diffusion 中用 entropy 作为指标；我们在 LLM 中测试更多指标
+     - vs qiu2025spectral: 他们的 SA 用于训练 loss explosion 预警；
+       我们将类似思路迁移到 iterative collapse 场景
+
+  5. **潜在风险**：chen2025scales 已经非常接近我们的方向。如果他们扩展到 lead-lag 分析，
+     我们的 novelty 会被削弱。需要快速推进并在方法论（Granger causality）上建立壁垒。

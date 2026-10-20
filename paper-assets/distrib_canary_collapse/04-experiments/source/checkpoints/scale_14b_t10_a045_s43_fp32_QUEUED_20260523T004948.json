@@ -1,0 +1,15 @@
+{
+  "exp_id": "scale_14b_t10_a045_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:49:15.345Z",
+    "updated_at": "2026-05-23T00:49:48.497Z",
+    "hypothesis": "1.4B scale multi-seed: T=10 α=0.45 seed=43. s42 PermG=0/8 confirmed below-threshold. s43 replication for consistency check."
+  },
+  "timestamp": "2026-05-23T00:49:48.930134+00:00",
+  "trigger": "update_registry"
+}

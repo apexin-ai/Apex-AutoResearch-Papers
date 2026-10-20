@@ -1,0 +1,174 @@
+{
+  "task": "Direction A: PermG → DPO/RLHF Collapse Detection",
+  "date": "2026-05-21",
+  "status": "feasible — public checkpoints available",
+
+  "candidate_checkpoints": [
+    {
+      "rank": 1,
+      "model": "OLMo-2-0425-1B",
+      "hf_repo": "allenai/OLMo-2-0425-1B",
+      "params": "1B",
+      "cpu_friendly": true,
+      "license": "Apache-2.0",
+      "stages": ["Base", "SFT", "DPO", "Instruct"],
+      "stage_repos": {
+        "base": "allenai/OLMo-2-0425-1B",
+        "sft": "allenai/OLMo-2-0425-1B-SFT",
+        "dpo": "allenai/OLMo-2-0425-1B-DPO",
+        "instruct": "allenai/OLMo-2-0425-1B-Instruct"
+      },
+      "step_level_checkpoints": "RLVR stage has per-20-step checkpoints (revision='step_200' etc.)",
+      "notes": "Top choice. 4 discrete alignment stages. 1B is CPU-feasible (~4GB fp32). Full open pipeline by Allen AI."
+    },
+    {
+      "rank": 2,
+      "model": "SmolLM3-3B",
+      "hf_repo": "HuggingFaceTB/SmolLM3-3B",
+      "params": "3B",
+      "cpu_friendly": "with quantization (int8/int4)",
+      "license": "open",
+      "stages": ["Midtraining", "SFT", "APO (DPO variant)", "LC Expert"],
+      "stage_repos": {
+        "checkpoints": "HuggingFaceTB/SmolLM3-3B-checkpoints"
+      },
+      "step_level_checkpoints": "checkpoints at each post-training stage",
+      "notes": "Strong secondary. APO = Anchored Preference Optimization (DPO variant). 3B needs int8 quantization for CPU."
+    },
+    {
+      "rank": 3,
+      "model": "Tulu-3-8B",
+      "hf_repo": "allenai/Llama-3.1-Tulu-3-8B",
+      "params": "8B",
+      "cpu_friendly": false,
+      "license": "Llama-3.1 Community",
+      "stages": ["SFT", "DPO", "Final (RLVR)"],
+      "stage_repos": {
+        "sft": "allenai/Llama-3.1-Tulu-3-8B-SFT",
+        "dpo": "allenai/Llama-3.1-Tulu-3-8B-DPO",
+        "final": "allenai/Llama-3.1-Tulu-3-8B"
+      },
+      "step_level_checkpoints": "no",
+      "notes": "3 stages but 8B too large for CPU. Useful for GPU-based validation."
+    },
+    {
+      "rank": 4,
+      "model": "Zephyr-7B-beta",
+      "hf_repo": "HuggingFaceH4/zephyr-7b-beta",
+      "params": "7B",
+      "cpu_friendly": false,
+      "license": "MIT",
+      "stages": ["SFT", "DPO"],
+      "stage_repos": {
+        "sft": "alignment-handbook/zephyr-7b-sft-full",
+        "dpo": "alignment-handbook/zephyr-7b-dpo-full"
+      },
+      "step_level_checkpoints": "no",
+      "notes": "Only 2 stages. 7B not CPU-friendly. Minimal value over OLMo-2."
+    },
+    {
+      "rank": 5,
+      "model": "Archangel/Pythia-2.8B",
+      "hf_repo": "ContextualAI/archangel_sft-dpo_pythia2-8b",
+      "params": "2.8B",
+      "cpu_friendly": "marginal (int8)",
+      "license": "Apache-2.0",
+      "stages": ["SFT", "DPO"],
+      "step_level_checkpoints": "possibly (HALOs code supports intermediate_checkpoints=true), not confirmed on HF",
+      "notes": "DPO/KTO/SLIC variants available. Base Pythia has 154 pretraining checkpoints."
+    }
+  ],
+
+  "negative_results": [
+    {"model": "SmolLM2-135M/360M/1.7B", "reason": "Only base and final Instruct published. No SFT-only or DPO-only checkpoint. Pre-training intermediates exist but alignment intermediates do not."},
+    {"model": "Qwen2.5-0.5B-Instruct", "reason": "Only Base and Instruct published. No intermediate alignment checkpoints."},
+    {"model": "Pythia (base)", "reason": "154 pretraining checkpoints per size, but EleutherAI did not perform alignment. Need third-party aligned variants."}
+  ],
+
+  "feasibility_assessment": {
+    "recommended_primary": "OLMo-2-0425-1B",
+    "why": "1B params = ~4GB fp32, feasible on CPU. 4 alignment stages (Base→SFT→DPO→Instruct). Apache-2.0. Established in literature (Karouzos et al. 2026 used OLMo for diversity collapse analysis).",
+    "recommended_secondary": "SmolLM3-3B-checkpoints",
+    "cpu_inference_estimate": {
+      "OLMo-2-1B_fp32": "~3-5 tokens/sec on modern CPU, ~200 tokens in 40-60 sec per prompt",
+      "SmolLM3-3B_int8": "~1-2 tokens/sec on CPU, slower but feasible for small eval sets",
+      "generation_budget": "1000 prompts × 4 stages × 200 tokens = 800K tokens. At ~4 tok/s = ~55 hours for OLMo-1B. Recommend subsampling to 100-200 prompts."
+    },
+    "gpu_alternative": "If GPU available: run full 1000 prompts in ~2-4 hours total across all stages.",
+    "self_train_fallback": "If no satisfactory checkpoints: fine-tune Pythia-410M or SmolLM-135M with TRL DPO on UltraFeedback, save per-epoch checkpoints. Requires 1 GPU, ~2 hours. Recommend Director allocate if needed."
+  },
+
+  "experiment_design": {
+    "eval_set": "WikiText-103 test, first 200 sentences (subsampled for CPU budget)",
+    "generation_config": {
+      "max_new_tokens": 200,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "do_sample": true,
+      "num_return_sequences": 5,
+      "note": "T=1.0 to preserve natural diversity signal; 5 continuations per prompt for within-prompt diversity"
+    },
+    "checkpoints_to_evaluate": [
+      "allenai/OLMo-2-0425-1B (Base)",
+      "allenai/OLMo-2-0425-1B-SFT",
+      "allenai/OLMo-2-0425-1B-DPO",
+      "allenai/OLMo-2-0425-1B-Instruct"
+    ],
+    "metrics_per_stage": [
+      "token_entropy (H) — Shannon entropy of next-token distribution",
+      "distinct_1 / distinct_2 / distinct_3 — ratio of unique n-grams",
+      "ECE — expected calibration error",
+      "perplexity — on held-out text",
+      "repetition_rate — fraction of repeated 4-grams in generations",
+      "self_BLEU — intra-prompt generation similarity"
+    ],
+    "permg_application": {
+      "concept": "Treat each alignment stage as a 'generation' in the PermG framework. The 4-stage sequence (Base→SFT→DPO→Instruct) is analogous to the multi-generation autoregressive degradation studied in the paper.",
+      "analysis": [
+        "Compute per-metric trajectories across 4 stages",
+        "Run cross-correlation between entropy and distinct-n trajectories",
+        "Test for lead-lag: does entropy decline precede distinct-n decline?",
+        "Compute PermG K-value: how many stages until collapse threshold?"
+      ],
+      "limitation": "Only 4 stages (not the 10-20 generations in standard PermG). Statistical power is limited. Mitigate by: (1) using per-prompt metrics as repeated measures, (2) adding SmolLM3 as replication, (3) if RLVR step-level checkpoints give 10+ points, use those for finer-grained analysis."
+    }
+  },
+
+  "literature_support": {
+    "diversity_collapse_established": true,
+    "key_papers": [
+      {
+        "citation": "Kirk et al. (2024). Understanding the Effects of RLHF on LLM Generalisation and Diversity. ICLR 2024.",
+        "arxiv": "2310.06452",
+        "finding": "RLHF significantly reduces output diversity (syntactic, semantic, logical). Across-input mode collapse confirmed. Not explained by reward model alone (BoN maintains diversity).",
+        "code": "github.com/facebookresearch/rlfh-gen-div"
+      },
+      {
+        "citation": "Karouzos et al. (2026). Where does output diversity collapse in post-training? arXiv:2604.16027.",
+        "arxiv": "2604.16027",
+        "finding": "Diversity collapse location is pipeline-dependent: SFT for some lineages, DPO for others. Used OLMo checkpoints. Suppressing CoT does not recover diversity.",
+        "code": "github.com/ckarouzos/where-diversity-collapses"
+      },
+      {
+        "citation": "Guo et al. (2025). Diverse Preference Optimization (DivPO). arXiv:2501.18101.",
+        "arxiv": "2501.18101",
+        "finding": "Standard DPO objective is inherently diversity-destroying: shifting all probability to one high-reward response is optimal under the loss. DivPO achieves 45-75% diversity recovery."
+      },
+      {
+        "citation": "Lin et al. (2024). Mitigating the Alignment Tax of RLHF. EMNLP 2024.",
+        "finding": "Alignment tax = diversity + fluency drop. DPO induces less tax than PPO."
+      },
+      {
+        "citation": "Tomihari (2026). Learning Dynamics in RL Post-Training for Language Models. arXiv:2601.04670.",
+        "arxiv": "2601.04670",
+        "finding": "Entropy decreases monotonically during RL post-training (NTK analysis). Limited feature variability causes systematic confidence increase."
+      },
+      {
+        "citation": "Li et al. (2025). Rediscovering Entropy Regularization. arXiv:2510.10959.",
+        "arxiv": "2510.10959",
+        "finding": "RLVR training suffers policy entropy collapse. Fixed entropy coefficients are unstable."
+      }
+    ],
+    "theoretical_prediction": "Entropy decline should lead distinct-n decline in alignment pipeline, because: (1) DPO/RLHF directly optimizes log-probability ratios, compressing the output distribution first (entropy drops), (2) n-gram diversity is a downstream consequence of distribution concentration (distinct-n drops after), (3) This mirrors the token_entropy → distinct lead-lag observed in autoregressive model collapse."
+  }
+}

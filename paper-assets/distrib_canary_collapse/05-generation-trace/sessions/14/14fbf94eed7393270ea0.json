@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14fbf94eed7393270ea0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code plan002 phase2 pooled panel",
+  "task_key": "worker_code_plan002-phase2-pooled-panel_20260515T042930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-phase2-pooled-panel_20260515T042930_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "5832166849cd7c352e6e26d00b2b3a1c76b4eebc9245b14de7dfc3f9661d0f23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码部署并验证完成。3 个输出文件全部生成：\n\n**`pooled_panel_analysis.py`** 已写入服务器，包含 5 个分析模块：\n\n1. **Pooled panel regression** — 6 对 canary→diversity pairs（token_entropy/ECE × distinct_1/2/3），Δdownstream ~ lag-1_Δcanary + α + α×lag-1_Δcanary，HC1 robust SE + BH FDR\n2. **α-monotonicity** — Spearman(α, |drift slope|) + 散点图\n3. **Cross-α permutation Granger** — 每个 α 的 F-stat + Spearman 趋势\n4. **BH FDR** — 对 interaction term p-values 联合校正\n5. **可视化** — 2×3 monotonicity 散点图\n\nDry-run 结果（2 个 α 点）：\n- `lag1_d_canary` 系数在 token_entropy→distinct_1/2/3 上显著（β>0, p<0.001），确认差分序列的 lead-lag 关系存在\n- Interaction terms 全部 FDR 不显著（预期：2 个 α 点 underpowered）\n- α=0.25 的 Granger F-stat 普遍高于 α=0.00（如 token_entropy→distinct_1: 163 vs 48），方向符合预期\n- 所有 warning 正确触发\n\n等 α=0.50 完成后再跑一次即可获得 ≥3 点的 Spearman 和 FDR 校正结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-phase2-pooled-panel.md"
+}

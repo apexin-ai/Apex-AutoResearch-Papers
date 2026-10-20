@@ -1,0 +1,5 @@
+Full JSON at westd-17855:results/scale/14b_t10_a060_s43_fp32/analysis/5method_leadlag.json
+
+Summary: PermG fwd 4/8, rev 6/8 | DiffXCorr fwd 6/8 | Threshold 0/8 | TY 2/8 | K>=3: 3/8 | K>=4: 2/8
+Drift: ppl +216.1%, entropy -33.9%, ece +2842%, distinct1 -23.7%, mauve N/A
+Note: mauve=null all gens (gpt2-large offline load failure on westd-17855)

@@ -1,0 +1,28 @@
+{
+  "exp_id": "interv_pred_a075_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:22:16.709Z",
+    "updated_at": "2026-05-18T23:24:17.150Z",
+    "hypothesis": "Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.",
+    "parent": null,
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42_fp32_v2",
+      "server": "westd-17855",
+      "pid": 62752,
+      "tmux_session": "interv_pred_fp32_v3",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-18T23:24:17.150Z"
+  },
+  "timestamp": "2026-05-18T23:24:17.291822+00:00",
+  "trigger": "update_registry"
+}

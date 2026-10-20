@@ -1,0 +1,91 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:15:09.476Z",
+    "updated_at": "2026-05-18T00:25:14.256Z",
+    "hypothesis": "C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然",
+    "parent": "generalize_pythia1b_c4_a100_s42_v2",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "291511",
+      "log_path": "~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log",
+      "submitted_at": "2026-05-17T20:07:39.212Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 15455.0,
+      "gpu_hours": 4.29
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T00:16:50.616Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T00:16:52.976550+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "token_entropy": 2.956,
+        "ece": 0.012,
+        "perplexity": 20.6,
+        "distinct_1": 0.116,
+        "distinct_2": 0.562,
+        "distinct_3": 0.838,
+        "mauve": 0.786,
+        "effective_rank": 72.5
+      },
+      "gen10": {
+        "token_entropy": 1.275,
+        "ece": 0.453,
+        "perplexity": 1591,
+        "distinct_1": 0.088,
+        "distinct_2": 0.378,
+        "distinct_3": 0.57,
+        "mauve": 0.289,
+        "effective_rank": 146.2
+      },
+      "drift_pct": {
+        "token_entropy": -56.9,
+        "ece": 3542.3,
+        "perplexity": 7623.7,
+        "distinct_1": -24.3,
+        "distinct_2": -32.7,
+        "distinct_3": -31.9,
+        "mauve": -63.2,
+        "effective_rank": 101.6
+      },
+      "table5_8pairs": {
+        "naive_xcorr": "8/8",
+        "diff_xcorr_fdr": "8/8",
+        "threshold_onset": "8/8",
+        "permg_fwd_fdr": "8/8",
+        "permg_rev_fdr": "0/8",
+        "ty_granger": "5/8",
+        "consensus_ge3": "8/8",
+        "consensus_ge4": "8/8",
+        "token_entropy_rev": "0/4",
+        "ece_rev": "0/4"
+      }
+    },
+    "checkpoint_path": "results/generalize/pythia1b_c4_a100_s43/",
+    "log_path": "~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T00:25:14.256Z"
+  },
+  "timestamp": "2026-05-18T00:25:14.368450+00:00",
+  "trigger": "update_registry"
+}

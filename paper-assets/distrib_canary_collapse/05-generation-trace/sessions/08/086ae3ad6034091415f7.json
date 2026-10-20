@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "086ae3ad6034091415f7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis s42 6pair d102 batch",
+  "task_key": "worker_analysis_s42-6pair-d102-batch_20260524T003528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s42-6pair-d102-batch_20260524T003528_result.json",
+    "occurrence": 1,
+    "bytes": 1958,
+    "sha256": "9219ee4047f48079a7d70b4459293e8b560b8320719dafcc92654d56d3350985"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All analysis complete. Here's the full report.\n\n---\n\n## Results: s42 1.4B 6-pair D102 Analysis\n\n### Summary Table (PermG FDR forward)\n\n| α | T=10 | T=15 | Cross-T |\n|------|------|------|---------|\n| 0.45 | 0/6 | 3/6 | +3 |\n| 0.50 | 4/6 | 3/6 | -1 |\n| 0.60 | 4/6 | 6/6 | +2 |\n| 0.75 | 5/6 | **missing** | — |\n\n### Robust pairs (K≥3/5)\n\n| α | T=10 | T=15 |\n|------|------|------|\n| 0.45 | 0/6 | 3/6 |\n| 0.50 | 2/6 | 1/6 |\n| 0.60 | 0/6 | 4/6 |\n| 0.75 | 0/6 | — |\n\nAll reverse PermG = 0/6 (good).\n\n### Missing data\n- **t15_a075_s42_fp32_14b**: no 1.4B directory exists on either server. Only 410M version found (`t15_a075_s42_fp32`).\n\n### Step 7: Paper text flagged lines\n\n**`appendix.tex:533`** — Most critical:\n> Cross-$T$ improvement holds at 3/4 $\\alpha$ values ($\\alpha{=}0.45$: $0/6{\\to}5/6$; ...)\n\ns42 shows $\\alpha{=}0.45$: $0/6{\\to}3/6$ (not 5/6). The 5/6 is from s43 data. When Table 17 is updated to s42 6-pair, this sentence needs updating. Also `$6/6{\\to}3/6$` for α=0.50 — s42 shows 4/6→3/6 (not 6/6→3/6).\n\n**`appendix.tex:534`**:\n> ECE-based pairs achieve higher detection rates than entropy-based pairs (e.g., 3/3 vs 0/3 robust at $\\alpha{=}0.50$, $T{=}15$)\n\ns42 shows 1/3 vs 0/3 — directionally correct but smaller margin. If presenting s42 data, update to \"1/3 vs 0/3\".\n\n**`appendix.tex:521`** — Uses 8-pair counts \"s42: 4/8 fwd, 2/8 rev\". On 6-pair: s42 = 4/6 fwd, 0/6 rev (reverse drops to 0 because MAUVE pairs likely carried reverse signal).\n\n**`appendix.tex:524-525, 528`** — Use 8-pair notation (\"/8\"). If switching to unified 6-pair, these need denominator updates. Values remain directionally consistent (e.g., line 528 \"both yield 3/8\" → both yield 3/6).\n\n### Artifacts saved\n- 7 local JSON files: `artifacts/D102_14b_t{10,15}_a{045,050,060,075}_s42_fp32_14b_6pair.json`\n- Summary: `artifacts/_project/s42_6pair_summary_20260524.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s42-6pair-d102-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07f24a57f299825803af",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose gen wiki gpt2m a100 s42 v2",
+  "task_key": "worker_diagnose_gen_wiki_gpt2m_a100_s42_v2_20260515T120343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gen_wiki_gpt2m_a100_s42_v2_20260515T120343_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "547f3379149b21ee62e80323c4d0d37ecbe8da24748335293c1744be5eae321c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：`/root/autodl-tmp/models/gpt2-medium/` 下的符号链接指向了错误的 HF cache 路径——缺少 `hub/` 层级（指向 `.hf_cache/models--gpt2-medium/...` 而非 `.hf_cache/hub/models--gpt2-medium/...`），导致所有链接悬空，tokenizer 找不到 `vocab.json`，`vocab_file=None` 触发 TypeError。\n\n**已修复**：重建全部 7 个符号链接到正确路径，验证 tokenizer 加载成功（vocab_size=50257）。\n\n**可以直接重跑实验。**\n\n报告已写入 `artifacts/report_gen_wiki_gpt2m_failure.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gen-wiki-gpt2m-a100-s42-v2.md"
+}

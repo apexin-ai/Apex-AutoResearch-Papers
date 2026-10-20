@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10467c89251639ed93b7",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779389074.md",
+  "task_key": "loop_15_1779389074",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779389074.md",
+    "occurrence": 1,
+    "bytes": 5368,
+    "sha256": "ed07b1921ecf9fe003d88ab988439e72fbd20b8fb750b90bcb4e8c9c0846d22f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-21T18:05:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **M060**：所有训练命令必须包含 `export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1`。已失败两次，Director 警告\"不能有第三次\"\n- **M063**：5method 分析只能用 `run_5method_analysis_d102.py`（mauve + true_3sigma_d105）。危险脚本：`run_5method_analysis.py`（perplexity）、`run_5method_s43.py`（perplexity + 3x_sigma_drift）——服务器上都还在，Worker 容易误用\n- **westd-17855 不在 SSH config 里**：必须用完整命令 `ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_ed25519 root@connect.westd.seetacloud.com -p 17855`\n- **T=20 α=0.50 PermG = 6/8**（非 8/8）。已修正，但旧叙事可能残留错误数字\n- **submit_training_job 命令必须 `bash -c \"...\"`** 包裹，否则 tmux 用 sh 执行导致 EXIT_CODE=127\n- **parent 实验转 RUNNING 需要 checkpoint_source + eval_data**，否则 update_registry 报错\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**（6×GPU）：`/root/autodl-tmp/distrib_canary_collapse/`，Python: `/root/miniconda3/bin/python`，conda activate base\n- **westd-19828**（2×GPU）：同上路径，SSH config 已有 `westd-19828`\n- HF cache: `/root/autodl-tmp/.hf_cache`（两台都是）\n- 模型: `EleutherAI/pythia-410m`（本地缓存）\n- 数据: `/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k`（5000 samples）\n- d102 脚本: `/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py`（两台都有）\n- 活跃进程（8 个）：\n\n| server:gpu | exp_id | PID | tmux session |\n|-----------|--------|-----|-------------|\n| 17855:0 | phase_diagram_t25_a050_s42_fp32 | 519969 | 同 exp_id |\n| 17855:1 | phase_diagram_t15_a060_s42_fp32 | 509841 | 同 |\n| 17855:2 | phase_diagram_t15_a075_s42_fp32_v2 | 513367 | 同 |\n| 17855:3 | phase_diagram_t25_a060_s42_fp32 | 515617 | 同 |\n| 17855:4 | phase_diagram_t20_a060_s43_fp32 | 541970 | 同 |\n| 17855:5 | phase_diagram_t25_a045_s42_fp32_v2 | 519272 | 同 |\n| 19828:0 | phase_diagram_t25_a075_s42_fp32 | 671833 | 同 |\n| 19828:1 | phase_diagram_t20_a045_s43_fp32 | 688680 | 同 |\n\n### 3. 📊 当前状态\n刚完成：\n- t15_a050 DONE (PermG=6/8)，registry 已更新，heatmap 已加 `(15, 0.50): 6`\n- t20_a060_s43 已提交到 17855:cuda:4 并转 RUNNING\n- 向 Director 汇报了 Task 1 完成 + 14/20 Phase Diagram 进度表\n\nPhase Diagram 14/20 cells 已确认：\n```\n| T\\α  | 0.45    | 0.50    | 0.60       | 0.75    |\n|------|---------|---------|------------|---------|\n| T=5  | 0/8 ✅  | 0/8 ✅  | 0/8 ✅     | 0/8 ✅  |\n| T=10 | 0/8 ✅  | 6/8 ✅  | 0/8 ✅     | 6/8 ✅  |\n| T=15 | 6/8 ✅  | 6/8 ✅  | 🔄 17855:1 | 🔄 17855:2 |\n| T=20 | 5/8 ✅  | 6/8 ✅  | 0/8 ✅     | 6/8 ✅  |\n| T=25 | 🔄      | 🔄      | 🔄         | 🔄      |\n```\n\n等待中的 Worker 回调：\n- `worker_audit_d102_historical_20260521T180349`：历史 5method JSON d102 合规审计\n- `worker_analysis_d170_narrative_20260521T180401`：D170 叙事升级评估\n\n等待中的 Cron 回调：8 个 RUNNING 实验的完成回调（T=15 两个估计最先完成，T=25 最后）\n\nregistry 有一个废弃条目 `t15_a050_s42_fp32`（PREPARING，是误创建的重复条目，真实条目是 `phase_diagram_t15_a050_s42_fp32`），可忽略。\n\n### 4. 📋 待办\n- **t15_a060 完成回调** → spawn worker 跑 d102 5method → PermG 结果填入 Phase Diagram (15, 0.60)。如果 >0/8，sync-dip 在 T=15 已溶解；如果 =0/8，sync-dip 持续到 T=15\n- **t15_a075_v2 完成回调** → spawn worker 跑 d102 5method → 填入 (15, 0.75)。T=15 行完成后可初步评估 D170 叙事更新\n- **T=25 四个实验完成** → 逐个 d102 分析 → 全部完成后 Phase Diagram 20/20，可产出最终版 heatmap\n- **t20_a045_s43 完成** → d102 分析 → 与 s42=5/8 对比，确认边界稳定性\n- **t20_a060_s43 完成** → d102 分析 → 与 s42=0/8 (p_fdr=0.064) 对比，如果 s43 也 near-miss，strengthens dissolution-in-progress 叙事\n- **d102 审计 Worker 返回** → 如果有 FAIL 条目，需要在对应服务器重跑 d102 分析并更新 registry metrics\n- **D170 叙事 Worker 返回** → 评估报告交 Director 决策是否更新\n\n### 5. 🎯 战略上下文\n- **核心 claim**：PermG 检测存在相变 α_c(T) = 0.193 + 75.68 × T^{-2.41}，Phase Diagram 是关键证据图\n- **α=0.60 sync-dip** 是论文的独特发现——不是噪声而是结构性去同步化。lag 分析（D175 artifact 已产出）显示 T=10→T=20 时 lag=0 相关性下降 37-52%，F-stats 升 2-3x。T=20 s42 的 p_fdr=0.064 暗示 dissolution-in-progress。s43 cross-seed 是验证这个叙事的关键数据点\n- **T=20 α=0.45 = 5/8 是最脆弱的 cell**——接近 α_c 边界，s43 cross-seed 验证中。如果 s43 ≤ 2/8，该 cell 的 claim 需要弱化\n- **易错点**：Phase Diagram 数据中 T=10 和 T=20 的结果来自早期 alpha_sweep，不是 phase_diagram 命名的实验。d102 审计 Worker 正在检查这些历史数据是否合规\n- **T=20 α=0.50 已修正为 6/8**——之前有误报 8/8 的历史。heatmap 已修正，但论文 .tex 扫描过无残留\n- **投稿目标**：EMNLP 2026 ARR June cycle，8 页正文限制\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779389074.md"
+}

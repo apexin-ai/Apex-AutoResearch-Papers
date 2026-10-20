@@ -1,0 +1,41 @@
+{
+  "exp_id": "alpha_sweep_a075_s44",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:16:20.468Z",
+    "updated_at": "2026-05-16T09:53:05.475Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "178907",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a075_s44.log",
+      "submitted_at": "2026-05-16T08:29:45.466Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 5000.0,
+      "gpu_hours": 1.39
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "178907",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a075_s44.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\"",
+      "finished_at": "2026-05-16T09:53:04.189Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T09:53:05.475Z"
+  },
+  "timestamp": "2026-05-16T09:53:05.542327+00:00",
+  "trigger": "update_registry"
+}

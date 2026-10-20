@@ -1,0 +1,44 @@
+{
+  "exp_id": "alpha_sweep_a050_s44",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T06:58:50.550Z",
+    "updated_at": "2026-05-17T06:34:44.145Z",
+    "completed_at": "2026-05-16T00:03:52.118Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "230319",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log",
+      "submitted_at": "2026-05-17T02:07:37.713Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "230319",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\"",
+      "finished_at": "2026-05-17T06:34:43.961Z"
+    },
+    "hypothesis": "α=0.50 第三 seed 将确认 boundary 的 seed-dependent 性质；若 PermG sig >0/8 则 2/3 seeds 有信号（boundary 偏 transitional），若 0/8 则 1/3（boundary 偏 null）",
+    "parent": "alpha_sweep_a050_s43"
+  },
+  "timestamp": "2026-05-17T06:34:44.253166+00:00",
+  "trigger": "update_registry"
+}

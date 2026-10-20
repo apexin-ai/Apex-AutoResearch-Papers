@@ -1,0 +1,403 @@
+{
+  "method_thresholds": [
+    3,
+    4,
+    5
+  ],
+  "seed_thresholds": [
+    2,
+    3,
+    4
+  ],
+  "n_configs": 9,
+  "grid": [
+    {
+      "method_threshold": 3,
+      "seed_threshold": 2,
+      "label": "\u22653/5 methods, \u22652/4 seeds",
+      "n_robust": 9,
+      "robust_pairs": [
+        "token_entropy\u2192perplexity",
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "self_bleu\u2192perplexity",
+        "ece\u2192perplexity",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": true,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": true,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": true,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 3,
+      "seed_threshold": 3,
+      "label": "\u22653/5 methods, \u22653/4 seeds",
+      "n_robust": 8,
+      "robust_pairs": [
+        "token_entropy\u2192perplexity",
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192perplexity",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": true,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": true,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 3,
+      "seed_threshold": 4,
+      "label": "\u22653/5 methods, \u22654/4 seeds",
+      "n_robust": 8,
+      "robust_pairs": [
+        "token_entropy\u2192perplexity",
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192perplexity",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": true,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": true,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 4,
+      "seed_threshold": 2,
+      "label": "\u22654/5 methods, \u22652/4 seeds",
+      "n_robust": 6,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 4,
+      "seed_threshold": 3,
+      "label": "\u22654/5 methods, \u22653/4 seeds",
+      "n_robust": 6,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 4,
+      "seed_threshold": 4,
+      "label": "\u22654/5 methods, \u22654/4 seeds",
+      "n_robust": 6,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 5,
+      "seed_threshold": 2,
+      "label": "\u22655/5 methods, \u22652/4 seeds",
+      "n_robust": 6,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3",
+        "ece\u2192distinct_1",
+        "ece\u2192distinct_2",
+        "ece\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": true,
+        "ece\u2192distinct_2": true,
+        "ece\u2192distinct_3": true,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 5,
+      "seed_threshold": 3,
+      "label": "\u22655/5 methods, \u22653/4 seeds",
+      "n_robust": 3,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2",
+        "token_entropy\u2192distinct_3"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": true,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": false,
+        "ece\u2192distinct_2": false,
+        "ece\u2192distinct_3": false,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    },
+    {
+      "method_threshold": 5,
+      "seed_threshold": 4,
+      "label": "\u22655/5 methods, \u22654/4 seeds",
+      "n_robust": 2,
+      "robust_pairs": [
+        "token_entropy\u2192distinct_1",
+        "token_entropy\u2192distinct_2"
+      ],
+      "pair_status": {
+        "token_entropy\u2192perplexity": false,
+        "token_entropy\u2192distinct_1": true,
+        "token_entropy\u2192distinct_2": true,
+        "token_entropy\u2192distinct_3": false,
+        "self_bleu\u2192perplexity": false,
+        "self_bleu\u2192distinct_1": false,
+        "self_bleu\u2192distinct_2": false,
+        "self_bleu\u2192distinct_3": false,
+        "ece\u2192perplexity": false,
+        "ece\u2192distinct_1": false,
+        "ece\u2192distinct_2": false,
+        "ece\u2192distinct_3": false,
+        "effective_rank\u2192perplexity": false,
+        "effective_rank\u2192distinct_1": false,
+        "effective_rank\u2192distinct_2": false,
+        "effective_rank\u2192distinct_3": false
+      }
+    }
+  ],
+  "pair_stability": {
+    "token_entropy\u2192perplexity": {
+      "robust_in_n_configs": 3,
+      "total_configs": 9,
+      "stability": 0.333
+    },
+    "token_entropy\u2192distinct_1": {
+      "robust_in_n_configs": 9,
+      "total_configs": 9,
+      "stability": 1.0
+    },
+    "token_entropy\u2192distinct_2": {
+      "robust_in_n_configs": 9,
+      "total_configs": 9,
+      "stability": 1.0
+    },
+    "token_entropy\u2192distinct_3": {
+      "robust_in_n_configs": 8,
+      "total_configs": 9,
+      "stability": 0.889
+    },
+    "self_bleu\u2192perplexity": {
+      "robust_in_n_configs": 1,
+      "total_configs": 9,
+      "stability": 0.111
+    },
+    "self_bleu\u2192distinct_1": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "self_bleu\u2192distinct_2": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "self_bleu\u2192distinct_3": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "ece\u2192perplexity": {
+      "robust_in_n_configs": 3,
+      "total_configs": 9,
+      "stability": 0.333
+    },
+    "ece\u2192distinct_1": {
+      "robust_in_n_configs": 7,
+      "total_configs": 9,
+      "stability": 0.778
+    },
+    "ece\u2192distinct_2": {
+      "robust_in_n_configs": 7,
+      "total_configs": 9,
+      "stability": 0.778
+    },
+    "ece\u2192distinct_3": {
+      "robust_in_n_configs": 7,
+      "total_configs": 9,
+      "stability": 0.778
+    },
+    "effective_rank\u2192perplexity": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "effective_rank\u2192distinct_1": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "effective_rank\u2192distinct_2": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    },
+    "effective_rank\u2192distinct_3": {
+      "robust_in_n_configs": 0,
+      "total_configs": 9,
+      "stability": 0.0
+    }
+  },
+  "pair_labels": [
+    "token_entropy\u2192perplexity",
+    "token_entropy\u2192distinct_1",
+    "token_entropy\u2192distinct_2",
+    "token_entropy\u2192distinct_3",
+    "self_bleu\u2192perplexity",
+    "self_bleu\u2192distinct_1",
+    "self_bleu\u2192distinct_2",
+    "self_bleu\u2192distinct_3",
+    "ece\u2192perplexity",
+    "ece\u2192distinct_1",
+    "ece\u2192distinct_2",
+    "ece\u2192distinct_3",
+    "effective_rank\u2192perplexity",
+    "effective_rank\u2192distinct_1",
+    "effective_rank\u2192distinct_2",
+    "effective_rank\u2192distinct_3"
+  ]
+}

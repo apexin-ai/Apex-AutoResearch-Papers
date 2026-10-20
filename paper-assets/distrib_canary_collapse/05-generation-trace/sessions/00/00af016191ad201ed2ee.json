@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00af016191ad201ed2ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze gen gpt2m a100 s43 fp32",
+  "task_key": "worker_analyze_gen_gpt2m_a100_s43_fp32_20260519T151034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_gen_gpt2m_a100_s43_fp32_20260519T151034_result.json",
+    "occurrence": 1,
+    "bytes": 1993,
+    "sha256": "28e538b56644709324b43f5a4c0faa86142d4a4975d363ccc86ea08ed2c65e8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。\n\n---\n\n## gen_gpt2m_a100_s43_fp32 分析结果\n\n### 结论：**SUCCESS** — GPT-2m 跨 seed canary lead-lag 稳健\n\n### 核心指标\n\n| 指标 | s43 (fp32) | s42 (fp16) | 一致性 |\n|------|-----------|-----------|--------|\n| **PermG fwd** | **8/8** | 5/8 | s43 更强 |\n| **PermG rev** | 5/8 | — | — |\n| **DiffXCorr fwd** | 8/8 | — | — |\n| **K≥3 robust** | 4/8 | — | — |\n| **K≥4 robust** | 1/8 | 6/8 | s43 较弱 |\n| **d1_drift** | **-24.9%** | -28.9% | 方向一致，幅度相近 |\n| **Threshold Onset** | 0/8 | — | T=11 样本不足 |\n| **TY Granger** | 4/8 | — | — |\n\n### 指标轨迹 (gen_0 → gen_10)\n\n| 指标 | gen_0 | gen_10 | 变化 |\n|------|-------|--------|------|\n| token_entropy | 3.571 | 0.587 | -83.6% |\n| distinct_1 | 0.103 | 0.077 | -24.9% |\n| distinct_2 | 0.551 | 0.370 | -32.9% |\n| distinct_3 | 0.857 | 0.628 | -26.7% |\n| perplexity | 32.6 | 15,024 | +460x |\n| ece | 0.011 | 0.517 | +46x |\n| effective_rank | 2.37 | 33.34 | +14x |\n\n### 与 s42 对比分析\n\n- **PermG 信号更强**：s43 fwd 8/8 > s42 的 5/8，canary→diversity Granger 因果在所有 8 对上显著\n- **K≥4 consensus 较弱**：1/8 vs s42 的 6/8。根因是 Threshold Onset 0/8（canary onset 未触发 3σ 阈值，T=11 样本限制），不代表信号缺失\n- **d1_drift 方向一致**：-24.9% vs -28.9%，magnitude 接近，confirm diversity 退化是跨 seed 稳定现象\n- **fp32 vs fp16**：s43 fp32 满足 D079 合规要求，精度差异未改变定性结论\n\n### 磁盘 & GPU 状态\n\n**GPU (westd-19828)**：\n- cuda:0 — **空闲** (0 MiB / 97,887 MiB)\n- cuda:1 — **占用** (64,417 MiB / 97,887 MiB)\n\n**磁盘**：\n- `/root/autodl-tmp`：224G / 250G (**90% 已用**，剩余 27G)\n- 最大目录：`generalize/` 120G, `alpha_sweep/` 20G, `intervention/` 6.2G, `gen_wiki_gpt2m_a100_s43/` 2.8G\n\n**OPT-1.3B 缓存**：未缓存（HF cache 和 local models 均不存在）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-gen-gpt2m-a100-s43-fp32.md"
+}

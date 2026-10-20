@@ -1,0 +1,3791 @@
+# analysis rerun all generalize
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/workers/worker_analysis_rerun_all_generalize_20260518T002423.log`
+- **Structured JSON:** [`a66e6ae9eb95a9d8a0a4.json`](../../sessions/a6/a66e6ae9eb95a9d8a0a4.json)
+
+## Before a recorded user message
+
+77 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1141a252-ca8b-49b5-8c03-c16ac0fc504b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779081600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7381f605-71a6-4af0-87f6-6c9789ae3121",
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down this task:
+
+1. I need to SSH to westd-19828 server
+2. Read the `analyze_generalize.py` script to understand current parameters
+3. Modify parameters to unified values (n_perm=5000, xcorr max_lag=5, granger max_lag=1)
+4. Run three generalization experiments
+5. Report results in specific format with raw p, FDR per-method, and FDR pooled
+
+Let me start by reading the analysis script and checking the data directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "3b75329e-c77f-4073-bd04-b6a66cc891ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9hgNe1uW3T5CYZb8UQQW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行：先SSH到服务器，读取分析脚本并检查数据目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "b856aad6-e99d-46d2-a119-e2eec978edf1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9hgNe1uW3T5CYZb8UQQW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WPoqJWhYGJceCC1xk85yPi`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "ebf3b7c5-ed23-4256-bc05-98f516a6de46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9hgNe1uW3T5CYZb8UQQW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T00:24:35.181Z_
+
+<details><summary>↩ Tool result · `toolu_01WPoqJWhYGJceCC1xk85yPi`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "d20e014e-7453-4986-ad26-530fe213dde3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X7GJUzVU3qjmMdg5A8BTMd`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"analyze*generalize*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "7971f593-3060-42b8-9b85-2fc2eec7fe71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYpLyYyYD22tFMwdreZ6Yn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 25885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UGgFuUELPxzNPXycTuf6PD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/ -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "52091aa9-1b59-4856-83dd-62dcd379f061",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYpLyYyYD22tFMwdreZ6Yn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 25885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T00:24:39.517Z_
+
+<details><summary>↩ Tool result · `toolu_01X7GJUzVU3qjmMdg5A8BTMd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "e97acaf4-489f-41c4-aaf8-75825d13acbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T00:24:40.109Z_
+
+<details><summary>↩ Tool result · `toolu_01UGgFuUELPxzNPXycTuf6PD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/general\\n\\n... [截断: 输出过长，省略 3658 字符] ...\\n\\ntmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/checkpoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "1a51c189-28f1-48a9-8850-3733708c2e31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_1\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_2\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_3\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_4\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_5\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_6\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_7\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_8\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_9\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_1\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_2\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_3\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_4\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_5\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_6\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_7\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_8\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_9\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_1\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_2\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_3\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_4\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_5\\\\n/root/autodl-tmp/distrib_canary_collapse/results/general\\\\n\\\\n... [截断: 输出过长，省略 3658 字符] ...\\\\n\\\\ntmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/trainer\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/checkpoint\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_10/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_10/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/general\\n\\n... [截断: 输出过长，省略 3658 字符] ...\\n\\ntmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_0/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_1/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_2/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_3/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_4/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_5/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_6/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_7/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_8/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_9/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/synthetic_data\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/trainer\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/gen_10/checkpoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+三个数据目录都存在。现在读取分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "ce0fc4e6-1ea4-41ab-8fd1-a5083c102ce1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012q7E5no5SPBN9oJzd69t1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 26722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01226vuyWBWKfVpUdia25dAS`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "234e0ad9-1737-442f-a808-83bc5af5344f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012q7E5no5SPBN9oJzd69t1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3967,
+      "cache_read_input_tokens": 26722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T00:24:43.714Z_
+
+<details><summary>↩ Tool result · `toolu_01226vuyWBWKfVpUdia25dAS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method causal analysis for generalize experiments.\\n\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\nbut targets results/generalize/{experiment}/all_metrics.json.\\n\\nUsage:\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\n    python analyze_generalize.py  # all experiments in results/generalize/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nfrom datetime import datetime\\n\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nfrom method_ablation import (\\n    CANARY, DOWNSTREAM,\\n    extract as ma_extract,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nMA_METHODS = {\\n    \\\"naive_pearson\\\": naive_pearson,\\n    \\\"differenced_xcorr\\\": diff_xcorr,\\n    \\\"threshold_onset\\\": threshold_lead,\\n    \\\"toda_yamamoto\\\": toda_yamamoto,\\n    \\\"permutation_granger\\\": perm_granger,\\n}\\n\\nMETRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\",\\n           \\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\"]\\n\\nclass NumpyEncoder(json.JSONEncoder):\\n    def default(self, obj):\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, (np.floating,)):\\n            return float(obj)\\n        if isinstance(obj, np.ndarray):\\n            return obj.tolist()\\n        return super().default(obj)\\n\\n\\ndef assemble_all_metrics(exp_dir):\\n    \\\"\\\"\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\"\\\"\\\"\\n    all_path = os.path.join(exp_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            return json.load(f)\\n\\n    metrics = []\\n    gen_idx = 0\\n    while True:\\n        gen_dir = os.path.join(exp_dir, f\\\"gen_{gen_idx}\\\")\\n        mpath = os.path.join(gen_dir, \\\"metrics.json\\\")\\n        if not os.path.exists(mpath):\\n            break\\n        with open(mpath) as f:\\n            m = json.load(f)\\n        m[\\\"generation\\\"] = gen_idx\\n        metrics.append(m)\\n        gen_idx += 1\\n\\n    if not metrics:\\n        return None\\n    return sorted(metrics, key=lambda x: x[\\\"generation\\\"])\\n\\n\\ndef compute_drift(metrics_list):\\n    result = {}\\n    for metric in METRICS:\\n        vals = [m[metric] for m in metrics_list]\\n        gen0, genN = vals[0], vals[-1]\\n        drift_pct = round((genN - gen0) / abs(gen0) * 100, 2) if abs(gen0) > 1e-12 else 0.0\\n        result[metric] = {\\n            \\\"gen0\\\": round(gen0, 6),\\n            f\\\"gen{len(vals)-1}\\\": round(genN, 6),\\n            \\\"drift_pct\\\": drift_pct,\\n        }\\n    return result\\n\\n\\ndef run_5method(metrics_list, n_perm=1000):\\n    pairs_results = {}\\n    all_p_values = []\\n    p_value_keys = []\\n\\n    for cn in CANARY:\\n        for dn in DOWNSTREAM:\\n            pair_key = f\\\"{cn}->{dn}\\\"\\n            c = ma_extract(metrics_list, cn)\\n            d = ma_extract(metrics_list, dn)\\n\\n            pair = {}\\n            for method_name, method_fn in MA_METHODS.items():\\n                try:\\n                    res = method_fn(c, d, cn, dn)\\n                except Exception as e:\\n                    res = {\\\"error\\\": str(e)}\\n                pair[method_name] = res\\n\\n                p = res.get(\\\"p_value\\\") or res.get(\\\"p_raw\\\")\\n                if p is not None:\\n                    all_p_values.append(p)\\n                    p_value_keys.append((pair_key, method_name))\\n\\n            pairs_results[pair_key] = pair\\n\\n    if all_p_values:\\n        _, fdr_ps, _, _ = multipletests(all_p_values, method=\\\"fdr_bh\\\")\\n        for i, (pk, mn) in enumerate(p_value_keys):\\n            pairs_results[pk][mn][\\\"p_fdr\\\"] = round(float(fdr_ps[i]), 6)\\n\\n    return pairs_results\\n\\n\\ndef summarize_votes(pairs_results):\\n    summary = {}\\n    for pair_key, methods in pairs_results.items():\\n        votes = {}\\n        for method_name, res in methods.items():\\n            if \\\"error\\\" in res:\\n                votes[method_name] = \\\"error\\\"\\n                continue\\n            sig = res.get(\\\"significant\\\", res.get(\\\"p_fdr\\\", res.get(\\\"p_value\\\", 1.0)))\\n            if isinstance(sig, bool):\\n                votes[method_name] = \\\"significant\\\" if sig else \\\"not_significant\\\"\\n            elif isinstance(sig, (int, float)):\\n                votes[method_name] = \\\"significant\\\" if sig < 0.05 else \\\"not_significant\\\"\\n            else:\\n                votes[method_name] = str(sig)\\n        summary[pair_key] = votes\\n    return summary\\n\\n\\ndef analyze_experiment(exp_name, exp_dir):\\n    config_path = os.path.join(exp_dir, \\\"config.json\\\")\\n    config = {}\\n    if os.path.exists(config_path):\\n        with open(config_path) as f:\\n            config = json.load(f)\\n\\n    metrics_list = assemble_all_metrics(exp_dir)\\n    if metrics_list is None:\\n        return {\\\"experiment\\\": exp_name, \\\"status\\\": \\\"no_metrics\\\", \\\"error\\\": \\\"No metrics found\\\"}\\n\\n    n_gens = len(metrics_list)\\n    print(f\\\"  {exp_name}: {n_gens} generations\\\", flush=True)\\n\\n    drift = compute_drift(metrics_list)\\n    pairs_results = run_5method(metrics_list)\\n    votes = summarize_votes(pairs_results)\\n\\n    n_sig = sum(1 for pair_votes in votes.values()\\n                for v in pair_votes.values() if v == \\\"significant\\\")\\n    n_total = sum(1 for pair_votes in votes.values()\\n                  for v in pair_votes.values() if v != \\\"error\\\")\\n\\n    return {\\n        \\\"experiment\\\": exp_name,\\n        \\\"model\\\": config.get(\\\"model_name\\\", \\\"unknown\\\"),\\n        \\\"dataset\\\": config.get(\\\"dataset\\\", \\\"unknown\\\"),\\n        \\\"alpha\\\": config.get(\\\"synthetic_ratio\\\", None),\\n        \\\"seed\\\": config.get(\\\"seed\\\", None),\\n        \\\"n_generations\\\": n_gens,\\n        \\\"status\\\": \\\"complete\\\" if n_gens >= 10 else f\\\"partial_{n_gens}gen\\\",\\n        \\\"drift\\\": drift,\\n        \\\"five_method_analysis\\\": pairs_results,\\n        \\\"vote_summary\\\": votes,\\n        \\\"sig_rate\\\": f\\\"{n_sig}/{n_total}\\\",\\n        \\\"timestamp\\\": datetime.now().isoformat(),\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--exp\\\", type=str, default=None,\\n                        help=\\\"Specific experiment name (subdirectory of results/generalize/)\\\")\\n    parser.add_argument(\\\"--n_perm\\\", type=int, default=1000)\\n    args = parser.parse_args()\\n\\n    if args.exp:\\n        experiments = [args.exp]\\n    else:\\n        experiments = sorted(d for d in os.listdir(GENERALIZE_DIR)\\n                           if os.path.isdir(os.path.join(GENERALIZE_DIR, d)))\\n\\n    all_results = {}\\n    for exp_name in experiments:\\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\\n        if not os.path.isdir(exp_dir):\\n            print(f\\\"  {exp_name}: directory not found, skipping\\\", flush=True)\\n            continue\\n        print(f\\\"Analyzing {exp_name}...\\\", flush=True)\\n        result = analyze_experiment(exp_name, exp_dir)\\n        all_results[exp_name] = result\\n\\n    out_dir = os.path.join(GENERALIZE_DIR, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, \\\"generalize_5method_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2, cls=NumpyEncoder)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\", flush=True)\\n\\n    for exp_name, result in all_results.items():\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"{exp_name} ({result.get('model', '?')}, {result.get('status', '?')})\\\")\\n        print(f\\\"  Sig rate: {result.get('sig_rate', '?')}\\\")\\n        if \\\"drift\\\" in result:\\n            for m in [\\\"distinct_1\\\", \\\"token_entropy\\\", \\\"ece\\\"]:\\n                d = result[\\\"drift\\\"].get(m, {})\\n                print(f\\\"  {m}: {d.get('drift_pct', '?')}% drift\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "f951713d-f6a7-426d-987b-41669dff931c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method causal analysis for generalize experiments.\\\\n\\\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\\\nbut targets results/generalize/{experiment}/all_metrics.json.\\\\n\\\\nUsage:\\\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\\\n    python analyze_generalize.py  # all experiments in results/generalize/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\n\\\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\")\\\\n\\\\nMA_METHODS = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n           \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    def default(self, obj):\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, (np.floating,)):\\\\n            return float(obj)\\\\n        if isinstance(obj, np.ndarray):\\\\n            return obj.tolist()\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef assemble_all_metrics(exp_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    metrics = []\\\\n    gen_idx = 0\\\\n    while True:\\\\n        gen_dir = os.path.join(exp_dir, f\\\\\\\"gen_{gen_idx}\\\\\\\")\\\\n        mpath = os.path.join(gen_dir, \\\\\\\"metrics.json\\\\\\\")\\\\n        if not os.path.exists(mpath):\\\\n            break\\\\n        with open(mpath) as f:\\\\n            m = json.load(f)\\\\n        m[\\\\\\\"generation\\\\\\\"] = gen_idx\\\\n        metrics.append(m)\\\\n        gen_idx += 1\\\\n\\\\n    if not metrics:\\\\n        return None\\\\n    return sorted(metrics, key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n\\\\n\\\\ndef compute_drift(metrics_list):\\\\n    result = {}\\\\n    for metric in METRICS:\\\\n        vals = [m[metric] for m in metrics_list]\\\\n        gen0, genN = vals[0], vals[-1]\\\\n        drift_pct = round((genN - gen0) / abs(gen0) * 100, 2) if abs(gen0) > 1e-12 else 0.0\\\\n        result[metric] = {\\\\n            \\\\\\\"gen0\\\\\\\": round(gen0, 6),\\\\n            f\\\\\\\"gen{len(vals)-1}\\\\\\\": round(genN, 6),\\\\n            \\\\\\\"drift_pct\\\\\\\": drift_pct,\\\\n        }\\\\n    return result\\\\n\\\\n\\\\ndef run_5method(metrics_list, n_perm=1000):\\\\n    pairs_results = {}\\\\n    all_p_values = []\\\\n    p_value_keys = []\\\\n\\\\n    for cn in CANARY:\\\\n        for dn in DOWNSTREAM:\\\\n            pair_key = f\\\\\\\"{cn}->{dn}\\\\\\\"\\\\n            c = ma_extract(metrics_list, cn)\\\\n            d = ma_extract(metrics_list, dn)\\\\n\\\\n            pair = {}\\\\n            for method_name, method_fn in MA_METHODS.items():\\\\n                try:\\\\n                    res = method_fn(c, d, cn, dn)\\\\n                except Exception as e:\\\\n                    res = {\\\\\\\"error\\\\\\\": str(e)}\\\\n                pair[method_name] = res\\\\n\\\\n                p = res.get(\\\\\\\"p_value\\\\\\\") or res.get(\\\\\\\"p_raw\\\\\\\")\\\\n                if p is not None:\\\\n                    all_p_values.append(p)\\\\n                    p_value_keys.append((pair_key, method_name))\\\\n\\\\n            pairs_results[pair_key] = pair\\\\n\\\\n    if all_p_values:\\\\n        _, fdr_ps, _, _ = multipletests(all_p_values, method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        for i, (pk, mn) in enumerate(p_value_keys):\\\\n            pairs_results[pk][mn][\\\\\\\"p_fdr\\\\\\\"] = round(float(fdr_ps[i]), 6)\\\\n\\\\n    return pairs_results\\\\n\\\\n\\\\ndef summarize_votes(pairs_results):\\\\n    summary = {}\\\\n    for pair_key, methods in pairs_results.items():\\\\n        votes = {}\\\\n        for method_name, res in methods.items():\\\\n            if \\\\\\\"error\\\\\\\" in res:\\\\n                votes[method_name] = \\\\\\\"error\\\\\\\"\\\\n                continue\\\\n            sig = res.get(\\\\\\\"significant\\\\\\\", res.get(\\\\\\\"p_fdr\\\\\\\", res.get(\\\\\\\"p_value\\\\\\\", 1.0)))\\\\n            if isinstance(sig, bool):\\\\n                votes[method_name] = \\\\\\\"significant\\\\\\\" if sig else \\\\\\\"not_significant\\\\\\\"\\\\n            elif isinstance(sig, (int, float)):\\\\n                votes[method_name] = \\\\\\\"significant\\\\\\\" if sig < 0.05 else \\\\\\\"not_significant\\\\\\\"\\\\n            else:\\\\n                votes[method_name] = str(sig)\\\\n        summary[pair_key] = votes\\\\n    return summary\\\\n\\\\n\\\\ndef analyze_experiment(exp_name, exp_dir):\\\\n    config_path = os.path.join(exp_dir, \\\\\\\"config.json\\\\\\\")\\\\n    config = {}\\\\n    if os.path.exists(config_path):\\\\n        with open(config_path) as f:\\\\n            config = json.load(f)\\\\n\\\\n    metrics_list = assemble_all_metrics(exp_dir)\\\\n    if metrics_list is None:\\\\n        return {\\\\\\\"experiment\\\\\\\": exp_name, \\\\\\\"status\\\\\\\": \\\\\\\"no_metrics\\\\\\\", \\\\\\\"error\\\\\\\": \\\\\\\"No metrics found\\\\\\\"}\\\\n\\\\n    n_gens = len(metrics_list)\\\\n    print(f\\\\\\\"  {exp_name}: {n_gens} generations\\\\\\\", flush=True)\\\\n\\\\n    drift = compute_drift(metrics_list)\\\\n    pairs_results = run_5method(metrics_list)\\\\n    votes = summarize_votes(pairs_results)\\\\n\\\\n    n_sig = sum(1 for pair_votes in votes.values()\\\\n                for v in pair_votes.values() if v == \\\\\\\"significant\\\\\\\")\\\\n    n_total = sum(1 for pair_votes in votes.values()\\\\n                  for v in pair_votes.values() if v != \\\\\\\"error\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"experiment\\\\\\\": exp_name,\\\\n        \\\\\\\"model\\\\\\\": config.get(\\\\\\\"model_name\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n        \\\\\\\"dataset\\\\\\\": config.get(\\\\\\\"dataset\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n        \\\\\\\"alpha\\\\\\\": config.get(\\\\\\\"synthetic_ratio\\\\\\\", None),\\\\n        \\\\\\\"seed\\\\\\\": config.get(\\\\\\\"seed\\\\\\\", None),\\\\n        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n        \\\\\\\"status\\\\\\\": \\\\\\\"complete\\\\\\\" if n_gens >= 10 else f\\\\\\\"partial_{n_gens}gen\\\\\\\",\\\\n        \\\\\\\"drift\\\\\\\": drift,\\\\n        \\\\\\\"five_method_analysis\\\\\\\": pairs_results,\\\\n        \\\\\\\"vote_summary\\\\\\\": votes,\\\\n        \\\\\\\"sig_rate\\\\\\\": f\\\\\\\"{n_sig}/{n_total}\\\\\\\",\\\\n        \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--exp\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Specific experiment name (subdirectory of results/generalize/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n_perm\\\\\\\", type=int, default=1000)\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.exp:\\\\n        experiments = [args.exp]\\\\n    else:\\\\n        experiments = sorted(d for d in os.listdir(GENERALIZE_DIR)\\\\n                           if os.path.isdir(os.path.join(GENERALIZE_DIR, d)))\\\\n\\\\n    all_results = {}\\\\n    for exp_name in experiments:\\\\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\\\\n        if not os.path.isdir(exp_dir):\\\\n            print(f\\\\\\\"  {exp_name}: directory not found, skipping\\\\\\\", flush=True)\\\\n            continue\\\\n        print(f\\\\\\\"Analyzing {exp_name}...\\\\\\\", flush=True)\\\\n        result = analyze_experiment(exp_name, exp_dir)\\\\n        all_results[exp_name] = result\\\\n\\\\n    out_dir = os.path.join(GENERALIZE_DIR, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    out_path = os.path.join(out_dir, \\\\\\\"generalize_5method_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2, cls=NumpyEncoder)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\", flush=True)\\\\n\\\\n    for exp_name, result in all_results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"{exp_name} ({result.get('model', '?')}, {result.get('status', '?')})\\\\\\\")\\\\n        print(f\\\\\\\"  Sig rate: {result.get('sig_rate', '?')}\\\\\\\")\\\\n        if \\\\\\\"drift\\\\\\\" in result:\\\\n            for m in [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]:\\\\n                d = result[\\\\\\\"drift\\\\\\\"].get(m, {})\\\\n                print(f\\\\\\\"  {m}: {d.get('drift_pct', '?')}% drift\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method causal analysis for generalize experiments.\\n\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\nbut targets results/generalize/{experiment}/all_metrics.json.\\n\\nUsage:\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\n    python analyze_generalize.py  # all experiments in results/generalize/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nfrom datetime import datetime\\n\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nfrom method_ablation import (\\n    CANARY, DOWNSTREAM,\\n    extract as ma_extract,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nMA_METHODS = {\\n    \\\"naive_pearson\\\": naive_pearson,\\n    \\\"differenced_xcorr\\\": diff_xcorr,\\n    \\\"threshold_onset\\\": threshold_lead,\\n    \\\"toda_yamamoto\\\": toda_yamamoto,\\n    \\\"permutation_granger\\\": perm_granger,\\n}\\n\\nMETRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\",\\n           \\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\"]\\n\\nclass NumpyEncoder(json.JSONEncoder):\\n    def default(self, obj):\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, (np.floating,)):\\n            return float(obj)\\n        if isinstance(obj, np.ndarray):\\n            return obj.tolist()\\n        return super().default(obj)\\n\\n\\ndef assemble_all_metrics(exp_dir):\\n    \\\"\\\"\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\"\\\"\\\"\\n    all_path = os.path.join(exp_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            return json.load(f)\\n\\n    metrics = []\\n    gen_idx = 0\\n    while True:\\n        gen_dir = os.path.join(exp_dir, f\\\"gen_{gen_idx}\\\")\\n        mpath = os.path.join(gen_dir, \\\"metrics.json\\\")\\n        if not os.path.exists(mpath):\\n            break\\n        with open(mpath) as f:\\n            m = json.load(f)\\n        m[\\\"generation\\\"] = gen_idx\\n        metrics.append(m)\\n        gen_idx += 1\\n\\n    if not metrics:\\n        return None\\n    return sorted(metrics, key=lambda x: x[\\\"generation\\\"])\\n\\n\\ndef compute_drift(metrics_list):\\n    result = {}\\n    for metric in METRICS:\\n        vals = [m[metric] for m in metrics_list]\\n        gen0, genN = vals[0], vals[-1]\\n        drift_pct = round((genN - gen0) / abs(gen0) * 100, 2) if abs(gen0) > 1e-12 else 0.0\\n        result[metric] = {\\n            \\\"gen0\\\": round(gen0, 6),\\n            f\\\"gen{len(vals)-1}\\\": round(genN, 6),\\n            \\\"drift_pct\\\": drift_pct,\\n        }\\n    return result\\n\\n\\ndef run_5method(metrics_list, n_perm=1000):\\n    pairs_results = {}\\n    all_p_values = []\\n    p_value_keys = []\\n\\n    for cn in CANARY:\\n        for dn in DOWNSTREAM:\\n            pair_key = f\\\"{cn}->{dn}\\\"\\n            c = ma_extract(metrics_list, cn)\\n            d = ma_extract(metrics_list, dn)\\n\\n            pair = {}\\n            for method_name, method_fn in MA_METHODS.items():\\n                try:\\n                    res = method_fn(c, d, cn, dn)\\n                except Exception as e:\\n                    res = {\\\"error\\\": str(e)}\\n                pair[method_name] = res\\n\\n                p = res.get(\\\"p_value\\\") or res.get(\\\"p_raw\\\")\\n                if p is not None:\\n                    all_p_values.append(p)\\n                    p_value_keys.append((pair_key, method_name))\\n\\n            pairs_results[pair_key] = pair\\n\\n    if all_p_values:\\n        _, fdr_ps, _, _ = multipletests(all_p_values, method=\\\"fdr_bh\\\")\\n        for i, (pk, mn) in enumerate(p_value_keys):\\n            pairs_results[pk][mn][\\\"p_fdr\\\"] = round(float(fdr_ps[i]), 6)\\n\\n    return pairs_results\\n\\n\\ndef summarize_votes(pairs_results):\\n    summary = {}\\n    for pair_key, methods in pairs_results.items():\\n        votes = {}\\n        for method_name, res in methods.items():\\n            if \\\"error\\\" in res:\\n                votes[method_name] = \\\"error\\\"\\n                continue\\n            sig = res.get(\\\"significant\\\", res.get(\\\"p_fdr\\\", res.get(\\\"p_value\\\", 1.0)))\\n            if isinstance(sig, bool):\\n                votes[method_name] = \\\"significant\\\" if sig else \\\"not_significant\\\"\\n            elif isinstance(sig, (int, float)):\\n                votes[method_name] = \\\"significant\\\" if sig < 0.05 else \\\"not_significant\\\"\\n            else:\\n                votes[method_name] = str(sig)\\n        summary[pair_key] = votes\\n    return summary\\n\\n\\ndef analyze_experiment(exp_name, exp_dir):\\n    config_path = os.path.join(exp_dir, \\\"config.json\\\")\\n    config = {}\\n    if os.path.exists(config_path):\\n        with open(config_path) as f:\\n            config = json.load(f)\\n\\n    metrics_list = assemble_all_metrics(exp_dir)\\n    if metrics_list is None:\\n        return {\\\"experiment\\\": exp_name, \\\"status\\\": \\\"no_metrics\\\", \\\"error\\\": \\\"No metrics found\\\"}\\n\\n    n_gens = len(metrics_list)\\n    print(f\\\"  {exp_name}: {n_gens} generations\\\", flush=True)\\n\\n    drift = compute_drift(metrics_list)\\n    pairs_results = run_5method(metrics_list)\\n    votes = summarize_votes(pairs_results)\\n\\n    n_sig = sum(1 for pair_votes in votes.values()\\n                for v in pair_votes.values() if v == \\\"significant\\\")\\n    n_total = sum(1 for pair_votes in votes.values()\\n                  for v in pair_votes.values() if v != \\\"error\\\")\\n\\n    return {\\n        \\\"experiment\\\": exp_name,\\n        \\\"model\\\": config.get(\\\"model_name\\\", \\\"unknown\\\"),\\n        \\\"dataset\\\": config.get(\\\"dataset\\\", \\\"unknown\\\"),\\n        \\\"alpha\\\": config.get(\\\"synthetic_ratio\\\", None),\\n        \\\"seed\\\": config.get(\\\"seed\\\", None),\\n        \\\"n_generations\\\": n_gens,\\n        \\\"status\\\": \\\"complete\\\" if n_gens >= 10 else f\\\"partial_{n_gens}gen\\\",\\n        \\\"drift\\\": drift,\\n        \\\"five_method_analysis\\\": pairs_results,\\n        \\\"vote_summary\\\": votes,\\n        \\\"sig_rate\\\": f\\\"{n_sig}/{n_total}\\\",\\n        \\\"timestamp\\\": datetime.now().isoformat(),\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--exp\\\", type=str, default=None,\\n                        help=\\\"Specific experiment name (subdirectory of results/generalize/)\\\")\\n    parser.add_argument(\\\"--n_perm\\\", type=int, default=1000)\\n    args = parser.parse_args()\\n\\n    if args.exp:\\n        experiments = [args.exp]\\n    else:\\n        experiments = sorted(d for d in os.listdir(GENERALIZE_DIR)\\n                           if os.path.isdir(os.path.join(GENERALIZE_DIR, d)))\\n\\n    all_results = {}\\n    for exp_name in experiments:\\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\\n        if not os.path.isdir(exp_dir):\\n            print(f\\\"  {exp_name}: directory not found, skipping\\\", flush=True)\\n            continue\\n        print(f\\\"Analyzing {exp_name}...\\\", flush=True)\\n        result = analyze_experiment(exp_name, exp_dir)\\n        all_results[exp_name] = result\\n\\n    out_dir = os.path.join(GENERALIZE_DIR, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, \\\"generalize_5method_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2, cls=NumpyEncoder)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\", flush=True)\\n\\n    for exp_name, result in all_results.items():\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"{exp_name} ({result.get('model', '?')}, {result.get('status', '?')})\\\")\\n        print(f\\\"  Sig rate: {result.get('sig_rate', '?')}\\\")\\n        if \\\"drift\\\" in result:\\n            for m in [\\\"distinct_1\\\", \\\"token_entropy\\\", \\\"ece\\\"]:\\n                d = result[\\\"drift\\\"].get(m, {})\\n                print(f\\\"  {m}: {d.get('drift_pct', '?')}% drift\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to also read the `method_ablation.py` to understand:
+1. What CANARY and DOWNSTREAM are defined as
+2. How the methods work (especially perm_granger and diff_xcorr) to check their parameter handling
+3. Whether n_perm, max_lag are configurable via the method functions
+
+Key observations from analyze_generalize.py:
+- It has `--n_perm` CLI arg (default 1000) but `run_5method` is called without passing `n_perm` (uses default 1000)
+- The n_perm from CLI is never passed to run_5method! Bug.
+
+
+- CANARY and DOWNSTREAM come from method_ablation, and FDR correction is applied across all p-values together using the Benjamini-Hochberg method
+- Now I need to check method_ablation.py to see how max_lag is configured
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "40ec0122-badc-4549-8d96-eb1cb1543916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMrRN91i6CvZzgFqkMdjsA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3287,
+      "cache_read_input_tokens": 30689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3287
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+脚本有 `--n_perm` CLI 参数但没传给 `run_5method`。需要读 `method_ablation.py` 了解各方法参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6e8e991a-f60a-43d7-937c-d38d3ba0277b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMrRN91i6CvZzgFqkMdjsA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3287,
+      "cache_read_input_tokens": 30689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3287
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NCDXTLKAe4CUrF5BqC8NMm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "dbeac4c5-de31-49bb-bb1f-92b18c93ccf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMrRN91i6CvZzgFqkMdjsA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3287,
+      "cache_read_input_tokens": 30689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3287
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T00:24:53.698Z_
+
+<details><summary>↩ Tool result · `toolu_01NCDXTLKAe4CUrF5BqC8NMm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return data\\n\\n\\ndef extract(metrics_list, name):\\n    \\\"\\\"\\\"Extract a single metric as numpy array, sorted by generation.\\\"\\\"\\\"\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef orient(series, name):\\n    \\\"\\\"\\\"Orient so degradation = positive direction.\\\"\\\"\\\"\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\n# On non-stationary series, shared trends inflate r and produce\\n# spurious significance — this is the baseline we expect to overcount.\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n    }\\n\\n\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\n# First-differencing removes deterministic and stochastic trends,\\n# yielding stationary increments. Cross-correlation on Δ-series\\n# is less susceptible to spurious regression.\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Cross-correlation on first-differenced (Δ) series.\\\"\\\"\\\"\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\"\\n\\n... [截断: 输出过长，省略 19282 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "c26d7a59-f0c1-4319-9d7c-198b164bdac6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Method ablation: compare four lead-lag estimation methods.\\\\n\\\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\\\nquantifying the spurious regression rate when non-stationary series are\\\\ncorrelated without proper detrending.\\\\n\\\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\\\nOutput: results/mvp/analysis/method_ablation.json\\\\n        (with BH FDR correction and effect sizes)\\\\n\\\\nMethods:\\\\n  1. Naive Pearson lag-correlation (raw levels)\\\\n  2. Differenced cross-correlation (first-differenced series)\\\\n  3. Threshold-based lead time (2-sigma onset detection)\\\\n  4. Toda-Yamamoto augmented-lag Granger causality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nfrom itertools import product\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"effective_rank\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\n\\\\n# Sign conventions: \\\\\\\"higher is worse\\\\\\\" kept as-is; \\\\\\\"lower is worse\\\\\\\" negated\\\\n# so that degradation = positive direction in all analyses.\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                   \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\nALPHA = 0.05\\\\n\\\\n\\\\ndef load_metrics(data_dir, seeds):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all_metrics.json for each seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    data = {}\\\\n    for s in seeds:\\\\n        path = os.path.join(data_dir, f\\\\\\\"rep_{s}\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\n        with open(path) as f:\\\\n            data[s] = json.load(f)\\\\n    return data\\\\n\\\\n\\\\ndef extract(metrics_list, name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract a single metric as numpy array, sorted by generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return np.array([m[name] for m in sorted(metrics_list,\\\\n                                              key=lambda x: x[\\\\\\\"generation\\\\\\\"])])\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Orient so degradation = positive direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\\\n# On non-stationary series, shared trends inflate r and produce\\\\n# spurious significance — this is the baseline we expect to overcount.\\\\n\\\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"r\\\\\\\": round(float(best_r), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(best_p), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < ALPHA),\\\\n    }\\\\n\\\\n\\\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\\\n# First-differencing removes deterministic and stochastic trends,\\\\n# yielding stationary increments. Cross-correlation on Δ-series\\\\n# is less susceptible to spurious regression.\\\\n\\\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cross-correlation on first-differenced (Δ) series.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\\\n    n = len(dx)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = dx[lag:], dy[:n - lag]\\\\n        else:\\\\n            a, b = dx[:n + lag], dy[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 19282 字符] ...\\\\n\\\\n_fc = output[\\\\\\\"fdr_correction\\\\\\\"][\\\\\\\"per_method\\\\\\\"][_m]\\\\n        print(f\\\\\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    print(f\\\\\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  Spurious regression rate: {spur_rate:.1%}  \\\\\\\"\\\\n          f\\\\\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\\\\\")\\\\n\\\\n    if n_spur:\\\\n        print(f\\\\\\\"\\\\\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\\\\\")\\\\n        for r in all_pairs:\\\\n            if r[\\\\\\\"spurious\\\\\\\"]:\\\\n                print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    robust = [r for r in all_pairs if r[\\\\\\\"robust\\\\\\\"]]\\\\n    if robust:\\\\n        print(f\\\\\\\"\\\\\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\\\\\")\\\\n        for r in robust:\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    # ── Dual classification: 5-method vs 4-method ──\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\\\\\")\\\\n    print(f\\\\\\\"  {'-' * 44}\\\\\\\")\\\\n    print(f\\\\\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\\\\\"\\\\n          f\\\\\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\\\\\")\\\\n    print(f\\\\\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\\\\\"\\\\n          f\\\\\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n\\\\n    if flipped:\\\\n        print(f\\\\\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\\\\\")\\\\n        for r in flipped:\\\\n            s5 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            s4 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}: \\\\\\\"\\\\n                  f\\\\\\\"5m={s5} ({r['methods_agree_5']}/5), \\\\\\\"\\\\n                  f\\\\\\\"4m={s4} ({r['methods_agree_4']}/4)\\\\\\\")\\\\n            if r[\\\\\\\"spurious_reason_5method\\\\\\\"]:\\\\n                print(f\\\\\\\"      reason: {r['spurious_reason_5method']}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"  No flipped pairs between 5-method and 4-method.\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"PER-PAIR DUAL CLASSIFICATION\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    hdr2 = (f\\\\\\\"  {'Canary':<16} {'Downstream':<12} \\\\\\\"\\\\n            f\\\\\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\\\\\")\\\\n    print(hdr2)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 68)\\\\n    for r in all_pairs:\\\\n        r5 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_5method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        r4 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_4method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        reason = r[\\\\\\\"spurious_reason_5method\\\\\\\"] or \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {r['canary']:<16} {r['downstream']:<12} \\\\\\\"\\\\n              f\\\\\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\\\\\")\\\\n\\\\n    # Per-seed detail for significant TY pairs\\\\n    if robust:\\\\n        print()\\\\n        print(\\\\\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 72)\\\\n        for r in robust:\\\\n            print(f\\\\\\\"  {r['canary']} → {r['downstream']}:\\\\\\\")\\\\n            for s in r[\\\\\\\"per_seed\\\\\\\"]:\\\\n                ty = s[\\\\\\\"toda_yamamoto\\\\\\\"]\\\\n                sig_mark = \\\\\\\"*\\\\\\\" if ty[\\\\\\\"significant\\\\\\\"] else \\\\\\\" \\\\\\\"\\\\n                f_str = f\\\\\\\"F={ty['wald_F']:.2f}\\\\\\\" if ty[\\\\\\\"wald_F\\\\\\\"] is not None else \\\\\\\"F=N/A\\\\\\\"\\\\n                p_str = f\\\\\\\"p_raw={ty['p_raw']:.4f}\\\\\\\" if ty[\\\\\\\"p_raw\\\\\\\"] is not None else \\\\\\\"p=N/A\\\\\\\"\\\\n                fdr_str = f\\\\\\\", p_fdr={ty['p_fdr']:.4f}\\\\\\\" if ty.get(\\\\\\\"p_fdr\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                es_str = f\\\\\\\", f2={ty['effect_size_f2']:.4f}\\\\\\\" if ty.get(\\\\\\\"effect_size_f2\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                print(f\\\\\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return data\\n\\n\\ndef extract(metrics_list, name):\\n    \\\"\\\"\\\"Extract a single metric as numpy array, sorted by generation.\\\"\\\"\\\"\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef orient(series, name):\\n    \\\"\\\"\\\"Orient so degradation = positive direction.\\\"\\\"\\\"\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\n# On non-stationary series, shared trends inflate r and produce\\n# spurious significance — this is the baseline we expect to overcount.\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n    }\\n\\n\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\n# First-differencing removes deterministic and stochastic trends,\\n# yielding stationary increments. Cross-correlation on Δ-series\\n# is less susceptible to spurious regression.\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Cross-correlation on first-differenced (Δ) series.\\\"\\\"\\\"\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\"\\n\\n... [截断: 输出过长，省略 19282 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the key parts I need - specifically the function signatures for diff_xcorr, perm_granger, toda_yamamoto, and threshold_lead to understand their max_lag parameters. Also need to see permutation_granger.py.
+
+Key observations:
+1. CANARY = ["token_entropy", "self_bleu", "ece", "effective_rank"]
+2. DOWNSTREAM = ["perplexity", "distinct_1", "distinct_2", "distinct_3"]
+
+But the task says:
+- C4 Domain: 8 pairs {token_entropy, ECE} × {mauve, distinct_1, distinct_2, distinct_3}
+
+
+- OPT-1.3B: 8 pairs {token_entropy, ECE} × {perplexity, distinct_1, distinct_2, distinct_3}
+- Scale 1.4B: 8 pairs {token_entropy, ECE} × {perplexity, distinct_1, distinct_2, distinct_3}
+
+So the current CANARY and DOWNSTREAM lists don't match what's needed. The script currently generates 4 canaries × 4 downstreams = 16 pairs, but the task requires only 2 canaries × 4 downstreams = 8 pairs. Also, C4 uses "mauve" instead of "perplexity" as the fourth downstream metric.
+
+Looking at the task more carefully, I need to handle three different configurations: C4 with mauve as the fourth metric, and both OPT-1.3B and Pythia-1.4B with perplexity. I also need to apply five different methods—naive_pearson, diff_xcorr, threshold_onset, toda_yamamoto, and permutation_granger—across all these combinations. I'll need to either write a custom analysis script or modify the existing one to handle these specific metric pairings and method applications.
+
+Now I'm checking the parameter specifications and how they're currently being passed through the codebase. The methods need consistent parameter handling: n_perm should be 5000, xcorr max_lag should be 5, granger max_lag should be 1, and I need to apply FDR correction with Benjamini-Hochberg at q=0.05. Looking at the current implementation, the method functions aren't receiving these parameters properly—they're using default max_lag values of 3 instead of the specified values, and n_perm isn't being passed to permutation_granger at all. I need to trace through the function signatures and update how parameters flow through the analysis pipeline.
+
+Rather than patching the existing complex script, I think it's cleaner to write a standalone analysis script that handles the exact canary/downstream pairs with unified parameters, outputs both raw p-values and FDR-corrected results, and saves everything to JSON. First I need to check what data and metrics are available in the experiment directories and understand how the permutation_granger module works.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "9be6dc2d-399e-4d32-8110-a53a0237783b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToQEBmgu6ESefRuKq5ozFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4145,
+      "cache_read_input_tokens": 33976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+输出被截断了。让我读取关键函数的签名和 permutation_granger 模块。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "11f46437-6f20-4faf-b1ba-04f22fe84d89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToQEBmgu6ESefRuKq5ozFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4145,
+      "cache_read_input_tokens": 33976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SPmAS6GqKWB1yf5eFZ47Br`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def perm_granger\\|def threshold_lead\\|def toda_yamamoto\\|def diff_xcorr\\|def naive_pearson\\|n_perm\\|max_lag\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "dcf4aa93-4ba3-42e9-8c5d-8851e0e48ed3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToQEBmgu6ESefRuKq5ozFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4145,
+      "cache_read_input_tokens": 33976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T00:25:14.163Z_
+
+<details><summary>↩ Tool result · `toolu_01SPmAS6GqKWB1yf5eFZ47Br`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "8637695f-07a7-41c6-8846-662f48925acc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jc15cY3DT8ZjrcyXE9eEDp`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "c16c11d6-074c-4952-b3c7-532f263930b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToQEBmgu6ESefRuKq5ozFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4145,
+      "cache_read_input_tokens": 33976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T00:25:15.195Z_
+
+<details><summary>↩ Tool result · `toolu_01Jc15cY3DT8ZjrcyXE9eEDp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences series by default to handle non-stationarity, then\\n    uses random shuffle of x to build the null (differencing removes\\n    autocorrelation, making shuffle appropriate).\\n\\n    Args:\\n        x: 1D array, potential cause\\n        y: 1D array, potential effect\\n        max_lag: number of lags in the model\\n        n_perm: number of permutations for null distribution\\n        seed: random seed for reproducibility\\n        difference: if True, first-difference both series before testing\\n\\n    Returns:\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\n                        effect_size_f2, significant (p<0.05)\\n    \\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    assert len(x) == len(y), \\\"x and y must have the same length\\\"\\n\\n    if difference:\\n        x = np.diff(x)\\n        y = np.diff(y)\\n\\n    T = len(x)\\n    assert T > max_lag + 2, f\\\"Series too short: T={T}, need > {max_lag + 2}\\\"\\n\\n    f_obs = _granger_f_stat(y, x, max_lag)\\n\\n    if np.isnan(f_obs):\\n        return {\\n            \\\"f_stat\\\": None, \\\"p_value\\\": None, \\\"n_perm\\\": n_perm,\\n            \\\"null_mean\\\": None, \\\"null_std\\\": None,\\n            \\\"effect_size_f2\\\": None, \\\"f2_size\\\": None, \\\"df_resid\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"differenced\\\": difference,\\n            \\\"note\\\": \\\"F-stat computation failed\\\",\\n        }\\n\\n    rng = np.random.default_rng(seed)\\n    null_f = np.empty(n_perm)\\n\\n    for i in range(n_perm):\\n        x_perm = rng.permutation(x)\\n        null_f[i] = _granger_f_stat(y, x_perm, max_lag)\\n\\n    valid_null = null_f[~np.isnan(null_f)]\\n    n_valid = len(valid_null)\\n\\n    if n_valid == 0:\\n        return {\\n            \\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": None,\\n            \\\"n_perm\\\": n_perm, \\\"null_mean\\\": None, \\\"null_std\\\": None,\\n            \\\"effect_size_f2\\\": None, \\\"f2_size\\\": None, \\\"df_resid\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"differenced\\\": difference,\\n            \\\"note\\\": \\\"All permutations failed\\\",\\n        }\\n\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (n_valid + 1)\\n\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\n    f2 = \\n\\n... [截断: 输出过长，省略 4624 字符] ...\\n\\nt = {\\n        \\\"method\\\": \\\"permutation_granger\\\",\\n        \\\"config\\\": {\\n            \\\"max_lag\\\": 1,\\n            \\\"n_perm\\\": N_PERM,\\n            \\\"permutation_method\\\": \\\"shuffle\\\",\\n            \\\"alpha\\\": ALPHA,\\n            \\\"fdr_method\\\": \\\"benjamini-hochberg\\\",\\n            \\\"fdr_scope\\\": \\\"per_seed (8 pairs corrected together)\\\",\\n            \\\"canaries\\\": CANARIES,\\n            \\\"downstreams\\\": DOWNSTREAMS,\\n            \\\"note\\\": \\\"difference=True uses first-differencing to remove non-stationarity\\\",\\n        },\\n        \\\"pairs\\\": pairs_data,\\n    }\\n\\n    # FDR summary\\n    fdr_summary = {}\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        n_total = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"p_raw\\\") is not None)\\n        n_raw_sig = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"p_raw\\\") is not None\\n            and sr[mode][\\\"p_raw\\\"] < ALPHA)\\n        n_fdr_sig = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"significant_fdr\\\", False))\\n        fdr_summary[mode] = {\\n            \\\"total_tests\\\": n_total,\\n            \\\"raw_significant\\\": n_raw_sig,\\n            \\\"fdr_significant\\\": n_fdr_sig,\\n        }\\n    output[\\\"fdr_correction\\\"] = {\\n        \\\"method\\\": \\\"benjamini-hochberg\\\",\\n        \\\"alpha\\\": ALPHA,\\n        \\\"scope\\\": \\\"per_seed (8 p-values per seed corrected together)\\\",\\n        \\\"per_mode\\\": fdr_summary,\\n    }\\n\\n    out_dir = os.path.join(data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, \\\"permutation_granger.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    # Console report\\n    print(f\\\"\\\\nSeeds: {seeds}  |  Pairs: {len(pairs_data)}  |  α = {ALPHA}\\\")\\n    print(f\\\"FDR scope: per-seed (8 p-values corrected together)\\\\n\\\")\\n\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        print(f\\\"\\\\n{'DIFFERENCED' if mode == 'differenced' else 'UNDIFFERENCED'} RESULTS\\\")\\n        print(\\\"-\\\" * 70)\\n        hdr = f\\\"{'Canary':<16} {'Downstream':<12}\\\"\\n        for s in seeds:\\n            hdr += f\\\" | s{s} p_raw  p_fdr  sig\\\"\\n        print(hdr)\\n        print(\\\"-\\\" * 70)\\n\\n        for pair in pairs_data:\\n            line = f\\\"{pair['canary']:<16} {pair['downstream']:<12}\\\"\\n            for sr in pair[\\\"per_seed\\\"]:\\n                r = sr[mode]\\n                p_raw = r.get(\\\"p_raw\\\")\\n                p_fdr = r.get(\\\"p_fdr\\\")\\n                sig = r.get(\\\"significant_fdr\\\", False)\\n                p_raw_s = f\\\"{p_raw:.4f}\\\" if p_raw is not None else \\\"  N/A \\\"\\n                p_fdr_s = f\\\"{p_fdr:.4f}\\\" if p_fdr is not None else \\\"  N/A \\\"\\n                sig_s = \\\" *\\\" if sig else \\\"  \\\"\\n                line += f\\\" | {p_raw_s} {p_fdr_s}{sig_s}\\\"\\n            line += f\\\"  [{pair['summary'][mode]['sig_seeds']}/4]\\\"\\n            print(line)\\n\\n    # FDR impact summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"FDR CORRECTION IMPACT\\\")\\n    print(\\\"-\\\" * 70)\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        fs = fdr_summary[mode]\\n        flipped = fs[\\\"raw_significant\\\"] - fs[\\\"fdr_significant\\\"]\\n        print(f\\\"  {mode:<15}: {fs['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{fs['fdr_significant']:>2} FDR-sig \\\"\\n              f\\\"(of {fs['total_tests']}, {flipped} flipped)\\\")\\n\\n    # Check for flips\\n    print(\\\"\\\\nFLIPPED PAIRS (raw-sig -> FDR-n.s.)\\\")\\n    print(\\\"-\\\" * 70)\\n    any_flip = False\\n    for pair in pairs_data:\\n        for sr in pair[\\\"per_seed\\\"]:\\n            for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n                r = sr[mode]\\n                p_raw = r.get(\\\"p_raw\\\")\\n                sig_fdr = r.get(\\\"significant_fdr\\\", False)\\n                if p_raw is not None and p_raw < ALPHA and not sig_fdr:\\n                    any_flip = True\\n                    print(f\\\"  {pair['canary']} -> {pair['downstream']} \\\"\\n                          f\\\"seed={sr['seed']} {mode}: \\\"\\n                          f\\\"p_raw={p_raw:.4f} -> p_fdr={r['p_fdr']:.4f}\\\")\\n    if not any_flip:\\n        print(\\\"  (none)\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "f577bd2e-f80c-4d84-bc61-6b6b3facd751",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\nUses permutation to build a null distribution of the Granger F-statistic,\\\\navoiding asymptotic assumptions that fail on short series (T<20).\\\\nFirst-differences the series to handle non-stationarity, then uses random\\\\nshuffle (not circular shift) since differencing removes autocorrelation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\ndef _build_lag_matrix(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build design matrices for restricted and unrestricted Granger models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = len(y)\\\\n    n = T - max_lag\\\\n    Y = y[max_lag:]\\\\n\\\\n    cols_r = [np.ones(n)]\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_r.append(y[max_lag - lag: T - lag])\\\\n\\\\n    cols_u = list(cols_r)\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_u.append(x[max_lag - lag: T - lag])\\\\n\\\\n    X_r = np.column_stack(cols_r)\\\\n    X_u = np.column_stack(cols_u)\\\\n    return Y, X_r, X_u\\\\n\\\\n\\\\ndef _granger_f_stat(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    n = len(Y)\\\\n    q = max_lag\\\\n\\\\n    try:\\\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\\\n    except np.linalg.LinAlgError:\\\\n        return np.nan\\\\n\\\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\\\n\\\\n    k_u = X_u.shape[1]\\\\n    df_resid = n - k_u\\\\n\\\\n    if df_resid <= 0 or rss_u < 1e-15:\\\\n        return np.nan\\\\n\\\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\\\n    return F\\\\n\\\\n\\\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\\\n                              difference=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\n    Tests whether x Granger-causes y using permutation null distribution.\\\\n    First-differences series by default to handle non-stationarity, then\\\\n    uses random shuffle of x to build the null (differencing removes\\\\n    autocorrelation, making shuffle appropriate).\\\\n\\\\n    Args:\\\\n        x: 1D array, potential cause\\\\n        y: 1D array, potential effect\\\\n        max_lag: number of lags in the model\\\\n        n_perm: number of permutations for null distribution\\\\n        seed: random seed for reproducibility\\\\n        difference: if True, first-difference both series before testing\\\\n\\\\n    Returns:\\\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\\\n                        effect_size_f2, significant (p<0.05)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x = np.asarray(x, dtype=float)\\\\n    y = np.asarray(y, dtype=float)\\\\n    assert len(x) == len(y), \\\\\\\"x and y must have the same length\\\\\\\"\\\\n\\\\n    if difference:\\\\n        x = np.diff(x)\\\\n        y = np.diff(y)\\\\n\\\\n    T = len(x)\\\\n    assert T > max_lag + 2, f\\\\\\\"Series too short: T={T}, need > {max_lag + 2}\\\\\\\"\\\\n\\\\n    f_obs = _granger_f_stat(y, x, max_lag)\\\\n\\\\n    if np.isnan(f_obs):\\\\n        return {\\\\n            \\\\\\\"f_stat\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"n_perm\\\\\\\": n_perm,\\\\n            \\\\\\\"null_mean\\\\\\\": None, \\\\\\\"null_std\\\\\\\": None,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": None, \\\\\\\"f2_size\\\\\\\": None, \\\\\\\"df_resid\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"differenced\\\\\\\": difference,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"F-stat computation failed\\\\\\\",\\\\n        }\\\\n\\\\n    rng = np.random.default_rng(seed)\\\\n    null_f = np.empty(n_perm)\\\\n\\\\n    for i in range(n_perm):\\\\n        x_perm = rng.permutation(x)\\\\n        null_f[i] = _granger_f_stat(y, x_perm, max_lag)\\\\n\\\\n    valid_null = null_f[~np.isnan(null_f)]\\\\n    n_valid = len(valid_null)\\\\n\\\\n    if n_valid == 0:\\\\n        return {\\\\n            \\\\\\\"f_stat\\\\\\\": round(float(f_obs), 4), \\\\\\\"p_value\\\\\\\": None,\\\\n            \\\\\\\"n_perm\\\\\\\": n_perm, \\\\\\\"null_mean\\\\\\\": None, \\\\\\\"null_std\\\\\\\": None,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": None, \\\\\\\"f2_size\\\\\\\": None, \\\\\\\"df_resid\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"differenced\\\\\\\": difference,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"All permutations failed\\\\\\\",\\\\n        }\\\\n\\\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (n_valid + 1)\\\\n\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\\\n    f2 = \\\\n\\\\n... [截断: 输出过长，省略 4624 字符] ...\\\\n\\\\nt = {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"max_lag\\\\\\\": 1,\\\\n            \\\\\\\"n_perm\\\\\\\": N_PERM,\\\\n            \\\\\\\"permutation_method\\\\\\\": \\\\\\\"shuffle\\\\\\\",\\\\n            \\\\\\\"alpha\\\\\\\": ALPHA,\\\\n            \\\\\\\"fdr_method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n            \\\\\\\"fdr_scope\\\\\\\": \\\\\\\"per_seed (8 pairs corrected together)\\\\\\\",\\\\n            \\\\\\\"canaries\\\\\\\": CANARIES,\\\\n            \\\\\\\"downstreams\\\\\\\": DOWNSTREAMS,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"difference=True uses first-differencing to remove non-stationarity\\\\\\\",\\\\n        },\\\\n        \\\\\\\"pairs\\\\\\\": pairs_data,\\\\n    }\\\\n\\\\n    # FDR summary\\\\n    fdr_summary = {}\\\\n    for mode in [\\\\\\\"differenced\\\\\\\", \\\\\\\"undifferenced\\\\\\\"]:\\\\n        n_total = sum(\\\\n            1 for p in pairs_data for sr in p[\\\\\\\"per_seed\\\\\\\"]\\\\n            if sr[mode].get(\\\\\\\"p_raw\\\\\\\") is not None)\\\\n        n_raw_sig = sum(\\\\n            1 for p in pairs_data for sr in p[\\\\\\\"per_seed\\\\\\\"]\\\\n            if sr[mode].get(\\\\\\\"p_raw\\\\\\\") is not None\\\\n            and sr[mode][\\\\\\\"p_raw\\\\\\\"] < ALPHA)\\\\n        n_fdr_sig = sum(\\\\n            1 for p in pairs_data for sr in p[\\\\\\\"per_seed\\\\\\\"]\\\\n            if sr[mode].get(\\\\\\\"significant_fdr\\\\\\\", False))\\\\n        fdr_summary[mode] = {\\\\n            \\\\\\\"total_tests\\\\\\\": n_total,\\\\n            \\\\\\\"raw_significant\\\\\\\": n_raw_sig,\\\\n            \\\\\\\"fdr_significant\\\\\\\": n_fdr_sig,\\\\n        }\\\\n    output[\\\\\\\"fdr_correction\\\\\\\"] = {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": ALPHA,\\\\n        \\\\\\\"scope\\\\\\\": \\\\\\\"per_seed (8 p-values per seed corrected together)\\\\\\\",\\\\n        \\\\\\\"per_mode\\\\\\\": fdr_summary,\\\\n    }\\\\n\\\\n    out_dir = os.path.join(data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    out_path = os.path.join(out_dir, \\\\\\\"permutation_granger.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n\\\\n    # Console report\\\\n    print(f\\\\\\\"\\\\\\\\nSeeds: {seeds}  |  Pairs: {len(pairs_data)}  |  α = {ALPHA}\\\\\\\")\\\\n    print(f\\\\\\\"FDR scope: per-seed (8 p-values corrected together)\\\\\\\\n\\\\\\\")\\\\n\\\\n    for mode in [\\\\\\\"differenced\\\\\\\", \\\\\\\"undifferenced\\\\\\\"]:\\\\n        print(f\\\\\\\"\\\\\\\\n{'DIFFERENCED' if mode == 'differenced' else 'UNDIFFERENCED'} RESULTS\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 70)\\\\n        hdr = f\\\\\\\"{'Canary':<16} {'Downstream':<12}\\\\\\\"\\\\n        for s in seeds:\\\\n            hdr += f\\\\\\\" | s{s} p_raw  p_fdr  sig\\\\\\\"\\\\n        print(hdr)\\\\n        print(\\\\\\\"-\\\\\\\" * 70)\\\\n\\\\n        for pair in pairs_data:\\\\n            line = f\\\\\\\"{pair['canary']:<16} {pair['downstream']:<12}\\\\\\\"\\\\n            for sr in pair[\\\\\\\"per_seed\\\\\\\"]:\\\\n                r = sr[mode]\\\\n                p_raw = r.get(\\\\\\\"p_raw\\\\\\\")\\\\n                p_fdr = r.get(\\\\\\\"p_fdr\\\\\\\")\\\\n                sig = r.get(\\\\\\\"significant_fdr\\\\\\\", False)\\\\n                p_raw_s = f\\\\\\\"{p_raw:.4f}\\\\\\\" if p_raw is not None else \\\\\\\"  N/A \\\\\\\"\\\\n                p_fdr_s = f\\\\\\\"{p_fdr:.4f}\\\\\\\" if p_fdr is not None else \\\\\\\"  N/A \\\\\\\"\\\\n                sig_s = \\\\\\\" *\\\\\\\" if sig else \\\\\\\"  \\\\\\\"\\\\n                line += f\\\\\\\" | {p_raw_s} {p_fdr_s}{sig_s}\\\\\\\"\\\\n            line += f\\\\\\\"  [{pair['summary'][mode]['sig_seeds']}/4]\\\\\\\"\\\\n            print(line)\\\\n\\\\n    # FDR impact summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"FDR CORRECTION IMPACT\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n    for mode in [\\\\\\\"differenced\\\\\\\", \\\\\\\"undifferenced\\\\\\\"]:\\\\n        fs = fdr_summary[mode]\\\\n        flipped = fs[\\\\\\\"raw_significant\\\\\\\"] - fs[\\\\\\\"fdr_significant\\\\\\\"]\\\\n        print(f\\\\\\\"  {mode:<15}: {fs['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{fs['fdr_significant']:>2} FDR-sig \\\\\\\"\\\\n              f\\\\\\\"(of {fs['total_tests']}, {flipped} flipped)\\\\\\\")\\\\n\\\\n    # Check for flips\\\\n    print(\\\\\\\"\\\\\\\\nFLIPPED PAIRS (raw-sig -> FDR-n.s.)\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n    any_flip = False\\\\n    for pair in pairs_data:\\\\n        for sr in pair[\\\\\\\"per_seed\\\\\\\"]:\\\\n            for mode in [\\\\\\\"differenced\\\\\\\", \\\\\\\"undifferenced\\\\\\\"]:\\\\n                r = sr[mode]\\\\n                p_raw = r.get(\\\\\\\"p_raw\\\\\\\")\\\\n                sig_fdr = r.get(\\\\\\\"significant_fdr\\\\\\\", False)\\\\n                if p_raw is not None and p_raw < ALPHA and not sig_fdr:\\\\n                    any_flip = True\\\\n                    print(f\\\\\\\"  {pair['canary']} -> {pair['downstream']} \\\\\\\"\\\\n                          f\\\\\\\"seed={sr['seed']} {mode}: \\\\\\\"\\\\n                          f\\\\\\\"p_raw={p_raw:.4f} -> p_fdr={r['p_fdr']:.4f}\\\\\\\")\\\\n    if not any_flip:\\\\n        print(\\\\\\\"  (none)\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences series by default to handle non-stationarity, then\\n    uses random shuffle of x to build the null (differencing removes\\n    autocorrelation, making shuffle appropriate).\\n\\n    Args:\\n        x: 1D array, potential cause\\n        y: 1D array, potential effect\\n        max_lag: number of lags in the model\\n        n_perm: number of permutations for null distribution\\n        seed: random seed for reproducibility\\n        difference: if True, first-difference both series before testing\\n\\n    Returns:\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\n                        effect_size_f2, significant (p<0.05)\\n    \\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    assert len(x) == len(y), \\\"x and y must have the same length\\\"\\n\\n    if difference:\\n        x = np.diff(x)\\n        y = np.diff(y)\\n\\n    T = len(x)\\n    assert T > max_lag + 2, f\\\"Series too short: T={T}, need > {max_lag + 2}\\\"\\n\\n    f_obs = _granger_f_stat(y, x, max_lag)\\n\\n    if np.isnan(f_obs):\\n        return {\\n            \\\"f_stat\\\": None, \\\"p_value\\\": None, \\\"n_perm\\\": n_perm,\\n            \\\"null_mean\\\": None, \\\"null_std\\\": None,\\n            \\\"effect_size_f2\\\": None, \\\"f2_size\\\": None, \\\"df_resid\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"differenced\\\": difference,\\n            \\\"note\\\": \\\"F-stat computation failed\\\",\\n        }\\n\\n    rng = np.random.default_rng(seed)\\n    null_f = np.empty(n_perm)\\n\\n    for i in range(n_perm):\\n        x_perm = rng.permutation(x)\\n        null_f[i] = _granger_f_stat(y, x_perm, max_lag)\\n\\n    valid_null = null_f[~np.isnan(null_f)]\\n    n_valid = len(valid_null)\\n\\n    if n_valid == 0:\\n        return {\\n            \\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": None,\\n            \\\"n_perm\\\": n_perm, \\\"null_mean\\\": None, \\\"null_std\\\": None,\\n            \\\"effect_size_f2\\\": None, \\\"f2_size\\\": None, \\\"df_resid\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"differenced\\\": difference,\\n            \\\"note\\\": \\\"All permutations failed\\\",\\n        }\\n\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (n_valid + 1)\\n\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\n    f2 = \\n\\n... [截断: 输出过长，省略 4624 字符] ...\\n\\nt = {\\n        \\\"method\\\": \\\"permutation_granger\\\",\\n        \\\"config\\\": {\\n            \\\"max_lag\\\": 1,\\n            \\\"n_perm\\\": N_PERM,\\n            \\\"permutation_method\\\": \\\"shuffle\\\",\\n            \\\"alpha\\\": ALPHA,\\n            \\\"fdr_method\\\": \\\"benjamini-hochberg\\\",\\n            \\\"fdr_scope\\\": \\\"per_seed (8 pairs corrected together)\\\",\\n            \\\"canaries\\\": CANARIES,\\n            \\\"downstreams\\\": DOWNSTREAMS,\\n            \\\"note\\\": \\\"difference=True uses first-differencing to remove non-stationarity\\\",\\n        },\\n        \\\"pairs\\\": pairs_data,\\n    }\\n\\n    # FDR summary\\n    fdr_summary = {}\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        n_total = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"p_raw\\\") is not None)\\n        n_raw_sig = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"p_raw\\\") is not None\\n            and sr[mode][\\\"p_raw\\\"] < ALPHA)\\n        n_fdr_sig = sum(\\n            1 for p in pairs_data for sr in p[\\\"per_seed\\\"]\\n            if sr[mode].get(\\\"significant_fdr\\\", False))\\n        fdr_summary[mode] = {\\n            \\\"total_tests\\\": n_total,\\n            \\\"raw_significant\\\": n_raw_sig,\\n            \\\"fdr_significant\\\": n_fdr_sig,\\n        }\\n    output[\\\"fdr_correction\\\"] = {\\n        \\\"method\\\": \\\"benjamini-hochberg\\\",\\n        \\\"alpha\\\": ALPHA,\\n        \\\"scope\\\": \\\"per_seed (8 p-values per seed corrected together)\\\",\\n        \\\"per_mode\\\": fdr_summary,\\n    }\\n\\n    out_dir = os.path.join(data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, \\\"permutation_granger.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    # Console report\\n    print(f\\\"\\\\nSeeds: {seeds}  |  Pairs: {len(pairs_data)}  |  α = {ALPHA}\\\")\\n    print(f\\\"FDR scope: per-seed (8 p-values corrected together)\\\\n\\\")\\n\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        print(f\\\"\\\\n{'DIFFERENCED' if mode == 'differenced' else 'UNDIFFERENCED'} RESULTS\\\")\\n        print(\\\"-\\\" * 70)\\n        hdr = f\\\"{'Canary':<16} {'Downstream':<12}\\\"\\n        for s in seeds:\\n            hdr += f\\\" | s{s} p_raw  p_fdr  sig\\\"\\n        print(hdr)\\n        print(\\\"-\\\" * 70)\\n\\n        for pair in pairs_data:\\n            line = f\\\"{pair['canary']:<16} {pair['downstream']:<12}\\\"\\n            for sr in pair[\\\"per_seed\\\"]:\\n                r = sr[mode]\\n                p_raw = r.get(\\\"p_raw\\\")\\n                p_fdr = r.get(\\\"p_fdr\\\")\\n                sig = r.get(\\\"significant_fdr\\\", False)\\n                p_raw_s = f\\\"{p_raw:.4f}\\\" if p_raw is not None else \\\"  N/A \\\"\\n                p_fdr_s = f\\\"{p_fdr:.4f}\\\" if p_fdr is not None else \\\"  N/A \\\"\\n                sig_s = \\\" *\\\" if sig else \\\"  \\\"\\n                line += f\\\" | {p_raw_s} {p_fdr_s}{sig_s}\\\"\\n            line += f\\\"  [{pair['summary'][mode]['sig_seeds']}/4]\\\"\\n            print(line)\\n\\n    # FDR impact summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"FDR CORRECTION IMPACT\\\")\\n    print(\\\"-\\\" * 70)\\n    for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n        fs = fdr_summary[mode]\\n        flipped = fs[\\\"raw_significant\\\"] - fs[\\\"fdr_significant\\\"]\\n        print(f\\\"  {mode:<15}: {fs['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{fs['fdr_significant']:>2} FDR-sig \\\"\\n              f\\\"(of {fs['total_tests']}, {flipped} flipped)\\\")\\n\\n    # Check for flips\\n    print(\\\"\\\\nFLIPPED PAIRS (raw-sig -> FDR-n.s.)\\\")\\n    print(\\\"-\\\" * 70)\\n    any_flip = False\\n    for pair in pairs_data:\\n        for sr in pair[\\\"per_seed\\\"]:\\n            for mode in [\\\"differenced\\\", \\\"undifferenced\\\"]:\\n                r = sr[mode]\\n                p_raw = r.get(\\\"p_raw\\\")\\n                sig_fdr = r.get(\\\"significant_fdr\\\", False)\\n                if p_raw is not None and p_raw < ALPHA and not sig_fdr:\\n                    any_flip = True\\n                    print(f\\\"  {pair['canary']} -> {pair['downstream']} \\\"\\n                          f\\\"seed={sr['seed']} {mode}: \\\"\\n                          f\\\"p_raw={p_raw:.4f} -> p_fdr={r['p_fdr']:.4f}\\\")\\n    if not any_flip:\\n        print(\\\"  (none)\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YK3AjPR5MPX9XXKiPNpWp4`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -3 /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "2ec0b42c-1b17-4231-99a5-4e8cc37738f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToQEBmgu6ESefRuKq5ozFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4145,
+      "cache_read_input_tokens": 33976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T00:25:16.641Z_
+
+<details><summary>↩ Tool result · `toolu_01YK3AjPR5MPX9XXKiPNpWp4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 2.9558974092184305,\\n  \\\"self_bleu\\\": 0.006364149715366538,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "9c1887af-4e31-4509-b1c2-3f66949e8b0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 2.9558974092184305,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.006364149715366538,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 2.9558974092184305,\\n  \\\"self_bleu\\\": 0.006364149715366538,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now get more details on the method functions from method_ablation.py. I need to see the `perm_granger` function wrapper and `toda_yamamoto` function to understand their parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "5a2f195d-8df3-4be7-8eaf-3e252d1677df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMqdeFGz58qSgkMSUHpmPY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 38121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YU5qVRfjyVCyRGsdfrNmMS`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def perm_granger\\|def threshold_lead\\|def toda_yamamoto\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "834f52cc-da29-4534-aa68-0d783b83a0ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMqdeFGz58qSgkMSUHpmPY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 38121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T00:25:21.492Z_
+
+<details><summary>↩ Tool result · `toolu_01YU5qVRfjyVCyRGsdfrNmMS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "ce5d370a-a8ee-4595-971e-81a8a76d0ad9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P5xEK64tEbAZYFmEqwkkUc`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def perm_granger\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "97e44ced-8266-4e65-aec2-589e30fefe1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsV9GCWXUQbzGjDsTtgyzf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 43630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 300
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T00:25:28.464Z_
+
+<details><summary>↩ Tool result · `toolu_01P5xEK64tEbAZYFmEqwkkUc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"375:def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "8689fb4d-a615-467a-a3df-733332caf19d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"375:def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"375:def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KF6BZefp7DEjDRFjQFkHZD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def threshold_lead\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "0b902c9c-f2cf-444d-b7cd-653037cab29f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsV9GCWXUQbzGjDsTtgyzf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 43630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 300
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T00:25:29.357Z_
+
+<details><summary>↩ Tool result · `toolu_01KF6BZefp7DEjDRFjQFkHZD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"142:def threshold_lead(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6eb82a6e-4730-4f00-b7c5-d4a5a18fb2bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"142:def threshold_lead(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"142:def threshold_lead(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TtiR7NFtDTfkBzV8ykfCoZ`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def toda_yamamoto\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "d7354fe6-fd26-41cf-9e86-7f2f51755b02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsV9GCWXUQbzGjDsTtgyzf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 43630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 300
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "isUsingOverage": false
+  },
+  "uuid": "8c957592-e767-4650-9a30-4a796cbd4e24",
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T00:25:29.952Z_
+
+<details><summary>↩ Tool result · `toolu_01TtiR7NFtDTfkBzV8ykfCoZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"193:def toda_yamamoto(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "5926721f-6d80-4c9b-afb7-08cc37b62dfb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"193:def toda_yamamoto(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"193:def toda_yamamoto(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RiLV71taj5aSfUhzbZxKXo`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -n +375 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "88c91420-74bc-4bcf-a8ca-0c07556efd52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012n75Kdr3goNbLRCofciKfz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 43930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 740
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T00:25:34.165Z_
+
+<details><summary>↩ Tool result · `toolu_01RiLV71taj5aSfUhzbZxKXo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\n    x, y = orient(c, cn), orient(d, dn)\\n    res = permutation_granger_test(x, y, max_lag=max_lag, n_perm=n_perm,\\n                                    seed=42, difference=True)\\n    return {\\n        \\\"method\\\": \\\"permutation_granger\\\",\\n        \\\"f_stat\\\": res[\\\"f_stat\\\"],\\n        \\\"p_value\\\": res[\\\"p_value\\\"],\\n        \\\"significant\\\": res[\\\"significant\\\"],\\n        \\\"effect_size_f2\\\": res.get(\\\"effect_size_f2\\\"),\\n        \\\"null_mean\\\": res.get(\\\"null_mean\\\"),\\n        \\\"null_std\\\": res.get(\\\"null_std\\\"),\\n        \\\"n_perm\\\": res[\\\"n_perm\\\"],\\n    }\\n\\n\\nMETHODS = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\", \\\"threshold_onset\\\", \\\"toda_yamamoto\\\", \\\"permutation_granger\\\"]\\nMETHOD_FN = {\\n    \\\"naive_pearson\\\": naive_pearson,\\n    \\\"differenced_xcorr\\\": diff_xcorr,\\n    \\\"threshold_onset\\\": threshold_lead,\\n    \\\"toda_yamamoto\\\": toda_yamamoto,\\n    \\\"permutation_granger\\\": perm_granger,\\n}\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=__doc__)\\n    parser.add_argument(\\\"--seeds\\\", nargs=\\\"+\\\", type=int, default=[42, 43, 44, 45])\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"results/mvp\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None)\\n    args = parser.parse_args()\\n\\n    out_dir = args.output_dir or os.path.join(args.data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    data = load_metrics(args.data_dir, args.seeds)\\n    n_seeds = len(args.seeds)\\n\\n    all_pairs = []\\n\\n    for cn, dn in product(CANARY, DOWNSTREAM):\\n        pair = {\\\"canary\\\": cn, \\\"downstream\\\": dn, \\\"per_seed\\\": []}\\n\\n        for seed in args.seeds:\\n            c_arr = extract(data[seed], cn)\\n            d_arr = extract(data[seed], dn)\\n            seed_results = {\\\"seed\\\": seed}\\n            for m_name, m_fn in METHOD_FN.items():\\n                seed_results[m_name] = m_fn(c_arr, d_arr, cn, dn)\\n            pair[\\\"per_seed\\\"].append(seed_results)\\n\\n        # Consensus across seeds: majority-vote significance\\n        summary = {}\\n        for m in METHODS:\\n            n_sig = sum(1 for s in pair[\\\"per_seed\\\"] if s[m][\\\"significant\\\"])\\n            summary[m] = {\\n                \\\"sig_seeds\\\": n_sig,\\n                \\\"total\\\": n_seeds,\\n                \\\"verdict\\\": \\\"SIGNIFICANT\\\" if n_sig > n_seeds / 2\\n                           else \\\"NOT_SIGNIFICANT\\\",\\n            }\\n        pair[\\\"summary\\\"] = summary\\n\\n        naive_sig  = summary[\\\"naive_pearson\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        diff_sig   = summary[\\\"differenced_xcorr\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        thresh_sig = summary[\\\"threshold_onset\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        ty_sig     = summary[\\\"toda_yamamoto\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        pg_sig     = summary[\\\"permutation_granger\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n\\n        # 5-method (including TY)\\n        sigs_5 = {\\\"naive_pearson\\\": naive_sig, \\\"differenced_xcorr\\\": diff_sig,\\n                   \\\"threshold_onset\\\": thresh_sig, \\\"toda_yamamoto\\\": ty_sig,\\n                   \\\"permutation_granger\\\": pg_sig}\\n        n_agree_5 = sum(sigs_5.values())\\n        pair[\\\"robust_5method\\\"] = n_agree_5 == 5\\n        pair[\\\"spurious_5method\\\"] = naive_sig and n_agree_5 < 5\\n        ns_5 = [m for m, s in sigs_5.items() if not s]\\n        pair[\\\"spurious_reason_5method\\\"] = \\\", \\\".join(\\n            f\\\"{m} n.s.\\\" for m in ns_5) if ns_5 else None\\n        pair[\\\"methods_agree_5\\\"] = n_agree_5\\n\\n        # 4-method (excluding TY — demoted per D013/D015, power 0.05-0.20 at T=10)\\n        METHODS_NO_TY = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\",\\n                         \\\"threshold_onset\\\", \\\"permutation_granger\\\"]\\n        sigs_4 = {m: sigs_5[m] for m in METHODS_NO_TY}\\n        n_agree_4 = sum(sigs_4.values())\\n        pair[\\\"robust_4method\\\"] = n_agree_4 == 4\\n        pair[\\\"spurious_4method\\\"] = naive_sig and n_agree_4 < 4\\n        pair[\\\"methods_agree_4\\\"] = n_agree_4\\n\\n        # Legacy fields\\n        pair[\\\"spurious\\\"]   = naive_sig and not ty_sig\\n        pair[\\\"robust\\\"]     = naive_sig and ty_sig\\n        pair[\\\"naive_only\\\"] = naive_sig and not diff_sig and not ty_sig\\n        all_pairs.append(pair)\\n\\n    # --- BH FDR correction + eff\\n\\n... [截断: 输出过长，省略 5713 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "7ad35b8d-88eb-4353-b4fc-e179d6f34013",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    res = permutation_granger_test(x, y, max_lag=max_lag, n_perm=n_perm,\\\\n                                    seed=42, difference=True)\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": res[\\\\\\\"f_stat\\\\\\\"],\\\\n        \\\\\\\"p_value\\\\\\\": res[\\\\\\\"p_value\\\\\\\"],\\\\n        \\\\\\\"significant\\\\\\\": res[\\\\\\\"significant\\\\\\\"],\\\\n        \\\\\\\"effect_size_f2\\\\\\\": res.get(\\\\\\\"effect_size_f2\\\\\\\"),\\\\n        \\\\\\\"null_mean\\\\\\\": res.get(\\\\\\\"null_mean\\\\\\\"),\\\\n        \\\\\\\"null_std\\\\\\\": res.get(\\\\\\\"null_std\\\\\\\"),\\\\n        \\\\\\\"n_perm\\\\\\\": res[\\\\\\\"n_perm\\\\\\\"],\\\\n    }\\\\n\\\\n\\\\nMETHODS = [\\\\\\\"naive_pearson\\\\\\\", \\\\\\\"differenced_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"permutation_granger\\\\\\\"]\\\\nMETHOD_FN = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=__doc__)\\\\n    parser.add_argument(\\\\\\\"--seeds\\\\\\\", nargs=\\\\\\\"+\\\\\\\", type=int, default=[42, 43, 44, 45])\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"results/mvp\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None)\\\\n    args = parser.parse_args()\\\\n\\\\n    out_dir = args.output_dir or os.path.join(args.data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    data = load_metrics(args.data_dir, args.seeds)\\\\n    n_seeds = len(args.seeds)\\\\n\\\\n    all_pairs = []\\\\n\\\\n    for cn, dn in product(CANARY, DOWNSTREAM):\\\\n        pair = {\\\\\\\"canary\\\\\\\": cn, \\\\\\\"downstream\\\\\\\": dn, \\\\\\\"per_seed\\\\\\\": []}\\\\n\\\\n        for seed in args.seeds:\\\\n            c_arr = extract(data[seed], cn)\\\\n            d_arr = extract(data[seed], dn)\\\\n            seed_results = {\\\\\\\"seed\\\\\\\": seed}\\\\n            for m_name, m_fn in METHOD_FN.items():\\\\n                seed_results[m_name] = m_fn(c_arr, d_arr, cn, dn)\\\\n            pair[\\\\\\\"per_seed\\\\\\\"].append(seed_results)\\\\n\\\\n        # Consensus across seeds: majority-vote significance\\\\n        summary = {}\\\\n        for m in METHODS:\\\\n            n_sig = sum(1 for s in pair[\\\\\\\"per_seed\\\\\\\"] if s[m][\\\\\\\"significant\\\\\\\"])\\\\n            summary[m] = {\\\\n                \\\\\\\"sig_seeds\\\\\\\": n_sig,\\\\n                \\\\\\\"total\\\\\\\": n_seeds,\\\\n                \\\\\\\"verdict\\\\\\\": \\\\\\\"SIGNIFICANT\\\\\\\" if n_sig > n_seeds / 2\\\\n                           else \\\\\\\"NOT_SIGNIFICANT\\\\\\\",\\\\n            }\\\\n        pair[\\\\\\\"summary\\\\\\\"] = summary\\\\n\\\\n        naive_sig  = summary[\\\\\\\"naive_pearson\\\\\\\"][\\\\\\\"verdict\\\\\\\"] == \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        diff_sig   = summary[\\\\\\\"differenced_xcorr\\\\\\\"][\\\\\\\"verdict\\\\\\\"] == \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        thresh_sig = summary[\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"verdict\\\\\\\"] == \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        ty_sig     = summary[\\\\\\\"toda_yamamoto\\\\\\\"][\\\\\\\"verdict\\\\\\\"] == \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n        pg_sig     = summary[\\\\\\\"permutation_granger\\\\\\\"][\\\\\\\"verdict\\\\\\\"] == \\\\\\\"SIGNIFICANT\\\\\\\"\\\\n\\\\n        # 5-method (including TY)\\\\n        sigs_5 = {\\\\\\\"naive_pearson\\\\\\\": naive_sig, \\\\\\\"differenced_xcorr\\\\\\\": diff_sig,\\\\n                   \\\\\\\"threshold_onset\\\\\\\": thresh_sig, \\\\\\\"toda_yamamoto\\\\\\\": ty_sig,\\\\n                   \\\\\\\"permutation_granger\\\\\\\": pg_sig}\\\\n        n_agree_5 = sum(sigs_5.values())\\\\n        pair[\\\\\\\"robust_5method\\\\\\\"] = n_agree_5 == 5\\\\n        pair[\\\\\\\"spurious_5method\\\\\\\"] = naive_sig and n_agree_5 < 5\\\\n        ns_5 = [m for m, s in sigs_5.items() if not s]\\\\n        pair[\\\\\\\"spurious_reason_5method\\\\\\\"] = \\\\\\\", \\\\\\\".join(\\\\n            f\\\\\\\"{m} n.s.\\\\\\\" for m in ns_5) if ns_5 else None\\\\n        pair[\\\\\\\"methods_agree_5\\\\\\\"] = n_agree_5\\\\n\\\\n        # 4-method (excluding TY — demoted per D013/D015, power 0.05-0.20 at T=10)\\\\n        METHODS_NO_TY = [\\\\\\\"naive_pearson\\\\\\\", \\\\\\\"differenced_xcorr\\\\\\\",\\\\n                         \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"permutation_granger\\\\\\\"]\\\\n        sigs_4 = {m: sigs_5[m] for m in METHODS_NO_TY}\\\\n        n_agree_4 = sum(sigs_4.values())\\\\n        pair[\\\\\\\"robust_4method\\\\\\\"] = n_agree_4 == 4\\\\n        pair[\\\\\\\"spurious_4method\\\\\\\"] = naive_sig and n_agree_4 < 4\\\\n        pair[\\\\\\\"methods_agree_4\\\\\\\"] = n_agree_4\\\\n\\\\n        # Legacy fields\\\\n        pair[\\\\\\\"spurious\\\\\\\"]   = naive_sig and not ty_sig\\\\n        pair[\\\\\\\"robust\\\\\\\"]     = naive_sig and ty_sig\\\\n        pair[\\\\\\\"naive_only\\\\\\\"] = naive_sig and not diff_sig and not ty_sig\\\\n        all_pairs.append(pair)\\\\n\\\\n    # --- BH FDR correction + eff\\\\n\\\\n... [截断: 输出过长，省略 5713 字符] ...\\\\n\\\\n_fc = output[\\\\\\\"fdr_correction\\\\\\\"][\\\\\\\"per_method\\\\\\\"][_m]\\\\n        print(f\\\\\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    print(f\\\\\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  Spurious regression rate: {spur_rate:.1%}  \\\\\\\"\\\\n          f\\\\\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\\\\\")\\\\n\\\\n    if n_spur:\\\\n        print(f\\\\\\\"\\\\\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\\\\\")\\\\n        for r in all_pairs:\\\\n            if r[\\\\\\\"spurious\\\\\\\"]:\\\\n                print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    robust = [r for r in all_pairs if r[\\\\\\\"robust\\\\\\\"]]\\\\n    if robust:\\\\n        print(f\\\\\\\"\\\\\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\\\\\")\\\\n        for r in robust:\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    # ── Dual classification: 5-method vs 4-method ──\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\\\\\")\\\\n    print(f\\\\\\\"  {'-' * 44}\\\\\\\")\\\\n    print(f\\\\\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\\\\\"\\\\n          f\\\\\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\\\\\")\\\\n    print(f\\\\\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\\\\\"\\\\n          f\\\\\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n\\\\n    if flipped:\\\\n        print(f\\\\\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\\\\\")\\\\n        for r in flipped:\\\\n            s5 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            s4 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}: \\\\\\\"\\\\n                  f\\\\\\\"5m={s5} ({r['methods_agree_5']}/5), \\\\\\\"\\\\n                  f\\\\\\\"4m={s4} ({r['methods_agree_4']}/4)\\\\\\\")\\\\n            if r[\\\\\\\"spurious_reason_5method\\\\\\\"]:\\\\n                print(f\\\\\\\"      reason: {r['spurious_reason_5method']}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"  No flipped pairs between 5-method and 4-method.\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"PER-PAIR DUAL CLASSIFICATION\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    hdr2 = (f\\\\\\\"  {'Canary':<16} {'Downstream':<12} \\\\\\\"\\\\n            f\\\\\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\\\\\")\\\\n    print(hdr2)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 68)\\\\n    for r in all_pairs:\\\\n        r5 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_5method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        r4 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_4method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        reason = r[\\\\\\\"spurious_reason_5method\\\\\\\"] or \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {r['canary']:<16} {r['downstream']:<12} \\\\\\\"\\\\n              f\\\\\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\\\\\")\\\\n\\\\n    # Per-seed detail for significant TY pairs\\\\n    if robust:\\\\n        print()\\\\n        print(\\\\\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 72)\\\\n        for r in robust:\\\\n            print(f\\\\\\\"  {r['canary']} → {r['downstream']}:\\\\\\\")\\\\n            for s in r[\\\\\\\"per_seed\\\\\\\"]:\\\\n                ty = s[\\\\\\\"toda_yamamoto\\\\\\\"]\\\\n                sig_mark = \\\\\\\"*\\\\\\\" if ty[\\\\\\\"significant\\\\\\\"] else \\\\\\\" \\\\\\\"\\\\n                f_str = f\\\\\\\"F={ty['wald_F']:.2f}\\\\\\\" if ty[\\\\\\\"wald_F\\\\\\\"] is not None else \\\\\\\"F=N/A\\\\\\\"\\\\n                p_str = f\\\\\\\"p_raw={ty['p_raw']:.4f}\\\\\\\" if ty[\\\\\\\"p_raw\\\\\\\"] is not None else \\\\\\\"p=N/A\\\\\\\"\\\\n                fdr_str = f\\\\\\\", p_fdr={ty['p_fdr']:.4f}\\\\\\\" if ty.get(\\\\\\\"p_fdr\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                es_str = f\\\\\\\", f2={ty['effect_size_f2']:.4f}\\\\\\\" if ty.get(\\\\\\\"effect_size_f2\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                print(f\\\\\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\n    x, y = orient(c, cn), orient(d, dn)\\n    res = permutation_granger_test(x, y, max_lag=max_lag, n_perm=n_perm,\\n                                    seed=42, difference=True)\\n    return {\\n        \\\"method\\\": \\\"permutation_granger\\\",\\n        \\\"f_stat\\\": res[\\\"f_stat\\\"],\\n        \\\"p_value\\\": res[\\\"p_value\\\"],\\n        \\\"significant\\\": res[\\\"significant\\\"],\\n        \\\"effect_size_f2\\\": res.get(\\\"effect_size_f2\\\"),\\n        \\\"null_mean\\\": res.get(\\\"null_mean\\\"),\\n        \\\"null_std\\\": res.get(\\\"null_std\\\"),\\n        \\\"n_perm\\\": res[\\\"n_perm\\\"],\\n    }\\n\\n\\nMETHODS = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\", \\\"threshold_onset\\\", \\\"toda_yamamoto\\\", \\\"permutation_granger\\\"]\\nMETHOD_FN = {\\n    \\\"naive_pearson\\\": naive_pearson,\\n    \\\"differenced_xcorr\\\": diff_xcorr,\\n    \\\"threshold_onset\\\": threshold_lead,\\n    \\\"toda_yamamoto\\\": toda_yamamoto,\\n    \\\"permutation_granger\\\": perm_granger,\\n}\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=__doc__)\\n    parser.add_argument(\\\"--seeds\\\", nargs=\\\"+\\\", type=int, default=[42, 43, 44, 45])\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"results/mvp\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None)\\n    args = parser.parse_args()\\n\\n    out_dir = args.output_dir or os.path.join(args.data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n    data = load_metrics(args.data_dir, args.seeds)\\n    n_seeds = len(args.seeds)\\n\\n    all_pairs = []\\n\\n    for cn, dn in product(CANARY, DOWNSTREAM):\\n        pair = {\\\"canary\\\": cn, \\\"downstream\\\": dn, \\\"per_seed\\\": []}\\n\\n        for seed in args.seeds:\\n            c_arr = extract(data[seed], cn)\\n            d_arr = extract(data[seed], dn)\\n            seed_results = {\\\"seed\\\": seed}\\n            for m_name, m_fn in METHOD_FN.items():\\n                seed_results[m_name] = m_fn(c_arr, d_arr, cn, dn)\\n            pair[\\\"per_seed\\\"].append(seed_results)\\n\\n        # Consensus across seeds: majority-vote significance\\n        summary = {}\\n        for m in METHODS:\\n            n_sig = sum(1 for s in pair[\\\"per_seed\\\"] if s[m][\\\"significant\\\"])\\n            summary[m] = {\\n                \\\"sig_seeds\\\": n_sig,\\n                \\\"total\\\": n_seeds,\\n                \\\"verdict\\\": \\\"SIGNIFICANT\\\" if n_sig > n_seeds / 2\\n                           else \\\"NOT_SIGNIFICANT\\\",\\n            }\\n        pair[\\\"summary\\\"] = summary\\n\\n        naive_sig  = summary[\\\"naive_pearson\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        diff_sig   = summary[\\\"differenced_xcorr\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        thresh_sig = summary[\\\"threshold_onset\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        ty_sig     = summary[\\\"toda_yamamoto\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n        pg_sig     = summary[\\\"permutation_granger\\\"][\\\"verdict\\\"] == \\\"SIGNIFICANT\\\"\\n\\n        # 5-method (including TY)\\n        sigs_5 = {\\\"naive_pearson\\\": naive_sig, \\\"differenced_xcorr\\\": diff_sig,\\n                   \\\"threshold_onset\\\": thresh_sig, \\\"toda_yamamoto\\\": ty_sig,\\n                   \\\"permutation_granger\\\": pg_sig}\\n        n_agree_5 = sum(sigs_5.values())\\n        pair[\\\"robust_5method\\\"] = n_agree_5 == 5\\n        pair[\\\"spurious_5method\\\"] = naive_sig and n_agree_5 < 5\\n        ns_5 = [m for m, s in sigs_5.items() if not s]\\n        pair[\\\"spurious_reason_5method\\\"] = \\\", \\\".join(\\n            f\\\"{m} n.s.\\\" for m in ns_5) if ns_5 else None\\n        pair[\\\"methods_agree_5\\\"] = n_agree_5\\n\\n        # 4-method (excluding TY — demoted per D013/D015, power 0.05-0.20 at T=10)\\n        METHODS_NO_TY = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\",\\n                         \\\"threshold_onset\\\", \\\"permutation_granger\\\"]\\n        sigs_4 = {m: sigs_5[m] for m in METHODS_NO_TY}\\n        n_agree_4 = sum(sigs_4.values())\\n        pair[\\\"robust_4method\\\"] = n_agree_4 == 4\\n        pair[\\\"spurious_4method\\\"] = naive_sig and n_agree_4 < 4\\n        pair[\\\"methods_agree_4\\\"] = n_agree_4\\n\\n        # Legacy fields\\n        pair[\\\"spurious\\\"]   = naive_sig and not ty_sig\\n        pair[\\\"robust\\\"]     = naive_sig and ty_sig\\n        pair[\\\"naive_only\\\"] = naive_sig and not diff_sig and not ty_sig\\n        all_pairs.append(pair)\\n\\n    # --- BH FDR correction + eff\\n\\n... [截断: 输出过长，省略 5713 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M2cTzWwxMx3aPafBYrzoW5`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/gen_0/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "590d9509-1f1d-419c-b01f-bc9db3102271",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012n75Kdr3goNbLRCofciKfz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 43930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 740
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779081600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "6e2d3368-bbef-400b-9729-736b88e84aec",
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T00:25:35.645Z_
+
+<details><summary>↩ Tool result · `toolu_01M2cTzWwxMx3aPafBYrzoW5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 2.9558974092184305,\\n  \\\"self_bleu\\\": 0.006364149715366538,\\n  \\\"distinct_1\\\": 0.11433895431310172,\\n  \\\"distinct_2\\\": 0.5557598039215687,\\n  \\\"distinct_3\\\": 0.8361438703991271,\\n  \\\"ece\\\": 0.012435645992664009,\\n  \\\"effective_rank\\\": 72.52979478556296,\\n  \\\"perplexity\\\": 20.598383638593724,\\n  \\\"mauve\\\": 0.729908181454594,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "37e8250e-6c1c-4309-8340-7b395196afd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 2.9558974092184305,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.006364149715366538,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.11433895431310172,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.5557598039215687,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.8361438703991271,\\\\n  \\\\\\\"ece\\\\\\\": 0.012435645992664009,\\\\n  \\\\\\\"effective_rank\\\\\\\": 72.52979478556296,\\\\n  \\\\\\\"perplexity\\\\\\\": 20.598383638593724,\\\\n  \\\\\\\"mauve\\\\\\\": 0.729908181454594,\\\\n  \\\\\\\"generation\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 2.9558974092184305,\\n  \\\"self_bleu\\\": 0.006364149715366538,\\n  \\\"distinct_1\\\": 0.11433895431310172,\\n  \\\"distinct_2\\\": 0.5557598039215687,\\n  \\\"distinct_3\\\": 0.8361438703991271,\\n  \\\"ece\\\": 0.012435645992664009,\\n  \\\"effective_rank\\\": 72.52979478556296,\\n  \\\"perplexity\\\": 20.598383638593724,\\n  \\\"mauve\\\": 0.729908181454594,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check what metrics are available for OPT and Pythia-1.4B, and also check if pythia14b exists.
+
+Key findings so far:
+1. `analyze_generalize.py` has a bug: `--n_perm` CLI arg is parsed but never passed to `run_5method()`
+2. The current CANARY list is `["token_entropy", "self_bleu", "ece", "effective_rank"]` but we only need `["token_entropy", "ece"]`
+3. The current DOWNSTREAM list is `["perplexity", "distinct_1", "distinct_2", "distinct_3"]` but for C4 we need `["mauve", "distinct_1", "distinct_2", "distinct_3"]`
+
+
+4. Looking at the method signatures, I need to adjust max_lag parameters: `diff_xcorr` should use max_lag=5 instead of 3, while `threshold_lead` and `toda_yamamoto` don't have lag parameters, and `perm_granger` needs both max_lag and n_perm arguments passed through.
+
+5. For the FDR analysis, I'll need to compute three different correction scopes: raw p-values below 0.05, Benjamini-Hochberg correction applied per method, and pooled BH across all methods. The cleanest approach is writing a standalone script that imports the method functions, applies the correct CANARY/DOWNSTREAM pairs for each experiment, passes the right parameters, calculates all three FDR versions, and outputs everything as detailed JSON. Let me also verify the pythia14b directory is available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "952962b6-8ef3-4e10-abde-2feac73b01e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9L4adFzfoJpPjUpEFJ8Ct",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4470,
+      "cache_read_input_tokens": 44670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4470
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VVtb3y8kci7LJBjGqwuKEF`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/ -maxdepth 1 -type d -name \"pythia14b*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "481b425a-00e9-46b9-b0a3-853bf52ab093",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9L4adFzfoJpPjUpEFJ8Ct",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4470,
+      "cache_read_input_tokens": 44670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4470
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T00:25:52.849Z_
+
+<details><summary>↩ Tool result · `toolu_01VVtb3y8kci7LJBjGqwuKEF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "885ff3f3-3277-4a9c-b12b-af5372dbf498",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K9FQuHMJh7QZHjN7U5ivZN`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -15 /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/gen_0/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "8f87400b-d34d-4c1e-bb5b-fb0e67b6df89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9L4adFzfoJpPjUpEFJ8Ct",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4470,
+      "cache_read_input_tokens": 44670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4470
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T00:25:54.032Z_
+
+<details><summary>↩ Tool result · `toolu_01K9FQuHMJh7QZHjN7U5ivZN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 3.048328940379015,\\n  \\\"self_bleu\\\": 0.009909845233669574,\\n  \\\"distinct_1\\\": 0.10402947839808178,\\n  \\\"distinct_2\\\": 0.5267106260688658,\\n  \\\"distinct_3\\\": 0.816691203046625,\\n  \\\"ece\\\": 0.019933249393078112,\\n  \\\"effective_rank\\\": 65.30501920524436,\\n  \\\"perplexity\\\": 24.876835754631482,\\n  \\\"mauve\\\": 0.031181469084121352,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "dfadb274-2dd1-4b9e-b7af-0cd8dba4040a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 3.048328940379015,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.009909845233669574,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.10402947839808178,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.5267106260688658,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.816691203046625,\\\\n  \\\\\\\"ece\\\\\\\": 0.019933249393078112,\\\\n  \\\\\\\"effective_rank\\\\\\\": 65.30501920524436,\\\\n  \\\\\\\"perplexity\\\\\\\": 24.876835754631482,\\\\n  \\\\\\\"mauve\\\\\\\": 0.031181469084121352,\\\\n  \\\\\\\"generation\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 3.048328940379015,\\n  \\\"self_bleu\\\": 0.009909845233669574,\\n  \\\"distinct_1\\\": 0.10402947839808178,\\n  \\\"distinct_2\\\": 0.5267106260688658,\\n  \\\"distinct_3\\\": 0.816691203046625,\\n  \\\"ece\\\": 0.019933249393078112,\\n  \\\"effective_rank\\\": 65.30501920524436,\\n  \\\"perplexity\\\": 24.876835754631482,\\n  \\\"mauve\\\": 0.031181469084121352,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also check toda_yamamoto function to understand its parameters:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "9e8fb3fa-5d06-4f2f-8086-0d2c763fe1b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZ8WJSrrhuULrQapEMkHrB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 49140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+所有目录和数据确认存在。现在读取 `toda_yamamoto` 函数细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "a8311120-e9a0-4d21-8c79-ba87207ebbe1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZ8WJSrrhuULrQapEMkHrB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 49140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VKMfh656tytuEtmGjW2Vjw`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -n +193 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "d509d724-67aa-4129-845a-21a07e4eea03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZ8WJSrrhuULrQapEMkHrB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 49140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T00:25:59.012Z_
+
+<details><summary>↩ Tool result · `toolu_01VKMfh656tytuEtmGjW2Vjw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"Wald computation failed (singular covariance)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    return {\\n        \\\"method\\\": \\\"toda_yamamoto\\\",\\n        \\\"p\\\": int(p), \\\"d_max\\\": int(d_max), \\\"k\\\": int(k),\\n        \\\"wald_F\\\": round(float(F), 4),\\n        \\\"p_value\\\": round(float(pval), 6),\\n        \\\"significant\\\": bool(pval < ALPHA),\\n        \\\"df_resid\\\": int(df_resid),\\n        \\\"d_canary\\\": int(dc), \\\"d_downstream\\\": int(dd),\\n    }\\n\\n\\n# ─── Orchestration ──────────────────────────────────────────────────────────\\n\\n\\ndef classify_effect_size_r(r_abs):\\n    \\\"\\\"\\\"Classify |r| using Cohen's benchmarks: large(>=0.5)/medium(>=0.3)/small(>=0.1).\\\"\\\"\\\"\\n    if r_abs >= 0.5:\\n        return \\\"large\\\"\\n    if r_abs >= 0.3:\\n        return \\\"medium\\\"\\n    if r_abs >= 0.1:\\n        return \\\"small\\\"\\n    return \\\"negligible\\\"\\n\\n\\ndef classify_effect_size_f2(f2_val):\\n    \\\"\\\"\\\"Classify Cohen's f-squared: large(>=0.35)/medium(>=0.15)/small(>=0.02).\\\"\\\"\\\"\\n    if f2_val >= 0.35:\\n        return \\\"large\\\"\\n    if f2_val >= 0.15:\\n        return \\\"medium\\\"\\n    if f2_val >= 0.02:\\n        return \\\"small\\\"\\n    return \\\"negligible\\\"\\n\\n\\ndef _apply_fdr_and_effect_size(all_pairs):\\n    \\\"\\\"\\\"Apply BH FDR per method and annotate effect sizes on all pairs.\\n\\n    For cross-correlation methods: effect_size_r = |r| (pearson_r).\\n    For Toda-Yamamoto: effect_size = Cohen's f² = F/df_resid.\\n    For threshold: no effect size (None).\\n    BH FDR is applied per method across all pair x seed tests.\\n\\n    Args:\\n        all_pairs: list of pair dicts, modified in-place.\\n    \\\"\\\"\\\"\\n    for pair in all_pairs:\\n     \\n\\n... [截断: 输出过长，省略 12794 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "60225491-b60c-4665-97aa-01cb60342553",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def toda_yamamoto(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n\\\\n    dc, dd = _adf_order(x), _adf_order(y)\\\\n    d_max = max(dc, dd)\\\\n\\\\n    # With T=10, only p=1 is feasible regardless of AIC\\\\n    p = 1\\\\n    k = p + d_max                       # total lags in augmented VAR\\\\n    T_eff = n - k                        # effective sample after lagging\\\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\\\n    df_resid = T_eff - n_params\\\\n\\\\n    if df_resid < 1:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"no residual df (T_eff={T_eff}, params={n_params})\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # OLS for the downstream equation:\\\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\\\n    Y = y[k:]\\\\n    X_cols = [np.ones(T_eff)]\\\\n    for l in range(1, k + 1):\\\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\\\n    X = np.column_stack(X_cols)\\\\n\\\\n    try:\\\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\\\n        resid = Y - X @ beta\\\\n        sigma2 = np.sum(resid ** 2) / df_resid\\\\n        XtX_inv = np.linalg.inv(X.T @ X)\\\\n    except Exception:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"OLS failed (singular design matrix)\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # Wald test on first p canary-lag coefficients only.\\\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\\\n    R = np.zeros((p, n_params))\\\\n    for i, idx in enumerate(test_idx):\\\\n        R[i, idx] = 1.0\\\\n\\\\n    Rb = R @ beta\\\\n    try:\\\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\\\n        # F-test is more appropriate than χ² with few residual df\\\\n        F = W / p\\\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\\\n    except Exception:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"Wald computation failed (singular covariance)\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n        \\\\\\\"p\\\\\\\": int(p), \\\\\\\"d_max\\\\\\\": int(d_max), \\\\\\\"k\\\\\\\": int(k),\\\\n        \\\\\\\"wald_F\\\\\\\": round(float(F), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(pval), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(pval < ALPHA),\\\\n        \\\\\\\"df_resid\\\\\\\": int(df_resid),\\\\n        \\\\\\\"d_canary\\\\\\\": int(dc), \\\\\\\"d_downstream\\\\\\\": int(dd),\\\\n    }\\\\n\\\\n\\\\n# ─── Orchestration ──────────────────────────────────────────────────────────\\\\n\\\\n\\\\ndef classify_effect_size_r(r_abs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Classify |r| using Cohen's benchmarks: large(>=0.5)/medium(>=0.3)/small(>=0.1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if r_abs >= 0.5:\\\\n        return \\\\\\\"large\\\\\\\"\\\\n    if r_abs >= 0.3:\\\\n        return \\\\\\\"medium\\\\\\\"\\\\n    if r_abs >= 0.1:\\\\n        return \\\\\\\"small\\\\\\\"\\\\n    return \\\\\\\"negligible\\\\\\\"\\\\n\\\\n\\\\ndef classify_effect_size_f2(f2_val):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Classify Cohen's f-squared: large(>=0.35)/medium(>=0.15)/small(>=0.02).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if f2_val >= 0.35:\\\\n        return \\\\\\\"large\\\\\\\"\\\\n    if f2_val >= 0.15:\\\\n        return \\\\\\\"medium\\\\\\\"\\\\n    if f2_val >= 0.02:\\\\n        return \\\\\\\"small\\\\\\\"\\\\n    return \\\\\\\"negligible\\\\\\\"\\\\n\\\\n\\\\ndef _apply_fdr_and_effect_size(all_pairs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Apply BH FDR per method and annotate effect sizes on all pairs.\\\\n\\\\n    For cross-correlation methods: effect_size_r = |r| (pearson_r).\\\\n    For Toda-Yamamoto: effect_size = Cohen's f² = F/df_resid.\\\\n    For threshold: no effect size (None).\\\\n    BH FDR is applied per method across all pair x seed tests.\\\\n\\\\n    Args:\\\\n        all_pairs: list of pair dicts, modified in-place.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pair in all_pairs:\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 12794 字符] ...\\\\n\\\\n_fc = output[\\\\\\\"fdr_correction\\\\\\\"][\\\\\\\"per_method\\\\\\\"][_m]\\\\n        print(f\\\\\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    print(f\\\\\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  Spurious regression rate: {spur_rate:.1%}  \\\\\\\"\\\\n          f\\\\\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\\\\\")\\\\n\\\\n    if n_spur:\\\\n        print(f\\\\\\\"\\\\\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\\\\\")\\\\n        for r in all_pairs:\\\\n            if r[\\\\\\\"spurious\\\\\\\"]:\\\\n                print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    robust = [r for r in all_pairs if r[\\\\\\\"robust\\\\\\\"]]\\\\n    if robust:\\\\n        print(f\\\\\\\"\\\\\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\\\\\")\\\\n        for r in robust:\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    # ── Dual classification: 5-method vs 4-method ──\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\\\\\")\\\\n    print(f\\\\\\\"  {'-' * 44}\\\\\\\")\\\\n    print(f\\\\\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\\\\\"\\\\n          f\\\\\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\\\\\")\\\\n    print(f\\\\\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\\\\\"\\\\n          f\\\\\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n\\\\n    if flipped:\\\\n        print(f\\\\\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\\\\\")\\\\n        for r in flipped:\\\\n            s5 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            s4 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}: \\\\\\\"\\\\n                  f\\\\\\\"5m={s5} ({r['methods_agree_5']}/5), \\\\\\\"\\\\n                  f\\\\\\\"4m={s4} ({r['methods_agree_4']}/4)\\\\\\\")\\\\n            if r[\\\\\\\"spurious_reason_5method\\\\\\\"]:\\\\n                print(f\\\\\\\"      reason: {r['spurious_reason_5method']}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"  No flipped pairs between 5-method and 4-method.\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"PER-PAIR DUAL CLASSIFICATION\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    hdr2 = (f\\\\\\\"  {'Canary':<16} {'Downstream':<12} \\\\\\\"\\\\n            f\\\\\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\\\\\")\\\\n    print(hdr2)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 68)\\\\n    for r in all_pairs:\\\\n        r5 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_5method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        r4 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_4method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        reason = r[\\\\\\\"spurious_reason_5method\\\\\\\"] or \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {r['canary']:<16} {r['downstream']:<12} \\\\\\\"\\\\n              f\\\\\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\\\\\")\\\\n\\\\n    # Per-seed detail for significant TY pairs\\\\n    if robust:\\\\n        print()\\\\n        print(\\\\\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 72)\\\\n        for r in robust:\\\\n            print(f\\\\\\\"  {r['canary']} → {r['downstream']}:\\\\\\\")\\\\n            for s in r[\\\\\\\"per_seed\\\\\\\"]:\\\\n                ty = s[\\\\\\\"toda_yamamoto\\\\\\\"]\\\\n                sig_mark = \\\\\\\"*\\\\\\\" if ty[\\\\\\\"significant\\\\\\\"] else \\\\\\\" \\\\\\\"\\\\n                f_str = f\\\\\\\"F={ty['wald_F']:.2f}\\\\\\\" if ty[\\\\\\\"wald_F\\\\\\\"] is not None else \\\\\\\"F=N/A\\\\\\\"\\\\n                p_str = f\\\\\\\"p_raw={ty['p_raw']:.4f}\\\\\\\" if ty[\\\\\\\"p_raw\\\\\\\"] is not None else \\\\\\\"p=N/A\\\\\\\"\\\\n                fdr_str = f\\\\\\\", p_fdr={ty['p_fdr']:.4f}\\\\\\\" if ty.get(\\\\\\\"p_fdr\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                es_str = f\\\\\\\", f2={ty['effect_size_f2']:.4f}\\\\\\\" if ty.get(\\\\\\\"effect_size_f2\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                print(f\\\\\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"Wald computation failed (singular covariance)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    return {\\n        \\\"method\\\": \\\"toda_yamamoto\\\",\\n        \\\"p\\\": int(p), \\\"d_max\\\": int(d_max), \\\"k\\\": int(k),\\n        \\\"wald_F\\\": round(float(F), 4),\\n        \\\"p_value\\\": round(float(pval), 6),\\n        \\\"significant\\\": bool(pval < ALPHA),\\n        \\\"df_resid\\\": int(df_resid),\\n        \\\"d_canary\\\": int(dc), \\\"d_downstream\\\": int(dd),\\n    }\\n\\n\\n# ─── Orchestration ──────────────────────────────────────────────────────────\\n\\n\\ndef classify_effect_size_r(r_abs):\\n    \\\"\\\"\\\"Classify |r| using Cohen's benchmarks: large(>=0.5)/medium(>=0.3)/small(>=0.1).\\\"\\\"\\\"\\n    if r_abs >= 0.5:\\n        return \\\"large\\\"\\n    if r_abs >= 0.3:\\n        return \\\"medium\\\"\\n    if r_abs >= 0.1:\\n        return \\\"small\\\"\\n    return \\\"negligible\\\"\\n\\n\\ndef classify_effect_size_f2(f2_val):\\n    \\\"\\\"\\\"Classify Cohen's f-squared: large(>=0.35)/medium(>=0.15)/small(>=0.02).\\\"\\\"\\\"\\n    if f2_val >= 0.35:\\n        return \\\"large\\\"\\n    if f2_val >= 0.15:\\n        return \\\"medium\\\"\\n    if f2_val >= 0.02:\\n        return \\\"small\\\"\\n    return \\\"negligible\\\"\\n\\n\\ndef _apply_fdr_and_effect_size(all_pairs):\\n    \\\"\\\"\\\"Apply BH FDR per method and annotate effect sizes on all pairs.\\n\\n    For cross-correlation methods: effect_size_r = |r| (pearson_r).\\n    For Toda-Yamamoto: effect_size = Cohen's f² = F/df_resid.\\n    For threshold: no effect size (None).\\n    BH FDR is applied per method across all pair x seed tests.\\n\\n    Args:\\n        all_pairs: list of pair dicts, modified in-place.\\n    \\\"\\\"\\\"\\n    for pair in all_pairs:\\n     \\n\\n... [截断: 输出过长，省略 12794 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have full understanding:
+
+1. `toda_yamamoto(c, d, cn, dn)` - hardcoded `p=1`, uses ADF to determine d_max. No max_lag parameter.
+2. `perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000)` - max_lag and n_perm are configurable
+3. `diff_xcorr(c, d, cn, dn, max_lag=3)` - max_lag configurable
+4. `naive_pearson(c, d, cn, dn, max_lag=3)` - max_lag configurable
+
+
+5. `threshold_lead(c, d, cn, dn)` - no parameters to change
+
+The `analyze_generalize.py` script calls all methods without passing parameters, relying on defaults. I need to write a standalone script that imports these functions and calls them with the correct parameters to ensure consistent max_lag values across all methods.
+
+For granger, the unified params specify max_lag=1, which matches the existing defaults for both TY and PG. For xcorr methods, I need max_lag=5 for diff_xcorr (currently defaults to 3), while naive_pearson isn't explicitly mentioned so I'll keep its default of 3. The script should handle per-experiment CANARY/DOWNSTREAM pairs, compute raw p-values and FDR corrections both per-method and pooled, then output everything as detailed JSON. Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "310854d2-4bad-4d54-ac9f-3b98282cfd79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYmpHCs8dd1sGXeTomphEv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4301,
+      "cache_read_input_tokens": 50349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+理解清楚了所有参数。现在写一个统一参数的分析脚本并上传到服务器执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6c99bcaf-5813-4fde-9667-4332924d2d5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYmpHCs8dd1sGXeTomphEv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4301,
+      "cache_read_input_tokens": 50349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Qsve85GCZYJb4UTZGQWEw8`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py << 'PYEOF'\n\"\"\"Unified-parameter generalization analysis for Table 7 audit.\n\nRuns 5-method causal analysis on 3 generalize experiments with:\n  - n_perm = 5000\n  - xcorr max_lag = 5 (naive_pearson + diff_xcorr)\n  - granger/permg max_lag = 1 (already default)\n  - FDR: BH q=0.05, reported as raw / per-method / pooled\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport warnings\nfrom datetime import datetime\nfrom itertools import product\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.multitest import multipletests\n\nwarnings.filterwarnings(\"ignore\")\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import (\n    extract, orient,\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\n)\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = {\n    \"pythia1b_c4_a100_s42\": {\n        \"label\": \"C4 Domain\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"mauve\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n    \"opt1b_wiki_a100_s42\": {\n        \"label\": \"OPT-1.3B\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n    \"pythia14b_wiki_a100_s42\": {\n        \"label\": \"Scale 1.4B\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n}\n\nN_PERM = 5000\nXCORR_MAX_LAG = 5\nGRANGER_MAX_LAG = 1\nALPHA = 0.05\n\nMETHOD_NAMES = [\"naive_pearson\", \"differenced_xcorr\", \"threshold_onset\",\n                \"toda_yamamoto\", \"permutation_granger\"]\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        return super().default(obj)\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef run_methods(c, d, cn, dn):\n    results = {}\n    # naive_pearson with xcorr max_lag=5\n    results[\"naive_pearson\"] = naive_pearson(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n    # diff_xcorr with xcorr max_lag=5\n    results[\"differenced_xcorr\"] = diff_xcorr(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n    # threshold_lead (no lag param)\n    results[\"threshold_onset\"] = threshold_lead(c, d, cn, dn)\n    # toda_yamamoto (hardcoded p=1)\n    results[\"toda_yamamoto\"] = toda_yamamoto(c, d, cn, dn)\n    # perm_granger with unified params\n    results[\"permutation_granger\"] = perm_granger(c, d, cn, dn,\n                                                   max_lag=GRANGER_MAX_LAG,\n                                                   n_perm=N_PERM)\n    return results\n\n\ndef get_p(res):\n    return res.get(\"p_value\") or res.get(\"p_raw\")\n\n\ndef analyze_one(exp_name, exp_cfg):\n    exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n    metrics_list = assemble_metrics(exp_dir)\n    if metrics_list is None:\n        print(f\"  {exp_name}: no metrics found\", flush=True)\n        return None\n\n    n_gens = len(metrics_list)\n    print(f\"  {exp_name}: {n_gens} generations\", flush=True)\n\n    canaries = exp_cfg[\"canaries\"]\n    downstreams = exp_cfg[\"downstreams\"]\n    pairs = list(product(canaries, downstreams))\n\n    pair_results = {}\n    all_p_method = {m: [] for m in METHOD_NAMES}\n    all_p_method_keys = {m: [] for m in METHOD_NAMES}\n    all_p_pooled = []\n    all_p_pooled_keys = []\n\n    for cn, dn in pairs:\n        pk = f\"{cn}->{dn}\"\n        c = extract(metrics_list, cn)\n        d = extract(metrics_list, dn)\n        res = run_methods(c, d, cn, dn)\n        pair_results[pk] = res\n\n        for mn in METHOD_NAMES:\n            p = get_p(res[mn])\n            if p is not None:\n                all_p_method[mn].append(p)\n                all_p_method_keys[mn].append(pk)\n                all_p_pooled.append(p)\n                all_p_pooled_keys.append((pk, mn))\n\n    # FDR per-method\n    fdr_permethod = {}\n    for mn in METHOD_NAMES:\n        ps = all_p_method[mn]\n        keys = all_p_method_keys[mn]\n        if ps:\n            _, fdr_ps, _, _ = multipletests(ps, alpha=ALPHA, method=\"fdr_bh\")\n            fdr_permethod[mn] = dict(zip(keys, [float(x) for x in fdr_ps]))\n        else:\n            fdr_permethod[mn] = {}\n\n    # FDR pooled (all methods * all pairs together)\n    fdr_pooled = {}\n    if all_p_pooled:\n        _, fdr_ps_pooled, _, _ = multipletests(all_p_pooled, alpha=ALPHA, method=\"fdr_bh\")\n        for i, (pk, mn) in enumerate(all_p_pooled_keys):\n            fdr_pooled[(pk, mn)] = float(fdr_ps_pooled[i])\n\n    # Build summary tables\n    summary = {\n        \"experiment\": exp_name,\n        \"label\": exp_cfg[\"label\"],\n        \"n_generations\": n_gens,\n        \"params\": {\n            \"n_perm\": N_PERM,\n            \"xcorr_max_lag\": XCORR_MAX_LAG,\n            \"granger_max_lag\": GRANGER_MAX_LAG,\n            \"alpha\": ALPHA,\n        },\n        \"pairs\": {},\n        \"method_summary\": {},\n    }\n\n    for pk in pair_results:\n        pair_detail = {}\n        for mn in METHOD_NAMES:\n            res = pair_results[pk][mn]\n            p_raw = get_p(res)\n            p_fdr_pm = fdr_permethod[mn].get(pk)\n            p_fdr_pool = fdr_pooled.get((pk, mn))\n\n            pair_detail[mn] = {\n                \"raw\": {k: v for k, v in res.items()},\n                \"p_raw\": round(p_raw, 6) if p_raw is not None else None,\n                \"p_fdr_permethod\": round(p_fdr_pm, 6) if p_fdr_pm is not None else None,\n                \"p_fdr_pooled\": round(p_fdr_pool, 6) if p_fdr_pool is not None else None,\n                \"sig_raw\": bool(p_raw < ALPHA) if p_raw is not None else False,\n                \"sig_fdr_permethod\": bool(p_fdr_pm < ALPHA) if p_fdr_pm is not None else False,\n                \"sig_fdr_pooled\": bool(p_fdr_pool < ALPHA) if p_fdr_pool is not None else False,\n            }\n        summary[\"pairs\"][pk] = pair_detail\n\n    # Per-method summary counts\n    n_pairs = len(pair_results)\n    for mn in METHOD_NAMES:\n        raw_sig = sum(1 for pk in pair_results\n                      if summary[\"pairs\"][pk][mn][\"sig_raw\"])\n        fdr_pm_sig = sum(1 for pk in pair_results\n                         if summary[\"pairs\"][pk][mn][\"sig_fdr_permethod\"])\n        fdr_pool_sig = sum(1 for pk in pair_results\n                           if summary[\"pairs\"][pk][mn][\"sig_fdr_pooled\"])\n        summary[\"method_summary\"][mn] = {\n            \"raw_sig\": f\"{raw_sig}/{n_pairs}\",\n            \"fdr_permethod_sig\": f\"{fdr_pm_sig}/{n_pairs}\",\n            \"fdr_pooled_sig\": f\"{fdr_pool_sig}/{n_pairs}\",\n        }\n\n    # K>=3 and K>=4 counts\n    for k_thresh in [3, 4]:\n        label = f\"K>={k_thresh}\"\n        raw_cnt = 0\n        fdr_pm_cnt = 0\n        fdr_pool_cnt = 0\n        for pk in pair_results:\n            raw_votes = sum(1 for mn in METHOD_NAMES\n                           if summary[\"pairs\"][pk][mn][\"sig_raw\"])\n            fdr_pm_votes = sum(1 for mn in METHOD_NAMES\n                               if summary[\"pairs\"][pk][mn][\"sig_fdr_permethod\"])\n            fdr_pool_votes = sum(1 for mn in METHOD_NAMES\n                                 if summary[\"pairs\"][pk][mn][\"sig_fdr_pooled\"])\n            if raw_votes >= k_thresh:\n                raw_cnt += 1\n            if fdr_pm_votes >= k_thresh:\n                fdr_pm_cnt += 1\n            if fdr_pool_votes >= k_thresh:\n                fdr_pool_cnt += 1\n        summary[\"method_summary\"][label] = {\n            \"raw_sig\": f\"{raw_cnt}/{n_pairs}\",\n            \"fdr_permethod_sig\": f\"{fdr_pm_cnt}/{n_pairs}\",\n            \"fdr_pooled_sig\": f\"{fdr_pool_cnt}/{n_pairs}\",\n        }\n\n    return summary\n\n\ndef main():\n    all_results = {}\n    for exp_name, exp_cfg in EXPERIMENTS.items():\n        print(f\"\\nAnalyzing {exp_name} ({exp_cfg['label']})...\", flush=True)\n        result = analyze_one(exp_name, exp_cfg)\n        if result:\n            all_results[exp_name] = result\n            # Save per-experiment JSON\n            out_dir = os.path.join(GENERALIZE_DIR, exp_name, \"analysis\")\n            os.makedirs(out_dir, exist_ok=True)\n            out_path = os.path.join(out_dir, \"unified_5method.json\")\n            with open(out_path, \"w\") as f:\n                json.dump(result, f, indent=2, cls=NumpyEncoder)\n            print(f\"  Saved: {out_path}\", flush=True)\n\n    # Save combined JSON\n    combined_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"unified_generalize_all.json\")\n    os.makedirs(os.path.dirname(combined_path), exist_ok=True)\n    with open(combined_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, cls=NumpyEncoder)\n    print(f\"\\nCombined saved: {combined_path}\", flush=True)\n\n    # Print summary table\n    print(\"\\n\" + \"=\" * 90)\n    print(\"SUMMARY TABLE\")\n    print(\"=\" * 90)\n    hdr = f\"{'Experiment':<16} {'Method/K':<22} {'Raw_p<.05':>10} {'FDR_pm':>10} {'FDR_pool':>10}\"\n    print(hdr)\n    print(\"-\" * 90)\n\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        label = r[\"label\"]\n        for key in METHOD_NAMES + [\"K>=3\", \"K>=4\"]:\n            ms = r[\"method_summary\"][key]\n            print(f\"{label:<16} {key:<22} {ms['raw_sig']:>10} \"\n                  f\"{ms['fdr_permethod_sig']:>10} {ms['fdr_pooled_sig']:>10}\")\n        print()\n\n    # Print per-pair PG raw p-values\n    print(\"\\n\" + \"=\" * 90)\n    print(\"PER-PAIR PERMUTATION GRANGER RAW P-VALUES\")\n    print(\"=\" * 90)\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        print(f\"\\n{r['label']} ({exp_name}):\")\n        for pk, pd in r[\"pairs\"].items():\n            pg = pd[\"permutation_granger\"]\n            p_raw = pg[\"p_raw\"]\n            p_fdr_pm = pg[\"p_fdr_permethod\"]\n            p_fdr_pool = pg[\"p_fdr_pooled\"]\n            sig_raw = \"*\" if pg[\"sig_raw\"] else \" \"\n            sig_pm = \"*\" if pg[\"sig_fdr_permethod\"] else \" \"\n            sig_pool = \"*\" if pg[\"sig_fdr_pooled\"] else \" \"\n            p_str = f\"{p_raw:.4f}\" if p_raw is not None else \"N/A\"\n            pm_str = f\"{p_fdr_pm:.4f}\" if p_fdr_pm is not None else \"N/A\"\n            pool_str = f\"{p_fdr_pool:.4f}\" if p_fdr_pool is not None else \"N/A\"\n            print(f\"  {pk:<30} raw={p_str}{sig_raw}  fdr_pm={pm_str}{sig_pm}  fdr_pool={pool_str}{sig_pool}\")\n\n    # Print ALL methods per-pair raw p\n    print(\"\\n\" + \"=\" * 90)\n    print(\"ALL METHODS PER-PAIR RAW P-VALUES\")\n    print(\"=\" * 90)\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        print(f\"\\n{r['label']} ({exp_name}):\")\n        hdr = f\"  {'Pair':<30}\"\n        for mn in METHOD_NAMES:\n            short = mn[:8]\n            hdr += f\" {short:>10}\"\n        print(hdr)\n        print(\"  \" + \"-\" * (30 + 11 * len(METHOD_NAMES)))\n        for pk, pd in r[\"pairs\"].items():\n            line = f\"  {pk:<30}\"\n            for mn in METHOD_NAMES:\n                p = pd[mn][\"p_raw\"]\n                if p is not None:\n                    sig = \"*\" if pd[mn][\"sig_raw\"] else \" \"\n                    line += f\" {p:>9.4f}{sig}\"\n                else:\n                    line += f\" {'N/A':>10}\"\n            print(line)\n\n    print(f\"\\nTimestamp: {datetime.now().isoformat()}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "46bbe99d-2490-4e19-85ab-8f4948b52ebd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYmpHCs8dd1sGXeTomphEv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4301,
+      "cache_read_input_tokens": 50349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4301
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T00:27:08.143Z_
+
+<details><summary>↩ Tool result · `toolu_01Qsve85GCZYJb4UTZGQWEw8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "826ac31b-1188-4c21-ba96-da6ef39b4f90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+脚本已写入。开始执行，n_perm=5000 每个实验约 10-25 分钟。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6d59906c-8b0b-422c-88da-84ffee4f1000",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1D6o8XifpSsko7XkpsKYo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5209,
+      "cache_read_input_tokens": 54650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5209
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01J1WTPmxd57U2naBmif9WNP`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=\"\" python run_unified_generalize.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "faec3160-5e30-4910-a186-40828dd4009d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1D6o8XifpSsko7XkpsKYo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5209,
+      "cache_read_input_tokens": 54650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5209
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T00:27:19.037Z_
+
+<details><summary>↩ Tool result · `toolu_01J1WTPmxd57U2naBmif9WNP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\n  pythia1b_c4_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\n  opt1b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\n  pythia14b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\n\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\n\\n==========================================================================================\\nSUMMARY TABLE\\n==========================================================================================\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\n------------------------------------------------------------------------------------------\\nC4 Domain        naive_pearson                 7/8        7/8        7/8\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\nC4 Domain        threshold_onset               0/8        0/8        0/8\\nC4 Domain        toda_yamamoto                 2/8        2/8        2/8\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\nC4 Domain        K>=3                          7/8        7/8        7/8\\nC4 Domain        K>=4                          2/8        2/8        2/8\\n\\nOPT-1.3B         naive_pearson                 5/8        5/8        5/8\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\nOPT-1.3B         threshold_onset               0/8        0/8        0/8\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\nOPT-1.3B         K>=3                          6/8        6/8        6/8\\nOPT-1.3B         K>=4                          3/8        3/8        3/8\\n\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\nScale 1.4B       threshold_onset               0/8        0/8        0/8\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\nScale 1.4B       K>=3                          5/8        2/8        3/8\\nScale 1.4B       K>=4                          0/8        0/8        0/8\\n\\n\\n==========================================================================================\\nPER-PAIR PERMUTATION GRANGER RAW P-VALUES\\n==========================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  token_entropy->mauve           raw=0.0212*  fdr_pm=0.0242*  fdr_pool=0.0256*\\n  token_entropy->distinct_1      raw=0.0082*  fdr_pm=0.0164*  fdr_pool=0.0113*\\n  token_entropy->distinct_2      raw=0.0126*  fdr_pm=0.0202*  fdr_pool=0.0166*\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0304*\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0224*\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0023*\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0058*\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0113*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0066*\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0169*\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6740 \\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0078*\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0169*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\n\\n==========================================================================================\\nALL METHODS PER-PAIR RAW P-VALUES\\n==========================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->mauve              0.0000*    0.0004*        N/A    0.9430     0.0212*\\n  token_entropy->distinct_1         0.0000*    0.0000*        N/A    0.6920     0.0082*\\n  token_entropy->distinct_2         0.0005*    0.0002*        N/A    0.3737     0.0126*\\n  token_entropy->distinct_3         0.0058*    0.0023*        N/A    0.4465     0.0262*\\n  ece->mauve                        0.0000*    0.0003*        N/A    0.0001*    0.0178*\\n  ece->distinct_1                       N/A    0.0000*        N/A        N/A    0.0012*\\n  ece->distinct_2                   0.0000*    0.0001*        N/A        N/A    0.0036*\\n  ece->distinct_3                   0.0001*    0.0014*        N/A    0.0000*    0.0078*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->perplexity         0.0306*    0.0200*        N/A    0.7519     0.8540 \\n  token_entropy->distinct_1             N/A    0.0000*        N/A    0.0000*    0.0012*\\n  token_entropy->distinct_2         0.0000*    0.0001*        N/A    0.0012*    0.0034*\\n  token_entropy->distinct_3         0.0001*    0.0043*        N/A    0.0127*    0.0128*\\n  ece->perplexity                   0.0019*    0.0104*        N/A    0.1040     0.6275 \\n  ece->distinct_1                       N/A    0.0004*        N/A    0.0000*    0.0012*\\n  ece->distinct_2                       N/A    0.0006*        N/A    0.0010*    0.0046*\\n  ece->distinct_3                   0.0001*    0.0062*        N/A    0.0155*    0.0126*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->perplexity         0.0825     0.0954         N/A    0.5718     0.7163 \\n  token_entropy->distinct_1         0.0003*    0.0000*        N/A    0.6204     0.0274*\\n  token_entropy->distinct_2         0.0154*    0.0000*        N/A    0.8843     0.0346*\\n  token_entropy->distinct_3         0.0160*    0.0006*        N/A    0.7862     0.0532 \\n  ece->perplexity                   0.0000*    0.0542         N/A    0.2983     0.5739 \\n  ece->distinct_1                   0.0000*    0.0000*        N/A    0.7104     0.0042*\\n  ece->distinct_2                   0.0000*    0.0000*        N/A    0.6745     0.0086*\\n  ece->distinct_3                   0.0000*    0.0002*        N/A    0.6118     0.0216*\\n\\nTimestamp: 2026-05-18T08:27:18.904493\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6531d097-bf5f-465d-9b51-ac9907173ccb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\\\n  pythia1b_c4_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\\\n\\\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\\\n  opt1b_wiki_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\\\n\\\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\\\n  pythia14b_wiki_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\\\n\\\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\\\n\\\\n==========================================================================================\\\\nSUMMARY TABLE\\\\n==========================================================================================\\\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\\\n------------------------------------------------------------------------------------------\\\\nC4 Domain        naive_pearson                 7/8        7/8        7/8\\\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\\\nC4 Domain        threshold_onset               0/8        0/8        0/8\\\\nC4 Domain        toda_yamamoto                 2/8        2/8        2/8\\\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\\\nC4 Domain        K>=3                          7/8        7/8        7/8\\\\nC4 Domain        K>=4                          2/8        2/8        2/8\\\\n\\\\nOPT-1.3B         naive_pearson                 5/8        5/8        5/8\\\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\\\nOPT-1.3B         threshold_onset               0/8        0/8        0/8\\\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\\\nOPT-1.3B         K>=3                          6/8        6/8        6/8\\\\nOPT-1.3B         K>=4                          3/8        3/8        3/8\\\\n\\\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\\\nScale 1.4B       threshold_onset               0/8        0/8        0/8\\\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\\\nScale 1.4B       K>=3                          5/8        2/8        3/8\\\\nScale 1.4B       K>=4                          0/8        0/8        0/8\\\\n\\\\n\\\\n==========================================================================================\\\\nPER-PAIR PERMUTATION GRANGER RAW P-VALUES\\\\n==========================================================================================\\\\n\\\\nC4 Domain (pythia1b_c4_a100_s42):\\\\n  token_entropy->mauve           raw=0.0212*  fdr_pm=0.0242*  fdr_pool=0.0256*\\\\n  token_entropy->distinct_1      raw=0.0082*  fdr_pm=0.0164*  fdr_pool=0.0113*\\\\n  token_entropy->distinct_2      raw=0.0126*  fdr_pm=0.0202*  fdr_pool=0.0166*\\\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0304*\\\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0224*\\\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0023*\\\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0058*\\\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0113*\\\\n\\\\nOPT-1.3B (opt1b_wiki_a100_s42):\\\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\\\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0066*\\\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0169*\\\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6740 \\\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0078*\\\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0169*\\\\n\\\\nScale 1.4B (pythia14b_wiki_a100_s42):\\\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\\\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\\\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\\\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\\\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\\\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\\\n\\\\n==========================================================================================\\\\nALL METHODS PER-PAIR RAW P-VALUES\\\\n==========================================================================================\\\\n\\\\nC4 Domain (pythia1b_c4_a100_s42):\\\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\\\n  -------------------------------------------------------------------------------------\\\\n  token_entropy->mauve              0.0000*    0.0004*        N/A    0.9430     0.0212*\\\\n  token_entropy->distinct_1         0.0000*    0.0000*        N/A    0.6920     0.0082*\\\\n  token_entropy->distinct_2         0.0005*    0.0002*        N/A    0.3737     0.0126*\\\\n  token_entropy->distinct_3         0.0058*    0.0023*        N/A    0.4465     0.0262*\\\\n  ece->mauve                        0.0000*    0.0003*        N/A    0.0001*    0.0178*\\\\n  ece->distinct_1                       N/A    0.0000*        N/A        N/A    0.0012*\\\\n  ece->distinct_2                   0.0000*    0.0001*        N/A        N/A    0.0036*\\\\n  ece->distinct_3                   0.0001*    0.0014*        N/A    0.0000*    0.0078*\\\\n\\\\nOPT-1.3B (opt1b_wiki_a100_s42):\\\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\\\n  -------------------------------------------------------------------------------------\\\\n  token_entropy->perplexity         0.0306*    0.0200*        N/A    0.7519     0.8540 \\\\n  token_entropy->distinct_1             N/A    0.0000*        N/A    0.0000*    0.0012*\\\\n  token_entropy->distinct_2         0.0000*    0.0001*        N/A    0.0012*    0.0034*\\\\n  token_entropy->distinct_3         0.0001*    0.0043*        N/A    0.0127*    0.0128*\\\\n  ece->perplexity                   0.0019*    0.0104*        N/A    0.1040     0.6275 \\\\n  ece->distinct_1                       N/A    0.0004*        N/A    0.0000*    0.0012*\\\\n  ece->distinct_2                       N/A    0.0006*        N/A    0.0010*    0.0046*\\\\n  ece->distinct_3                   0.0001*    0.0062*        N/A    0.0155*    0.0126*\\\\n\\\\nScale 1.4B (pythia14b_wiki_a100_s42):\\\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\\\n  -------------------------------------------------------------------------------------\\\\n  token_entropy->perplexity         0.0825     0.0954         N/A    0.5718     0.7163 \\\\n  token_entropy->distinct_1         0.0003*    0.0000*        N/A    0.6204     0.0274*\\\\n  token_entropy->distinct_2         0.0154*    0.0000*        N/A    0.8843     0.0346*\\\\n  token_entropy->distinct_3         0.0160*    0.0006*        N/A    0.7862     0.0532 \\\\n  ece->perplexity                   0.0000*    0.0542         N/A    0.2983     0.5739 \\\\n  ece->distinct_1                   0.0000*    0.0000*        N/A    0.7104     0.0042*\\\\n  ece->distinct_2                   0.0000*    0.0000*        N/A    0.6745     0.0086*\\\\n  ece->distinct_3                   0.0000*    0.0002*        N/A    0.6118     0.0216*\\\\n\\\\nTimestamp: 2026-05-18T08:27:18.904493\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\n  pythia1b_c4_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\n  opt1b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\n  pythia14b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\n\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\n\\n==========================================================================================\\nSUMMARY TABLE\\n==========================================================================================\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\n------------------------------------------------------------------------------------------\\nC4 Domain        naive_pearson                 7/8        7/8        7/8\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\nC4 Domain        threshold_onset               0/8        0/8        0/8\\nC4 Domain        toda_yamamoto                 2/8        2/8        2/8\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\nC4 Domain        K>=3                          7/8        7/8        7/8\\nC4 Domain        K>=4                          2/8        2/8        2/8\\n\\nOPT-1.3B         naive_pearson                 5/8        5/8        5/8\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\nOPT-1.3B         threshold_onset               0/8        0/8        0/8\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\nOPT-1.3B         K>=3                          6/8        6/8        6/8\\nOPT-1.3B         K>=4                          3/8        3/8        3/8\\n\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\nScale 1.4B       threshold_onset               0/8        0/8        0/8\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\nScale 1.4B       K>=3                          5/8        2/8        3/8\\nScale 1.4B       K>=4                          0/8        0/8        0/8\\n\\n\\n==========================================================================================\\nPER-PAIR PERMUTATION GRANGER RAW P-VALUES\\n==========================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  token_entropy->mauve           raw=0.0212*  fdr_pm=0.0242*  fdr_pool=0.0256*\\n  token_entropy->distinct_1      raw=0.0082*  fdr_pm=0.0164*  fdr_pool=0.0113*\\n  token_entropy->distinct_2      raw=0.0126*  fdr_pm=0.0202*  fdr_pool=0.0166*\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0304*\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0224*\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0023*\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0058*\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0113*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0066*\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0169*\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6740 \\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0027*\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0078*\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0169*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\n\\n==========================================================================================\\nALL METHODS PER-PAIR RAW P-VALUES\\n==========================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->mauve              0.0000*    0.0004*        N/A    0.9430     0.0212*\\n  token_entropy->distinct_1         0.0000*    0.0000*        N/A    0.6920     0.0082*\\n  token_entropy->distinct_2         0.0005*    0.0002*        N/A    0.3737     0.0126*\\n  token_entropy->distinct_3         0.0058*    0.0023*        N/A    0.4465     0.0262*\\n  ece->mauve                        0.0000*    0.0003*        N/A    0.0001*    0.0178*\\n  ece->distinct_1                       N/A    0.0000*        N/A        N/A    0.0012*\\n  ece->distinct_2                   0.0000*    0.0001*        N/A        N/A    0.0036*\\n  ece->distinct_3                   0.0001*    0.0014*        N/A    0.0000*    0.0078*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->perplexity         0.0306*    0.0200*        N/A    0.7519     0.8540 \\n  token_entropy->distinct_1             N/A    0.0000*        N/A    0.0000*    0.0012*\\n  token_entropy->distinct_2         0.0000*    0.0001*        N/A    0.0012*    0.0034*\\n  token_entropy->distinct_3         0.0001*    0.0043*        N/A    0.0127*    0.0128*\\n  ece->perplexity                   0.0019*    0.0104*        N/A    0.1040     0.6275 \\n  ece->distinct_1                       N/A    0.0004*        N/A    0.0000*    0.0012*\\n  ece->distinct_2                       N/A    0.0006*        N/A    0.0010*    0.0046*\\n  ece->distinct_3                   0.0001*    0.0062*        N/A    0.0155*    0.0126*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  Pair                             naive_pe   differen   threshol   toda_yam   permutat\\n  -------------------------------------------------------------------------------------\\n  token_entropy->perplexity         0.0825     0.0954         N/A    0.5718     0.7163 \\n  token_entropy->distinct_1         0.0003*    0.0000*        N/A    0.6204     0.0274*\\n  token_entropy->distinct_2         0.0154*    0.0000*        N/A    0.8843     0.0346*\\n  token_entropy->distinct_3         0.0160*    0.0006*        N/A    0.7862     0.0532 \\n  ece->perplexity                   0.0000*    0.0542         N/A    0.2983     0.5739 \\n  ece->distinct_1                   0.0000*    0.0000*        N/A    0.7104     0.0042*\\n  ece->distinct_2                   0.0000*    0.0000*        N/A    0.6745     0.0086*\\n  ece->distinct_3                   0.0000*    0.0002*        N/A    0.6118     0.0216*\\n\\nTimestamp: 2026-05-18T08:27:18.904493\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis ran much faster than expected (5 seconds instead of 10-25 minutes), likely because 11 generations is a short time series and the permutation test loops are fast with NumPy.
+
+Now let me compile the final report. Let me note the key findings:
+
+Some issues I notice:
+1. `threshold_onset` returns N/A for all pairs - this is because it uses p_value and the function likely returns a dict without "p_value" key. Let me check what threshold_lead returns.
+
+
+2. `naive_pearson` shows N/A for some pairs, probably because the underlying function returned results without the expected "p_value" or "p_raw" keys that the extraction function needs.
+
+Looking at the specific N/A cases across the datasets, I notice a pattern - some metric pairs like ece->distinct_1 consistently return N/A while others like ece->distinct_2 have actual values. This suggests the issue might be related to zero variance in one of the series for certain lag ranges, which would cause the correlation calculation to fail.
+
+Actually, I think I've found the bug - in my `get_p` function, when `p_value` is exactly 0.0, the expression `0.0 or res.get("p_raw")` treats 0.0 as falsy and falls through to look for a "p_raw" key that doesn't exist in the naive_pearson results, returning None instead. That's why some entries show N/A even though they should have valid p-values. Let me fix this logic and rerun the analysis. I'm fixing the `get_p` function to check if `p_value` exists first, then fall back to `p_raw` if needed. The real issue is that `threshold_lead` returns a `"significant"` boolean but no p-value, which explains why those entries show N/A—that's actually correct since threshold methods don't produce p-values for FDR correction, though they should still count toward the K>=3 threshold.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "2365bb22-34e7-4fe3-8384-e85e6d9e3708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mgaiz6Mf5Jn1ugCRmVhKDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 59859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+两个 bug 需要修复：(1) `get_p` 对 p_value=0.0 返回 None（Python 的 `0.0 or x` 是 falsy），(2) threshold_onset 没有 p_value 但有 significant 字段，需要正确参与 K 投票。让我修复后重跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "d8eaa77b-02bc-4593-a4c0-bcc77daf712b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mgaiz6Mf5Jn1ugCRmVhKDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 59859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TMLy7UVZbL3373jKJPHecm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -n +142 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "38530e73-e21c-47d1-ab01-9f2378b4c1ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mgaiz6Mf5Jn1ugCRmVhKDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 59859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3403
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-18T00:27:48.985Z_
+
+<details><summary>↩ Tool result · `toolu_01TMLy7UVZbL3373jKJPHecm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def threshold_lead(c, d, cn, dn):\\n    \\\"\\\"\\\"Lead time based on 2σ signal-onset detection.\\\"\\\"\\\"\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        missing = []\\n        if co is None:\\n            missing.append(\\\"canary\\\")\\n        if do is None:\\n            missing.append(\\\"downstream\\\")\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"onset not detected for: {', '.join(missing)}\\\",\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n        \\\"lead_time\\\": int(lt),\\n        \\\"significant\\\": bool(lt > 0),\\n    }\\n\\n\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\n# series, but the Wald test is restricted to the first p lag coefficients.\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\n# so power is low — significant results here are highly credible.\\n\\ndef _adf_order(series, max_d=2):\\n    \\\"\\\"\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\"\\\"\\\"\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception\\n\\n... [截断: 输出过长，省略 14508 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "c804127d-c7f7-48dd-8737-333a6b090129",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def threshold_lead(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Lead time based on 2σ signal-onset detection.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    co = _onset_gen(c, cn)\\\\n    do = _onset_gen(d, dn)\\\\n    if co is None or do is None:\\\\n        missing = []\\\\n        if co is None:\\\\n            missing.append(\\\\\\\"canary\\\\\\\")\\\\n        if do is None:\\\\n            missing.append(\\\\\\\"downstream\\\\\\\")\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": None if co is None else int(co),\\\\n            \\\\\\\"downstream_onset\\\\\\\": None if do is None else int(do),\\\\n            \\\\\\\"lead_time\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"onset not detected for: {', '.join(missing)}\\\\\\\",\\\\n        }\\\\n    lt = do - co\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": int(co),\\\\n        \\\\\\\"downstream_onset\\\\\\\": int(do),\\\\n        \\\\\\\"lead_time\\\\\\\": int(lt),\\\\n        \\\\\\\"significant\\\\\\\": bool(lt > 0),\\\\n    }\\\\n\\\\n\\\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\\\n# series, but the Wald test is restricted to the first p lag coefficients.\\\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\\\n# so power is low — significant results here are highly credible.\\\\n\\\\ndef _adf_order(series, max_d=2):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for d in range(max_d + 1):\\\\n        s = series.copy()\\\\n        for _ in range(d):\\\\n            s = np.diff(s)\\\\n        if len(s) < 5:\\\\n            return d\\\\n        try:\\\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\\\n                return d\\\\n        except Exception:\\\\n            pass\\\\n    return max_d\\\\n\\\\n\\\\ndef toda_yamamoto(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n\\\\n    dc, dd = _adf_order(x), _adf_order(y)\\\\n    d_max = max(dc, dd)\\\\n\\\\n    # With T=10, only p=1 is feasible regardless of AIC\\\\n    p = 1\\\\n    k = p + d_max                       # total lags in augmented VAR\\\\n    T_eff = n - k                        # effective sample after lagging\\\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\\\n    df_resid = T_eff - n_params\\\\n\\\\n    if df_resid < 1:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"no residual df (T_eff={T_eff}, params={n_params})\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # OLS for the downstream equation:\\\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\\\n    Y = y[k:]\\\\n    X_cols = [np.ones(T_eff)]\\\\n    for l in range(1, k + 1):\\\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\\\n    X = np.column_stack(X_cols)\\\\n\\\\n    try:\\\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\\\n        resid = Y - X @ beta\\\\n        sigma2 = np.sum(resid ** 2) / df_resid\\\\n        XtX_inv = np.linalg.inv(X.T @ X)\\\\n    except Exception:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"OLS failed (singular design matrix)\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # Wald test on first p canary-lag coefficients only.\\\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\\\n    R = np.zeros((p, n_params))\\\\n    for i, idx in enumerate(test_idx):\\\\n        R[i, idx] = 1.0\\\\n\\\\n    Rb = R @ beta\\\\n    try:\\\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\\\n        # F-test is more appropriate than χ² with few residual df\\\\n        F = W / p\\\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\\\n    except Exception\\\\n\\\\n... [截断: 输出过长，省略 14508 字符] ...\\\\n\\\\n_fc = output[\\\\\\\"fdr_correction\\\\\\\"][\\\\\\\"per_method\\\\\\\"][_m]\\\\n        print(f\\\\\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    print(f\\\\\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  Spurious regression rate: {spur_rate:.1%}  \\\\\\\"\\\\n          f\\\\\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\\\\\")\\\\n\\\\n    if n_spur:\\\\n        print(f\\\\\\\"\\\\\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\\\\\")\\\\n        for r in all_pairs:\\\\n            if r[\\\\\\\"spurious\\\\\\\"]:\\\\n                print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    robust = [r for r in all_pairs if r[\\\\\\\"robust\\\\\\\"]]\\\\n    if robust:\\\\n        print(f\\\\\\\"\\\\\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\\\\\")\\\\n        for r in robust:\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    # ── Dual classification: 5-method vs 4-method ──\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\\\\\")\\\\n    print(f\\\\\\\"  {'-' * 44}\\\\\\\")\\\\n    print(f\\\\\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\\\\\"\\\\n          f\\\\\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\\\\\")\\\\n    print(f\\\\\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\\\\\"\\\\n          f\\\\\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n\\\\n    if flipped:\\\\n        print(f\\\\\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\\\\\")\\\\n        for r in flipped:\\\\n            s5 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            s4 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}: \\\\\\\"\\\\n                  f\\\\\\\"5m={s5} ({r['methods_agree_5']}/5), \\\\\\\"\\\\n                  f\\\\\\\"4m={s4} ({r['methods_agree_4']}/4)\\\\\\\")\\\\n            if r[\\\\\\\"spurious_reason_5method\\\\\\\"]:\\\\n                print(f\\\\\\\"      reason: {r['spurious_reason_5method']}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"  No flipped pairs between 5-method and 4-method.\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"PER-PAIR DUAL CLASSIFICATION\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    hdr2 = (f\\\\\\\"  {'Canary':<16} {'Downstream':<12} \\\\\\\"\\\\n            f\\\\\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\\\\\")\\\\n    print(hdr2)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 68)\\\\n    for r in all_pairs:\\\\n        r5 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_5method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        r4 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_4method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        reason = r[\\\\\\\"spurious_reason_5method\\\\\\\"] or \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {r['canary']:<16} {r['downstream']:<12} \\\\\\\"\\\\n              f\\\\\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\\\\\")\\\\n\\\\n    # Per-seed detail for significant TY pairs\\\\n    if robust:\\\\n        print()\\\\n        print(\\\\\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 72)\\\\n        for r in robust:\\\\n            print(f\\\\\\\"  {r['canary']} → {r['downstream']}:\\\\\\\")\\\\n            for s in r[\\\\\\\"per_seed\\\\\\\"]:\\\\n                ty = s[\\\\\\\"toda_yamamoto\\\\\\\"]\\\\n                sig_mark = \\\\\\\"*\\\\\\\" if ty[\\\\\\\"significant\\\\\\\"] else \\\\\\\" \\\\\\\"\\\\n                f_str = f\\\\\\\"F={ty['wald_F']:.2f}\\\\\\\" if ty[\\\\\\\"wald_F\\\\\\\"] is not None else \\\\\\\"F=N/A\\\\\\\"\\\\n                p_str = f\\\\\\\"p_raw={ty['p_raw']:.4f}\\\\\\\" if ty[\\\\\\\"p_raw\\\\\\\"] is not None else \\\\\\\"p=N/A\\\\\\\"\\\\n                fdr_str = f\\\\\\\", p_fdr={ty['p_fdr']:.4f}\\\\\\\" if ty.get(\\\\\\\"p_fdr\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                es_str = f\\\\\\\", f2={ty['effect_size_f2']:.4f}\\\\\\\" if ty.get(\\\\\\\"effect_size_f2\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                print(f\\\\\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def threshold_lead(c, d, cn, dn):\\n    \\\"\\\"\\\"Lead time based on 2σ signal-onset detection.\\\"\\\"\\\"\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        missing = []\\n        if co is None:\\n            missing.append(\\\"canary\\\")\\n        if do is None:\\n            missing.append(\\\"downstream\\\")\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"onset not detected for: {', '.join(missing)}\\\",\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n        \\\"lead_time\\\": int(lt),\\n        \\\"significant\\\": bool(lt > 0),\\n    }\\n\\n\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\n# series, but the Wald test is restricted to the first p lag coefficients.\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\n# so power is low — significant results here are highly credible.\\n\\ndef _adf_order(series, max_d=2):\\n    \\\"\\\"\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\"\\\"\\\"\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception\\n\\n... [截断: 输出过长，省略 14508 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see:
+1. `threshold_lead` returns `"significant"` boolean but NO `"p_value"`. It uses onset detection, not a statistical test. So threshold can't participate in FDR but should participate in K votes using its `significant` field.
+
+2. `toda_yamamoto` returns `"p_value"` (or `None` when df_resid < 1).
+
+3. `naive_pearson` returns `"p_value"` — the bug is in my `get_p` function where `0.0 or x` is falsy.
+
+Let me fix the script:
+1. Fix `get_p` to use explicit `is not None` check
+
+
+2. For K votes, use `significant` field from raw results for threshold_onset
+3. For FDR, threshold doesn't participate (correct)
+
+I'm also noticing that naive_pearson shows "N/A" for some entries but "0.0000*" for others — the N/A cases are where p_value was exactly 0.0, likely from perfect correlations. The `toda_yamamoto` function can also return `None` when it fails, so I need to handle that case too. Let me update the script to fix these issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "aa0f3387-a6a9-435d-b37f-6152e22f4f19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjkovQXufuP7658WyYUcDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 63262,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C5dAFKwTA85vJ2DcATQVG3`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py << 'PYEOF'\n\"\"\"Unified-parameter generalization analysis for Table 7 audit.\n\nRuns 5-method causal analysis on 3 generalize experiments with:\n  - n_perm = 5000\n  - xcorr max_lag = 5 (naive_pearson + diff_xcorr)\n  - granger/permg max_lag = 1 (already default)\n  - FDR: BH q=0.05, reported as raw / per-method / pooled\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport warnings\nfrom datetime import datetime\nfrom itertools import product\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.multitest import multipletests\n\nwarnings.filterwarnings(\"ignore\")\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import (\n    extract, orient,\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\n)\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = {\n    \"pythia1b_c4_a100_s42\": {\n        \"label\": \"C4 Domain\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"mauve\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n    \"opt1b_wiki_a100_s42\": {\n        \"label\": \"OPT-1.3B\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n    \"pythia14b_wiki_a100_s42\": {\n        \"label\": \"Scale 1.4B\",\n        \"canaries\": [\"token_entropy\", \"ece\"],\n        \"downstreams\": [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"],\n    },\n}\n\nN_PERM = 5000\nXCORR_MAX_LAG = 5\nGRANGER_MAX_LAG = 1\nALPHA = 0.05\n\nMETHOD_NAMES = [\"naive_pearson\", \"differenced_xcorr\", \"threshold_onset\",\n                \"toda_yamamoto\", \"permutation_granger\"]\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        return super().default(obj)\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef run_methods(c, d, cn, dn):\n    results = {}\n    results[\"naive_pearson\"] = naive_pearson(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n    results[\"differenced_xcorr\"] = diff_xcorr(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n    results[\"threshold_onset\"] = threshold_lead(c, d, cn, dn)\n    results[\"toda_yamamoto\"] = toda_yamamoto(c, d, cn, dn)\n    results[\"permutation_granger\"] = perm_granger(c, d, cn, dn,\n                                                   max_lag=GRANGER_MAX_LAG,\n                                                   n_perm=N_PERM)\n    return results\n\n\ndef get_p(res):\n    \"\"\"Extract p-value, handling p=0.0 correctly (0.0 is valid, not None).\"\"\"\n    p = res.get(\"p_value\")\n    if p is not None:\n        return p\n    p = res.get(\"p_raw\")\n    if p is not None:\n        return p\n    return None\n\n\ndef is_sig_raw(res):\n    \"\"\"Check significance: use p_value if available, else use 'significant' field.\"\"\"\n    p = get_p(res)\n    if p is not None:\n        return bool(p < ALPHA)\n    sig = res.get(\"significant\")\n    if sig is not None:\n        return bool(sig)\n    return False\n\n\ndef analyze_one(exp_name, exp_cfg):\n    exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n    metrics_list = assemble_metrics(exp_dir)\n    if metrics_list is None:\n        print(f\"  {exp_name}: no metrics found\", flush=True)\n        return None\n\n    n_gens = len(metrics_list)\n    print(f\"  {exp_name}: {n_gens} generations\", flush=True)\n\n    canaries = exp_cfg[\"canaries\"]\n    downstreams = exp_cfg[\"downstreams\"]\n    pairs = list(product(canaries, downstreams))\n\n    pair_results = {}\n    all_p_method = {m: [] for m in METHOD_NAMES}\n    all_p_method_keys = {m: [] for m in METHOD_NAMES}\n    all_p_pooled = []\n    all_p_pooled_keys = []\n\n    for cn, dn in pairs:\n        pk = f\"{cn}->{dn}\"\n        c = extract(metrics_list, cn)\n        d = extract(metrics_list, dn)\n        res = run_methods(c, d, cn, dn)\n        pair_results[pk] = res\n\n        for mn in METHOD_NAMES:\n            p = get_p(res[mn])\n            if p is not None:\n                all_p_method[mn].append(p)\n                all_p_method_keys[mn].append(pk)\n                all_p_pooled.append(p)\n                all_p_pooled_keys.append((pk, mn))\n\n    # FDR per-method\n    fdr_permethod = {}\n    for mn in METHOD_NAMES:\n        ps = all_p_method[mn]\n        keys = all_p_method_keys[mn]\n        if ps:\n            _, fdr_ps, _, _ = multipletests(ps, alpha=ALPHA, method=\"fdr_bh\")\n            fdr_permethod[mn] = dict(zip(keys, [float(x) for x in fdr_ps]))\n        else:\n            fdr_permethod[mn] = {}\n\n    # FDR pooled\n    fdr_pooled = {}\n    if all_p_pooled:\n        _, fdr_ps_pooled, _, _ = multipletests(all_p_pooled, alpha=ALPHA, method=\"fdr_bh\")\n        for i, (pk, mn) in enumerate(all_p_pooled_keys):\n            fdr_pooled[(pk, mn)] = float(fdr_ps_pooled[i])\n\n    n_pairs = len(pair_results)\n    summary = {\n        \"experiment\": exp_name,\n        \"label\": exp_cfg[\"label\"],\n        \"n_generations\": n_gens,\n        \"params\": {\n            \"n_perm\": N_PERM, \"xcorr_max_lag\": XCORR_MAX_LAG,\n            \"granger_max_lag\": GRANGER_MAX_LAG, \"alpha\": ALPHA,\n        },\n        \"pairs\": {},\n        \"method_summary\": {},\n    }\n\n    for pk in pair_results:\n        pair_detail = {}\n        for mn in METHOD_NAMES:\n            res = pair_results[pk][mn]\n            p_raw = get_p(res)\n            p_fdr_pm = fdr_permethod[mn].get(pk)\n            p_fdr_pool = fdr_pooled.get((pk, mn))\n\n            sig_raw = is_sig_raw(res)\n            sig_fdr_pm = bool(p_fdr_pm is not None and p_fdr_pm < ALPHA)\n            sig_fdr_pool = bool(p_fdr_pool is not None and p_fdr_pool < ALPHA)\n\n            # For threshold_onset (no p-value), use raw significant for all scopes\n            if p_raw is None:\n                sig_fdr_pm = sig_raw\n                sig_fdr_pool = sig_raw\n\n            pair_detail[mn] = {\n                \"raw\": {k: v for k, v in res.items()},\n                \"p_raw\": round(p_raw, 6) if p_raw is not None else None,\n                \"p_fdr_permethod\": round(p_fdr_pm, 6) if p_fdr_pm is not None else None,\n                \"p_fdr_pooled\": round(p_fdr_pool, 6) if p_fdr_pool is not None else None,\n                \"sig_raw\": sig_raw,\n                \"sig_fdr_permethod\": sig_fdr_pm,\n                \"sig_fdr_pooled\": sig_fdr_pool,\n            }\n        summary[\"pairs\"][pk] = pair_detail\n\n    # Per-method summary counts\n    for mn in METHOD_NAMES:\n        raw_sig = sum(1 for pk in pair_results\n                      if summary[\"pairs\"][pk][mn][\"sig_raw\"])\n        fdr_pm_sig = sum(1 for pk in pair_results\n                         if summary[\"pairs\"][pk][mn][\"sig_fdr_permethod\"])\n        fdr_pool_sig = sum(1 for pk in pair_results\n                           if summary[\"pairs\"][pk][mn][\"sig_fdr_pooled\"])\n        summary[\"method_summary\"][mn] = {\n            \"raw_sig\": f\"{raw_sig}/{n_pairs}\",\n            \"fdr_permethod_sig\": f\"{fdr_pm_sig}/{n_pairs}\",\n            \"fdr_pooled_sig\": f\"{fdr_pool_sig}/{n_pairs}\",\n        }\n\n    # K>=3 and K>=4 counts\n    for k_thresh in [3, 4]:\n        label = f\"K>={k_thresh}\"\n        raw_cnt = fdr_pm_cnt = fdr_pool_cnt = 0\n        for pk in pair_results:\n            raw_votes = sum(1 for mn in METHOD_NAMES\n                           if summary[\"pairs\"][pk][mn][\"sig_raw\"])\n            fdr_pm_votes = sum(1 for mn in METHOD_NAMES\n                               if summary[\"pairs\"][pk][mn][\"sig_fdr_permethod\"])\n            fdr_pool_votes = sum(1 for mn in METHOD_NAMES\n                                 if summary[\"pairs\"][pk][mn][\"sig_fdr_pooled\"])\n            if raw_votes >= k_thresh:\n                raw_cnt += 1\n            if fdr_pm_votes >= k_thresh:\n                fdr_pm_cnt += 1\n            if fdr_pool_votes >= k_thresh:\n                fdr_pool_cnt += 1\n        summary[\"method_summary\"][label] = {\n            \"raw_sig\": f\"{raw_cnt}/{n_pairs}\",\n            \"fdr_permethod_sig\": f\"{fdr_pm_cnt}/{n_pairs}\",\n            \"fdr_pooled_sig\": f\"{fdr_pool_cnt}/{n_pairs}\",\n        }\n\n    return summary\n\n\ndef main():\n    all_results = {}\n    for exp_name, exp_cfg in EXPERIMENTS.items():\n        print(f\"\\nAnalyzing {exp_name} ({exp_cfg['label']})...\", flush=True)\n        result = analyze_one(exp_name, exp_cfg)\n        if result:\n            all_results[exp_name] = result\n            out_dir = os.path.join(GENERALIZE_DIR, exp_name, \"analysis\")\n            os.makedirs(out_dir, exist_ok=True)\n            out_path = os.path.join(out_dir, \"unified_5method.json\")\n            with open(out_path, \"w\") as f:\n                json.dump(result, f, indent=2, cls=NumpyEncoder)\n            print(f\"  Saved: {out_path}\", flush=True)\n\n    combined_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"unified_generalize_all.json\")\n    os.makedirs(os.path.dirname(combined_path), exist_ok=True)\n    with open(combined_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, cls=NumpyEncoder)\n    print(f\"\\nCombined saved: {combined_path}\", flush=True)\n\n    # === SUMMARY TABLE ===\n    print(\"\\n\" + \"=\" * 90)\n    print(\"SUMMARY TABLE\")\n    print(\"=\" * 90)\n    hdr = f\"{'Experiment':<16} {'Method/K':<22} {'Raw_p<.05':>10} {'FDR_pm':>10} {'FDR_pool':>10}\"\n    print(hdr)\n    print(\"-\" * 90)\n\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        label = r[\"label\"]\n        for key in METHOD_NAMES + [\"K>=3\", \"K>=4\"]:\n            ms = r[\"method_summary\"][key]\n            print(f\"{label:<16} {key:<22} {ms['raw_sig']:>10} \"\n                  f\"{ms['fdr_permethod_sig']:>10} {ms['fdr_pooled_sig']:>10}\")\n        print()\n\n    # === ALL METHODS PER-PAIR RAW P-VALUES ===\n    print(\"\\n\" + \"=\" * 100)\n    print(\"ALL METHODS PER-PAIR RAW P-VALUES (threshold uses sig field, not p)\")\n    print(\"=\" * 100)\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        print(f\"\\n{r['label']} ({exp_name}):\")\n        hdr = f\"  {'Pair':<30}\"\n        for mn in METHOD_NAMES:\n            short = mn[:10]\n            hdr += f\" {short:>12}\"\n        print(hdr)\n        print(\"  \" + \"-\" * (30 + 13 * len(METHOD_NAMES)))\n        for pk, pd in r[\"pairs\"].items():\n            line = f\"  {pk:<30}\"\n            for mn in METHOD_NAMES:\n                p = pd[mn][\"p_raw\"]\n                sig = pd[mn][\"sig_raw\"]\n                if p is not None:\n                    sig_mark = \"*\" if sig else \" \"\n                    line += f\" {p:>11.4f}{sig_mark}\"\n                else:\n                    # threshold_onset: show sig status\n                    if mn == \"threshold_onset\":\n                        line += f\" {'SIG' if sig else 'n.s.':>12}\"\n                    else:\n                        line += f\" {'N/A':>12}\"\n            print(line)\n\n    # === PER-PAIR PG DETAIL ===\n    print(\"\\n\" + \"=\" * 100)\n    print(\"PER-PAIR PERMUTATION GRANGER DETAIL\")\n    print(\"=\" * 100)\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        print(f\"\\n{r['label']} ({exp_name}):\")\n        for pk, pd in r[\"pairs\"].items():\n            pg = pd[\"permutation_granger\"]\n            p_raw = pg[\"p_raw\"]\n            p_pm = pg[\"p_fdr_permethod\"]\n            p_pool = pg[\"p_fdr_pooled\"]\n            s_r = \"*\" if pg[\"sig_raw\"] else \" \"\n            s_pm = \"*\" if pg[\"sig_fdr_permethod\"] else \" \"\n            s_pool = \"*\" if pg[\"sig_fdr_pooled\"] else \" \"\n            pr = f\"{p_raw:.4f}\" if p_raw is not None else \"N/A\"\n            ppm = f\"{p_pm:.4f}\" if p_pm is not None else \"N/A\"\n            pp = f\"{p_pool:.4f}\" if p_pool is not None else \"N/A\"\n            print(f\"  {pk:<30} raw={pr}{s_r}  fdr_pm={ppm}{s_pm}  fdr_pool={pp}{s_pool}\")\n\n    # === PER-PAIR K VOTES ===\n    print(\"\\n\" + \"=\" * 100)\n    print(\"PER-PAIR K VOTES (raw p / FDR_pm / FDR_pool)\")\n    print(\"=\" * 100)\n    for exp_name in EXPERIMENTS:\n        if exp_name not in all_results:\n            continue\n        r = all_results[exp_name]\n        print(f\"\\n{r['label']} ({exp_name}):\")\n        print(f\"  {'Pair':<30} {'K_raw':>6} {'K_fdr_pm':>9} {'K_fdr_pool':>11}\")\n        print(\"  \" + \"-\" * 60)\n        for pk, pd in r[\"pairs\"].items():\n            k_raw = sum(1 for mn in METHOD_NAMES if pd[mn][\"sig_raw\"])\n            k_pm = sum(1 for mn in METHOD_NAMES if pd[mn][\"sig_fdr_permethod\"])\n            k_pool = sum(1 for mn in METHOD_NAMES if pd[mn][\"sig_fdr_pooled\"])\n            print(f\"  {pk:<30} {k_raw:>4}/5 {k_pm:>7}/5 {k_pool:>9}/5\")\n\n    print(f\"\\nTimestamp: {datetime.now().isoformat()}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "107b096c-9953-48fc-a2be-85b7d5e86d2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjkovQXufuP7658WyYUcDi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 63262,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T00:29:01.910Z_
+
+<details><summary>↩ Tool result · `toolu_01C5dAFKwTA85vJ2DcATQVG3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "3b0d82e2-bc43-4f6e-8192-85e040f7a43b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script updated OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script updated OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014iNU5TjktwEZdaniHibNpA`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=\"\" python run_unified_generalize.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "cbdecc2d-ad10-410a-a606-910313018ada",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01958jqRgER2xFbEqV2cncAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5218,
+      "cache_read_input_tokens": 68575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5218
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T00:29:12.342Z_
+
+<details><summary>↩ Tool result · `toolu_014iNU5TjktwEZdaniHibNpA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\n  pythia1b_c4_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\n  opt1b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\n  pythia14b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\n\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\n\\n==========================================================================================\\nSUMMARY TABLE\\n==========================================================================================\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\n------------------------------------------------------------------------------------------\\nC4 Domain        naive_pearson                 8/8        8/8        8/8\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\nC4 Domain        threshold_onset               6/8        6/8        6/8\\nC4 Domain        toda_yamamoto                 4/8        4/8        4/8\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\nC4 Domain        K>=3                          8/8        8/8        8/8\\nC4 Domain        K>=4                          7/8        7/8        7/8\\n\\nOPT-1.3B         naive_pearson                 8/8        8/8        8/8\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\nOPT-1.3B         threshold_onset               8/8        8/8        8/8\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\nOPT-1.3B         K>=3                          8/8        8/8        8/8\\nOPT-1.3B         K>=4                          6/8        6/8        6/8\\n\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\nScale 1.4B       threshold_onset               8/8        8/8        8/8\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\nScale 1.4B       K>=3                          6/8        6/8        6/8\\nScale 1.4B       K>=4                          5/8        2/8        3/8\\n\\n\\n====================================================================================================\\nALL METHODS PER-PAIR RAW P-VALUES (threshold uses sig field, not p)\\n====================================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                             naive_pear   difference   threshold_   toda_yamam   permutatio\\n  -----------------------------------------------------------------------------------------------\\n  token_entropy->mauve                0.0000*      0.0004*         n.s.      0.9430       0.0212*\\n  token_entropy->distinct_1           0.0000*      0.0000*          SIG      0.6920       0.0082*\\n  token_entropy->distinct_2           0.0005*      0.0002*          SIG      0.3737       0.0126*\\n  token_entropy->distinct_3           0.0058*      0.0023*          SIG      0.4465       0.0262*\\n  ece->mauve                          0.0000*      0.0003*         n.s.      0.0001*      0.0178*\\n  ece->distinct_1                     0.0000*      0.0000*          SIG      0.0000*      0.0012*\\n  ece->distinct_2                     0.0000*      0.0001*          SIG      0.0000*      0.0036*\\n  ece->distinct_3                     0.0001*      0.0014*          SIG      0.0000*      0.0078*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                             naive_pear \\n\\n... [截断: 输出过长，省略 2452 字符] ...\\n\\nool=0.0161*\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0299*\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0219*\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0021*\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0055*\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0108*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0060*\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0164*\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6693 \\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0074*\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0164*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\n\\n====================================================================================================\\nPER-PAIR K VOTES (raw p / FDR_pm / FDR_pool)\\n====================================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->mauve              3/5       3/5         3/5\\n  token_entropy->distinct_1         4/5       4/5         4/5\\n  token_entropy->distinct_2         4/5       4/5         4/5\\n  token_entropy->distinct_3         4/5       4/5         4/5\\n  ece->mauve                        4/5       4/5         4/5\\n  ece->distinct_1                   5/5       5/5         5/5\\n  ece->distinct_2                   5/5       5/5         5/5\\n  ece->distinct_3                   5/5       5/5         5/5\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->perplexity         3/5       3/5         3/5\\n  token_entropy->distinct_1         5/5       5/5         5/5\\n  token_entropy->distinct_2         5/5       5/5         5/5\\n  token_entropy->distinct_3         5/5       5/5         5/5\\n  ece->perplexity                   3/5       3/5         3/5\\n  ece->distinct_1                   5/5       5/5         5/5\\n  ece->distinct_2                   5/5       5/5         5/5\\n  ece->distinct_3                   5/5       5/5         5/5\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->perplexity         1/5       1/5         1/5\\n  token_entropy->distinct_1         4/5       3/5         3/5\\n  token_entropy->distinct_2         4/5       3/5         3/5\\n  token_entropy->distinct_3         3/5       3/5         3/5\\n  ece->perplexity                   2/5       2/5         2/5\\n  ece->distinct_1                   4/5       4/5         4/5\\n  ece->distinct_2                   4/5       4/5         4/5\\n  ece->distinct_3                   4/5       3/5         4/5\\n\\nTimestamp: 2026-05-18T08:29:12.214102\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "87c26b24-3b26-44ac-bc2a-04253454271a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\\\n  pythia1b_c4_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\\\n\\\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\\\n  opt1b_wiki_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\\\n\\\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\\\n  pythia14b_wiki_a100_s42: 11 generations\\\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\\\n\\\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\\\n\\\\n==========================================================================================\\\\nSUMMARY TABLE\\\\n==========================================================================================\\\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\\\n------------------------------------------------------------------------------------------\\\\nC4 Domain        naive_pearson                 8/8        8/8        8/8\\\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\\\nC4 Domain        threshold_onset               6/8        6/8        6/8\\\\nC4 Domain        toda_yamamoto                 4/8        4/8        4/8\\\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\\\nC4 Domain        K>=3                          8/8        8/8        8/8\\\\nC4 Domain        K>=4                          7/8        7/8        7/8\\\\n\\\\nOPT-1.3B         naive_pearson                 8/8        8/8        8/8\\\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\\\nOPT-1.3B         threshold_onset               8/8        8/8        8/8\\\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\\\nOPT-1.3B         K>=3                          8/8        8/8        8/8\\\\nOPT-1.3B         K>=4                          6/8        6/8        6/8\\\\n\\\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\\\nScale 1.4B       threshold_onset               8/8        8/8        8/8\\\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\\\nScale 1.4B       K>=3                          6/8        6/8        6/8\\\\nScale 1.4B       K>=4                          5/8        2/8        3/8\\\\n\\\\n\\\\n====================================================================================================\\\\nALL METHODS PER-PAIR RAW P-VALUES (threshold uses sig field, not p)\\\\n====================================================================================================\\\\n\\\\nC4 Domain (pythia1b_c4_a100_s42):\\\\n  Pair                             naive_pear   difference   threshold_   toda_yamam   permutatio\\\\n  -----------------------------------------------------------------------------------------------\\\\n  token_entropy->mauve                0.0000*      0.0004*         n.s.      0.9430       0.0212*\\\\n  token_entropy->distinct_1           0.0000*      0.0000*          SIG      0.6920       0.0082*\\\\n  token_entropy->distinct_2           0.0005*      0.0002*          SIG      0.3737       0.0126*\\\\n  token_entropy->distinct_3           0.0058*      0.0023*          SIG      0.4465       0.0262*\\\\n  ece->mauve                          0.0000*      0.0003*         n.s.      0.0001*      0.0178*\\\\n  ece->distinct_1                     0.0000*      0.0000*          SIG      0.0000*      0.0012*\\\\n  ece->distinct_2                     0.0000*      0.0001*          SIG      0.0000*      0.0036*\\\\n  ece->distinct_3                     0.0001*      0.0014*          SIG      0.0000*      0.0078*\\\\n\\\\nOPT-1.3B (opt1b_wiki_a100_s42):\\\\n  Pair                             naive_pear \\\\n\\\\n... [截断: 输出过长，省略 2452 字符] ...\\\\n\\\\nool=0.0161*\\\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0299*\\\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0219*\\\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0021*\\\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0055*\\\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0108*\\\\n\\\\nOPT-1.3B (opt1b_wiki_a100_s42):\\\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\\\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0060*\\\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0164*\\\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6693 \\\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0074*\\\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0164*\\\\n\\\\nScale 1.4B (pythia14b_wiki_a100_s42):\\\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\\\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\\\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\\\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\\\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\\\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\\\n\\\\n====================================================================================================\\\\nPER-PAIR K VOTES (raw p / FDR_pm / FDR_pool)\\\\n====================================================================================================\\\\n\\\\nC4 Domain (pythia1b_c4_a100_s42):\\\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\\\n  ------------------------------------------------------------\\\\n  token_entropy->mauve              3/5       3/5         3/5\\\\n  token_entropy->distinct_1         4/5       4/5         4/5\\\\n  token_entropy->distinct_2         4/5       4/5         4/5\\\\n  token_entropy->distinct_3         4/5       4/5         4/5\\\\n  ece->mauve                        4/5       4/5         4/5\\\\n  ece->distinct_1                   5/5       5/5         5/5\\\\n  ece->distinct_2                   5/5       5/5         5/5\\\\n  ece->distinct_3                   5/5       5/5         5/5\\\\n\\\\nOPT-1.3B (opt1b_wiki_a100_s42):\\\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\\\n  ------------------------------------------------------------\\\\n  token_entropy->perplexity         3/5       3/5         3/5\\\\n  token_entropy->distinct_1         5/5       5/5         5/5\\\\n  token_entropy->distinct_2         5/5       5/5         5/5\\\\n  token_entropy->distinct_3         5/5       5/5         5/5\\\\n  ece->perplexity                   3/5       3/5         3/5\\\\n  ece->distinct_1                   5/5       5/5         5/5\\\\n  ece->distinct_2                   5/5       5/5         5/5\\\\n  ece->distinct_3                   5/5       5/5         5/5\\\\n\\\\nScale 1.4B (pythia14b_wiki_a100_s42):\\\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\\\n  ------------------------------------------------------------\\\\n  token_entropy->perplexity         1/5       1/5         1/5\\\\n  token_entropy->distinct_1         4/5       3/5         3/5\\\\n  token_entropy->distinct_2         4/5       3/5         3/5\\\\n  token_entropy->distinct_3         3/5       3/5         3/5\\\\n  ece->perplexity                   2/5       2/5         2/5\\\\n  ece->distinct_1                   4/5       4/5         4/5\\\\n  ece->distinct_2                   4/5       4/5         4/5\\\\n  ece->distinct_3                   4/5       3/5         4/5\\\\n\\\\nTimestamp: 2026-05-18T08:29:12.214102\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nAnalyzing pythia1b_c4_a100_s42 (C4 Domain)...\\n  pythia1b_c4_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing opt1b_wiki_a100_s42 (OPT-1.3B)...\\n  opt1b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json\\n\\nAnalyzing pythia14b_wiki_a100_s42 (Scale 1.4B)...\\n  pythia14b_wiki_a100_s42: 11 generations\\n  Saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json\\n\\nCombined saved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/unified_generalize_all.json\\n\\n==========================================================================================\\nSUMMARY TABLE\\n==========================================================================================\\nExperiment       Method/K                Raw_p<.05     FDR_pm   FDR_pool\\n------------------------------------------------------------------------------------------\\nC4 Domain        naive_pearson                 8/8        8/8        8/8\\nC4 Domain        differenced_xcorr             8/8        8/8        8/8\\nC4 Domain        threshold_onset               6/8        6/8        6/8\\nC4 Domain        toda_yamamoto                 4/8        4/8        4/8\\nC4 Domain        permutation_granger           8/8        8/8        8/8\\nC4 Domain        K>=3                          8/8        8/8        8/8\\nC4 Domain        K>=4                          7/8        7/8        7/8\\n\\nOPT-1.3B         naive_pearson                 8/8        8/8        8/8\\nOPT-1.3B         differenced_xcorr             8/8        8/8        8/8\\nOPT-1.3B         threshold_onset               8/8        8/8        8/8\\nOPT-1.3B         toda_yamamoto                 6/8        6/8        6/8\\nOPT-1.3B         permutation_granger           6/8        6/8        6/8\\nOPT-1.3B         K>=3                          8/8        8/8        8/8\\nOPT-1.3B         K>=4                          6/8        6/8        6/8\\n\\nScale 1.4B       naive_pearson                 7/8        7/8        7/8\\nScale 1.4B       differenced_xcorr             6/8        6/8        6/8\\nScale 1.4B       threshold_onset               8/8        8/8        8/8\\nScale 1.4B       toda_yamamoto                 0/8        0/8        0/8\\nScale 1.4B       permutation_granger           5/8        2/8        3/8\\nScale 1.4B       K>=3                          6/8        6/8        6/8\\nScale 1.4B       K>=4                          5/8        2/8        3/8\\n\\n\\n====================================================================================================\\nALL METHODS PER-PAIR RAW P-VALUES (threshold uses sig field, not p)\\n====================================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                             naive_pear   difference   threshold_   toda_yamam   permutatio\\n  -----------------------------------------------------------------------------------------------\\n  token_entropy->mauve                0.0000*      0.0004*         n.s.      0.9430       0.0212*\\n  token_entropy->distinct_1           0.0000*      0.0000*          SIG      0.6920       0.0082*\\n  token_entropy->distinct_2           0.0005*      0.0002*          SIG      0.3737       0.0126*\\n  token_entropy->distinct_3           0.0058*      0.0023*          SIG      0.4465       0.0262*\\n  ece->mauve                          0.0000*      0.0003*         n.s.      0.0001*      0.0178*\\n  ece->distinct_1                     0.0000*      0.0000*          SIG      0.0000*      0.0012*\\n  ece->distinct_2                     0.0000*      0.0001*          SIG      0.0000*      0.0036*\\n  ece->distinct_3                     0.0001*      0.0014*          SIG      0.0000*      0.0078*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                             naive_pear \\n\\n... [截断: 输出过长，省略 2452 字符] ...\\n\\nool=0.0161*\\n  token_entropy->distinct_3      raw=0.0262*  fdr_pm=0.0262*  fdr_pool=0.0299*\\n  ece->mauve                     raw=0.0178*  fdr_pm=0.0237*  fdr_pool=0.0219*\\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0096*  fdr_pool=0.0021*\\n  ece->distinct_2                raw=0.0036*  fdr_pm=0.0144*  fdr_pool=0.0055*\\n  ece->distinct_3                raw=0.0078*  fdr_pm=0.0164*  fdr_pool=0.0108*\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.8540   fdr_pm=0.8540   fdr_pool=0.8540 \\n  token_entropy->distinct_1      raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\n  token_entropy->distinct_2      raw=0.0034*  fdr_pm=0.0091*  fdr_pool=0.0060*\\n  token_entropy->distinct_3      raw=0.0128*  fdr_pm=0.0171*  fdr_pool=0.0164*\\n  ece->perplexity                raw=0.6275   fdr_pm=0.7171   fdr_pool=0.6693 \\n  ece->distinct_1                raw=0.0012*  fdr_pm=0.0048*  fdr_pool=0.0024*\\n  ece->distinct_2                raw=0.0046*  fdr_pm=0.0092*  fdr_pool=0.0074*\\n  ece->distinct_3                raw=0.0126*  fdr_pm=0.0171*  fdr_pool=0.0164*\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  token_entropy->perplexity      raw=0.7163   fdr_pm=0.7163   fdr_pool=0.7640 \\n  token_entropy->distinct_1      raw=0.0274*  fdr_pm=0.0548   fdr_pool=0.0516 \\n  token_entropy->distinct_2      raw=0.0346*  fdr_pm=0.0553   fdr_pool=0.0615 \\n  token_entropy->distinct_3      raw=0.0532   fdr_pm=0.0709   fdr_pool=0.0867 \\n  ece->perplexity                raw=0.5739   fdr_pm=0.6559   fdr_pool=0.7346 \\n  ece->distinct_1                raw=0.0042*  fdr_pm=0.0336*  fdr_pool=0.0112*\\n  ece->distinct_2                raw=0.0086*  fdr_pm=0.0344*  fdr_pool=0.0212*\\n  ece->distinct_3                raw=0.0216*  fdr_pm=0.0548   fdr_pool=0.0432*\\n\\n====================================================================================================\\nPER-PAIR K VOTES (raw p / FDR_pm / FDR_pool)\\n====================================================================================================\\n\\nC4 Domain (pythia1b_c4_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->mauve              3/5       3/5         3/5\\n  token_entropy->distinct_1         4/5       4/5         4/5\\n  token_entropy->distinct_2         4/5       4/5         4/5\\n  token_entropy->distinct_3         4/5       4/5         4/5\\n  ece->mauve                        4/5       4/5         4/5\\n  ece->distinct_1                   5/5       5/5         5/5\\n  ece->distinct_2                   5/5       5/5         5/5\\n  ece->distinct_3                   5/5       5/5         5/5\\n\\nOPT-1.3B (opt1b_wiki_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->perplexity         3/5       3/5         3/5\\n  token_entropy->distinct_1         5/5       5/5         5/5\\n  token_entropy->distinct_2         5/5       5/5         5/5\\n  token_entropy->distinct_3         5/5       5/5         5/5\\n  ece->perplexity                   3/5       3/5         3/5\\n  ece->distinct_1                   5/5       5/5         5/5\\n  ece->distinct_2                   5/5       5/5         5/5\\n  ece->distinct_3                   5/5       5/5         5/5\\n\\nScale 1.4B (pythia14b_wiki_a100_s42):\\n  Pair                            K_raw  K_fdr_pm  K_fdr_pool\\n  ------------------------------------------------------------\\n  token_entropy->perplexity         1/5       1/5         1/5\\n  token_entropy->distinct_1         4/5       3/5         3/5\\n  token_entropy->distinct_2         4/5       3/5         3/5\\n  token_entropy->distinct_3         3/5       3/5         3/5\\n  ece->perplexity                   2/5       2/5         2/5\\n  ece->distinct_1                   4/5       4/5         4/5\\n  ece->distinct_2                   4/5       4/5         4/5\\n  ece->distinct_3                   4/5       3/5         4/5\\n\\nTimestamp: 2026-05-18T08:29:12.214102\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bug was fixed. Now `naive_pearson` correctly shows 8/8 for C4 and 8/8 for OPT (previously was 7/8 and 5/8 due to the `0.0 or None` bug). And threshold_onset now shows actual significance (6/8, 8/8, 8/8 instead of 0/8).
+
+But wait - there's a potential issue. The output was truncated in the middle. Let me get the full OPT and Scale 1.4B ALL METHODS sections.
+
+
+Actually, I can see enough from the summary table to compare the before and after results. The first run with the bug showed naive_pearson at 7/8 for C4 and 5/8 for OPT, while threshold_onset was completely failing at 0/8 across the board. Now I'm seeing the corrected values, which is a significant improvement. K>=3=5/8, K>=4=0/8
+
+Second run (bug fixed):
+- C4: naive=8/8, diff=8/8, thresh=6/8, TY=4/8, PG=8/8, K>=3=8/8, K>=4=7/8
+- OPT: naive=8/8, diff=8/8, thresh=8/8, TY=6/8, PG=6/8, K>=3=8/8, K>=4=6/8
+- Scale: naive=7/8, diff=6/8, thresh=8/8, TY=0/8, PG=5/8, K>=3=6/8, K>=4=5/8 (raw), 2/8 (FDR_pm), 3/8 (FDR_pool)
+
+The bug fixes had substantial impact: fixing the zero-p issue boosted naive_pearson across the board, resolving the missing sig field problem brought threshold_onset from complete failure to strong performance, and the TY and K>=3/K>=4 metrics all improved significantly. But I'm noticing threshold was completely broken in the first run—0/8 across all experiments—which seems suspicious and worth investigating further. So the issue with `naive_pearson` showing perfect correlations was that when p_value equals 0.0, the old code treated it as None and marked it insignificant—now that's fixed. The same logic explains why C4's true positive count jumped from 2 to 4, since we're properly handling those edge cases now. Let me pull up the complete "ALL METHODS" section from the OPT results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "52555988-159b-4182-a624-d5791961a4cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113XqfabiAntSgDiHU4EG7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3295,
+      "cache_read_input_tokens": 73793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+修复后结果大幅改善。让我读取截断的 OPT 和 Scale 详细数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "a904ef80-a251-4813-8efe-12b501b579a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113XqfabiAntSgDiHU4EG7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3295,
+      "cache_read_input_tokens": 73793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DkQWzU5sKKJ2aP4HMgMjwj`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/unified_5method.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "307d04c4-53fd-4b5b-860d-43660e53c5ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113XqfabiAntSgDiHU4EG7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3295,
+      "cache_read_input_tokens": 73793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T00:29:36.371Z_
+
+<details><summary>↩ Tool result · `toolu_01DkQWzU5sKKJ2aP4HMgMjwj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"opt1b_wiki_a100_s42\\\",\\n  \\\"label\\\": \\\"OPT-1.3B\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->perplexity\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8536,\\n          \\\"p_value\\\": 0.030571,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.030571,\\n        \\\"p_fdr_permethod\\\": 0.030571,\\n        \\\"p_fdr_pooled\\\": 0.034938,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.8822,\\n          \\\"p_value\\\": 0.019993,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.019993,\\n        \\\"p_fdr_permethod\\\": 0.019993,\\n        \\\"p_fdr_pooled\\\": 0.023695,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 7,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 3,\\n          \\\"wald_F\\\": 0.1687,\\n          \\\"p_value\\\": 0.751905,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 1,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 2\\n        },\\n        \\\"p_raw\\\": 0.751905,\\n        \\\"p_fdr_permethod\\\": 0.751905,\\n        \\\"p_fdr_pooled\\\": 0.77616,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 0.0682,\\n          \\\"p_value\\\": 0.854029,\\n          \\\"significant\\\": false,\\n          \\\"effect_size_f2\\\": 0.0114,\\n          \\\"null_mean\\\": 1.1957,\\n          \\\"null_std\\\": 1.4723,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.854029,\\n        \\\"p_fdr_permethod\\\": 0.854029,\\n        \\\"p_fdr_pooled\\\": 0.854029,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9916,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.0,\\n        \\\"p_fdr_permethod\\\": 0.0,\\n        \\\"p_fdr_pooled\\\": 0.0,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9836,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 2e-06,\\n        \\\"p_fdr_permethod\\\": 1.6e-05,\\n        \\\"p_fdr_pooled\\\": 1.3e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": 2,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 102.0312,\\n          \\\"p_value\\\": 2e-05,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n    \\n\\n... [截断: 输出过长，省略 11067 字符] ...\\n\\n       \\\"wald_F\\\": 29.5376,\\n          \\\"p_value\\\": 0.000972,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.000972,\\n        \\\"p_fdr_permethod\\\": 0.002356,\\n        \\\"p_fdr_pooled\\\": 0.002393,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 41.4256,\\n          \\\"p_value\\\": 0.004599,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 6.9043,\\n          \\\"null_mean\\\": 2.1582,\\n          \\\"null_std\\\": 5.7547,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.004599,\\n        \\\"p_fdr_permethod\\\": 0.009198,\\n        \\\"p_fdr_pooled\\\": 0.007358,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.9634,\\n          \\\"p_value\\\": 0.000119,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000119,\\n        \\\"p_fdr_permethod\\\": 0.000159,\\n        \\\"p_fdr_pooled\\\": 0.000423,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.825,\\n          \\\"p_value\\\": 0.006196,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.006196,\\n        \\\"p_fdr_permethod\\\": 0.008261,\\n        \\\"p_fdr_pooled\\\": 0.009442,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 5,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 10.0962,\\n          \\\"p_value\\\": 0.015546,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.015546,\\n        \\\"p_fdr_permethod\\\": 0.020728,\\n        \\\"p_fdr_pooled\\\": 0.019134,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 13.1436,\\n          \\\"p_value\\\": 0.012597,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 2.1906,\\n          \\\"null_mean\\\": 1.5473,\\n          \\\"null_std\\\": 2.76,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.012597,\\n        \\\"p_fdr_permethod\\\": 0.017063,\\n        \\\"p_fdr_pooled\\\": 0.01638,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "cc36b74a-809f-4018-95e8-bb937a5a2a8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"opt1b_wiki_a100_s42\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"OPT-1.3B\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"params\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"xcorr_max_lag\\\\\\\": 5,\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": {\\\\n    \\\\\\\"token_entropy->perplexity\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.8536,\\\\n          \\\\\\\"p_value\\\\\\\": 0.030571,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.030571,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.030571,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.034938,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 4,\\\\n          \\\\\\\"r\\\\\\\": -0.8822,\\\\n          \\\\\\\"p_value\\\\\\\": 0.019993,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.019993,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.019993,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.023695,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 7,\\\\n          \\\\\\\"lead_time\\\\\\\": 6,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"k\\\\\\\": 3,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.1687,\\\\n          \\\\\\\"p_value\\\\\\\": 0.751905,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.751905,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.751905,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.77616,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0682,\\\\n          \\\\\\\"p_value\\\\\\\": 0.854029,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 0.0114,\\\\n          \\\\\\\"null_mean\\\\\\\": 1.1957,\\\\n          \\\\\\\"null_std\\\\\\\": 1.4723,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.854029,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.854029,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.854029,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9916,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.0,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.0,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.0,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9836,\\\\n          \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 2e-06,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 1.6e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 1.3e-05,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 3,\\\\n          \\\\\\\"lead_time\\\\\\\": 2,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"k\\\\\\\": 1,\\\\n          \\\\\\\"wald_F\\\\\\\": 102.0312,\\\\n          \\\\\\\"p_value\\\\\\\": 2e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 11067 字符] ...\\\\n\\\\n       \\\\\\\"wald_F\\\\\\\": 29.5376,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000972,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.000972,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.002356,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.002393,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 41.4256,\\\\n          \\\\\\\"p_value\\\\\\\": 0.004599,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 6.9043,\\\\n          \\\\\\\"null_mean\\\\\\\": 2.1582,\\\\n          \\\\\\\"null_std\\\\\\\": 5.7547,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.004599,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.009198,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.007358,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece->distinct_3\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.9634,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000119,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.000119,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.000159,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000423,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.825,\\\\n          \\\\\\\"p_value\\\\\\\": 0.006196,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.006196,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.008261,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.009442,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 5,\\\\n          \\\\\\\"lead_time\\\\\\\": 3,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"k\\\\\\\": 1,\\\\n          \\\\\\\"wald_F\\\\\\\": 10.0962,\\\\n          \\\\\\\"p_value\\\\\\\": 0.015546,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.015546,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.020728,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.019134,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 13.1436,\\\\n          \\\\\\\"p_value\\\\\\\": 0.012597,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 2.1906,\\\\n          \\\\\\\"null_mean\\\\\\\": 1.5473,\\\\n          \\\\\\\"null_std\\\\\\\": 2.76,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.012597,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.017063,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.01638,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"method_summary\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=3\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=4\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"opt1b_wiki_a100_s42\\\",\\n  \\\"label\\\": \\\"OPT-1.3B\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->perplexity\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8536,\\n          \\\"p_value\\\": 0.030571,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.030571,\\n        \\\"p_fdr_permethod\\\": 0.030571,\\n        \\\"p_fdr_pooled\\\": 0.034938,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.8822,\\n          \\\"p_value\\\": 0.019993,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.019993,\\n        \\\"p_fdr_permethod\\\": 0.019993,\\n        \\\"p_fdr_pooled\\\": 0.023695,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 7,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 3,\\n          \\\"wald_F\\\": 0.1687,\\n          \\\"p_value\\\": 0.751905,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 1,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 2\\n        },\\n        \\\"p_raw\\\": 0.751905,\\n        \\\"p_fdr_permethod\\\": 0.751905,\\n        \\\"p_fdr_pooled\\\": 0.77616,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 0.0682,\\n          \\\"p_value\\\": 0.854029,\\n          \\\"significant\\\": false,\\n          \\\"effect_size_f2\\\": 0.0114,\\n          \\\"null_mean\\\": 1.1957,\\n          \\\"null_std\\\": 1.4723,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.854029,\\n        \\\"p_fdr_permethod\\\": 0.854029,\\n        \\\"p_fdr_pooled\\\": 0.854029,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9916,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.0,\\n        \\\"p_fdr_permethod\\\": 0.0,\\n        \\\"p_fdr_pooled\\\": 0.0,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9836,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 2e-06,\\n        \\\"p_fdr_permethod\\\": 1.6e-05,\\n        \\\"p_fdr_pooled\\\": 1.3e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": 2,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 102.0312,\\n          \\\"p_value\\\": 2e-05,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n    \\n\\n... [截断: 输出过长，省略 11067 字符] ...\\n\\n       \\\"wald_F\\\": 29.5376,\\n          \\\"p_value\\\": 0.000972,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.000972,\\n        \\\"p_fdr_permethod\\\": 0.002356,\\n        \\\"p_fdr_pooled\\\": 0.002393,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 41.4256,\\n          \\\"p_value\\\": 0.004599,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 6.9043,\\n          \\\"null_mean\\\": 2.1582,\\n          \\\"null_std\\\": 5.7547,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.004599,\\n        \\\"p_fdr_permethod\\\": 0.009198,\\n        \\\"p_fdr_pooled\\\": 0.007358,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.9634,\\n          \\\"p_value\\\": 0.000119,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000119,\\n        \\\"p_fdr_permethod\\\": 0.000159,\\n        \\\"p_fdr_pooled\\\": 0.000423,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.825,\\n          \\\"p_value\\\": 0.006196,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.006196,\\n        \\\"p_fdr_permethod\\\": 0.008261,\\n        \\\"p_fdr_pooled\\\": 0.009442,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": 5,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 10.0962,\\n          \\\"p_value\\\": 0.015546,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.015546,\\n        \\\"p_fdr_permethod\\\": 0.020728,\\n        \\\"p_fdr_pooled\\\": 0.019134,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 13.1436,\\n          \\\"p_value\\\": 0.012597,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 2.1906,\\n          \\\"null_mean\\\": 1.5473,\\n          \\\"null_std\\\": 2.76,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.012597,\\n        \\\"p_fdr_permethod\\\": 0.017063,\\n        \\\"p_fdr_pooled\\\": 0.01638,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WZaMErgkwadv4eMm7LaJSh`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6f355be6-b1dc-4668-99bd-3d2ea417a2b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113XqfabiAntSgDiHU4EG7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3295,
+      "cache_read_input_tokens": 73793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T00:29:37.173Z_
+
+<details><summary>↩ Tool result · `toolu_01WZaMErgkwadv4eMm7LaJSh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia14b_wiki_a100_s42\\\",\\n  \\\"label\\\": \\\"Scale 1.4B\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->perplexity\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.7553,\\n          \\\"p_value\\\": 0.082461,\\n          \\\"significant\\\": false\\n        },\\n        \\\"p_raw\\\": 0.082461,\\n        \\\"p_fdr_permethod\\\": 0.082461,\\n        \\\"p_fdr_pooled\\\": 0.125655,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 0,\\n          \\\"r\\\": -0.5556,\\n          \\\"p_value\\\": 0.095395,\\n          \\\"significant\\\": false\\n        },\\n        \\\"p_raw\\\": 0.095395,\\n        \\\"p_fdr_permethod\\\": 0.095395,\\n        \\\"p_fdr_pooled\\\": 0.138756,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 7,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 3,\\n          \\\"wald_F\\\": 0.6345,\\n          \\\"p_value\\\": 0.571791,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 1,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 2\\n        },\\n        \\\"p_raw\\\": 0.571791,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.734573,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 0.0678,\\n          \\\"p_value\\\": 0.716257,\\n          \\\"significant\\\": false,\\n          \\\"effect_size_f2\\\": 0.0113,\\n          \\\"null_mean\\\": 1.6218,\\n          \\\"null_std\\\": 3.2617,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.716257,\\n        \\\"p_fdr_permethod\\\": 0.716257,\\n        \\\"p_fdr_pooled\\\": 0.764007,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9067,\\n          \\\"p_value\\\": 0.000296,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000296,\\n        \\\"p_fdr_permethod\\\": 0.000474,\\n        \\\"p_fdr_pooled\\\": 0.000947,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9839,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 2e-06,\\n        \\\"p_fdr_permethod\\\": 8e-06,\\n        \\\"p_fdr_pooled\\\": 2.1e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.2872,\\n          \\\"p_value\\\": 0.620444,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": \\n\\n... [截断: 输出过长，省略 11186 字符] ...\\n\\n    \\\"wald_F\\\": 0.2046,\\n          \\\"p_value\\\": 0.674501,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.674501,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.764007,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 163.8594,\\n          \\\"p_value\\\": 0.008598,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 27.3099,\\n          \\\"null_mean\\\": 9.4768,\\n          \\\"null_std\\\": 31.83,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.008598,\\n        \\\"p_fdr_permethod\\\": 0.034392,\\n        \\\"p_fdr_pooled\\\": 0.021164,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.9853,\\n          \\\"p_value\\\": 8e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 8e-06,\\n        \\\"p_fdr_permethod\\\": 3.2e-05,\\n        \\\"p_fdr_pooled\\\": 5.1e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9404,\\n          \\\"p_value\\\": 0.00016,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.00016,\\n        \\\"p_fdr_permethod\\\": 0.000256,\\n        \\\"p_fdr_pooled\\\": 0.000569,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 5,\\n          \\\"lead_time\\\": 4,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.3022,\\n          \\\"p_value\\\": 0.611751,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.611751,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.735341,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 77.1156,\\n          \\\"p_value\\\": 0.021596,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 12.8526,\\n          \\\"null_mean\\\": 6.7495,\\n          \\\"null_std\\\": 20.1836,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.021596,\\n        \\\"p_fdr_permethod\\\": 0.05479,\\n        \\\"p_fdr_pooled\\\": 0.043192,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"7/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"0/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"0/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"0/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"5/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"2/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"3/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"5/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"2/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"3/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "4c43c78b-7d1b-478d-95a6-d0d3ef1dfa45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia14b_wiki_a100_s42\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"Scale 1.4B\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"params\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"xcorr_max_lag\\\\\\\": 5,\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": {\\\\n    \\\\\\\"token_entropy->perplexity\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.7553,\\\\n          \\\\\\\"p_value\\\\\\\": 0.082461,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.082461,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.082461,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.125655,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 0,\\\\n          \\\\\\\"r\\\\\\\": -0.5556,\\\\n          \\\\\\\"p_value\\\\\\\": 0.095395,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.095395,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.095395,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.138756,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 7,\\\\n          \\\\\\\"lead_time\\\\\\\": 6,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"k\\\\\\\": 3,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.6345,\\\\n          \\\\\\\"p_value\\\\\\\": 0.571791,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"d_canary\\\\\\\": 1,\\\\n          \\\\\\\"d_downstream\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.571791,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.884289,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.734573,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0678,\\\\n          \\\\\\\"p_value\\\\\\\": 0.716257,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 0.0113,\\\\n          \\\\\\\"null_mean\\\\\\\": 1.6218,\\\\n          \\\\\\\"null_std\\\\\\\": 3.2617,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.716257,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.716257,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.764007,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9067,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000296,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.000296,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.000474,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000947,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9839,\\\\n          \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 2e-06,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 8e-06,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 2.1e-05,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 4,\\\\n          \\\\\\\"lead_time\\\\\\\": 3,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"k\\\\\\\": 2,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.2872,\\\\n          \\\\\\\"p_value\\\\\\\": 0.620444,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"d_canary\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 11186 字符] ...\\\\n\\\\n    \\\\\\\"wald_F\\\\\\\": 0.2046,\\\\n          \\\\\\\"p_value\\\\\\\": 0.674501,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"d_canary\\\\\\\": 1,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.674501,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.884289,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.764007,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 163.8594,\\\\n          \\\\\\\"p_value\\\\\\\": 0.008598,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 27.3099,\\\\n          \\\\\\\"null_mean\\\\\\\": 9.4768,\\\\n          \\\\\\\"null_std\\\\\\\": 31.83,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.008598,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.034392,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.021164,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece->distinct_3\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.9853,\\\\n          \\\\\\\"p_value\\\\\\\": 8e-06,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 8e-06,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 3.2e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 5.1e-05,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9404,\\\\n          \\\\\\\"p_value\\\\\\\": 0.00016,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.00016,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.000256,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000569,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 5,\\\\n          \\\\\\\"lead_time\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"k\\\\\\\": 2,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.3022,\\\\n          \\\\\\\"p_value\\\\\\\": 0.611751,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"d_canary\\\\\\\": 1,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.611751,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.884289,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.735341,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 77.1156,\\\\n          \\\\\\\"p_value\\\\\\\": 0.021596,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 12.8526,\\\\n          \\\\\\\"null_mean\\\\\\\": 6.7495,\\\\n          \\\\\\\"null_std\\\\\\\": 20.1836,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.021596,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.05479,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.043192,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"method_summary\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"7/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"0/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"5/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"3/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=3\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=4\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"5/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"3/8\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia14b_wiki_a100_s42\\\",\\n  \\\"label\\\": \\\"Scale 1.4B\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->perplexity\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.7553,\\n          \\\"p_value\\\": 0.082461,\\n          \\\"significant\\\": false\\n        },\\n        \\\"p_raw\\\": 0.082461,\\n        \\\"p_fdr_permethod\\\": 0.082461,\\n        \\\"p_fdr_pooled\\\": 0.125655,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 0,\\n          \\\"r\\\": -0.5556,\\n          \\\"p_value\\\": 0.095395,\\n          \\\"significant\\\": false\\n        },\\n        \\\"p_raw\\\": 0.095395,\\n        \\\"p_fdr_permethod\\\": 0.095395,\\n        \\\"p_fdr_pooled\\\": 0.138756,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 7,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 2,\\n          \\\"k\\\": 3,\\n          \\\"wald_F\\\": 0.6345,\\n          \\\"p_value\\\": 0.571791,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 1,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 2\\n        },\\n        \\\"p_raw\\\": 0.571791,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.734573,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 0.0678,\\n          \\\"p_value\\\": 0.716257,\\n          \\\"significant\\\": false,\\n          \\\"effect_size_f2\\\": 0.0113,\\n          \\\"null_mean\\\": 1.6218,\\n          \\\"null_std\\\": 3.2617,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.716257,\\n        \\\"p_fdr_permethod\\\": 0.716257,\\n        \\\"p_fdr_pooled\\\": 0.764007,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9067,\\n          \\\"p_value\\\": 0.000296,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000296,\\n        \\\"p_fdr_permethod\\\": 0.000474,\\n        \\\"p_fdr_pooled\\\": 0.000947,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9839,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 2e-06,\\n        \\\"p_fdr_permethod\\\": 8e-06,\\n        \\\"p_fdr_pooled\\\": 2.1e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.2872,\\n          \\\"p_value\\\": 0.620444,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": \\n\\n... [截断: 输出过长，省略 11186 字符] ...\\n\\n    \\\"wald_F\\\": 0.2046,\\n          \\\"p_value\\\": 0.674501,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.674501,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.764007,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 163.8594,\\n          \\\"p_value\\\": 0.008598,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 27.3099,\\n          \\\"null_mean\\\": 9.4768,\\n          \\\"null_std\\\": 31.83,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.008598,\\n        \\\"p_fdr_permethod\\\": 0.034392,\\n        \\\"p_fdr_pooled\\\": 0.021164,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.9853,\\n          \\\"p_value\\\": 8e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 8e-06,\\n        \\\"p_fdr_permethod\\\": 3.2e-05,\\n        \\\"p_fdr_pooled\\\": 5.1e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9404,\\n          \\\"p_value\\\": 0.00016,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.00016,\\n        \\\"p_fdr_permethod\\\": 0.000256,\\n        \\\"p_fdr_pooled\\\": 0.000569,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 5,\\n          \\\"lead_time\\\": 4,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.3022,\\n          \\\"p_value\\\": 0.611751,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.611751,\\n        \\\"p_fdr_permethod\\\": 0.884289,\\n        \\\"p_fdr_pooled\\\": 0.735341,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 77.1156,\\n          \\\"p_value\\\": 0.021596,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 12.8526,\\n          \\\"null_mean\\\": 6.7495,\\n          \\\"null_std\\\": 20.1836,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.021596,\\n        \\\"p_fdr_permethod\\\": 0.05479,\\n        \\\"p_fdr_pooled\\\": 0.043192,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"7/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"0/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"0/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"0/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"5/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"2/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"3/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"5/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"2/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"3/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XyqZQ4v8z8AYcDcaqRMH5b`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "0b26f132-e377-4a02-a368-7b76275b72f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113XqfabiAntSgDiHU4EG7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3295,
+      "cache_read_input_tokens": 73793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T00:29:38.052Z_
+
+<details><summary>↩ Tool result · `toolu_01XyqZQ4v8z8AYcDcaqRMH5b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia1b_c4_a100_s42\\\",\\n  \\\"label\\\": \\\"C4 Domain\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->mauve\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": -0.9554,\\n          \\\"p_value\\\": 1.6e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 1.6e-05,\\n        \\\"p_fdr_permethod\\\": 3.2e-05,\\n        \\\"p_fdr_pooled\\\": 5.7e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": -0.9227,\\n          \\\"p_value\\\": 0.000392,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000392,\\n        \\\"p_fdr_permethod\\\": 0.000523,\\n        \\\"p_fdr_pooled\\\": 0.000784,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"note\\\": \\\"onset not detected for: downstream\\\"\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.0058,\\n          \\\"p_value\\\": 0.943049,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.943049,\\n        \\\"p_fdr_permethod\\\": 0.943049,\\n        \\\"p_fdr_pooled\\\": 0.943049,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 34.1321,\\n          \\\"p_value\\\": 0.021196,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 5.6887,\\n          \\\"null_mean\\\": 3.6534,\\n          \\\"null_std\\\": 9.7508,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.021196,\\n        \\\"p_fdr_permethod\\\": 0.024224,\\n        \\\"p_fdr_pooled\\\": 0.025121,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9461,\\n          \\\"p_value\\\": 3.5e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 3.5e-05,\\n        \\\"p_fdr_permethod\\\": 5.6e-05,\\n        \\\"p_fdr_pooled\\\": 0.000112,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9812,\\n          \\\"p_value\\\": 3e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 3e-06,\\n        \\\"p_fdr_permethod\\\": 1.2e-05,\\n        \\\"p_fdr_pooled\\\": 1.4e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": 2,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.1816,\\n          \\\"p_value\\\": 0.69197,\\n          \\\"significant\\\": false,\\n     \\n\\n... [截断: 输出过长，省略 11224 字符] ...\\n\\n         \\\"k\\\": 1,\\n          \\\"wald_F\\\": 402.859,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.0,\\n        \\\"p_fdr_permethod\\\": 0.0,\\n        \\\"p_fdr_pooled\\\": 0.0,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 1407.5844,\\n          \\\"p_value\\\": 0.003599,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 234.5974,\\n          \\\"null_mean\\\": 39.2598,\\n          \\\"null_std\\\": 243.866,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.003599,\\n        \\\"p_fdr_permethod\\\": 0.014396,\\n        \\\"p_fdr_pooled\\\": 0.005484,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.972,\\n          \\\"p_value\\\": 5.4e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 5.4e-05,\\n        \\\"p_fdr_permethod\\\": 7.2e-05,\\n        \\\"p_fdr_pooled\\\": 0.000157,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9164,\\n          \\\"p_value\\\": 0.001372,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.001372,\\n        \\\"p_fdr_permethod\\\": 0.001568,\\n        \\\"p_fdr_pooled\\\": 0.002311,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 257.4366,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 1e-06,\\n        \\\"p_fdr_permethod\\\": 3e-06,\\n        \\\"p_fdr_pooled\\\": 5e-06,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 591.8023,\\n          \\\"p_value\\\": 0.007798,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 98.6337,\\n          \\\"null_mean\\\": 26.4042,\\n          \\\"null_std\\\": 102.9262,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.007798,\\n        \\\"p_fdr_permethod\\\": 0.016396,\\n        \\\"p_fdr_pooled\\\": 0.010849,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"4/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"4/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"4/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"7/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "6e66fc0c-f921-4596-8ca7-e2c0b0ea177d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\",\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"C4 Domain\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"params\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"xcorr_max_lag\\\\\\\": 5,\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"alpha\\\\\\\": 0.05\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": {\\\\n    \\\\\\\"token_entropy->mauve\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": -0.9554,\\\\n          \\\\\\\"p_value\\\\\\\": 1.6e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 1.6e-05,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 3.2e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 5.7e-05,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": -0.9227,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000392,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.000392,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.000523,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000784,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"note\\\\\\\": \\\\\\\"onset not detected for: downstream\\\\\\\"\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"k\\\\\\\": 2,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.0058,\\\\n          \\\\\\\"p_value\\\\\\\": 0.943049,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"d_canary\\\\\\\": 1,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.943049,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.943049,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.943049,\\\\n        \\\\\\\"sig_raw\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": false,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 34.1321,\\\\n          \\\\\\\"p_value\\\\\\\": 0.021196,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 5.6887,\\\\n          \\\\\\\"null_mean\\\\\\\": 3.6534,\\\\n          \\\\\\\"null_std\\\\\\\": 9.7508,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.021196,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.024224,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.025121,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9461,\\\\n          \\\\\\\"p_value\\\\\\\": 3.5e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 3.5e-05,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 5.6e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000112,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9812,\\\\n          \\\\\\\"p_value\\\\\\\": 3e-06,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 3e-06,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 1.2e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 1.4e-05,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 3,\\\\n          \\\\\\\"lead_time\\\\\\\": 2,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"k\\\\\\\": 2,\\\\n          \\\\\\\"wald_F\\\\\\\": 0.1816,\\\\n          \\\\\\\"p_value\\\\\\\": 0.69197,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 11224 字符] ...\\\\n\\\\n         \\\\\\\"k\\\\\\\": 1,\\\\n          \\\\\\\"wald_F\\\\\\\": 402.859,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.0,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.0,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.0,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1407.5844,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003599,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 234.5974,\\\\n          \\\\\\\"null_mean\\\\\\\": 39.2598,\\\\n          \\\\\\\"null_std\\\\\\\": 243.866,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.003599,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.014396,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.005484,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece->distinct_3\\\\\\\": {\\\\n      \\\\\\\"naive_pearson\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.972,\\\\n          \\\\\\\"p_value\\\\\\\": 5.4e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 5.4e-05,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 7.2e-05,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.000157,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.9164,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001372,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.001372,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.001568,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.002311,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 4,\\\\n          \\\\\\\"lead_time\\\\\\\": 3,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": null,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": null,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n          \\\\\\\"p\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"k\\\\\\\": 1,\\\\n          \\\\\\\"wald_F\\\\\\\": 257.4366,\\\\n          \\\\\\\"p_value\\\\\\\": 1e-06,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"d_canary\\\\\\\": 0,\\\\n          \\\\\\\"d_downstream\\\\\\\": 0\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 1e-06,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 3e-06,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 5e-06,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permutation_granger\\\\\\\": {\\\\n        \\\\\\\"raw\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 591.8023,\\\\n          \\\\\\\"p_value\\\\\\\": 0.007798,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"effect_size_f2\\\\\\\": 98.6337,\\\\n          \\\\\\\"null_mean\\\\\\\": 26.4042,\\\\n          \\\\\\\"null_std\\\\\\\": 102.9262,\\\\n          \\\\\\\"n_perm\\\\\\\": 5000\\\\n        },\\\\n        \\\\\\\"p_raw\\\\\\\": 0.007798,\\\\n        \\\\\\\"p_fdr_permethod\\\\\\\": 0.016396,\\\\n        \\\\\\\"p_fdr_pooled\\\\\\\": 0.010849,\\\\n        \\\\\\\"sig_raw\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_permethod\\\\\\\": true,\\\\n        \\\\\\\"sig_fdr_pooled\\\\\\\": true\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"method_summary\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"6/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"6/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"4/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"4/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"4/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=3\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"8/8\\\\\\\"\\\\n    },\\\\n    \\\\\\\"K>=4\\\\\\\": {\\\\n      \\\\\\\"raw_sig\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"fdr_permethod_sig\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"fdr_pooled_sig\\\\\\\": \\\\\\\"7/8\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia1b_c4_a100_s42\\\",\\n  \\\"label\\\": \\\"C4 Domain\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"alpha\\\": 0.05\\n  },\\n  \\\"pairs\\\": {\\n    \\\"token_entropy->mauve\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": -0.9554,\\n          \\\"p_value\\\": 1.6e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 1.6e-05,\\n        \\\"p_fdr_permethod\\\": 3.2e-05,\\n        \\\"p_fdr_pooled\\\": 5.7e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": -0.9227,\\n          \\\"p_value\\\": 0.000392,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.000392,\\n        \\\"p_fdr_permethod\\\": 0.000523,\\n        \\\"p_fdr_pooled\\\": 0.000784,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"note\\\": \\\"onset not detected for: downstream\\\"\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.0058,\\n          \\\"p_value\\\": 0.943049,\\n          \\\"significant\\\": false,\\n          \\\"df_resid\\\": 4,\\n          \\\"d_canary\\\": 1,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.943049,\\n        \\\"p_fdr_permethod\\\": 0.943049,\\n        \\\"p_fdr_pooled\\\": 0.943049,\\n        \\\"sig_raw\\\": false,\\n        \\\"sig_fdr_permethod\\\": false,\\n        \\\"sig_fdr_pooled\\\": false\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 34.1321,\\n          \\\"p_value\\\": 0.021196,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 5.6887,\\n          \\\"null_mean\\\": 3.6534,\\n          \\\"null_std\\\": 9.7508,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.021196,\\n        \\\"p_fdr_permethod\\\": 0.024224,\\n        \\\"p_fdr_pooled\\\": 0.025121,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9461,\\n          \\\"p_value\\\": 3.5e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 3.5e-05,\\n        \\\"p_fdr_permethod\\\": 5.6e-05,\\n        \\\"p_fdr_pooled\\\": 0.000112,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9812,\\n          \\\"p_value\\\": 3e-06,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 3e-06,\\n        \\\"p_fdr_permethod\\\": 1.2e-05,\\n        \\\"p_fdr_pooled\\\": 1.4e-05,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 3,\\n          \\\"lead_time\\\": 2,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 1,\\n          \\\"k\\\": 2,\\n          \\\"wald_F\\\": 0.1816,\\n          \\\"p_value\\\": 0.69197,\\n          \\\"significant\\\": false,\\n     \\n\\n... [截断: 输出过长，省略 11224 字符] ...\\n\\n         \\\"k\\\": 1,\\n          \\\"wald_F\\\": 402.859,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 0.0,\\n        \\\"p_fdr_permethod\\\": 0.0,\\n        \\\"p_fdr_pooled\\\": 0.0,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 1407.5844,\\n          \\\"p_value\\\": 0.003599,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 234.5974,\\n          \\\"null_mean\\\": 39.2598,\\n          \\\"null_std\\\": 243.866,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.003599,\\n        \\\"p_fdr_permethod\\\": 0.014396,\\n        \\\"p_fdr_pooled\\\": 0.005484,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    },\\n    \\\"ece->distinct_3\\\": {\\n      \\\"naive_pearson\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.972,\\n          \\\"p_value\\\": 5.4e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 5.4e-05,\\n        \\\"p_fdr_permethod\\\": 7.2e-05,\\n        \\\"p_fdr_pooled\\\": 0.000157,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"differenced_xcorr\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9164,\\n          \\\"p_value\\\": 0.001372,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": 0.001372,\\n        \\\"p_fdr_permethod\\\": 0.001568,\\n        \\\"p_fdr_pooled\\\": 0.002311,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"p_raw\\\": null,\\n        \\\"p_fdr_permethod\\\": null,\\n        \\\"p_fdr_pooled\\\": null,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"toda_yamamoto\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"toda_yamamoto\\\",\\n          \\\"p\\\": 1,\\n          \\\"d_max\\\": 0,\\n          \\\"k\\\": 1,\\n          \\\"wald_F\\\": 257.4366,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"significant\\\": true,\\n          \\\"df_resid\\\": 7,\\n          \\\"d_canary\\\": 0,\\n          \\\"d_downstream\\\": 0\\n        },\\n        \\\"p_raw\\\": 1e-06,\\n        \\\"p_fdr_permethod\\\": 3e-06,\\n        \\\"p_fdr_pooled\\\": 5e-06,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"raw\\\": {\\n          \\\"method\\\": \\\"permutation_granger\\\",\\n          \\\"f_stat\\\": 591.8023,\\n          \\\"p_value\\\": 0.007798,\\n          \\\"significant\\\": true,\\n          \\\"effect_size_f2\\\": 98.6337,\\n          \\\"null_mean\\\": 26.4042,\\n          \\\"null_std\\\": 102.9262,\\n          \\\"n_perm\\\": 5000\\n        },\\n        \\\"p_raw\\\": 0.007798,\\n        \\\"p_fdr_permethod\\\": 0.016396,\\n        \\\"p_fdr_pooled\\\": 0.010849,\\n        \\\"sig_raw\\\": true,\\n        \\\"sig_fdr_permethod\\\": true,\\n        \\\"sig_fdr_pooled\\\": true\\n      }\\n    }\\n  },\\n  \\\"method_summary\\\": {\\n    \\\"naive_pearson\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"differenced_xcorr\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"raw_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"6/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"6/8\\\"\\n    },\\n    \\\"toda_yamamoto\\\": {\\n      \\\"raw_sig\\\": \\\"4/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"4/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"4/8\\\"\\n    },\\n    \\\"permutation_granger\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=3\\\": {\\n      \\\"raw_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"8/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"8/8\\\"\\n    },\\n    \\\"K>=4\\\": {\\n      \\\"raw_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_permethod_sig\\\": \\\"7/8\\\",\\n      \\\"fdr_pooled_sig\\\": \\\"7/8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have all the data. Let me compile the complete report with the final format requested.
+
+From the JSON outputs, the summary is:
+
+### C4 Domain (pythia1b_c4_a100_s42)
+- naive_pearson: raw=8/8, fdr_pm=8/8, fdr_pool=8/8
+- differenced_xcorr: raw=8/8, fdr_pm=8/8, fdr_pool=8/8
+
+
+- threshold_onset: raw=6/8, fdr_pm=6/8, fdr_pool=6/8
+- toda_yamamoto: raw=4/8, fdr_pm=4/8, fdr_pool=4/8
+- permutation_granger: raw=8/8, fdr_pm=8/8, fdr_pool=8/8
+- K>=3: raw=8/8, fdr_pm=8/8, fdr_pool=8/8
+- K>=4: raw=7/8, fdr_pm=7/8, fdr_pool=7/8
+
+### OPT-1.
+
+Now looking at the 3B model results, I'm seeing much stronger performance across most methods—naive Pearson, differenced cross-correlation, and threshold onset all achieve perfect detection rates, while Toda-Yamamoto and permutation Granger drop to 6/8. The K-based methods show 8/8 for K≥3 but decline to 6/8 for K≥4.
+
+Shifting to the 1.4B scale model, the results are noticeably weaker. Naive Pearson drops to 7/8, differenced cross-correlation falls to 6/8, but threshold onset maintains perfect detection. Toda-Yamamoto completely fails at 0/8 across all variants, while permutation Granger shows inconsistent performance depending on the correction method applied. The K-based thresholds also degrade, with K≥3 at 6/8 and K≥4 dropping further.
+
+Now I'm comparing these results against the old Table 7 values to see how the methods have shifted. I'm also extracting the individual p-values from the permutation Granger test across different model pairs to understand which relationships are driving the detection rates. Now I'm looking at the remaining p-values for Scale 1.4B and preparing the final comparison table. I should note that threshold_onset can't be FDR-corrected since it's non-parametric, so I'm keeping its raw significance as-is, and I'm observing that FDR correction rarely changes the results except for Scale 1.4B's permutation_granger method, which drops from 5 to 2 significant findings. Looking at my unified results, C4's K≥4 dropped from 8/8 to 7/8 because the token_entropy→mauve pair only reaches K=3, and OPT remains stable at 6/8 across all correction scopes, while Scale shows the most sensitivity to multiple testing correction, collapsing from 5/8 raw down to 2-3/8 after FDR adjustment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "0249cf2d-8c39-4c1f-8af7-d36797fbf090",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqsoWSbHMNF58ERpBd4JyA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16100,
+      "cache_read_input_tokens": 77088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16100
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+所有 JSON 数据完整获取。以下是最终汇报。
+
+---
+
+## 统一参数 (n_perm=5000, xcorr lag=5, granger lag=1, BH q=0.05) 结果
+
+### 对比表：Table 7 旧值 vs 新结果
+
+| Row | Metric | Table7_OLD | Raw_p | FDR_permethod | FDR_pooled |
+|---|---|---|---|---|---|
+| C4 Domain | PG_fwd | 8/8 | **8/8** | **8/8** | **8/8** |
+| C4 Domain | K≥4 | 8/8 | **7/8** | **7/8** | **7/8** |
+| OPT-1.3B | PG_fwd | 6/8 | **6/8** | **6/8** | **6/8** |
+| OPT-1.3B | K≥4 | 6/8 | **6/8** | **6/8** | **6/8** |
+| Scale 1.4B | PG_fwd | 5/8 | **5/8** | **2/8** | **3/8** |
+| Scale 1.4B | K≥4 | 5/8 | **5/8** | **2/8** | **3/8** |
+
+### 全方法总结
+
+| Experiment | Method | Raw | FDR_pm | FDR_pool |
+|---|---|---|---|---|
+| C4 Domain | naive_pearson | 8/8 | 8/8 | 8/8 |
+| C4 Domain | differenced_xcorr | 8/8 | 8/8 | 8/8 |
+| C4 Domain | threshold_onset | 6/8 | 6/8 | 6/8 |
+| C4 Domain | toda_yamamoto | 4/8 | 4/8 | 4/8 |
+| C4 Domain | permutation_granger | 8/8 | 8/8 | 8/8 |
+| C4 Domain | K≥3 | 8/8 | 8/8 | 8/8 |
+| C4 Domain | K≥4 | 7/8 | 7/8 | 7/8 |
+| | | | | |
+| OPT-1.3B | naive_pearson | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | differenced_xcorr | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | threshold_onset | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | toda_yamamoto | 6/8 | 6/8 | 6/8 |
+| OPT-1.3B | permutation_granger | 6/8 | 6/8 | 6/8 |
+| OPT-1.3B | K≥3 | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | K≥4 | 6/8 | 6/8 | 6/8 |
+| | | | | |
+| Scale 1.4B | naive_pearson | 7/8 | 7/8 | 7/8 |
+| Scale 1.4B | differenced_xcorr | 6/8 | 6/8 | 6/8 |
+| Scale 1.4B | threshold_onset | 8/8 | 8/8 | 8/8 |
+| Scale 1.4B | toda_yamamoto | 0/8 | 0/8 | 0/8 |
+| Scale 1.4B | permutation_granger | 5/8 | **2/8** | **3/8** |
+| Scale 1.4B | K≥3 | 6/8 | 6/8 | 6/8 |
+| Scale 1.4B | K≥4 | 5/8 | **2/8** | **3/8** |
+
+### Per-pair PG raw p-values
+
+**C4 Domain** (all 8/8 significant):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→mauve | 0.0212 | 0.0242 | 0.0251 | 3/5 |
+| token_entropy→distinct_1 | 0.0082 | 0.0164 | 0.0161 | 4/5 |
+| token_entropy→distinct_2 | 0.0126 | 0.0202 | 0.0166 | 4/5 |
+| token_entropy→distinct_3 | 0.0262 | 0.0262 | 0.0299 | 4/5 |
+| ece→mauve | 0.0178 | 0.0237 | 0.0219 | 4/5 |
+| ece→distinct_1 | 0.0012 | 0.0096 | 0.0021 | 5/5 |
+| ece→distinct_2 | 0.0036 | 0.0144 | 0.0055 | 5/5 |
+| ece→distinct_3 | 0.0078 | 0.0164 | 0.0108 | 5/5 |
+
+**OPT-1.3B** (6/8 significant, perplexity pairs fail):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→perplexity | 0.8540 | 0.8540 | 0.8540 | 3/5 |
+| token_entropy→distinct_1 | 0.0012 | 0.0048 | 0.0024 | 5/5 |
+| token_entropy→distinct_2 | 0.0034 | 0.0091 | 0.0060 | 5/5 |
+| token_entropy→distinct_3 | 0.0128 | 0.0171 | 0.0164 | 5/5 |
+| ece→perplexity | 0.6275 | 0.7171 | 0.6693 | 3/5 |
+| ece→distinct_1 | 0.0012 | 0.0048 | 0.0024 | 5/5 |
+| ece→distinct_2 | 0.0046 | 0.0092 | 0.0074 | 5/5 |
+| ece→distinct_3 | 0.0126 | 0.0171 | 0.0164 | 5/5 |
+
+**Scale 1.4B** (5/8 raw sig, FDR drops to 2-3/8):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→perplexity | 0.7163 | 0.7163 | 0.7640 | 1/5 |
+| token_entropy→distinct_1 | 0.0274* | 0.0548 | 0.0516 | 4/5 |
+| token_entropy→distinct_2 | 0.0346* | 0.0553 | 0.0615 | 4/5 |
+| token_entropy→distinct_3 | 0.0532 | 0.0709 | 0.0867 | 3/5 |
+| ece→perplexity | 0.5739 | 0.6559 | 0.7346 | 2/5 |
+| ece→distinct_1 | 0.0042* | 0.0336* | 0.0112* | 4/5 |
+| ece→distinct_2 | 0.0086* | 0.0344* | 0.0212* | 4/5 |
+| ece→distinct_3 | 0.0216* | **0.0548** | 0.0432* | 4/5 |
+
+### 关键发现
+
+1. **C4 和 OPT：FDR 无影响**。C4 PG 8/8 全保留，OPT PG 6/8 全保留。三种 FDR scope 完全一致。
+
+2. **C4 K≥4 从 8/8 降到 7/8**。`token_entropy→mauve` 只有 3/5 票（threshold_onset 因 downstream mauve 未检测到 onset 而 n.s.，TY 因 d_max=1 导致 df_resid=4 而 n.s.）。
+
+3. **Scale 1.4B 是唯一 FDR 敏感的实验**。PG raw 5/8 → FDR_pm 2/8 / FDR_pool 3/8。根因：token_entropy 的 3 个 distinct pair p-values 边缘（0.0274/0.0346/0.0532），BH 校正后全部失去显著性。ece→distinct_3 也从 0.0216 → 0.0548（FDR_pm 刚好越界）。
+
+4. **TY 在 Scale 1.4B 全军覆没 (0/8)**，因为 d_max=1-2 导致 df_resid 极低（1-4），符合 C003 约束预期。
+
+5. **threshold_onset 无 p-value**，使用 lead_time>0 的布尔判定，不参与 FDR 校正。其在 Scale 1.4B 反而表现最强 (8/8)，因为它只检测时序先后不做统计检验。
+
+JSON 结果保存在各实验的 `analysis/unified_5method.json` 和汇总 `results/generalize/analysis/unified_generalize_all.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "uuid": "c1b07911-24f9-4f6c-a546-f7aaa4df368c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqsoWSbHMNF58ERpBd4JyA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16100,
+      "cache_read_input_tokens": 77088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16100
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 77_
+
+所有 JSON 数据完整获取。以下是最终汇报。
+
+---
+
+## 统一参数 (n_perm=5000, xcorr lag=5, granger lag=1, BH q=0.05) 结果
+
+### 对比表：Table 7 旧值 vs 新结果
+
+| Row | Metric | Table7_OLD | Raw_p | FDR_permethod | FDR_pooled |
+|---|---|---|---|---|---|
+| C4 Domain | PG_fwd | 8/8 | **8/8** | **8/8** | **8/8** |
+| C4 Domain | K≥4 | 8/8 | **7/8** | **7/8** | **7/8** |
+| OPT-1.3B | PG_fwd | 6/8 | **6/8** | **6/8** | **6/8** |
+| OPT-1.3B | K≥4 | 6/8 | **6/8** | **6/8** | **6/8** |
+| Scale 1.4B | PG_fwd | 5/8 | **5/8** | **2/8** | **3/8** |
+| Scale 1.4B | K≥4 | 5/8 | **5/8** | **2/8** | **3/8** |
+
+### 全方法总结
+
+| Experiment | Method | Raw | FDR_pm | FDR_pool |
+|---|---|---|---|---|
+| C4 Domain | naive_pearson | 8/8 | 8/8 | 8/8 |
+| C4 Domain | differenced_xcorr | 8/8 | 8/8 | 8/8 |
+| C4 Domain | threshold_onset | 6/8 | 6/8 | 6/8 |
+| C4 Domain | toda_yamamoto | 4/8 | 4/8 | 4/8 |
+| C4 Domain | permutation_granger | 8/8 | 8/8 | 8/8 |
+| C4 Domain | K≥3 | 8/8 | 8/8 | 8/8 |
+| C4 Domain | K≥4 | 7/8 | 7/8 | 7/8 |
+| | | | | |
+| OPT-1.3B | naive_pearson | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | differenced_xcorr | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | threshold_onset | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | toda_yamamoto | 6/8 | 6/8 | 6/8 |
+| OPT-1.3B | permutation_granger | 6/8 | 6/8 | 6/8 |
+| OPT-1.3B | K≥3 | 8/8 | 8/8 | 8/8 |
+| OPT-1.3B | K≥4 | 6/8 | 6/8 | 6/8 |
+| | | | | |
+| Scale 1.4B | naive_pearson | 7/8 | 7/8 | 7/8 |
+| Scale 1.4B | differenced_xcorr | 6/8 | 6/8 | 6/8 |
+| Scale 1.4B | threshold_onset | 8/8 | 8/8 | 8/8 |
+| Scale 1.4B | toda_yamamoto | 0/8 | 0/8 | 0/8 |
+| Scale 1.4B | permutation_granger | 5/8 | **2/8** | **3/8** |
+| Scale 1.4B | K≥3 | 6/8 | 6/8 | 6/8 |
+| Scale 1.4B | K≥4 | 5/8 | **2/8** | **3/8** |
+
+### Per-pair PG raw p-values
+
+**C4 Domain** (all 8/8 significant):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→mauve | 0.0212 | 0.0242 | 0.0251 | 3/5 |
+| token_entropy→distinct_1 | 0.0082 | 0.0164 | 0.0161 | 4/5 |
+| token_entropy→distinct_2 | 0.0126 | 0.0202 | 0.0166 | 4/5 |
+| token_entropy→distinct_3 | 0.0262 | 0.0262 | 0.0299 | 4/5 |
+| ece→mauve | 0.0178 | 0.0237 | 0.0219 | 4/5 |
+| ece→distinct_1 | 0.0012 | 0.0096 | 0.0021 | 5/5 |
+| ece→distinct_2 | 0.0036 | 0.0144 | 0.0055 | 5/5 |
+| ece→distinct_3 | 0.0078 | 0.0164 | 0.0108 | 5/5 |
+
+**OPT-1.3B** (6/8 significant, perplexity pairs fail):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→perplexity | 0.8540 | 0.8540 | 0.8540 | 3/5 |
+| token_entropy→distinct_1 | 0.0012 | 0.0048 | 0.0024 | 5/5 |
+| token_entropy→distinct_2 | 0.0034 | 0.0091 | 0.0060 | 5/5 |
+| token_entropy→distinct_3 | 0.0128 | 0.0171 | 0.0164 | 5/5 |
+| ece→perplexity | 0.6275 | 0.7171 | 0.6693 | 3/5 |
+| ece→distinct_1 | 0.0012 | 0.0048 | 0.0024 | 5/5 |
+| ece→distinct_2 | 0.0046 | 0.0092 | 0.0074 | 5/5 |
+| ece→distinct_3 | 0.0126 | 0.0171 | 0.0164 | 5/5 |
+
+**Scale 1.4B** (5/8 raw sig, FDR drops to 2-3/8):
+| Pair | PG p_raw | PG p_fdr_pm | PG p_fdr_pool | K_raw |
+|---|---|---|---|---|
+| token_entropy→perplexity | 0.7163 | 0.7163 | 0.7640 | 1/5 |
+| token_entropy→distinct_1 | 0.0274* | 0.0548 | 0.0516 | 4/5 |
+| token_entropy→distinct_2 | 0.0346* | 0.0553 | 0.0615 | 4/5 |
+| token_entropy→distinct_3 | 0.0532 | 0.0709 | 0.0867 | 3/5 |
+| ece→perplexity | 0.5739 | 0.6559 | 0.7346 | 2/5 |
+| ece→distinct_1 | 0.0042* | 0.0336* | 0.0112* | 4/5 |
+| ece→distinct_2 | 0.0086* | 0.0344* | 0.0212* | 4/5 |
+| ece→distinct_3 | 0.0216* | **0.0548** | 0.0432* | 4/5 |
+
+### 关键发现
+
+1. **C4 和 OPT：FDR 无影响**。C4 PG 8/8 全保留，OPT PG 6/8 全保留。三种 FDR scope 完全一致。
+
+2. **C4 K≥4 从 8/8 降到 7/8**。`token_entropy→mauve` 只有 3/5 票（threshold_onset 因 downstream mauve 未检测到 onset 而 n.s.，TY 因 d_max=1 导致 df_resid=4 而 n.s.）。
+
+3. **Scale 1.4B 是唯一 FDR 敏感的实验**。PG raw 5/8 → FDR_pm 2/8 / FDR_pool 3/8。根因：token_entropy 的 3 个 distinct pair p-values 边缘（0.0274/0.0346/0.0532），BH 校正后全部失去显著性。ece→distinct_3 也从 0.0216 → 0.0548（FDR_pm 刚好越界）。
+
+4. **TY 在 Scale 1.4B 全军覆没 (0/8)**，因为 d_max=1-2 导致 df_resid 极低（1-4），符合 C003 约束预期。
+
+5. **threshold_onset 无 p-value**，使用 lead_time>0 的布尔判定，不参与 FDR 校正。其在 Scale 1.4B 反而表现最强 (8/8)，因为它只检测时序先后不做统计检验。
+
+JSON 结果保存在各实验的 `analysis/unified_5method.json` 和汇总 `results/generalize/analysis/unified_generalize_all.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 369462,
+  "duration_api_ms": 354545,
+  "num_turns": 26,
+  "stop_reason": "end_turn",
+  "session_id": "75c570da-722f-41b9-9230-632d8ea0a69e",
+  "total_cost_usd": 1.4758887499999997,
+  "usage": {
+    "input_tokens": 21,
+    "cache_creation_input_tokens": 81347,
+    "cache_read_input_tokens": 796180,
+    "output_tokens": 22662,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 81347,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 4692,
+        "cache_read_input_tokens": 77088,
+        "cache_creation_input_tokens": 16100,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 16100
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2635,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 21,
+      "outputTokens": 22662,
+      "cacheReadInputTokens": 796180,
+      "cacheCreationInputTokens": 81347,
+      "webSearchRequests": 0,
+      "costUSD": 1.4731637499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1288c169-bb17-4d65-978a-b9ce6d19d940"
+}
+```
+
+</details>
+
+---

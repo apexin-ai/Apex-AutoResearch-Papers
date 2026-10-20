@@ -1,0 +1,40 @@
+{
+  "exp_id": "alpha_sweep_c4_a050_s42_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:26:50.191Z",
+    "updated_at": "2026-05-18T20:23:39.484Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --bf16 --output_dir results/alpha_sweep_c4/a050_s42_bf16",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "18253",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42_bf16.log",
+      "submitted_at": "2026-05-18T17:26:50.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "data_path": "data/c4_5k",
+      "data_count": 5000,
+      "wall_clock_seconds": 10609.4,
+      "gpu_hours": 2.95
+    },
+    "hypothesis": "C4 α=0.50 cross-domain with bf16: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain.",
+    "reproduce": {
+      "finished_at": "2026-05-18T20:23:37.841Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T20:23:39.484Z"
+  },
+  "timestamp": "2026-05-18T20:23:39.597194+00:00",
+  "trigger": "update_registry"
+}

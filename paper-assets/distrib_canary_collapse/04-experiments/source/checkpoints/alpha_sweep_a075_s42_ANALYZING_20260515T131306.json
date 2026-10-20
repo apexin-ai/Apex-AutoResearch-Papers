@@ -1,0 +1,44 @@
+{
+  "exp_id": "alpha_sweep_a075_s42",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:52:17.315Z",
+    "updated_at": "2026-05-15T13:13:06.586Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "89753",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log",
+      "submitted_at": "2026-05-15T05:44:47.124Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T05:44:46.271Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\"",
+      "finished_at": "2026-05-15T13:13:06.477Z",
+      "training_hours": 7.47
+    },
+    "pid": "89753",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log",
+    "metrics": {
+      "progress": "8/10 gen (gen_8 post-processing)",
+      "eta_hours": 1.5
+    }
+  },
+  "timestamp": "2026-05-15T13:13:06.634081+00:00",
+  "trigger": "update_registry"
+}

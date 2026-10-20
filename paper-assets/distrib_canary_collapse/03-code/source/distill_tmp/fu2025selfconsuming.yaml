@@ -1,0 +1,28 @@
+paper_key: "fu2025selfconsuming"
+title: "A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops"
+venue: "ICLR 2025"
+full_text_available: false
+
+research:
+  baselines: ["Self-consuming Training Loop (STL)"]
+  metrics:
+    - {name: "Total Variation distance", direction: "lower_better"}
+    - {name: "KL divergence", direction: "lower_better"}
+    - {name: "population/empirical risk", direction: "lower_better"}
+  datasets: []
+  ablation_dimensions:
+    - real_synthetic_ratio
+    - model_architecture
+    - synthetic_data_sizing
+  training_recipe: {focus: "theoretical, transformer ICL analysis"}
+  method_family: "recursive_stability_theory"
+
+positioning:
+  core_claim: "Introduces 'recursive stability' concept; shows both model architecture and real/synthetic data proportion influence STL success. Even constant-sized real data proportion ensures transformer ICL convergence."
+  key_results: "Convergence bound O(n^{-1}log^2(n) + n^{-1/2}log(n) + n^{-1/4}) for transformer ICL"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

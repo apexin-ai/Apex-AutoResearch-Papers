@@ -1,0 +1,28 @@
+{
+  "exp_id": "phase_diagram_t15_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:55:07.860Z",
+    "updated_at": "2026-05-21T11:32:55.480Z",
+    "hypothesis": "Phase Diagram T=15 α=0.45: At T=15, theory predicts α_c(15)≈0.304. α=0.45 is above this threshold, so PermG should detect contamination. If PermG>0/8, confirms theory that T=15 is sufficient for detection at α=0.45 (whereas T=10 cannot detect at α=0.45 since α_c(10)=0.487>0.45). Maps the T=15 row of the detection phase diagram.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a045_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "665099",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t15_a045_s42_fp32.log",
+      "submitted_at": "2026-05-21T10:55:26.685Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T11:32:55.819296+00:00",
+  "trigger": "update_registry"
+}

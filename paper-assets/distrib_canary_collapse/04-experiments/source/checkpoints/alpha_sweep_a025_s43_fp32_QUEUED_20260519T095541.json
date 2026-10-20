@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_a025_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:18:28.979Z",
+    "updated_at": "2026-05-19T09:55:41.337Z",
+    "hypothesis": "α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "121290",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+      "submitted_at": "2026-05-19T09:55:30.729Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T09:55:41.510075+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "method_ablation_phase2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:58:35.270Z",
+    "updated_at": "2026-05-15T08:58:54.741Z",
+    "spec": {
+      "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+      "command": "python method_ablation_phase2.py",
+      "server": "westd-19828",
+      "data_path": "results/alpha_sweep + results/mvp",
+      "data_count": 56,
+      "model_name": "N/A (analysis)",
+      "seed": "42,43,44,45",
+      "checkpoint_path": "N/A",
+      "log_path": "results/method_ablation_phase2_panel.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n_panel_rows": 56,
+      "n_alphas": 4,
+      "alphas": [
+        0,
+        0.25,
+        0.5,
+        1
+      ],
+      "naive_sig_rate_overall": 1,
+      "perm_granger_sig_rate_a000": 0,
+      "perm_granger_sig_rate_a025": 0.25,
+      "perm_granger_sig_rate_a050": 0.25,
+      "perm_granger_sig_rate_a100": 0.75,
+      "TY_sig_rate_a000": 0,
+      "TY_sig_rate_a100": 0.59,
+      "mean_inter_method_kappa": 0.185,
+      "naive_vs_perm_granger_flip_rate": 0.5,
+      "naive_vs_TY_flip_rate": 0.57,
+      "fdr_flips_perm_granger": 4,
+      "pair_verdict_a100_perm_granger": "6/8",
+      "pair_verdict_a100_TY": "6/8",
+      "entropy_to_diversity_a100_all_5methods_sig": true
+    },
+    "completed_at": "2026-05-15T08:58:54.741Z"
+  },
+  "timestamp": "2026-05-15T08:58:54.783067+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "version": "1.0",
+    "date": "2026-05-15",
+    "description": "Sensitivity analysis of multi-method consensus framework for lead-lag association testing",
+    "data_source": "α=1.0 MVP, 4 seeds (42,43,44,45), T=11, Pythia-410M, WikiText-103 5K subset",
+    "K": 5,
+    "S": 4,
+    "methods": ["naive_pearson", "differenced_xcorr", "threshold_onset", "toda_yamamoto", "permutation_granger"],
+    "default_config": {"method_threshold": 4, "seed_threshold": 3, "label": "(4/5, 3/4)"}
+  },
+  "sig_seeds_matrix": {
+    "description": "Number of seeds (out of S=4) where each method detects significance, per pair",
+    "pairs": [
+      {"canary": "token_entropy", "downstream": "perplexity",  "naive": 4, "diff": 4, "threshold": 4, "TY": 0, "perm": 0},
+      {"canary": "token_entropy", "downstream": "distinct_1",  "naive": 4, "diff": 4, "threshold": 4, "TY": 4, "perm": 4},
+      {"canary": "token_entropy", "downstream": "distinct_2",  "naive": 4, "diff": 4, "threshold": 4, "TY": 4, "perm": 4},
+      {"canary": "token_entropy", "downstream": "distinct_3",  "naive": 4, "diff": 4, "threshold": 4, "TY": 4, "perm": 4},
+      {"canary": "self_bleu",     "downstream": "perplexity",  "naive": 4, "diff": 2, "threshold": 3, "TY": 0, "perm": 1},
+      {"canary": "self_bleu",     "downstream": "distinct_1",  "naive": 4, "diff": 2, "threshold": 0, "TY": 1, "perm": 1},
+      {"canary": "self_bleu",     "downstream": "distinct_2",  "naive": 4, "diff": 3, "threshold": 0, "TY": 1, "perm": 1},
+      {"canary": "self_bleu",     "downstream": "distinct_3",  "naive": 4, "diff": 3, "threshold": 0, "TY": 1, "perm": 1},
+      {"canary": "ece",           "downstream": "perplexity",  "naive": 4, "diff": 4, "threshold": 4, "TY": 0, "perm": 0},
+      {"canary": "ece",           "downstream": "distinct_1",  "naive": 4, "diff": 4, "threshold": 4, "TY": 3, "perm": 4},
+      {"canary": "ece",           "downstream": "distinct_2",  "naive": 4, "diff": 4, "threshold": 4, "TY": 2, "perm": 4},
+      {"canary": "ece",           "downstream": "distinct_3",  "naive": 4, "diff": 4, "threshold": 4, "TY": 2, "perm": 4},
+      {"canary": "effective_rank","downstream": "perplexity",  "naive": 3, "diff": 4, "threshold": 0, "TY": 0, "perm": 0},
+      {"canary": "effective_rank","downstream": "distinct_1",  "naive": 4, "diff": 3, "threshold": 0, "TY": 1, "perm": 2},
+      {"canary": "effective_rank","downstream": "distinct_2",  "naive": 4, "diff": 3, "threshold": 0, "TY": 1, "perm": 2},
+      {"canary": "effective_rank","downstream": "distinct_3",  "naive": 4, "diff": 3, "threshold": 0, "TY": 2, "perm": 2}
+    ]
+  },
+  "thresholds": [
+    {
+      "method_k": 3,
+      "seed_k": 2,
+      "label": "(3/5, 2/4)",
+      "robust_pairs": [
+        "entropy→ppl", "entropy→d1", "entropy→d2", "entropy→d3",
+        "sbleu→ppl",
+        "ece→ppl", "ece→d1", "ece→d2", "ece→d3",
+        "erank→d1", "erank→d2", "erank→d3"
+      ],
+      "n_robust": 12,
+      "n_spurious": 4,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 3, "sbleu→d1": 2, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 5, "ece→d3": 5,
+        "erank→ppl": 2, "erank→d1": 3, "erank→d2": 3, "erank→d3": 4
+      }
+    },
+    {
+      "method_k": 3,
+      "seed_k": 3,
+      "label": "(3/5, 3/4)",
+      "robust_pairs": [
+        "entropy→ppl", "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→ppl", "ece→d1", "ece→d2", "ece→d3"
+      ],
+      "n_robust": 8,
+      "n_spurious": 8,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 2, "sbleu→d1": 1, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 2, "erank→d1": 2, "erank→d2": 2, "erank→d3": 2
+      }
+    },
+    {
+      "method_k": 3,
+      "seed_k": 4,
+      "label": "(3/5, 4/4)",
+      "robust_pairs": [
+        "entropy→ppl", "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→ppl", "ece→d1", "ece→d2", "ece→d3"
+      ],
+      "n_robust": 8,
+      "n_spurious": 8,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 1, "sbleu→d1": 1, "sbleu→d2": 1, "sbleu→d3": 1,
+        "ece→ppl": 3, "ece→d1": 4, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 1, "erank→d1": 1, "erank→d2": 1, "erank→d3": 1
+      }
+    },
+    {
+      "method_k": 4,
+      "seed_k": 2,
+      "label": "(4/5, 2/4)",
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→d1", "ece→d2", "ece→d3",
+        "erank→d3"
+      ],
+      "n_robust": 7,
+      "n_spurious": 9,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 3, "sbleu→d1": 2, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 5, "ece→d3": 5,
+        "erank→ppl": 2, "erank→d1": 3, "erank→d2": 3, "erank→d3": 4
+      }
+    },
+    {
+      "method_k": 4,
+      "seed_k": 3,
+      "label": "(4/5, 3/4)",
+      "is_default": true,
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→d1", "ece→d2", "ece→d3"
+      ],
+      "n_robust": 6,
+      "n_spurious": 10,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 2, "sbleu→d1": 1, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 2, "erank→d1": 2, "erank→d2": 2, "erank→d3": 2
+      }
+    },
+    {
+      "method_k": 4,
+      "seed_k": 4,
+      "label": "(4/5, 4/4)",
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→d1", "ece→d2", "ece→d3"
+      ],
+      "n_robust": 6,
+      "n_spurious": 10,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 1, "sbleu→d1": 1, "sbleu→d2": 1, "sbleu→d3": 1,
+        "ece→ppl": 3, "ece→d1": 4, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 1, "erank→d1": 1, "erank→d2": 1, "erank→d3": 1
+      }
+    },
+    {
+      "method_k": 5,
+      "seed_k": 2,
+      "label": "(5/5, 2/4)",
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→d1", "ece→d2", "ece→d3"
+      ],
+      "n_robust": 6,
+      "n_spurious": 10,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 3, "sbleu→d1": 2, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 5, "ece→d3": 5,
+        "erank→ppl": 2, "erank→d1": 3, "erank→d2": 3, "erank→d3": 4
+      }
+    },
+    {
+      "method_k": 5,
+      "seed_k": 3,
+      "label": "(5/5, 3/4)",
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ece→d1"
+      ],
+      "n_robust": 4,
+      "n_spurious": 12,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 2, "sbleu→d1": 1, "sbleu→d2": 2, "sbleu→d3": 2,
+        "ece→ppl": 3, "ece→d1": 5, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 2, "erank→d1": 2, "erank→d2": 2, "erank→d3": 2
+      }
+    },
+    {
+      "method_k": 5,
+      "seed_k": 4,
+      "label": "(5/5, 4/4)",
+      "robust_pairs": [
+        "entropy→d1", "entropy→d2", "entropy→d3"
+      ],
+      "n_robust": 3,
+      "n_spurious": 13,
+      "methods_sig_per_pair": {
+        "entropy→ppl": 3, "entropy→d1": 5, "entropy→d2": 5, "entropy→d3": 5,
+        "sbleu→ppl": 1, "sbleu→d1": 1, "sbleu→d2": 1, "sbleu→d3": 1,
+        "ece→ppl": 3, "ece→d1": 4, "ece→d2": 4, "ece→d3": 4,
+        "erank→ppl": 1, "erank→d1": 1, "erank→d2": 1, "erank→d3": 1
+      }
+    }
+  ],
+  "pair_stability": {
+    "description": "Number of configurations (out of 9) in which each pair is classified as robust",
+    "pairs": {
+      "entropy→d1":  {"stable_configs": 9, "total_configs": 9, "stability": "perfectly_stable"},
+      "entropy→d2":  {"stable_configs": 9, "total_configs": 9, "stability": "perfectly_stable"},
+      "entropy→d3":  {"stable_configs": 9, "total_configs": 9, "stability": "perfectly_stable"},
+      "ece→d1":      {"stable_configs": 9, "total_configs": 9, "stability": "perfectly_stable"},
+      "ece→d2":      {"stable_configs": 7, "total_configs": 9, "stability": "highly_stable",
+                      "missing_configs": ["(5/5, 3/4)", "(5/5, 4/4)"],
+                      "reason": "TY has only 2/4 seeds significant; fails under unanimous method requirement"},
+      "ece→d3":      {"stable_configs": 7, "total_configs": 9, "stability": "highly_stable",
+                      "missing_configs": ["(5/5, 3/4)", "(5/5, 4/4)"],
+                      "reason": "TY has only 2/4 seeds significant; fails under unanimous method requirement"},
+      "entropy→ppl": {"stable_configs": 3, "total_configs": 9, "stability": "threshold_sensitive",
+                      "missing_configs": ["(4/5, 2/4)", "(4/5, 3/4)", "(4/5, 4/4)", "(5/5, 2/4)", "(5/5, 3/4)", "(5/5, 4/4)"],
+                      "reason": "TY and perm_granger both NS; only 3/5 methods agree"},
+      "ece→ppl":     {"stable_configs": 3, "total_configs": 9, "stability": "threshold_sensitive",
+                      "missing_configs": ["(4/5, 2/4)", "(4/5, 3/4)", "(4/5, 4/4)", "(5/5, 2/4)", "(5/5, 3/4)", "(5/5, 4/4)"],
+                      "reason": "TY and perm_granger both NS; only 3/5 methods agree"},
+      "erank→d3":    {"stable_configs": 2, "total_configs": 9, "stability": "fragile",
+                      "present_configs": ["(3/5, 2/4)", "(4/5, 2/4)"],
+                      "reason": "Only robust under loose seed threshold (2/4)"},
+      "sbleu→ppl":   {"stable_configs": 1, "total_configs": 9, "stability": "marginal",
+                      "present_configs": ["(3/5, 2/4)"],
+                      "reason": "Only robust under most permissive configuration"},
+      "erank→d1":    {"stable_configs": 1, "total_configs": 9, "stability": "marginal",
+                      "present_configs": ["(3/5, 2/4)"]},
+      "erank→d2":    {"stable_configs": 1, "total_configs": 9, "stability": "marginal",
+                      "present_configs": ["(3/5, 2/4)"]},
+      "sbleu→d1":    {"stable_configs": 0, "total_configs": 9, "stability": "never_robust"},
+      "sbleu→d2":    {"stable_configs": 0, "total_configs": 9, "stability": "never_robust"},
+      "sbleu→d3":    {"stable_configs": 0, "total_configs": 9, "stability": "never_robust"},
+      "erank→ppl":   {"stable_configs": 0, "total_configs": 9, "stability": "never_robust"}
+    }
+  },
+  "error_rates": {
+    "fpr_ground_truth": "differenced_xcorr raw p > 0.05 at individual (pair, seed) level",
+    "fpr_n_truly_negative": 9,
+    "fnr_ground_truth": "consensus robust pairs under default (4/5, 3/4) config",
+    "fnr_n_truly_positive_seeds": 24,
+    "fnr_circularity_note": "FNR is 0% by construction; measures internal consistency, not absolute sensitivity",
+    "per_method": {
+      "naive_pearson":       {"fpr": 1.000, "fnr": 0.000},
+      "differenced_xcorr":   {"fpr": 0.000, "fnr": 0.000},
+      "threshold_onset":     {"fpr": 0.111, "fnr": 0.000},
+      "toda_yamamoto":       {"fpr": 0.000, "fnr": 0.208},
+      "permutation_granger": {"fpr": 0.111, "fnr": 0.000},
+      "consensus_4_5_3_4":   {"fpr": 0.000, "fnr": 0.000}
+    }
+  },
+  "ty_power_reference": {
+    "source": "plan_009_bootstrap_ty (N_sim=1000)",
+    "T10_levels_type1": 0.081,
+    "T10_levels_power": 0.205,
+    "T10_diff_type1": 0.047,
+    "T10_diff_power": 0.090,
+    "T20_levels_power": 0.409,
+    "T20_diff_power": 0.172,
+    "T30_levels_power": 0.606,
+    "T30_diff_power": 0.283
+  }
+}

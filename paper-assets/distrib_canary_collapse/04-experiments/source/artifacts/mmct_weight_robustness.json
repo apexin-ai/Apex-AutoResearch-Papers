@@ -1,0 +1,183 @@
+{
+  "version": "mmct_weight_robustness_v1",
+  "generated_at": "2026-05-20T15:42:10.192607",
+  "data": {
+    "n_null_experiments": 3,
+    "n_signal_experiments": 45,
+    "n_null_obs": 24,
+    "n_signal_obs": 360,
+    "method_fpr": {
+      "naive_xcorr": 0.9167,
+      "diff_xcorr": 0.375,
+      "threshold_onset": 0.25,
+      "perm_granger": 0.0,
+      "ty_granger": 0.0833
+    }
+  },
+  "weight_schemes": {
+    "equal": {
+      "weights": {
+        "naive_xcorr": 1.0,
+        "diff_xcorr": 1.0,
+        "threshold_onset": 1.0,
+        "perm_granger": 1.0,
+        "ty_granger": 1.0
+      },
+      "weight_sum": 5.0,
+      "fpr_shapley": {
+        "naive_xcorr": 0.038194,
+        "diff_xcorr": 0.038194,
+        "threshold_onset": 0.038194,
+        "perm_granger": 0.0,
+        "ty_granger": 0.010417
+      },
+      "fnr_shapley": {
+        "naive_xcorr": -0.175463,
+        "diff_xcorr": -0.170833,
+        "threshold_onset": -0.019907,
+        "perm_granger": -0.15162,
+        "ty_granger": -0.05162
+      },
+      "combined_shapley": {
+        "naive_xcorr": -0.137269,
+        "diff_xcorr": -0.132639,
+        "threshold_onset": 0.018287,
+        "perm_granger": -0.15162,
+        "ty_granger": -0.041204
+      },
+      "rankings": [
+        "perm_granger",
+        "naive_xcorr",
+        "diff_xcorr",
+        "ty_granger",
+        "threshold_onset"
+      ],
+      "permg_rank": 1
+    },
+    "cap5": {
+      "weights": {
+        "naive_xcorr": 1.0909,
+        "diff_xcorr": 2.6667,
+        "threshold_onset": 4.0,
+        "perm_granger": 5.0,
+        "ty_granger": 5.0
+      },
+      "weight_sum": 17.7576,
+      "fpr_shapley": {
+        "naive_xcorr": 0.034722,
+        "diff_xcorr": 0.034722,
+        "threshold_onset": 0.041667,
+        "perm_granger": 0.0,
+        "ty_granger": 0.013889
+      },
+      "fnr_shapley": {
+        "naive_xcorr": -0.157407,
+        "diff_xcorr": -0.157407,
+        "threshold_onset": -0.026389,
+        "perm_granger": -0.165278,
+        "ty_granger": -0.062963
+      },
+      "combined_shapley": {
+        "naive_xcorr": -0.122685,
+        "diff_xcorr": -0.122685,
+        "threshold_onset": 0.015278,
+        "perm_granger": -0.165278,
+        "ty_granger": -0.049074
+      },
+      "rankings": [
+        "perm_granger",
+        "naive_xcorr",
+        "diff_xcorr",
+        "ty_granger",
+        "threshold_onset"
+      ],
+      "permg_rank": 1
+    },
+    "cap10": {
+      "weights": {
+        "naive_xcorr": 1.0909,
+        "diff_xcorr": 2.6667,
+        "threshold_onset": 4.0,
+        "perm_granger": 10.0,
+        "ty_granger": 10.0
+      },
+      "weight_sum": 27.7576,
+      "fpr_shapley": {
+        "naive_xcorr": 0.03125,
+        "diff_xcorr": 0.03125,
+        "threshold_onset": 0.03125,
+        "perm_granger": 0.0,
+        "ty_granger": 0.072917
+      },
+      "fnr_shapley": {
+        "naive_xcorr": -0.006019,
+        "diff_xcorr": -0.006019,
+        "threshold_onset": -0.006019,
+        "perm_granger": -0.425694,
+        "ty_granger": -0.139583
+      },
+      "combined_shapley": {
+        "naive_xcorr": 0.025231,
+        "diff_xcorr": 0.025231,
+        "threshold_onset": 0.025231,
+        "perm_granger": -0.425694,
+        "ty_granger": -0.066667
+      },
+      "rankings": [
+        "perm_granger",
+        "ty_granger",
+        "naive_xcorr",
+        "diff_xcorr",
+        "threshold_onset"
+      ],
+      "permg_rank": 1
+    },
+    "original_cap100": {
+      "weights": {
+        "naive_xcorr": 1.0909,
+        "diff_xcorr": 2.6667,
+        "threshold_onset": 4.0,
+        "perm_granger": 100.0,
+        "ty_granger": 12.0
+      },
+      "weight_sum": 119.7576,
+      "fpr_shapley": {
+        "naive_xcorr": 0.03125,
+        "diff_xcorr": 0.03125,
+        "threshold_onset": 0.03125,
+        "perm_granger": 0.0,
+        "ty_granger": 0.072917
+      },
+      "fnr_shapley": {
+        "naive_xcorr": -0.006019,
+        "diff_xcorr": -0.006019,
+        "threshold_onset": -0.006019,
+        "perm_granger": -0.425694,
+        "ty_granger": -0.139583
+      },
+      "combined_shapley": {
+        "naive_xcorr": 0.025231,
+        "diff_xcorr": 0.025231,
+        "threshold_onset": 0.025231,
+        "perm_granger": -0.425694,
+        "ty_granger": -0.066667
+      },
+      "rankings": [
+        "perm_granger",
+        "ty_granger",
+        "naive_xcorr",
+        "diff_xcorr",
+        "threshold_onset"
+      ],
+      "permg_rank": 1
+    }
+  },
+  "conclusion": "PermG ranks #1 under ALL 4 weighting schemes. The circularity concern is fully addressed.",
+  "notes": {
+    "threshold_rule": "weighted K>=3: threshold = sum of 3 smallest method weights",
+    "cap10_cap100_identical": "cap10 and original_cap100 yield identical Shapley values because threshold=7.76 in both cases (same 3 smallest weights: 1.09+2.67+4.00), and both PermG and TY individually exceed this threshold",
+    "equal_weight_is_strongest_test": "Equal weighting (w=1 for all) eliminates ANY FPR-based advantage. PermG still #1 with combined=-0.1516 (zero FPR contribution + strong FNR reduction), beating NaiveXCorr (-0.137) and DiffXCorr (-0.133)",
+    "fpr_rates_verified": "Per-method FPR/FNR match Shapley v3 reference exactly: naive=0.917/0.053, diff=0.375/0.253, thresh=0.250/0.889, permg=0.000/0.503, ty=0.083/0.794",
+    "data_source": "48 D120-compliant experiments (3 null + 45 signal), same as Shapley v3 dedup FDR"
+  }
+}

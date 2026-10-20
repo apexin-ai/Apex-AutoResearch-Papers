@@ -1,0 +1,16 @@
+{
+  "exp_id": "gen_gpt2m_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:45:29.110Z",
+    "updated_at": "2026-05-18T23:46:06.825Z",
+    "hypothesis": "GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.",
+    "parent": "gen_wiki_gpt2m_a100_s42_v4"
+  },
+  "timestamp": "2026-05-18T23:46:06.968567+00:00",
+  "trigger": "update_registry"
+}

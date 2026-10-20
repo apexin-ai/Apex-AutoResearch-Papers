@@ -1,0 +1,67 @@
+{
+  "exp_id": "alpha_sweep_a070_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:19:32.175Z",
+    "updated_at": "2026-05-21T05:52:46.566Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.70 --output_dir results/alpha_sweep/a070_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "413167",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a070_s42_fp32.log",
+      "submitted_at": "2026-05-21T01:19:31.627Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42
+    },
+    "hypothesis": "α=0.70 should show restored PermG detection (>0/8) if the sync collapse dip (PermG=0/8 at α=0.55-0.65) ends before α=0.70, confirming the dip boundary location.",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:43:58.796Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T05:44:07.379922+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "5/8",
+      "PermG_rev": "0/8",
+      "DiffXCorr_fwd": "6/8",
+      "DiffXCorr_rev": "6/8",
+      "threshold_onset_3sigma": "0/8",
+      "TY_fwd": "1/8",
+      "K_ge3": "3/8",
+      "K_ge4": "0/8",
+      "robust_pairs": [
+        "token_entropy→distinct_1 (naive,diff,ty)",
+        "ece→distinct_1 (naive,diff,perm)",
+        "ece→distinct_2 (naive,diff,perm)"
+      ],
+      "drift_token_entropy": "-29.0%",
+      "drift_ece": "+1773%",
+      "drift_perplexity": "+151.5%",
+      "drift_distinct_1": "-27.4%",
+      "drift_distinct_2": "-34.6%",
+      "drift_distinct_3": "-31.4%",
+      "drift_mauve": "-0.7%"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T05:52:46.880796+00:00",
+  "trigger": "update_registry"
+}

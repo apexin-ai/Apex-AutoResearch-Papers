@@ -1,0 +1,16 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:24:12.263Z",
+    "updated_at": "2026-05-19T00:24:18.653Z",
+    "hypothesis": "D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.",
+    "parent": "smollm3_3b_wiki_a100_s42_v2"
+  },
+  "timestamp": "2026-05-19T00:24:18.797211+00:00",
+  "trigger": "update_registry"
+}

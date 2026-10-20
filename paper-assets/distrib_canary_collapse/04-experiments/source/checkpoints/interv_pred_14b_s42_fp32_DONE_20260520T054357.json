@@ -1,0 +1,35 @@
+{
+  "exp_id": "interv_pred_14b_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:44:38.477Z",
+    "updated_at": "2026-05-20T05:43:57.316Z",
+    "hypothesis": "Cross-scale intervention validation: Tests if canary-based predictive intervention (token_entropy >15% drop → α=0.0) is effective at 1.4B scale. At 410M, intervention triggers Gen 1 and recovers by Gen 2. If 1.4B shows same pattern, validates scale-independence of canary utility (Claim 4).",
+    "parent": "intervention_predictive_s42",
+    "plan_id": "plan_037",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_14b_s42",
+      "server": "westd-17855",
+      "gpu": "cuda:0",
+      "pid": 191999,
+      "tmux_session": "interv_pred_14b",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "precision": "fp32",
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b",
+      "eval_data": "data/wikitext103_5k/eval"
+    },
+    "checkpoint_path": "results/intervention/predictive_te_14b_s42/gen_10/checkpoint",
+    "log_path": "results/intervention/predictive_te_14b_s42/all_metrics.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T05:43:57.316Z"
+  },
+  "timestamp": "2026-05-20T05:43:57.561718+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2633 @@
+# reanalyze d102 k4 3sigma
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/chats/worker_reanalyze_d102_k4_3sigma_20260519T160816.jsonl`
+- **Structured JSON:** [`c2919706e65f61c756cf.json`](../../sessions/c2/c2919706e65f61c756cf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+89 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T16:15:09.252895+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T16:15:09.253187+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T16:15:09.253402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T16:15:09.253541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 3 -name \"*.py\" -path \"*/analysis/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 3 -name \"*.py\" -path \"*/analysis/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T16:15:09.253678+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/src/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T16:15:09.253800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T16:15:09.253921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T16:15:09.254041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T16:15:09.254157+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T16:15:09.254331+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\na075_s42_leadlag.py\\na075_s43_leadlag.py\\na075_s44_leadlag.py\\nalpha_sweep_queue.md\\nanalysis\\nanalyze_alpha_sweep.py\\nanalyze_conditional_granger.py\\nanalyze_extended.py\\nanalyze_generalize.py\\nanalyze_mvp.py\\nanalyze_opt1b_full.py\\nartifacts\\nbootstrap_ty_validation.py\\nc4_full_8pair_analysis.py\\ncompute_gen7_metrics.py\\ncompute_shapley.py\\ncompute_shapley_v2.py\\ncompute_shapley_v3.py\\nconfigs\\nconsensus_framework.py\\ncross_alpha_analysis.py\\ncross_alpha_analysis_v4.py\\ncross_alpha_v3_analysis.py\\ncsmp\\nd102_rerun_8pair.py\\ndata\\ndebug_ty.py\\ndetrending_utils.py\\ndmax_sensitivity.py\\ndocs\\nextract_drift.py\\nextract_m004.py\\nextract_m004_v2.py\\nextract_table7_8pair.py\\nfigures\\ngen_dose_response.py\\ngen_paper_figures.py\\ngen_single_method_table.py\\ngpt2m_8pair_analysis.py\\ngpt2m_a025_analysis.py\\nground_truth_redefine.py\\nground_truth_redefine_v2.py\\nintervention_effect_comparison.py\\niterative_train.py\\niterative_train.py.bak\\niterative_train.py.bak.mvp\\niterative_train.py.bak.v2\\nleadlag_gpt2m_s42.py\\nlogs\\nmauve_supplement_analysis.py\\nmethod_ablation.py\\nmethod_ablation_phase2.py\\nmethod_ablation_phase3.py\\nmetrics.py\\nmetrics.py.bak\\nmmct\\nper_alpha_fdr.py\\nper_alpha_fdr_results.json\\nperm_granger_power_bootstrap.py\\npermutation_granger.py\\npooled_panel_analysis.py\\nprepare_c4.py\\nprepare_c4_5k_fix.py\\nprepare_c4_5k_v5.py\\nprepare_c4_v2.py\\nprepare_c4_v3.py\\nprepare_c4_v4.py\\nprepare_data.py\\npythia14b_8pair_analysis.py\\nresults\\nresume_plan006_s42.py\\nreverse_permg_pythia410m.py\\nrun_5method_analysis.py\\nrun_a000_batch_analysis.sh\\nrun_baseline_unified.py\\nrun_lag_sensitivity.py\\nrun_mmct_a010_fp32.py\\nrun_mmct_all.py\\nrun_mmct_s43.py\\nrun_mvp.sh\\nrun_unified_generalize.py\\nrun_verify.sh\\nscripts\\nshapley_figure_final.py\\nty_3seed_a025.py\\nty_audit.py\\nty_audit_results.json\\nwindow_sensitivity.py\\nwindow
+…[truncated 305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T16:15:09.254511+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 2 -name \"*.py\" -not -path \"*/results/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 2 -name \"*.py\" -not -path \"*/results/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T16:15:09.254651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T16:15:09.254816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/dmax_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py\\n/root/autodl-tmp/distrib_canary_collapse/bootstrap_ty_validation.py\\n/root/autodl-tmp/distrib_canary_collapse/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/run_lag_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/analyze_extended.py\\n/root/autodl-tmp/distrib_canary_collapse/pooled_panel_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_drift.py\\n/root/autodl-tmp/distrib_canary_collapse/gen_dose_response.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/resume_plan006_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/leadlag_gpt2m_s42.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\n/root/autodl-tmp/distrib_canary_collapse/debug_ty.py\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\n/root/autodl-tmp/distrib_canary_
+…[truncated 3840 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T16:15:09.254962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generalize_5method_results.json\\ntable7_3cond_nperm5000.json\\nunified_generalize_all.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T16:15:09.255108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/metrics.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/metrics.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T16:15:09.255301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Canary and downstream metrics for model collapse detection.\\n\\nComputes per-generation metrics on held-out data and generated samples.\\nAll compute_* functions share the signature:\\n    (model, tokenizer, eval_dataset, gen_dataset=None, **kwargs) -> float | dict\\n\\nDependencies: torch, transformers, mauve-text, nltk\\n\\\"\\\"\\\"\\n\\nimport math\\nfrom collections import Counter\\nfrom itertools import combinations\\n\\nimport numpy as np\\nimport torch\\nfrom nltk.translate.bleu_score import SmoothingFunction, sentence_bleu\\n\\n\\n# ---------------------------------------------------------------------------\\n# Text-surface metrics\\n# ---------------------------------------------------------------------------\\n\\ndef compute_token_entropy(model, tokenizer, eval_dataset, gen_dataset=None,\\n                          max_samples=512, max_length=256, batch_size=8):\\n    \\\"\\\"\\\"Mean next-token entropy of `model` on `eval_dataset` (held-out real text).\\n\\n    Lower entropy over generations signals the model is becoming overly\\n    confident / less diverse — a collapse canary.\\n    \\\"\\\"\\\"\\n    model.eval()\\n    device = next(model.parameters()).device\\n    total_entropy = 0.0\\n    total_tokens = 0\\n\\n    texts = eval_dataset[\\\"text\\\"][:max_samples]\\n    for i in range(0, len(texts), batch_size):\\n        batch_texts = texts[i:i + batch_size]\\n        enc = tokenizer(batch_texts, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=max_length, padding=True)\\n        input_ids = enc[\\\"input_ids\\\"].to(device)\\n        attention_mask = enc[\\\"attention_mask\\\"].to(device)\\n\\n        with torch.no_grad():\\n            logits = model(input_ids=input_ids, attention_mask=attention_mask).logits\\n\\n        # shift: predict token t+1 from position t\\n        shift_logits = logits[:, :-1, :]\\n        shift_mask = attention_mask[:, 1:]
+…[truncated 2226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T16:15:09.255459+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T16:15:09.255651+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified-parameter generalization analysis for Table 7 audit.\\n\\nRuns 5-method causal analysis on 3 generalize experiments with:\\n  - n_perm = 5000\\n  - xcorr max_lag = 5 (naive_pearson + diff_xcorr)\\n  - granger/permg max_lag = 1 (already default)\\n  - FDR: BH q=0.05, reported as raw / per-method / pooled\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nfrom datetime import datetime\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nfrom method_ablation import (\\n    extract, orient,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nEXPERIMENTS = {\\n    \\\"pythia1b_c4_a100_s42\\\": {\\n        \\\"label\\\": \\\"C4 Domain\\\",\\n        \\\"canaries\\\": [\\\"token_entropy\\\", \\\"ece\\\"],\\n        \\\"downstreams\\\": [\\\"mauve\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"],\\n    },\\n    \\\"opt1b_wiki_a100_s42\\\": {\\n        \\\"label\\\": \\\"OPT-1.3B\\\",\\n        \\\"canaries\\\": [\\\"token_entropy\\\", \\\"ece\\\"],\\n        \\\"downstreams\\\": [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"],\\n    },\\n    \\\"pythia14b_wiki_a100_s42\\\": {\\n        \\\"label\\\": \\\"Scale 1.4B\\\",\\n        \\\"canaries\\\": [\\\"token_entropy\\\", \\\"ece\\\"],\\n        \\\"downstreams\\\": [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"],\\n    },\\n}\\n\\nN_PERM = 5000\\nXCORR_MAX_LAG = 5\\nGRANGER_MAX_LAG = 1\\nALPHA = 0.05\\n\\nMETHOD_NAMES = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\", \\\"threshold_onset\\\",\\n           
+…[truncated 3362 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T16:15:09.255795+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T16:15:09.255928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T16:15:09.256123+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D102 batch re-run: standardize all 4 experiments to 8-pair config.\\nCanary: token_entropy, ece\\nDownstream: distinct_1, distinct_2, distinct_3, mauve\\n\\\"\\\"\\\"\\nimport json, os, sys, shutil, warnings\\nfrom datetime import datetime\\nfrom itertools import product\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nimport method_ablation\\nmethod_ablation.LOWER_IS_WORSE.add(\\\"mauve\\\")\\n\\nfrom method_ablation import (\\n    extract, orient,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nEXPERIMENTS = {\\n    \\\"pythia14b_wiki_a100_s42\\\": {\\\"label\\\": \\\"Pythia-1.4B Wiki s42\\\", \\\"seed\\\": 42, \\\"alpha\\\": 1.0},\\n    \\\"pythia14b_wiki_a100_s43\\\": {\\\"label\\\": \\\"Pythia-1.4B Wiki s43\\\", \\\"seed\\\": 43, \\\"alpha\\\": 1.0},\\n    \\\"pythia1b_c4_a100_s42\\\":    {\\\"label\\\": \\\"Pythia-1B C4 s42\\\",     \\\"seed\\\": 42, \\\"alpha\\\": 1.0},\\n    \\\"pythia1b_c4_a100_s43\\\":    {\\\"label\\\": \\\"Pythia-1B C4 s43\\\",     \\\"seed\\\": 43, \\\"alpha\\\": 1.0},\\n}\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nN_PERM = 5000\\nXCORR_MAX_LAG = 5\\nGRANGER_MAX_LAG = 1\\nALPHA = 0.05\\n\\nMETHOD_NAMES = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"toda_yamamoto\\\", \\\"permutation_granger\\\"]\\n\\n\\nclass NumpyEncoder(json.JSONEncoder):\\n    def default(self, obj):\\n        if isinstance(obj, (np.integer,)): return int(obj)\\n        if isinstance(obj, (np.floating,)): return float(obj)\\n        i
+…[truncated 4052 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T16:15:09.256497+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gpt2m_wiki_a100_s42\\\": {\\n    \\\"experiment\\\": \\\"gpt2m_wiki_a100_s42\\\",\\n    \\\"model\\\": \\\"gpt2-medium\\\",\\n    \\\"dataset\\\": \\\"wikitext-103-v1\\\",\\n    \\\"alpha\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_generations\\\": 11,\\n    \\\"status\\\": \\\"complete\\\",\\n    \\\"drift\\\": {\\n      \\\"distinct_1\\\": {\\n        \\\"gen0\\\": 0.104382,\\n        \\\"gen10\\\": 0.091789,\\n        \\\"drift_pct\\\": -12.06\\n      },\\n      \\\"distinct_2\\\": {\\n        \\\"gen0\\\": 0.548308,\\n        \\\"gen10\\\": 0.471683,\\n        \\\"drift_pct\\\": -13.97\\n      },\\n      \\\"distinct_3\\\": {\\n        \\\"gen0\\\": 0.844118,\\n        \\\"gen10\\\": 0.739426,\\n        \\\"drift_pct\\\": -12.4\\n      },\\n      \\\"token_entropy\\\": {\\n        \\\"gen0\\\": 3.571424,\\n        \\\"gen10\\\": 0.479393,\\n        \\\"drift_pct\\\": -86.58\\n      },\\n      \\\"ece\\\": {\\n        \\\"gen0\\\": 0.011165,\\n        \\\"gen10\\\": 0.52162,\\n        \\\"drift_pct\\\": 4571.92\\n      },\\n      \\\"perplexity\\\": {\\n        \\\"gen0\\\": 32.631529,\\n        \\\"gen10\\\": 16520.549052,\\n        \\\"drift_pct\\\": 50527.57\\n      }\\n    },\\n    \\\"five_method_analysis\\\": {\\n      \\\"token_entropy->perplexity\\\": {\\n        \\\"naive_pearson\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.8264,\\n          \\\"p_value\\\": 0.011444,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.020218\\n        },\\n        \\\"differenced_xcorr\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": -0.9329,\\n          \\\"p_value\\\": 0.002163,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.004586\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onse
+…[truncated 8640 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T16:15:09.256701+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|onset\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|onset\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T16:15:09.256835+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T16:15:09.256957+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/ -name \"*d102*\" -o -name \"*8pair*\" -o -name \"*rerun*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/ -name \"*d102*\" -o -name \"*8pair*\" -o -name \"*rerun*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T16:15:09.257085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis/pythia410m_8pair_5method_analysis.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/c4_8pair_6method_analysis.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/5method_leadlag_pre_d102.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/unified_5method_pre_d102.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/pythia14b_8pair_6method_analysis.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag_pre_d102.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/unified_5method_pre_d102.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/analysis/5method_leadlag_pre_d102.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/analysis/5method_leadlag_pre_d102.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T16:15:09.257214+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T16:15:09.257356+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T16:15:09.257471+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"threshold_lead\\|n_sigma\\|sigma\\|LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T16:15:09.257584+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T16:15:09.257708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n -e \"threshold_lead\" -e \"n_sigma\" -e \"LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n -e \"threshold_lead\" -e \"n_sigma\" -e \"LOWER_IS_WORSE\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T16:15:09.257828+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"38:LOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n62:    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n142:def threshold_lead(c, d, cn, dn):\\n395:    \\\"threshold_onset\\\": threshold_lead,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T16:15:09.257941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "sed -n '38,50p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "sed -n '38,50p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T16:15:09.258053+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T16:15:09.258163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "sed -n '135,200p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "sed -n '135,200p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T16:15:09.258294+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T16:15:09.258414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T16:15:09.258637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return 
+…[truncated 5760 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T16:15:09.258820+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T16:15:09.258950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_leadlag_pre_d102.json\\n5method_summary.txt\\npythia14b_8pair_6method_analysis.json\\nunified_5method.json\\nunified_5method_pre_d102.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T16:15:09.259077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T16:15:09.259210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_leadlag_pre_d102.json\\n5method_summary.txt\\nunified_5method.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T16:15:09.259341+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T16:15:09.259457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_leadlag_pre_d102.json\\n5method_summary.txt\\nc4_8pair_6method_analysis.json\\nunified_5method.json\\nunified_5method_pre_d102.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T16:15:09.259565+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T16:15:09.259694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_leadlag_pre_d102.json\\n5method_summary.txt\\nunified_5method.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T16:15:09.259833+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T16:15:09.260012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 1.0,\\n  \\\"seed\\\": 42,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"\\n  },\\n  \\\"pair_config\\\": {\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"n_pairs\\\": 8,\\n    \\\"D102_note\\\": \\\"Standardized 8-pair config (replaced perplexity with mauve)\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9067,\\n          \\\"p_value\\\": 0.000296,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr_permethod\\\": 0.000592,\\n          \\\"sig_fdr_permethod\\\": true,\\n          \\\"p_fdr_pooled\\\": 0.0010524444444444444,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"p_raw\\\": 0.000296,\\n          \\\"sig_raw\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9839,\\n          \\\"p_value\\\": 2e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr_permethod\\\": 8e-06,\\n          \\\"sig_fdr_permethod\\\": true,\\n          \\\"p_fdr_pooled\\\": 2.133333333333333e-05,\\n          \\\"sig_fdr_pooled\\\": t
+…[truncated 883 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T16:15:09.260161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"mauve\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"mauve\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T16:15:09.260299+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T16:15:09.260454+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T16:15:09.260720+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D102 batch re-run: standardize all 4 experiments to 8-pair config.\\nCanary: token_entropy, ece\\nDownstream: distinct_1, distinct_2, distinct_3, mauve\\n\\\"\\\"\\\"\\nimport json, os, sys, shutil, warnings\\nfrom datetime import datetime\\nfrom itertools import product\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\nsys.path.insert(0, BASE_DIR)\\n\\nimport method_ablation\\nmethod_ablation.LOWER_IS_WORSE.add(\\\"mauve\\\")\\n\\nfrom method_ablation import (\\n    extract, orient,\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\n)\\n\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\")\\n\\nEXPERIMENTS = {\\n    \\\"pythia14b_wiki_a100_s42\\\": {\\\"label\\\": \\\"Pythia-1.4B Wiki s42\\\", \\\"seed\\\": 42, \\\"alpha\\\": 1.0},\\n    \\\"pythia14b_wiki_a100_s43\\\": {\\\"label\\\": \\\"Pythia-1.4B Wiki s43\\\", \\\"seed\\\": 43, \\\"alpha\\\": 1.0},\\n    \\\"pythia1b_c4_a100_s42\\\":    {\\\"label\\\": \\\"Pythia-1B C4 s42\\\",     \\\"seed\\\": 42, \\\"alpha\\\": 1.0},\\n    \\\"pythia1b_c4_a100_s43\\\":    {\\\"label\\\": \\\"Pythia-1B C4 s43\\\",     \\\"seed\\\": 43, \\\"alpha\\\": 1.0},\\n}\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nN_PERM = 5000\\nXCORR_MAX_LAG = 5\\nGRANGER_MAX_LAG = 1\\nALPHA = 0.05\\n\\nMETHOD_NAMES = [\\\"naive_pearson\\\", \\\"differenced_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"toda_yamamoto\\\", \\\"permutation_granger\\\"]\\n\\n\\nclass NumpyEncoder(json.JSONEncoder):\\n    def default(self, obj):\\n        if isinstance(obj, (np.integer,)): return int(obj)\\n        if isinstance(obj, (np.floating,)): return float(obj)\\n        i
+…[truncated 7407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T16:15:09.260919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"3x_sigma\\|3.*sigma\\|threshold_criterion\\|_onset_gen\\|monkey\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"3x_sigma\\|3.*sigma\\|threshold_criterion\\|_onset_gen\\|monkey\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T16:15:09.261052+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T16:15:09.261171+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"3x_sigma\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"3x_sigma\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T16:15:09.261322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"266:        \\\"config\\\": {\\\"n_perm\\\": N_PERM, \\\"fdr_alpha\\\": ALPHA, \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T16:15:09.261458+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"_onset_gen\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"_onset_gen\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T16:15:09.261578+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T16:15:09.261692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"threshold_criterion\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"threshold_criterion\" /root/autodl-tmp/distrib_canary_collapse/d102_rerun_8pair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T16:15:09.261810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"266:        \\\"config\\\": {\\\"n_perm\\\": N_PERM, \\\"fdr_alpha\\\": ALPHA, \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T16:15:09.262000+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma.py << 'PYEOF'\n\"\"\"Recompute threshold_onset with true 3σ, reuse other 4 methods from D102 JSONs.\nOutputs K>=3 and K>=4 for unified 8-pair config.\"\"\"\n\nimport json, os, sys\nimport numpy as np\nfrom itertools import product\nfrom datetime import datetime\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import extract, orient, LOWER_IS_WORSE\nLOWER_IS_WORSE.add(\"mauve\")\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = [\n    \"pythia14b_wiki_a100_s42\",\n    \"pythia14b_wiki_a100_s43\",\n    \"pythia1b_c4_a100_s42\",\n    \"pythia1b_c4_a100_s43\",\n]\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nMETHOD_NAMES = [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"]\nALPHA = 0.05\n\n\ndef onset_gen_3sigma(series, name):\n    \"\"\"First generation where oriented series exceeds gen-0 + 3σ.\"\"\"\n    s = orient(series, name)\n    base, sigma = s[0], np.std(s)\n    if sigma < 1e-12:\n        return None\n    thresh = base + 3 * sigma\n    for i in range(1, len(s)):\n        if s[i] > thresh:\n            return i\n    return None\n\n\ndef threshold_lead_3sigma(c, d, cn, dn):\n    co = onset_gen_3sigma(c, cn)\n    do = onset_gen_3sigma(d, dn)\n    if co is None or do is None:\n        return {\n            \"method\": \"threshold_onset\",\n            \"canary_onset\": None if co is None else int(co),\n            \"downstream_onset\": None if do is None else int(do),\n            \"lead_time\": None,\n            \"significant\": False,\n            \"sigma\": 3,\n        }\n    lt = do - co\n    return {\n        \"method\": \"threshold_onset\",\n        \"canary_onset\": int(co),\n        \"downstream_onset\": int(do),\n        \"lead_time\": int(lt),\n        \"significant\": bool(lt > 0),\n        \"sigma\": 3,\n    }\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef is_fwd_sig(method_result):\n    \"\"\"Check forward significance for a method result.\"\"\"\n    # Use FDR-pooled if available, else raw sig\n    sig_pool = method_result.get(\"sig_fdr_pooled\")\n    if sig_pool is not None:\n        return bool(sig_pool)\n    sig_raw = method_result.get(\"sig_raw\")\n    if sig_raw is not None:\n        return bool(sig_raw)\n    return bool(method_result.get(\"significant\", False))\n\n\ndef main():\n    all_output = {}\n    \n    for exp_name in EXPERIMENTS:\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n        json_path = os.path.join(exp_dir, \"analysis\", \"5method_leadlag.json\")\n        \n        # Load existing D102 results\n        with open(json_path) as f:\n            d102 = json.load(f)\n        \n        # Load raw metrics for threshold recalc\n        metrics_list = assemble_metrics(exp_dir)\n        n_gens = len(metrics_list)\n        \n        pairs_data = {}\n        # D102 stores pairs as a list\n        d102_pairs = {f\"{p['canary']}->{p['downstream']}\": p for p in d102[\"pairs\"]}\n        \n        for cn, dn in product(CANARIES, DOWNSTREAMS):\n            pk = f\"{cn}->{dn}\"\n            \n            # Get existing results\n            d102_pair = d102_pairs.get(pk)\n            if d102_pair is None:\n                print(f\"  WARNING: {exp_name} missing pair {pk}\")\n                continue\n            \n            fwd = d102_pair[\"forward\"]\n            \n            # Recompute threshold_onset with 3σ\n            c = extract(metrics_list, cn)\n            d = extract(metrics_list, dn)\n            new_threshold = threshold_lead_3sigma(c, d, cn, dn)\n            \n            # Also compute 2σ for comparison\n            from method_ablation import threshold_lead as threshold_lead_2sigma\n            old_threshold = threshold_lead_2sigma(c, d, cn, dn)\n            \n            pairs_data[pk] = {\n                \"naive_xcorr\": fwd[\"naive_xcorr\"],\n                \"diff_xcorr\": fwd[\"diff_xcorr\"],\n                \"threshold_onset_2sigma\": old_threshold,\n                \"threshold_onset_3sigma\": new_threshold,\n                \"perm_granger\": fwd[\"perm_granger\"],\n                \"ty_granger\": fwd[\"ty_granger\"],\n            }\n        \n        # Count K values with 3σ\n        k_counts = {}\n        for pk, pd in pairs_data.items():\n            votes = []\n            votes.append((\"naive_xcorr\", is_fwd_sig(pd[\"naive_xcorr\"])))\n            votes.append((\"diff_xcorr\", is_fwd_sig(pd[\"diff_xcorr\"])))\n            votes.append((\"threshold_onset\", pd[\"threshold_onset_3sigma\"][\"significant\"]))\n            votes.append((\"perm_granger\", is_fwd_sig(pd[\"perm_granger\"])))\n            votes.append((\"ty_granger\", is_fwd_sig(pd[\"ty_granger\"])))\n            k = sum(v for _, v in votes)\n            k_counts[pk] = {\"k\": k, \"votes\": {n: v for n, v in votes}}\n        \n        k_ge4 = sum(1 for v in k_counts.values() if v[\"k\"] >= 4)\n        k_ge3 = sum(1 for v in k_counts.values() if v[\"k\"] >= 3)\n        \n        # Per-method sig counts (using FDR pooled where available)\n        method_sig = {}\n        for mn in [\"naive_xcorr\", \"diff_xcorr\", \"perm_granger\", \"ty_granger\"]:\n            count = sum(1 for pk, pd in pairs_data.items() if is_fwd_sig(pd[mn]))\n            method_sig[mn] = f\"{count}/8\"\n        # threshold with 3σ\n        thr_3s = sum(1 for pk, pd in pairs_data.items() if pd[\"threshold_onset_3sigma\"][\"significant\"])\n        method_sig[\"threshold_3sigma\"] = f\"{thr_3s}/8\"\n        # threshold with 2σ for comparison\n        thr_2s = sum(1 for pk, pd in pairs_data.items() if pd[\"threshold_onset_2sigma\"][\"significant\"])\n        method_sig[\"threshold_2sigma\"] = f\"{thr_2s}/8\"\n        \n        # PermG fwd/rev counts\n        permg_fwd = sum(1 for pk, pd in pairs_data.items() if is_fwd_sig(pd[\"perm_granger\"]))\n        \n        all_output[exp_name] = {\n            \"n_generations\": n_gens,\n            \"K_ge4\": f\"{k_ge4}/8\",\n            \"K_ge3\": f\"{k_ge3}/8\",\n            \"method_sig\": method_sig,\n            \"per_pair\": k_counts,\n            \"pairs_data\": pairs_data,\n        }\n        \n        print(f\"\\n{'='*60}\")\n        print(f\"{exp_name} (T={n_gens})\")\n        print(f\"{'='*60}\")\n        print(f\"  K>=4: {k_ge4}/8  |  K>=3: {k_ge3}/8\")\n        print(f\"  Methods: Naive={method_sig['naive_xcorr']} DiffX={method_sig['diff_xcorr']} \"\n              f\"Thr(2σ)={method_sig['threshold_2sigma']} Thr(3σ)={method_sig['threshold_3sigma']} \"\n              f\"PermG={method_sig['perm_granger']} TY={method_sig['ty_granger']}\")\n        print(f\"\\n  Per-pair breakdown:\")\n        print(f\"  {'Pair':<28} {'K':>3} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'PermG':>6} {'TY':>6} | {'Thr2σ':>6}\")\n        print(f\"  {'-'*80}\")\n        for pk in sorted(k_counts.keys()):\n            kd = k_counts[pk]\n            pd = pairs_data[pk]\n            t3 = pd[\"threshold_onset_3sigma\"]\n            t2 = pd[\"threshold_onset_2sigma\"]\n            \n            def sig_str(v): return \"✓\" if v else \"✗\"\n            \n            print(f\"  {pk:<28} {kd['k']:>3} \"\n                  f\"{sig_str(kd['votes']['naive_xcorr']):>6} \"\n                  f\"{sig_str(kd['votes']['diff_xcorr']):>6} \"\n                  f\"{sig_str(kd['votes']['threshold_onset']):>6} \"\n                  f\"{sig_str(kd['votes']['perm_granger']):>6} \"\n                  f\"{sig_str(kd['votes']['ty_granger']):>6} | \"\n                  f\"{sig_str(t2['significant']):>6} \"\n                  f\"(3σ:{t3.get('canary_onset','—')}→{t3.get('downstream_onset','—')} \"\n                  f\"2σ:{t2.get('canary_onset','—')}→{t2.get('downstream_onset','—')})\")\n\n    # Summary table\n    print(f\"\\n\\n{'='*100}\")\n    print(\"SUMMARY TABLE (3σ threshold)\")\n    print(f\"{'='*100}\")\n    print(f\"{'Experiment':<35} {'PermG':>7} {'K>=4':>6} {'K>=3':>6} {'Naive':>7} {'DiffX':>7} {'Thr(3σ)':>8} {'TY':>7}\")\n    print(f\"{'-'*100}\")\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        ms = r[\"method_sig\"]\n        print(f\"{exp_name:<35} {ms['perm_granger']:>7} {r['K_ge4']:>6} {r['K_ge3']:>6} \"\n              f\"{ms['naive_xcorr']:>7} {ms['diff_xcorr']:>7} {ms['threshold_3sigma']:>8} {ms['ty_granger']:>7}\")\n\n    # Save results\n    save_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"3sigma_recompute.json\")\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    \n    class NE(json.JSONEncoder):\n        def default(self, obj):\n            if isinstance(obj, (np.integer,)): return int(obj)\n            if isinstance(obj, (np.floating,)): return float(obj)\n            if isinstance(obj, np.ndarray): return obj.tolist()\n            if isinstance(obj, (np.bool_,)): return bool(obj)\n            return super().default(obj)\n    \n    with open(save_path, \"w\") as f:\n        json.dump({\n            \"timestamp\": datetime.now().isoformat(),\n            \"config\": {\n                \"canaries\": CANARIES,\n                \"downstreams\": DOWNSTREAMS,\n                \"n_pairs\": 8,\n                \"threshold_sigma\": 3,\n                \"note\": \"True 3σ threshold (D102 labeled '3x_sigma_drift' but used 2σ from method_ablation._onset_gen)\"\n            },\n            \"results\": {k: {kk: vv for kk, vv in v.items() if kk != \"pairs_data\"} for k, v in all_output.items()},\n        }, f, indent=2, cls=NE)\n    print(f\"\\nSaved: {save_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat > /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma.py << 'PYEOF'\n\"\"\"Recompute threshold_onset with true 3σ, reuse other 4 methods from D102 JSONs.\nOutputs K>=3 and K>=4 for unified 8-pair config.\"\"\"\n\nimport json, os, sys\nimport numpy as np\nfrom itertools import product\nfrom datetime import datetime\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import extract, orient, LOWER_IS_WORSE\nLOWER_IS_WORSE.add(\"mauve\")\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = [\n    \"pythia14b_wiki_a100_s42\",\n    \"pythia14b_wiki_a100_s43\",\n    \"pythia1b_c4_a100_s42\",\n    \"pythia1b_c4_a100_s43\",\n]\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\nMETHOD_NAMES = [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"]\nALPHA = 0.05\n\n\ndef onset_gen_3sigma(series, name):\n    \"\"\"First generation where oriented series exceeds gen-0 + 3σ.\"\"\"\n    s = orient(series, name)\n    base, sigma = s[0], np.std(s)\n    if sigma < 1e-12:\n        return None\n    thresh = base + 3 * sigma\n    for i in range(1, len(s)):\n        if s[i] > thresh:\n            return i\n    return None\n\n\ndef threshold_lead_3sigma(c, d, cn, dn):\n    co = onset_gen_3sigma(c, cn)\n    do = onset_gen_3sigma(d, dn)\n    if co is None or do is None:\n        return {\n            \"method\": \"threshold_onset\",\n            \"canary_onset\": None if co is None else int(co),\n            \"downstream_onset\": None if do is None else int(do),\n            \"lead_time\": None,\n            \"significant\": False,\n            \"sigma\": 3,\n        }\n    lt = do - co\n    return {\n        \"method\": \"threshold_onset\",\n        \"canary_onset\": int(co),\n        \"downstream_onset\": int(do),\n        \"lead_time\": int(lt),\n        \"significant\": bool(lt > 0),\n        \"sigma\": 3,\n    }\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef is_fwd_sig(method_result):\n    \"\"\"Check forward significance for a method result.\"\"\"\n    # Use FDR-pooled if available, else raw sig\n    sig_pool = method_result.get(\"sig_fdr_pooled\")\n    if sig_pool is not None:\n        return bool(sig_pool)\n    sig_raw = method_result.get(\"sig_raw\")\n    if sig_raw is not None:\n        return bool(sig_raw)\n    return bool(method_result.get(\"significant\", False))\n\n\ndef main():\n    all_output = {}\n    \n    for exp_name in EXPERIMENTS:\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n        json_path = os.path.join(exp_dir, \"analysis\", \"5method_leadlag.json\")\n        \n        # Load existing D102 results\n        with open(json_path) as f:\n            d102 = json.load(f)\n        \n        # Load raw metrics for threshold recalc\n        metrics_list = assemble_metrics(exp_dir)\n        n_gens = len(metrics_list)\n        \n        pairs_data = {}\n        # D102 stores pairs as a list\n        d102_pairs = {f\"{p['canary']}->{p['downstream']}\": p for p in d102[\"pairs\"]}\n        \n        for cn, dn in product(CANARIES, DOWNSTREAMS):\n            pk = f\"{cn}->{dn}\"\n            \n            # Get existing results\n            d102_pair = d102_pairs.get(pk)\n            if d102_pair is None:\n                print(f\"  WARNING: {exp_name} missing pair {pk}\")\n                continue\n            \n            fwd = d102_pair[\"forward\"]\n            \n            # Recompute threshold_onset with 3σ\n            c = extract(metrics_list, cn)\n            d = extract(metrics_list, dn)\n            new_threshold = threshold_lead_3sigma(c, d, cn, dn)\n            \n            # Also compute 2σ for comparison\n            from method_ablation import threshold_lead as threshold_lead_2sigma\n            old_threshold = threshold_lead_2sigma(c, d, cn, dn)\n            \n            pairs_data[pk] = {\n                \"naive_xcorr\": fwd[\"naive_xcorr\"],\n                \"diff_xcorr\": fwd[\"diff_xcorr\"],\n                \"threshold_onset_2sigma\": old_threshold,\n                \"threshold_onset_3sigma\": new_threshold,\n                \"perm_granger\": fwd[\"perm_granger\"],\n                \"ty_granger\": fwd[\"ty_granger\"],\n            }\n        \n        # Count K values with 3σ\n        k_counts = {}\n        for pk, pd in pairs_data.items():\n            votes = []\n            votes.append((\"naive_xcorr\", is_fwd_sig(pd[\"naive_xcorr\"])))\n            votes.append((\"diff_xcorr\", is_fwd_sig(pd[\"diff_xcorr\"])))\n            votes.append((\"threshold_onset\", pd[\"threshold_onset_3sigma\"][\"significant\"]))\n            votes.append((\"perm_granger\", is_fwd_sig(pd[\"perm_granger\"])))\n            votes.append((\"ty_granger\", is_fwd_sig(pd[\"ty_granger\"])))\n            k = sum(v for _, v in votes)\n            k_counts[pk] = {\"k\": k, \"votes\": {n: v for n, v in votes}}\n        \n        k_ge4 = sum(1 for v in k_counts.values() if v[\"k\"] >= 4)\n        k_ge3 = sum(1 for v in k_counts.values() if v[\"k\"] >= 3)\n        \n        # Per-method sig counts (using FDR pooled where available)\n        method_sig = {}\n        for mn in [\"naive_xcorr\", \"diff_xcorr\", \"perm_granger\", \"ty_granger\"]:\n            count = sum(1 for pk, pd in pairs_data.items() if is_fwd_sig(pd[mn]))\n            method_sig[mn] = f\"{count}/8\"\n        # threshold with 3σ\n        thr_3s = sum(1 for pk, pd in pairs_data.items() if pd[\"threshold_onset_3sigma\"][\"significant\"])\n        method_sig[\"threshold_3sigma\"] = f\"{thr_3s}/8\"\n        # threshold with 2σ for comparison\n        thr_2s = sum(1 for pk, pd in pairs_data.items() if pd[\"threshold_onset_2sigma\"][\"significant\"])\n        method_sig[\"threshold_2sigma\"] = f\"{thr_2s}/8\"\n        \n        # PermG fwd/rev counts\n        permg_fwd = sum(1 for pk, pd in pairs_data.items() if is_fwd_sig(pd[\"perm_granger\"]))\n        \n        all_output[exp_name] = {\n            \"n_generations\": n_gens,\n            \"K_ge4\": f\"{k_ge4}/8\",\n            \"K_ge3\": f\"{k_ge3}/8\",\n            \"method_sig\": method_sig,\n            \"per_pair\": k_counts,\n            \"pairs_data\": pairs_data,\n        }\n        \n        print(f\"\\n{'='*60}\")\n        print(f\"{exp_name} (T={n_gens})\")\n        print(f\"{'='*60}\")\n        print(f\"  K>=4: {k_ge4}/8  |  K>=3: {k_ge3}/8\")\n        print(f\"  Methods: Naive={method_sig['naive_xcorr']} DiffX={method_sig['diff_xcorr']} \"\n              f\"Thr(2σ)={method_sig['threshold_2sigma']} Thr(3σ)={method_sig['threshold_3sigma']} \"\n              f\"PermG={method_sig['perm_granger']} TY={method_sig['ty_granger']}\")\n        print(f\"\\n  Per-pair breakdown:\")\n        print(f\"  {'Pair':<28} {'K':>3} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'PermG':>6} {'TY':>6} | {'Thr2σ':>6}\")\n        print(f\"  {'-'*80}\")\n        for pk in sorted(k_counts.keys()):\n            kd = k_counts[pk]\n            pd = pairs_data[pk]\n            t3 = pd[\"threshold_onset_3sigma\"]\n            t2 = pd[\"threshold_onset_2sigma\"]\n            \n            def sig_str(v): return \"✓\" if v else \"✗\"\n            \n            print(f\"  {pk:<28} {kd['k']:>3} \"\n                  f\"{sig_str(kd['votes']['naive_xcorr']):>6} \"\n                  f\"{sig_str(kd['votes']['diff_xcorr']):>6} \"\n                  f\"{sig_str(kd['votes']['threshold_onset']):>6} \"\n                  f\"{sig_str(kd['votes']['perm_granger']):>6} \"\n                  f\"{sig_str(kd['votes']['ty_granger']):>6} | \"\n                  f\"{sig_str(t2['significant']):>6} \"\n                  f\"(3σ:{t3.get('canary_onset','—')}→{t3.get('downstream_onset','—')} \"\n                  f\"2σ:{t2.get('canary_onset','—')}→{t2.get('downstream_onset','—')})\")\n\n    # Summary table\n    print(f\"\\n\\n{'='*100}\")\n    print(\"SUMMARY TABLE (3σ threshold)\")\n    print(f\"{'='*100}\")\n    print(f\"{'Experiment':<35} {'PermG':>7} {'K>=4':>6} {'K>=3':>6} {'Naive':>7} {'DiffX':>7} {'Thr(3σ)':>8} {'TY':>7}\")\n    print(f\"{'-'*100}\")\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        ms = r[\"method_sig\"]\n        print(f\"{exp_name:<35} {ms['perm_granger']:>7} {r['K_ge4']:>6} {r['K_ge3']:>6} \"\n              f\"{ms['naive_xcorr']:>7} {ms['diff_xcorr']:>7} {ms['threshold_3sigma']:>8} {ms['ty_granger']:>7}\")\n\n    # Save results\n    save_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"3sigma_recompute.json\")\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n    \n    class NE(json.JSONEncoder):\n        def default(self, obj):\n            if isinstance(obj, (np.integer,)): return int(obj)\n            if isinstance(obj, (np.floating,)): return float(obj)\n            if isinstance(obj, np.ndarray): return obj.tolist()\n            if isinstance(obj, (np.bool_,)): return bool(obj)\n            return super().default(obj)\n    \n    with open(save_path, \"w\") as f:\n        json.dump({\n            \"timestamp\": datetime.now().isoformat(),\n            \"config\": {\n                \"canaries\": CANARIES,\n                \"downstreams\": DOWNSTREAMS,\n                \"n_pairs\": 8,\n                \"threshold_sigma\": 3,\n                \"note\": \"True 3σ threshold (D102 labeled '3x_sigma_drift' but used 2σ from method_ablation._onset_gen)\"\n            },\n            \"results\": {k: {kk: vv for kk, vv in v.items() if kk != \"pairs_data\"} for k, v in all_output.items()},\n        }, f, indent=2, cls=NE)\n    print(f\"\\nSaved: {save_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T16:15:09.262235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T16:15:09.262382+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python recompute_3sigma.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python recompute_3sigma.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T16:15:09.262506+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python recompute_3sigma.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T16:15:09.262621+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python recompute_3sigma.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python recompute_3sigma.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T16:15:09.262784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\npythia14b_wiki_a100_s42 (T=11)\\n============================================================\\n  K>=4: 0/8  |  K>=3: 4/8\\n  Methods: Naive=8/8 DiffX=7/8 Thr(2σ)=8/8 Thr(3σ)=0/8 PermG=4/8 TY=0/8\\n\\n  Per-pair breakdown:\\n  Pair                           K  Naive  DiffX  Thr3σ  PermG     TY |  Thr2σ\\n  --------------------------------------------------------------------------------\\n  ece->distinct_1                3      ✓      ✓      ✗      ✓      ✗ |      ✓ (3σ:2→None 2σ:1→4)\\n  ece->distinct_2                3      ✓      ✓      ✗      ✓      ✗ |      ✓ (3σ:2→None 2σ:1→4)\\n  ece->distinct_3                3      ✓      ✓      ✗      ✓      ✗ |      ✓ (3σ:2→None 2σ:1→5)\\n  ece->mauve                     2      ✓      ✓      ✗      ✗      ✗ |      ✓ (3σ:2→None 2σ:1→9)\\n  token_entropy->distinct_1      3      ✓      ✓      ✗      ✓      ✗ |      ✓ (3σ:1→None 2σ:1→4)\\n  token_entropy->distinct_2      2      ✓      ✓      ✗      ✗      ✗ |      ✓ (3σ:1→None 2σ:1→4)\\n  token_entropy->distinct_3      2      ✓      ✓      ✗      ✗      ✗ |      ✓ (3σ:1→None 2σ:1→5)\\n  token_entropy->mauve           1      ✓      ✗      ✗      ✗      ✗ |      ✓ (3σ:1→None 2σ:1→9)\\n\\n============================================================\\npythia14b_wiki_a100_s43 (T=11)\\n============================================================\\n  K>=4: 4/8  |  K>=3: 6/8\\n  Methods: Naive=7/8 DiffX=8/8 Thr(2σ)=8/8 Thr(3σ)=0/8 PermG=6/8 TY=4/8\\n\\n  Per-pair breakdown:\\n  Pair                           K  Naive  DiffX  Thr3σ  PermG     TY |  Thr2σ\\n  --------------------------------------------------------------------------------\\n  ece->distinct_1                4      ✓      ✓      ✗      ✓      ✓ |      ✓ (3σ:2→None 2σ:1→4)\\n  ece->distinct_2                4      ✓      ✓      ✗      ✓      ✓ |      ✓ (3σ:2→None 2σ:1→4)\\n  ece->distinct_3             
+…[truncated 4094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T16:15:09.262975+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -c \"reverse\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -c \"reverse\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-19T16:15:09.263100+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-19T16:15:09.263220+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T16:15:09.263354+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T16:15:09.263488+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "distrib_canary_collapse",
+  "fields": "['*']",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "distrib_canary_collapse",
+    "fields": "['*']",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T16:15:09.264204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T19:15:09.476Z\", \"updated_at\": \"2026-05-19T16:07:46.610Z\", \"hypothesis\": \"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"291511\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"submitted_at\": \"2026-05-17T20:07:39.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15455.0, \"gpu_hours\": 4.29}, \"reproduce\": {\"finished_at\": \"2026-05-18T00:16:50.616Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T00:16:52.976550+00:00\"}]}, \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"8/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"8/8\", \"naive_xcorr_fwd\": \"8/8\", \"D102_note\": \"Unified pairs. PermG fwd 4/8→8/8 (mauve pairs all sig in C4). Robust K≥3: 3/8→8/8. C4 domain 
+…[truncated 45614 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T16:15:09.264445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -A3 \"summary\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -A3 \"summary\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T16:15:09.264585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 2,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 7,\\n    \\\"threshold_forward_sig\\\": 8,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T16:15:09.264705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep \"sig_fdr_pooled\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep \"sig_fdr_pooled\" /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T16:15:09.264849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true,\\n          \\\"sig_fdr_pooled\\\": true\\n          \\\"sig_fdr_pooled\\\": false,\\n          \\\"sig_fdr_pooled\\\": false,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T16:15:09.265062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_v2.py << 'PYEOF'\n\"\"\"Recompute K>=4/K>=3 with true 3σ threshold, using sig_fdr_permethod for consistency with D102.\"\"\"\n\nimport json, os, sys\nimport numpy as np\nfrom itertools import product\nfrom datetime import datetime\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import extract, orient, LOWER_IS_WORSE\nLOWER_IS_WORSE.add(\"mauve\")\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = [\n    \"pythia14b_wiki_a100_s42\",\n    \"pythia14b_wiki_a100_s43\",\n    \"pythia1b_c4_a100_s42\",\n    \"pythia1b_c4_a100_s43\",\n]\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n# D102 method names in JSON\nMETHOD_KEYS = [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"]\n\n\ndef onset_gen_3sigma(series, name):\n    s = orient(series, name)\n    base, sigma = s[0], np.std(s)\n    if sigma < 1e-12:\n        return None\n    thresh = base + 3 * sigma\n    for i in range(1, len(s)):\n        if s[i] > thresh:\n            return i\n    return None\n\n\ndef threshold_lead_3sigma(c, d, cn, dn):\n    co = onset_gen_3sigma(c, cn)\n    do = onset_gen_3sigma(d, dn)\n    if co is None or do is None:\n        return {\"canary_onset\": co, \"downstream_onset\": do, \"lead_time\": None, \"significant\": False}\n    lt = do - co\n    return {\"canary_onset\": int(co), \"downstream_onset\": int(do), \"lead_time\": int(lt), \"significant\": bool(lt > 0)}\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef get_method_sig_permethod(method_result):\n    \"\"\"Use sig_fdr_permethod (D102 standard), fallback to significant.\"\"\"\n    v = method_result.get(\"sig_fdr_permethod\")\n    if v is not None:\n        return bool(v)\n    return bool(method_result.get(\"significant\", False))\n\n\ndef main():\n    all_output = {}\n\n    for exp_name in EXPERIMENTS:\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n        json_path = os.path.join(exp_dir, \"analysis\", \"5method_leadlag.json\")\n\n        with open(json_path) as f:\n            d102 = json.load(f)\n\n        metrics_list = assemble_metrics(exp_dir)\n        n_gens = len(metrics_list)\n\n        d102_pairs = {f\"{p['canary']}->{p['downstream']}\": p for p in d102[\"pairs\"]}\n\n        pair_votes = {}\n        for cn, dn in product(CANARIES, DOWNSTREAMS):\n            pk = f\"{cn}->{dn}\"\n            d102_pair = d102_pairs[pk]\n            fwd = d102_pair[\"forward\"]\n\n            # Recompute threshold with 3σ\n            c = extract(metrics_list, cn)\n            d = extract(metrics_list, dn)\n            thr_3s = threshold_lead_3sigma(c, d, cn, dn)\n\n            # 2σ threshold from D102\n            thr_2s_sig = get_method_sig_permethod(fwd[\"threshold_onset\"])\n\n            # Per-method FDR sig for other 4 methods (unchanged)\n            naive_sig = get_method_sig_permethod(fwd[\"naive_xcorr\"])\n            diff_sig = get_method_sig_permethod(fwd[\"diff_xcorr\"])\n            pg_sig = get_method_sig_permethod(fwd[\"perm_granger\"])\n            ty_sig = get_method_sig_permethod(fwd[\"ty_granger\"])\n\n            # K with 3σ threshold\n            votes_3s = {\n                \"naive_xcorr\": naive_sig,\n                \"diff_xcorr\": diff_sig,\n                \"threshold_3sigma\": thr_3s[\"significant\"],\n                \"perm_granger\": pg_sig,\n                \"ty_granger\": ty_sig,\n            }\n            k_3s = sum(votes_3s.values())\n\n            # K with 2σ threshold (D102 original)\n            votes_2s = {\n                \"naive_xcorr\": naive_sig,\n                \"diff_xcorr\": diff_sig,\n                \"threshold_2sigma\": thr_2s_sig,\n                \"perm_granger\": pg_sig,\n                \"ty_granger\": ty_sig,\n            }\n            k_2s = sum(votes_2s.values())\n\n            pair_votes[pk] = {\n                \"k_3sigma\": k_3s,\n                \"k_2sigma\": k_2s,\n                \"votes_3s\": votes_3s,\n                \"thr_3s\": thr_3s,\n                \"thr_2s_onset\": (fwd[\"threshold_onset\"].get(\"canary_onset\"), fwd[\"threshold_onset\"].get(\"downstream_onset\")),\n            }\n\n        # Aggregate\n        k4_3s = sum(1 for v in pair_votes.values() if v[\"k_3sigma\"] >= 4)\n        k3_3s = sum(1 for v in pair_votes.values() if v[\"k_3sigma\"] >= 3)\n        k4_2s = sum(1 for v in pair_votes.values() if v[\"k_2sigma\"] >= 4)\n        k3_2s = sum(1 for v in pair_votes.values() if v[\"k_2sigma\"] >= 3)\n\n        # Per-method sig counts\n        naive_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"naive_xcorr\"])\n        diff_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"diff_xcorr\"])\n        thr3_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"threshold_3sigma\"])\n        pg_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"perm_granger\"])\n        ty_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"ty_granger\"])\n\n        all_output[exp_name] = {\n            \"n_gens\": n_gens,\n            \"k4_3sigma\": f\"{k4_3s}/8\", \"k3_3sigma\": f\"{k3_3s}/8\",\n            \"k4_2sigma\": f\"{k4_2s}/8\", \"k3_2sigma\": f\"{k3_2s}/8\",\n            \"naive\": f\"{naive_ct}/8\", \"diff_xcorr\": f\"{diff_ct}/8\",\n            \"threshold_3sigma\": f\"{thr3_ct}/8\", \"perm_granger\": f\"{pg_ct}/8\",\n            \"ty_granger\": f\"{ty_ct}/8\",\n            \"pairs\": pair_votes,\n        }\n\n        # Print per-experiment\n        print(f\"\\n{'='*70}\")\n        print(f\"{exp_name} (T={n_gens})\")\n        print(f\"{'='*70}\")\n        print(f\"  K≥4(3σ)={k4_3s}/8  K≥3(3σ)={k3_3s}/8  |  K≥4(2σ)={k4_2s}/8  K≥3(2σ)={k3_2s}/8\")\n        print(f\"  Naive={naive_ct}/8  DiffX={diff_ct}/8  Thr(3σ)={thr3_ct}/8  PermG={pg_ct}/8  TY={ty_ct}/8\")\n        print(f\"\\n  {'Pair':<28} {'K3σ':>4} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'PermG':>6} {'TY':>6} | 3σ onset           2σ onset\")\n        print(f\"  {'-'*95}\")\n        for pk in sorted(pair_votes.keys()):\n            pv = pair_votes[pk]\n            v = pv[\"votes_3s\"]\n            t3 = pv[\"thr_3s\"]\n            t2c, t2d = pv[\"thr_2s_onset\"]\n            s = lambda x: \"✓\" if x else \"✗\"\n            t3c = t3[\"canary_onset\"] if t3[\"canary_onset\"] is not None else \"—\"\n            t3d = t3[\"downstream_onset\"] if t3[\"downstream_onset\"] is not None else \"—\"\n            t2cs = t2c if t2c is not None else \"—\"\n            t2ds = t2d if t2d is not None else \"—\"\n            print(f\"  {pk:<28} {pv['k_3sigma']:>4} {s(v['naive_xcorr']):>6} {s(v['diff_xcorr']):>6} \"\n                  f\"{s(v['threshold_3sigma']):>6} {s(v['perm_granger']):>6} {s(v['ty_granger']):>6} | \"\n                  f\"c={t3c}→d={t3d}      c={t2cs}→d={t2ds}\")\n\n    # Summary table\n    print(f\"\\n\\n{'='*110}\")\n    print(\"SUMMARY (sig_fdr_permethod, 3σ threshold)\")\n    print(f\"{'='*110}\")\n    print(f\"{'Experiment':<35} {'PermG':>6} {'K≥4':>5} {'K≥3':>5} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'TY':>5} | {'K≥4(2σ)':>8} {'K≥3(2σ)':>8}\")\n    print(f\"{'-'*110}\")\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        print(f\"{exp_name:<35} {r['perm_granger']:>6} {r['k4_3sigma']:>5} {r['k3_3sigma']:>5} \"\n              f\"{r['naive']:>6} {r['diff_xcorr']:>6} {r['threshold_3sigma']:>6} {r['ty_granger']:>5} | \"\n              f\"{r['k4_2sigma']:>8} {r['k3_2sigma']:>8}\")\n\n    # Save\n    save_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"3sigma_recompute_v2.json\")\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n\n    class NE(json.JSONEncoder):\n        def default(self, obj):\n            if isinstance(obj, (np.integer,)): return int(obj)\n            if isinstance(obj, (np.floating,)): return float(obj)\n            if isinstance(obj, np.ndarray): return obj.tolist()\n            if isinstance(obj, (np.bool_,)): return bool(obj)\n            return super().default(obj)\n\n    save_data = {}\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        save_data[exp_name] = {k: v for k, v in r.items() if k != \"pairs\"}\n        save_data[exp_name][\"per_pair\"] = {}\n        for pk, pv in r[\"pairs\"].items():\n            save_data[exp_name][\"per_pair\"][pk] = {\n                \"k_3sigma\": pv[\"k_3sigma\"],\n                \"k_2sigma\": pv[\"k_2sigma\"],\n                \"votes\": pv[\"votes_3s\"],\n                \"threshold_3sigma_onset\": pv[\"thr_3s\"],\n            }\n\n    with open(save_path, \"w\") as f:\n        json.dump({\n            \"timestamp\": datetime.now().isoformat(),\n            \"config\": {\n                \"canaries\": CANARIES, \"downstreams\": DOWNSTREAMS,\n                \"n_pairs\": 8, \"threshold_sigma\": 3,\n                \"sig_criterion\": \"sig_fdr_permethod (D102 standard)\",\n                \"note\": \"D102 method_ablation._onset_gen used 2σ despite JSON labeling '3x_sigma_drift'. This recompute uses true 3σ.\"\n            },\n            \"results\": save_data,\n        }, f, indent=2, cls=NE)\n    print(f\"\\nSaved: {save_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat > /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_v2.py << 'PYEOF'\n\"\"\"Recompute K>=4/K>=3 with true 3σ threshold, using sig_fdr_permethod for consistency with D102.\"\"\"\n\nimport json, os, sys\nimport numpy as np\nfrom itertools import product\nfrom datetime import datetime\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import extract, orient, LOWER_IS_WORSE\nLOWER_IS_WORSE.add(\"mauve\")\n\nGENERALIZE_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\")\n\nEXPERIMENTS = [\n    \"pythia14b_wiki_a100_s42\",\n    \"pythia14b_wiki_a100_s43\",\n    \"pythia1b_c4_a100_s42\",\n    \"pythia1b_c4_a100_s43\",\n]\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n# D102 method names in JSON\nMETHOD_KEYS = [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"]\n\n\ndef onset_gen_3sigma(series, name):\n    s = orient(series, name)\n    base, sigma = s[0], np.std(s)\n    if sigma < 1e-12:\n        return None\n    thresh = base + 3 * sigma\n    for i in range(1, len(s)):\n        if s[i] > thresh:\n            return i\n    return None\n\n\ndef threshold_lead_3sigma(c, d, cn, dn):\n    co = onset_gen_3sigma(c, cn)\n    do = onset_gen_3sigma(d, dn)\n    if co is None or do is None:\n        return {\"canary_onset\": co, \"downstream_onset\": do, \"lead_time\": None, \"significant\": False}\n    lt = do - co\n    return {\"canary_onset\": int(co), \"downstream_onset\": int(do), \"lead_time\": int(lt), \"significant\": bool(lt > 0)}\n\n\ndef assemble_metrics(exp_dir):\n    all_path = os.path.join(exp_dir, \"all_metrics.json\")\n    if os.path.exists(all_path):\n        with open(all_path) as f:\n            return json.load(f)\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"]) if metrics else None\n\n\ndef get_method_sig_permethod(method_result):\n    \"\"\"Use sig_fdr_permethod (D102 standard), fallback to significant.\"\"\"\n    v = method_result.get(\"sig_fdr_permethod\")\n    if v is not None:\n        return bool(v)\n    return bool(method_result.get(\"significant\", False))\n\n\ndef main():\n    all_output = {}\n\n    for exp_name in EXPERIMENTS:\n        exp_dir = os.path.join(GENERALIZE_DIR, exp_name)\n        json_path = os.path.join(exp_dir, \"analysis\", \"5method_leadlag.json\")\n\n        with open(json_path) as f:\n            d102 = json.load(f)\n\n        metrics_list = assemble_metrics(exp_dir)\n        n_gens = len(metrics_list)\n\n        d102_pairs = {f\"{p['canary']}->{p['downstream']}\": p for p in d102[\"pairs\"]}\n\n        pair_votes = {}\n        for cn, dn in product(CANARIES, DOWNSTREAMS):\n            pk = f\"{cn}->{dn}\"\n            d102_pair = d102_pairs[pk]\n            fwd = d102_pair[\"forward\"]\n\n            # Recompute threshold with 3σ\n            c = extract(metrics_list, cn)\n            d = extract(metrics_list, dn)\n            thr_3s = threshold_lead_3sigma(c, d, cn, dn)\n\n            # 2σ threshold from D102\n            thr_2s_sig = get_method_sig_permethod(fwd[\"threshold_onset\"])\n\n            # Per-method FDR sig for other 4 methods (unchanged)\n            naive_sig = get_method_sig_permethod(fwd[\"naive_xcorr\"])\n            diff_sig = get_method_sig_permethod(fwd[\"diff_xcorr\"])\n            pg_sig = get_method_sig_permethod(fwd[\"perm_granger\"])\n            ty_sig = get_method_sig_permethod(fwd[\"ty_granger\"])\n\n            # K with 3σ threshold\n            votes_3s = {\n                \"naive_xcorr\": naive_sig,\n                \"diff_xcorr\": diff_sig,\n                \"threshold_3sigma\": thr_3s[\"significant\"],\n                \"perm_granger\": pg_sig,\n                \"ty_granger\": ty_sig,\n            }\n            k_3s = sum(votes_3s.values())\n\n            # K with 2σ threshold (D102 original)\n            votes_2s = {\n                \"naive_xcorr\": naive_sig,\n                \"diff_xcorr\": diff_sig,\n                \"threshold_2sigma\": thr_2s_sig,\n                \"perm_granger\": pg_sig,\n                \"ty_granger\": ty_sig,\n            }\n            k_2s = sum(votes_2s.values())\n\n            pair_votes[pk] = {\n                \"k_3sigma\": k_3s,\n                \"k_2sigma\": k_2s,\n                \"votes_3s\": votes_3s,\n                \"thr_3s\": thr_3s,\n                \"thr_2s_onset\": (fwd[\"threshold_onset\"].get(\"canary_onset\"), fwd[\"threshold_onset\"].get(\"downstream_onset\")),\n            }\n\n        # Aggregate\n        k4_3s = sum(1 for v in pair_votes.values() if v[\"k_3sigma\"] >= 4)\n        k3_3s = sum(1 for v in pair_votes.values() if v[\"k_3sigma\"] >= 3)\n        k4_2s = sum(1 for v in pair_votes.values() if v[\"k_2sigma\"] >= 4)\n        k3_2s = sum(1 for v in pair_votes.values() if v[\"k_2sigma\"] >= 3)\n\n        # Per-method sig counts\n        naive_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"naive_xcorr\"])\n        diff_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"diff_xcorr\"])\n        thr3_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"threshold_3sigma\"])\n        pg_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"perm_granger\"])\n        ty_ct = sum(1 for v in pair_votes.values() if v[\"votes_3s\"][\"ty_granger\"])\n\n        all_output[exp_name] = {\n            \"n_gens\": n_gens,\n            \"k4_3sigma\": f\"{k4_3s}/8\", \"k3_3sigma\": f\"{k3_3s}/8\",\n            \"k4_2sigma\": f\"{k4_2s}/8\", \"k3_2sigma\": f\"{k3_2s}/8\",\n            \"naive\": f\"{naive_ct}/8\", \"diff_xcorr\": f\"{diff_ct}/8\",\n            \"threshold_3sigma\": f\"{thr3_ct}/8\", \"perm_granger\": f\"{pg_ct}/8\",\n            \"ty_granger\": f\"{ty_ct}/8\",\n            \"pairs\": pair_votes,\n        }\n\n        # Print per-experiment\n        print(f\"\\n{'='*70}\")\n        print(f\"{exp_name} (T={n_gens})\")\n        print(f\"{'='*70}\")\n        print(f\"  K≥4(3σ)={k4_3s}/8  K≥3(3σ)={k3_3s}/8  |  K≥4(2σ)={k4_2s}/8  K≥3(2σ)={k3_2s}/8\")\n        print(f\"  Naive={naive_ct}/8  DiffX={diff_ct}/8  Thr(3σ)={thr3_ct}/8  PermG={pg_ct}/8  TY={ty_ct}/8\")\n        print(f\"\\n  {'Pair':<28} {'K3σ':>4} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'PermG':>6} {'TY':>6} | 3σ onset           2σ onset\")\n        print(f\"  {'-'*95}\")\n        for pk in sorted(pair_votes.keys()):\n            pv = pair_votes[pk]\n            v = pv[\"votes_3s\"]\n            t3 = pv[\"thr_3s\"]\n            t2c, t2d = pv[\"thr_2s_onset\"]\n            s = lambda x: \"✓\" if x else \"✗\"\n            t3c = t3[\"canary_onset\"] if t3[\"canary_onset\"] is not None else \"—\"\n            t3d = t3[\"downstream_onset\"] if t3[\"downstream_onset\"] is not None else \"—\"\n            t2cs = t2c if t2c is not None else \"—\"\n            t2ds = t2d if t2d is not None else \"—\"\n            print(f\"  {pk:<28} {pv['k_3sigma']:>4} {s(v['naive_xcorr']):>6} {s(v['diff_xcorr']):>6} \"\n                  f\"{s(v['threshold_3sigma']):>6} {s(v['perm_granger']):>6} {s(v['ty_granger']):>6} | \"\n                  f\"c={t3c}→d={t3d}      c={t2cs}→d={t2ds}\")\n\n    # Summary table\n    print(f\"\\n\\n{'='*110}\")\n    print(\"SUMMARY (sig_fdr_permethod, 3σ threshold)\")\n    print(f\"{'='*110}\")\n    print(f\"{'Experiment':<35} {'PermG':>6} {'K≥4':>5} {'K≥3':>5} {'Naive':>6} {'DiffX':>6} {'Thr3σ':>6} {'TY':>5} | {'K≥4(2σ)':>8} {'K≥3(2σ)':>8}\")\n    print(f\"{'-'*110}\")\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        print(f\"{exp_name:<35} {r['perm_granger']:>6} {r['k4_3sigma']:>5} {r['k3_3sigma']:>5} \"\n              f\"{r['naive']:>6} {r['diff_xcorr']:>6} {r['threshold_3sigma']:>6} {r['ty_granger']:>5} | \"\n              f\"{r['k4_2sigma']:>8} {r['k3_2sigma']:>8}\")\n\n    # Save\n    save_path = os.path.join(GENERALIZE_DIR, \"analysis\", \"3sigma_recompute_v2.json\")\n    os.makedirs(os.path.dirname(save_path), exist_ok=True)\n\n    class NE(json.JSONEncoder):\n        def default(self, obj):\n            if isinstance(obj, (np.integer,)): return int(obj)\n            if isinstance(obj, (np.floating,)): return float(obj)\n            if isinstance(obj, np.ndarray): return obj.tolist()\n            if isinstance(obj, (np.bool_,)): return bool(obj)\n            return super().default(obj)\n\n    save_data = {}\n    for exp_name in EXPERIMENTS:\n        r = all_output[exp_name]\n        save_data[exp_name] = {k: v for k, v in r.items() if k != \"pairs\"}\n        save_data[exp_name][\"per_pair\"] = {}\n        for pk, pv in r[\"pairs\"].items():\n            save_data[exp_name][\"per_pair\"][pk] = {\n                \"k_3sigma\": pv[\"k_3sigma\"],\n                \"k_2sigma\": pv[\"k_2sigma\"],\n                \"votes\": pv[\"votes_3s\"],\n                \"threshold_3sigma_onset\": pv[\"thr_3s\"],\n            }\n\n    with open(save_path, \"w\") as f:\n        json.dump({\n            \"timestamp\": datetime.now().isoformat(),\n            \"config\": {\n                \"canaries\": CANARIES, \"downstreams\": DOWNSTREAMS,\n                \"n_pairs\": 8, \"threshold_sigma\": 3,\n                \"sig_criterion\": \"sig_fdr_permethod (D102 standard)\",\n                \"note\": \"D102 method_ablation._onset_gen used 2σ despite JSON labeling '3x_sigma_drift'. This recompute uses true 3σ.\"\n            },\n            \"results\": save_data,\n        }, f, indent=2, cls=NE)\n    print(f\"\\nSaved: {save_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T16:15:09.265314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T16:15:09.265446+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python recompute_3sigma_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python recompute_3sigma_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T16:15:09.265619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\npythia14b_wiki_a100_s42 (T=11)\\n======================================================================\\n  K≥4(3σ)=0/8  K≥3(3σ)=2/8  |  K≥4(2σ)=2/8  K≥3(2σ)=7/8\\n  Naive=8/8  DiffX=7/8  Thr(3σ)=0/8  PermG=2/8  TY=0/8\\n\\n  Pair                          K3σ  Naive  DiffX  Thr3σ  PermG     TY | 3σ onset           2σ onset\\n  -----------------------------------------------------------------------------------------------\\n  ece->distinct_1                 3      ✓      ✓      ✗      ✓      ✗ | c=2→d=—      c=1→d=4\\n  ece->distinct_2                 3      ✓      ✓      ✗      ✓      ✗ | c=2→d=—      c=1→d=4\\n  ece->distinct_3                 2      ✓      ✓      ✗      ✗      ✗ | c=2→d=—      c=1→d=5\\n  ece->mauve                      2      ✓      ✓      ✗      ✗      ✗ | c=2→d=—      c=1→d=9\\n  token_entropy->distinct_1       2      ✓      ✓      ✗      ✗      ✗ | c=1→d=—      c=1→d=4\\n  token_entropy->distinct_2       2      ✓      ✓      ✗      ✗      ✗ | c=1→d=—      c=1→d=4\\n  token_entropy->distinct_3       2      ✓      ✓      ✗      ✗      ✗ | c=1→d=—      c=1→d=5\\n  token_entropy->mauve            1      ✓      ✗      ✗      ✗      ✗ | c=1→d=—      c=1→d=9\\n\\n======================================================================\\npythia14b_wiki_a100_s43 (T=11)\\n======================================================================\\n  K≥4(3σ)=3/8  K≥3(3σ)=6/8  |  K≥4(2σ)=6/8  K≥3(2σ)=7/8\\n  Naive=7/8  DiffX=8/8  Thr(3σ)=0/8  PermG=6/8  TY=3/8\\n\\n  Pair                          K3σ  Naive  DiffX  Thr3σ  PermG     TY | 3σ onset           2σ onset\\n  -----------------------------------------------------------------------------------------------\\n  ece->distinct_1                 4      ✓      ✓      ✗      ✓      ✓ | c=2→d=—      c=1→d=4\\n  ece->distinct_2                 4      ✓      ✓      ✗      ✓      ✓ | c
+…[truncated 4255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T16:15:09.265813+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "generalize_pythia14b_wiki_a100_s42",
+  "field": "metrics",
+  "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '2/8', 'perm_granger_rev': '0/8', 'diff_xcorr_fwd': '7/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '0/8', 'robust_pairs_K3': '3/8', 'naive_xcorr_fwd': '7/8', 'robust_pairs_K4': '0/8', 'robust_pairs_K3_3sigma': '2/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. Old pg_fwd=5/8 was from M004 with non-standard pairs. method_ablation.py reanalysis with unified 8-pair: PermG fwd 2/8. threshold 0→8 due to 2σ vs 3σ script change.', 'pre_D102_pg_fwd': '5/8', 'pre_D102_k_gte4': '5/8', '3sigma_note': '3σ threshold: all downstream onsets undetected (—). K≥4=0/8, K≥3=2/8 (ece→d1/d2 only via Naive+DiffX+PermG). Weakest of 4 experiments.'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "generalize_pythia14b_wiki_a100_s42",
+    "field": "metrics",
+    "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '2/8', 'perm_granger_rev': '0/8', 'diff_xcorr_fwd': '7/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '0/8', 'robust_pairs_K3': '3/8', 'naive_xcorr_fwd': '7/8', 'robust_pairs_K4': '0/8', 'robust_pairs_K3_3sigma': '2/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. Old pg_fwd=5/8 was from M004 with non-standard pairs. method_ablation.py reanalysis with unified 8-pair: PermG fwd 2/8. threshold 0→8 due to 2σ vs 3σ script change.', 'pre_D102_pg_fwd': '5/8', 'pre_D102_k_gte4': '5/8', '3sigma_note': '3σ threshold: all downstream onsets undetected (—). K≥4=0/8, K≥3=2/8 (ece→d1/d2 only via Naive+DiffX+PermG). Weakest of 4 experiments.'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T16:15:09.266005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia14b_wiki_a100_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:25:15.889Z\", \"updated_at\": \"2026-05-19T16:14:36.736Z\", \"hypothesis\": \"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T13:57:38.626Z\"}, \"spec\": {\"command\": \"iterative_train.py --start_gen 8 (resumed)\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"292246\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\", \"submitted_at\": \"2026-05-17T20:11:35.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\", \"wall_clock_seconds\": 12846.8, \"gpu_hours\": 3.57}, \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"perm_granger_fwd\": \"2/8\", \"perm_granger_rev\": \"0/8\", \"diff_xcorr_fwd\": \"7/8\", \"threshold_onset\": \"8/8\", \"ty_granger_fwd\": \"0/8\", \"robust_pairs_K3\": \"3/8\", \"naive_xcorr_fwd\": \"7/8\", \"robust_pairs_K4\": \"0/8\", \"robust_pairs_K3_3sigma\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"D102_note\": \"Unified pairs. Old pg_fwd=5/8 was from M004 with non-standard pairs. method_ablation.py reanalysis with unified 8-pair: PermG fwd 2/8. threshold 0→8 due to 2σ vs 3σ script change.\", \"pre_D102_pg_fwd\": \"5/8\", \"pre_D102_k_gte4\": \"5/8\", \"3sigm
+…[truncated 498 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T16:15:09.266204+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "generalize_pythia14b_wiki_a100_s43",
+  "field": "metrics",
+  "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '6/8', 'perm_granger_rev': '2/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '7/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '3/8', 'robust_pairs_K3_3sigma': '6/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. PermG fwd 6/8 stable (unchanged). DiffXCorr 6/8→8/8, TY 2/8→4/8 improved with mauve pairs. threshold 0→8 due to 2σ script.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=3/8 (ece→d1/d2/d3). K≥3=6/8. Threshold 3σ=0/8 (downstream never reaches 3σ). K≥4 driven by Naive+DiffX+PermG+TY consensus.'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "generalize_pythia14b_wiki_a100_s43",
+    "field": "metrics",
+    "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '6/8', 'perm_granger_rev': '2/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '7/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '3/8', 'robust_pairs_K3_3sigma': '6/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. PermG fwd 6/8 stable (unchanged). DiffXCorr 6/8→8/8, TY 2/8→4/8 improved with mauve pairs. threshold 0→8 due to 2σ script.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=3/8 (ece→d1/d2/d3). K≥3=6/8. Threshold 3σ=0/8 (downstream never reaches 3σ). K≥4 driven by Naive+DiffX+PermG+TY consensus.'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T16:15:09.266446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia14b_wiki_a100_s43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:10.708Z\", \"updated_at\": \"2026-05-19T16:14:41.962Z\", \"hypothesis\": \"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\", \"parent\": \"generalize_pythia14b_wiki_a100_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"314396\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"submitted_at\": \"2026-05-18T02:46:35.941Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 43, \"wall_clock_seconds\": 27235.4, \"gpu_hours\": 7.57}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:13:51.203Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:13:54.511136+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"2/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"8/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"7/8\", \"naive_xcorr_fwd\": \"8/8\", \"robust_pairs_K4\": \"3/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D102_note\"
+…[truncated 753 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T16:15:09.266611+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s42_v2",
+  "field": "metrics",
+  "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '8/8', 'perm_granger_rev': '3/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '8/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '4/8', 'robust_pairs_K3_3sigma': '8/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. PermG fwd 6/8→8/8 (mauve pairs all sig in C4 domain). DiffXCorr 6/8→8/8. TY 1/8→4/8. C4 domain has strong mauve signal unlike Wiki.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=4/8 (all 4 ece→ pairs). K≥3=8/8. Threshold 3σ=0/8 but all 4 other methods agree for ece pairs. C4 strongest.'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "generalize_pythia1b_c4_a100_s42_v2",
+    "field": "metrics",
+    "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '8/8', 'perm_granger_rev': '3/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '8/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '4/8', 'robust_pairs_K3_3sigma': '8/8', 'threshold_onset_3sigma': '0/8', 'D102_note': 'Unified pairs. PermG fwd 6/8→8/8 (mauve pairs all sig in C4 domain). DiffXCorr 6/8→8/8. TY 1/8→4/8. C4 domain has strong mauve signal unlike Wiki.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=4/8 (all 4 ece→ pairs). K≥3=8/8. Threshold 3σ=0/8 but all 4 other methods agree for ece pairs. C4 strongest.'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T16:15:09.266807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia1b_c4_a100_s42_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:06:55.402Z\", \"updated_at\": \"2026-05-19T16:14:47.603Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"269777\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"submitted_at\": \"2026-05-17T13:06:55.275Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"wall_clock_seconds\": 17465.8, \"gpu_hours\": 4.85}, \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)\", \"parent\": \"generalize_pythia1b_c4_a100_s42\", \"conclusion\": \"success\", \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"3/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"8/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"8/8\", \"naive
+…[truncated 716 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-19T16:15:09.266966+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s43",
+  "field": "metrics",
+  "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '8/8', 'perm_granger_rev': '0/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '8/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '5/8', 'robust_pairs_K3_3sigma': '8/8', 'threshold_onset_3sigma': '2/8', 'D102_note': 'Unified pairs. PermG fwd 4/8→8/8 (mauve pairs all sig in C4). Robust K≥3: 3/8→8/8. C4 domain strongest cross-model.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=5/8 (4 ece→ + token_entropy→mauve). Only experiment with 3σ threshold hits (2/8: both →mauve pairs, onset gen 8). K≥3=8/8.'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "generalize_pythia1b_c4_a100_s43",
+    "field": "metrics",
+    "value": "{'n_perm': 5000, 'xcorr_lag': 5, 'granger_lag': 1, 'pair_config': 'unified_8pair (ent/ece→d1/d2/d3/mauve)', 'perm_granger_fwd': '8/8', 'perm_granger_rev': '0/8', 'diff_xcorr_fwd': '8/8', 'threshold_onset': '8/8', 'ty_granger_fwd': '4/8', 'robust_pairs_K3': '8/8', 'naive_xcorr_fwd': '8/8', 'robust_pairs_K4': '5/8', 'robust_pairs_K3_3sigma': '8/8', 'threshold_onset_3sigma': '2/8', 'D102_note': 'Unified pairs. PermG fwd 4/8→8/8 (mauve pairs all sig in C4). Robust K≥3: 3/8→8/8. C4 domain strongest cross-model.', 'pre_D102_pg_fwd': '6/8', 'pre_D102_k_gte4': '6/8', '3sigma_note': '3σ: K≥4=5/8 (4 ece→ + token_entropy→mauve). Only experiment with 3σ threshold hits (2/8: both →mauve pairs, onset gen 8). K≥3=8/8.'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T16:15:09.267152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia1b_c4_a100_s43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T19:15:09.476Z\", \"updated_at\": \"2026-05-19T16:14:52.459Z\", \"hypothesis\": \"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"291511\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"submitted_at\": \"2026-05-17T20:07:39.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15455.0, \"gpu_hours\": 4.29}, \"reproduce\": {\"finished_at\": \"2026-05-18T00:16:50.616Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T00:16:52.976550+00:00\"}]}, \"metrics\": {\"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"pair_config\": \"unified_8pair (ent/ece→d1/d2/d3/mauve)\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"8/8\", \"ty_granger_fwd\": \"4/8\", \"robust_pairs_K3\": \"8/8\", \"naive_xcorr_fwd\": \"8/8\", \"robust_pairs_K4\": \"5/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8
+…[truncated 796 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-19T16:15:09.267351+00:00_
+
+4 个 registry 全部更新完成。汇总表：
+
+| 实验 | PermG fwd | PermG rev | K≥4(3σ) | K≥3(3σ) | Naive | DiffXCorr | Thr(3σ) | TY | K≥4(2σ) | K≥3(2σ) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| pythia14b_wiki_s42 | 2/8 | 0/8 | **0/8** | 2/8 | 8/8 | 7/8 | 0/8 | 0/8 | 2/8 | 7/8 |
+| pythia14b_wiki_s43 | 6/8 | 2/8 | **3/8** | 6/8 | 7/8 | 8/8 | 0/8 | 3/8 | 6/8 | 7/8 |
+| pythia1b_c4_s42 | 8/8 | 3/8 | **4/8** | 8/8 | 8/8 | 8/8 | 0/8 | 4/8 | 8/8 | 8/8 |
+| pythia1b_c4_s43 | 8/8 | 0/8 | **5/8** | 8/8 | 8/8 | 8/8 | 2/8 | 4/8 | 8/8 | 8/8 |
+
+关键发现：
+
+1. **D102 的 `"3x_sigma_drift"` 标签是错误的** — 实际代码 `method_ablation._onset_gen` 用的是 `2 * sigma`。真正的 3σ 结果差异很大。
+
+2. **3σ threshold_onset 几乎全灭**：downstream 指标在 T=11 内很少突破 gen-0 + 3σ。canary（entropy gen1, ece gen2）能过 3σ，但 distinct_n 和 mauve 不行。唯一例外是 C4 s43 的两个 →mauve pair（onset gen 8）。
+
+3. **K≥4(3σ) 完全依赖其余 4 个方法的共识**：threshold 贡献 ≈0，因此 K≥4 需要 Naive + DiffXCorr + PermG + TY 全部显著才行。C4 域最强（4-5/8），Wiki 1.4B s42 最弱（0/8）。
+
+4. **K≥3(3σ) 对 C4 域依然完美**（8/8 × 2 seeds），Wiki 1.4B 有 seed 差异（s42=2/8, s43=6/8）。
+
+JSON 保存在服务器 `results/generalize/analysis/3sigma_recompute_v2.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_reanalyze_d102_k4_3sigma_20260519T160816"
+}
+```
+
+</details>
+
+---

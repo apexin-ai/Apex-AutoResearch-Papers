@@ -1,0 +1,32 @@
+{
+  "exp_id": "phase_diagram_t25_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:52:28.225Z",
+    "updated_at": "2026-05-21T13:06:24.280Z",
+    "hypothesis": "Phase Diagram T=25 α=0.75: theory predicts α_c(25)≈0.232, α=0.75 is far above threshold. At T=10 PermG=6/8, at T=20 PermG=6/8. If T=25 shows ≥6/8, confirms robust detection at high contamination across all T. Maps the T=25 row at α=0.75, completing the high-α column of the phase diagram.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s42_fp32 --seed 42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "671833",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s42_fp32.log",
+      "submitted_at": "2026-05-21T12:52:55.672Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T13:06:24.625376+00:00",
+  "trigger": "update_registry"
+}

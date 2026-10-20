@@ -1,0 +1,60 @@
+{
+  "exp_id": "alpha_sweep_a035_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:56.167Z",
+    "updated_at": "2026-05-19T19:05:53.444Z",
+    "hypothesis": "D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。",
+    "parent": "alpha_sweep_a030_s42_fp32",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:3",
+    "pid": "151917",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-19T18:59:52.648Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:59:56.803817+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "results/alpha_sweep/a035_s42_fp32",
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "K_ge3_3sigma": "6/8",
+      "K_ge4_3sigma": "2/8",
+      "threshold_onset": "8/8",
+      "TY_granger": "4/8",
+      "naive_xcorr_fwd": "8/8",
+      "diff_xcorr_fwd": "4/8",
+      "drift_token_entropy": "-18.53%",
+      "drift_ece": "+651.26%",
+      "drift_distinct_1": "-36.38%",
+      "drift_distinct_3": "-50.04%",
+      "drift_mauve": "-17.78%",
+      "detection_rate_k4": 0.25
+    },
+    "completed_at": "2026-05-19T19:05:53.445Z"
+  },
+  "timestamp": "2026-05-19T19:05:53.664963+00:00",
+  "trigger": "update_registry"
+}

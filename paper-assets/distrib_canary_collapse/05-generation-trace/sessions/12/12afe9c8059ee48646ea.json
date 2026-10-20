@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12afe9c8059ee48646ea",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d34 universal cascade signature",
+  "task_key": "worker_analysis_d34_universal_cascade_signature_20260520T182854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d34_universal_cascade_signature_20260520T182854_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "1a916aaa81c9c537c2d598b4c24a29375d8eb86e8b5bc100dd8328c609e85a39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All deliverables complete. Here's the summary:\n\n## Results\n\n**Task**: Test whether the Entropy→Diversity→Calibration cascade from synthetic-data collapse generalizes to other domains.\n\n**Domains tested**:\n1. **Pythia-70m pretraining** (20 checkpoints, step0→step143k): `perplexity → ece → distinct_1 → distinct_2 → distinct_3 → token_entropy` (τ = -0.667)\n2. **OLMo-2-1B RLHF pipeline** (4 stages: base→SFT→DPO→RLVR): `ece → token_entropy → perplexity → distinct_1 → distinct_2` (τ = 0.333)\n\n**Verdict**: 0/2 domains show entropy-first onset. The cascade ordering is domain-specific:\n- **Pretraining**: perplexity moves first (the model learns to predict better before entropy contracts)\n- **RLHF**: calibration (ECE) moves first (alignment reshapes confidence before entropy)\n- **Collapse**: entropy moves first (distributional degradation spreads outward from entropy to diversity to perplexity)\n\nThis confirms the cascade is a signature of *distributional degradation*, not a universal property of distribution shift.\n\n**Output artifacts**:\n- `artifacts/universal_cascade/rlhf_cascade.json`\n- `artifacts/universal_cascade/continual_cascade.json`\n- `artifacts/universal_cascade/ucs_comparison.md`\n- Raw data: `pythia_checkpoints_raw.json`, `olmo_checkpoints_raw.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d34-universal-cascade-signature.md"
+}

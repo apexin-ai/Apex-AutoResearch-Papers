@@ -1,0 +1,29 @@
+{
+  "exp_id": "generalize_pythia14b_wiki_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:44:10.708Z",
+    "updated_at": "2026-05-18T02:49:12.339Z",
+    "hypothesis": "Pythia-1.4B s43 验证 Scale 行 K≥4=5/8 是否为系统性 scale effect：若 s43 也弱则确认 scale 是真实挑战，若 s43 强则 s42 是 seed noise",
+    "parent": "generalize_pythia14b_wiki_a100_s42",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "314396",
+      "log_path": "~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log",
+      "submitted_at": "2026-05-18T02:46:35.941Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T02:49:12.459811+00:00",
+  "trigger": "update_registry"
+}

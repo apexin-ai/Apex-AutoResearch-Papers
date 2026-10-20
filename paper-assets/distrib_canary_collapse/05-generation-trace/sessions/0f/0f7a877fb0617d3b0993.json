@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f7a877fb0617d3b0993",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis conditional granger plan022",
+  "task_key": "worker_analysis_conditional_granger_plan022_20260521T021117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_plan022_20260521T021117_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "2261b48fcbdce71ab13f96d16c092a71501327a2b1db4e9f01a17b287fe4a889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Token_entropy 和 ECE 是同一机制的两个冗余表现，不是独立通道。ECE 是主通道。**\n\n关键数据：\n- 两者高度反相关（r = −0.84 to −0.98）\n- Unconditional Granger 显著率 79% → conditional 后分别降至 35%（entropy）和 48%（ECE）\n- 33% 的 pair 属于纯冗余（unconditional 显著但 conditional 两者都不显著）\n- Partial R²：ECE 在 73% 的比较中胜出（mean pR² 0.448 vs 0.346）\n- 大模型（pythia-1b, smollm-3b）在 diversity metrics 上表现出更多\"双独立\"模式\n\n**论文建议**：canary 信号来自单一的 calibration collapse 机制，ECE 是更直接的度量。这强化了 phase transition 的单机制解释。\n\n报告在 `artifacts/conditional_granger_analysis.md`，完整 JSON 在服务器 `results/analysis/conditional_granger_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conditional-granger-plan022.md"
+}

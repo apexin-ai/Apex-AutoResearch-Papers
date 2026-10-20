@@ -1,0 +1,16 @@
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:57.965Z",
+    "updated_at": "2026-05-19T14:38:25.379Z",
+    "hypothesis": "C4 域 α=0.50 fp32 验证：plan_004 bf16 下 PermG=0/8，需区分是 precision artifact（bf16 精度不足）还是 C4 域 α=0.50 确实在 blind zone。plan_049。",
+    "parent": "alpha_sweep_c4_a050_s42"
+  },
+  "timestamp": "2026-05-19T14:38:25.591931+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c756f4cd24161ba69ba",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill duplicate a040",
+  "task_key": "worker_ops_kill_duplicate_a040_20260521T003832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_a040_20260521T003832_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "07dda52d57f534469cdbb06d3bf9b2859d8c983279f82f4a4d7eb7533da9a436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux session `alpha_sweep_a040_s42_fp32_v2` 已 kill。cuda:0 已完全释放：**0 MiB** 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-a040.md"
+}

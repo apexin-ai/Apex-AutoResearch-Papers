@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_a048_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:47:28.294Z",
+    "updated_at": "2026-05-21T03:00:13.305Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.48 --output_dir results/alpha_sweep/a048_s43_fp32\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "635179",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a048_s43_fp32.log",
+      "submitted_at": "2026-05-21T02:47:27.714Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Multi-seed validation at phase boundary: α=0.48 s43 replicates s42 result at the critical transition point. If s42 shows detection (>0/8) and s43 agrees, confirms α_c<0.48 is seed-robust; if they disagree, transition sharpness is seed-dependent."
+  },
+  "timestamp": "2026-05-21T03:00:13.703853+00:00",
+  "trigger": "update_registry"
+}

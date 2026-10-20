@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen35_08b_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:52:52.006Z",
+    "updated_at": "2026-05-18T20:55:53.081Z",
+    "hypothesis": "Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。"
+  },
+  "timestamp": "2026-05-18T20:55:53.368818+00:00",
+  "trigger": "update_registry"
+}

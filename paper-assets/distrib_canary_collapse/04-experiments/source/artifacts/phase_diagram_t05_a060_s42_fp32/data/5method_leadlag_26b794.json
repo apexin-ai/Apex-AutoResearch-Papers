@@ -1,0 +1,868 @@
+{
+  "meta": {
+    "exp_id": "phase_diagram_t05_a060_s42_fp32",
+    "alpha": 0.6,
+    "seed": 42,
+    "T": 5,
+    "n_gens": 6,
+    "n_perm": 5000,
+    "canaries": [
+      "token_entropy",
+      "ece"
+    ],
+    "downstreams": [
+      "distinct_1",
+      "distinct_2",
+      "distinct_3",
+      "mauve"
+    ],
+    "threshold_criterion": "true_3sigma_d105",
+    "D111_direction": "peak_lag < 0 (C009 corrected)",
+    "D105_3sigma": "true 3sigma (std of full series)",
+    "note": "T=5 only has 6 data points (gen 0-5). Statistical power is reduced compared to T=10 (11 points). TY Granger skipped (too few points, consistent with t05_a045)."
+  },
+  "summary": {
+    "PermG_fwd": "0/8",
+    "PermG_rev": "0/8",
+    "diff_xcorr_fdr_fwd": "0/8",
+    "diff_xcorr_fdr_rev": "0/8",
+    "naive_xcorr_fwd_D111": "2/8",
+    "threshold_onset_3sigma": "0/8",
+    "TY_granger": "0/8",
+    "K_ge_3": "0/8",
+    "K_ge_4": "0/8",
+    "robust_pairs": "0/8"
+  },
+  "consensus": [
+    {
+      "pair": "token_entropy<distinct_1",
+      "votes": 1,
+      "methods": [
+        "naive"
+      ]
+    },
+    {
+      "pair": "token_entropy<distinct_2",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "token_entropy<distinct_3",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "token_entropy<mauve",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "ece<distinct_1",
+      "votes": 1,
+      "methods": [
+        "naive"
+      ]
+    },
+    {
+      "pair": "ece<distinct_2",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "ece<distinct_3",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "ece<mauve",
+      "votes": 0,
+      "methods": []
+    }
+  ],
+  "pairs": [
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -1,
+          "r": 0.8924,
+          "p_value": 0.041698,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": 0.9531,
+          "p_value": 0.046893,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 23.4768,
+          "p_value": 0.20036,
+          "null_mean": 33.089,
+          "null_std": 99.035,
+          "effect_size_f2": 23.4768,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 1,
+          "r": 0.8924,
+          "p_value": 0.041698,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": 0.9531,
+          "p_value": 0.046893,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.2574,
+          "p_value": 0.665867,
+          "null_mean": 10.7067,
+          "null_std": 36.4259,
+          "effect_size_f2": 0.2574,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -1,
+          "r": 0.8434,
+          "p_value": 0.072611,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": 0.9393,
+          "p_value": 0.060662,
+          "significant": false,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 7.8011,
+          "p_value": 0.277744,
+          "null_mean": 5.9497,
+          "null_std": 9.2102,
+          "effect_size_f2": 7.8011,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 1,
+          "r": 0.8434,
+          "p_value": 0.072611,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": 0.9393,
+          "p_value": 0.060662,
+          "significant": false,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.3764,
+          "p_value": 0.674865,
+          "null_mean": 12.4531,
+          "null_std": 47.5916,
+          "effect_size_f2": 0.3764,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.7891,
+          "p_value": 0.210881,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": 0.9053,
+          "p_value": 0.094709,
+          "significant": false,
+          "p_fdr": 0.126279,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.9804,
+          "p_value": 0.667267,
+          "null_mean": 2.4783,
+          "null_std": 2.5496,
+          "effect_size_f2": 0.9804,
+          "significant": false,
+          "p_fdr": 0.667267,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.7891,
+          "p_value": 0.210881,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": 0.9053,
+          "p_value": 0.094709,
+          "significant": false,
+          "p_fdr": 0.126279,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.993,
+          "p_value": 0.54829,
+          "null_mean": 292.3268,
+          "null_std": 2363.5913,
+          "effect_size_f2": 0.993,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.6206,
+          "p_value": 0.379358,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": -0.6358,
+          "p_value": 0.364248,
+          "significant": false,
+          "p_fdr": 0.364248,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.6577,
+          "p_value": 0.322336,
+          "null_mean": 110.6842,
+          "null_std": 608.2508,
+          "effect_size_f2": 0.6577,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.6206,
+          "p_value": 0.379358,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": -0.6358,
+          "p_value": 0.364248,
+          "significant": false,
+          "p_fdr": 0.364248,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.1806,
+          "p_value": 0.704259,
+          "null_mean": 455.7643,
+          "null_std": 3582.4022,
+          "effect_size_f2": 0.1806,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -1,
+          "r": 0.9691,
+          "p_value": 0.006493,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": 0.9705,
+          "p_value": 0.029548,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 14.397,
+          "p_value": 0.203559,
+          "null_mean": 1150.7534,
+          "null_std": 9009.9963,
+          "effect_size_f2": 14.397,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 1,
+          "r": 0.9691,
+          "p_value": 0.006493,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": 0.9705,
+          "p_value": 0.029548,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.4119,
+          "p_value": 0.644271,
+          "null_mean": 11851.6272,
+          "null_std": 129878.4548,
+          "effect_size_f2": 0.4119,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.9447,
+          "p_value": 0.05526,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": 0.9516,
+          "p_value": 0.048385,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 6.0108,
+          "p_value": 0.277145,
+          "null_mean": 274.0208,
+          "null_std": 2088.3992,
+          "effect_size_f2": 6.0108,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.9447,
+          "p_value": 0.05526,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": 0.9516,
+          "p_value": 0.048385,
+          "significant": true,
+          "p_fdr": 0.121324,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.5801,
+          "p_value": 0.617676,
+          "null_mean": 138.3293,
+          "null_std": 1067.5196,
+          "effect_size_f2": 0.5801,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.9288,
+          "p_value": 0.071246,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": -0.9155,
+          "p_value": 0.084539,
+          "significant": false,
+          "p_fdr": 0.126279,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 1.0276,
+          "p_value": 0.607878,
+          "null_mean": 50.6323,
+          "null_std": 206.9067,
+          "effect_size_f2": 1.0276,
+          "significant": false,
+          "p_fdr": 0.667267,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.9288,
+          "p_value": 0.071246,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": -0.9155,
+          "p_value": 0.084539,
+          "significant": false,
+          "p_fdr": 0.126279,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 1.26,
+          "p_value": 0.487702,
+          "null_mean": 58.3739,
+          "null_std": 316.7433,
+          "effect_size_f2": 1.26,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": -0.9211,
+          "p_value": 0.078895,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -1,
+          "r": -0.7549,
+          "p_value": 0.245052,
+          "significant": false,
+          "p_fdr": 0.280059,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 1.2523,
+          "p_value": 0.384523,
+          "null_mean": 119.1412,
+          "null_std": 848.947,
+          "effect_size_f2": 1.2523,
+          "significant": false,
+          "p_fdr": 0.512697,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": -0.9211,
+          "p_value": 0.078895,
+          "significant": false
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 1,
+          "r": -0.7549,
+          "p_value": 0.245052,
+          "significant": false,
+          "p_fdr": 0.280059,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.1383,
+          "p_value": 0.722855,
+          "null_mean": 47.797,
+          "null_std": 185.6014,
+          "effect_size_f2": 0.1383,
+          "significant": false,
+          "p_fdr": 0.722855,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": null,
+          "p_value": null,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0,
+          "note": "T=5 insufficient data points for VAR model (statsmodels not available locally, consistent with t05_a045 where all TY p-values were NaN)"
+        }
+      }
+    }
+  ]
+}

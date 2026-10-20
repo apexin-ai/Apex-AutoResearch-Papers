@@ -1,0 +1,15 @@
+{
+  "exp_id": "generalize_pythia14b_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:25:15.889Z",
+    "updated_at": "2026-05-17T13:25:19.262Z",
+    "hypothesis": "方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模"
+  },
+  "timestamp": "2026-05-17T13:25:19.371737+00:00",
+  "trigger": "update_registry"
+}

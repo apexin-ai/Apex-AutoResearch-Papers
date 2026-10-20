@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_c4_a050_s42_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:26:50.191Z",
+    "updated_at": "2026-05-18T18:43:20.853Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --bf16 --output_dir results/alpha_sweep_c4/a050_s42_bf16\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "18253",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42_bf16.log",
+      "submitted_at": "2026-05-18T17:26:50.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "C4 α=0.50 cross-domain with bf16: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain."
+  },
+  "timestamp": "2026-05-18T18:43:20.965844+00:00",
+  "trigger": "update_registry"
+}

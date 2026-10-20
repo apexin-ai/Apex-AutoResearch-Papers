@@ -1,0 +1,89 @@
+paper_key: "kazdan2025collapse"
+title: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Replace scenario (delete + retrain)"
+    - "Accumulate scenario (keep all data)"
+    - "Accumulate-Subsample (fixed compute budget)"
+  metrics:
+    - {name: "Test loss (NLL on real data)", direction: "lower_better"}
+    - {name: "Covariance/mean drift (Gaussian)", direction: "lower_better"}
+    - {name: "R² (cardinality vs proportion)", direction: "higher_better"}
+  datasets:
+    - {name: "HelpSteer2 (Nvidia)", size: "~12.5K", task: "LM SFT"}
+    - {name: "TinyStories", size: "N/A", task: "LM pretraining"}
+    - {name: "sklearn synthetic (Blobs, Circles, Moons, Swiss Roll)", size: "N/A", task: "KDE"}
+  ablation_dimensions:
+    - data_scenario (replace, accumulate, accumulate-subsample)
+    - model_type (Gaussian, KDE, LM-SFT, LM-pretrain, linear regression)
+    - real_data_cardinality_vs_proportion
+    - synthetic_data_amount
+  training_recipe:
+    LM_SFT: "Gemma2 2B, greedy decoding, ~55K completions (<512 tokens)"
+    LM_pretrain: "small GPT/Llama variants on TinyStories"
+    Gaussian: "n=316 samples per iteration"
+    KDE: "Gaussian kernel"
+  method_family: "data_accumulation_collapse_analysis"
+
+positioning:
+  core_claim: "Replace-scenario collapses across all settings; accumulate-scenario avoids collapse; new accumulate-subsample (fixed compute) shows loss plateaus rather than diverges. Cardinality of real data matters more than proportion (R²=0.59 vs 0.34). Synthetic data helps only when real data is scarce."
+  key_results: "R²=0.59 (cardinality) vs 0.34 (proportion); With ≤1024 real samples, optimal nonzero synthetic amount exists; With abundant real data, any synthetic data hurts"
+  limitations:
+    - "No data quality filtering applied"
+    - "Limited to relatively small models/datasets"
+    - "Need to understand conditions where synthetic data improves"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "The internet contains increasingly more AI-generated content. What happens to future models pretrained on this polluted data?"
+  tension: "Model collapse literature reaches contradictory conclusions — some say collapse is inevitable, others say it's avoidable. Different papers, different setups, different conclusions."
+  key_insight: "Section 3-5 — The contradiction resolves by distinguishing replace vs accumulate scenarios. Both claims are correct in their respective regimes. New finding: even with compute budget constraints, accumulation plateaus rather than diverges."
+  argument_chain: "contradictory claims in literature → unify by testing replace vs accumulate across 5 model types → confirm contrast holds universally → introduce fixed-compute middle ground → investigate real/synthetic data interaction → discover regime-dependent value of synthetic data"
+  contribution_framing: "3 threads: (1) replace vs accumulate across 3 new settings, (2) fixed-compute middle ground, (3) cardinality vs proportion investigation"
+  intro_structure: "Long intro with progressive claim refinement, citing specific prior work at each step"
+  notable_technique: "The 'middle ground' scenario (accumulate-subsample) addresses the most realistic practical constraint (fixed compute budget) that prior work ignored. The R² comparison (cardinality vs proportion) is a clean, memorable quantitative insight."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Multivariate Gaussian: replace collapses (covariance→0, mean drifts), accumulate stabilizes"
+    narrative_role: "Immediate visual proof of the core replace-vs-accumulate contrast"
+    design_elements: ["side-by-side comparison", "distribution evolution across iterations"]
+    visual_style: "Dual-panel with iteration progression"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "KDE NLL across iterations: replace (diverges) vs accumulate (stable) on 4 sklearn datasets"
+      how_gain_highlighted: "Replace curves shoot up; accumulate curves flat"
+      design_note: "4 datasets × 2 scenarios in compact multi-panel layout"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "LM SFT loss: replace vs accumulate on Gemma2/HelpSteer2"
+      how_gain_highlighted: "Same pattern as Gaussian and KDE"
+      design_note: "Consistency across model types reinforces the universal claim"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Replace vs accumulate vs accumulate-subsample across 5 settings"
+      how_gain_highlighted: "Accumulate-subsample plateaus between replace (diverges) and accumulate (stable)"
+      design_note: "Three-curve comparison is the paper's signature visualization"
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      what_compared: "Test loss vs real/synthetic data amounts in LM SFT"
+      how_gain_highlighted: "Shows regime where synthetic helps (scarce real) vs hurts (abundant real)"
+      design_note: "2D scatter reveals the non-trivial interaction — not a simple monotonic relationship"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(Gaussian proof of concept) → Fig2(KDE confirmation) → Fig3(LM confirmation) → Fig4(fixed-compute middle ground) → Fig5(data interaction)"
+
+tables:
+  table_count: 0
+  main_result_table: "N/A — all results via figures and R² statistics in text"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Proofs (Theorem 1), additional model settings, extended results"
+    reason: "Figure-driven paper; theoretical details in appendix"

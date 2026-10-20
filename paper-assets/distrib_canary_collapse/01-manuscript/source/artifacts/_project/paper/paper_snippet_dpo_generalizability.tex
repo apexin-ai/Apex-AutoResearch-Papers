@@ -1,0 +1,32 @@
+% Paper snippet: Generalizability to DPO/RLHF Alignment (Section 6 or Discussion)
+% Target: 1-2 paragraphs for "Broader Applicability" subsection
+
+Beyond autoregressive model collapse in synthetic data loops, the PermG framework
+naturally extends to \emph{alignment-induced diversity collapse}---a phenomenon
+increasingly documented in DPO and RLHF post-training pipelines
+\citep{kirk2024understanding, karouzos2026where, guo2025diverse}.
+Recent work establishes that preference optimization objectives systematically
+compress the output distribution: \citet{tomihari2026learning} shows entropy
+decreases monotonically during RL post-training via NTK analysis, while
+\citet{guo2025diverse} proves that standard DPO admits a degenerate optimum
+where all probability mass concentrates on a single preferred response.
+Crucially, this collapse follows a staged trajectory across the alignment
+pipeline (base $\to$ SFT $\to$ DPO $\to$ RLVR), with the collapse locus
+depending on training data composition \citep{karouzos2026where}.
+This staged structure maps directly onto the PermG generation sequence:
+each post-training stage corresponds to a generation $t$, and the same
+lead-lag diagnostics---cross-correlation between token entropy and lexical
+diversity (distinct-$n$)---can detect whether distributional narrowing
+precedes surface-level homogenization.
+
+We formulate a falsifiable prediction: \emph{if DPO compresses the output
+distribution before lexical diversity visibly declines, PermG should detect
+a significant entropy $\to$ distinct-$n$ lead at the DPO stage, with the
+cross-correlation peak at negative lag (entropy leads).}
+This prediction is testable using publicly released alignment checkpoints
+such as OLMo-2 \citep{olmo2024olmo2}, which provides separate model snapshots
+at each post-training stage (base, SFT, DPO, Instruct).
+A positive result would demonstrate that the canary-metric framework
+generalizes beyond synthetic data recycling to any iterative process that
+progressively narrows a language model's output distribution, including
+the alignment pipelines now standard in LLM deployment.

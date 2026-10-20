@@ -1,0 +1,18 @@
+model,params_B,seed,domain,precision,PermG_fwd,PermG_rev,K3_3sigma,K4_3sigma,note
+Pythia-6.9B,6.9,s42,WikiText,bf16,7/8,,8/8,3/8,
+Qwen3.5-0.8B,0.8,s42,WikiText,fp32,8/8,,8/8,6/8,
+Pythia-1.4B,1.4,s42,WikiText,fp32,2/8,,2/8,0/8,seed sensitive
+Pythia-1.4B,1.4,s43,WikiText,fp32,6/8,,6/8,3/8,
+Pythia-410M,0.41,s42,WikiText,fp32,6/8,,6/8,1/8,
+GPT-2-medium,0.35,s42,WikiText,fp32,6/8,,6/8,2/8,bidir coupling
+GPT-2-medium,0.35,s43,WikiText,bf16,6/8,,6/8,4/8,bidir coupling
+OPT-1.3B,1.3,s42,WikiText,fp32,6/8,,6/8,2/8,
+Padding-410M,0.41,s42,WikiText,fp32,6/8,,6/8,6/8,padding control
+C4-Pythia-1B,1.0,s42,C4,fp32,8/8,,8/8,4/8,
+C4-Pythia-1B,1.0,s43,C4,fp32,8/8,,8/8,5/8,
+SmolLM3-3B,3.0,s42,WikiText,fp32,3/8,,0/8,0/8,ECE-only canary split D109+D111
+Qwen3.5-0.8B,0.8,s43,WikiText,fp32,,,,,RUNNING
+Pythia-6.9B,6.9,s43,WikiText,bf16,,,,,RUNNING (~50h)
+OPT-1.3B,1.3,s43,WikiText,fp32,,,,,RUNNING
+Pythia-410M,0.41,s43,WikiText,fp32,,,,,RUNNING
+SmolLM3-3B,3.0,s43,WikiText,fp32,,,,,RUNNING (~18h)

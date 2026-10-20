@@ -1,0 +1,15 @@
+{
+  "exp_id": "scale_14b_t10_a050_s42_fp32_19828",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:29:15.144Z",
+    "updated_at": "2026-05-22T07:29:28.822Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=10 α=0.50 (retry on 19828 with local model path). At 410M, α=0.50 is the onset boundary (T=10 PermG=6/8). If 1.4B also shows 6/8, confirms detection onset is scale-invariant."
+  },
+  "timestamp": "2026-05-22T07:29:29.298866+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,70 @@
+{
+  "exp_id": "phase_diagram_t25_a050_s42_fp32_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:01:00.286Z",
+    "updated_at": "2026-05-22T07:34:46.426Z",
+    "hypothesis": "T=25 α=0.50 phase diagram cell (v3 resume from gen_13 after v2 disk-full crash). α_c(25)≈0.16, α=0.50 far above threshold. If PermG≥5/8, confirms detection and completes 20/20 phase diagram grid.",
+    "parent": "phase_diagram_t25_a050_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "v2 crash残留 gen_0-12 完整, resume from gen_13 via --start_gen 13",
+      "eval_data": "data/wikitext103_5k",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 13\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "582618",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32_v3.log",
+      "checkpoint_path": "results/phase_diagram/t25_a050_s42_fp32/gen_24"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T07:08:21.653Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T07:08:28.623239+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "perm_granger_fdr_forward_sig": "6/8",
+      "perm_granger_fdr_reverse_sig": "0/8",
+      "diff_xcorr_fdr_forward_sig": "6/8",
+      "diff_xcorr_fdr_reverse_sig": "6/8",
+      "threshold_forward_sig": "6/8",
+      "ty_forward_sig": "6/8",
+      "robust_pairs_K3": "6/8",
+      "n_gens": 26,
+      "analysis_script": "run_5method_analysis_d102.py",
+      "downstream": "mauve",
+      "threshold": "true_3sigma_d105",
+      "consensus": {
+        "token_entropy_distinct_1": "4/5",
+        "token_entropy_distinct_2": "4/5",
+        "token_entropy_distinct_3": "4/5",
+        "token_entropy_mauve": "0/5",
+        "ece_distinct_1": "5/5",
+        "ece_distinct_2": "3/5",
+        "ece_distinct_3": "4/5",
+        "ece_mauve": "2/5"
+      },
+      "final_mauve": 0.024,
+      "D102_note": "Phase Diagram 20/20 COMPLETE. PermG=6/8 matches T=10/15/20 at α=0.50. 6/8 ceiling confirmed across all T≥10. mauve pairs (0/5, 2/5) consistently non-significant as in other experiments."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T07:34:46.885957+00:00",
+  "trigger": "update_registry"
+}

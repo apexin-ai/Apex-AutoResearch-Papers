@@ -1,0 +1,78 @@
+{
+  "exp_id": "alpha_sweep_a045_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:49:23.885Z",
+    "updated_at": "2026-05-20T10:06:29.606Z",
+    "hypothesis": "Onset boundary cross-seed at α=0.45: s42 shows PermG=0/8 (blind zone). If s43 also PermG=0/8 → onset > 0.45 is seed-robust, strengthening the [0.45, 0.50] onset claim. If s43 PermG>0 → onset is seed-sensitive at the boundary.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.45 --output_dir results/alpha_sweep/a045_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "280215",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a045_s43_fp32.log",
+      "submitted_at": "2026-05-20T05:49:51.577Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "precision": "fp32",
+      "checkpoint_path": "results/alpha_sweep/a045_s43_fp32/gen_10/checkpoint",
+      "wall_clock_seconds": 15398.0,
+      "gpu_hours": 4.28
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T09:59:09.156Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T09:59:16.340543+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "K_ge_3": "2/8",
+      "K_ge_4": "0/8",
+      "naive_xcorr": "1/8",
+      "diff_xcorr": "1/8",
+      "threshold_onset": "8/8",
+      "ty_granger": "7/8",
+      "drift_entropy_pct": -19.61,
+      "drift_ece_pct": 800,
+      "drift_perplexity_pct": 12.37,
+      "drift_distinct1_pct": -34.69,
+      "drift_distinct2_pct": -47.24,
+      "drift_distinct3_pct": -47.55,
+      "drift_mauve_pct": -18.78,
+      "drift_effrank_pct": 26.45,
+      "gen0_token_entropy": 3.2342,
+      "gen0_ece": 0.0108,
+      "gen0_distinct_1": 0.0983,
+      "gen0_perplexity": 26.95,
+      "gen0_mauve": 0.0315,
+      "gen10_token_entropy": 2.5999,
+      "gen10_ece": 0.0972,
+      "gen10_distinct_1": 0.0642,
+      "gen10_perplexity": 30.28,
+      "gen10_mauve": 0.0256
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T10:06:29.606Z"
+  },
+  "timestamp": "2026-05-20T10:06:29.890430+00:00",
+  "trigger": "update_registry"
+}

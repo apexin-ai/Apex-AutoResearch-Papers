@@ -1,0 +1,15 @@
+{
+  "exp_id": "scale_14b_t15_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:13.927Z",
+    "updated_at": "2026-05-22T10:31:12.694Z",
+    "hypothesis": "Scale validation at 1.4B: canary-leads-downstream pattern persists at Pythia-1.4B scale with alpha=0.45, T=15 generations. Tests whether the lead-lag signal discovered at 410M generalizes to larger models."
+  },
+  "timestamp": "2026-05-22T10:31:13.139539+00:00",
+  "trigger": "update_registry"
+}

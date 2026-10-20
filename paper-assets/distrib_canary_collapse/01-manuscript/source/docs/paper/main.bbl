@@ -1,0 +1,346 @@
+\begin{thebibliography}{45}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luzi, Humayun,
+  Babaei, LeJeune, Siahkoohi, and Baraniuk}]{alemohammad2024mad}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun,
+  Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard Baraniuk. 2024.
+\newblock \href {https://arxiv.org/abs/2307.01850} {Self-consuming generative
+  models go {MAD}}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Benjamini and Hochberg(1995)}]{benjamini1995controlling}
+Yoav Benjamini and Yosef Hochberg. 1995.
+\newblock \href {https://doi.org/10.1111/j.2517-6161.1995.tb02031.x}
+  {Controlling the false discovery rate: A practical and powerful approach to
+  multiple testing}.
+\newblock \emph{Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 57(1):289--300.
+
+\bibitem[{Benjamini and Yekutieli(2001)}]{benjamini2001control}
+Yoav Benjamini and Daniel Yekutieli. 2001.
+\newblock The control of the false discovery rate in multiple testing under
+  dependency.
+\newblock \emph{Annals of Statistics}, 29(4):1165--1188.
+
+\bibitem[{Biderman et~al.(2023)Biderman, Schoelkopf, Anthony, Bradley, O'Brien,
+  Hallahan, Khan, Purber, Prashanth, Raff, Skowron, Sutawika, and van~der
+  Wal}]{biderman2023pythia}
+Stella Biderman, Hailey Schoelkopf, Quentin~Gregory Anthony, Herbie Bradley,
+  Kyle O'Brien, Eric Hallahan, Mohammad~Aflah Khan, Shivanshu Purber, USVSN~Sai
+  Prashanth, Edward Raff, Aviya Skowron, Lintang Sutawika, and Oskar van~der
+  Wal. 2023.
+\newblock \href {https://arxiv.org/abs/2304.01373} {Pythia: A suite for
+  analyzing large language models across training and scaling}.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Boettiger and Hastings(2012)}]{boettiger2012limits}
+Carl Boettiger and Alan Hastings. 2012.
+\newblock \href {https://doi.org/10.1098/rsif.2012.0125} {Quantifying limits to
+  detection of early warning for critical transitions}.
+\newblock \emph{Journal of the Royal Society Interface}, 9(75):2527--2539.
+
+\bibitem[{Buffa and Del~Corro(2026)}]{buffa2026entropy}
+Pedro~Memoli Buffa and Luciano Del~Corro. 2026.
+\newblock \href {https://arxiv.org/abs/2601.09001} {Entropy sentinel:
+  Continuous {LLM} accuracy monitoring from decoding entropy traces in {STEM}}.
+\newblock \emph{arXiv preprint arXiv:2601.09001}.
+
+\bibitem[{Coretta et~al.(2023)Coretta, Casillas, Roessig, Franke
+  et~al.}]{coretta2023multidimensional}
+Stefano Coretta, Joseph~V. Casillas, Simon Roessig, Michael Franke, and 1
+  others. 2023.
+\newblock \href {https://doi.org/10.1177/25152459231162567} {Multidimensional
+  signals and analytic flexibility: Estimating degrees of freedom in
+  human-speech analyses}.
+\newblock \emph{Advances in Methods and Practices in Psychological Science},
+  6(3).
+
+\bibitem[{Dohmatob et~al.(2025)Dohmatob, Feng, Subramonian, and
+  Kempe}]{dohmatob2025strong}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe. 2025.
+\newblock \href {https://arxiv.org/abs/2410.04840} {Strong model collapse}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Dohmatob et~al.(2024)Dohmatob, Feng, Yang, Charton, and
+  Kempe}]{dohmatob2024tale}
+Elvis Dohmatob, Yunzhen Feng, Pu~Yang, Francois Charton, and Julia Kempe. 2024.
+\newblock \href {https://arxiv.org/abs/2402.07043} {A tale of tails: Model
+  collapse as a change of scaling laws}.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Drayson et~al.(2025)Drayson, Yilmaz, and
+  Lampos}]{drayson2025detection}
+George Drayson, Emine Yilmaz, and Vasileios Lampos. 2025.
+\newblock \href {https://arxiv.org/abs/2502.15654} {Machine-generated text
+  detection prevents language model collapse}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 29646--29662.
+
+\bibitem[{Du et~al.(2025)Du, Wu, Tang, Wang, and Fan}]{du2025scales}
+Y.~Du, G.~Wu, G.~Tang, W.~Wang, and Q.~Fan. 2025.
+\newblock \href {https://arxiv.org/abs/2510.05133} {Characterizing model
+  behavior under synthetic data training: An empirical study across scales and
+  mixing ratios}.
+\newblock \emph{arXiv preprint arXiv:2510.05133}.
+
+\bibitem[{Gambetta et~al.(2024)Gambetta, Gezici, Giannotti, Pedreschi, Knott,
+  and Pappalardo}]{gambetta2024surplexity}
+Daniele Gambetta, Gizem Gezici, Fosca Giannotti, Dino Pedreschi, Alistair
+  Knott, and Luca Pappalardo. 2024.
+\newblock \href {https://arxiv.org/abs/2410.12341} {Learning by surprise:
+  Surplexity for mitigating model collapse in generative {AI}}.
+\newblock \emph{arXiv preprint arXiv:2410.12341}.
+
+\bibitem[{Granger(1969)}]{granger1969investigating}
+Clive W.~J. Granger. 1969.
+\newblock Investigating causal relations by econometric models and
+  cross-spectral methods.
+\newblock \emph{Econometrica}, 37(3):424--438.
+
+\bibitem[{Granger and Newbold(1974)}]{granger1974spurious}
+Clive W.~J. Granger and Paul Newbold. 1974.
+\newblock \href {https://doi.org/10.1016/0304-4076(74)90034-7} {Spurious
+  regressions in econometrics}.
+\newblock \emph{Journal of Econometrics}, 2(2):111--120.
+
+\bibitem[{Gu et~al.(2024)Gu, Yang, Ding, Zhao, and Tan}]{gu2024cmr}
+Jiawei Gu, Zacc Yang, Chuanghao Ding, Rui Zhao, and Fei Tan. 2024.
+\newblock \href {https://arxiv.org/abs/2407.17467} {{CMR} scaling law:
+  Predicting critical mixture ratios for continual pre-training of language
+  models}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Gu et~al.(2025)Gu, Lyu, Li, and Zhang}]{gu2025datamixing}
+Xinran Gu, Kaifeng Lyu, Jiazheng Li, and Jingzhao Zhang. 2025.
+\newblock \href {https://arxiv.org/abs/2505.18091} {Data mixing can induce
+  phase transitions in knowledge acquisition}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Gu et~al.(2026)Gu, Pang, Ye, Wang, Lin, Priebe, and
+  Aue}]{sigma2026spectral}
+Yi~Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey~E. Priebe, and
+  Alexander Aue. 2026.
+\newblock \href {https://arxiv.org/abs/2601.03385} {{SIGMA}: Scalable spectral
+  insights for {LLM} model collapse}.
+\newblock \emph{arXiv preprint arXiv:2601.03385}.
+
+\bibitem[{Hataya et~al.(2023)Hataya, Bao, and Arai}]{hataya2023will}
+Ryuichiro Hataya, Han Bao, and Hiromi Arai. 2023.
+\newblock \href {https://arxiv.org/abs/2211.08095} {Will large-scale generative
+  models corrupt future datasets?}
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision (ICCV)}, pages 20555--20565.
+
+\bibitem[{Kapoor et~al.(2024)Kapoor, Cantrell, Peng, Pham, Bail, Gundersen,
+  Hofman, Hullman, Lones, Malik, Nanayakkara, Poldrack, Raji, Roberts,
+  Salganik, Serra-Garcia, Stewart, Vandewiele, and
+  Narayanan}]{kapoor2024reforms}
+Sayash Kapoor, Emily Cantrell, Kenny Peng, Thanh~Hien Pham, Christopher~A.
+  Bail, Odd~Erik Gundersen, Jake~M. Hofman, Jessica Hullman, Michael~A. Lones,
+  Momin~M. Malik, Priyanka Nanayakkara, Russell~A. Poldrack, Inioluwa~Deborah
+  Raji, Michael Roberts, Matthew~J. Salganik, Marta Serra-Garcia, Brandon~M.
+  Stewart, Gilles Vandewiele, and Arvind Narayanan. 2024.
+\newblock \href {https://doi.org/10.1126/sciadv.adk3452} {{REFORMS}:
+  Consensus-based recommendations for machine-learning-based science}.
+\newblock \emph{Science Advances}, 10(18):eadk3452.
+
+\bibitem[{Kazdan et~al.(2025)Kazdan, Schaeffer, Dey, Gerstgrasser, Rafailov,
+  Donoho, and Koyejo}]{kazdan2025collapse}
+Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael
+  Rafailov, David~L. Donoho, and Sanmi Koyejo. 2025.
+\newblock \href {https://arxiv.org/abs/2410.16713} {Collapse or thrive?
+  {P}erils and promises of synthetic data in a self-generating world}.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Kirchenbauer et~al.(2023)Kirchenbauer, Geiping, Wen, Katz, Miers, and
+  Goldstein}]{kirchenbauer2023watermark}
+John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, and Tom
+  Goldstein. 2023.
+\newblock A watermark for large language models.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning}, pages 17061--17084.
+
+\bibitem[{Kova{\v{c}} et~al.(2025)Kova{\v{c}}, Perez, Portelas, Dominey, and
+  Oudeyer}]{kovac2025recursive}
+Grgur Kova{\v{c}}, J{\'e}r{\'e}my Perez, R{\'e}my Portelas, Peter~Ford Dominey,
+  and Pierre-Yves Oudeyer. 2025.
+\newblock \href {https://arxiv.org/abs/2504.03814} {Recursive training loops in
+  {LLMs}: How training data properties modulate distribution shift in generated
+  data?}
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+\newblock Oral. arXiv:2504.03814.
+
+\bibitem[{Li et~al.(2016)Li, Galley, Brockett, Gao, and
+  Dolan}]{li2016diversity}
+Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, and Bill Dolan. 2016.
+\newblock \href {https://arxiv.org/abs/1510.03055} {A diversity-promoting
+  objective function for neural conversation models}.
+\newblock In \emph{North American Chapter of the Association for Computational
+  Linguistics}.
+
+\bibitem[{Merity et~al.(2017)Merity, Xiong, Bradbury, and
+  Socher}]{merity2017pointer}
+Stephen Merity, Caiming Xiong, James Bradbury, and Richard Socher. 2017.
+\newblock \href {https://arxiv.org/abs/1609.07843} {Pointer sentinel mixture
+  models}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Naeini et~al.(2015)Naeini, Cooper, and
+  Hauskrecht}]{naeini2015obtaining}
+Mahdi~Pakdaman Naeini, Gregory~F. Cooper, and Milos Hauskrecht. 2015.
+\newblock Obtaining well calibrated probabilities using {B}ayesian binning into
+  quantiles.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~29, pages 2901--2907.
+
+\bibitem[{Page(1954)}]{page1954continuous}
+E.~S. Page. 1954.
+\newblock \href {https://doi.org/10.1093/biomet/41.1-2.100} {Continuous
+  inspection schemes}.
+\newblock \emph{Biometrika}, 41(1--2):100--115.
+
+\bibitem[{Phipson and Smyth(2010)}]{phipson2010permutation}
+Belinda Phipson and Gordon~K. Smyth. 2010.
+\newblock \href {https://doi.org/10.2202/1544-6115.1585} {Permutation p-values
+  should never be zero: Calculating exact p-values when permutations are
+  randomly drawn}.
+\newblock \emph{Statistical Applications in Genetics and Molecular Biology},
+  9(1):Article 39.
+
+\bibitem[{Pillutla et~al.(2021)Pillutla, Swayamdipta, Zellers, Thickstun,
+  Welleck, Choi, and Harchaoui}]{pillutla2021mauve}
+Krishna Pillutla, Swabha Swayamdipta, Rowan Zellers, John Thickstun, Sean
+  Welleck, Yejin Choi, and Zaid Harchaoui. 2021.
+\newblock {MAUVE}: Measuring the gap between neural text and human text using
+  divergence frontiers.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34.
+
+\bibitem[{Runge et~al.(2019)Runge, Nowack, Kretschmer, Flaxman, and
+  Sejdinovic}]{runge2019detecting}
+Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino
+  Sejdinovic. 2019.
+\newblock \href {https://doi.org/10.1126/sciadv.aau4996} {Detecting and
+  quantifying causal associations in large nonlinear time series datasets}.
+\newblock \emph{Science Advances}, 5(11):eaau4996.
+
+\bibitem[{Schaeffer et~al.(2025)Schaeffer, Kazdan, Arulandu, and
+  Koyejo}]{schaeffer2025position}
+Rylan Schaeffer, Joshua Kazdan, Alvan~Caleb Arulandu, and Sanmi Koyejo. 2025.
+\newblock \href {https://arxiv.org/abs/2503.03150} {Position: Model collapse
+  does not mean what you think}.
+\newblock \emph{arXiv preprint arXiv:2503.03150}.
+
+\bibitem[{Scheffer et~al.(2009)Scheffer, Bascompte, Brock, Brovkin, Carpenter,
+  Dakos, Held, van Nes, Rietkerk, and Sugihara}]{scheffer2009early}
+Marten Scheffer, Jordi Bascompte, William~A. Brock, Victor Brovkin, Stephen~R.
+  Carpenter, Vasilis Dakos, Hermann Held, Egbert~H. van Nes, Max Rietkerk, and
+  George Sugihara. 2009.
+\newblock \href {https://doi.org/10.1038/nature08227} {Early-warning signals
+  for critical transitions}.
+\newblock \emph{Nature}, 461:53--59.
+
+\bibitem[{Scheffer et~al.(2012)Scheffer, Carpenter, Lenton, Bascompte, Brock,
+  Dakos, van~de Koppel, van~de Leemput, Levin, van Nes, Pascual, and
+  Vandermeer}]{scheffer2012anticipating}
+Marten Scheffer, Stephen~R. Carpenter, Timothy~M. Lenton, Jordi Bascompte,
+  William Brock, Vasilis Dakos, Johan van~de Koppel, Ingrid~A. van~de Leemput,
+  Simon~A. Levin, Egbert~H. van Nes, Mercedes Pascual, and John Vandermeer.
+  2012.
+\newblock \href {https://doi.org/10.1126/science.1225244} {Anticipating
+  critical transitions}.
+\newblock \emph{Science}, 338(6105):344--348.
+
+\bibitem[{Schreiber(2000)}]{schreiber2000measuring}
+Thomas Schreiber. 2000.
+\newblock Measuring information transfer.
+\newblock \emph{Physical Review Letters}, 85(2):461--464.
+
+\bibitem[{Shapley(1953)}]{shapley1953value}
+Lloyd~S. Shapley. 1953.
+\newblock A value for $n$-person games.
+\newblock In Harold~W. Kuhn and Albert~W. Tucker, editors, \emph{Contributions
+  to the Theory of Games II}, pages 307--317. Princeton University Press.
+
+\bibitem[{Shi et~al.(2025)Shi, Wu, Zhang, Zhang, Tao, and Qu}]{shi2025closer}
+Lianghe Shi, Meng Wu, Huijie Zhang, Zekai Zhang, Molei Tao, and Qing Qu. 2025.
+\newblock \href {https://arxiv.org/abs/2509.16499} {A closer look at model
+  collapse: From a generalization-to-memorization perspective}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+\newblock Spotlight. arXiv:2509.16499.
+
+\bibitem[{Shojaie and Fox(2022)}]{shojaie2022granger}
+Ali Shojaie and Emily~B. Fox. 2022.
+\newblock \href {https://arxiv.org/abs/2105.02675} {{Granger} causality: A
+  review and recent advances}.
+\newblock \emph{Annual Review of Statistics and Its Application}, 9:289--319.
+
+\bibitem[{Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal}]{shumailov2024curse}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal. 2024.
+\newblock \href {https://doi.org/10.1038/s41586-024-07566-y} {{AI} models
+  collapse when trained on recursively generated data}.
+\newblock \emph{Nature}, 631:755--759.
+
+\bibitem[{Silberzahn et~al.(2018)Silberzahn, Uhlmann, Martin, Anselmi, Aust,
+  Awtrey, Bahn\'{i}k, Bai, Bannard, Bonnier et~al.}]{silberzahn2018many}
+Raphael Silberzahn, Eric~L. Uhlmann, Daniel~P. Martin, Pasquale Anselmi,
+  Frederik Aust, Eli Awtrey, \v{S}t\v{e}p\'{a}n Bahn\'{i}k, Feng Bai, Colin
+  Bannard, Evelina Bonnier, and 1 others. 2018.
+\newblock \href {https://doi.org/10.1177/2515245917747646} {Many analysts, one
+  data set: Making transparent how variations in analytic choices affect
+  results}.
+\newblock \emph{Advances in Methods and Practices in Psychological Science},
+  1(3):337--356.
+
+\bibitem[{Simonsohn et~al.(2020)Simonsohn, Simmons, and
+  Nelson}]{simonsohn2020specification}
+Uri Simonsohn, Joseph~P. Simmons, and Leif~D. Nelson. 2020.
+\newblock \href {https://doi.org/10.1038/s41562-020-0912-z} {Specification
+  curve analysis}.
+\newblock \emph{Nature Human Behaviour}, 4(11):1208--1214.
+
+\bibitem[{Staniek and Lehnertz(2008)}]{staniek2008symbolic}
+Matthäus Staniek and Klaus Lehnertz. 2008.
+\newblock Symbolic transfer entropy.
+\newblock \emph{Physical Review Letters}, 100(15):158101.
+
+\bibitem[{Steegen et~al.(2016)Steegen, Tuerlinckx, Gelman, and
+  Vanpaemel}]{steegen2016increasing}
+Sara Steegen, Francis Tuerlinckx, Andrew Gelman, and Wolf Vanpaemel. 2016.
+\newblock \href {https://doi.org/10.1177/1745691616658637} {Increasing
+  transparency through a multiverse analysis}.
+\newblock \emph{Perspectives on Psychological Science}, 11(5):702--712.
+
+\bibitem[{Tank et~al.(2021)Tank, Covert, Foti, Shojaie, and
+  Fox}]{tank2021neural}
+Alex Tank, Ian Covert, Nicholas Foti, Ali Shojaie, and Emily~B. Fox. 2021.
+\newblock \href {https://doi.org/10.1109/TPAMI.2021.3065601} {Neural {Granger}
+  causality}.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 44(8):4267--4279.
+
+\bibitem[{Toda and Yamamoto(1995)}]{toda1995statistical}
+Hiro~Y. Toda and Taku Yamamoto. 1995.
+\newblock \href {https://doi.org/10.1016/0304-4076(94)01616-8} {Statistical
+  inference in vector autoregressions with possibly integrated processes}.
+\newblock \emph{Journal of Econometrics}, 66(1--2):225--250.
+
+\bibitem[{Truong and Truong(2025)}]{truong2026phase}
+Xuan~Khanh Truong and Quynh~Hoa Truong. 2025.
+\newblock \href {https://arxiv.org/abs/2512.12381} {Entropy collapse: A
+  universal failure mode of intelligent systems}.
+\newblock \emph{arXiv preprint arXiv:2512.12381}.
+
+\bibitem[{Zhu and Xie(2026)}]{dces2026counter}
+Bingze Zhu and Yubo Xie. 2026.
+\newblock \href {https://www.mdpi.com/2079-9292/15/4/869} {Countering model
+  collapse in iterative self-training via dynamic center-edge sampling}.
+\newblock \emph{Electronics}, 15(4):869.
+
+\end{thebibliography}

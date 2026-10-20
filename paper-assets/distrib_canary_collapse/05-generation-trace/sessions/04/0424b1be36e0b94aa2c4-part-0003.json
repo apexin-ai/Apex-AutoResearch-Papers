@@ -1,0 +1,1527 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0424b1be36e0b94aa2c4",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_updated",
+                "task_id": "b4ck8ct8v",
+                "patch": {
+                  "status": "completed",
+                  "end_time": 1779479985887
+                },
+                "uuid": "c8998836-d045-4b16-a088-23be13eb9ef0",
+                "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1"
+              }
+            }
+          ],
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b4ck8ct8v",
+                "tool_use_id": "toolu_0196iNrfjHxrKW5HcgkhxTkf",
+                "status": "completed",
+                "output_file": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/176793a5-bc20-46e2-b5a6-ace79bea5fe1/tasks/b4ck8ct8v.output",
+                "summary": "Background command \"Wait 30 minutes for gen_10 training + metrics to complete\" completed (exit code 0)",
+                "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+                "uuid": "6a37fbfe-91c6-4a48-aa39-ad19988c2c23"
+              }
+            }
+          ],
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7f7cec01-8b09-4f69-99a1-1b3eaadaf5f9",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "30-min timer fired. Checking gen_10/metrics.json."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "c3ac434a-89c6-4d8a-b571-86a740344dcc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nxw8vXuiYDyeWCB8QFnkQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 33756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RBeudcKyA4VmUWzFzrPwZa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_10/metrics.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "7ddad25c-e350-469a-8eea-b5ca956cc121",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nxw8vXuiYDyeWCB8QFnkQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 33756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-22T19:59:51.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RBeudcKyA4VmUWzFzrPwZa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 420 May 23 03:52 /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_10/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "ecf023a4-7850-4dc8-807f-ea7ed0f548f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 420 May 23 03:52 /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_10/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 420 May 23 03:52 /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_10/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "gen_10/metrics.json exists! Created at May 23 03:52. Now proceed to Phase 2a: Kill PIDs 680531 and 680535 immediately.",
+              "signature": "ErwCCmMIDRgCKkCF42GB29BQiMpllGXXHsMNuKyRF58ZP+AqPazm+ACiI3gaFw2ijmc1na+qpmfqRF8mcqAMx6Pls8CyTUBBVx2YMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFCu6zIQeswjfWbwdhoM4A5ifnS6TB0yrsspIjAp+DIF80HeinfwZWCUY0tjxW+DR81Q3F0x01iqaqmPPFQ3olV4W7v3kX35UG5qPvYqhgGnUiI6XfgahRB62tLaKhlBvdB1jCAbMUJN+CKoL5t0LSg9ko4K1p08885S4HodtpygJKqeq2xWLkAESPOKWqYsztrBo1MdtsBU5TnmbZO09HVb+pTbrQGyc1xJ1SE0MPivxU4A7TCXDwUA1o4LdeKyvU+kewnQzmi3gSZuZksoIItXwxpKhBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "1940ed08-a407-4898-a269-209bc83ca57c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T56bToVDFosfBHtWipmHRz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 33991,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "gen_10/metrics.json exists (created 03:52). Proceeding to Phase 2a — killing PIDs 680531 and 680535."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "a94951da-b965-4c67-b0f2-1d4604fab2c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T56bToVDFosfBHtWipmHRz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 33991,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018rCB14vf5p4dQqyF9y8AWj",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westd-17855",
+                "pid": "680531",
+                "reason": "gen_10 complete, stopping training per user instruction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "f4bb6bf1-42d8-4a0d-bbad-b0133855289f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T56bToVDFosfBHtWipmHRz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 33991,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K8xBtgaKJZSgQptfrWcWh7",
+              "name": "mcp__agent-ml-research__kill_job",
+              "input": {
+                "server": "westd-17855",
+                "pid": "680535",
+                "reason": "gen_10 complete, stopping training per user instruction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "0feb2282-2b6a-4ea7-a00f-14c2b2197390",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T56bToVDFosfBHtWipmHRz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 33991,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-22T19:59:56.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018rCB14vf5p4dQqyF9y8AWj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"680531\\\", \\\"reason\\\": \\\"gen_10 complete, stopping training per user instruction\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "3250a249-c9c8-4b05-8269-237c5e7eb5c0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"680531\\\", \\\"reason\\\": \\\"gen_10 complete, stopping training per user instruction\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"680531\", \"reason\": \"gen_10 complete, stopping training per user instruction\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+              }
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-22T19:59:57.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K8xBtgaKJZSgQptfrWcWh7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"680535\\\", \\\"reason\\\": \\\"gen_10 complete, stopping training per user instruction\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "f2e1680b-eb46-454f-ac8e-c9fd42e95f03",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"680535\\\", \\\"reason\\\": \\\"gen_10 complete, stopping training per user instruction\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"680535\", \"reason\": \"gen_10 complete, stopping training per user instruction\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both PIDs killed. Phase 3 — checking for gen_11+ directories to exclude."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "1d1f1f5c-8531-45f7-99e9-f8fdeba3dd15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G83jxin3fMGSop3y7dYgFC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 34388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JTXdqUCz9s6i6G1wVBoWnf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_1[1-9] /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_2[0-9]"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "1faa2729-ad60-4dc0-9f22-2b032ff2af56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G83jxin3fMGSop3y7dYgFC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 34388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-22T20:00:01.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JTXdqUCz9s6i6G1wVBoWnf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_1[1-9]': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_2[0-9]': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "d989fd32-1a29-4537-badf-4f29bc46e0d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_1[1-9]': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_2[0-9]': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_1[1-9]': No such file or directory\\nls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/gen_2[0-9]': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No gen_11+ directories — Phase 3 skip. Proceeding directly to Phase 4: D102 5-method analysis."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "c51c5315-bfb7-4d70-921c-0f34458b2032",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KDK6WL1qz94jEmVbvRKLx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 34913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uk9AKYGvhu6ZQ4CCSSgCos",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-17855",
+                "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py \\\n  --results_dir results/phase_diagram/t10_a060_s42_fp32_14b \\\n  --output_dir artifacts/d102_14b_t10_a060_s42_fp32 \\\n  --downstream mauve \\\n  --threshold true_3sigma_d105 \\\n  --n_perm 5000 \\\n  --seed 42 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "92dd2a06-d8bf-4883-8060-c2ab703a626c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KDK6WL1qz94jEmVbvRKLx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 34913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-22T20:00:08.976Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uk9AKYGvhu6ZQ4CCSSgCos",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py \\\\\\\\\\\\\\\\\\\\\\\\n  --results_dir results/phase_diagram/t10_a060_s42_fp32_14b \\\\\\\\\\\\\\\\\\\\\\\\n  --output_dir artifacts/d102_14b_t10_a060_s42_fp32 \\\\\\\\\\\\\\\\\\\\\\\\n  --downstream mauve \\\\\\\\\\\\\\\\\\\\\\\\n  --threshold true_3sigma_d105 \\\\\\\\\\\\\\\\\\\\\\\\n  --n_perm 5000 \\\\\\\\\\\\\\\\\\\\\\\\n  --seed 42 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nusage: run_5method_analysis_d102.py [-h] --data_dir DATA_DIR --alpha ALPHA\\\\n                                    --seed SEED [--dry-run]\\\\nrun_5method_analysis_d102.py: error: the following arguments are required: --data_dir, --alpha\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "ba672c2d-74c6-45ef-b4a1-50d56a060d5a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py \\\\\\\\\\\\\\\\\\\\\\\\n  --results_dir results/phase_diagram/t10_a060_s42_fp32_14b \\\\\\\\\\\\\\\\\\\\\\\\n  --output_dir artifacts/d102_14b_t10_a060_s42_fp32 \\\\\\\\\\\\\\\\\\\\\\\\n  --downstream mauve \\\\\\\\\\\\\\\\\\\\\\\\n  --threshold true_3sigma_d105 \\\\\\\\\\\\\\\\\\\\\\\\n  --n_perm 5000 \\\\\\\\\\\\\\\\\\\\\\\\n  --seed 42 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nusage: run_5method_analysis_d102.py [-h] --data_dir DATA_DIR --alpha ALPHA\\\\n                                    --seed SEED [--dry-run]\\\\nrun_5method_analysis_d102.py: error: the following arguments are required: --data_dir, --alpha\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py \\\\\\\\\\\\n  --results_dir results/phase_diagram/t10_a060_s42_fp32_14b \\\\\\\\\\\\n  --output_dir artifacts/d102_14b_t10_a060_s42_fp32 \\\\\\\\\\\\n  --downstream mauve \\\\\\\\\\\\n  --threshold true_3sigma_d105 \\\\\\\\\\\\n  --n_perm 5000 \\\\\\\\\\\\n  --seed 42 2>&1'\\n\\nExit code: 2\\n\\nStdout:\\n\\nusage: run_5method_analysis_d102.py [-h] --data_dir DATA_DIR --alpha ALPHA\\n                                    --seed SEED [--dry-run]\\nrun_5method_analysis_d102.py: error: the following arguments are required: --data_dir, --alpha\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.35}}"
+              }
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script has different arguments than what was specified. It expects `--data_dir` and `--alpha`, not `--results_dir`, `--output_dir`, `--downstream`, `--threshold`, `--n_perm`. Let me check the script's arguments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "04a4898e-842b-4d54-90d7-07c35a4e1785",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XW3TqbdC4mKS9RpVEbbweh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 35303,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 623
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script has different CLI args than expected. Let me check its interface."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "72f40066-c61c-4145-af20-888b6218af8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XW3TqbdC4mKS9RpVEbbweh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 35303,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 623
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GanS7MVQ1VwRkwGhogSyQo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "990b6ee1-fc8f-44e6-884f-aa4a3e5236c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XW3TqbdC4mKS9RpVEbbweh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 35303,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 623
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-22T20:00:14.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GanS7MVQ1VwRkwGhogSyQo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\\\\\"nan\\\\\\\") for d in data], dtype=float)\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    return adjusted.tolist(), significant\\\\n\\\\n\\\\n# Method 1: Naive cross-correlation\\\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        all_lags.append({\\\\\\\"lag\\\\\\\": int(lag), \\\\\\\"r\\\\\\\": round(float(r), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)})\\\\n        if abs(r) > abs(best_r):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "3cb347cc-2f55-431e-88d2-7d5d36f8d22c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\\\\\"nan\\\\\\\") for d in data], dtype=float)\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    return adjusted.tolist(), significant\\\\n\\\\n\\\\n# Method 1: Naive cross-correlation\\\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        all_lags.append({\\\\\\\"lag\\\\\\\": int(lag), \\\\\\\"r\\\\\\\": round(float(r), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)})\\\\n        if abs(r) > abs(best_r):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\"nan\\\") for d in data], dtype=float)\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    return adjusted.tolist(), significant\\n\\n\\n# Method 1: Naive cross-correlation\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+              }
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Huav3P5SE77pn9EbAXPAbs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "grep -n \"argparse\\|add_argument\\|parse_args\\|threshold\\|output\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "95be4134-0a84-461d-a30e-3eec998a3c0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q821hXnoXaH6PstiFrFK3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1767,
+                "cache_read_input_tokens": 35926,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1767
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-22T20:00:28.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Huav3P5SE77pn9EbAXPAbs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "06d34a35-6ff9-44be-a79c-7406be82977e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJsUG1GrJYpKGtzisB24Kk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "grep -n \"add_argument\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "1c878214-bb6f-453b-b182-7d87530ecf85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SXoeEsek5pgD6hd5AQxLHa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 331,
+                "cache_read_input_tokens": 37693,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 331
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-22T20:00:31.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJsUG1GrJYpKGtzisB24Kk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453:    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n454:    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n455:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n456:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "b6a0b02e-c06e-45ed-b258-7650315df467",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453:    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n454:    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n455:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n456:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"453:    parser.add_argument(\\\"--data_dir\\\", required=True, help=\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\")\\n454:    parser.add_argument(\\\"--alpha\\\", type=float, required=True, help=\\\"Alpha value (e.g. 0.0, 0.75)\\\")\\n455:    parser.add_argument(\\\"--seed\\\", type=int, required=True, help=\\\"Random seed\\\")\\n456:    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Check data availability without running analysis\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script takes `--data_dir`, `--alpha`, `--seed`, and optionally `--dry-run`. It doesn't take `--results_dir`, `--output_dir`, `--downstream`, `--threshold`, or `--n_perm`. The N_PERM is hardcoded to 5000, DOWNSTREAMS includes mauve, and there's no threshold argument.\n\nLet me check what the script does with the output — where it saves results. Let me look at the end of the script.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "89ee5e6f-1420-4d29-ad2e-7a03a2a49f0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WqMhniAkhbbypMfGp1A3AK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 38024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kug2ZeZGgW9rLPU52y6obM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "tail -60 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "5e0f14db-3662-4c37-a917-40088f7769c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WqMhniAkhbbypMfGp1A3AK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 38024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-22T20:00:37.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kug2ZeZGgW9rLPU52y6obM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": sum(perm_sig_rev),\\\\n        \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": sum(diff_sig_fwd),\\\\n        \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": sum(diff_sig_rev),\\\\n        \\\\\\\"threshold_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"ty_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"robust_pairs\\\\\\\": sum(1 for c in consensus if c[\\\\\\\"votes\\\\\\\"] >= 3),\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_dir = os.path.join(data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n\\\\n    def clean(obj):\\\\n        if isinstance(obj, (np.floating, np.float64)):\\\\n            return float(obj)\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, np.bool_):\\\\n            return bool(obj)\\\\n        if isinstance(obj, dict):\\\\n            return {k: clean(v) for k, v in obj.items()}\\\\n        if isinstance(obj, list):\\\\n            return [clean(v) for v in obj]\\\\n        return obj\\\\n\\\\n    json_path = os.path.join(out_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(clean(all_results), f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n    # Text summary\\\\n    summary_path = os.path.join(out_dir, \\\\\\\"5method_summary.txt\\\\\\\")\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(f\\\\\\\"5-Method Lead-Lag Analysis Summary\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"{'='*60}\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Per-method forward significance:\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Consensus detail:\\\\\\\\n\\\\\\\")\\\\n        for c in consensus:\\\\n            f.write(f\\\\\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\\\\\n\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {summary_path}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"5-method lead-lag analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n    run(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "d4ecadad-5d1c-43e7-a378-4c1c1cc44e72",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": sum(perm_sig_rev),\\\\n        \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": sum(diff_sig_fwd),\\\\n        \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": sum(diff_sig_rev),\\\\n        \\\\\\\"threshold_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"ty_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"robust_pairs\\\\\\\": sum(1 for c in consensus if c[\\\\\\\"votes\\\\\\\"] >= 3),\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_dir = os.path.join(data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n\\\\n    def clean(obj):\\\\n        if isinstance(obj, (np.floating, np.float64)):\\\\n            return float(obj)\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, np.bool_):\\\\n            return bool(obj)\\\\n        if isinstance(obj, dict):\\\\n            return {k: clean(v) for k, v in obj.items()}\\\\n        if isinstance(obj, list):\\\\n            return [clean(v) for v in obj]\\\\n        return obj\\\\n\\\\n    json_path = os.path.join(out_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(clean(all_results), f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n    # Text summary\\\\n    summary_path = os.path.join(out_dir, \\\\\\\"5method_summary.txt\\\\\\\")\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(f\\\\\\\"5-Method Lead-Lag Analysis Summary\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"{'='*60}\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Per-method forward significance:\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(f\\\\\\\"Consensus detail:\\\\\\\\n\\\\\\\")\\\\n        for c in consensus:\\\\n            f.write(f\\\\\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\\\\\n\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {summary_path}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"5-method lead-lag analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n    run(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"perm_granger_fdr_reverse_sig\\\": sum(perm_sig_rev),\\n        \\\"diff_xcorr_fdr_forward_sig\\\": sum(diff_sig_fwd),\\n        \\\"diff_xcorr_fdr_reverse_sig\\\": sum(diff_sig_rev),\\n        \\\"threshold_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"threshold_onset\\\"][\\\"significant\\\"]),\\n        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n        \\\"robust_pairs\\\": sum(1 for c in consensus if c[\\\"votes\\\"] >= 3),\\n    }\\n    print(f\\\"\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\")\\n    print(f\\\"  Perm Granger FDR sig (fwd): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\")\\n\\n    # Save\\n    out_dir = os.path.join(data_dir, \\\"analysis\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n\\n    def clean(obj):\\n        if isinstance(obj, (np.floating, np.float64)):\\n            return float(obj)\\n        if isinstance(obj, (np.integer,)):\\n            return int(obj)\\n        if isinstance(obj, np.bool_):\\n            return bool(obj)\\n        if isinstance(obj, dict):\\n            return {k: clean(v) for k, v in obj.items()}\\n        if isinstance(obj, list):\\n            return [clean(v) for v in obj]\\n        return obj\\n\\n    json_path = os.path.join(out_dir, \\\"5method_leadlag.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(clean(all_results), f, indent=2)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    # Text summary\\n    summary_path = os.path.join(out_dir, \\\"5method_summary.txt\\\")\\n    with open(summary_path, \\\"w\\\") as f:\\n        f.write(f\\\"5-Method Lead-Lag Analysis Summary\\\\n\\\")\\n        f.write(f\\\"Alpha={alpha_val}, Seed={seed}, Generations={n_gens}\\\\n\\\")\\n        f.write(f\\\"{'='*60}\\\\n\\\\n\\\")\\n        f.write(f\\\"Robust pairs (>=3/5 methods agree): {all_results['summary']['robust_pairs']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Per-method forward significance:\\\\n\\\")\\n        f.write(f\\\"  Perm Granger (FDR): {all_results['summary']['perm_granger_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Diff XCorr (FDR):   {all_results['summary']['diff_xcorr_fdr_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  Threshold Onset:    {all_results['summary']['threshold_forward_sig']}/8\\\\n\\\")\\n        f.write(f\\\"  TY Granger:         {all_results['summary']['ty_forward_sig']}/8\\\\n\\\\n\\\")\\n        f.write(f\\\"Consensus detail:\\\\n\\\")\\n        for c in consensus:\\n            f.write(f\\\"  {c['pair']:<25} {c['votes']}/5  [{', '.join(c['methods']) if c['methods'] else 'none'}]\\\\n\\\")\\n    print(f\\\"Saved: {summary_path}\\\")\\n\\n    return all_results\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"5-method lead-lag analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\", required=True, help=\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\")\\n    parser.add_argument(\\\"--alpha\\\", type=float, required=True, help=\\\"Alpha value (e.g. 0.0, 0.75)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, required=True, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Check data availability without running analysis\\\")\\n    args = parser.parse_args()\\n    run(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script saves to `{data_dir}/analysis/`. Running with correct args now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "84d1348a-ef7d-4521-b6db-9d2ae58ae2f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A3q5t8pXYFotWgDeyWoc61",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1627,
+                "cache_read_input_tokens": 38394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1627
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019qc6i6B8UGmVEfhWdXzLRM",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-17855",
+                "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/phase_diagram/t10_a060_s42_fp32_14b --alpha 0.60 --seed 42 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "0c28f366-1797-4d34-8f98-9017338649d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A3q5t8pXYFotWgDeyWoc61",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1627,
+                "cache_read_input_tokens": 38394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1627
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-22T20:00:48.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019qc6i6B8UGmVEfhWdXzLRM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==== ================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.6 | seed=42\\\\nData: results/phase_diagram/t10_a060_s42_fp32_14b\\\\n==== ================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary ₆ downstream)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy<distinct_1   -0.902     5   0.956    -3   0.0015   None 1996.813      N/A        *     nan  0.2777     1\\\\ntoken_entropy<distinct_2   -0.912     5   0.939    -3   0.0026   None 834.648      N/A              nan  0.5392     1\\\\ntoken_entropy<distinct_3   -0.926     5   0.936    -3   0.0026   None 270.764      N/A              nan  0.8858     1\\\\ntoken_entropy<mauve         0.872    -3   0.817    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\nece<distinct_1              0.982    -1   0.986    -3   0.0004   None 1177.716      N/A        *     nan  0.2821     1\\\\nece<distinct_2              0.975    -2   0.974    -3   0.0006   None 1308.112      N/A        *     nan  0.2872     1\\\\nece<distinct_3              0.960    -2   0.973    -3   0.0006   None 511.303      N/A        *     nan  0.2582     1\\\\nece<mauve                   0.812    -3   0.822    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream ₆ canary)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1<token_entropy   -0.902    -5   0.956     3   0.0015   None   1.129      N/A              nan  0.6356     1\\\\ndistinct_2<token_entropy   -0.912    -5   0.939     3   0.0026   None   1.547      N/A              nan  0.0003     1\\\\ndistinct_3<token_entropy   -0.926    -5   0.936     3   0.0026   None   2.409      N/A              nan  0.9015     1\\\\nmauve<token_entropy         0.872     3   0.817     3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\ndistinct_1<ece              0.982     1   0.986     3   0.0004   None   0.653      N/A              nan  0.9119     1\\\\ndistinct_2<ece              0.975     2   0.974     3   0.0006   None   1.049      N/A              nan  0.8255     1\\\\ndistinct_3<ece              0.960     2   0.973     3   0.0006   None   1.821      N/A              nan  0.8163     1\\\\nmauve<ece                   0.812     3   0.822     3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\n\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy<distinct_1  2/5  [diff, perm]\\\\n  token_entropy<distinct_2  1/5  [diff]\\\\n  token_entropy<distinct_3  1/5  [diff]\\\\n  token_entropy<mauve       2/5  [naive, diff]\\\\n  ece<distinct_1            3/5  [naive, diff, perm]\\\\n  ece<distinct_2            3/5  [naive, diff, perm]\\\\n  ece<distinct_3            3/5  [naive, diff, perm]\\\\n  ece<mauve                 2/5  [naive, diff]\\\\n\\\\n  Robust pairs (>=3/5 methods): 3/8\\\\n  Perm Granger FDR sig (fwd): 4/8\\\\n\\\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_leadlag.json\\\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_summary.txt\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  5 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  5 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "3d3b493c-d4ce-4d6d-ae0f-49a195110dbc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==== ================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.6 | seed=42\\\\nData: results/phase_diagram/t10_a060_s42_fp32_14b\\\\n==== ================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary ₆ downstream)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy<distinct_1   -0.902     5   0.956    -3   0.0015   None 1996.813      N/A        *     nan  0.2777     1\\\\ntoken_entropy<distinct_2   -0.912     5   0.939    -3   0.0026   None 834.648      N/A              nan  0.5392     1\\\\ntoken_entropy<distinct_3   -0.926     5   0.936    -3   0.0026   None 270.764      N/A              nan  0.8858     1\\\\ntoken_entropy<mauve         0.872    -3   0.817    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\nece<distinct_1              0.982    -1   0.986    -3   0.0004   None 1177.716      N/A        *     nan  0.2821     1\\\\nece<distinct_2              0.975    -2   0.974    -3   0.0006   None 1308.112      N/A        *     nan  0.2872     1\\\\nece<distinct_3              0.960    -2   0.973    -3   0.0006   None 511.303      N/A        *     nan  0.2582     1\\\\nece<mauve                   0.812    -3   0.822    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream ₆ canary)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ndistinct_1<token_entropy   -0.902    -5   0.956     3   0.0015   None   1.129      N/A              nan  0.6356     1\\\\ndistinct_2<token_entropy   -0.912    -5   0.939     3   0.0026   None   1.547      N/A              nan  0.0003     1\\\\ndistinct_3<token_entropy   -0.926    -5   0.936     3   0.0026   None   2.409      N/A              nan  0.9015     1\\\\nmauve<token_entropy         0.872     3   0.817     3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\ndistinct_1<ece              0.982     1   0.986     3   0.0004   None   0.653      N/A              nan  0.9119     1\\\\ndistinct_2<ece              0.975     2   0.974     3   0.0006   None   1.049      N/A              nan  0.8255     1\\\\ndistinct_3<ece              0.960     2   0.973     3   0.0006   None   1.821      N/A              nan  0.8163     1\\\\nmauve<ece                   0.812     3   0.822     3   0.0249   None     N/A      N/A              N/A     N/A     1\\\\n\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nCONSENSUS (methods agreeing on forward significance)\\\\n====================================================================================================\\\\n  token_entropy<distinct_1  2/5  [diff, perm]\\\\n  token_entropy<distinct_2  1/5  [diff]\\\\n  token_entropy<distinct_3  1/5  [diff]\\\\n  token_entropy<mauve       2/5  [naive, diff]\\\\n  ece<distinct_1            3/5  [naive, diff, perm]\\\\n  ece<distinct_2            3/5  [naive, diff, perm]\\\\n  ece<distinct_3            3/5  [naive, diff, perm]\\\\n  ece<mauve                 2/5  [naive, diff]\\\\n\\\\n  Robust pairs (>=3/5 methods): 3/8\\\\n  Perm Granger FDR sig (fwd): 4/8\\\\n\\\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_leadlag.json\\\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_summary.txt\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  5 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  5 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n ** On entry to DLASCL parameter number  4 had an illegal value\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.22}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"==== ================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.6 | seed=42\\nData: results/phase_diagram/t10_a060_s42_fp32_14b\\n==== ================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary ₆ downstream)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy<distinct_1   -0.902     5   0.956    -3   0.0015   None 1996.813      N/A        *     nan  0.2777     1\\ntoken_entropy<distinct_2   -0.912     5   0.939    -3   0.0026   None 834.648      N/A              nan  0.5392     1\\ntoken_entropy<distinct_3   -0.926     5   0.936    -3   0.0026   None 270.764      N/A              nan  0.8858     1\\ntoken_entropy<mauve         0.872    -3   0.817    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\nece<distinct_1              0.982    -1   0.986    -3   0.0004   None 1177.716      N/A        *     nan  0.2821     1\\nece<distinct_2              0.975    -2   0.974    -3   0.0006   None 1308.112      N/A        *     nan  0.2872     1\\nece<distinct_3              0.960    -2   0.973    -3   0.0006   None 511.303      N/A        *     nan  0.2582     1\\nece<mauve                   0.812    -3   0.822    -3   0.0249   None     N/A      N/A              N/A     N/A     1\\n\\n====================================================================================================\\nREVERSE (downstream ₆ canary)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ndistinct_1<token_entropy   -0.902    -5   0.956     3   0.0015   None   1.129      N/A              nan  0.6356     1\\ndistinct_2<token_entropy   -0.912    -5   0.939     3   0.0026   None   1.547      N/A              nan  0.0003     1\\ndistinct_3<token_entropy   -0.926    -5   0.936     3   0.0026   None   2.409      N/A              nan  0.9015     1\\nmauve<token_entropy         0.872     3   0.817     3   0.0249   None     N/A      N/A              N/A     N/A     1\\ndistinct_1<ece              0.982     1   0.986     3   0.0004   None   0.653      N/A              nan  0.9119     1\\ndistinct_2<ece              0.975     2   0.974     3   0.0006   None   1.049      N/A              nan  0.8255     1\\ndistinct_3<ece              0.960     2   0.973     3   0.0006   None   1.821      N/A              nan  0.8163     1\\nmauve<ece                   0.812     3   0.822     3   0.0249   None     N/A      N/A              N/A     N/A     1\\n\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nCONSENSUS (methods agreeing on forward significance)\\n====================================================================================================\\n  token_entropy<distinct_1  2/5  [diff, perm]\\n  token_entropy<distinct_2  1/5  [diff]\\n  token_entropy<distinct_3  1/5  [diff]\\n  token_entropy<mauve       2/5  [naive, diff]\\n  ece<distinct_1            3/5  [naive, diff, perm]\\n  ece<distinct_2            3/5  [naive, diff, perm]\\n  ece<distinct_3            3/5  [naive, diff, perm]\\n  ece<mauve                 2/5  [naive, diff]\\n\\n  Robust pairs (>=3/5 methods): 3/8\\n  Perm Granger FDR sig (fwd): 4/8\\n\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_leadlag.json\\nSaved: results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_summary.txt\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  5 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  5 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n ** On entry to DLASCL parameter number  4 had an illegal value\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.22}}"
+              }
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Now reading the JSON for full detail."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "b634cc4b-2c77-42e4-9cd2-79639d986e17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HVcdXjN8tyLYPa1iUKGJd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3220,
+                "cache_read_input_tokens": 40021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3220
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cjm9egZ6ksn7Z3BuHpRBB6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_leadlag.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "a9369e91-2356-4d8c-a59a-20765a9cd9dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HVcdXjN8tyLYPa1iUKGJd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3220,
+                "cache_read_input_tokens": 40021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3220
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-22T20:00:58.469Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cjm9egZ6ksn7Z3BuHpRBB6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.6,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"results/phase_diagram/t10_a060_s42_fp32_14b\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9017,\\\\n          \\\\\\\"p_value\\\\\\\": 0.014023,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.7505,\\\\n              \\\\\\\"p\\\\\\\": 0.085591\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7983,\\\\n              \\\\\\\"p\\\\\\\": 0.031367\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.857,\\\\n              \\\\\\\"p\\\\\\\": 0.006552\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.8711,\\\\n              \\\\\\\"p\\\\\\\": 0.002228\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.8595,\\\\n              \\\\\\\"p\\\\\\\": 0.001433\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.5441,\\\\n              \\\\\\\"p\\\\\\\": 0.083579\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.625,\\\\n              \\\\\\\"p\\\\\\\": 0.05334\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.6845,\\\\n              \\\\\\\"p\\\\\\\": 0.041948\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7685,\\\\n              \\\\\\\"p\\\\\\\": 0.025872\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.865,\\\\n              \\\\\\\"p\\\\\\\": 0.011935\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.9017,\\\\n              \\\\\\\"p\\\\\\\": 0.014023\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -3,\\\\n          \\\\\\\"r\\\\\\\": 0.9561,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000757,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.6482,\\\\n              \\\\\\\"p\\\\\\\": 0.23685\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.9284,\\\\n              \\\\\\\"p\\\\\\\": 0.007497\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.9561,\\\\n              \\\\\\\"p\\\\\\\": 0.000757\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.9273,\\\\n              \\\\\\\"p\\\\\\\": 0.00091\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9157,\\\\n              \\\\\\\"p\\\\\\\": 0.000526\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.1537,\\\\n              \\\\\\\"p\\\\\\\": 0.671695\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.2671,\\\\n              \\\\\\\"p\\\\\\\": 0.487227\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.6655,\\\\n              \\\\\\\"p\\\\\\\": 0.071684\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.2209,\\\\n              \\\\\\\"p\\\\\\\": 0.634074\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.0791,\\\\n              \\\\\\\"p\\\\\\\": 0.881571\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0433,\\\\n              \\\\\\\"p\\\\\\\": 0.944889\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.001514,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1996.8133,\\\\n          \\\\\\\"p_value\\\\\\\": 0.026795,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.040192,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 51769 字符] ...\\\\n\\\\nlag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.7368,\\\\n              \\\\\\\"p\\\\\\\": 0.023541\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8124,\\\\n              \\\\\\\"p\\\\\\\": 0.014271\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.2631,\\\\n              \\\\\\\"p\\\\\\\": 0.568658\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.595,\\\\n              \\\\\\\"p\\\\\\\": 0.212782\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.8221,\\\\n          \\\\\\\"p_value\\\\\\\": 0.02323,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.0324,\\\\n              \\\\\\\"p\\\\\\\": 0.939313\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8221,\\\\n              \\\\\\\"p\\\\\\\": 0.02323\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.2732,\\\\n              \\\\\\\"p\\\\\\\": 0.600403\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.6735,\\\\n              \\\\\\\"p\\\\\\\": 0.212675\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.024933,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": null,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": null,\\\\n          \\\\\\\"p_value\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": null,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": null,\\\\n          \\\\\\\"p_value\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"error\\\\\\\": \\\\\\\"SVD did not converge in Linear Least Squares\\\\\\\",\\\\n          \\\\\\\"order\\\\\\\": 2,\\\\n          \\\\\\\"k_opt\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 4,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 8,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 8,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 3\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "86d263c6-8c82-4faf-92ee-416c8c1c2ff8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.6,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"results/phase_diagram/t10_a060_s42_fp32_14b\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9017,\\\\n          \\\\\\\"p_value\\\\\\\": 0.014023,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.7505,\\\\n              \\\\\\\"p\\\\\\\": 0.085591\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7983,\\\\n              \\\\\\\"p\\\\\\\": 0.031367\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.857,\\\\n              \\\\\\\"p\\\\\\\": 0.006552\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.8711,\\\\n              \\\\\\\"p\\\\\\\": 0.002228\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.8595,\\\\n              \\\\\\\"p\\\\\\\": 0.001433\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.5441,\\\\n              \\\\\\\"p\\\\\\\": 0.083579\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.625,\\\\n              \\\\\\\"p\\\\\\\": 0.05334\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.6845,\\\\n              \\\\\\\"p\\\\\\\": 0.041948\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7685,\\\\n              \\\\\\\"p\\\\\\\": 0.025872\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.865,\\\\n              \\\\\\\"p\\\\\\\": 0.011935\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.9017,\\\\n              \\\\\\\"p\\\\\\\": 0.014023\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -3,\\\\n          \\\\\\\"r\\\\\\\": 0.9561,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000757,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.6482,\\\\n              \\\\\\\"p\\\\\\\": 0.23685\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.9284,\\\\n              \\\\\\\"p\\\\\\\": 0.007497\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.9561,\\\\n              \\\\\\\"p\\\\\\\": 0.000757\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.9273,\\\\n              \\\\\\\"p\\\\\\\": 0.00091\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9157,\\\\n              \\\\\\\"p\\\\\\\": 0.000526\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.1537,\\\\n              \\\\\\\"p\\\\\\\": 0.671695\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.2671,\\\\n              \\\\\\\"p\\\\\\\": 0.487227\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.6655,\\\\n              \\\\\\\"p\\\\\\\": 0.071684\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.2209,\\\\n              \\\\\\\"p\\\\\\\": 0.634074\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.0791,\\\\n              \\\\\\\"p\\\\\\\": 0.881571\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0433,\\\\n              \\\\\\\"p\\\\\\\": 0.944889\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.001514,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1996.8133,\\\\n          \\\\\\\"p_value\\\\\\\": 0.026795,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.040192,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 51769 字符] ...\\\\n\\\\nlag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.7368,\\\\n              \\\\\\\"p\\\\\\\": 0.023541\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8124,\\\\n              \\\\\\\"p\\\\\\\": 0.014271\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.2631,\\\\n              \\\\\\\"p\\\\\\\": 0.568658\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.595,\\\\n              \\\\\\\"p\\\\\\\": 0.212782\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.8221,\\\\n          \\\\\\\"p_value\\\\\\\": 0.02323,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": NaN,\\\\n              \\\\\\\"p\\\\\\\": NaN\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.0324,\\\\n              \\\\\\\"p\\\\\\\": 0.939313\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8221,\\\\n              \\\\\\\"p\\\\\\\": 0.02323\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.2732,\\\\n              \\\\\\\"p\\\\\\\": 0.600403\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.6735,\\\\n              \\\\\\\"p\\\\\\\": 0.212675\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.024933,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": null,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": null,\\\\n          \\\\\\\"p_value\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": null,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": null,\\\\n          \\\\\\\"p_value\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"error\\\\\\\": \\\\\\\"SVD did not converge in Linear Least Squares\\\\\\\",\\\\n          \\\\\\\"order\\\\\\\": 2,\\\\n          \\\\\\\"k_opt\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 4,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 8,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 8,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 3\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.6,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"results/phase_diagram/t10_a060_s42_fp32_14b\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9017,\\n          \\\"p_value\\\": 0.014023,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7505,\\n              \\\"p\\\": 0.085591\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7983,\\n              \\\"p\\\": 0.031367\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.857,\\n              \\\"p\\\": 0.006552\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.8711,\\n              \\\"p\\\": 0.002228\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.8595,\\n              \\\"p\\\": 0.001433\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.5441,\\n              \\\"p\\\": 0.083579\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.625,\\n              \\\"p\\\": 0.05334\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.6845,\\n              \\\"p\\\": 0.041948\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7685,\\n              \\\"p\\\": 0.025872\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.865,\\n              \\\"p\\\": 0.011935\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.9017,\\n              \\\"p\\\": 0.014023\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.9561,\\n          \\\"p_value\\\": 0.000757,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.6482,\\n              \\\"p\\\": 0.23685\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.9284,\\n              \\\"p\\\": 0.007497\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9561,\\n              \\\"p\\\": 0.000757\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9273,\\n              \\\"p\\\": 0.00091\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9157,\\n              \\\"p\\\": 0.000526\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1537,\\n              \\\"p\\\": 0.671695\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.2671,\\n              \\\"p\\\": 0.487227\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.6655,\\n              \\\"p\\\": 0.071684\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.2209,\\n              \\\"p\\\": 0.634074\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.0791,\\n              \\\"p\\\": 0.881571\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0433,\\n              \\\"p\\\": 0.944889\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.001514,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1996.8133,\\n          \\\"p_value\\\": 0.026795,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.040192,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\":\\n\\n... [截断: 输出过长，省略 51769 字符] ...\\n\\nlag\\\": 1,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.7368,\\n              \\\"p\\\": 0.023541\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8124,\\n              \\\"p\\\": 0.014271\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.2631,\\n              \\\"p\\\": 0.568658\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.595,\\n              \\\"p\\\": 0.212782\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.8221,\\n          \\\"p_value\\\": 0.02323,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": NaN,\\n              \\\"p\\\": NaN\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.0324,\\n              \\\"p\\\": 0.939313\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8221,\\n              \\\"p\\\": 0.02323\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.2732,\\n              \\\"p\\\": 0.600403\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.6735,\\n              \\\"p\\\": 0.212675\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.024933,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": null,\\n          \\\"downstream_onset\\\": 2,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": null,\\n          \\\"p_value\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": null,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": null,\\n          \\\"p_value\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"error\\\": \\\"SVD did not converge in Linear Least Squares\\\",\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 4,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 8,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 8,\\n    \\\"threshold_forward_sig\\\": 0,\\n    \\\"ty_forward_sig\\\": 0,\\n    \\\"robust_pairs\\\": 3\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+              }
+            }
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 5 skipped (no gen_11+ to restore). Phase 6 — results:\n\n---\n\n## 1.4B T=10 α=0.60 s42 — D102 5-Method Analysis\n\n**11 generations (gen_0–gen_10)**\n\n### PermG Forward vs Reverse\n| | Forward (canary→downstream) | Reverse (downstream→canary) |\n|---|---|---|\n| FDR sig | **4/8** | **0/8** |\n\nClear asymmetry: canary leads downstream, not vice versa. **No sync-dip at 1.4B.**\n\n### K≥3 Consensus (robust pairs)\n**3/8** — all ECE-based:\n- `ece→distinct_1`: 3/5 [naive, diff, perm]\n- `ece→distinct_2`: 3/5 [naive, diff, perm]\n- `ece→distinct_3`: 3/5 [naive, diff, perm]\n\nToken_entropy pairs max out at 2/5.\n\n### FDR p-values (PermG forward)\n| Pair | F-stat | p_fdr | sig |\n|---|---|---|---|\n| token_entropy→distinct_1 | 1996.8 | 0.040 | * |\n| token_entropy→distinct_2 | 834.6 | N/A | |\n| token_entropy→distinct_3 | 270.8 | N/A | |\n| ece→distinct_1 | 1177.7 | N/A | * |\n| ece→distinct_2 | 1308.1 | N/A | * |\n| ece→distinct_3 | 511.3 | N/A | * |\n| *→mauve | N/A | N/A | (insufficient data) |\n\n### Drift\n- Threshold onset: **0/8** pairs significant (no pair crosses true_3sigma_d105 threshold in both canary and downstream within 11 gens)\n- TY Granger: **0/8** (SVD convergence issues due to short series)\n\n### Key Finding\n**1.4B does NOT show the sync-dip seen in 410M at α=0.60 T=10.** The 410M had PermG=0/8; the 1.4B has PermG=4/8 fwd, 0/8 rev — a clear canary-leads-downstream signal. Scale appears to suppress the sync-dip phenomenon at this operating point."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "uuid": "af77f1ab-605d-4613-863b-ead075b35045",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R4mCNf7cUCixexYP4g1Zqf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4426,
+                "cache_read_input_tokens": 43241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4426
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 5 skipped (no gen_11+ to restore). Phase 6 — results:\n\n---\n\n## 1.4B T=10 α=0.60 s42 — D102 5-Method Analysis\n\n**11 generations (gen_0–gen_10)**\n\n### PermG Forward vs Reverse\n| | Forward (canary→downstream) | Reverse (downstream→canary) |\n|---|---|---|\n| FDR sig | **4/8** | **0/8** |\n\nClear asymmetry: canary leads downstream, not vice versa. **No sync-dip at 1.4B.**\n\n### K≥3 Consensus (robust pairs)\n**3/8** — all ECE-based:\n- `ece→distinct_1`: 3/5 [naive, diff, perm]\n- `ece→distinct_2`: 3/5 [naive, diff, perm]\n- `ece→distinct_3`: 3/5 [naive, diff, perm]\n\nToken_entropy pairs max out at 2/5.\n\n### FDR p-values (PermG forward)\n| Pair | F-stat | p_fdr | sig |\n|---|---|---|---|\n| token_entropy→distinct_1 | 1996.8 | 0.040 | * |\n| token_entropy→distinct_2 | 834.6 | N/A | |\n| token_entropy→distinct_3 | 270.8 | N/A | |\n| ece→distinct_1 | 1177.7 | N/A | * |\n| ece→distinct_2 | 1308.1 | N/A | * |\n| ece→distinct_3 | 511.3 | N/A | * |\n| *→mauve | N/A | N/A | (insufficient data) |\n\n### Drift\n- Threshold onset: **0/8** pairs significant (no pair crosses true_3sigma_d105 threshold in both canary and downstream within 11 gens)\n- TY Granger: **0/8** (SVD convergence issues due to short series)\n\n### Key Finding\n**1.4B does NOT show the sync-dip seen in 410M at α=0.60 T=10.** The 410M had PermG=0/8; the 1.4B has PermG=4/8 fwd, 0/8 rev — a clear canary-leads-downstream signal. Scale appears to suppress the sync-dip phenomenon at this operating point."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 89428,
+            "duration_api_ms": 928416,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "176793a5-bc20-46e2-b5a6-ace79bea5fe1",
+            "total_cost_usd": 5.938646250000002,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 13911,
+              "cache_read_input_tokens": 405650,
+              "output_tokens": 2562,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 13911,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 618,
+                  "cache_read_input_tokens": 43241,
+                  "cache_creation_input_tokens": 4426,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4426
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3037,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003137,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 2539,
+                "outputTokens": 32226,
+                "cacheReadInputTokens": 7840691,
+                "cacheCreationInputTokens": 191491,
+                "webSearchRequests": 0,
+                "costUSD": 5.935509250000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "uuid": "b12ffac4-8d2e-4be7-bc7a-f84b3c41be9e"
+          },
+          "id": "event-000397"
+        }
+      ]
+    }
+  ]
+}

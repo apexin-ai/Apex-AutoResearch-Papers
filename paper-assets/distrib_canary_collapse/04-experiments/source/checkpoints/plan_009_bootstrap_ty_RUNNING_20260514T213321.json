@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_009_bootstrap_ty",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:33:04.665Z",
+    "updated_at": "2026-05-14T21:33:21.389Z",
+    "spec": {
+      "hypothesis": "Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power",
+      "command": "python bootstrap_ty_validation.py (N_sim=1000)",
+      "server": "westd-19828",
+      "data_path": "synthetic DGP (AR(1) for H0, VAR(2) for H1)",
+      "data_count": 1000,
+      "model_name": "N/A (statistical simulation)",
+      "seed": "multiple",
+      "log_path": "results/bootstrap_ty_results.json",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T21:33:21.417771+00:00",
+  "trigger": "update_registry"
+}

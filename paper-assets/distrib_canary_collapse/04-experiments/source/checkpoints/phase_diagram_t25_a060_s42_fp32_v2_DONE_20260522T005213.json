@@ -1,0 +1,39 @@
+{
+  "exp_id": "phase_diagram_t25_a060_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:31:38.834Z",
+    "updated_at": "2026-05-22T00:52:12.987Z",
+    "hypothesis": "Phase Diagram T=25 α=0.60: sync-dip dissolution test. At T=10/15/20 α=0.60 = 0/8 (3-T invariant). If T=25 >0/8, dissolution confirmed; if 0/8, permanent structural feature. v2 restart after v1 disk-full crash at gen_15/25 (M065).",
+    "parent": "phase_diagram_t25_a060_s42_fp32",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "552604",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v2.log",
+      "submitted_at": "2026-05-21T19:32:15.691Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "n/a (v2 restart from gen_0 after M065 disk-full crash)",
+      "eval_data": "data/wikitext103_5k",
+      "wall_clock_seconds": 19197.3,
+      "gpu_hours": 5.33
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T00:52:12.988Z"
+  },
+  "timestamp": "2026-05-22T00:52:13.506822+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_a052_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:14:05.887Z",
+    "updated_at": "2026-05-21T02:32:51.173Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.52 --output_dir results/alpha_sweep/a052_s42_fp32\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "421887",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log",
+      "submitted_at": "2026-05-21T02:28:34.161Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Transition region microstructure: α=0.52 probes just above the estimated α_c≈0.48-0.50 boundary. If PermG>0/8, confirms sharp transition; if 0/8, the blind zone extends past 0.50 and the apparent step-function at 0.50 was seed-specific."
+  },
+  "timestamp": "2026-05-21T02:32:51.803417+00:00",
+  "trigger": "update_registry"
+}

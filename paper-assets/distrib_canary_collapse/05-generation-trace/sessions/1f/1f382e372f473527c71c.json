@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "1f382e372f473527c71c",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops final batch check and 6pair",
+  "task_key": "worker_ops_final-batch-check-and-6pair_20260524T000447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final-batch-check-and-6pair_20260524T000447.log",
+    "occurrence": 1,
+    "bytes": 942962,
+    "sha256": "ad53a5a961716581e49b9c00f4c36444fb176e2272cf728d56d4b0ae8e660317"
+  },
+  "statistics": {
+    "messages": 303,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "system": 4,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "1f382e372f473527c71c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f382e372f473527c71c-part-0002.json",
+          "message_count": 119
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "1f382e372f473527c71c-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-final-batch-check-and-6pair.md"
+}

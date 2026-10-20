@@ -1,0 +1,130 @@
+{
+  "task": "D213_v2",
+  "description": "1.4B s42 6-pair D102 — Robust_K3 from actual 6-pair analysis (fixes v1 which copied 8-pair numerators)",
+  "downstream": ["distinct_1", "distinct_2", "distinct_3"],
+  "threshold": "true_3sigma_d105",
+  "n_perm": 5000,
+  "script": "batch_d102_6pair.py",
+  "results": [
+    {
+      "exp_id": "scale_14b_t10_a045_s42_fp32",
+      "T": 10, "alpha": 0.45, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t10_a045_s42_fp32_14b",
+      "PermG_fwd": "0/6", "PermG_rev": "0/6", "Robust_K3": "0/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 1, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 1, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t10_a050_s42_fp32",
+      "T": 10, "alpha": 0.50, "seed": 42,
+      "server": "westd-19828",
+      "data_dir": "results/phase_diagram/t10_a050_s42_fp32_14b",
+      "PermG_fwd": "4/6", "PermG_rev": "0/6", "Robust_K3": "2/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 3, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t10_a060_s42_fp32",
+      "T": 10, "alpha": 0.60, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t10_a060_s42_fp32_14b",
+      "PermG_fwd": "4/6", "PermG_rev": "0/6", "Robust_K3": "0/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 1, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 1, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t10_a075_s42_fp32",
+      "T": 10, "alpha": 0.75, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t10_a075_s42_fp32_14b",
+      "PermG_fwd": "5/6", "PermG_rev": "0/6", "Robust_K3": "0/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 1, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 1, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 0, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t15_a045_s42_fp32",
+      "T": 15, "alpha": 0.45, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t15_a045_s42_fp32_14b",
+      "PermG_fwd": "3/6", "PermG_rev": "0/6", "Robust_K3": "3/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 3, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t15_a050_s42_fp32",
+      "T": 15, "alpha": 0.50, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t15_a050_s42_fp32_14b",
+      "PermG_fwd": "3/6", "PermG_rev": "0/6", "Robust_K3": "1/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 2, "perm_fwd_sig": false},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 1, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 3, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t15_a060_s42_fp32",
+      "T": 15, "alpha": 0.60, "seed": 42,
+      "server": "westd-17855",
+      "data_dir": "results/phase_diagram/t15_a060_s42_fp32_14b",
+      "PermG_fwd": "6/6", "PermG_rev": "0/6", "Robust_K3": "4/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 3, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 2, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 3, "perm_fwd_sig": true}
+      ]
+    },
+    {
+      "exp_id": "scale_14b_t15_a075_s42_fp32",
+      "T": 15, "alpha": 0.75, "seed": 42,
+      "server": "westd-19828",
+      "data_dir": "results/phase_diagram/t15_a075_s42_fp32_14b",
+      "PermG_fwd": "6/6", "PermG_rev": "0/6", "Robust_K3": "6/6",
+      "per_pair": [
+        {"canary": "token_entropy", "downstream": "distinct_1", "consensus": 5, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_2", "consensus": 4, "perm_fwd_sig": true},
+        {"canary": "token_entropy", "downstream": "distinct_3", "consensus": 4, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_1", "consensus": 4, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_2", "consensus": 5, "perm_fwd_sig": true},
+        {"canary": "ece", "downstream": "distinct_3", "consensus": 5, "perm_fwd_sig": true}
+      ]
+    }
+  ]
+}

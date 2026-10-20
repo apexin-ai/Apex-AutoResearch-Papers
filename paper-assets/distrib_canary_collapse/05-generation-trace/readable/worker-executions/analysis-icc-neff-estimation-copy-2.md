@@ -1,0 +1,1841 @@
+# analysis icc neff estimation
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_icc_neff_estimation_20260521T051238.log`
+- **Structured JSON:** [`5aee68744b51109c7244.json`](../../sessions/5a/5aee68744b51109c7244.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "30274ee8-a70f-49b2-9e4d-d5e99205a467",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779411600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.78,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "5a0ce6a4-a17f-4219-b7c5-5449f973eb94",
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the PermG per-pair results from the remote server. I need to SSH to westd-17855 (not westd-19828) and read the all_metrics.json files for both α=0.50 and α=0.00 experiments.
+
+Let me first fetch the necessary tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "980c4abd-1ffd-45c5-afd7-d1ddb92e0aa4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzoUJFTm1mjP4oyM5bFUzn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14396,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14396
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EprpgZu8wmd4fxHfdGerSc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "df2a7759-b814-41d6-895d-d4a43ebf949e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzoUJFTm1mjP4oyM5bFUzn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14396,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14396
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T05:12:49.265Z_
+
+<details><summary>↩ Tool result · `toolu_01EprpgZu8wmd4fxHfdGerSc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0bdaa70d-2ae6-4f6b-8b4f-ecf98367616c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the all_metrics.json files from both α=0.50 and α=0.00 experiments across all 3 seeds. I'll start by reading them in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0b6da297-cf83-4148-b03f-972dc6aa4fbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Reading the PermG per-pair results from all 6 experiments on westd-17855.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "959e8643-57f9-4725-8278-ff56de3de290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J7gADwFGPFqgJqKagbbYA4`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0752930c-2ffb-472d-aa4d-a92a7ed6262f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015WBCpCPo9PsgiFXwyC8Egp`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "42cad855-466a-4ad6-aa0e-edeb44470dba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T05:12:54.776Z_
+
+<details><summary>↩ Tool result · `toolu_01J7gADwFGPFqgJqKagbbYA4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.513125962738291,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.07049489540865364,\\n    \\\"effective_rank\\\": 57.234269752802376,\\n    \\\"perplexity\\\": 23.363054161988806,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5109620436644615,\\n    \\\"self_bleu\\\": 0.011337873687615017,\\n    \\\"ece\\\": 0.083974302532681,\\n    \\\"effective_rank\\\": 61.79724632725394,\\n    \\\"perplexity\\\": 26.685836557085626,\\n    \\\"distinct_1\\\": 0.0750859375,\\n    \\\"distinct_2\\\": 0.41557355916843103,\\n    \\\"distinct_3\\\": 0.763324426944171,\\n    \\\"mauve\\\": 0.026422088378369776,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.581628010409094,\\n    \\\"self_bleu\\\": 0.012628074196452673,\\n    \\\"ece\\\": 0.08206379750573295,\\n    \\\"effective_rank\\\": 62.59530155888269,\\n    \\\"perplexity\\\": 27.5971017491973,\\n    \\\"distinct_1\\\": 0.070015625,\\n    \\\"distinct_2\\\": 0.37660450472269313,\\n    \\\"distinct_3\\\": 0.7141049078891858,\\n    \\\"mauve\\\": 0.020491517800060692,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5882908639873565,\\n    \\\"self_bleu\\\": 0.011797231720868741,\\n    \\\"ece\\\": 0.08631056758473529,\\n    \\\"effective_rank\\\": 63.64648936706926,\\n    \\\"perplexity\\\": 28.710175936778924,\\n    \\\"distinct_1\\\": 0.06940625,\\n    \\\"distinct_2\\\": 0.36240908132094785,\\n    \\\"distinct_3\\\": 0.6841278769980781,\\n    \\\"mauve\\\": 0.021926650012792797,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.585607048487396,\\n    \\\"self_bleu\\\": 0.012033566716766302,\\n    \\\"ece\\\": 0.090149011776323,\\n    \\\"effective_rank\\\": 63.71970587517649,\\n    \\\"perplexity\\\": 29.732531008843022,\\n    \\\"distinct_1\\\": 0.0685703125,\\n    \\\"distinct_2\\\": 0.3549402729708826,\\n    \\\"distinct_3\\\": 0.6606275098048408,\\n    \\\"mauve\\\": 0.023371056355781072,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6079916782279207,\\n    \\\"self_bleu\\\": 0.012000490206685822,\\n    \\\"ece\\\": 0.08810627995915483,\\n    \\\"effective_rank\\\": 63.4633831223656,\\n    \\\"perplexity\\\": 29.886785006845955,\\n    \\\"distinct_1\\\": 0.0680078125,\\n    \\\"distinct_2\\\": 0.3505730513519637,\\n    \\\"distinct_3\\\": 0.6466272910514227,\\n    \\\"mauve\\\": 0.02238165987146147,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.656354046597873,\\n    \\\"self_bleu\\\": 0.01091274371384792,\\n    \\\"ece\\\": 0.08592516433788232,\\n    \\\"effective_rank\\\": 62.82855779842184,\\n    \\\"perplexity\\\": 30.060055097522422,\\n    \\\"distinct_1\\\": 0.0671953125,\\n    \\\"distinct_2\\\": 0.34292455409807887,\\n    \\\"distinct_3\\\": 0.62564258816544,\\n    \\\"mauve\\\": 0.02419062672596143,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.660300319157053,\\n    \\\"self_bleu\\\": 0.011096963613347917,\\n    \\\"ece\\\": 0.08897824188447188,\\n    \\\"effective_rank\\\": 60.794986445318756,\\n    \\\"perplexity\\\": 31.024042023755403,\\n    \\\"distinct_1\\\": 0.0669296875,\\n    \\\"distinct_2\\\": 0.33536199501558606,\\n    \\\"distinct_3\\\": 0.6055797746839794,\\n    \\\"mauve\\\": 0.025267711360352954,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.672411609051149,\\n    \\\"self_bleu\\\": 0.010482730630324554,\\n    \\\"ece\\\": 0.08892341154076619,\\n    \\\"effective_rank\\\": 59.45057592824946,\\n    \\\"perplexity\\\": 31.447772669406568,\\n    \\\"distinct_1\\\": 0.0656015625,\\n    \\\"distinct_2\\\": 0.32638536238564364,\\n    \\\"distinct_3\\\": 0.5835481804403194,\\n    \\\"mauve\\\": 0.0215607909998298,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.7074937347665786,\\n    \\\"self_bleu\\\": 0.010382205156887973,\\n    \\\"ece\\\": 0.08680309817723926,\\n    \\\"effective_rank\\\": 58.177512875192804,\\n    \\\"perplexity\\\": 31.46181637179147,\\n    \\\"distinct_1\\\": 0.064875,\\n    \\\"distinct_2\\\": 0.3159321557199666,\\n    \\\"distinct_3\\\": 0.5583290363911936,\\n    \\\"mauve\\\": 0.02384216607213785,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "650f059e-c6de-4f5c-af48-89aa76b07f10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010359298948078572,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09162095491577137,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5038422526068081,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8318077803203662,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027018479627034072,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.513125962738291,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010555916086494104,\\\\n    \\\\\\\"ece\\\\\\\": 0.07049489540865364,\\\\n    \\\\\\\"effective_rank\\\\\\\": 57.234269752802376,\\\\n    \\\\\\\"perplexity\\\\\\\": 23.363054161988806,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09102786749549609,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4993142625278961,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8310637538141921,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02764599057188057,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5109620436644615,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011337873687615017,\\\\n    \\\\\\\"ece\\\\\\\": 0.083974302532681,\\\\n    \\\\\\\"effective_rank\\\\\\\": 61.79724632725394,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.685836557085626,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0750859375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.41557355916843103,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.763324426944171,\\\\n    \\\\\\\"mauve\\\\\\\": 0.026422088378369776,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.581628010409094,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012628074196452673,\\\\n    \\\\\\\"ece\\\\\\\": 0.08206379750573295,\\\\n    \\\\\\\"effective_rank\\\\\\\": 62.59530155888269,\\\\n    \\\\\\\"perplexity\\\\\\\": 27.5971017491973,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.070015625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.37660450472269313,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7141049078891858,\\\\n    \\\\\\\"mauve\\\\\\\": 0.020491517800060692,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5882908639873565,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011797231720868741,\\\\n    \\\\\\\"ece\\\\\\\": 0.08631056758473529,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.64648936706926,\\\\n    \\\\\\\"perplexity\\\\\\\": 28.710175936778924,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06940625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.36240908132094785,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6841278769980781,\\\\n    \\\\\\\"mauve\\\\\\\": 0.021926650012792797,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.585607048487396,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012033566716766302,\\\\n    \\\\\\\"ece\\\\\\\": 0.090149011776323,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.71970587517649,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.732531008843022,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0685703125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3549402729708826,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6606275098048408,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023371056355781072,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.6079916782279207,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012000490206685822,\\\\n    \\\\\\\"ece\\\\\\\": 0.08810627995915483,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.4633831223656,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.886785006845955,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0680078125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3505730513519637,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6466272910514227,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02238165987146147,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.656354046597873,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01091274371384792,\\\\n    \\\\\\\"ece\\\\\\\": 0.08592516433788232,\\\\n    \\\\\\\"effective_rank\\\\\\\": 62.82855779842184,\\\\n    \\\\\\\"perplexity\\\\\\\": 30.060055097522422,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0671953125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.34292455409807887,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.62564258816544,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02419062672596143,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.660300319157053,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011096963613347917,\\\\n    \\\\\\\"ece\\\\\\\": 0.08897824188447188,\\\\n    \\\\\\\"effective_rank\\\\\\\": 60.794986445318756,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.024042023755403,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0669296875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.33536199501558606,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6055797746839794,\\\\n    \\\\\\\"mauve\\\\\\\": 0.025267711360352954,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.672411609051149,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010482730630324554,\\\\n    \\\\\\\"ece\\\\\\\": 0.08892341154076619,\\\\n    \\\\\\\"effective_rank\\\\\\\": 59.45057592824946,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.447772669406568,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0656015625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.32638536238564364,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5835481804403194,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0215607909998298,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.7074937347665786,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010382205156887973,\\\\n    \\\\\\\"ece\\\\\\\": 0.08680309817723926,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.177512875192804,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.46181637179147,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.064875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3159321557199666,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5583290363911936,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02384216607213785,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.513125962738291,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.07049489540865364,\\n    \\\"effective_rank\\\": 57.234269752802376,\\n    \\\"perplexity\\\": 23.363054161988806,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5109620436644615,\\n    \\\"self_bleu\\\": 0.011337873687615017,\\n    \\\"ece\\\": 0.083974302532681,\\n    \\\"effective_rank\\\": 61.79724632725394,\\n    \\\"perplexity\\\": 26.685836557085626,\\n    \\\"distinct_1\\\": 0.0750859375,\\n    \\\"distinct_2\\\": 0.41557355916843103,\\n    \\\"distinct_3\\\": 0.763324426944171,\\n    \\\"mauve\\\": 0.026422088378369776,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.581628010409094,\\n    \\\"self_bleu\\\": 0.012628074196452673,\\n    \\\"ece\\\": 0.08206379750573295,\\n    \\\"effective_rank\\\": 62.59530155888269,\\n    \\\"perplexity\\\": 27.5971017491973,\\n    \\\"distinct_1\\\": 0.070015625,\\n    \\\"distinct_2\\\": 0.37660450472269313,\\n    \\\"distinct_3\\\": 0.7141049078891858,\\n    \\\"mauve\\\": 0.020491517800060692,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5882908639873565,\\n    \\\"self_bleu\\\": 0.011797231720868741,\\n    \\\"ece\\\": 0.08631056758473529,\\n    \\\"effective_rank\\\": 63.64648936706926,\\n    \\\"perplexity\\\": 28.710175936778924,\\n    \\\"distinct_1\\\": 0.06940625,\\n    \\\"distinct_2\\\": 0.36240908132094785,\\n    \\\"distinct_3\\\": 0.6841278769980781,\\n    \\\"mauve\\\": 0.021926650012792797,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.585607048487396,\\n    \\\"self_bleu\\\": 0.012033566716766302,\\n    \\\"ece\\\": 0.090149011776323,\\n    \\\"effective_rank\\\": 63.71970587517649,\\n    \\\"perplexity\\\": 29.732531008843022,\\n    \\\"distinct_1\\\": 0.0685703125,\\n    \\\"distinct_2\\\": 0.3549402729708826,\\n    \\\"distinct_3\\\": 0.6606275098048408,\\n    \\\"mauve\\\": 0.023371056355781072,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6079916782279207,\\n    \\\"self_bleu\\\": 0.012000490206685822,\\n    \\\"ece\\\": 0.08810627995915483,\\n    \\\"effective_rank\\\": 63.4633831223656,\\n    \\\"perplexity\\\": 29.886785006845955,\\n    \\\"distinct_1\\\": 0.0680078125,\\n    \\\"distinct_2\\\": 0.3505730513519637,\\n    \\\"distinct_3\\\": 0.6466272910514227,\\n    \\\"mauve\\\": 0.02238165987146147,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.656354046597873,\\n    \\\"self_bleu\\\": 0.01091274371384792,\\n    \\\"ece\\\": 0.08592516433788232,\\n    \\\"effective_rank\\\": 62.82855779842184,\\n    \\\"perplexity\\\": 30.060055097522422,\\n    \\\"distinct_1\\\": 0.0671953125,\\n    \\\"distinct_2\\\": 0.34292455409807887,\\n    \\\"distinct_3\\\": 0.62564258816544,\\n    \\\"mauve\\\": 0.02419062672596143,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.660300319157053,\\n    \\\"self_bleu\\\": 0.011096963613347917,\\n    \\\"ece\\\": 0.08897824188447188,\\n    \\\"effective_rank\\\": 60.794986445318756,\\n    \\\"perplexity\\\": 31.024042023755403,\\n    \\\"distinct_1\\\": 0.0669296875,\\n    \\\"distinct_2\\\": 0.33536199501558606,\\n    \\\"distinct_3\\\": 0.6055797746839794,\\n    \\\"mauve\\\": 0.025267711360352954,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.672411609051149,\\n    \\\"self_bleu\\\": 0.010482730630324554,\\n    \\\"ece\\\": 0.08892341154076619,\\n    \\\"effective_rank\\\": 59.45057592824946,\\n    \\\"perplexity\\\": 31.447772669406568,\\n    \\\"distinct_1\\\": 0.0656015625,\\n    \\\"distinct_2\\\": 0.32638536238564364,\\n    \\\"distinct_3\\\": 0.5835481804403194,\\n    \\\"mauve\\\": 0.0215607909998298,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.7074937347665786,\\n    \\\"self_bleu\\\": 0.010382205156887973,\\n    \\\"ece\\\": 0.08680309817723926,\\n    \\\"effective_rank\\\": 58.177512875192804,\\n    \\\"perplexity\\\": 31.46181637179147,\\n    \\\"distinct_1\\\": 0.064875,\\n    \\\"distinct_2\\\": 0.3159321557199666,\\n    \\\"distinct_3\\\": 0.5583290363911936,\\n    \\\"mauve\\\": 0.02384216607213785,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lo8NohFBLt6nim6XBtwGtc`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "d711f889-11bf-444d-a646-bfbdc81f5635",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T05:12:55.292Z_
+
+<details><summary>↩ Tool result · `toolu_015WBCpCPo9PsgiFXwyC8Egp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010287042807135095,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09290117352320675,\\n    \\\"distinct_2\\\": 0.5074211120542594,\\n    \\\"distinct_3\\\": 0.8350282672116827,\\n    \\\"mauve\\\": 0.03040335765904681,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.518626403934177,\\n    \\\"self_bleu\\\": 0.01091970722700488,\\n    \\\"ece\\\": 0.07020895546979529,\\n    \\\"effective_rank\\\": 57.077983859482764,\\n    \\\"perplexity\\\": 23.484887542660047,\\n    \\\"distinct_1\\\": 0.09156740605278842,\\n    \\\"distinct_2\\\": 0.500212265691333,\\n    \\\"distinct_3\\\": 0.8275163894943953,\\n    \\\"mauve\\\": 0.02823900305230494,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.547436986923584,\\n    \\\"self_bleu\\\": 0.011438118300545903,\\n    \\\"ece\\\": 0.07759886406704834,\\n    \\\"effective_rank\\\": 61.19020330892126,\\n    \\\"perplexity\\\": 26.289141963974043,\\n    \\\"distinct_1\\\": 0.074703125,\\n    \\\"distinct_2\\\": 0.41517511855561373,\\n    \\\"distinct_3\\\": 0.7630509851716433,\\n    \\\"mauve\\\": 0.02650550140055766,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.608850639506311,\\n    \\\"self_bleu\\\": 0.01209610650719187,\\n    \\\"ece\\\": 0.0766375825784675,\\n    \\\"effective_rank\\\": 62.51825965521275,\\n    \\\"perplexity\\\": 27.441240695579037,\\n    \\\"distinct_1\\\": 0.0708984375,\\n    \\\"distinct_2\\\": 0.38437800295314806,\\n    \\\"distinct_3\\\": 0.7233238019344053,\\n    \\\"mauve\\\": 0.023428860142164797,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.624640434930519,\\n    \\\"self_bleu\\\": 0.011553209118741343,\\n    \\\"ece\\\": 0.08212653975937369,\\n    \\\"effective_rank\\\": 63.26476621388481,\\n    \\\"perplexity\\\": 28.889967632491466,\\n    \\\"distinct_1\\\": 0.0712109375,\\n    \\\"distinct_2\\\": 0.3799560934069797,\\n    \\\"distinct_3\\\": 0.705089142017844,\\n    \\\"mauve\\\": 0.02080396382228957,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6185222779676613,\\n    \\\"self_bleu\\\": 0.011551489709637241,\\n    \\\"ece\\\": 0.08379686841109252,\\n    \\\"effective_rank\\\": 63.68488904754489,\\n    \\\"perplexity\\\": 29.20919495909438,\\n    \\\"distinct_1\\\": 0.070140625,\\n    \\\"distinct_2\\\": 0.37438573738857334,\\n    \\\"distinct_3\\\": 0.6899326551977375,\\n    \\\"mauve\\\": 0.022674944334217947,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.660046398104969,\\n    \\\"self_bleu\\\": 0.011280116125732941,\\n    \\\"ece\\\": 0.0842122953069419,\\n    \\\"effective_rank\\\": 63.411453017760145,\\n    \\\"perplexity\\\": 29.724905367305375,\\n    \\\"distinct_1\\\": 0.069796875,\\n    \\\"distinct_2\\\": 0.3691903842998773,\\n    \\\"distinct_3\\\": 0.6729558274348036,\\n    \\\"mauve\\\": 0.023767056063446545,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6724164347985995,\\n    \\\"self_bleu\\\": 0.011487427813605363,\\n    \\\"ece\\\": 0.08347853594173563,\\n    \\\"effective_rank\\\": 61.15929995528787,\\n    \\\"perplexity\\\": 30.439578718121005,\\n    \\\"distinct_1\\\": 0.0687421875,\\n    \\\"distinct_2\\\": 0.35921374385737387,\\n    \\\"distinct_3\\\": 0.6458772793324896,\\n    \\\"mauve\\\": 0.022221030787406528,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6564191992117845,\\n    \\\"self_bleu\\\": 0.01070211866856739,\\n    \\\"ece\\\": 0.08903511272228921,\\n    \\\"effective_rank\\\": 60.57008445415303,\\n    \\\"perplexity\\\": 31.503091639975434,\\n    \\\"distinct_1\\\": 0.067703125,\\n    \\\"distinct_2\\\": 0.3476042781584231,\\n    \\\"distinct_3\\\": 0.6187206050094533,\\n    \\\"mauve\\\": 0.02654817200319702,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.684870133409513,\\n    \\\"self_bleu\\\": 0.011490002436600972,\\n    \\\"ece\\\": 0.08706484281857486,\\n    \\\"effective_rank\\\": 58.318582664411714,\\n    \\\"perplexity\\\": 31.382204785492398,\\n    \\\"distinct_1\\\": 0.0663828125,\\n    \\\"distinct_2\\\": 0.33247915999343747,\\n    \\\"distinct_3\\\": 0.5860404068813575,\\n    \\\"mauve\\\": 0.024540284094357556,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.722707025838197,\\n    \\\"self_bleu\\\": 0.011570513399279043,\\n    \\\"ece\\\": 0.08422828254207577,\\n    \\\"effective_rank\\\": 58.47047234111583,\\n    \\\"perplexity\\\": 31.575577547703546,\\n    \\\"distinct_1\\\": 0.0659609375,\\n    \\\"distinct_2\\\": 0.32347908968038813,\\n    \\\"distinct_3\\\": 0.5646572602696918,\\n    \\\"mauve\\\": 0.02324701101366194,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "8d63224a-6b0d-4377-b6b8-9f310557814e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010287042807135095,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09290117352320675,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5074211120542594,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8350282672116827,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03040335765904681,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.518626403934177,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01091970722700488,\\\\n    \\\\\\\"ece\\\\\\\": 0.07020895546979529,\\\\n    \\\\\\\"effective_rank\\\\\\\": 57.077983859482764,\\\\n    \\\\\\\"perplexity\\\\\\\": 23.484887542660047,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09156740605278842,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.500212265691333,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8275163894943953,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02823900305230494,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.547436986923584,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011438118300545903,\\\\n    \\\\\\\"ece\\\\\\\": 0.07759886406704834,\\\\n    \\\\\\\"effective_rank\\\\\\\": 61.19020330892126,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.289141963974043,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.074703125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.41517511855561373,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7630509851716433,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02650550140055766,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.608850639506311,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01209610650719187,\\\\n    \\\\\\\"ece\\\\\\\": 0.0766375825784675,\\\\n    \\\\\\\"effective_rank\\\\\\\": 62.51825965521275,\\\\n    \\\\\\\"perplexity\\\\\\\": 27.441240695579037,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0708984375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.38437800295314806,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7233238019344053,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023428860142164797,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.624640434930519,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011553209118741343,\\\\n    \\\\\\\"ece\\\\\\\": 0.08212653975937369,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.26476621388481,\\\\n    \\\\\\\"perplexity\\\\\\\": 28.889967632491466,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0712109375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3799560934069797,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.705089142017844,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02080396382228957,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.6185222779676613,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011551489709637241,\\\\n    \\\\\\\"ece\\\\\\\": 0.08379686841109252,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.68488904754489,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.20919495909438,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.070140625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.37438573738857334,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6899326551977375,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022674944334217947,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.660046398104969,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011280116125732941,\\\\n    \\\\\\\"ece\\\\\\\": 0.0842122953069419,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.411453017760145,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.724905367305375,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.069796875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3691903842998773,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6729558274348036,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023767056063446545,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.6724164347985995,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011487427813605363,\\\\n    \\\\\\\"ece\\\\\\\": 0.08347853594173563,\\\\n    \\\\\\\"effective_rank\\\\\\\": 61.15929995528787,\\\\n    \\\\\\\"perplexity\\\\\\\": 30.439578718121005,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0687421875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.35921374385737387,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6458772793324896,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022221030787406528,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.6564191992117845,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01070211866856739,\\\\n    \\\\\\\"ece\\\\\\\": 0.08903511272228921,\\\\n    \\\\\\\"effective_rank\\\\\\\": 60.57008445415303,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.503091639975434,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.067703125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3476042781584231,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6187206050094533,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02654817200319702,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.684870133409513,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011490002436600972,\\\\n    \\\\\\\"ece\\\\\\\": 0.08706484281857486,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.318582664411714,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.382204785492398,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0663828125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.33247915999343747,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5860404068813575,\\\\n    \\\\\\\"mauve\\\\\\\": 0.024540284094357556,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.722707025838197,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011570513399279043,\\\\n    \\\\\\\"ece\\\\\\\": 0.08422828254207577,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.47047234111583,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.575577547703546,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0659609375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.32347908968038813,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5646572602696918,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02324701101366194,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010287042807135095,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09290117352320675,\\n    \\\"distinct_2\\\": 0.5074211120542594,\\n    \\\"distinct_3\\\": 0.8350282672116827,\\n    \\\"mauve\\\": 0.03040335765904681,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.518626403934177,\\n    \\\"self_bleu\\\": 0.01091970722700488,\\n    \\\"ece\\\": 0.07020895546979529,\\n    \\\"effective_rank\\\": 57.077983859482764,\\n    \\\"perplexity\\\": 23.484887542660047,\\n    \\\"distinct_1\\\": 0.09156740605278842,\\n    \\\"distinct_2\\\": 0.500212265691333,\\n    \\\"distinct_3\\\": 0.8275163894943953,\\n    \\\"mauve\\\": 0.02823900305230494,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.547436986923584,\\n    \\\"self_bleu\\\": 0.011438118300545903,\\n    \\\"ece\\\": 0.07759886406704834,\\n    \\\"effective_rank\\\": 61.19020330892126,\\n    \\\"perplexity\\\": 26.289141963974043,\\n    \\\"distinct_1\\\": 0.074703125,\\n    \\\"distinct_2\\\": 0.41517511855561373,\\n    \\\"distinct_3\\\": 0.7630509851716433,\\n    \\\"mauve\\\": 0.02650550140055766,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.608850639506311,\\n    \\\"self_bleu\\\": 0.01209610650719187,\\n    \\\"ece\\\": 0.0766375825784675,\\n    \\\"effective_rank\\\": 62.51825965521275,\\n    \\\"perplexity\\\": 27.441240695579037,\\n    \\\"distinct_1\\\": 0.0708984375,\\n    \\\"distinct_2\\\": 0.38437800295314806,\\n    \\\"distinct_3\\\": 0.7233238019344053,\\n    \\\"mauve\\\": 0.023428860142164797,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.624640434930519,\\n    \\\"self_bleu\\\": 0.011553209118741343,\\n    \\\"ece\\\": 0.08212653975937369,\\n    \\\"effective_rank\\\": 63.26476621388481,\\n    \\\"perplexity\\\": 28.889967632491466,\\n    \\\"distinct_1\\\": 0.0712109375,\\n    \\\"distinct_2\\\": 0.3799560934069797,\\n    \\\"distinct_3\\\": 0.705089142017844,\\n    \\\"mauve\\\": 0.02080396382228957,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6185222779676613,\\n    \\\"self_bleu\\\": 0.011551489709637241,\\n    \\\"ece\\\": 0.08379686841109252,\\n    \\\"effective_rank\\\": 63.68488904754489,\\n    \\\"perplexity\\\": 29.20919495909438,\\n    \\\"distinct_1\\\": 0.070140625,\\n    \\\"distinct_2\\\": 0.37438573738857334,\\n    \\\"distinct_3\\\": 0.6899326551977375,\\n    \\\"mauve\\\": 0.022674944334217947,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.660046398104969,\\n    \\\"self_bleu\\\": 0.011280116125732941,\\n    \\\"ece\\\": 0.0842122953069419,\\n    \\\"effective_rank\\\": 63.411453017760145,\\n    \\\"perplexity\\\": 29.724905367305375,\\n    \\\"distinct_1\\\": 0.069796875,\\n    \\\"distinct_2\\\": 0.3691903842998773,\\n    \\\"distinct_3\\\": 0.6729558274348036,\\n    \\\"mauve\\\": 0.023767056063446545,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6724164347985995,\\n    \\\"self_bleu\\\": 0.011487427813605363,\\n    \\\"ece\\\": 0.08347853594173563,\\n    \\\"effective_rank\\\": 61.15929995528787,\\n    \\\"perplexity\\\": 30.439578718121005,\\n    \\\"distinct_1\\\": 0.0687421875,\\n    \\\"distinct_2\\\": 0.35921374385737387,\\n    \\\"distinct_3\\\": 0.6458772793324896,\\n    \\\"mauve\\\": 0.022221030787406528,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6564191992117845,\\n    \\\"self_bleu\\\": 0.01070211866856739,\\n    \\\"ece\\\": 0.08903511272228921,\\n    \\\"effective_rank\\\": 60.57008445415303,\\n    \\\"perplexity\\\": 31.503091639975434,\\n    \\\"distinct_1\\\": 0.067703125,\\n    \\\"distinct_2\\\": 0.3476042781584231,\\n    \\\"distinct_3\\\": 0.6187206050094533,\\n    \\\"mauve\\\": 0.02654817200319702,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.684870133409513,\\n    \\\"self_bleu\\\": 0.011490002436600972,\\n    \\\"ece\\\": 0.08706484281857486,\\n    \\\"effective_rank\\\": 58.318582664411714,\\n    \\\"perplexity\\\": 31.382204785492398,\\n    \\\"distinct_1\\\": 0.0663828125,\\n    \\\"distinct_2\\\": 0.33247915999343747,\\n    \\\"distinct_3\\\": 0.5860404068813575,\\n    \\\"mauve\\\": 0.024540284094357556,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.722707025838197,\\n    \\\"self_bleu\\\": 0.011570513399279043,\\n    \\\"ece\\\": 0.08422828254207577,\\n    \\\"effective_rank\\\": 58.47047234111583,\\n    \\\"perplexity\\\": 31.575577547703546,\\n    \\\"distinct_1\\\": 0.0659609375,\\n    \\\"distinct_2\\\": 0.32347908968038813,\\n    \\\"distinct_3\\\": 0.5646572602696918,\\n    \\\"mauve\\\": 0.02324701101366194,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T05:12:55.820Z_
+
+<details><summary>↩ Tool result · `toolu_01Lo8NohFBLt6nim6XBtwGtc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010254327766434137,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09151785714285714,\\n    \\\"distinct_2\\\": 0.4996619172145237,\\n    \\\"distinct_3\\\": 0.8285784114052953,\\n    \\\"mauve\\\": 0.027541835934828725,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.531547803204559,\\n    \\\"self_bleu\\\": 0.010601130898365153,\\n    \\\"ece\\\": 0.06645443379569944,\\n    \\\"effective_rank\\\": 57.21754619532249,\\n    \\\"perplexity\\\": 22.958605018786145,\\n    \\\"distinct_1\\\": 0.09127652959369018,\\n    \\\"distinct_2\\\": 0.5042177694504217,\\n    \\\"distinct_3\\\": 0.8311569301260023,\\n    \\\"mauve\\\": 0.02643683477007186,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5276872320353867,\\n    \\\"self_bleu\\\": 0.011286184561024147,\\n    \\\"ece\\\": 0.08206204918078107,\\n    \\\"effective_rank\\\": 62.714367727208476,\\n    \\\"perplexity\\\": 25.930562132326383,\\n    \\\"distinct_1\\\": 0.0749296875,\\n    \\\"distinct_2\\\": 0.41730794771834157,\\n    \\\"distinct_3\\\": 0.7648010125158206,\\n    \\\"mauve\\\": 0.028684151862655403,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5691139346984007,\\n    \\\"self_bleu\\\": 0.011991888256689983,\\n    \\\"ece\\\": 0.08456361698938868,\\n    \\\"effective_rank\\\": 63.85431236936138,\\n    \\\"perplexity\\\": 27.54991767318837,\\n    \\\"distinct_1\\\": 0.070828125,\\n    \\\"distinct_2\\\": 0.3787685841295635,\\n    \\\"distinct_3\\\": 0.7152768012000188,\\n    \\\"mauve\\\": 0.021429045544635657,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5703534368055747,\\n    \\\"self_bleu\\\": 0.012431044258518853,\\n    \\\"ece\\\": 0.08611267031195492,\\n    \\\"effective_rank\\\": 64.54161792443868,\\n    \\\"perplexity\\\": 28.484447903980595,\\n    \\\"distinct_1\\\": 0.0697421875,\\n    \\\"distinct_2\\\": 0.3664403628153345,\\n    \\\"distinct_3\\\": 0.691620181565337,\\n    \\\"mauve\\\": 0.02131960641836858,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5974702243010093,\\n    \\\"self_bleu\\\": 0.011507828930017474,\\n    \\\"ece\\\": 0.08782802423171154,\\n    \\\"effective_rank\\\": 64.6190650060832,\\n    \\\"perplexity\\\": 29.31737328237111,\\n    \\\"distinct_1\\\": 0.068921875,\\n    \\\"distinct_2\\\": 0.35620590785865514,\\n    \\\"distinct_3\\\": 0.6649791402990671,\\n    \\\"mauve\\\": 0.023080106810095806,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.617032208719625,\\n    \\\"self_bleu\\\": 0.011669845008302045,\\n    \\\"ece\\\": 0.08773270088217881,\\n    \\\"effective_rank\\\": 63.16807745699943,\\n    \\\"perplexity\\\": 29.994601397462905,\\n    \\\"distinct_1\\\": 0.06859375,\\n    \\\"distinct_2\\\": 0.3513777451386339,\\n    \\\"distinct_3\\\": 0.6438147471054235,\\n    \\\"mauve\\\": 0.021691919244496018,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6451344751290686,\\n    \\\"self_bleu\\\": 0.011024334624725178,\\n    \\\"ece\\\": 0.08738204874454979,\\n    \\\"effective_rank\\\": 61.92647884274269,\\n    \\\"perplexity\\\": 30.736696668729035,\\n    \\\"distinct_1\\\": 0.068015625,\\n    \\\"distinct_2\\\": 0.34532301033601825,\\n    \\\"distinct_3\\\": 0.6230487976374631,\\n    \\\"mauve\\\": 0.020141612466323826,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.653412909250175,\\n    \\\"self_bleu\\\": 0.01078770899091114,\\n    \\\"ece\\\": 0.0891925166852999,\\n    \\\"effective_rank\\\": 60.288479180023664,\\n    \\\"perplexity\\\": 30.99752765934731,\\n    \\\"distinct_1\\\": 0.0676640625,\\n    \\\"distinct_2\\\": 0.34121360323127525,\\n    \\\"distinct_3\\\": 0.6078454350849232,\\n    \\\"mauve\\\": 0.022019924417501033,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.7016104369859324,\\n    \\\"self_bleu\\\": 0.010942920390145702,\\n    \\\"ece\\\": 0.08541320865719709,\\n    \\\"effective_rank\\\": 58.37260044888916,\\n    \\\"perplexity\\\": 31.468242151222462,\\n    \\\"distinct_1\\\": 0.0662890625,\\n    \\\"distinct_2\\\": 0.33267447401932826,\\n    \\\"distinct_3\\\": 0.5914623665994782,\\n    \\\"mauve\\\": 0.024858349355336984,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.697134042171447,\\n    \\\"self_bleu\\\": 0.010931194319435454,\\n    \\\"ece\\\": 0.08741227980072644,\\n    \\\"effective_rank\\\": 58.29257561023236,\\n    \\\"perplexity\\\": 31.42425221206744,\\n    \\\"distinct_1\\\": 0.0659609375,\\n    \\\"distinct_2\\\": 0.3265806764115345,\\n    \\\"distinct_3\\\": 0.5750558602478164,\\n    \\\"mauve\\\": 0.023718775067244166,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "3c22ed19-2f33-490c-a112-f6ed2d27e808",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010254327766434137,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09151785714285714,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4996619172145237,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8285784114052953,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027541835934828725,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.531547803204559,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010601130898365153,\\\\n    \\\\\\\"ece\\\\\\\": 0.06645443379569944,\\\\n    \\\\\\\"effective_rank\\\\\\\": 57.21754619532249,\\\\n    \\\\\\\"perplexity\\\\\\\": 22.958605018786145,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09127652959369018,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5042177694504217,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8311569301260023,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02643683477007186,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5276872320353867,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011286184561024147,\\\\n    \\\\\\\"ece\\\\\\\": 0.08206204918078107,\\\\n    \\\\\\\"effective_rank\\\\\\\": 62.714367727208476,\\\\n    \\\\\\\"perplexity\\\\\\\": 25.930562132326383,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0749296875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.41730794771834157,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7648010125158206,\\\\n    \\\\\\\"mauve\\\\\\\": 0.028684151862655403,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5691139346984007,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011991888256689983,\\\\n    \\\\\\\"ece\\\\\\\": 0.08456361698938868,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.85431236936138,\\\\n    \\\\\\\"perplexity\\\\\\\": 27.54991767318837,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.070828125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3787685841295635,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7152768012000188,\\\\n    \\\\\\\"mauve\\\\\\\": 0.021429045544635657,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5703534368055747,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012431044258518853,\\\\n    \\\\\\\"ece\\\\\\\": 0.08611267031195492,\\\\n    \\\\\\\"effective_rank\\\\\\\": 64.54161792443868,\\\\n    \\\\\\\"perplexity\\\\\\\": 28.484447903980595,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0697421875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3664403628153345,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.691620181565337,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02131960641836858,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5974702243010093,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011507828930017474,\\\\n    \\\\\\\"ece\\\\\\\": 0.08782802423171154,\\\\n    \\\\\\\"effective_rank\\\\\\\": 64.6190650060832,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.31737328237111,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.068921875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.35620590785865514,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6649791402990671,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023080106810095806,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.617032208719625,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011669845008302045,\\\\n    \\\\\\\"ece\\\\\\\": 0.08773270088217881,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.16807745699943,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.994601397462905,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06859375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3513777451386339,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6438147471054235,\\\\n    \\\\\\\"mauve\\\\\\\": 0.021691919244496018,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.6451344751290686,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011024334624725178,\\\\n    \\\\\\\"ece\\\\\\\": 0.08738204874454979,\\\\n    \\\\\\\"effective_rank\\\\\\\": 61.92647884274269,\\\\n    \\\\\\\"perplexity\\\\\\\": 30.736696668729035,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.068015625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.34532301033601825,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6230487976374631,\\\\n    \\\\\\\"mauve\\\\\\\": 0.020141612466323826,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.653412909250175,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01078770899091114,\\\\n    \\\\\\\"ece\\\\\\\": 0.0891925166852999,\\\\n    \\\\\\\"effective_rank\\\\\\\": 60.288479180023664,\\\\n    \\\\\\\"perplexity\\\\\\\": 30.99752765934731,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0676640625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.34121360323127525,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6078454350849232,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022019924417501033,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.7016104369859324,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010942920390145702,\\\\n    \\\\\\\"ece\\\\\\\": 0.08541320865719709,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.37260044888916,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.468242151222462,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0662890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.33267447401932826,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5914623665994782,\\\\n    \\\\\\\"mauve\\\\\\\": 0.024858349355336984,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.697134042171447,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010931194319435454,\\\\n    \\\\\\\"ece\\\\\\\": 0.08741227980072644,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.29257561023236,\\\\n    \\\\\\\"perplexity\\\\\\\": 31.42425221206744,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0659609375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3265806764115345,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5750558602478164,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023718775067244166,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010254327766434137,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09151785714285714,\\n    \\\"distinct_2\\\": 0.4996619172145237,\\n    \\\"distinct_3\\\": 0.8285784114052953,\\n    \\\"mauve\\\": 0.027541835934828725,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.531547803204559,\\n    \\\"self_bleu\\\": 0.010601130898365153,\\n    \\\"ece\\\": 0.06645443379569944,\\n    \\\"effective_rank\\\": 57.21754619532249,\\n    \\\"perplexity\\\": 22.958605018786145,\\n    \\\"distinct_1\\\": 0.09127652959369018,\\n    \\\"distinct_2\\\": 0.5042177694504217,\\n    \\\"distinct_3\\\": 0.8311569301260023,\\n    \\\"mauve\\\": 0.02643683477007186,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5276872320353867,\\n    \\\"self_bleu\\\": 0.011286184561024147,\\n    \\\"ece\\\": 0.08206204918078107,\\n    \\\"effective_rank\\\": 62.714367727208476,\\n    \\\"perplexity\\\": 25.930562132326383,\\n    \\\"distinct_1\\\": 0.0749296875,\\n    \\\"distinct_2\\\": 0.41730794771834157,\\n    \\\"distinct_3\\\": 0.7648010125158206,\\n    \\\"mauve\\\": 0.028684151862655403,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5691139346984007,\\n    \\\"self_bleu\\\": 0.011991888256689983,\\n    \\\"ece\\\": 0.08456361698938868,\\n    \\\"effective_rank\\\": 63.85431236936138,\\n    \\\"perplexity\\\": 27.54991767318837,\\n    \\\"distinct_1\\\": 0.070828125,\\n    \\\"distinct_2\\\": 0.3787685841295635,\\n    \\\"distinct_3\\\": 0.7152768012000188,\\n    \\\"mauve\\\": 0.021429045544635657,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5703534368055747,\\n    \\\"self_bleu\\\": 0.012431044258518853,\\n    \\\"ece\\\": 0.08611267031195492,\\n    \\\"effective_rank\\\": 64.54161792443868,\\n    \\\"perplexity\\\": 28.484447903980595,\\n    \\\"distinct_1\\\": 0.0697421875,\\n    \\\"distinct_2\\\": 0.3664403628153345,\\n    \\\"distinct_3\\\": 0.691620181565337,\\n    \\\"mauve\\\": 0.02131960641836858,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5974702243010093,\\n    \\\"self_bleu\\\": 0.011507828930017474,\\n    \\\"ece\\\": 0.08782802423171154,\\n    \\\"effective_rank\\\": 64.6190650060832,\\n    \\\"perplexity\\\": 29.31737328237111,\\n    \\\"distinct_1\\\": 0.068921875,\\n    \\\"distinct_2\\\": 0.35620590785865514,\\n    \\\"distinct_3\\\": 0.6649791402990671,\\n    \\\"mauve\\\": 0.023080106810095806,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.617032208719625,\\n    \\\"self_bleu\\\": 0.011669845008302045,\\n    \\\"ece\\\": 0.08773270088217881,\\n    \\\"effective_rank\\\": 63.16807745699943,\\n    \\\"perplexity\\\": 29.994601397462905,\\n    \\\"distinct_1\\\": 0.06859375,\\n    \\\"distinct_2\\\": 0.3513777451386339,\\n    \\\"distinct_3\\\": 0.6438147471054235,\\n    \\\"mauve\\\": 0.021691919244496018,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6451344751290686,\\n    \\\"self_bleu\\\": 0.011024334624725178,\\n    \\\"ece\\\": 0.08738204874454979,\\n    \\\"effective_rank\\\": 61.92647884274269,\\n    \\\"perplexity\\\": 30.736696668729035,\\n    \\\"distinct_1\\\": 0.068015625,\\n    \\\"distinct_2\\\": 0.34532301033601825,\\n    \\\"distinct_3\\\": 0.6230487976374631,\\n    \\\"mauve\\\": 0.020141612466323826,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.653412909250175,\\n    \\\"self_bleu\\\": 0.01078770899091114,\\n    \\\"ece\\\": 0.0891925166852999,\\n    \\\"effective_rank\\\": 60.288479180023664,\\n    \\\"perplexity\\\": 30.99752765934731,\\n    \\\"distinct_1\\\": 0.0676640625,\\n    \\\"distinct_2\\\": 0.34121360323127525,\\n    \\\"distinct_3\\\": 0.6078454350849232,\\n    \\\"mauve\\\": 0.022019924417501033,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.7016104369859324,\\n    \\\"self_bleu\\\": 0.010942920390145702,\\n    \\\"ece\\\": 0.08541320865719709,\\n    \\\"effective_rank\\\": 58.37260044888916,\\n    \\\"perplexity\\\": 31.468242151222462,\\n    \\\"distinct_1\\\": 0.0662890625,\\n    \\\"distinct_2\\\": 0.33267447401932826,\\n    \\\"distinct_3\\\": 0.5914623665994782,\\n    \\\"mauve\\\": 0.024858349355336984,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.697134042171447,\\n    \\\"self_bleu\\\": 0.010931194319435454,\\n    \\\"ece\\\": 0.08741227980072644,\\n    \\\"effective_rank\\\": 58.29257561023236,\\n    \\\"perplexity\\\": 31.42425221206744,\\n    \\\"distinct_1\\\": 0.0659609375,\\n    \\\"distinct_2\\\": 0.3265806764115345,\\n    \\\"distinct_3\\\": 0.5750558602478164,\\n    \\\"mauve\\\": 0.023718775067244166,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R3KHJThBJLe46c1GUUG9XD`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "036141bf-99eb-4d24-a4d5-49912781cf0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T05:12:56.604Z_
+
+<details><summary>↩ Tool result · `toolu_01R3KHJThBJLe46c1GUUG9XD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "864ac39b-eda9-4e3e-b1af-c3f6f607621e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U8CMCjki4ksKEp9QSn4XZD`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "b5a0ceb8-6932-4b72-bb6a-77bba025d462",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqNA4aK5HRhKD6YYSk7M8m`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "c3282cb2-adff-43c8-bc69-11f5e84fdf7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ni97v8pTd6HEaSVNjQzwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 26237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T05:12:58.398Z_
+
+<details><summary>↩ Tool result · `toolu_01U8CMCjki4ksKEp9QSn4XZD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "ddaa9159-ce1e-4c75-983b-89fe9b067acb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T05:12:58.919Z_
+
+<details><summary>↩ Tool result · `toolu_01EqNA4aK5HRhKD6YYSk7M8m`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "2bb0828f-a902-4d37-a479-fe16e5ab6adc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The α=0.50 data is available for all 3 seeds, but the α=0.00 null experiment data is not at the expected paths. Let me check what directories exist for a000 experiments.
+
+Also, I notice that the all_metrics.json files contain per-generation metrics, not per-pair PermG results. The PermG results would be in a different file. Let me look for the PermG analysis results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "9306d4ed-9d44-46a1-b93c-a4ac2bd4f57f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnLokvaQbRs7n1F6BvJA9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10084,
+      "cache_read_input_tokens": 26750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+The all_metrics.json files contain per-generation time-series data, not PermG per-pair results. Let me find the actual PermG output files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "cdf07747-999a-498f-8807-1d1108e65cf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnLokvaQbRs7n1F6BvJA9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10084,
+      "cache_read_input_tokens": 26750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0166EStFCAvKJNhv4YC5YWRc`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "85f9e43d-0a5e-4831-bf89-0708878646de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnLokvaQbRs7n1F6BvJA9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10084,
+      "cache_read_input_tokens": 26750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T05:13:06.724Z_
+
+<details><summary>↩ Tool result · `toolu_0166EStFCAvKJNhv4YC5YWRc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_m035.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "becde855-2a35-470e-b814-204d7d71dad2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_results.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_m035.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_5/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_7/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_9/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/gen_10/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis_m035.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MrfhhKXK7D3dYwTm8rEVpZ`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "03ac0217-8fed-4e43-b1fb-92191ea0aab4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnLokvaQbRs7n1F6BvJA9d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10084,
+      "cache_read_input_tokens": 26750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T05:13:07.319Z_
+
+<details><summary>↩ Tool result · `toolu_01MrfhhKXK7D3dYwTm8rEVpZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42_fp32\\na005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s42_fp32\\na010_s43_bf16\\na010_s43_fp32\\na025_s42_fp32\\na025_s43_fp32\\na025_s44_fp32\\na030_s42_fp32\\na035_s42_fp32\\na040_s42_fp32\\na045_s42_fp32\\na045_s43_fp32\\na046_s42_fp32\\na048_s42_fp32\\na050_postd093_s42_fp32\\na050_s42_fp32\\na050_s43_fp32\\na050_s44_fp32\\na052_s42_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\na060_s42_fp32_v4\\na060_s43_fp32\\na065_s42_fp32\\na070_s42_fp32\\na075_s42_fp32\\na100_s42_fp32\\nc4_a025_s42_fp32\\nc4_a050_s42_fp32\\nc4_a075_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "19783736-7798-4640-9eac-057b9540287d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42_fp32\\\\na005_s42_fp32\\\\na005_s42_fp32_v2\\\\na005_s42_fp32_v3\\\\na005_s42_fp32_v3_d080\\\\na010_s42_bf16\\\\na010_s42_fp32\\\\na010_s43_bf16\\\\na010_s43_fp32\\\\na025_s42_fp32\\\\na025_s43_fp32\\\\na025_s44_fp32\\\\na030_s42_fp32\\\\na035_s42_fp32\\\\na040_s42_fp32\\\\na045_s42_fp32\\\\na045_s43_fp32\\\\na046_s42_fp32\\\\na048_s42_fp32\\\\na050_postd093_s42_fp32\\\\na050_s42_fp32\\\\na050_s43_fp32\\\\na050_s44_fp32\\\\na052_s42_fp32\\\\na060_s42\\\\na060_s42_bf16\\\\na060_s42_fp32\\\\na060_s42_fp32_v2\\\\na060_s42_fp32_v3_d080\\\\na060_s42_fp32_v4\\\\na060_s43_fp32\\\\na065_s42_fp32\\\\na070_s42_fp32\\\\na075_s42_fp32\\\\na100_s42_fp32\\\\nc4_a025_s42_fp32\\\\nc4_a050_s42_fp32\\\\nc4_a075_s42_fp32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"a000_s42_fp32\\na005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s42_fp32\\na010_s43_bf16\\na010_s43_fp32\\na025_s42_fp32\\na025_s43_fp32\\na025_s44_fp32\\na030_s42_fp32\\na035_s42_fp32\\na040_s42_fp32\\na045_s42_fp32\\na045_s43_fp32\\na046_s42_fp32\\na048_s42_fp32\\na050_postd093_s42_fp32\\na050_s42_fp32\\na050_s43_fp32\\na050_s44_fp32\\na052_s42_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\na060_s42_fp32_v4\\na060_s43_fp32\\na065_s42_fp32\\na070_s42_fp32\\na075_s42_fp32\\na100_s42_fp32\\nc4_a025_s42_fp32\\nc4_a050_s42_fp32\\nc4_a075_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the PermG analysis results. Let me read the analysis files that contain the per-pair PermG results. The key files are:
+- `analysis/5method_leadlag.json` - likely contains per-pair results for 5 methods including PermG
+- `analysis_results.json` - might contain aggregated results
+- `analysis_m035.json` - post-M035 fix analysis
+
+Also, the null experiment is at `a000_s42_fp32` (not `a000_s42`). Let me also check for other null seeds.
+
+
+Now I'm loading the analysis files to extract the per-pair PermG results and compare them against the null distribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0a076eb1-81ef-4288-bd1c-0ba14802043f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Found the analysis files. Let me read the PermG per-pair results and check null experiment directories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0426cad9-719f-43f1-b89b-1cc345e4a1b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MGXPRgr2TKU6GAoXpeUDe9`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "54c9d848-ceb3-4990-842f-3360cf0a1f2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T05:13:15.928Z_
+
+<details><summary>↩ Tool result · `toolu_01MGXPRgr2TKU6GAoXpeUDe9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9395,\\n          \\\"p_value\\\": 0.005382,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.5073,\\n              \\\"p\\\": 0.304328\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.4893,\\n              \\\"p\\\": 0.265137\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.3849,\\n              \\\"p\\\": 0.346371\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.6828,\\n              \\\"p\\\": 0.042658\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.8089,\\n              \\\"p\\\": 0.004604\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4368,\\n              \\\"p\\\": 0.179219\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8768,\\n              \\\"p\\\": 0.000866\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.7946,\\n              \\\"p\\\": 0.010509\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7615,\\n              \\\"p\\\": 0.028154\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.8864,\\n              \\\"p\\\": 0.007852\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.9395,\\n              \\\"p\\\": 0.005382\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.968,\\n          \\\"p_value\\\": 8e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.1886,\\n              \\\"p\\\": 0.761238\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.1112,\\n              \\\"p\\\": 0.833889\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.1676,\\n              \\\"p\\\": 0.719462\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.968,\\n              \\\"p\\\": 8e-05\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9654,\\n              \\\"p\\\": 2.5e-05\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1355,\\n              \\\"p\\\": 0.708875\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.6738,\\n              \\\"p\\\": 0.046593\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.4141,\\n              \\\"p\\\": 0.307743\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.4697,\\n              \\\"p\\\": 0.287535\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.2753,\\n              \\\"p\\\": 0.597469\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.5939,\\n              \\\"p\\\": 0.291011\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.00016,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1687.1135,\\n          \\\"p_value\\\": 0.0012,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.008,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"ty_grang\\n\\n... [截断: 输出过长，省略 52140 字符] ...\\n\\n         \\\"lag\\\": 2,\\n              \\\"r\\\": 0.4781,\\n              \\\"p\\\": 0.192964\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.6971,\\n              \\\"p\\\": 0.054626\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.3891,\\n              \\\"p\\\": 0.388266\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0684,\\n              \\\"p\\\": 0.897623\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.7931,\\n          \\\"p_value\\\": 0.109403,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7931,\\n              \\\"p\\\": 0.109403\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.6477,\\n              \\\"p\\\": 0.16432\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.1972,\\n              \\\"p\\\": 0.671706\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.7718,\\n              \\\"p\\\": 0.024851\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.1233,\\n              \\\"p\\\": 0.75194\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.142,\\n              \\\"p\\\": 0.695597\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.3095,\\n              \\\"p\\\": 0.417632\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.6791,\\n              \\\"p\\\": 0.063993\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.3017,\\n              \\\"p\\\": 0.51078\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.1134,\\n              \\\"p\\\": 0.830678\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2067,\\n              \\\"p\\\": 0.738658\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.109403,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": null,\\n          \\\"downstream_onset\\\": 2,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0391,\\n          \\\"p_value\\\": 0.846231,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.846231,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.2112,\\n          \\\"p_value\\\": 0.882,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 6,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 7,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 7,\\n    \\\"threshold_forward_sig\\\": 4,\\n    \\\"ty_forward_sig\\\": 3,\\n    \\\"robust_pairs\\\": 6\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "e7753f67-facc-4f41-9b0b-d6c28b791a02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9395,\\\\n          \\\\\\\"p_value\\\\\\\": 0.005382,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.5073,\\\\n              \\\\\\\"p\\\\\\\": 0.304328\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.4893,\\\\n              \\\\\\\"p\\\\\\\": 0.265137\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.3849,\\\\n              \\\\\\\"p\\\\\\\": 0.346371\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.6828,\\\\n              \\\\\\\"p\\\\\\\": 0.042658\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.8089,\\\\n              \\\\\\\"p\\\\\\\": 0.004604\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.4368,\\\\n              \\\\\\\"p\\\\\\\": 0.179219\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.8768,\\\\n              \\\\\\\"p\\\\\\\": 0.000866\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.7946,\\\\n              \\\\\\\"p\\\\\\\": 0.010509\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7615,\\\\n              \\\\\\\"p\\\\\\\": 0.028154\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.8864,\\\\n              \\\\\\\"p\\\\\\\": 0.007852\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.9395,\\\\n              \\\\\\\"p\\\\\\\": 0.005382\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.968,\\\\n          \\\\\\\"p_value\\\\\\\": 8e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": -0.1886,\\\\n              \\\\\\\"p\\\\\\\": 0.761238\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.1112,\\\\n              \\\\\\\"p\\\\\\\": 0.833889\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.1676,\\\\n              \\\\\\\"p\\\\\\\": 0.719462\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.968,\\\\n              \\\\\\\"p\\\\\\\": 8e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9654,\\\\n              \\\\\\\"p\\\\\\\": 2.5e-05\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.1355,\\\\n              \\\\\\\"p\\\\\\\": 0.708875\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.6738,\\\\n              \\\\\\\"p\\\\\\\": 0.046593\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.4141,\\\\n              \\\\\\\"p\\\\\\\": 0.307743\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.4697,\\\\n              \\\\\\\"p\\\\\\\": 0.287535\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.2753,\\\\n              \\\\\\\"p\\\\\\\": 0.597469\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.5939,\\\\n              \\\\\\\"p\\\\\\\": 0.291011\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.00016,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1687.1135,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0012,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.008,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"ty_grang\\\\n\\\\n... [截断: 输出过长，省略 52140 字符] ...\\\\n\\\\n         \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.4781,\\\\n              \\\\\\\"p\\\\\\\": 0.192964\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.6971,\\\\n              \\\\\\\"p\\\\\\\": 0.054626\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.3891,\\\\n              \\\\\\\"p\\\\\\\": 0.388266\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0684,\\\\n              \\\\\\\"p\\\\\\\": 0.897623\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.7931,\\\\n          \\\\\\\"p_value\\\\\\\": 0.109403,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.7931,\\\\n              \\\\\\\"p\\\\\\\": 0.109403\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": -0.6477,\\\\n              \\\\\\\"p\\\\\\\": 0.16432\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.1972,\\\\n              \\\\\\\"p\\\\\\\": 0.671706\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.7718,\\\\n              \\\\\\\"p\\\\\\\": 0.024851\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": -0.1233,\\\\n              \\\\\\\"p\\\\\\\": 0.75194\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.142,\\\\n              \\\\\\\"p\\\\\\\": 0.695597\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.3095,\\\\n              \\\\\\\"p\\\\\\\": 0.417632\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.6791,\\\\n              \\\\\\\"p\\\\\\\": 0.063993\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.3017,\\\\n              \\\\\\\"p\\\\\\\": 0.51078\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.1134,\\\\n              \\\\\\\"p\\\\\\\": 0.830678\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.2067,\\\\n              \\\\\\\"p\\\\\\\": 0.738658\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.109403,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": null,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0391,\\\\n          \\\\\\\"p_value\\\\\\\": 0.846231,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.846231,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.2112,\\\\n          \\\\\\\"p_value\\\\\\\": 0.882,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"order\\\\\\\": 3,\\\\n          \\\\\\\"k_opt\\\\\\\": 2,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\",\\\\n        \\\\\\\"perm\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 6,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 7,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 7,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 4,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 3,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 6\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9395,\\n          \\\"p_value\\\": 0.005382,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.5073,\\n              \\\"p\\\": 0.304328\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.4893,\\n              \\\"p\\\": 0.265137\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.3849,\\n              \\\"p\\\": 0.346371\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.6828,\\n              \\\"p\\\": 0.042658\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.8089,\\n              \\\"p\\\": 0.004604\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4368,\\n              \\\"p\\\": 0.179219\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8768,\\n              \\\"p\\\": 0.000866\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.7946,\\n              \\\"p\\\": 0.010509\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7615,\\n              \\\"p\\\": 0.028154\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.8864,\\n              \\\"p\\\": 0.007852\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.9395,\\n              \\\"p\\\": 0.005382\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.968,\\n          \\\"p_value\\\": 8e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.1886,\\n              \\\"p\\\": 0.761238\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.1112,\\n              \\\"p\\\": 0.833889\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.1676,\\n              \\\"p\\\": 0.719462\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.968,\\n              \\\"p\\\": 8e-05\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9654,\\n              \\\"p\\\": 2.5e-05\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1355,\\n              \\\"p\\\": 0.708875\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.6738,\\n              \\\"p\\\": 0.046593\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.4141,\\n              \\\"p\\\": 0.307743\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.4697,\\n              \\\"p\\\": 0.287535\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.2753,\\n              \\\"p\\\": 0.597469\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.5939,\\n              \\\"p\\\": 0.291011\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.00016,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1687.1135,\\n          \\\"p_value\\\": 0.0012,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.008,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"ty_grang\\n\\n... [截断: 输出过长，省略 52140 字符] ...\\n\\n         \\\"lag\\\": 2,\\n              \\\"r\\\": 0.4781,\\n              \\\"p\\\": 0.192964\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.6971,\\n              \\\"p\\\": 0.054626\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.3891,\\n              \\\"p\\\": 0.388266\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0684,\\n              \\\"p\\\": 0.897623\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.7931,\\n          \\\"p_value\\\": 0.109403,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7931,\\n              \\\"p\\\": 0.109403\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.6477,\\n              \\\"p\\\": 0.16432\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.1972,\\n              \\\"p\\\": 0.671706\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.7718,\\n              \\\"p\\\": 0.024851\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.1233,\\n              \\\"p\\\": 0.75194\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.142,\\n              \\\"p\\\": 0.695597\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.3095,\\n              \\\"p\\\": 0.417632\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.6791,\\n              \\\"p\\\": 0.063993\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.3017,\\n              \\\"p\\\": 0.51078\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.1134,\\n              \\\"p\\\": 0.830678\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2067,\\n              \\\"p\\\": 0.738658\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.109403,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": null,\\n          \\\"downstream_onset\\\": 2,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0391,\\n          \\\"p_value\\\": 0.846231,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.846231,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.2112,\\n          \\\"p_value\\\": 0.882,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\",\\n        \\\"perm\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 6,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 7,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 7,\\n    \\\"threshold_forward_sig\\\": 4,\\n    \\\"ty_forward_sig\\\": 3,\\n    \\\"robust_pairs\\\": 6\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CNScBznwT1iXFW48a7oiVK`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/ -name \"*.json\" -path \"*/analysis*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "4b393646-efdf-4fbc-85d0-bbd9cc10e46f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T05:13:16.654Z_
+
+<details><summary>↩ Tool result · `toolu_01CNScBznwT1iXFW48a7oiVK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_m035.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "fe097683-3fa5-492a-aa01-0fa8b6616cf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_results.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_m035.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis_m035.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BYVsJrPEZKnNr8MMHew9zD`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/ -name \"*.json\" -path \"*/analysis*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "2d8c2552-825a-490e-8219-c54c18475446",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T05:13:17.807Z_
+
+<details><summary>↩ Tool result · `toolu_01BYVsJrPEZKnNr8MMHew9zD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "4f59c1dc-eabb-47e2-a8f3-4a87496cd337",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis_results.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ExQYnw4RKfpTsEiadDw9mu`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/ -name \"*.json\" -path \"*/analysis*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "0adc2a14-cdd4-4780-b30d-501146c87c3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T05:13:18.563Z_
+
+<details><summary>↩ Tool result · `toolu_01ExQYnw4RKfpTsEiadDw9mu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_m035.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "4869866d-a498-4fab-9457-115aa26b5f41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_results.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_m035.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_results.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis_m035.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag_pre_tyfix_batch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014nCx89QLMd5GFiiGGqVj11`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ -d a000*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "42f76e59-710f-4271-b51f-75df7f526079",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7YNZDRmYbY8CcWccHKJFw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 36834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T05:13:19.498Z_
+
+<details><summary>↩ Tool result · `toolu_014nCx89QLMd5GFiiGGqVj11`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/\\n\", \"stderr\": \"ls: cannot access 'a000*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "9ec066c2-b564-4325-886b-97633525289a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access 'a000*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/\\n\", \"stderr\": \"ls: cannot access 'a000*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found the analysis files. The a050_s42_fp32 has per-pair PermG results in the 5method_leadlag.json. I can see the PermG results: for each pair, the `perm_granger` field has `p_value`, `p_fdr`, `significant`, and `significant_fdr`.
+
+From the s42 data I already have, let me extract the PermG FDR-corrected significance for each pair:
+
+For the forward direction:
+- te→d1: p_fdr=0.008, significant_fdr=true
+
+
+- te→d2, te→d3, te→mauve, ece→d1, ece→d2, ece→d3, ece→mauve: still need to check
+
+I should write a script to extract the PermG FDR significance across all pairs and seeds rather than doing this manually, and I need to verify what data directories are actually available since I'm only seeing a050_s42_fp32 so far.
+
+Writing extraction script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "1b4f40f7-78fa-40d3-b7c9-d3897646185d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012EbkSjpY5uxaEZCREVJkbe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6072,
+      "cache_read_input_tokens": 39939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+The output was truncated. Let me extract just the PermG per-pair results using a targeted Python script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "05f0f859-6483-4b6b-b5ad-f3325b68401e",
+  "uuid": "b0a930e1-ce80-4e3f-afb2-5dafad0f5d38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012EbkSjpY5uxaEZCREVJkbe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6072,
+      "cache_read_input_tokens": 39939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

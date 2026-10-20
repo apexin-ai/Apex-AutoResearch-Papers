@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17ddb635be4ba8bfcea0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops d102 t10 a075 s43",
+  "task_key": "worker_ops_d102-t10-a075-s43_20260523T081049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t10-a075-s43_20260523T081049_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "d6f468026fb7ede15dde44a92b55d3e33ba07d355c3aebdea3f9a9bdab9d9b45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n## D102 Results: scale_14b_t10_a075_s43_fp32\n\n### 5-Method Lead-Lag Analysis\n\n| Method | Forward | Reverse |\n|--------|---------|---------|\n| PermG FDR | **6/8** | 5/8 |\n| DiffXCorr FDR | 7/8 | 7/8 |\n| Threshold (3σ) | 0/8 | — |\n| TY Granger | 1/8 | — |\n| **K≥3** | **5/8** | — |\n| K≥4 | 0/8 | — |\n\n### Drift (gen_0 → gen_10)\n\n| Metric | Change |\n|--------|--------|\n| PPL | 19.8 → 88.8 (+348%) |\n| Entropy | 2.97 → 1.95 (-34%) |\n| ECE | 0.008 → 0.265 (+3174%) |\n| MAUVE | 0.289 → 0.258 (-11%) |\n| Distinct-1 | 0.098 → 0.081 (-18%) |\n\n### s43 vs s42 Comparison\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| PermG fwd | 5/8 | **6/8** (+1) |\n| K≥3 | 5/8 | 5/8 (same) |\n\ns43 replicates s42 — canary lead-lag detection at 1.4B scale is seed-robust. MAUVE was originally null (HF offline during training); recomputed before analysis.\n\nRegistry updated to DONE/success."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-t10-a075-s43.md"
+}

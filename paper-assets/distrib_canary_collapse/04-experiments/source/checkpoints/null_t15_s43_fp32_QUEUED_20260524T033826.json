@@ -1,0 +1,15 @@
+{
+  "exp_id": "null_t15_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:37:53.175Z",
+    "updated_at": "2026-05-24T03:38:25.933Z",
+    "hypothesis": "FPR verification at T=15: null condition (α=0.00) should show 0% PermG detection rate with longer observation window, confirming FPR control generalizes across T"
+  },
+  "timestamp": "2026-05-24T03:38:26.393820+00:00",
+  "trigger": "update_registry"
+}

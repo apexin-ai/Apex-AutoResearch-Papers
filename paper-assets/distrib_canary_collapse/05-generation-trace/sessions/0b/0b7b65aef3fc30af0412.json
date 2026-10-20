@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7b65aef3fc30af0412",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor a075 plan006 status",
+  "task_key": "worker_monitor_a075_plan006_status_20260515T063915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_a075_plan006_status_20260515T063915_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "2aa723647eed03c72e1996782cc2f90a8402ea825f5ffb001ad3864c4fc35b0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。简报如下：\n\n---\n\n## 实验状态简报\n\n| 实验 | 当前进度 | GPU | GPU 利用率 | 显存占用 | 预估完成 |\n|------|---------|-----|-----------|---------|---------|\n| **plan_006_s42** (α=1.0, 20gen) | gen 14/20（正在生成合成数据） | cuda:0 | 45% | 14.4/97.9 GB | ~3h（≈09:40 UTC） |\n| **alpha_sweep_a075_s42** (α=0.75) | gen 2/10（训练 step 490/5000） | cuda:1 | 89% | 12.5/97.9 GB | ~3.5h（≈10:10 UTC） |\n\n**异常检查**：\n- 两个进程均存活，无 OOM、无报错\n- plan_006 的 45% GPU 利用率是因为当前处于合成数据生成阶段（推理），训练阶段会回到高利用率\n- padding_side 警告是 HuggingFace 的常规 warning，不影响训练\n\n**磁盘**：`/root/autodl-tmp/` 剩余 114GB（55% 使用），空间充裕。\n\n**估算依据**：plan_006 已跑 ~7h 完成 14 gen，约 30 min/gen；a075 跑 55 min 完成 ~2.1 gen，约 26 min/gen。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-a075-plan006-status.md"
+}

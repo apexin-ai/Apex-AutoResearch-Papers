@@ -1,0 +1,99 @@
+{
+  "description": "FPR from alpha=0.0 null control (no canary injection)",
+  "ground_truth": "alpha=0.0 (any significance is false positive by definition)",
+  "n_pairs": 8,
+  "seed": 42,
+  "note": "single seed \u2014 interpret with caution",
+  "table": [
+    {
+      "method": "naive",
+      "fpr_p_raw": 1.0,
+      "sig_raw": 8,
+      "fpr_p_fdr": 1.0,
+      "sig_fdr": 8,
+      "total": 8,
+      "p_values_raw": [
+        0.002496,
+        0.006055,
+        0.007303,
+        0.0,
+        0.005344,
+        0.009665,
+        0.022381,
+        0.018795
+      ]
+    },
+    {
+      "method": "differenced",
+      "fpr_p_raw": 0.5,
+      "sig_raw": 4,
+      "fpr_p_fdr": 0.375,
+      "sig_fdr": 3,
+      "total": 8,
+      "p_values_raw": [
+        0.000157,
+        0.00325,
+        0.044726,
+        2e-06,
+        0.051439,
+        0.192837,
+        0.202654,
+        0.096018
+      ]
+    },
+    {
+      "method": "threshold",
+      "fpr_p_raw": 0.625,
+      "sig_raw": 5,
+      "fpr_p_fdr": 0.625,
+      "sig_fdr": 5,
+      "total": 8
+    },
+    {
+      "method": "permutation_granger",
+      "fpr_p_raw": 0.0,
+      "sig_raw": 0,
+      "fpr_p_fdr": 0.0,
+      "sig_fdr": 0,
+      "total": 8,
+      "p_values_raw": [
+        0.058941,
+        0.093906,
+        0.080919,
+        0.67033,
+        0.955045,
+        0.549451,
+        0.350649,
+        0.365634
+      ]
+    },
+    {
+      "method": "TY",
+      "fpr_p_raw": 0.0,
+      "sig_raw": 0,
+      "fpr_p_fdr": 0.0,
+      "sig_fdr": 0,
+      "total": 8,
+      "p_values_raw": [
+        0.891964,
+        0.858458,
+        0.970851,
+        0.314151,
+        0.094304,
+        0.092998,
+        0.103218,
+        0.801145
+      ]
+    }
+  ],
+  "pairs": [
+    "token_entropy->distinct_1",
+    "token_entropy->distinct_2",
+    "token_entropy->distinct_3",
+    "token_entropy->perplexity",
+    "ece->distinct_1",
+    "ece->distinct_2",
+    "ece->distinct_3",
+    "ece->perplexity"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a1c179c1474cd1772a3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose alpha sweep a040 s42 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a040_s42_fp32_20260519T141403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a040_s42_fp32_20260519T141403_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "4387eb4b5d9078dfa2d1c8f28c5a7a3da405136b12be1fb82854ae535835e670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因：SIGHUP（终端挂断），非 GPU 冲突。**\n\n**证据：**\n\n1. **日志确认**：进程 146539 在 Generation 0 刚开始时被杀，输出目录仅有 `config.json`，无任何 gen 产出。\n2. **GPU 内存充裕**：GPU 0 总共 97887 MiB，a060_s43_fp32（PID 137279）仅占 14503 MiB。Pythia-410m 也只需 ~14GB，两个实验同时跑绰绰有余。**GPU 冲突不是根因。**\n3. **a060_s43_fp32 仍在正常运行**（PID 137269，启动于 20:40:35，仍存活），进一步排除 GPU 0 本身的问题。\n4. **EXIT_CODE=129 来自 wrapper 的 `trap 'exit 129' HUP`**，说明外层 bash 收到了 SIGHUP。最可能的原因：启动 a040_s42_fp32 的 agent session / SSH 连接断开，进程没有被 tmux/nohup 保护。\n\n**GPU 当前状态（6x ~98GB H800）：**\n\n| GPU | 已用 | 占用进程 |\n|-----|------|---------|\n| 0 | 14503 MiB | a060_s43_fp32 |\n| 1 | 14269 MiB | PID 143075 |\n| 2 | 14237 MiB | PID 122887 |\n| 3 | 14237 MiB | PID 123809 |\n| 4 | 7451 MiB | PID 147488 |\n| 5 | 14237 MiB | PID 121667 |\n\n**建议**：可以重跑。任意 GPU 都有 >80GB 空闲，完全能容纳。重跑时确保在 tmux session 内启动，避免再次 SIGHUP。GPU 4 空闲最多（仅 7.4GB 占用），但任何一张都行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha-sweep-a040-s42-fp32.md"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "alpha_sweep_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:18:30.958Z",
+    "updated_at": "2026-05-19T13:51:05.115Z",
+    "hypothesis": "α=0.75 pre-D080 为 fp16，fp32 重跑将提供 D079 合规的权威数据。PermG 预期保持 ~83%（high regime），但 drift magnitude 可能因 fp32 精度改变",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "121667",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log",
+      "submitted_at": "2026-05-19T09:33:47.560Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "metrics": {
+      "partial": true,
+      "n_generations_completed": 4,
+      "n_generations_planned": 10,
+      "note": "Partial metrics from first run (gen 4 crash). Restarted with --start_gen 4 + TRANSFORMERS_OFFLINE=1, now at gen 7/10. Will be overwritten on completion."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:51:04.701Z"
+    }
+  },
+  "timestamp": "2026-05-19T13:51:05.288968+00:00",
+  "trigger": "update_registry"
+}

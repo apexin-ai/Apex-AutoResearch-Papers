@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase_diagram_t25_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:23:34.127Z",
+    "updated_at": "2026-05-21T13:37:04.552Z",
+    "hypothesis": "Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 is above threshold. At T=10 α=0.50 is the phase transition point (PermG=6/8), at T=20 yields 8/8. If T=25 shows ≥6/8, confirms robust detection scaling with T. Maps T=25 row at α=0.50."
+  },
+  "timestamp": "2026-05-21T13:37:04.921324+00:00",
+  "trigger": "update_registry"
+}

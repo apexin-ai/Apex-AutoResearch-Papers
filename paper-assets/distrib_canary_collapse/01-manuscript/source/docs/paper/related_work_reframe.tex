@@ -1,0 +1,22 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Model collapse and canary metrics.}
+
+Iterative training collapse was formalized by \citet{shumailov2024curse} for language models and by \citet{alemohammad2024mad} for image generation, establishing that recursive self-training erodes tail modes and reduces output diversity.
+Theoretical analyses have since shown that even small synthetic fractions alter effective scaling-law exponents \cite{dohmatob2024tale}.
+Several metrics have been proposed as early collapse indicators: calibration error \cite{du2026geometric,du2025scales}, surplexity \cite{gambetta2024surplexity}, spectral divergence \cite{sigma2026spectral}, and center-edge dynamics \cite{dces2026counter}.
+Yet none of these analyses apply differencing tests to rule out spurious co-trending, cross-validate across multiple statistical methods, or apply false discovery rate correction when testing multiple metric pairs.
+
+\paragraph{Early-warning signals and lead-lag methodology.}
+
+The concept of early-warning indicators originates in ecology, where \citet{scheffer2009early} showed that systems approaching tipping points exhibit rising autocorrelation and variance independent of system-specific mechanisms.
+\citet{boettiger2012limits} quantified the detection limits of such signals in short time series, a constraint directly relevant to iterative training where generation counts rarely exceed 20.
+Granger causality \cite{granger1969investigating} provides the standard test for temporal precedence but produces spurious rejections on non-stationary series \cite{granger1974spurious}; the Toda--Yamamoto procedure \cite{toda1995statistical} restores valid inference at the cost of degrees of freedom \cite{shojaie2022granger}, a severe trade-off when $T{\leq}20$.
+Yet these ecological and econometric tools have not been combined for model collapse; existing canary studies rely on visual inspection or naive correlation that cannot distinguish temporal precedence from shared trends.
+
+\paragraph{Analytical robustness.}
+
+Researcher degrees of freedom in ML have received increasing attention through multiverse analysis \cite{bell2022modeling}, many-analysts designs showing that independent teams reach divergent conclusions on identical data \cite{coretta2023multidimensional}, and the REFORMS checklist \cite{kapoor2024reforms}.
+Our work applies this perspective to collapse monitoring.
+We differ from the closest predecessor \cite{du2026geometric} in four respects: we compare an entire family of canary metrics rather than a single pair, cross-validate each relationship across five statistical methods, apply FDR correction across all tested pairs, and map detectability as a function of contamination regime.

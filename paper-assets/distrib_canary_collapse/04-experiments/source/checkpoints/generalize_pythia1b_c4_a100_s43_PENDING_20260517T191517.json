@@ -1,0 +1,16 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:15:09.476Z",
+    "updated_at": "2026-05-17T19:15:17.076Z",
+    "hypothesis": "C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然",
+    "parent": "generalize_pythia1b_c4_a100_s42_v2"
+  },
+  "timestamp": "2026-05-17T19:15:17.189596+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-20T12:58:18Z",
+  "task1_delta_alpha": {
+    "description": "Transition width (10%->90%) = 2*ln(9)/k from N=10000 bootstrap",
+    "median": 0.0128,
+    "mean": 0.0234,
+    "ci_95": [
+      0.0088,
+      0.0597
+    ],
+    "n_boot_successful": 9207,
+    "interpretation": "Transition width Delta_alpha median=0.0128 is narrow, confirming steep onset around alpha_c"
+  },
+  "task2_delta_p": {
+    "description": "Detection rate difference p(alpha=0.50) - p(alpha=0.45) from bootstrap sigmoid",
+    "median": 0.3922,
+    "ci_95": [
+      0.001,
+      0.75
+    ],
+    "fraction_positive": 1.0,
+    "interpretation": "Median jump of 0.3922 at the 0.45->0.50 boundary; 100.0% of bootstrap samples show positive delta"
+  },
+  "task3_fisher": {
+    "description": "Fisher exact test: alpha<=0.45 (0/64) vs alpha>=0.50 (21/32)",
+    "p_value": 1.649138394904466e-13,
+    "odds_ratio": "Inf",
+    "table": [
+      [
+        21,
+        11
+      ],
+      [
+        0,
+        64
+      ]
+    ],
+    "interpretation": "p = 1.65e-13, detection rate is significantly higher for alpha>=0.50 vs alpha<=0.45"
+  },
+  "overall_conclusion": "alpha_c CI width (0.133) = estimation uncertainty of WHERE; Delta_alpha (~0.013) = HOW SHARP. Ratio CI_width/Delta_alpha = 10.38 confirms these are distinct quantities."
+}

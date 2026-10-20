@@ -1,0 +1,70 @@
+{
+  "rejection_matrix": {
+    "PermG_fdr": {
+      "s42": [0, 0, 0, 0, 0, 0, 0, 0],
+      "s43": [0, 0, 0, 0, 0, 0, 0, 0],
+      "s44": [0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "DiffXCorr_fdr": {
+      "s42": [1, 1, 1, 0, 0, 0, 0, 1],
+      "s43": [0, 1, 1, 0, 0, 0, 0, 0],
+      "s44": [1, 1, 0, 1, 0, 0, 0, 0]
+    },
+    "NaiveXCorr": {
+      "s42": [1, 1, 1, 1, 1, 1, 1, 1],
+      "s43": [1, 1, 1, 1, 1, 1, 1, 0],
+      "s44": [1, 1, 1, 1, 1, 1, 1, 0]
+    },
+    "ThresholdOnset": {
+      "s42": [0, 1, 1, 1, 0, 0, 0, 0],
+      "s43": [0, 0, 0, 1, 0, 0, 0, 0],
+      "s44": [0, 0, 1, 1, 0, 0, 0, 0]
+    },
+    "TY_Granger": {
+      "s42": [0, 0, 0, 0, 1, 0, 1, 0],
+      "s43": [1, 0, 0, 0, 1, 0, 0, 0],
+      "s44": [0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  },
+  "pair_names": ["te→d1", "te→d2", "te→d3", "te→mauve", "ece→d1", "ece→d2", "ece→d3", "ece→mauve"],
+  "per_method_summary": {
+    "PermG_fdr": {"s42": "0/8", "s43": "0/8", "s44": "0/8", "total": "0/24"},
+    "DiffXCorr_fdr": {"s42": "4/8", "s43": "2/8", "s44": "3/8", "total": "9/24"},
+    "NaiveXCorr": {"s42": "8/8", "s43": "7/8", "s44": "7/8", "total": "22/24"},
+    "ThresholdOnset": {"s42": "3/8", "s43": "1/8", "s44": "2/8", "total": "6/24"},
+    "TY_Granger": {"s42": "2/8", "s43": "2/8", "s44": "0/8", "total": "4/24"}
+  },
+  "clopper_pearson_ci": {
+    "0_of_3": [0.0, 0.707598],
+    "0_of_6": [0.0, 0.459258],
+    "0_of_9": [0.0, 0.336267],
+    "0_of_24": [0.0, 0.142474]
+  },
+  "clopper_pearson_ci_diffxcorr": {
+    "3_of_3": [0.292402, 1.0],
+    "6_of_6": [0.540742, 1.0],
+    "9_of_9": [0.663733, 1.0],
+    "9_of_24": [0.187993, 0.594064]
+  },
+  "effective_n_analysis": {
+    "permg": "all-zero across 3 seeds × 8 pairs, effective_n = 3 (lower bound)",
+    "diffxcorr_icc": 0.3386,
+    "diffxcorr_total_rejections": 9,
+    "diffxcorr_per_pair_agreement": {
+      "te→d1": {"seeds": [1, 0, 1], "agreement": 2},
+      "te→d2": {"seeds": [1, 1, 1], "agreement": 3},
+      "te→d3": {"seeds": [1, 1, 0], "agreement": 2},
+      "te→mauve": {"seeds": [0, 0, 1], "agreement": 1},
+      "ece→d1": {"seeds": [0, 0, 0], "agreement": 0},
+      "ece→d2": {"seeds": [0, 0, 0], "agreement": 0},
+      "ece→d3": {"seeds": [0, 0, 0], "agreement": 0},
+      "ece→mauve": {"seeds": [1, 0, 0], "agreement": 1}
+    },
+    "interpretation": "ICC=0.3386; moderate within-seed clustering → effective_n ≈ 3×unique_rejection_patterns, not 24"
+  },
+  "diffxcorr_detail": {
+    "s42": {"rejecting_pairs": ["te→d1", "te→d2", "te→d3", "ece→mauve"], "count": 4},
+    "s43": {"rejecting_pairs": ["te→d2", "te→d3"], "count": 2},
+    "s44": {"rejecting_pairs": ["te→d1", "te→d2", "te→mauve"], "count": 3}
+  }
+}

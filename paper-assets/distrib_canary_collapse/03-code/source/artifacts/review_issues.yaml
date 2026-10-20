@@ -1,0 +1,1740 @@
+issues:
+- id: R1-N1
+  summary: Ground-truth pairs 定义存在循环论证
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: Effect-size GT 重定义完成。
+  resolution_round: 1
+- id: R1-N2
+  summary: FPR=0% 标定仅基于单 seed
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: α=0.0 三 seed FPR 验证完成。
+  resolution_round: 1
+- id: R1-N3
+  summary: α=0.50 和 α=0.75 仅 1 seed
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: Multi-seed 补充完成。
+  resolution_round: 1
+- id: R2-N1
+  summary: 核心方法论为计量经济学已有知识的直接迁移，新颖性有限
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Round 1 三层定位 reframe 完成。
+  resolution_round: 1
+- id: R2-N2
+  summary: α=0.75 multi-seed 实验未完成 + Appendix A 缺失
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-N3
+  summary: 实验规模过窄
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 跨架构验证已扩展至 15 model-seed 组合。
+  resolution_round: 1
+- id: R1-W1
+  summary: Abstract 'Granger-causes' vs Discussion 'Granger-precedes' 措辞不一致
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: 核心修复完成。
+  resolution_round: 1
+- id: R1-W2
+  summary: PermG 缺少 power analysis
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Appendix N power analysis 完成。
+  resolution_round: 1
+- id: R1-W3
+  summary: 75% spurious-signal rate headline 依赖 underpowered T-Y
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R1-W4
+  summary: α=0.75 单 seed borderline 结果不应出现在 abstract
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R1-W5
+  summary: Toda-Yamamoto 纳入理由表述不充分
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R1-W6
+  summary: 可重复性信息不足
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 超参补充完成。
+  resolution_round: 1
+- id: R2-W3
+  summary: Token entropy canary 仅在 α=1.0 验证
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-W4
+  summary: 缺少独立 Limitations section
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-W5
+  summary: 缺少 AI Writing Disclosure
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-W6
+  summary: 缺少 canary→perplexity 为何 spurious 的深入解释
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-REF1
+  summary: 遗漏 Granger & Newbold (1974)
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-REF2
+  summary: 遗漏 Hataya et al. (2023) 和 Seddik et al. (2024)
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: R2-W1-old
+  summary: Citation key chen2025scales 与实际作者不匹配
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 完成。
+  resolution_round: 1
+- id: F2-W3
+  summary: Section 3 承诺的三项附录内容缺失
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  resolution: 附录内容补充完成。
+  resolution_round: 3
+- id: F2-W8
+  summary: 格式不合规：未使用 ACL 模板
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  resolution: ACL 模板迁移完成。
+  resolution_round: 2
+- id: F2-REF1
+  summary: 遗漏 arXiv:2502.15654
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  resolution: 引用已添加。
+  resolution_round: 4
+- id: F3-REF1
+  summary: 遗漏 arXiv:2602.10531
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: 引用已添加。
+  resolution_round: 4
+- id: F3-REF2
+  summary: 遗漏 arXiv:2505.19046
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: 引用已添加。
+  resolution_round: 4
+- id: F3-REF3
+  summary: 遗漏 arXiv:2510.16657
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: 引用已添加。
+  resolution_round: 4
+- id: F3-REF5
+  summary: Appendix H CUSUM 未引用 Page (1954)
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: 引用已添加。
+  resolution_round: 4
+- id: F4-REF1
+  summary: 遗漏 Truong & Truong (2026)
+  category: reference
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 6
+  resolution: 引用已添加并在 §1/§2 讨论。
+  resolution_round: 6
+- id: F4-REF3
+  summary: 遗漏 Benjamini & Yekutieli (2001)
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 4
+  resolution: §4 现引用 benjamini2001control。
+  resolution_round: 5
+- id: F2-REF3
+  summary: Dakos et al. (2012) + Schreiber (2000) + Phipson & Smyth (2010) 在 bib 中但正文未引用
+  category: reference
+  severity: minor
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  resolution: 引用补充完成。
+  resolution_round: 4
+- id: F6-W2
+  summary: 页数可能超限
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 8
+  resolution: R8 PDF 审查确认主体 8 页合规。
+  resolution_round: 8
+- id: F2-W6b
+  summary: '''Methodological pitfalls'' 有 straw-man 倾向'
+  category: framing
+  severity: major
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 8
+  resolution: 全文已改为 'design considerations'。R8 fresh review 未再提及。
+  resolution_round: 8
+- id: F5-N2
+  summary: T=10 统计效力不足(power≈37%), sharp onset 可能是 power artifact
+  category: method
+  severity: critical
+  status: resolved
+  resolution: Power simulation 重写通过。Steepness comparison 写入正文。Dense α 证据额外支撑。
+  resolution_round: 9
+  first_raised_round: 5
+  last_seen_round: 9
+- id: F2-W5
+  summary: Token entropy → distinct-n 机械耦合 confound 未排除
+  category: method
+  severity: major
+  status: resolved
+  resolution: Metric structure 分析完成。讨论已添加。
+  resolution_round: 9
+  first_raised_round: 2
+  last_seen_round: 9
+- id: F2-W2
+  summary: Specification curve analysis 定位不精确
+  category: method
+  severity: major
+  status: resolved
+  resolution: Appendix E 已改称 'systematic robustness analysis'。
+  resolution_round: 9
+  first_raised_round: 2
+  last_seen_round: 8
+- id: F8-C2
+  summary: Discussion §6 过于简短(~100词)
+  category: writing
+  severity: major
+  status: resolved
+  resolution: Discussion 扩展至 20 行。
+  resolution_round: 9
+  first_raised_round: 8
+  last_seen_round: 9
+- id: F8-C3
+  summary: 与 Schaeffer et al. (2025) '8 种 collapse 定义' 的关系讨论不充分
+  category: framing
+  severity: major
+  status: resolved
+  resolution: Schaeffer taxonomy 映射已添加到 related_work.tex。
+  resolution_round: 9
+  first_raised_round: 8
+  last_seen_round: 9
+- id: F8-C1
+  summary: Du & Tanaka-Ishii (2026) 引用三重错误
+  category: reference
+  severity: critical
+  status: resolved
+  resolution: §2 已修正。
+  resolution_round: 9
+  first_raised_round: 8
+  last_seen_round: 8
+- id: R9-C1
+  summary: FPR CI method.tex 内部矛盾
+  category: method
+  severity: critical
+  status: resolved
+  resolution: FPR=10% MMCT sensitivity analysis 完成。
+  resolution_round: 9
+  first_raised_round: 9
+  last_seen_round: 9
+- id: F8-N1
+  summary: BH-FDR 在强正回归依赖下适用性讨论不充分
+  category: method
+  severity: major
+  status: resolved
+  resolution: PRDS 假设适用性讨论已添加。
+  resolution_round: 9
+  first_raised_round: 8
+  last_seen_round: 10
+- id: F8-REF1
+  summary: 遗漏引用：online/continual learning 下 model collapse 检测
+  category: reference
+  severity: minor
+  status: resolved
+  resolution: related_work.tex 已添加 scope 区分。
+  resolution_round: 9
+  first_raised_round: 8
+  last_seen_round: 9
+- id: F2-W11
+  summary: α_c SE=0.006 低估真实 seed 不确定性
+  category: method
+  severity: major
+  status: resolved
+  resolution: 被 F2-W4b/F2-W6 的统计基础问题覆盖。
+  resolution_round: 11
+  first_raised_round: 2
+  last_seen_round: 10
+- id: F8-N2
+  summary: 未讨论为何选择经典 permutation Granger 而非 neural Granger causality
+  category: method
+  severity: minor
+  status: resolved
+  resolution: §4 已添加 T≤25 理由。§2 引用 neural Granger 文献。
+  resolution_round: 11
+  first_raised_round: 8
+  last_seen_round: 11
+- id: R9-REF2
+  summary: 遗漏引用：Steegen et al. (2016) multiverse analysis
+  category: reference
+  severity: minor
+  status: resolved
+  resolution: 论文 §2 已引用 steegen2016increasing。
+  resolution_round: 11
+  first_raised_round: 9
+  last_seen_round: 11
+- id: R10-REF2
+  summary: 遗漏引用：Mitchell et al. (2023) DetectGPT
+  category: reference
+  severity: minor
+  status: resolved
+  resolution: 论文 §2 已引用 mitchell2023detectgpt。
+  resolution_round: 11
+  first_raised_round: 10
+  last_seen_round: 11
+- id: R10-REF4
+  summary: 遗漏引用：Padmakumar et al. (2024)
+  category: reference
+  severity: minor
+  status: resolved
+  resolution: 论文 §2 已引用 padmakumar2024writing。
+  resolution_round: 11
+  first_raised_round: 10
+  last_seen_round: 11
+- id: F3-J4
+  summary: PermG FPR 超出 nominal 5%，architecture-dependent
+  category: method
+  severity: critical
+  status: in_progress
+  resolution: ''
+  resolution_round: null
+  first_raised_round: 3
+  last_seen_round: 17
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R14 R1 Must-Fix, R2 Should-Fix。GPT-2 null FPR 50%。CI [2.1%, 17.9%]。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-N3 Must-Fix。60 null pairs 下 4/60=6.7% CI [1.8%, 16.2%]，与 DiffXCorr 14.8% 重叠。R2 AGREE，补充：点估计 ranking 方向仍有信息价值，但论文不应将 6.7% 作为精确数字使用。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-N3 再次指出: FPR 6.7% CI [1.8%,16.2%], 上界超名义 5% 的 3 倍, 不能声称 controlled。R2 AGREE。'
+  action_items:
+  - round: 14
+    action: 'C3: 增加 null seeds s52-s54 收窄 CI；写作已明确 comparative 定位'
+    assigned_to: agent
+    status: in_progress
+- id: F2-W4b
+  summary: 幂律边界 α_c(T) 拟合基础薄弱
+  category: framing
+  severity: critical
+  status: in_progress
+  resolution: ''
+  resolution_round: null
+  first_raised_round: 2
+  last_seen_round: 17
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R14 Eq.(2) 降级为 empirical parametrization。B1 α=0.60 cross-seed 分析完成。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-N1 Must-Fix。3 自由参数拟合 3-4 数据点=插值非回归。γ CI [0.01,2.10] 跨两个数量级。Appendix Y power simulation 循环论证。R2 完全同意，建议 ≥6-8 个 α 水平。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-N2 再次指出: 3-4 data points 拟合 3 参数, η CI [0.64,2.08], 无约束力。R2 交叉 AGREE。'
+  action_items:
+  - round: 14
+    action: 'A2: Eq.(2)→empirical parametrization + Fig 1 fitted boundary [完成]; B1: α=0.60 v3/v4 + 含/排拟合对比 [完成]'
+    assigned_to: agent
+    status: done
+- id: F2-W2b
+  summary: '''Detectability landscape'' framing 承诺超过交付'
+  category: framing
+  severity: critical
+  status: in_progress
+  resolution: ''
+  resolution_round: null
+  first_raised_round: 2
+  last_seen_round: 17
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R14 最高共识 Must-Fix。A1 写作修复完成（Abstract 加 at α=1.0）。C2 OPT α=0.50 实验待执行。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 最高共识。R2-N1 认为 landscape=dose-response rebranding；R1 REBUT（multi-method + non-monotonic 超越 dose-response）但同意术语 inflation。R1-N2/R2-N2 双方 AGREE 跨架构仅 α=1.0 是最严重泛化缺陷。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R2-N3 再次指出: landscape 覆盖范围窄于标题暗示, 核心 phase diagram 仅 Pythia-410M。R1 AGREE with reservation。'
+  action_items:
+  - round: 14
+    action: 'A1: Abstract scope 校准 [完成]; §4.5 标题加 at α=1.0 [完成]; C2: OPT-1.3B α=0.50 实验 [待GPU]'
+    assigned_to: agent
+    status: in_progress
+- id: F2-W10
+  summary: Cross-architecture 'coupling preserved' 条件 post-hoc
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 15
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: 与 F2-W2b 继续合并。GPT-2 null FPR 50%。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 与 F2-W2b 合并讨论。4/15 non-confirming 条件（SmolLM3-3B entropy decoupling, GPT-2 Medium calibration dependency）暗示 landscape 是 architecture-dependent。
+- id: R11-N1
+  summary: 统计功率 β=0.66 CI [0.24,0.78] 使检测边界定量解读不可靠
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 15
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R1 Must-Fix, R2 Should-Fix。Limitations 已明确 coarse topology 定位。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 通过 R1-N1 boundary fitting 间接再次提及。3 seeds 的 variance 估计不足（R1-W1, R2 AGREE）加剧了此问题。
+  action_items:
+  - round: 14
+    action: Limitations 已更新 per-cell CI 宽度讨论。边界区域增加 seeds 需 GPU。
+    assigned_to: agent
+    status: in_progress
+- id: F2-W7
+  summary: Intervention 实验薄弱
+  category: experiment
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 17
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: R14 双方一致。A3 降级措辞已验证。B3 naive baseline 分析完成。C1 N=5 实验待 GPU。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-W3/R2-W3 双方 AGREE。仅 α=1.0 验证但占正文 ~0.5 页偏多。CUSUM comparison 显示在高 α 下差异不大，削弱独特价值。Discussion 的 deployment recommendations 超出证据支撑。建议压缩到 1-2 段。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-W5 再次指出: intervention 仅 α=1.0, 2 seeds。R2 AGREE。'
+  action_items:
+  - round: 14
+    action: 'A3: PoC 措辞验证 [完成]; B3: PPL threshold baseline [完成]; C1: N=5 intervention [待GPU]'
+    assigned_to: agent
+    status: in_progress
+- id: R12-N1
+  summary: Design Principle 'formal design rationale' 作为独立贡献 oversells
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 15
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: 'A6: SmolLM3-3B 3/8 + first-diff F=0 反例已写入 method.tex。待 Reviewer 验证。'
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-P3/R2 AGREE：Design Principle 1&2 formal statement 使用信息论语言但 operationalization 跳到具体 metrics 缺中间推导。正文仅引 Appendix 无直觉解释。
+- id: R14-N1
+  summary: Blind zone：α<0.50 已严重退化但所有检测方法均无信号
+  category: method
+  severity: major
+  status: in_progress
+  first_raised_round: 14
+  last_seen_round: 17
+  mentions:
+  - round: 14
+    reviewers:
+    - 2
+    note: 'A4: Limitations 已加 honest assessment（confirmation tool 定位）。待 Reviewer PASS。'
+  - round: 15
+    reviewers: []
+    note: R15 未显式提及，可能已修复。待 Research Director 确认。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R2-N2 再次指出: blind zone 与 early-warning 动机存在根本张力。R1 AGREE。'
+  action_items:
+  - round: 14
+    action: 'A4: Limitations blind zone honest assessment [完成，待 Reviewer PASS]'
+    assigned_to: agent
+    status: done
+- id: R11-W1
+  summary: '''3%-92%'' FPR 范围含失效方法 NaiveXCorr'
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 11
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R2-N3 间接涉及。R1 REBUT 认为 14x FPR 差异有 domain-specific 实证价值，但同意 'primary finding' 定位偏高。R2 的 Q2 建议排除 NaiveXCorr 后重算 κ。
+- id: R11-W2
+  summary: 每 cell 仅 8 pairs 的 binomial CI 极宽
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 11
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 通过 R1-N3（PermG FPR CI）间接涉及。每 cell 8 pairs 的精度不足是统计校准问题的底层原因。
+- id: R10-VIS1
+  summary: Table 1 / Figure 6 浮动超出 8 页主文边界
+  category: format
+  severity: critical
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers: []
+    note: R15 视觉审查：Pages 5-6 单页 3 个 display items，视觉压缩严重。Limitations 页面合规（page 8 确认）。
+- id: R12-W1
+  summary: 写作信息密度过高，关键 findings 淹没在数字洪流中
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+  - round: 15
+    reviewers: []
+    note: R15 未显式提及。视觉审查发现 pages 5-7 共 12 个 display items 略高于 8 页典型的 5-8 个。
+- id: R11-FMT1
+  summary: Abstract 脚注不标准
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 11
+  last_seen_round: 11
+- id: R11-SYM1
+  summary: β 符号重用：统计功率 vs 幂律指数
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A10: β→π_det 替换'
+    assigned_to: agent
+    status: done
+- id: F5-N1
+  summary: 核心方法是计量经济学标准技术的直接移植
+  category: framing
+  severity: major
+  status: wont_fix
+  first_raised_round: 5
+  last_seen_round: 17
+  resolution: 结构性天花板，novelty 来自 method-sensitivity finding 和 phase-diagram framing。
+  mentions:
+  - round: 15
+    reviewers:
+    - 2
+    note: R15 R2-N3 从新角度重提：method sensitivity 作为 primary finding 缺乏新颖性。R1 REBUT 认为 14x FPR 差异是 domain-specific 实证发现。分歧在程度非方向。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R2-N1 再次指出: 五种方法均为成熟统计工具的直接应用, MMCT 是标准逆误差加权。R1 AGREE with nuance。'
+- id: F5-W1
+  summary: Design Principles 数学深度有限
+  category: framing
+  severity: major
+  status: in_progress
+  first_raised_round: 5
+  last_seen_round: 15
+  mentions:
+  - round: 14
+    reviewers:
+    - 1
+    - 2
+    note: A6 反例讨论已添加。
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-P3 指出 formal statement→operationalization 缺中间推导。与 R12-N1 合并处理。
+- id: F2-W1
+  summary: α=0.60 sync dip：mechanism unexplained
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 17
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    note: R15 R1 在 REBUT R2-N1 时引用 non-monotonic detection dip（Figure 3, Table 6）作为超越 dose-response 的证据。α=0.60 anomaly 被视为正面发现而非问题。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-W3 再次指出: α=0.60 anomaly 的 temporal lag compression 假说仍为 post-hoc conjecture。R2 AGREE。'
+  action_items:
+  - round: 14
+    action: 'B1: cross-seed 一致性 (2/2 seeds 均 0/8) + 含/排拟合对比已写入 Appendix [完成]'
+    assigned_to: agent
+    status: done
+- id: F2-W6
+  summary: Detection boundary 验证不足
+  category: experiment
+  severity: major
+  status: open
+  first_raised_round: 2
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-N1 boundary fitting 欠定问题的直接后果。需要更多 α 水平数据点。
+- id: R10-MF5
+  summary: '''Five families (345M-6.9B)'' 数字自洽性'
+  category: writing
+  severity: critical
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 14
+  mentions:
+  - round: 15
+    reviewers: []
+    note: R15 未显式提及。可能已修复，待 Research Director 确认。
+  action_items:
+  - round: 14
+    action: 'A1: Abstract 加 ''at α=1.0'' + ''11/15 conditions'' + ''四个 non-confirming cases'' [完成]'
+    assigned_to: agent
+    status: done
+- id: R10-SF2
+  summary: Data accumulation vs replacement paradigm 未讨论
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 10
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R17 R2-W3 提及 full-replacement 限制生态效度。R1 REBUT (领域标准范式)。Divergence。
+- id: R10-SF3
+  summary: 单一解码策略需定性讨论
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 10
+  last_seen_round: 14
+- id: R10-SF5
+  summary: Bivariate confounding
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A5: Granger 局限扩展讨论（partial correlation 已在 §5）[已有]'
+    assigned_to: agent
+    status: done
+- id: R10-SF6
+  summary: 每 cell 仅 8 pairs 的 binomial CI 极宽
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 10
+  last_seen_round: 11
+- id: R10-SF7
+  summary: 3-4 seeds replication power 有限
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 10
+  last_seen_round: 17
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-W1 Should-Fix。3 seeds 标准差估计服从 2 自由度 χ²，CI 极宽。Appendix L 跨 seed 分析也仅 3-4 seeds。R2 完全同意。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-W2 覆盖: 3-4 seeds 不足。R2 AGREE。'
+- id: R11-VIS2
+  summary: Pages 5-6 连续纯文本无 display item
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 11
+  last_seen_round: 14
+- id: F8-W2
+  summary: Figure 子图内文字偏小
+  category: format
+  severity: minor
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers: []
+    note: R15 视觉审查再次发现：Page 5 Figure 4 轴标签约正文字号 50-60%（低于 70% 阈值），Page 7 Figure 8 y 轴标签偏小。
+  action_items:
+  - round: 14
+    action: 'A8: Figures 2/4/6 labels 放大至 ≥8pt [完成]'
+    assigned_to: agent
+    status: done
+- id: R9-m5
+  summary: Granger 'precedence' vs 'causality' 术语不一致
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A10: 全文统一为 Granger precedence [完成]'
+    assigned_to: agent
+    status: done
+- id: F2-W9b
+  summary: 孤立 bib entries
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A9: 移除 14 个未引用条目 [完成]'
+    assigned_to: agent
+    status: done
+- id: F6-C2
+  summary: buffa2026entropy 引用标题不匹配
+  category: reference
+  severity: critical
+  status: open
+  first_raised_round: 6
+  last_seen_round: 8
+- id: R13-W1
+  summary: MMCT K≥3 共识框架 K 选择缺乏理论最优性证明
+  category: method
+  severity: major
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-W2/R2-W1 双方 AGREE。MMCT 是 FPR-inverse weighted majority voting（基本技术）。Shapley 分析显示 PermG 已最优。MMCT 增量价值有限。w_k=1/max(FPR_k,ε) ad-hoc 无理论保证。Table 2 K≥4/K≥5 全 0% 无额外信息。
+  action_items:
+  - round: 14
+    action: 'A7: Discussion 加 K calibration 讨论 [完成]'
+    assigned_to: agent
+    status: done
+- id: R13-W2
+  summary: α=0.60 异常排除对幂律拟合的根本性影响
+  category: method
+  severity: major
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    note: R15 R1 在 REBUT R2-N1 时将 α=0.60 non-monotonic anomaly 视为超越 dose-response 的结构性发现。与 F2-W4b boundary fitting 问题关联。
+  action_items:
+  - round: 14
+    action: 'B1: cross-seed 一致性 + 含/排拟合对比 [完成]'
+    assigned_to: agent
+    status: done
+- id: R13-W3
+  summary: 跨架构验证仅在 α=1.0 最极端条件进行
+  category: experiment
+  severity: major
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 16
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 最高共识 Must-Fix。R1-N2/R2-N2 双方 AGREE。论文标题暗示普适性但实际是 Pythia-410M landscape。4/15 non-confirming 条件显示 architecture-dependent。
+  action_items:
+  - round: 14
+    action: 'C2: OPT-1.3B α=0.50 实验 [待GPU]'
+    assigned_to: agent
+    status: open
+- id: R13-W4
+  summary: Abstract 'substantially reduces peak perplexity' 超出证据强度
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A3: 已确认 Abstract/Conclusion 无 ''substantially'' [完成]'
+    assigned_to: agent
+    status: done
+- id: R13-W5
+  summary: 偏相关分析（控制 generation number）缺失
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A5: §5 已有 partial correlation 35/36 讨论 [已有]'
+    assigned_to: agent
+    status: done
+- id: R13-REF1
+  summary: 遗漏引用：Dakos et al. (2008, 2012) 早期预警信号核心实证方法论
+  category: reference
+  severity: warning
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A9: bib 清理中已移除未引用条目（含 dakos2008, dakos2012）'
+    assigned_to: agent
+    status: done
+- id: R13-REF3
+  summary: Granger causality 标准局限性（observational equivalence, Lucas critique）未讨论
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A5: Granger 局限扩展已在 §5 [已有]'
+    assigned_to: agent
+    status: done
+- id: R14-W1
+  summary: MMCT 权重估计噪声未讨论
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R15 R1-W2/R2-W1 的 MMCT 弱贡献共识间接涉及。
+- id: R14-W2
+  summary: Granger 检验在 T=10 短序列上 power 极低
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+- id: R14-M1
+  summary: bib 格式不一致
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 14
+  last_seen_round: 14
+  action_items:
+  - round: 14
+    action: 'A9: bib 清理和格式统一 [完成]'
+    assigned_to: agent
+    status: done
+- id: R10-SF4
+  summary: 方法敏感性 '3%-92%' framing
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 10
+  last_seen_round: 11
+- id: R10-REF3
+  summary: 遗漏引用：Runge et al. (2019) PCMCI
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 10
+  last_seen_round: 11
+- id: R9-REF1
+  summary: 遗漏引用：Gerstgrasser et al. (2024) data accumulation
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 9
+  last_seen_round: 11
+- id: R10-m1
+  summary: Figure 3 y 轴标签含义不直观
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 10
+  last_seen_round: 10
+- id: R10-m2
+  summary: Table 2 'x/8' 列含义未定义
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 10
+  last_seen_round: 10
+- id: R10-m3
+  summary: §5.1 前向引用缺上下文
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 10
+  last_seen_round: 10
+- id: R10-REF5
+  summary: 遗漏引用：Montgomery SPC
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 10
+  last_seen_round: 10
+- id: F4-REF5
+  summary: 'bib first author mismatch: dey2024breaking'
+  category: writing
+  severity: minor
+  status: open
+  first_raised_round: 4
+  last_seen_round: 11
+- id: F8-N3
+  summary: Appendix 关键验证内容应纳入正文
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: '[复发 × 2 轮] R15 R2-W5 认为正文不 self-contained。之前写作修复（增加 appendix 引用）不够。R15 要求提升 entropy artifact 到 §5 Discussion + §3.1 Design Principle 加直觉解释。'
+  action_items:
+  - round: 15
+    action: §5 增加 entropy 测量分辨率 concern 段落；§3.1 Design Principle 加 1-2 句直觉解释
+    assigned_to: paper_agent
+    status: pending
+- id: F8-N4
+  summary: predict-then-verify post-hoc adjustment 嫌疑
+  category: method
+  severity: major
+  status: open
+  first_raised_round: 8
+  last_seen_round: 8
+- id: R12-REF1
+  summary: 遗漏引用：Adams & MacKay (2007) Bayesian online changepoint detection
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 12
+  last_seen_round: 12
+- id: R12-REF2
+  summary: 遗漏引用：Papana et al. (2013) / Siggiridou & Kugiumtzis (2016)
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 12
+  last_seen_round: 12
+- id: R12-W2
+  summary: Eq.1 sigmoid 上界 0.70 选择理由未说明
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 12
+  last_seen_round: 12
+- id: R12-W3
+  summary: α 采样间隔不均匀（0.10→0.25 跳跃）理由未解释
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 12
+  last_seen_round: 12
+- id: R12-W4
+  summary: Schaeffer et al. 8 种 collapse 定义中本文使用哪种未明确
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 12
+  last_seen_round: 12
+- id: R13-REF2
+  summary: 遗漏引用：Lenton et al. (2008) 气候 tipping elements
+  category: reference
+  severity: minor
+  status: open
+  first_raised_round: 13
+  last_seen_round: 13
+- id: R13-VIS1
+  summary: 主文 8 页 0 个 table，所有定量结果表格在 appendix
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+- id: R13-VIS2
+  summary: 前两页无任何 display item，Figure 1 直到第 3 页
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+- id: R15-REF1
+  summary: 遗漏引用：Silberzahn et al. (2018) Many Analysts, One Data Set
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: 论文 method sensitivity finding 直接回应 Silberzahn 的 multi-analyst/multi-method 框架。双方 AGREE 应在 §2 或 §3.3 引用。
+- id: R15-REF2
+  summary: 遗漏引用：Kirchenbauer et al. (2023) watermarking as alternative paradigm
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 2
+    note: Watermarking (proactive) vs distributional detection (reactive) 的方法论区分应在 Related Work 简要讨论。R2 AGREE。R1 未强调。
+- id: R15-W1
+  summary: Entropy artifact（测量分辨率差异）应从 Appendix J 提升到 §5 Discussion
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R1-W4/R2-W4 双方 AGREE。Appendix J 承认 entropy 是连续量、distinct-n 是离散计数——对 Design Principle 1 的根本性替代解释。R2 补充：需对 entropy 做 discretization 后重新测试 Granger precedence。此前 F2-W5 曾在 R9 标记 resolved，但 R15 从新角度（主文可见性
+      + discretization 验证）重新提出。
+- id: R15-W2
+  summary: 排除 NaiveXCorr 后 κ 值应报告，以校准 method sensitivity claim
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 2
+    note: R2 Q2：如果排除 NaiveXCorr（94.4% FPR 的失效方法），κ 可能显著提高，method sensitivity claim 需要重新校准。与 R11-W1 关联。
+- id: R15-W3
+  summary: Method sensitivity 定位应从 'primary finding' 降为 'methodological warning'
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R2-N3 认为统计学常识不构成 finding。R1 REBUT（14x FPR 差异是 domain-specific 实证发现）但同意 Contribution 1 定位偏高。共识：降为 methodological warning，Contribution 列表重新排序。
+  action_items:
+  - round: 15
+    action: 'P0: Intro/Abstract contribution list 按 D130 重排。当前 intro line 14 ''most consequential=method sensitivity'' 与 D130 矛盾。'
+    assigned_to: paper_agent
+    status: pending
+- id: R15-MF1
+  summary: 跨架构泛化仅在 α=1.0，phase boundary 无跨架构验证
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 16
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: 最高共识 Must-Fix。1.4B α-sweep 数据已有（registry），需补 appendix 表格。OPT-1.3B α=0.50 正在跑。标题/Abstract 需加 scope qualifier。
+  action_items:
+  - round: 15
+    action: 'Writing: 标题/Abstract/Conclusion 加 scope qualifier; Appendix 补 1.4B α-sweep 表格'
+    assigned_to: paper_agent
+    status: pending
+  - round: 15
+    action: 'Evidence: 等 C2 OPT-1.3B α=0.50 结果'
+    assigned_to: main_agent
+    status: pending
+- id: R15-MF2
+  summary: Power-law boundary 拟合欠定（3 参数 / 3-4 点 = 插值）
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: γ CI 跨两个数量级。降级为 directional trend 而非 quantitative claim。
+  action_items:
+  - round: 15
+    action: 'Writing: Contribution list 删 γ 值，改为定性描述。保留 profile likelihood 在 appendix。'
+    assigned_to: paper_agent
+    status: pending
+- id: R15-MF3
+  summary: PermG FPR 6.7% CI [1.8%, 16.2%] 过宽且与 DiffXCorr 重叠
+  category: writing
+  severity: critical
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: Conclusion '6.7%' 需附 CI。承认 vs DiffXCorr 14.8% 统计不显著。
+  action_items:
+  - round: 15
+    action: §4.1/Conclusion 附 CI；修复 K≥3 FPR 11.1%→10.0% 不一致；修复 method.tex '0% FPR' → '6.7%'
+    assigned_to: paper_agent
+    status: pending
+- id: R15-MF4
+  summary: Detectability landscape 术语 inflation
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - 1
+    - 2
+    note: R2 认为 dose-response rebranding。R1 反驳 multi-method 超越。共识降低 claim 强度。
+  action_items:
+  - round: 15
+    action: §1 明确定义 landscape 为三维空间 (α, T, method)，降低 novelty claim
+    assigned_to: paper_agent
+    status: pending
+- id: R15-SF1
+  summary: 3 seeds 不足以估计 seed-level variance
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  action_items:
+  - round: 15
+    action: Limitations 补强 seed 数量限制的 acknowledgment
+    assigned_to: paper_agent
+    status: pending
+- id: R15-SF2
+  summary: MMCT 方法论贡献薄弱，增量价值有限
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  action_items:
+  - round: 15
+    action: Limitations 增加 MMCT honest assessment；§3/Discussion 弱化 MMCT claim
+    assigned_to: paper_agent
+    status: pending
+- id: R15-SF3
+  summary: Intervention §4.6 仅 α=1.0 但占过多正文篇幅
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  action_items:
+  - round: 15
+    action: §4.6 压缩到 1-2 段，细节移入附录
+    assigned_to: paper_agent
+    status: pending
+- id: R15-SF4
+  summary: Entropy discretized Granger test 未做
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 15
+  action_items:
+  - round: 15
+    action: 对 entropy 做 binning 后重跑 Granger test（~2h CPU 分析）
+    assigned_to: main_agent
+    status: pending
+- id: R15-1.4B-rev
+  summary: 1.4B s43 bidirectional confounding 未在论文讨论
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 15
+  last_seen_round: 15
+  mentions:
+  - round: 15
+    reviewers:
+    - reviewer
+    note: s43 在 α=0.60 reverse=6/8、α=0.75 reverse=5/8。§4.4 需加 disclosure。
+  action_items:
+  - round: 15
+    action: §4.4 加一句 1.4B seed-specific bidirectional confounding disclosure
+    assigned_to: paper_agent
+    status: pending
+- id: R16-W1
+  summary: Phase diagram 仅 3 seeds（2 自由度），方差估计不可靠
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 提出 W1 critical，R2 完全同意。与历史 R10-SF7 相同问题——仍未解决。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-W2 再次指出: 3 seeds 不足, per-seed FPR 变异显著。R2 AGREE。'
+  action_items:
+  - round: 16
+    action: Phase diagram 增至 ≥10 seeds 并报告 α_c 的 bootstrap CI
+    assigned_to: research_director
+    status: pending
+- id: R16-W2
+  summary: '''Sharp transition'' 措辞超出统计证据强度（CI [0.25,0.92], steepness ~100% 不确定性）'
+  category: writing
+  severity: critical
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W2 critical + R2 W1 major，交叉后共识。k=478±473 (SE≈k) 与主文 k=15.7 差异未解释。
+  action_items:
+  - round: 16
+    action: 将 'sharp phase transition' 改为 'steep/abrupt transition'，主文显式报告不确定性
+    assigned_to: research_director
+    status: pending
+- id: R16-W3
+  summary: Phase transition 可能只是统计功效的自然行为，核心 framing 需重新定位
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    - R1
+    note: R2 提出，R1 AGREE with nuance。k_obs/k_sim=2.6-4.2 有部分支撑，但 baseline 是自建 simulation。
+  action_items:
+  - round: 16
+    action: Contribution 1 重新定位为 'empirical characterization of detection limits' 而非 'phase transition discovery'
+    assigned_to: research_director
+    status: pending
+- id: R16-W4
+  summary: 正文超出 8 页限制（Conclusion 溢出约 15-20 行到第 9 页）
+  category: format
+  severity: critical
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    - visual_check
+    note: R1 W8 minor + R2 W6 minor + visual check warning。修复简单但必须解决。
+  action_items:
+  - round: 16
+    action: 压缩 Discussion/Conclusion 使正文 ≤8 页
+    assigned_to: research_director
+    status: pending
+- id: R16-W5
+  summary: Cross-architecture 验证仅在 α=1.0，phase diagram generalizability 未验证
+  category: experiment
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W3 major + R2 W4 major，交叉后互相确认。Section 4.5 标题有误导性。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R1-W1 再次指出: 跨架构仅 α=1.0, 最有利条件, 无法验证 α_c 泛化性。R2 强烈 AGREE。'
+  action_items:
+  - round: 16
+    action: 至少在 1 个非 Pythia 架构上补做 intermediate-α 验证
+    assigned_to: research_director
+    status: pending
+- id: R16-W6
+  summary: 方法论新颖性有限——成熟工具的直接应用
+  category: framing
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    - R1
+    note: R2 W2 major，R1 交叉中 AGREE。PermG/BH-FDR/first-differencing 均标准工具，MMCT 是简单 weighted voting。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R17 R2-N1 覆盖同一问题。R1 AGREE with nuance (实验设计框架有概念新颖性)。
+  action_items:
+  - round: 16
+    action: 明确定位为 empirical study，强调实验发现而非方法论贡献
+    assigned_to: research_director
+    status: pending
+- id: R16-W7
+  summary: Blind zone（α<0.50）限制实用价值，但 framing 暗示实用检测能力
+  category: framing
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    - R1
+    note: R2 W3 major，R1 AGREE with nuance。'confirmation tool' 定位应前移到 abstract/intro。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: 'R17 R2-N2 和 R1-W4 覆盖同一问题。Consensus: 已讨论但深度不足。'
+  action_items:
+  - round: 16
+    action: Abstract/Introduction 中明确 scope practical claims，前移 confirmation tool 定位
+    assigned_to: research_director
+    status: pending
+- id: R16-W8
+  summary: 单一数据集（WikiText-103），domain 泛化性证据极弱
+  category: experiment
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W4 major，R2 交叉中 AGREE。Appendix 仅一句提及 C4。领域性问题但需补强。
+  action_items:
+  - round: 16
+    action: 在 C4 或 OpenWebText 上复现核心实验，或显式缩窄 claim 范围
+    assigned_to: research_director
+    status: pending
+- id: R16-W9
+  summary: MMCT K≥3 FPR=10%，NaiveXCor 污染共识，K≥3 与 weighted MMCT 混淆
+  category: method
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W5 major，R2 AGREE with nuance——需区分 weighted MMCT 和 K≥3 scheme。Table 2 vs Algorithm 1 写作混淆。
+  action_items:
+  - round: 16
+    action: 排除 FPR>50% 方法作为 robustness check；正文澄清 K≥3 vs weighted MMCT
+    assigned_to: research_director
+    status: pending
+- id: R16-W10
+  summary: Design Principles 1-2 标签过度包装（应为 Proposition/Empirical Finding）
+  category: framing
+  severity: major
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    - R1
+    note: R2 W5 major，R1 AGREE with nuance（量化一致性非 trivial，但标签确实不当）。
+  action_items:
+  - round: 16
+    action: 将 'Design Principle' 改为 'Empirical Finding' 或 'Proposition'
+    assigned_to: research_director
+    status: pending
+- id: R16-W11
+  summary: Intervention 仅在 α=1.0 验证，未测试 blind zone 边界
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W6 moderate + R2 W7 minor。α=1.0 是最容易的条件。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R17 R1-W5 覆盖同一问题。仍仅 α=1.0, 2 seeds。R2 AGREE。
+  action_items:
+  - round: 16
+    action: 补充 α∈{0.50, 0.60} 的 intervention 实验
+    assigned_to: research_director
+    status: pending
+- id: R16-W12
+  summary: α=0.60 anomaly 解释缺直接 cross-correlation 证据
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 16
+  last_seen_round: 17
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    - R2
+    note: R1 W7 moderate，R2 AGREE。间接证据充分但缺直接 lag 测量。
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R17 R1-W3 覆盖同一问题。仍为 post-hoc conjecture。R2 AGREE。
+  action_items:
+  - round: 16
+    action: 增加 cross-correlation peak lag vs. α 图
+    assigned_to: research_director
+    status: pending
+- id: R16-REF1
+  summary: 遗漏 Hataya et al. (2023)
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R1
+    note: 早期迭代合成训练工作。R2 交叉中同意应引用。
+- id: R16-REF2
+  summary: 遗漏 Carvalhais et al. (EMNLP 2025) arXiv:2504.03814
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    note: Recursive Training Loops in LLMs。需验证真实性。
+- id: R16-REF3
+  summary: 遗漏 Buffa & Del Corro (2026) Entropy Sentinel arXiv:2601.09001
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+  - round: 16
+    reviewers:
+    - R2
+    note: Entropy 做 LLM 监控。需验证真实性。
+- id: R17-N1
+  summary: '''Within 2pp'' 陡峭跃迁 claim 源自 sigmoid 模型拟合而非直接观测'
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R1 N1 critical, R2 交叉 AGREE。实际 α 网格分辨率为 5pp (0.45→0.50), '2pp' 来自 Appendix S sigmoid 拟合 (k=15.7, Δα=0.028)。将模型推断精度呈现为实验观测精度。
+  action_items:
+  - round: 17
+    action: 改 Abstract/Intro claim 为 'between α=0.45 and α=0.50' 或补 α∈[0.46,0.49] 采样点
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R17-W1
+  summary: Cascade ordering 新颖性有限——连续度量先于离散度量响应是预期行为
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R2
+    note: 'R2 W1。R1 AGREE with nuance: 经验量化仍有价值 (lag≥1 gen 非先验可知, 跨 seed 一致性需验证), 但不是 trivial。'
+  action_items:
+  - round: 17
+    action: 降低 cascade ordering 作为独立贡献的强调程度
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R17-W2
+  summary: SmolLM3-3B 违反 cascade ordering 核心假设但正文讨论不足
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R1
+    - R2
+    note: R2 W2, R1 AGREE。5 架构中 1 个 (20%) 违反核心假设, 对 MMCT 通用性构成实质挑战。缺 fallback 策略和先验判断方法。
+  action_items:
+  - round: 17
+    action: 将 SmolLM3-3B failure mode 提升为正文 Discussion 重点, 提供 MMCT fallback
+    assigned_to: research_director
+    status: pending
+  resolution: ''
+  resolution_round: null
+- id: R17-W3
+  summary: FPR seed 数量主文与附录不一致 (10 seeds vs 9 seeds)
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R1
+    note: R1 Q1。主文多处说 '10 seeds', Appendix R 报告 'nine seeds (54 pairs, 6-pair basis)'。需核实并统一。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R17-REF1
+  summary: 缺少 watermarking vs reactive detection 的方法论对比
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R2
+    note: R2 Missing Ref 1。Section 2.1 仅一句话区分 reactive vs proactive, 应讨论互补/替代场景。R1 AGREE。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+- id: R17-REF2
+  summary: 缺少 data provenance / data attribution 文献引用
+  category: reference
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 17
+  mentions:
+  - round: 17
+    reviewers:
+    - R2
+    note: R2 Missing Ref 3。Influence functions 用于识别训练数据来源是相关替代路径。R1 AGREE。
+  action_items: []
+  resolution: ''
+  resolution_round: null

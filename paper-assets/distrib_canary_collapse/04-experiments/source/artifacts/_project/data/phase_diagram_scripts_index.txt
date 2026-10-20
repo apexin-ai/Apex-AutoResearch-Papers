@@ -1,0 +1,26 @@
+Phase Diagram Launch Scripts
+============================
+
+Location: westd-17855:/root/autodl-tmp/distrib_canary_collapse/scripts/phase_diagram/
+
+12 scripts for T=5/15/25 × α=0.45/0.50/0.60/0.75
+Model: pythia-410m, seed=42, fp32, data=wikitext103_5k, 5000 steps/gen
+
+Files:
+  run_t05_a045_s42.sh  run_t05_a050_s42.sh  run_t05_a060_s42.sh  run_t05_a075_s42.sh
+  run_t15_a045_s42.sh  run_t15_a050_s42.sh  run_t15_a060_s42.sh  run_t15_a075_s42.sh
+  run_t25_a045_s42.sh  run_t25_a050_s42.sh  run_t25_a060_s42.sh  run_t25_a075_s42.sh
+
+GPU Time Estimates (based on T=10 avg ~27.5 min/gen):
+  T=5:  ~2.3h each (9.2h total)
+  T=15: ~6.9h each (27.6h total)
+  T=25: ~11.5h each (46.0h total)
+  Grand total: 82.8 GPU-hours
+
+Optimal 6-GPU Schedule: ~13.8h wall time
+  GPU 0-3: T=25 experiments -> then T=5 experiments
+  GPU 4-5: T=15 pairs sequentially
+
+Usage: bash scripts/phase_diagram/run_t25_a045_s42.sh <GPU_ID>
+
+Dry-run: PASS (model load, data load, generation start confirmed)

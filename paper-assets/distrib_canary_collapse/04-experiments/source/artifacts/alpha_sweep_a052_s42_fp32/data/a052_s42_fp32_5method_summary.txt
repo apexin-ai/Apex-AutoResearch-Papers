@@ -1,0 +1,30 @@
+5-Method Lead-Lag Analysis (D102+D105+D111)
+Alpha=0.52, Seed=42, Generations=11, N_perm=5000
+Server: westd-17855
+Script: run_5method_analysis_d102.py
+Threshold: true_3sigma_d105
+============================================================
+
+Per-method forward significance:
+  Perm Granger (FDR): 3/8
+  Perm Granger rev:   0/8
+  Diff XCorr (FDR):   5/8
+  Threshold Onset:    0/8  (3sigma — all pairs have None onset)
+  TY Granger:         1/8
+
+Consensus (K votes):
+  token_entropy→distinct_1  1/5  [diff]
+  token_entropy→distinct_2  1/5  [diff]
+  token_entropy→distinct_3  1/5  [perm]
+  token_entropy→mauve       1/5  [ty]
+  ece→distinct_1            1/5  [diff]
+  ece→distinct_2            2/5  [diff, perm]
+  ece→distinct_3            1/5  [perm]
+  ece→mauve                 1/5  [naive]
+
+Robust pairs (K≥3): 0/8
+K≥4: 0/8
+
+Note: Old registry had threshold_onset_3sigma=8/8, K≥3=6/8 from pre-D102 analysis
+using non-3sigma threshold. D102 reanalysis with true_3sigma_d105 corrects to 0/8.
+PermG asymmetry (3 fwd / 0 rev) confirms directional signal exists above α_c.

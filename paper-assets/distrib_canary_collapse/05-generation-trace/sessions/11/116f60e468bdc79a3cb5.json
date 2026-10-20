@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "116f60e468bdc79a3cb5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit ty granger canonical consistency",
+  "task_key": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ty_granger_canonical_consistency_20260520T180340_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "755870c64db0cf2c27f5b5b7708e08b442d26c7dcd45ae56a26aaffeb6472c62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告写入 `artifacts/ty_granger_canonical_audit.md`。\n\n**核心发现：**\n\n1. **Matmul bug：不存在。** Canonical 脚本使用 statsmodels 内置 `test_causality()`，无手写 Wald、无 `cov_params` 操作。\n\n2. **新发现 Direction Reversal Bug：存在。** `test_causality(causing=1, caused=0)` 在 `data=[canary, downstream]` 下测试的是 downstream→canary（反向因果），但被标记为 forward。修复：改为 `causing=0, caused=1`。\n\n3. **对论文影响：无。** TY 从未在任何实验中提供 consensus 的 swing vote。移除所有 TY 票后 robust pairs 计数不变（t20_a050: 6/8, t20_a100: 6/8, 14b: 8/8）。\n\n4. **T=20 数据来源：确认均为 canonical 脚本生成**（字段格式 `f_stat`/`order`/`k_opt`/`d_max` 匹配）。\n\n建议修复 direction bug 并重跑，但不阻塞论文提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ty-granger-canonical-consistency.md"
+}

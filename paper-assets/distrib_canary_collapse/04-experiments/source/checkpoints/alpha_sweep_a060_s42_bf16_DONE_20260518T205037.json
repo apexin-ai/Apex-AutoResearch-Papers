@@ -1,0 +1,40 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:26:43.407Z",
+    "updated_at": "2026-05-18T20:50:36.935Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --bf16 --output_dir results/alpha_sweep/a060_s42_bf16",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "17523",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_bf16.log",
+      "submitted_at": "2026-05-18T17:26:43.254Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "wall_clock_seconds": 12233.7,
+      "gpu_hours": 3.4
+    },
+    "hypothesis": "α=0.60 regime map with bf16: Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.",
+    "reproduce": {
+      "finished_at": "2026-05-18T20:50:35.892Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T20:50:36.935Z"
+  },
+  "timestamp": "2026-05-18T20:50:37.094419+00:00",
+  "trigger": "update_registry"
+}

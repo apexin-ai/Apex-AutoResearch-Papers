@@ -1,0 +1,39 @@
+{
+  "exp_id": "alpha_sweep_a000_s45_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:55:28.789Z",
+    "updated_at": "2026-05-21T10:17:15.320Z",
+    "hypothesis": "D160 FPR CI narrowing: 4th null seed (α=0.0, s45, fp32) extends PermG FPR from 0/24 (3 seeds) to 0/32. Combined with s46, narrows Clopper-Pearson CI from [0%, 13.8%] (N=24) toward [0%, 8.8%] (N=40), strengthening the zero-FPR claim.",
+    "spec": {
+      "command": "python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.00 --seed 45 --n_gen 10 --fp32",
+      "server": "westd-17855",
+      "gpu": "cuda:2",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1",
+      "data_count": "4.4M tokens",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 45,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s45_fp32/",
+      "log_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s45_fp32/analysis/5method_leadlag.json"
+    },
+    "metrics": {
+      "permg_fwd": "2/8",
+      "permg_rev": "0/8",
+      "ty_granger": "1/8",
+      "threshold_onset": "4/8",
+      "diff_xcorr": "0/8",
+      "naive_xcorr": "1/8",
+      "consensus_k4": "0/8",
+      "ppl_gen0": 26.95,
+      "token_entropy_gen0": 3.23
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T10:17:15.320Z"
+  },
+  "timestamp": "2026-05-21T10:17:15.682192+00:00",
+  "trigger": "update_registry"
+}

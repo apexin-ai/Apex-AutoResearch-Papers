@@ -1,0 +1,121 @@
+{
+  "dgp": {
+    "T": 11,
+    "burn_in": 50,
+    "n_reps": 1000,
+    "n_perms": 500,
+    "phis": [0.5, 0.95, 0.99],
+    "betas_power": [0.1, 0.3, 0.6],
+    "seed": 42,
+    "alpha": 0.05
+  },
+  "size_results": {
+    "0.5": {
+      "raw_fpr": 0.064,
+      "diff_fpr": 0.066,
+      "perm_fpr": 0.068,
+      "raw_fail_count": 0,
+      "diff_fail_count": 0,
+      "perm_fail_count": 0
+    },
+    "0.95": {
+      "raw_fpr": 0.1,
+      "diff_fpr": 0.059,
+      "perm_fpr": 0.095,
+      "raw_fail_count": 0,
+      "diff_fail_count": 0,
+      "perm_fail_count": 0
+    },
+    "0.99": {
+      "raw_fpr": 0.112,
+      "diff_fpr": 0.042,
+      "perm_fpr": 0.107,
+      "raw_fail_count": 0,
+      "diff_fail_count": 0,
+      "perm_fail_count": 0
+    }
+  },
+  "power_results": {
+    "0.5": {
+      "0.1": {
+        "raw_power": 0.061,
+        "diff_power": 0.051,
+        "perm_power": 0.059,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.3": {
+        "raw_power": 0.156,
+        "diff_power": 0.084,
+        "perm_power": 0.154,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.6": {
+        "raw_power": 0.377,
+        "diff_power": 0.177,
+        "perm_power": 0.368,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      }
+    },
+    "0.95": {
+      "0.1": {
+        "raw_power": 0.115,
+        "diff_power": 0.067,
+        "perm_power": 0.119,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.3": {
+        "raw_power": 0.176,
+        "diff_power": 0.115,
+        "perm_power": 0.175,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.6": {
+        "raw_power": 0.443,
+        "diff_power": 0.287,
+        "perm_power": 0.415,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      }
+    },
+    "0.99": {
+      "0.1": {
+        "raw_power": 0.124,
+        "diff_power": 0.059,
+        "perm_power": 0.122,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.3": {
+        "raw_power": 0.197,
+        "diff_power": 0.107,
+        "perm_power": 0.167,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      },
+      "0.6": {
+        "raw_power": 0.464,
+        "diff_power": 0.246,
+        "perm_power": 0.417,
+        "raw_fail_count": 0,
+        "diff_fail_count": 0,
+        "perm_fail_count": 0
+      }
+    }
+  },
+  "conclusion": "Size control: Raw Granger FPR inflates from 6.4% (phi=0.5) to 10.0% (phi=0.95) and 11.2% (phi=0.99), confirming spurious rejection under near-unit-root non-stationarity. First-differenced Granger maintains well-calibrated FPR (6.6%/5.9%/4.2%). Permutation Granger FPR also inflates substantially: 6.8% (phi=0.5) → 9.5% (phi=0.95) → 10.7% (phi=0.99), roughly doubling the nominal 5% rate at near-unit-root persistence. This indicates PermG does NOT fully correct for non-stationarity in raw levels — the permutation shuffle destroys the autocorrelation structure of x, biasing the null distribution. Power: At T=11, all methods have low power for small effects (beta=0.1: 5-12%). For large effects (beta=0.6), Raw Granger shows highest nominal power (38-46%) but this is inflated by size distortion. First-diff Granger has the lowest power (18-29%) but is the only method with proper size control. Permutation Granger achieves intermediate power (37-42%) but its size-adjusted power advantage over first-differencing is smaller than the nominal gap suggests, given its ~10% FPR at high phi.",
+  "elapsed_minutes": 33.4,
+  "implementation_note": "F-test computed via direct numpy OLS (not statsmodels VAR) for computational efficiency. Granger F-stat: y[t] ~ c + y[t-1] + x[t-1] vs y[t] ~ c + y[t-1]. Permutation: 500 random shuffles of x, p = (count + 1)/(n_perms + 1)."
+}

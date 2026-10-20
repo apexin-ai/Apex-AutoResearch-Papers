@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "19a9ff556694160b32bd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra quick status",
+  "task_key": "worker_infra_quick-status_20260514T072106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_quick-status_20260514T072106_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "2cab9e6723001d3bda63b4e3ef8241451a9d5fe413e5265169ba910ae43aee4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## verify_gen01 实验状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活。PID 10293，`iterative_train.py`，CPU 202%，已运行 ~28 分钟 |\n| **GPU** | GPU 0 占用 12,522 MiB / 97,887 MiB，利用率 87%。GPU 1 空闲 |\n| **当前阶段** | Gen 1 训练中（gen_1/trainer 目录已建，synthetic_data 已生成，但 metrics.json / checkpoint 尚未产出） |\n\n### Gen 0 metrics.json（已完成）\n```json\n{\n  \"token_entropy\": 3.234,\n  \"self_bleu\": 0.0102,\n  \"distinct_1\": 0.098,\n  \"distinct_2\": 0.518,\n  \"distinct_3\": 0.813,\n  \"ece\": 0.0108,\n  \"effective_rank\": 46.61,\n  \"perplexity\": 315.08,\n  \"mauve\": 0.034,\n  \"generation\": 0\n}\n```\n\n### Gen 1\n- `synthetic_data/` 已生成\n- `trainer/` 目录刚建立（15:21），训练正在进行\n- `metrics.json`、`checkpoint/`、`all_metrics.json` 均未产出\n\n**结论：实验正在运行，Gen 0 已完成，Gen 1 正在训练中，尚未结束。**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "token_entropy": 3.234,
+              "self_bleu": 0.0102,
+              "distinct_1": 0.098,
+              "distinct_2": 0.518,
+              "distinct_3": 0.813,
+              "ece": 0.0108,
+              "effective_rank": 46.61,
+              "perplexity": 315.08,
+              "mauve": 0.034,
+              "generation": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-quick-status.md"
+}

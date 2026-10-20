@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "111e1104777337ab7bba",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fdr alpha sweep urgent",
+  "task_key": "worker_code_fdr-alpha-sweep-urgent_20260514T213026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fdr-alpha-sweep-urgent_20260514T213026_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "a9fff3a40ba4a518bb91197733cd2360c8a4349768be37fcf40d31b56ada7704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**完成情况：**\n\n- **脚本路径**: `/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py`\n- **功能**: 自动发现 α-sweep 运行目录，对所有 canary (token_entropy, ece) × downstream (distinct_1, distinct_2, distinct_3, perplexity) = 8 对执行三方法分析 + BH FDR 校正\n\n**集成内容：**\n\n1. **BH FDR 校正** — 每个 α 值内、每种方法的所有 pair p-value 通过 `statsmodels.stats.multitest.multipletests(method='fdr_bh')` 校正。输出同时保留 `p_raw` 和 `p_fdr`，判显著改用 `significant_fdr`\n\n2. **Canary channels 补全** — 覆盖 2×4 = 8 对（token_entropy/ece × distinct_1/2/3/perplexity），α 值从目录自动发现\n\n3. **三方法框架**:\n   - Naive cross-correlation（raw levels + permutation test）\n   - Differenced cross-correlation（Δ-series + permutation test）\n   - Toda-Yamamoto Granger causality（augmented-lag Wald F-test）\n   - 每对输出方法一致性矩阵（≥2 methods = consensus）\n\n4. **Effect size** — xcorr 方法报告 `effect_size_r` + Cohen's 分类；TY 报告 `effect_size_f2` + Cohen's f² 分类\n\n**Dry-run 结果（a000_s42, 6 gens）：**\n- 1 个 naive raw-sig (ece→distinct_1, p=0.046) 被 FDR 校正降为 n.s. — 符合预期（8 tests 校正）\n- TY 因 T=6 不够残差自由度全部返回 N/A — 等实验跑完 10 gen 后会有效\n- a025_s42 仅 1 gen 被正确跳过\n- 输出：`results/alpha_sweep/analysis/alpha_sweep_analysis.json` + `summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fdr-alpha-sweep-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a801b3d04e26a77766c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code alpha sweep extension config",
+  "task_key": "worker_code_alpha_sweep_extension_config_20260514T213020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha_sweep_extension_config_20260514T213020_result.json",
+    "occurrence": 1,
+    "bytes": 1973,
+    "sha256": "2cff8c928be4fce255a07b6438144280f1f7d16b72ee1f1c438fd3fe35a3d8e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。报告如下：\n\n---\n\n## 验证结果\n\n### 1. `--synthetic_ratio` 支持任意浮点数\n`type=float`，0.10 和 0.60 解析正常，无范围限制（仅 `mix_datasets` 内部对 0/1 做边界处理）。\n\n### 2. `mix_datasets` 双向逻辑验证\n\n| α | syn 样本 | real 样本 | 总量 | 实际比例 | 走哪条路径 |\n|---|---------|----------|------|---------|-----------|\n| 0.10 | 555 | 5000 | 5555 | 0.0999 | 保全 real + subsample syn |\n| 0.60 | 5000 | 3333 | 8333 | 0.6000 | 保全 syn + subsample real |\n\n两个 α 值分别触发双向逻辑的两条路径，均正确。\n\n### 3. 6 个 run 的完整启动命令\n\n基于现有 a000_s42 的 config，参数模板：\n\n```bash\n# α=0.10, 3 seeds\ncd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python iterative_train.py \\\n  --model_name EleutherAI/pythia-410m \\\n  --data_dir data/wikitext103_5k \\\n  --synthetic_ratio 0.10 \\\n  --num_generations 10 \\\n  --steps_per_gen 5000 \\\n  --output_dir results/alpha_sweep/a010_s42 \\\n  --seed 42\n\n# seed 43\n... --output_dir results/alpha_sweep/a010_s43 --seed 43\n\n# seed 44\n... --output_dir results/alpha_sweep/a010_s44 --seed 44\n\n# α=0.60, 3 seeds\n... --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42 --seed 42\n... --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s43 --seed 43\n... --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s44 --seed 44\n```\n\n### 4. 注意事项\n\n- **`--accumulate` 未启用**：现有 a000/a025 的 config 显示 `accumulate: false`，新 run 保持一致（不加 `--accumulate`）\n- **a000_s42 正在跑 gen_6**（截至检查时），a025_s42 也在跑。排队顺序建议：先完成 a050/a075，再加 a010/a060\n- **α=0.10 数据量较小**（每 gen 仅 555 syn 样本混入 5000 real），训练会很快，约为 α=0.60 的 2/3 时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sweep-extension-config.md"
+}

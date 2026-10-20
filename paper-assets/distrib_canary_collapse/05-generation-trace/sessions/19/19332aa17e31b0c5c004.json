@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19332aa17e31b0c5c004",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d213 s43 t10 6pair",
+  "task_key": "worker_analysis_d213_s43_t10_6pair_20260524T005010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d213_s43_t10_6pair_20260524T005010_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "cc95bb1546d4cf623918f08435ef070e20556e6a1821daf8747768466198ffe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**4 个实验中只有 1 个完成了分析，其余 3 个数据目录不存在：**\n\n| T | α | Seed | PermG_fwd | PermG_rev | Robust_K3 | 状态 |\n|---|------|------|-----------|-----------|-----------|------|\n| 10 | 0.45 | s43 | 1/6 | 0/6 | 2/6 | ✓ 完成 |\n| 10 | 0.50 | s43 | — | — | — | ✗ 目录不存在（仅 s42/s44 有 14b） |\n| 10 | 0.60 | s43 | — | — | — | ✗ 目录不存在（仅 s42/s44 有 14b） |\n| 10 | 0.75 | s43 | — | — | — | ✗ 目录不存在（`t10_a075_s43_fp32` 是 GPT-2 small） |\n\n**a045 s43 细节**：6 pair 中仅 ece→distinct_1 (3/5: naive+diff+perm) 和 ece→distinct_3 (3/5: naive+diff+ty) 达到 robust consensus。token_entropy 的 3 个 pair 均只有 diff_xcorr 显著。PermG FDR 校正后仅 ece<distinct_1 通过。\n\n**缺失的 3 个 s43 T=10 1.4B 实验尚未训练**，两台服务器（17855、19828）上均无对应目录。需要先训练这些实验才能完成完整的 s43 T=10 6-pair 转换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d213-s43-t10-6pair.md"
+}

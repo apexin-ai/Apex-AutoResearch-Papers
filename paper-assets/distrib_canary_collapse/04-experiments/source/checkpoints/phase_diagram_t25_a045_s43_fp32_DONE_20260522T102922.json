@@ -1,0 +1,50 @@
+{
+  "exp_id": "phase_diagram_t25_a045_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:19:23.357Z",
+    "updated_at": "2026-05-22T10:29:22.423Z",
+    "hypothesis": "Cross-seed validation (s43) of t25_a045: canary metrics lead downstream quality collapse at alpha=0.45 with T=25 generations, confirming s42 PermG=6/8 is seed-robust.",
+    "parent": "phase_diagram_t25_a045_s42_fp32_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a045_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "577236",
+      "log_path": "results/phase_diagram/t25_a045_s43_fp32/analysis/5method_leadlag.json",
+      "submitted_at": "2026-05-22T00:19:34.808Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "checkpoint_source": "phase_diagram_t25_a045_s42_fp32_v2 (cross-seed, s42=6/8 D102 confirmed)",
+      "eval_data": "data/wikitext103_5k",
+      "checkpoint_path": "results/phase_diagram/t25_a045_s43_fp32/gen_24/checkpoint",
+      "wall_clock_seconds": 36587.6,
+      "gpu_hours": 10.16
+    },
+    "conclusion": "success",
+    "metrics": {
+      "perm_granger_fwd": 6,
+      "perm_granger_rev": 0,
+      "robust_pairs": 6,
+      "diff_xcorr_fdr_fwd": 8,
+      "threshold_fwd": 6,
+      "ty_fwd": 3,
+      "total_pairs": 8,
+      "threshold_criterion": "true_3sigma_d105"
+    },
+    "completed_at": "2026-05-22T10:29:22.423Z"
+  },
+  "timestamp": "2026-05-22T10:29:22.941184+00:00",
+  "trigger": "update_registry"
+}

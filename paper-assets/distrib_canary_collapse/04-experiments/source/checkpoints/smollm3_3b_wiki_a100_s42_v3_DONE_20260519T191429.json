@@ -1,0 +1,85 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:24:12.263Z",
+    "updated_at": "2026-05-19T19:14:29.486Z",
+    "hypothesis": "D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.",
+    "parent": "smollm3_3b_wiki_a100_s42_v2",
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash scripts/run_experiment.sh smollm3_3b_wiki_a100_s42_fp32_v3",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "408261",
+      "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log",
+      "submitted_at": "2026-05-19T00:24:32.263Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/SmolLM3-3B-Base/",
+      "eval_data": "data/wikitext103_5k",
+      "wall_clock_seconds": 67378.6,
+      "gpu_hours": 18.72
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T19:02:21.376Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T19:02:25.372669+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/smollm3_3b_wiki_a100_s42_fp32_v3",
+    "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log",
+    "metrics": {
+      "permg_fwd": "3/8",
+      "permg_rev": "0/8",
+      "k_ge3_3sigma": "0/8",
+      "k_ge4_3sigma": "0/8",
+      "thr_3sigma": "0/8",
+      "diff_xcorr_fdr_fwd": "6/8",
+      "ty_fwd": "0/8",
+      "naive_fwd": "4/8",
+      "permg_fwd_detail": "ece->d1,ece->d2,ece->d3",
+      "entropy_drift_pct": -33.5,
+      "ece_drift_pct": 8220,
+      "ppl_drift_pct": 4877,
+      "d1_drift_pct": -32.2,
+      "d2_drift_pct": -43.3,
+      "d3_drift_pct": -43.2,
+      "mauve_drift_pct": -17.4,
+      "gen0_entropy": 2.5626,
+      "gen10_entropy": 1.7046,
+      "gen0_ppl": 13.25,
+      "gen10_ppl": 659.54,
+      "gen0_d1": 0.1055,
+      "gen10_d1": 0.0715,
+      "pairs": "D102: {entropy,ece}x{d1,d2,d3,mauve}",
+      "n_perm": 5000,
+      "fdr_method": "BH",
+      "threshold": "3sigma",
+      "note": "D102+D105 compliant. Old 2sigma analysis showed PermG=6/8; 3sigma+mauve pairs reduce to 3/8. ece canary strong (3/3 d-pairs), entropy canary weak (0/4)."
+    },
+    "completed_at": "2026-05-19T19:07:30.862Z"
+  },
+  "timestamp": "2026-05-19T19:14:29.713946+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0610e05795666f7abdf4",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code generalize analysis prep",
+  "task_key": "worker_code_generalize_analysis_prep_20260517T104130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generalize_analysis_prep_20260517T104130.log",
+    "occurrence": 1,
+    "bytes": 524037,
+    "sha256": "1d3fd0e46d6ef1c9330a2a7adc4585a9d5ca1015f346208f68c6ff54cb2d6383"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 100,
+      "user": 1,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "0610e05795666f7abdf4-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "0610e05795666f7abdf4-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "0610e05795666f7abdf4-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-generalize-analysis-prep.md"
+}

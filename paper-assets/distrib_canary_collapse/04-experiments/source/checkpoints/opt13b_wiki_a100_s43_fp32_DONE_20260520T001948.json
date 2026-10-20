@@ -1,0 +1,53 @@
+{
+  "exp_id": "opt13b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:10:53.215Z",
+    "updated_at": "2026-05-20T00:19:48.520Z",
+    "hypothesis": "OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。",
+    "parent": "gen_opt13b_a100_s43_bf16",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "facebook/opt-1.3b",
+      "seed": 43,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "pid": "452614",
+    "log_path": "~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-20T00:12:30.568Z"
+    },
+    "notes": "D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T00:12:36.303992+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg_fdr_sig": "6/8",
+      "k_ge3": "6/8",
+      "k_ge4": "4/8",
+      "d111_direction_ok": "8/8",
+      "n_generations": 11,
+      "n_perm": 5000
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/gen_opt13b_wiki_a100_s43_fp32/",
+    "completed_at": "2026-05-20T00:19:48.520Z"
+  },
+  "timestamp": "2026-05-20T00:19:48.768137+00:00",
+  "trigger": "update_registry"
+}

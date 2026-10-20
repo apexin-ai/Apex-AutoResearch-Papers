@@ -1,0 +1,71 @@
+{
+  "exp_id": "alpha_sweep_a010_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:39:09.725Z",
+    "updated_at": "2026-05-19T05:07:17.324Z",
+    "hypothesis": "α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.",
+    "parent": "alpha_sweep_a010_s43",
+    "server": "westd-17855",
+    "gpu": "cuda:5",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-17855",
+      "gpu": "cuda:5",
+      "started_at": "2026-05-19T00:40:20.251Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\"",
+      "finished_at": "2026-05-19T05:01:02.210Z",
+      "training_hours": 4.34
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "76404",
+      "log_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/",
+      "submitted_at": "2026-05-19T00:46:36.088Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/",
+      "wall_clock_seconds": 15641.2,
+      "gpu_hours": 4.34
+    },
+    "pid": "76404",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a010_s43_fp32.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T05:01:06.027649+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "token_entropy_drift": -4.49,
+      "distinct_1_drift": -22.08,
+      "distinct_2_drift": -23.47,
+      "distinct_3_drift": -16.39,
+      "perplexity_drift": -18.04,
+      "perm_granger_fwd": "0/8",
+      "perm_granger_rev": "0/8",
+      "ty_granger_fwd": "6/8",
+      "threshold_onset_fwd": "4/8",
+      "consensus_k4": "0/8 (C003 corrected)",
+      "precision": "fp32",
+      "blind_zone_confirmed_fp32": true,
+      "vs_bf16_note": "fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)"
+    },
+    "completed_at": "2026-05-19T05:07:17.324Z"
+  },
+  "timestamp": "2026-05-19T05:07:17.478663+00:00",
+  "trigger": "update_registry"
+}

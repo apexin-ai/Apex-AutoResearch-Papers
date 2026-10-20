@@ -1,0 +1,114 @@
+\section{Method}
+\label{sec:method}
+
+The experiments in \S\ref{sec:method_sensitivity}--\ref{sec:consensus_validation} reveal that lead-lag conclusions in iterative training collapse are fragile along multiple axes.
+This section distills three methodological pitfalls (\S\ref{sec:pitfalls}), proposes a multi-method consensus framework to address them (\S\ref{sec:consensus}), and calibrates the framework's error rates using built-in experimental controls (\S\ref{sec:calibration}).
+
+
+\subsection{Methodological Pitfalls in Lead-Lag Analysis}
+\label{sec:pitfalls}
+
+We identify three pitfalls that, individually or in combination, can produce incorrect conclusions about temporal precedence in iterative training systems.
+Each is documented below with representative data from our experiments; full results appear in \S\ref{sec:experiments}.
+
+\paragraph{Pitfall 1: Method sensitivity.}
+Applied to the same data ($\alpha{=}1.0$, 4~seeds, 16 canary$\to$downstream pairs---4 candidate canaries $\times$ 4 downstream metrics, including candidates later excluded per \S\ref{sec:case_study}), five lead-lag detection methods yield FDR significance rates ranging from 100\% (naive cross-correlation) to 25\% (Toda--Yamamoto Granger causality), with inter-method agreement of Cohen's $\kappa{=}0.185$---poor agreement (\S\ref{sec:method_sensitivity}).
+The spurious-signal rate---the fraction of pairs flagged by the most liberal method but not confirmed by the most conservative---is 75\% across all five methods and 62.5\% when excluding Toda--Yamamoto, whose low statistical power at $T{=}10$ inflates this rate.
+This pitfall is dangerous because method choice alone can determine whether a lead-lag relationship is deemed present or absent.
+In a literature where single-method analyses are the norm, the implicit assumption that method choice does not matter is demonstrably false.
+
+\paragraph{Pitfall 2: Spurious regression under shared trends.}
+A single preprocessing decision---first-differencing to remove shared non-stationary trends---can eliminate an entire analysis channel.
+At $\alpha{=}1.0$, canary$\to$perplexity pairs appear near-universally significant in undifferenced analysis ($F{=}16$--$36$) but yield $F{\approx}0$, $p{=}0.99$ after differencing (Figure~\ref{fig:differencing_dmax}a; \S\ref{sec:method_sensitivity}).
+In contrast, canary$\to$diversity pairs retain unanimous FDR significance after differencing (24/24$\to$24/24).
+Without the differencing diagnostic, an analyst would conclude that canaries predict perplexity---a conclusion entirely driven by co-trending rather than temporal precedence.
+The danger lies in the selective nature of this confound: only by applying the diagnostic can one determine which channels are genuine and which are artifacts of shared non-stationarity.
+
+\paragraph{Pitfall 3: Regime dependence.}
+Even after fixing the statistical method, the contamination level~$\alpha$ determines whether a lead-lag relationship is detectable.
+Permutation Granger tests (first-differenced, BH FDR-corrected at $q{=}0.05$) find 6/8 pairs FDR-significant at $\alpha{=}1.0$ but 0/8 at all $\alpha{\leq}0.50$ (\S\ref{sec:regime}).
+The $\alpha{=}0.50$ regime is particularly dangerous: correlation-based methods unanimously find significance while causal methods unanimously find non-significance (Figure~\ref{fig:consensus_heatmap}), creating the maximum risk of spurious conclusions---high correlation coexists with zero causal precedence.
+This regime dependence is consistent with theoretical expectations about signal-to-noise limits in short ecological time series \cite{boettiger2012limits}, and suggests that detectability boundaries should be explicitly mapped rather than assumed.
+
+
+\subsection{Multi-Method Consensus Framework}
+\label{sec:consensus}
+
+The pitfalls above motivate a consensus approach inspired by multi-method validation practices in early-warning signal detection \cite{scheffer2009early}: rather than relying on any single method, we require agreement across multiple independent methods and random seeds before classifying a lead-lag relationship as robust.
+
+\paragraph{Formal definition.}
+Given $M$ lead-lag detection methods $\{m_1, \ldots, m_M\}$ and $N$ independent random seeds, a canary$\to$downstream pair $(X, Y)$ is classified as \textsc{robust} if and only if:
+\begin{enumerate}
+    \item At least $K$ of $M$ methods judge the pair FDR-significant, where each method independently applies Benjamini--Hochberg correction at $q{=}0.05$; and
+    \item At least $S$ of $N$ seeds replicate this conclusion.
+\end{enumerate}
+The thresholds $(K, S)$ control the trade-off between false positive and false negative rates.
+Methods with different inductive biases---correlation-based methods that detect any temporal association versus Granger-type methods that test directional predictive improvement \cite{granger1969investigating}---provide complementary evidence.
+Their convergence on a given pair constitutes stronger evidence than agreement among methods sharing the same statistical assumptions.
+We note that Granger precedence establishes temporal predictive improvement, not true causality \cite{shojaie2022granger}; our framework inherits this limitation.
+
+\paragraph{Sequential filtering pipeline.}
+We instantiate the framework as a four-stage pipeline (Figure~\ref{fig:consensus_workflow}):
+\begin{enumerate}
+    \item \textbf{Naive correlation scan.} Cross-correlation at maximum lag~5 with BH correction serves as a permissive baseline; all pairs with any temporal association pass.
+    \item \textbf{First-differencing diagnostic.} Cross-correlation is recomputed on first-differenced series, testing whether temporal associations survive removal of shared linear trends. Pairs that lose significance are flagged as potential spurious regressions.
+    \item \textbf{Permutation Granger causality.} Permutation-based Granger causality tests \cite{shojaie2022granger} on first-differenced series (5{,}000 permutations, BH correction at $q{=}0.05$) assess directional predictive improvement: whether past values of $X$ improve prediction of $Y$ beyond $Y$'s own history.
+    \item \textbf{Multi-seed replication.} The conclusion must hold across $S$ of $N$ independent training seeds, filtering seed-specific artifacts.
+\end{enumerate}
+At $\alpha{=}1.0$, this pipeline progressively filters: 16 pairs pass Stage~1, 14 survive Stage~2 (differencing removes 2 marginal canary$\to$perplexity pairs), 6 survive Stage~3 (Granger testing eliminates remaining canary$\to$perplexity pairs and failed canary candidates), and all~6 survive Stage~4 (multi-seed replication confirms all Granger-significant pairs).
+
+\paragraph{Practical guidance.}
+The consensus thresholds $(K, S)$ should be chosen to match the analyst's tolerance for false positives versus false negatives.
+Table~\ref{tab:practical_guidance} provides four recommended tiers, calibrated against our experimental controls (\S\ref{sec:calibration}).
+Tier~3 ($K{\geq}4/5$, $S{\geq}3/4$) achieves the best trade-off in our setting: zero false positives while recovering all six ground-truth pairs.
+Method subset ablation confirms that this threshold is uniquely optimal: at $K{=}3/5$, the null-control FPR is 50\% (unacceptable); at $K{=}4/5$, FPR drops to 0\% while retaining 6/6 ground-truth sensitivity; at $K{=}5/5$, FPR remains 0\% but sensitivity falls to 3/6.
+Shapley value analysis identifies permutation Granger causality as the linchpin method (Shapley $= +0.375$), the only method combining 0\% null-control FPR with high sensitivity.
+Toda--Yamamoto contributes negatively (Shapley $= -2.625$) due to its Type~II errors at $T{=}10$, but is retained to maintain the panel's methodological diversity; excluding it would leave the framework without an augmented-VAR approach that handles unknown integration order.
+Tier~4 requires unanimity across methods and seeds, which incurs a 50\% false negative rate because Toda--Yamamoto produces Type~II errors at $T{=}10$ due to insufficient residual degrees of freedom (\S\ref{sec:consensus_validation}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Practical guidance tiers for lead-lag consensus analysis. FPR and FNR are empirically calibrated at $\alpha{=}0.0$ (null control) and $\alpha{=}1.0$ (6 ground-truth pairs), respectively. $M{=}5$ methods, $N{=}4$ seeds. FPR is validated on the method dimension only; FNR on the method${\times}$seed joint dimension (\S\ref{sec:calibration}).}
+\label{tab:practical_guidance}
+\begin{tabular}{llcccc}
+\toprule
+Tier & Use Case & $K/M$ & $S/N$ & FPR & FNR \\
+\midrule
+1 & Exploratory     & ${\geq}1/5$ & ${\geq}1/N$ & 100\%  & 0\%    \\
+2 & Screening       & ${\geq}3/5$ & ${\geq}2/N$ & 37.5\% & 0\%    \\
+3 & Confirmatory    & ${\geq}4/5$ & ${\geq}3/N$ & 0\%    & 0\%    \\
+4 & Conservative    & $5/5$       & $N/N$        & 0\%    & 50\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Empirical Calibration}
+\label{sec:calibration}
+
+We calibrate the framework using two built-in experimental controls.
+Full numerical results are reported in Table~\ref{tab:fpr_fnr}.
+
+\paragraph{False positive rate.}
+The $\alpha{=}0.0$ condition serves as a null control: no synthetic data is injected, so any detected lead-lag association is a false positive.
+At $K{=}1$ (any single method suffices), FPR${=}$100\%---naive cross-correlation alone flags all pairs.
+At $K{=}2$, FPR drops to 75\%; at $K{=}3$, to 37.5\%; and at $K{\geq}4$, FPR${=}$0\%.
+The consensus framework at Tier~3 matches the false positive performance of the best individual methods (permutation Granger and Toda--Yamamoto, both 0\%) while providing robustness against miscalibration of any single method.
+
+\paragraph{False negative rate.}
+At $\alpha{=}1.0$ with 4~seeds, we define six ground-truth robust pairs: token entropy and ECE each predicting distinct-1, distinct-2, and distinct-3 \cite{li2016diversity}.
+These are independently validated by the first-differencing diagnostic---all six retain FDR significance after differencing (24/24 across seeds), ruling out shared-trend confounding as an alternative explanation.
+At Tier~3 ($K{\geq}4/5$, $S{\geq}3/4$), all six pairs are recovered (FNR${=}$0\%).
+At $K{=}5/5$, $S{\geq}3/4$, FNR rises to 33.3\%: consensus loses two ECE pairs---ECE$\to$distinct-2 and ECE$\to$distinct-3, each reaching Toda--Yamamoto significance in only 2 of 4 seeds.
+At $K{=}5/5$, $S{=}4/4$, FNR${=}$50\%: the two pairs above plus ECE$\to$distinct-1, which passes $S{\geq}3/4$ (3 of 4 seeds) but fails $S{=}4/4$.
+
+\paragraph{Design asymmetry.}
+FPR is validated on the method dimension only (single seed at $\alpha{=}0.0$), while FNR is validated on the joint method${\times}$seed dimension (4~seeds at $\alpha{=}1.0$).
+Full joint calibration---multi-seed null-control experiments---remains future work.
+This asymmetry means that FPR estimates may be optimistic if seed-level variance in false positive rates is non-negligible.
+
+\paragraph{Independent validation of ground truth.}
+The six ground-truth pairs used for FNR calibration are not self-referentially defined.
+They are independently confirmed by the first-differencing diagnostic (\S\ref{sec:method_sensitivity}), which tests a different statistical property---robustness to detrending---than the consensus methods.
+All six pairs retain 24/24 FDR significance after differencing, providing evidence against shared-trend confounding independent of the consensus framework itself.

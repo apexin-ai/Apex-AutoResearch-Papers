@@ -1,0 +1,27 @@
+paper_key: "du2026geometric"
+title: "Escaping Mode Collapse in LLM Generation via Geometric Regulation"
+venue: "arXiv 2026 (ICML 2026 accepted)"
+full_text_available: false
+
+research:
+  baselines: ["standard decoding (no intervention)"]
+  metrics:
+    - {name: "entropy rate (nats/step)", direction: "context_dependent"}
+    - {name: "mode collapse frequency", direction: "lower_better"}
+    - {name: "generation quality", direction: "higher_better"}
+  datasets: []
+  ablation_dimensions:
+    - intervention_method (RMR vs standard)
+    - entropy_rate_threshold
+  training_recipe: {method: "RMR (low-rank damping of value cache)"}
+  method_family: "geometric_regulation_for_mode_collapse"
+
+positioning:
+  core_claim: "Mode collapse is geometric collapse (internal trajectory confined to low-dimensional subspace). RMR (Reinforced Mode Regulation) damps self-reinforcing directions in transformer value cache, enabling stable generation at 0.8 nats/step (vs 2.0 nats/step collapse threshold for standard)."
+  key_results: "Stable generation at 0.8 nats/step; standard decoding collapses near 2.0 nats/step"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

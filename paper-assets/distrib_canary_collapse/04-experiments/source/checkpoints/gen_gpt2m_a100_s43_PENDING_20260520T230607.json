@@ -1,0 +1,29 @@
+{
+  "exp_id": "gen_gpt2m_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:58:48.288Z",
+    "updated_at": "2026-05-20T23:06:06.767Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/gpt2m_wiki_a100_s43\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "397750",
+      "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43.log",
+      "submitted_at": "2026-05-20T23:05:28.087Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T23:06:07.164053+00:00",
+  "trigger": "update_registry"
+}

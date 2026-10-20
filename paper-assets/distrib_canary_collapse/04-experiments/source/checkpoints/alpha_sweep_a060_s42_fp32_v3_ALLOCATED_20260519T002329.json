@@ -1,0 +1,19 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_fp32_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:22:51.958Z",
+    "updated_at": "2026-05-19T00:23:29.349Z",
+    "hypothesis": "D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.",
+    "parent": "alpha_sweep_a060_s42_fp32",
+    "server": "westd-17855",
+    "gpu": "cuda:2",
+    "account": "root"
+  },
+  "timestamp": "2026-05-19T00:23:29.495130+00:00",
+  "trigger": "update_registry"
+}

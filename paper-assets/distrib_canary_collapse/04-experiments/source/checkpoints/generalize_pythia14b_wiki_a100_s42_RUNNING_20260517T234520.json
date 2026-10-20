@@ -1,0 +1,46 @@
+{
+  "exp_id": "generalize_pythia14b_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:25:15.889Z",
+    "updated_at": "2026-05-17T23:45:20.045Z",
+    "hypothesis": "方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模",
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T13:57:38.626Z"
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo '=== Computing gen_7 metrics ===' && PYTHONUNBUFFERED=1 python -u compute_gen7_metrics.py && echo '=== Resuming from gen_8 ===' && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia14b_wiki_a100_s42 --start_gen 8\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "292246",
+      "log_path": "~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log",
+      "submitted_at": "2026-05-17T20:11:35.916Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "gen7": {
+        "perplexity": 466.84,
+        "token_entropy": 1.2829,
+        "effective_rank": 102.9,
+        "mauve": 0.0294
+      },
+      "resume_note": "gen_7 metrics computed manually, training resumed from gen_8 (PID 292246)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T23:45:20.176330+00:00",
+  "trigger": "update_registry"
+}

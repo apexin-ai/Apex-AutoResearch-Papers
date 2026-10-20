@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0400c7dd25d8580ffc21",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mmct k sweep",
+  "task_key": "worker_analysis_mmct_k_sweep_20260524T155110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_k_sweep_20260524T155110_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "099c9230b504f952fd5e0ecd0ab5921e49285e85674b164057d265d7dbc3c928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Summary:\n\n**Key findings:**\n\n| Threshold | FPR (α=0) | TPR (α=0.50) | TPR (α=0.75) | TPR (α=1.0) |\n|-----------|-----------|-------------|-------------|-------------|\n| K ≥ 2     | 38.9%     | ~85.4%      | ~72.9%      | ~75.0%      |\n| **K ≥ 3** | **16.7%** | **66.7%**   | **37.5%**   | **75.0%**   |\n| K ≥ 4     | 0.0%      | 25.0%       | 0.0%        | 25.0%       |\n| K ≥ 5     | 0.0%      | 4.2%        | 0.0%        | 0.0%        |\n\n**Critical trade-off for the paper:**\n- **K≥3** (our default): FPR = 16.7% (6/36 null pairs) — inflated above 5% nominal, but delivers 67–75% detection at moderate-to-full contamination\n- **K≥4**: FPR = 0% — perfect null rejection, but detection collapses to 0–25%, missing most true signals\n- **K≥2**: FPR = 38.9% — unacceptable false alarm rate\n- **K≥5**: Near-zero detection everywhere — effectively dead\n\n**Outputs saved:**\n- Plot: `docs/paper/figures/fig_mmct_k_operating.pdf` + `.png`\n- Data: `artifacts/mmct_k_operating_table.json` (registered as `art_20260524_cb887b`)\n\n**Methodological note:** FPR computed on 6-pair basis (6 null seeds × 6 pairs = 36 total, exact). TPR computed on 8-pair basis from CSV fp32 experiments (includes mauve pairs). K≥2 for TPR is estimated via pigeonhole bounds (marked with `~`). The TPR at α=0.75 (37.5%) being lower than α=0.50 (66.7%) for K≥3 reflects seed-level variance across mixed experiment vintages (fp32 reruns vs originals)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmct-k-sweep.md"
+}

@@ -1,0 +1,63 @@
+{
+  "exp_id": "alpha_sweep_a046_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:28:36.754Z",
+    "updated_at": "2026-05-21T07:03:09.572Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.46 --output_dir results/alpha_sweep/a046_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "421967",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a046_s42_fp32.log",
+      "submitted_at": "2026-05-21T02:28:36.300Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42
+    },
+    "hypothesis": "Dose-response sub-threshold probe: α=0.46 sits just below estimated α_c≈0.48-0.50. If PermG=0/8, confirms blind zone extends to α≤0.46 and α_c>0.46. If PermG>0/8, α_c shifts left to [0.46, 0.48].",
+    "reproduce": {
+      "finished_at": "2026-05-21T06:53:19.236Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T06:53:28.612958+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "DiffXCorr_fwd": "2/8",
+      "DiffXCorr_rev": "2/8",
+      "threshold_onset_3sigma": "0/8",
+      "TY_fwd": "1/8",
+      "K_ge3": "0/8",
+      "K_ge4": "0/8",
+      "robust_pairs": [],
+      "n_generations": 11,
+      "alpha": 0.46,
+      "seed": 42,
+      "threshold_criterion": "true_3sigma_d105",
+      "n_perm": 5000
+    },
+    "checkpoint_path": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a046_s42_fp32",
+    "log_path": "westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a046_s42_fp32.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T07:03:09.913804+00:00",
+  "trigger": "update_registry"
+}

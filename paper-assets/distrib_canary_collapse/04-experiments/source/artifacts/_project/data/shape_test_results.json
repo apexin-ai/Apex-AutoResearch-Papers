@@ -1,0 +1,788 @@
+{
+  "version_A_excl_sync_dip": {
+    "T=5_phase": {
+      "label": "T=5_phase",
+      "n_data_points": 3,
+      "n_total_trials": 24,
+      "all_zero": true,
+      "data": {
+        "0.45": {
+          "k": 0,
+          "n": 8
+        },
+        "0.5": {
+          "k": 0,
+          "n": 8
+        },
+        "0.75": {
+          "k": 0,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.75,
+        "p_max": 0.75,
+        "LL": -0.0,
+        "n_params": 1,
+        "AIC": 2.0,
+        "BIC": 1.0986
+      },
+      "smooth_pmax_fixed": {
+        "k": 49.9936,
+        "alpha_0": 1.5,
+        "p_max": 0.75,
+        "LL": -0.0,
+        "n_params": 2,
+        "AIC": 4.0,
+        "BIC": 2.1972,
+        "delta_AIC_vs_step": 2.0,
+        "delta_BIC_vs_step": 1.0986
+      },
+      "smooth_pmax_free": {
+        "k": 49.9935,
+        "alpha_0": 1.5,
+        "p_max": 0.01,
+        "LL": -0.0,
+        "n_params": 3,
+        "AIC": 6.0,
+        "BIC": 3.2958,
+        "delta_AIC_vs_step": 4.0,
+        "delta_BIC_vs_step": 2.1972
+      },
+      "LR_stat_vs_fixed": 0.0,
+      "LR_stat_vs_free": 0.0,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=10_phase": {
+      "label": "T=10_phase",
+      "n_data_points": 3,
+      "n_total_trials": 24,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 0,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.45,
+        "p_max": 0.75,
+        "LL": -8.9974,
+        "n_params": 1,
+        "AIC": 19.9947,
+        "BIC": 19.0933
+      },
+      "smooth_pmax_fixed": {
+        "k": 500.0,
+        "alpha_0": 0.4824,
+        "p_max": 0.75,
+        "LL": -8.9974,
+        "n_params": 2,
+        "AIC": 21.9947,
+        "BIC": 20.192,
+        "delta_AIC_vs_step": 2.0,
+        "delta_BIC_vs_step": 1.0986
+      },
+      "smooth_pmax_free": {
+        "k": 500.0,
+        "alpha_0": 0.4829,
+        "p_max": 0.7501,
+        "LL": -8.9974,
+        "n_params": 3,
+        "AIC": 23.9947,
+        "BIC": 21.2906,
+        "delta_AIC_vs_step": 4.0,
+        "delta_BIC_vs_step": 2.1972
+      },
+      "LR_stat_vs_fixed": -0.0,
+      "LR_stat_vs_free": -0.0,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=15_phase": {
+      "label": "T=15_phase",
+      "n_data_points": 3,
+      "n_total_trials": 24,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 6,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -13.496,
+        "n_params": 1,
+        "AIC": 28.9921,
+        "BIC": 28.0907
+      },
+      "smooth_pmax_fixed": {
+        "k": 20.0086,
+        "alpha_0": -0.5,
+        "p_max": 0.75,
+        "LL": -13.496,
+        "n_params": 2,
+        "AIC": 30.9921,
+        "BIC": 29.1893,
+        "delta_AIC_vs_step": 2.0,
+        "delta_BIC_vs_step": 1.0986
+      },
+      "smooth_pmax_free": {
+        "k": 50.0089,
+        "alpha_0": -0.0152,
+        "p_max": 0.75,
+        "LL": -13.496,
+        "n_params": 3,
+        "AIC": 32.9921,
+        "BIC": 30.2879,
+        "delta_AIC_vs_step": 4.0,
+        "delta_BIC_vs_step": 2.1972
+      },
+      "LR_stat_vs_fixed": 0.0,
+      "LR_stat_vs_free": 0.0,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=20_phase": {
+      "label": "T=20_phase",
+      "n_data_points": 3,
+      "n_total_trials": 24,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 5,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -14.5947,
+        "n_params": 1,
+        "AIC": 31.1893,
+        "BIC": 30.2879
+      },
+      "smooth_pmax_fixed": {
+        "k": 135.6696,
+        "alpha_0": 0.4381,
+        "p_max": 0.75,
+        "LL": -14.2899,
+        "n_params": 2,
+        "AIC": 32.5797,
+        "BIC": 30.777,
+        "delta_AIC_vs_step": 1.3904,
+        "delta_BIC_vs_step": 0.489
+      },
+      "smooth_pmax_free": {
+        "k": 130.3737,
+        "alpha_0": 0.4377,
+        "p_max": 0.7501,
+        "LL": -14.2899,
+        "n_params": 3,
+        "AIC": 34.5797,
+        "BIC": 31.8756,
+        "delta_AIC_vs_step": 3.3904,
+        "delta_BIC_vs_step": 1.5877
+      },
+      "LR_stat_vs_fixed": 0.6096,
+      "LR_stat_vs_free": 0.6096,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=25_phase": {
+      "label": "T=25_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 6,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.6": {
+          "k": 5,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -19.0933,
+        "n_params": 1,
+        "AIC": 40.1867,
+        "BIC": 39.573
+      },
+      "smooth_pmax_fixed": {
+        "k": 3.0727,
+        "alpha_0": -0.5,
+        "p_max": 0.75,
+        "LL": -19.0351,
+        "n_params": 2,
+        "AIC": 42.0703,
+        "BIC": 40.8429,
+        "delta_AIC_vs_step": 1.8836,
+        "delta_BIC_vs_step": 1.2699
+      },
+      "smooth_pmax_free": {
+        "k": 46.8511,
+        "alpha_0": -0.5,
+        "p_max": 0.7187,
+        "LL": -19.0122,
+        "n_params": 3,
+        "AIC": 44.0243,
+        "BIC": 42.1832,
+        "delta_AIC_vs_step": 3.8376,
+        "delta_BIC_vs_step": 2.6102
+      },
+      "LR_stat_vs_fixed": 0.1164,
+      "LR_stat_vs_free": 0.1624,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=10_dense": {
+      "label": "T=10_dense",
+      "n_data_points": 14,
+      "n_total_trials": 200,
+      "all_zero": false,
+      "data": {
+        "0.0": {
+          "k": 0,
+          "n": 24
+        },
+        "0.1": {
+          "k": 0,
+          "n": 16
+        },
+        "0.25": {
+          "k": 0,
+          "n": 24
+        },
+        "0.3": {
+          "k": 0,
+          "n": 8
+        },
+        "0.35": {
+          "k": 0,
+          "n": 8
+        },
+        "0.4": {
+          "k": 0,
+          "n": 8
+        },
+        "0.45": {
+          "k": 0,
+          "n": 16
+        },
+        "0.46": {
+          "k": 0,
+          "n": 8
+        },
+        "0.48": {
+          "k": 0,
+          "n": 16
+        },
+        "0.5": {
+          "k": 3,
+          "n": 24
+        },
+        "0.52": {
+          "k": 0,
+          "n": 8
+        },
+        "0.7": {
+          "k": 5,
+          "n": 8
+        },
+        "0.75": {
+          "k": 11,
+          "n": 24
+        },
+        "1.0": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.48,
+        "p_max": 0.75,
+        "LL": -72.3479,
+        "n_params": 1,
+        "AIC": 146.6958,
+        "BIC": 147.3348
+      },
+      "smooth_pmax_fixed": {
+        "k": 14.6512,
+        "alpha_0": 0.6838,
+        "p_max": 0.75,
+        "LL": -39.4413,
+        "n_params": 2,
+        "AIC": 82.8826,
+        "BIC": 84.1607,
+        "delta_AIC_vs_step": -63.8132,
+        "delta_BIC_vs_step": -63.1741
+      },
+      "smooth_pmax_free": {
+        "k": 45.0774,
+        "alpha_0": 0.5468,
+        "p_max": 0.5489,
+        "LL": -38.9849,
+        "n_params": 3,
+        "AIC": 83.9698,
+        "BIC": 85.887,
+        "delta_AIC_vs_step": -62.7259,
+        "delta_BIC_vs_step": -61.4478
+      },
+      "LR_stat_vs_fixed": 65.8132,
+      "LR_stat_vs_free": 66.7259,
+      "preferred_AIC": "smooth_fixed",
+      "preferred_BIC": "smooth_fixed"
+    }
+  },
+  "version_B_all_cells": {
+    "T=5_phase": {
+      "label": "T=5_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": true,
+      "data": {
+        "0.45": {
+          "k": 0,
+          "n": 8
+        },
+        "0.5": {
+          "k": 0,
+          "n": 8
+        },
+        "0.6": {
+          "k": 0,
+          "n": 8
+        },
+        "0.75": {
+          "k": 0,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.75,
+        "p_max": 0.75,
+        "LL": -0.0,
+        "n_params": 1,
+        "AIC": 2.0,
+        "BIC": 1.3863
+      },
+      "smooth_pmax_fixed": {
+        "k": 49.9937,
+        "alpha_0": 1.5,
+        "p_max": 0.75,
+        "LL": -0.0,
+        "n_params": 2,
+        "AIC": 4.0,
+        "BIC": 2.7726,
+        "delta_AIC_vs_step": 2.0,
+        "delta_BIC_vs_step": 1.3863
+      },
+      "smooth_pmax_free": {
+        "k": 49.9869,
+        "alpha_0": 1.5,
+        "p_max": 0.01,
+        "LL": -0.0,
+        "n_params": 3,
+        "AIC": 6.0,
+        "BIC": 4.1589,
+        "delta_AIC_vs_step": 4.0,
+        "delta_BIC_vs_step": 2.7726
+      },
+      "LR_stat_vs_fixed": 0.0,
+      "LR_stat_vs_free": 0.0,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=10_phase": {
+      "label": "T=10_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 0,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.6": {
+          "k": 0,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.45,
+        "p_max": 0.75,
+        "LL": -20.0877,
+        "n_params": 1,
+        "AIC": 42.1754,
+        "BIC": 41.5617
+      },
+      "smooth_pmax_fixed": {
+        "k": 7.3516,
+        "alpha_0": 0.5772,
+        "p_max": 0.75,
+        "LL": -19.5036,
+        "n_params": 2,
+        "AIC": 43.0072,
+        "BIC": 41.7798,
+        "delta_AIC_vs_step": 0.8317,
+        "delta_BIC_vs_step": 0.218
+      },
+      "smooth_pmax_free": {
+        "k": 500.0,
+        "alpha_0": 0.475,
+        "p_max": 0.5,
+        "LL": -16.6356,
+        "n_params": 3,
+        "AIC": 39.2711,
+        "BIC": 37.43,
+        "delta_AIC_vs_step": -2.9043,
+        "delta_BIC_vs_step": -4.1317
+      },
+      "LR_stat_vs_fixed": 1.1683,
+      "LR_stat_vs_free": 6.9043,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=15_phase": {
+      "label": "T=15_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 6,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.6": {
+          "k": 0,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -24.5864,
+        "n_params": 1,
+        "AIC": 51.1728,
+        "BIC": 50.5591
+      },
+      "smooth_pmax_fixed": {
+        "k": 0.9967,
+        "alpha_0": -0.5,
+        "p_max": 0.75,
+        "LL": -22.0435,
+        "n_params": 2,
+        "AIC": 48.087,
+        "BIC": 46.8596,
+        "delta_AIC_vs_step": -3.0858,
+        "delta_BIC_vs_step": -3.6995
+      },
+      "smooth_pmax_free": {
+        "k": 100.0,
+        "alpha_0": 0.1,
+        "p_max": 0.5625,
+        "LL": -21.9301,
+        "n_params": 3,
+        "AIC": 49.8601,
+        "BIC": 48.019,
+        "delta_AIC_vs_step": -1.3127,
+        "delta_BIC_vs_step": -2.5401
+      },
+      "LR_stat_vs_fixed": 5.0858,
+      "LR_stat_vs_free": 5.3127,
+      "preferred_AIC": "smooth_fixed",
+      "preferred_BIC": "smooth_fixed"
+    },
+    "T=20_phase": {
+      "label": "T=20_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 5,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.6": {
+          "k": 0,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -25.685,
+        "n_params": 1,
+        "AIC": 53.37,
+        "BIC": 52.7563
+      },
+      "smooth_pmax_fixed": {
+        "k": 0.8138,
+        "alpha_0": -0.5,
+        "p_max": 0.75,
+        "LL": -22.1501,
+        "n_params": 2,
+        "AIC": 48.3003,
+        "BIC": 47.0729,
+        "delta_AIC_vs_step": -5.0697,
+        "delta_BIC_vs_step": -5.6834
+      },
+      "smooth_pmax_free": {
+        "k": 99.8387,
+        "alpha_0": 0.0277,
+        "p_max": 0.5312,
+        "LL": -22.1182,
+        "n_params": 3,
+        "AIC": 50.2363,
+        "BIC": 48.3952,
+        "delta_AIC_vs_step": -3.1337,
+        "delta_BIC_vs_step": -4.3611
+      },
+      "LR_stat_vs_fixed": 7.0697,
+      "LR_stat_vs_free": 7.1337,
+      "preferred_AIC": "smooth_fixed",
+      "preferred_BIC": "smooth_fixed"
+    },
+    "T=25_phase": {
+      "label": "T=25_phase",
+      "n_data_points": 4,
+      "n_total_trials": 32,
+      "all_zero": false,
+      "data": {
+        "0.45": {
+          "k": 6,
+          "n": 8
+        },
+        "0.5": {
+          "k": 6,
+          "n": 8
+        },
+        "0.6": {
+          "k": 5,
+          "n": 8
+        },
+        "0.75": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": -0.05,
+        "p_max": 0.75,
+        "LL": -19.0933,
+        "n_params": 1,
+        "AIC": 40.1867,
+        "BIC": 39.573
+      },
+      "smooth_pmax_fixed": {
+        "k": 3.0727,
+        "alpha_0": -0.5,
+        "p_max": 0.75,
+        "LL": -19.0351,
+        "n_params": 2,
+        "AIC": 42.0703,
+        "BIC": 40.8429,
+        "delta_AIC_vs_step": 1.8836,
+        "delta_BIC_vs_step": 1.2699
+      },
+      "smooth_pmax_free": {
+        "k": 46.8511,
+        "alpha_0": -0.5,
+        "p_max": 0.7187,
+        "LL": -19.0122,
+        "n_params": 3,
+        "AIC": 44.0243,
+        "BIC": 42.1832,
+        "delta_AIC_vs_step": 3.8376,
+        "delta_BIC_vs_step": 2.6102
+      },
+      "LR_stat_vs_fixed": 0.1164,
+      "LR_stat_vs_free": 0.1624,
+      "preferred_AIC": "step",
+      "preferred_BIC": "step"
+    },
+    "T=10_dense": {
+      "label": "T=10_dense",
+      "n_data_points": 17,
+      "n_total_trials": 232,
+      "all_zero": false,
+      "data": {
+        "0.0": {
+          "k": 0,
+          "n": 24
+        },
+        "0.1": {
+          "k": 0,
+          "n": 16
+        },
+        "0.25": {
+          "k": 0,
+          "n": 24
+        },
+        "0.3": {
+          "k": 0,
+          "n": 8
+        },
+        "0.35": {
+          "k": 0,
+          "n": 8
+        },
+        "0.4": {
+          "k": 0,
+          "n": 8
+        },
+        "0.45": {
+          "k": 0,
+          "n": 16
+        },
+        "0.46": {
+          "k": 0,
+          "n": 8
+        },
+        "0.48": {
+          "k": 0,
+          "n": 16
+        },
+        "0.5": {
+          "k": 3,
+          "n": 24
+        },
+        "0.52": {
+          "k": 0,
+          "n": 8
+        },
+        "0.55": {
+          "k": 0,
+          "n": 8
+        },
+        "0.6": {
+          "k": 0,
+          "n": 16
+        },
+        "0.65": {
+          "k": 0,
+          "n": 8
+        },
+        "0.7": {
+          "k": 5,
+          "n": 8
+        },
+        "0.75": {
+          "k": 11,
+          "n": 24
+        },
+        "1.0": {
+          "k": 6,
+          "n": 8
+        }
+      },
+      "step_model": {
+        "alpha_c": 0.65,
+        "p_max": 0.75,
+        "LL": -100.3599,
+        "n_params": 1,
+        "AIC": 202.7197,
+        "BIC": 203.5529
+      },
+      "smooth_pmax_fixed": {
+        "k": 15.7243,
+        "alpha_0": 0.7176,
+        "p_max": 0.75,
+        "LL": -44.3488,
+        "n_params": 2,
+        "AIC": 92.6975,
+        "BIC": 94.364,
+        "delta_AIC_vs_step": -110.0222,
+        "delta_BIC_vs_step": -109.189
+      },
+      "smooth_pmax_free": {
+        "k": 15.5094,
+        "alpha_0": 0.7222,
+        "p_max": 0.775,
+        "LL": -44.3351,
+        "n_params": 3,
+        "AIC": 94.6702,
+        "BIC": 97.1698,
+        "delta_AIC_vs_step": -108.0495,
+        "delta_BIC_vs_step": -106.3831
+      },
+      "LR_stat_vs_fixed": 112.0222,
+      "LR_stat_vs_free": 112.0495,
+      "preferred_AIC": "smooth_fixed",
+      "preferred_BIC": "smooth_fixed"
+    }
+  },
+  "metadata": {
+    "description": "Shape test: Step vs Smooth (sigmoid) likelihood ratio test",
+    "step_model": "P(detect|\u03b1) = 0 if \u03b1 < \u03b1_c else P_max (P_max=0.75 fixed, \u03b1_c fitted)",
+    "smooth_fixed": "P(detect|\u03b1) = 0.75 \u00d7 sigmoid(k\u00d7(\u03b1-\u03b1_0)), 2 params (k, \u03b1_0)",
+    "smooth_free": "P(detect|\u03b1) = P_max \u00d7 sigmoid(k\u00d7(\u03b1-\u03b1_0)), 3 params (k, \u03b1_0, P_max)",
+    "comparison": "\u0394AIC/\u0394BIC < 0 favors smooth; > 0 favors step",
+    "version_A": "Excludes sync-dip cells (\u03b1=0.60 for T\u226420; \u03b1\u2208{0.55,0.60,0.65} for dense)",
+    "version_B": "All cells included",
+    "dense_t10_n_assumption": "n = n_seeds \u00d7 8 (verified from empirical_t10_detail)"
+  }
+}

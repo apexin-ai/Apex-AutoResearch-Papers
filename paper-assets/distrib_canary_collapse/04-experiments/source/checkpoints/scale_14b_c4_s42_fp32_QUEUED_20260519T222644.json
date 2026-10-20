@@ -1,0 +1,17 @@
+{
+  "exp_id": "scale_14b_c4_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:26:29.074Z",
+    "updated_at": "2026-05-19T22:26:44.098Z",
+    "hypothesis": "D112 scale×domain cross: Pythia-1.4B × C4 × α=1.0 分离域效应 vs 规模效应。C4 在 410M 下 collapse 机制与 WikiText 不同（ppl-dominated, d1 仅 -4%）。1.4B 下如果 C4 仍 ppl-dominated → 域效应；如果转为 diversity-dominated → 规模效应。Claim 1 cross-domain scale validation.",
+    "parent": "generalize_pythia1b_c4_a100_s42_v2",
+    "plan_id": "plan_036"
+  },
+  "timestamp": "2026-05-19T22:26:44.558862+00:00",
+  "trigger": "update_registry"
+}

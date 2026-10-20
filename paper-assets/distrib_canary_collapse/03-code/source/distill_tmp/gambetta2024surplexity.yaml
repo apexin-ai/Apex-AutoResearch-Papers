@@ -1,0 +1,26 @@
+paper_key: "gambetta2024surplexity"
+title: "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["human-data filtering"]
+  metrics:
+    - {name: "next-token probability distribution", direction: "N/A"}
+    - {name: "distributional skewedness", direction: "lower_better"}
+  datasets: []
+  ablation_dimensions:
+    - surplexity_threshold
+    - data_filtering_strategy
+  training_recipe: {}
+  method_family: "data_filtering_for_collapse_mitigation"
+
+positioning:
+  core_claim: "Surprise-based data filtering (surplexity) preserves performance and diversity without needing to distinguish human vs AI data."
+  key_results: "N/A"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

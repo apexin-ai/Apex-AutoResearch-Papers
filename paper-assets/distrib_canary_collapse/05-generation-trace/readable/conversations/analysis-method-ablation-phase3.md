@@ -1,0 +1,2306 @@
+# analysis method ablation phase3
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_analysis_method_ablation_phase3_20260518T225001.jsonl`
+- **Structured JSON:** [`6f040d9258fcc29eed3c.json`](../../sessions/6f/6f040d9258fcc29eed3c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+77 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T22:55:47.534178+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase2/report/method_ablation_phase2_summary.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase2/report/method_ablation_phase2_summary.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T22:55:47.534487+00:00_
+
+1	Phase 2 结果摘要（详见服务器 results/method_ablation_phase2_report.md）
+2	
+3	Method × Alpha Sig Rates (BH FDR-corrected):
+4	| α | naive | diff | threshold | permG | TY |
+5	|---|-------|------|-----------|-------|-----|
+6	| 0.00 | 100% | 37.5% | 62.5%† | 0% | 0% |
+7	| 0.25 | 100% | 25% | 37.5%† | 0% | 37.5% |
+8	| 0.50 | 100% | 100% | 100%† | 0% | 0% |
+9	| 1.00 | 100% | 100% | 100%† | 75% | 59.4% |
+10	
+11	†threshold_onset 为非统计检验（无 p-value），FDR 不适用，数字等同 raw。
+12	
+13	> Raw significance (uncorrected), shown for comparison:
+14	> | α | naive | diff | threshold | permG | TY |
+15	> |---|-------|------|-----------|-------|-----|
+16	> | 0.00 | 100% | 50% | 62.5% | 0% | 0% |
+17	> | 0.25 | 100% | 25% | 37.5% | 25% | 62.5% |
+18	> | 0.50 | 100% | 100% | 100% | 25% | 0% |
+19	> | 1.00 | 100% | 100% | 100% | 75% | 59.4% |
+20	>
+21	> 关键 FDR 翻转: α=0.25 permG 25%→0%, α=0.50 permG 25%→0%, α=0.25 TY 62.5%→37.5%, α=0.00 diff 50%→37.5%
+22	
+23	Cohen κ = 0.185 (poor agreement)
+24	Decision flips: naive vs permG 50%, naive vs TY 57%, α=0.0 naive vs permG 100%
+25	
+26	数据来源: d028_fpr_null_control_full.json (phase2_fdr_sig_rates section), BH FDR α=0.05
+27	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T22:55:47.534662+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T22:55:47.534803+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T22:55:47.534941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"*ablation*\" -o -name \"*method_panel*\" -o -name \"*fpr_null*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"*ablation*\" -o -name \"*method_panel*\" -o -name \"*fpr_null*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T22:55:47.535069+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/plan_008_ablation_accum.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T22:55:47.535186+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "for d in a010_s42 a060_s42_bf16 a075_s42 a075_s43 a075_s44; do echo \"=== $d ===\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/all_metrics.json 2>/dev/null; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "for d in a010_s42 a060_s42_bf16 a075_s42 a075_s43 a075_s44; do echo \"=== $d ===\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/all_metrics.json 2>/dev/null; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T22:55:47.535326+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T22:55:47.535472+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "for d in a010_s42 a060_s42_bf16 a075_s42 a075_s43 a075_s44; do\n  echo \"=== $d ===\"\n  if [ -f /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/all_metrics.json ]; then\n    echo \"all_metrics.json: EXISTS\"\n  else\n    echo \"all_metrics.json: MISSING\"\n  fi\n  count=$(ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l)\n  echo \"gen_*/metrics.json count: $count\"\ndone",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "for d in a010_s42 a060_s42_bf16 a075_s42 a075_s43 a075_s44; do\n  echo \"=== $d ===\"\n  if [ -f /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/all_metrics.json ]; then\n    echo \"all_metrics.json: EXISTS\"\n  else\n    echo \"all_metrics.json: MISSING\"\n  fi\n  count=$(ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l)\n  echo \"gen_*/metrics.json count: $count\"\ndone",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T22:55:47.535603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== a010_s42 ===\\nall_metrics.json: MISSING\\ngen_*/metrics.json count: 0\\n=== a060_s42_bf16 ===\\nall_metrics.json: EXISTS\\ngen_*/metrics.json count: 11\\n=== a075_s42 ===\\nall_metrics.json: MISSING\\ngen_*/metrics.json count: 0\\n=== a075_s43 ===\\nall_metrics.json: MISSING\\ngen_*/metrics.json count: 0\\n=== a075_s44 ===\\nall_metrics.json: MISSING\\ngen_*/metrics.json count: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T22:55:47.535751+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | grep -E \"a010|a075|a060\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | grep -E \"a010|a075|a060\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T22:55:47.535884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"drwxr-xr-x  5 root root   84 May 19 01:58 a010_s42_bf16\\ndrwxr-xr-x  8 root root  135 May 19 06:37 a010_s43_bf16\\ndrwxr-xr-x  4 root root   88 May 19 01:01 a060_s42\\ndrwxr-xr-x 13 root root 4096 May 19 04:49 a060_s42_bf16\\ndrwxr-xr-x  4 root root   88 May 19 06:38 a060_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T22:55:47.536009+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"all_metrics.json\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"all_metrics.json\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T22:55:47.536126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T22:55:47.536282+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T22:55:47.536424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  8 root root  155 May 19 06:09 .\\ndrwxr-xr-x  8 root root  147 May 19 01:58 ..\\ndrwxr-xr-x  4 root root   88 May 19 06:39 a005_s42_fp32\\ndrwxr-xr-x  5 root root   84 May 19 01:58 a010_s42_bf16\\ndrwxr-xr-x  8 root root  135 May 19 06:37 a010_s43_bf16\\ndrwxr-xr-x  4 root root   88 May 19 01:01 a060_s42\\ndrwxr-xr-x 13 root root 4096 May 19 04:49 a060_s42_bf16\\ndrwxr-xr-x  4 root root   88 May 19 06:38 a060_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T22:55:47.536546+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "for d in a010_s42_bf16 a010_s43_bf16 a060_s42 a060_s42_bf16 a060_s42_fp32; do\n  echo \"=== $d ===\"\n  ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/ 2>/dev/null\n  count=$(ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l)\n  echo \"gen count: $count\"\ndone",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "for d in a010_s42_bf16 a010_s43_bf16 a060_s42 a060_s42_bf16 a060_s42_fp32; do\n  echo \"=== $d ===\"\n  ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/ 2>/dev/null\n  count=$(ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l)\n  echo \"gen count: $count\"\ndone",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T22:55:47.536674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== a010_s42_bf16 ===\\nconfig.json\\ngen_0\\ngen_1\\ngen_2\\ngen count: 2\\n=== a010_s43_bf16 ===\\nconfig.json\\ngen_0\\ngen_1\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen count: 5\\n=== a060_s42 ===\\nEXIT_CODE\\nconfig.json\\ngen_0\\ngen_1\\ngen count: 1\\n=== a060_s42_bf16 ===\\nEXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\ngen count: 11\\n=== a060_s42_fp32 ===\\nEXIT_CODE\\nconfig.json\\ngen_0\\ngen_1\\ngen count: 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T22:55:47.536828+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "for d in a000_s42 a025_s42_v2 a050_s42 a060_s42_bf16; do\n  echo \"=== $d ===\"\n  ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l\ndone\n# Also check mvp for α=1.00\nls /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42_v3/gen_*/metrics.json 2>/dev/null | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "for d in a000_s42 a025_s42_v2 a050_s42 a060_s42_bf16; do\n  echo \"=== $d ===\"\n  ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/$d/gen_*/metrics.json 2>/dev/null | wc -l\ndone\n# Also check mvp for α=1.00\nls /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42_v3/gen_*/metrics.json 2>/dev/null | wc -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T22:55:47.536957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== a000_s42 ===\\n0\\n=== a025_s42_v2 ===\\n0\\n=== a050_s42 ===\\n0\\n=== a060_s42_bf16 ===\\n11\\n0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T22:55:47.537136+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json | head -100",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json | head -100",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T22:55:47.537355+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2574140627143287,\\n    \\\"self_bleu\\\": 0.010580271316628333,\\n    \\\"distinct_1\\\": 0.09144189307053367,\\n    \\\"distinct_2\\\": 0.5042794959161382,\\n    \\\"distinct_3\\\": 0.8329352690398363,\\n    \\\"ece\\\": 0.012302233603174888,\\n    \\\"effective_rank\\\": 48.33042169248714,\\n    \\\"perplexity\\\": 27.680778028190417,\\n    \\\"mauve\\\": 0.02882107421998093,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.6458951365012062,\\n    \\\"self_bleu\\\": 0.010603079904910741,\\n    \\\"distinct_1\\\": 0.09114057068951581,\\n    \\\"distinct_2\\\": 0.5000606261468447,\\n    \\\"distinct_3\\\": 0.8283861997607269,\\n    \\\"ece\\\": 0.02478403051044924,\\n    \\\"effective_rank\\\": 51.44762555702943,\\n    \\\"perplexity\\\": 18.437009701490076,\\n    \\\"mauve\\\": 0.029102423621882492,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5937177183951787,\\n    \\\"self_bleu\\\": 0.01199090309866288,\\n    \\\"distinct_1\\\": 0.0755390625,\\n    \\\"distinct_2\\\": 0.4122844709724295,\\n    \\\"distinct_3\\\": 0.7580509070454226,\\n    \\\"ece\\\": 0.03737787397732732,\\n    \\\"effective_rank\\\": 55.81363551272641,\\n    \\\"perplexity\\\": 19.05448965872584,\\n    \\\"mauve\\\": 0.025043233096827038,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5894702903946607,\\n    \\\"self_bleu\\\": 0.013761738734054816,\\n    \\\"distinct_1\\\": 0.0703046875,\\n    \\\"distinct_2\\\": 0.3701278916241533,\\n    \\\"distinct_3\\\": 0.7053078954358661,\\n    \\\"ece
+…[truncated 1906 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T22:55:47.537551+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"d028*\" -o -name \"*fpr_null*\" -o -name \"*phase2*\" 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"d028*\" -o -name \"*fpr_null*\" -o -name \"*phase2*\" 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T22:55:47.537683+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T22:55:47.537800+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T22:55:47.537925+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/': No such file or directory\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T22:55:47.538070+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T22:55:47.538186+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T22:55:47.538323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_c4\\ndry_run\\ngeneralize\\nintervention\\nscale_check\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T22:55:47.538444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep_c4/a050_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s43_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_bf16/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T22:55:47.538595+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T22:55:47.538733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_t
+…[truncated 226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T22:55:47.538890+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | grep a025",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | grep a025",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T22:55:47.539017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a025_3seed_unified_summary.txt\\na025_s43\\na025_s44\\nty_3seed_a025_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T22:55:47.539132+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/mvp/ -name \"all_metrics.json\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/mvp/ -name \"all_metrics.json\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T22:55:47.539249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/distrib_canary_collapse/results/mvp/': No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T22:55:47.539386+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"d028*\" -o -name \"*fpr_null*\" -o -name \"*method_ablation*\" 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"d028*\" -o -name \"*fpr_null*\" -o -name \"*method_ablation*\" 2>/dev/null | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T22:55:47.539509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/__pycache__/method_ablation.cpython-312.pyc\\n/root/autodl-tmp/distrib_canary_collapse/__pycache__/method_ablation.cpython-310.pyc\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control.json\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control_full.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json\\n/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T22:55:47.539664+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T22:55:47.539956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method Ablation Phase 2: Pooled Panel Analysis across alpha regimes.\\n\\nExtends Phase 1 (alpha=1.0, 4 seeds, 16 pairs) to all completed alpha levels.\\nCore evidence for Claim 3: method sensitivity compounded by regime dependence.\\n\\nInput:\\n  - results/alpha_sweep/a{NNN}_s42/all_metrics.json (alpha=0.00,0.25,0.50)\\n  - results/mvp/rep_{42..45}/all_metrics.json (alpha=1.00)\\n\\nOutput:\\n  - results/method_ablation_phase2_panel.json\\n  - results/method_ablation_phase2_report.md\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport warnings\\nfrom collections import defaultdict\\nfrom datetime import datetime\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom method_ablation import (\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto,\\n    extract, orient, ALPHA,\\n)\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\nMETHOD_NAMES = [\\\"naive\\\", \\\"differenced\\\", \\\"threshold\\\", \\\"permutation_granger\\\", \\\"TY\\\"]\\nN_PERM = 1000\\n\\n\\ndef load_all_data(base_dir):\\n    data = []\\n\\n    sweep_dir = os.path.join(base_dir, \\\"results\\\", \\\"alpha_sweep\\\")\\n    pat = re.compile(r\\\"^a(\\\\d{3})_s(\\\\d+)$\\\")\\n    if os.path.isdir(sweep_dir):\\n        for name in sorted(os.listdir(sweep_dir)):\\n            m = pat.match(name)\\n            if not m:\\n                continue\\n            path = os.path.join(sweep_dir, name, \\\"all_metrics.json\\\")\\n            if not os.path.isfile(path):\\n                continue\\n            alpha = int(m.group(1)) / 100.0\\n            seed = int(m.group(2))\\n            with open(path) as f:\\
+…[truncated 7605 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T22:55:47.540113+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"all_metrics.json\" -path \"*a100*\" -o -name \"all_metrics.json\" -path \"*rep_4*\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"all_metrics.json\" -path \"*a100*\" -o -name \"all_metrics.json\" -path \"*rep_4*\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T22:55:47.540240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T22:55:47.540420+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T22:55:47.540554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42\\na000_s43\\na000_s44\\na010_s42\\na025_3seed_unified_summary.txt\\na025_s43\\na025_s44\\na050_s42\\na050_s43\\na050_s44\\na060_s42_bf16\\na075_s42\\na075_s43\\na075_s44\\nalpha_monotonicity.png\\nanalysis\\nanalysis_s44\\nanalysis_summary.json\\npooled_panel_results.json\\npooled_panel_summary.txt\\nty_3seed_a025_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T22:55:47.540672+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 3 -name \"all_metrics.json\" -path \"*100*\" -o -name \"all_metrics.json\" -path \"*mvp*\" -o -name \"all_metrics.json\" -path \"*rep_*\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 3 -name \"all_metrics.json\" -path \"*100*\" -o -name \"all_metrics.json\" -path \"*mvp*\" -o -name \"all_metrics.json\" -path \"*rep_*\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T22:55:47.540798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T22:55:47.540939+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json') as f:\n    data = json.load(f)\nprint('Meta:', json.dumps(data['meta'], indent=2))\nprint()\n# Unique alphas and run_ids\nrun_ids = set()\nfor r in data['panel']:\n    run_ids.add((r['alpha'], r['run_id']))\nfor a, rid in sorted(run_ids):\n    print(f'  alpha={a}, run_id={rid}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json') as f:\n    data = json.load(f)\nprint('Meta:', json.dumps(data['meta'], indent=2))\nprint()\n# Unique alphas and run_ids\nrun_ids = set()\nfor r in data['panel']:\n    run_ids.add((r['alpha'], r['run_id']))\nfor a, rid in sorted(run_ids):\n    print(f'  alpha={a}, run_id={rid}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T22:55:47.541080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta: {\\n  \\\"timestamp\\\": \\\"2026-05-15T16:57:34.478890\\\",\\n  \\\"alphas\\\": [\\n    0.0,\\n    0.25,\\n    0.5,\\n    1.0\\n  ],\\n  \\\"n_alphas\\\": 4,\\n  \\\"n_runs\\\": 7,\\n  \\\"n_panel_rows\\\": 56,\\n  \\\"canary_metrics\\\": [\\n    \\\"token_entropy\\\",\\n    \\\"ece\\\"\\n  ],\\n  \\\"downstream_metrics\\\": [\\n    \\\"distinct_1\\\",\\n    \\\"distinct_2\\\",\\n    \\\"distinct_3\\\",\\n    \\\"perplexity\\\"\\n  ],\\n  \\\"methods\\\": [\\n    \\\"naive\\\",\\n    \\\"differenced\\\",\\n    \\\"threshold\\\",\\n    \\\"permutation_granger\\\",\\n    \\\"TY\\\"\\n  ],\\n  \\\"n_permutations\\\": 1000,\\n  \\\"note\\\": \\\"alpha=0.75 RUNNING, alpha=0.10/0.60 QUEUED. Panel covers alpha={0.0, 0.25, 0.50, 1.0}. Update when alpha=0.75 completes.\\\"\\n}\\n\\n  alpha=0.0, run_id=a000_s42\\n  alpha=0.25, run_id=a025_s42\\n  alpha=0.5, run_id=a050_s42\\n  alpha=1.0, run_id=mvp_s42\\n  alpha=1.0, run_id=mvp_s43\\n  alpha=1.0, run_id=mvp_s44\\n  alpha=1.0, run_id=mvp_s45\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T22:55:47.541265+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -type d -name \"a100*\" -o -type d -name \"*a1.0*\" -o -type d -name \"rep_*\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -type d -name \"a100*\" -o -type d -name \"*a1.0*\" -o -type d -name \"rep_*\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T22:55:47.541402+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T22:55:47.541519+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -type d -name \"rep_*\" -o -type d -name \"a100*\" | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -type d -name \"rep_*\" -o -type d -name \"a100*\" | sort",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T22:55:47.541646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T22:55:47.541794+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T22:55:47.542041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return 
+…[truncated 7427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T22:55:47.542197+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T22:55:47.542479+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences se
+…[truncated 7407 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T22:55:47.542669+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nwith open('/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py') as f:\n    lines = f.readlines()\nprint(f'Total lines: {len(lines)}')\n# Print lines 100-200 which likely contain the compute functions\nfor i, line in enumerate(lines[90:220], start=91):\n    print(f'{i}: {line}', end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "python3 -c \"\nwith open('/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py') as f:\n    lines = f.readlines()\nprint(f'Total lines: {len(lines)}')\n# Print lines 100-200 which likely contain the compute functions\nfor i, line in enumerate(lines[90:220], start=91):\n    print(f'{i}: {line}', end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T22:55:47.542891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total lines: 546\\n91:         \\\"significant\\\": r[\\\"significant\\\"],\\n92:         \\\"p_value\\\": r[\\\"p_value\\\"],\\n93:         \\\"stat\\\": r[\\\"r\\\"],\\n94:         \\\"peak_lag\\\": r[\\\"peak_lag\\\"],\\n95:     }\\n96: \\n97:     r = threshold_lead(c, d, cn, dn)\\n98:     results[\\\"threshold\\\"] = {\\n99:         \\\"significant\\\": r[\\\"significant\\\"],\\n100:         \\\"lead_time\\\": r.get(\\\"lead_time\\\"),\\n101:         \\\"canary_onset\\\": r.get(\\\"canary_onset\\\"),\\n102:         \\\"downstream_onset\\\": r.get(\\\"downstream_onset\\\"),\\n103:     }\\n104: \\n105:     r = permutation_granger_test(c, d, max_lag=1, n_perm=N_PERM,\\n106:                                   seed=seed, difference=True)\\n107:     results[\\\"permutation_granger\\\"] = {\\n108:         \\\"significant\\\": r.get(\\\"significant\\\", False),\\n109:         \\\"p_value\\\": r.get(\\\"p_value\\\"),\\n110:         \\\"f_stat\\\": r.get(\\\"f_stat\\\"),\\n111:         \\\"effect_size_f2\\\": r.get(\\\"effect_size_f2\\\"),\\n112:     }\\n113: \\n114:     r = toda_yamamoto(c, d, cn, dn)\\n115:     results[\\\"TY\\\"] = {\\n116:         \\\"significant\\\": r[\\\"significant\\\"],\\n117:         \\\"p_value\\\": r.get(\\\"p_value\\\"),\\n118:         \\\"wald_F\\\": r.get(\\\"wald_F\\\"),\\n119:         \\\"d_max\\\": r.get(\\\"d_max\\\"),\\n120:         \\\"df_resid\\\": r.get(\\\"df_resid\\\"),\\n121:     }\\n122: \\n123:     return results\\n124: \\n125: \\n126: def compute_method_alpha_table(panel, alphas):\\n127:     table = {}\\n128:     for alpha in alphas:\\n129:         rows = [r for r in panel if r[\\\"alpha\\\"] == alpha]\\n130:         n = len(rows)\\n131:         table[alpha] = {}\\n132:         for m in METHOD_NAMES:\\n133:             n_sig = sum(1 for r in rows if r[\\\"methods\\\"][m][\\\"significant\\\"])\\n134:             table[alpha][m] = {\\\"sig\\\": n_sig, \\\"total\\\": n, \\\"r
+…[truncated 4186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T22:55:47.543042+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nwith open('/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py') as f:\n    lines = f.readlines()\nfor i, line in enumerate(lines[219:310], start=220):\n    print(f'{i}: {line}', end='')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "python3 -c \"\nwith open('/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase2.py') as f:\n    lines = f.readlines()\nfor i, line in enumerate(lines[219:310], start=220):\n    print(f'{i}: {line}', end='')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T22:55:47.543233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"220:     for m in METHOD_NAMES:\\n221:         pvals = []\\n222:         indices = []\\n223:         for i, r in enumerate(panel):\\n224:             p = r[\\\"methods\\\"][m].get(\\\"p_value\\\")\\n225:             if p is not None:\\n226:                 pvals.append(p)\\n227:                 indices.append(i)\\n228:         if len(pvals) >= 2:\\n229:             reject, qvals, _, _ = multipletests(pvals, alpha=0.05, method=\\\"fdr_bh\\\")\\n230:             raw_sig = sum(1 for p in pvals if p < 0.05)\\n231:             fdr_sig = sum(reject)\\n232:             flips[f\\\"fdr_flip_{m}\\\"] = {\\n233:                 \\\"raw_sig\\\": raw_sig, \\\"fdr_sig\\\": fdr_sig,\\n234:                 \\\"flipped\\\": raw_sig - fdr_sig, \\\"total\\\": len(pvals),\\n235:             }\\n236: \\n237:     return flips\\n238: \\n239: \\n240: def compute_channel_analysis(panel, alphas):\\n241:     channels = {\\n242:         \\\"entropy_to_diversity\\\": {\\\"canary\\\": \\\"token_entropy\\\",\\n243:                                   \\\"downstreams\\\": [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]},\\n244:         \\\"entropy_to_perplexity\\\": {\\\"canary\\\": \\\"token_entropy\\\",\\n245:                                    \\\"downstreams\\\": [\\\"perplexity\\\"]},\\n246:         \\\"ece_to_diversity\\\": {\\\"canary\\\": \\\"ece\\\",\\n247:                               \\\"downstreams\\\": [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]},\\n248:         \\\"ece_to_perplexity\\\": {\\\"canary\\\": \\\"ece\\\",\\n249:                                \\\"downstreams\\\": [\\\"perplexity\\\"]},\\n250:     }\\n251:     result = {}\\n252:     for ch_name, ch_def in channels.items():\\n253:         cn = ch_def[\\\"canary\\\"]\\n254:         dns = ch_def[\\\"downstreams\\\"]\\n255:         ch_rows = [r for r in panel if r[\\\"canary\\\"] == cn and r[\\\"downstream\\\"] in dns]\\n256:         ch_table 
+…[truncated 2651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T22:55:47.543429+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control_full.json') as f:\n    data = json.load(f)\nprint('Top-level keys:', list(data.keys()))\nif 'phase2_fdr_sig_rates' in data:\n    print()\n    print('phase2_fdr_sig_rates:')\n    print(json.dumps(data['phase2_fdr_sig_rates'], indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/analysis/d028_fpr_null_control_full.json') as f:\n    data = json.load(f)\nprint('Top-level keys:', list(data.keys()))\nif 'phase2_fdr_sig_rates' in data:\n    print()\n    print('phase2_fdr_sig_rates:')\n    print(json.dumps(data['phase2_fdr_sig_rates'], indent=2))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T22:55:47.543635+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top-level keys: ['null_control_fpr', 'phase2_fdr_sig_rates']\\n\\nphase2_fdr_sig_rates:\\n{\\n  \\\"alphas\\\": [\\n    0.0,\\n    0.25,\\n    0.5,\\n    1.0\\n  ],\\n  \\\"rates\\\": {\\n    \\\"0.0\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig_raw\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 1.0,\\n        \\\"sig_fdr\\\": 8,\\n        \\\"rate_p_fdr\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_raw\\\": 4,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.5,\\n        \\\"sig_fdr\\\": 3,\\n        \\\"rate_p_fdr\\\": 0.375\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_raw\\\": 5,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.625,\\n        \\\"rate_p_fdr\\\": 0.625,\\n        \\\"note\\\": \\\"non-statistical\\\"\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_raw\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.0,\\n        \\\"sig_fdr\\\": 0,\\n        \\\"rate_p_fdr\\\": 0.0\\n      },\\n      \\\"TY\\\": {\\n        \\\"sig_raw\\\": 0,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.0,\\n        \\\"sig_fdr\\\": 0,\\n        \\\"rate_p_fdr\\\": 0.0\\n      }\\n    },\\n    \\\"0.25\\\": {\\n      \\\"naive\\\": {\\n        \\\"sig_raw\\\": 8,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 1.0,\\n        \\\"sig_fdr\\\": 8,\\n        \\\"rate_p_fdr\\\": 1.0\\n      },\\n      \\\"differenced\\\": {\\n        \\\"sig_raw\\\": 2,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.25,\\n        \\\"sig_fdr\\\": 2,\\n        \\\"rate_p_fdr\\\": 0.25\\n      },\\n      \\\"threshold\\\": {\\n        \\\"sig_raw\\\": 3,\\n        \\\"total\\\": 8,\\n        \\\"rate_p_raw\\\": 0.375,\\n        \\\"rate_p_fdr\\\": 0.375,\\n        \\\"note\\\": \\\"non-statistical\\\"\\n      },\\n      \\\"permutation_granger\\\": {\\n        \\\"sig_raw\\\": 2,\\n        \\\
+…[truncated 2534 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T22:55:47.543888+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\n\"\"\"Method Ablation Phase 3: 7-point dose-response panel.\n\nExtends Phase 2 (4 alpha points) to 7 alpha points (0.00, 0.10, 0.25, 0.50, 0.60, 0.75, 1.00).\nUses all available multi-seed data on westd-19828.\nalpha=1.00 data reused from Phase 2 panel JSON (mvp data no longer on server).\n\nOutput:\n  - results/method_ablation_phase3_panel.json\n  - results/method_ablation_phase3_report.md\n\"\"\"\n\nimport json\nimport os\nimport re\nimport sys\nimport warnings\nfrom collections import defaultdict\nfrom datetime import datetime\nfrom itertools import product\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.multitest import multipletests\n\nfrom method_ablation import (\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto,\n    extract, orient, ALPHA,\n)\nfrom permutation_granger import permutation_granger_test\n\nwarnings.filterwarnings(\"ignore\")\n\nCANARY = [\"token_entropy\", \"ece\"]\nDOWNSTREAM = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"perplexity\"]\nMETHOD_NAMES = [\"naive\", \"differenced\", \"threshold\", \"permutation_granger\", \"TY\"]\nN_PERM = 1000\n\nBASE_DIR = \"/root/autodl-tmp/distrib_canary_collapse\"\n\n\ndef load_all_data():\n    data = []\n    sweep_dir = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")\n\n    # Match a{NNN}_s{NN} and a{NNN}_s{NN}_bf16 / a{NNN}_s{NN}_fp32\n    pat = re.compile(r\"^a(\\d{3})_s(\\d+)(?:_(bf16|fp32|v2))?$\")\n\n    if os.path.isdir(sweep_dir):\n        for name in sorted(os.listdir(sweep_dir)):\n            m = pat.match(name)\n            if not m:\n                continue\n            path = os.path.join(sweep_dir, name, \"all_metrics.json\")\n            if not os.path.isfile(path):\n                continue\n            alpha = int(m.group(1)) / 100.0\n            seed = int(m.group(2))\n            precision = m.group(3) or \"fp32\"\n            with open(path) as f:\n                metrics = json.load(f)\n            data.append({\n                \"alpha\": alpha, \"seed\": seed, \"run_id\": name,\n                \"precision\": precision,\n                \"metrics\": sorted(metrics, key=lambda x: x[\"generation\"]),\n            })\n\n    return data\n\n\ndef load_alpha100_from_phase2():\n    \"\"\"Extract alpha=1.00 panel rows from Phase 2 JSON.\"\"\"\n    p2_path = os.path.join(BASE_DIR, \"results\", \"method_ablation_phase2_panel.json\")\n    with open(p2_path) as f:\n        p2 = json.load(f)\n    return [r for r in p2[\"panel\"] if r[\"alpha\"] == 1.0]\n\n\ndef run_five_methods(c, d, cn, dn, seed=42):\n    results = {}\n\n    r = naive_pearson(c, d, cn, dn)\n    results[\"naive\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r[\"p_value\"],\n        \"stat\": r[\"r\"],\n        \"peak_lag\": r[\"peak_lag\"],\n    }\n\n    r = diff_xcorr(c, d, cn, dn)\n    results[\"differenced\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r[\"p_value\"],\n        \"stat\": r[\"r\"],\n        \"peak_lag\": r[\"peak_lag\"],\n    }\n\n    r = threshold_lead(c, d, cn, dn)\n    results[\"threshold\"] = {\n        \"significant\": r[\"significant\"],\n        \"lead_time\": r.get(\"lead_time\"),\n        \"canary_onset\": r.get(\"canary_onset\"),\n        \"downstream_onset\": r.get(\"downstream_onset\"),\n    }\n\n    r = permutation_granger_test(c, d, max_lag=1, n_perm=N_PERM,\n                                  seed=seed, difference=True)\n    results[\"permutation_granger\"] = {\n        \"significant\": r.get(\"significant\", False),\n        \"p_value\": r.get(\"p_value\"),\n        \"f_stat\": r.get(\"f_stat\"),\n        \"effect_size_f2\": r.get(\"effect_size_f2\"),\n    }\n\n    r = toda_yamamoto(c, d, cn, dn)\n    results[\"TY\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r.get(\"p_value\"),\n        \"wald_F\": r.get(\"wald_F\"),\n        \"d_max\": r.get(\"d_max\"),\n        \"df_resid\": r.get(\"df_resid\"),\n    }\n\n    return results\n\n\ndef apply_fdr_per_alpha(panel, alphas):\n    \"\"\"Apply BH FDR correction per alpha level, per method. Returns updated panel.\"\"\"\n    for alpha in alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        for m in METHOD_NAMES:\n            if m == \"threshold\":\n                continue\n            pvals = []\n            indices = []\n            for i, r in enumerate(rows):\n                p = r[\"methods\"][m].get(\"p_value\")\n                if p is not None:\n                    pvals.append(p)\n                    indices.append(i)\n            if len(pvals) >= 2:\n                reject, qvals, _, _ = multipletests(pvals, alpha=0.05, method=\"fdr_bh\")\n                for idx, rej, q in zip(indices, reject, qvals):\n                    rows[idx][\"methods\"][m][\"significant_fdr\"] = bool(rej)\n                    rows[idx][\"methods\"][m][\"p_fdr\"] = float(q)\n            elif len(pvals) == 1:\n                rows[indices[0]][\"methods\"][m][\"significant_fdr\"] = rows[indices[0]][\"methods\"][m][\"significant\"]\n                rows[indices[0]][\"methods\"][m][\"p_fdr\"] = pvals[0]\n            # threshold: propagate raw\n            for r in rows:\n                if \"significant_fdr\" not in r[\"methods\"].get(\"threshold\", {}):\n                    r[\"methods\"][\"threshold\"][\"significant_fdr\"] = r[\"methods\"][\"threshold\"][\"significant\"]\n    return panel\n\n\ndef compute_sig_rates(panel, alphas, use_fdr=True):\n    \"\"\"Compute sig rates per (alpha, method). If use_fdr, use FDR-corrected significance.\"\"\"\n    table = {}\n    for alpha in alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        n = len(rows)\n        table[alpha] = {}\n        for m in METHOD_NAMES:\n            if use_fdr and m != \"threshold\":\n                n_sig = sum(1 for r in rows if r[\"methods\"][m].get(\"significant_fdr\", r[\"methods\"][m][\"significant\"]))\n            else:\n                n_sig = sum(1 for r in rows if r[\"methods\"][m][\"significant\"])\n            raw_sig = sum(1 for r in rows if r[\"methods\"][m][\"significant\"])\n            table[alpha][m] = {\n                \"sig_fdr\": n_sig,\n                \"sig_raw\": raw_sig,\n                \"total\": n,\n                \"rate_fdr\": round(n_sig / n, 4) if n else 0,\n                \"rate_raw\": round(raw_sig / n, 4) if n else 0,\n            }\n    return table\n\n\ndef main():\n    os.chdir(BASE_DIR)\n\n    print(\"Loading data from alpha_sweep...\")\n    all_data = load_all_data()\n    alphas_from_sweep = sorted(set(d[\"alpha\"] for d in all_data))\n    print(f\"  Found {len(all_data)} runs: alpha = {alphas_from_sweep}\")\n    for d in all_data:\n        print(f\"    {d['run_id']}: alpha={d['alpha']}, seed={d['seed']}, \"\n              f\"precision={d['precision']}, {len(d['metrics'])} gens\")\n\n    # Run analysis on sweep data\n    print(f\"\\nRunning 5 methods on {len(all_data)} runs x \"\n          f\"{len(CANARY)}x{len(DOWNSTREAM)} pairs...\")\n    panel = []\n    total = len(all_data) * len(CANARY) * len(DOWNSTREAM)\n    done = 0\n    for data in all_data:\n        alpha = data[\"alpha\"]\n        seed = data[\"seed\"]\n        metrics = data[\"metrics\"]\n\n        for cn, dn in product(CANARY, DOWNSTREAM):\n            c = extract(metrics, cn)\n            d_arr = extract(metrics, dn)\n            results = run_five_methods(c, d_arr, cn, dn, seed=seed)\n\n            panel.append({\n                \"alpha\": alpha,\n                \"seed\": seed,\n                \"run_id\": data[\"run_id\"],\n                \"precision\": data[\"precision\"],\n                \"canary\": cn,\n                \"downstream\": dn,\n                \"methods\": results,\n            })\n            done += 1\n            if done % 16 == 0 or done == total:\n                print(f\"  [{done}/{total}]\")\n\n    # Add alpha=1.00 from Phase 2\n    print(\"\\nLoading alpha=1.00 from Phase 2 panel...\")\n    a100_rows = load_alpha100_from_phase2()\n    for r in a100_rows:\n        r[\"precision\"] = \"fp32\"\n    panel.extend(a100_rows)\n    print(f\"  Added {len(a100_rows)} alpha=1.00 rows from Phase 2\")\n\n    all_alphas = sorted(set(r[\"alpha\"] for r in panel))\n    print(f\"\\nFull panel: {len(panel)} rows, alphas = {all_alphas}\")\n\n    # Apply FDR\n    print(\"Applying BH FDR per alpha...\")\n    panel = apply_fdr_per_alpha(panel, all_alphas)\n\n    # Compute sig rates\n    sig_rates_fdr = compute_sig_rates(panel, all_alphas, use_fdr=True)\n    sig_rates_raw = compute_sig_rates(panel, all_alphas, use_fdr=False)\n\n    # Data inventory\n    inventory = {}\n    for alpha in all_alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        seeds = sorted(set(r[\"seed\"] for r in rows))\n        n_tests = len(rows)\n        precisions = sorted(set(r.get(\"precision\", \"fp32\") for r in rows))\n        inventory[alpha] = {\n            \"seeds\": seeds,\n            \"n_seeds\": len(seeds),\n            \"n_tests\": n_tests,\n            \"precisions\": precisions,\n        }\n\n    # Assemble output\n    output = {\n        \"meta\": {\n            \"timestamp\": datetime.now().isoformat(),\n            \"alphas\": all_alphas,\n            \"n_alphas\": len(all_alphas),\n            \"n_panel_rows\": len(panel),\n            \"canary_metrics\": CANARY,\n            \"downstream_metrics\": DOWNSTREAM,\n            \"methods\": METHOD_NAMES,\n            \"n_permutations\": N_PERM,\n            \"fdr_method\": \"BH per-alpha\",\n            \"alpha_100_source\": \"Phase 2 panel (mvp seeds 42-45)\",\n        },\n        \"inventory\": inventory,\n        \"sig_rates_fdr\": sig_rates_fdr,\n        \"sig_rates_raw\": sig_rates_raw,\n        \"panel\": panel,\n    }\n\n    # Save\n    json_path = os.path.join(\"results\", \"method_ablation_phase3_panel.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nJSON: {json_path}\")\n\n    # Generate report\n    report = generate_report(output)\n    report_path = os.path.join(\"results\", \"method_ablation_phase3_report.md\")\n    with open(report_path, \"w\") as f:\n        f.write(report)\n    print(f\"Report: {report_path}\")\n\n    # Print headline\n    print(\"\\n\" + \"=\" * 80)\n    print(\"HEADLINE: 7-point Method x Alpha Sig Rates (BH FDR-corrected)\")\n    print(\"=\" * 80)\n    hdr = f\"{'alpha':>6} | {'n':>4} |\"\n    for m in METHOD_NAMES:\n        hdr += f\" {m[:8]:>8}\"\n    print(hdr)\n    print(\"-\" * 80)\n    for alpha in all_alphas:\n        inv = inventory[alpha]\n        prec_tag = \"\"\n        if \"bf16\" in inv[\"precisions\"]:\n            prec_tag = \" (bf16)\"\n        line = f\"{alpha:>6.2f} | {inv['n_tests']:>4} |\"\n        for m in METHOD_NAMES:\n            r = sig_rates_fdr[alpha][m]\n            line += f\" {r['rate_fdr']:>7.0%}\"\n        line += prec_tag\n        print(line)\n\n    print(\"\\nDone.\")\n\n\ndef generate_report(output):\n    lines = []\n    w = lines.append\n    meta = output[\"meta\"]\n    inv = output[\"inventory\"]\n\n    w(\"# Method Ablation Phase 3: 7-Point Dose-Response Panel\")\n    w(\"\")\n    w(f\"Generated: {meta['timestamp']}\")\n    w(f\"Alpha levels: {meta['alphas']}\")\n    w(f\"Panel rows: {meta['n_panel_rows']}\")\n    w(f\"FDR: {meta['fdr_method']}\")\n    w(f\"alpha=1.00 source: {meta['alpha_100_source']}\")\n    w(\"\")\n\n    # Data inventory\n    w(\"## Data Inventory\")\n    w(\"\")\n    w(\"| alpha | seeds | n_tests | precision |\")\n    w(\"|-------|-------|---------|-----------|\")\n    for alpha in meta[\"alphas\"]:\n        i = inv[alpha]\n        seeds_str = \",\".join(str(s) for s in i[\"seeds\"])\n        prec_str = \",\".join(i[\"precisions\"])\n        w(f\"| {alpha:.2f} | {seeds_str} | {i['n_tests']} | {prec_str} |\")\n    w(\"\")\n\n    # FDR-corrected table\n    w(\"## Method x Alpha Sig Rates (BH FDR-corrected)\")\n    w(\"\")\n    mat = output[\"sig_rates_fdr\"]\n    hdr = \"| alpha | n |\"\n    for m in METHOD_NAMES:\n        hdr += f\" {m} |\"\n    w(hdr)\n    sep = \"|-------|---|\"\n    for _ in METHOD_NAMES:\n        sep += \"--------|\"\n    w(sep)\n    for alpha in meta[\"alphas\"]:\n        n = inv[alpha][\"n_tests\"]\n        prec = inv[alpha][\"precisions\"]\n        tag = \" (bf16)\" if \"bf16\" in prec and \"fp32\" not in prec else \"\"\n        cells = f\"| {alpha:.2f} | {n} |\"\n        for m in METHOD_NAMES:\n            d = mat[alpha][m]\n            cells += f\" {d['sig_fdr']}/{d['total']} ({d['rate_fdr']:.0%}) |\"\n        cells += tag\n        w(cells)\n    w(\"\")\n\n    # Raw table for comparison\n    w(\"## Raw Significance (uncorrected, for comparison)\")\n    w(\"\")\n    mat_raw = output[\"sig_rates_raw\"]\n    w(hdr)\n    w(sep)\n    for alpha in meta[\"alphas\"]:\n        n = inv[alpha][\"n_tests\"]\n        cells = f\"| {alpha:.2f} | {n} |\"\n        for m in METHOD_NAMES:\n            d = mat_raw[alpha][m]\n            cells += f\" {d['sig_raw']}/{d['total']} ({d['rate_raw']:.0%}) |\"\n        w(cells)\n    w(\"\")\n\n    # FDR flip summary\n    w(\"## FDR Correction Impact\")\n    w(\"\")\n    w(\"| alpha | method | raw_sig | fdr_sig | flipped |\")\n    w(\"|-------|--------|---------|---------|---------|\")\n    fdr_mat = output[\"sig_rates_fdr\"]\n    raw_mat = output[\"sig_rates_raw\"]\n    for alpha in meta[\"alphas\"]:\n        for m in METHOD_NAMES:\n            raw_n = raw_mat[alpha][m][\"sig_raw\"]\n            fdr_n = fdr_mat[alpha][m][\"sig_fdr\"]\n            if raw_n != fdr_n:\n                w(f\"| {alpha:.2f} | {m} | {raw_n} | {fdr_n} | {raw_n - fdr_n} |\")\n    w(\"\")\n\n    # Comparison with Phase 2\n    w(\"## Comparison with Phase 2\")\n    w(\"\")\n    w(\"Phase 2 used single-seed for alpha=0.00/0.25/0.50 and 4-seed for alpha=1.00.\")\n    w(\"Phase 3 uses all available multi-seed data plus 3 new alpha points.\")\n    w(\"\")\n    p2_rates = {\n        0.00: {\"naive\": 1.0, \"differenced\": 0.375, \"threshold\": 0.625, \"permutation_granger\": 0.0, \"TY\": 0.0},\n        0.25: {\"naive\": 1.0, \"differenced\": 0.25, \"threshold\": 0.375, \"permutation_granger\": 0.0, \"TY\": 0.375},\n        0.50: {\"naive\": 1.0, \"differenced\": 1.0, \"threshold\": 1.0, \"permutation_granger\": 0.0, \"TY\": 0.0},\n        1.00: {\"naive\": 1.0, \"differenced\": 1.0, \"threshold\": 1.0, \"permutation_granger\": 0.75, \"TY\": 0.594},\n    }\n    w(\"| alpha | method | Phase2 | Phase3 | delta |\")\n    w(\"|-------|--------|--------|--------|-------|\")\n    for alpha in [0.0, 0.25, 0.5, 1.0]:\n        for m in METHOD_NAMES:\n            p2 = p2_rates[alpha][m]\n            p3 = fdr_mat[alpha][m][\"rate_fdr\"]\n            delta = p3 - p2\n            if abs(delta) > 0.001:\n                w(f\"| {alpha:.2f} | {m} | {p2:.0%} | {p3:.0%} | {delta:+.0%} |\")\n    w(\"\")\n\n    # Key findings\n    w(\"## Key Findings\")\n    w(\"\")\n    w(\"### New alpha points\")\n    for alpha in [0.1, 0.6, 0.75]:\n        if alpha in fdr_mat:\n            w(f\"\\n**alpha={alpha:.2f}** (n={inv[alpha]['n_tests']} tests, \"\n              f\"seeds={inv[alpha]['seeds']}, precision={inv[alpha]['precisions']}):\")\n            for m in METHOD_NAMES:\n                d = fdr_mat[alpha][m]\n                w(f\"  - {m}: {d['rate_fdr']:.0%} ({d['sig_fdr']}/{d['total']})\")\n    w(\"\")\n\n    return \"\\n\".join(lines)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\n\"\"\"Method Ablation Phase 3: 7-point dose-response panel.\n\nExtends Phase 2 (4 alpha points) to 7 alpha points (0.00, 0.10, 0.25, 0.50, 0.60, 0.75, 1.00).\nUses all available multi-seed data on westd-19828.\nalpha=1.00 data reused from Phase 2 panel JSON (mvp data no longer on server).\n\nOutput:\n  - results/method_ablation_phase3_panel.json\n  - results/method_ablation_phase3_report.md\n\"\"\"\n\nimport json\nimport os\nimport re\nimport sys\nimport warnings\nfrom collections import defaultdict\nfrom datetime import datetime\nfrom itertools import product\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.multitest import multipletests\n\nfrom method_ablation import (\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto,\n    extract, orient, ALPHA,\n)\nfrom permutation_granger import permutation_granger_test\n\nwarnings.filterwarnings(\"ignore\")\n\nCANARY = [\"token_entropy\", \"ece\"]\nDOWNSTREAM = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"perplexity\"]\nMETHOD_NAMES = [\"naive\", \"differenced\", \"threshold\", \"permutation_granger\", \"TY\"]\nN_PERM = 1000\n\nBASE_DIR = \"/root/autodl-tmp/distrib_canary_collapse\"\n\n\ndef load_all_data():\n    data = []\n    sweep_dir = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")\n\n    # Match a{NNN}_s{NN} and a{NNN}_s{NN}_bf16 / a{NNN}_s{NN}_fp32\n    pat = re.compile(r\"^a(\\d{3})_s(\\d+)(?:_(bf16|fp32|v2))?$\")\n\n    if os.path.isdir(sweep_dir):\n        for name in sorted(os.listdir(sweep_dir)):\n            m = pat.match(name)\n            if not m:\n                continue\n            path = os.path.join(sweep_dir, name, \"all_metrics.json\")\n            if not os.path.isfile(path):\n                continue\n            alpha = int(m.group(1)) / 100.0\n            seed = int(m.group(2))\n            precision = m.group(3) or \"fp32\"\n            with open(path) as f:\n                metrics = json.load(f)\n            data.append({\n                \"alpha\": alpha, \"seed\": seed, \"run_id\": name,\n                \"precision\": precision,\n                \"metrics\": sorted(metrics, key=lambda x: x[\"generation\"]),\n            })\n\n    return data\n\n\ndef load_alpha100_from_phase2():\n    \"\"\"Extract alpha=1.00 panel rows from Phase 2 JSON.\"\"\"\n    p2_path = os.path.join(BASE_DIR, \"results\", \"method_ablation_phase2_panel.json\")\n    with open(p2_path) as f:\n        p2 = json.load(f)\n    return [r for r in p2[\"panel\"] if r[\"alpha\"] == 1.0]\n\n\ndef run_five_methods(c, d, cn, dn, seed=42):\n    results = {}\n\n    r = naive_pearson(c, d, cn, dn)\n    results[\"naive\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r[\"p_value\"],\n        \"stat\": r[\"r\"],\n        \"peak_lag\": r[\"peak_lag\"],\n    }\n\n    r = diff_xcorr(c, d, cn, dn)\n    results[\"differenced\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r[\"p_value\"],\n        \"stat\": r[\"r\"],\n        \"peak_lag\": r[\"peak_lag\"],\n    }\n\n    r = threshold_lead(c, d, cn, dn)\n    results[\"threshold\"] = {\n        \"significant\": r[\"significant\"],\n        \"lead_time\": r.get(\"lead_time\"),\n        \"canary_onset\": r.get(\"canary_onset\"),\n        \"downstream_onset\": r.get(\"downstream_onset\"),\n    }\n\n    r = permutation_granger_test(c, d, max_lag=1, n_perm=N_PERM,\n                                  seed=seed, difference=True)\n    results[\"permutation_granger\"] = {\n        \"significant\": r.get(\"significant\", False),\n        \"p_value\": r.get(\"p_value\"),\n        \"f_stat\": r.get(\"f_stat\"),\n        \"effect_size_f2\": r.get(\"effect_size_f2\"),\n    }\n\n    r = toda_yamamoto(c, d, cn, dn)\n    results[\"TY\"] = {\n        \"significant\": r[\"significant\"],\n        \"p_value\": r.get(\"p_value\"),\n        \"wald_F\": r.get(\"wald_F\"),\n        \"d_max\": r.get(\"d_max\"),\n        \"df_resid\": r.get(\"df_resid\"),\n    }\n\n    return results\n\n\ndef apply_fdr_per_alpha(panel, alphas):\n    \"\"\"Apply BH FDR correction per alpha level, per method. Returns updated panel.\"\"\"\n    for alpha in alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        for m in METHOD_NAMES:\n            if m == \"threshold\":\n                continue\n            pvals = []\n            indices = []\n            for i, r in enumerate(rows):\n                p = r[\"methods\"][m].get(\"p_value\")\n                if p is not None:\n                    pvals.append(p)\n                    indices.append(i)\n            if len(pvals) >= 2:\n                reject, qvals, _, _ = multipletests(pvals, alpha=0.05, method=\"fdr_bh\")\n                for idx, rej, q in zip(indices, reject, qvals):\n                    rows[idx][\"methods\"][m][\"significant_fdr\"] = bool(rej)\n                    rows[idx][\"methods\"][m][\"p_fdr\"] = float(q)\n            elif len(pvals) == 1:\n                rows[indices[0]][\"methods\"][m][\"significant_fdr\"] = rows[indices[0]][\"methods\"][m][\"significant\"]\n                rows[indices[0]][\"methods\"][m][\"p_fdr\"] = pvals[0]\n            # threshold: propagate raw\n            for r in rows:\n                if \"significant_fdr\" not in r[\"methods\"].get(\"threshold\", {}):\n                    r[\"methods\"][\"threshold\"][\"significant_fdr\"] = r[\"methods\"][\"threshold\"][\"significant\"]\n    return panel\n\n\ndef compute_sig_rates(panel, alphas, use_fdr=True):\n    \"\"\"Compute sig rates per (alpha, method). If use_fdr, use FDR-corrected significance.\"\"\"\n    table = {}\n    for alpha in alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        n = len(rows)\n        table[alpha] = {}\n        for m in METHOD_NAMES:\n            if use_fdr and m != \"threshold\":\n                n_sig = sum(1 for r in rows if r[\"methods\"][m].get(\"significant_fdr\", r[\"methods\"][m][\"significant\"]))\n            else:\n                n_sig = sum(1 for r in rows if r[\"methods\"][m][\"significant\"])\n            raw_sig = sum(1 for r in rows if r[\"methods\"][m][\"significant\"])\n            table[alpha][m] = {\n                \"sig_fdr\": n_sig,\n                \"sig_raw\": raw_sig,\n                \"total\": n,\n                \"rate_fdr\": round(n_sig / n, 4) if n else 0,\n                \"rate_raw\": round(raw_sig / n, 4) if n else 0,\n            }\n    return table\n\n\ndef main():\n    os.chdir(BASE_DIR)\n\n    print(\"Loading data from alpha_sweep...\")\n    all_data = load_all_data()\n    alphas_from_sweep = sorted(set(d[\"alpha\"] for d in all_data))\n    print(f\"  Found {len(all_data)} runs: alpha = {alphas_from_sweep}\")\n    for d in all_data:\n        print(f\"    {d['run_id']}: alpha={d['alpha']}, seed={d['seed']}, \"\n              f\"precision={d['precision']}, {len(d['metrics'])} gens\")\n\n    # Run analysis on sweep data\n    print(f\"\\nRunning 5 methods on {len(all_data)} runs x \"\n          f\"{len(CANARY)}x{len(DOWNSTREAM)} pairs...\")\n    panel = []\n    total = len(all_data) * len(CANARY) * len(DOWNSTREAM)\n    done = 0\n    for data in all_data:\n        alpha = data[\"alpha\"]\n        seed = data[\"seed\"]\n        metrics = data[\"metrics\"]\n\n        for cn, dn in product(CANARY, DOWNSTREAM):\n            c = extract(metrics, cn)\n            d_arr = extract(metrics, dn)\n            results = run_five_methods(c, d_arr, cn, dn, seed=seed)\n\n            panel.append({\n                \"alpha\": alpha,\n                \"seed\": seed,\n                \"run_id\": data[\"run_id\"],\n                \"precision\": data[\"precision\"],\n                \"canary\": cn,\n                \"downstream\": dn,\n                \"methods\": results,\n            })\n            done += 1\n            if done % 16 == 0 or done == total:\n                print(f\"  [{done}/{total}]\")\n\n    # Add alpha=1.00 from Phase 2\n    print(\"\\nLoading alpha=1.00 from Phase 2 panel...\")\n    a100_rows = load_alpha100_from_phase2()\n    for r in a100_rows:\n        r[\"precision\"] = \"fp32\"\n    panel.extend(a100_rows)\n    print(f\"  Added {len(a100_rows)} alpha=1.00 rows from Phase 2\")\n\n    all_alphas = sorted(set(r[\"alpha\"] for r in panel))\n    print(f\"\\nFull panel: {len(panel)} rows, alphas = {all_alphas}\")\n\n    # Apply FDR\n    print(\"Applying BH FDR per alpha...\")\n    panel = apply_fdr_per_alpha(panel, all_alphas)\n\n    # Compute sig rates\n    sig_rates_fdr = compute_sig_rates(panel, all_alphas, use_fdr=True)\n    sig_rates_raw = compute_sig_rates(panel, all_alphas, use_fdr=False)\n\n    # Data inventory\n    inventory = {}\n    for alpha in all_alphas:\n        rows = [r for r in panel if r[\"alpha\"] == alpha]\n        seeds = sorted(set(r[\"seed\"] for r in rows))\n        n_tests = len(rows)\n        precisions = sorted(set(r.get(\"precision\", \"fp32\") for r in rows))\n        inventory[alpha] = {\n            \"seeds\": seeds,\n            \"n_seeds\": len(seeds),\n            \"n_tests\": n_tests,\n            \"precisions\": precisions,\n        }\n\n    # Assemble output\n    output = {\n        \"meta\": {\n            \"timestamp\": datetime.now().isoformat(),\n            \"alphas\": all_alphas,\n            \"n_alphas\": len(all_alphas),\n            \"n_panel_rows\": len(panel),\n            \"canary_metrics\": CANARY,\n            \"downstream_metrics\": DOWNSTREAM,\n            \"methods\": METHOD_NAMES,\n            \"n_permutations\": N_PERM,\n            \"fdr_method\": \"BH per-alpha\",\n            \"alpha_100_source\": \"Phase 2 panel (mvp seeds 42-45)\",\n        },\n        \"inventory\": inventory,\n        \"sig_rates_fdr\": sig_rates_fdr,\n        \"sig_rates_raw\": sig_rates_raw,\n        \"panel\": panel,\n    }\n\n    # Save\n    json_path = os.path.join(\"results\", \"method_ablation_phase3_panel.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nJSON: {json_path}\")\n\n    # Generate report\n    report = generate_report(output)\n    report_path = os.path.join(\"results\", \"method_ablation_phase3_report.md\")\n    with open(report_path, \"w\") as f:\n        f.write(report)\n    print(f\"Report: {report_path}\")\n\n    # Print headline\n    print(\"\\n\" + \"=\" * 80)\n    print(\"HEADLINE: 7-point Method x Alpha Sig Rates (BH FDR-corrected)\")\n    print(\"=\" * 80)\n    hdr = f\"{'alpha':>6} | {'n':>4} |\"\n    for m in METHOD_NAMES:\n        hdr += f\" {m[:8]:>8}\"\n    print(hdr)\n    print(\"-\" * 80)\n    for alpha in all_alphas:\n        inv = inventory[alpha]\n        prec_tag = \"\"\n        if \"bf16\" in inv[\"precisions\"]:\n            prec_tag = \" (bf16)\"\n        line = f\"{alpha:>6.2f} | {inv['n_tests']:>4} |\"\n        for m in METHOD_NAMES:\n            r = sig_rates_fdr[alpha][m]\n            line += f\" {r['rate_fdr']:>7.0%}\"\n        line += prec_tag\n        print(line)\n\n    print(\"\\nDone.\")\n\n\ndef generate_report(output):\n    lines = []\n    w = lines.append\n    meta = output[\"meta\"]\n    inv = output[\"inventory\"]\n\n    w(\"# Method Ablation Phase 3: 7-Point Dose-Response Panel\")\n    w(\"\")\n    w(f\"Generated: {meta['timestamp']}\")\n    w(f\"Alpha levels: {meta['alphas']}\")\n    w(f\"Panel rows: {meta['n_panel_rows']}\")\n    w(f\"FDR: {meta['fdr_method']}\")\n    w(f\"alpha=1.00 source: {meta['alpha_100_source']}\")\n    w(\"\")\n\n    # Data inventory\n    w(\"## Data Inventory\")\n    w(\"\")\n    w(\"| alpha | seeds | n_tests | precision |\")\n    w(\"|-------|-------|---------|-----------|\")\n    for alpha in meta[\"alphas\"]:\n        i = inv[alpha]\n        seeds_str = \",\".join(str(s) for s in i[\"seeds\"])\n        prec_str = \",\".join(i[\"precisions\"])\n        w(f\"| {alpha:.2f} | {seeds_str} | {i['n_tests']} | {prec_str} |\")\n    w(\"\")\n\n    # FDR-corrected table\n    w(\"## Method x Alpha Sig Rates (BH FDR-corrected)\")\n    w(\"\")\n    mat = output[\"sig_rates_fdr\"]\n    hdr = \"| alpha | n |\"\n    for m in METHOD_NAMES:\n        hdr += f\" {m} |\"\n    w(hdr)\n    sep = \"|-------|---|\"\n    for _ in METHOD_NAMES:\n        sep += \"--------|\"\n    w(sep)\n    for alpha in meta[\"alphas\"]:\n        n = inv[alpha][\"n_tests\"]\n        prec = inv[alpha][\"precisions\"]\n        tag = \" (bf16)\" if \"bf16\" in prec and \"fp32\" not in prec else \"\"\n        cells = f\"| {alpha:.2f} | {n} |\"\n        for m in METHOD_NAMES:\n            d = mat[alpha][m]\n            cells += f\" {d['sig_fdr']}/{d['total']} ({d['rate_fdr']:.0%}) |\"\n        cells += tag\n        w(cells)\n    w(\"\")\n\n    # Raw table for comparison\n    w(\"## Raw Significance (uncorrected, for comparison)\")\n    w(\"\")\n    mat_raw = output[\"sig_rates_raw\"]\n    w(hdr)\n    w(sep)\n    for alpha in meta[\"alphas\"]:\n        n = inv[alpha][\"n_tests\"]\n        cells = f\"| {alpha:.2f} | {n} |\"\n        for m in METHOD_NAMES:\n            d = mat_raw[alpha][m]\n            cells += f\" {d['sig_raw']}/{d['total']} ({d['rate_raw']:.0%}) |\"\n        w(cells)\n    w(\"\")\n\n    # FDR flip summary\n    w(\"## FDR Correction Impact\")\n    w(\"\")\n    w(\"| alpha | method | raw_sig | fdr_sig | flipped |\")\n    w(\"|-------|--------|---------|---------|---------|\")\n    fdr_mat = output[\"sig_rates_fdr\"]\n    raw_mat = output[\"sig_rates_raw\"]\n    for alpha in meta[\"alphas\"]:\n        for m in METHOD_NAMES:\n            raw_n = raw_mat[alpha][m][\"sig_raw\"]\n            fdr_n = fdr_mat[alpha][m][\"sig_fdr\"]\n            if raw_n != fdr_n:\n                w(f\"| {alpha:.2f} | {m} | {raw_n} | {fdr_n} | {raw_n - fdr_n} |\")\n    w(\"\")\n\n    # Comparison with Phase 2\n    w(\"## Comparison with Phase 2\")\n    w(\"\")\n    w(\"Phase 2 used single-seed for alpha=0.00/0.25/0.50 and 4-seed for alpha=1.00.\")\n    w(\"Phase 3 uses all available multi-seed data plus 3 new alpha points.\")\n    w(\"\")\n    p2_rates = {\n        0.00: {\"naive\": 1.0, \"differenced\": 0.375, \"threshold\": 0.625, \"permutation_granger\": 0.0, \"TY\": 0.0},\n        0.25: {\"naive\": 1.0, \"differenced\": 0.25, \"threshold\": 0.375, \"permutation_granger\": 0.0, \"TY\": 0.375},\n        0.50: {\"naive\": 1.0, \"differenced\": 1.0, \"threshold\": 1.0, \"permutation_granger\": 0.0, \"TY\": 0.0},\n        1.00: {\"naive\": 1.0, \"differenced\": 1.0, \"threshold\": 1.0, \"permutation_granger\": 0.75, \"TY\": 0.594},\n    }\n    w(\"| alpha | method | Phase2 | Phase3 | delta |\")\n    w(\"|-------|--------|--------|--------|-------|\")\n    for alpha in [0.0, 0.25, 0.5, 1.0]:\n        for m in METHOD_NAMES:\n            p2 = p2_rates[alpha][m]\n            p3 = fdr_mat[alpha][m][\"rate_fdr\"]\n            delta = p3 - p2\n            if abs(delta) > 0.001:\n                w(f\"| {alpha:.2f} | {m} | {p2:.0%} | {p3:.0%} | {delta:+.0%} |\")\n    w(\"\")\n\n    # Key findings\n    w(\"## Key Findings\")\n    w(\"\")\n    w(\"### New alpha points\")\n    for alpha in [0.1, 0.6, 0.75]:\n        if alpha in fdr_mat:\n            w(f\"\\n**alpha={alpha:.2f}** (n={inv[alpha]['n_tests']} tests, \"\n              f\"seeds={inv[alpha]['seeds']}, precision={inv[alpha]['precisions']}):\")\n            for m in METHOD_NAMES:\n                d = fdr_mat[alpha][m]\n                w(f\"  - {m}: {d['rate_fdr']:.0%} ({d['sig_fdr']}/{d['total']})\")\n    w(\"\")\n\n    return \"\\n\".join(lines)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T22:55:47.544158+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T22:55:47.544304+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 method_ablation_phase3.py",
+  "account": "root",
+  "timeout": "300000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 method_ablation_phase3.py",
+    "account": "root",
+    "timeout": "300000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T22:55:47.544438+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python3 method_ablation_phase3.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/method_ablation_phase3.py\\\", line 21, in &lt;module>\\n    import numpy as np\\nModuleNotFoundError: No module named 'numpy'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T22:55:47.544558+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python3 method_ablation_phase3.py",
+  "account": "root",
+  "timeout": "300000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python3 method_ablation_phase3.py",
+    "account": "root",
+    "timeout": "300000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T22:55:47.544706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from alpha_sweep...\\n  Found 13 runs: alpha = [0.0, 0.1, 0.25, 0.5, 0.6, 0.75]\\n    a000_s42: alpha=0.0, seed=42, precision=fp32, 11 gens\\n    a000_s43: alpha=0.0, seed=43, precision=fp32, 11 gens\\n    a000_s44: alpha=0.0, seed=44, precision=fp32, 11 gens\\n    a010_s42: alpha=0.1, seed=42, precision=fp32, 11 gens\\n    a025_s43: alpha=0.25, seed=43, precision=fp32, 11 gens\\n    a025_s44: alpha=0.25, seed=44, precision=fp32, 11 gens\\n    a050_s42: alpha=0.5, seed=42, precision=fp32, 11 gens\\n    a050_s43: alpha=0.5, seed=43, precision=fp32, 11 gens\\n    a050_s44: alpha=0.5, seed=44, precision=fp32, 11 gens\\n    a060_s42_bf16: alpha=0.6, seed=42, precision=bf16, 11 gens\\n    a075_s42: alpha=0.75, seed=42, precision=fp32, 11 gens\\n    a075_s43: alpha=0.75, seed=43, precision=fp32, 11 gens\\n    a075_s44: alpha=0.75, seed=44, precision=fp32, 11 gens\\n\\nRunning 5 methods on 13 runs x 2x4 pairs...\\n  [16/104]\\n  [32/104]\\n  [48/104]\\n  [64/104]\\n  [80/104]\\n  [96/104]\\n  [104/104]\\n\\nLoading alpha=1.00 from Phase 2 panel...\\n  Added 32 alpha=1.00 rows from Phase 2\\n\\nFull panel: 136 rows, alphas = [0.0, 0.1, 0.25, 0.5, 0.6, 0.75, 1.0]\\nApplying BH FDR per alpha...\\n\\nJSON: results/method_ablation_phase3_panel.json\\nReport: results/method_ablation_phase3_report.md\\n\\n================================================================================\\nHEADLINE: 7-point Method x Alpha Sig Rates (BH FDR-corrected)\\n================================================================================\\n alpha |    n |    naive differen threshol permutat       TY\\n--------------------------------------------------------------------------------\\n  0.00 |   24 |     96%     33%     46%      0%      0%\\n  0.10 |    8 |    100%     12%     38%      0%      0%\\n  0.25 |   16 |    100%     62%     38%      0%      0%\\n  0.50 |   24 |    100%     88%     83%      0%      0%\\n  0.60 |  
+…[truncated 285 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T22:55:47.544883+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase3_report.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase3_report.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T22:55:47.545043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Method Ablation Phase 3: 7-Point Dose-Response Panel\\n\\nGenerated: 2026-05-19T06:54:35.064014\\nAlpha levels: [0.0, 0.1, 0.25, 0.5, 0.6, 0.75, 1.0]\\nPanel rows: 136\\nFDR: BH per-alpha\\nalpha=1.00 source: Phase 2 panel (mvp seeds 42-45)\\n\\n## Data Inventory\\n\\n| alpha | seeds | n_tests | precision |\\n|-------|-------|---------|-----------|\\n| 0.00 | 42,43,44 | 24 | fp32 |\\n| 0.10 | 42 | 8 | fp32 |\\n| 0.25 | 43,44 | 16 | fp32 |\\n| 0.50 | 42,43,44 | 24 | fp32 |\\n| 0.60 | 42 | 8 | bf16 |\\n| 0.75 | 42,43,44 | 24 | fp32 |\\n| 1.00 | 42,43,44,45 | 32 | fp32 |\\n\\n## Method x Alpha Sig Rates (BH FDR-corrected)\\n\\n| alpha | n | naive | differenced | threshold | permutation_granger | TY |\\n|-------|---|--------|--------|--------|--------|--------|\\n| 0.00 | 24 | 23/24 (96%) | 8/24 (33%) | 11/24 (46%) | 0/24 (0%) | 0/24 (0%) |\\n| 0.10 | 8 | 8/8 (100%) | 1/8 (12%) | 3/8 (38%) | 0/8 (0%) | 0/8 (0%) |\\n| 0.25 | 16 | 16/16 (100%) | 10/16 (62%) | 6/16 (38%) | 0/16 (0%) | 0/16 (0%) |\\n| 0.50 | 24 | 24/24 (100%) | 21/24 (88%) | 20/24 (83%) | 0/24 (0%) | 0/24 (0%) |\\n| 0.60 | 8 | 8/8 (100%) | 8/8 (100%) | 6/8 (75%) | 8/8 (100%) | 4/8 (50%) | (bf16)\\n| 0.75 | 24 | 24/24 (100%) | 23/24 (96%) | 24/24 (100%) | 20/24 (83%) | 0/24 (0%) |\\n| 1.00 | 32 | 32/32 (100%) | 32/32 (100%) | 32/32 (100%) | 24/32 (75%) | 19/32 (59%) |\\n\\n## Raw Significance (uncorrected, for comparison)\\n\\n| alpha | n | naive | differenced | threshold | permutation_granger | TY |\\n|-------|---|--------|--------|--------|--------|--------|\\n| 0.00 | 24 | 23/24 (96%) | 12/24 (50%) | 11/24 (46%) | 3/24 (12%) | 0/24 (0%) |\\n| 0.10 | 8 | 8/8 (100%) | 3/8 (38%) | 3/8 (38%) | 0/8 (0%) | 0/8 (0%) |\\n| 0.25 | 16 | 16/16 (100%) | 12/16 (75%) | 6/16 (38%) | 3/16 (19%) | 0/16 (0%) |\\n| 0.50 | 24 | 24/24 (100%) | 21/24 (88%) | 20/24 (83%) | 12/24 (50%) | 0/24 (0%) |\\n| 0.60 | 8 | 8/8 (100%) | 8/8 (100%) | 6/8 (75%) | 8/8 (100%) | 4/8 (50
+…[truncated 1989 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T22:55:47.545224+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3",
+  "description": "Create Phase 3 artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3",
+    "description": "Create Phase 3 artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T22:55:47.545369+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T22:55:47.545497+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3/method_ablation_phase3_summary.md",
+  "content": "# Method Ablation Phase 3: 7-Point Dose-Response Panel\n\nGenerated: 2026-05-19\nPanel: 136 rows, 7 alpha levels, BH FDR per-alpha corrected\n\n## Data Inventory\n\n| alpha | seeds | n_tests | precision |\n|-------|-------|---------|-----------|\n| 0.00 | 42,43,44 | 24 | fp32 |\n| 0.10 | 42 | 8 | fp32 |\n| 0.25 | 43,44 | 16 | fp32 |\n| 0.50 | 42,43,44 | 24 | fp32 |\n| 0.60 | 42 | 8 | bf16 |\n| 0.75 | 42,43,44 | 24 | fp32 |\n| 1.00 | 42,43,44,45 | 32 | fp32 (from Phase 2 mvp) |\n\n## Method x Alpha Sig Rates (BH FDR-corrected)\n\n| alpha | n | naive | diff | threshold | permG | TY |\n|-------|---|-------|------|-----------|-------|-----|\n| 0.00 | 24 | 96% | 33% | 46% | 0% | 0% |\n| 0.10 | 8 | 100% | 12% | 38% | 0% | 0% |\n| 0.25 | 16 | 100% | 62% | 38% | 0% | 0% |\n| 0.50 | 24 | 100% | 88% | 83% | 0% | 0% |\n| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% (bf16) |\n| 0.75 | 24 | 100% | 96% | 100% | 83% | 0% |\n| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |\n\n## Raw Significance (uncorrected)\n\n| alpha | n | naive | diff | threshold | permG | TY |\n|-------|---|-------|------|-----------|-------|-----|\n| 0.00 | 24 | 96% | 50% | 46% | 12% | 0% |\n| 0.10 | 8 | 100% | 38% | 38% | 0% | 0% |\n| 0.25 | 16 | 100% | 75% | 38% | 19% | 0% |\n| 0.50 | 24 | 100% | 88% | 83% | 50% | 0% |\n| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% |\n| 0.75 | 24 | 100% | 96% | 100% | 88% | 12% |\n| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |\n\n## FDR Correction Impact (flips only)\n\n| alpha | method | raw_sig | fdr_sig | flipped |\n|-------|--------|---------|---------|---------|\n| 0.00 | diff | 12 | 8 | 4 |\n| 0.00 | permG | 3 | 0 | 3 |\n| 0.10 | diff | 3 | 1 | 2 |\n| 0.25 | diff | 12 | 10 | 2 |\n| 0.25 | permG | 3 | 0 | 3 |\n| 0.50 | permG | 12 | 0 | 12 |\n| 0.75 | permG | 21 | 20 | 1 |\n| 0.75 | TY | 3 | 0 | 3 |\n\n## Phase 2 vs Phase 3 Comparison (overlapping alpha points)\n\n| alpha | method | Phase2 | Phase3 | delta |\n|-------|--------|--------|--------|-------|\n| 0.00 | naive | 100% | 96% | -4% |\n| 0.00 | diff | 38% | 33% | -4% |\n| 0.00 | threshold | 62% | 46% | -17% |\n| 0.25 | diff | 25% | 62% | +38% |\n| 0.25 | TY | 38% | 0% | -38% |\n| 0.50 | diff | 100% | 88% | -12% |\n| 0.50 | threshold | 100% | 83% | -17% |\n\n## Key Findings\n\n### 1. Canary blind zone confirmed at alpha=0.10\nalpha=0.10 matches alpha=0.00 profile: naive=100% (spurious), robust methods=0%. Low contamination is undetectable.\n\n### 2. Sharp permG transition at alpha=0.50-0.60\npermG jumps from 0% (alpha<=0.50) to 100% (alpha=0.60, bf16/1-seed) to 83% (alpha=0.75, 3-seed). The dose-response is step-function-like, not gradual. alpha=0.50 permG has 50% raw significance but 0% after FDR (12 flips), meaning p-values cluster near the threshold.\n\n### 3. TY unreliable below alpha=1.00 (confirms C003)\nTY=0% for all alpha<=0.75 after FDR. At alpha=0.75, 3 raw-significant tests flip to 0 after FDR. Only at alpha=1.00 (4-seed pooled) does TY reach 59%. Consistent with constraint C003: TY seed-unstable at T=11.\n\n### 4. Multi-seed data changes Phase 2 estimates\nLargest change: alpha=0.25 diff went from 25% (1 seed) to 62% (2 seeds). alpha=0.25 TY collapsed from 38% to 0%. Multi-seed averaging generally moderates single-seed overestimates (alpha=0.00 threshold: 62%->46%).\n\n### 5. Dose-response shape by method\n- naive: flat ~100% everywhere (always spuriously significant, useless as test)\n- diff/threshold: gradual sigmoidal rise from ~12-33% at alpha=0.00-0.10 to 96-100% at alpha>=0.75\n- permG: step function, essentially 0% at alpha<=0.50, jumps to 75-100% at alpha>=0.60\n- TY: only fires at alpha=1.00 (59%), too underpowered at T=11 for anything else\n\n### 6. alpha=0.60 bf16 caveat\nalpha=0.60 results are from a single bf16 seed. The unusually high permG=100% and TY=50% may partly reflect bf16 numeric effects or seed variance. fp32 multi-seed data needed to confirm.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3/method_ablation_phase3_summary.md",
+    "content": "# Method Ablation Phase 3: 7-Point Dose-Response Panel\n\nGenerated: 2026-05-19\nPanel: 136 rows, 7 alpha levels, BH FDR per-alpha corrected\n\n## Data Inventory\n\n| alpha | seeds | n_tests | precision |\n|-------|-------|---------|-----------|\n| 0.00 | 42,43,44 | 24 | fp32 |\n| 0.10 | 42 | 8 | fp32 |\n| 0.25 | 43,44 | 16 | fp32 |\n| 0.50 | 42,43,44 | 24 | fp32 |\n| 0.60 | 42 | 8 | bf16 |\n| 0.75 | 42,43,44 | 24 | fp32 |\n| 1.00 | 42,43,44,45 | 32 | fp32 (from Phase 2 mvp) |\n\n## Method x Alpha Sig Rates (BH FDR-corrected)\n\n| alpha | n | naive | diff | threshold | permG | TY |\n|-------|---|-------|------|-----------|-------|-----|\n| 0.00 | 24 | 96% | 33% | 46% | 0% | 0% |\n| 0.10 | 8 | 100% | 12% | 38% | 0% | 0% |\n| 0.25 | 16 | 100% | 62% | 38% | 0% | 0% |\n| 0.50 | 24 | 100% | 88% | 83% | 0% | 0% |\n| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% (bf16) |\n| 0.75 | 24 | 100% | 96% | 100% | 83% | 0% |\n| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |\n\n## Raw Significance (uncorrected)\n\n| alpha | n | naive | diff | threshold | permG | TY |\n|-------|---|-------|------|-----------|-------|-----|\n| 0.00 | 24 | 96% | 50% | 46% | 12% | 0% |\n| 0.10 | 8 | 100% | 38% | 38% | 0% | 0% |\n| 0.25 | 16 | 100% | 75% | 38% | 19% | 0% |\n| 0.50 | 24 | 100% | 88% | 83% | 50% | 0% |\n| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% |\n| 0.75 | 24 | 100% | 96% | 100% | 88% | 12% |\n| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |\n\n## FDR Correction Impact (flips only)\n\n| alpha | method | raw_sig | fdr_sig | flipped |\n|-------|--------|---------|---------|---------|\n| 0.00 | diff | 12 | 8 | 4 |\n| 0.00 | permG | 3 | 0 | 3 |\n| 0.10 | diff | 3 | 1 | 2 |\n| 0.25 | diff | 12 | 10 | 2 |\n| 0.25 | permG | 3 | 0 | 3 |\n| 0.50 | permG | 12 | 0 | 12 |\n| 0.75 | permG | 21 | 20 | 1 |\n| 0.75 | TY | 3 | 0 | 3 |\n\n## Phase 2 vs Phase 3 Comparison (overlapping alpha points)\n\n| alpha | method | Phase2 | Phase3 | delta |\n|-------|--------|--------|--------|-------|\n| 0.00 | naive | 100% | 96% | -4% |\n| 0.00 | diff | 38% | 33% | -4% |\n| 0.00 | threshold | 62% | 46% | -17% |\n| 0.25 | diff | 25% | 62% | +38% |\n| 0.25 | TY | 38% | 0% | -38% |\n| 0.50 | diff | 100% | 88% | -12% |\n| 0.50 | threshold | 100% | 83% | -17% |\n\n## Key Findings\n\n### 1. Canary blind zone confirmed at alpha=0.10\nalpha=0.10 matches alpha=0.00 profile: naive=100% (spurious), robust methods=0%. Low contamination is undetectable.\n\n### 2. Sharp permG transition at alpha=0.50-0.60\npermG jumps from 0% (alpha<=0.50) to 100% (alpha=0.60, bf16/1-seed) to 83% (alpha=0.75, 3-seed). The dose-response is step-function-like, not gradual. alpha=0.50 permG has 50% raw significance but 0% after FDR (12 flips), meaning p-values cluster near the threshold.\n\n### 3. TY unreliable below alpha=1.00 (confirms C003)\nTY=0% for all alpha<=0.75 after FDR. At alpha=0.75, 3 raw-significant tests flip to 0 after FDR. Only at alpha=1.00 (4-seed pooled) does TY reach 59%. Consistent with constraint C003: TY seed-unstable at T=11.\n\n### 4. Multi-seed data changes Phase 2 estimates\nLargest change: alpha=0.25 diff went from 25% (1 seed) to 62% (2 seeds). alpha=0.25 TY collapsed from 38% to 0%. Multi-seed averaging generally moderates single-seed overestimates (alpha=0.00 threshold: 62%->46%).\n\n### 5. Dose-response shape by method\n- naive: flat ~100% everywhere (always spuriously significant, useless as test)\n- diff/threshold: gradual sigmoidal rise from ~12-33% at alpha=0.00-0.10 to 96-100% at alpha>=0.75\n- permG: step function, essentially 0% at alpha<=0.50, jumps to 75-100% at alpha>=0.60\n- TY: only fires at alpha=1.00 (59%), too underpowered at T=11 for anything else\n\n### 6. alpha=0.60 bf16 caveat\nalpha=0.60 results are from a single bf16 seed. The unusually high permG=100% and TY=50% may partly reflect bf16 numeric effects or seed variance. fp32 multi-seed data needed to confirm.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T22:55:47.545655+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3/method_ablation_phase3_summary.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T22:55:47.545772+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "method_ablation_phase3_summary",
+  "type": "report",
+  "description": "Phase 3 method ablation: 7-point (alpha=0.00-1.00) dose-response panel with 5 methods, BH FDR corrected. 136 panel rows, multi-seed where available.",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3/method_ablation_phase3_summary.md",
+  "tags": "['method_ablation', 'phase3', 'dose_response', 'fdr']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "method_ablation_phase3_summary",
+    "type": "report",
+    "description": "Phase 3 method ablation: 7-point (alpha=0.00-1.00) dose-response panel with 5 methods, BH FDR corrected. 136 panel rows, multi-seed where available.",
+    "project": "distrib_canary_collapse",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase3/method_ablation_phase3_summary.md",
+    "tags": "['method_ablation', 'phase3', 'dose_response', 'fdr']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T22:55:47.545907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_d2036c\", \"name\": \"method_ablation_phase3_summary\", \"type\": \"report\", \"description\": \"Phase 3 method ablation: 7-point (alpha=0.00-1.00) dose-response panel with 5 methods, BH FDR corrected. 136 panel rows, multi-seed where available.\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase3_summary.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T22:55:35.728096+00:00\", \"tags\": [\"method_ablation\", \"phase3\", \"dose_response\", \"fdr\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-18T22:55:47.546068+00:00_
+
+Phase 3 完成。7×5 BH FDR-corrected 矩阵：
+
+| alpha | n | naive | diff | threshold | permG | TY |
+|-------|---|-------|------|-----------|-------|-----|
+| 0.00 | 24 | 96% | 33% | 46% | 0% | 0% |
+| 0.10 | 8 | 100% | 12% | 38% | 0% | 0% |
+| 0.25 | 16 | 100% | 62% | 38% | 0% | 0% |
+| 0.50 | 24 | 100% | 88% | 83% | 0% | 0% |
+| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% (bf16) |
+| 0.75 | 24 | 100% | 96% | 100% | 83% | 0% |
+| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |
+
+关键发现：
+
+1. **α=0.10 确认为盲区** — 和 α=0.00 一样，robust methods (permG/TY) 均为 0%
+
+2. **permG 在 α=0.50-0.60 之间存在阶跃跳变** — 从 0% (α≤0.50) 直接跳到 100% (α=0.60) / 83% (α=0.75)。α=0.50 的 50% raw significance 全部被 FDR 翻转（12 个 flip），说明 p-values 集中在临界附近
+
+3. **TY 在 α≤0.75 后全部为 0%（FDR 后）**，仅 α=1.00 有 59%，再次确认 C003
+
+4. **多 seed 修正了 Phase 2 的单 seed 估计** — α=0.25 diff 从 25%→62%（新 seed 影响大），α=0.25 TY 从 38%→0%（seed 不稳定）
+
+5. **α=0.60 bf16 单 seed 需谨慎解读** — permG=100%、TY=50% 可能受 bf16 精度和 seed 方差影响
+
+产出文件：
+- 服务器: `results/method_ablation_phase3_panel.json` + `results/method_ablation_phase3_report.md`
+- 本地: `artifacts/method_ablation_phase3/method_ablation_phase3_summary.md` (已注册 art_20260518_d2036c)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_method_ablation_phase3_20260518T225001"
+}
+```
+
+</details>
+
+---

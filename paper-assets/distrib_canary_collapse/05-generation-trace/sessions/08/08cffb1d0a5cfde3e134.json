@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08cffb1d0a5cfde3e134",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis conditional granger fix",
+  "task_key": "worker_analysis_conditional_granger_fix_20260521T023044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_fix_20260521T023044_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "eebe09bc58568e113810e28802a1f5b30ccde254389602c3a001e464e512c38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成的修改：**\n\n1. **14b 路径问题**：确认脚本原路径 `scale/14b_a050_s42_fp32/` 不存在。用户指定的 `scale_check/pythia14b_a050_s42_bf16/` 只有 2 个 generation（实验未完成），无法用于 Granger 分析。已从脚本中移除 14b 条目。\n\n2. **JSON 保存**：修复 statsmodels API 兼容问题（`df_num/df_denom` → `test.df`），在 westd-19828 上重跑分析，`conditional_granger_v2.json` 已保存到 `results/analysis/`。\n\n3. **本地 artifact 更新**：\n   - 修正为 11 实验 / 44 pairs（原误报 12/48）\n   - 所有数字更新到新结果（uncond 79.5%/79.5%, cond 36.4%/52.3%, joint 88.6%）\n   - 添加 df_resid caveat 和 citation evidence hierarchy\n   - 添加 14b 未完成的 caveat\n\n4. **关键结论不变**：ECE 仍然是 dominant channel（75% pR² wins, pR²=0.472 vs 0.351），collinearity r=−0.84 to −0.98。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conditional-granger-fix.md"
+}

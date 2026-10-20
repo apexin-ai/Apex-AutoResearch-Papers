@@ -1,0 +1,73 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai}
+\citation{dohmatob2024model}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse in iterative training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Early warning and monitoring.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Time-series causality in non-stationary settings.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Iterative Self-Consuming Training Protocol}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Metric Families}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canary candidates.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diversity targets.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality target.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Toda--Yamamoto Panel Temporal Precedence}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Lead Time Quantification}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Canary-Responsive Strategy (CRS)}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments and Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$\alpha $-Sweep: The Predictability Phase Diagram}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:alpha_sweep}{{5.1}{3}{$\alpha $-Sweep: The Predictability Phase Diagram}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $\alpha $-sweep summary statistics (mean $\pm $ std across 3 seeds, except $\alpha \!=\!1.0$: 4 seeds). ``Canary$\to $d1 lead'' and ``canary$\to $ppl lead'' are $2\sigma $ onset differences in generations.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:alpha_sweep}{{1}{4}{$\alpha $-sweep summary statistics (mean $\pm $ std across 3 seeds, except $\alpha \!=\!1.0$: 4 seeds). ``Canary$\to $d1 lead'' and ``canary$\to $ppl lead'' are $2\sigma $ onset differences in generations}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Toda--Yamamoto panel results for all canary$\to $target pairs. Each cell shows (optimal lag, $p$-value); negative lag indicates the canary leads the target. Bold entries are significant at $p<0.05$.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ty_panel}{{2}{4}{Toda--Yamamoto panel results for all canary$\to $target pairs. Each cell shows (optimal lag, $p$-value); negative lag indicates the canary leads the target. Bold entries are significant at $p<0.05$}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Key findings.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Methodological Ablation: Naive vs.\ Robust Testing}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:method_ablation}{{5.2}{4}{Methodological Ablation: Naive vs.\ Robust Testing}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Method comparison: significant pair counts out of 104 total canary$\to $target pairs tested. ``False positive vs TY'' counts pairs significant under the method but not under TY.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:method_comparison}{{3}{5}{Method comparison: significant pair counts out of 104 total canary$\to $target pairs tested. ``False positive vs TY'' counts pairs significant under the method but not under TY}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Breakdown of 29 naive Pearson false positives overturned by TY.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:false_positives}{{4}{5}{Breakdown of 29 naive Pearson false positives overturned by TY}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}MVP Formalization ($\alpha = 1.0$, max\_lag = 7)}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:mvp}{{5.3}{5}{MVP Formalization ($\alpha = 1.0$, max\_lag = 7)}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Domain Validation: C4}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:c4}{{5.4}{5}{Cross-Domain Validation: C4}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Scale Spot-Check: Pythia-1.4B}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:scale}{{5.5}{5}{Scale Spot-Check: Pythia-1.4B}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Extended Run: 20 Generations ($\alpha = 1.0$)}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:extended}{{5.6}{5}{Extended Run: 20 Generations ($\alpha = 1.0$)}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces MVP ($\alpha \!=\!1.0$) TY results: max\_lag$\,=\,$5 vs.\ 7.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:mvp_maxlag}{{5}{6}{MVP ($\alpha \!=\!1.0$) TY results: max\_lag$\,=\,$5 vs.\ 7}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-domain comparison at $\alpha \!=\!0.50$. All lags and $p$-values from TY panel tests.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:cross_domain}{{6}{6}{Cross-domain comparison at $\alpha \!=\!0.50$. All lags and $p$-values from TY panel tests}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Canary-Responsive Intervention}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:intervention}{{5.7}{6}{Canary-Responsive Intervention}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Data Strategy Ablation: Accumulate vs.\ Replace}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:data_strategy}{{5.8}{6}{Data Strategy Ablation: Accumulate vs.\ Replace}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The predictability phase diagram.}{6}{section*.13}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scale comparison at $\alpha \!=\!0.50$, WikiText-103.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:scale}{{7}{7}{Scale comparison at $\alpha \!=\!0.50$, WikiText-103}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Extended run ($\alpha \!=\!1.0$) TY results with max\_lag$\,=\,$10.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:extended}{{8}{7}{Extended run ($\alpha \!=\!1.0$) TY results with max\_lag$\,=\,$10}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why some canaries fail.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Intervention results at $\alpha \!=\!0.75$ (mean $\pm $ std, 3 seeds). Oracle uses $\alpha \!=\!0.50$ throughout.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:intervention}{{9}{8}{Intervention results at $\alpha \!=\!0.75$ (mean $\pm $ std, 3 seeds). Oracle uses $\alpha \!=\!0.50$ throughout}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Data strategy comparison at $\alpha \!=\!0.50$ (mean, 3 seeds).}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:data_strategy}{{10}{8}{Data strategy comparison at $\alpha \!=\!0.50$ (mean, 3 seeds)}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Tables}{8}{appendix.A}\protected@file@percent }
+\gdef \@abspage@last{8}

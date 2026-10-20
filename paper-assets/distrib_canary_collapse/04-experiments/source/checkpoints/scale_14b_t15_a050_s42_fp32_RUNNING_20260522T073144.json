@@ -1,0 +1,36 @@
+{
+  "exp_id": "scale_14b_t15_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:18.300Z",
+    "updated_at": "2026-05-22T07:31:43.222Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=15 α=0.50. At 410M, α=0.50 PermG=6/8 (above α_c(15)≈0.304). If 1.4B consistent, confirms detection at moderate α is robust to model scale.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "643878",
+      "log_path": "~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log",
+      "submitted_at": "2026-05-22T07:31:40.940Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "gpu": "cuda:1",
+    "server": "westd-17855",
+    "account": "root",
+    "pid": "643878",
+    "log_path": "~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\""
+    }
+  },
+  "timestamp": "2026-05-22T07:31:44.190930+00:00",
+  "trigger": "update_registry"
+}

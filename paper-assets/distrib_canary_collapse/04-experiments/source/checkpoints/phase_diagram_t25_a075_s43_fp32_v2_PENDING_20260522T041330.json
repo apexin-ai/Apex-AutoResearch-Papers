@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase_diagram_t25_a075_s43_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:13:23.109Z",
+    "updated_at": "2026-05-22T04:13:29.694Z",
+    "hypothesis": "T=25 α=0.75 cross-seed validation (v2 resume from gen_9 after v1 SIGHUP crash at gen_9/25). s42=6/8 (D102 confirmed). α=0.75 is far above α_c(25)≈0.232. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=25 and seed robustness of high-α detection.",
+    "parent": "phase_diagram_t25_a075_s43_fp32"
+  },
+  "timestamp": "2026-05-22T04:13:30.295520+00:00",
+  "trigger": "update_registry"
+}

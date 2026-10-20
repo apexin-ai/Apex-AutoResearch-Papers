@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "experiment": "t20_a100_s42_fp32",
+    "model": "Pythia-410M",
+    "dataset": "WikiText",
+    "alpha": 1.0,
+    "seed": 42,
+    "precision": "fp32",
+    "T": 20,
+    "steps_per_gen": 5000,
+    "n_generations": 21,
+    "server": "westd-17855",
+    "results_dir": "results/t20/a100_s42_fp32",
+    "analysis_date": "2026-05-20",
+    "analysis_script": "run_5method_analysis_d102.py"
+  },
+  "training_final_metrics": {
+    "perplexity": 2041.50,
+    "token_entropy": 1.2052,
+    "effective_rank": 94.4,
+    "mauve": 0.0341,
+    "exit_code": 0
+  },
+  "5method_forward_significance": {
+    "naive_xcorr_fwd": 8,
+    "diff_xcorr_fdr_fwd": 6,
+    "threshold_onset_fwd": 6,
+    "permg_fwd_fdr": 6,
+    "ty_fwd_fdr": 1,
+    "total_pairs": 8
+  },
+  "5method_reverse_significance": {
+    "permg_rev_fdr": 0,
+    "diff_xcorr_fdr_rev": 6,
+    "total_pairs": 8
+  },
+  "consensus": {
+    "robust_pairs_K3": 6,
+    "robust_pairs_K4": 6,
+    "robust_pairs_K5": 1,
+    "total_pairs": 8
+  },
+  "consensus_detail": [
+    {"pair": "token_entropy→distinct_1", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy→distinct_2", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy→distinct_3", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "token_entropy→mauve", "votes": 1, "methods": ["naive"]},
+    {"pair": "ece→distinct_1", "votes": 5, "methods": ["naive", "diff", "threshold", "perm", "ty"]},
+    {"pair": "ece→distinct_2", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece→distinct_3", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece→mauve", "votes": 1, "methods": ["naive"]}
+  ],
+  "prediction_verification": {
+    "observed_permg_count": 6,
+    "observed_rate": 0.75,
+    "predicted_permg_count": 7,
+    "predicted_rate": 0.832,
+    "predicted_rate_95ci": [0.76, 0.96],
+    "predicted_range": [6, 8],
+    "within_ci": false,
+    "within_range": true,
+    "T10_baseline_permg": 6,
+    "delta_vs_T10": 0,
+    "note": "Observed rate 0.75 barely below CI lower bound 0.76. No improvement over T=10 baseline (both 6/8)."
+  },
+  "result_summary": {
+    "alpha": 1.0,
+    "seed": 42,
+    "T": 20,
+    "n_generations": 21,
+    "observed_permg_count": 6,
+    "observed_rate": 0.75,
+    "predicted_permg_count": 7,
+    "predicted_rate": 0.832,
+    "predicted_rate_95ci": [0.76, 0.96],
+    "within_ci": false,
+    "within_range": true,
+    "robust_pairs_K3": 6,
+    "robust_pairs_K4": 6,
+    "permg_rev_fdr": 0,
+    "ty_fwd_fdr": 1,
+    "final_ppl": 2041.50,
+    "final_entropy": 1.2052,
+    "exit_code": 0,
+    "checkpoint_path": "results/t20/a100_s42_fp32/gen_20/checkpoint",
+    "conclusion": "NEGATIVE_MARGINAL"
+  }
+}

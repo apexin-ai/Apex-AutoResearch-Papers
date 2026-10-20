@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b83565f771b008ae65c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh latex compile check",
+  "task_key": "worker_ssh_latex_compile_check_20260517T050924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_latex_compile_check_20260517T050924_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "0987ae0bc72437c82213d3ca39392735fb93f5165c8f4bc0b26473271caf96e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| 编译 errors | **0** |\n| Dohare2024 in .bbl | **否** — tex 中未引用，bib 中也不存在该条目 |\n| Lyle2023 in .bbl | **否** — tex 中未引用，bib 中也不存在该条目 |\n| Undefined citations | **0** |\n| 总页数 | **21 页** |\n| a050_s44 进度 | **8/11 gen**（进程 PID 230324 存活，运行约 6h） |\n\n编译干净通过，无 error 无 undefined citation。Dohare2024 和 Lyle2023 这两个条目当前既未在 .tex 中被 `\\cite`，也不存在于 `references.bib` 中——如果需要引用它们，需要先添加 bib 条目并在正文中 cite。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-latex-compile-check.md"
+}

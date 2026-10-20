@@ -1,0 +1,44 @@
+{
+  "exp_id": "scale_14b_t10_a050_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:12:22.036Z",
+    "updated_at": "2026-05-22T23:16:07.328Z",
+    "hypothesis": "Cross-seed verification: Pythia-1.4B T=10 α=0.50 seed 43. s42 gave PermG 4/8 — if s43 also ≥4/8, confirms detection is robust to seed. If 0/8 or much lower, suggests high seed variance at this cell (consistent with 410M α=0.50 seed variance pattern).",
+    "parent": "scale_14b_t10_a050_s42_fp32_v2",
+    "spec": {
+      "command": "python iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing",
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 43,
+      "pid": 822048,
+      "tmux_session": "14b_t10_a050_s43",
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T20:25:32.001Z"
+    },
+    "failure_reason": "CLEARED — cron false alarm (tracked old PID 821294, actual running PID is 822048, confirmed alive by reconcile_crons)",
+    "conclusion": null,
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T20:25:37.940774+00:00"
+        }
+      ]
+    },
+    "notes": "⚠️ CRON FALSE ALARM — cron tracked old PID 821294 (killed during param fix), marked DONE/failed. Actual process PID 822048 is alive and running on 19828:cuda:1. Cron re-registered with correct PID. IGNORE conclusion=failed, experiment is RUNNING."
+  },
+  "timestamp": "2026-05-22T23:16:07.762299+00:00",
+  "trigger": "update_registry"
+}

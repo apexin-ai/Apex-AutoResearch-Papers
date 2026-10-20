@@ -1,0 +1,94 @@
+{
+  "analysis": "FPR=10% Sensitivity Analysis (R9 C1)",
+  "date": "2026-05-22",
+  "source_data": "m4_per_seed_fpr_breakdown.json (3 seeds, cluster-bootstrap)",
+  "scenario": "Replace PermG observed FPR=0% with hypothetical FPR=10%",
+  "observed_fpr_ci_upper": {
+    "PermG": 0.0,
+    "TY": 0.25,
+    "DiffXCorr": 0.5,
+    "ThresholdOnset": 0.375,
+    "NaiveXCorr": 1.0
+  },
+  "k3_majority_voting": {
+    "mechanism": "Equal-weight majority voting (K>=3 of 5 methods agree)",
+    "affected_by_fpr_assumption": false,
+    "reason": "Each method contributes exactly 1 vote regardless of FPR. Changing FPR assumption does not change vote counts.",
+    "conclusion": "K>=3 consensus results are IDENTICAL under both assumptions."
+  },
+  "fpr_inverse_ranking": {
+    "original": {
+      "fpr": {
+        "PermG": 0.0,
+        "TY": 0.166667,
+        "DiffXCorr": 0.375,
+        "ThresholdOnset": 0.25,
+        "NaiveXCorr": 0.916667
+      },
+      "rank_by_fpr_ascending": [
+        "PermG",
+        "TY",
+        "ThresholdOnset",
+        "DiffXCorr",
+        "NaiveXCorr"
+      ],
+      "fpr_inverse_weights_raw": {
+        "PermG": 1000000.0,
+        "TY": 5.999988000024,
+        "DiffXCorr": 2.6666666666666665,
+        "ThresholdOnset": 4.0,
+        "NaiveXCorr": 1.0909086942150203
+      },
+      "fpr_inverse_weights_normalized": {
+        "PermG": 1.0,
+        "TY": 0.0,
+        "DiffXCorr": 0.0,
+        "ThresholdOnset": 0.0,
+        "NaiveXCorr": 0.0
+      },
+      "best_method": "PermG"
+    },
+    "fpr10_hypothesis": {
+      "fpr": {
+        "PermG": 0.1,
+        "TY": 0.166667,
+        "DiffXCorr": 0.375,
+        "ThresholdOnset": 0.25,
+        "NaiveXCorr": 0.916667
+      },
+      "rank_by_fpr_ascending": [
+        "PermG",
+        "TY",
+        "ThresholdOnset",
+        "DiffXCorr",
+        "NaiveXCorr"
+      ],
+      "fpr_inverse_weights_raw": {
+        "PermG": 10.0,
+        "TY": 6.0,
+        "DiffXCorr": 2.6667,
+        "ThresholdOnset": 4.0,
+        "NaiveXCorr": 1.0909
+      },
+      "fpr_inverse_weights_normalized": {
+        "PermG": 0.4209,
+        "TY": 0.2526,
+        "DiffXCorr": 0.1122,
+        "ThresholdOnset": 0.1684,
+        "NaiveXCorr": 0.0459
+      },
+      "best_method": "PermG"
+    },
+    "rank_order_changed": false,
+    "permg_still_best": true,
+    "permg_still_in_top2": true
+  },
+  "key_arguments": [
+    "Even at FPR=10%, PermG remains the lowest-FPR method (next: TY at 16.7%, DiffXCorr at 37.5%).",
+    "Main results use equal-weight K>=3 voting, completely unaffected by FPR magnitude.",
+    "FPR-inverse weighting is exploratory only; PermG weight drops from infinity to 10 but remains highest (TY=6.0, Threshold=4.0, DiffXCorr=2.67, Naive=1.09).",
+    "Rank order is preserved: PermG remains #1 position.",
+    "Robustness conclusion: the MMCT framework is insensitive to PermG FPR assumptions because (a) majority voting is equal-weight, and (b) even with 10% FPR, PermG dominates all alternatives."
+  ],
+  "conclusion": "PermG remains optimal under FPR=10% hypothesis. K>=3 voting unaffected (equal-weight). FPR-inverse ranking preserved (PermG still #1). Framework is robust to this sensitivity assumption."
+}

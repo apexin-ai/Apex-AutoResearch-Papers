@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12884d21c74622fae342",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a025 s42 fp32",
+  "task_key": "worker_analysis_t20_a025_s42_fp32_20260521T050105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a025_s42_fp32_20260521T050105_result.json",
+    "occurrence": 1,
+    "bytes": 2622,
+    "sha256": "2362b06d0c162b3f69c6b27d0806e87564e7b3f5b9a7f52ecf09fd9b34e3fc9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕，实验状态 → DONE。\n\n---\n\n## t20_a025_s42_fp32 分析摘要\n\n### 训练状态\n20 generations 全部完成，EXIT_CODE=0，gen_0 至 gen_20 目录完整。\n\n### 完整 Metrics\n\n| 指标 | 值 |\n|---|---|\n| **PermG FDR forward** | **3/8** |\n| PermG FDR reverse | 0/8 |\n| DiffXCorr FDR forward | 1/8 |\n| DiffXCorr FDR reverse | 1/8 |\n| Threshold onset forward | 4/8 |\n| TY forward | 0/8 |\n| **Robust pairs K≥3** | **1/8** |\n| Robust pairs K≥4 | 0/8 |\n\n### PermG FDR Detail (forward)\n\n| Pair | F-stat | p_raw | p_FDR | Sig |\n|---|---|---|---|---|\n| token_entropy→distinct_1 | 232.69 | 0.0042 | 0.031 | **Yes** |\n| token_entropy→distinct_2 | 200.82 | 0.016 | 0.043 | **Yes** |\n| token_entropy→distinct_3 | 65.63 | 0.030 | 0.049 | **Yes** |\n| token_entropy→mauve | 1.66 | 0.344 | 0.536 | No |\n| ece→distinct_{1,2,3} | 0.4–1.5 | 0.35–0.50 | 0.536 | No |\n| ece→mauve | 0.49 | 0.536 | 0.536 | No |\n\n方向性完美：3 fwd / 0 rev。所有 3 个显著对均为 **token_entropy→distinct_X**，ECE canary 完全失灵。\n\n### Drift (gen0→gen20)\n\n| Metric | Gen0 | Gen20 | Drift % |\n|---|---|---|---|\n| token_entropy | 3.234 | 3.129 | **-3.3%** |\n| distinct_1 | 0.098 | 0.058 | **-40.4%** |\n| distinct_2 | 0.514 | 0.212 | **-58.7%** |\n| distinct_3 | 0.813 | 0.301 | **-62.9%** |\n| ece | 0.011 | 0.020 | **+84.9%** |\n| perplexity | 26.95 | 21.93 | **-18.6%** |\n| mauve | 0.031 | 0.020 | **-34.3%** |\n\n### 与 Baseline 和其他 T=20 实验对比\n\n| 实验 | PermG | K≥3 | K≥4 |\n|---|---|---|---|\n| **T=11 α=0.25** (3 seeds 一致) | **0/8** | 0 | 0 |\n| **T=20 α=0.25** (本实验) | **3/8** | 1 | 0 |\n| T=20 α=0.45 | 5/8 | 3 | 1 |\n| T=20 α=0.50 | 6/8 | 6 | 2 |\n| T=20 α=1.0 | 6/8 | 6 | 6 |\n\n### 预测对比\n- **Predicted** (T=10 sigmoid, α=0.25 deep below α_c≈0.475): **0/8**\n- **Observed**: **3/8**\n- **Verdict**: **FAIL** — point prediction 失败\n- **blind_zone_conclusion**: **power_breakthrough**\n\n### 论文意义\n\nT=20 α=0.25 **打破了 T=11 blind zone**（0/8→3/8），确认 blind zone 是统计功效问题而非根本检测极限。T=20 dose-response 曲线 (α: 0.25→0.45→0.50→1.0 = PermG: 3→5→6→6) 平滑单调递增，证实 phase boundary α_c(T) 随 T 增大而左移。\n\n关键细节：信号仍然脆弱（K≥3 仅 1/8），且**仅 token_entropy canary 有效**（ECE 完全无信号）——低 α 下两种 canary 的灵敏度出现分化，这为论文提供了一个额外发现：canary 选择在 near-blind-zone 区间具有决定性作用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a025-s42-fp32.md"
+}

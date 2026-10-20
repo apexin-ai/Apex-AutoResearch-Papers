@@ -1,0 +1,72 @@
+{
+  "exp_id": "qwen35_08b_wiki_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:28:45.037Z",
+    "updated_at": "2026-05-19T13:17:29.259Z",
+    "hypothesis": "D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).",
+    "parent": "qwen35_08b_wiki_a100_s42",
+    "server": "westd-17855",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "iterative_train.py --model_name Qwen3.5-0.8B-Base --seed 42 --synthetic_ratio 1.0",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "74455",
+      "log_path": "~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log",
+      "submitted_at": "2026-05-19T00:29:15.328Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "Qwen3.5-0.8B-Base",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen3.5-0.8B-Base/",
+      "eval_data": "data/wikitext103_5k",
+      "wall_clock_seconds": 46093.9,
+      "gpu_hours": 12.8
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:14:24.757Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T13:14:28.349602+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "permg_fwd_fdr": "8/8",
+      "permg_rev_fdr": "0/8",
+      "consensus_ge4": "8/8",
+      "mmct_uniform_fwd": 1,
+      "d1_drift_pct": -32.5,
+      "d2_drift_pct": -45.99,
+      "d3_drift_pct": -47.21,
+      "entropy_drift_pct": -54.03,
+      "ece_drift_pct": 5643.53,
+      "mauve_drift_pct": -22.89,
+      "ppl_drift_pct": 5968.54,
+      "ppl_gen0": 20.55,
+      "ppl_gen10": 1247.19,
+      "ty_granger_sig": "6/8"
+    },
+    "checkpoint_path": "results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2",
+    "log_path": "~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log",
+    "completed_at": "2026-05-19T13:17:29.259Z"
+  },
+  "timestamp": "2026-05-19T13:17:29.447074+00:00",
+  "trigger": "update_registry"
+}

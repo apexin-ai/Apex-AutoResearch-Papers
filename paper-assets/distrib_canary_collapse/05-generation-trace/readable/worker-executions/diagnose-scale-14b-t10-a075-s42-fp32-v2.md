@@ -1,0 +1,1768 @@
+# diagnose scale 14b t10 a075 s42 fp32 v2
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658.log`
+- **Structured JSON:** [`d65173d3f3b227450565.json`](../../sessions/d6/d65173d3f3b227450565.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7e7a8767-28c1-4a59-89a8-d456d3fe4868",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779491400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "514bb82d-3c5c-44a5-8106-1b35b496a28f",
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify an experiment's completion status and extract results from a remote server (westd-17855). Let me start by connecting to the server and checking the experiment status.
+
+Let me first load the SSH tools and then execute the verification steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "ae9131ba-ac68-4f97-af7c-ca90952f106a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9QKXvNuzKpSCGShwZ3x8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14379,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14379
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+验证实验 `scale_14b_t10_a075_s42_fp32_v2` 的完成状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "aa1936a0-21c1-4115-8837-f5b380828887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9QKXvNuzKpSCGShwZ3x8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14379,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14379
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QKEuT4T5JEcEAvS13FGSpJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "19f5abb8-e770-47b3-9ac1-e5b734cfa931",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9QKXvNuzKpSCGShwZ3x8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14379,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14379
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T20:07:12.884Z_
+
+<details><summary>↩ Tool result · `toolu_01QKEuT4T5JEcEAvS13FGSpJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "eb49f45c-7a72-451f-8fc8-7e7a199b6abd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013a19xpipa6sSVKC1LEVRuh`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/EXIT_CODE",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "6b457642-7898-45a3-8d9f-bbc74c8dd7a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYZxqZoejCgCnnWdsB5n61",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 26220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 774
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VWmHxHDNiGo2BaJcNXFozb`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_*/checkpoint/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "ff60d162-c10f-4c09-8274-6ba4c129b51d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYZxqZoejCgCnnWdsB5n61",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 26220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 774
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T20:07:19.972Z_
+
+<details><summary>↩ Tool result · `toolu_013a19xpipa6sSVKC1LEVRuh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "2b93b480-d4f2-4ff3-b12d-06bbe6f9c8f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T20:07:20.498Z_
+
+<details><summary>↩ Tool result · `toolu_01VWmHxHDNiGo2BaJcNXFozb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/:\\ntotal 5529500\\ndrwxr-xr-x 2 root root        155 May 23 03:52 .\\ndrwxr-xr-x 5 root root        101 May 23 03:54 ..\\n-rw-r--r-- 1 root root        784 May 23 03:52 config.json\\n-rw-r--r-- 1 root root        131 May 23 03:52 generation_config.json\\n-rw-r--r-- 1 root root 5658625656 May 23 03:52 model.safetensors\\n-rw-r--r-- 1 root root    3564280 May 23 03:52 tokenizer.json\\n-rw-r--r-- 1 root root        566 May 23 03:52 tokenizer_config.json\\n\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/:\\ntotal 5529500\\ndrwxr-xr-x 2 root root        155 May 23 02:45 .\\ndrwxr-xr-x 5 root root        101 May 23 02:47 ..\\n-rw-r--r-- 1 root root        784 May 23 02:45 config.json\\n-rw-r--r-- 1 root root        131 May 23 02:45 generation_config.json\\n-rw-r--r-- 1 root root 5658625656 May 23 02:45 model.safetensors\\n-rw-r--r-- 1 root root    3564280 May 23 02:45 tokenizer.json\\n-rw-r--r-- 1 root root        566 May 23 02:45 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "8b0a709a-0e1c-430c-ad89-0d5ccd6a0cda",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/:\\\\ntotal 5529500\\\\ndrwxr-xr-x 2 root root        155 May 23 03:52 .\\\\ndrwxr-xr-x 5 root root        101 May 23 03:54 ..\\\\n-rw-r--r-- 1 root root        784 May 23 03:52 config.json\\\\n-rw-r--r-- 1 root root        131 May 23 03:52 generation_config.json\\\\n-rw-r--r-- 1 root root 5658625656 May 23 03:52 model.safetensors\\\\n-rw-r--r-- 1 root root    3564280 May 23 03:52 tokenizer.json\\\\n-rw-r--r-- 1 root root        566 May 23 03:52 tokenizer_config.json\\\\n\\\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/:\\\\ntotal 5529500\\\\ndrwxr-xr-x 2 root root        155 May 23 02:45 .\\\\ndrwxr-xr-x 5 root root        101 May 23 02:47 ..\\\\n-rw-r--r-- 1 root root        784 May 23 02:45 config.json\\\\n-rw-r--r-- 1 root root        131 May 23 02:45 generation_config.json\\\\n-rw-r--r-- 1 root root 5658625656 May 23 02:45 model.safetensors\\\\n-rw-r--r-- 1 root root    3564280 May 23 02:45 tokenizer.json\\\\n-rw-r--r-- 1 root root        566 May 23 02:45 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/:\\ntotal 5529500\\ndrwxr-xr-x 2 root root        155 May 23 03:52 .\\ndrwxr-xr-x 5 root root        101 May 23 03:54 ..\\n-rw-r--r-- 1 root root        784 May 23 03:52 config.json\\n-rw-r--r-- 1 root root        131 May 23 03:52 generation_config.json\\n-rw-r--r-- 1 root root 5658625656 May 23 03:52 model.safetensors\\n-rw-r--r-- 1 root root    3564280 May 23 03:52 tokenizer.json\\n-rw-r--r-- 1 root root        566 May 23 03:52 tokenizer_config.json\\n\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/:\\ntotal 5529500\\ndrwxr-xr-x 2 root root        155 May 23 02:45 .\\ndrwxr-xr-x 5 root root        101 May 23 02:47 ..\\n-rw-r--r-- 1 root root        784 May 23 02:45 config.json\\n-rw-r--r-- 1 root root        131 May 23 02:45 generation_config.json\\n-rw-r--r-- 1 root root 5658625656 May 23 02:45 model.safetensors\\n-rw-r--r-- 1 root root    3564280 May 23 02:45 tokenizer.json\\n-rw-r--r-- 1 root root        566 May 23 02:45 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XVdLfSAtR5wAqN7FMwdVov`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "03f13007-2665-481a-8d7f-bffe27fd8ebc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYZxqZoejCgCnnWdsB5n61",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 26220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 774
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T20:07:21.142Z_
+
+<details><summary>↩ Tool result · `toolu_01XVdLfSAtR5wAqN7FMwdVov`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 2.9731030954601296,\\n    \\\"self_bleu\\\": 0.011849041760932093,\\n    \\\"ece\\\": 0.008097809871683159,\\n    \\\"effective_rank\\\": 52.669285229928775,\\n    \\\"perplexity\\\": 19.829875607610564,\\n    \\\"distinct_1\\\": 0.0991953125,\\n    \\\"distinct_2\\\": 0.5221837670606801,\\n    \\\"distinct_3\\\": 0.8211300176565259,\\n    \\\"mauve\\\": null,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7978914996625392,\\n    \\\"self_bleu\\\": 0.011351759165873037,\\n    \\\"ece\\\": 0.18876724615879098,\\n    \\\"effective_rank\\\": 91.1668407145743,\\n    \\\"perplexity\\\": 33.43908913407411,\\n    \\\"distinct_1\\\": 0.09903125,\\n    \\\"distinct_2\\\": 0.5224806443800342,\\n    \\\"distinct_3\\\": 0.821239394365537,\\n    \\\"mauve\\\": null,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.764916380279534,\\n    \\\"self_bleu\\\": 0.012148130040644599,\\n    \\\"ece\\\": 0.23104744630180984,\\n    \\\"effective_rank\\\": 100.35491533965464,\\n    \\\"perplexity\\\": 49.81685635712009,\\n    \\\"distinct_1\\\": 0.085265625,\\n    \\\"distinct_2\\\": 0.44583160805943794,\\n    \\\"distinct_3\\\": 0.7361911904873514,\\n    \\\"mauve\\\": 0.03248857215144339,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7285881267722027,\\n    \\\"self_bleu\\\": 0.012524494446726472,\\n    \\\"ece\\\": 0.245620751074944,\\n    \\\"effective_rank\\\": 101.42301020834886,\\n    \\\"perplexity\\\": 57.42900641018861,\\n    \\\"distinct_1\\\": 0.0823203125,\\n    \\\"distinct_2\\\": 0.4206751615246994,\\n    \\\"distinct_3\\\": 0.6943389740464695,\\n    \\\"mauve\\\": 0.03357726820269029,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7554776857539516,\\n    \\\"self_bleu\\\": 0.012696959764591164,\\n    \\\"ece\\\": 0.2535631155906509,\\n    \\\"effective_rank\\\": 101.3901365464195,\\n    \\\"perplexity\\\": 63.795698548354466,\\n    \\\"distinct_1\\\": 0.081453125,\\n    \\\"distinct_2\\\": 0.4137297947640216,\\n    \\\"distinct_3\\\": 0.6818778418412788,\\n    \\\"mauve\\\": 0.033225222602104976,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7644916876863823,\\n    \\\"self_bleu\\\": 0.012687882349716618,\\n    \\\"ece\\\": 0.2610610381553935,\\n    \\\"effective_rank\\\": 101.75320005561356,\\n    \\\"perplexity\\\": 70.32402918667637,\\n    \\\"distinct_1\\\": 0.08128125,\\n    \\\"distinct_2\\\": 0.41190165548168345,\\n    \\\"distinct_3\\\": 0.6792059250925796,\\n    \\\"mauve\\\": 0.03512838669102708,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7895693815209814,\\n    \\\"self_bleu\\\": 0.01261931976383242,\\n    \\\"ece\\\": 0.2644881713908486,\\n    \\\"effective_rank\\\": 101.85366501346121,\\n    \\\"perplexity\\\": 73.9503571413066,\\n    \\\"distinct_1\\\": 0.080890625,\\n    \\\"distinct_2\\\": 0.40925319729060383,\\n    \\\"distinct_3\\\": 0.6741980343442866,\\n    \\\"mauve\\\": 0.03498245676125417,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.8254768534192911,\\n    \\\"self_bleu\\\": 0.012618814946797008,\\n    \\\"ece\\\": 0.2659309224414289,\\n    \\\"effective_rank\\\": 100.28126135307207,\\n    \\\"perplexity\\\": 78.80360370094225,\\n    \\\"distinct_1\\\": 0.0807265625,\\n    \\\"distinct_2\\\": 0.40750318361862203,\\n    \\\"distinct_3\\\": 0.671580805950093,\\n    \\\"mauve\\\": 0.03435898369836375,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.8947788671478158,\\n    \\\"self_bleu\\\": 0.012707496688444233,\\n    \\\"ece\\\": 0.26530258720854083,\\n    \\\"effective_rank\\\": 100.24983663675158,\\n    \\\"perplexity\\\": 83.86405575253134,\\n    \\\"distinct_1\\\": 0.0807109375,\\n    \\\"distinct_2\\\": 0.4079250619145462,\\n    \\\"distinct_3\\\": 0.6718151846122595,\\n    \\\"mauve\\\": 0.03165254924733035,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.905304986715671,\\n    \\\"self_bleu\\\": 0.012700000968201284,\\n    \\\"ece\\\": 0.26603805993439683,\\n    \\\"effective_rank\\\": 98.92469242591183,\\n    \\\"perplexity\\\": 86.73018374726851,\\n    \\\"distinct_1\\\": 0.080609375,\\n    \\\"distinct_2\\\": 0.40724536910444614,\\n    \\\"distinct_3\\\": 0.6704167252613322,\\n    \\\"mauve\\\": 0.03169386221931101,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.968096279710096,\\n    \\\"self_bleu\\\": 0.01270021570295951,\\n    \\\"ece\\\": 0.26558050641384223,\\n    \\\"effective_rank\\\": 99.90457868749567,\\n    \\\"perplexity\\\": 89.3685720417772,\\n    \\\"distinct_1\\\": 0.0805546875,\\n    \\\"distinct_2\\\": 0.4069797420292346,\\n    \\\"distinct_3\\\": 0.6696901514086158,\\n    \\\"mauve\\\": 0.031099757108039083,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "9a063879-9aed-438e-b380-0d600e4fb15a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.9731030954601296,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011849041760932093,\\\\n    \\\\\\\"ece\\\\\\\": 0.008097809871683159,\\\\n    \\\\\\\"effective_rank\\\\\\\": 52.669285229928775,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.829875607610564,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0991953125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5221837670606801,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8211300176565259,\\\\n    \\\\\\\"mauve\\\\\\\": null,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.7978914996625392,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011351759165873037,\\\\n    \\\\\\\"ece\\\\\\\": 0.18876724615879098,\\\\n    \\\\\\\"effective_rank\\\\\\\": 91.1668407145743,\\\\n    \\\\\\\"perplexity\\\\\\\": 33.43908913407411,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09903125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5224806443800342,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.821239394365537,\\\\n    \\\\\\\"mauve\\\\\\\": null,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.764916380279534,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012148130040644599,\\\\n    \\\\\\\"ece\\\\\\\": 0.23104744630180984,\\\\n    \\\\\\\"effective_rank\\\\\\\": 100.35491533965464,\\\\n    \\\\\\\"perplexity\\\\\\\": 49.81685635712009,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.085265625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.44583160805943794,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7361911904873514,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03248857215144339,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.7285881267722027,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012524494446726472,\\\\n    \\\\\\\"ece\\\\\\\": 0.245620751074944,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.42301020834886,\\\\n    \\\\\\\"perplexity\\\\\\\": 57.42900641018861,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0823203125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4206751615246994,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6943389740464695,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03357726820269029,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.7554776857539516,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012696959764591164,\\\\n    \\\\\\\"ece\\\\\\\": 0.2535631155906509,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.3901365464195,\\\\n    \\\\\\\"perplexity\\\\\\\": 63.795698548354466,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.081453125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4137297947640216,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6818778418412788,\\\\n    \\\\\\\"mauve\\\\\\\": 0.033225222602104976,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.7644916876863823,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012687882349716618,\\\\n    \\\\\\\"ece\\\\\\\": 0.2610610381553935,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.75320005561356,\\\\n    \\\\\\\"perplexity\\\\\\\": 70.32402918667637,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08128125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.41190165548168345,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6792059250925796,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03512838669102708,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.7895693815209814,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01261931976383242,\\\\n    \\\\\\\"ece\\\\\\\": 0.2644881713908486,\\\\n    \\\\\\\"effective_rank\\\\\\\": 101.85366501346121,\\\\n    \\\\\\\"perplexity\\\\\\\": 73.9503571413066,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.080890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.40925319729060383,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6741980343442866,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03498245676125417,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.8254768534192911,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012618814946797008,\\\\n    \\\\\\\"ece\\\\\\\": 0.2659309224414289,\\\\n    \\\\\\\"effective_rank\\\\\\\": 100.28126135307207,\\\\n    \\\\\\\"perplexity\\\\\\\": 78.80360370094225,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0807265625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.40750318361862203,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.671580805950093,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03435898369836375,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.8947788671478158,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012707496688444233,\\\\n    \\\\\\\"ece\\\\\\\": 0.26530258720854083,\\\\n    \\\\\\\"effective_rank\\\\\\\": 100.24983663675158,\\\\n    \\\\\\\"perplexity\\\\\\\": 83.86405575253134,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0807109375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4079250619145462,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6718151846122595,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03165254924733035,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.905304986715671,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012700000968201284,\\\\n    \\\\\\\"ece\\\\\\\": 0.26603805993439683,\\\\n    \\\\\\\"effective_rank\\\\\\\": 98.92469242591183,\\\\n    \\\\\\\"perplexity\\\\\\\": 86.73018374726851,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.080609375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.40724536910444614,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6704167252613322,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03169386221931101,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.968096279710096,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01270021570295951,\\\\n    \\\\\\\"ece\\\\\\\": 0.26558050641384223,\\\\n    \\\\\\\"effective_rank\\\\\\\": 99.90457868749567,\\\\n    \\\\\\\"perplexity\\\\\\\": 89.3685720417772,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0805546875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4069797420292346,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6696901514086158,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031099757108039083,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 2.9731030954601296,\\n    \\\"self_bleu\\\": 0.011849041760932093,\\n    \\\"ece\\\": 0.008097809871683159,\\n    \\\"effective_rank\\\": 52.669285229928775,\\n    \\\"perplexity\\\": 19.829875607610564,\\n    \\\"distinct_1\\\": 0.0991953125,\\n    \\\"distinct_2\\\": 0.5221837670606801,\\n    \\\"distinct_3\\\": 0.8211300176565259,\\n    \\\"mauve\\\": null,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7978914996625392,\\n    \\\"self_bleu\\\": 0.011351759165873037,\\n    \\\"ece\\\": 0.18876724615879098,\\n    \\\"effective_rank\\\": 91.1668407145743,\\n    \\\"perplexity\\\": 33.43908913407411,\\n    \\\"distinct_1\\\": 0.09903125,\\n    \\\"distinct_2\\\": 0.5224806443800342,\\n    \\\"distinct_3\\\": 0.821239394365537,\\n    \\\"mauve\\\": null,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.764916380279534,\\n    \\\"self_bleu\\\": 0.012148130040644599,\\n    \\\"ece\\\": 0.23104744630180984,\\n    \\\"effective_rank\\\": 100.35491533965464,\\n    \\\"perplexity\\\": 49.81685635712009,\\n    \\\"distinct_1\\\": 0.085265625,\\n    \\\"distinct_2\\\": 0.44583160805943794,\\n    \\\"distinct_3\\\": 0.7361911904873514,\\n    \\\"mauve\\\": 0.03248857215144339,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7285881267722027,\\n    \\\"self_bleu\\\": 0.012524494446726472,\\n    \\\"ece\\\": 0.245620751074944,\\n    \\\"effective_rank\\\": 101.42301020834886,\\n    \\\"perplexity\\\": 57.42900641018861,\\n    \\\"distinct_1\\\": 0.0823203125,\\n    \\\"distinct_2\\\": 0.4206751615246994,\\n    \\\"distinct_3\\\": 0.6943389740464695,\\n    \\\"mauve\\\": 0.03357726820269029,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7554776857539516,\\n    \\\"self_bleu\\\": 0.012696959764591164,\\n    \\\"ece\\\": 0.2535631155906509,\\n    \\\"effective_rank\\\": 101.3901365464195,\\n    \\\"perplexity\\\": 63.795698548354466,\\n    \\\"distinct_1\\\": 0.081453125,\\n    \\\"distinct_2\\\": 0.4137297947640216,\\n    \\\"distinct_3\\\": 0.6818778418412788,\\n    \\\"mauve\\\": 0.033225222602104976,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7644916876863823,\\n    \\\"self_bleu\\\": 0.012687882349716618,\\n    \\\"ece\\\": 0.2610610381553935,\\n    \\\"effective_rank\\\": 101.75320005561356,\\n    \\\"perplexity\\\": 70.32402918667637,\\n    \\\"distinct_1\\\": 0.08128125,\\n    \\\"distinct_2\\\": 0.41190165548168345,\\n    \\\"distinct_3\\\": 0.6792059250925796,\\n    \\\"mauve\\\": 0.03512838669102708,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.7895693815209814,\\n    \\\"self_bleu\\\": 0.01261931976383242,\\n    \\\"ece\\\": 0.2644881713908486,\\n    \\\"effective_rank\\\": 101.85366501346121,\\n    \\\"perplexity\\\": 73.9503571413066,\\n    \\\"distinct_1\\\": 0.080890625,\\n    \\\"distinct_2\\\": 0.40925319729060383,\\n    \\\"distinct_3\\\": 0.6741980343442866,\\n    \\\"mauve\\\": 0.03498245676125417,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.8254768534192911,\\n    \\\"self_bleu\\\": 0.012618814946797008,\\n    \\\"ece\\\": 0.2659309224414289,\\n    \\\"effective_rank\\\": 100.28126135307207,\\n    \\\"perplexity\\\": 78.80360370094225,\\n    \\\"distinct_1\\\": 0.0807265625,\\n    \\\"distinct_2\\\": 0.40750318361862203,\\n    \\\"distinct_3\\\": 0.671580805950093,\\n    \\\"mauve\\\": 0.03435898369836375,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.8947788671478158,\\n    \\\"self_bleu\\\": 0.012707496688444233,\\n    \\\"ece\\\": 0.26530258720854083,\\n    \\\"effective_rank\\\": 100.24983663675158,\\n    \\\"perplexity\\\": 83.86405575253134,\\n    \\\"distinct_1\\\": 0.0807109375,\\n    \\\"distinct_2\\\": 0.4079250619145462,\\n    \\\"distinct_3\\\": 0.6718151846122595,\\n    \\\"mauve\\\": 0.03165254924733035,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.905304986715671,\\n    \\\"self_bleu\\\": 0.012700000968201284,\\n    \\\"ece\\\": 0.26603805993439683,\\n    \\\"effective_rank\\\": 98.92469242591183,\\n    \\\"perplexity\\\": 86.73018374726851,\\n    \\\"distinct_1\\\": 0.080609375,\\n    \\\"distinct_2\\\": 0.40724536910444614,\\n    \\\"distinct_3\\\": 0.6704167252613322,\\n    \\\"mauve\\\": 0.03169386221931101,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.968096279710096,\\n    \\\"self_bleu\\\": 0.01270021570295951,\\n    \\\"ece\\\": 0.26558050641384223,\\n    \\\"effective_rank\\\": 99.90457868749567,\\n    \\\"perplexity\\\": 89.3685720417772,\\n    \\\"distinct_1\\\": 0.0805546875,\\n    \\\"distinct_2\\\": 0.4069797420292346,\\n    \\\"distinct_3\\\": 0.6696901514086158,\\n    \\\"mauve\\\": 0.031099757108039083,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The experiment is confirmed complete:
+- EXIT_CODE = 0 (success)
+- gen_9 and gen_10 checkpoints exist (but I only see gen_9 and gen_10, let me check all gens)
+- all_metrics.json has 11 entries (gen 0 through gen 10)
+
+Wait, the ls only shows gen_9 and gen_10 checkpoints. Let me check if earlier gens have checkpoints too. Actually, looking at the ls output, it seems like only gen_9 and gen_10 have checkpoint directories. 
+
+The pipeline probably only saves checkpoints for the last couple generations to conserve disk space, even though all 11 generations ran successfully. Now I need to run the D102 analysis—let me first verify that the analysis script is available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "707d4c02-8ffe-433f-9041-a5162627cb7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjLW3kXrPAVwJCHk3Zixpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 26994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4068
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+EXIT_CODE=0，实验成功完成。gen_9/gen_10 checkpoint 存在，all_metrics.json 包含 gen 0-10 共 11 个条目。
+
+现在检查所有 gen 的 checkpoint 情况并查找 D102 分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "15b14810-a898-49b2-a768-b41b2513e13d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjLW3kXrPAVwJCHk3Zixpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 26994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4068
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPvypDE8SRcPYcSnF2hAiP`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_*/checkpoint/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "93f1717f-0c1e-4cf7-93f6-9916b92fbc1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjLW3kXrPAVwJCHk3Zixpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 26994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4068
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T20:07:36.005Z_
+
+<details><summary>↩ Tool result · `toolu_01UPvypDE8SRcPYcSnF2hAiP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "dff907e4-0308-4ed7-af2b-fcc6ce732b7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/\\\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_10/checkpoint/\\n/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/gen_9/checkpoint/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012TgymJpcxWj6dCejN4HMgz`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -maxdepth 2 -name \"*d102*\" -o -name \"*analysis*\" -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "a5df1a37-d96d-4581-9f95-bdb997ad8384",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjLW3kXrPAVwJCHk3Zixpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 26994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4068
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T20:07:36.836Z_
+
+<details><summary>↩ Tool result · `toolu_012TgymJpcxWj6dCejN4HMgz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/tail_sensitive_canary_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/d127_csd_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/t20_post_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_ty_fix\\n/root/autodl-tmp/distrib_canary_collapse/phase_transition_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/mech_interp_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/specification_curve_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_syncdip_mauve_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_none_fix\\n/root/autodl-tmp/distrib_canary_collapse/run_d102_14b_t10_a075.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "d935307a-0d0d-4506-8e7b-02b72bf598cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/tail_sensitive_canary_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/d127_csd_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/scripts/t20_post_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_ty_fix\\\\n/root/autodl-tmp/distrib_canary_collapse/phase_transition_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mech_interp_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/specification_curve_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_syncdip_mauve_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_none_fix\\\\n/root/autodl-tmp/distrib_canary_collapse/run_d102_14b_t10_a075.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/transfer_entropy_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/change_point_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/tail_sensitive_canary_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/d127_csd_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/scripts/t20_post_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_ty_fix\\n/root/autodl-tmp/distrib_canary_collapse/phase_transition_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/mech_interp_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/specification_curve_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_syncdip_mauve_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_none_fix\\n/root/autodl-tmp/distrib_canary_collapse/run_d102_14b_t10_a075.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only gen_9 and gen_10 have checkpoints. That's expected - the pipeline likely only keeps the last two generations to save disk space. The important thing is all_metrics.json has all 11 entries.
+
+I found `run_5method_analysis_d102.py` and `run_d102_14b_t10_a075.py`. The latter looks specifically designed for this experiment. Let me check what it does.
+
+Actually, let me first check `run_d102_14b_t10_a075.py` to understand its usage, and also look at `run_5method_analysis_d102.py`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "314a6181-e077-4e7b-8458-191ae9396ee4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVRXYLoxP3seQdGphRstTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 31062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到 D102 分析脚本。`run_d102_14b_t10_a075.py` 看起来是专门为这个实验写的。检查其用法。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "3dabc7cf-3b99-44c2-8326-feab35f3affb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVRXYLoxP3seQdGphRstTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 31062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TkyQYfxWbfejkLxtLiqvRi`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/run_d102_14b_t10_a075.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "0ca8dea2-f5fd-4304-aabd-e77848c349c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVRXYLoxP3seQdGphRstTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 31062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H1yFVMVGH1o9rZm4urTuSz`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "fe816307-1f63-4f58-9094-22517c99b931",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVRXYLoxP3seQdGphRstTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 31062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T20:07:45.265Z_
+
+<details><summary>↩ Tool result · `toolu_01TkyQYfxWbfejkLxtLiqvRi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis for phase_diagram t10_a075_s42_fp32 (1.4B).\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom statsmodels.tsa.vector_ar.var_model import VAR\\n\\nN_PERM = 5000\\nALPHA_SIG = 0.05\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nRESULTS_DIR = sys.argv[1] if len(sys.argv) > 1 else \\\"results/phase_diagram/t10_a075_s42_fp32_14b\\\"\\nEND_GEN = int(sys.argv[2]) if len(sys.argv) > 2 else 10\\n\\ndef load_metrics(results_dir, end_gen):\\n    data = []\\n    for g in range(end_gen + 1):\\n        path = os.path.join(results_dir, f\\\"gen_{g}\\\", \\\"metrics.json\\\")\\n        if not os.path.exists(path):\\n            print(f\\\"WARNING: {path} missing, stopping at gen_{g-1}\\\")\\n            break\\n        with open(path) as f:\\n            m = json.load(f)\\n        data.append(m)\\n    return sorted(data, key=lambda x: x[\\\"generation\\\"])\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    T = len(y); n = T - max_lag; Y = y[max_lag:]\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1): cols_r.append(y[max_lag - lag: T - lag])\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1): cols_u.append(x[max_lag - lag: T - lag])\\n    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n, q = len(Y), max_lag\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError: return np.nan\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n    df_resid = n - X_u.shape[1]\\n    if df_resid <= 0 or rss_u < 1e-15: return np.nan\\n    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    if difference: x, y = np.diff(x), np.diff(y)\\n    f_obs = _granger_f_stat(y, x, max_lag)\\n    if np.isnan(f_obs): return {\\\"f_stat\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False}\\n    rng = np.random.default_rng(seed)\\n    null_f = np.array([_granger_f_stat(y, rng.permutation(x), max_lag) for _ in range(n_perm)])\\n    valid_null = null_f[~np.isnan(null_f)]\\n    if len(valid_null) == 0: return {\\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": None, \\\"significant\\\": False}\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\n    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\\n    return {\\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": round(float(p_value), 6),\\n            \\\"null_mean\\\": round(float(np.mean(valid_null)), 4), \\\"null_std\\\": round(float(np.std(valid_null)), 4),\\n            \\\"effect_size_f2\\\": round(float(f2), 4) if f2 is not None else None,\\n            \\\"significant\\\": bool(p_value < 0.05)}\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float); n = len(pv); valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0: return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]; p_valid = pv[idx]; sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx); ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid); adj = p_valid * m / ranks; adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1): adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "4fc2d45a-2ce4-4d38-bbe5-362350e27e8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis for phase_diagram t10_a075_s42_fp32 (1.4B).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\nfrom statsmodels.tsa.vector_ar.var_model import VAR\\\\n\\\\nN_PERM = 5000\\\\nALPHA_SIG = 0.05\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\nRESULTS_DIR = sys.argv[1] if len(sys.argv) > 1 else \\\\\\\"results/phase_diagram/t10_a075_s42_fp32_14b\\\\\\\"\\\\nEND_GEN = int(sys.argv[2]) if len(sys.argv) > 2 else 10\\\\n\\\\ndef load_metrics(results_dir, end_gen):\\\\n    data = []\\\\n    for g in range(end_gen + 1):\\\\n        path = os.path.join(results_dir, f\\\\\\\"gen_{g}\\\\\\\", \\\\\\\"metrics.json\\\\\\\")\\\\n        if not os.path.exists(path):\\\\n            print(f\\\\\\\"WARNING: {path} missing, stopping at gen_{g-1}\\\\\\\")\\\\n            break\\\\n        with open(path) as f:\\\\n            m = json.load(f)\\\\n        data.append(m)\\\\n    return sorted(data, key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\ndef _build_lag_matrix(y, x, max_lag):\\\\n    T = len(y); n = T - max_lag; Y = y[max_lag:]\\\\n    cols_r = [np.ones(n)]\\\\n    for lag in range(1, max_lag + 1): cols_r.append(y[max_lag - lag: T - lag])\\\\n    cols_u = list(cols_r)\\\\n    for lag in range(1, max_lag + 1): cols_u.append(x[max_lag - lag: T - lag])\\\\n    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\\\\n\\\\ndef _granger_f_stat(y, x, max_lag):\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    n, q = len(Y), max_lag\\\\n    try:\\\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\\\n    except np.linalg.LinAlgError: return np.nan\\\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\\\n    df_resid = n - X_u.shape[1]\\\\n    if df_resid <= 0 or rss_u < 1e-15: return np.nan\\\\n    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\\\\n\\\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\\\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\\\n    if difference: x, y = np.diff(x), np.diff(y)\\\\n    f_obs = _granger_f_stat(y, x, max_lag)\\\\n    if np.isnan(f_obs): return {\\\\\\\"f_stat\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False}\\\\n    rng = np.random.default_rng(seed)\\\\n    null_f = np.array([_granger_f_stat(y, rng.permutation(x), max_lag) for _ in range(n_perm)])\\\\n    valid_null = null_f[~np.isnan(null_f)]\\\\n    if len(valid_null) == 0: return {\\\\\\\"f_stat\\\\\\\": round(float(f_obs), 4), \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False}\\\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\\\n    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\\\\n    return {\\\\\\\"f_stat\\\\\\\": round(float(f_obs), 4), \\\\\\\"p_value\\\\\\\": round(float(p_value), 6),\\\\n            \\\\\\\"null_mean\\\\\\\": round(float(np.mean(valid_null)), 4), \\\\\\\"null_std\\\\\\\": round(float(np.std(valid_null)), 4),\\\\n            \\\\\\\"effect_size_f2\\\\\\\": round(float(f2), 4) if f2 is not None else None,\\\\n            \\\\\\\"significant\\\\\\\": bool(p_value < 0.05)}\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float); n = len(pv); valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0: return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]; p_valid = pv[idx]; sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx); ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid); adj = p_valid * m / ranks; adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1): adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis for phase_diagram t10_a075_s42_fp32 (1.4B).\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom statsmodels.tsa.vector_ar.var_model import VAR\\n\\nN_PERM = 5000\\nALPHA_SIG = 0.05\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nRESULTS_DIR = sys.argv[1] if len(sys.argv) > 1 else \\\"results/phase_diagram/t10_a075_s42_fp32_14b\\\"\\nEND_GEN = int(sys.argv[2]) if len(sys.argv) > 2 else 10\\n\\ndef load_metrics(results_dir, end_gen):\\n    data = []\\n    for g in range(end_gen + 1):\\n        path = os.path.join(results_dir, f\\\"gen_{g}\\\", \\\"metrics.json\\\")\\n        if not os.path.exists(path):\\n            print(f\\\"WARNING: {path} missing, stopping at gen_{g-1}\\\")\\n            break\\n        with open(path) as f:\\n            m = json.load(f)\\n        data.append(m)\\n    return sorted(data, key=lambda x: x[\\\"generation\\\"])\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    T = len(y); n = T - max_lag; Y = y[max_lag:]\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1): cols_r.append(y[max_lag - lag: T - lag])\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1): cols_u.append(x[max_lag - lag: T - lag])\\n    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n, q = len(Y), max_lag\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError: return np.nan\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n    df_resid = n - X_u.shape[1]\\n    if df_resid <= 0 or rss_u < 1e-15: return np.nan\\n    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\\n    if difference: x, y = np.diff(x), np.diff(y)\\n    f_obs = _granger_f_stat(y, x, max_lag)\\n    if np.isnan(f_obs): return {\\\"f_stat\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False}\\n    rng = np.random.default_rng(seed)\\n    null_f = np.array([_granger_f_stat(y, rng.permutation(x), max_lag) for _ in range(n_perm)])\\n    valid_null = null_f[~np.isnan(null_f)]\\n    if len(valid_null) == 0: return {\\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": None, \\\"significant\\\": False}\\n    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\\n    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\\n    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\\n    return {\\\"f_stat\\\": round(float(f_obs), 4), \\\"p_value\\\": round(float(p_value), 6),\\n            \\\"null_mean\\\": round(float(np.mean(valid_null)), 4), \\\"null_std\\\": round(float(np.std(valid_null)), 4),\\n            \\\"effect_size_f2\\\": round(float(f2), 4) if f2 is not None else None,\\n            \\\"significant\\\": bool(p_value < 0.05)}\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float); n = len(pv); valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0: return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]; p_valid = pv[idx]; sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx); ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid); adj = p_valid * m / ranks; adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1): adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T20:07:45.790Z_
+
+<details><summary>↩ Tool result · `toolu_01H1yFVMVGH1o9rZm4urTuSz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\"nan\\\") for d in data], dtype=float)\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "23dc177e-b7e2-4d4e-9dc1-42a7d6a9da83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\\\\\"nan\\\\\\\") for d in data], dtype=float)\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] if d[k] is not None else float(\\\"nan\\\") for d in data], dtype=float)\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see two scripts:
+1. `run_d102_14b_t10_a075.py` - specific to this experiment, self-contained (has all functions inline)
+2. `run_5method_analysis_d102.py` - generic CLI version with `--data_dir` flag
+
+The generic one (`run_5method_analysis_d102.py`) is more appropriate. Let me check its full usage and run it. But first, let me also check the rest of `run_d102_14b_t10_a075.py` to see if it has special output handling.
+
+
+Actually, I should just run the specific script since it's built for this exact experiment. Let me check the end of it to see what output format it produces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "731ac91b-bba8-466e-8313-70eafaa2a442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012mGqbXL59rZyPD7SvvpUE1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3832,
+      "cache_read_input_tokens": 32468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013TPDySrvkVFxA3YAj9ixig`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -80 /root/autodl-tmp/distrib_canary_collapse/run_d102_14b_t10_a075.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "32269897-0b65-4fee-9590-42aa9f0aeceb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012mGqbXL59rZyPD7SvvpUE1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3832,
+      "cache_read_input_tokens": 32468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T20:08:00.527Z_
+
+<details><summary>↩ Tool result · `toolu_013TPDySrvkVFxA3YAj9ixig`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\\n    for i, r in enumerate(pair_results):\\n        r[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"p_fdr\\\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\\n        r[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_fwd[i]\\n        r[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"p_fdr\\\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\\n        r[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_rev[i]\\n        r[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"p_fdr\\\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\\n        r[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_fwd[i]\\n        r[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"p_fdr\\\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\\n        r[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_rev[i]\\n\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | {n_gens} gens\\\")\\n    print(\\\"=\\\" * 100)\\n    for direction in [\\\"forward\\\", \\\"reverse\\\"]:\\n        dir_label = \\\"FORWARD (canary -> downstream)\\\" if direction == \\\"forward\\\" else \\\"REVERSE (downstream -> canary)\\\"\\n        print(f\\\"\\\\n{'=' * 100}\\\\n  {dir_label}\\\\n{'=' * 100}\\\")\\n        print(f\\\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\\\")\\n        print(\\\"-\\\" * 130)\\n        for r in pair_results:\\n            label = f\\\"{r['canary']}<{r['downstream']}({r['n_points']}pt)\\\"\\n            dd = r[direction]\\n            naive_str = f\\\"lag={dd['naive_xcorr']['peak_lag']} r={dd['naive_xcorr']['r']:.3f} {'*' if dd['naive_xcorr']['significant'] else ''}\\\"\\n            diff_str = f\\\"lag={dd['diff_xcorr']['peak_lag']} r={dd['diff_xcorr']['r']:.3f} {'*' if dd['diff_xcorr'].get('significant_fdr', False) else ''}\\\"\\n            onset_str = f\\\"c={dd['threshold_onset']['canary_onset']} d={dd['threshold_onset']['downstream_onset']} {'*' if dd['threshold_onset']['significant'] else ''}\\\"\\n            perm_str = f\\\"F={dd['perm_granger']['f_stat']:.2f} p={dd['perm_granger']['p_value']:.4f} {'*' if dd['perm_granger'].get('significant_fdr', False) else ''}\\\" if dd['perm_granger']['f_stat'] else \\\"N/A\\\"\\n            ty_str = f\\\"F={dd['ty_granger']['f_stat']:.2f} p={dd['ty_granger']['p_value']:.4f} {'*' if dd['ty_granger']['significant'] else ''}\\\" if dd['ty_granger']['f_stat'] else \\\"N/A\\\"\\n            print(f\\\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\\\")\\n\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\\\n{'=' * 100}\\\")\\n    consensus = []\\n    for r in pair_results:\\n        f = r[\\\"forward\\\"]; votes = 0; methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0: votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False) and f[\\\"diff_xcorr\\\"][\\\"peak_lag\\\"] < 0: votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]: votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False): votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]: votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{r['canary']}<{r['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    summary = {\\n        \\\"PermG_fwd\\\": f\\\"{sum(perm_sig_fwd)}/8\\\", \\\"PermG_rev\\\": f\\\"{sum(perm_sig_rev)}/8\\\",\\n        \\\"diff_xcorr_fdr_fwd\\\": f\\\"{sum(diff_sig_fwd)}/8\\\", \\\"diff_xcorr_fdr_rev\\\": f\\\"{sum(diff_sig_rev)}/8\\\",\\n        \\\"naive_xcorr_fwd_D111\\\": f\\\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\\\",\\n        \\\"threshold_onset_3sigma\\\": f\\\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\\\",\\n        \\\"TY_granger\\\": f\\\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\\\",\\n        \\\"K_ge_3\\\": f\\\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\\\",\\n        \\\"K_ge_4\\\": f\\\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\\\",\\n    }\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  SUMMARY\\\\n{'=' * 100}\\\")\\n    for k, v in summary.items(): print(f\\\"  {k:<30} {v}\\\")\\n\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  DRIFT STATISTICS (gen0 -> gen{n_gens-1})\\\\n{'=' * 100}\\\")\\n    g0, gN = data[0], data[-1]\\n    for metric in [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\", \\\"effective_rank\\\"]:\\n        v0, vN = g0.get(metric), gN.get(metric)\\n        if v0 is not None and vN is not None and abs(v0) > 1e-12:\\n            print(f\\\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({(vN - v0) / abs(v0) * 100:+.2f}%)\\\")\\n        else: print(f\\\"  {metric:<20} {v0} -> {vN}\\\")\\n\\n    def clean(obj):\\n        if isinstance(obj, (np.floating, np.float64)): return float(obj)\\n        if isinstance(obj, (np.integer,)): return int(obj)\\n        if isinstance(obj, np.bool_): return bool(obj)\\n        if isinstance(obj, dict): return {k: clean(v) for k, v in obj.items()}\\n        if isinstance(obj, list): return [clean(v) for v in obj]\\n        return obj\\n    full_results = {\\\"meta\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s42_fp32_14b\\\", \\\"model\\\": \\\"pythia-1.4b-deduped\\\",\\n        \\\"alpha\\\": 0.75, \\\"seed\\\": 42, \\\"T\\\": 10, \\\"n_gens\\\": n_gens, \\\"n_perm\\\": N_PERM,\\n        \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\",\\n        \\\"mauve_start_gen\\\": mauve_start},\\n        \\\"summary\\\": summary, \\\"consensus\\\": consensus, \\\"pairs\\\": [], \\\"raw_metrics\\\": data}\\n    for r in pair_results: full_results[\\\"pairs\\\"].append(clean(r))\\n    out_path = f\\\"/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_{n_gens}gen.json\\\"\\n    with open(out_path, \\\"w\\\") as f: json.dump(clean(full_results), f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\": main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "851df5a5-e0df-4f2f-8bf1-8c6a2540514f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\\\\n    for i, r in enumerate(pair_results):\\\\n        r[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"p_fdr\\\\\\\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\\\\n        r[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = perm_sig_fwd[i]\\\\n        r[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"p_fdr\\\\\\\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\\\\n        r[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = perm_sig_rev[i]\\\\n        r[\\\\\\\"forward\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"p_fdr\\\\\\\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\\\\n        r[\\\\\\\"forward\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = diff_sig_fwd[i]\\\\n        r[\\\\\\\"reverse\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"p_fdr\\\\\\\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\\\\n        r[\\\\\\\"reverse\\\\\\\"][\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"significant_fdr\\\\\\\"] = diff_sig_rev[i]\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | {n_gens} gens\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    for direction in [\\\\\\\"forward\\\\\\\", \\\\\\\"reverse\\\\\\\"]:\\\\n        dir_label = \\\\\\\"FORWARD (canary -> downstream)\\\\\\\" if direction == \\\\\\\"forward\\\\\\\" else \\\\\\\"REVERSE (downstream -> canary)\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n{'=' * 100}\\\\\\\\n  {dir_label}\\\\\\\\n{'=' * 100}\\\\\\\")\\\\n        print(f\\\\\\\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 130)\\\\n        for r in pair_results:\\\\n            label = f\\\\\\\"{r['canary']}<{r['downstream']}({r['n_points']}pt)\\\\\\\"\\\\n            dd = r[direction]\\\\n            naive_str = f\\\\\\\"lag={dd['naive_xcorr']['peak_lag']} r={dd['naive_xcorr']['r']:.3f} {'*' if dd['naive_xcorr']['significant'] else ''}\\\\\\\"\\\\n            diff_str = f\\\\\\\"lag={dd['diff_xcorr']['peak_lag']} r={dd['diff_xcorr']['r']:.3f} {'*' if dd['diff_xcorr'].get('significant_fdr', False) else ''}\\\\\\\"\\\\n            onset_str = f\\\\\\\"c={dd['threshold_onset']['canary_onset']} d={dd['threshold_onset']['downstream_onset']} {'*' if dd['threshold_onset']['significant'] else ''}\\\\\\\"\\\\n            perm_str = f\\\\\\\"F={dd['perm_granger']['f_stat']:.2f} p={dd['perm_granger']['p_value']:.4f} {'*' if dd['perm_granger'].get('significant_fdr', False) else ''}\\\\\\\" if dd['perm_granger']['f_stat'] else \\\\\\\"N/A\\\\\\\"\\\\n            ty_str = f\\\\\\\"F={dd['ty_granger']['f_stat']:.2f} p={dd['ty_granger']['p_value']:.4f} {'*' if dd['ty_granger']['significant'] else ''}\\\\\\\" if dd['ty_granger']['f_stat'] else \\\\\\\"N/A\\\\\\\"\\\\n            print(f\\\\\\\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 100}\\\\\\\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\\\\\\\n{'=' * 100}\\\\\\\")\\\\n    consensus = []\\\\n    for r in pair_results:\\\\n        f = r[\\\\\\\"forward\\\\\\\"]; votes = 0; methods_sig = []\\\\n        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] < 0: votes += 1; methods_sig.append(\\\\\\\"naive\\\\\\\")\\\\n        if f[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False) and f[\\\\\\\"diff_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] < 0: votes += 1; methods_sig.append(\\\\\\\"diff\\\\\\\")\\\\n        if f[\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]: votes += 1; methods_sig.append(\\\\\\\"threshold\\\\\\\")\\\\n        if f[\\\\\\\"perm_granger\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False): votes += 1; methods_sig.append(\\\\\\\"perm\\\\\\\")\\\\n        if f[\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]: votes += 1; methods_sig.append(\\\\\\\"ty\\\\\\\")\\\\n        label = f\\\\\\\"{r['canary']}<{r['downstream']}\\\\\\\"\\\\n        consensus.append({\\\\\\\"pair\\\\\\\": label, \\\\\\\"votes\\\\\\\": votes, \\\\\\\"methods\\\\\\\": methods_sig})\\\\n        print(f\\\\\\\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\\\\\")\\\\n\\\\n    summary = {\\\\n        \\\\\\\"PermG_fwd\\\\\\\": f\\\\\\\"{sum(perm_sig_fwd)}/8\\\\\\\", \\\\\\\"PermG_rev\\\\\\\": f\\\\\\\"{sum(perm_sig_rev)}/8\\\\\\\",\\\\n        \\\\\\\"diff_xcorr_fdr_fwd\\\\\\\": f\\\\\\\"{sum(diff_sig_fwd)}/8\\\\\\\", \\\\\\\"diff_xcorr_fdr_rev\\\\\\\": f\\\\\\\"{sum(diff_sig_rev)}/8\\\\\\\",\\\\n        \\\\\\\"naive_xcorr_fwd_D111\\\\\\\": f\\\\\\\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\\\\\\\",\\\\n        \\\\\\\"threshold_onset_3sigma\\\\\\\": f\\\\\\\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\\\\\\\",\\\\n        \\\\\\\"TY_granger\\\\\\\": f\\\\\\\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\\\\\\\",\\\\n        \\\\\\\"K_ge_3\\\\\\\": f\\\\\\\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\\\\\\\",\\\\n        \\\\\\\"K_ge_4\\\\\\\": f\\\\\\\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\\\\\\\",\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 100}\\\\\\\\n  SUMMARY\\\\\\\\n{'=' * 100}\\\\\\\")\\\\n    for k, v in summary.items(): print(f\\\\\\\"  {k:<30} {v}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 100}\\\\\\\\n  DRIFT STATISTICS (gen0 -> gen{n_gens-1})\\\\\\\\n{'=' * 100}\\\\\\\")\\\\n    g0, gN = data[0], data[-1]\\\\n    for metric in [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\", \\\\\\\"effective_rank\\\\\\\"]:\\\\n        v0, vN = g0.get(metric), gN.get(metric)\\\\n        if v0 is not None and vN is not None and abs(v0) > 1e-12:\\\\n            print(f\\\\\\\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({(vN - v0) / abs(v0) * 100:+.2f}%)\\\\\\\")\\\\n        else: print(f\\\\\\\"  {metric:<20} {v0} -> {vN}\\\\\\\")\\\\n\\\\n    def clean(obj):\\\\n        if isinstance(obj, (np.floating, np.float64)): return float(obj)\\\\n        if isinstance(obj, (np.integer,)): return int(obj)\\\\n        if isinstance(obj, np.bool_): return bool(obj)\\\\n        if isinstance(obj, dict): return {k: clean(v) for k, v in obj.items()}\\\\n        if isinstance(obj, list): return [clean(v) for v in obj]\\\\n        return obj\\\\n    full_results = {\\\\\\\"meta\\\\\\\": {\\\\\\\"exp_id\\\\\\\": \\\\\\\"phase_diagram_t10_a075_s42_fp32_14b\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"pythia-1.4b-deduped\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": 0.75, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"T\\\\\\\": 10, \\\\\\\"n_gens\\\\\\\": n_gens, \\\\\\\"n_perm\\\\\\\": N_PERM,\\\\n        \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\", \\\\\\\"D111_direction\\\\\\\": \\\\\\\"peak_lag < 0 (C009 corrected)\\\\\\\",\\\\n        \\\\\\\"mauve_start_gen\\\\\\\": mauve_start},\\\\n        \\\\\\\"summary\\\\\\\": summary, \\\\\\\"consensus\\\\\\\": consensus, \\\\\\\"pairs\\\\\\\": [], \\\\\\\"raw_metrics\\\\\\\": data}\\\\n    for r in pair_results: full_results[\\\\\\\"pairs\\\\\\\"].append(clean(r))\\\\n    out_path = f\\\\\\\"/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_{n_gens}gen.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f: json.dump(clean(full_results), f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\": main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\\n    for i, r in enumerate(pair_results):\\n        r[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"p_fdr\\\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\\n        r[\\\"forward\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_fwd[i]\\n        r[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"p_fdr\\\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\\n        r[\\\"reverse\\\"][\\\"perm_granger\\\"][\\\"significant_fdr\\\"] = perm_sig_rev[i]\\n        r[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"p_fdr\\\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\\n        r[\\\"forward\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_fwd[i]\\n        r[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"p_fdr\\\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\\n        r[\\\"reverse\\\"][\\\"diff_xcorr\\\"][\\\"significant_fdr\\\"] = diff_sig_rev[i]\\n\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | {n_gens} gens\\\")\\n    print(\\\"=\\\" * 100)\\n    for direction in [\\\"forward\\\", \\\"reverse\\\"]:\\n        dir_label = \\\"FORWARD (canary -> downstream)\\\" if direction == \\\"forward\\\" else \\\"REVERSE (downstream -> canary)\\\"\\n        print(f\\\"\\\\n{'=' * 100}\\\\n  {dir_label}\\\\n{'=' * 100}\\\")\\n        print(f\\\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\\\")\\n        print(\\\"-\\\" * 130)\\n        for r in pair_results:\\n            label = f\\\"{r['canary']}<{r['downstream']}({r['n_points']}pt)\\\"\\n            dd = r[direction]\\n            naive_str = f\\\"lag={dd['naive_xcorr']['peak_lag']} r={dd['naive_xcorr']['r']:.3f} {'*' if dd['naive_xcorr']['significant'] else ''}\\\"\\n            diff_str = f\\\"lag={dd['diff_xcorr']['peak_lag']} r={dd['diff_xcorr']['r']:.3f} {'*' if dd['diff_xcorr'].get('significant_fdr', False) else ''}\\\"\\n            onset_str = f\\\"c={dd['threshold_onset']['canary_onset']} d={dd['threshold_onset']['downstream_onset']} {'*' if dd['threshold_onset']['significant'] else ''}\\\"\\n            perm_str = f\\\"F={dd['perm_granger']['f_stat']:.2f} p={dd['perm_granger']['p_value']:.4f} {'*' if dd['perm_granger'].get('significant_fdr', False) else ''}\\\" if dd['perm_granger']['f_stat'] else \\\"N/A\\\"\\n            ty_str = f\\\"F={dd['ty_granger']['f_stat']:.2f} p={dd['ty_granger']['p_value']:.4f} {'*' if dd['ty_granger']['significant'] else ''}\\\" if dd['ty_granger']['f_stat'] else \\\"N/A\\\"\\n            print(f\\\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\\\")\\n\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\\\n{'=' * 100}\\\")\\n    consensus = []\\n    for r in pair_results:\\n        f = r[\\\"forward\\\"]; votes = 0; methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0: votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False) and f[\\\"diff_xcorr\\\"][\\\"peak_lag\\\"] < 0: votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]: votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False): votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]: votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{r['canary']}<{r['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    summary = {\\n        \\\"PermG_fwd\\\": f\\\"{sum(perm_sig_fwd)}/8\\\", \\\"PermG_rev\\\": f\\\"{sum(perm_sig_rev)}/8\\\",\\n        \\\"diff_xcorr_fdr_fwd\\\": f\\\"{sum(diff_sig_fwd)}/8\\\", \\\"diff_xcorr_fdr_rev\\\": f\\\"{sum(diff_sig_rev)}/8\\\",\\n        \\\"naive_xcorr_fwd_D111\\\": f\\\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\\\",\\n        \\\"threshold_onset_3sigma\\\": f\\\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\\\",\\n        \\\"TY_granger\\\": f\\\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\\\",\\n        \\\"K_ge_3\\\": f\\\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\\\",\\n        \\\"K_ge_4\\\": f\\\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\\\",\\n    }\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  SUMMARY\\\\n{'=' * 100}\\\")\\n    for k, v in summary.items(): print(f\\\"  {k:<30} {v}\\\")\\n\\n    print(f\\\"\\\\n{'=' * 100}\\\\n  DRIFT STATISTICS (gen0 -> gen{n_gens-1})\\\\n{'=' * 100}\\\")\\n    g0, gN = data[0], data[-1]\\n    for metric in [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\", \\\"effective_rank\\\"]:\\n        v0, vN = g0.get(metric), gN.get(metric)\\n        if v0 is not None and vN is not None and abs(v0) > 1e-12:\\n            print(f\\\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({(vN - v0) / abs(v0) * 100:+.2f}%)\\\")\\n        else: print(f\\\"  {metric:<20} {v0} -> {vN}\\\")\\n\\n    def clean(obj):\\n        if isinstance(obj, (np.floating, np.float64)): return float(obj)\\n        if isinstance(obj, (np.integer,)): return int(obj)\\n        if isinstance(obj, np.bool_): return bool(obj)\\n        if isinstance(obj, dict): return {k: clean(v) for k, v in obj.items()}\\n        if isinstance(obj, list): return [clean(v) for v in obj]\\n        return obj\\n    full_results = {\\\"meta\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s42_fp32_14b\\\", \\\"model\\\": \\\"pythia-1.4b-deduped\\\",\\n        \\\"alpha\\\": 0.75, \\\"seed\\\": 42, \\\"T\\\": 10, \\\"n_gens\\\": n_gens, \\\"n_perm\\\": N_PERM,\\n        \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\",\\n        \\\"mauve_start_gen\\\": mauve_start},\\n        \\\"summary\\\": summary, \\\"consensus\\\": consensus, \\\"pairs\\\": [], \\\"raw_metrics\\\": data}\\n    for r in pair_results: full_results[\\\"pairs\\\"].append(clean(r))\\n    out_path = f\\\"/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_{n_gens}gen.json\\\"\\n    with open(out_path, \\\"w\\\") as f: json.dump(clean(full_results), f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\": main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This script is perfect for the analysis. It:
+1. Reads metrics from gen_X/metrics.json files
+2. Runs 5-method lead-lag analysis
+3. Outputs PermG, threshold_onset_3sigma, etc.
+4. Saves to JSON
+
+Let me run it. It takes the results_dir as first argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "6d7cb08d-4a55-4e5d-99f5-b9d6d461c956",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NZEFkBXTk852bcZVmE89TU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3320,
+      "cache_read_input_tokens": 36300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3320
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+运行 D102 分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "53fb4e5c-0ddd-4560-9d02-7852c97084e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NZEFkBXTk852bcZVmE89TU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3320,
+      "cache_read_input_tokens": 36300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3320
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PiHvjdeJxBMKN9FjMpHU1N`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_d102_14b_t10_a075.py results/phase_diagram/t10_a075_s42_fp32_14b 10",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "e29543db-7685-48c8-93e3-1f35641f8b41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NZEFkBXTk852bcZVmE89TU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3320,
+      "cache_read_input_tokens": 36300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3320
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T20:08:12.807Z_
+
+<details><summary>↩ Tool result · `toolu_01PiHvjdeJxBMKN9FjMpHU1N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from results/phase_diagram/t10_a075_s42_fp32_14b\\nNOTE: mauve null in gen_0..gen_1, using gen_2+ for mauve pairs\\n====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | 11 gens\\n====================================================================================================\\n\\n====================================================================================================\\n  FORWARD (canary -> downstream)\\n====================================================================================================\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\n----------------------------------------------------------------------------------------------------------------------------------\\n  token_entropy&lt;distinct_1(11pt) lag=-1 r=0.947 *     lag=-1 r=0.987 *     c=1 d=None         F=2087.73 p=0.0024 * F=1.06 p=0.5184 \\n  token_entropy&lt;distinct_2(11pt) lag=-1 r=0.921 *     lag=-2 r=0.976 *     c=1 d=None         F=1009.79 p=0.0248 * F=2.00 p=0.3504 \\n  token_entropy&lt;distinct_3(11pt) lag=5 r=-0.929 *     lag=-2 r=0.971 *     c=1 d=None         F=298.80 p=0.0532    F=0.94 p=0.5519 \\n  token_entropy&lt;mauve(9pt)       lag=5 r=0.949        lag=4 r=-0.997 *     c=None d=None      F=0.00 p=0.9636      F=-361012709655109243963965440.00 p=nan \\n  ece&lt;distinct_1(11pt)           lag=-1 r=0.998 *     lag=-1 r=0.999 *     c=2 d=None         F=4974.46 p=0.0002 * F=1.34 p=0.3157 \\n  ece&lt;distinct_2(11pt)           lag=-1 r=0.999 *     lag=-2 r=0.996 *     c=2 d=None         F=4005.76 p=0.0006 * F=3.47 p=0.2319 \\n  ece&lt;distinct_3(11pt)           lag=-2 r=0.996 *     lag=-2 r=0.995 *     c=2 d=None         F=933.93 p=0.0046 *  F=1.47 p=0.4294 \\n  ece&lt;mauve(9pt)                 lag=-4 r=0.935 *     lag=4 r=-0.817       c=5 d=None         F=1.09 p=0.3331      F=0.32 p=0.5831 \\n\\n====================================================================================================\\n  REVERSE (downstream -> canary)\\n====================================================================================================\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\n----------------------------------------------------------------------------------------------------------------------------------\\n  token_entropy&lt;distinct_1(11pt) lag=1 r=0.947 *      lag=1 r=0.987 *      c=None d=1         F=7.36 p=0.0456      F=3.42 p=0.2346 \\n  token_entropy&lt;distinct_2(11pt) lag=1 r=0.921 *      lag=2 r=0.976 *      c=None d=1         F=6.79 p=0.0570      F=3.02 p=0.2586 \\n  token_entropy&lt;distinct_3(11pt) lag=-5 r=-0.929 *    lag=2 r=0.971 *      c=None d=1         F=5.91 p=0.0726      F=114.55 p=0.0087 *\\n  token_entropy&lt;mauve(9pt)       lag=-5 r=0.949       lag=-4 r=-0.997 *    c=None d=None      F=0.01 p=0.9012      N/A            \\n  ece&lt;distinct_1(11pt)           lag=1 r=0.998 *      lag=1 r=0.999 *      c=None d=2         F=2.79 p=0.1010      F=13.45 p=0.0028 *\\n  ece&lt;distinct_2(11pt)           lag=1 r=0.999 *      lag=2 r=0.996 *      c=None d=2         F=3.63 p=0.0570      F=2.06 p=0.3438 \\n  ece&lt;distinct_3(11pt)           lag=2 r=0.996 *      lag=2 r=0.995 *      c=None d=2         F=5.14 p=0.0350      F=44.32 p=0.0221 *\\n  ece&lt;mauve(9pt)                 lag=4 r=0.935 *      lag=-4 r=-0.817      c=None d=5         F=3.00 p=0.1726      F=1.99 p=0.1887 \\n\\n====================================================================================================\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\n====================================================================================================\\n  token_entropy&lt;distinct_1       3/5  [naive, diff, perm]\\n  token_entropy&lt;distinct_2       3/5  [naive, diff, perm]\\n  token_entropy&lt;distinct_3       1/5  [diff]\\n  token_entropy&lt;mauve            0/5  [none]\\n  ece&lt;distinct_1                 3/5  [naive, diff, perm]\\n  ece&lt;distinct_2                 3/5  [naive, diff, perm]\\n  ece&lt;distinct_3                 3/5  [naive, diff, perm]\\n  ece&lt;mauve                      1/5  [naive]\\n\\n====================================================================================================\\n  SUMMARY\\n====================================================================================================\\n  PermG_fwd                      5/8\\n  PermG_rev                      0/8\\n  diff_xcorr_fdr_fwd             7/8\\n  diff_xcorr_fdr_rev             7/8\\n  naive_xcorr_fwd_D111           6/8\\n  threshold_onset_3sigma         0/8\\n  TY_granger                     0/8\\n  K_ge_3                         5/8\\n  K_ge_4                         0/8\\n\\n====================================================================================================\\n  DRIFT STATISTICS (gen0 -> gen10)\\n====================================================================================================\\n  token_entropy        2.9731 -> 1.9681  (-33.80%)\\n  ece                  0.0081 -> 0.2656  (+3179.66%)\\n  perplexity           19.8299 -> 89.3686  (+350.68%)\\n  distinct_1           0.0992 -> 0.0806  (-18.79%)\\n  distinct_2           0.5222 -> 0.4070  (-22.06%)\\n  distinct_3           0.8211 -> 0.6697  (-18.44%)\\n  mauve                None -> 0.031099757108039083\\n  effective_rank       52.6693 -> 99.9046  (+89.68%)\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "fba42594-7ff9-4924-a2e6-debaeb9db570",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 11 generations from results/phase_diagram/t10_a075_s42_fp32_14b\\\\nNOTE: mauve null in gen_0..gen_1, using gen_2+ for mauve pairs\\\\n====================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | 11 gens\\\\n====================================================================================================\\\\n\\\\n====================================================================================================\\\\n  FORWARD (canary -> downstream)\\\\n====================================================================================================\\\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\\\n----------------------------------------------------------------------------------------------------------------------------------\\\\n  token_entropy&lt;distinct_1(11pt) lag=-1 r=0.947 *     lag=-1 r=0.987 *     c=1 d=None         F=2087.73 p=0.0024 * F=1.06 p=0.5184 \\\\n  token_entropy&lt;distinct_2(11pt) lag=-1 r=0.921 *     lag=-2 r=0.976 *     c=1 d=None         F=1009.79 p=0.0248 * F=2.00 p=0.3504 \\\\n  token_entropy&lt;distinct_3(11pt) lag=5 r=-0.929 *     lag=-2 r=0.971 *     c=1 d=None         F=298.80 p=0.0532    F=0.94 p=0.5519 \\\\n  token_entropy&lt;mauve(9pt)       lag=5 r=0.949        lag=4 r=-0.997 *     c=None d=None      F=0.00 p=0.9636      F=-361012709655109243963965440.00 p=nan \\\\n  ece&lt;distinct_1(11pt)           lag=-1 r=0.998 *     lag=-1 r=0.999 *     c=2 d=None         F=4974.46 p=0.0002 * F=1.34 p=0.3157 \\\\n  ece&lt;distinct_2(11pt)           lag=-1 r=0.999 *     lag=-2 r=0.996 *     c=2 d=None         F=4005.76 p=0.0006 * F=3.47 p=0.2319 \\\\n  ece&lt;distinct_3(11pt)           lag=-2 r=0.996 *     lag=-2 r=0.995 *     c=2 d=None         F=933.93 p=0.0046 *  F=1.47 p=0.4294 \\\\n  ece&lt;mauve(9pt)                 lag=-4 r=0.935 *     lag=4 r=-0.817       c=5 d=None         F=1.09 p=0.3331      F=0.32 p=0.5831 \\\\n\\\\n====================================================================================================\\\\n  REVERSE (downstream -> canary)\\\\n====================================================================================================\\\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\\\n----------------------------------------------------------------------------------------------------------------------------------\\\\n  token_entropy&lt;distinct_1(11pt) lag=1 r=0.947 *      lag=1 r=0.987 *      c=None d=1         F=7.36 p=0.0456      F=3.42 p=0.2346 \\\\n  token_entropy&lt;distinct_2(11pt) lag=1 r=0.921 *      lag=2 r=0.976 *      c=None d=1         F=6.79 p=0.0570      F=3.02 p=0.2586 \\\\n  token_entropy&lt;distinct_3(11pt) lag=-5 r=-0.929 *    lag=2 r=0.971 *      c=None d=1         F=5.91 p=0.0726      F=114.55 p=0.0087 *\\\\n  token_entropy&lt;mauve(9pt)       lag=-5 r=0.949       lag=-4 r=-0.997 *    c=None d=None      F=0.01 p=0.9012      N/A            \\\\n  ece&lt;distinct_1(11pt)           lag=1 r=0.998 *      lag=1 r=0.999 *      c=None d=2         F=2.79 p=0.1010      F=13.45 p=0.0028 *\\\\n  ece&lt;distinct_2(11pt)           lag=1 r=0.999 *      lag=2 r=0.996 *      c=None d=2         F=3.63 p=0.0570      F=2.06 p=0.3438 \\\\n  ece&lt;distinct_3(11pt)           lag=2 r=0.996 *      lag=2 r=0.995 *      c=None d=2         F=5.14 p=0.0350      F=44.32 p=0.0221 *\\\\n  ece&lt;mauve(9pt)                 lag=4 r=0.935 *      lag=-4 r=-0.817      c=None d=5         F=3.00 p=0.1726      F=1.99 p=0.1887 \\\\n\\\\n====================================================================================================\\\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\\\n====================================================================================================\\\\n  token_entropy&lt;distinct_1       3/5  [naive, diff, perm]\\\\n  token_entropy&lt;distinct_2       3/5  [naive, diff, perm]\\\\n  token_entropy&lt;distinct_3       1/5  [diff]\\\\n  token_entropy&lt;mauve            0/5  [none]\\\\n  ece&lt;distinct_1                 3/5  [naive, diff, perm]\\\\n  ece&lt;distinct_2                 3/5  [naive, diff, perm]\\\\n  ece&lt;distinct_3                 3/5  [naive, diff, perm]\\\\n  ece&lt;mauve                      1/5  [naive]\\\\n\\\\n====================================================================================================\\\\n  SUMMARY\\\\n====================================================================================================\\\\n  PermG_fwd                      5/8\\\\n  PermG_rev                      0/8\\\\n  diff_xcorr_fdr_fwd             7/8\\\\n  diff_xcorr_fdr_rev             7/8\\\\n  naive_xcorr_fwd_D111           6/8\\\\n  threshold_onset_3sigma         0/8\\\\n  TY_granger                     0/8\\\\n  K_ge_3                         5/8\\\\n  K_ge_4                         0/8\\\\n\\\\n====================================================================================================\\\\n  DRIFT STATISTICS (gen0 -> gen10)\\\\n====================================================================================================\\\\n  token_entropy        2.9731 -> 1.9681  (-33.80%)\\\\n  ece                  0.0081 -> 0.2656  (+3179.66%)\\\\n  perplexity           19.8299 -> 89.3686  (+350.68%)\\\\n  distinct_1           0.0992 -> 0.0806  (-18.79%)\\\\n  distinct_2           0.5222 -> 0.4070  (-22.06%)\\\\n  distinct_3           0.8211 -> 0.6697  (-18.44%)\\\\n  mauve                None -> 0.031099757108039083\\\\n  effective_rank       52.6693 -> 99.9046  (+89.68%)\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from results/phase_diagram/t10_a075_s42_fp32_14b\\nNOTE: mauve null in gen_0..gen_1, using gen_2+ for mauve pairs\\n====================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32 | 11 gens\\n====================================================================================================\\n\\n====================================================================================================\\n  FORWARD (canary -> downstream)\\n====================================================================================================\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\n----------------------------------------------------------------------------------------------------------------------------------\\n  token_entropy&lt;distinct_1(11pt) lag=-1 r=0.947 *     lag=-1 r=0.987 *     c=1 d=None         F=2087.73 p=0.0024 * F=1.06 p=0.5184 \\n  token_entropy&lt;distinct_2(11pt) lag=-1 r=0.921 *     lag=-2 r=0.976 *     c=1 d=None         F=1009.79 p=0.0248 * F=2.00 p=0.3504 \\n  token_entropy&lt;distinct_3(11pt) lag=5 r=-0.929 *     lag=-2 r=0.971 *     c=1 d=None         F=298.80 p=0.0532    F=0.94 p=0.5519 \\n  token_entropy&lt;mauve(9pt)       lag=5 r=0.949        lag=4 r=-0.997 *     c=None d=None      F=0.00 p=0.9636      F=-361012709655109243963965440.00 p=nan \\n  ece&lt;distinct_1(11pt)           lag=-1 r=0.998 *     lag=-1 r=0.999 *     c=2 d=None         F=4974.46 p=0.0002 * F=1.34 p=0.3157 \\n  ece&lt;distinct_2(11pt)           lag=-1 r=0.999 *     lag=-2 r=0.996 *     c=2 d=None         F=4005.76 p=0.0006 * F=3.47 p=0.2319 \\n  ece&lt;distinct_3(11pt)           lag=-2 r=0.996 *     lag=-2 r=0.995 *     c=2 d=None         F=933.93 p=0.0046 *  F=1.47 p=0.4294 \\n  ece&lt;mauve(9pt)                 lag=-4 r=0.935 *     lag=4 r=-0.817       c=5 d=None         F=1.09 p=0.3331      F=0.32 p=0.5831 \\n\\n====================================================================================================\\n  REVERSE (downstream -> canary)\\n====================================================================================================\\n  Pair                           Naive XCorr          Diff XCorr(FDR)      Threshold          PermG(FDR)           TY Granger     \\n----------------------------------------------------------------------------------------------------------------------------------\\n  token_entropy&lt;distinct_1(11pt) lag=1 r=0.947 *      lag=1 r=0.987 *      c=None d=1         F=7.36 p=0.0456      F=3.42 p=0.2346 \\n  token_entropy&lt;distinct_2(11pt) lag=1 r=0.921 *      lag=2 r=0.976 *      c=None d=1         F=6.79 p=0.0570      F=3.02 p=0.2586 \\n  token_entropy&lt;distinct_3(11pt) lag=-5 r=-0.929 *    lag=2 r=0.971 *      c=None d=1         F=5.91 p=0.0726      F=114.55 p=0.0087 *\\n  token_entropy&lt;mauve(9pt)       lag=-5 r=0.949       lag=-4 r=-0.997 *    c=None d=None      F=0.01 p=0.9012      N/A            \\n  ece&lt;distinct_1(11pt)           lag=1 r=0.998 *      lag=1 r=0.999 *      c=None d=2         F=2.79 p=0.1010      F=13.45 p=0.0028 *\\n  ece&lt;distinct_2(11pt)           lag=1 r=0.999 *      lag=2 r=0.996 *      c=None d=2         F=3.63 p=0.0570      F=2.06 p=0.3438 \\n  ece&lt;distinct_3(11pt)           lag=2 r=0.996 *      lag=2 r=0.995 *      c=None d=2         F=5.14 p=0.0350      F=44.32 p=0.0221 *\\n  ece&lt;mauve(9pt)                 lag=4 r=0.935 *      lag=-4 r=-0.817      c=None d=5         F=3.00 p=0.1726      F=1.99 p=0.1887 \\n\\n====================================================================================================\\n  CONSENSUS (forward, D111: peak_lag < 0 for xcorr)\\n====================================================================================================\\n  token_entropy&lt;distinct_1       3/5  [naive, diff, perm]\\n  token_entropy&lt;distinct_2       3/5  [naive, diff, perm]\\n  token_entropy&lt;distinct_3       1/5  [diff]\\n  token_entropy&lt;mauve            0/5  [none]\\n  ece&lt;distinct_1                 3/5  [naive, diff, perm]\\n  ece&lt;distinct_2                 3/5  [naive, diff, perm]\\n  ece&lt;distinct_3                 3/5  [naive, diff, perm]\\n  ece&lt;mauve                      1/5  [naive]\\n\\n====================================================================================================\\n  SUMMARY\\n====================================================================================================\\n  PermG_fwd                      5/8\\n  PermG_rev                      0/8\\n  diff_xcorr_fdr_fwd             7/8\\n  diff_xcorr_fdr_rev             7/8\\n  naive_xcorr_fwd_D111           6/8\\n  threshold_onset_3sigma         0/8\\n  TY_granger                     0/8\\n  K_ge_3                         5/8\\n  K_ge_4                         0/8\\n\\n====================================================================================================\\n  DRIFT STATISTICS (gen0 -> gen10)\\n====================================================================================================\\n  token_entropy        2.9731 -> 1.9681  (-33.80%)\\n  ece                  0.0081 -> 0.2656  (+3179.66%)\\n  perplexity           19.8299 -> 89.3686  (+350.68%)\\n  distinct_1           0.0992 -> 0.0806  (-18.79%)\\n  distinct_2           0.5222 -> 0.4070  (-22.06%)\\n  distinct_3           0.8211 -> 0.6697  (-18.44%)\\n  mauve                None -> 0.031099757108039083\\n  effective_rank       52.6693 -> 99.9046  (+89.68%)\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis is complete. Let me now check the threshold_onset_3sigma result. It shows 0/8 which is surprising - the threshold onset has `c=X d=None` for all pairs, meaning downstream onset was never detected. Let me check the constraint C008 about this.
+
+Actually wait, looking more carefully at the threshold_onset results:
+- For all forward pairs, the canary onset is detected (c=1 or c=2 or c=5) but downstream onset is None
+- Since threshold_onset requires both canary and downstream onsets to be detected and canary to lead, having d=None means it can't be significant
+
+
+- With T=10 and only 11 generations, the downstream metrics likely don't cross the 3-sigma threshold definitively
+
+So the main result here is PermG = 5/8 compared to the 410M baseline of 6/8, with K≥3 also at 5/8. I should present these findings clearly to the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "81d584bc-aec7-4677-a3c3-27ee9e790644",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hv9PPBqfGYyTvUAVXwUNQv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2393,
+      "cache_read_input_tokens": 39620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+实验验证完成，D102 分析已运行。结果汇总：
+
+## 实验状态
+
+| 项目 | 结果 |
+|------|------|
+| EXIT_CODE | **0** (成功) |
+| Checkpoints | gen_9, gen_10 存在 (5.3GB each) |
+| all_metrics.json | 11 条 (gen 0-10) |
+
+## D102 5-Method Lead-Lag 分析 (1.4B, T=10, α=0.75, seed=42)
+
+| 指标 | 值 |
+|------|------|
+| **PermG_fwd** | **5/8** |
+| PermG_rev | 0/8 |
+| diff_xcorr_fdr_fwd | 7/8 |
+| naive_xcorr_fwd_D111 | 6/8 |
+| threshold_onset_3sigma | 0/8 (downstream onset 全为 None) |
+| TY_granger | 0/8 |
+| **K≥3** | **5/8** |
+| K≥4 | 0/8 |
+
+## Drift Statistics (gen0 → gen10)
+
+| Metric | gen0 | gen10 | Change |
+|--------|------|-------|--------|
+| perplexity | 19.83 | 89.37 | +350.7% |
+| ece | 0.008 | 0.266 | +3179.7% |
+| token_entropy | 2.97 | 1.97 | -33.8% |
+| distinct_1 | 0.099 | 0.081 | -18.8% |
+| distinct_2 | 0.522 | 0.407 | -22.1% |
+| distinct_3 | 0.821 | 0.670 | -18.4% |
+| effective_rank | 52.7 | 99.9 | +89.7% |
+| mauve | null | 0.031 | — |
+
+## 对比 410M 基线
+
+410M PermG=6/8，1.4B PermG=**5/8**——方向一致，信号略弱。5 个 forward-significant pair 的共识分布：5 个 K=3（naive+diff+perm），2 个 K=1，1 个 K=0。mauve pair 在两个 canary 上均无信号。
+
+结果已保存至服务器 `/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "uuid": "aac5342f-84da-4787-bc0d-911a2f39514c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hv9PPBqfGYyTvUAVXwUNQv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2393,
+      "cache_read_input_tokens": 39620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+实验验证完成，D102 分析已运行。结果汇总：
+
+## 实验状态
+
+| 项目 | 结果 |
+|------|------|
+| EXIT_CODE | **0** (成功) |
+| Checkpoints | gen_9, gen_10 存在 (5.3GB each) |
+| all_metrics.json | 11 条 (gen 0-10) |
+
+## D102 5-Method Lead-Lag 分析 (1.4B, T=10, α=0.75, seed=42)
+
+| 指标 | 值 |
+|------|------|
+| **PermG_fwd** | **5/8** |
+| PermG_rev | 0/8 |
+| diff_xcorr_fdr_fwd | 7/8 |
+| naive_xcorr_fwd_D111 | 6/8 |
+| threshold_onset_3sigma | 0/8 (downstream onset 全为 None) |
+| TY_granger | 0/8 |
+| **K≥3** | **5/8** |
+| K≥4 | 0/8 |
+
+## Drift Statistics (gen0 → gen10)
+
+| Metric | gen0 | gen10 | Change |
+|--------|------|-------|--------|
+| perplexity | 19.83 | 89.37 | +350.7% |
+| ece | 0.008 | 0.266 | +3179.7% |
+| token_entropy | 2.97 | 1.97 | -33.8% |
+| distinct_1 | 0.099 | 0.081 | -18.8% |
+| distinct_2 | 0.522 | 0.407 | -22.1% |
+| distinct_3 | 0.821 | 0.670 | -18.4% |
+| effective_rank | 52.7 | 99.9 | +89.7% |
+| mauve | null | 0.031 | — |
+
+## 对比 410M 基线
+
+410M PermG=6/8，1.4B PermG=**5/8**——方向一致，信号略弱。5 个 forward-significant pair 的共识分布：5 个 K=3（naive+diff+perm），2 个 K=1，1 个 K=0。mauve pair 在两个 canary 上均无信号。
+
+结果已保存至服务器 `/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 93582,
+  "duration_api_ms": 89546,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "87cdfa90-2b1b-4a47-a35d-0c6eb41712cb",
+  "total_cost_usd": 0.3760025,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 30172,
+    "cache_read_input_tokens": 204505,
+    "output_tokens": 3301,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30172,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 966,
+        "cache_read_input_tokens": 39620,
+        "cache_creation_input_tokens": 2393,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2393
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2485,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0025949999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 3301,
+      "cacheReadInputTokens": 204505,
+      "cacheCreationInputTokens": 30172,
+      "webSearchRequests": 0,
+      "costUSD": 0.3734075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6a2058b2-60fd-443d-b1f4-e8c8ca69602e"
+}
+```
+
+</details>
+
+---

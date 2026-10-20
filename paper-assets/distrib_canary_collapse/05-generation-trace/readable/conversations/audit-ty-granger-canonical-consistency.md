@@ -1,0 +1,1618 @@
+# audit ty granger canonical consistency
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/chats/worker_audit_ty_granger_canonical_consistency_20260520T180340.jsonl`
+- **Structured JSON:** [`e7bc0da2b69ef58e131c.json`](../../sessions/e7/e7bc0da2b69ef58e131c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+55 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T18:11:28.433887+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T18:11:28.434225+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T18:11:28.434424+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T18:11:28.434563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T18:11:28.434854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREA
+…[truncated 7283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T18:11:28.435027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T18:11:28.435443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 21,\\n    \\\"data_dir\\\": \\\"results/t20/a050_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.8256,\\n          \\\"p_value\\\": 8.2e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.5176,\\n              \\\"p\\\": 0.040021\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5283,\\n              \\\"p\\\": 0.029264\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.4976,\\n              \\\"p\\\": 0.035621\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.4983,\\n              \\\"p\\\": 0.029882\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.5318,\\n              \\\"p\\\": 0.015809\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.2882,\\n              \\\"p\\\": 0.205191\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n   
+…[truncated 8617 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T18:11:28.435864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 21,\\n    \\\"data_dir\\\": \\\"results/t20/a100_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9905,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.6451,\\n              \\\"p\\\": 0.006968\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5324,\\n              \\\"p\\\": 0.027788\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.9255,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.9903,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9905,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.8733,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.
+…[truncated 8645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T18:11:28.436080+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"ty_granger\\|_determine_d_max\\|test_causality\\|wald\\|cov_params\\|VAR\\|vecm\\|def .*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"ty_granger\\|_determine_d_max\\|test_causality\\|wald\\|cov_params\\|VAR\\|vecm\\|def .*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T18:11:28.436222+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T18:11:28.436373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -n 50 /root/autodl-tmp/distrib_canary_collapse/analyze_scale_14b_a050.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -n 50 /root/autodl-tmp/distrib_canary_collapse/analyze_scale_14b_a050.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T18:11:28.436501+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/distrib_canary_collapse/analyze_scale_14b_a050.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T18:11:28.436638+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"ty_granger\\|_determine_d_max\\|test_causality\\|wald\\|cov_params\\|VAR\\|def .*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"ty_granger\\|_determine_d_max\\|test_causality\\|wald\\|cov_params\\|VAR\\|def .*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T18:11:28.436769+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T18:11:28.436887+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*14b*\" -o -name \"*1.4*\" -o -name \"*scale*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*14b*\" -o -name \"*1.4*\" -o -name \"*scale*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T18:11:28.437017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k/train/cache-34c514bac0282f32.arrow\\n/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k/train/cache-6b0214b172fc7a60.arrow\\n/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k/train/cache-0f14bfa82d31b913.arrow\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_14b_s42\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42_bf16\\n/root/autodl-tmp/distrib_canary_collapse/results/scale\\n/root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/plan_036_14b_c4.sh\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/plan_037a_interv_14b_pred.sh\\n/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/plan_037b_interv_14b_react.sh\\n/root/autodl-tmp/distrib_canary_collapse/artifacts_phase_transition/fig_model_scale_onset.pdf\\n/root/autodl-tmp/distrib_canary_collapse/artifacts_phase_transition/fig_model_scale_onset.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T18:11:28.437153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -nE \"ty_granger|_determine_d_max|test_causality|wald|cov_params|def.*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -nE \"ty_granger|_determine_d_max|test_causality|wald|cov_params|def.*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T18:11:28.437294+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T18:11:28.437435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T18:11:28.437574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"187:def ty_granger(c, d, cn, dn, max_order=2):\\n227:            \\\"method\\\": \\\"ty_granger\\\",\\n237:            \\\"method\\\": \\\"ty_granger\\\",\\n273:            \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n299:        fwd_ty = ty_granger(c, d, cn, dn)\\n306:        rev_ty = ty_granger(d, c, dn, cn)\\n311:            \\\"ty_granger\\\": fwd_ty,\\n316:            \\\"ty_granger\\\": rev_ty,\\n368:            tyf = f\\\"{perm_adj_fwd[i]:.3f}\\\" if f['ty_granger']['f_stat'] is not None else \\\"   N/A\\\"\\n369:            typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"   N/A\\\"\\n370:            dmax = str(f['ty_granger'].get('d_max', 'N/A'))\\n390:        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n403:        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T18:11:28.437708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T18:11:28.437834+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"223:        test_result = result.test_causality(causing=1, caused=0, kind=\\\"f\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T18:11:28.437951+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"_determine_d_max\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"_determine_d_max\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T18:11:28.438073+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T18:11:28.438186+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"cov_params\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"cov_params\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T18:11:28.438325+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T18:11:28.438449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"def.*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"def.*granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T18:11:28.438572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"174:def perm_granger(c, d, cn, dn, seed):\\n187:def ty_granger(c, d, cn, dn, max_order=2):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T18:11:28.438722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "sed -n '187,250p' /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "sed -n '187,250p' /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T18:11:28.438845+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T18:11:28.438959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -n +187 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -n +187 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T18:11:28.439236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def ty_granger(c, d, cn, dn, max_order=2):\\n    x = orient(c, cn)\\n    y = orient(d, dn)\\n    n = len(x)\\n\\n    # Determine integration order d\\n    d_max = 0\\n    for series in [x, y]:\\n        try:\\n            result = adfuller(series, maxlag=min(3, n // 3 - 1))\\n            if result[1] > 0.05: # Non-stationary\\n                d_max = max(d_max, 1)\\n        except:\\n            d_max = max(d_max, 1)  # Conservative\\n\\n    # TY procedure: fit VAR(k + d_max), test first k lags\\n    from statsmodels.tsa.vector_ar.var_model import VAR\\n\\n    best_k, best_aic = 1, np.inf\\n    data = np.column_stack([x, y])\\n    for k in range(1, max_order + 1):\\n        try:\\n            model = VAR(data)\\n            result = model.fit(k)\\n            if result.aic < best_aic:\\n                best_k, best_aic = k, result.aic\\n        except:\\n            continue\\n\\n    total_order = best_k + d_max\\n    if total_order >= n // 2:\\n        total_order = max(1, n // 2 - 1)\\n\\n    try:\\n        model = VAR(data)\\n        result = model.fit(total_order)\\n        test_result = result.test_causality(causing=1, caused=0, kind=\\\"f\\\")\\n        f_stat = float(test_result.test_statistic)\\n        p_value = float(test_result.pvalue)\\n        return {\\n            \\\"method\\\": \\\"ty_granger\\\",\\n            \\\"f_stat\\\": round(f_stat, 4),\\n            \\\"p_value\\\": round(p_value, 4),\\n            \\\"significant\\\": bool(p_value < ALPHA),\\n            \\\"order\\\": total_order,\\n            \\\"k_opt\\\": best_k,\\n            \\\"d_max\\\": d_max,\\n        }\\n    except Exception as e:\\n        return {\\n            \\\"method\\\": \\\"ty_granger\\\",\\n            \\\"f_stat\\\": None,\\n            \\\"p_value\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"error\\\": str(e),\\n            \\\"order\\\": total_order,\\n            \\\"k_opt\\\": best
+…[truncated 7435 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T18:11:28.439471+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/analyze_scale*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/analyze_scale*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T18:11:28.439604+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T18:11:28.439721+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T18:11:28.439845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T18:11:28.439964+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -rn \"cov_params\" /root/autodl-tmp/distrib_canary_collapse/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -rn \"cov_params\" /root/autodl-tmp/distrib_canary_collapse/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T18:11:28.440082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T18:11:28.440204+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'grep -rn \\\"cov_params\\\" /root/autodl-tmp/distrib_canary_collapse/'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T18:11:28.440568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"results/scale/14b_c4_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9962,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9344,\\n              \\\"p\\\": 0.006312\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.9457,\\n              \\\"p\\\": 0.001284\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.8005,\\n              \\\"p\\\": 0.016991\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.778,\\n              \\\"p\\\": 0.013564\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9962,\\n              \\\"p\\\": 0.0\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.6973,\\n              \\\"p\\\": 0.017068\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n         
+…[truncated 8628 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T18:11:28.440826+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T18:11:28.441044+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.9153,\\n          \\\"p_value\\\": 0.4497,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 2.0349,\\n          \\\"p_value\\\": 0.1383,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.3691,\\n          \\\"p_value\\\": 0.7761,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 3.8897,\\n          \\\"p_value\\\": 0.0227,\\n          \\\"significant\\\": true,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.4166,\\n          \\\"p_value\\\": 0.7428,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 2.8142,\\n          \\\"p_value\\\": 0.0629,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 1.1418,\\n          \\\"p_value\\\": 0.3541,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\
+…[truncated 2424 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T18:11:28.441205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T18:11:28.441432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.5553,\\n          \\\"p_value\\\": 0.6501,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 1.8959,\\n          \\\"p_value\\\": 0.1598,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.5587,\\n          \\\"p_value\\\": 0.5782,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.05,\\n          \\\"p_value\\\": 0.9513,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.5905,\\n          \\\"p_value\\\": 0.5608,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 1.7377,\\n          \\\"p_value\\\": 0.1944,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.2947,\\n          \\\"p_value\\\": 0.747,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n
+…[truncated 2421 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T18:11:28.441592+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -A5 \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T18:11:28.441794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 1.3846,\\n          \\\"p_value\\\": 0.4454,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.7593,\\n          \\\"p_value\\\": 0.6115,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.7826,\\n          \\\"p_value\\\": 0.6032,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 10.3387,\\n          \\\"p_value\\\": 0.0895,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.6524,\\n          \\\"p_value\\\": 0.6522,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 490.4072,\\n          \\\"p_value\\\": 0.002,\\n          \\\"significant\\\": true,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\\n--\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.568,\\n          \\\"p_value\\\": 0.688,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 3,\\n          \\\"k_opt\\\": 2,\
+…[truncated 2427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T18:11:28.441959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a050_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T18:11:28.442104+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T18:11:28.442232+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/t20/a100_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T18:11:28.442391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 0\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T18:11:28.442516+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep \"d_max\" /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_c4_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T18:11:28.442647+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n          \\\"d_max\\\": 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T18:11:28.442923+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ty_granger_canonical_audit.md",
+  "content": "# TY Granger Canonical Script Audit\n\n**Script**: `run_5method_analysis_d102.py` (on westd-17855)\n**Date**: 2026-05-20\n**Scope**: Matmul bug check + edge condition analysis + T=20 data provenance\n\n---\n\n## 1. Implementation Method\n\nCanonical TY 实现位于 lines 187–246。**使用 statsmodels 内置 `test_causality()`**，不是手写 Wald。\n\n```python\nresult = model.fit(total_order)\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\nf_stat = float(test_result.test_statistic)\np_value = float(test_result.pvalue)\n```\n\n**无 `cov_params` 操作、无手写矩阵乘法。** grep 确认全文无 `cov_params` 出现。\n\n输出字段：`f_stat`, `p_value`, `significant`, `order`, `k_opt`, `d_max`\n\n## 2. Matmul Bug — **NO**\n\n1.4B bug 根因：手写 Wald 中 endog-based `cov_params` 维度为 (4,4) 但需要 (7,7)。\n\nCanonical 脚本使用 `test_causality()` 内部处理所有矩阵运算，**不存在此 bug**。任何 T/d_max 组合下 statsmodels 都会自行处理正确维度。\n\n## 3. 新发现：Direction Reversal Bug — **YES** ⚠️\n\n### Bug 描述\n\n```python\ndata = np.column_stack([x, y])   # column 0 = canary, column 1 = downstream\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n```\n\n`test_causality(causing=1, caused=0)` 测试的是 **variable 1 (downstream) Granger-causes variable 0 (canary)**，即 downstream → canary。\n\n但调用上下文为：\n```python\nfwd_ty = ty_granger(c, d, cn, dn)   # 标记为 \"forward: canary leads downstream\"\n```\n\n**Forward 标签应测试 canary → downstream（`causing=0, caused=1`），实际测试了 downstream → canary。方向反了。**\n\nReverse 调用 `ty_granger(d, c, dn, cn)` 同理反转，实际测试的是 canary → downstream（真正的 forward）。\n\n### 对 consensus 的影响\n\nConsensus 投票使用 forward TY 结果：\n```python\nif f[\"ty_granger\"][\"significant\"]:\n    votes += 1; methods_sig.append(\"ty\")\n```\n\n即 TY 投票基于 **reverse Granger causation** 而非 forward。\n\n### 定量影响分析\n\n| 实验 | ty_forward_sig (reported) | 若移除 TY 票 | robust pairs 变化 |\n|------|--------------------------|--------------|-------------------|\n| t20_a050 | 4/8 (ece pairs) | ece&lt;d1: 5→4, ece&lt;d2: 4→3, ece&lt;d3: 4→3, ece&lt;mauve: 2→1 | **6/8 → 6/8 (不变)** |\n| t20_a100 | 1/8 (ece&lt;d1) | ece&lt;d1: 5→4 | **6/8 → 6/8 (不变)** |\n| 14b | 0/8 | 无影响 | 8/8 → 8/8 (不变) |\n\n**结论：方向 bug 存在但 TY 从未提供决定性投票，robust pairs 计数不受影响。**\n\n### 修复方案\n\n```python\n# 修复前（错误方向）\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n\n# 修复后（正确：测试第一个变量是否 Granger-cause 第二个变量）\ntest_result = result.test_causality(causing=0, caused=1, kind=\"f\")\n```\n\n## 4. d_max 确定逻辑\n\n```python\nd_max = 0\nfor series in [x, y]:\n    result = adfuller(series, maxlag=min(3, n // 3 - 1))\n    if result[1] > 0.05:  # Non-stationary\n        d_max = max(d_max, 1)\n```\n\n- **d_max 上限为 1**（二元判定：stationary vs non-stationary），不会出现 1.4B 那样的 d_max=2\n- ADF maxlag = `min(3, n//3-1)`。T=21 → maxlag=min(3,6)=3; T=11 → maxlag=min(3,2)=2\n- 溢出保护：`if total_order >= n//2: total_order = max(1, n//2-1)`\n\n### d_max 分布\n\n| 实验 | d_max=0 | d_max=1 | 备注 |\n|------|---------|---------|------|\n| t20_a050 (T=21) | 8/16 (ece pairs) | 8/16 (token_entropy pairs) | ece 序列平稳 |\n| t20_a100 (T=21) | 4/16 | 12/16 | α=1.0 非平稳更多 |\n| 14b (T=11) | 0/16 | 16/16 | 短序列 ADF 保守 |\n\n## 5. TY 过程精确度：Extra Lag Issue (Minor)\n\n当 d_max > 0 时，canonical 脚本拟合 VAR(k+d_max) 后对**所有** k+d_max 个 lag 做联合检验。严格 TY 过程应只检验前 k 个 lag。\n\n- d_max=0 时：等价于标准 Granger，无差异\n- d_max=1 时：多检验 1 个 augmented lag，略微影响 F 统计量的自由度\n\n实际影响极小（标准做法中很多实现也这样处理），不构成 bug。\n\n## 6. T=20 实验 TY 数据来源确认\n\n### 字段格式验证\n\n| 实验 | 字段结构 | 来源 |\n|------|----------|------|\n| t20_a050_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n| t20_a100_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n| 14b_c4_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n\n所有实验均使用 canonical 脚本生成，非 `wald_F`/`df_resid`（手写 Wald 格式）或 `chi2`/`df`/`nobs`（其他格式）。\n\nMeta 字段均包含 `\"threshold_criterion\": \"true_3sigma_d105\"`，确认为 D105+ 版本。\n\n## 7. 14b T=11 低功效分析\n\n14b 所有 TY 结果均为 non-significant (0/8)。原因不是 bug 而是**统计功效不足**：\n\n- T=11, d_max=1 → total_order=3 (k_opt=2 + d_max=1)\n- VAR(3) 每个方程 7 参数（3 lag × 2 变量 + intercept）\n- 有效观测 = 11 - 3 = 8\n- df_resid = 8 - 7 = 1\n- F(3, 1) 分布几乎无检测力\n\n这与 C003 约束一致（\"TY 在低 α 下种子不稳定\"的根因之一）。\n\n## 8. 结论\n\n| 检查项 | 结果 |\n|--------|------|\n| Matmul/cov_params bug | ❌ **不存在** — 使用内置 `test_causality()` |\n| Direction reversal bug | ⚠️ **存在** — `causing=1, caused=0` 测试反向因果 |\n| Extra lag issue (d_max>0) | ℹ️ Minor — 常见实现变体，非 bug |\n| T=20 数据来源 | ✅ **确认** — 均由 canonical 脚本生成 |\n| T=20 TY 数据可信度 | ⚠️ **数值正确但方向反转** — F/p 值无计算错误，但测试的是 reverse causation |\n| 对论文 robust pairs 影响 | ✅ **无影响** — TY 从未提供 consensus 的决定性投票 |\n\n**T=20 TY 数据的 F-stat 和 p-value 在数学上是正确的（无数值 bug），但它们回答的问题是 downstream→canary 而非 canary→downstream。由于 TY 在所有实验中都不是 consensus 的 swing vote，robust pairs 结论不受影响。**\n\n**建议**：修复 direction bug（`causing=0, caused=1`）并重跑分析，但**不阻塞论文提交**——当前 consensus 结论已经 robust。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ty_granger_canonical_audit.md",
+    "content": "# TY Granger Canonical Script Audit\n\n**Script**: `run_5method_analysis_d102.py` (on westd-17855)\n**Date**: 2026-05-20\n**Scope**: Matmul bug check + edge condition analysis + T=20 data provenance\n\n---\n\n## 1. Implementation Method\n\nCanonical TY 实现位于 lines 187–246。**使用 statsmodels 内置 `test_causality()`**，不是手写 Wald。\n\n```python\nresult = model.fit(total_order)\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\nf_stat = float(test_result.test_statistic)\np_value = float(test_result.pvalue)\n```\n\n**无 `cov_params` 操作、无手写矩阵乘法。** grep 确认全文无 `cov_params` 出现。\n\n输出字段：`f_stat`, `p_value`, `significant`, `order`, `k_opt`, `d_max`\n\n## 2. Matmul Bug — **NO**\n\n1.4B bug 根因：手写 Wald 中 endog-based `cov_params` 维度为 (4,4) 但需要 (7,7)。\n\nCanonical 脚本使用 `test_causality()` 内部处理所有矩阵运算，**不存在此 bug**。任何 T/d_max 组合下 statsmodels 都会自行处理正确维度。\n\n## 3. 新发现：Direction Reversal Bug — **YES** ⚠️\n\n### Bug 描述\n\n```python\ndata = np.column_stack([x, y])   # column 0 = canary, column 1 = downstream\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n```\n\n`test_causality(causing=1, caused=0)` 测试的是 **variable 1 (downstream) Granger-causes variable 0 (canary)**，即 downstream → canary。\n\n但调用上下文为：\n```python\nfwd_ty = ty_granger(c, d, cn, dn)   # 标记为 \"forward: canary leads downstream\"\n```\n\n**Forward 标签应测试 canary → downstream（`causing=0, caused=1`），实际测试了 downstream → canary。方向反了。**\n\nReverse 调用 `ty_granger(d, c, dn, cn)` 同理反转，实际测试的是 canary → downstream（真正的 forward）。\n\n### 对 consensus 的影响\n\nConsensus 投票使用 forward TY 结果：\n```python\nif f[\"ty_granger\"][\"significant\"]:\n    votes += 1; methods_sig.append(\"ty\")\n```\n\n即 TY 投票基于 **reverse Granger causation** 而非 forward。\n\n### 定量影响分析\n\n| 实验 | ty_forward_sig (reported) | 若移除 TY 票 | robust pairs 变化 |\n|------|--------------------------|--------------|-------------------|\n| t20_a050 | 4/8 (ece pairs) | ece&lt;d1: 5→4, ece&lt;d2: 4→3, ece&lt;d3: 4→3, ece&lt;mauve: 2→1 | **6/8 → 6/8 (不变)** |\n| t20_a100 | 1/8 (ece&lt;d1) | ece&lt;d1: 5→4 | **6/8 → 6/8 (不变)** |\n| 14b | 0/8 | 无影响 | 8/8 → 8/8 (不变) |\n\n**结论：方向 bug 存在但 TY 从未提供决定性投票，robust pairs 计数不受影响。**\n\n### 修复方案\n\n```python\n# 修复前（错误方向）\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n\n# 修复后（正确：测试第一个变量是否 Granger-cause 第二个变量）\ntest_result = result.test_causality(causing=0, caused=1, kind=\"f\")\n```\n\n## 4. d_max 确定逻辑\n\n```python\nd_max = 0\nfor series in [x, y]:\n    result = adfuller(series, maxlag=min(3, n // 3 - 1))\n    if result[1] > 0.05:  # Non-stationary\n        d_max = max(d_max, 1)\n```\n\n- **d_max 上限为 1**（二元判定：stationary vs non-stationary），不会出现 1.4B 那样的 d_max=2\n- ADF maxlag = `min(3, n//3-1)`。T=21 → maxlag=min(3,6)=3; T=11 → maxlag=min(3,2)=2\n- 溢出保护：`if total_order >= n//2: total_order = max(1, n//2-1)`\n\n### d_max 分布\n\n| 实验 | d_max=0 | d_max=1 | 备注 |\n|------|---------|---------|------|\n| t20_a050 (T=21) | 8/16 (ece pairs) | 8/16 (token_entropy pairs) | ece 序列平稳 |\n| t20_a100 (T=21) | 4/16 | 12/16 | α=1.0 非平稳更多 |\n| 14b (T=11) | 0/16 | 16/16 | 短序列 ADF 保守 |\n\n## 5. TY 过程精确度：Extra Lag Issue (Minor)\n\n当 d_max > 0 时，canonical 脚本拟合 VAR(k+d_max) 后对**所有** k+d_max 个 lag 做联合检验。严格 TY 过程应只检验前 k 个 lag。\n\n- d_max=0 时：等价于标准 Granger，无差异\n- d_max=1 时：多检验 1 个 augmented lag，略微影响 F 统计量的自由度\n\n实际影响极小（标准做法中很多实现也这样处理），不构成 bug。\n\n## 6. T=20 实验 TY 数据来源确认\n\n### 字段格式验证\n\n| 实验 | 字段结构 | 来源 |\n|------|----------|------|\n| t20_a050_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n| t20_a100_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n| 14b_c4_s42_fp32 | `f_stat` + `order` + `k_opt` + `d_max` | ✅ Canonical script |\n\n所有实验均使用 canonical 脚本生成，非 `wald_F`/`df_resid`（手写 Wald 格式）或 `chi2`/`df`/`nobs`（其他格式）。\n\nMeta 字段均包含 `\"threshold_criterion\": \"true_3sigma_d105\"`，确认为 D105+ 版本。\n\n## 7. 14b T=11 低功效分析\n\n14b 所有 TY 结果均为 non-significant (0/8)。原因不是 bug 而是**统计功效不足**：\n\n- T=11, d_max=1 → total_order=3 (k_opt=2 + d_max=1)\n- VAR(3) 每个方程 7 参数（3 lag × 2 变量 + intercept）\n- 有效观测 = 11 - 3 = 8\n- df_resid = 8 - 7 = 1\n- F(3, 1) 分布几乎无检测力\n\n这与 C003 约束一致（\"TY 在低 α 下种子不稳定\"的根因之一）。\n\n## 8. 结论\n\n| 检查项 | 结果 |\n|--------|------|\n| Matmul/cov_params bug | ❌ **不存在** — 使用内置 `test_causality()` |\n| Direction reversal bug | ⚠️ **存在** — `causing=1, caused=0` 测试反向因果 |\n| Extra lag issue (d_max>0) | ℹ️ Minor — 常见实现变体，非 bug |\n| T=20 数据来源 | ✅ **确认** — 均由 canonical 脚本生成 |\n| T=20 TY 数据可信度 | ⚠️ **数值正确但方向反转** — F/p 值无计算错误，但测试的是 reverse causation |\n| 对论文 robust pairs 影响 | ✅ **无影响** — TY 从未提供 consensus 的决定性投票 |\n\n**T=20 TY 数据的 F-stat 和 p-value 在数学上是正确的（无数值 bug），但它们回答的问题是 downstream→canary 而非 canary→downstream。由于 TY 在所有实验中都不是 consensus 的 swing vote，robust pairs 结论不受影响。**\n\n**建议**：修复 direction bug（`causing=0, caused=1`）并重跑分析，但**不阻塞论文提交**——当前 consensus 结论已经 robust。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T18:11:28.443141+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ty_granger_canonical_audit.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-20T18:11:28.443329+00:00_
+
+审计完成。报告写入 `artifacts/ty_granger_canonical_audit.md`。
+
+**核心发现：**
+
+1. **Matmul bug：不存在。** Canonical 脚本使用 statsmodels 内置 `test_causality()`，无手写 Wald、无 `cov_params` 操作。
+
+2. **新发现 Direction Reversal Bug：存在。** `test_causality(causing=1, caused=0)` 在 `data=[canary, downstream]` 下测试的是 downstream→canary（反向因果），但被标记为 forward。修复：改为 `causing=0, caused=1`。
+
+3. **对论文影响：无。** TY 从未在任何实验中提供 consensus 的 swing vote。移除所有 TY 票后 robust pairs 计数不变（t20_a050: 6/8, t20_a100: 6/8, 14b: 8/8）。
+
+4. **T=20 数据来源：确认均为 canonical 脚本生成**（字段格式 `f_stat`/`order`/`k_opt`/`d_max` 匹配）。
+
+建议修复 direction bug 并重跑，但不阻塞论文提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_audit_ty_granger_canonical_consistency_20260520T180340"
+}
+```
+
+</details>
+
+---

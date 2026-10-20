@@ -1,0 +1,3773 @@
+# code fix d111 direction m035
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_code_fix_d111_direction_m035_20260520T024329.log`
+- **Structured JSON:** [`6ea26331a9bc2615388b.json`](../../sessions/6e/6ea26331a9bc2615388b.json)
+
+## Before a recorded user message
+
+81 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "21f626be-e5b2-46c3-98b7-d32e68f33d8a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779255000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "97bc802b-28c0-4c95-b5e1-78e662f593a3",
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The task is to fix the D111 direction filter sign reversal (M035) on two servers: westd-17855 and westd-19828. I need to:
+
+1. Find and fix `peak_lag > 0` → `peak_lag < 0` for forward direction checks in batch_analysis.py and run_5method_analysis.py
+2. Do this on both servers
+3. Also check method_ablation.py
+
+Let me start by reading the relevant files on both servers to understand the current code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "1004f30e-2a3a-45dc-8cb8-08b7b9cd14fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJLg7nV9aodaVpHV3wj6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13044
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先在两台服务器上查找所有 D111 方向过滤相关代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "676d746a-674b-41ca-956f-5c74c40d0c65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJLg7nV9aodaVpHV3wj6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13044
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NavPJs5bonsmnXdXdoppjT`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "b2018ba0-e3c2-4ac9-80af-4bdd55385a66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjJLg7nV9aodaVpHV3wj6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13044,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13044
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T02:43:44.644Z_
+
+<details><summary>↩ Tool result · `toolu_01NavPJs5bonsmnXdXdoppjT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "234f2964-aa7d-45a5-a880-6d154937cd51",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+在两台服务器上并行搜索 D111 方向过滤相关代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "1621decb-75ae-4154-840a-185c33c9294d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JSjbtNP1BPZMPRDTXLyzmK`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "a48bda56-6744-43ac-81e7-5b180afbc812",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G6yU39sfe8me4JLT6DKyTg`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "9ee79ba8-c3d1-461a-8ebe-adc26d71566c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T02:43:50.051Z_
+
+<details><summary>↩ Tool result · `toolu_01JSjbtNP1BPZMPRDTXLyzmK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "6bc3c157-4ba2-46f5-b39d-640b0c974470",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ML3hzXsYKydx6yyDD5edGi`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "5980237c-87a0-44f8-afb4-d8d50c655dfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T02:43:50.572Z_
+
+<details><summary>↩ Tool result · `toolu_01G6yU39sfe8me4JLT6DKyTg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "f818a621-22bf-4b75-b2b8-6bf484f94e8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"104:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n133:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\\\n436:        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] > 0:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015A7ho65FaEx8BDL4KWgDyS`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "596f24cc-8dfd-484d-8c25-97fdba4665fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T02:43:51.685Z_
+
+<details><summary>↩ Tool result · `toolu_01ML3hzXsYKydx6yyDD5edGi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "cb86cb66-2799-4739-b025-24b55c1ece23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"106:        return {\\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n123:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n135:        return {\\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n154:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n376:    if r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False) and (r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0:\\\\n379:            and (r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0):\\\\n453:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"naive_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0)\\\\n457:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T02:43:52.218Z_
+
+<details><summary>↩ Tool result · `toolu_015A7ho65FaEx8BDL4KWgDyS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "98053afd-7e0f-4fd3-a1f6-0f49e4da642c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014PmPqZSnwxiCXWLBfBy4nm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"method_ablation.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "587387f7-3eaa-4058-9491-38cdfaa1dd8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T02:43:52.856Z_
+
+<details><summary>↩ Tool result · `toolu_014PmPqZSnwxiCXWLBfBy4nm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "f5d9e6a9-6231-4856-a061-4bf5b0dc3314",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/method_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017c2knpRnJk2AKKV7gz9PJP`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"method_ablation.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "3d72bf34-07ca-45b0-a068-d2b3afded043",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147NmtgBr6tKijoY2rTpYMc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 24885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T02:43:53.394Z_
+
+<details><summary>↩ Tool result · `toolu_017c2knpRnJk2AKKV7gz9PJP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "a631ea1a-9a5d-4fa6-9e03-31542c4afeb6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+19828 没有 `batch_analysis.py`，17855 没有 `run_5method_analysis.py`。现在读取相关上下文，并检查 method_ablation.py。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "54d3cabe-1445-4630-9a4d-989fe05cd40f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFGXAWj3ou6AwBooQCFhd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1919,
+      "cache_read_input_tokens": 25716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1919
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Hx5zvgdJx4EgwJGAfg9WQ`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -n 450 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "e7f5b049-ed9b-4fa6-9198-5895040b204d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFGXAWj3ou6AwBooQCFhd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1919,
+      "cache_read_input_tokens": 25716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1919
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T02:43:58.045Z_
+
+<details><summary>↩ Tool result · `toolu_011Hx5zvgdJx4EgwJGAfg9WQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    return adjusted.tolist(), significant\\n\\n\\n# Method 1: Naive cross-correlation\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n        \\\"all_lags\\\": all_lags,\\n    }\\n\\n\\n# Method 2: Differenced cross-correlation\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n \\n\\n... [截断: 输出过长，省略 9157 字符] ...\\n\\n(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        nr = f\\\"{f['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(f['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{f['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(f['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_granger']['wald_F']:.3f}\\\" if f['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(f['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Reverse table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"REVERSE (downstream → canary)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        r = pair[\\\"reverse\\\"]\\n        label = f\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\"\\n        nr = f\\\"{r['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(r['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{r['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(r['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{r['perm_granger']['f_stat']:.3f}\\\" if r['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if r['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if r['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{r['ty_granger']['wald_F']:.3f}\\\" if r['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{r['ty_granger']['p_value']:.4f}\\\" if r['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(r['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Consensus\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(\\\"CONSENSUS (methods agreeing on forward significance)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    consensus = []\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "f56a07b5-a32e-4f1a-9cac-d9ec3243b1c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] for d in data])\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    return adjusted.tolist(), significant\\\\n\\\\n\\\\n# Method 1: Naive cross-correlation\\\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        all_lags.append({\\\\\\\"lag\\\\\\\": int(lag), \\\\\\\"r\\\\\\\": round(float(r), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)})\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"r\\\\\\\": round(float(best_r), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(best_p), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < ALPHA),\\\\n        \\\\\\\"all_lags\\\\\\\": all_lags,\\\\n    }\\\\n\\\\n\\\\n# Method 2: Differenced cross-correlation\\\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\\\n    n = len(dx)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = dx[lag:], dy[:n - lag]\\\\n        else:\\\\n \\\\n\\\\n... [截断: 输出过长，省略 9157 字符] ...\\\\n\\\\n(f\\\\\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\\\\\")\\\\n    print(f\\\\\\\"{'-'*100}\\\\\\\")\\\\n    for i, pair in enumerate(pair_results):\\\\n        f = pair[\\\\\\\"forward\\\\\\\"]\\\\n        label = f\\\\\\\"{pair['canary']}→{pair['downstream']}\\\\\\\"\\\\n        nr = f\\\\\\\"{f['naive_xcorr']['r']:.3f}\\\\\\\"\\\\n        nl = str(f['naive_xcorr']['peak_lag'])\\\\n        dr = f\\\\\\\"{f['diff_xcorr']['r']:.3f}\\\\\\\"\\\\n        dl = str(f['diff_xcorr']['peak_lag'])\\\\n        dfdr = f\\\\\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\\\n        pf = f\\\\\\\"{f['perm_granger']['f_stat']:.3f}\\\\\\\" if f['perm_granger']['f_stat'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        pfdr = f\\\\\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if f['perm_granger'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        psig = \\\\\\\"*\\\\\\\" if f['perm_granger'].get('significant_fdr') else \\\\\\\"\\\\\\\"\\\\n        tyf = f\\\\\\\"{f['ty_granger']['wald_F']:.3f}\\\\\\\" if f['ty_granger']['wald_F'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        typ = f\\\\\\\"{f['ty_granger']['p_value']:.4f}\\\\\\\" if f['ty_granger']['p_value'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dmax = str(f['ty_granger']['d_max'])\\\\n        print(f\\\\\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\\\\\")\\\\n\\\\n    # Reverse table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"REVERSE (downstream → canary)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\\\\\")\\\\n    print(f\\\\\\\"{'-'*100}\\\\\\\")\\\\n    for i, pair in enumerate(pair_results):\\\\n        r = pair[\\\\\\\"reverse\\\\\\\"]\\\\n        label = f\\\\\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\\\\\"\\\\n        nr = f\\\\\\\"{r['naive_xcorr']['r']:.3f}\\\\\\\"\\\\n        nl = str(r['naive_xcorr']['peak_lag'])\\\\n        dr = f\\\\\\\"{r['diff_xcorr']['r']:.3f}\\\\\\\"\\\\n        dl = str(r['diff_xcorr']['peak_lag'])\\\\n        dfdr = f\\\\\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\\\n        pf = f\\\\\\\"{r['perm_granger']['f_stat']:.3f}\\\\\\\" if r['perm_granger']['f_stat'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        pfdr = f\\\\\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if r['perm_granger'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        psig = \\\\\\\"*\\\\\\\" if r['perm_granger'].get('significant_fdr') else \\\\\\\"\\\\\\\"\\\\n        tyf = f\\\\\\\"{r['ty_granger']['wald_F']:.3f}\\\\\\\" if r['ty_granger']['wald_F'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        typ = f\\\\\\\"{r['ty_granger']['p_value']:.4f}\\\\\\\" if r['ty_granger']['p_value'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dmax = str(r['ty_granger']['d_max'])\\\\n        print(f\\\\\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\\\\\")\\\\n\\\\n    # Consensus\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n    print(\\\\\\\"CONSENSUS (methods agreeing on forward significance)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n    consensus = []\\\\n    for i, pair in enumerate(pair_results):\\\\n        f = pair[\\\\\\\"forward\\\\\\\"]\\\\n        votes = 0\\\\n        methods_sig = []\\\\n        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] > 0:\\\\n            votes += 1; methods_sig.append(\\\\\\\"naive\\\\\\\")\\\\n        if f[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"diff\\\\\\\")\\\\n        if f[\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"threshold\\\\\\\")\\\\n        if f[\\\\\\\"perm_granger\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"perm\\\\\\\")\\\\n        if f[\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"ty\\\\\\\")\\\\n        label = f\\\\\\\"{pair['canary']}→{pair['downstream']}\\\\\\\"\\\\n        consensus.append({\\\\\\\"pair\\\\\\\": label, \\\\\\\"votes\\\\\\\": votes, \\\\\\\"methods\\\\\\\": methods_sig})\\\\n        print(f\\\\\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"consensus\\\\\\\"] = consensus\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    return adjusted.tolist(), significant\\n\\n\\n# Method 1: Naive cross-correlation\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n        \\\"all_lags\\\": all_lags,\\n    }\\n\\n\\n# Method 2: Differenced cross-correlation\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n \\n\\n... [截断: 输出过长，省略 9157 字符] ...\\n\\n(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        nr = f\\\"{f['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(f['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{f['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(f['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{f['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if f['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(f['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_granger']['wald_F']:.3f}\\\" if f['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(f['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Reverse table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"REVERSE (downstream → canary)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        r = pair[\\\"reverse\\\"]\\n        label = f\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\"\\n        nr = f\\\"{r['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(r['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{r['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(r['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{r['perm_granger']['f_stat']:.3f}\\\" if r['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if r['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if r['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{r['ty_granger']['wald_F']:.3f}\\\" if r['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{r['ty_granger']['p_value']:.4f}\\\" if r['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(r['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Consensus\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(\\\"CONSENSUS (methods agreeing on forward significance)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    consensus = []\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tssp5EhsksSNBSyZH3s2co`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat -n /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "379adc68-bd65-471d-ad08-f8f1d4154574",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFGXAWj3ou6AwBooQCFhd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1919,
+      "cache_read_input_tokens": 25716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1919
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T02:43:58.990Z_
+
+<details><summary>↩ Tool result · `toolu_01Tssp5EhsksSNBSyZH3s2co`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n     2\\t\\n     3\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\n     4\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\n     5\\truns full MMCT if null directories are provided.\\n     6\\t\\n     7\\tUsage:\\n     8\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n     9\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n    10\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n    11\\t\\n    12\\tInput:  {exp_dir}/all_metrics.json\\n    13\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\n    14\\t\\n    15\\tDependencies: numpy, scipy, statsmodels\\n    16\\t\\\"\\\"\\\"\\n    17\\t\\n    18\\timport argparse\\n    19\\timport json\\n    20\\timport os\\n    21\\timport sys\\n    22\\timport traceback\\n    23\\timport numpy as np\\n    24\\tfrom scipy import stats\\n    25\\tfrom statsmodels.tsa.stattools import adfuller\\n    26\\t\\n    27\\tN_PERM = 5000\\n    28\\tALPHA_SIG = 0.05\\n    29\\t\\n    30\\tCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\n    31\\tDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n    32\\t\\n    33\\tHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\n    34\\tLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n    35\\t\\n    36\\tALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n    37\\t               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n    38\\t\\n    39\\t\\n    40\\tdef load_series(data_dir):\\n    41\\t    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    42\\t    with open(path) as f:\\n    43\\t        data = json.load(f)\\n    44\\t    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    45\\t    out = {}\\n    46\\t    for k in ALL_METRICS:\\n    47\\t        vals = []\\n    48\\t        for d in data:\\n    49\\t            v = d.get(k)\\n    50\\t            vals.append(v if v is not None else np.nan)\\n    51\\t        out[k] = np.array(vals, dtype=float)\\n    52\\t    return out, len(data)\\n    53\\t\\n    54\\t\\n    55\\tdef orient(series, name):\\n    56\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n    57\\t\\n    58\\t\\n    59\\tdef compute_drift(series_dict, n_gens):\\n    60\\t    drift = {}\\n    61\\t    for k in ALL_METRICS:\\n    62\\t        s = series_dict.get(k)\\n    63\\t        if s is None or len(s) < 2:\\n    64\\t            drift[k] = None\\n    65\\t            continue\\n    66\\t        v0, v_last = s[0], s[-1]\\n    67\\t        if abs(v0) < 1e-12:\\n    68\\t            drift[k] = None\\n    69\\t        else:\\n    70\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\n    71\\t    return drift\\n    72\\t\\n    73\\t\\n    74\\tdef bh_fdr(p_values, alpha=0.05):\\n    75\\t    pv = np.array(p_values, dtype=float)\\n    76\\t    n = len(pv)\\n    77\\t    valid = ~np.isnan(pv)\\n    78\\t    adjusted = np.full(n, np.nan)\\n    79\\t    if valid.sum() == 0:\\n    80\\t        return adjusted.tolist(), [False] * n\\n    81\\t    idx = np.where(valid)[0]\\n    82\\t    p_valid = pv[idx]\\n    83\\t    sorted_idx = np.argsort(p_valid)\\n    84\\t    ranks = np.empty_like(sorted_idx)\\n    85\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    86\\t    m = len(p_valid)\\n    87\\t    adj = p_valid * m / ranks\\n    88\\t    adj_sorted = adj[sorted_idx].copy()\\n    89\\t    for i in range(m - 2, -1, -1):\\n    90\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    91\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    92\\t    adj_final = np.empty(m)\\n    93\\t    adj_final[sorted_idx] = adj_sorted\\n    94\\t    for i, ix in enumerate(idx):\\n    95\\t        adjusted[ix] = adj_final[i]\\n    96\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    97\\t    return adjusted.tolist(), significant\\n    98\\t\\n    99\\t\\n   100\\t# ── Method 1: Naive cross-correlation ──\\n   101\\t\\n   102\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\n   103\\t    x, y = orient(c, cn), orient(d, dn)\\n   104\\t    n = len(x)\\n   105\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\n   106\\t        return {\\\"method\\\": \\\"naive_xc\\n\\n... [截断: 输出过长，省略 18317 字符] ...\\n\\nft,\\n   511\\t        \\\"lead_lag\\\": lead_lag,\\n   512\\t        \\\"mmct\\\": mmct_result,\\n   513\\t        \\\"consensus_detail\\\": consensus_counts,\\n   514\\t        \\\"pair_details\\\": _clean(all_pairs),\\n   515\\t    }\\n   516\\t\\n   517\\t    if output_path is None:\\n   518\\t        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n   519\\t    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n   520\\t    with open(output_path, \\\"w\\\") as f:\\n   521\\t        json.dump(output, f, indent=2)\\n   522\\t    print(f\\\"\\\\nSaved: {output_path}\\\")\\n   523\\t\\n   524\\t    # Print summary\\n   525\\t    print(f\\\"\\\\n{'='*60}\\\")\\n   526\\t    print(f\\\"SUMMARY: {exp_dir}\\\")\\n   527\\t    print(f\\\"{'='*60}\\\")\\n   528\\t    print(f\\\"Generations: {n_gens}\\\")\\n   529\\t    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n   530\\t    for k, v in drift.items():\\n   531\\t        if v is not None:\\n   532\\t            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n   533\\t    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n   534\\t    for method, counts in lead_lag.items():\\n   535\\t        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n   536\\t        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n   537\\t    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n   538\\t          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n   539\\t\\n   540\\t    return output\\n   541\\t\\n   542\\t\\n   543\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n   544\\t    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n   545\\t    pairs_out = []\\n   546\\t    for p in all_pairs:\\n   547\\t        r = p[\\\"results\\\"]\\n   548\\t        pair_entry = {\\n   549\\t            \\\"canary\\\": p[\\\"canary\\\"],\\n   550\\t            \\\"downstream\\\": p[\\\"downstream\\\"],\\n   551\\t            \\\"forward\\\": {},\\n   552\\t            \\\"reverse\\\": {},\\n   553\\t        }\\n   554\\t        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n   555\\t            if method in r:\\n   556\\t                pair_entry[\\\"forward\\\"][method] = r[method]\\n   557\\t        if \\\"perm_granger_fwd\\\" in r:\\n   558\\t            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n   559\\t        if \\\"perm_granger_rev\\\" in r:\\n   560\\t            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n   561\\t        pairs_out.append(pair_entry)\\n   562\\t\\n   563\\t    output = {\\n   564\\t        \\\"n_generations\\\": n_gens,\\n   565\\t        \\\"data_dir\\\": exp_dir,\\n   566\\t        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n   567\\t                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n   568\\t        \\\"pairs\\\": pairs_out,\\n   569\\t    }\\n   570\\t    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n   571\\t    with open(path, \\\"w\\\") as f:\\n   572\\t        json.dump(_clean(output), f, indent=2)\\n   573\\t\\n   574\\t\\n   575\\tdef _clean(obj):\\n   576\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n   577\\t        return float(obj)\\n   578\\t    if isinstance(obj, (np.integer,)):\\n   579\\t        return int(obj)\\n   580\\t    if isinstance(obj, np.bool_):\\n   581\\t        return bool(obj)\\n   582\\t    if isinstance(obj, dict):\\n   583\\t        return {k: _clean(v) for k, v in obj.items()}\\n   584\\t    if isinstance(obj, list):\\n   585\\t        return [_clean(v) for v in obj]\\n   586\\t    if isinstance(obj, np.ndarray):\\n   587\\t        return [_clean(v) for v in obj.tolist()]\\n   588\\t    return obj\\n   589\\t\\n   590\\t\\n   591\\tif __name__ == \\\"__main__\\\":\\n   592\\t    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n   593\\t    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n   594\\t                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n   595\\t    parser.add_argument(\\\"--output\\\", default=None,\\n   596\\t                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n   597\\t    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n   598\\t                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n   599\\t    args = parser.parse_args()\\n   600\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "85332469-6b15-4ad3-bdae-c118cc4ae96e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\\\n     2\\\\t\\\\n     3\\\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\\\n     4\\\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\\\n     5\\\\truns full MMCT if null directories are provided.\\\\n     6\\\\t\\\\n     7\\\\tUsage:\\\\n     8\\\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\\\n     9\\\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\\\\\\\n    10\\\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\\\n    11\\\\t\\\\n    12\\\\tInput:  {exp_dir}/all_metrics.json\\\\n    13\\\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\\\n    14\\\\t\\\\n    15\\\\tDependencies: numpy, scipy, statsmodels\\\\n    16\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    17\\\\t\\\\n    18\\\\timport argparse\\\\n    19\\\\timport json\\\\n    20\\\\timport os\\\\n    21\\\\timport sys\\\\n    22\\\\timport traceback\\\\n    23\\\\timport numpy as np\\\\n    24\\\\tfrom scipy import stats\\\\n    25\\\\tfrom statsmodels.tsa.stattools import adfuller\\\\n    26\\\\t\\\\n    27\\\\tN_PERM = 5000\\\\n    28\\\\tALPHA_SIG = 0.05\\\\n    29\\\\t\\\\n    30\\\\tCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\n    31\\\\tDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n    32\\\\t\\\\n    33\\\\tHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\n    34\\\\tLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n    35\\\\t\\\\n    36\\\\tALL_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\",\\\\n    37\\\\t               \\\\\\\"distinct_3\\\\\\\", \\\\\\\"effective_rank\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n    38\\\\t\\\\n    39\\\\t\\\\n    40\\\\tdef load_series(data_dir):\\\\n    41\\\\t    path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    42\\\\t    with open(path) as f:\\\\n    43\\\\t        data = json.load(f)\\\\n    44\\\\t    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    45\\\\t    out = {}\\\\n    46\\\\t    for k in ALL_METRICS:\\\\n    47\\\\t        vals = []\\\\n    48\\\\t        for d in data:\\\\n    49\\\\t            v = d.get(k)\\\\n    50\\\\t            vals.append(v if v is not None else np.nan)\\\\n    51\\\\t        out[k] = np.array(vals, dtype=float)\\\\n    52\\\\t    return out, len(data)\\\\n    53\\\\t\\\\n    54\\\\t\\\\n    55\\\\tdef orient(series, name):\\\\n    56\\\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n    57\\\\t\\\\n    58\\\\t\\\\n    59\\\\tdef compute_drift(series_dict, n_gens):\\\\n    60\\\\t    drift = {}\\\\n    61\\\\t    for k in ALL_METRICS:\\\\n    62\\\\t        s = series_dict.get(k)\\\\n    63\\\\t        if s is None or len(s) < 2:\\\\n    64\\\\t            drift[k] = None\\\\n    65\\\\t            continue\\\\n    66\\\\t        v0, v_last = s[0], s[-1]\\\\n    67\\\\t        if abs(v0) < 1e-12:\\\\n    68\\\\t            drift[k] = None\\\\n    69\\\\t        else:\\\\n    70\\\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\\\n    71\\\\t    return drift\\\\n    72\\\\t\\\\n    73\\\\t\\\\n    74\\\\tdef bh_fdr(p_values, alpha=0.05):\\\\n    75\\\\t    pv = np.array(p_values, dtype=float)\\\\n    76\\\\t    n = len(pv)\\\\n    77\\\\t    valid = ~np.isnan(pv)\\\\n    78\\\\t    adjusted = np.full(n, np.nan)\\\\n    79\\\\t    if valid.sum() == 0:\\\\n    80\\\\t        return adjusted.tolist(), [False] * n\\\\n    81\\\\t    idx = np.where(valid)[0]\\\\n    82\\\\t    p_valid = pv[idx]\\\\n    83\\\\t    sorted_idx = np.argsort(p_valid)\\\\n    84\\\\t    ranks = np.empty_like(sorted_idx)\\\\n    85\\\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    86\\\\t    m = len(p_valid)\\\\n    87\\\\t    adj = p_valid * m / ranks\\\\n    88\\\\t    adj_sorted = adj[sorted_idx].copy()\\\\n    89\\\\t    for i in range(m - 2, -1, -1):\\\\n    90\\\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    91\\\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    92\\\\t    adj_final = np.empty(m)\\\\n    93\\\\t    adj_final[sorted_idx] = adj_sorted\\\\n    94\\\\t    for i, ix in enumerate(idx):\\\\n    95\\\\t        adjusted[ix] = adj_final[i]\\\\n    96\\\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    97\\\\t    return adjusted.tolist(), significant\\\\n    98\\\\t\\\\n    99\\\\t\\\\n   100\\\\t# ── Method 1: Naive cross-correlation ──\\\\n   101\\\\t\\\\n   102\\\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n   103\\\\t    x, y = orient(c, cn), orient(d, dn)\\\\n   104\\\\t    n = len(x)\\\\n   105\\\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\\\n   106\\\\t        return {\\\\\\\"method\\\\\\\": \\\\\\\"naive_xc\\\\n\\\\n... [截断: 输出过长，省略 18317 字符] ...\\\\n\\\\nft,\\\\n   511\\\\t        \\\\\\\"lead_lag\\\\\\\": lead_lag,\\\\n   512\\\\t        \\\\\\\"mmct\\\\\\\": mmct_result,\\\\n   513\\\\t        \\\\\\\"consensus_detail\\\\\\\": consensus_counts,\\\\n   514\\\\t        \\\\\\\"pair_details\\\\\\\": _clean(all_pairs),\\\\n   515\\\\t    }\\\\n   516\\\\t\\\\n   517\\\\t    if output_path is None:\\\\n   518\\\\t        output_path = os.path.join(exp_dir, \\\\\\\"analysis_results.json\\\\\\\")\\\\n   519\\\\t    os.makedirs(os.path.dirname(output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n   520\\\\t    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n   521\\\\t        json.dump(output, f, indent=2)\\\\n   522\\\\t    print(f\\\\\\\"\\\\\\\\nSaved: {output_path}\\\\\\\")\\\\n   523\\\\t\\\\n   524\\\\t    # Print summary\\\\n   525\\\\t    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n   526\\\\t    print(f\\\\\\\"SUMMARY: {exp_dir}\\\\\\\")\\\\n   527\\\\t    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n   528\\\\t    print(f\\\\\\\"Generations: {n_gens}\\\\\\\")\\\\n   529\\\\t    print(f\\\\\\\"\\\\\\\\nDrift (gen0->gen{n_gens-1}):\\\\\\\")\\\\n   530\\\\t    for k, v in drift.items():\\\\n   531\\\\t        if v is not None:\\\\n   532\\\\t            print(f\\\\\\\"  {k:20s}: {v:+.2f}%\\\\\\\")\\\\n   533\\\\t    print(f\\\\\\\"\\\\\\\\nLead-lag (forward significant / total):\\\\\\\")\\\\n   534\\\\t    for method, counts in lead_lag.items():\\\\n   535\\\\t        key = \\\\\\\"forward\\\\\\\" if \\\\\\\"forward\\\\\\\" in counts else \\\\\\\"sig\\\\\\\"\\\\n   536\\\\t        print(f\\\\\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\\\\\")\\\\n   537\\\\t    print(f\\\\\\\"\\\\\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\\\\\"\\\\n   538\\\\t          f\\\\\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\\\\\")\\\\n   539\\\\t\\\\n   540\\\\t    return output\\\\n   541\\\\t\\\\n   542\\\\t\\\\n   543\\\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\\\n   544\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Save lead-lag results in the format expected by MMCT module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n   545\\\\t    pairs_out = []\\\\n   546\\\\t    for p in all_pairs:\\\\n   547\\\\t        r = p[\\\\\\\"results\\\\\\\"]\\\\n   548\\\\t        pair_entry = {\\\\n   549\\\\t            \\\\\\\"canary\\\\\\\": p[\\\\\\\"canary\\\\\\\"],\\\\n   550\\\\t            \\\\\\\"downstream\\\\\\\": p[\\\\\\\"downstream\\\\\\\"],\\\\n   551\\\\t            \\\\\\\"forward\\\\\\\": {},\\\\n   552\\\\t            \\\\\\\"reverse\\\\\\\": {},\\\\n   553\\\\t        }\\\\n   554\\\\t        for method in [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]:\\\\n   555\\\\t            if method in r:\\\\n   556\\\\t                pair_entry[\\\\\\\"forward\\\\\\\"][method] = r[method]\\\\n   557\\\\t        if \\\\\\\"perm_granger_fwd\\\\\\\" in r:\\\\n   558\\\\t            pair_entry[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_fwd\\\\\\\"]\\\\n   559\\\\t        if \\\\\\\"perm_granger_rev\\\\\\\" in r:\\\\n   560\\\\t            pair_entry[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_rev\\\\\\\"]\\\\n   561\\\\t        pairs_out.append(pair_entry)\\\\n   562\\\\t\\\\n   563\\\\t    output = {\\\\n   564\\\\t        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n   565\\\\t        \\\\\\\"data_dir\\\\\\\": exp_dir,\\\\n   566\\\\t        \\\\\\\"methods\\\\\\\": [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n   567\\\\t                     \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"],\\\\n   568\\\\t        \\\\\\\"pairs\\\\\\\": pairs_out,\\\\n   569\\\\t    }\\\\n   570\\\\t    path = os.path.join(analysis_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n   571\\\\t    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n   572\\\\t        json.dump(_clean(output), f, indent=2)\\\\n   573\\\\t\\\\n   574\\\\t\\\\n   575\\\\tdef _clean(obj):\\\\n   576\\\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\\\n   577\\\\t        return float(obj)\\\\n   578\\\\t    if isinstance(obj, (np.integer,)):\\\\n   579\\\\t        return int(obj)\\\\n   580\\\\t    if isinstance(obj, np.bool_):\\\\n   581\\\\t        return bool(obj)\\\\n   582\\\\t    if isinstance(obj, dict):\\\\n   583\\\\t        return {k: _clean(v) for k, v in obj.items()}\\\\n   584\\\\t    if isinstance(obj, list):\\\\n   585\\\\t        return [_clean(v) for v in obj]\\\\n   586\\\\t    if isinstance(obj, np.ndarray):\\\\n   587\\\\t        return [_clean(v) for v in obj.tolist()]\\\\n   588\\\\t    return obj\\\\n   589\\\\t\\\\n   590\\\\t\\\\n   591\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   592\\\\t    parser = argparse.ArgumentParser(description=\\\\\\\"Batch lead-lag analysis\\\\\\\")\\\\n   593\\\\t    parser.add_argument(\\\\\\\"--exp_dir\\\\\\\", required=True,\\\\n   594\\\\t                        help=\\\\\\\"Experiment results directory with all_metrics.json\\\\\\\")\\\\n   595\\\\t    parser.add_argument(\\\\\\\"--output\\\\\\\", default=None,\\\\n   596\\\\t                        help=\\\\\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\\\\\")\\\\n   597\\\\t    parser.add_argument(\\\\\\\"--null_dirs\\\\\\\", nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n   598\\\\t                        help=\\\\\\\"Alpha=0.00 directories for full MMCT null distribution\\\\\\\")\\\\n   599\\\\t    args = parser.parse_args()\\\\n   600\\\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n     2\\t\\n     3\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\n     4\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\n     5\\truns full MMCT if null directories are provided.\\n     6\\t\\n     7\\tUsage:\\n     8\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n     9\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n    10\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n    11\\t\\n    12\\tInput:  {exp_dir}/all_metrics.json\\n    13\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\n    14\\t\\n    15\\tDependencies: numpy, scipy, statsmodels\\n    16\\t\\\"\\\"\\\"\\n    17\\t\\n    18\\timport argparse\\n    19\\timport json\\n    20\\timport os\\n    21\\timport sys\\n    22\\timport traceback\\n    23\\timport numpy as np\\n    24\\tfrom scipy import stats\\n    25\\tfrom statsmodels.tsa.stattools import adfuller\\n    26\\t\\n    27\\tN_PERM = 5000\\n    28\\tALPHA_SIG = 0.05\\n    29\\t\\n    30\\tCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\n    31\\tDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n    32\\t\\n    33\\tHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\n    34\\tLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n    35\\t\\n    36\\tALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n    37\\t               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n    38\\t\\n    39\\t\\n    40\\tdef load_series(data_dir):\\n    41\\t    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    42\\t    with open(path) as f:\\n    43\\t        data = json.load(f)\\n    44\\t    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    45\\t    out = {}\\n    46\\t    for k in ALL_METRICS:\\n    47\\t        vals = []\\n    48\\t        for d in data:\\n    49\\t            v = d.get(k)\\n    50\\t            vals.append(v if v is not None else np.nan)\\n    51\\t        out[k] = np.array(vals, dtype=float)\\n    52\\t    return out, len(data)\\n    53\\t\\n    54\\t\\n    55\\tdef orient(series, name):\\n    56\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n    57\\t\\n    58\\t\\n    59\\tdef compute_drift(series_dict, n_gens):\\n    60\\t    drift = {}\\n    61\\t    for k in ALL_METRICS:\\n    62\\t        s = series_dict.get(k)\\n    63\\t        if s is None or len(s) < 2:\\n    64\\t            drift[k] = None\\n    65\\t            continue\\n    66\\t        v0, v_last = s[0], s[-1]\\n    67\\t        if abs(v0) < 1e-12:\\n    68\\t            drift[k] = None\\n    69\\t        else:\\n    70\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\n    71\\t    return drift\\n    72\\t\\n    73\\t\\n    74\\tdef bh_fdr(p_values, alpha=0.05):\\n    75\\t    pv = np.array(p_values, dtype=float)\\n    76\\t    n = len(pv)\\n    77\\t    valid = ~np.isnan(pv)\\n    78\\t    adjusted = np.full(n, np.nan)\\n    79\\t    if valid.sum() == 0:\\n    80\\t        return adjusted.tolist(), [False] * n\\n    81\\t    idx = np.where(valid)[0]\\n    82\\t    p_valid = pv[idx]\\n    83\\t    sorted_idx = np.argsort(p_valid)\\n    84\\t    ranks = np.empty_like(sorted_idx)\\n    85\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    86\\t    m = len(p_valid)\\n    87\\t    adj = p_valid * m / ranks\\n    88\\t    adj_sorted = adj[sorted_idx].copy()\\n    89\\t    for i in range(m - 2, -1, -1):\\n    90\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    91\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    92\\t    adj_final = np.empty(m)\\n    93\\t    adj_final[sorted_idx] = adj_sorted\\n    94\\t    for i, ix in enumerate(idx):\\n    95\\t        adjusted[ix] = adj_final[i]\\n    96\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    97\\t    return adjusted.tolist(), significant\\n    98\\t\\n    99\\t\\n   100\\t# ── Method 1: Naive cross-correlation ──\\n   101\\t\\n   102\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\n   103\\t    x, y = orient(c, cn), orient(d, dn)\\n   104\\t    n = len(x)\\n   105\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\n   106\\t        return {\\\"method\\\": \\\"naive_xc\\n\\n... [截断: 输出过长，省略 18317 字符] ...\\n\\nft,\\n   511\\t        \\\"lead_lag\\\": lead_lag,\\n   512\\t        \\\"mmct\\\": mmct_result,\\n   513\\t        \\\"consensus_detail\\\": consensus_counts,\\n   514\\t        \\\"pair_details\\\": _clean(all_pairs),\\n   515\\t    }\\n   516\\t\\n   517\\t    if output_path is None:\\n   518\\t        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n   519\\t    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n   520\\t    with open(output_path, \\\"w\\\") as f:\\n   521\\t        json.dump(output, f, indent=2)\\n   522\\t    print(f\\\"\\\\nSaved: {output_path}\\\")\\n   523\\t\\n   524\\t    # Print summary\\n   525\\t    print(f\\\"\\\\n{'='*60}\\\")\\n   526\\t    print(f\\\"SUMMARY: {exp_dir}\\\")\\n   527\\t    print(f\\\"{'='*60}\\\")\\n   528\\t    print(f\\\"Generations: {n_gens}\\\")\\n   529\\t    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n   530\\t    for k, v in drift.items():\\n   531\\t        if v is not None:\\n   532\\t            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n   533\\t    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n   534\\t    for method, counts in lead_lag.items():\\n   535\\t        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n   536\\t        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n   537\\t    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n   538\\t          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n   539\\t\\n   540\\t    return output\\n   541\\t\\n   542\\t\\n   543\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n   544\\t    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n   545\\t    pairs_out = []\\n   546\\t    for p in all_pairs:\\n   547\\t        r = p[\\\"results\\\"]\\n   548\\t        pair_entry = {\\n   549\\t            \\\"canary\\\": p[\\\"canary\\\"],\\n   550\\t            \\\"downstream\\\": p[\\\"downstream\\\"],\\n   551\\t            \\\"forward\\\": {},\\n   552\\t            \\\"reverse\\\": {},\\n   553\\t        }\\n   554\\t        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n   555\\t            if method in r:\\n   556\\t                pair_entry[\\\"forward\\\"][method] = r[method]\\n   557\\t        if \\\"perm_granger_fwd\\\" in r:\\n   558\\t            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n   559\\t        if \\\"perm_granger_rev\\\" in r:\\n   560\\t            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n   561\\t        pairs_out.append(pair_entry)\\n   562\\t\\n   563\\t    output = {\\n   564\\t        \\\"n_generations\\\": n_gens,\\n   565\\t        \\\"data_dir\\\": exp_dir,\\n   566\\t        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n   567\\t                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n   568\\t        \\\"pairs\\\": pairs_out,\\n   569\\t    }\\n   570\\t    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n   571\\t    with open(path, \\\"w\\\") as f:\\n   572\\t        json.dump(_clean(output), f, indent=2)\\n   573\\t\\n   574\\t\\n   575\\tdef _clean(obj):\\n   576\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n   577\\t        return float(obj)\\n   578\\t    if isinstance(obj, (np.integer,)):\\n   579\\t        return int(obj)\\n   580\\t    if isinstance(obj, np.bool_):\\n   581\\t        return bool(obj)\\n   582\\t    if isinstance(obj, dict):\\n   583\\t        return {k: _clean(v) for k, v in obj.items()}\\n   584\\t    if isinstance(obj, list):\\n   585\\t        return [_clean(v) for v in obj]\\n   586\\t    if isinstance(obj, np.ndarray):\\n   587\\t        return [_clean(v) for v in obj.tolist()]\\n   588\\t    return obj\\n   589\\t\\n   590\\t\\n   591\\tif __name__ == \\\"__main__\\\":\\n   592\\t    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n   593\\t    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n   594\\t                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n   595\\t    parser.add_argument(\\\"--output\\\", default=None,\\n   596\\t                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n   597\\t    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n   598\\t                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n   599\\t    args = parser.parse_args()\\n   600\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Urhfok7S7RfHhfJ5eRastL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "7578548b-0c7b-4ad9-9d51-ca01e20631f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFGXAWj3ou6AwBooQCFhd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1919,
+      "cache_read_input_tokens": 25716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1919
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T02:43:59.548Z_
+
+<details><summary>↩ Tool result · `toolu_01Urhfok7S7RfHhfJ5eRastL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"86:        \\\"peak_lag\\\": int(best_lag),\\n117:        \\\"peak_lag\\\": int(best_lag),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "3c332b91-9ce8-4cb2-be77-c29e8d9b1020",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"86:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n117:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"86:        \\\"peak_lag\\\": int(best_lag),\\n117:        \\\"peak_lag\\\": int(best_lag),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the picture:
+
+**westd-19828** has `run_5method_analysis.py` with:
+- Line 436: `if f["naive_xcorr"]["significant"] and f["naive_xcorr"]["peak_lag"] > 0:` — needs fix
+
+**westd-17855** has `batch_analysis.py` with:
+- Line 376: `if r["naive_xcorr"].get("significant", False) and (r["naive_xcorr"].get("peak_lag") or 0) > 0:`
+
+
+- Line 379: Similar check for `diff_xcorr`
+- Line 453 and 457: Nested checks for `peak_lag` within results dictionaries
+
+**westd-19828** also has `method_ablation.py` where lines 86 and 117 simply assign the best lag value as an integer without any conditional logic.
+
+I need to examine the surrounding context more carefully to understand exactly where these direction checks should be applied.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "95302a74-a634-4bf8-9d90-f5ae71a9bb25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYXg2nQWBLkBiJRUHai2eE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8389,
+      "cache_read_input_tokens": 27635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+找到所有需要修改的位置。现在读取上下文确认。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "98ee4faf-a039-4d4f-8d8f-eb94c6cf118f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYXg2nQWBLkBiJRUHai2eE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8389,
+      "cache_read_input_tokens": 27635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VvUMCG54Qn8KifFFeaAETL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -n 460 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "6506e007-58a2-48d4-ad48-90de89710743",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYXg2nQWBLkBiJRUHai2eE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8389,
+      "cache_read_input_tokens": 27635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T02:44:10.499Z_
+
+<details><summary>↩ Tool result · `toolu_01VvUMCG54Qn8KifFFeaAETL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    return adjusted.tolist(), significant\\n\\n\\n# Method 1: Naive cross-correlation\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n        \\\"all_lags\\\": all_lags,\\n    }\\n\\n\\n# Method 2: Differenced cross-correlation\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n \\n\\n... [截断: 输出过长，省略 9801 字符] ...\\n\\nf['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_granger']['wald_F']:.3f}\\\" if f['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(f['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Reverse table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"REVERSE (downstream → canary)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        r = pair[\\\"reverse\\\"]\\n        label = f\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\"\\n        nr = f\\\"{r['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(r['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{r['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(r['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{r['perm_granger']['f_stat']:.3f}\\\" if r['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if r['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if r['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{r['ty_granger']['wald_F']:.3f}\\\" if r['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{r['ty_granger']['p_value']:.4f}\\\" if r['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(r['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Consensus\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(\\\"CONSENSUS (methods agreeing on forward significance)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    consensus = []\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n    all_results[\\\"summary\\\"] = {\\n        \\\"perm_granger_fdr_forward_sig\\\": sum(perm_sig_fwd),\\n        \\\"perm_granger_fdr_reverse_sig\\\": sum(perm_sig_rev),\\n        \\\"diff_xcorr_fdr_forward_sig\\\": sum(diff_sig_fwd),\\n        \\\"diff_xcorr_fdr_reverse_sig\\\": sum(diff_sig_rev),\\n        \\\"threshold_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"threshold_onset\\\"][\\\"significant\\\"]),\\n        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n        \\\"robust_pairs\\\": sum(1 for c in consensus if c[\\\"votes\\\"] >= 3),\\n    }\\n    print(f\\\"\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "cb060791-e2ec-4de8-ae79-e51ff965afb4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREAMS:\\\\n        out[k] = np.array([d[k] for d in data])\\\\n    return out, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef bh_fdr(p_values, alpha=0.05):\\\\n    pv = np.array(p_values, dtype=float)\\\\n    n = len(pv)\\\\n    valid = ~np.isnan(pv)\\\\n    adjusted = np.full(n, np.nan)\\\\n    if valid.sum() == 0:\\\\n        return adjusted.tolist(), [False] * n\\\\n    idx = np.where(valid)[0]\\\\n    p_valid = pv[idx]\\\\n    sorted_idx = np.argsort(p_valid)\\\\n    ranks = np.empty_like(sorted_idx)\\\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    m = len(p_valid)\\\\n    adj = p_valid * m / ranks\\\\n    adj_sorted = adj[sorted_idx].copy()\\\\n    for i in range(m - 2, -1, -1):\\\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    adj_final = np.empty(m)\\\\n    adj_final[sorted_idx] = adj_sorted\\\\n    for i, ix in enumerate(idx):\\\\n        adjusted[ix] = adj_final[i]\\\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    return adjusted.tolist(), significant\\\\n\\\\n\\\\n# Method 1: Naive cross-correlation\\\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        all_lags.append({\\\\\\\"lag\\\\\\\": int(lag), \\\\\\\"r\\\\\\\": round(float(r), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)})\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"r\\\\\\\": round(float(best_r), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(best_p), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < ALPHA),\\\\n        \\\\\\\"all_lags\\\\\\\": all_lags,\\\\n    }\\\\n\\\\n\\\\n# Method 2: Differenced cross-correlation\\\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\\\n    n = len(dx)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    all_lags = []\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = dx[lag:], dy[:n - lag]\\\\n        else:\\\\n \\\\n\\\\n... [截断: 输出过长，省略 9801 字符] ...\\\\n\\\\nf['threshold_onset'].get('lead_time', 'N/A'))\\\\n        pf = f\\\\\\\"{f['perm_granger']['f_stat']:.3f}\\\\\\\" if f['perm_granger']['f_stat'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        pfdr = f\\\\\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if f['perm_granger'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        psig = \\\\\\\"*\\\\\\\" if f['perm_granger'].get('significant_fdr') else \\\\\\\"\\\\\\\"\\\\n        tyf = f\\\\\\\"{f['ty_granger']['wald_F']:.3f}\\\\\\\" if f['ty_granger']['wald_F'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        typ = f\\\\\\\"{f['ty_granger']['p_value']:.4f}\\\\\\\" if f['ty_granger']['p_value'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dmax = str(f['ty_granger']['d_max'])\\\\n        print(f\\\\\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\\\\\")\\\\n\\\\n    # Reverse table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"REVERSE (downstream → canary)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n    print(f\\\\\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\\\\\")\\\\n    print(f\\\\\\\"{'-'*100}\\\\\\\")\\\\n    for i, pair in enumerate(pair_results):\\\\n        r = pair[\\\\\\\"reverse\\\\\\\"]\\\\n        label = f\\\\\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\\\\\"\\\\n        nr = f\\\\\\\"{r['naive_xcorr']['r']:.3f}\\\\\\\"\\\\n        nl = str(r['naive_xcorr']['peak_lag'])\\\\n        dr = f\\\\\\\"{r['diff_xcorr']['r']:.3f}\\\\\\\"\\\\n        dl = str(r['diff_xcorr']['peak_lag'])\\\\n        dfdr = f\\\\\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\\\n        pf = f\\\\\\\"{r['perm_granger']['f_stat']:.3f}\\\\\\\" if r['perm_granger']['f_stat'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        pfdr = f\\\\\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\\\\\" if r['perm_granger'].get('fdr_p') is not None else \\\\\\\"N/A\\\\\\\"\\\\n        psig = \\\\\\\"*\\\\\\\" if r['perm_granger'].get('significant_fdr') else \\\\\\\"\\\\\\\"\\\\n        tyf = f\\\\\\\"{r['ty_granger']['wald_F']:.3f}\\\\\\\" if r['ty_granger']['wald_F'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        typ = f\\\\\\\"{r['ty_granger']['p_value']:.4f}\\\\\\\" if r['ty_granger']['p_value'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dmax = str(r['ty_granger']['d_max'])\\\\n        print(f\\\\\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\\\\\")\\\\n\\\\n    # Consensus\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n    print(\\\\\\\"CONSENSUS (methods agreeing on forward significance)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n    consensus = []\\\\n    for i, pair in enumerate(pair_results):\\\\n        f = pair[\\\\\\\"forward\\\\\\\"]\\\\n        votes = 0\\\\n        methods_sig = []\\\\n        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] > 0:\\\\n            votes += 1; methods_sig.append(\\\\\\\"naive\\\\\\\")\\\\n        if f[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"diff\\\\\\\")\\\\n        if f[\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"threshold\\\\\\\")\\\\n        if f[\\\\\\\"perm_granger\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", False):\\\\n            votes += 1; methods_sig.append(\\\\\\\"perm\\\\\\\")\\\\n        if f[\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]:\\\\n            votes += 1; methods_sig.append(\\\\\\\"ty\\\\\\\")\\\\n        label = f\\\\\\\"{pair['canary']}→{pair['downstream']}\\\\\\\"\\\\n        consensus.append({\\\\\\\"pair\\\\\\\": label, \\\\\\\"votes\\\\\\\": votes, \\\\\\\"methods\\\\\\\": methods_sig})\\\\n        print(f\\\\\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"consensus\\\\\\\"] = consensus\\\\n    all_results[\\\\\\\"summary\\\\\\\"] = {\\\\n        \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": sum(perm_sig_fwd),\\\\n        \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": sum(perm_sig_rev),\\\\n        \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": sum(diff_sig_fwd),\\\\n        \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": sum(diff_sig_rev),\\\\n        \\\\\\\"threshold_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"threshold_onset\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"ty_forward_sig\\\\\\\": sum(1 for p in pair_results if p[\\\\\\\"forward\\\\\\\"][\\\\\\\"ty_granger\\\\\\\"][\\\\\\\"significant\\\\\\\"]),\\\\n        \\\\\\\"robust_pairs\\\\\\\": sum(1 for c in consensus if c[\\\\\\\"votes\\\\\\\"] >= 3),\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREAMS:\\n        out[k] = np.array([d[k] for d in data])\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef bh_fdr(p_values, alpha=0.05):\\n    pv = np.array(p_values, dtype=float)\\n    n = len(pv)\\n    valid = ~np.isnan(pv)\\n    adjusted = np.full(n, np.nan)\\n    if valid.sum() == 0:\\n        return adjusted.tolist(), [False] * n\\n    idx = np.where(valid)[0]\\n    p_valid = pv[idx]\\n    sorted_idx = np.argsort(p_valid)\\n    ranks = np.empty_like(sorted_idx)\\n    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    m = len(p_valid)\\n    adj = p_valid * m / ranks\\n    adj_sorted = adj[sorted_idx].copy()\\n    for i in range(m - 2, -1, -1):\\n        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    adj_final = np.empty(m)\\n    adj_final[sorted_idx] = adj_sorted\\n    for i, ix in enumerate(idx):\\n        adjusted[ix] = adj_final[i]\\n    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    return adjusted.tolist(), significant\\n\\n\\n# Method 1: Naive cross-correlation\\ndef naive_xcorr(c, d, cn, dn, max_lag=5):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        all_lags.append({\\\"lag\\\": int(lag), \\\"r\\\": round(float(r), 4), \\\"p\\\": round(float(p), 6)})\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n        \\\"all_lags\\\": all_lags,\\n    }\\n\\n\\n# Method 2: Differenced cross-correlation\\ndef diff_xcorr(c, d, cn, dn, max_lag=5):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    all_lags = []\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n \\n\\n... [截断: 输出过长，省略 9801 字符] ...\\n\\nf['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{f['perm_granger']['f_stat']:.3f}\\\" if f['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{f['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if f['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if f['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{f['ty_granger']['wald_F']:.3f}\\\" if f['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(f['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Reverse table\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(f\\\"REVERSE (downstream → canary)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    print(f\\\"{'Pair':<25} {'NaiveR':>7} {'NLag':>5} {'DiffR':>7} {'DLag':>5} {'DiffFDR':>8} {'Onset':>6} {'PermF':>7} {'PermFDR':>8} {'PermSig':>8} {'TY_F':>7} {'TY_p':>7} {'dmax':>5}\\\")\\n    print(f\\\"{'-'*100}\\\")\\n    for i, pair in enumerate(pair_results):\\n        r = pair[\\\"reverse\\\"]\\n        label = f\\\"{r.get('canary', pair['downstream'])}→{r.get('downstream', pair['canary'])}\\\"\\n        nr = f\\\"{r['naive_xcorr']['r']:.3f}\\\"\\n        nl = str(r['naive_xcorr']['peak_lag'])\\n        dr = f\\\"{r['diff_xcorr']['r']:.3f}\\\"\\n        dl = str(r['diff_xcorr']['peak_lag'])\\n        dfdr = f\\\"{r['diff_xcorr'].get('fdr_p', 'N/A'):.4f}\\\" if r['diff_xcorr'].get('fdr_p') is not None else \\\"N/A\\\"\\n        onset = str(r['threshold_onset'].get('lead_time', 'N/A'))\\n        pf = f\\\"{r['perm_granger']['f_stat']:.3f}\\\" if r['perm_granger']['f_stat'] is not None else \\\"N/A\\\"\\n        pfdr = f\\\"{r['perm_granger'].get('fdr_p', 'N/A'):.4f}\\\" if r['perm_granger'].get('fdr_p') is not None else \\\"N/A\\\"\\n        psig = \\\"*\\\" if r['perm_granger'].get('significant_fdr') else \\\"\\\"\\n        tyf = f\\\"{r['ty_granger']['wald_F']:.3f}\\\" if r['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n        typ = f\\\"{r['ty_granger']['p_value']:.4f}\\\" if r['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n        dmax = str(r['ty_granger']['d_max'])\\n        print(f\\\"{label:<25} {nr:>7} {nl:>5} {dr:>7} {dl:>5} {dfdr:>8} {onset:>6} {pf:>7} {pfdr:>8} {psig:>8} {tyf:>7} {typ:>7} {dmax:>5}\\\")\\n\\n    # Consensus\\n    print(f\\\"\\\\n{'='*100}\\\")\\n    print(\\\"CONSENSUS (methods agreeing on forward significance)\\\")\\n    print(f\\\"{'='*100}\\\")\\n    consensus = []\\n    for i, pair in enumerate(pair_results):\\n        f = pair[\\\"forward\\\"]\\n        votes = 0\\n        methods_sig = []\\n        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:\\n            votes += 1; methods_sig.append(\\\"naive\\\")\\n        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"diff\\\")\\n        if f[\\\"threshold_onset\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"threshold\\\")\\n        if f[\\\"perm_granger\\\"].get(\\\"significant_fdr\\\", False):\\n            votes += 1; methods_sig.append(\\\"perm\\\")\\n        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n            votes += 1; methods_sig.append(\\\"ty\\\")\\n        label = f\\\"{pair['canary']}→{pair['downstream']}\\\"\\n        consensus.append({\\\"pair\\\": label, \\\"votes\\\": votes, \\\"methods\\\": methods_sig})\\n        print(f\\\"  {label:<25} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\\\")\\n\\n    all_results[\\\"consensus\\\"] = consensus\\n    all_results[\\\"summary\\\"] = {\\n        \\\"perm_granger_fdr_forward_sig\\\": sum(perm_sig_fwd),\\n        \\\"perm_granger_fdr_reverse_sig\\\": sum(perm_sig_rev),\\n        \\\"diff_xcorr_fdr_forward_sig\\\": sum(diff_sig_fwd),\\n        \\\"diff_xcorr_fdr_reverse_sig\\\": sum(diff_sig_rev),\\n        \\\"threshold_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"threshold_onset\\\"][\\\"significant\\\"]),\\n        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n        \\\"robust_pairs\\\": sum(1 for c in consensus if c[\\\"votes\\\"] >= 3),\\n    }\\n    print(f\\\"\\\\n  Robust pairs (>=3/5 methods): {all_results['summary']['robust_pairs']}/8\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T13wXTZPeEQz5W5onWfL28`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "sed -n '370,465p' /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "777b7aac-ef2a-4c59-9362-4c0d0b0d31b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYXg2nQWBLkBiJRUHai2eE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8389,
+      "cache_read_input_tokens": 27635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T02:44:10.971Z_
+
+<details><summary>↩ Tool result · `toolu_01T13wXTZPeEQz5W5onWfL28`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "b858a9c7-cf49-4000-b6c5-6394ccd1077a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0172jEkeTCw2Lw2GJywAYv8V`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "sed -n '80,120p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "ec325c15-ca03-48d1-96f0-4ce519ffc750",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYXg2nQWBLkBiJRUHai2eE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8389,
+      "cache_read_input_tokens": 27635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T02:44:11.789Z_
+
+<details><summary>↩ Tool result · `toolu_0172jEkeTCw2Lw2GJywAYv8V`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "d18b043e-6e9f-4439-9eea-26ffcefc56fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the batch_analysis.py context around the relevant lines on westd-17855.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "06a49d77-880c-4171-af26-342541fbe4bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPmb4WripeASbP5UEWMFQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 36024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+读取 batch_analysis.py 的 D111 方向过滤上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "8f5025df-73c9-4258-ba8e-64942a4c128c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPmb4WripeASbP5UEWMFQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 36024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016BeJFeU9wdVmry2ePisL3v`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat -n /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "36463d7c-2d72-421e-8834-364c256a0407",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPmb4WripeASbP5UEWMFQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 36024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T02:44:16.954Z_
+
+<details><summary>↩ Tool result · `toolu_016BeJFeU9wdVmry2ePisL3v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n     2\\t\\n     3\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\n     4\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\n     5\\truns full MMCT if null directories are provided.\\n     6\\t\\n     7\\tUsage:\\n     8\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n     9\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n    10\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n    11\\t\\n    12\\tInput:  {exp_dir}/all_metrics.json\\n    13\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\n    14\\t\\n    15\\tDependencies: numpy, scipy, statsmodels\\n    16\\t\\\"\\\"\\\"\\n    17\\t\\n    18\\timport argparse\\n    19\\timport json\\n    20\\timport os\\n    21\\timport sys\\n    22\\timport traceback\\n    23\\timport numpy as np\\n    24\\tfrom scipy import stats\\n    25\\tfrom statsmodels.tsa.stattools import adfuller\\n    26\\t\\n    27\\tN_PERM = 5000\\n    28\\tALPHA_SIG = 0.05\\n    29\\t\\n    30\\tCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\n    31\\tDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n    32\\t\\n    33\\tHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\n    34\\tLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n    35\\t\\n    36\\tALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n    37\\t               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n    38\\t\\n    39\\t\\n    40\\tdef load_series(data_dir):\\n    41\\t    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    42\\t    with open(path) as f:\\n    43\\t        data = json.load(f)\\n    44\\t    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    45\\t    out = {}\\n    46\\t    for k in ALL_METRICS:\\n    47\\t        vals = []\\n    48\\t        for d in data:\\n    49\\t            v = d.get(k)\\n    50\\t            vals.append(v if v is not None else np.nan)\\n    51\\t        out[k] = np.array(vals, dtype=float)\\n    52\\t    return out, len(data)\\n    53\\t\\n    54\\t\\n    55\\tdef orient(series, name):\\n    56\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n    57\\t\\n    58\\t\\n    59\\tdef compute_drift(series_dict, n_gens):\\n    60\\t    drift = {}\\n    61\\t    for k in ALL_METRICS:\\n    62\\t        s = series_dict.get(k)\\n    63\\t        if s is None or len(s) < 2:\\n    64\\t            drift[k] = None\\n    65\\t            continue\\n    66\\t        v0, v_last = s[0], s[-1]\\n    67\\t        if abs(v0) < 1e-12:\\n    68\\t            drift[k] = None\\n    69\\t        else:\\n    70\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\n    71\\t    return drift\\n    72\\t\\n    73\\t\\n    74\\tdef bh_fdr(p_values, alpha=0.05):\\n    75\\t    pv = np.array(p_values, dtype=float)\\n    76\\t    n = len(pv)\\n    77\\t    valid = ~np.isnan(pv)\\n    78\\t    adjusted = np.full(n, np.nan)\\n    79\\t    if valid.sum() == 0:\\n    80\\t        return adjusted.tolist(), [False] * n\\n    81\\t    idx = np.where(valid)[0]\\n    82\\t    p_valid = pv[idx]\\n    83\\t    sorted_idx = np.argsort(p_valid)\\n    84\\t    ranks = np.empty_like(sorted_idx)\\n    85\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    86\\t    m = len(p_valid)\\n    87\\t    adj = p_valid * m / ranks\\n    88\\t    adj_sorted = adj[sorted_idx].copy()\\n    89\\t    for i in range(m - 2, -1, -1):\\n    90\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    91\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    92\\t    adj_final = np.empty(m)\\n    93\\t    adj_final[sorted_idx] = adj_sorted\\n    94\\t    for i, ix in enumerate(idx):\\n    95\\t        adjusted[ix] = adj_final[i]\\n    96\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    97\\t    return adjusted.tolist(), significant\\n    98\\t\\n    99\\t\\n   100\\t# ── Method 1: Naive cross-correlation ──\\n   101\\t\\n   102\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\n   103\\t    x, y = orient(c, cn), orient(d, dn)\\n   104\\t    n = len(x)\\n   105\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\n   106\\t        return {\\\"method\\\": \\\"naive_xc\\n\\n... [截断: 输出过长，省略 18317 字符] ...\\n\\nft,\\n   511\\t        \\\"lead_lag\\\": lead_lag,\\n   512\\t        \\\"mmct\\\": mmct_result,\\n   513\\t        \\\"consensus_detail\\\": consensus_counts,\\n   514\\t        \\\"pair_details\\\": _clean(all_pairs),\\n   515\\t    }\\n   516\\t\\n   517\\t    if output_path is None:\\n   518\\t        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n   519\\t    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n   520\\t    with open(output_path, \\\"w\\\") as f:\\n   521\\t        json.dump(output, f, indent=2)\\n   522\\t    print(f\\\"\\\\nSaved: {output_path}\\\")\\n   523\\t\\n   524\\t    # Print summary\\n   525\\t    print(f\\\"\\\\n{'='*60}\\\")\\n   526\\t    print(f\\\"SUMMARY: {exp_dir}\\\")\\n   527\\t    print(f\\\"{'='*60}\\\")\\n   528\\t    print(f\\\"Generations: {n_gens}\\\")\\n   529\\t    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n   530\\t    for k, v in drift.items():\\n   531\\t        if v is not None:\\n   532\\t            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n   533\\t    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n   534\\t    for method, counts in lead_lag.items():\\n   535\\t        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n   536\\t        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n   537\\t    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n   538\\t          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n   539\\t\\n   540\\t    return output\\n   541\\t\\n   542\\t\\n   543\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n   544\\t    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n   545\\t    pairs_out = []\\n   546\\t    for p in all_pairs:\\n   547\\t        r = p[\\\"results\\\"]\\n   548\\t        pair_entry = {\\n   549\\t            \\\"canary\\\": p[\\\"canary\\\"],\\n   550\\t            \\\"downstream\\\": p[\\\"downstream\\\"],\\n   551\\t            \\\"forward\\\": {},\\n   552\\t            \\\"reverse\\\": {},\\n   553\\t        }\\n   554\\t        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n   555\\t            if method in r:\\n   556\\t                pair_entry[\\\"forward\\\"][method] = r[method]\\n   557\\t        if \\\"perm_granger_fwd\\\" in r:\\n   558\\t            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n   559\\t        if \\\"perm_granger_rev\\\" in r:\\n   560\\t            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n   561\\t        pairs_out.append(pair_entry)\\n   562\\t\\n   563\\t    output = {\\n   564\\t        \\\"n_generations\\\": n_gens,\\n   565\\t        \\\"data_dir\\\": exp_dir,\\n   566\\t        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n   567\\t                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n   568\\t        \\\"pairs\\\": pairs_out,\\n   569\\t    }\\n   570\\t    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n   571\\t    with open(path, \\\"w\\\") as f:\\n   572\\t        json.dump(_clean(output), f, indent=2)\\n   573\\t\\n   574\\t\\n   575\\tdef _clean(obj):\\n   576\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n   577\\t        return float(obj)\\n   578\\t    if isinstance(obj, (np.integer,)):\\n   579\\t        return int(obj)\\n   580\\t    if isinstance(obj, np.bool_):\\n   581\\t        return bool(obj)\\n   582\\t    if isinstance(obj, dict):\\n   583\\t        return {k: _clean(v) for k, v in obj.items()}\\n   584\\t    if isinstance(obj, list):\\n   585\\t        return [_clean(v) for v in obj]\\n   586\\t    if isinstance(obj, np.ndarray):\\n   587\\t        return [_clean(v) for v in obj.tolist()]\\n   588\\t    return obj\\n   589\\t\\n   590\\t\\n   591\\tif __name__ == \\\"__main__\\\":\\n   592\\t    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n   593\\t    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n   594\\t                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n   595\\t    parser.add_argument(\\\"--output\\\", default=None,\\n   596\\t                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n   597\\t    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n   598\\t                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n   599\\t    args = parser.parse_args()\\n   600\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "c7e75ee5-a975-48fa-afd2-5a0594d13506",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\\\n     2\\\\t\\\\n     3\\\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\\\n     4\\\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\\\n     5\\\\truns full MMCT if null directories are provided.\\\\n     6\\\\t\\\\n     7\\\\tUsage:\\\\n     8\\\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\\\n     9\\\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\\\\\\\n    10\\\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\\\n    11\\\\t\\\\n    12\\\\tInput:  {exp_dir}/all_metrics.json\\\\n    13\\\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\\\n    14\\\\t\\\\n    15\\\\tDependencies: numpy, scipy, statsmodels\\\\n    16\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    17\\\\t\\\\n    18\\\\timport argparse\\\\n    19\\\\timport json\\\\n    20\\\\timport os\\\\n    21\\\\timport sys\\\\n    22\\\\timport traceback\\\\n    23\\\\timport numpy as np\\\\n    24\\\\tfrom scipy import stats\\\\n    25\\\\tfrom statsmodels.tsa.stattools import adfuller\\\\n    26\\\\t\\\\n    27\\\\tN_PERM = 5000\\\\n    28\\\\tALPHA_SIG = 0.05\\\\n    29\\\\t\\\\n    30\\\\tCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\n    31\\\\tDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n    32\\\\t\\\\n    33\\\\tHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\n    34\\\\tLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n    35\\\\t\\\\n    36\\\\tALL_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\",\\\\n    37\\\\t               \\\\\\\"distinct_3\\\\\\\", \\\\\\\"effective_rank\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n    38\\\\t\\\\n    39\\\\t\\\\n    40\\\\tdef load_series(data_dir):\\\\n    41\\\\t    path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    42\\\\t    with open(path) as f:\\\\n    43\\\\t        data = json.load(f)\\\\n    44\\\\t    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    45\\\\t    out = {}\\\\n    46\\\\t    for k in ALL_METRICS:\\\\n    47\\\\t        vals = []\\\\n    48\\\\t        for d in data:\\\\n    49\\\\t            v = d.get(k)\\\\n    50\\\\t            vals.append(v if v is not None else np.nan)\\\\n    51\\\\t        out[k] = np.array(vals, dtype=float)\\\\n    52\\\\t    return out, len(data)\\\\n    53\\\\t\\\\n    54\\\\t\\\\n    55\\\\tdef orient(series, name):\\\\n    56\\\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n    57\\\\t\\\\n    58\\\\t\\\\n    59\\\\tdef compute_drift(series_dict, n_gens):\\\\n    60\\\\t    drift = {}\\\\n    61\\\\t    for k in ALL_METRICS:\\\\n    62\\\\t        s = series_dict.get(k)\\\\n    63\\\\t        if s is None or len(s) < 2:\\\\n    64\\\\t            drift[k] = None\\\\n    65\\\\t            continue\\\\n    66\\\\t        v0, v_last = s[0], s[-1]\\\\n    67\\\\t        if abs(v0) < 1e-12:\\\\n    68\\\\t            drift[k] = None\\\\n    69\\\\t        else:\\\\n    70\\\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\\\n    71\\\\t    return drift\\\\n    72\\\\t\\\\n    73\\\\t\\\\n    74\\\\tdef bh_fdr(p_values, alpha=0.05):\\\\n    75\\\\t    pv = np.array(p_values, dtype=float)\\\\n    76\\\\t    n = len(pv)\\\\n    77\\\\t    valid = ~np.isnan(pv)\\\\n    78\\\\t    adjusted = np.full(n, np.nan)\\\\n    79\\\\t    if valid.sum() == 0:\\\\n    80\\\\t        return adjusted.tolist(), [False] * n\\\\n    81\\\\t    idx = np.where(valid)[0]\\\\n    82\\\\t    p_valid = pv[idx]\\\\n    83\\\\t    sorted_idx = np.argsort(p_valid)\\\\n    84\\\\t    ranks = np.empty_like(sorted_idx)\\\\n    85\\\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\\\n    86\\\\t    m = len(p_valid)\\\\n    87\\\\t    adj = p_valid * m / ranks\\\\n    88\\\\t    adj_sorted = adj[sorted_idx].copy()\\\\n    89\\\\t    for i in range(m - 2, -1, -1):\\\\n    90\\\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\\\n    91\\\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\\\n    92\\\\t    adj_final = np.empty(m)\\\\n    93\\\\t    adj_final[sorted_idx] = adj_sorted\\\\n    94\\\\t    for i, ix in enumerate(idx):\\\\n    95\\\\t        adjusted[ix] = adj_final[i]\\\\n    96\\\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\\\n    97\\\\t    return adjusted.tolist(), significant\\\\n    98\\\\t\\\\n    99\\\\t\\\\n   100\\\\t# ── Method 1: Naive cross-correlation ──\\\\n   101\\\\t\\\\n   102\\\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\\\n   103\\\\t    x, y = orient(c, cn), orient(d, dn)\\\\n   104\\\\t    n = len(x)\\\\n   105\\\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\\\n   106\\\\t        return {\\\\\\\"method\\\\\\\": \\\\\\\"naive_xc\\\\n\\\\n... [截断: 输出过长，省略 18317 字符] ...\\\\n\\\\nft,\\\\n   511\\\\t        \\\\\\\"lead_lag\\\\\\\": lead_lag,\\\\n   512\\\\t        \\\\\\\"mmct\\\\\\\": mmct_result,\\\\n   513\\\\t        \\\\\\\"consensus_detail\\\\\\\": consensus_counts,\\\\n   514\\\\t        \\\\\\\"pair_details\\\\\\\": _clean(all_pairs),\\\\n   515\\\\t    }\\\\n   516\\\\t\\\\n   517\\\\t    if output_path is None:\\\\n   518\\\\t        output_path = os.path.join(exp_dir, \\\\\\\"analysis_results.json\\\\\\\")\\\\n   519\\\\t    os.makedirs(os.path.dirname(output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n   520\\\\t    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n   521\\\\t        json.dump(output, f, indent=2)\\\\n   522\\\\t    print(f\\\\\\\"\\\\\\\\nSaved: {output_path}\\\\\\\")\\\\n   523\\\\t\\\\n   524\\\\t    # Print summary\\\\n   525\\\\t    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n   526\\\\t    print(f\\\\\\\"SUMMARY: {exp_dir}\\\\\\\")\\\\n   527\\\\t    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n   528\\\\t    print(f\\\\\\\"Generations: {n_gens}\\\\\\\")\\\\n   529\\\\t    print(f\\\\\\\"\\\\\\\\nDrift (gen0->gen{n_gens-1}):\\\\\\\")\\\\n   530\\\\t    for k, v in drift.items():\\\\n   531\\\\t        if v is not None:\\\\n   532\\\\t            print(f\\\\\\\"  {k:20s}: {v:+.2f}%\\\\\\\")\\\\n   533\\\\t    print(f\\\\\\\"\\\\\\\\nLead-lag (forward significant / total):\\\\\\\")\\\\n   534\\\\t    for method, counts in lead_lag.items():\\\\n   535\\\\t        key = \\\\\\\"forward\\\\\\\" if \\\\\\\"forward\\\\\\\" in counts else \\\\\\\"sig\\\\\\\"\\\\n   536\\\\t        print(f\\\\\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\\\\\")\\\\n   537\\\\t    print(f\\\\\\\"\\\\\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\\\\\"\\\\n   538\\\\t          f\\\\\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\\\\\")\\\\n   539\\\\t\\\\n   540\\\\t    return output\\\\n   541\\\\t\\\\n   542\\\\t\\\\n   543\\\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\\\n   544\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Save lead-lag results in the format expected by MMCT module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n   545\\\\t    pairs_out = []\\\\n   546\\\\t    for p in all_pairs:\\\\n   547\\\\t        r = p[\\\\\\\"results\\\\\\\"]\\\\n   548\\\\t        pair_entry = {\\\\n   549\\\\t            \\\\\\\"canary\\\\\\\": p[\\\\\\\"canary\\\\\\\"],\\\\n   550\\\\t            \\\\\\\"downstream\\\\\\\": p[\\\\\\\"downstream\\\\\\\"],\\\\n   551\\\\t            \\\\\\\"forward\\\\\\\": {},\\\\n   552\\\\t            \\\\\\\"reverse\\\\\\\": {},\\\\n   553\\\\t        }\\\\n   554\\\\t        for method in [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]:\\\\n   555\\\\t            if method in r:\\\\n   556\\\\t                pair_entry[\\\\\\\"forward\\\\\\\"][method] = r[method]\\\\n   557\\\\t        if \\\\\\\"perm_granger_fwd\\\\\\\" in r:\\\\n   558\\\\t            pair_entry[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_fwd\\\\\\\"]\\\\n   559\\\\t        if \\\\\\\"perm_granger_rev\\\\\\\" in r:\\\\n   560\\\\t            pair_entry[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_rev\\\\\\\"]\\\\n   561\\\\t        pairs_out.append(pair_entry)\\\\n   562\\\\t\\\\n   563\\\\t    output = {\\\\n   564\\\\t        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n   565\\\\t        \\\\\\\"data_dir\\\\\\\": exp_dir,\\\\n   566\\\\t        \\\\\\\"methods\\\\\\\": [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n   567\\\\t                     \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"],\\\\n   568\\\\t        \\\\\\\"pairs\\\\\\\": pairs_out,\\\\n   569\\\\t    }\\\\n   570\\\\t    path = os.path.join(analysis_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n   571\\\\t    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n   572\\\\t        json.dump(_clean(output), f, indent=2)\\\\n   573\\\\t\\\\n   574\\\\t\\\\n   575\\\\tdef _clean(obj):\\\\n   576\\\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\\\n   577\\\\t        return float(obj)\\\\n   578\\\\t    if isinstance(obj, (np.integer,)):\\\\n   579\\\\t        return int(obj)\\\\n   580\\\\t    if isinstance(obj, np.bool_):\\\\n   581\\\\t        return bool(obj)\\\\n   582\\\\t    if isinstance(obj, dict):\\\\n   583\\\\t        return {k: _clean(v) for k, v in obj.items()}\\\\n   584\\\\t    if isinstance(obj, list):\\\\n   585\\\\t        return [_clean(v) for v in obj]\\\\n   586\\\\t    if isinstance(obj, np.ndarray):\\\\n   587\\\\t        return [_clean(v) for v in obj.tolist()]\\\\n   588\\\\t    return obj\\\\n   589\\\\t\\\\n   590\\\\t\\\\n   591\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   592\\\\t    parser = argparse.ArgumentParser(description=\\\\\\\"Batch lead-lag analysis\\\\\\\")\\\\n   593\\\\t    parser.add_argument(\\\\\\\"--exp_dir\\\\\\\", required=True,\\\\n   594\\\\t                        help=\\\\\\\"Experiment results directory with all_metrics.json\\\\\\\")\\\\n   595\\\\t    parser.add_argument(\\\\\\\"--output\\\\\\\", default=None,\\\\n   596\\\\t                        help=\\\\\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\\\\\")\\\\n   597\\\\t    parser.add_argument(\\\\\\\"--null_dirs\\\\\\\", nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n   598\\\\t                        help=\\\\\\\"Alpha=0.00 directories for full MMCT null distribution\\\\\\\")\\\\n   599\\\\t    args = parser.parse_args()\\\\n   600\\\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n     2\\t\\n     3\\tReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\n     4\\tanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\n     5\\truns full MMCT if null directories are provided.\\n     6\\t\\n     7\\tUsage:\\n     8\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n     9\\t    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n    10\\t        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n    11\\t\\n    12\\tInput:  {exp_dir}/all_metrics.json\\n    13\\tOutput: {exp_dir}/analysis_results.json (or --output path)\\n    14\\t\\n    15\\tDependencies: numpy, scipy, statsmodels\\n    16\\t\\\"\\\"\\\"\\n    17\\t\\n    18\\timport argparse\\n    19\\timport json\\n    20\\timport os\\n    21\\timport sys\\n    22\\timport traceback\\n    23\\timport numpy as np\\n    24\\tfrom scipy import stats\\n    25\\tfrom statsmodels.tsa.stattools import adfuller\\n    26\\t\\n    27\\tN_PERM = 5000\\n    28\\tALPHA_SIG = 0.05\\n    29\\t\\n    30\\tCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\n    31\\tDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n    32\\t\\n    33\\tHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\n    34\\tLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n    35\\t\\n    36\\tALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n    37\\t               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n    38\\t\\n    39\\t\\n    40\\tdef load_series(data_dir):\\n    41\\t    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    42\\t    with open(path) as f:\\n    43\\t        data = json.load(f)\\n    44\\t    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    45\\t    out = {}\\n    46\\t    for k in ALL_METRICS:\\n    47\\t        vals = []\\n    48\\t        for d in data:\\n    49\\t            v = d.get(k)\\n    50\\t            vals.append(v if v is not None else np.nan)\\n    51\\t        out[k] = np.array(vals, dtype=float)\\n    52\\t    return out, len(data)\\n    53\\t\\n    54\\t\\n    55\\tdef orient(series, name):\\n    56\\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n    57\\t\\n    58\\t\\n    59\\tdef compute_drift(series_dict, n_gens):\\n    60\\t    drift = {}\\n    61\\t    for k in ALL_METRICS:\\n    62\\t        s = series_dict.get(k)\\n    63\\t        if s is None or len(s) < 2:\\n    64\\t            drift[k] = None\\n    65\\t            continue\\n    66\\t        v0, v_last = s[0], s[-1]\\n    67\\t        if abs(v0) < 1e-12:\\n    68\\t            drift[k] = None\\n    69\\t        else:\\n    70\\t            drift[k] = round(float((v_last - v0) / abs(v0) * 100), 2)\\n    71\\t    return drift\\n    72\\t\\n    73\\t\\n    74\\tdef bh_fdr(p_values, alpha=0.05):\\n    75\\t    pv = np.array(p_values, dtype=float)\\n    76\\t    n = len(pv)\\n    77\\t    valid = ~np.isnan(pv)\\n    78\\t    adjusted = np.full(n, np.nan)\\n    79\\t    if valid.sum() == 0:\\n    80\\t        return adjusted.tolist(), [False] * n\\n    81\\t    idx = np.where(valid)[0]\\n    82\\t    p_valid = pv[idx]\\n    83\\t    sorted_idx = np.argsort(p_valid)\\n    84\\t    ranks = np.empty_like(sorted_idx)\\n    85\\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\\n    86\\t    m = len(p_valid)\\n    87\\t    adj = p_valid * m / ranks\\n    88\\t    adj_sorted = adj[sorted_idx].copy()\\n    89\\t    for i in range(m - 2, -1, -1):\\n    90\\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\\n    91\\t    adj_sorted = np.minimum(adj_sorted, 1.0)\\n    92\\t    adj_final = np.empty(m)\\n    93\\t    adj_final[sorted_idx] = adj_sorted\\n    94\\t    for i, ix in enumerate(idx):\\n    95\\t        adjusted[ix] = adj_final[i]\\n    96\\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\\n    97\\t    return adjusted.tolist(), significant\\n    98\\t\\n    99\\t\\n   100\\t# ── Method 1: Naive cross-correlation ──\\n   101\\t\\n   102\\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\\n   103\\t    x, y = orient(c, cn), orient(d, dn)\\n   104\\t    n = len(x)\\n   105\\t    if np.any(np.isnan(x)) or np.any(np.isnan(y)):\\n   106\\t        return {\\\"method\\\": \\\"naive_xc\\n\\n... [截断: 输出过长，省略 18317 字符] ...\\n\\nft,\\n   511\\t        \\\"lead_lag\\\": lead_lag,\\n   512\\t        \\\"mmct\\\": mmct_result,\\n   513\\t        \\\"consensus_detail\\\": consensus_counts,\\n   514\\t        \\\"pair_details\\\": _clean(all_pairs),\\n   515\\t    }\\n   516\\t\\n   517\\t    if output_path is None:\\n   518\\t        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n   519\\t    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n   520\\t    with open(output_path, \\\"w\\\") as f:\\n   521\\t        json.dump(output, f, indent=2)\\n   522\\t    print(f\\\"\\\\nSaved: {output_path}\\\")\\n   523\\t\\n   524\\t    # Print summary\\n   525\\t    print(f\\\"\\\\n{'='*60}\\\")\\n   526\\t    print(f\\\"SUMMARY: {exp_dir}\\\")\\n   527\\t    print(f\\\"{'='*60}\\\")\\n   528\\t    print(f\\\"Generations: {n_gens}\\\")\\n   529\\t    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n   530\\t    for k, v in drift.items():\\n   531\\t        if v is not None:\\n   532\\t            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n   533\\t    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n   534\\t    for method, counts in lead_lag.items():\\n   535\\t        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n   536\\t        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n   537\\t    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n   538\\t          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n   539\\t\\n   540\\t    return output\\n   541\\t\\n   542\\t\\n   543\\tdef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n   544\\t    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n   545\\t    pairs_out = []\\n   546\\t    for p in all_pairs:\\n   547\\t        r = p[\\\"results\\\"]\\n   548\\t        pair_entry = {\\n   549\\t            \\\"canary\\\": p[\\\"canary\\\"],\\n   550\\t            \\\"downstream\\\": p[\\\"downstream\\\"],\\n   551\\t            \\\"forward\\\": {},\\n   552\\t            \\\"reverse\\\": {},\\n   553\\t        }\\n   554\\t        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n   555\\t            if method in r:\\n   556\\t                pair_entry[\\\"forward\\\"][method] = r[method]\\n   557\\t        if \\\"perm_granger_fwd\\\" in r:\\n   558\\t            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n   559\\t        if \\\"perm_granger_rev\\\" in r:\\n   560\\t            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n   561\\t        pairs_out.append(pair_entry)\\n   562\\t\\n   563\\t    output = {\\n   564\\t        \\\"n_generations\\\": n_gens,\\n   565\\t        \\\"data_dir\\\": exp_dir,\\n   566\\t        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n   567\\t                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n   568\\t        \\\"pairs\\\": pairs_out,\\n   569\\t    }\\n   570\\t    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n   571\\t    with open(path, \\\"w\\\") as f:\\n   572\\t        json.dump(_clean(output), f, indent=2)\\n   573\\t\\n   574\\t\\n   575\\tdef _clean(obj):\\n   576\\t    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n   577\\t        return float(obj)\\n   578\\t    if isinstance(obj, (np.integer,)):\\n   579\\t        return int(obj)\\n   580\\t    if isinstance(obj, np.bool_):\\n   581\\t        return bool(obj)\\n   582\\t    if isinstance(obj, dict):\\n   583\\t        return {k: _clean(v) for k, v in obj.items()}\\n   584\\t    if isinstance(obj, list):\\n   585\\t        return [_clean(v) for v in obj]\\n   586\\t    if isinstance(obj, np.ndarray):\\n   587\\t        return [_clean(v) for v in obj.tolist()]\\n   588\\t    return obj\\n   589\\t\\n   590\\t\\n   591\\tif __name__ == \\\"__main__\\\":\\n   592\\t    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n   593\\t    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n   594\\t                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n   595\\t    parser.add_argument(\\\"--output\\\", default=None,\\n   596\\t                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n   597\\t    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n   598\\t                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n   599\\t    args = parser.parse_args()\\n   600\\t    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see lines 370-460 specifically. Let me use head/tail.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "69ce097d-eafe-4dbb-812a-66e494e4c47c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G21F7J3JCX4Rt5ydanAWd7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3976,
+      "cache_read_input_tokens": 40861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3976
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+需要看 batch_analysis.py 的 D111 方向过滤部分（行 370-460）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "13af46ca-c78d-47fc-9bab-8e5d5b942177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G21F7J3JCX4Rt5ydanAWd7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3976,
+      "cache_read_input_tokens": 40861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3976
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EBi6gJ3jZ3aqbjEv5JBxo5`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -n +370 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "3abe2ae3-df37-4dea-918d-35ca882557a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G21F7J3JCX4Rt5ydanAWd7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3976,
+      "cache_read_input_tokens": 40861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3976
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T02:44:21.197Z_
+
+<details><summary>↩ Tool result · `toolu_01EBi6gJ3jZ3aqbjEv5JBxo5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# ── Consensus counting ──\\n\\ndef compute_consensus(pair_result):\\n    r = pair_result[\\\"results\\\"]\\n    votes = 0\\n    methods_sig = []\\n    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:\\n        votes += 1; methods_sig.append(\\\"naive\\\")\\n    if (r[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", r[\\\"diff_xcorr\\\"].get(\\\"significant\\\", False))\\n            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):\\n        votes += 1; methods_sig.append(\\\"diff\\\")\\n    if r[\\\"threshold_onset\\\"].get(\\\"significant\\\", False):\\n        votes += 1; methods_sig.append(\\\"thresh\\\")\\n    if r[\\\"perm_granger_fwd\\\"].get(\\\"significant_fdr\\\", r[\\\"perm_granger_fwd\\\"].get(\\\"significant\\\", False)):\\n        votes += 1; methods_sig.append(\\\"pg_fwd\\\")\\n    if r[\\\"ty_granger\\\"].get(\\\"significant\\\", False):\\n        votes += 1; methods_sig.append(\\\"ty\\\")\\n    return votes, methods_sig\\n\\n\\n# ── MMCT (full, if null dirs available) ──\\n\\ndef run_mmct_full(exp_dir, null_dirs):\\n    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\n    from mmct.null_distribution import NullDistribution\\n    from mmct.consensus_test import MMCT\\n    from mmct.methods import METRIC_PAIRS as MMCT_PAIRS\\n\\n    null_dist = NullDistribution(null_dirs, n_bootstrap=10000, seed=42)\\n    mmct = MMCT(null_dist, weighted=True, bidirectional=False, alpha=0.05)\\n\\n    n_sig = 0\\n    n_total = 0\\n    pair_results = []\\n    for canary, downstream in MMCT_PAIRS:\\n        try:\\n            result = mmct.test_from_precomputed(exp_dir, canary, downstream)\\n            r = result.to_dict()\\n            pair_results.append(r)\\n            n_total += 1\\n            if r[\\\"significant\\\"]:\\n                n_sig += 1\\n        except Exception:\\n            n_total += 1\\n    detection_rate = n_sig / n_total if n_total > 0 else 0.0\\n    return {\\n        \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n        \\\"detection_rate\\\": round(detection_rate, 4),\\n        \\\"sig\\\": n_sig,\\n        \\\"total\\\": n_total,\\n        \\\"pair_results\\\": pair_results,\\n    }\\n\\n\\n# ── Main ──\\n\\ndef analyze(exp_dir, output_path=None, null_dirs=None):\\n    print(f\\\"Loading data from {exp_dir}\\\")\\n    series, n_gens = load_series(exp_dir)\\n    print(f\\\"  {n_gens} generations loaded\\\")\\n\\n    # 1. Drift\\n    print(\\\"Computing drift...\\\")\\n    drift = compute_drift(series, n_gens)\\n\\n    # 2. Lead-lag (5 methods, 8 pairs)\\n    print(\\\"Running 5-method lead-lag analysis...\\\")\\n    all_pairs = []\\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            try:\\n                r = run_pair(series, cn, dn)\\n                all_pairs.append({\\\"canary\\\": cn, \\\"downstream\\\": dn, \\\"results\\\": r})\\n            except Exception as e:\\n                print(f\\\"  WARN: {cn}->{dn} failed: {e}\\\")\\n                all_pairs.append({\\\"canary\\\": cn, \\\"downstream\\\": dn,\\n                                  \\\"results\\\": {}, \\\"error\\\": str(e)})\\n\\n    apply_fdr_correction(all_pairs)\\n\\n    # Count summary\\n    naive_fwd = sum(1 for p in all_pairs\\n                    if p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"significant\\\", False)\\n                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n    diff_fwd = sum(1 for p in all_pairs\\n                    if p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"significant_fdr\\\",\\n                        p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"significant\\\", False))\\n                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n    thresh_fwd = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"threshold_onset\\\", {}).get(\\\"significant\\\", False))\\n    pg_fwd = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"perm_granger_fwd\\\", {}).get(\\\"significant_fdr\\\",\\n                  p[\\\"results\\\"].get(\\\"perm_granger_fwd\\\", {}).get(\\\"significant\\\", False)))\\n    pg_rev = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"perm_granger_rev\\\", {}).get(\\\"significant_fdr\\\",\\n                  p[\\\"results\\\"].get(\\\"perm_granger_rev\\\", {}).get(\\\"significant\\\", False)))\\n    ty_sig = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"ty_granger\\\", {}).get(\\\"significant\\\", False))\\n\\n    consensus_counts = []\\n    for p in all_pairs:\\n    \\n\\n... [截断: 输出过长，省略 1227 字符] ...\\n\\n, null_dirs)\\n        except Exception as e:\\n            print(f\\\"  MMCT failed: {e}\\\")\\n            traceback.print_exc()\\n            mmct_result = {\\\"mode\\\": \\\"weighted_pair_forward\\\", \\\"error\\\": str(e)}\\n    else:\\n        print(\\\"No null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\")\\n        mmct_result = {\\n            \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n            \\\"detection_rate\\\": round(k4 / total, 4) if total > 0 else 0.0,\\n            \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\",\\n        }\\n\\n    # 4. Build output\\n    output = {\\n        \\\"exp_dir\\\": exp_dir,\\n        \\\"n_generations\\\": n_gens,\\n        \\\"drift_pct\\\": drift,\\n        \\\"lead_lag\\\": lead_lag,\\n        \\\"mmct\\\": mmct_result,\\n        \\\"consensus_detail\\\": consensus_counts,\\n        \\\"pair_details\\\": _clean(all_pairs),\\n    }\\n\\n    if output_path is None:\\n        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {output_path}\\\")\\n\\n    # Print summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"SUMMARY: {exp_dir}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Generations: {n_gens}\\\")\\n    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n    for k, v in drift.items():\\n        if v is not None:\\n            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n    for method, counts in lead_lag.items():\\n        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n\\n    return output\\n\\n\\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n    pairs_out = []\\n    for p in all_pairs:\\n        r = p[\\\"results\\\"]\\n        pair_entry = {\\n            \\\"canary\\\": p[\\\"canary\\\"],\\n            \\\"downstream\\\": p[\\\"downstream\\\"],\\n            \\\"forward\\\": {},\\n            \\\"reverse\\\": {},\\n        }\\n        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n            if method in r:\\n                pair_entry[\\\"forward\\\"][method] = r[method]\\n        if \\\"perm_granger_fwd\\\" in r:\\n            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n        if \\\"perm_granger_rev\\\" in r:\\n            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n        pairs_out.append(pair_entry)\\n\\n    output = {\\n        \\\"n_generations\\\": n_gens,\\n        \\\"data_dir\\\": exp_dir,\\n        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n        \\\"pairs\\\": pairs_out,\\n    }\\n    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(_clean(output), f, indent=2)\\n\\n\\ndef _clean(obj):\\n    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n        return float(obj)\\n    if isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    if isinstance(obj, dict):\\n        return {k: _clean(v) for k, v in obj.items()}\\n    if isinstance(obj, list):\\n        return [_clean(v) for v in obj]\\n    if isinstance(obj, np.ndarray):\\n        return [_clean(v) for v in obj.tolist()]\\n    return obj\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n    parser.add_argument(\\\"--output\\\", default=None,\\n                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n    args = parser.parse_args()\\n    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "9460b908-e246-4c9e-9e02-6b0f69e5d5fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ── Consensus counting ──\\\\n\\\\ndef compute_consensus(pair_result):\\\\n    r = pair_result[\\\\\\\"results\\\\\\\"]\\\\n    votes = 0\\\\n    methods_sig = []\\\\n    if r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False) and (r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0:\\\\n        votes += 1; methods_sig.append(\\\\\\\"naive\\\\\\\")\\\\n    if (r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False))\\\\n            and (r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0):\\\\n        votes += 1; methods_sig.append(\\\\\\\"diff\\\\\\\")\\\\n    if r[\\\\\\\"threshold_onset\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False):\\\\n        votes += 1; methods_sig.append(\\\\\\\"thresh\\\\\\\")\\\\n    if r[\\\\\\\"perm_granger_fwd\\\\\\\"].get(\\\\\\\"significant_fdr\\\\\\\", r[\\\\\\\"perm_granger_fwd\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False)):\\\\n        votes += 1; methods_sig.append(\\\\\\\"pg_fwd\\\\\\\")\\\\n    if r[\\\\\\\"ty_granger\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False):\\\\n        votes += 1; methods_sig.append(\\\\\\\"ty\\\\\\\")\\\\n    return votes, methods_sig\\\\n\\\\n\\\\n# ── MMCT (full, if null dirs available) ──\\\\n\\\\ndef run_mmct_full(exp_dir, null_dirs):\\\\n    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\n    from mmct.null_distribution import NullDistribution\\\\n    from mmct.consensus_test import MMCT\\\\n    from mmct.methods import METRIC_PAIRS as MMCT_PAIRS\\\\n\\\\n    null_dist = NullDistribution(null_dirs, n_bootstrap=10000, seed=42)\\\\n    mmct = MMCT(null_dist, weighted=True, bidirectional=False, alpha=0.05)\\\\n\\\\n    n_sig = 0\\\\n    n_total = 0\\\\n    pair_results = []\\\\n    for canary, downstream in MMCT_PAIRS:\\\\n        try:\\\\n            result = mmct.test_from_precomputed(exp_dir, canary, downstream)\\\\n            r = result.to_dict()\\\\n            pair_results.append(r)\\\\n            n_total += 1\\\\n            if r[\\\\\\\"significant\\\\\\\"]:\\\\n                n_sig += 1\\\\n        except Exception:\\\\n            n_total += 1\\\\n    detection_rate = n_sig / n_total if n_total > 0 else 0.0\\\\n    return {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n        \\\\\\\"detection_rate\\\\\\\": round(detection_rate, 4),\\\\n        \\\\\\\"sig\\\\\\\": n_sig,\\\\n        \\\\\\\"total\\\\\\\": n_total,\\\\n        \\\\\\\"pair_results\\\\\\\": pair_results,\\\\n    }\\\\n\\\\n\\\\n# ── Main ──\\\\n\\\\ndef analyze(exp_dir, output_path=None, null_dirs=None):\\\\n    print(f\\\\\\\"Loading data from {exp_dir}\\\\\\\")\\\\n    series, n_gens = load_series(exp_dir)\\\\n    print(f\\\\\\\"  {n_gens} generations loaded\\\\\\\")\\\\n\\\\n    # 1. Drift\\\\n    print(\\\\\\\"Computing drift...\\\\\\\")\\\\n    drift = compute_drift(series, n_gens)\\\\n\\\\n    # 2. Lead-lag (5 methods, 8 pairs)\\\\n    print(\\\\\\\"Running 5-method lead-lag analysis...\\\\\\\")\\\\n    all_pairs = []\\\\n    for cn in CANARIES:\\\\n        for dn in DOWNSTREAMS:\\\\n            try:\\\\n                r = run_pair(series, cn, dn)\\\\n                all_pairs.append({\\\\\\\"canary\\\\\\\": cn, \\\\\\\"downstream\\\\\\\": dn, \\\\\\\"results\\\\\\\": r})\\\\n            except Exception as e:\\\\n                print(f\\\\\\\"  WARN: {cn}->{dn} failed: {e}\\\\\\\")\\\\n                all_pairs.append({\\\\\\\"canary\\\\\\\": cn, \\\\\\\"downstream\\\\\\\": dn,\\\\n                                  \\\\\\\"results\\\\\\\": {}, \\\\\\\"error\\\\\\\": str(e)})\\\\n\\\\n    apply_fdr_correction(all_pairs)\\\\n\\\\n    # Count summary\\\\n    naive_fwd = sum(1 for p in all_pairs\\\\n                    if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"naive_xcorr\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False)\\\\n                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"naive_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0)\\\\n    diff_fwd = sum(1 for p in all_pairs\\\\n                    if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"significant_fdr\\\\\\\",\\\\n                        p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False))\\\\n                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) > 0)\\\\n    thresh_fwd = sum(1 for p in all_pairs if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"threshold_onset\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False))\\\\n    pg_fwd = sum(1 for p in all_pairs if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"perm_granger_fwd\\\\\\\", {}).get(\\\\\\\"significant_fdr\\\\\\\",\\\\n                  p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"perm_granger_fwd\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False)))\\\\n    pg_rev = sum(1 for p in all_pairs if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"perm_granger_rev\\\\\\\", {}).get(\\\\\\\"significant_fdr\\\\\\\",\\\\n                  p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"perm_granger_rev\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False)))\\\\n    ty_sig = sum(1 for p in all_pairs if p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"ty_granger\\\\\\\", {}).get(\\\\\\\"significant\\\\\\\", False))\\\\n\\\\n    consensus_counts = []\\\\n    for p in all_pairs:\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 1227 字符] ...\\\\n\\\\n, null_dirs)\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  MMCT failed: {e}\\\\\\\")\\\\n            traceback.print_exc()\\\\n            mmct_result = {\\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\", \\\\\\\"error\\\\\\\": str(e)}\\\\n    else:\\\\n        print(\\\\\\\"No null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\\\\\")\\\\n        mmct_result = {\\\\n            \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n            \\\\\\\"detection_rate\\\\\\\": round(k4 / total, 4) if total > 0 else 0.0,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"simple_consensus_k4 (no null distribution)\\\\\\\",\\\\n        }\\\\n\\\\n    # 4. Build output\\\\n    output = {\\\\n        \\\\\\\"exp_dir\\\\\\\": exp_dir,\\\\n        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n        \\\\\\\"drift_pct\\\\\\\": drift,\\\\n        \\\\\\\"lead_lag\\\\\\\": lead_lag,\\\\n        \\\\\\\"mmct\\\\\\\": mmct_result,\\\\n        \\\\\\\"consensus_detail\\\\\\\": consensus_counts,\\\\n        \\\\\\\"pair_details\\\\\\\": _clean(all_pairs),\\\\n    }\\\\n\\\\n    if output_path is None:\\\\n        output_path = os.path.join(exp_dir, \\\\\\\"analysis_results.json\\\\\\\")\\\\n    os.makedirs(os.path.dirname(output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {output_path}\\\\\\\")\\\\n\\\\n    # Print summary\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"SUMMARY: {exp_dir}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Generations: {n_gens}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nDrift (gen0->gen{n_gens-1}):\\\\\\\")\\\\n    for k, v in drift.items():\\\\n        if v is not None:\\\\n            print(f\\\\\\\"  {k:20s}: {v:+.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nLead-lag (forward significant / total):\\\\\\\")\\\\n    for method, counts in lead_lag.items():\\\\n        key = \\\\\\\"forward\\\\\\\" if \\\\\\\"forward\\\\\\\" in counts else \\\\\\\"sig\\\\\\\"\\\\n        print(f\\\\\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\\\\\"\\\\n          f\\\\\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\\\\\")\\\\n\\\\n    return output\\\\n\\\\n\\\\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Save lead-lag results in the format expected by MMCT module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pairs_out = []\\\\n    for p in all_pairs:\\\\n        r = p[\\\\\\\"results\\\\\\\"]\\\\n        pair_entry = {\\\\n            \\\\\\\"canary\\\\\\\": p[\\\\\\\"canary\\\\\\\"],\\\\n            \\\\\\\"downstream\\\\\\\": p[\\\\\\\"downstream\\\\\\\"],\\\\n            \\\\\\\"forward\\\\\\\": {},\\\\n            \\\\\\\"reverse\\\\\\\": {},\\\\n        }\\\\n        for method in [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]:\\\\n            if method in r:\\\\n                pair_entry[\\\\\\\"forward\\\\\\\"][method] = r[method]\\\\n        if \\\\\\\"perm_granger_fwd\\\\\\\" in r:\\\\n            pair_entry[\\\\\\\"forward\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_fwd\\\\\\\"]\\\\n        if \\\\\\\"perm_granger_rev\\\\\\\" in r:\\\\n            pair_entry[\\\\\\\"reverse\\\\\\\"][\\\\\\\"perm_granger\\\\\\\"] = r[\\\\\\\"perm_granger_rev\\\\\\\"]\\\\n        pairs_out.append(pair_entry)\\\\n\\\\n    output = {\\\\n        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n        \\\\\\\"data_dir\\\\\\\": exp_dir,\\\\n        \\\\\\\"methods\\\\\\\": [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n                     \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"],\\\\n        \\\\\\\"pairs\\\\\\\": pairs_out,\\\\n    }\\\\n    path = os.path.join(analysis_dir, \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(_clean(output), f, indent=2)\\\\n\\\\n\\\\ndef _clean(obj):\\\\n    if isinstance(obj, (np.floating, np.float64, np.float32)):\\\\n        return float(obj)\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    if isinstance(obj, dict):\\\\n        return {k: _clean(v) for k, v in obj.items()}\\\\n    if isinstance(obj, list):\\\\n        return [_clean(v) for v in obj]\\\\n    if isinstance(obj, np.ndarray):\\\\n        return [_clean(v) for v in obj.tolist()]\\\\n    return obj\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Batch lead-lag analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exp_dir\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Experiment results directory with all_metrics.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--null_dirs\\\\\\\", nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Alpha=0.00 directories for full MMCT null distribution\\\\\\\")\\\\n    args = parser.parse_args()\\\\n    analyze(args.exp_dir, args.output, args.null_dirs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# ── Consensus counting ──\\n\\ndef compute_consensus(pair_result):\\n    r = pair_result[\\\"results\\\"]\\n    votes = 0\\n    methods_sig = []\\n    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:\\n        votes += 1; methods_sig.append(\\\"naive\\\")\\n    if (r[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", r[\\\"diff_xcorr\\\"].get(\\\"significant\\\", False))\\n            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):\\n        votes += 1; methods_sig.append(\\\"diff\\\")\\n    if r[\\\"threshold_onset\\\"].get(\\\"significant\\\", False):\\n        votes += 1; methods_sig.append(\\\"thresh\\\")\\n    if r[\\\"perm_granger_fwd\\\"].get(\\\"significant_fdr\\\", r[\\\"perm_granger_fwd\\\"].get(\\\"significant\\\", False)):\\n        votes += 1; methods_sig.append(\\\"pg_fwd\\\")\\n    if r[\\\"ty_granger\\\"].get(\\\"significant\\\", False):\\n        votes += 1; methods_sig.append(\\\"ty\\\")\\n    return votes, methods_sig\\n\\n\\n# ── MMCT (full, if null dirs available) ──\\n\\ndef run_mmct_full(exp_dir, null_dirs):\\n    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\n    from mmct.null_distribution import NullDistribution\\n    from mmct.consensus_test import MMCT\\n    from mmct.methods import METRIC_PAIRS as MMCT_PAIRS\\n\\n    null_dist = NullDistribution(null_dirs, n_bootstrap=10000, seed=42)\\n    mmct = MMCT(null_dist, weighted=True, bidirectional=False, alpha=0.05)\\n\\n    n_sig = 0\\n    n_total = 0\\n    pair_results = []\\n    for canary, downstream in MMCT_PAIRS:\\n        try:\\n            result = mmct.test_from_precomputed(exp_dir, canary, downstream)\\n            r = result.to_dict()\\n            pair_results.append(r)\\n            n_total += 1\\n            if r[\\\"significant\\\"]:\\n                n_sig += 1\\n        except Exception:\\n            n_total += 1\\n    detection_rate = n_sig / n_total if n_total > 0 else 0.0\\n    return {\\n        \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n        \\\"detection_rate\\\": round(detection_rate, 4),\\n        \\\"sig\\\": n_sig,\\n        \\\"total\\\": n_total,\\n        \\\"pair_results\\\": pair_results,\\n    }\\n\\n\\n# ── Main ──\\n\\ndef analyze(exp_dir, output_path=None, null_dirs=None):\\n    print(f\\\"Loading data from {exp_dir}\\\")\\n    series, n_gens = load_series(exp_dir)\\n    print(f\\\"  {n_gens} generations loaded\\\")\\n\\n    # 1. Drift\\n    print(\\\"Computing drift...\\\")\\n    drift = compute_drift(series, n_gens)\\n\\n    # 2. Lead-lag (5 methods, 8 pairs)\\n    print(\\\"Running 5-method lead-lag analysis...\\\")\\n    all_pairs = []\\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            try:\\n                r = run_pair(series, cn, dn)\\n                all_pairs.append({\\\"canary\\\": cn, \\\"downstream\\\": dn, \\\"results\\\": r})\\n            except Exception as e:\\n                print(f\\\"  WARN: {cn}->{dn} failed: {e}\\\")\\n                all_pairs.append({\\\"canary\\\": cn, \\\"downstream\\\": dn,\\n                                  \\\"results\\\": {}, \\\"error\\\": str(e)})\\n\\n    apply_fdr_correction(all_pairs)\\n\\n    # Count summary\\n    naive_fwd = sum(1 for p in all_pairs\\n                    if p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"significant\\\", False)\\n                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n    diff_fwd = sum(1 for p in all_pairs\\n                    if p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"significant_fdr\\\",\\n                        p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"significant\\\", False))\\n                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)\\n    thresh_fwd = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"threshold_onset\\\", {}).get(\\\"significant\\\", False))\\n    pg_fwd = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"perm_granger_fwd\\\", {}).get(\\\"significant_fdr\\\",\\n                  p[\\\"results\\\"].get(\\\"perm_granger_fwd\\\", {}).get(\\\"significant\\\", False)))\\n    pg_rev = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"perm_granger_rev\\\", {}).get(\\\"significant_fdr\\\",\\n                  p[\\\"results\\\"].get(\\\"perm_granger_rev\\\", {}).get(\\\"significant\\\", False)))\\n    ty_sig = sum(1 for p in all_pairs if p[\\\"results\\\"].get(\\\"ty_granger\\\", {}).get(\\\"significant\\\", False))\\n\\n    consensus_counts = []\\n    for p in all_pairs:\\n    \\n\\n... [截断: 输出过长，省略 1227 字符] ...\\n\\n, null_dirs)\\n        except Exception as e:\\n            print(f\\\"  MMCT failed: {e}\\\")\\n            traceback.print_exc()\\n            mmct_result = {\\\"mode\\\": \\\"weighted_pair_forward\\\", \\\"error\\\": str(e)}\\n    else:\\n        print(\\\"No null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\")\\n        mmct_result = {\\n            \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n            \\\"detection_rate\\\": round(k4 / total, 4) if total > 0 else 0.0,\\n            \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\",\\n        }\\n\\n    # 4. Build output\\n    output = {\\n        \\\"exp_dir\\\": exp_dir,\\n        \\\"n_generations\\\": n_gens,\\n        \\\"drift_pct\\\": drift,\\n        \\\"lead_lag\\\": lead_lag,\\n        \\\"mmct\\\": mmct_result,\\n        \\\"consensus_detail\\\": consensus_counts,\\n        \\\"pair_details\\\": _clean(all_pairs),\\n    }\\n\\n    if output_path is None:\\n        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {output_path}\\\")\\n\\n    # Print summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"SUMMARY: {exp_dir}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Generations: {n_gens}\\\")\\n    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n    for k, v in drift.items():\\n        if v is not None:\\n            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n    for method, counts in lead_lag.items():\\n        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n\\n    return output\\n\\n\\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n    pairs_out = []\\n    for p in all_pairs:\\n        r = p[\\\"results\\\"]\\n        pair_entry = {\\n            \\\"canary\\\": p[\\\"canary\\\"],\\n            \\\"downstream\\\": p[\\\"downstream\\\"],\\n            \\\"forward\\\": {},\\n            \\\"reverse\\\": {},\\n        }\\n        for method in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"ty_granger\\\"]:\\n            if method in r:\\n                pair_entry[\\\"forward\\\"][method] = r[method]\\n        if \\\"perm_granger_fwd\\\" in r:\\n            pair_entry[\\\"forward\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_fwd\\\"]\\n        if \\\"perm_granger_rev\\\" in r:\\n            pair_entry[\\\"reverse\\\"][\\\"perm_granger\\\"] = r[\\\"perm_granger_rev\\\"]\\n        pairs_out.append(pair_entry)\\n\\n    output = {\\n        \\\"n_generations\\\": n_gens,\\n        \\\"data_dir\\\": exp_dir,\\n        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                     \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n        \\\"pairs\\\": pairs_out,\\n    }\\n    path = os.path.join(analysis_dir, \\\"5method_leadlag.json\\\")\\n    with open(path, \\\"w\\\") as f:\\n        json.dump(_clean(output), f, indent=2)\\n\\n\\ndef _clean(obj):\\n    if isinstance(obj, (np.floating, np.float64, np.float32)):\\n        return float(obj)\\n    if isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    if isinstance(obj, dict):\\n        return {k: _clean(v) for k, v in obj.items()}\\n    if isinstance(obj, list):\\n        return [_clean(v) for v in obj]\\n    if isinstance(obj, np.ndarray):\\n        return [_clean(v) for v in obj.tolist()]\\n    return obj\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"Batch lead-lag analysis\\\")\\n    parser.add_argument(\\\"--exp_dir\\\", required=True,\\n                        help=\\\"Experiment results directory with all_metrics.json\\\")\\n    parser.add_argument(\\\"--output\\\", default=None,\\n                        help=\\\"Output JSON path (default: {exp_dir}/analysis_results.json)\\\")\\n    parser.add_argument(\\\"--null_dirs\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Alpha=0.00 directories for full MMCT null distribution\\\")\\n    args = parser.parse_args()\\n    analyze(args.exp_dir, args.output, args.null_dirs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me identify all the locations that need fixing:
+
+**westd-17855: batch_analysis.py**
+
+1. Line 376: `if r["naive_xcorr"].get("significant", False) and (r["naive_xcorr"].get("peak_lag") or 0) > 0:`
+   → Change `> 0` to `< 0`
+
+2. Lines 378-379: `if (r["diff_xcorr"].get("significant_fdr", r["diff_xcorr"].get("significant", False)) and (r["diff_xcorr"].get("peak_lag") or 0) > 0):`
+   → Change `> 0` to `< 0`
+
+3. Lines 452-453: `if p["results"].get("naive_xcorr", {}).get("significant", False) and (p["results"].get("naive_xcorr", {}).get("peak_lag") or 0) > 0)`
+   → Change `> 0` to `< 0`
+
+4. Lines 456-457: `if p["results"].get("diff_xcorr", {}).get("significant_fdr", ...) and (p["results"].get("diff_xcorr", {}).get("peak_lag") or 0) > 0)`
+   → Change `> 0` to `< 0`
+
+**westd-19** appears to be cut off, so I need to see what other issues are in that ticket.
+
+Looking at the next chunk, I see there's another file in westd-19828 called run_5method_analysis.py with a similar lag direction check on line 436 that needs the same `> 0` to `< 0` fix. The method_ablation.py file doesn't need changes since it only sets the peak_lag value without any directional checks. Now I'm ready to create backups and apply all these fixes across the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "c33b2050-fdad-44f8-8f38-1ec67007d95d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NwqPbq9t155H9omh9sn56",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3802,
+      "cache_read_input_tokens": 44837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+全部定位完成。汇总需要修改的位置：
+
+**westd-17855: `batch_analysis.py`** — 4 处 `> 0` 方向检查：
+- L376: `compute_consensus()` naive_xcorr
+- L379: `compute_consensus()` diff_xcorr
+- L453: `analyze()` naive_fwd 计数
+- L457: `analyze()` diff_fwd 计数
+
+**westd-19828: `run_5method_analysis.py`** — 1 处：
+- L436: consensus 部分 naive_xcorr
+
+**westd-19828: `method_ablation.py`** — 无方向检查，只有 `peak_lag` 赋值，不需要改。
+
+开始执行备份和修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "71c9a9a2-d90a-4746-a5d5-fce652cdc16c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NwqPbq9t155H9omh9sn56",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3802,
+      "cache_read_input_tokens": 44837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QcmYopmWE3LenxNMxtesip`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cp /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py.bak_m035",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "c2c1d0ec-33a4-4529-ba3a-3c394a43f210",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NwqPbq9t155H9omh9sn56",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3802,
+      "cache_read_input_tokens": 44837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T02:44:35.101Z_
+
+<details><summary>↩ Tool result · `toolu_01QcmYopmWE3LenxNMxtesip`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "0ae45d47-0631-4b23-b3ce-088421d7390d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KZbwVeCWvrxyS5iNdr5Z8a`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cp /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py.bak_m035",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "98f555f3-fc76-4fe7-b056-967345a8a862",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NwqPbq9t155H9omh9sn56",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3802,
+      "cache_read_input_tokens": 44837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3802
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T02:44:35.979Z_
+
+<details><summary>↩ Tool result · `toolu_01KZbwVeCWvrxyS5iNdr5Z8a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "d5996862-843a-4c81-a6a0-ca68262a0270",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+备份完成。执行修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "485d4919-3b8b-4042-b434-b33be0113194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Df8qJPWgBnTt3iwSQXqZ5d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 48639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Emm4TvYo997m6xgCYBTNxd`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport re\n\nwith open('batch_analysis.py', 'r') as f:\n    content = f.read()\n\n# Fix 1: compute_consensus - naive_xcorr direction (line 376)\nold1 = '''if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:'''\nnew1 = '''if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:'''\nassert old1 in content, 'Fix 1 not found'\ncontent = content.replace(old1, new1, 1)\n\n# Fix 2: compute_consensus - diff_xcorr direction (line 379)\nold2 = '''and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):'''\nnew2 = '''and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):'''\nassert old2 in content, 'Fix 2 not found'\ncontent = content.replace(old2, new2, 1)\n\n# Fix 3: analyze() naive_fwd count (line 453)\nold3 = '''and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)'''\nnew3 = '''and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)'''\nassert old3 in content, 'Fix 3 not found'\ncontent = content.replace(old3, new3, 1)\n\n# Fix 4: analyze() diff_fwd count (line 457)\nold4 = '''and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)'''\nnew4 = '''and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)'''\nassert old4 in content, 'Fix 4 not found'\ncontent = content.replace(old4, new4, 1)\n\nwith open('batch_analysis.py', 'w') as f:\n    f.write(content)\n\nprint('All 4 fixes applied successfully')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "922c25e6-bd38-4e12-b476-3d75ea4cb2cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Df8qJPWgBnTt3iwSQXqZ5d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 48639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T02:44:44.996Z_
+
+<details><summary>↩ Tool result · `toolu_01Emm4TvYo997m6xgCYBTNxd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'batch_analysis.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# Fix 1: compute_consensus - naive_xcorr direction (line 376)\\\\nold1 = \\\\'\\\\'\\\\'if r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"significant\\\\\\\\\\\", False) and (r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0:\\\\'\\\\'\\\\'\\\\nnew1 = \\\\'\\\\'\\\\'if r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"significant\\\\\\\\\\\", False) and (r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0:\\\\'\\\\'\\\\'\\\\nassert old1 in content, \\\\'Fix 1 not found\\\\'\\\\ncontent = content.replace(old1, new1, 1)\\\\n\\\\n# Fix 2: compute_consensus - diff_xcorr direction (line 379)\\\\nold2 = \\\\'\\\\'\\\\'and (r[\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0):\\\\'\\\\'\\\\'\\\\nnew2 = \\\\'\\\\'\\\\'and (r[\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0):\\\\'\\\\'\\\\'\\\\nassert old2 in content, \\\\'Fix 2 not found\\\\'\\\\ncontent = content.replace(old2, new2, 1)\\\\n\\\\n# Fix 3: analyze() naive_fwd count (line 453)\\\\nold3 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0)\\\\'\\\\'\\\\'\\\\nnew3 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0)\\\\'\\\\'\\\\'\\\\nassert old3 in content, \\\\'Fix 3 not found\\\\'\\\\ncontent = content.replace(old3, new3, 1)\\\\n\\\\n# Fix 4: analyze() diff_fwd count (line 457)\\\\nold4 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0)\\\\'\\\\'\\\\'\\\\nnew4 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0)\\\\'\\\\'\\\\'\\\\nassert old4 in content, \\\\'Fix 4 not found\\\\'\\\\ncontent = content.replace(old4, new4, 1)\\\\n\\\\nwith open(\\\\'batch_analysis.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'All 4 fixes applied successfully\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "8d9d5034-6f59-45b7-b9dc-348e6ca507dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'batch_analysis.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# Fix 1: compute_consensus - naive_xcorr direction (line 376)\\\\\\\\nold1 = \\\\\\\\'\\\\\\\\'\\\\\\\\'if r[\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"significant\\\\\\\\\\\\\\\\\\\\\\\", False) and (r[\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) > 0:\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew1 = \\\\\\\\'\\\\\\\\'\\\\\\\\'if r[\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"significant\\\\\\\\\\\\\\\\\\\\\\\", False) and (r[\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) < 0:\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nassert old1 in content, \\\\\\\\'Fix 1 not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old1, new1, 1)\\\\\\\\n\\\\\\\\n# Fix 2: compute_consensus - diff_xcorr direction (line 379)\\\\\\\\nold2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (r[\\\\\\\\\\\\\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) > 0):\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew2 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (r[\\\\\\\\\\\\\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) < 0):\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nassert old2 in content, \\\\\\\\'Fix 2 not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old2, new2, 1)\\\\\\\\n\\\\\\\\n# Fix 3: analyze() naive_fwd count (line 453)\\\\\\\\nold3 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (p[\\\\\\\\\\\\\\\\\\\\\\\"results\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) > 0)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew3 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (p[\\\\\\\\\\\\\\\\\\\\\\\"results\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) < 0)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nassert old3 in content, \\\\\\\\'Fix 3 not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old3, new3, 1)\\\\\\\\n\\\\\\\\n# Fix 4: analyze() diff_fwd count (line 457)\\\\\\\\nold4 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (p[\\\\\\\\\\\\\\\\\\\\\\\"results\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) > 0)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew4 = \\\\\\\\'\\\\\\\\'\\\\\\\\'and (p[\\\\\\\\\\\\\\\\\\\\\\\"results\\\\\\\\\\\\\\\\\\\\\\\"].get(\\\\\\\\\\\\\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"peak_lag\\\\\\\\\\\\\\\\\\\\\\\") or 0) < 0)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nassert old4 in content, \\\\\\\\'Fix 4 not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old4, new4, 1)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'batch_analysis.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'All 4 fixes applied successfully\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'batch_analysis.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# Fix 1: compute_consensus - naive_xcorr direction (line 376)\\\\nold1 = \\\\'\\\\'\\\\'if r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"significant\\\\\\\\\\\", False) and (r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0:\\\\'\\\\'\\\\'\\\\nnew1 = \\\\'\\\\'\\\\'if r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"significant\\\\\\\\\\\", False) and (r[\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0:\\\\'\\\\'\\\\'\\\\nassert old1 in content, \\\\'Fix 1 not found\\\\'\\\\ncontent = content.replace(old1, new1, 1)\\\\n\\\\n# Fix 2: compute_consensus - diff_xcorr direction (line 379)\\\\nold2 = \\\\'\\\\'\\\\'and (r[\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0):\\\\'\\\\'\\\\'\\\\nnew2 = \\\\'\\\\'\\\\'and (r[\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\"].get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0):\\\\'\\\\'\\\\'\\\\nassert old2 in content, \\\\'Fix 2 not found\\\\'\\\\ncontent = content.replace(old2, new2, 1)\\\\n\\\\n# Fix 3: analyze() naive_fwd count (line 453)\\\\nold3 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0)\\\\'\\\\'\\\\'\\\\nnew3 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"naive_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0)\\\\'\\\\'\\\\'\\\\nassert old3 in content, \\\\'Fix 3 not found\\\\'\\\\ncontent = content.replace(old3, new3, 1)\\\\n\\\\n# Fix 4: analyze() diff_fwd count (line 457)\\\\nold4 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) > 0)\\\\'\\\\'\\\\'\\\\nnew4 = \\\\'\\\\'\\\\'and (p[\\\\\\\\\\\"results\\\\\\\\\\\"].get(\\\\\\\\\\\"diff_xcorr\\\\\\\\\\\", {}).get(\\\\\\\\\\\"peak_lag\\\\\\\\\\\") or 0) < 0)\\\\'\\\\'\\\\'\\\\nassert old4 in content, \\\\'Fix 4 not found\\\\'\\\\ncontent = content.replace(old4, new4, 1)\\\\n\\\\nwith open(\\\\'batch_analysis.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'All 4 fixes applied successfully\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01X6tupC9A9oFhhhwBZTzXFy`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nwith open('run_5method_analysis.py', 'r') as f:\n    content = f.read()\n\n# Fix: consensus - naive_xcorr direction (line 436)\nold = 'if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] > 0:'\nnew = 'if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:'\nassert old in content, 'Fix not found'\ncontent = content.replace(old, new, 1)\n\nwith open('run_5method_analysis.py', 'w') as f:\n    f.write(content)\n\nprint('Fix applied successfully')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "1fe7540d-9e3c-4180-b273-0daae7bd6b39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Df8qJPWgBnTt3iwSQXqZ5d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 48639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T02:44:47.345Z_
+
+<details><summary>↩ Tool result · `toolu_01X6tupC9A9oFhhhwBZTzXFy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fix applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "7fee1447-5f43-4222-aa2a-347ee9019281",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fix applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+19828 fix worked. 17855 failed because `python3` is not found — it's probably a conda environment. Let me check the python path on 17855.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "647407ec-4eaf-4262-ad75-78ff2177f5a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhCFPuoLKHD2upb6kTB5Th",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 49921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+19828 修改成功。17855 的 python3 不在 PATH 中，检查 python 路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "5041d80a-d363-4cea-aae7-f39fda57427b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhCFPuoLKHD2upb6kTB5Th",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 49921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Aigj4cDvLRkS9bMfhtnQg`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "97e364d7-dfae-466b-bc66-49c606b700c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhCFPuoLKHD2upb6kTB5Th",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 49921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T02:44:52.667Z_
+
+<details><summary>↩ Tool result · `toolu_017Aigj4cDvLRkS9bMfhtnQg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "8a6aed59-b899-4f16-9f7d-161ee5099b77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GLTc1cMKBG4XGv999bVdbM`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nwith open('batch_analysis.py', 'r') as f:\n    content = f.read()\n\nold1 = 'if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0:'\nnew1 = 'if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:'\nassert old1 in content, 'Fix 1 not found'\ncontent = content.replace(old1, new1, 1)\n\nold2 = 'and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) > 0):'\nnew2 = 'and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):'\nassert old2 in content, 'Fix 2 not found'\ncontent = content.replace(old2, new2, 1)\n\nold3 = 'and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)'\nnew3 = 'and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)'\nassert old3 in content, 'Fix 3 not found'\ncontent = content.replace(old3, new3, 1)\n\nold4 = 'and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) > 0)'\nnew4 = 'and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)'\nassert old4 in content, 'Fix 4 not found'\ncontent = content.replace(old4, new4, 1)\n\nwith open('batch_analysis.py', 'w') as f:\n    f.write(content)\n\nprint('All 4 fixes applied successfully')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "b0dbd6d7-c1b2-43a3-8041-d84994f0fb7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119pZU4muZWiqRPztpLsVaF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 52338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 286
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T02:45:00.573Z_
+
+<details><summary>↩ Tool result · `toolu_01GLTc1cMKBG4XGv999bVdbM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All 4 fixes applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "2e25e52f-6b20-4587-82f7-2ec2ebbe40cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All 4 fixes applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All 4 fixes applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+验证修改结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "a7fe14a8-ad11-4f13-bae9-305d02313445",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6Gh4r8TppwQ7weWx9BjoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 52624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PedhKRtk6BRjE7fKWfk3oK`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "be9e7c71-1bf2-4ccc-968e-afbaddecbb3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6Gh4r8TppwQ7weWx9BjoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 52624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T02:45:04.261Z_
+
+<details><summary>↩ Tool result · `toolu_01PedhKRtk6BRjE7fKWfk3oK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "09c8f3ed-cc31-42b3-a333-e808089dcee1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"106:        return {\\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n123:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n135:        return {\\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n154:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n376:    if r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False) and (r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0:\\\\n379:            and (r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0):\\\\n453:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"naive_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0)\\\\n457:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HGrWqGVDD2gPojDHEbi5v9`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "abef511d-7d38-4b49-9c80-66e618284455",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6Gh4r8TppwQ7weWx9BjoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 52624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-20T02:45:05.198Z_
+
+<details><summary>↩ Tool result · `toolu_01HGrWqGVDD2gPojDHEbi5v9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "5a8cf1b6-58bd-427a-8598-f5367d668ec9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"104:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n133:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\\\n436:        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] < 0:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KsZ9d3DdDg24vVEDmsgZPB`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"d111\\|direction\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "468bbae2-a9bb-44dc-9edd-f5ca4238ee95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6Gh4r8TppwQ7weWx9BjoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 52624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-20T02:45:05.735Z_
+
+<details><summary>↩ Tool result · `toolu_01KsZ9d3DdDg24vVEDmsgZPB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "9aaea57a-65dd-4303-9521-68137ae8d6a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JKjx2rgEjmruhRLGyZnAcD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"d111\\|direction\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "34a02e4a-203f-427f-b705-dc5bc1b1e097",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6Gh4r8TppwQ7weWx9BjoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 52624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-20T02:45:06.316Z_
+
+<details><summary>↩ Tool result · `toolu_01JKjx2rgEjmruhRLGyZnAcD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "03f130d4-d8c8-41cd-baaa-7f7391899447",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+验证完成，所有 `peak_lag > 0` 方向检查已改为 `< 0`，无遗漏。确认没有残留的 `> 0` 方向检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "f744d8d1-7534-471a-b0bf-6fcd36dd71ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WkPy7aHeT1bbXW7KxF545",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1524,
+      "cache_read_input_tokens": 53386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1524
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JKpcPRknDEqnZGHhmwQL44`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag.*> 0\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "2af2a4b9-bf54-4ffa-85d5-55ec2e576e1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WkPy7aHeT1bbXW7KxF545",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1524,
+      "cache_read_input_tokens": 53386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1524
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T02:45:11.235Z_
+
+<details><summary>↩ Tool result · `toolu_01JKpcPRknDEqnZGHhmwQL44`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "203f04d8-c46c-4245-bb3f-c958661db97d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HaQqFvAUUboDgggQaH7pKG`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag.*> 0\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "1d9b66a1-910c-4049-a673-1e7e79663691",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WkPy7aHeT1bbXW7KxF545",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1524,
+      "cache_read_input_tokens": 53386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1524
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T02:45:11.893Z_
+
+<details><summary>↩ Tool result · `toolu_01HaQqFvAUUboDgggQaH7pKG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "d09e3bc8-4a39-41e3-b324-149a13a78e53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `>` in the grep pattern is being blocked by the shell metacharacter filter. Let me use a regex pattern without `>`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "7636243b-3a79-42a5-8a73-0a93b5b1ef84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SExg2rDiWpmxPd6piUD8YN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 556,
+      "cache_read_input_tokens": 54910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015a9TaYN8QAK2TN6nbZ7t5p`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "34c677aa-ce18-4dc6-a74a-9811e17b9430",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SExg2rDiWpmxPd6piUD8YN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 556,
+      "cache_read_input_tokens": 54910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fni7sRGc9GtUaYrwddvxJG`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "82a820fa-063b-468f-a8bc-f33618fe60e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SExg2rDiWpmxPd6piUD8YN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 556,
+      "cache_read_input_tokens": 54910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T02:45:17.211Z_
+
+<details><summary>↩ Tool result · `toolu_015a9TaYN8QAK2TN6nbZ7t5p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "bcf7c05c-5592-433b-8a0a-eeadea5ecdb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"106:        return {\\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n123:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n135:        return {\\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"peak_lag\\\\\\\": None, \\\\\\\"r\\\\\\\": None,\\\\n154:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n376:    if r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"significant\\\\\\\", False) and (r[\\\\\\\"naive_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0:\\\\n379:            and (r[\\\\\\\"diff_xcorr\\\\\\\"].get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0):\\\\n453:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"naive_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0)\\\\n457:                    and (p[\\\\\\\"results\\\\\\\"].get(\\\\\\\"diff_xcorr\\\\\\\", {}).get(\\\\\\\"peak_lag\\\\\\\") or 0) < 0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"106:        return {\\\"method\\\": \\\"naive_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n123:        \\\"peak_lag\\\": int(best_lag),\\n135:        return {\\\"method\\\": \\\"diff_xcorr\\\", \\\"peak_lag\\\": None, \\\"r\\\": None,\\n154:        \\\"peak_lag\\\": int(best_lag),\\n376:    if r[\\\"naive_xcorr\\\"].get(\\\"significant\\\", False) and (r[\\\"naive_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0:\\n379:            and (r[\\\"diff_xcorr\\\"].get(\\\"peak_lag\\\") or 0) < 0):\\n453:                    and (p[\\\"results\\\"].get(\\\"naive_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n457:                    and (p[\\\"results\\\"].get(\\\"diff_xcorr\\\", {}).get(\\\"peak_lag\\\") or 0) < 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T02:45:17.660Z_
+
+<details><summary>↩ Tool result · `toolu_01Fni7sRGc9GtUaYrwddvxJG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "8f64cf40-63c2-4f16-a51e-919c78eeb6e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"104:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n133:        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\\\n436:        if f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"significant\\\\\\\"] and f[\\\\\\\"naive_xcorr\\\\\\\"][\\\\\\\"peak_lag\\\\\\\"] < 0:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n391:        nl = str(f['naive_xcorr']['peak_lag'])\\n393:        dl = str(f['diff_xcorr']['peak_lag'])\\n414:        nl = str(r['naive_xcorr']['peak_lag'])\\n416:        dl = str(r['diff_xcorr']['peak_lag'])\\n436:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+全部修改完成，无遗漏。
+
+## 修改汇总
+
+### westd-17855: `batch_analysis.py` (4 处)
+
+| 行号 | 修改前 | 修改后 | 位置 |
+|------|--------|--------|------|
+| 376 | `(r["naive_xcorr"].get("peak_lag") or 0) > 0` | `< 0` | `compute_consensus()` |
+| 379 | `(r["diff_xcorr"].get("peak_lag") or 0) > 0` | `< 0` | `compute_consensus()` |
+| 453 | `(p["results"].get("naive_xcorr", {}).get("peak_lag") or 0) > 0` | `< 0` | `analyze()` naive_fwd 计数 |
+| 457 | `(p["results"].get("diff_xcorr", {}).get("peak_lag") or 0) > 0` | `< 0` | `analyze()` diff_fwd 计数 |
+
+### westd-19828: `run_5method_analysis.py` (1 处)
+
+| 行号 | 修改前 | 修改后 | 位置 |
+|------|--------|--------|------|
+| 436 | `f["naive_xcorr"]["peak_lag"] > 0` | `< 0` | consensus 投票 |
+
+### 未修改
+- `method_ablation.py` (19828) — 仅有 `peak_lag` 赋值，无方向判断
+- 两台服务器备份文件：`*.bak_m035`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "uuid": "70a0dcfa-ce95-44c0-9f0f-65fa249999a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016eR1R5q4jTDKeegnzh4hMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 55466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 989
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 81_
+
+全部修改完成，无遗漏。
+
+## 修改汇总
+
+### westd-17855: `batch_analysis.py` (4 处)
+
+| 行号 | 修改前 | 修改后 | 位置 |
+|------|--------|--------|------|
+| 376 | `(r["naive_xcorr"].get("peak_lag") or 0) > 0` | `< 0` | `compute_consensus()` |
+| 379 | `(r["diff_xcorr"].get("peak_lag") or 0) > 0` | `< 0` | `compute_consensus()` |
+| 453 | `(p["results"].get("naive_xcorr", {}).get("peak_lag") or 0) > 0` | `< 0` | `analyze()` naive_fwd 计数 |
+| 457 | `(p["results"].get("diff_xcorr", {}).get("peak_lag") or 0) > 0` | `< 0` | `analyze()` diff_fwd 计数 |
+
+### westd-19828: `run_5method_analysis.py` (1 处)
+
+| 行号 | 修改前 | 修改后 | 位置 |
+|------|--------|--------|------|
+| 436 | `f["naive_xcorr"]["peak_lag"] > 0` | `< 0` | consensus 投票 |
+
+### 未修改
+- `method_ablation.py` (19828) — 仅有 `peak_lag` 赋值，无方向判断
+- 两台服务器备份文件：`*.bak_m035`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 106926,
+  "duration_api_ms": 103847,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "7c3f946b-67cb-4f38-856b-8b1a20f0a224",
+  "total_cost_usd": 0.7442549999999999,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 44614,
+    "cache_read_input_tokens": 579083,
+    "output_tokens": 6930,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44614,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 433,
+        "cache_read_input_tokens": 55466,
+        "cache_creation_input_tokens": 989,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 989
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2431,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002536,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 6930,
+      "cacheReadInputTokens": 579083,
+      "cacheCreationInputTokens": 44614,
+      "webSearchRequests": 0,
+      "costUSD": 0.7417189999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "55caefcf-962e-4282-b629-febcb425480e"
+}
+```
+
+</details>
+
+---

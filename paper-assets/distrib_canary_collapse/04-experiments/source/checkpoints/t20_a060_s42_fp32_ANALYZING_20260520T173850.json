@@ -1,0 +1,38 @@
+{
+  "exp_id": "t20_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:16:22.779Z",
+    "updated_at": "2026-05-20T17:38:49.754Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "311201",
+      "log_path": "~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log",
+      "submitted_at": "2026-05-20T09:16:58.221Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "T=20 extended generation at α=0.60: Tests whether the non-monotonic PermG dip at α=0.60 (observed in T=11) persists with longer time series. T=20 provides 2× more data points for Granger causality, potentially resolving whether the dip is real signal attenuation or statistical power issue.",
+    "parent": "alpha_sweep_a060_s42_fp32_v4",
+    "server": "westd-17855",
+    "gpu": "cuda:4",
+    "account": "root",
+    "pid": "311201",
+    "log_path": "~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-20T17:38:49.066Z"
+    }
+  },
+  "timestamp": "2026-05-20T17:38:50.058109+00:00",
+  "trigger": "update_registry"
+}

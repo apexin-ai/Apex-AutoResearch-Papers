@@ -1,0 +1,70 @@
+{
+  "task": "D213",
+  "description": "1.4B s42 experiments re-analyzed with 6-pair (distinct_1/2/3 only, MAUVE excluded)",
+  "downstream": ["distinct_1", "distinct_2", "distinct_3"],
+  "threshold": "true_3sigma_d105",
+  "n_perm": 5000,
+  "script": "run_5method_analysis_d102.py",
+  "results": [
+    {
+      "exp_id": "scale_14b_t10_a045_s42_fp32",
+      "data_dir": "results/phase_diagram/t10_a045_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 10, "alpha": 0.45, "seed": 42,
+      "PermG_fwd": "0/6", "PermG_rev": "0/6", "Robust_K3": "0/6"
+    },
+    {
+      "exp_id": "scale_14b_t10_a050_s42_fp32",
+      "data_dir": "results/phase_diagram/t10_a050_s42_fp32_14b",
+      "server": "westd-19828",
+      "T": 10, "alpha": 0.50, "seed": 42,
+      "PermG_fwd": "4/6", "PermG_rev": "0/6", "Robust_K3": "3/6"
+    },
+    {
+      "exp_id": "scale_14b_t10_a060_s42_fp32",
+      "data_dir": "results/phase_diagram/t10_a060_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 10, "alpha": 0.60, "seed": 42,
+      "PermG_fwd": "4/6", "PermG_rev": "0/6", "Robust_K3": "3/6"
+    },
+    {
+      "exp_id": "scale_14b_t10_a075_s42_fp32",
+      "data_dir": "results/phase_diagram/t10_a075_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 10, "alpha": 0.75, "seed": 42,
+      "PermG_fwd": "5/6", "PermG_rev": "0/6", "Robust_K3": "5/6"
+    },
+    {
+      "exp_id": "scale_14b_t15_a045_s42_fp32",
+      "data_dir": "results/phase_diagram/t15_a045_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 15, "alpha": 0.45, "seed": 42,
+      "PermG_fwd": "3/6", "PermG_rev": "0/6", "Robust_K3": "4/6"
+    },
+    {
+      "exp_id": "scale_14b_t15_a050_s42_fp32",
+      "data_dir": "results/phase_diagram/t15_a050_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 15, "alpha": 0.50, "seed": 42,
+      "PermG_fwd": "3/6", "PermG_rev": "0/6", "Robust_K3": "2/6"
+    },
+    {
+      "exp_id": "scale_14b_t15_a060_s42_fp32",
+      "data_dir": "results/phase_diagram/t15_a060_s42_fp32_14b",
+      "server": "westd-17855",
+      "T": 15, "alpha": 0.60, "seed": 42,
+      "PermG_fwd": "6/6", "PermG_rev": "0/6", "Robust_K3": "6/6"
+    },
+    {
+      "exp_id": "scale_14b_t15_a075_s42_fp32",
+      "data_dir": "results/phase_diagram/t15_a075_s42_fp32_14b",
+      "server": "westd-19828",
+      "T": 15, "alpha": 0.75, "seed": 42,
+      "PermG_fwd": "6/6", "PermG_rev": "0/6", "Robust_K3": "6/6"
+    }
+  ],
+  "server_artifacts": {
+    "westd-17855": "results/analysis/D102_14b_t{T}_a{alpha}_s42_fp32_14b_6pair.json",
+    "westd-19828": "results/analysis/D102_14b_t{T}_a{alpha}_s42_fp32_14b_6pair.json"
+  }
+}

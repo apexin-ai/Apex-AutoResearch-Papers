@@ -1,0 +1,1335 @@
+# analysis check westd17855 experiments
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/chats/worker_analysis_check_westd17855_experiments_20260519T051151.jsonl`
+- **Structured JSON:** [`67d6a2077128b40bebee.json`](../../sessions/67/67d6a2077128b40bebee.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+41 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T05:14:59.754320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T05:14:59.754604+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T05:14:59.754776+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "nvidia-smi",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "nvidia-smi",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T05:14:59.754906+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ps aux | grep python | grep -v grep",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ps aux | grep python | grep -v grep",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T05:14:59.755063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 13:12:10 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   54C    P0            304W /  600W |   71019MiB /  97887MiB |     93%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\n| N/A   59C    P0            308W /  600W |   34801MiB /  97887MiB |     80%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   28C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   29C    P8             
+…[truncated 1863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T05:14:59.755210+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tmux ls 2>&1 || echo \"no tmux sessions\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tmux ls 2>&1 || echo \"no tmux sessions\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T05:14:59.755420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root       1121  0.0  0.0 182300 97828 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1127  0.0  0.0 4146696 79328 ?       Sl   May18   0:39 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1236  0.0  0.0 28341072 11896 ?      Sl   May18   0:47 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_j91un6xw/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_j91un6xw/startup_error\\nroot      29027  0.0  0.0   9200  5080 ?        Ss   02:03   0:06 tmux new-session -d -s scale_69b_a100_s42 rm -f /tmp/agent-ml-exit/scale_69b_a100_s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/distrib_canary_collapse/scale_69b_a100_s42.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/scale_69b_a100_s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/distrib_canary_collapse && export CUDA_VISIBLE_DEVICES=0 && timeout 259200 env bash -c 'bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --batch_size 4 --output_dir results/scale_check/pythia69b_wiki_a100_s42\\\"'; } > ~/runs/distrib_canary_collapse/scale_69b_a100_s42.log 2>&1\\nroot      29028  0.0  0
+…[truncated 4376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T05:14:59.755579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"qwen35_08b_wiki_a100_s42_v2: 1 windows (created Tue May 19 08:29:15 2026)\\nscale_69b_a100_s42: 1 windows (created Tue May 19 02:03:53 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T05:14:59.755735+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"all_metrics.json\" -ls 2>/dev/null | head -30",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"all_metrics.json\" -ls 2>/dev/null | head -30",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T05:14:59.755876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19358443860      8 -rw-r--r--   1 root     root         5007 May 19 04:56 /root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_bf16/all_metrics.json\\n11830570864      8 -rw-r--r--   1 root     root         5007 May 19 05:28 /root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s43_bf16/all_metrics.json\\n10766995195      8 -rw-r--r--   1 root     root         5003 May 19 12:39 /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json\\n16113616197      8 -rw-r--r--   1 root     root         4987 May 19 04:49 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n21500046367      8 -rw-r--r--   1 root     root         4982 May 19 08:35 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/all_metrics.json\\n 4301010879      8 -rw-r--r--   1 root     root         4997 May 19 12:38 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json\\n 7542627165      8 -rw-r--r--   1 root     root         4961 May 19 12:34 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\n 4301020086      8 -rw-r--r--   1 root     root         5008 May 19 12:59 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/all_metrics.json\\n22587293636      8 -rw-r--r--   1 root     root         4979 May 19 04:22 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep_c4/a050_s42_bf16/all_metrics.json\\n 9718205053      8 -rw-r--r--   1 root     root         5032 May 19 04:51 /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T05:14:59.756025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /tmp/agent-ml-exit/ 2>/dev/null; echo \"---\"; cat /tmp/agent-ml-exit/*.exit 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -la /tmp/agent-ml-exit/ 2>/dev/null; echo \"---\"; cat /tmp/agent-ml-exit/*.exit 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T05:14:59.756167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 88\\ndrwxr-xr-x 2 root root 4096 May 19 12:59 .\\ndrwxrwxrwt 1 root root 4096 May 19 13:02 ..\\n-rw-r--r-- 1 root root   25 May 19 06:07 alpha_sweep_a005_s42.exit\\n-rw-r--r-- 1 root root   23 May 19 12:38 alpha_sweep_a005_s42_v3.exit\\n-rw-r--r-- 1 root root   23 May 19 08:35 alpha_sweep_a010_s43.exit\\n-rw-r--r-- 1 root root   23 May 19 12:59 alpha_sweep_a010_s43_fp32.exit\\n-rw-r--r-- 1 root root   25 May 19 04:49 alpha_sweep_a060_s42_bf16.exit\\n-rw-r--r-- 1 root root   25 May 19 06:07 alpha_sweep_a060_s42_fp32.exit\\n-rw-r--r-- 1 root root   23 May 19 12:34 alpha_sweep_a060_s42_fp32_v3.exit\\n-rw-r--r-- 1 root root   23 May 19 01:01 alpha_sweep_a060_s42_v2.exit\\n-rw-r--r-- 1 root root   23 May 19 00:57 alpha_sweep_c4_a050_s42.exit\\n-rw-r--r-- 1 root root   25 May 19 04:22 alpha_sweep_c4_a050_s42_bf16.exit\\n-rw-r--r-- 1 root root   25 May 19 01:22 gen_gpt2m_a100_s43.exit\\n-rw-r--r-- 1 root root   25 May 19 04:51 gen_gpt2m_a100_s43_bf16.exit\\n-rw-r--r-- 1 root root   25 May 19 05:04 interv_pred_a075_s42.exit\\n-rw-r--r-- 1 root root   25 May 19 06:08 interv_pred_a075_s42_fp32.exit\\n-rw-r--r-- 1 root root   23 May 19 12:40 interv_pred_a075_s42_fp32_v4.exit\\n-rw-r--r-- 1 root root   23 May 19 01:00 interv_pred_s43.exit\\n-rw-r--r-- 1 root root   23 May 19 05:28 interv_pred_s43_bf16.exit\\n-rw-r--r-- 1 root root   25 May 19 01:22 interv_react_s43.exit\\n-rw-r--r-- 1 root root   25 May 19 04:56 interv_react_s43_bf16.exit\\n-rw-r--r-- 1 root root   25 May 19 06:07 qwen35_08b_wiki_a100_s42.exit\\n---\\n127|2026-05-18T22:07:20Z\\n0|2026-05-19T04:38:47Z\\n0|2026-05-19T00:35:17Z\\n0|2026-05-19T04:59:09Z\\n129|2026-05-18T20:49:58Z\\n127|2026-05-18T22:07:19Z\\n0|2026-05-19T04:34:35Z\\n1|2026-05-18T17:01:02Z\\n1|2026-05-18T16:57:56Z\\n129|2026-05-18T20:22:58Z\\n129|2026-05-18T17:22:42Z\\n129|2026-05-18T20:51:43Z\\n127|2026-05-18T21:04:05Z\\n127|2026-05-18T22:08:20Z\\n0|2026-05-19T04:40:00Z\\n1|2026-05-18T17
+…[truncated 220 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T05:14:59.756323+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -lt /root/autodl-tmp/distrib_canary_collapse/results/ 2>/dev/null | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -lt /root/autodl-tmp/distrib_canary_collapse/results/ 2>/dev/null | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T05:14:59.756457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 14 root root 4096 May 19 08:46 alpha_sweep\\ndrwxr-xr-x  6 root root  158 May 19 08:29 generalize\\ndrwxr-xr-x  9 root root 4096 May 19 08:23 intervention\\ndrwxr-xr-x  4 root root   80 May 19 02:03 scale_check\\ndrwxr-xr-x  2 root root   10 May 19 02:03 dry_run\\ndrwxr-xr-x  4 root root   55 May 19 01:26 alpha_sweep_c4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T05:14:59.756620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/generalize/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/generalize/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T05:14:59.756747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  6 root root  158 May 19 08:29 .\\ndrwxr-xr-x  8 root root  147 May 19 01:58 ..\\ndrwxr-xr-x  4 root root   67 May 19 01:11 gpt2m_wiki_a100_s43\\ndrwxr-xr-x 14 root root 4096 May 19 05:23 gpt2m_wiki_a100_s43_bf16\\ndrwxr-xr-x  6 root root  101 May 19 06:06 opt13b_wiki_a100_s43_bf16\\ndrwxr-xr-x  7 root root  118 May 19 12:37 qwen35_08b_wiki_a100_s42_fp32_v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T05:14:59.756866+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/gen_*/ 2>/dev/null | wc -l; echo \"---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/gen_*/ 2>/dev/null | wc -l; echo \"---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T05:14:59.756987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11\\n---\\nEXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T05:14:59.757102+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/gen_*/ 2>/dev/null | wc -l; echo \"---a060---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/ 2>/dev/null; echo \"===\"; ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/gen_*/ 2>/dev/null | wc -l; echo \"---a005---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/gen_*/ 2>/dev/null | wc -l; echo \"---a060---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/ 2>/dev/null; echo \"===\"; ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/gen_*/ 2>/dev/null | wc -l; echo \"---a005---\"; ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T05:14:59.757231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11\\n---a060---\\nEXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n===\\n11\\n---a005---\\nEXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T05:14:59.757372+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -path \"*smollm*\" -ls 2>/dev/null | head -20; echo \"---\"; find /tmp/agent-ml-exit -name \"*smollm*\" -ls 2>/dev/null; echo \"---\"; ls ~/runs/distrib_canary_collapse/*smollm* 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -path \"*smollm*\" -ls 2>/dev/null | head -20; echo \"---\"; find /tmp/agent-ml-exit -name \"*smollm*\" -ls 2>/dev/null; echo \"---\"; ls ~/runs/distrib_canary_collapse/*smollm* 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T05:14:59.757491+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"---\\n---\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T05:14:59.757644+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T05:14:59.757767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config.json\\ngen_0\\ngen_1\\ngen_2\\ngen_3\\ngen_4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T05:14:59.757880+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -30 ~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -30 ~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T05:14:59.758061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[transformers] A decoder-only architecture i
+…[truncated 6430 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T05:14:59.758211+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls ~/runs/distrib_canary_collapse/ 2>/dev/null | grep -i smoll; echo \"---\"; find /root/autodl-tmp/distrib_canary_collapse -maxdepth 3 -name \"*smoll*\" 2>/dev/null; echo \"---\"; find /root -maxdepth 4 -name \"*smollm*\" 2>/dev/null | head -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls ~/runs/distrib_canary_collapse/ 2>/dev/null | grep -i smoll; echo \"---\"; find /root/autodl-tmp/distrib_canary_collapse -maxdepth 3 -name \"*smoll*\" 2>/dev/null; echo \"---\"; find /root -maxdepth 4 -name \"*smollm*\" 2>/dev/null | head -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T05:14:59.758361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T05:14:59.758513+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T05:14:59.758719+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.211963036636512,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.13221706272448866,\\n    \\\"effective_rank\\\": 67.59978638023328,\\n    \\\"perplexity\\\": 32.6289857198483,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0488659071531816,\\n    \\\"self_bleu\\\": 0.011377167769186706,\\n    \\\"ece\\\": 0.014039970938785621,\\n    \\\"effective_rank\\\": 49.8256313767394,\\n    \\\"perplexity\\\": 20.79744457794288,\\n    \\\"distinct_1\\\": 0.0751953125,\\n    \\\"distinct_2\\\": 0.4120735318244674,\\n    \\\"distinct_3\\\": 0.7595196799949999,\\n    \\\"mauve\\\": 0.0249345967050612,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0525813308233998,\\n    \\\"self_bleu\\\": 0.011629891201852963,\\n    \\\"ece\\\": 0.01235892767851745,\\n    \\\"effective_rank\\\": 48.86164609187771,\\n    \\\"perplexity\\\": 20.744332040165524,\\n    \\\"distinct_1\
+…[truncated 4353 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T05:14:59.758868+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T05:14:59.759075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2228558805560463,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.12435188565529644,\\n    \\\"effective_rank\\\": 65.28634392518339,\\n    \\\"perplexity\\\": 29.571844263406497,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2101769106289524,\\n    \\\"self_bleu\\\": 0.011782737534716134,\\n    \\\"ece\\\": 0.1468148442619758,\\n    \\\"effective_rank\\\": 71.77320467056455,\\n    \\\"perplexity\\\": 36.330632719133895,\\n    \\\"distinct_1\\\": 0.0742421875,\\n    \\\"distinct_2\\\": 0.4093391354619958,\\n    \\\"distinct_3\\\": 0.7542070969858904,\\n    \\\"mauve\\\": 0.026473625373651978,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2483430054350575,\\n    \\\"self_bleu\\\": 0.012125369574798216,\\n    \\\"ece\\\": 0.146501177710184,\\n    \\\"effective_rank\\\": 72.83703528254381,\\n    \\\"perplexity\\\": 38.09276363017477,\\n    \\\"dis
+…[truncated 4311 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T05:14:59.759219+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T05:14:59.759448+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0064426139661378,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.00920550039411654,\\n    \\\"effective_rank\\\": 47.77301738627223,\\n    \\\"perplexity\\\": 19.399703489042484,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.029872995904926,\\n    \\\"self_bleu\\\": 0.012009245937734959,\\n    \\\"ece\\\": 0.011299405309826005,\\n    \\\"effective_rank\\\": 48.70593494713121,\\n    \\\"perplexity\\\": 20.17537533784739,\\n    \\\"distinct_1\\\": 0.0734609375,\\n    \\\"distinct_2\\\": 0.4035812779787342,\\n    \\\"distinct_3\\\": 0.7380505945405397,\\n    \\\"mauve\\\": 0.02817080236127111,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0141371192502007,\\n    \\\"self_bleu\\\": 0.013456991576362107,\\n    \\\"ece\\\": 0.013097376336512038,\\n    \\\"effective_rank\\\": 48.68964973209647,\\n    \\\"perplexity\\\": 20.410633889586336,\\n    \
+…[truncated 4347 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T05:14:59.759593+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -5 ~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log 2>/dev/null; echo \"===\"; tail -5 ~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log 2>/dev/null; echo \"===\"; tail -5 ~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -5 ~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log 2>/dev/null; echo \"===\"; tail -5 ~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log 2>/dev/null; echo \"===\"; tail -5 ~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T05:14:59.759730+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ppl=20.81, entropy=3.0487, eff_rank=44.8, mauve=0.0308\\n\\nAll metrics saved to results/intervention/interv_pred_fp32_v4_d080/all_metrics.json\\nSentinel written: results/intervention/interv_pred_fp32_v4_d080/EXIT_CODE\\nEXIT_CODE=0\\n===\\n  ppl=45.41, entropy=2.4786, eff_rank=69.3, mauve=0.0226\\n\\nAll metrics saved to results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\nSentinel written: results/alpha_sweep/a060_s42_fp32_v3_d080/EXIT_CODE\\nEXIT_CODE=0\\n===\\n  ppl=20.81, entropy=3.0416, eff_rank=45.3, mauve=0.0235\\n\\nAll metrics saved to results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json\\nSentinel written: results/alpha_sweep/a005_s42_fp32_v3_d080/EXIT_CODE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T05:14:59.759897+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/",
+    "description": "Check artifacts directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T05:14:59.760037+00:00_
+
+D040
+_project
+a050_s44_draft_versions.tex
+a075_analysis_prep.md
+alpha_sweep
+alpha_sweep_a000_s43
+alpha_sweep_a000_s44
+alpha_sweep_a005_s42
+alpha_sweep_a010_s42_v2
+alpha_sweep_a010_s43
+alpha_sweep_a010_s43_fp32
+alpha_sweep_a050_s42
+alpha_sweep_a050_s43
+alpha_sweep_a050_s44
+alpha_sweep_a060_s42_bf16
+alpha_sweep_a075_s42
+alpha_sweep_a075_s43
+alpha_sweep_a075_s44
+alpha_sweep_c4_a050_s42_bf16
+analysis
+analysis_alpha_sweep_a010_s42_v2.md
+analyze_extended.py
+analyze_mvp.py
+c4_vs_wikitext_a050_collapse.md
+ccf_maxlag7_report.md
+check_progress.sh
+consensus_framework
+cross_alpha_aggregation
+cross_alpha_analysis_v4.py
+cross_alpha_v4_ready.md
+d024_literature_notes.md
+d026_optimized_commands.md
+d059_mvp_reverse_reanalysis.md
+d060_pythia69b_prep.md
+d061_conditional_granger_analysis.md
+detrending_utils.py
+diag_gen_gpt2m_a100_s43_bf16.md
+dose_response_fp32.csv
+dose_response_fp32_detail.csv
+dream_reports
+drift_discrepancy_audit
+dual_track_figure
+effrank_trajectories.csv
+figures
+framing_alignment_check.md
+gen_gpt2m_a100_s43_bf16
+gen_wiki_gpt2m_a025_s42
+gen_wiki_gpt2m_a100_s42_v3
+gen_wiki_gpt2m_a100_s42_v4
+generalization_draft.tex
+generalization_prep.md
+generalize_pythia14b_wiki_a100_s43
+generalize_pythia1b_c4_a100_s42
+generalize_pythia1b_c4_a100_s43
+generalize_pythia410m
+generalize_pythia410m_wiki_a100_s42
+gpt2m_a025_analysis_plan.md
+gpt2m_kappa
+intervention_analysis
+intervention_reactive_s42
+iterative_train.py
+lag_sensitivity
+literature_map.yaml
+literature_scan_20260514.md
+literature_scan_20260515
+manifest.yaml
+method_ablation
+method_ablation_phase2
+method_ablation_phase3
+metrics.py
+mmct_full_results.md
+mvp_evaluation_criteria.md
+panel_analysis_feasibility.md
+paper_consistency_audit.md
+per_alpha_fdr_results.md
+permutation_granger.py
+pipeline_analysis
+plan_006_s42
+prep_c4_gpt2m_readiness.md
+prep_cross_alpha_v5_verify.md
+prepare_data.py
+report_gen_wiki_gpt2m_failure.md
+review_issues.yaml
+review_reports
+run_mvp.sh
+scale_14b_a050_s42
+scale_14b_effrank_analysis
+scale_s42_failure_analysis.
+…[truncated 185 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T05:14:59.760183+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/westd17855_status_check.md",
+  "content": "# westd-17855 实验状态检查 (2026-05-19 13:12 UTC+8)\n\n## GPU 状态\n\n| GPU | 型号 | 显存占用 | GPU-Util | 进程 |\n|-----|------|---------|----------|------|\n| 0 | RTX PRO 6000 Black | 71019/97887 MiB | 93% | PID 29033 (scale_69b_a100_s42, pythia-6.9b) |\n| 1 | RTX PRO 6000 Black | 34801/97887 MiB | 80% | PID 74460 (qwen35_08b_wiki_a100_s42_v2) |\n| 2 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 3 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 4 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 5 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n\n## 各实验状态\n\n| exp_id | 状态 | PID | Exit Code | 完成标志 | Gen 数 | 输出目录 |\n|--------|------|-----|-----------|---------|--------|---------|\n| interv_pred_a075_s42_fp32_v4 | **已完成** | - | 0 | all_metrics.json (12:39) | 11/11 (gen_0-10) | `results/intervention/interv_pred_fp32_v4_d080/` |\n| alpha_sweep_a060_s42_fp32_v3 | **已完成** | - | 0 | all_metrics.json (12:34) | 11/11 (gen_0-10) | `results/alpha_sweep/a060_s42_fp32_v3_d080/` |\n| alpha_sweep_a005_s42_v3 | **已完成** | - | 0 | all_metrics.json (12:38) | 11/11 (gen_0-10) | `results/alpha_sweep/a005_s42_fp32_v3_d080/` |\n| qwen35_08b_wiki_a100_s42_v2 | **运行中** | 74460 | - | - | gen_0-4 完成, gen_5 训练中 (1183/5000, 23%) | `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` |\n| smollm3_3b_wiki_a100_s42_v3 | **未找到** | - | - | - | - | 无任何痕迹 |\n\n## 已完成实验关键指标摘要\n\n### interv_pred_a075_s42_fp32_v4 (intervention, alpha=0.75)\n- Intervention 在 gen 1 触发，gen 2 起 effective_alpha=0.0\n- 最终 (gen 10): ppl=20.81, entropy=3.05, eff_rank=44.8, mauve=0.031\n- 干预后 ppl 稳定在 ~20.7-21.0，无进一步退化\n\n### alpha_sweep_a060_s42_fp32_v3 (alpha=0.60, no intervention)\n- 未触发 intervention，全程 alpha=0.60\n- 最终 (gen 10): ppl=45.41, entropy=2.48, eff_rank=69.3, mauve=0.023\n- 明显的 collapse 趋势: ppl 从 26.9 (gen0) 持续升至 45.4 (gen10)，distinct_3 从 0.83 降至 0.54\n\n### alpha_sweep_a005_s42_v3 (alpha=0.05, no intervention)\n- 未触发 intervention，全程 alpha=0.05\n- 最终 (gen 10): ppl=20.81, entropy=3.04, eff_rank=45.3, mauve=0.023\n- 基本稳定: ppl 从 26.9 (gen0) 降至 ~20.8 (gen1 起)，之后保持\n\n## 需要注意的问题\n\n1. **smollm3_3b_wiki_a100_s42_v3 完全缺失**: 服务器上没有任何该实验的痕迹（无进程、无 tmux session、无 exit file、无输出目录、无 log 文件）。可能从未成功提交到此服务器，需要检查 registry 记录和提交历史。\n\n2. **qwen35_08b 预计完成时间**: 已运行约 4h43m 完成 ~52% (5.23/10 gen)。按当前速率 (~1.85 it/s)，预计还需 ~4-5 小时（约 17:30-18:00 本地时间完成）。\n\n3. **额外运行中的实验**: GPU 0 上有 `scale_69b_a100_s42`（pythia-6.9b, seed 42, 5000 steps/gen）从 02:03 起运行，不在本次检查列表中，但占用 71GB 显存和 93% GPU。\n\n4. **GPU 2-5 空闲**: 4 张卡完全空闲，可以用于重新提交 smollm3 或其他实验。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/westd17855_status_check.md",
+    "content": "# westd-17855 实验状态检查 (2026-05-19 13:12 UTC+8)\n\n## GPU 状态\n\n| GPU | 型号 | 显存占用 | GPU-Util | 进程 |\n|-----|------|---------|----------|------|\n| 0 | RTX PRO 6000 Black | 71019/97887 MiB | 93% | PID 29033 (scale_69b_a100_s42, pythia-6.9b) |\n| 1 | RTX PRO 6000 Black | 34801/97887 MiB | 80% | PID 74460 (qwen35_08b_wiki_a100_s42_v2) |\n| 2 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 3 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 4 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n| 5 | RTX PRO 6000 Black | 0 MiB | 0% | - |\n\n## 各实验状态\n\n| exp_id | 状态 | PID | Exit Code | 完成标志 | Gen 数 | 输出目录 |\n|--------|------|-----|-----------|---------|--------|---------|\n| interv_pred_a075_s42_fp32_v4 | **已完成** | - | 0 | all_metrics.json (12:39) | 11/11 (gen_0-10) | `results/intervention/interv_pred_fp32_v4_d080/` |\n| alpha_sweep_a060_s42_fp32_v3 | **已完成** | - | 0 | all_metrics.json (12:34) | 11/11 (gen_0-10) | `results/alpha_sweep/a060_s42_fp32_v3_d080/` |\n| alpha_sweep_a005_s42_v3 | **已完成** | - | 0 | all_metrics.json (12:38) | 11/11 (gen_0-10) | `results/alpha_sweep/a005_s42_fp32_v3_d080/` |\n| qwen35_08b_wiki_a100_s42_v2 | **运行中** | 74460 | - | - | gen_0-4 完成, gen_5 训练中 (1183/5000, 23%) | `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` |\n| smollm3_3b_wiki_a100_s42_v3 | **未找到** | - | - | - | - | 无任何痕迹 |\n\n## 已完成实验关键指标摘要\n\n### interv_pred_a075_s42_fp32_v4 (intervention, alpha=0.75)\n- Intervention 在 gen 1 触发，gen 2 起 effective_alpha=0.0\n- 最终 (gen 10): ppl=20.81, entropy=3.05, eff_rank=44.8, mauve=0.031\n- 干预后 ppl 稳定在 ~20.7-21.0，无进一步退化\n\n### alpha_sweep_a060_s42_fp32_v3 (alpha=0.60, no intervention)\n- 未触发 intervention，全程 alpha=0.60\n- 最终 (gen 10): ppl=45.41, entropy=2.48, eff_rank=69.3, mauve=0.023\n- 明显的 collapse 趋势: ppl 从 26.9 (gen0) 持续升至 45.4 (gen10)，distinct_3 从 0.83 降至 0.54\n\n### alpha_sweep_a005_s42_v3 (alpha=0.05, no intervention)\n- 未触发 intervention，全程 alpha=0.05\n- 最终 (gen 10): ppl=20.81, entropy=3.04, eff_rank=45.3, mauve=0.023\n- 基本稳定: ppl 从 26.9 (gen0) 降至 ~20.8 (gen1 起)，之后保持\n\n## 需要注意的问题\n\n1. **smollm3_3b_wiki_a100_s42_v3 完全缺失**: 服务器上没有任何该实验的痕迹（无进程、无 tmux session、无 exit file、无输出目录、无 log 文件）。可能从未成功提交到此服务器，需要检查 registry 记录和提交历史。\n\n2. **qwen35_08b 预计完成时间**: 已运行约 4h43m 完成 ~52% (5.23/10 gen)。按当前速率 (~1.85 it/s)，预计还需 ~4-5 小时（约 17:30-18:00 本地时间完成）。\n\n3. **额外运行中的实验**: GPU 0 上有 `scale_69b_a100_s42`（pythia-6.9b, seed 42, 5000 steps/gen）从 02:03 起运行，不在本次检查列表中，但占用 71GB 显存和 93% GPU。\n\n4. **GPU 2-5 空闲**: 4 张卡完全空闲，可以用于重新提交 smollm3 或其他实验。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T05:14:59.760359+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/westd17855_status_check.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-19T05:14:59.760510+00:00_
+
+报告已写入 `artifacts/westd17855_status_check.md`。
+
+**摘要：**
+
+| 实验 | 状态 |
+|------|------|
+| interv_pred_a075_s42_fp32_v4 | 已完成 (exit 0, 11/11 gen) |
+| alpha_sweep_a060_s42_fp32_v3 | 已完成 (exit 0, 11/11 gen) |
+| alpha_sweep_a005_s42_v3 | 已完成 (exit 0, 11/11 gen) |
+| qwen35_08b_wiki_a100_s42_v2 | 运行中 (GPU 1, gen_5 训练 23%, 预计 ~4-5h 后完成) |
+| smollm3_3b_wiki_a100_s42_v3 | **未找到** — 服务器上无任何痕迹（无进程/tmux/exit file/输出目录/log），可能从未成功提交 |
+
+GPU 2-5 空闲，可用于重新提交 smollm3。GPU 0 另有 `scale_69b_a100_s42` 在跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_check_westd17855_experiments_20260519T051151"
+}
+```
+
+</details>
+
+---

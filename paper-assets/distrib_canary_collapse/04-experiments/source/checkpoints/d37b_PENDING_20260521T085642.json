@@ -1,0 +1,18 @@
+{
+  "exp_id": "d37b",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:55:44.808Z",
+    "updated_at": "2026-05-21T08:56:42.469Z",
+    "hypothesis": "Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).",
+    "log_path": "/tmp/d37b_run.log",
+    "checkpoint_path": "results/d37b_mech_interp/summary.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T08:56:42.825276+00:00",
+  "trigger": "update_registry"
+}

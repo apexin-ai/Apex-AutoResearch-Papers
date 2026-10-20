@@ -1,0 +1,28 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Model Collapse: Theory and Empirical Evidence}
+\label{sec:rw_collapse}
+
+Iterative training collapse was formalized by \citet{shumailov2024curse} and \citet{alemohammad2024mad}; \citet{schaeffer2025position} systematize eight distinct notions of collapse; our operationalization aligns with their \emph{distributional shift} family (definitions~D4--D6).
+Theoretical analyses sharpen these results: \citet{dohmatob2024tale} recast collapse as changed scaling-law exponents, \citet{dohmatob2025strong} proved collapse at vanishingly small synthetic fractions, and \citet{truong2026phase} prove entropy collapse is a first-order transition, structurally ruling out critical-slowing-down early-warning signals~\citep{scheffer2009early,scheffer2012anticipating}.
+Empirically, \citet{hataya2023will} demonstrate that generated images degrade downstream classification on ImageNet-scale data, and \citet{kovac2025recursive} show that training data properties (lexical diversity, semantic diversity) modulate the magnitude of recursive collapse in LLMs.
+Critical mixture ratios separating qualitative outcomes have independent precedent: \citet{kazdan2025collapse} map collapse conditions, \citet{gu2024cmr} establish scaling laws for critical ratios, and \citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.
+
+\subsection{Detection of Synthetic Data Contamination}
+\label{sec:rw_detection}
+
+Monitoring metrics proposed for collapse include expected calibration error (ECE)~\citep{du2025scales}, surplexity~\citep{gambetta2024surplexity}, and machine-generated text detection~\citep{drayson2025detection}; \citet{shi2025closer} independently validate entropy as a collapse diagnostic in diffusion models; \citet{buffa2026entropy} propose continuous entropy-based monitoring for LLM accuracy, though targeting task performance rather than distributional collapse.
+A complementary line of work pursues \emph{proactive} contamination prevention via watermarking~\citep{kirchenbauer2023watermark}; our distributional detection framework is \emph{reactive}, identifying collapse from observed metric trajectories without requiring control over the generation process.
+\citet{boettiger2012limits} establish fundamental power limits for early-warning detection in short time series ($T{<}25$), directly relevant to iterative training where observation windows are typically $T{=}5$--$20$.
+However, these works evaluate single metrics in isolation without cross-validating against alternative statistical tests.
+We differ by applying five detection methods to identical data, mapping detectability across contamination regimes, and treating method sensitivity as a primary finding rather than a robustness check (detailed comparison: Appendix~\ref{app:method_comparison}).
+
+\subsection{Statistical Methods for Distribution Shift}
+\label{sec:rw_methods}
+
+For temporal precedence testing, Granger causality~\citep{granger1969investigating} is the standard framework, with neural extensions~\citep{tank2021neural,runge2019detecting}; however, non-stationary series inflate rejection rates~\citep{granger1974spurious}, and short series ($T{\leq}25$) preclude reliable nonlinear estimation~\citep{boettiger2012limits}.
+Granger precedence establishes temporal predictive improvement, not true causation: bivariate tests cannot exclude confounders~\citep{shojaie2022granger}.
+Our permutation-based approach circumvents the critical-slowing-down limitation by detecting temporal predictive improvement rather than variance or autocorrelation signatures.
+Specification-curve analysis~\citep{simonsohn2020specification} formalizes the sensitivity of conclusions to analytical choices; we adapt this framework to show that method choice alone shifts detection rates from 0\% to 94\%.
+The multiverse analysis perspective~\citep{steegen2016increasing,silberzahn2018many,coretta2023multidimensional,kapoor2024reforms} motivates our multi-method comparison: five methods on identical data produce conclusions ranging from universal significance to complete null, instantiating many-analysts divergence at the method level.

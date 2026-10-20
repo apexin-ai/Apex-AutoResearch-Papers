@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 43,
+    "n_gens": 16,
+    "data_dir": "results/phase_diagram/t15_a050_s43_fp32_14b",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_3"],
+    "threshold_criterion": "true_3sigma_d105",
+    "note": "distinct_3 only (mauve all null due to network unreachable on server)"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 1,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 2,
+    "diff_xcorr_fdr_reverse_sig": 2,
+    "threshold_forward_sig": 0,
+    "ty_forward_sig": 2,
+    "naive_xcorr_forward_sig": 1,
+    "robust_pairs": 1,
+    "total_pairs": 2,
+    "note": "Only ece->distinct_3 is robust (4/5); token_entropy->distinct_3 is marginal (2/5)"
+  },
+  "consensus": [
+    {
+      "pair": "token_entropy<distinct_3",
+      "votes": 2,
+      "methods": ["diff", "ty"]
+    },
+    {
+      "pair": "ece<distinct_3",
+      "votes": 4,
+      "methods": ["naive", "diff", "perm", "ty"]
+    }
+  ],
+  "pairs": [
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 4, "r": -0.959, "significant": true, "note": "peak_lag>0 = reverse direction, not forward"},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.881, "p_fdr": 0.0004, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 2, "lead_time": null, "significant": false},
+        "perm_granger": {"f_stat": 57.111, "p_fdr": null, "significant_fdr": false},
+        "ty_granger": {"f_stat": null, "p_value": 0.0125, "significant": true, "d_max": 0}
+      },
+      "reverse": {
+        "perm_granger": {"f_stat": 0.002, "significant_fdr": false}
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {"peak_lag": -3, "r": 0.960, "significant": true, "note": "peak_lag<0 = forward direction"},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.939, "p_fdr": 0.0000, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": null, "downstream_onset": 2, "lead_time": null, "significant": false},
+        "perm_granger": {"f_stat": 75.869, "p_fdr": null, "significant_fdr": true},
+        "ty_granger": {"f_stat": null, "p_value": 0.0000, "significant": true, "d_max": 1}
+      },
+      "reverse": {
+        "perm_granger": {"f_stat": 2.241, "significant_fdr": false}
+      }
+    }
+  ],
+  "metrics_trajectory": {
+    "entropy": [2.973, 2.172, 2.170, 2.194, 2.191, 2.165, 2.215, 2.222, 2.241, 2.236, 2.251, 2.274, 2.277, 2.271, 2.281, 2.271],
+    "distinct_3": [0.817, 0.818, 0.750, 0.677, 0.610, 0.567, 0.547, 0.532, 0.521, 0.516, 0.513, 0.510, 0.506, 0.503, 0.501, 0.500],
+    "ppl": [19.83, 21.05, 24.65, 26.39, 28.60, 29.70, 30.67, 31.85, 32.97, 33.49, 34.31, 34.92, 35.27, 36.22, 36.78, 37.09],
+    "ece": [0.008, 0.103, 0.121, 0.125, 0.135, 0.142, 0.140, 0.144, 0.146, 0.148, 0.149, 0.150, 0.151, 0.155, 0.153, 0.157]
+  }
+}

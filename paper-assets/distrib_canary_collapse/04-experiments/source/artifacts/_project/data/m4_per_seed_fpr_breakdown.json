@@ -1,0 +1,236 @@
+{
+  "data": {
+    "seeds": [
+      "s42",
+      "s43",
+      "s44"
+    ],
+    "n_pairs_per_seed": 8,
+    "pair_names": [
+      "te\u2192d1",
+      "te\u2192d2",
+      "te\u2192d3",
+      "te\u2192mauve",
+      "ece\u2192d1",
+      "ece\u2192d2",
+      "ece\u2192d3",
+      "ece\u2192mauve"
+    ],
+    "source": "r5_null_correlation_matrix.json (3 null-control experiments, alpha=0)",
+    "method_results": {
+      "PermG": {
+        "per_seed": {
+          "s42": {
+            "sig_pairs": 0,
+            "total": 8,
+            "fpr": 0.0,
+            "sig_pair_names": []
+          },
+          "s43": {
+            "sig_pairs": 0,
+            "total": 8,
+            "fpr": 0.0,
+            "sig_pair_names": []
+          },
+          "s44": {
+            "sig_pairs": 0,
+            "total": 8,
+            "fpr": 0.0,
+            "sig_pair_names": []
+          }
+        },
+        "pooled_fpr": 0.0,
+        "cluster_bootstrap": {
+          "n_bootstrap": 1000,
+          "n_clusters": 3,
+          "cluster_size": 8,
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "seed": 42
+        }
+      },
+      "DiffXCorr": {
+        "per_seed": {
+          "s42": {
+            "sig_pairs": 4,
+            "total": 8,
+            "fpr": 0.5,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "te\u2192d2",
+              "te\u2192d3",
+              "ece\u2192mauve"
+            ]
+          },
+          "s43": {
+            "sig_pairs": 2,
+            "total": 8,
+            "fpr": 0.25,
+            "sig_pair_names": [
+              "te\u2192d2",
+              "te\u2192d3"
+            ]
+          },
+          "s44": {
+            "sig_pairs": 3,
+            "total": 8,
+            "fpr": 0.375,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "te\u2192d2",
+              "te\u2192mauve"
+            ]
+          }
+        },
+        "pooled_fpr": 0.375,
+        "cluster_bootstrap": {
+          "n_bootstrap": 1000,
+          "n_clusters": 3,
+          "cluster_size": 8,
+          "mean": 0.377125,
+          "ci_lower": 0.25,
+          "ci_upper": 0.5,
+          "seed": 42
+        }
+      },
+      "NaiveXCorr": {
+        "per_seed": {
+          "s42": {
+            "sig_pairs": 8,
+            "total": 8,
+            "fpr": 1.0,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "te\u2192d2",
+              "te\u2192d3",
+              "te\u2192mauve",
+              "ece\u2192d1",
+              "ece\u2192d2",
+              "ece\u2192d3",
+              "ece\u2192mauve"
+            ]
+          },
+          "s43": {
+            "sig_pairs": 7,
+            "total": 8,
+            "fpr": 0.875,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "te\u2192d2",
+              "te\u2192d3",
+              "te\u2192mauve",
+              "ece\u2192d1",
+              "ece\u2192d2",
+              "ece\u2192d3"
+            ]
+          },
+          "s44": {
+            "sig_pairs": 7,
+            "total": 8,
+            "fpr": 0.875,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "te\u2192d2",
+              "te\u2192d3",
+              "te\u2192mauve",
+              "ece\u2192d1",
+              "ece\u2192d2",
+              "ece\u2192d3"
+            ]
+          }
+        },
+        "pooled_fpr": 0.916667,
+        "cluster_bootstrap": {
+          "n_bootstrap": 1000,
+          "n_clusters": 3,
+          "cluster_size": 8,
+          "mean": 0.91575,
+          "ci_lower": 0.875,
+          "ci_upper": 1.0,
+          "seed": 42
+        }
+      },
+      "ThresholdOnset": {
+        "per_seed": {
+          "s42": {
+            "sig_pairs": 3,
+            "total": 8,
+            "fpr": 0.375,
+            "sig_pair_names": [
+              "te\u2192d2",
+              "te\u2192d3",
+              "te\u2192mauve"
+            ]
+          },
+          "s43": {
+            "sig_pairs": 1,
+            "total": 8,
+            "fpr": 0.125,
+            "sig_pair_names": [
+              "te\u2192mauve"
+            ]
+          },
+          "s44": {
+            "sig_pairs": 2,
+            "total": 8,
+            "fpr": 0.25,
+            "sig_pair_names": [
+              "te\u2192d3",
+              "te\u2192mauve"
+            ]
+          }
+        },
+        "pooled_fpr": 0.25,
+        "cluster_bootstrap": {
+          "n_bootstrap": 1000,
+          "n_clusters": 3,
+          "cluster_size": 8,
+          "mean": 0.252958,
+          "ci_lower": 0.166667,
+          "ci_upper": 0.375,
+          "seed": 42
+        }
+      },
+      "TY": {
+        "per_seed": {
+          "s42": {
+            "sig_pairs": 2,
+            "total": 8,
+            "fpr": 0.25,
+            "sig_pair_names": [
+              "ece\u2192d1",
+              "ece\u2192d3"
+            ]
+          },
+          "s43": {
+            "sig_pairs": 2,
+            "total": 8,
+            "fpr": 0.25,
+            "sig_pair_names": [
+              "te\u2192d1",
+              "ece\u2192d1"
+            ]
+          },
+          "s44": {
+            "sig_pairs": 0,
+            "total": 8,
+            "fpr": 0.0,
+            "sig_pair_names": []
+          }
+        },
+        "pooled_fpr": 0.166667,
+        "cluster_bootstrap": {
+          "n_bootstrap": 1000,
+          "n_clusters": 3,
+          "cluster_size": 8,
+          "mean": 0.168833,
+          "ci_lower": 0.0,
+          "ci_upper": 0.25,
+          "seed": 42
+        }
+      }
+    }
+  },
+  "conclusion": "Per-seed FPR with cluster-robust bootstrap CI (seed as cluster, B=1000). PermG: pooled FPR=0.000 [95% cluster-bootstrap CI: 0.000, 0.000]; DiffXCorr: pooled FPR=0.375 [95% cluster-bootstrap CI: 0.250, 0.500]; NaiveXCorr: pooled FPR=0.917 [95% cluster-bootstrap CI: 0.875, 1.000]; ThresholdOnset: pooled FPR=0.250 [95% cluster-bootstrap CI: 0.167, 0.375]; TY: pooled FPR=0.167 [95% cluster-bootstrap CI: 0.000, 0.250]. PermG maintains 0% FPR across all seeds, confirming its suitability as primary indicator."
+}

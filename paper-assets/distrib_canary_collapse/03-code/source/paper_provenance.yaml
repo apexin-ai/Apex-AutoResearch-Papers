@@ -1,0 +1,2713 @@
+paper:
+  title: ''
+  version: 164
+  generated_at: '2026-05-21T10:25:10.087434+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Method choice alone swings significance from 100% to 25%
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: sig_rate_by_method
+  decisions:
+  - D017
+  - D027
+  deprecated: true
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Spurious-signal rate is 75% across all five methods
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: spurious_rate
+  decisions:
+  - D038
+  deprecated: true
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Canary-to-diversity retains unanimous FDR significance after differencing
+    24/24
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: differencing_canary_diversity
+  decisions:
+  - D017
+  deprecated: true
+- id: C010
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Canary-to-perplexity: undifferenced F=16-36, differenced F~0, p=0.99'
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: differencing_canary_perplexity
+  decisions:
+  - D017
+  deprecated: true
+- id: C015
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Toda-Yamamoto d_max sensitivity: 6% to 94% rejection'
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: dmax_sensitivity
+  decisions: []
+  deprecated: true
+- id: C021
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Cohen kappa 0.185 poor agreement
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: cohen_kappa
+  decisions: []
+  deprecated: true
+- id: C028
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At alpha=0.0 naive XCorr 100% significant - spurious regression
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: naive_sig_rate
+  decisions: []
+  deprecated: true
+- id: C036
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Permutation Granger: 0/8 at alpha 0.00-0.50, 6/8 at 1.0'
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: perm_granger_by_alpha
+  decisions: []
+  deprecated: true
+- id: C045
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At alpha=0.75 single seed 3/8 FDR significant
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a075_s42
+    metric: perm_granger_sig_count
+  decisions: []
+  deprecated: true
+- id: C055
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Within alpha=1.0: 24/24 canary-diversity FDR-sig, 0/24 reverse'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: granger_within_alpha
+  decisions: []
+  deprecated: true
+- id: C066
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Detectability onset boundary at alpha~0.25-0.50
+  type: qualitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: regime_boundary
+  decisions: []
+  deprecated: true
+- id: C078
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Token entropy Granger-causes distinct-1/2 with 1-gen lead, r>0.99
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: xcorr_lag1
+  decisions: []
+  deprecated: true
+- id: C091
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Reverse direction 0/24 FDR-significant, all p>0.49
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: reverse_granger
+  decisions: []
+  deprecated: true
+- id: C105
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 6 of 16 pairs survive consensus K>=4/5 S>=3/4
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: consensus_survivors
+  decisions:
+  - D041
+  deprecated: true
+- id: C120
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Consensus FPR=0% FNR=0%
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: consensus_fpr
+  decisions:
+  - D041
+  deprecated: true
+- id: C136
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Toda-Yamamoto FNR=33.3%
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: ty_fnr
+  decisions: []
+  deprecated: true
+- id: C153
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Distinct-1 declines at all alpha levels
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: distinct1_drift_pct
+  decisions: []
+  deprecated: true
+- id: C171
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Non-monotonic distinct-1 at seed=42 pending multi-seed
+  type: qualitative_caveat
+  evidence:
+  - exp_id: alpha_sweep_a025_s42
+    metric: distinct1_drift
+  decisions: []
+  deprecated: true
+- id: C190
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Effective rank and Self-BLEU no detectable lead-lag
+  type: negative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: failed_canaries
+  decisions: []
+  deprecated: true
+- id: C210
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ECE p_fdr=0.046 for distinct-1/2 at alpha=0.75
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a075_s42
+    metric: granger_pvalues
+  decisions: []
+  deprecated: true
+- id: C211
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Method choice swings significance from 100% to 25%, kappa=0.185
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: sig_rate_by_method
+  decisions:
+  - D027
+  deprecated: true
+- id: C213
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Spurious-signal rate 75% / 62.5% excluding TY
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: spurious_rate
+  decisions:
+  - D038
+  deprecated: true
+- id: C216
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Canary-perplexity: undifferenced F=16-36, differenced F~0 p=0.99'
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: differencing_canary_perplexity
+  decisions:
+  - D017
+  deprecated: true
+- id: C220
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Canary-diversity retains 24/24 FDR significance after differencing
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: differencing_canary_diversity
+  decisions:
+  - D017
+  deprecated: true
+- id: C225
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Perm Granger 6/8 at alpha=1.0, 0/8 at alpha<=0.50
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: perm_granger_by_alpha
+  decisions: []
+  deprecated: true
+- id: C231
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Pipeline filters 16->14->6->6 at alpha=1.0
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: pipeline_funnel
+  decisions:
+  - D041
+  deprecated: true
+- id: C238
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'FPR: K=1 100%, K=2 75%, K=3 37.5%, K>=4 0%'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fpr_by_K
+  decisions:
+  - D041
+  deprecated: true
+- id: C246
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: FNR=0% at K>=4/5 S>=3/4 on 6 ground-truth pairs
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: fnr_robust6
+  decisions:
+  - D041
+  deprecated: true
+- id: C255
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: FNR=50% at K=5/5 S>=3/4, 66.7% at K=5/5 S=4/4
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: fnr_strict
+  decisions: []
+  deprecated: true
+- id: C265
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Granger precedence is not true causality
+  type: methodological_caveat
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_methodology
+  decisions: []
+  deprecated: true
+- id: C276
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'FPR/FNR symmetric calibration: both validated on 3-seed null (FPR) and 4-seed
+    signal (FNR)'
+  type: methodological_caveat
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fpr_null_control
+  - exp_id: mvp_v4_rep42
+    metric: fnr_robust_6
+  decisions: []
+  deprecated: true
+- id: C277
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: Granger precedence tests predictive improvement not true causality
+  type: methodological_caveat
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_methodology
+  decisions: []
+  deprecated: false
+- id: C278
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Method choice swings significance from 100% to 25%, kappa=0.185
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: sig_rate_by_method
+  decisions:
+  - D027
+  deprecated: true
+- id: C280
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Canary-perplexity vanishes after differencing F~0 p=0.99
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: differencing_canary_perplexity
+  decisions:
+  - D017
+  deprecated: true
+- id: C283
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 24/24 FDR-sig at alpha=1.0, 0/8 at alpha<=0.50
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: perm_granger_by_alpha
+  decisions: []
+  deprecated: true
+- id: C287
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Spurious-signal rate 75%
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: spurious_rate
+  decisions:
+  - D038
+  deprecated: true
+- id: C292
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: FPR=0% FNR=0% on reference extremes
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: consensus_fpr
+  decisions:
+  - D041
+  deprecated: true
+- id: C298
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Token entropy 1-gen-ahead canary for diversity collapse at alpha>=0.75, r>0.99,
+    0/24 reverse
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: xcorr_lag1
+  decisions: []
+  deprecated: true
+- id: C305
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Granger precedence is not true causality
+  type: methodological_caveat
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_methodology
+  decisions: []
+  deprecated: true
+- id: C306
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Granger causality tests predictive improvement, not true causation; bivariate
+    tests cannot exclude confounders
+  type: methodological_caveat
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_methodology
+  decisions: []
+  deprecated: true
+- id: C308
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: All FPR/FNR calibration results are specific to Pythia-410M, WikiText-103,
+    T=10, five contamination levels
+  type: scope_limitation
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: experiment_scope
+  - exp_id: mvp_v4_rep42
+    metric: experiment_scope
+  decisions: []
+  deprecated: true
+- id: C311
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: FPR validated on 3-seed null control at alpha=0.0 (0/24 pairs); FNR validated
+    on 4-seed signal at alpha=1.0 (6/6 pairs)
+  type: design_limitation
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fpr_null_control
+  - exp_id: mvp_v4_rep42
+    metric: fnr_robust_6
+  decisions: []
+  deprecated: true
+- id: C315
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Toda-Yamamoto FNR=33.3% (2/6 pairs) due to insufficient residual degrees of
+    freedom at T=10
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: ty_fnr
+  decisions: []
+  deprecated: true
+- id: C320
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Canary claims scoped to distinct-n diversity metrics, not model collapse broadly;
+    perplexity channel spurious (F approx 0, p=0.99 after differencing)
+  type: scope_limitation
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: differenced_f_stat_perplexity
+  decisions: []
+  deprecated: true
+- id: C326
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Detectability onset boundary at alpha approx 0.25-0.50 may correspond to theoretical
+    phase transition
+  type: speculative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_fdr_vs_alpha
+  decisions: []
+  deprecated: true
+- id: C327
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Method choice swings FDR significance from 100% to 25% (kappa=0.185)
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: sig_rate_range
+  decisions: []
+  deprecated: false
+- id: C329
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: First-differencing exposes canary->perplexity as entirely spurious (F approx
+    0, p=0.99)
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: differenced_f_stat_perplexity
+  decisions: []
+  deprecated: false
+- id: C332
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Regime dependence: same Granger test shifts from 24/24 to 0/8 across contamination
+    levels'
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_fdr_by_alpha
+  decisions: []
+  deprecated: false
+- id: C336
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Consensus framework achieves FPR=0% at alpha=0.0 and FNR=0% at alpha=1.0
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fpr_null
+  - exp_id: mvp_v4_rep42
+    metric: fnr_robust
+  decisions: []
+  deprecated: false
+- id: C341
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Token entropy 1-gen-ahead canary for diversity collapse at alpha=1.0 (|r|>0.99,
+    0/24 reverse FDR-sig)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: xcorr_lag1_r
+  - exp_id: mvp_v4_rep42
+    metric: reverse_granger_pval
+  decisions: []
+  deprecated: false
+- id: C342
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Naive cross-correlation 100% (16/16) vs Toda-Yamamoto 25% (4/16), kappa=0.185
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: sig_rate_by_method
+  decisions: []
+  deprecated: true
+- id: C344
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Three pitfalls inflate spurious-signal rates to 75%
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: spurious_rate
+  decisions: []
+  deprecated: true
+- id: C347
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Consensus framework: >=4/5 methods, FPR=0% FNR=0% on reference extremes'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fpr_null
+  - exp_id: mvp_v4_rep42
+    metric: fnr_robust
+  decisions: []
+  deprecated: true
+- id: C351
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Token entropy Granger-causes diversity collapse at alpha=1.0 with 1-gen lead
+    (|r|>0.99, 24/24, 0/24 reverse)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: xcorr_lag1_r
+  - exp_id: mvp_v4_rep42
+    metric: granger_fdr_diversity
+  decisions: []
+  deprecated: true
+- id: C356
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Differencing eliminates perplexity leads (8/8->0/8) but preserves diversity
+    leads (24/24)
+  type: quantitative
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: differenced_sig_perplexity
+  - exp_id: method_ablation_phase1
+    metric: differenced_sig_diversity
+  decisions: []
+  deprecated: true
+- id: C360
+  location:
+    section: appendix_robustness
+    paragraph: 0
+    sentence: 0
+  text: 'Permutation count stability: max|Dp|=0.010, mean|Dp|=0.002, 0/24 significance
+    flips between n_perm=5000 and 10000'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a075_s42
+    metric: nperm_stability
+  decisions: []
+  deprecated: false
+- id: C361
+  location:
+    section: appendix_robustness
+    paragraph: 0
+    sentence: 0
+  text: 'FDR threshold sensitivity: null=0/24 at all q (0.01, 0.05, 0.10); treatment=19/24
+    at q=0.05, 24/24 at q=0.10'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a000_s42
+    metric: fdr_null_control
+  - exp_id: alpha_sweep_a075_s42
+    metric: fdr_treatment_sig
+  decisions: []
+  deprecated: false
+- id: C362
+  location:
+    section: appendix_robustness
+    paragraph: 0
+    sentence: 0
+  text: 'Observation window sensitivity: Tier 3 consensus stabilizes at T_min>=5 (6
+    data points)'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: window_sensitivity
+  decisions: []
+  deprecated: false
+- id: C363
+  location:
+    section: appendix_robustness
+    paragraph: 0
+    sentence: 0
+  text: 'Toda-Yamamoto window-dependent: significant pairs range 3/6 to 6/6 depending
+    on T_min'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: ty_window_sensitivity
+  decisions: []
+  deprecated: false
+- id: C364
+  location:
+    section: appendix_distinct3
+    paragraph: 0
+    sentence: 0
+  text: 'Distinct-3 drift: -58.9+-0.9% at alpha=0.25, -30.5+-4.0% at alpha=1.0 (non-monotonic
+    attenuation)'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a025_s42
+    metric: distinct3_drift_pct
+  - exp_id: mvp_v4_rep42
+    metric: distinct3_drift_pct
+  decisions: []
+  deprecated: false
+- id: C365
+  location:
+    section: appendix_distinct3
+    paragraph: 0
+    sentence: 0
+  text: 'Distinct-3 lead-lag: Tier 3 consensus (K>=4/5, S>=3/4) but lag std >1.5 generations
+    (bimodal at lag 1 and lag 3-4)'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_v4_rep42
+    metric: distinct3_lag_stability
+  decisions: []
+  deprecated: false
+- id: C370
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: 'Transfer entropy omitted: kernel density estimation requires T>=100, negligible
+    power at T=10'
+  type: methodological_caveat
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: transfer_entropy_exclusion
+  decisions: []
+  deprecated: true
+- id: C371
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Toda-Yamamoto power estimated at 0.05-0.20 for our effect sizes at T=10
+  type: quantitative
+  evidence:
+  - exp_id: plan_009_bootstrap_ty
+    metric: ty_power_estimate
+  decisions: []
+  deprecated: true
+- id: C372
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: 'alpha=0.75 directional asymmetry: 19/24 forward, 0/24 reverse, Tier 2-3 transitional'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a075_s42
+    metric: perm_granger_forward
+  decisions: []
+  deprecated: true
+- id: C373
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Onset boundary alpha approx 0.25-0.50 characterized with limited resolution
+    (five alpha levels)
+  type: scope_limitation
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: regime_boundary
+  decisions: []
+  deprecated: true
+- id: C374
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Predictive trigger fires at generation 1 in both 410M seed-precision pairs
+    (s42 fp32: entropy 3.234→1.918, ↓40.7%; s43 bf16: 3.257→2.523, ↓22.5%)'
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: trigger_gen=1, trigger_entropy_drop_pct=-40.71
+  - exp_id: interv_pred_s43_bf16
+    metric: trigger_gen=1, trigger_entropy_drop_pct=-22.54
+  decisions: []
+  deprecated: true
+- id: C375
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Reactive baseline triggers one generation later (generation 2, distinct-1
+    ↓15.6%)
+  type: quantitative
+  evidence:
+  - exp_id: intervention_reactive_s42
+    metric: trigger_gen=2, trigger_distinct1_drop_pct=-15.58
+  decisions: []
+  deprecated: true
+- id: C376
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Predictive intervention reduces peak perplexity by 63% relative to reactive
+    (56.99 vs 157.09)
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: gen1_ppl=56.99
+  - exp_id: intervention_reactive_s42
+    metric: gen2_ppl=157.09
+  decisions: []
+  deprecated: true
+- id: C377
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Pythia-1.4B token entropy drops 51.9% at generation 1 (2.946→1.418), recovers
+    to 2.892 by generation 2
+  type: quantitative
+  evidence:
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: trigger_drop=51.9%, gen0=2.946, gen1_trigger=1.418, gen2_recovery=2.892
+  decisions: []
+  deprecated: true
+- id: C378
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 1.4B perplexity spikes from 19.68 to 65.37 at trigger, recovers to 17.44 by
+    generation 2, stable at 17.60 through generation 10
+  type: quantitative
+  evidence:
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: gen0_ppl=19.68, gen1_spike=65.37, gen2_recovery=17.44, gen10_final=17.60
+  decisions: []
+  deprecated: true
+- id: C379
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Canary-based intervention mechanism is scale-independent: trigger generation,
+    recovery timeline, and convergence identical across 3.4x scale gap (410M to 1.4B)'
+  type: qualitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: trigger_gen=1, recovery_gen=2
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: trigger_gen=1, recovery_gen=2, pattern_matches_410m=yes
+  decisions: []
+  deprecated: true
+- id: C380
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Intervention validated across two model scales (410M, 1.4B) and three seed-precision
+    conditions
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: 410M s42 fp32
+  - exp_id: interv_pred_s43_bf16
+    metric: 410M s43 bf16
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: 1.4B s42 fp32
+  decisions: []
+  deprecated: true
+- id: C381
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Intervention validation covers three seed-precision pairs across two model
+    scales at alpha=1.0
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: 410M s42 fp32
+  - exp_id: interv_pred_s43_bf16
+    metric: 410M s43 bf16
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: 1.4B s42 fp32
+  decisions: []
+  deprecated: true
+- id: C382
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Intervention validated across two model scales (410M, 1.4B) and three seed-precision
+    conditions at alpha=1.0
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: 410M s42 fp32
+  - exp_id: interv_pred_s43_bf16
+    metric: 410M s43 bf16
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: 1.4B s42 fp32
+  decisions: []
+  deprecated: true
+- id: C383
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Intervention results validated across two model scales (410M, 1.4B) with scale-independent
+    trigger and recovery pattern
+  type: qualitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: 410M s42 fp32, trigger_gen=1, recovery_gen=2
+  - exp_id: interv_pred_s43_bf16
+    metric: 410M s43 bf16, trigger_gen=1, recovery_gen=2
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: 1.4B s42 fp32, trigger_gen=1, recovery_gen=2, pattern_matches_410m=yes
+  decisions: []
+  deprecated: true
+- id: C384
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Method choice alone inflates spurious-signal rates to at least 62.5% (inter-method
+    kappa=0.091-0.185)
+  type: quantitative
+  evidence:
+  - exp_id: method_sensitivity_ablation
+    metric: spurious_rate=62.5%, kappa=0.185 (Pythia), 0.091 (GPT-2)
+  decisions: []
+  deprecated: true
+- id: C386
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Most liberal method yields 75% forward-direction FPR at the null (alpha=0.0)
+  type: quantitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: naive_xcorr_fwd_FPR=75%
+  decisions: []
+  deprecated: true
+- id: C389
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'PermG: 0/8 through alpha<=0.45, 6/8 at alpha=0.50 (dual-seed), non-monotonic
+    dip at 0.60, reliable detection at >=0.75'
+  type: quantitative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: 'PermG_fwd: <=0.45=0/8, 0.50=6/8 both seeds, 0.60=3/8+0/8, 0.75=6/8'
+  decisions: []
+  deprecated: true
+- id: C393
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: PermG detection >=6/8 in 12 of 14 cross-architecture conditions (86%)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: PermG_fwd>=6/8 in 12/14 confirmed conditions
+  decisions: []
+  deprecated: true
+- id: C398
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Directional asymmetry: 24/24 forward, 0/24 reverse across four seeds'
+  type: quantitative
+  evidence:
+  - exp_id: alpha100_4seed
+    metric: PermG_fwd=24/24, PermG_rev=0/24
+  decisions: []
+  deprecated: true
+- id: C404
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Canary-based predictive cessation validated across two model scales (410M,
+    1.4B)
+  type: quantitative
+  evidence:
+  - exp_id: intervention_predictive_s42
+    metric: 410M trigger_gen=1 recovery_gen=2
+  - exp_id: interv_pred_14b_s42_fp32
+    metric: 1.4B trigger_gen=1 recovery_gen=2
+  decisions: []
+  deprecated: true
+- id: C405
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: PermG is the only method with both zero null-control FPR and high sensitivity
+  type: qualitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%, sensitivity 6/8 at alpha>=0.50
+  - exp_id: shapley_analysis
+    metric: Shapley(FPR)=-0.194, strongest suppressor
+  decisions: []
+  deprecated: true
+- id: C406
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: PermG is the only method combining zero null-control FPR with high sensitivity
+  type: qualitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%
+  - exp_id: shapley_analysis
+    metric: Shapley(FPR)=-0.194
+  decisions: []
+  deprecated: true
+- id: C407
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'PermG identifies token entropy as one-generation-ahead canary: 24/24 forward,
+    0/24 reverse at alpha=1.0'
+  type: quantitative
+  evidence:
+  - exp_id: alpha100_4seed
+    metric: PermG_fwd=24/24, PermG_rev=0/24
+  decisions: []
+  deprecated: true
+- id: C408
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: PermG >=6/8 in 12 of 14 cross-architecture conditions (86%)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: PermG_fwd>=6/8 in 12/14
+  decisions: []
+  deprecated: true
+- id: C409
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'PermG dose-response: 0/8 through alpha<=0.45, 6/8 at 0.50 dual-seed, 0-3/8
+    at 0.60, >=6/8 at 0.75'
+  type: quantitative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: PermG step function
+  decisions: []
+  deprecated: true
+- id: C410
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'PermG provides cleanest dose-response: 0/8 at alpha<=0.45, 6/8 at alpha=0.50
+    (dual-seed), reliable at alpha>=0.75'
+  type: quantitative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: 'PermG step function: 0/8->6/8->6/8'
+  decisions: []
+  deprecated: true
+- id: C411
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: PermG identified as recommended detection method based on zero FPR + step-function
+    dose-response + Shapley suppression -0.194
+  type: qualitative
+  evidence:
+  - exp_id: shapley_analysis
+    metric: Shapley(FPR)=-0.194
+  - exp_id: D120_dose_response
+    metric: PermG step function
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%
+  decisions: []
+  deprecated: true
+- id: C412
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: PermG fwd >=6/8 in 12 of 14 cross-architecture conditions
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: PermG_fwd>=6/8 in 12/14
+  decisions: []
+  deprecated: true
+- id: C413
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: K>=3 consensus reaches >=6/8 in 10 of 14 conditions
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: K>=3>=6/8 in 10/14
+  decisions: []
+  deprecated: true
+- id: C414
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: PermG is the only method combining zero null-control FPR with consistent detection
+    at alpha>=0.50
+  type: qualitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%
+  - exp_id: D120_dose_response
+    metric: PermG 6/8 at alpha=0.50, 6/8 at alpha=0.75
+  decisions: []
+  deprecated: true
+- id: C415
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TY dmax swings significance from 6% to 94%
+  type: quantitative
+  evidence:
+  - exp_id: ty_dmax_sensitivity
+    metric: 'dmax=0: 6%, dmax=1: 94%'
+  decisions: []
+  deprecated: true
+- id: C416
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Differenced XCorr retains 100% significance in both directions at alpha=0.75
+  type: quantitative
+  evidence:
+  - exp_id: alpha075_3seed
+    metric: diff_xcorr fwd=8/8, rev=8/8 per seed
+  decisions: []
+  deprecated: true
+- id: C417
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TY power 0.05-0.20 at T=10
+  type: quantitative
+  evidence:
+  - exp_id: bootstrap_power_analysis
+    metric: TY power=0.05-0.20
+  decisions: []
+  deprecated: true
+- id: C418
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: PermG is the only method combining zero null-control FPR, consistent detection
+    at alpha>=0.50, and clean directional separation
+  type: qualitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%
+  - exp_id: D120_dose_response
+    metric: PermG 6/8 at 0.50, 6/8 at 0.75
+  - exp_id: alpha100_4seed
+    metric: 24/24 fwd, 0/24 rev
+  decisions: []
+  deprecated: true
+- id: C419
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: K>=3 reaches >=6/8 in 10 of 14 cross-architecture conditions
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: K>=3>=6/8 in 10/14
+  decisions: []
+  deprecated: true
+- id: C420
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'PermG: zero null-control FPR, step-function dose-response 0/8 to 6/8 at alpha=0.50,
+    reliable at alpha>=0.75'
+  type: quantitative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: PermG step function
+  - exp_id: null_control_s42_s43_s44
+    metric: PermG FPR=0%
+  decisions: []
+  deprecated: false
+- id: C421
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Naive XCorr FPR 75%
+  type: quantitative
+  evidence:
+  - exp_id: null_control_s42_s43_s44
+    metric: naive_xcorr_fwd_FPR=75%
+  decisions: []
+  deprecated: false
+- id: C422
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: PermG >=6/8 in 12 of 14 cross-architecture conditions spanning six families
+    (345M-6.9B)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_M037
+    metric: PermG_fwd>=6/8 in 12/14
+  decisions: []
+  deprecated: false
+- id: C423
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'C4 alpha=0.50 s42 fp32: PermG reverse reaches 7/8, near-symmetric bidirectional
+    coupling'
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_s42_fp32
+    metric: permg_rev_fdr_sig=7/8
+  decisions: []
+  deprecated: true
+- id: C424
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'C4 alpha=0.50 s42 fp32: PermG_rev=7/8, near-symmetric bidirectional coupling
+    (vs 0/8 in all WikiText conditions)'
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_s42_fp32
+    metric: permg_rev_fdr_sig=7/8, permg_fwd_fdr_sig=8/8
+  decisions: []
+  deprecated: true
+- id: C425
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Domain-dependent directionality: unidirectional forward causation in WikiText
+    may reflect domain-specific dynamics'
+  type: qualitative
+  evidence:
+  - exp_id: c4_a050_s42_fp32
+    metric: PermG_rev=7/8 vs WikiText PermG_rev=0/8 at same alpha
+  decisions: []
+  deprecated: true
+- id: C426
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'C4 alpha=0.50 s42 fp32: PermG_rev=7/8, near-symmetric bidirectional coupling
+    vs WikiText PermG_rev=0/8'
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_s42_fp32
+    metric: permg_rev_fdr_sig=7/8, permg_fwd_fdr_sig=8/8
+  decisions: []
+  deprecated: true
+- id: C427
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Forward detection (PermG fwd=8/8) remains robust across both WikiText and
+    C4 domains
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_s42_fp32
+    metric: permg_fwd_fdr_sig=8/8
+  - exp_id: D120_dose_response
+    metric: WikiText alpha=0.50 PermG_fwd=6/8
+  decisions: []
+  deprecated: true
+- id: C428
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Effective rank is a distributional dimensionality indicator, conceptually
+    distinct from CSD dynamical stability indicators (autocorrelation, variance)
+  type: methodological_framing
+  evidence:
+  - exp_id: method_ablation_phase1
+    metric: failed_canaries
+  decisions: []
+  deprecated: true
+- id: C429
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Three complementary detection layers: distributional dimensionality (effective
+    rank), dynamical stability (CSD), causal coupling (Granger tests)'
+  type: methodological_framing
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: granger_methodology
+  decisions: []
+  deprecated: true
+- id: C430
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Alpha approx 0.50 onset may reflect power-law critical mixing threshold (Gu
+    et al. 2025)
+  type: speculative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: regime_boundary
+  decisions: []
+  deprecated: true
+- id: C431
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Non-monotonic dip at alpha=0.60 consistent with first-order vs second-order
+    universality classes (Truong and Truong 2025)
+  type: speculative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: PermG_fwd_alpha060
+  decisions: []
+  deprecated: true
+- id: C432
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Five-regime non-monotonic dose-response predicted by two-timescale (tau_H
+    vs tau_D) framework: blind zone, onset, synchronous zone, recovery, saturation'
+  type: methodological_framing
+  evidence:
+  - exp_id: D120_dose_response
+    metric: PermG_fwd_by_alpha
+  decisions: []
+  deprecated: true
+- id: C433
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Synchronous zone at intermediate alpha (~0.60) arises from coordinated threshold-crossing
+    wave compressing tau_D toward tau_H
+  type: speculative
+  evidence:
+  - exp_id: D120_dose_response
+    metric: PermG_fwd_alpha060
+  decisions: []
+  deprecated: true
+- id: C434
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Canary-only window predicted between blind zone and onset but unverified due
+    to alpha grid resolution
+  type: speculative
+  evidence:
+  - exp_id: method_ablation_phase2
+    metric: regime_boundary
+  decisions: []
+  deprecated: true
+- id: C435
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Granger detectability is modeled as S(α)×R(α), product of signal strength
+    and temporal resolution
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C436
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: S(α) increases monotonically with contamination level
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C437
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: R(α) is non-monotonic due to relaxation time matching at intermediate α
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C438
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Blind regime (α≤0.45): S below detection floor, PermG 0/8'
+  type: quantitative
+  evidence: dose_response_12pt
+  decisions: []
+  deprecated: true
+- id: C439
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Onset regime (α≈0.50): S crosses threshold, R high, PermG 6/8 dual-seed'
+  type: quantitative
+  evidence: dose_response_12pt
+  decisions: []
+  deprecated: true
+- id: C440
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Synchronous dip (α≈0.60): R drops sharply via relaxation time matching, PermG
+    0-3/8'
+  type: quantitative
+  evidence: dose_response_12pt
+  decisions: []
+  deprecated: true
+- id: C441
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Detection regime (α≥0.75): S dominates, S×R recovers, PermG 5-6/8'
+  type: quantitative
+  evidence: dose_response_12pt
+  decisions: []
+  deprecated: true
+- id: C442
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Non-monotonic profile is a prediction of S×R framework, not post-hoc anomaly
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C443
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Four-regime detection profile mirrors hormetic dose-response in toxicology
+  type: quantitative
+  evidence: calabrese2003hormesis
+  decisions: []
+  deprecated: true
+- id: C444
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: R→ 0 at intermediate α corresponds to known Granger failure under contemporaneous
+    coupling (Deshpande 2010)
+  type: quantitative
+  evidence: deshpande2010instantaneous
+  decisions: []
+  deprecated: true
+- id: C445
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Detection dip consistent with critical speeding-up where EWS are non-monotonic
+    near phase boundaries
+  type: quantitative
+  evidence: titus2020speeding
+  decisions: []
+  deprecated: true
+- id: C446
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Sigmoid regression yields critical threshold α_c=0.476, steepness k≥200, transition
+    width Δα≈0.02
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C447
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Sigmoid R²=0.969 vs power-law R²=0.808, ΔAIC=18.2, near-discontinuous onset
+    confirmed
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C448
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: α_c=0.476 localizes S(α) crossing detection floor; k≥200 indicates R(α) still
+    large at onset
+  type: quantitative
+  evidence: theoretical_motivation + D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C449
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'No monotonic relationship between model scale and onset: architecture/pretraining
+    > parameter count'
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C450
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Effective contamination differs by <0.1% across the onset boundary (α=0.45
+    vs 0.50: both >99% synthetic after 10 gens), yet PermG jumps 0/8→6/8'
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C451
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Detection phase transition: causal coupling emerges abruptly at α_c=0.476
+    (Δα≈0.02) rather than scaling smoothly with contamination dose'
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C452
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Prediction: T=20 at α=0.50 should yield PermG ≥7/8 (power increase for existing
+    lead)'
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C453
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Prediction: T=20 at α=0.60 synchronous dip should attenuate or disappear
+    (finer temporal resolution)'
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C454
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Prediction: T=20 at α=1.0 detection remains 6-8/8 (saturated signal)'
+  type: quantitative
+  evidence: theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C455
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Onset threshold α_c≈0.50 robust across 6 model families; detection phase transition
+    boundary is architecture-independent; power above onset varies
+  type: quantitative
+  evidence: cross_arch_generalization
+  decisions: []
+  deprecated: true
+- id: C456
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Three-layer detection taxonomy: dimensionality (onset ~0.10) → causal coupling
+    (onset ~0.50) → dynamical stability (CSD, untested at T=11)'
+  type: quantitative
+  evidence: theoretical_motivation + D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C457
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Dimensionality collapse precedes causal detectability by wide margin (α≈0.10
+    vs α≈0.50)
+  type: quantitative
+  evidence: D126_erank + D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C458
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Cumulative contamination at α=0.45, G=10: C = 1-(1-0.45)^10 = 99.75%'
+  type: quantitative
+  evidence: analytical_calculation
+  decisions: []
+  deprecated: true
+- id: C459
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Cumulative contamination at α=0.50, G=10: C = 1-(1-0.50)^10 = 99.90%'
+  type: quantitative
+  evidence: analytical_calculation
+  decisions: []
+  deprecated: true
+- id: C460
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Detection depends on per-generation mixing ratio α (per-episode SNR), not
+    cumulative contamination C(α,G)
+  type: quantitative
+  evidence: D127_phase_transition + theoretical_motivation
+  decisions: []
+  deprecated: true
+- id: C461
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Overturns assumption that detection difficulty scales with total contamination:
+    99.75% vs 99.90% cumulative → 0/8 vs 6/8 PermG'
+  type: quantitative
+  evidence: D127_phase_transition
+  decisions: []
+  deprecated: true
+- id: C462
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Four-layer detection taxonomy: dimensionality (onset ~0.10, established)
+    → distributional instability (onset ~0.25, suggestive) → causal coupling (onset
+    ~0.50, established) → dynamical stability (onset ~0.50, suggestive)'
+  type: quantitative
+  evidence: D126_erank + D127_phase_transition + TrackA_CSD
+  decisions: []
+  deprecated: true
+- id: C463
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Token entropy AC1 jumps +0.30 at onset boundary (α=0.45: -0.58, α=0.50: -0.28),
+    direction consistent with CSD prediction but not statistically conclusive at T=11'
+  type: quantitative
+  evidence: TrackA_CSD
+  decisions: []
+  deprecated: true
+- id: C464
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Token entropy variance 10× inflation at α=0.25 (0.004→0.04), preceding PermG
+    onset by wide margin
+  type: quantitative
+  evidence: TrackA_CSD
+  decisions: []
+  deprecated: true
+- id: C465
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Anomalously negative AC1 at α=0.45 (-0.58) may reflect critical speeding-up
+    (Titus & Watson 2020)
+  type: quantitative
+  evidence: TrackA_CSD + titus2020speeding
+  decisions: []
+  deprecated: true
+- id: C466
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: PermG identifies token entropy as one-generation-ahead canary for diversity
+    collapse, validated across 15 model-seed combinations spanning six families (345M--6.9B)
+    with detection in 13 cases (87%)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_validation
+    metric: PermG_fwd>=6/8
+  decisions: []
+  deprecated: true
+- id: C468
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Method choice alone inflates spurious-signal rates to 75% null-control FPR
+  type: quantitative
+  evidence:
+  - exp_id: dose_response_d111
+    metric: naive_xcorr_FPR_null
+  decisions: []
+  deprecated: true
+- id: C471
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Canary-based predictive cessation reduces peak perplexity by 58%
+  type: quantitative
+  evidence:
+  - exp_id: intervention_exp
+    metric: ppl_reduction
+  decisions: []
+  deprecated: true
+- id: C475
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 24/24 forward, 0/24 reverse at alpha=1.0 on WikiText
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a100
+    metric: PermG_fwd_rev_diversity
+  decisions: []
+  deprecated: true
+- id: C476
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: PermG identifies token entropy as one-generation-ahead canary for diversity
+    collapse, validated across 15 model-seed combinations spanning six families (345M--6.9B)
+    with detection in 13 cases (87%)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_validation
+    metric: PermG_fwd>=6/8
+  decisions: []
+  deprecated: true
+- id: C478
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Method choice alone inflates spurious-signal rates to 75% null-control FPR
+  type: quantitative
+  evidence:
+  - exp_id: dose_response_d111
+    metric: naive_xcorr_FPR_null
+  decisions: []
+  deprecated: true
+- id: C481
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Canary-based predictive cessation reduces peak perplexity by 58%
+  type: quantitative
+  evidence:
+  - exp_id: intervention_exp
+    metric: ppl_reduction
+  decisions: []
+  deprecated: true
+- id: C485
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 24/24 forward, 0/24 reverse at alpha=1.0 on WikiText
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a100
+    metric: PermG_fwd_rev_diversity
+  decisions: []
+  deprecated: true
+- id: C490
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'CSD-consistent pattern: canary Kendall tau=0.79-0.82, downstream none, 2/10
+    post-BH'
+  type: quantitative
+  evidence:
+  - exp_id: csd_analysis
+    metric: kendall_tau_ac1
+  decisions: []
+  deprecated: true
+- id: C496
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: C4 seed-sensitive bidirectional coupling s42:7/8 vs s43:1/8
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_cross_seed
+    metric: PermG_rev
+  decisions: []
+  deprecated: true
+- id: C503
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SmolLM3-3B ECE-only detection 3/8
+  type: quantitative
+  evidence:
+  - exp_id: smollm3_3b_s42
+    metric: PermG_fwd
+  decisions: []
+  deprecated: true
+- id: C504
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'First-differencing: canary→perplexity F≈0 p=0.99, canary→diversity 24/24→24/24'
+  type: quantitative
+  evidence:
+  - exp_id: alpha_sweep_a100
+    metric: diff_xcorr_diversity_vs_ppl
+  decisions: []
+  deprecated: false
+- id: C506
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'CSD: canary Kendall tau=0.79-0.82, downstream tau=0.03-0.30, 2/10 post-BH'
+  type: quantitative
+  evidence:
+  - exp_id: csd_analysis
+    metric: kendall_tau_ac1
+  decisions: []
+  deprecated: false
+- id: C509
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: C4 bidirectional s42:7/8 vs s43:1/8
+  type: quantitative
+  evidence:
+  - exp_id: c4_a050_cross_seed
+    metric: PermG_rev
+  decisions: []
+  deprecated: false
+- id: C513
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SmolLM3-3B entropy 0/4, ECE 3/4, PermG fwd 3/8
+  type: quantitative
+  evidence:
+  - exp_id: smollm3_3b_s42
+    metric: PermG_fwd_by_canary
+  decisions: []
+  deprecated: false
+- id: C518
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 75% null-control FPR
+  type: quantitative
+  evidence:
+  - exp_id: dose_response_d111
+    metric: naive_xcorr_FPR_null
+  decisions: []
+  deprecated: false
+- id: C524
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 15 model-seed combinations, 13 cases (87%)
+  type: quantitative
+  evidence:
+  - exp_id: cross_arch_validation
+    metric: PermG_fwd>=6/8
+  decisions: []
+  deprecated: false
+- id: C531
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Predictive cessation reduces peak perplexity by 58%
+  type: quantitative
+  evidence:
+  - exp_id: intervention_exp
+    metric: ppl_reduction
+  decisions: []
+  deprecated: false
+- id: C532
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: detection boundary alpha_c(T) = 0.193 + 75.68 * T^{-2.41}
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: detection_bound_v2
+  decisions: []
+  deprecated: false
+- id: C534
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: step-like transition k=100
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: sigmoid_steepness
+  decisions: []
+  deprecated: false
+- id: C537
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: five methods yield FPR from 0% to 92%
+  type: quantitative
+  evidence:
+  - exp_id: D105
+    metric: pooled_fpr
+  decisions: []
+  deprecated: false
+- id: C541
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: entropy Granger-precedes diversity, confirmed 15/15
+  type: quantitative
+  evidence:
+  - exp_id: D040
+    metric: cascade_ordering
+  decisions: []
+  deprecated: false
+- id: C546
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: five model families 345M-6.9B
+  type: quantitative
+  evidence:
+  - exp_id: D040
+    metric: cross_architecture
+  decisions: []
+  deprecated: false
+- id: C547
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: detection boundary alpha_c(T) = 0.193 + 75.68 * T^{-2.41}, R^2=0.883
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: detection_bound_v2
+  decisions: []
+  deprecated: false
+- id: C549
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: step-like onset k=100
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: sigmoid_steepness
+  decisions: []
+  deprecated: false
+- id: C552
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: predict-then-verify 3/5 exact, 4/5 FDR
+  type: quantitative
+  evidence:
+  - exp_id: M057
+    metric: prediction_score
+  decisions: []
+  deprecated: false
+- id: C556
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: peak perplexity reduction 58%
+  type: quantitative
+  evidence:
+  - exp_id: D040
+    metric: intervention_ppl
+  decisions: []
+  deprecated: false
+- id: C561
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: entropy precedes diversity 15/15
+  type: quantitative
+  evidence:
+  - exp_id: D040
+    metric: cascade_ordering
+  decisions: []
+  deprecated: false
+- id: C567
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: FPR 0% to 92%
+  type: quantitative
+  evidence:
+  - exp_id: D105
+    metric: pooled_fpr
+  decisions: []
+  deprecated: false
+- id: C574
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 0/8 to 6/8 across 5-pp boundary
+  type: quantitative
+  evidence:
+  - exp_id: D040
+    metric: regime_jump
+  decisions: []
+  deprecated: false
+- id: C575
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: joint sigmoid rate(alpha,T) = 0.70/(1+exp(-100*(alpha-alpha_c(T)))), R^2=0.883
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: joint_model
+  decisions: []
+  deprecated: false
+- id: C576
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: alpha_c(T) = 0.193 + 75.68 * T^{-2.41}
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: detection_bound_v2
+  decisions: []
+  deprecated: false
+- id: C577
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: k=100 step-like transition
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: sigmoid_steepness
+  decisions: []
+  deprecated: false
+- id: C578
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: alpha_c(10) = 0.487
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: alpha_c_t10
+  decisions: []
+  deprecated: false
+- id: C579
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: alpha_c(20) = 0.248
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: alpha_c_t20
+  decisions: []
+  deprecated: false
+- id: C580
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: spec curve median detection 19% at α=0.48, 69% at α=0.50, 6% at α=0.60
+  type: quantitative
+  evidence:
+  - exp_id: D150
+    metric: spec_curve_stats
+  decisions: []
+  deprecated: false
+- id: C581
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: task PPL jump 31.3→41.1 (+31%) between α=0.50 and α=0.52
+  type: quantitative
+  evidence:
+  - exp_id: D163
+    metric: task_degradation_ppl
+  decisions: []
+  deprecated: false
+- id: C582
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: α=0.05 PPL 20.8 vs baseline 26.6
+  type: quantitative
+  evidence:
+  - exp_id: D163
+    metric: task_degradation_a005
+  decisions: []
+  deprecated: false
+- id: C583
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: α_c(T=20) = 0.248 from joint model
+  type: quantitative
+  evidence:
+  - exp_id: D164
+    metric: alpha_c_t20
+  decisions: []
+  deprecated: false
+- id: C584
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TE fwd-dominant fraction 4/8→8/8, net TE 0.14→1.59
+  type: quantitative
+  evidence:
+  - exp_id: D162
+    metric: te_directionality
+  decisions: []
+  deprecated: false
+- id: C585
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: γ_theory = 1/(2β) = 2.408, recovering empirical γ=2.41 (Δγ=0.002)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C586
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: R²=1.000 on 7 validation points
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C587
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Linear signal model β=1 rejected, R²=0.711
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C588
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: β=0.208, sub-linear signal growth
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C589
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: α_∞=0.193 detection floor
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C590
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: α_c(5) ≥ 1.0, undetectable at any contamination
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C591
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: R²=1.000 on 7 validation points for detection boundary theory
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C592
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: γ_theory=2.408 vs empirical 2.41, Δγ=0.002
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C593
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: At T=5, theory predicts no contamination level is detectable
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C594
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Detection boundary derived from sub-linear signal model, R²=1.000
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C595
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: α_∞=0.193 detection floor
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+tables:
+- id: drift_summary
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: alpha=0.00
+    col: Entropy
+    value: '-5.1'
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: token_entropy_drift_pct
+  - row: alpha=1.00
+    col: Entropy
+    value: -60.5+-1.2
+    source:
+      exp_id: mvp_v4_rep42
+      metric: token_entropy_drift_pct
+  - row: alpha=1.00
+    col: Perplexity
+    value: +3690+-320
+    source:
+      exp_id: mvp_v4_rep42
+      metric: perplexity_drift_pct
+  deprecated: true
+- id: method_comparison
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Naive XCorr
+    col: alpha=0.0
+    value: '100'
+    source:
+      exp_id: method_ablation_phase2
+      metric: naive_sig_rate_a000
+  - row: Perm Granger
+    col: alpha=1.0
+    value: '75'
+    source:
+      exp_id: method_ablation_phase2
+      metric: perm_granger_sig_rate_a100
+  deprecated: true
+- id: fpr_fnr
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Consensus
+    col: FPR
+    value: 0%
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: consensus_fpr
+  - row: Consensus
+    col: FNR
+    value: 0%
+    source:
+      exp_id: mvp_v4_rep42
+      metric: consensus_fnr
+  deprecated: true
+- id: practical_guidance
+  location:
+    section: method
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Tier 1 Exploratory
+    col: FPR
+    value: 100%
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fpr_K1
+  - row: Tier 2 Screening
+    col: FPR
+    value: 37.5%
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fpr_K3
+  - row: Tier 3 Confirmatory
+    col: FPR
+    value: 0%
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fpr_K4
+  - row: Tier 3 Confirmatory
+    col: FNR
+    value: 0%
+    source:
+      exp_id: mvp_v4_rep42
+      metric: fnr_K4S3
+  - row: Tier 4 Conservative
+    col: FNR
+    value: 66.7%
+    source:
+      exp_id: mvp_v4_rep42
+      metric: fnr_K5S4
+  deprecated: true
+- id: nperm_stability
+  location:
+    section: appendix_robustness
+    table_number: 0
+  caption: Permutation count stability (alpha=0.75, 3 seeds, 24 pairs)
+  cells:
+  - row: Max |Dp|
+    col: Value
+    value: '0.010'
+    source:
+      exp_id: alpha_sweep_a075_s42
+      metric: nperm_max_delta_p
+  - row: Mean |Dp|
+    col: Value
+    value: '0.002'
+    source:
+      exp_id: alpha_sweep_a075_s42
+      metric: nperm_mean_delta_p
+  - row: Significance flips
+    col: Value
+    value: 0/24
+    source:
+      exp_id: alpha_sweep_a075_s42
+      metric: nperm_sig_flips
+  deprecated: false
+- id: fdr_sensitivity
+  location:
+    section: appendix_robustness
+    table_number: 1
+  caption: FDR threshold sensitivity for permutation Granger significance
+  cells:
+  - row: q=0.01
+    col: Null FDR-sig
+    value: '0'
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fdr_null_q001
+  - row: q=0.05
+    col: Null FDR-sig
+    value: '0'
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fdr_null_q005
+  - row: q=0.05
+    col: Treatment FDR-sig
+    value: '19'
+    source:
+      exp_id: alpha_sweep_a075_s42
+      metric: fdr_treatment_q005
+  - row: q=0.10
+    col: Null FDR-sig
+    value: '0'
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: fdr_null_q010
+  - row: q=0.10
+    col: Treatment FDR-sig
+    value: '24'
+    source:
+      exp_id: alpha_sweep_a075_s42
+      metric: fdr_treatment_q010
+  deprecated: false
+- id: window_sensitivity
+  location:
+    section: appendix_robustness
+    table_number: 2
+  caption: Observation window sensitivity for Tier 3 consensus (alpha=1.0, 4 seeds)
+  cells:
+  - row: T_min=5
+    col: Tier 3 pairs
+    value: '6'
+    source:
+      exp_id: mvp_v4_rep42
+      metric: window_tier3_t5
+  - row: T_min=10
+    col: Tier 3 pairs
+    value: '6'
+    source:
+      exp_id: mvp_v4_rep42
+      metric: window_tier3_t10
+  - row: T_min=10
+    col: TY pairs
+    value: '6'
+    source:
+      exp_id: mvp_v4_rep42
+      metric: window_ty_t10
+  deprecated: false
+- id: distinct3_drift
+  location:
+    section: appendix_distinct3
+    table_number: 0
+  caption: Distinct-3 drift across contamination levels
+  cells:
+  - row: alpha=0.00
+    col: Distinct-3 drift
+    value: -4.4+-0.5
+    source:
+      exp_id: alpha_sweep_a000_s42
+      metric: distinct3_drift_pct
+  - row: alpha=0.25
+    col: Distinct-3 drift
+    value: -58.9+-0.9
+    source:
+      exp_id: alpha_sweep_a025_s42
+      metric: distinct3_drift_pct
+  - row: alpha=1.00
+    col: Distinct-3 drift
+    value: -30.5+-4.0
+    source:
+      exp_id: mvp_v4_rep42
+      metric: distinct3_drift_pct
+  deprecated: false
+figures:
+- id: fig_differencing_dmax
+  location:
+    section: experiments
+    figure_number: 0
+  caption: First-differencing diagnostic and d_max sensitivity
+  type: statistical
+  source:
+    exp_id: method_ablation_phase2
+  output_path: figures/paper/fig_differencing_dmax.pdf
+  deprecated: true
+- id: fig_metric_trajectory
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Token entropy and distinct-1 trajectories at alpha=1.0
+  type: statistical
+  source:
+    exp_id: mvp_v4_rep42
+  output_path: figures/paper/fig_metric_trajectory.pdf
+  deprecated: true
+- id: fig_consensus_heatmap
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Method x alpha FDR significance heatmap
+  type: statistical
+  source:
+    exp_id: method_ablation_phase2
+  output_path: figures/paper/fig_consensus_heatmap.pdf
+  deprecated: true
+- id: fig_regime_map
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Regime-dependent Granger-causal detectability
+  type: statistical
+  source:
+    exp_id: method_ablation_phase2
+  output_path: figures/paper/fig_regime_map.pdf
+  deprecated: true
+- id: fig_consensus_workflow
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Consensus filtering pipeline
+  type: conceptual
+  source:
+    exp_id: method_ablation_phase1
+  output_path: figures/paper/fig_consensus_workflow.pdf
+  deprecated: true
+- id: fig_differencing_dmax
+  location:
+    section: method
+    figure_number: 0
+  caption: First-differencing diagnostic
+  type: statistical
+  source:
+    exp_id: method_ablation_phase2
+  output_path: figures/paper/fig_differencing_dmax.pdf
+  deprecated: true
+- id: fig_consensus_heatmap
+  location:
+    section: method
+    figure_number: 0
+  caption: Method x alpha heatmap
+  type: statistical
+  source:
+    exp_id: method_ablation_phase2
+  output_path: figures/paper/fig_consensus_heatmap.pdf
+  deprecated: true
+- id: fig_consensus_workflow
+  location:
+    section: method
+    figure_number: 0
+  caption: Consensus filtering pipeline
+  type: conceptual
+  source:
+    exp_id: method_ablation_phase1
+  output_path: figures/paper/fig_consensus_workflow.pdf
+  deprecated: true
+- id: F001
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: true
+_completeness:
+  coverage: 44/55
+  claims: 55
+  tables: 4
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 44
+    tier3: 11
+    tierX: 0
+  last_checked: '2026-05-21T10:25:10.087497+00:00'

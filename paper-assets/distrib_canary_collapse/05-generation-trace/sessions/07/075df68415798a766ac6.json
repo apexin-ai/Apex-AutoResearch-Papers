@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "075df68415798a766ac6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "launch pd batch 15",
+  "task_key": "worker_launch_pd_batch_15_20260525T192356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_pd_batch_15_20260525T192356_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "a482c1640722b1cc2d15dc80770c958e29e3f6e7f631b4567ea9440baa791233"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘空间警告 (C007)**：单个实验 ~3.1 GB，15 个 = ~46.5 GB。当前剩余 61 GB，不满足 C007 要求的 2x (93 GB)。\n\n实际上 61 GB 跑完 46.5 GB 后仅剩 ~14.5 GB，有一定风险但理论上够用。是否继续？或者需要先清理空间？\n\n如果继续，我现在就验证环境并创建批量脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-pd-batch-15.md"
+}

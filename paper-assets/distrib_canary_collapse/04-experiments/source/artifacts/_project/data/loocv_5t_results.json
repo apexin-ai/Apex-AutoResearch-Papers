@@ -1,0 +1,1621 @@
+{
+  "description": "5T LOO-CV for \u03b1_c(T) theory (R8 W-C2 response)",
+  "model": "P(det|\u03b1,T) = P_max \u00b7 \u03a6(A \u00b7 \u03b1^\u03b2 \u00b7 \u221aT \u2212 z\u2080)",
+  "fixed": {
+    "P_max": 0.75,
+    "beta": 0.24
+  },
+  "free_params": [
+    "A",
+    "z0"
+  ],
+  "data": {
+    "source": "20/20 Phase Diagram, PermG FDR forward",
+    "T_values": [
+      5,
+      10,
+      15,
+      20,
+      25
+    ],
+    "alpha_all": [
+      0.45,
+      0.5,
+      0.6,
+      0.75
+    ],
+    "alpha_nosync": [
+      0.45,
+      0.5,
+      0.75
+    ],
+    "cross_seed_cells": {
+      "(10, 0.5)": 0,
+      "(10, 0.75)": 6,
+      "(15, 0.6)": 0,
+      "(15, 0.75)": 6,
+      "(20, 0.45)": 4,
+      "(20, 0.6)": 3
+    }
+  },
+  "loocv_A": {
+    "label": "Version A: 5T \u00d7 {0.45,0.50,0.75}, single-seed s42",
+    "n_cells": 15,
+    "folds": [
+      {
+        "T_held_out": 5,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.6225,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 5,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.5,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.75,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": "All 0/n \u2014 any reasonable model trivially predicts ~0 here."
+      },
+      {
+        "T_held_out": 10,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 18.2043,
+          "z0": 48.5415
+        },
+        "fold_MAE": 0.1437,
+        "cells": [
+          {
+            "T": 10,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.1165,
+            "residual": -0.1165,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.4354,
+            "residual": 0.3146,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 15,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.6225,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 15,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 20,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.6225,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0417,
+        "cells": [
+          {
+            "T": 20,
+            "alpha": 0.45,
+            "k": 5,
+            "n": 8,
+            "actual": 0.625,
+            "predicted": 0.75,
+            "residual": -0.125,
+            "CI_95": [
+              0.2449,
+              0.9148
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 25,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.6225,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 25,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "summary": {
+      "mean_MAE": 0.0371,
+      "max_abs_residual": 0.3146,
+      "CI_coverage": "15/15",
+      "CI_coverage_rate": 1.0
+    }
+  },
+  "loocv_B": {
+    "label": "Version B: 5T \u00d7 {0.45,0.50,0.60,0.75}, single-seed s42",
+    "n_cells": 20,
+    "folds": [
+      {
+        "T_held_out": 5,
+        "n_train": 16,
+        "n_test": 4,
+        "fit": {
+          "A": 0.7701,
+          "z0": 2.0927
+        },
+        "fold_MAE": 0.2085,
+        "cells": [
+          {
+            "T": 5,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.1883,
+            "residual": -0.1883,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.5,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.1971,
+            "residual": -0.1971,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.6,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.2134,
+            "residual": -0.2134,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.75,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.2352,
+            "residual": -0.2352,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": "All 0/n \u2014 any reasonable model trivially predicts ~0 here."
+      },
+      {
+        "T_held_out": 10,
+        "n_train": 16,
+        "n_test": 4,
+        "fit": {
+          "A": 1.5759,
+          "z0": 4.9903
+        },
+        "fold_MAE": 0.3531,
+        "cells": [
+          {
+            "T": 10,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.1429,
+            "residual": -0.1429,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.1654,
+            "residual": 0.5846,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": false
+          },
+          {
+            "T": 10,
+            "alpha": 0.6,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.2103,
+            "residual": -0.2103,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.2754,
+            "residual": 0.4746,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": false
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 15,
+        "n_train": 16,
+        "n_test": 4,
+        "fit": {
+          "A": 4.3048,
+          "z0": 11.8835
+        },
+        "fold_MAE": 0.1951,
+        "cells": [
+          {
+            "T": 15,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7275,
+            "residual": 0.0225,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7404,
+            "residual": 0.0096,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.6,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.7484,
+            "residual": -0.7484,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": false
+          },
+          {
+            "T": 15,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7499,
+            "residual": 0.0001,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 20,
+        "n_train": 16,
+        "n_test": 4,
+        "fit": {
+          "A": 2.4534,
+          "z0": 6.9658
+        },
+        "fold_MAE": 0.2167,
+        "cells": [
+          {
+            "T": 20,
+            "alpha": 0.45,
+            "k": 5,
+            "n": 8,
+            "actual": 0.625,
+            "predicted": 0.7364,
+            "residual": -0.1114,
+            "CI_95": [
+              0.2449,
+              0.9148
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7425,
+            "residual": 0.0075,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.6,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.7477,
+            "residual": -0.7477,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": false
+          },
+          {
+            "T": 20,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7496,
+            "residual": 0.0004,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 25,
+        "n_train": 16,
+        "n_test": 4,
+        "fit": {
+          "A": 1.5564,
+          "z0": 4.6325
+        },
+        "fold_MAE": 0.0414,
+        "cells": [
+          {
+            "T": 25,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7226,
+            "residual": 0.0274,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7311,
+            "residual": 0.0189,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.6,
+            "k": 5,
+            "n": 8,
+            "actual": 0.625,
+            "predicted": 0.7409,
+            "residual": -0.1159,
+            "CI_95": [
+              0.2449,
+              0.9148
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.7468,
+            "residual": 0.0032,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "summary": {
+      "mean_MAE": 0.203,
+      "max_abs_residual": 0.7484,
+      "CI_coverage": "16/20",
+      "CI_coverage_rate": 0.8
+    }
+  },
+  "loocv_seed_avg_A": {
+    "label": "Seed-averaged Version A: s42+s43 where available",
+    "n_cells": 15,
+    "folds": [
+      {
+        "T_held_out": 5,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.3679,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 5,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.5,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 5,
+            "alpha": 0.75,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.0,
+            "residual": -0.0,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": "All 0/n \u2014 any reasonable model trivially predicts ~0 here."
+      },
+      {
+        "T_held_out": 10,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 18.2043,
+          "z0": 48.5415
+        },
+        "fold_MAE": 0.059,
+        "cells": [
+          {
+            "T": 10,
+            "alpha": 0.45,
+            "k": 0,
+            "n": 8,
+            "actual": 0.0,
+            "predicted": 0.1165,
+            "residual": -0.1165,
+            "CI_95": [
+              0.0,
+              0.3694
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 16,
+            "actual": 0.375,
+            "predicted": 0.4354,
+            "residual": -0.0604,
+            "CI_95": [
+              0.152,
+              0.6457
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 10,
+            "alpha": 0.75,
+            "k": 12,
+            "n": 16,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.4762,
+              0.9273
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 15,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.3679,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 15,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 15,
+            "alpha": 0.75,
+            "k": 12,
+            "n": 16,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.4762,
+              0.9273
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 20,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.3679,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0625,
+        "cells": [
+          {
+            "T": 20,
+            "alpha": 0.45,
+            "k": 9,
+            "n": 16,
+            "actual": 0.5625,
+            "predicted": 0.75,
+            "residual": -0.1875,
+            "CI_95": [
+              0.2988,
+              0.8025
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 20,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      },
+      {
+        "T_held_out": 25,
+        "n_train": 12,
+        "n_test": 3,
+        "fit": {
+          "A": 22.3679,
+          "z0": 60.0
+        },
+        "fold_MAE": 0.0,
+        "cells": [
+          {
+            "T": 25,
+            "alpha": 0.45,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.5,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          },
+          {
+            "T": 25,
+            "alpha": 0.75,
+            "k": 6,
+            "n": 8,
+            "actual": 0.75,
+            "predicted": 0.75,
+            "residual": 0.0,
+            "CI_95": [
+              0.3491,
+              0.9681
+            ],
+            "CI_covered": true
+          }
+        ],
+        "note": ""
+      }
+    ],
+    "summary": {
+      "mean_MAE": 0.0243,
+      "max_abs_residual": 0.1875,
+      "CI_coverage": "15/15",
+      "CI_coverage_rate": 1.0
+    }
+  },
+  "model_comparison_16": {
+    "label": "16-cell (excl sync-dip)",
+    "n_obs": 15,
+    "models": {
+      "M0_constant": {
+        "desc": "Constant threshold, no T dependence",
+        "params": {
+          "threshold": 0.447
+        },
+        "n_params": 1,
+        "log_lik": -48.0,
+        "AIC": 98.01,
+        "BIC": 98.72,
+        "delta_AIC": 66.2,
+        "delta_BIC": 65.49
+      },
+      "M1_linear": {
+        "desc": "\u03b1_c(T) = a \u2212 b\u00b7T",
+        "params": {
+          "a": 1.2913,
+          "b": 0.081076
+        },
+        "n_params": 2,
+        "log_lik": -13.9,
+        "AIC": 31.81,
+        "BIC": 33.23,
+        "delta_AIC": 0.0,
+        "delta_BIC": 0.0
+      },
+      "M2_power_probit": {
+        "desc": "P = P_max\u00b7\u03a6(A\u00b7\u03b1^0.24\u00b7\u221aT \u2212 z\u2080)",
+        "params": {
+          "A": 22.6225,
+          "z0": 60.0
+        },
+        "n_params": 2,
+        "log_lik": -15.12,
+        "AIC": 34.24,
+        "BIC": 35.66,
+        "delta_AIC": 2.43,
+        "delta_BIC": 2.43
+      },
+      "M3_exponential": {
+        "desc": "\u03b1_c(T) = c\u00b7exp(\u2212d\u00b7T)",
+        "params": {
+          "c": 9.0078,
+          "d": 0.293102
+        },
+        "n_params": 2,
+        "log_lik": -13.9,
+        "AIC": 31.81,
+        "BIC": 33.23,
+        "delta_AIC": 0.0,
+        "delta_BIC": 0.0
+      }
+    }
+  },
+  "model_comparison_20": {
+    "label": "20-cell (all)",
+    "n_obs": 20,
+    "models": {
+      "M0_constant": {
+        "desc": "Constant threshold, no T dependence",
+        "params": {
+          "threshold": 0.447
+        },
+        "n_params": 1,
+        "log_lik": -93.94,
+        "AIC": 189.87,
+        "BIC": 190.87,
+        "delta_AIC": 92.52,
+        "delta_BIC": 91.53
+      },
+      "M1_linear": {
+        "desc": "\u03b1_c(T) = a \u2212 b\u00b7T",
+        "params": {
+          "a": 1.3873,
+          "b": 0.090681
+        },
+        "n_params": 2,
+        "log_lik": -48.75,
+        "AIC": 101.5,
+        "BIC": 103.49,
+        "delta_AIC": 4.15,
+        "delta_BIC": 4.15
+      },
+      "M2_power_probit": {
+        "desc": "P = P_max\u00b7\u03a6(A\u00b7\u03b1^0.24\u00b7\u221aT \u2212 z\u2080)",
+        "params": {
+          "A": 1.5439,
+          "z0": 4.5988
+        },
+        "n_params": 2,
+        "log_lik": -46.68,
+        "AIC": 97.35,
+        "BIC": 99.34,
+        "delta_AIC": 0.0,
+        "delta_BIC": 0.0
+      },
+      "M3_exponential": {
+        "desc": "\u03b1_c(T) = c\u00b7exp(\u2212d\u00b7T)",
+        "params": {
+          "c": 9.0166,
+          "d": 0.2932
+        },
+        "n_params": 2,
+        "log_lik": -48.75,
+        "AIC": 101.5,
+        "BIC": 103.49,
+        "delta_AIC": 4.15,
+        "delta_BIC": 4.15
+      }
+    }
+  },
+  "beta_profile": {
+    "mle": {
+      "beta": 0.66,
+      "A": 30.7959,
+      "z0": 60.0,
+      "neg_ll": 13.3098
+    },
+    "CI_95_profile": [
+      0.24,
+      0.78
+    ],
+    "gamma_CI": [
+      0.641,
+      2.0833
+    ],
+    "fixed_beta_in_CI": true,
+    "delta_nll_at_fixed": 1.8123,
+    "profile_curve": [
+      {
+        "beta": 0.05,
+        "nll": 18.2625,
+        "A": 19.692,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.06,
+        "nll": 17.9999,
+        "A": 19.8282,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.07,
+        "nll": 17.7728,
+        "A": 19.9697,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.08,
+        "nll": 17.5653,
+        "A": 20.1146,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.09,
+        "nll": 17.3687,
+        "A": 20.2619,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.1,
+        "nll": 17.1795,
+        "A": 20.4108,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.11,
+        "nll": 16.9965,
+        "A": 20.561,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.12,
+        "nll": 16.8193,
+        "A": 20.7124,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.13,
+        "nll": 16.6479,
+        "A": 20.865,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.14,
+        "nll": 16.4821,
+        "A": 21.0187,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.15,
+        "nll": 16.3219,
+        "A": 21.1737,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.16,
+        "nll": 16.1673,
+        "A": 21.3298,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.17,
+        "nll": 16.0182,
+        "A": 21.4872,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.18,
+        "nll": 15.8746,
+        "A": 21.6457,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.19,
+        "nll": 15.7363,
+        "A": 21.8055,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.2,
+        "nll": 15.6032,
+        "A": 21.9665,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.21,
+        "nll": 15.4754,
+        "A": 22.1286,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.22,
+        "nll": 15.3526,
+        "A": 22.292,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.23,
+        "nll": 15.2349,
+        "A": 22.4567,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.24,
+        "nll": 15.1221,
+        "A": 22.6225,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.24,
+        "nll": 15.1221,
+        "A": 22.6225,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.25,
+        "nll": 15.014,
+        "A": 22.7896,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.26,
+        "nll": 14.9107,
+        "A": 22.958,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.27,
+        "nll": 14.8119,
+        "A": 23.1276,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.28,
+        "nll": 14.7176,
+        "A": 23.2985,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.29,
+        "nll": 14.6277,
+        "A": 23.4706,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.3,
+        "nll": 14.542,
+        "A": 23.644,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.32,
+        "nll": 14.3829,
+        "A": 23.9947,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.34,
+        "nll": 14.2392,
+        "A": 24.3506,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.36,
+        "nll": 14.1102,
+        "A": 24.7118,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.38,
+        "nll": 13.9947,
+        "A": 25.0783,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.4,
+        "nll": 13.8917,
+        "A": 25.4502,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.42,
+        "nll": 13.8005,
+        "A": 25.8276,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.44,
+        "nll": 13.7198,
+        "A": 26.2105,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.46,
+        "nll": 13.649,
+        "A": 26.5991,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.48,
+        "nll": 13.587,
+        "A": 26.9933,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.5,
+        "nll": 13.533,
+        "A": 27.3934,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.52,
+        "nll": 13.4862,
+        "A": 27.7994,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.54,
+        "nll": 13.4458,
+        "A": 28.2113,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.56,
+        "nll": 13.4112,
+        "A": 28.6292,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.58,
+        "nll": 13.3817,
+        "A": 29.0533,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.6,
+        "nll": 13.3566,
+        "A": 29.4836,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.62,
+        "nll": 13.3355,
+        "A": 29.9198,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.64,
+        "nll": 13.3187,
+        "A": 30.3603,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.66,
+        "nll": 13.3098,
+        "A": 30.7959,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.68,
+        "nll": 13.3209,
+        "A": 31.2052,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.7,
+        "nll": 13.3734,
+        "A": 31.5771,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.72,
+        "nll": 13.4937,
+        "A": 31.9267,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.74,
+        "nll": 13.7152,
+        "A": 32.27,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.76,
+        "nll": 14.0826,
+        "A": 32.6137,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.78,
+        "nll": 14.6482,
+        "A": 32.9599,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.8,
+        "nll": 15.4664,
+        "A": 33.3101,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.82,
+        "nll": 16.585,
+        "A": 33.6663,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.84,
+        "nll": 18.0361,
+        "A": 34.0323,
+        "z0": 60.0
+      },
+      {
+        "beta": 0.86,
+        "nll": 19.5954,
+        "A": 16.6098,
+        "z0": 28.9725
+      },
+      {
+        "beta": 0.88,
+        "nll": 20.328,
+        "A": 11.3498,
+        "z0": 19.6285
+      },
+      {
+        "beta": 0.9,
+        "nll": 20.8856,
+        "A": 9.3833,
+        "z0": 16.0748
+      },
+      {
+        "beta": 0.92,
+        "nll": 21.3719,
+        "A": 8.3116,
+        "z0": 14.0836
+      },
+      {
+        "beta": 0.94,
+        "nll": 21.8175,
+        "A": 7.5452,
+        "z0": 12.634
+      },
+      {
+        "beta": 0.96,
+        "nll": 22.2312,
+        "A": 6.9115,
+        "z0": 11.4303
+      },
+      {
+        "beta": 0.98,
+        "nll": 24.3284,
+        "A": 38.9743,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.0,
+        "nll": 24.328,
+        "A": 39.5506,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.0,
+        "nll": 24.328,
+        "A": 39.5506,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.05,
+        "nll": 23.7775,
+        "A": 5.1071,
+        "z0": 7.9671
+      },
+      {
+        "beta": 1.1,
+        "nll": 24.3273,
+        "A": 42.5618,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.15,
+        "nll": 24.3272,
+        "A": 44.1519,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.2,
+        "nll": 24.3271,
+        "A": 45.8013,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.25,
+        "nll": 24.3271,
+        "A": 47.512,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.3,
+        "nll": 24.3271,
+        "A": 49.2864,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.35,
+        "nll": 24.3271,
+        "A": 51.1268,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.4,
+        "nll": 24.3271,
+        "A": 53.0356,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.45,
+        "nll": 24.3271,
+        "A": 55.0155,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.5,
+        "nll": 24.3271,
+        "A": 57.0688,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.55,
+        "nll": 24.3271,
+        "A": 59.1986,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.6,
+        "nll": 24.3271,
+        "A": 61.4068,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.65,
+        "nll": 24.3271,
+        "A": 63.6985,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.7,
+        "nll": 24.3271,
+        "A": 66.075,
+        "z0": 60.0
+      },
+      {
+        "beta": 1.75,
+        "nll": 24.3271,
+        "A": 68.6575,
+        "z0": 59.9968
+      },
+      {
+        "beta": 1.8,
+        "nll": 24.3271,
+        "A": 71.4463,
+        "z0": 59.9923
+      },
+      {
+        "beta": 1.85,
+        "nll": 24.3271,
+        "A": 74.3491,
+        "z0": 59.9861
+      },
+      {
+        "beta": 1.9,
+        "nll": 24.3271,
+        "A": 77.179,
+        "z0": 59.8877
+      },
+      {
+        "beta": 1.95,
+        "nll": 24.3271,
+        "A": 80.0298,
+        "z0": 59.6672
+      },
+      {
+        "beta": 2.0,
+        "nll": 24.3271,
+        "A": 83.5568,
+        "z0": 59.8394
+      }
+    ]
+  },
+  "beta_bootstrap": {
+    "point_estimate": {
+      "A": 30.83654981336831,
+      "z0": 59.99999999997339,
+      "beta": 0.661911542966866,
+      "nll": 13.309756171218586
+    },
+    "n_bootstrap": 1000,
+    "n_valid": 1000,
+    "beta_95CI": [
+      0.5941,
+      0.6843
+    ],
+    "beta_mean": 0.6558,
+    "beta_std": 0.0583,
+    "beta_median": 0.6619
+  }
+}

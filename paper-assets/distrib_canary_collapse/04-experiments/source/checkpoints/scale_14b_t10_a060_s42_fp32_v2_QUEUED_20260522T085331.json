@@ -1,0 +1,14 @@
+{
+  "exp_id": "scale_14b_t10_a060_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:53:30.644Z",
+    "updated_at": "2026-05-22T08:53:30.644Z"
+  },
+  "timestamp": "2026-05-22T08:53:31.114364+00:00",
+  "trigger": "update_registry"
+}

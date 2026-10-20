@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-20T12:32:46Z",
+  "task1_delta_alpha": {
+    "description": "Transition width (10%->90% detection) from bootstrap sigmoid k",
+    "median": 0.0128,
+    "ci_95": [
+      0.0088,
+      0.0597
+    ],
+    "n_boot": 10000,
+    "n_fail": 0,
+    "interpretation": "Transition width median=0.013 (95% CI [0.009, 0.060]). Even the upper CI bound (0.060) is narrower than the alpha_c CI width (0.133), confirming the transition is genuinely sharp despite location uncertainty."
+  },
+  "task2_delta_p": {
+    "description": "Detection rate difference p(alpha=0.50) - p(alpha=0.45) from bootstrap sigmoid",
+    "median": 0.4006,
+    "ci_95": [
+      0.001,
+      0.75
+    ],
+    "ci_lower_gt_zero": true,
+    "interpretation": "Delta_p median=0.401 (95% CI [0.001, 0.750]). CI lower bound > 0, so detection rates at alpha=0.45 and alpha=0.50 are statistically distinguishable."
+  },
+  "task3_fisher": {
+    "description": "Model-free Fisher exact test: alpha=0.45 (0/16) vs alpha=0.50 (18/24)",
+    "p_value": 1.4751774016454075e-06,
+    "odds_ratio": 0.0,
+    "rate_diff": 0.75,
+    "rate_diff_ci_95": [
+      0.4745,
+      0.8759
+    ],
+    "interpretation": "Fisher exact p=1.48e-06 (highly significant). Rate difference 0.75 (Agresti-Caffo 95% CI [0.475, 0.876]). Model-free confirmation: detection jumps sharply between alpha=0.45 and alpha=0.50."
+  },
+  "overall_interpretation": "alpha_c CI width (0.133) reflects estimation uncertainty of WHERE the transition boundary sits; Delta_alpha (transition width) is HOW SHARP the transition is. Bootstrap Delta_alpha CI shows the transition is genuinely sharp (narrow Delta_alpha) even though we are uncertain about its exact location (wide alpha_c CI). These are orthogonal quantities: a step function with noisy location estimates would show CI >> Delta_alpha, which is exactly what we observe. Fisher exact test independently confirms the sharp jump (p<1e-6) without any parametric model assumption."
+}

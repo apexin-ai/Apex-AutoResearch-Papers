@@ -1,0 +1,29 @@
+\begin{proposition}[Detection Lower Bound for Permutation Granger Test]
+\label{prop:detection-bound}
+Consider a permutation Granger causality test with $B = 5000$ permutations, BH FDR correction at level $q = 0.05$ across $m = 8$ metric pairs, applied to a first-differenced time series of length $T$.
+
+\noindent\textbf{(i) Minimum detectable effect size.}
+The signal strength $\beta$ required for $50\%$ detection power satisfies
+\begin{equation}
+  \beta_{50}(T) \;=\; 28.50 \;\cdot\; T^{-1.16}, \quad R^2 = 0.996,
+  \label{eq:beta50}
+\end{equation}
+calibrated via Monte Carlo simulation ($n = 100$ replications per $(T, \beta)$ cell).
+
+\noindent\textbf{(ii) Joint signal--response model.}
+The PermG forward detection rate is modeled as a T-dependent sigmoid:
+\begin{equation}
+  \mathrm{rate}(\alpha, T) \;=\; \frac{0.73}{1 + \exp\!\bigl(-14.1\,(\alpha - \alpha_c(T))\bigr)}, \quad R^2 = 0.968,
+  \label{eq:joint-sigmoid}
+\end{equation}
+fitted jointly to $T = 10$ ($n = 17$ values of $\alpha$) and $T = 20$ ($n = 5$) data, excluding the synchronization dip at $\alpha \in [0.55, 0.65]$ where structural non-monotonicity invalidates the Granger framework (\S\ref{sec:sync-dip}).
+
+\noindent\textbf{(iii) Detection boundary.}
+The critical mixing ratio below which PermG cannot reliably detect forward causation ($\geq 50\%$ of pairs) follows a power law in $T$:
+\begin{equation}
+  \alpha_c(T) \;=\; -0.542 + 4.90 \;\cdot\; T^{-0.61}.
+  \label{eq:alpha-c}
+\end{equation}
+Predictions: $\alpha_c(5) = 1.00$, $\alpha_c(10) = 0.67$, $\alpha_c(15) = 0.40$, $\alpha_c(20) = 0.25$, $\alpha_c(25) = 0.15$.
+The $T = 20$ predictions are validated against six held-out experiments: five of six predicted correctly, with the exception of $\alpha = 0.60$ which lies in the structural synchronization dip.
+\end{proposition}

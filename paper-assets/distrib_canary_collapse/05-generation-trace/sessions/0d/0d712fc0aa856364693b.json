@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d712fc0aa856364693b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit table7 d111 batch1",
+  "task_key": "worker_audit_table7_d111_batch1_20260520T004801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_d111_batch1_20260520T004801_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "88aea15aee79ae276ac8c2f5995fdb30b097f86c66c1b938057c050580f203af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/table7_d111_audit_batch1.md`。\n\n核心结果：\n\n| 实验 | K≥3 旧→新 | K≥4 旧→新 |\n|------|-----------|-----------|\n| Pythia-6.9B s42 | 8/8→**5/8** (↓3) | 3/8→**1/8** (↓2) |\n| Qwen3.5-0.8B s42 | 8/8→8/8 (不变) | 6/8→**3/8** (↓3) |\n| Pythia-1.4B s42 | 2/8→2/8 (不变) | 0/8→0/8 (不变) |\n| Pythia-1.4B s43 | 6/8→**7/8** (↑1) | 3/8→3/8 (不变) |\n\n主要发现：\n- **diff_xcorr 几乎全军覆没**：32 个 pair 中只有 4 个 diff lag > 0，D111 实质上取消了 diff_xcorr 的 consensus 贡献\n- **Pythia-6.9B 受影响最大**：naive lag 也大多为负，K≥3 从 8/8 降到 5/8\n- **Qwen3.5 K≥3 不变**：靠 TY(6/8) 和 PermG(8/8) 补偿了 xcorr 损失，但 K≥4 腰斩\n- **Pythia-1.4B s42/s43 实际路径在 westd-19828**（非任务指定的 17855），Pythia-6.9B 在 `scale_check/` 而非 `generalize/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table7-d111-batch1.md"
+}

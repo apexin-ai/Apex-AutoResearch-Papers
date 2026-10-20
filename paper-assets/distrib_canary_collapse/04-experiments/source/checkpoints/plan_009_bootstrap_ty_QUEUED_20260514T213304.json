@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_009_bootstrap_ty",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:33:04.665Z",
+    "updated_at": "2026-05-14T21:33:04.665Z"
+  },
+  "timestamp": "2026-05-14T21:33:04.732674+00:00",
+  "trigger": "update_registry"
+}

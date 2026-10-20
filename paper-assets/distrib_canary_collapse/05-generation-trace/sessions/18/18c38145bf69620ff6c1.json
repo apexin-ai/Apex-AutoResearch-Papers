@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18c38145bf69620ff6c1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t10a060v2 17855c3",
+  "task_key": "worker_ops_restart-14b-t10a060v2-17855c3_20260522T130716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t10a060v2-17855c3_20260522T130716_result.json",
+    "occurrence": 1,
+    "bytes": 284,
+    "sha256": "4776fbcb1133ee049f54bed28f14476b61e1a997d53fe03fcbd0626e673f4a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重启完成：\n\n- **清理**: 删除了不完整的 gen_5 目录\n- **启动**: PID 680531, cuda:3, tmux session `scale_14b_a060_s42`\n- **状态**: 已进入 Generation 5/10 synthetic data 生成\n- **Registry**: 已更新 spec（新 PID、log_path、start_gen=5）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t10a060v2-17855c3.md"
+}

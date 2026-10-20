@@ -1,0 +1,759 @@
+# code intervention mode
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_code_intervention_mode_20260518T095757.jsonl`
+- **Structured JSON:** [`77426177fc1c764a5194.json`](../../sessions/77/77426177fc1c764a5194.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T10:01:15.777215+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T10:01:15.777528+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T10:01:15.777714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T10:01:15.778003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Iterative self-consuming training pipeline for model collapse study.\\n\\nEach generation:\\n  1. Generate synthetic text from current model using held-out prompts\\n  2. Mix synthetic data with real data according to --synthetic_ratio\\n  3. Fine-tune the model on the mixed dataset\\n  4. Save checkpoint and compute all canary + downstream metrics\\n\\nSynthetic mixing modes:\\n  - Default: each generation uses only current-gen synthetic data + real data\\n  - --accumulate: pool all historical synthetic data (gen 1..N) + real data\\n\\nUsage:\\n    python iterative_train.py \\\\\\n        --model_name EleutherAI/pythia-410m \\\\\\n        --data_dir data/wikitext103 \\\\\\n        --output_dir results/mvp/rep_42 \\\\\\n        --num_generations 10 \\\\\\n        --steps_per_gen 10000 \\\\\\n        --synthetic_ratio 0.75 \\\\\\n        --accumulate \\\\\\n        --seed 42\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport shutil\\nimport random\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import Dataset, concatenate_datasets, load_from_disk\\nfrom torch.utils.data import DataLoader\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    DataCollatorForLanguageModeling,\\n    Trainer,\\n    TrainingArguments,\\n    set_seed,\\n)\\n\\nfrom metrics import compute_all_metrics\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_name\\\", type=str, default=\\\"EleutherAI/pythia-410m\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, default=\\\"data/wikitext103\\\",\\n                   help=\\\"Output of prepare_data.py\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"wikitext-103-v1\\\",\\n                   help=\\\"Dataset identifier (for logging only; actual data from data_dir)\\\")\\n    p.add_argument(\\\"--synthetic_ratio\\\", type=float, default=1.0,\\n                   h
+…[truncated 7149 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T10:01:15.778195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:01:15.778374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"324 /root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T10:01:15.778514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -160 /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -160 /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T10:01:15.778752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Iterative self-consuming training pipeline for model collapse study.\\n\\nEach generation:\\n  1. Generate synthetic text from current model using held-out prompts\\n  2. Mix synthetic data with real data according to --synthetic_ratio\\n  3. Fine-tune the model on the mixed dataset\\n  4. Save checkpoint and compute all canary + downstream metrics\\n\\nSynthetic mixing modes:\\n  - Default: each generation uses only current-gen synthetic data + real data\\n  - --accumulate: pool all historical synthetic data (gen 1..N) + real data\\n\\nUsage:\\n    python iterative_train.py \\\\\\n        --model_name EleutherAI/pythia-410m \\\\\\n        --data_dir data/wikitext103 \\\\\\n        --output_dir results/mvp/rep_42 \\\\\\n        --num_generations 10 \\\\\\n        --steps_per_gen 10000 \\\\\\n        --synthetic_ratio 0.75 \\\\\\n        --accumulate \\\\\\n        --seed 42\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport shutil\\nimport random\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import Dataset, concatenate_datasets, load_from_disk\\nfrom torch.utils.data import DataLoader\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    DataCollatorForLanguageModeling,\\n    Trainer,\\n    TrainingArguments,\\n    set_seed,\\n)\\n\\nfrom metrics import compute_all_metrics\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_name\\\", type=str, default=\\\"EleutherAI/pythia-410m\\\")\\n    p.add_argument(\\\"--data_dir\\\", type=str, default=\\\"data/wikitext103\\\",\\n                   help=\\\"Output of prepare_data.py\\\")\\n    p.add_argument(\\\"--dataset\\\", type=str, default=\\\"wikitext-103-v1\\\",\\n                   help=\\\"Dataset identifier (for logging only; actual data from data_dir)\\\")\\n    p.add_argument(\\\"--synthetic_ratio\\\", type=float, default=1.0,\\n                   h
+…[truncated 5507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T10:01:15.778904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -n +161 /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "tail -n +161 /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T10:01:15.779135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        logging_steps=100,\\n        save_strategy=\\\"no\\\",\\n        seed=args.seed + gen_idx,\\n        fp16=torch.cuda.is_available(),\\n        gradient_checkpointing=args.gradient_checkpointing,\\n        optim=args.optim,\\n        dataloader_drop_last=True,\\n        report_to=\\\"none\\\",\\n    )\\n\\n    collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)\\n    trainer = Trainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=tokenized,\\n        data_collator=collator,\\n    )\\n    trainer.train()\\n    return model\\n\\n\\ndef main():\\n    args = parse_args()\\n    set_seed(args.seed)\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    with open(os.path.join(args.output_dir, \\\"config.json\\\"), \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n    # Resume support: load from checkpoint if start_gen > 0\\n    if args.start_gen > 0:\\n        ckpt_dir = os.path.join(args.output_dir, f\\\"gen_{args.start_gen - 1}\\\", \\\"checkpoint\\\")\\n        print(f\\\"Resuming from gen {args.start_gen}, loading checkpoint: {ckpt_dir}\\\")\\n        tokenizer = AutoTokenizer.from_pretrained(ckpt_dir)\\n        model = AutoModelForCausalLM.from_pretrained(ckpt_dir)\\n    else:\\n        print(f\\\"Loading model: {args.model_name}\\\")\\n        tokenizer = AutoTokenizer.from_pretrained(args.model_name)\\n        model = AutoModelForCausalLM.from_pretrained(args.model_name)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    if torch.cuda.is_available():\\n        model = model.cuda()\\n\\n    print(f\\\"Loading data from {args.data_dir}\\\")\\n    train_dataset = load_from_disk(os.path.join(args.data_dir, \\\"train\\\"))\\n    eval_dataset = load_from_disk(os.path.join(args.data_dir, \\\"eval\\\"))\\n    prompts_dataset = load_from_disk(os.path.join(args.data_dir, \\\"prompts\\\"))\\n\\n 
+…[truncated 5246 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T10:01:15.779349+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"metrics.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T10:01:15.779563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_5/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_7/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_9/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_5/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_6/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_7/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_8/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_9/metrics.json\\n/root/autodl-tmp/distrib_canary_
+…[truncated 6370 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T10:01:15.779715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/gen_1/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/gen_1/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T10:01:15.779851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 2.190650906661833,\\n  \\\"self_bleu\\\": 0.01031278388147428,\\n  \\\"distinct_1\\\": 0.09752517633628247,\\n  \\\"distinct_2\\\": 0.5140825545933428,\\n  \\\"distinct_3\\\": 0.8103854590526204,\\n  \\\"ece\\\": 0.13282468233966083,\\n  \\\"effective_rank\\\": 69.79287800377304,\\n  \\\"perplexity\\\": 31.650956735115184,\\n  \\\"mauve\\\": 0.03232946507236373,\\n  \\\"generation\\\": 1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T10:01:15.780095+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/patch_iterative_train.py << 'PATCHEOF'\nimport sys\n\nfilepath = '/root/autodl-tmp/distrib_canary_collapse/iterative_train.py'\nwith open(filepath, 'r') as f:\n    content = f.read()\n\noriginal = content  # keep backup\n\n# 1. Add new arguments before \"return p.parse_args()\"\nnew_args = \"\"\"    p.add_argument(\"--intervention_mode\", type=str, default=\"none\",\n                   choices=[\"none\", \"predictive\", \"reactive\"],\n                   help=\"Intervention mode: none=fixed alpha, predictive=trigger on canary metric, reactive=trigger on downstream metric\")\n    p.add_argument(\"--intervention_metric\", type=str, default=\"token_entropy\",\n                   help=\"Metric to monitor for intervention trigger\")\n    p.add_argument(\"--intervention_threshold\", type=float, default=0.15,\n                   help=\"Gen-over-gen relative drop threshold to trigger intervention\")\n    p.add_argument(\"--intervention_alpha\", type=float, default=0.0,\n                   help=\"Alpha value to switch to after intervention triggers\")\n\"\"\"\nold1 = '    return p.parse_args()\\n'\nassert content.count(old1) == 1, f\"Expected 1 occurrence of parse_args return, found {content.count(old1)}\"\ncontent = content.replace(old1, new_args + old1)\nprint(\"1. Added 4 new arguments\")\n\n# 2. Add intervention state initialization + resume reconstruction\nold2 = '    if args.start_gen == 0:\\n'\nnew2 = \"\"\"    intervention_triggered = False\n    trigger_gen = None\n    for _m in all_metrics:\n        if _m.get(\"intervention_triggered\"):\n            intervention_triggered = True\n            trigger_gen = _m.get(\"trigger_gen\")\n            break\n\n    if args.start_gen == 0:\\n\"\"\"\nassert content.count(old2) == 1, f\"Expected 1 occurrence of start_gen==0, found {content.count(old2)}\"\ncontent = content.replace(old2, new2)\nprint(\"2. Added intervention state init + resume reconstruction\")\n\n# 3. Add intervention fields to gen_0 metrics\nold3 = '        metrics[\"generation\"] = 0\\n        all_metrics.append(metrics)\\n\\n        with open(os.path.join(gen0_dir, \"metrics.json\"), \"w\") as f:\\n            json.dump(metrics, f, indent=2)'\nnew3 = '        metrics[\"generation\"] = 0\\n        metrics[\"intervention_triggered\"] = False\\n        metrics[\"trigger_gen\"] = None\\n        metrics[\"effective_alpha\"] = args.synthetic_ratio\\n        all_metrics.append(metrics)\\n\\n        with open(os.path.join(gen0_dir, \"metrics.json\"), \"w\") as f:\\n            json.dump(metrics, f, indent=2)'\nassert content.count(old3) == 1, f\"Expected 1 occurrence of gen0 metrics block, found {content.count(old3)}\"\ncontent = content.replace(old3, new3)\nprint(\"3. Added intervention fields to gen_0 metrics\")\n\n# 4. Add current_alpha determination at top of gen loop body\nold4 = '        gen_dir = os.path.join(args.output_dir, f\"gen_{gen}\")\\n        os.makedirs(gen_dir, exist_ok=True)\\n\\n        # Step 1: generate synthetic data with current model'\nnew4 = '        gen_dir = os.path.join(args.output_dir, f\"gen_{gen}\")\\n        os.makedirs(gen_dir, exist_ok=True)\\n\\n        current_alpha = args.intervention_alpha if intervention_triggered else args.synthetic_ratio\\n\\n        # Step 1: generate synthetic data with current model'\nassert content.count(old4) == 1, f\"Expected 1 occurrence of gen_dir block, found {content.count(old4)}\"\ncontent = content.replace(old4, new4)\nprint(\"4. Added current_alpha determination\")\n\n# 5. Replace args.synthetic_ratio with current_alpha in mix_datasets call\nold5 = '        mixed = mix_datasets(train_dataset, effective_synthetic,\\n                             args.synthetic_ratio, args.seed + gen)'\nnew5 = '        mixed = mix_datasets(train_dataset, effective_synthetic,\\n                             current_alpha, args.seed + gen)'\nassert content.count(old5) == 1, f\"Expected 1 occurrence of mix_datasets call, found {content.count(old5)}\"\ncontent = content.replace(old5, new5)\nprint(\"5. Replaced synthetic_ratio in mix_datasets\")\n\n# 6. Replace args.synthetic_ratio in print statement\nold6 = '              f\"synthetic_ratio={args.synthetic_ratio}, \"'\nnew6 = '              f\"synthetic_ratio={current_alpha}, \"'\nassert content.count(old6) == 1, f\"Expected 1 occurrence of synthetic_ratio print, found {content.count(old6)}\"\ncontent = content.replace(old6, new6)\nprint(\"6. Replaced synthetic_ratio in print\")\n\n# 7. Add trigger check and intervention fields in gen loop metrics block\nold7 = \"\"\"        metrics = compute_all_metrics(model, tokenizer, eval_dataset,\n                                      synthetic_data)\n        metrics[\"generation\"] = gen\n        all_metrics.append(metrics)\n\n        with open(os.path.join(gen_dir, \"metrics.json\"), \"w\") as f:\n            json.dump(metrics, f, indent=2)\"\"\"\n\nnew7 = \"\"\"        metrics = compute_all_metrics(model, tokenizer, eval_dataset,\n                                      synthetic_data)\n        metrics[\"generation\"] = gen\n\n        if args.intervention_mode != \"none\" and not intervention_triggered and len(all_metrics) >= 1:\n            prev_metrics = all_metrics[-1]\n            m_name = args.intervention_metric\n            if m_name in prev_metrics and m_name in metrics:\n                prev_val = prev_metrics[m_name]\n                curr_val = metrics[m_name]\n                if abs(prev_val) > 1e-12:\n                    rel_change = (curr_val - prev_val) / abs(prev_val)\n                    if rel_change < -args.intervention_threshold:\n                        intervention_triggered = True\n                        trigger_gen = gen\n                        print(f\"  INTERVENTION TRIGGERED at gen {gen}: \"\n                              f\"{m_name} dropped {rel_change:.2%}\")\n\n        metrics[\"intervention_triggered\"] = intervention_triggered\n        metrics[\"trigger_gen\"] = trigger_gen\n        metrics[\"effective_alpha\"] = current_alpha\n        all_metrics.append(metrics)\n\n        with open(os.path.join(gen_dir, \"metrics.json\"), \"w\") as f:\n            json.dump(metrics, f, indent=2)\"\"\"\n\nassert content.count(old7) == 1, f\"Expected 1 occurrence of gen loop metrics block, found {content.count(old7)}\"\ncontent = content.replace(old7, new7)\nprint(\"7. Added trigger check + intervention fields in gen loop\")\n\n# Write modified file\nwith open(filepath, 'w') as f:\n    f.write(content)\n\n# Write backup\nwith open(filepath + '.bak', 'w') as f:\n    f.write(original)\n\nprint(f\"\\nPatch complete. File: {filepath}\")\nprint(f\"Backup: {filepath}.bak\")\nPATCHEOF\npython3 /tmp/patch_iterative_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat > /tmp/patch_iterative_train.py << 'PATCHEOF'\nimport sys\n\nfilepath = '/root/autodl-tmp/distrib_canary_collapse/iterative_train.py'\nwith open(filepath, 'r') as f:\n    content = f.read()\n\noriginal = content  # keep backup\n\n# 1. Add new arguments before \"return p.parse_args()\"\nnew_args = \"\"\"    p.add_argument(\"--intervention_mode\", type=str, default=\"none\",\n                   choices=[\"none\", \"predictive\", \"reactive\"],\n                   help=\"Intervention mode: none=fixed alpha, predictive=trigger on canary metric, reactive=trigger on downstream metric\")\n    p.add_argument(\"--intervention_metric\", type=str, default=\"token_entropy\",\n                   help=\"Metric to monitor for intervention trigger\")\n    p.add_argument(\"--intervention_threshold\", type=float, default=0.15,\n                   help=\"Gen-over-gen relative drop threshold to trigger intervention\")\n    p.add_argument(\"--intervention_alpha\", type=float, default=0.0,\n                   help=\"Alpha value to switch to after intervention triggers\")\n\"\"\"\nold1 = '    return p.parse_args()\\n'\nassert content.count(old1) == 1, f\"Expected 1 occurrence of parse_args return, found {content.count(old1)}\"\ncontent = content.replace(old1, new_args + old1)\nprint(\"1. Added 4 new arguments\")\n\n# 2. Add intervention state initialization + resume reconstruction\nold2 = '    if args.start_gen == 0:\\n'\nnew2 = \"\"\"    intervention_triggered = False\n    trigger_gen = None\n    for _m in all_metrics:\n        if _m.get(\"intervention_triggered\"):\n            intervention_triggered = True\n            trigger_gen = _m.get(\"trigger_gen\")\n            break\n\n    if args.start_gen == 0:\\n\"\"\"\nassert content.count(old2) == 1, f\"Expected 1 occurrence of start_gen==0, found {content.count(old2)}\"\ncontent = content.replace(old2, new2)\nprint(\"2. Added intervention state init + resume reconstruction\")\n\n# 3. Add intervention fields to gen_0 metrics\nold3 = '        metrics[\"generation\"] = 0\\n        all_metrics.append(metrics)\\n\\n        with open(os.path.join(gen0_dir, \"metrics.json\"), \"w\") as f:\\n            json.dump(metrics, f, indent=2)'\nnew3 = '        metrics[\"generation\"] = 0\\n        metrics[\"intervention_triggered\"] = False\\n        metrics[\"trigger_gen\"] = None\\n        metrics[\"effective_alpha\"] = args.synthetic_ratio\\n        all_metrics.append(metrics)\\n\\n        with open(os.path.join(gen0_dir, \"metrics.json\"), \"w\") as f:\\n            json.dump(metrics, f, indent=2)'\nassert content.count(old3) == 1, f\"Expected 1 occurrence of gen0 metrics block, found {content.count(old3)}\"\ncontent = content.replace(old3, new3)\nprint(\"3. Added intervention fields to gen_0 metrics\")\n\n# 4. Add current_alpha determination at top of gen loop body\nold4 = '        gen_dir = os.path.join(args.output_dir, f\"gen_{gen}\")\\n        os.makedirs(gen_dir, exist_ok=True)\\n\\n        # Step 1: generate synthetic data with current model'\nnew4 = '        gen_dir = os.path.join(args.output_dir, f\"gen_{gen}\")\\n        os.makedirs(gen_dir, exist_ok=True)\\n\\n        current_alpha = args.intervention_alpha if intervention_triggered else args.synthetic_ratio\\n\\n        # Step 1: generate synthetic data with current model'\nassert content.count(old4) == 1, f\"Expected 1 occurrence of gen_dir block, found {content.count(old4)}\"\ncontent = content.replace(old4, new4)\nprint(\"4. Added current_alpha determination\")\n\n# 5. Replace args.synthetic_ratio with current_alpha in mix_datasets call\nold5 = '        mixed = mix_datasets(train_dataset, effective_synthetic,\\n                             args.synthetic_ratio, args.seed + gen)'\nnew5 = '        mixed = mix_datasets(train_dataset, effective_synthetic,\\n                             current_alpha, args.seed + gen)'\nassert content.count(old5) == 1, f\"Expected 1 occurrence of mix_datasets call, found {content.count(old5)}\"\ncontent = content.replace(old5, new5)\nprint(\"5. Replaced synthetic_ratio in mix_datasets\")\n\n# 6. Replace args.synthetic_ratio in print statement\nold6 = '              f\"synthetic_ratio={args.synthetic_ratio}, \"'\nnew6 = '              f\"synthetic_ratio={current_alpha}, \"'\nassert content.count(old6) == 1, f\"Expected 1 occurrence of synthetic_ratio print, found {content.count(old6)}\"\ncontent = content.replace(old6, new6)\nprint(\"6. Replaced synthetic_ratio in print\")\n\n# 7. Add trigger check and intervention fields in gen loop metrics block\nold7 = \"\"\"        metrics = compute_all_metrics(model, tokenizer, eval_dataset,\n                                      synthetic_data)\n        metrics[\"generation\"] = gen\n        all_metrics.append(metrics)\n\n        with open(os.path.join(gen_dir, \"metrics.json\"), \"w\") as f:\n            json.dump(metrics, f, indent=2)\"\"\"\n\nnew7 = \"\"\"        metrics = compute_all_metrics(model, tokenizer, eval_dataset,\n                                      synthetic_data)\n        metrics[\"generation\"] = gen\n\n        if args.intervention_mode != \"none\" and not intervention_triggered and len(all_metrics) >= 1:\n            prev_metrics = all_metrics[-1]\n            m_name = args.intervention_metric\n            if m_name in prev_metrics and m_name in metrics:\n                prev_val = prev_metrics[m_name]\n                curr_val = metrics[m_name]\n                if abs(prev_val) > 1e-12:\n                    rel_change = (curr_val - prev_val) / abs(prev_val)\n                    if rel_change < -args.intervention_threshold:\n                        intervention_triggered = True\n                        trigger_gen = gen\n                        print(f\"  INTERVENTION TRIGGERED at gen {gen}: \"\n                              f\"{m_name} dropped {rel_change:.2%}\")\n\n        metrics[\"intervention_triggered\"] = intervention_triggered\n        metrics[\"trigger_gen\"] = trigger_gen\n        metrics[\"effective_alpha\"] = current_alpha\n        all_metrics.append(metrics)\n\n        with open(os.path.join(gen_dir, \"metrics.json\"), \"w\") as f:\n            json.dump(metrics, f, indent=2)\"\"\"\n\nassert content.count(old7) == 1, f\"Expected 1 occurrence of gen loop metrics block, found {content.count(old7)}\"\ncontent = content.replace(old7, new7)\nprint(\"7. Added trigger check + intervention fields in gen loop\")\n\n# Write modified file\nwith open(filepath, 'w') as f:\n    f.write(content)\n\n# Write backup\nwith open(filepath + '.bak', 'w') as f:\n    f.write(original)\n\nprint(f\"\\nPatch complete. File: {filepath}\")\nprint(f\"Backup: {filepath}.bak\")\nPATCHEOF\npython3 /tmp/patch_iterative_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T10:01:15.780312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1. Added 4 new arguments\\n2. Added intervention state init + resume reconstruction\\n3. Added intervention fields to gen_0 metrics\\n4. Added current_alpha determination\\n5. Replaced synthetic_ratio in mix_datasets\\n6. Replaced synthetic_ratio in print\\n7. Added trigger check + intervention fields in gen loop\\n\\nPatch complete. File: /root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\nBackup: /root/autodl-tmp/distrib_canary_collapse/iterative_train.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T10:01:15.780462+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import ast; ast.parse(open('iterative_train.py').read()); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import ast; ast.parse(open('iterative_train.py').read()); print('Syntax OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T10:01:15.780588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T10:01:15.780706+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom iterative_train import parse_args\nimport sys\nsys.argv = ['test',\n    '--intervention_mode', 'predictive',\n    '--intervention_metric', 'token_entropy',\n    '--intervention_threshold', '0.15',\n    '--intervention_alpha', '0.0',\n]\nargs = parse_args()\nprint(f'intervention_mode={args.intervention_mode}')\nprint(f'intervention_metric={args.intervention_metric}')\nprint(f'intervention_threshold={args.intervention_threshold}')\nprint(f'intervention_alpha={args.intervention_alpha}')\nprint(f'synthetic_ratio={args.synthetic_ratio}')\nprint('Args parse OK')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom iterative_train import parse_args\nimport sys\nsys.argv = ['test',\n    '--intervention_mode', 'predictive',\n    '--intervention_metric', 'token_entropy',\n    '--intervention_threshold', '0.15',\n    '--intervention_alpha', '0.0',\n]\nargs = parse_args()\nprint(f'intervention_mode={args.intervention_mode}')\nprint(f'intervention_metric={args.intervention_metric}')\nprint(f'intervention_threshold={args.intervention_threshold}')\nprint(f'intervention_alpha={args.intervention_alpha}')\nprint(f'synthetic_ratio={args.synthetic_ratio}')\nprint('Args parse OK')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T10:01:15.780833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"intervention_mode=predictive\\nintervention_metric=token_entropy\\nintervention_threshold=0.15\\nintervention_alpha=0.0\\nsynthetic_ratio=1.0\\nArgs parse OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T10:01:15.780950+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom iterative_train import parse_args\nimport sys\n# Test default (none) mode\nsys.argv = ['test']\nargs = parse_args()\nassert args.intervention_mode == 'none', f'Expected none, got {args.intervention_mode}'\nassert args.intervention_metric == 'token_entropy'\nassert args.intervention_threshold == 0.15\nassert args.intervention_alpha == 0.0\nprint('Default args OK')\n\n# Test reactive mode\nsys.argv = ['test', '--intervention_mode', 'reactive', '--intervention_metric', 'distinct_1', '--intervention_threshold', '0.10']\nargs = parse_args()\nassert args.intervention_mode == 'reactive'\nassert args.intervention_metric == 'distinct_1'\nassert args.intervention_threshold == 0.10\nprint('Reactive args OK')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom iterative_train import parse_args\nimport sys\n# Test default (none) mode\nsys.argv = ['test']\nargs = parse_args()\nassert args.intervention_mode == 'none', f'Expected none, got {args.intervention_mode}'\nassert args.intervention_metric == 'token_entropy'\nassert args.intervention_threshold == 0.15\nassert args.intervention_alpha == 0.0\nprint('Default args OK')\n\n# Test reactive mode\nsys.argv = ['test', '--intervention_mode', 'reactive', '--intervention_metric', 'distinct_1', '--intervention_threshold', '0.10']\nargs = parse_args()\nassert args.intervention_mode == 'reactive'\nassert args.intervention_metric == 'distinct_1'\nassert args.intervention_threshold == 0.10\nprint('Reactive args OK')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T10:01:15.781079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Default args OK\\nReactive args OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T10:01:15.781209+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "diff -u /root/autodl-tmp/distrib_canary_collapse/iterative_train.py.bak /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "diff -u /root/autodl-tmp/distrib_canary_collapse/iterative_train.py.bak /root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T10:01:15.781423+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"--- /root/autodl-tmp/distrib_canary_collapse/iterative_train.py.bak\\t2026-05-18 18:00:25.939549347 +0800\\n+++ /root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\t2026-05-18 18:00:25.939549347 +0800\\n@@ -73,6 +73,15 @@\\n                    help=\\\"Enable gradient checkpointing to reduce memory usage\\\")\\n     p.add_argument(\\\"--optim\\\", type=str, default=\\\"adamw_torch\\\",\\n                    help=\\\"Optimizer name (e.g. adamw_torch, adamw_bnb_8bit)\\\")\\n+    p.add_argument(\\\"--intervention_mode\\\", type=str, default=\\\"none\\\",\\n+                   choices=[\\\"none\\\", \\\"predictive\\\", \\\"reactive\\\"],\\n+                   help=\\\"Intervention mode: none=fixed alpha, predictive=trigger on canary metric, reactive=trigger on downstream metric\\\")\\n+    p.add_argument(\\\"--intervention_metric\\\", type=str, default=\\\"token_entropy\\\",\\n+                   help=\\\"Metric to monitor for intervention trigger\\\")\\n+    p.add_argument(\\\"--intervention_threshold\\\", type=float, default=0.15,\\n+                   help=\\\"Gen-over-gen relative drop threshold to trigger intervention\\\")\\n+    p.add_argument(\\\"--intervention_alpha\\\", type=float, default=0.0,\\n+                   help=\\\"Alpha value to switch to after intervention triggers\\\")\\n     return p.parse_args()\\n \\n \\n@@ -217,6 +226,14 @@\\n             with open(prev_metrics_path) as f:\\n                 all_metrics.append(json.load(f))\\n \\n+    intervention_triggered = False\\n+    trigger_gen = None\\n+    for _m in all_metrics:\\n+        if _m.get(\\\"intervention_triggered\\\"):\\n+            intervention_triggered = True\\n+            trigger_gen = _m.get(\\\"trigger_gen\\\")\\n+            break\\n+\\n     if args.start_gen == 0:\\n         # --- Generation 0: baseline metrics (no training yet) ---\\n         print(\\\"=\\\" * 60)\\n@@ -230,6 +247,9 @@\\n \\n         metrics = comp
+…[truncated 2932 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_intervention_mode_20260518T095757",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-18T10:01:15.781609+00:00_
+
+完成。Diff 总结：
+
+**4 处修改，共增加 ~40 行：**
+
+1. **`parse_args()`** (L75-83): 添加 `--intervention_mode`, `--intervention_metric`, `--intervention_threshold`, `--intervention_alpha` 四个参数
+
+2. **`main()` 初始化** (L229-235): 在 gen 循环前初始化 `intervention_triggered=False`, `trigger_gen=None`，并从已有 metrics 恢复干预状态（支持 `--start_gen` 断点续跑）
+
+3. **Gen 0 metrics** (L249-251): 写入 `intervention_triggered`, `trigger_gen`, `effective_alpha` 字段
+
+4. **Gen 1..N 循环** (L269, L285, L288, L314-331):
+   - 每个 gen 开始时根据干预状态选择 `current_alpha`
+   - `mix_datasets` 和 print 使用 `current_alpha` 替代 `args.synthetic_ratio`
+   - metrics 计算后检查 gen-over-gen 相对下降是否超过 threshold，超过则触发干预
+   - 将干预状态写入 metrics.json
+
+**`--intervention_mode none` 不改变任何现有行为**——`current_alpha` 始终等于 `args.synthetic_ratio`，trigger check 被跳过。
+
+语法检查 + 参数解析验证均通过。备份已保存为 `iterative_train.py.bak`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_intervention_mode_20260518T095757"
+}
+```
+
+</details>
+
+---

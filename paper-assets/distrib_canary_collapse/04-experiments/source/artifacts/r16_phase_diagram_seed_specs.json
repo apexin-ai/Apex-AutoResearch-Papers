@@ -1,0 +1,163 @@
+{
+  "description": "R16 phase diagram seed expansion: 15 experiments for Pythia-410M fp32 T=10 transition region",
+  "created": "2026-05-25",
+  "status": "PENDING_APPROVAL",
+  "rationale": "R16 reviewer requires ≥8 seeds in transition region. Current: α=0.45 (2 seeds), α=0.50 (3 seeds), α=0.55 (1 seed). Target: α=0.45 (7), α=0.50 (8), α=0.55 (6).",
+  "base_config": {
+    "model": "EleutherAI/pythia-410m",
+    "data_dir": "data/wikitext103_5k",
+    "T": 10,
+    "steps_per_gen": 5000,
+    "precision": "fp32",
+    "batch_size": 4,
+    "max_length": 512,
+    "lr": "5e-5",
+    "gen_max_new_tokens": 256,
+    "gen_batch_size": 16,
+    "top_p": 0.95,
+    "optim": "adamw_torch",
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "estimated_per_experiment_hours": 0.75,
+    "total_gpu_hours": 11.25
+  },
+  "existing_seeds": {
+    "a045": {"seeds": [42, 43], "count": 2},
+    "a050": {"seeds": [42, 43, 44], "count": 3},
+    "a055": {"seeds": [42], "count": 1}
+  },
+  "target_seeds": {
+    "a045": {"seeds": [42, 43, 44, 45, 46, 47, 48], "count": 7},
+    "a050": {"seeds": [42, 43, 44, 45, 46, 47, 48, 49], "count": 8},
+    "a055": {"seeds": [42, 43, 44, 45, 46, 47], "count": 6}
+  },
+  "experiments": [
+    {
+      "exp_id": "pd_a045_s44_fp32",
+      "alpha": 0.45,
+      "seed": 44,
+      "output_dir": "results/phase_diagram/t10_a045_s44_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s44_fp32 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.45 seed 44: additional seed for transition region boundary. Existing seeds (42,43) show 0/8 PermG at T=10. Expect consistent null detection below α_c."
+    },
+    {
+      "exp_id": "pd_a045_s45_fp32",
+      "alpha": 0.45,
+      "seed": 45,
+      "output_dir": "results/phase_diagram/t10_a045_s45_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s45_fp32 --seed 45 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.45 seed 45: boundary replication for ≥7 seed coverage."
+    },
+    {
+      "exp_id": "pd_a045_s46_fp32",
+      "alpha": 0.45,
+      "seed": 46,
+      "output_dir": "results/phase_diagram/t10_a045_s46_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s46_fp32 --seed 46 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.45 seed 46: boundary replication for ≥7 seed coverage."
+    },
+    {
+      "exp_id": "pd_a045_s47_fp32",
+      "alpha": 0.45,
+      "seed": 47,
+      "output_dir": "results/phase_diagram/t10_a045_s47_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s47_fp32 --seed 47 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.45 seed 47: boundary replication for ≥7 seed coverage."
+    },
+    {
+      "exp_id": "pd_a045_s48_fp32",
+      "alpha": 0.45,
+      "seed": 48,
+      "output_dir": "results/phase_diagram/t10_a045_s48_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s48_fp32 --seed 48 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.45 seed 48: boundary replication for ≥7 seed coverage."
+    },
+    {
+      "exp_id": "pd_a050_s45_fp32",
+      "alpha": 0.50,
+      "seed": 45,
+      "output_dir": "results/phase_diagram/t10_a050_s45_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s45_fp32 --seed 45 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.50 seed 45: onset boundary replication. Existing 3 seeds show 6/8 PermG (unanimous onset). Target ≥8 seeds for robust α_c estimation."
+    },
+    {
+      "exp_id": "pd_a050_s46_fp32",
+      "alpha": 0.50,
+      "seed": 46,
+      "output_dir": "results/phase_diagram/t10_a050_s46_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s46_fp32 --seed 46 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.50 seed 46: onset boundary replication for ≥8 seed coverage."
+    },
+    {
+      "exp_id": "pd_a050_s47_fp32",
+      "alpha": 0.50,
+      "seed": 47,
+      "output_dir": "results/phase_diagram/t10_a050_s47_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s47_fp32 --seed 47 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.50 seed 47: onset boundary replication for ≥8 seed coverage."
+    },
+    {
+      "exp_id": "pd_a050_s48_fp32",
+      "alpha": 0.50,
+      "seed": 48,
+      "output_dir": "results/phase_diagram/t10_a050_s48_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s48_fp32 --seed 48 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.50 seed 48: onset boundary replication for ≥8 seed coverage."
+    },
+    {
+      "exp_id": "pd_a050_s49_fp32",
+      "alpha": 0.50,
+      "seed": 49,
+      "output_dir": "results/phase_diagram/t10_a050_s49_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s49_fp32 --seed 49 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.50 seed 49: onset boundary replication for ≥8 seed coverage."
+    },
+    {
+      "exp_id": "pd_a055_s43_fp32",
+      "alpha": 0.55,
+      "seed": 43,
+      "output_dir": "results/phase_diagram/t10_a055_s43_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.55 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a055_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.55 seed 43: new α level between onset (0.50) and sync-dip (0.60). Maps the transition boundary at finer resolution."
+    },
+    {
+      "exp_id": "pd_a055_s44_fp32",
+      "alpha": 0.55,
+      "seed": 44,
+      "output_dir": "results/phase_diagram/t10_a055_s44_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.55 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a055_s44_fp32 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.55 seed 44: transition boundary fine-resolution mapping."
+    },
+    {
+      "exp_id": "pd_a055_s45_fp32",
+      "alpha": 0.55,
+      "seed": 45,
+      "output_dir": "results/phase_diagram/t10_a055_s45_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.55 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a055_s45_fp32 --seed 45 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.55 seed 45: transition boundary fine-resolution mapping."
+    },
+    {
+      "exp_id": "pd_a055_s46_fp32",
+      "alpha": 0.55,
+      "seed": 46,
+      "output_dir": "results/phase_diagram/t10_a055_s46_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.55 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a055_s46_fp32 --seed 46 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.55 seed 46: transition boundary fine-resolution mapping."
+    },
+    {
+      "exp_id": "pd_a055_s47_fp32",
+      "alpha": 0.55,
+      "seed": 47,
+      "output_dir": "results/phase_diagram/t10_a055_s47_fp32",
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.55 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a055_s47_fp32 --seed 47 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "hypothesis": "α=0.55 seed 47: transition boundary fine-resolution mapping."
+    }
+  ],
+  "scheduling": {
+    "total_experiments": 15,
+    "estimated_per_experiment_hours": 0.75,
+    "total_gpu_hours": 11.25,
+    "serial_on_1_gpu_hours": 11.25,
+    "note": "All experiments serial on cuda:0 after C2 (s42+s43) and C1 complete. Can batch in groups if multi-GPU becomes available."
+  }
+}

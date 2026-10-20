@@ -1,0 +1,42 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s43_v2",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-20T09:19:05.335Z",
+    "updated_at": "2026-05-20T23:18:37.168Z",
+    "reproduce": {
+      "finished_at": "2026-05-20T23:12:07.732Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-20T23:12:11.942Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T23:12:20.804076+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "lead_lag": {
+            "perm_granger_fdr_fwd": "8/8",
+            "K_gte3": "6/8",
+            "threshold_onset_3sigma": "2/8",
+            "diff_xcorr_fdr_fwd": "8/8"
+          },
+          "note": "M046 D120 canonical reanalysis: TY 2→4, K≥3 5→6"
+        },
+        "notes": "失败原因: HF Hub 网络不可达 (Errno 101 Network is unreachable)，Pythia-1B 未本地缓存，from_pretrained 下载失败 | 错误类型: infrastructure | 建议: source /etc/network_turbo 后下载模型到本地路径，或用已有 HF cache"
+      }
+    },
+    "notes": "失败原因: HF Hub 网络不可达 (Errno 101 Network is unreachable)，Pythia-1B 未本地缓存，from_pretrained 下载失败 | 错误类型: infrastructure | 建议: source /etc/network_turbo 后下载模型到本地路径，或用已有 HF cache"
+  },
+  "timestamp": "2026-05-20T23:18:37.459675+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "alpha": 0.5,
+  "seed": 42,
+  "T": 20,
+  "n_generations": 21,
+  "observed_permg_count": 6,
+  "observed_rate": 0.75,
+  "predicted_permg_count": 7,
+  "predicted_rate": 0.8257,
+  "predicted_rate_95ci": [
+    0.01502,
+    0.829926
+  ],
+  "within_ci": true,
+  "robust_pairs_K3": 6,
+  "per_method_summary": {
+    "perm_granger_fdr_fwd": 6,
+    "perm_granger_fdr_rev": 0,
+    "diff_xcorr_fdr_fwd": 6,
+    "threshold_fwd": 6,
+    "ty_fwd": 4
+  },
+  "consensus": [
+    {
+      "pair": "token_entropy<distinct_1",
+      "votes": 3,
+      "methods": ["diff", "threshold", "perm"]
+    },
+    {
+      "pair": "token_entropy<distinct_2",
+      "votes": 3,
+      "methods": ["diff", "threshold", "perm"]
+    },
+    {
+      "pair": "token_entropy<distinct_3",
+      "votes": 3,
+      "methods": ["diff", "threshold", "perm"]
+    },
+    {
+      "pair": "token_entropy<mauve",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "ece<distinct_1",
+      "votes": 5,
+      "methods": ["naive", "diff", "threshold", "perm", "ty"]
+    },
+    {
+      "pair": "ece<distinct_2",
+      "votes": 4,
+      "methods": ["diff", "threshold", "perm", "ty"]
+    },
+    {
+      "pair": "ece<distinct_3",
+      "votes": 4,
+      "methods": ["diff", "threshold", "perm", "ty"]
+    },
+    {
+      "pair": "ece<mauve",
+      "votes": 2,
+      "methods": ["naive", "ty"]
+    }
+  ],
+  "analysis_path": "results/t20/a050_s42_fp32/analysis/5method_leadlag.json"
+}

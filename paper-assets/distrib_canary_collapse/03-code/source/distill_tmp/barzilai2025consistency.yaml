@@ -1,0 +1,26 @@
+paper_key: "barzilai2025consistency"
+title: "When Models Don't Collapse: On the Consistency of Iterative MLE"
+venue: "ICML 2025"
+full_text_available: false
+
+research:
+  baselines: ["iterative MLE with data accumulation"]
+  metrics:
+    - {name: "non-asymptotic error bounds", direction: "lower_better"}
+    - {name: "collapse rate", direction: "lower_better"}
+  datasets: []
+  ablation_dimensions:
+    - real_data_fraction_decay_rate
+    - statistical_regularity_conditions
+  training_recipe: {focus: "theoretical, MLE consistency analysis"}
+  method_family: "iterative_MLE_theory"
+
+positioning:
+  core_claim: "Under standard MLE consistency assumptions, collapse can be avoided even as real data fraction vanishes. But without these assumptions, collapse can occur arbitrarily quickly even with real data present."
+  key_results: "Non-asymptotic bounds on iterative MLE; first rigorous collapse-with-accumulation counterexamples"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

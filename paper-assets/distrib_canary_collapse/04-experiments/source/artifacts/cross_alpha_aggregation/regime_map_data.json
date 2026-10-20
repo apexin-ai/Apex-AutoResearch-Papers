@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "title": "5-Point Detectability Regime Map",
+    "date": "2026-05-15",
+    "model": "EleutherAI/pythia-410m",
+    "data": "WikiText-103 (5k subset)",
+    "generations": 10,
+    "description": "Detectability metrics across synthetic mixing ratio (alpha). Phase transition between alpha=0.50 and alpha=0.75.",
+    "sources": {
+      "granger": "cross_alpha_v6.json (permutation Granger, 5000 perms, BH FDR q=0.05)",
+      "consensus": "cross_alpha_v6.json (5-method consensus: naive, differenced, threshold, permutation_granger, TY)",
+      "method_ablation": "method_ablation_phase2_panel.json (5-method × multi-seed panel)"
+    }
+  },
+  "alpha_points": [0.00, 0.25, 0.50, 0.75, 1.00],
+  "regime_map": {
+    "0.00": {
+      "alpha": 0.00,
+      "label": "null control",
+      "seed": [42],
+      "granger_fdr_sig_forward": 0,
+      "granger_fdr_sig_total": 0,
+      "granger_tests_forward": 4,
+      "granger_tests_total": 8,
+      "granger_raw_p_min": 0.0514,
+      "consensus_robust_pairs": 0,
+      "consensus_total_pairs": 16,
+      "consensus_max_methods": 3,
+      "qualitative": "none",
+      "detectability_score": 0.0,
+      "drift": {
+        "token_entropy_pct": -5.1,
+        "ece_pct": 51.7,
+        "perplexity_pct": -21.7,
+        "distinct_1_pct": -13.8,
+        "distinct_2_pct": -9.8,
+        "distinct_3_pct": -4.5
+      },
+      "method_sig_rates": {
+        "naive": 1.0,
+        "differenced": 0.5,
+        "threshold": 0.625,
+        "permutation_granger": 0.0,
+        "TY": 0.0
+      }
+    },
+    "0.25": {
+      "alpha": 0.25,
+      "label": "low contamination",
+      "seed": [42, 43],
+      "granger_fdr_sig_forward": 0,
+      "granger_fdr_sig_total": 0,
+      "granger_tests_forward": 4,
+      "granger_tests_total": 8,
+      "granger_raw_p_min": 0.0150,
+      "consensus_robust_pairs": 1,
+      "consensus_total_pairs": 16,
+      "consensus_max_methods": 4,
+      "qualitative": "weak",
+      "detectability_score": 0.0625,
+      "drift": {
+        "token_entropy_pct": -4.1,
+        "ece_pct": 79.7,
+        "perplexity_pct": -17.2,
+        "distinct_1_pct": -40.3,
+        "distinct_2_pct": -57.1,
+        "distinct_3_pct": -59.9
+      },
+      "drift_s43": {
+        "token_entropy_pct": -5.0,
+        "ece_pct": 98.6,
+        "perplexity_pct": -18.7,
+        "distinct_1_pct": -40.5,
+        "distinct_2_pct": -56.4,
+        "distinct_3_pct": -58.7
+      },
+      "method_sig_rates": {
+        "naive": 1.0,
+        "differenced": 0.25,
+        "threshold": 0.375,
+        "permutation_granger": 0.25,
+        "TY": 0.625
+      }
+    },
+    "0.50": {
+      "alpha": 0.50,
+      "label": "moderate contamination",
+      "seed": [42],
+      "granger_fdr_sig_forward": 0,
+      "granger_fdr_sig_total": 0,
+      "granger_tests_forward": 4,
+      "granger_tests_total": 8,
+      "granger_raw_p_min": 0.0190,
+      "consensus_robust_pairs": 0,
+      "consensus_total_pairs": 16,
+      "consensus_max_methods": 3,
+      "qualitative": "none",
+      "detectability_score": 0.0,
+      "drift": {
+        "token_entropy_pct": -18.6,
+        "ece_pct": 842.8,
+        "perplexity_pct": 21.1,
+        "distinct_1_pct": -37.3,
+        "distinct_2_pct": -51.5,
+        "distinct_3_pct": -52.4
+      },
+      "method_sig_rates": {
+        "naive": 1.0,
+        "differenced": 1.0,
+        "threshold": 1.0,
+        "permutation_granger": 0.25,
+        "TY": 0.0
+      }
+    },
+    "0.75": {
+      "alpha": 0.75,
+      "label": "high contamination",
+      "seed": [42],
+      "granger_fdr_sig_forward": 3,
+      "granger_fdr_sig_total": 3,
+      "granger_tests_forward": 4,
+      "granger_tests_total": 8,
+      "granger_raw_p_min": 0.0032,
+      "granger_fdr_sig_pairs": ["ECE→d1 (0.046)", "ECE→d2 (0.046)", "entropy→d2 (0.048)"],
+      "consensus_robust_pairs": 11,
+      "consensus_total_pairs": 16,
+      "consensus_max_methods": 5,
+      "qualitative": "strong",
+      "detectability_score": 0.6875,
+      "drift": {
+        "token_entropy_pct": -27.7,
+        "ece_pct": 1809.5,
+        "perplexity_pct": 182.1,
+        "distinct_1_pct": -32.7,
+        "distinct_2_pct": -41.3,
+        "distinct_3_pct": -38.4
+      },
+      "consensus_robust_list": [
+        "entropy→d1", "entropy→d2", "entropy→d3", "entropy→ppl",
+        "ECE→d1", "ECE→d2", "ECE→d3", "ECE→ppl",
+        "erank→d1", "erank→d2", "erank→d3"
+      ]
+    },
+    "1.00": {
+      "alpha": 1.00,
+      "label": "full replacement",
+      "seed": [42, 43, 44, 45],
+      "granger_fdr_sig_forward": 3,
+      "granger_fdr_sig_total": 3,
+      "granger_tests_forward": 4,
+      "granger_tests_total": 8,
+      "granger_raw_p_min": 0.0006,
+      "granger_fdr_sig_pairs": ["entropy→d1 (0.048)", "ECE→d1 (0.024)", "ECE→d2 (0.046)"],
+      "consensus_robust_pairs": 6,
+      "consensus_total_pairs": 16,
+      "consensus_max_methods": 5,
+      "consensus_seed_threshold": ">=3/4 seeds",
+      "qualitative": "moderate",
+      "detectability_score": 0.375,
+      "drift": {
+        "token_entropy_pct": -60.5,
+        "ece_pct": 3762.6,
+        "perplexity_pct": 3624.6,
+        "distinct_1_pct": -28.3,
+        "distinct_2_pct": -35.2,
+        "distinct_3_pct": -31.6
+      },
+      "method_sig_rates": {
+        "naive": 1.0,
+        "differenced": 1.0,
+        "threshold": 1.0,
+        "permutation_granger": 0.75,
+        "TY": 0.5938
+      },
+      "consensus_robust_list": [
+        "entropy→d1", "entropy→d2", "entropy→d3",
+        "ECE→d1", "ECE→d2", "ECE→d3"
+      ]
+    }
+  },
+  "plotting": {
+    "x": [0.00, 0.25, 0.50, 0.75, 1.00],
+    "y_granger_fdr_sig_rate": [0.0, 0.0, 0.0, 0.75, 0.75],
+    "y_consensus_robust_rate": [0.0, 0.0625, 0.0, 0.6875, 0.375],
+    "y_detectability_composite": [0.0, 0.0625, 0.0, 0.6875, 0.375],
+    "y_granger_raw_p_min": [0.0514, 0.0150, 0.0190, 0.0032, 0.0006],
+    "y_ece_drift_pct": [51.7, 79.7, 842.8, 1809.5, 3762.6],
+    "y_distinct_2_drift_pct": [-9.8, -57.1, -51.5, -41.3, -35.2],
+    "y_token_entropy_drift_pct": [-5.1, -4.1, -18.6, -27.7, -60.5],
+    "y_perplexity_drift_pct": [-21.7, -17.2, 21.1, 182.1, 3624.6],
+    "annotations": {
+      "phase_transition": "alpha=0.50→0.75",
+      "note": "Step-change in detectability. Granger FDR-sig jumps from 0% to 75%. Consensus robust jumps from 0/16 to 11/16."
+    }
+  },
+  "method_sensitivity_panel": {
+    "description": "Sig rates by method × alpha (from method_ablation_phase2, 8 canary→downstream pairs per alpha)",
+    "alphas": [0.0, 0.25, 0.5, 1.0],
+    "methods": ["naive", "differenced", "threshold", "permutation_granger", "TY"],
+    "sig_rates": {
+      "naive":                [1.0, 1.0, 1.0, 1.0],
+      "differenced":          [0.5, 0.25, 1.0, 1.0],
+      "threshold":            [0.625, 0.375, 1.0, 1.0],
+      "permutation_granger":  [0.0, 0.25, 0.25, 0.75],
+      "TY":                   [0.0, 0.625, 0.0, 0.5938]
+    },
+    "inter_method_kappa": 0.185,
+    "naive_vs_perm_granger_flip_rate": 0.50,
+    "naive_vs_TY_flip_rate": 0.57
+  }
+}

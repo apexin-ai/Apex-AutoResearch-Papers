@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1656cd05371c4b447b51",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis fdr q sensitivity",
+  "task_key": "worker_analysis_fdr_q_sensitivity_20260516T201708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fdr_q_sensitivity_20260516T201708_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "a5b48016929caa04d5787a903911f27ddd4bb6afbc321685b64d53890adccf52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果:\n\n| | q=0.01 | q=0.05 | q=0.10 |\n|---|---|---|---|\n| **α=0.75** | 0/24 | 19/24 | 24/24 |\n| **α=0.00** | 0/16 | 0/16 | 0/16 |\n\n要点:\n- **q=0.10**: 24/24 全显著，treatment-null 完美分离\n- **q=0.05** (论文): 19/24，已报告\n- **q=0.01**: 0/24 — 非信号缺失，而是 BH 在 m=8 时 rank-1 阈值为 0.00125，最小 p=0.0024 无法通过（T=11 时间点的统计功效限制）\n- null control 在所有阈值下均为 0 — treatment vs null 的定性结论对 q 选择完全鲁棒\n\n文件已保存至 `results/rebuttal/fdr_q_sensitivity.json` 和 `fdr_q_sensitivity_summary.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fdr-q-sensitivity.md"
+}

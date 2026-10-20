@@ -1,0 +1,3 @@
+See server: /root/autodl-tmp/distrib_canary_collapse/results/scale/14b_a050_s42_fp32/analysis/5method_leadlag.json
+
+Summary: PermG_fwd_fdr=0/8, PermG_rev_fdr=0/8, DiffXCorr_fdr=8/8, NaiveXCorr_dir=3/8, Threshold_3sigma=2/8, TY_Granger=0/8, K>=3=0/8, K>=4=0/8

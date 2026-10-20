@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 43,
+    "n_gens": 11,
+    "data_dir": "results/scale/14b_t10_a050_s43_fp32",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 6,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 5,
+    "diff_xcorr_fdr_reverse_sig": 5,
+    "threshold_forward_sig": 0,
+    "ty_forward_sig": 0,
+    "robust_pairs": 1
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 2, "methods": ["diff", "perm"]},
+    {"pair": "token_entropy<distinct_2", "votes": 2, "methods": ["diff", "perm"]},
+    {"pair": "token_entropy<distinct_3", "votes": 1, "methods": ["perm"]},
+    {"pair": "token_entropy<mauve", "votes": 1, "methods": ["naive"]},
+    {"pair": "ece<distinct_1", "votes": 3, "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece<distinct_2", "votes": 2, "methods": ["diff", "perm"]},
+    {"pair": "ece<distinct_3", "votes": 2, "methods": ["diff", "perm"]},
+    {"pair": "ece<mauve", "votes": 1, "methods": ["naive"]}
+  ],
+  "comparison_s42": {
+    "s42_PermG": 4,
+    "s43_PermG": 6,
+    "s42_K3": 4,
+    "s43_K3": 1,
+    "consistent": false,
+    "note": "seed variance at onset boundary alpha=0.50"
+  }
+}

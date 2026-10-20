@@ -1,0 +1,1748 @@
+# feishu dm oc 2f4b9af3f748a4b8c1f5c291266e6c40 briefer
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 9
+- **Tool calls:** 19
+- **Original source:** `logs/chats/feishu_dm_oc_2f4b9af3f748a4b8c1f5c291266e6c40_briefer.jsonl`
+- **Structured JSON:** [`a71bd7143fd0c6ce83d3.json`](../../sessions/a7/a71bd7143fd0c6ce83d3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+10 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T06:23:40.889981+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 这项目原始idea是什么，用大白话和我讲明白
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T06:23:50.103076+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T06:23:50.634336+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 531
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T06:23:54.850077+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T06:23:55.401026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Memory — distrib_canary_collapse\\n\\n> 非 metrics 性质的决策原因、约束、经验教训。可从 registry 查到的数字不记录。\\n\\n## 硬约束\\n- GPU 白名单仅 cuda:0, cuda:1 (westd-19828)，即使 Director 指令也不能用白名单外 GPU\\n- α=0.75 vs α=1.0 consensus 数字禁止直接对比（标准不同，D038 #27）\\n- Claim 措辞上限：\\\"consistent across two transformer decoder-only model families of similar scale\\\"（不可用 \\\"architecture-agnostic\\\" 或 \\\"scale-independent\\\"）\\n- FNR=0 声明必须附 D017 独立证据（D041）\\n- T notation：T = generation cycles，数据点 = T+1\\n- 论文唯一真源：docs/paper/（D046），不是 artifacts\\n- batch_size=32（gpt2-medium）vs 4（Pythia）差异已在 discussion.tex 注明\\n\\n## 环境\\n- 服务器 westd-19828，工作目录 /root/autodl-tmp/distrib_canary_collapse\\n- Python: /root/miniconda3/bin/python，激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n- 模型缓存: /root/autodl-tmp/.hf_cache (HF_HOME)，gpt2-medium 已下载\\n- 数据: data/wikitext103_5k（5000 样本，所有实验共用）\\n\\n## 经验教训\\n- TY Granger 在 T≤10 下 underpowered 是已知统计限制，不是 bug——不要试图\\\"修复\\\"\\n- **TY 3-seed 审计 (D048)**：α=0.25 下 TY 跨种子完全不稳定——ADF 给出 d_max=1/2/3，df_resid 从 1 到 7 波动，s42 的 38% sig 纯属 df_resid 偶然最大。TY 在 T=11 短序列下是方法学缺陷，论文中定位为 \\\"underpowered diagnostic\\\" 而非 \\\"confirmatory method\\\"\\n- α=0.25 三 seed 复现性极好（除 ECE 外 std<1%），但 ECE 在小样本下噪声大 (std=15.9%)——ECE 跨 seed 比较需谨慎\\n- **低 α 下的 selective collapse**：α=0.25 diversity 崩塌 40-59% 但 entropy 仅降 ~5%——低污染条件下 n-gram diversity 是比 entropy 更敏感的 canary。这强化了 Claim 2 的 regime-dependent 叙事：不同 α 下不仅 detectability 不同，collapse 的维度优先级也不同\\n- window_sensitivity.py 有两个已知 bug（off-by-one + 两套 TY 实现），但不影响论文数字——论文数字来自 method_ablation.py\\n- D044 收敛决策：砍低 ROI 实验，不再追加 alpha_sweep\\n- gpt2m_a025 是 Claim 2 最后一块拼图——跨架构复现 regime-dependent pattern 则 Tier 3，不复现则降级措辞（但不 panic，α=1.0 已跨架构确认）\\n- **[失败模式] 磁盘空间**：iterative_train.py 10 generation 循环产生大量中间文件（每 gen ~500MB checkpoint + synthetic_data），两个实验并行时数据盘耗尽 → 提交前必须检查 `df -h` 可用
+…[truncated 1083 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 550
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T06:23:55.401412+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T06:23:55.401700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 05:45 UTC | 更新原因: 标记已完成任务 + 关闭 cuda:1 评估（Reviewer 确认无可跑实验）+ 更新 a050_s44 进度 + 补写作打磨里程碑\\n\\n> **阶段**: Round 2 提交待审批（含 D052 修正）+ a050_s44 运行中\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D052**: α=0.50 confirmed seed-dependent boundary (s42=0/8, s43=6/8)\\n- ✅ **Round 2 重新提交** (apr_20260516T204821_ea5t, pending user approval)\\n- ✅ **Appendix C**: n_perm stability + FDR sensitivity robustness checks\\n- ✅ **Rebuttal 素材**: 5 talking points + n_perm stability JSON + FDR sensitivity\\n- ✅ **两版叙事预写**: artifacts/a050_s44_draft_versions.tex (VERSION A/B)\\n- ✅ **写作打磨 5 项**: Intro 重写(紧迫感)、Contribution 2 framing(K=4/5+Shapley)、dose-response 叙事重组、Related Work 补 training dynamics、run-on 拆分\\n- ✅ **Provenance 89%** (65/73 claims, all claim-level 100%)\\n- ✅ **K=3 FPR 数字矛盾修复** (50%→37.5% 统一)\\n\\n## 正在运行\\n| exp_id | GPU | 进度 | 预计完成 |\\n|--------|-----|------|----------|\\n| alpha_sweep_a050_s44 | cuda:0 | gen 8/11 | ~05:30 UTC |\\n\\n## 近期任务\\n- [ ] a050_s44 完成后选 VERSION A/B 更新论文\\n- [x] ~~Provenance 修复映射错误~~（89%, claim-level 100%）\\n- [x] ~~cuda:1 空窗利用评估~~（Reviewer 结论：无 ROI 正向 GPU 实验可跑——plan_006 数据已删、GPT-2m 10h 超窗口、α 点已完整）\\n\\n## 完整 Dose-Response (统一管线, D052 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/16 | 2 | Sub-threshold |\\n| 0.50 | 0/8–6/8 | 2 (→3 pending s44) | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — cuda:0 occupied (a050_s44), cuda:1 idle (no viable experiment, Reviewer confirme
+…[truncated 1569 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T06:24:10.604552+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "paper_framing.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T06:24:10.605276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/paper_framing.md\", \"content\": \"# Paper Framing — distrib_canary_collapse\\n\\n## Target Venue\\n- Primary: **EMNLP 2026 Main Track** (D043, 用户指定)\\n- ARR cycle: June 2026 (deadline ~June 15, 待确认具体日期)\\n- 格式: ACL 系列模板 (acl.sty), 8 页正文 + unlimited appendix\\n- Note: ARR May cycle 已过；June cycle 对齐 EMNLP 2026 commitment deadline\\n\\n## Narrative Structure (D027: Option B reframe)\\n\\n**主线**：方法论陷阱 + 多方法共识框架。Canary prediction 为系统性 case study。\\n**Claim 呈现顺序**：论文中 Claim 3 领衔 → Claim 2 (regime map) → Claim 1 (case study)。\\n**内部编号保持不变**（避免引用混乱），论文呈现时重排。\\n\\n## Core Claims (3 条，内部编号不变)\\n\\n1. **Canary→Diversity Granger-Causal Precedence (论文中作为 Case Study Finding)**: token_entropy 对 diversity 退化（distinct_1/2）具有 Granger-causal precedence——领先 1-2 代，差分后仍显著，证据来自多方法一致性：cross-correlation（lag=-1, std=0.0, |r|>0.99, p<0.004, 4/4 seed）、差分交叉相关（显著）、threshold onset（canary gen 1-2, diversity gen 3-4）、**permutation Granger（差分后仍 4/4 seed 显著，F=612-2615）**。论文可用措辞 (D037 更新)：*\\\"We demonstrate Granger-causal precedence of canary metrics at α≥0.75: α=1.0 achieves 24/24 FDR-sig (4 seeds), α=0.75 achieves 3/4 FDR-sig with the fourth borderline (p_fdr=0.054; single seed, pending multi-seed confirmation C001). Consistent temporal precedence (cross-correlation lag=+1, r=0.80–0.94) is observed across all contamination levels, though formal Granger tests at α≤0.50 do not reach FDR-corrected significance at T=11 (power analysis: §X).\\\"*升级上限：Granger ≠ true causality（Granger 1969），Discussion 一句话声明；双变量模型无法排除未观测混淆因子（详见 Reviewer Concerns 表）。ECE 在 cross-correlation 和 permutation Granger 下同样领先（差分后 4/4 SIG），但跨方法一致性弱于 token_entropy，地位为 conditional secondary canary 待 plan_006 确认（详见约束 #9）。注意：TY Granger 在 N=11 下不可用于区分真/伪关联（见 Claim 3），核心证据链基于多方法一致性而非单一 TY 背书。\\n2. **Regime-Dependent Predictability**: 可预测性取决于 collapse 维度和 contamination regime——canary→diversity 在差分后仍 robust（
+…[truncated 10797 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-17T06:24:34.755907+00:00_
+
+大白话版：
+
+---
+
+**背景问题**：现在大模型越来越多地用自己生成的数据来继续训练（比如用 GPT 生成数据再喂给下一代 GPT）。反复这么干，模型输出会越来越单调、越来越烂——这叫 **model collapse**（模型坍缩）。
+
+**已有人在做的事**：有些研究者想找"金丝雀指标"（canary metrics）——就像矿井里的金丝雀一样，在坍缩真正发生之前就先发出预警信号。比如有人说 "token entropy 下降了 → 过几代 diversity 就会崩"。
+
+**这个项目发现的核心问题**：所谓"A 指标能预测 B 指标崩溃"这个结论，**极度依赖你用什么统计方法来检验**。同一份数据：
+
+- 用最简单的相关分析 → 100% 的指标对都"显著"（看起来全能预测）
+- 用严格一点的差分 Granger 检验 → 只剩 25% 还显著
+- 换个超参数 → 结论又翻转
+
+而且同一个检验方法，在不同污染程度（synthetic data 混入比例 α）下结论也会反转：α=1.0 时 24/24 显著，α≤0.50 时 0/8 显著。
+
+**所以这篇论文的主线不是"我们找到了一个好的预警指标"，而是**：
+
+> 现有文献里做 lead-lag 分析的方法论基础很脆弱，方法选择本身就能决定结论的生死。我们系统性地暴露了这些陷阱，并提出一个"多方法共识框架"——只有多种独立统计方法+多个随机种子都一致认可的关联，才可信。
+
+作为 case study，用这个框架确实找到了一个靠谱的预警：**token entropy 领先 diversity 崩溃 1 代**（在 α≥0.75 时，跨 4 种方法、4 个 seed 都一致）。
+
+目标投 EMNLP 2026。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+10 recorded events
+
+### User
+
+_source line 11 · 2026-05-17T06:31:55.069024+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 都做了哪些实验，支持idea？审稿结果怎么样
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T06:32:03.674975+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T06:32:04.230058+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T06:32:09.349409+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T06:32:09.889011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_v4_rep45\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-17T02:58:36.890Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-17T02:58:36.247Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\"
+…[truncated 22032 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 539
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T06:32:10.341044+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T06:32:10.896593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| alpha_sweep_a050_s44 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **alpha_sweep_a000_s44** (success): —\\n  [a000_s44_analysis_report](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s44/report/a000_s44_analysis_report.md) | [a000_s44_5method_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s44/data/a000_s44_5method_summary.txt)\\n- **alpha_sweep_a000_s43** (success): —\\n  [a000_s43_5method_results](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s43/data/a000_s43_5method_results_616865.json) | [a000_s43_5method_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s43/report/a000_s43_5method_analysis_7c0294.md)\\n- **alpha_sweep_a075_s43** (success): —\\n  [a075_s43_5method_results](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a075_s43/data/a075_s43_5method_results.json) | [a075_s43_5method_analysis](/api/workspace-files/projects/distrib_canary_collapse/artifacts/alpha_sweep_a075_s43/report/a075_s43_5method_analysis.md)\\n\\n## 趋势\\n成功 20 / 负向 0 / 失败 3 / 共 37\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19828: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_rep42: 已被终止 — unknown\\n- mvp_rep43: 已被终止 — unknown\\n- mvp_rep44: 已被终止 — unknown\\n- mvp_v2_rep42: 已被终止 — unknown\\n- mvp_v2_rep43: 已被终止 — unknown\\n- mvp_v2_rep44: 已被终止 — unknown\\n- mvp_v3_rep42: 训练失败 — unknown\\n- mvp_v3_rep43: 训练失败 — unknown\\n- alpha_sweep_a025_s42: 已被终止 — unknown\\n- alpha_sweep_a025_s42_v2: 已被终止 — unknown\\n- alpha_sweep_a010_s42: 已被终止 — unknown\\n- alpha_sweep_a060_s42
+…[truncated 302 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T06:32:10.896911+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T06:32:10.898416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/decisions.yaml\", \"content\": \"_next_id: 53\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 04:23 UTC\\n  summary: 'MVP 设计: Pythia-410M × WikiText-103 × 100% SC × 10 gen × 3 reps，验证 canary\\n    时序领先性'\\n  rationale: 100% SC 是最激进的 collapse 条件（理论预测必然退化），如果在此条件下没有任何 canary 指标领先 downstream，项目前提不成立。3\\n    reps × 10 gen 给出足够时间点做 cross-correlation。计算量 ~9 H100-hours，极低风险。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 04:26 UTC\\n  summary: MVP ECE 用 next-token calibration，SC 协议用 full replacement，effective rank\\n    用模型自身 embedding\\n  rationale: 'Reviewer warning 要求澄清 3 个操作化定义。ECE: next-token calibration 是 LM 原生度量、零额外成本，与\\n    Du et al. 的对比留到全量阶段加 downstream task ECE。SC: full replacement 是最大 feedback amplification\\n    (Truong & Truong Class 1)，collapse 信号最强，适合 MVP 压力测试。Effective rank: 模型自身 embedding\\n    与 SIGMA 一致，零额外依赖。'\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-14 04:27 UTC\\n  summary: 首选 AAAI 2027 (~Aug 2026)，May 25 ARR 不可行，后续 ARR cycle 备选\\n  rationale: 项目 2026-05-14 立项，无服务器无代码，11 天内无法完成 MVP + 全量实验 + 论文。AAAI 2027 给 ~2.5 个月，充分覆盖\\n    500-600 H100-hours 的实验量和论文写作。后续 ARR cycle (Jul/Aug) 也在射程内。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-14 05:36 UTC\\n  summary: 'MVP 参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000 (4 epochs/gen)'\\n  rationale: Reviewer 发现原配置下 40 epochs/gen 在 1000 samples 上严重过拟合，模型可能 1-2 代即骤然击穿，所有指标同时崩溃，无法观察\\n    lead-lag 时序结构。修改后 4 epochs/gen 接近文献实践，collapse 逐渐发展，给 cross-correlation 分析留出足够时间点。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D005\\n  date: 2026-05-14 08:39 UTC\\n  summary: MVP 中期决策：不重启实验，MAUVE demote 为 supplementary，等完整 10-gen 数据再判断 collapse 速度和\\n    lead-lag\\n  rationale: MAUVE 基线 0.034 触发 evaluation criteria §4 floor effect 规则。Gen 0→1 跳变大是\\\"
+…[truncated 37438 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T06:32:48.720752+00:00_
+
+## 实验体系
+
+共 38 个实验（20 成功，3 失败，若干被替代/killed），核心成功实验按功能分组：
+
+### 1. 主线实验：α=1.0 全污染 (4 seeds)
+- `mvp_v4_rep42/43/44/45` — Pythia-410M 在 WikiText-103 上做 10 代迭代合成训练
+- 结论：token_entropy 和 ECE 领先 diversity 退化 1-2 代，4/4 seed 一致 (p<0.004)，permutation Granger 差分后 24/24 FDR-sig
+
+### 2. Dose-response α-sweep (定义 regime boundary)
+| α | Seeds | 结论 |
+|---|-------|------|
+| 0.00 | 3 | Null control，FPR=0%，确认信号源于合成污染 |
+| 0.25 | 3 | Diversity 崩 40-59%，但无因果信号 (PermG 0/16)，sub-threshold |
+| 0.50 | 2 (+1 running) | Seed-dependent boundary (s42=0/8, s43=6/8) |
+| 0.75 | 3 | 方向性不对称确认 (19/24 forward sig, 0/24 reverse) |
+| 1.00 | 4 | Confirmatory (24/24 FDR-sig) |
+
+### 3. 方法消融 (零GPU)
+- `method_ablation_phase1/2` — 5 种统计方法 (naive/差分/threshold/TY/permutation Granger) 对比
+- 核心发现：naive 判 100% 显著，permutation Granger 仅保留 25%；方法间 κ=0.185（几乎无一致性）
+
+### 4. 跨架构验证
+- `gen_wiki_gpt2m_a100_s42_v3` — GPT-2-medium (355M) 在 α=1.0 下复现 Pythia 模式，6/6 pairs 达 Tier 3 共识
+- `gen_wiki_gpt2m_a025_s42` — GPT-2-medium α=0.25 也复现 sub-threshold 模式
+
+### 5. 统计效力分析
+- `plan_009_bootstrap_ty` — Monte Carlo 模拟证明 TY Granger 在 T=10 下 power 仅 5-20%，正式降级
+
+---
+
+## 审稿结果
+
+**Round 1: Weak Reject (2.5/5)**，6 条 Critical + 10 条 Weakness。
+
+三个系统性问题：
+1. **证据-声明不匹配** — FPR 仅单 seed、ground truth 循环论证、α=0.75 borderline 结果放进了 abstract
+2. **方法论自洽性** — 一篇讲 rigor 的论文自身有 rigor gap（FDR 校正不一致等）
+3. **实验规模** — 单模型 + 单数据集
+
+**应对**：22 条 Action Matrix，补了 α=0.75 三 seed、α=0.0 三 seed null control、GPT-2-medium 跨架构、FDR 全局统一校正等。Round 2 已提交待审批，目标从 Weak Reject 升至 Borderline Accept（预估概率 60-65%）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 21 · 2026-05-17T09:36:03.048443+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 实验规模上去之后，如果不work是不是就惨了
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-17T09:36:32.526764+00:00_
+
+这个风险在立项时就被考虑过了，论文的 framing 专门做了防御设计。
+
+**不怕的部分（Claim 3 方法敏感性，最核心贡献）：**
+naive 方法判 100% 显著、严格方法只保留 25%、方法间 κ=0.185 这些结论是关于统计方法学本身的。换更大模型跑，只要时间序列长度类似（T≈10），方法选择敏感性问题依然存在。这个 claim 不依赖 canary 信号是否在大模型上 work。
+
+**有缓冲的部分（Claim 2 regime-dependent）：**
+dose-response 讲的是"不同污染比例下可检测性不同"，这是合成数据迭代训练的固有属性。大模型可能 boundary 位置不同（比如从 α≈0.50 移到 α≈0.30），但 regime-dependent 的模式大概率还在。
+
+**确实有风险的部分（Claim 1 canary precedence）：**
+token_entropy 领先 diversity 1-2 代这个 case study 结论，在大模型上可能不复现。但论文措辞已经限定为 "two transformer decoder-only model families of **similar scale**"（memory.md 硬约束），没有 claim 泛化性。而且在 D027 reframe 后，Claim 1 只是 case study，不是主线贡献。
+
+**总结：** 论文叙事的重心是"方法论陷阱 + 共识框架"（Claim 3 领衔），canary prediction 是 case study。即使大模型上 canary 信号消失，核心贡献（你选的统计方法决定你的结论，这件事在文献里被严重忽视）依然成立。这也是当初选 Option B framing 而不是 Option A（"我们发现了一个好 canary"）的原因——D027 决策里 Reviewer 评估 Option B defensibility 75% vs Option A 40%，核心考量就是你说的这个风险。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+10 recorded events
+
+### User
+
+_source line 23 · 2026-05-17T14:00:24.754471+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 现在怎么样了
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T14:00:31.297644+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T14:00:31.863129+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 565
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T14:00:34.724456+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T14:00:35.295933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| generalize_pythia1b_c4_a100_s42_v2 | Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix) | — | — | — |\\n\\n## 待处理\\n- generalize_pythia14b_wiki_a100_s42: 方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模（已分配 westd-19828 GPU:cuda:1，等待提交）\\n\\n## 近期结论\\n- **generalize_opt1b_wiki_a100_s42** (success): Methodological pitfalls (FPR inflation from single-method reliance) generalize to OPT-1.3B architecture — different model family at α=1.0 should show same canary→downstream causal pattern as Pythia\\n- **generalize_pythia410m_wiki_a100_s42** (success): Methodological pitfalls (FPR inflation from single-method reliance) generalize across model architectures and data domains — Pythia-410M on WikiText α=1.0 should reproduce canary→downstream Granger signal with perfect directionality\\n  [generalize_pythia410m_analysis_report](/api/workspace-files/projects/distrib_canary_collapse/artifacts/generalize_pythia410m_wiki_a100_s42/report/analysis_report.md)\\n- **generalize_pythia1b_c4_a100_s42** (failed): Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework\\n  [generalize_pythia1b_c4_a100_s42 诊断报告](/api/workspace-files/projects/distrib_canary_collapse/artifacts/generalize_pythia1b_c4_a100_s42/report/diagnose_report.md)\\n\\n## 趋势\\n成功 23 / 负向 0 / 失败 4 / 共 41\\n累计 GPU: 8.4h\\n\\n## 下一步\\n（无活跃 i
+…[truncated 837 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 571
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T14:00:35.296297+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T14:00:35.447307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 07:34 UTC | 更新原因: Phase 2 泛化实验启动 + LaTeX 编译确认通过\\n\\n> **阶段**: 泛化实验运行中 + 论文待重新提交 Round 2\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D053**: α=0.50 三 seed 完成，stochastic boundary 确认\\n- ✅ **写作打磨 5 项 + method.tex fix + Table 1 三 seed + K=3 FPR 统一**\\n- ✅ **LaTeX 编译通过**: 22 页, 0 errors, cross-references 收敛\\n- ✅ **数据覆写修复 (M001)**: JSON 正确, analyze_alpha_sweep.py 输出隔离\\n- 🚀 **泛化实验 Phase 2 启动**: Pythia-410M + OPT-1.3B 并行运行\\n\\n## 正在运行\\n| exp_id | GPU | Model | 预计完成 |\\n|--------|-----|-------|----------|\\n| generalize_pythia410m_wiki_a100_s42 | cuda:0 | Pythia-410M | ~13:00-15:00 UTC |\\n| generalize_opt1b_wiki_a100_s42 | cuda:1 | OPT-1.3B | ~17:00-22:00 UTC |\\n\\n## 近期任务\\n- [ ] Pythia-410M 完成 → 5-method analysis\\n- [ ] OPT-1.3B 完成 → 5-method analysis\\n- [ ] 两者完成后 → Pythia-1B + C4 实验\\n- [ ] 泛化结果纳入论文（新 Table/paragraph in experiments.tex）\\n- [ ] 重新提交 Round 2\\n\\n## 完整 Dose-Response (统一管线, D053 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/24 | 3 | Sub-threshold |\\n| 0.50 | 9/24 (0+6+3) | 3 | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## 泛化实验设计\\n| Setting | Model | Dataset | α | Purpose |\\n|---------|-------|---------|---|---------|\\n| Phase 2a | Pythia-410M | WikiText | 1.0 | Scale invariance (same family) |\\n| Phase 2b | OPT-1.3B | WikiText | 1.0 | Architecture invariance |\\n| Phase 2c | Pythia-1B | C4 | 1.0 | Domain invariance |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — 2/2 occupied\\n- **累计**: ~48h + 预计
+…[truncated 1644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T14:00:35.498233+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T14:00:36.079036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:06:55.402Z\", \"updated_at\": \"2026-05-17T13:09:02.886Z\", \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)\", \"parent\": \"generalize_pythia1b_c4_a100_s42\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1849}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 580
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-17T14:00:48.564153+00:00_
+
+相比上次聊，有几个进展：
+
+## 实验进度
+
+**新完成的：**
+- `alpha_sweep_a050_s44` — 第三 seed 完成，确认 α=0.50 是 seed-dependent boundary（2/3 seeds 有信号），决策 D053
+- `generalize_pythia410m_wiki_a100_s42` — Pythia-410M 跨架构泛化，成功
+- `generalize_opt1b_wiki_a100_s42` — **OPT-1.3B**（新模型家族）跨架构泛化，成功，K≥4/5 共识达标
+
+**正在跑的：**
+- `generalize_pythia1b_c4_a100_s42_v2` — Pythia-1B + C4 数据集，验证跨数据域泛化（第一次失败后重试）
+
+**排队中：**
+- `generalize_pythia14b_wiki_a100_s42` — Pythia-1.4B 跨规模验证
+
+## 关键决策
+
+- **D053**: α=0.50 三 seed 全部完成，stochastic boundary 确认
+- **D054**: 三架构（Pythia-410M / GPT-2-medium / OPT-1.3B）泛化全部达到 K≥4/5 共识，VERSION A（跨架构叙事）确认可用
+
+## 论文状态
+
+- Round 1 审稿的 19/19 issues 全部 resolved
+- LaTeX 编译通过（22 页，0 errors）
+- 写作打磨 5 项完成
+- **等泛化实验结果纳入论文后重新提交 Round 2**
+
+## 整体
+
+成功率 23/41，累计 GPU ~48h。现在主要在补 Round 1 审稿人指出的"实验规模不够"问题——加了 OPT-1.3B 新模型家族 + C4 新数据集 + 更大规模 Pythia-1B/1.4B。泛化实验跑完后就可以提交 Round 2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+8 recorded events
+
+### User
+
+_source line 33 · 2026-05-20T05:27:59.414432+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 现在怎么样了
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T05:28:05.743224+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T05:28:06.328784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| interv_pred_a075_s42 | Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination. | — | — | — |\\n| data_strategy_ablation_s43 | 数据累积策略 ablation cross-seed：accumulate 模式 α=0.50 seed=43。验证 s42 结果（data_strategy_ablation_s42）的 seed robustness。如果 s42/s43 PermG 一致 → accumulate 效果 seed-robust；如果不同 → 策略效果 seed-sensitive。Baseline: alpha_sweep_a050_s43_fp32 (replace, PermG=6/8)。 | — | — | — |\\n| data_strategy_ablation_s42 | 数据累积策略 ablation：accumulate 模式下（每代训练数据叠加所有前几代生成文本）α=0.50 的 canary lead-lag 与 replace 模式（当前默认：每代只用上一代输出）对比。如果 accumulate 模式 PermG 显著不同 → 数据策略是方法论核心设计选择，影响 collapse 动态；如果 PermG 相近 → 方法对数据策略鲁棒。Baseline: alpha_sweep_a050_s42_fp32 (replace, PermG=6/8)。 | — | — | — |\\n\\n## 待处理\\n- alpha_sweep_a010_s42_bf16: α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.（准备中）\\n- scale_14b_a050_s42_bf16: Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.（准备中）\\n- interv_react_s43: Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.（准备中）\\n- gen_g
+…[truncated 3006 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 585
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T05:28:06.329189+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T05:28:06.329810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-20 04:49 UTC | 更新原因: D120 dose-response 统一管线重算进入 critical path + 19828 启动\\n\\n> **阶段**: Research Day 2 — D120 dose-response 统一管线重算（P0 升分杠杆） + 7 实验 RUNNING + plan_008 ablation\\n\\n## 核心方向\\n**D067 升级**: analysis → method paper。核心贡献：\\n1. **MMCT** — 5 方法共识框架（D117 恢复），**PermG fwd + K≥3(3σ) 双指标**\\n2. **跨架构泛化**: PermG ≥6/8 in **12/14**（例外: Pythia-1.4B s42=2/8, SmolLM3=3/8）; K≥3 ≥6/8 in 10/14（M037 审计确认）\\n3. **Regime map + onset [0.45, 0.50]** — D093 混杂已排除\\n4. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\n5. **D108 同步坍缩区** — α=0.60 PermG **双 seed 确认**: s42=3/8, s43=0/8（robust 非单调 dip, D119）\\n6. **D112-D113 C4 域** — perplexity-dominated collapse + diff_xcorr 系统性反向\\n7. **C4 cross-seed PermG=8/8 双 seed**（α=0.50 + α=0.75），但 K≥3 方法组成跨 seed 翻转 → Claim 3 素材\\n\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~25 days）\\n\\n## 🔴 Critical Path: dose-response 统一管线重算（D120）\\n**审稿结论 Weak Reject → 升分最大杠杆**。batch_analysis.py 的 dose-response 数字全部不可信（2σ + 旧 pair + 无 direction check）。\\n- 对所有 α 实验（0.25-1.0）用 run_5method.py 统一管线重算\\n- 标准：D102 8-pair + D105 3σ + D111 direction + D086 FDR\\n- 完成后解冻：MMCT 检测率数字、fig_consensus_heatmap、dose-response 图表\\n- **预计 4-6h，纯分析不需 GPU**\\n- Agent 已收到 P0 指令\\n\\n## ✅ M037: Table 7 K≥3 审计完成（13/14, Padding 待补）\\n审计标准：D105 true 3σ + D111 direction (peak_lag<0) + D102 8-pair (mauve) + FDR。\\nReviewer PASS。OPT-1.3B s43 从 0/8 修正为 6/8（旧 D111 方向写反）。\\n**K≥3 ≥6/8 in 10/14**（例外：1.4B s42=1/8, 1.4B s43=3/8, SmolLM3=3/8; Padding 待补审预计 11/14）。\\n\\n⚠️ **dose-response K≥3 仍未审计** → D120 统一管线重算解决\\n\\n## Table 7 权威数据（D117 M035 修正后）\\n\\n> **双指标: PermG fwd + K≥3(3σ)**。M037 审计 13/14 完成，K≥3 ≥6/8 in **10/14**\\n\\n| 模型 | Seed | PermG↑ | K≥3↑ | 备注 |\\n|------|------|--------|------|------|\\n| Pythia-6
+…[truncated 5188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T05:28:06.580811+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T05:28:07.194411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"interv_pred_a075_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-18T21:01:51.433Z\", \"updated_at\": \"2026-05-20T05:20:17.298Z\", \"hypothesis\": \"Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.\", \"conclusion\": \"killed\"}, \"data_strategy_ablation_s43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T04:45:33.830Z\", \"updated_at\": \"2026-05-20T05:07:12.947Z\", \"hypothesis\": \"数据累积策略 ablation cross-seed：accumulate 模式 α=0.50 seed=43。验证 s42 结果（data_strategy_ablation_s42）的 seed robustness。如果 s42/s43 PermG 一致 → accumulate 效果 seed-robust；如果不同 → 策略效果 seed-sensitive。Baseline: alpha_sweep_a050_s43_fp32 (replace, PermG=6/8)。\", \"parent\": \"data_strategy_ablation_s42\", \"metrics\": {\"data_strategy\": \"accumulate\", \"baseline_exp\": \"alpha_sweep_a050_s43_fp32\"}}, \"data_strategy_ablation_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T04:27:03.682Z\", \"updated_at\": \"2026-05-20T04:29:11.320Z\", \"hypothesis\": \"数据累积策略 ablation：accumulate 模式下（每代训练数据叠加所有前几代生成文本）α=0.50 的 canary lead-lag 与 replace 模式（当前默认：每代只用上一代输出）对比。如果 accumulate 模式 PermG 显著不同 → 数据策略是方法论核心设计选择，影响 collapse 动态；如果 PermG 相近 → 方法对数据策略鲁棒。Baseline: alpha_sweep_a050_s42_fp32 (replace, PermG=6/8)。\", \"parent\": \"alpha_sweep_a050_s42_fp32\"}, \"smollm3_3b_wiki_a100_s43_fp32\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T19:10:05.988Z\", \"updated_at\": \"2026-05-19T23:53:16.641Z\", \"hypothesis\": \"SmolLM3-3B 在 iterative self-distillation 下会表现出与 SmolLM2 类似的 distributional collapse 模式（熵递减、diversity 下降），验证 collapse 现象的模型规模泛化性。\", \"parent\": \"smollm3_3b_wiki_a100_
+…[truncated 1761 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 613
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-20T05:28:26.188279+00:00_
+
+相比三天前，项目扩展了很多。
+
+## 当前状态概览
+
+**102 个实验**（69 成功 / 9 失败 / 其余 killed 或运行中），8 个正在跑。
+
+### 主要进展
+
+**1. 跨架构泛化大幅扩展**（之前只有 GPT-2m，现在覆盖 7 个模型）
+
+| 模型 | 规模 | PermG 信号 |
+|------|------|-----------|
+| Pythia-410M | 410M | 6/8 ✓ |
+| GPT-2-medium | 355M | 6/8 ✓ (双 seed) |
+| OPT-1.3B | 1.3B | 6/8 ✓ (双 seed) |
+| Pythia-1.4B | 1.4B | 2/8 ~ 6/8 (seed sensitive) |
+| Pythia-6.9B | 6.9B | 7/8 ✓ |
+| Qwen3.5-0.8B | 0.8B | 8/8 ✓ |
+| SmolLM3-3B | 3B | 3/8 (弱) |
+
+14 个配置中 12 个 PermG ≥6/8，跨架构覆盖率很高。
+
+**2. Dose-response 细化为 4 个 regime**
+- 盲区 (α≤0.45): 无信号
+- Onset [0.45, 0.50]: seed-dependent 边界
+- 同步坍缩区 (~0.60): 非单调 dip，双 seed 确认
+- 检出区 (≥0.75): 稳定检出
+
+**3. 新增 C4 跨域实验** — 发现 C4 上 collapse 机制不同（perplexity 主导而非 diversity），丰富了论文叙事。
+
+**4. 新增 intervention 实验** — 测试基于 canary 的预测性干预（entropy 下降 >15% 时切换到 α=0.0），Claim 4 新贡献。
+
+**5. 数据策略 ablation** — accumulate vs replace 模式对比，刚开跑。
+
+### 当前瓶颈
+
+**D120: dose-response 统一管线重算**是 P0 任务。之前的 dose-response 数字用了旧标准（2σ + 旧 pair），需要用统一标准（D102 8-pair + D105 3σ + D111 方向检查 + FDR）全部重算。这是从 Weak Reject 升分的最大杠杆，纯分析不需要 GPU，Agent 已收到指令在处理。
+
+### 资源
+
+两台服务器 8 张 GPU 全部在用，还有 6 个实验排队等空位。距 EMNLP 2026 ARR June DDL 约 25 天。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 6
+
+4 recorded events
+
+### User
+
+_source line 41 · 2026-05-20T05:29:16.189139+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: method强吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T05:29:24.281796+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T05:29:24.883950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/paper_framing.md\", \"content\": \"# Paper Framing — distrib_canary_collapse\\n\\n## Target Venue\\n- Primary: **EMNLP 2026 Main Track** (D043, 用户指定)\\n- ARR cycle: June 2026 (deadline ~June 15, 待确认具体日期)\\n- 格式: ACL 系列模板 (acl.sty), 8 页正文 + unlimited appendix\\n- Note: ARR May cycle 已过；June cycle 对齐 EMNLP 2026 commitment deadline\\n\\n## Narrative Structure (D027: Option B reframe)\\n\\n**主线**：方法论陷阱 + 多方法共识框架（MMCT）。Canary prediction 为系统性 case study。\\n**三根支柱**：(1) MMCT 框架 = Claim 3 方法论贡献；(2) Regime map + 盲区 = Claim 2 分析贡献；(3) Downstream 指标选择 = D085 实践指导。\\n**Claim 呈现顺序**：论文中 Claim 3 领衔 → Claim 2 (regime map + blind zone) → Claim 1 (case study) → Claim 4 (practical intervention)。\\n**内部编号保持不变**（避免引用混乱），论文呈现时重排。\\n\\n## Core Claims (4 条，内部编号不变)\\n\\n1. **Canary→Diversity Granger-Causal Precedence (论文中作为 Case Study Finding)**: token_entropy 对 diversity 退化（distinct_1/2）具有 Granger-causal precedence——领先 1-2 代，差分后仍显著，证据来自多方法一致性：cross-correlation（lag=-1, std=0.0, |r|>0.99, p<0.004, 4/4 seed）、差分交叉相关（显著）、threshold onset（canary gen 1-2, diversity gen 3-4）、**permutation Granger（差分后仍 4/4 seed 显著，F=612-2615）**。论文可用措辞 (D037 更新)：*\\\"We demonstrate Granger-causal precedence of canary metrics at α≥0.75: α=1.0 achieves 24/24 FDR-sig (4 seeds), α=0.75 achieves 3/4 FDR-sig with the fourth borderline (p_fdr=0.054; single seed, pending multi-seed confirmation C001). Consistent temporal precedence (cross-correlation lag=+1, r=0.80–0.94) is observed across all contamination levels, though formal Granger tests at α≤0.50 do not reach FDR-corrected significance at T=11 (power analysis: §X).\\\"*升级上限：Granger ≠ true causality（Granger 1969），Discussion 一句话声明；双变量模型无法排除未观测混淆因子（详见 Reviewer Concerns 表）。ECE 前向 consensus 与 token_entropy 等效但存在 bidirectional coupling（详见约束 #9）。注意：TY Granger 在 N=11 下不可用于区分真/伪关联（见 Claim 3），核心证据链基于多方法一致性而非单一 TY 背书。**D106 泛化证据（替代 D063）**：Table 
+…[truncated 34065 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-20T05:30:05.012565+00:00_
+
+说实话，**中等偏上，不算特别强**。分几个维度看：
+
+## 亮点
+
+1. **问题切入点好**：暴露 model collapse 文献中 lead-lag 分析的方法论陷阱——naive 方法 100% 显著 vs 严格方法仅 0-25%，这个差距本身就很有冲击力
+2. **跨架构泛化扎实**：PermG ≥6/8 在 12/14 个架构-seed 组合通过（Pythia-6.9B/1.4B/410M、GPT-2m、OPT-1.3B、Qwen3.5-0.8B），不是单模型故事
+3. **实验设计诚实**：FPR=0 null control、多 seed、BH FDR 校正、失败 canary 全量报告，审稿人不容易挑基本功的毛病
+4. **Regime map 有信息量**：8 个 α 值、onset [0.45, 0.50]、α=0.60 同步坍缩区——比简单的 "work/not work" 丰富很多
+
+## 短板
+
+1. **MMCT 框架本身偏简单**：5 种已有方法投票 + BH FDR，没有算法层面的新贡献，本质是 "analysis framework" 而非 "new method"。EMNLP 审稿人可能觉得 incremental
+2. **Round 1 Weak Reject (2.5/5)**：已被审过一轮，评价不高。虽然回应了 22 条 action items，但 WR 翻盘到 Accept 的概率通常不大
+3. **时间序列太短 (T=11)**：TY Granger power 仅 5-20%，被迫降级。短序列是这类迭代训练实验的固有限制，但审稿人可能不买账
+4. **只预测 diversity collapse 不预测 perplexity**：canary→perplexity 确认为伪回归。实用性打折——多数人关心的是 perplexity
+5. **K≥3 不稳定**：M037 审计发现 batch_analysis.py 和 run_5method.py 在同一实验上 TY/diff 结果不一致，K≥3 受三重不确定性影响。D120 正在做统一管线重算，这说明数据管线本身还有坑没填完
+6. **C4 域 collapse 模式完全不同**：WikiText diversity-dominated，C4 perplexity-dominated。跨域泛化从 "regime map generalizes" 退化成 "collapse mode differs"——削弱了通用性声明
+
+## 总评
+
+作为 EMNLP analysis paper，框架和实验量够了，诚实度也够。核心风险是审稿人觉得 **"pitfalls 是 trivial/obvious"** 或 **"投票框架不够 novel"**。从 D120 还在紧急重算 dose-response 数字来看，离 camera-ready 还有不少打磨工作，DDL 大约 6 月 15 号，时间紧。
+
+如果 Round 2 能把数据管线统一干净、dose-response 图表可信，Borderline Accept 有机会。但 strong accept 基本不现实。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 7
+
+8 recorded events
+
+### User
+
+_source line 45 · 2026-05-22T03:47:35.496002+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 现在情况怎么样
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-22T03:47:47.130072+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T03:47:47.766760+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T03:40:47Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 172 个实验 — ANALYZING 1, DONE 162, PREPARING 2, RUNNING 7\\n**DONE 分布**: failed 13, killed 30, negative 4, success 115\\n\\n### GPU 占用\\n- **实际运行**: 7 张 — westd-19828:cuda:0(phase_diagram_t25_a075_s43_fp32), westd-17855:cuda:5(phase_diagram_t25_a045_s43_fp32), westd-17855:cuda:3(phase_diagram_t25_a060_s42_fp32_v3), westd-17855:cuda:0(phase_diagram_t25_a050_s42_fp32_v3), westd-17855:cuda:1(phase_diagram_t15_a075_s43_fp32), westd-17855:cuda:2(phase_diagram_t10_a075_s43_fp32), westd-19828:cuda:1(phase_diagram_t10_a050_s43_fp32)\\n\\n### 💾 磁盘余量\\n- **westd-19828**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 2%）\\n- **westd-17855**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `phase_diagram_t25_a075_s43_fp32` | westd-19828 | cuda:0 | 714857 | `…distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32.log` |\\n| `phase_diagram_t25_a045_s43_fp32` | westd-17855 | cuda:5 | 577236 | `…distrib_canary_collapse/phase_diagram_t25_a045_s43_fp32.log` |\\n| `phase_diagram_t25_a060_s42_fp32_v3` | westd-17855 | cuda:3 | 582540 | `…trib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v3.log` |\\n| `phase_diagram_t25_a050_s42_fp32_v3` | westd-17855 | cuda:0 | 582618 | `…trib_canary_collapse/phase_diagram_t25_a050_s42_fp32_v3.log` |\\n| `phase_diagram_t15_a075_s43_fp32` | westd-17855 | cuda:1 | 582768 | `…distrib_canary_collapse/phase_diagram_t15_a075_s43_fp32.log` |\\n| `phase_diagram_t10_a075_s43_fp32` | we
+…[truncated 5265 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 636
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-22T03:47:47.767447+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T03:47:48.019099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-22 00:55 UTC | 更新原因: t25_a050_v2+t25_a060_v2★ 第3次磁盘满crash, t15_a060_s43=0/8完成, 3 GPU空闲待v3\\n\\n## 核心方向\\n**Title**: \\\"Mapping the Detectability Landscape of Iterative Model Collapse\\\"\\n从\\\"方法论文\\\"转为\\\"现象发现论文\\\"。核心贡献：α×T 2D 相图、非单调 dose-response、step-function transition、检测下界理论。\\n\\n**用户批示**：\\\"大胆去想、深度思考，卡给你无限开\\\"。\\n\\n## 阶段\\nResearch 突破阶段 + R7 审稿修复完成（Overall 5/10，8 项修复 + D169 cascade 14/15）\\nR8 提交：Phase Diagram 20/20 填充 + heatmap + D170 叙事升级后\\n目标：EMNLP 2026 ARR June（DDL ~2026-06-15）\\n\\n## Phase Diagram（registry-verified，D182）\\n| T\\\\α | 0.45 | 0.50 | 0.60 | 0.75 |\\n|-----|------|------|------|------|\\n| T=5 | **0/8** ✅ | **0/8** ✅ | **0/8** ✅ | **0/8** ✅ |\\n| T=10 | 0/8 | 6/8 | 0/8(dip) | 6/8 |\\n| T=15 | **6/8** ✅ | **6/8** ✅ | **0/8**(dip) ✅ | **6/8** ✅ |\\n| T=20 | 5/8 | **6/8** | **0/8**(dip) | 6/8 |\\n| T=25 | **6/8** ✅(D182) | ❌v2 crash→v3待批 | ❌★v2 crash→v3待批(部分0/8) | **6/8** ✅(D182) |\\n\\n★ T=25 α=0.60 = Phase Diagram 最关键单格（sync-dip dissolution 终态测试）\\n理论预测：α_c(5)≥1.0 ✅、α_c(15)≈0.304 ✅、α_c(25)≈0.232 ✅（α=0.45=6/8 确认）\\n⚠️ PermG 6/8 ceiling 跨全部 T 一致（MAUVE bottleneck）\\n🔥 α=0.45 列：0/8→0/8→6/8→5/8→6/8 = left-shift 5 点验证完成\\n\\n## T=25 α=0.60★ 场景预案（D170+D177）\\n**场景 A** (PermG >0/8)：sync-dip dissolution confirmed。α_c 3-point fit + 最强叙事。\\n**场景 B** (PermG =0/8)：sync-dip permanent。C3 升级（multi-method necessity），S×R 仍 valid。\\n预案详情：artifacts/D170_narrative_drafts.md\\n\\n## GPU 分配（6/8 活跃，2 空闲待分配）\\n| GPU | 实验 | 状态 | 备注 |\\n|-----|------|------|------|\\n| 17855:0 | t25_a050_v3 (resume --start_gen 13) | RUNNING PID 582618 | 还需 12 gens |\\n| 17855:1 | t15_a075_s43 (cross-seed) | RUNNING PID 582768 | ~2-3h |\\n| 17855:2 | ❌ FREE | t15_a045_s43 完成(6/8) | 待分配 |\\n| 17855:3 | t25_a060_v3★ (resume --start_gen 14) | RUNNING PI
+…[truncated 2957 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-22T03:47:48.019597+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T03:47:48.833144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"phase_diagram_t10_a050_s43_fp32\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T01:26:18.897Z\", \"updated_at\": \"2026-05-22T01:27:21.821Z\", \"hypothesis\": \"T=10 α=0.50 cross-seed validation. s42=6/8 (D102 confirmed). α=0.50 is above α_c(10). If s43 also ~6/8, confirms detection onset at T=10 is robust across seeds. T=10 α=0.50 is a key onset cell in the phase diagram.\", \"parent\": \"alpha_sweep_a050_s42_fp32\"}, \"phase_diagram_t10_a075_s43_fp32\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T01:26:16.599Z\", \"updated_at\": \"2026-05-22T01:27:18.508Z\", \"hypothesis\": \"T=10 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(10). If s43 also ~6/8, confirms 6/8 ceiling persistence at T=10 and seed robustness. T=10 is the earliest T where detection is possible at high α.\", \"parent\": \"alpha_sweep_a075_s42_fp32\"}, \"phase_diagram_t15_a075_s43_fp32\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T01:01:02.772Z\", \"updated_at\": \"2026-05-22T01:03:20.908Z\", \"hypothesis\": \"T=15 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(15)≈0.304. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=15 and seed robustness of high-α detection.\", \"parent\": \"phase_diagram_t15_a075_s42_fp32_v2\"}, \"phase_diagram_t25_a050_s42_fp32_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T01:01:00.286Z\", \"updated_at\": \"2026-05-22T01:03:17.011Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 above threshold. At T=10/15/20 PermG=6/8 consistently. v3 resumes from gen_12 checkpoint after v2 disk-full crash at gen_13. If T=25 ≥6/8, confirms detection scaling and 6/8 ceiling persistence across all T.\", \"parent\": \"phase_diagram_t25_a050_s42_fp32_v2\"}, \"phase_diagram_t25_a060_s42_fp32_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-22T01:00:56.727Z\", \"updated_a
+…[truncated 1463 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 813
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-22T03:48:18.068959+00:00_
+
+比上次（5/20）变化很大，项目方向和规模都升级了。
+
+## 方向转型
+
+论文从"方法论文"转为**"现象发现论文"**，标题改为 *"Mapping the Detectability Landscape of Iterative Model Collapse"*。核心贡献变成一张 **α×T 二维相图**——不同污染比例（α）和训练代数（T）下，canary 信号是否可检测。
+
+## 实验规模
+
+从 5/20 的 ~102 个实验暴涨到 **172 个**（115 成功），主要是在填充相图格子和做 cross-seed 验证。
+
+## Phase Diagram 当前状态
+
+| T\α | 0.45 | 0.50 | 0.60 | 0.75 |
+|-----|------|------|------|------|
+| T=5 | 0/8 | 0/8 | 0/8 | 0/8 |
+| T=10 | 0/8 | 6/8 | 0/8(dip) | 6/8 |
+| T=15 | 6/8 | 6/8 | 0/8(dip) | 6/8 |
+| T=20 | 5/8 | 6/8 | 0/8(dip) | 6/8 |
+| T=25 | 6/8 | (v3 跑中) | (v3 跑中★) | 6/8 |
+
+几个关键发现：
+- **α_c 左移**：训练越久，越低的污染也能被检测到。α=0.45 在 T=10 不可检测 (0/8)，T=15 就能检出 (6/8)，已用 5 个数据点验证了 α_c(T) 幂律关系
+- **α=0.60 同步坍缩 dip**：从 T=10 到 T=20 始终 0/8，canary 和 downstream 同步崩溃导致无法区分方向——T=25 的结果（★当前最关键格子）将决定这是永久结构特征还是会随训练恢复
+- **6/8 天花板**：所有检出格子都停在 6/8，源于 MAUVE 指标瓶颈
+
+## 当前运行
+
+7 张 GPU 全在跑，主要是：
+- T=25 行剩余两格（α=0.50 v3、α=0.60 v3★，前两次因磁盘满 crash 后恢复）
+- 多组 cross-seed 验证（T=10/15/25 的 s43）
+
+## 审稿与提交
+
+Round 7 审稿评分 **5/10**，8 项修复 + D169 cascade 14/15 条已完成。计划填满相图 20/20 格 + 画 heatmap + 叙事升级后提交 Round 8。目标仍是 **EMNLP 2026 ARR June cycle（DDL ~6/15）**，还有约 3 周。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 8
+
+2 recorded events
+
+### User
+
+_source line 53 · 2026-05-22T03:49:36.669695+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 现在瓶颈和天花板在哪
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-22T03:50:20.953781+00:00_
+
+从当前数据看，瓶颈和天花板主要在三个层面：
+
+## 实验层面
+
+**1. PermG 6/8 天花板**
+所有 T×α 组合（检出区内），PermG 从未突破 6/8。根因是 MAUVE pairs 系统性不贡献——MAUVE 作为 downstream 指标在 Granger 检验中始终 non-sig，锁死了上限。这意味着论文无法 claim "全部指标对一致检出"，只能说 "6/8 pairs 稳健"。
+
+**2. α=0.60 sync-dip 是一个结构性"洞"**
+在 T=10/15/20 三个窗口下，α=0.60 的 PermG 全部 0/8——canary 和 downstream 同步坍缩，Granger 检验无法分辨方向。T=25 的结果（v3 正在跑）是相图最关键的一格：如果仍然 0/8，sync-dip 就是永久结构特征，相图中间有个"盲洞"；如果 >0/8，说明更长训练能打破同步性。目前 v2 的部分数据（13 代）已经是 0/8，Scenario B（永久 dip）概率更大。
+
+**3. 磁盘反复炸**
+T=25 的两个关键实验（α=0.50 和 α=0.60）v2 都因磁盘满 crash，已经是第 3 次重跑（v3）。25 代实验产生的 checkpoint 太大。
+
+## 论文层面
+
+**4. 审稿当前 5/10（Weak Reject 边缘）**
+Round 1 拿到 Weak Reject，修了 8 项 + cascade 14/15 条后还没重新提交。叙事刚从"方法论文"转为"现象发现论文"（相图 + 非单调 dose-response + 检测下界理论），Round 2 能不能说服审稿人是未知数。
+
+**5. DDL 压力：~24 天**
+EMNLP 2026 ARR June cycle DDL 约 6 月 15 日。相图 20 个格还差 T=25 行的 2 个格 + 4 组 cross-seed 验证在跑，之后还需定稿 heatmap、叙事升级、重新提交。时间很紧。
+
+## 理论/贡献层面
+
+**6. α_c(T) 理论拟合好（R²=0.883），但 predictive power 有限**
+幂律拟合解释了检测下界随训练长度左移，但只有 4-5 个 α 点，审稿人可能质疑 "overfitting few points"。而且 6/8 ceiling 意味着即使超过 α_c，检测强度也不会随 α 或 T 继续增长——"检测到 vs 检测不到"是 binary 的，没有 gradual improvement 的故事可讲。
+
+**7. sync-dip 缺乏机制解释**
+α=0.60 的同步坍缩现象是 robust 的（双 seed 确认），但目前只有现象描述（"canary 和 downstream 同时崩"），没有理论解释为什么恰好在 α≈0.60 发生。审稿人很可能追问。
+
+---
+
+**总结一句话**：实验证据的广度已经很大（172 个实验、8 模型架构、5 个 T 值），但深度上被 6/8 ceiling 和 sync-dip 卡住，叙事上需要在 24 天内把这些"不完美"包装成有意义的发现而不是局限。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 9
+
+2 recorded events
+
+### User
+
+_source line 55 · 2026-05-22T03:51:07.136745+00:00_
+
+[飞书用户 曹晓玉 (ou_d6a8c527f301a461eacde2ca7aa9e11f)]: 你觉得怎么想方法什么的能突破深度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer",
+  "source": "feishu:oc_2f4b9af3f748a4b8c1f5c291266e6c40"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-22T03:51:59.055783+00:00_
+
+这个问题很好，我基于读到的项目全部材料说说看法。
+
+## 当前深度瓶颈在哪
+
+项目现在的核心贡献本质上是**经验性的**：跑了很多实验，画了一张 α×T 相图，发现了一些有趣的 pattern（non-monotonic dip、6/8 ceiling、α_c left-shift）。但缺的是**"为什么"**——reviewer 看到的是一堆现象描述，没有机制性解释。
+
+## 几个可能的突破方向
+
+**1. α_c(T) 的理论推导**
+
+现在 α_c(T) ≈ C·T^(-β) 是纯拟合出来的（R²=0.883），如果能从信息论角度推导出来——比如从 mutual information decay rate、KL divergence 的迭代传播——哪怕是近似推导，论文就从"我们观察到了"变成"我们解释了为什么"。这是 analysis paper 和 contribution paper 的分界线。
+
+**2. α=0.60 sync-dip 的机制化**
+
+这是项目最独特的发现：中等污染下 canary 和 downstream 同步崩塌，Granger 检测力反而归零。这其实是一个**动力系统同步化**现象。如果能用 coupled oscillator 或 synchronization theory 框架解释——为什么恰好在某个 α 区间 canary 和 downstream 的衰减时间尺度趋同——这本身就能撑一个理论贡献。现在只是说"观察到了 0/8"，太浅了。
+
+**3. 6/8 ceiling 的根因分析**
+
+PermG 在所有 T、所有 α（检出区内）都卡在 6/8，2 个失败的 pair 始终是 MAUVE 相关的。这不是随机噪声，是系统性的。如果能证明这是因为 MAUVE 作为 downstream 指标的**统计效力结构性不足**（比如 MAUVE 的 kernel bandwidth 在短序列下导致 Granger 的 null distribution 退化），那 6/8 ceiling 就从"limitation"变成"finding"——下游指标的统计属性决定了检测力上限。
+
+**4. 超越 Granger 的因果工具**
+
+Granger 本质上是线性自回归。项目里 T=10-25 的短时间序列让 Granger 已经捉襟见肘了。**Transfer entropy**（非线性版 Granger）或 **convergent cross-mapping**（Sugihara et al. 2012，非参数因果检测，专门设计给短时间序列）可能在低 α / sync-dip 区域打开新局面。如果用了更强的因果工具，α=0.60 的 0/8 变成 >0/8，那说明问题不在物理上而在方法上——这直接强化 Claim 3。
+
+**5. Prevention paradox 的形式化**
+
+目前 prevention paradox 是个观察："干预越有效，统计检验越弱"。如果能写成一个简单的定理——比如证明在 intervention truncation 下 Granger test 的 power 单调递减，给出 power 与 intervention timing 的解析关系——哪怕只是一个 toy model 下的结果，也比现在的纯经验描述强很多。
+
+## 我的判断
+
+方向 1 和 2 的 ROI 最高。α_c(T) 理论推导如果做出来，直接把论文从 "empirical analysis" 升级为 "theory-guided empirical study"，这对 EMNLP main track 的区分度提升最大。sync-dip 机制化次之，但与 1 可以互补。
+
+不过这些都需要理论功底和时间，离 DDL（~6月15日）只剩约 3 周。如果时间不够做完整理论，退而求其次：在 Discussion 里给出 **testable mechanistic hypotheses**（不只是"future work"，而是给出具体预测），也比纯现象描述好。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_2f4b9af3f748a4b8c1f5c291266e6c40:briefer"
+}
+```
+
+</details>
+
+---

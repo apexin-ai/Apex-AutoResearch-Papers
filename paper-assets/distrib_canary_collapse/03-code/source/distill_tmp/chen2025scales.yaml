@@ -1,0 +1,29 @@
+paper_key: "chen2025scales"
+title: "Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["Pythia-410M", "Pythia-1B", "Pythia-2.8B", "Pythia-6.9B", "Pythia-12B", "STaR", "Self-Instruct"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "calibration", direction: "lower_better"}
+  datasets:
+    - {name: "five diverse tasks (unspecified)", size: "N/A"}
+  ablation_dimensions:
+    - model_scale (410M-12B)
+    - synthetic_ratio (0-50%)
+    - iteration_count (1-3)
+    - task_type (reasoning vs retrieval)
+  training_recipe: {model_family: "Pythia", scale_range: "410M-12B"}
+  method_family: "empirical_scaling_analysis"
+
+positioning:
+  core_claim: "Models maintain stable performance up to 20% synthetic data; degradation accelerates beyond 30%; calibration degrades before accuracy (early warning); larger models more robust."
+  key_results: "20% synthetic safe threshold; calibration as early warning; reasoning tasks degrade faster than retrieval"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

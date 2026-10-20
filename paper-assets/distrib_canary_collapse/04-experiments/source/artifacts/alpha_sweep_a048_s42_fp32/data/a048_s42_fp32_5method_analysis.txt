@@ -1,0 +1,29 @@
+alpha_sweep_a048_s42_fp32 | 5-Method Analysis Results
+========================================================
+alpha=0.48  seed=42  model=pythia-410m  dataset=wikitext103_5k
+generations=11  steps_per_gen=5000  wall_clock=15914s (~4h25m)
+checkpoint: results/alpha_sweep/a048_s42_fp32/gen_10/checkpoint
+
+LEAD-LAG DETECTION:
+  PermG_fwd:              0/8
+  PermG_rev:              0/8
+  DiffXCorr_fwd:          1/8
+  DiffXCorr_rev:          1/8
+  threshold_onset_3sigma: 0/8
+  TY_fwd:                 3/8
+  K_ge3:                  1/8
+  K_ge4:                  0/8
+  robust_pairs:           ece->distinct_1 (naive,diff,ty)
+
+DRIFT (gen0 -> gen10):
+  token_entropy: -18.6%
+  ece:          +799.6%
+  perplexity:   +16.5%
+  distinct_1:   -34.3%
+  distinct_2:   -46.3%
+  distinct_3:   -45.8%
+  mauve:        -18.8%
+
+CONCLUSION: PermG 0/8 (blind zone) at alpha=0.48.
+Phase transition alpha_c narrowed to (0.48, 0.50), width 0.02.
+Drift visible in diversity metrics but insufficient for PermG detection.

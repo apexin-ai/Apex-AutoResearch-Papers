@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "alpha": 0.6,
+    "seed": 42,
+    "n_gens": 21,
+    "data_dir": "results/t20/a060_s42_fp32",
+    "note": "post TY direction fix (causing=0,caused=1)",
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 0,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 6,
+    "diff_xcorr_fdr_reverse_sig": 6,
+    "threshold_forward_sig": 6,
+    "ty_forward_sig": 5,
+    "robust_pairs": 4
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 3, "methods": ["diff", "threshold", "ty"]},
+    {"pair": "token_entropy<distinct_2", "votes": 3, "methods": ["diff", "threshold", "ty"]},
+    {"pair": "token_entropy<distinct_3", "votes": 3, "methods": ["diff", "threshold", "ty"]},
+    {"pair": "token_entropy<mauve", "votes": 1, "methods": ["ty"]},
+    {"pair": "ece<distinct_1", "votes": 3, "methods": ["naive", "diff", "threshold"]},
+    {"pair": "ece<distinct_2", "votes": 2, "methods": ["diff", "threshold"]},
+    {"pair": "ece<distinct_3", "votes": 2, "methods": ["diff", "threshold"]},
+    {"pair": "ece<mauve", "votes": 2, "methods": ["naive", "ty"]}
+  ],
+  "ty_forward_detail": [
+    {"pair": "token_entropy<distinct_1", "f_stat": 3.2114, "p_value": 0.0428, "significant": true},
+    {"pair": "token_entropy<distinct_2", "f_stat": null, "p_value": 0.0, "significant": true},
+    {"pair": "token_entropy<distinct_3", "f_stat": null, "p_value": 0.0, "significant": true},
+    {"pair": "token_entropy<mauve", "f_stat": null, "p_value": 0.0142, "significant": true},
+    {"pair": "ece<distinct_1", "f_stat": null, "p_value": 0.2346, "significant": false},
+    {"pair": "ece<distinct_2", "f_stat": null, "p_value": 0.4652, "significant": false},
+    {"pair": "ece<distinct_3", "f_stat": null, "p_value": 0.4777, "significant": false},
+    {"pair": "ece<mauve", "f_stat": null, "p_value": 0.0301, "significant": true}
+  ]
+}

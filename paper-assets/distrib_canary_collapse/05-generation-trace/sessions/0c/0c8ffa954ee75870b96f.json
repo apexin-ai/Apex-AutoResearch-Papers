@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c8ffa954ee75870b96f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh single method error table",
+  "task_key": "worker_ssh_single_method_error_table_20260517T093044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_single_method_error_table_20260517T093044_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "718c3b0b31e33a69d88f0c68e91415378d0dbea9d9cbd3ff39e559aae0cdf845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出\n\n**LaTeX 表格已保存到：**\n- 远程: `/root/autodl-tmp/distrib_canary_collapse/docs/paper/tables/single_method_errors.tex`\n- 本地: `artifacts/tables/single_method_errors.tex`\n\n## 关键发现\n\n| Method | α=0.00 | α=0.25 | α=0.50 | α=0.75 |\n|--------|--------|--------|--------|--------|\n| Naive XCorr | **FP** | **FP** | ○ | ✓ |\n| Diff XCorr (FDR) | ✓ | ✓ | ○ | ✓ |\n| Threshold Onset | ✓ | ✓ | ○ | ✓ |\n| Perm Granger (FDR) | ✓ | ✓ | ○ | ✓ |\n| TY Granger | ✓ | ✓ | ○ | **FN** |\n| **Consensus (K≥3)** | **✓** | **✓** | **○** | **✓** |\n\n1. **Naive XCorr 是假阳性制造器**: 在 α=0.00 (零污染 null control) 仍报告显著 (8/8, 7/8, 8/8 pairs)，无 FDR 校正使其在所有 α 下都报 SIG\n2. **TY Granger 过度保守**: 在 α=0.75 (真实因果信号) 仍未检出 (每 seed 仅 1/8 pairs)，产生 FN\n3. **Consensus 在所有已测 α 下均正确**: α=0.00 和 0.25 正确拒绝，α=0.75 正确检出，α=0.50 保守处理为非显著（与 ambiguous ground truth 一致）\n\n## 数据来源\n\n| α | Seeds | 备注 |\n|---|-------|------|\n| 0.00 | s42, s43, s44 | s42 为本次新生成 |\n| 0.25 | s43, s44 | s42 数据不足 (too_few_gens) |\n| 0.50 | s42, s43, s44 | 完整 |\n| 0.75 | s42, s43, s44 | 完整 |\n| 1.00 | — | 原始实验数据已不在服务器上 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-single-method-error-table.md"
+}

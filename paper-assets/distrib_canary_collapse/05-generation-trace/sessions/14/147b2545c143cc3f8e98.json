@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "147b2545c143cc3f8e98",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779367033.md",
+  "task_key": "loop_15_1779367033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779367033.md",
+    "occurrence": 1,
+    "bytes": 5171,
+    "sha256": "b20babbda0009d2091f3b83326360a2e3b5352e1c580949b662665124c90f8f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-21T10:40:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5, westd-19828 cuda:0-1（共 8 张），白名单外禁止启动\n- 小模型(≤3B) 必须 fp32（D079），dose-response 主轴 fp32 mandatory（D091）\n- per-alpha BH FDR, n_perm=5000（D086），统一 8-pair entropy/ECE × d1/d2/d3/mauve（D102）\n- 分析脚本必须含 D111 direction checking，无 direction check 的结果不可信\n- PermG fwd 主指标 + K≥3(3σ) 辅助（D106），threshold_onset 已知 low power limitation（D105）\n- onset boundary [0.45, 0.50]，但 D093 padding 混杂验证中（a050_postd093 在跑），结论未锁定\n- SmolLM3-3B s42 PermG=3/8, K≥3=0/8 是 canary 分裂（D109），10/12 跨架构不是 12/12\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse`\n  - Python: `/root/miniconda3/bin/python`，conda activate base\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`，TRANSFORMERS_OFFLINE=1, HF_HUB_OFFLINE=1\n  - 模型: `/root/autodl-tmp/models/` (SmolLM3-3B-Base, OPT-1.3B 等)\n  - 活跃进程: qwen35_s43 (PID 174458, cuda:1), scale_69b_s43 (PID 177515, cuda:2), interv_pred_14b (PID 191999, cuda:0), scale_14b_c4 (PID 201974, cuda:5), a050_postd093 (PID 205750, cuda:4)\n  - cuda:3 空闲（pythia410m_s43 已完成）\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)\n  - 同样路径结构\n  - 活跃进程: opt13b_s43 (PID 452614, cuda:0)\n  - cuda:1 空闲（smollm3_s43 失败释放）\n- 磁盘: 两台服务器 /usr/bin/nvidia-smi 分区 ~816-817GB 可用（3%已用），充裕\n\n### 3. 📊 当前状态\n**刚做完**: Session-start 初始化（registry + reconcile crons + report + ROADMAP）\n\n**正在处理**: smollm3_3b_wiki_a100_s43_fp32 失败诊断\n- 第一次在 westd-19828 失败（EXIT_CODE=1），已派 Worker 诊断（worker_diagnose_smollm3_3b_wiki_a100_s43_fp32，status=running）\n- 第二次在 westd-17855 也失败，已派第二个 Worker 诊断（worker_diagnose_smollm3_3b_s43_17855，status=running）\n- 收到第三次重复 CRON 通知（同 westd-17855），忽略未重复派发\n\n**RUNNING 实验（6 个）**:\n| exp_id | server:gpu | 摘要 |\n|--------|-----------|------|\n| opt13b_wiki_a100_s43_fp32 | 19828:cuda:0 | OPT-1.3B s43 cross-seed |\n| qwen35_08b_wiki_a100_s43_fp32 | 17855:cuda:1 | Qwen3.5-0.8B s43 cross-seed |\n| scale_69b_a100_s43 | 17855:cuda:2 | Pythia-6.9B s43 cross-seed (~40h, bf16) |\n| interv_pred_14b_s42_fp32 | 17855:cuda:0 | Claim 4 intervention 1.4B (~20h) |\n| scale_14b_c4_s42_fp32 | 17855:cuda:5 | plan_036 Pythia-1.4B × C4 (~12h) |\n| alpha_sweep_a050_postd093_s42_fp32 | 17855:cuda:4 | D093 混杂验证 (~4h) |\n\n**空闲 GPU**: westd-17855:cuda:3, westd-19828:cuda:1 — **2 张空闲未分配，需立即填充**\n\n**等待中**:\n- 2 个诊断 Worker 回调（smollm3 失败原因）\n- 还有 1 个 audit Worker running（d111_full_sweep_9alpha）\n- 尚未向 Director 汇报本次失败（等诊断结果再报）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 根据失败原因决定：可修复则修复后重试 smollm3_s43（用空闲 GPU），不可修复则向 Director 汇报并建议替代方案\n- 2 张空闲 GPU（17855:cuda:3, 19828:cuda:1）→ 立即从 PREPARING 列表挑实验填充。候选：gen_gpt2m_a100_s43（GPT-2m s43 cross-seed）、interv_react_s43（intervention reactive s43）、scale_69b_a100_s43_fp32（6.9B s43 fp32 版，但当前 bf16 版在跑）\n- a050_postd093 完成（预估~4h from start）→ 分析结果：PermG≥6/8 则 onset [0.45,0.50] 稳健，PermG=0/8 则 onset 依赖 padding side 需全面重审\n- 各 cross-seed 实验完成 → 分析 + 更新 Table 7 + 汇报 Director\n- 所有 cross-seed + intervention 完成 → final figures + Table 7 最终版 + Paper Agent patch\n- **必须立即向 Director 汇报**: 当前 2 GPU 空闲 + smollm3 失败 + 请求分配空闲 GPU 给 PREPARING 实验\n\n### 5. 🎯 战略上下文\n- **目标**: EMNLP 2026 main track，ARR June cycle，DDL ~June 15（~26 天）\n- **核心**: MMCT 5 方法框架，PermG fwd 主指标，跨 10/12 架构-seed 组合 PermG≥6/8\n- **当前阶段**: Research Day 2+，主要在做 cross-seed 验证（Table 7 补全）+ onset 精化 + C4 域验证\n- **Table 7 缺口**: Qwen s43, 6.9B s43, OPT s43, SmolLM3 s43, Pythia-410M s43（刚完成）— 正在跑的 4 个 + 失败的 SmolLM3\n- **SmolLM3 是关键弱点**: s42 已经是 canary 分裂（PermG=3/8, K≥3=0/8），是唯一非 Pythia/GPT/OPT 架构。s43 如果也失败无法验证，论文中需要特殊处理（可能降为 limitation 讨论）\n- **D093 混杂是悬而未决的 P0**: 如果 a050_postd093 证明 onset 依赖 padding side，整个 dose-response regime map 需要重审\n- **易错点**: \n  - 不要把 C4 域的 diff_xcorr 系统性反向（24/24 pair）当 bug——这是 C4 的域特性（D112-D113）\n  - Pythia-1.4B s42 PermG=2/8 是 seed sensitive 的异常值，不要基于它做强 claim\n  - threshold_onset T=11 下 3σ ≈0/8（D105），MMCT 实质是 4 方法共识而非 5\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779367033.md"
+}

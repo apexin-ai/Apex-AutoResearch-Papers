@@ -1,0 +1,26 @@
+D102 5-Method Lead-Lag Analysis: Pythia-1.4B T=15 alpha=0.50 s42 fp32 v3
+
+Config: canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve], n_perm=5000, threshold=true_3sigma_d105, direction=peak_lag<0 (D111)
+
+SUMMARY:
+  PermG forward FDR sig: 3/8
+  PermG reverse FDR sig: 0/8
+  Diff XCorr forward FDR sig: 8/8
+  Threshold forward sig: 2/8
+  TY forward sig: 3/8
+  K>=3 robust pairs: 2/8
+
+CONSENSUS:
+  token_entropy->distinct_1: 3/5 [diff, threshold, ty]
+  token_entropy->distinct_2: 2/5 [diff, ty]
+  token_entropy->distinct_3: 2/5 [diff, ty]
+  token_entropy->mauve: 2/5 [naive, diff]
+  ece->distinct_1: 4/5 [naive, diff, threshold, perm]
+  ece->distinct_2: 2/5 [diff, perm]
+  ece->distinct_3: 2/5 [diff, perm]
+  ece->mauve: 2/5 [naive, diff]
+
+COMPARISON vs 410M:
+  410M T=15 alpha=0.50: K>=3 = 6/8
+  1.4B T=15 alpha=0.50: K>=3 = 2/8
+  Detection does NOT scale well. Onset shift confirmed at T=15.

@@ -1,0 +1,33 @@
+{
+  "exp_id": "scale_14b_t10_a045_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:49:15.345Z",
+    "updated_at": "2026-05-23T12:28:59.567Z",
+    "hypothesis": "1.4B scale multi-seed: T=10 α=0.45 seed=43. s42 PermG=0/8 confirmed below-threshold. s43 replication for consistency check.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing",
+      "server": "westd-17855",
+      "gpu": "cuda:4",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 43,
+      "pid": 738796,
+      "log_path": "logs/scale_14b_t10_a045_s43_fp32.log",
+      "checkpoint_path": "results/phase_diagram/t10_a045_s43_fp32_14b",
+      "precision": "fp32",
+      "tmux_session": "14b_t10_a045_s43"
+    },
+    "checkpoint_path": "results/phase_diagram/t10_a045_s43_fp32_14b/",
+    "log_path": "logs/scale_14b_t10_a045_s43_fp32.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T12:28:59.567Z"
+  },
+  "timestamp": "2026-05-23T12:29:00.418387+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,54 @@
+{
+  "exp_id": "alpha_sweep_a048_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:19:34.273Z",
+    "updated_at": "2026-05-21T06:17:42.810Z",
+    "spec": {
+      "checkpoint_path": "results/alpha_sweep/a048_s42_fp32/gen_10/checkpoint",
+      "wall_clock_seconds": 15914,
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a048_s42_fp32.log"
+    },
+    "hypothesis": "Phase transition midpoint: α=0.48 should reveal whether α_c lies closer to 0.45 (0/8) or 0.50 (6/8), narrowing the transition region CI from width 0.05 to ~0.02",
+    "reproduce": {
+      "finished_at": "2026-05-21T06:11:45.350Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T06:11:50.803832+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "DiffXCorr_fwd": "1/8",
+      "DiffXCorr_rev": "1/8",
+      "threshold_onset_3sigma": "0/8",
+      "TY_fwd": "3/8",
+      "K_ge3": "1/8",
+      "K_ge4": "0/8",
+      "robust_pairs": [
+        "ece→distinct_1 (naive,diff,ty)"
+      ],
+      "drift_token_entropy": "-18.6%",
+      "drift_ece": "+799.6%",
+      "drift_perplexity": "+16.5%",
+      "drift_distinct_1": "-34.3%",
+      "drift_distinct_2": "-46.3%",
+      "drift_distinct_3": "-45.8%",
+      "drift_mauve": "-18.8%"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T06:17:42.810Z"
+  },
+  "timestamp": "2026-05-21T06:17:43.128046+00:00",
+  "trigger": "update_registry"
+}

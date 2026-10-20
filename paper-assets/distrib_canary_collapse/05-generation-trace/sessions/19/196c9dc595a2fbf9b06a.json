@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "196c9dc595a2fbf9b06a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra mauve fix restart",
+  "task_key": "worker_infra_mauve-fix-restart_20260514T062820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mauve-fix-restart_20260514T062820_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "927043a5131ff7674d2bb9f92c7217e7f12fbe21ffae3af834bcd88ecd729d6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`rep_42` 和 `rep_43` 已删除。剩下 `rep_42_v1_partial` 和 `rep_43_v1_partial` 是之前的旧数据，不在清理范围内。\n\n### 汇报\n\n| 项目 | 状态 |\n|------|------|\n| metrics.py 修复 | 第 248 行 `compute_mauve` 的 `max_samples=500` → `2000`，`compute_distinct_n`(第92行) 保持 500 不变 |\n| 进程 kill | 无残留 python/train 进程，ALL_CLEAN |\n| GPU | 空闲，无占用 |\n| 输出目录清理 | `results/mvp/rep_42` 和 `rep_43` 已删除（`rep_42_v1_partial`、`rep_43_v1_partial` 为旧数据，保留） |\n\n**可以安全重启实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mauve-fix-restart.md"
+}

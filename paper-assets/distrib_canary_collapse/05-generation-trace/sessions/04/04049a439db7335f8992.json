@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04049a439db7335f8992",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor 17855 t15 progress",
+  "task_key": "worker_monitor_17855_t15_progress_20260523T005954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_17855_t15_progress_20260523T005954_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "0f811958f89041dc338fbd6d3bbe04d89373963c6532e4608d29003951c18c75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个进程存活。根据 gen 目录时间戳计算进度：\n\n### T=15 实验（1.4B，~67 min/gen）\n\n| 实验 | 当前 gen / 总 gen | 预估剩余 | 状态 |\n|------|------------------|----------|------|\n| t15_a060_s42_fp32 | **14/15**（最后一个，训练中） | **~25 min** | running |\n| t15_a050_s42_fp32 | **14/15**（最后一个，训练中） | **~28 min** | running |\n| t15_a045_s42_fp32 | **12/15**（训练中） | **~2.7 h** | running |\n\na060 和 a050 从 start_gen=4 恢复，都已进入最后一个 gen（gen_14），即将完成。a045 从 start_gen=2 恢复，还剩 gen_12（当前）+ gen_13 + gen_14 共 3 个 gen。\n\n### T=10 实验（1.4B s43，~68 min/gen）\n\n| 实验 | 当前 gen / 总 gen | 预估剩余 | 状态 |\n|------|------------------|----------|------|\n| t10_a075_s43_fp32 | **4/10**（训练中） | **~6.0 h** | running |\n| t10_a060_s43_fp32 | **4/10**（训练中） | **~6.0 h** | running |\n| t10_a045_s43_fp32 | **0/10**（刚启动 12 min） | **~10 h** | running |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-17855-t15-progress.md"
+}

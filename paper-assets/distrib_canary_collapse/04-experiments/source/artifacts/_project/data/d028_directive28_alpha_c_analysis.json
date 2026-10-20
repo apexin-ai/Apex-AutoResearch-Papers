@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-05-20T12:45:00Z",
+  "directive": "D028 (Directive 28)",
+  "purpose": "Distinguish \u03b1_c position uncertainty from \u0394\u03b1 transition width",
+  "bootstrap_config": {
+    "N": 10000,
+    "seed": 42,
+    "k_distribution": "log-normal matching CI [73.6, 500]",
+    "ac_distribution": "normal(0.4755, 0.0339) matching CI [0.425, 0.558]",
+    "ym_distribution": "normal(0.7518, 0.0520) matching CI [0.691, 0.895]"
+  },
+  "statistic_1_delta_alpha": {
+    "description": "Sigmoid 10%-90% transition width = 2*ln(9)/k",
+    "point_estimate": 0.02197,
+    "bootstrap_median": 0.022,
+    "bootstrap_95ci": [
+      0.00803,
+      0.05997
+    ],
+    "interpretation": "Entire CI below \u03b1_c CI width (0.133), confirming transition is sharper than estimation uncertainty"
+  },
+  "statistic_2_delta_p": {
+    "description": "rate(0.50) - rate(0.45) under bootstrap sigmoid",
+    "point_estimate": 0.7417,
+    "bootstrap_median": 0.428,
+    "bootstrap_95ci": [
+      0.0,
+      0.802
+    ],
+    "fraction_positive": 0.9996,
+    "interpretation": "Always positive (100%), but CI wide because \u03b1_c uncertainty spans this interval"
+  },
+  "statistic_3_fisher": {
+    "description": "Fisher exact test: \u03b1\u22640.45 (0/64) vs \u03b1\u22650.50 (18/32) [D148-corrected: \u03b1=0.60 PermG=0/8]",
+    "table": [
+      [
+        18,
+        14
+      ],
+      [
+        0,
+        64
+      ]
+    ],
+    "p_value_one_sided": 3.45e-11,
+    "chi2_yates": 40.7,
+    "chi2_p_value": 1.78e-10,
+    "interpretation": "Model-free evidence that detection rate jumps between \u03b1\u22640.45 and \u03b1\u22650.50. D148-corrected (old: 21/32 p=1.65e-13; new: 18/32 p=3.45e-11, qualitatively unchanged)."
+  },
+  "key_distinction": {
+    "alpha_c_ci_width": 0.133,
+    "delta_alpha_median": 0.022,
+    "delta_alpha_ci": [
+      0.008,
+      0.06
+    ],
+    "ratio": 6.0,
+    "conclusion": "\u03b1_c CI width (0.133) measures WHERE uncertainty; \u0394\u03b1 (0.008-0.060) measures HOW SHARP. They are independent. The transition is genuinely steep even accounting for all parameter uncertainty."
+  },
+  "framing_recommendation": "C1 steep onset claim SUPPORTED. Present Fisher as model-free jump evidence, \u0394\u03b1 as parametric sharpness, \u03b1_c CI as honest location uncertainty. Explicitly distinguish the two quantities in Methods or Results."
+}

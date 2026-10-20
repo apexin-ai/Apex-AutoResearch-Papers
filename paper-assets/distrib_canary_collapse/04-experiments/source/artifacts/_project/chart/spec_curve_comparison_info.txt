@@ -1,0 +1,2 @@
+Comparison figure: alpha=0.50 vs alpha=0.75 specification curves side-by-side.
+Server path: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/spec_curve_analysis/spec_curve_comparison.{pdf,png}

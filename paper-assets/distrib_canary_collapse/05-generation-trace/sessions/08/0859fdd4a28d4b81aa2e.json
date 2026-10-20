@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0859fdd4a28d4b81aa2e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops resubmit a025 s43 fp32 v2",
+  "task_key": "worker_ops_resubmit_a025_s43_fp32_v2_20260519T100630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit_a025_s43_fp32_v2_20260519T100630_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "1d771e7cc8ba21970399f87695dcc893a00608efe5e0d14b6a06e70e06ec7bc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验运行正常，汇报如下：\n\n- **PID**: 123809\n- **GPU 3 显存**: 7451 MiB（generation 阶段，训练阶段会升高）\n- **GPU 3 利用率**: 68%\n- **进程状态**: Running, uptime 01:49, CPU 133%\n- **日志状态**: 模型加载成功，数据加载成功，正在执行 Generation 0 (baseline) 文本生成，无 HF 连接错误\n- **right-padding 警告**: 暂无（日志中未出现）\n\n实验正常运行中，当前处于 Generation 0 baseline 合成文本生成阶段，预计生成完毕后进入训练阶段时显存会升至 >10GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-a025-s43-fp32-v2.md"
+}

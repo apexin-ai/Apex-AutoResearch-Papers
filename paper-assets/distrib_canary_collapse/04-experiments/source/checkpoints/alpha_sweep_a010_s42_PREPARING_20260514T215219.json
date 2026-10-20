@@ -1,0 +1,24 @@
+{
+  "exp_id": "alpha_sweep_a010_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:52:19.712Z",
+    "updated_at": "2026-05-14T21:52:19.712Z",
+    "spec": {
+      "hypothesis": "α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测",
+      "model_name": "EleutherAI/pythia-410m",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "seed": 42,
+      "synthetic_ratio": 0.1,
+      "num_generations": 10,
+      "steps_per_gen": 5000
+    }
+  },
+  "timestamp": "2026-05-14T21:52:19.740626+00:00",
+  "trigger": "update_registry"
+}

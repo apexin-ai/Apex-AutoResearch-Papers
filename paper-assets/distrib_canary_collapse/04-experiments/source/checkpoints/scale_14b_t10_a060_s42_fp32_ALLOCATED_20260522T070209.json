@@ -1,0 +1,22 @@
+{
+  "exp_id": "scale_14b_t10_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:01:53.938Z",
+    "updated_at": "2026-05-22T07:02:08.828Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=10 α=0.60. At 410M, α=0.60 shows sync-dip (PermG=0/8). If 1.4B also shows 0/8, confirms sync-dip is scale-invariant. If >0/8, sync-dip may be a small-model artifact.",
+    "spec": {
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T07:02:09.322794+00:00",
+  "trigger": "update_registry"
+}

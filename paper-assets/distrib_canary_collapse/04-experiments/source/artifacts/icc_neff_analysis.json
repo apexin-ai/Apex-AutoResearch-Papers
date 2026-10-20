@@ -1,0 +1,57 @@
+{
+  "alpha_050": {
+    "pairs": ["te->d1", "te->d2", "te->d3", "te->mauve", "ece->d1", "ece->d2", "ece->d3", "ece->mauve"],
+    "per_seed_permg": {
+      "s42": [1, 1, 1, 0, 1, 1, 1, 0],
+      "s43": [1, 1, 1, 0, 1, 1, 1, 0],
+      "s44": [1, 1, 1, 0, 1, 1, 1, 0]
+    },
+    "per_seed_p_fdr": {
+      "s42": [0.008, 0.033194, 0.037592, 0.730054, 0.008, 0.033194, 0.035834, 0.610849],
+      "s43": [0.021996, 0.021996, 0.022075, 0.818036, 0.008, 0.021996, 0.026661, 0.729911],
+      "s44": [0.004798, 0.004798, 0.004798, 0.503671, 0.004798, 0.004798, 0.007465, 0.834633]
+    },
+    "per_seed_sig_count": {"s42": 6, "s43": 6, "s44": 6},
+    "icc_11": 1.0,
+    "icc_computation": {
+      "n_pairs": 8,
+      "k_seeds": 3,
+      "SS_between": 4.5,
+      "SS_within": 0.0,
+      "MS_between": 0.6429,
+      "MS_within": 0.0,
+      "formula": "ICC(1,1) = (MS_between - MS_within) / (MS_between + (k-1)*MS_within)"
+    },
+    "n_eff": 3.0,
+    "n_eff_computation": {
+      "N_total": 24,
+      "m_cluster_size": 8,
+      "formula": "N_eff = N_total / (1 + (m-1)*ICC) = 24 / (1 + 7*1.0) = 3.0"
+    },
+    "consistent_pairs": 8,
+    "inconsistent_pairs": 0,
+    "consistency_detail": {
+      "all_sig_across_3_seeds": ["te->d1", "te->d2", "te->d3", "ece->d1", "ece->d2", "ece->d3"],
+      "all_nonsig_across_3_seeds": ["te->mauve", "ece->mauve"],
+      "mixed": []
+    },
+    "interpretation": "Perfect cross-seed agreement (ICC=1.0). All 8 pairs yield identical binary PermG results across s42/s43/s44. The 6 canary->distinct pairs are consistently significant; the 2 canary->mauve pairs are consistently non-significant. With ICC=1.0, N_eff=3 (one independent observation per seed)."
+  },
+  "alpha_000_null": {
+    "pairs": ["te->d1", "te->d2", "te->d3", "te->mauve", "ece->d1", "ece->d2", "ece->d3", "ece->mauve"],
+    "per_seed_permg": {
+      "s42": [0, 0, 0, 0, 0, 0, 0, 0],
+      "s43": [0, 0, 0, 0, 0, 0, 0, 0],
+      "s44": [0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "per_seed_sig_count": {"s42": 0, "s43": 0, "s44": 0},
+    "icc_11": "degenerate (zero total variance — all observations are 0)",
+    "consistent_pairs": 8,
+    "inconsistent_pairs": 0,
+    "note": "All 24 observations are 0 (no false positives). ICC undefined due to zero between-subject variance. Data sources: a000_s42_fp32 (westd-17855 analysis_results.json), a000_s42/s43/s44 (westd-19828 5method_leadlag.json perm_granger_fdr_forward_sig=0)."
+  },
+  "data_sources": {
+    "alpha_050": "westd-17855: results/alpha_sweep/a050_s{42,43,44}_fp32/analysis_results.json (perm_granger_fwd.significant_fdr)",
+    "alpha_000": "westd-17855: a000_s42_fp32/analysis_results.json; westd-19828: a000_s{42,43,44}/analysis/5method_leadlag.json (perm_granger_fdr_forward_sig)"
+  }
+}

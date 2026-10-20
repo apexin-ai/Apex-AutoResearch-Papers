@@ -1,0 +1,106 @@
+paper_key: "he2025closer"
+title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+venue: "NeurIPS 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla DDPM (no selection)"
+    - "CFG (classifier-free guidance)"
+  metrics:
+    - {name: "Generalization Score (GS)", direction: "higher_better"}
+    - {name: "Entropy (KL estimator)", direction: "higher_better"}
+    - {name: "FID", direction: "lower_better"}
+  datasets:
+    - {name: "CIFAR-10", size: "32768 images (32x32)"}
+    - {name: "FFHQ", size: "8192 images (32x32)"}
+    - {name: "MNIST", size: "12000 images"}
+  ablation_dimensions:
+    - dataset_size (1024-32768)
+    - selection_method (greedy vs threshold_decay vs vanilla)
+    - filter_ratio (0.2-1.0)
+    - paradigm (replace vs accumulate-subsample)
+    - CFG_scale
+  training_recipe:
+    optimizer: "Adam"
+    lr: "1e-4"
+    weight_decay: "1e-6"
+    batch_size: 128
+    precision: "FP16 mixed"
+    denoising_steps: 1000
+    epochs_per_iter: "500 (CIFAR-10), 1000 (FFHQ)"
+    hardware: "single NVIDIA A100"
+    model: "UNet-based DDPM (16M/19M params)"
+  method_family: "entropy_based_data_selection"
+
+positioning:
+  core_claim: "Model collapse in diffusion models manifests as a generalization-to-memorization transition driven by declining training data entropy (Pearson r=0.91). Entropy-based data selection (greedy/threshold decay) effectively mitigates this transition."
+  key_results: "Accumulate-subsample iter8: vanilla FID 75.7 → greedy FID 44.7; entropy-GS correlation r=0.91; selection naturally favors real images (65% real vs 12.5% random chance at iter8)"
+  limitations:
+    - "No rigorous theory for WHY entropy collapses"
+    - "Greedy selection is computationally expensive"
+    - "Only image domain tested; no language/discrete diffusion"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "AI-generated data flooding the internet creates self-consuming loops, but prior characterizations (variance shrinkage, distribution shift) miss practical manifestations."
+  tension: "Variance collapse happens over 'extremely large' iterations — rarely a practical concern. Population risk is too holistic to characterize specific failure modes. What actually goes wrong in practice?"
+  key_insight: "Section 3 — the model transitions from generating novel content to memorizing training data. This transition is driven by entropy collapse (not variance), with r=0.91 correlation. Entropy is both the diagnostic and the remedy (entropy-based selection)."
+  argument_chain: "prior characterizations inadequate → identify gen-to-mem transition → find entropy as driver (r=0.91) → propose entropy-based selection → validate across datasets and paradigms"
+  contribution_framing: "3 contributions: (1) identify gen-to-mem transition, (2) establish entropy-generalization correlation, (3) propose entropy-based selection methods"
+  intro_structure: "3 paragraphs: P1=context (synthetic data proliferation + self-consuming loop), P2=prior work limitations (variance too slow, population risk too holistic), P3=our findings + contributions"
+  notable_technique: "Using DINOv2 feature space for generalization score creates a perceptually meaningful metric. The 'entropy is both diagnostic and therapy' framing is elegant and actionable."
+
+figures:
+  figure_count: 17
+  figure1:
+    type: "method_overview"
+    description: "Self-consuming pipeline: replace paradigm (top), mitigated iteration with selection (middle), evolution of generated images (bottom right)"
+    narrative_role: "Establishes the problem setup and previews the solution in one figure"
+    design_elements: ["pipeline flow", "iteration progression", "image evolution samples"]
+    visual_style: "Three-tier layout with arrows showing iterative process"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "Generated images vs nearest training neighbors across iterations + quantitative GS curves"
+      how_gain_highlighted: "Visual transition from novel→memorized is immediately apparent; GS drops near-exponentially"
+      design_note: "Left panel (qualitative) + right panel (quantitative) creates powerful dual evidence"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Entropy vs GS (r=0.91) and trace-of-covariance vs GS"
+      how_gain_highlighted: "Strong linear correlation for entropy vs weak for variance — directly challenges prior characterization"
+      design_note: "Side-by-side scatter plots with r values make the comparison unarguable"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "GS across iterations with/without selection methods"
+      how_gain_highlighted: "Selection methods maintain higher GS across all datasets"
+      design_note: "Multi-panel (dataset per panel) shows generality"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "FID across iterations with/without selection"
+      how_gain_highlighted: "Lower FID with selection"
+      design_note: "Mirrors Figure 5 structure for consistency"
+  ablation_figures:
+    - figure_id: "Figure 8"
+      viz_type: "bar_chart"
+      dimensions_varied: ["proportion of real vs synthetic in selected subset"]
+      design_note: "Shows selection naturally favors real images — emergent behavior, not engineered"
+    - figure_id: "Figure 10-11"
+      viz_type: "line_plot"
+      dimensions_varied: ["filter_ratio", "decay_rate"]
+      design_note: "Standard ablation over hyperparameters"
+  figure_narrative_role: "Fig1(setup+preview) → Fig2(identify transition) → Fig3(entropy collapse) → Fig4(entropy vs variance) → Fig5-7(selection results) → Fig8(real data emergence) → Fig9(CFG) → Fig10-11(ablation)"
+
+tables:
+  table_count: 0
+  main_result_table: "N/A — all results via figures; key numbers (FID, GS, correlation) stated in text"
+  ablation_tables:
+    - table_id: "Inline table in Section 5"
+      what_varied: ["filter_ratio (0.2-1.0)"]
+      variation_style: "full_numbers"
+      design_note: "Compact inline table for ablation, not a separate numbered table"
+  supplementary_tables:
+    in_appendix: true
+    content: "Network structure, implementation details, additional generated images"
+    reason: "Figure-driven paper; appendix for reproducibility and visual evidence"

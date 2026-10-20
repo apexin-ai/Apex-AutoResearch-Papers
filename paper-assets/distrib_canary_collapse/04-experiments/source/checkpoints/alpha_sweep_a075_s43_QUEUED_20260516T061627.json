@@ -1,0 +1,23 @@
+{
+  "exp_id": "alpha_sweep_a075_s43",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:16:27.880Z",
+    "updated_at": "2026-05-16T06:16:27.880Z",
+    "spec": {
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "hypothesis": "α=0.75 multi-seed #2: 验证 detectability boundary 跨 seed 稳定性 (reviewer R1 要求)",
+      "plan_id": "plan_001d"
+    }
+  },
+  "timestamp": "2026-05-16T06:16:27.955593+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,102 @@
+paper_key: "alemohammad2024mad"
+title: "Self-Consuming Generative Models Go MAD"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "DDPM (conditional, T=500)"
+    - "StyleGAN-2 (unconditional)"
+    - "WGAN-GP"
+    - "Normalizing Flows (GLOW)"
+    - "Gaussian/GMM (analytical)"
+  metrics:
+    - {name: "FID (Fréchet Inception Distance)", direction: "lower_better"}
+    - {name: "Precision (k=5 NN)", direction: "higher_better"}
+    - {name: "Recall (k=5 NN)", direction: "higher_better"}
+    - {name: "Wasserstein distance", direction: "lower_better"}
+    - {name: "Effective sample size (n_e)", direction: "higher_better"}
+  datasets:
+    - {name: "MNIST", size: "60K"}
+    - {name: "FFHQ", size: "70K (downsampled to 128x128)"}
+    - {name: "2D Rosenbrock distribution", size: "10K synthetic"}
+    - {name: "25-mode 2D GMM", size: "synthetic"}
+  ablation_dimensions:
+    - loop_type (fully_synthetic, augmentation, fresh_data)
+    - sampling_bias_lambda (0-1)
+    - generation_count
+    - model_architecture (DDPM, StyleGAN2, WGAN, NF, Gaussian)
+    - fresh_data_amount (n_r)
+  training_recipe:
+    DDPM: "conditional, T=500 diffusion steps, 10% conditioning dropout for CFG"
+    StyleGAN2: "unconditional, FFHQ 128x128"
+    NF_GLOW: "8 coupling layers, hidden_dim=64, 20 epochs, batch=256"
+    data_sizes: "DDPM: 60K/iter; StyleGAN: 70K/iter"
+  method_family: "autophagous_loop_analysis"
+
+positioning:
+  core_claim: "Without enough fresh real data in each generation, self-consuming generative models inevitably suffer Model Autophagy Disorder (MAD) — either quality (precision) or diversity (recall) progressively decreases. Sampling bias trades quality for diversity loss."
+  key_results: "Fully synthetic: both precision & recall → 0; With bias (λ<1): precision maintained but recall drops faster; Augmentation with fixed real data only delays MAD; Fresh data prevents MAD if sufficient"
+  limitations:
+    - "Primarily image domain (MNIST, FFHQ)"
+    - "Hardware not specified"
+    - "No text/LLM experiments"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Biological analogy — mad cow disease from feeding cattle with cattle remains. What happens when AI models consume their own outputs?"
+  tension: "Synthetic data is proliferating (LAION-5B already contains synthetic images). The temptation to use it is strong (cheaper, privacy-preserving), but consequences are unknown."
+  key_insight: "Section 3 — Gaussian theory shows covariance is a supermartingale (Σ_t → 0 a.s.), mean is a martingale (random walk). This dual failure mode (diversity collapse + quality drift) holds across all tested architectures."
+  argument_chain: "synthetic data proliferation → autophagous loop formalization → 3 loop variants → Gaussian theory (martingale/supermartingale) → empirical validation (DDPM, StyleGAN, WGAN, NF) → sampling bias tradeoff → fresh data as remedy → phase transition in fresh data regime"
+  contribution_framing: "3 contributions: (1) realistic autophagous loop models, (2) sampling bias role, (3) generality across architectures"
+  intro_structure: "2 subsections: S1.1=context (synthetic data explosion), S1.2=contributions with detailed loop descriptions"
+  notable_technique: "The 'MAD cow disease' biological analogy is memorable and widely cited. The precision-recall decomposition of FID makes the quality-diversity tradeoff concrete and measurable."
+
+figures:
+  figure_count: 31
+  figure1:
+    type: "teaser_result"
+    description: "StyleGAN-2 generated faces across generations showing progressive cross-hatching artifact amplification"
+    narrative_role: "Visceral proof of model collapse — faces become visibly degraded"
+    design_elements: ["grid of generated faces", "generation labels", "artifact progression visible"]
+    visual_style: "Grid layout, faces across generations, degradation visually striking"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "FID, precision, recall across generations for fully synthetic loop (FFHQ + MNIST)"
+      how_gain_highlighted: "All three metrics monotonically degrade"
+      design_note: "Triple-panel (FID/precision/recall) shows both quality and diversity decline simultaneously"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Same metrics with sampling bias — precision maintained, recall drops faster"
+      how_gain_highlighted: "Explicit quality-diversity tradeoff visualization"
+      design_note: "Solid vs dashed lines for different models; direct comparison to unbiased case"
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      what_compared: "Fresh data loop — WD/FID converges to steady state independent of initial data size"
+      how_gain_highlighted: "Plateau behavior = no collapse"
+      design_note: "Shows asymptotic independence from n_ini — a key theoretical prediction confirmed empirically"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      dimensions_varied: ["generation number"]
+      design_note: "t-SNE of MNIST digits across generations — modes merge/drift, visually compelling"
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["sampling bias λ values"]
+      design_note: "Multiple λ curves on same plot; λ=0.8 shown as best compromise"
+    - figure_id: "Figure 11"
+      viz_type: "heatmap"
+      dimensions_varied: ["n_r (real samples)", "n_s (synthetic samples)"]
+      design_note: "Phase transition boundary (admissible vs inadmissible) — blue shaded region shows where synthetic data helps"
+  figure_narrative_role: "Fig1(visceral teaser) → Fig3(loop taxonomy) → Fig4-5(fully synthetic collapse) → Fig6-7(bias tradeoff) → Fig8-9(augmentation delays) → Fig10-12(fresh data remedy + phase transition)"
+
+tables:
+  table_count: 0
+  main_result_table: "N/A — all results presented as figures (line plots, t-SNE, heatmaps)"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional model samples (Figs 18-29), extended metric plots, WGAN/NF/GMM results"
+    reason: "Visual-heavy paper; all quantitative comparisons via plots; appendix contains exhaustive sample galleries"

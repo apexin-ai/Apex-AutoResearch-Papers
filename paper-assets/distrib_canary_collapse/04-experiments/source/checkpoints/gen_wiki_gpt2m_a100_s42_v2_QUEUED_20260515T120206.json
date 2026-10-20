@@ -1,0 +1,26 @@
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:02:06.478Z",
+    "updated_at": "2026-05-15T12:02:06.478Z",
+    "spec": {
+      "hypothesis": "Generalization: GPT-2-medium (355M) on WikiText-103 at α=1.0 — cross-architecture validation of Granger-causal precedence at full synthetic replacement (v2: local model path + TRANSFORMERS_OFFLINE)",
+      "model_name": "gpt2-medium",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "seed": 42,
+      "synthetic_ratio": 1,
+      "num_generations": 10,
+      "steps_per_gen": 5000,
+      "batch_size": 32,
+      "parent": "gen_wiki_gpt2m_a100_s42"
+    }
+  },
+  "timestamp": "2026-05-15T12:02:06.527414+00:00",
+  "trigger": "update_registry"
+}

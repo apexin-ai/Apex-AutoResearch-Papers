@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f5e0bccdfa9de70fdad",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check pythia410m status 20260517",
+  "task_key": "worker_ssh_check_pythia410m_status_20260517_20260517T112505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_pythia410m_status_20260517_20260517T112505_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "d5a9d2c89679160050ff2f231298a4676efc17ba23398d6cdf89a140981f78c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n### 1. Pythia-410M (`pythia410m_wiki_a100_s42`) — **完成 ✓**\n\n10 代全部完成 (gen_0 ~ gen_10)。进程仍在运行但输出已写完。\n\n**Drift（gen_0 → gen_9）：**\n| 指标 | gen_0 | gen_9 | drift |\n|------|-------|-------|-------|\n| distinct_1 | 0.098 | 0.072 | **-26.7%** |\n| distinct_2 | 0.518 | 0.350 | **-32.5%** |\n| token_entropy | 3.234 | 1.239 | **-61.7%** |\n| ECE | 0.011 | 0.417 | **+3758.9%** |\n| perplexity | 26.9 | 935.0 | **+3369.4%** |\n\n**5-Method 分析（16 pairs = 4 canary × 4 downstream, sig_rate = 58/80）：**\n\n| Method | Sig / 16 |\n|--------|----------|\n| Naive Pearson | **15/16** |\n| Differenced XCorr | **16/16** |\n| Threshold Onset | **10/16** |\n| Toda-Yamamoto | **7/16** |\n| Permutation Granger | **10/16** |\n\n弱点集中在 `effective_rank` 作为 canary（TY 和 Threshold Onset 大面积 not_significant）和 `self_bleu->distinct_{1,2}`（TY、Permutation Granger、Threshold Onset 均 not_significant）。`token_entropy` 和 `ece` 作为 canary 表现最强。\n\n### 2. OPT-1.3B (`opt1b_wiki_a100_s42`) — **进行中**\n\n当前进度：**gen_8/10**，PID 249384 存活，预计还需约 50 分钟完成（按每代 ~24min 估算）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-pythia410m-status-20260517.md"
+}

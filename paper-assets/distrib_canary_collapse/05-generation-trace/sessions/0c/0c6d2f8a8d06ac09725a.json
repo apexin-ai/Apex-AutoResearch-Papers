@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6d2f8a8d06ac09725a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing methods reframe",
+  "task_key": "worker_paper_writing_methods_reframe_20260520T111845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_methods_reframe_20260520T111845_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "0b97780450de4c8cea90badacc66d6d77a323a3495438fba1e6475d38b172b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/method_reframe.tex`. 52 source lines (dense, one-sentence-per-line format; will typeset to ~65-70 lines in dual-column).\n\n**Structure**: Pitfalls (10 lines) → MMCT (10) → PermG (13) → S×R subsection with equation (18) → Calibration (8). No display items (tables/figures/algorithms all deferred to Appendix).\n\n**Constraints verified**:\n- All 7 required citations present\n- All 5 required labels preserved (`sec:method`, `sec:pitfalls`, `sec:mmct`, `sec:theory`, `eq:detectability`)\n- Zero em-dashes, zero explanatory en-dashes\n- No -ing endings, no banned transition words, no AI vocabulary\n- D131 (\"steep onset\", \"detection phase transition\"), D141 (α_c qualified \"at T=10\", \"consistent with\"), D142 (no CSD), D143 (no TY=7/8), M037 (PermG-only dose-response), C2 positioning, predict-then-verify framing all satisfied\n- Reproducibility: 5,000 permutations, BH-FDR q=0.05, 8 pairs in main text"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-methods-reframe.md"
+}

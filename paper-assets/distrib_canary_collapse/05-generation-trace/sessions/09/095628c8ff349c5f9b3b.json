@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "095628c8ff349c5f9b3b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis intervention threshold sweep",
+  "task_key": "worker_analysis_intervention_threshold_sweep_20260520T082450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_threshold_sweep_20260520T082450_result.json",
+    "occurrence": 1,
+    "bytes": 2191766,
+    "sha256": "5f3a215ca0a059570918b5e1e7bac31a510cd788848992c9b03fc37d44c0d846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "095628c8ff349c5f9b3b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intervention-threshold-sweep.md"
+}

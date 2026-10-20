@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14c8033438cf7c2e5dbf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check mauve na gens",
+  "task_key": "worker_ops_check-mauve-na-gens_20260523T172004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-mauve-na-gens_20260523T172004_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "95b0c7298fe2460c807923ff58f070050ad6b2872a6f382d98ce2201161cb451"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/mauve_na_audit_20260523.md`。\n\n核心结论：\n\n- **6 个实验的所有已完成 gen 的 mauve 全部为 null**，共 55 个 generation 需补算\n- **2 个实验完全正常**：t15_a060_s43（13 gen）和 t10_a045_s44（4 gen）的 mauve 值有效\n- 每个实验内部是全部有效或全部 null，表明 gpt2-large 缓存状态在实验启动时就已确定\n- 补算输入数据都在，每个 gen 的 `synthetic_data/` 下有 Arrow 格式的生成文本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mauve-na-gens.md"
+}

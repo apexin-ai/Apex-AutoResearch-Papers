@@ -1,0 +1,70 @@
+{
+  "exp_id": "t20_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:19:01.912Z",
+    "updated_at": "2026-05-20T20:19:20.957Z",
+    "hypothesis": "D127 Power Theory α_c left-shift 验证: T=20 at α=0.45（blind zone 上界）。T=11 下 α=0.45 PermG=0/8（blind zone confirmed），T=20 提供 2× 数据点——如果 T=20 下 PermG 仍为 0/8 → α_c 不随 T 左移，blind zone 是 fundamental limit；如果 PermG>0 → 统计功效不足是 T=11 blind zone 的部分原因，T=20 缩小 blind zone。",
+    "parent": "alpha_sweep_a045_s42_fp32",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.45 --output_dir results/t20/a045_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "332328",
+      "log_path": "~/runs/distrib_canary_collapse/t20_a045_s42_fp32.log",
+      "submitted_at": "2026-05-20T11:51:14.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "wall_clock_seconds": 30486.9,
+      "gpu_hours": 8.47
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T20:14:37.087Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T20:14:42.093525+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/t20/a045_s42_fp32",
+    "log_path": "westd-17855:~/runs/distrib_canary_collapse/t20_a045_s42_fp32.log",
+    "metrics": {
+      "perm_granger_fdr_forward_sig": 5,
+      "perm_granger_fdr_reverse_sig": 0,
+      "diff_xcorr_fdr_forward_sig": 7,
+      "diff_xcorr_fdr_reverse_sig": 7,
+      "threshold_onset_forward_sig": 4,
+      "ty_forward_sig": 2,
+      "robust_pairs_K3": 3,
+      "robust_pairs_K4": 1,
+      "n_generations": 20,
+      "alpha": 0.45,
+      "seed": 42,
+      "threshold_criterion": "true_3sigma_d105",
+      "predicted_permg": 0,
+      "observed_permg": 5,
+      "prediction_verdict": "FAIL",
+      "observed_rate_in_predicted_ci": true,
+      "blind_zone_conclusion": "power_issue_not_fundamental"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T20:19:20.957Z"
+  },
+  "timestamp": "2026-05-20T20:19:21.493579+00:00",
+  "trigger": "update_registry"
+}

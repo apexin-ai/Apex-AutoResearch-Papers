@@ -1,0 +1,75 @@
+{
+  "exp_id": "t20_a025_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:20:28.013Z",
+    "updated_at": "2026-05-21T05:06:07.118Z",
+    "hypothesis": "T=20 blind zone null baseline at α=0.25: T=11 下 α=0.25 PermG=0/8（deep blind zone）。T=20 提供 2× 数据点——如果仍为 0/8 → blind zone 在 α≤0.25 对 T 不敏感，是 fundamental detection limit；如果 PermG>0 → T=20 的统计功效提升突破了 blind zone 下界。作为 T=20 dose-response null baseline 必需。",
+    "parent": "alpha_sweep_a025_s42_v2",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.25 --num_generations 20 --output_dir results/t20/a025_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "checkpoint_source": "alpha_sweep_a025_s42_v2",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T04:56:47.600Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T04:56:53.118558+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "perm_granger_fdr_forward_sig": 3,
+      "perm_granger_fdr_reverse_sig": 0,
+      "diff_xcorr_fdr_forward_sig": 1,
+      "diff_xcorr_fdr_reverse_sig": 1,
+      "threshold_onset_forward_sig": 4,
+      "ty_forward_sig": 0,
+      "robust_pairs_K3": 1,
+      "robust_pairs_K4": 0,
+      "n_generations": 20,
+      "alpha": 0.25,
+      "seed": 42,
+      "threshold_criterion": "true_3sigma_d105",
+      "drift_pct": {
+        "token_entropy": -3.27,
+        "distinct_1": -40.42,
+        "distinct_2": -58.71,
+        "distinct_3": -62.92,
+        "ece": 84.91,
+        "perplexity": -18.62,
+        "mauve": -34.3
+      },
+      "final_perplexity": 21.93,
+      "final_token_entropy": 3.1286,
+      "final_mauve": 0.0204,
+      "predicted_permg": 0,
+      "observed_permg": 3,
+      "prediction_verdict": "FAIL",
+      "blind_zone_conclusion": "power_breakthrough"
+    },
+    "checkpoint_path": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/t20/a025_s42_fp32",
+    "log_path": "westd-17855:~/runs/distrib_canary_collapse/t20_a025_s42_fp32.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T05:06:07.118Z"
+  },
+  "timestamp": "2026-05-21T05:06:07.453367+00:00",
+  "trigger": "update_registry"
+}

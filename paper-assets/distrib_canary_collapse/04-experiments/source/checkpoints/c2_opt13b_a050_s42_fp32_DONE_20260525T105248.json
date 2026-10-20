@@ -1,0 +1,49 @@
+{
+  "exp_id": "c2_opt13b_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:09:41.059Z",
+    "updated_at": "2026-05-25T10:52:48.327Z",
+    "hypothesis": "OPT-1.3B at α=0.50 seed 42: cross-architecture validation of phase diagram transition region — if canary→downstream lead-lag is architecture-general, PermG forward detection should match Pythia-410M rates (6/8)",
+    "spec": {
+      "command": "python iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --output_dir results/c2_opt13b/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "32373",
+      "log_path": "~/runs/distrib_canary_collapse/c2_opt13b_a050_s42_fp32.log",
+      "submitted_at": "2026-05-25T00:09:57.812Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "facebook/opt-1.3b",
+      "seed": 42,
+      "checkpoint_path": "results/c2_opt13b/a050_s42_fp32/gen_9/checkpoint",
+      "wall_clock_seconds": 38570.5,
+      "gpu_hours": 10.71
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T10:46:49.478Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T10:46:56.180052+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-25T10:52:48.327Z"
+  },
+  "timestamp": "2026-05-25T10:52:48.806018+00:00",
+  "trigger": "update_registry"
+}

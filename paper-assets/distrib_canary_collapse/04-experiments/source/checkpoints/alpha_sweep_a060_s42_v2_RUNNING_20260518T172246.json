@@ -1,0 +1,34 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:33:46.539Z",
+    "updated_at": "2026-05-18T17:22:46.145Z",
+    "hypothesis": "α=0.60 regime map: Pythia-410M WikiText s42 at synthetic_ratio=0.60. Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "10057",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_v2.log",
+      "submitted_at": "2026-05-18T16:36:27.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "kill_reason": "missing --bf16, fp16 GradScaler incompatible with Blackwell GPU"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T17:22:46.248487+00:00",
+  "trigger": "update_registry"
+}

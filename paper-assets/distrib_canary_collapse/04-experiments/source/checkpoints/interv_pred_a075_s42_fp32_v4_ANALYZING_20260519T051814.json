@@ -1,0 +1,39 @@
+{
+  "exp_id": "interv_pred_a075_s42_fp32_v4",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:22:52.832Z",
+    "updated_at": "2026-05-19T05:18:14.180Z",
+    "hypothesis": "D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.",
+    "parent": "interv_pred_a075_s42_fp32",
+    "server": "westd-17855",
+    "gpu": "cuda:4",
+    "account": "root",
+    "spec": {
+      "command": "iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.75 --intervention_mode predictive",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "71542",
+      "log_path": "~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log",
+      "submitted_at": "2026-05-19T00:23:45.454Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "EleutherAI/pythia-410m",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T05:18:14.353119+00:00",
+  "trigger": "update_registry"
+}

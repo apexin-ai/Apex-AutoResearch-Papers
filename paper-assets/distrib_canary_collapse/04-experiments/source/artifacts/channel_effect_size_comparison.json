@@ -1,0 +1,87 @@
+{
+  "analysis": "channel_specific_first_differencing_effect",
+  "date": "2026-05-20",
+  "data_sources": ["westd-19828", "westd-17855"],
+  "total_observations": {"diversity": 243, "perplexity": 8},
+  "channel_summary": {
+    "diversity": {
+      "n": 243,
+      "naive_abs_r": {"mean": 0.9157, "median": 0.9429},
+      "diff_abs_r": {"mean": 0.871, "median": 0.9214},
+      "retention": {"mean": 0.9523, "median": 0.9908},
+      "naive_sig_rate": 0.9547,
+      "diff_sig_rate": 0.7613,
+      "perm_granger_F": {"mean": 357.56, "median": 67.83, "n": 240},
+      "diff_peak_lag": {"mean": -1.25, "median": -1}
+    },
+    "perplexity": {
+      "n": 8,
+      "naive_abs_r": {"mean": 0.8996, "median": 0.9241},
+      "diff_abs_r": {"mean": 0.9001, "median": 0.9},
+      "retention": {"mean": 1.0023, "median": 0.9969},
+      "naive_sig_rate": 0.875,
+      "diff_sig_rate": 0.875,
+      "perm_granger_F": {"mean": 1413.93, "median": 11.48, "n": 6},
+      "diff_peak_lag": {"mean": 0.25, "median": 0.0}
+    }
+  },
+  "paired_experiment_comparison": [
+    {
+      "exp": "a060_s42_bf16",
+      "note": "Non-intervention, best for fair comparison",
+      "perplexity": {"naive_r": 0.959, "diff_r": 0.942, "retention": 0.981, "perm_F_mean": 8.25, "peak_lags": [0, 1]},
+      "diversity": {"naive_r": 0.966, "diff_r": 0.965, "retention": 0.999, "perm_F_mean": 229.39, "peak_lags": [-3, -5, -5, 5, 5, -4]},
+      "F_ratio_diversity_over_perplexity": 27.8
+    },
+    {
+      "exp": "reactive_d1_s43_bf16",
+      "note": "Intervention experiment (reactive)",
+      "perplexity": {"naive_r": 0.834, "diff_r": 0.880, "retention": 1.062, "perm_F_mean": 11.48, "peak_lags": [-3, 0]},
+      "diversity": {"naive_r": 0.917, "diff_r": 0.985, "retention": 1.076, "perm_F_mean": 236.37, "peak_lags": [-1, -1]},
+      "F_ratio_diversity_over_perplexity": 20.6
+    },
+    {
+      "exp": "a010_s43_bf16",
+      "note": "Low alpha, no F-stats available",
+      "perplexity": {"naive_r": 0.963, "diff_r": 0.973, "retention": 1.010, "perm_F_mean": null, "peak_lags": [0, 0]},
+      "diversity": {"naive_r": 0.869, "diff_r": 0.880, "retention": 1.012, "perm_F_mean": null, "peak_lags": [-1, -1, -1]}
+    }
+  ],
+  "granger_F_within_experiment_detail": {
+    "a060_s42_bf16": {
+      "diversity_F_stats": {"token_entropy->distinct_1": 853.1, "token_entropy->distinct_2": 276.9, "token_entropy->distinct_3": 75.1, "ece->distinct_1": 120.9, "ece->distinct_2": 36.4, "ece->distinct_3": 14.0},
+      "perplexity_F_stats": {"token_entropy->perplexity": 6.5, "ece->perplexity": 10.0}
+    },
+    "reactive_d1_s43_bf16": {
+      "diversity_F_stats": {"token_entropy->distinct_1": 130.2, "ece->distinct_3": 342.5},
+      "perplexity_F_stats": {"token_entropy->perplexity": 12.1, "ece->perplexity": 10.9}
+    }
+  },
+  "peak_lag_distribution": {
+    "diversity": {"lag_negative_pct": 0.81, "lag_zero_pct": 0.02, "lag_positive_pct": 0.16, "mean": -1.25, "median": -1},
+    "perplexity": {"lag_negative_pct": 0.25, "lag_zero_pct": 0.50, "lag_positive_pct": 0.25, "mean": 0.25, "median": 0.0}
+  },
+  "conclusions": {
+    "finding_1_retention_parity": {
+      "description": "First-differencing retains comparable |r| for BOTH channel types",
+      "diversity_retention": 0.9523,
+      "perplexity_retention": 1.0023,
+      "implication": "Differencing is NOT a blanket power-loss mechanism. Both channel types preserve ~95%+ of correlation magnitude."
+    },
+    "finding_2_granger_asymmetry": {
+      "description": "Granger F-stat is order-of-magnitude lower for perplexity despite comparable |r|",
+      "diversity_F_median": 67.83,
+      "perplexity_F_median": 11.48,
+      "F_ratio": 5.9,
+      "within_experiment_F_ratio": "20-28x (a060, reactive_d1)",
+      "implication": "The low Granger F for perplexity is NOT caused by differencing removing signal. The raw |r| is equally high (~0.90). The low F reflects absence of LAGGED predictive structure."
+    },
+    "finding_3_temporal_structure": {
+      "description": "Perplexity correlations are contemporaneous (lag≈0), diversity correlations are lagged (canary leads)",
+      "diversity_lag_negative_rate": "81% (canary leads downstream)",
+      "perplexity_lag_zero_rate": "50% (contemporaneous)",
+      "implication": "Canary→perplexity is contemporaneous co-movement, not lagged causation. Canary→diversity shows genuine temporal precedence."
+    },
+    "reviewer_response": "First-differencing retains 95% of |r| for diversity channels (n=243) and 100% for perplexity channels (n=8). This parity rules out blanket power loss. The asymmetry in Granger F-statistics (diversity median F=67.8 vs perplexity median F=11.5; within-experiment ratio 20-28x) instead reflects a structural difference: perplexity correlations peak at lag≈0 (contemporaneous, 50% of cases), while diversity correlations peak at lag<0 (canary temporally leads, 81% of cases). Granger causality tests lagged predictive power, so contemporaneous co-movement naturally produces lower F-statistics regardless of differencing."
+  }
+}

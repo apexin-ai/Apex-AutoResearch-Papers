@@ -1,0 +1,14 @@
+Location: westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/rebuttal/
+Files:
+- nperm_10k/a075_s42_perm10k.json
+- nperm_10k/a075_s43_perm10k.json
+- nperm_10k/a075_s44_perm10k.json
+- nperm_stability.json
+- nperm_stability_summary.txt
+
+Results:
+- Max |p(5k) - p(10k)| = 0.0098
+- Mean |Δ| = 0.0016
+- Significance flips: 0
+- Forward p-value changes all < 0.002
+- Conclusion: n_perm=5000 is sufficient; results are stable

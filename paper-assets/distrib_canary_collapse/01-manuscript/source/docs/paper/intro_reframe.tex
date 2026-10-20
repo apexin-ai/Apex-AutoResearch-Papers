@@ -1,0 +1,45 @@
+\section{Introduction}
+\label{sec:introduction}
+
+When language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\cite{shumailov2024curse,alemohammad2024mad}.
+Lexical diversity narrows, calibration deteriorates, and each generation inherits the systematic biases of its predecessors.
+As machine-generated text becomes prevalent on the web, such feedback loops pose a growing and often invisible risk to production training pipelines.
+By the time standard quality metrics register degradation, the underlying distribution may have already shifted irreversibly.
+This threat motivates the search for cheap-to-compute \emph{canary metrics}: leading indicators that signal distributional degradation before expensive downstream measures reveal the full extent of collapse.
+The concept parallels early-warning signals for critical transitions in ecological systems~\cite{scheffer2009early,scheffer2012anticipating}, where proxy indicators allow intervention before a tipping point.
+
+Yet a fundamental question remains unanswered: \emph{at what contamination level does Granger-causal detection of collapse become possible?}
+Whether a candidate canary genuinely \emph{precedes} downstream degradation or merely correlates with it under shared non-stationary trends depends on contamination regime and statistical method in ways that existing analyses leave unresolved.
+Iterative training produces short, noisy time series (often fewer than 15 points per generation sequence), where detection power drops sharply and false positive rates can be high~\cite{boettiger2012limits}.
+
+We identify four deficiencies in existing lead-lag analyses of iterative training collapse.
+(1)~No differencing tests rule out spurious regression from shared non-stationary trends~\cite{granger1974spurious}.
+(2)~Conclusions rest on a single statistical method whose assumptions about stationarity and directionality are rarely examined.
+(3)~No FDR correction guards against spurious findings when testing many metric pairs simultaneously.
+(4)~No regime-dependent analysis is performed, despite the possibility that the same test yields opposite conclusions at different contamination levels.
+
+We discover a \emph{sharp detection onset} in canary-based monitoring of iterative collapse.
+Using Pythia-410M~\cite{biderman2023pythia} across thirteen contamination levels ($\alpha \in \{0.00, 0.05, 0.10, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.75, 1.00\}$) and up to four random seeds, we show that causal detectability undergoes a steep onset at per-generation mixing ratio $\alpha_c{=}0.476$ at $T{=}10$ generations (sigmoid $R^2{=}0.969$, $\Delta\alpha{\approx}0.02$): permutation Granger causality (PermG) jumps from 0/8 FDR-significant metric pairs at $\alpha{\leq}0.45$ to 6/8 at $\alpha{=}0.50$.
+A signal-times-resolution ($S \times R$) framework explains this onset and the non-monotonic dose-response through competing signal strength and temporal resolution.
+A multi-method consensus framework (MMCT) comparing five statistical methods reveals that method choice alone can shift conclusions on the same data from universal significance to complete null.
+Cross-architecture validation across 15 model-seed combinations spanning six families (345M--6.9B) confirms PermG detection (${\geq}6/8$) in 13 cases (87\%).
+Granger precedence in our framework establishes temporal predictive improvement, not true causality~\cite{shojaie2022granger}; our canary claim is scoped to diversity metrics (distinct-$n$~\cite{li2016diversity}), not model collapse broadly.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Sharp detection onset} (\S\ref{sec:regime}).
+    At $T{=}10$, PermG jumps from 0/8 FDR-significant pairs through $\alpha{=}0.45$ to 6/8 at $\alpha{=}0.50$ ($\alpha_c{=}0.476$, sigmoid $R^2{=}0.969$, $\Delta\alpha{\approx}0.02$), with a four-regime structure: \emph{blind}, \emph{onset}, \emph{synchronous dip}, and \emph{detection}.
+    At $\alpha{=}0.10$, a canary blind spot emerges: diversity has already collapsed but canary metrics remain indistinguishable from the null.
+    Cross-architecture validation across 15 model-seed combinations confirms detection in 13 cases (87\%).
+
+    \item \textbf{Signal-times-resolution theory} (\S\ref{sec:theory}).
+    A power interpretation formalizes the onset as $\mathrm{Power}(\alpha, T) = \Phi(S \cdot R \cdot \sqrt{T}/\sigma)$, generating three testable predictions for $T{=}20$; sub-threshold PermG $p$-values at $\alpha{=}0.45$ ($p{=}0.059$--$0.091$) are consistent with proximity to the power boundary.
+
+    \item \textbf{Multi-method diagnostic toolkit} (\S\ref{sec:method}).
+    The MMCT exposes three pitfalls: method choice alone inflates spurious-signal rates to 75\% ($\kappa{=}0.187$), first-differencing eliminates canary$\to$perplexity associations entirely while preserving all canary$\to$diversity leads (24/24$\to$24/24), and regime dependence causes the same test to shift from 5--6/8 FDR-significant pairs per seed at $\alpha{\geq}0.75$ to 0/8 at $\alpha{\leq}0.45$.
+    PermG identifies token entropy as a one-generation-ahead canary for diversity collapse (24/24 forward, 0/24 reverse).
+
+    \item \textbf{Canary-based early detection} (\S\ref{sec:intervention}).
+    Predictive cessation reduces peak perplexity by 58\% (bootstrap 95\% CI: 29--64\%) and fires one generation earlier than reactive cessation.
+    A four-layer detection taxonomy provides regime-appropriate diagnostics from $\alpha{\geq}0.10$ to $\alpha{\geq}0.50$.
+\end{enumerate}

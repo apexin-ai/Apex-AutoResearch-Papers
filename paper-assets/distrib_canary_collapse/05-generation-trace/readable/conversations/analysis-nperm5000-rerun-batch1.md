@@ -1,0 +1,765 @@
+# analysis nperm5000 rerun batch1
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_analysis_nperm5000_rerun_batch1_20260518T105511.jsonl`
+- **Structured JSON:** [`319fc09c5a54625a9eb9.json`](../../sessions/31/319fc09c5a54625a9eb9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T10:58:00.896320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T10:58:00.896689+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T10:58:00.896949+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python analyze_generalize.py --help 2>&1 | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python analyze_generalize.py --help 2>&1 | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T10:58:00.897162+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T10:58:00.897400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:58:00.897608+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T10:58:00.897824+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --help 2>&1 | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --help 2>&1 | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T10:58:00.898028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_generalize.py [-h] [--exp EXP] [--n_perm N_PERM]\\n\\noptions:\\n  -h, --help       show this help message and exit\\n  --exp EXP        Specific experiment name (subdirectory of\\n                   results/generalize/)\\n  --n_perm N_PERM\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T10:58:00.898283+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia410m_wiki_a100_s42 --n_perm 5000 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia410m_wiki_a100_s42 --n_perm 5000 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T10:58:00.898491+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp opt1b_wiki_a100_s42 --n_perm 5000 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp opt1b_wiki_a100_s42 --n_perm 5000 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T10:58:00.898695+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia14b_wiki_a100_s42 --n_perm 5000 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia14b_wiki_a100_s42 --n_perm 5000 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T10:58:00.898904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Analyzing pythia410m_wiki_a100_s42...\\n  pythia410m_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\npythia410m_wiki_a100_s42 (EleutherAI/pythia-410m, complete)\\n  Sig rate: 57/80\\n  distinct_1: -27.0% drift\\n  token_entropy: -62.06% drift\\n  ece: 3809.36% drift\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T10:58:00.899110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Analyzing opt1b_wiki_a100_s42...\\n  opt1b_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\nopt1b_wiki_a100_s42 (facebook/opt-1.3b, complete)\\n  Sig rate: 52/80\\n  distinct_1: -31.59% drift\\n  token_entropy: -61.99% drift\\n  ece: 2018.07% drift\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T10:58:00.899334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Analyzing pythia14b_wiki_a100_s42...\\n  pythia14b_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\npythia14b_wiki_a100_s42 (/root/autodl-tmp/.hf_cache/pythia-1.4b-local, complete)\\n  Sig rate: 45/80\\n  distinct_1: -31.15% drift\\n  token_entropy: -54.73% drift\\n  ece: 5586.17% drift\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T10:58:00.899560+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T10:58:00.900139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia14b_wiki_a100_s42\\\": {\\n    \\\"experiment\\\": \\\"pythia14b_wiki_a100_s42\\\",\\n    \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/pythia-1.4b-local\\\",\\n    \\\"dataset\\\": \\\"wikitext-103-v1\\\",\\n    \\\"alpha\\\": 1.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_generations\\\": 11,\\n    \\\"status\\\": \\\"complete\\\",\\n    \\\"drift\\\": {\\n      \\\"distinct_1\\\": {\\n        \\\"gen0\\\": 0.099311,\\n        \\\"gen10\\\": 0.068375,\\n        \\\"drift_pct\\\": -31.15\\n      },\\n      \\\"distinct_2\\\": {\\n        \\\"gen0\\\": 0.520803,\\n        \\\"gen10\\\": 0.302377,\\n        \\\"drift_pct\\\": -41.94\\n      },\\n      \\\"distinct_3\\\": {\\n        \\\"gen0\\\": 0.812947,\\n        \\\"gen10\\\": 0.481164,\\n        \\\"drift_pct\\\": -40.81\\n      },\\n      \\\"token_entropy\\\": {\\n        \\\"gen0\\\": 2.945651,\\n        \\\"gen10\\\": 1.333576,\\n        \\\"drift_pct\\\": -54.73\\n      },\\n      \\\"ece\\\": {\\n        \\\"gen0\\\": 0.007097,\\n        \\\"gen10\\\": 0.403529,\\n        \\\"drift_pct\\\": 5586.17\\n      },\\n      \\\"perplexity\\\": {\\n        \\\"gen0\\\": 19.683371,\\n        \\\"gen10\\\": 677.237501,\\n        \\\"drift_pct\\\": 3340.66\\n      }\\n    },\\n    \\\"five_method_analysis\\\": {\\n      \\\"token_entropy->perplexity\\\": {\\n        \\\"naive_pearson\\\": {\\n          \\\"method\\\": \\\"naive_pearson\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.6398,\\n          \\\"p_value\\\": 0.087572,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.140115\\n        },\\n        \\\"differenced_xcorr\\\": {\\n          \\\"method\\\": \\\"differenced_xcorr\\\",\\n          \\\"peak_lag\\\": 0,\\n          \\\"r\\\": -0.5556,\\n          \\\"p_value\\\": 0.095395,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.148909\\n        },\\n        \\\"threshold_onset\\\": {\\n  
+…[truncated 8611 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T10:58:00.900473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia410m_wiki_a100_s42 --n_perm 5000 2>&1 && python analyze_generalize.py --exp opt1b_wiki_a100_s42 --n_perm 5000 2>&1 && python analyze_generalize.py --exp pythia14b_wiki_a100_s42 --n_perm 5000 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python analyze_generalize.py --exp pythia410m_wiki_a100_s42 --n_perm 5000 2>&1 && python analyze_generalize.py --exp opt1b_wiki_a100_s42 --n_perm 5000 2>&1 && python analyze_generalize.py --exp pythia14b_wiki_a100_s42 --n_perm 5000 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T10:58:00.900710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Analyzing pythia410m_wiki_a100_s42...\\n  pythia410m_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\npythia410m_wiki_a100_s42 (EleutherAI/pythia-410m, complete)\\n  Sig rate: 57/80\\n  distinct_1: -27.0% drift\\n  token_entropy: -62.06% drift\\n  ece: 3809.36% drift\\nAnalyzing opt1b_wiki_a100_s42...\\n  opt1b_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\nopt1b_wiki_a100_s42 (facebook/opt-1.3b, complete)\\n  Sig rate: 52/80\\n  distinct_1: -31.59% drift\\n  token_entropy: -61.99% drift\\n  ece: 2018.07% drift\\nAnalyzing pythia14b_wiki_a100_s42...\\n  pythia14b_wiki_a100_s42: 11 generations\\n\\nResults saved to /root/autodl-tmp/distrib_canary_collapse/results/generalize/analysis/generalize_5method_results.json\\n\\n============================================================\\npythia14b_wiki_a100_s42 (/root/autodl-tmp/.hf_cache/pythia-1.4b-local, complete)\\n  Sig rate: 45/80\\n  distinct_1: -31.15% drift\\n  token_entropy: -54.73% drift\\n  ece: 5586.17% drift\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.03}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T10:58:00.900959+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/generalize/analysis/generalize_5method_results.json') as f:\n    data = json.load(f)\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nmethods = ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\nmethod_labels = ['Naive', 'Diff', 'Thresh', 'TY', 'PG']\n\nfor exp in exps:\n    if exp not in data:\n        print(f'{exp}: NOT FOUND')\n        continue\n    analysis = data[exp]['five_method_analysis']\n    pairs = list(analysis.keys())\n    n_pairs = len(pairs)\n    print(f'\\\\n=== {exp} ({n_pairs} pairs) ===')\n    \n    # Count per method\n    for m, label in zip(methods, method_labels):\n        sig = 0\n        total = 0\n        for pair in pairs:\n            if m in analysis[pair]:\n                total += 1\n                if analysis[pair][m].get('significant', False):\n                    sig += 1\n        print(f'  {label}: {sig}/{total}')\n    \n    # Also count PG forward vs reverse\n    pg_fwd = 0\n    pg_rev = 0\n    pg_fwd_total = 0\n    pg_rev_total = 0\n    for pair in pairs:\n        parts = pair.split('->')\n        if 'permutation_granger' in analysis[pair]:\n            is_sig = analysis[pair]['permutation_granger'].get('significant', False)\n            # canary -> downstream is forward\n            # We need to know which metric is canary\n            # From the pair name: first is canary, second is downstream\n            pg_fwd_total += 1  # all are forward in this structure\n            if is_sig:\n                pg_fwd += 1\n    print(f'  PG (all pairs shown as fwd): {pg_fwd}/{pg_fwd_total}')\n    \n    # Count K>=4 (pairs where >= 4 out of 5 methods significant)\n    k4 = 0\n    for pair in pairs:\n        sig_count = sum(1 for m in methods if m in analysis[pair] and analysis[pair][m].get('significant', False))\n        if sig_count >= 4:\n            k4 += 1\n    print(f'  K>=4: {k4}/{n_pairs}')\n    print(f'  Total sig: {data[exp][\\\"sig_rate\\\"]}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/generalize/analysis/generalize_5method_results.json') as f:\n    data = json.load(f)\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nmethods = ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\nmethod_labels = ['Naive', 'Diff', 'Thresh', 'TY', 'PG']\n\nfor exp in exps:\n    if exp not in data:\n        print(f'{exp}: NOT FOUND')\n        continue\n    analysis = data[exp]['five_method_analysis']\n    pairs = list(analysis.keys())\n    n_pairs = len(pairs)\n    print(f'\\\\n=== {exp} ({n_pairs} pairs) ===')\n    \n    # Count per method\n    for m, label in zip(methods, method_labels):\n        sig = 0\n        total = 0\n        for pair in pairs:\n            if m in analysis[pair]:\n                total += 1\n                if analysis[pair][m].get('significant', False):\n                    sig += 1\n        print(f'  {label}: {sig}/{total}')\n    \n    # Also count PG forward vs reverse\n    pg_fwd = 0\n    pg_rev = 0\n    pg_fwd_total = 0\n    pg_rev_total = 0\n    for pair in pairs:\n        parts = pair.split('->')\n        if 'permutation_granger' in analysis[pair]:\n            is_sig = analysis[pair]['permutation_granger'].get('significant', False)\n            # canary -> downstream is forward\n            # We need to know which metric is canary\n            # From the pair name: first is canary, second is downstream\n            pg_fwd_total += 1  # all are forward in this structure\n            if is_sig:\n                pg_fwd += 1\n    print(f'  PG (all pairs shown as fwd): {pg_fwd}/{pg_fwd_total}')\n    \n    # Count K>=4 (pairs where >= 4 out of 5 methods significant)\n    k4 = 0\n    for pair in pairs:\n        sig_count = sum(1 for m in methods if m in analysis[pair] and analysis[pair][m].get('significant', False))\n        if sig_count >= 4:\n            k4 += 1\n    print(f'  K>=4: {k4}/{n_pairs}')\n    print(f'  Total sig: {data[exp][\\\"sig_rate\\\"]}')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T10:58:00.901190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"pythia410m_wiki_a100_s42: NOT FOUND\\nopt1b_wiki_a100_s42: NOT FOUND\\n\\n=== pythia14b_wiki_a100_s42 (16 pairs) ===\\n  Naive: 15/16\\n  Diff: 10/16\\n  Thresh: 9/16\\n  TY: 3/16\\n  PG: 8/16\\n  PG (all pairs shown as fwd): 8/16\\n  K>=4: 8/16\\n  Total sig: 45/80\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T10:58:00.901471+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\n# Run each experiment and capture results before the file gets overwritten\nimport subprocess, json\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nmethods = ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\nmethod_labels = ['Naive', 'Diff', 'Thresh', 'TY', 'PG']\nall_results = {}\n\nfor exp in exps:\n    subprocess.run(['python', 'analyze_generalize.py', '--exp', exp, '--n_perm', '5000'], \n                   capture_output=True, text=True)\n    with open('results/generalize/analysis/generalize_5method_results.json') as f:\n        data = json.load(f)\n    if exp in data:\n        all_results[exp] = data[exp]\n\n# Now extract Table 7 numbers\nfor exp in exps:\n    if exp not in all_results:\n        print(f'{exp}: NOT FOUND')\n        continue\n    analysis = all_results[exp]['five_method_analysis']\n    pairs = list(analysis.keys())\n    n_pairs = len(pairs)\n    print(f'\\\\n=== {exp} ({n_pairs} pairs) ===')\n    \n    for m, label in zip(methods, method_labels):\n        sig = sum(1 for p in pairs if m in analysis[p] and analysis[p][m].get('significant', False))\n        total = sum(1 for p in pairs if m in analysis[p])\n        print(f'  {label}: {sig}/{total}')\n    \n    k4 = sum(1 for p in pairs if sum(1 for m in methods if m in analysis[p] and analysis[p][m].get('significant', False)) >= 4 for _ in [0])\n    # fix k4 calculation\n    k4 = 0\n    for p in pairs:\n        sc = sum(1 for m in methods if m in analysis[p] and analysis[p][m].get('significant', False))\n        if sc >= 4:\n            k4 += 1\n    print(f'  K>=4: {k4}/{n_pairs}')\n    print(f'  Total sig: {all_results[exp][\\\"sig_rate\\\"]}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\n# Run each experiment and capture results before the file gets overwritten\nimport subprocess, json\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nmethods = ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\nmethod_labels = ['Naive', 'Diff', 'Thresh', 'TY', 'PG']\nall_results = {}\n\nfor exp in exps:\n    subprocess.run(['python', 'analyze_generalize.py', '--exp', exp, '--n_perm', '5000'], \n                   capture_output=True, text=True)\n    with open('results/generalize/analysis/generalize_5method_results.json') as f:\n        data = json.load(f)\n    if exp in data:\n        all_results[exp] = data[exp]\n\n# Now extract Table 7 numbers\nfor exp in exps:\n    if exp not in all_results:\n        print(f'{exp}: NOT FOUND')\n        continue\n    analysis = all_results[exp]['five_method_analysis']\n    pairs = list(analysis.keys())\n    n_pairs = len(pairs)\n    print(f'\\\\n=== {exp} ({n_pairs} pairs) ===')\n    \n    for m, label in zip(methods, method_labels):\n        sig = sum(1 for p in pairs if m in analysis[p] and analysis[p][m].get('significant', False))\n        total = sum(1 for p in pairs if m in analysis[p])\n        print(f'  {label}: {sig}/{total}')\n    \n    k4 = sum(1 for p in pairs if sum(1 for m in methods if m in analysis[p] and analysis[p][m].get('significant', False)) >= 4 for _ in [0])\n    # fix k4 calculation\n    k4 = 0\n    for p in pairs:\n        sc = sum(1 for m in methods if m in analysis[p] and analysis[p][m].get('significant', False))\n        if sc >= 4:\n            k4 += 1\n    print(f'  K>=4: {k4}/{n_pairs}')\n    print(f'  Total sig: {all_results[exp][\\\"sig_rate\\\"]}')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T10:58:00.901711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== pythia410m_wiki_a100_s42 (16 pairs) ===\\n  Naive: 16/16\\n  Diff: 16/16\\n  Thresh: 10/16\\n  TY: 5/16\\n  PG: 10/16\\n  K>=4: 7/16\\n  Total sig: 57/80\\n\\n=== opt1b_wiki_a100_s42 (16 pairs) ===\\n  Naive: 15/16\\n  Diff: 11/16\\n  Thresh: 8/16\\n  TY: 9/16\\n  PG: 9/16\\n  K>=4: 9/16\\n  Total sig: 52/80\\n\\n=== pythia14b_wiki_a100_s42 (16 pairs) ===\\n  Naive: 15/16\\n  Diff: 10/16\\n  Thresh: 9/16\\n  TY: 3/16\\n  PG: 8/16\\n  K>=4: 8/16\\n  Total sig: 45/80\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T10:58:00.901981+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport subprocess, json\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nall_results = {}\n\nfor exp in exps:\n    subprocess.run(['python', 'analyze_generalize.py', '--exp', exp, '--n_perm', '5000'], capture_output=True, text=True)\n    with open('results/generalize/analysis/generalize_5method_results.json') as f:\n        data = json.load(f)\n    if exp in data:\n        all_results[exp] = data[exp]\n\n# Show pair names and check for reverse PG\nexp0 = exps[0]\nanalysis = all_results[exp0]['five_method_analysis']\npairs = list(analysis.keys())\nprint('Pairs:', pairs)\nprint(f'Total pairs: {len(pairs)}')\nprint()\n\n# Check if any pair has perm_granger_reverse\nfor p in pairs[:2]:\n    print(f'Pair: {p}')\n    print(f'  Methods: {list(analysis[p].keys())}')\n    # Check n_perm value\n    if 'permutation_granger' in analysis[p]:\n        print(f'  n_perm: {analysis[p][\\\"permutation_granger\\\"].get(\\\"n_perm\\\", \\\"N/A\\\")}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport subprocess, json\n\nexps = ['pythia410m_wiki_a100_s42', 'opt1b_wiki_a100_s42', 'pythia14b_wiki_a100_s42']\nall_results = {}\n\nfor exp in exps:\n    subprocess.run(['python', 'analyze_generalize.py', '--exp', exp, '--n_perm', '5000'], capture_output=True, text=True)\n    with open('results/generalize/analysis/generalize_5method_results.json') as f:\n        data = json.load(f)\n    if exp in data:\n        all_results[exp] = data[exp]\n\n# Show pair names and check for reverse PG\nexp0 = exps[0]\nanalysis = all_results[exp0]['five_method_analysis']\npairs = list(analysis.keys())\nprint('Pairs:', pairs)\nprint(f'Total pairs: {len(pairs)}')\nprint()\n\n# Check if any pair has perm_granger_reverse\nfor p in pairs[:2]:\n    print(f'Pair: {p}')\n    print(f'  Methods: {list(analysis[p].keys())}')\n    # Check n_perm value\n    if 'permutation_granger' in analysis[p]:\n        print(f'  n_perm: {analysis[p][\\\"permutation_granger\\\"].get(\\\"n_perm\\\", \\\"N/A\\\")}')\n\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T10:58:00.902217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Pairs: ['token_entropy->perplexity', 'token_entropy->distinct_1', 'token_entropy->distinct_2', 'token_entropy->distinct_3', 'self_bleu->perplexity', 'self_bleu->distinct_1', 'self_bleu->distinct_2', 'self_bleu->distinct_3', 'ece->perplexity', 'ece->distinct_1', 'ece->distinct_2', 'ece->distinct_3', 'effective_rank->perplexity', 'effective_rank->distinct_1', 'effective_rank->distinct_2', 'effective_rank->distinct_3']\\nTotal pairs: 16\\n\\nPair: token_entropy->perplexity\\n  Methods: ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\\n  n_perm: 5000\\nPair: token_entropy->distinct_1\\n  Methods: ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\\n  n_perm: 5000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-18T10:58:00.902534+00:00_
+
+n_perm=5000 confirmed in the new runs. The analysis structure changed: now 16 pairs (4 canaries × 4 downstreams) with 5 methods, vs old 8 pairs with 6 methods (PG split into fwd/rev). Here are the results:
+
+## 条件 1: Baseline Pythia-410M s42
+```
+旧 (8 pairs):  Naive=8/8,  Diff=8/8,  Thresh=8/8,  PG_fwd=6/8, PG_rev=3/8, TY=4/8, K≥4=6/8
+新 (16 pairs): Naive=16/16, Diff=16/16, Thresh=10/16, TY=5/16,   PG=10/16,   K≥4=7/16
+               Total sig: 57/80
+```
+**n_perm confirmed: 5000**
+
+## 条件 2: OPT-1.3B s42
+```
+旧 (8 pairs):  Naive=8/8,  Diff=8/8,  Thresh=8/8,  PG_fwd=6/8, PG_rev=2/8, TY=6/8, K≥4=6/8
+新 (16 pairs): Naive=15/16, Diff=11/16, Thresh=8/16, TY=9/16,   PG=9/16,    K≥4=9/16
+               Total sig: 52/80
+```
+**n_perm confirmed: 5000**
+
+## 条件 3: Scale Pythia-1.4B s42
+```
+旧 (8 pairs):  Naive=7/8,  Diff=6/8,  Thresh=8/8,  PG_fwd=5/8, PG_rev=0/8, TY=0/8, K≥4=5/8
+新 (16 pairs): Naive=15/16, Diff=10/16, Thresh=9/16, TY=3/16,   PG=8/16,    K≥4=8/16
+               Total sig: 45/80
+```
+**n_perm confirmed: 5000**
+
+## 关键变化说明
+
+**格式不可直接对比**: 新分析从 8 pairs 扩展到 16 pairs（加入了 ece 和 effective_rank 作为 canary），且 PG 不再分 fwd/rev。所以新旧 sig counts 的分母不同，逐 method 直接比较没有意义。
+
+**如需 apples-to-apples 对比**，需要从 16 pairs 中筛选出与旧 8 pairs 相同的子集（可能是 token_entropy + self_bleu → 4 downstreams = 8 pairs）。要我做这个子集提取吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_nperm5000_rerun_batch1_20260518T105511"
+}
+```
+
+</details>
+
+---

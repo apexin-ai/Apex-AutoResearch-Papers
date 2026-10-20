@@ -1,0 +1,92 @@
+{
+  "exp_id": "data_strategy_ablation_s42",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:27:03.682Z",
+    "updated_at": "2026-05-20T08:42:27.933Z",
+    "hypothesis": "数据累积策略（accumulate：每代叠加所有前几代生成文本）会通过缓冲训练数据多样性，减弱 canary→downstream 的 lead-lag 时序耦合，相比 replace 模式（每代只用上一代输出）降低 5-method 检测率。",
+    "parent": "alpha_sweep_a050_s42_fp32",
+    "spec": {
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate",
+      "server": "westd-17855",
+      "log_path": "~/runs/distrib_canary_collapse/data_strategy_ablation_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s42/gen_10",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "data_strategy": "accumulate"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T08:36:50.728Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T08:36:55.566462+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "lead_lag": {
+        "naive_xcorr_fwd": "0/8",
+        "diff_xcorr_fwd": "0/8",
+        "threshold_onset_3sigma": "0/8",
+        "PermG_fwd": "0/8",
+        "PermG_rev": "0/8",
+        "TY": "4/8",
+        "K_geq3": "0/8",
+        "K_geq4": "0/8",
+        "MMCT_detection_rate": 0
+      },
+      "collapse_gen0": {
+        "token_entropy": 3.2342,
+        "ece": 0.0108,
+        "perplexity": 26.949,
+        "distinct_1": 0.098,
+        "distinct_2": 0.5141,
+        "distinct_3": 0.8127,
+        "effective_rank": 46.613,
+        "mauve": 0.0311
+      },
+      "collapse_gen10": {
+        "token_entropy": 3.1556,
+        "ece": 0.0204,
+        "perplexity": 23.702,
+        "distinct_1": 0.0712,
+        "distinct_2": 0.3483,
+        "distinct_3": 0.5799,
+        "effective_rank": 45.849,
+        "mauve": 0.0287
+      },
+      "drift_pct": {
+        "token_entropy": -2.43,
+        "ece": 88.73,
+        "perplexity": -12.05,
+        "distinct_1": -27.31,
+        "distinct_2": -32.25,
+        "distinct_3": -28.65,
+        "effective_rank": -1.64,
+        "mauve": -7.75
+      },
+      "vs_baseline_replace": {
+        "PermG_fwd": "0/8 vs 6/8 (Δ=-6)",
+        "K_geq3": "0/8 vs 6/8 (Δ=-6)",
+        "entropy_drift": "-2.4% vs -16.3%",
+        "ece_drift": "+88.7% vs +703.4%",
+        "perplexity_drift": "-12.1% vs +16.8%",
+        "distinct_1_drift": "-27.3% vs -29.2%"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T08:42:28.244738+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:10:05.988Z",
+    "updated_at": "2026-05-19T19:10:18.770Z",
+    "hypothesis": "SmolLM3-3B s43 cross-seed 验证：s42 PermG=6/8, rev=0/8（强单向因果信号）。SmolLM3 是唯一非 Pythia/GPT/OPT 系的 3B 架构，审稿人重点关注。s43 验证此结果非 seed 偶然。Table 7 cross-seed + Claim 1。",
+    "parent": "smollm3_3b_wiki_a100_s42_v3"
+  },
+  "timestamp": "2026-05-19T19:10:18.998134+00:00",
+  "trigger": "update_registry"
+}

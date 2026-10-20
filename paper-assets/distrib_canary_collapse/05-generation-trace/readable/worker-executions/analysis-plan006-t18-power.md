@@ -1,0 +1,3753 @@
+# analysis plan006 t18 power
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_analysis_plan006_t18_power_20260515T121134.log`
+- **Structured JSON:** [`0a440a3798d802bf32f1.json`](../../sessions/0a/0a440a3798d802bf32f1.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4feb1b12-ddee-43f9-8d24-4ec90bc0e7f2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778856600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7a114572-0d42-426a-9352-4de33c9d479b",
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by loading the necessary MCP tools and checking the data on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "18037a1d-04f6-433c-a925-b01c38a25463",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PYzBYNsuZTPH7thQQBJ4H2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11810,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11810
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014EL6HfHRuJV43XwrFFQVLu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "7081834a-8f72-47c7-91e3-cc8a6468a70c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PYzBYNsuZTPH7thQQBJ4H2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11810,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11810
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T12:11:45.870Z_
+
+<details><summary>↩ Tool result · `toolu_014EL6HfHRuJV43XwrFFQVLu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "906ac0cc-27d0-4b0a-ad33-3cfcf3357884",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the registry for plan_006_s42 and simultaneously checking the data on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "bcf3b2f2-4603-4964-b9c0-0985105c1b13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019U7rxCsgTSyADQDGUaAqST",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1999,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1999
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting data analysis. First, checking the registry and server data structure in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "45bc8fc0-34e9-432f-bd87-7c681892e350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019U7rxCsgTSyADQDGUaAqST",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1999,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1999
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012vBAwtZqH2UGp1wiByHQ69`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "plan_006_s42"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "a13a702b-1c02-40a6-b942-9655982cf07c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019U7rxCsgTSyADQDGUaAqST",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1999,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1999
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:12:05.214Z_
+
+<details><summary>↩ Tool result · `toolu_012vBAwtZqH2UGp1wiByHQ69`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0715}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "ed8b2813-93d4-440d-94f8-14adc34fe821",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0715}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0715}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AHqjbNekWFXAbLsQjmWhZT`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "4410a2f9-ca5e-4be5-8529-2a465ec2eb89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019U7rxCsgTSyADQDGUaAqST",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1999,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1999
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T12:12:07.612Z_
+
+<details><summary>↩ Tool result · `toolu_01AHqjbNekWFXAbLsQjmWhZT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 21 root root 4096 May 15 19:55 .\\ndrwxr-xr-x  3 root root   25 May 15 07:41 ..\\n-rw-r--r--  1 root root  395 May 15 07:41 config.json\\ndrwxr-xr-x  3 root root   60 May 15 07:56 gen_0\\ndrwxr-xr-x  5 root root  101 May 15 08:22 gen_1\\ndrwxr-xr-x  5 root root  101 May 15 12:53 gen_10\\ndrwxr-xr-x  5 root root  101 May 15 13:23 gen_11\\ndrwxr-xr-x  5 root root  101 May 15 13:52 gen_12\\ndrwxr-xr-x  5 root root  101 May 15 14:22 gen_13\\ndrwxr-xr-x  5 root root  101 May 15 14:52 gen_14\\ndrwxr-xr-x  5 root root  101 May 15 16:06 gen_15\\ndrwxr-xr-x  5 root root  101 May 15 17:29 gen_16\\ndrwxr-xr-x  5 root root  101 May 15 18:47 gen_17\\ndrwxr-xr-x  2 root root   10 May 15 19:55 gen_18\\ndrwxr-xr-x  5 root root  101 May 15 08:51 gen_2\\ndrwxr-xr-x  5 root root  101 May 15 09:21 gen_3\\ndrwxr-xr-x  5 root root  101 May 15 09:50 gen_4\\ndrwxr-xr-x  5 root root  101 May 15 10:22 gen_5\\ndrwxr-xr-x  5 root root  101 May 15 10:54 gen_6\\ndrwxr-xr-x  5 root root  101 May 15 11:23 gen_7\\ndrwxr-xr-x  5 root root  101 May 15 11:52 gen_8\\ndrwxr-xr-x  5 root root  101 May 15 12:21 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "76f12805-150e-4553-9d4c-2cc5cd3125f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 21 root root 4096 May 15 19:55 .\\\\ndrwxr-xr-x  3 root root   25 May 15 07:41 ..\\\\n-rw-r--r--  1 root root  395 May 15 07:41 config.json\\\\ndrwxr-xr-x  3 root root   60 May 15 07:56 gen_0\\\\ndrwxr-xr-x  5 root root  101 May 15 08:22 gen_1\\\\ndrwxr-xr-x  5 root root  101 May 15 12:53 gen_10\\\\ndrwxr-xr-x  5 root root  101 May 15 13:23 gen_11\\\\ndrwxr-xr-x  5 root root  101 May 15 13:52 gen_12\\\\ndrwxr-xr-x  5 root root  101 May 15 14:22 gen_13\\\\ndrwxr-xr-x  5 root root  101 May 15 14:52 gen_14\\\\ndrwxr-xr-x  5 root root  101 May 15 16:06 gen_15\\\\ndrwxr-xr-x  5 root root  101 May 15 17:29 gen_16\\\\ndrwxr-xr-x  5 root root  101 May 15 18:47 gen_17\\\\ndrwxr-xr-x  2 root root   10 May 15 19:55 gen_18\\\\ndrwxr-xr-x  5 root root  101 May 15 08:51 gen_2\\\\ndrwxr-xr-x  5 root root  101 May 15 09:21 gen_3\\\\ndrwxr-xr-x  5 root root  101 May 15 09:50 gen_4\\\\ndrwxr-xr-x  5 root root  101 May 15 10:22 gen_5\\\\ndrwxr-xr-x  5 root root  101 May 15 10:54 gen_6\\\\ndrwxr-xr-x  5 root root  101 May 15 11:23 gen_7\\\\ndrwxr-xr-x  5 root root  101 May 15 11:52 gen_8\\\\ndrwxr-xr-x  5 root root  101 May 15 12:21 gen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 21 root root 4096 May 15 19:55 .\\ndrwxr-xr-x  3 root root   25 May 15 07:41 ..\\n-rw-r--r--  1 root root  395 May 15 07:41 config.json\\ndrwxr-xr-x  3 root root   60 May 15 07:56 gen_0\\ndrwxr-xr-x  5 root root  101 May 15 08:22 gen_1\\ndrwxr-xr-x  5 root root  101 May 15 12:53 gen_10\\ndrwxr-xr-x  5 root root  101 May 15 13:23 gen_11\\ndrwxr-xr-x  5 root root  101 May 15 13:52 gen_12\\ndrwxr-xr-x  5 root root  101 May 15 14:22 gen_13\\ndrwxr-xr-x  5 root root  101 May 15 14:52 gen_14\\ndrwxr-xr-x  5 root root  101 May 15 16:06 gen_15\\ndrwxr-xr-x  5 root root  101 May 15 17:29 gen_16\\ndrwxr-xr-x  5 root root  101 May 15 18:47 gen_17\\ndrwxr-xr-x  2 root root   10 May 15 19:55 gen_18\\ndrwxr-xr-x  5 root root  101 May 15 08:51 gen_2\\ndrwxr-xr-x  5 root root  101 May 15 09:21 gen_3\\ndrwxr-xr-x  5 root root  101 May 15 09:50 gen_4\\ndrwxr-xr-x  5 root root  101 May 15 10:22 gen_5\\ndrwxr-xr-x  5 root root  101 May 15 10:54 gen_6\\ndrwxr-xr-x  5 root root  101 May 15 11:23 gen_7\\ndrwxr-xr-x  5 root root  101 May 15 11:52 gen_8\\ndrwxr-xr-x  5 root root  101 May 15 12:21 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BXXf7siEoCYozd89HuUjNo`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/ -name \"all_metrics*\" -o -name \"summary*\" -o -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "07ecf0ce-7dd5-4c2a-9de9-b26c5d562c68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019U7rxCsgTSyADQDGUaAqST",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1999,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1999
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T12:12:08.363Z_
+
+<details><summary>↩ Tool result · `toolu_01BXXf7siEoCYozd89HuUjNo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20ge\\n\\n... [截断: 输出过长，省略 6293 字符] ...\\n\\nmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "37357fdb-52aa-4454-9344-0aa5b1a3d084",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20ge\\\\n\\\\n... [截断: 输出过长，省略 6293 字符] ...\\\\n\\\\nmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/generation_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer_config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/special_tokens_map.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20ge\\n\\n... [截断: 输出过长，省略 6293 字符] ...\\n\\nmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/state.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/synthetic_data/dataset_info.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/generation_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer_config.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/special_tokens_map.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/checkpoint/tokenizer.json\\n/root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+- gen_0 to gen_17 all have `metrics.json` files (18 generations complete)
+- gen_18 exists but is nearly empty (size 10, no metrics.json) — confirms it was interrupted
+- No `all_metrics.json` summary file
+- Registry has no entry for `plan_006_s42`
+
+Let me now read the config and all metrics.json files. I'll read the config first, then batch-read all 18 metrics.json files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f33ff8c0-e14d-47ee-91ef-11bd77bb5d6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+gen_0 到 gen_17 数据完整（每个都有 metrics.json），gen_18 是空目录。没有汇总文件。现在读取配置和所有 metrics.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "b302325a-c356-4a99-bb44-2f7643057fb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017MegCPPnz3Yu2U839g2Y4K`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "d7eee055-faaf-4a00-aeae-b90f811364d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T12:12:17.595Z_
+
+<details><summary>↩ Tool result · `toolu_017MegCPPnz3Yu2U839g2Y4K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\",\\n  \\\"data_dir\\\": \\\"data/wikitext103\\\",\\n  \\\"dataset\\\": \\\"wikitext-103-v1\\\",\\n  \\\"synthetic_ratio\\\": 1.0,\\n  \\\"num_generations\\\": 20,\\n  \\\"steps_per_gen\\\": 10000,\\n  \\\"output_dir\\\": \\\"results/extended_20gen/s42\\\",\\n  \\\"seed\\\": 42,\\n  \\\"batch_size\\\": 4,\\n  \\\"max_length\\\": 512,\\n  \\\"lr\\\": 5e-05,\\n  \\\"gen_max_new_tokens\\\": 256,\\n  \\\"gen_batch_size\\\": 16,\\n  \\\"top_p\\\": 0.95,\\n  \\\"accumulate\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f77c206a-a98e-48fe-849b-1b4cd7c58e6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"data_dir\\\\\\\": \\\\\\\"data/wikitext103\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"wikitext-103-v1\\\\\\\",\\\\n  \\\\\\\"synthetic_ratio\\\\\\\": 1.0,\\\\n  \\\\\\\"num_generations\\\\\\\": 20,\\\\n  \\\\\\\"steps_per_gen\\\\\\\": 10000,\\\\n  \\\\\\\"output_dir\\\\\\\": \\\\\\\"results/extended_20gen/s42\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"batch_size\\\\\\\": 4,\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"lr\\\\\\\": 5e-05,\\\\n  \\\\\\\"gen_max_new_tokens\\\\\\\": 256,\\\\n  \\\\\\\"gen_batch_size\\\\\\\": 16,\\\\n  \\\\\\\"top_p\\\\\\\": 0.95,\\\\n  \\\\\\\"accumulate\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\",\\n  \\\"data_dir\\\": \\\"data/wikitext103\\\",\\n  \\\"dataset\\\": \\\"wikitext-103-v1\\\",\\n  \\\"synthetic_ratio\\\": 1.0,\\n  \\\"num_generations\\\": 20,\\n  \\\"steps_per_gen\\\": 10000,\\n  \\\"output_dir\\\": \\\"results/extended_20gen/s42\\\",\\n  \\\"seed\\\": 42,\\n  \\\"batch_size\\\": 4,\\n  \\\"max_length\\\": 512,\\n  \\\"lr\\\": 5e-05,\\n  \\\"gen_max_new_tokens\\\": 256,\\n  \\\"gen_batch_size\\\": 16,\\n  \\\"top_p\\\": 0.95,\\n  \\\"accumulate\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019SXxXKmdx1Ey3q7VNaPeiN`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_0/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "3a09b392-4d56-489f-9492-ab463f7bb862",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T12:12:18.648Z_
+
+<details><summary>↩ Tool result · `toolu_019SXxXKmdx1Ey3q7VNaPeiN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 3.2341948700181407,\\n  \\\"self_bleu\\\": 0.010194395218435404,\\n  \\\"distinct_1\\\": 0.0982156685333268,\\n  \\\"distinct_2\\\": 0.5178027030111348,\\n  \\\"distinct_3\\\": 0.8127277321747353,\\n  \\\"ece\\\": 0.010804557477709054,\\n  \\\"effective_rank\\\": 46.612774691899155,\\n  \\\"perplexity\\\": 26.948958972544652,\\n  \\\"mauve\\\": 0.03406737671684175,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f723e7bb-cb8b-401c-87bd-a818b8f368b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.5178027030111348,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.8127277321747353,\\\\n  \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n  \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n  \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03406737671684175,\\\\n  \\\\\\\"generation\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 3.2341948700181407,\\n  \\\"self_bleu\\\": 0.010194395218435404,\\n  \\\"distinct_1\\\": 0.0982156685333268,\\n  \\\"distinct_2\\\": 0.5178027030111348,\\n  \\\"distinct_3\\\": 0.8127277321747353,\\n  \\\"ece\\\": 0.010804557477709054,\\n  \\\"effective_rank\\\": 46.612774691899155,\\n  \\\"perplexity\\\": 26.948958972544652,\\n  \\\"mauve\\\": 0.03406737671684175,\\n  \\\"generation\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CHchjdDRkKHXmcdB991o6e`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_1/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "5b151389-c78a-4ab9-a028-1efc9f0b80b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T12:12:19.263Z_
+
+<details><summary>↩ Tool result · `toolu_01CHchjdDRkKHXmcdB991o6e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.5252974321477806,\\n  \\\"self_bleu\\\": 0.01031278388147428,\\n  \\\"distinct_1\\\": 0.09752517633628247,\\n  \\\"distinct_2\\\": 0.5140825545933428,\\n  \\\"distinct_3\\\": 0.8103854590526204,\\n  \\\"ece\\\": 0.32681676314948555,\\n  \\\"effective_rank\\\": 66.76794931257317,\\n  \\\"perplexity\\\": 185.68048818092564,\\n  \\\"mauve\\\": 0.03232946507236373,\\n  \\\"generation\\\": 1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "08422dc6-fe6e-4ed2-a985-111b9db82246",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.5252974321477806,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.01031278388147428,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.09752517633628247,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.5140825545933428,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.8103854590526204,\\\\n  \\\\\\\"ece\\\\\\\": 0.32681676314948555,\\\\n  \\\\\\\"effective_rank\\\\\\\": 66.76794931257317,\\\\n  \\\\\\\"perplexity\\\\\\\": 185.68048818092564,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03232946507236373,\\\\n  \\\\\\\"generation\\\\\\\": 1\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.5252974321477806,\\n  \\\"self_bleu\\\": 0.01031278388147428,\\n  \\\"distinct_1\\\": 0.09752517633628247,\\n  \\\"distinct_2\\\": 0.5140825545933428,\\n  \\\"distinct_3\\\": 0.8103854590526204,\\n  \\\"ece\\\": 0.32681676314948555,\\n  \\\"effective_rank\\\": 66.76794931257317,\\n  \\\"perplexity\\\": 185.68048818092564,\\n  \\\"mauve\\\": 0.03232946507236373,\\n  \\\"generation\\\": 1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DD3ayRRtczJp78NYACroCS`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_2/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "4016dcde-e0d9-4ee2-b59f-7e25efdcc44f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T12:12:20.168Z_
+
+<details><summary>↩ Tool result · `toolu_01DD3ayRRtczJp78NYACroCS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.2962214502953773,\\n  \\\"self_bleu\\\": 0.011375778150416111,\\n  \\\"distinct_1\\\": 0.084609375,\\n  \\\"distinct_2\\\": 0.43897999203118776,\\n  \\\"distinct_3\\\": 0.714112720511258,\\n  \\\"ece\\\": 0.37806004113942726,\\n  \\\"effective_rank\\\": 79.39420208783133,\\n  \\\"perplexity\\\": 380.40861860536756,\\n  \\\"mauve\\\": 0.033576122828568866,\\n  \\\"generation\\\": 2\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "5c4a8d8a-a81d-4ff8-b7aa-854c8d569811",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.2962214502953773,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.011375778150416111,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.084609375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.43897999203118776,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.714112720511258,\\\\n  \\\\\\\"ece\\\\\\\": 0.37806004113942726,\\\\n  \\\\\\\"effective_rank\\\\\\\": 79.39420208783133,\\\\n  \\\\\\\"perplexity\\\\\\\": 380.40861860536756,\\\\n  \\\\\\\"mauve\\\\\\\": 0.033576122828568866,\\\\n  \\\\\\\"generation\\\\\\\": 2\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.2962214502953773,\\n  \\\"self_bleu\\\": 0.011375778150416111,\\n  \\\"distinct_1\\\": 0.084609375,\\n  \\\"distinct_2\\\": 0.43897999203118776,\\n  \\\"distinct_3\\\": 0.714112720511258,\\n  \\\"ece\\\": 0.37806004113942726,\\n  \\\"effective_rank\\\": 79.39420208783133,\\n  \\\"perplexity\\\": 380.40861860536756,\\n  \\\"mauve\\\": 0.033576122828568866,\\n  \\\"generation\\\": 2\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ve8TEty8CqKSg7sm7vazr`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_3/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "a8bbe0cc-a4ef-4546-8ada-79668c9339db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T12:12:21.095Z_
+
+<details><summary>↩ Tool result · `toolu_014ve8TEty8CqKSg7sm7vazr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.21412766818624,\\n  \\\"self_bleu\\\": 0.012371298776549397,\\n  \\\"distinct_1\\\": 0.0798359375,\\n  \\\"distinct_2\\\": 0.4025343947999594,\\n  \\\"distinct_3\\\": 0.6605962593165519,\\n  \\\"ece\\\": 0.3986379685537164,\\n  \\\"effective_rank\\\": 90.85868369077225,\\n  \\\"perplexity\\\": 568.7553822261486,\\n  \\\"mauve\\\": 0.03346200355624386,\\n  \\\"generation\\\": 3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "d4de3367-5203-41c3-9131-fac1a6b21813",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.21412766818624,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.012371298776549397,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0798359375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.4025343947999594,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6605962593165519,\\\\n  \\\\\\\"ece\\\\\\\": 0.3986379685537164,\\\\n  \\\\\\\"effective_rank\\\\\\\": 90.85868369077225,\\\\n  \\\\\\\"perplexity\\\\\\\": 568.7553822261486,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03346200355624386,\\\\n  \\\\\\\"generation\\\\\\\": 3\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.21412766818624,\\n  \\\"self_bleu\\\": 0.012371298776549397,\\n  \\\"distinct_1\\\": 0.0798359375,\\n  \\\"distinct_2\\\": 0.4025343947999594,\\n  \\\"distinct_3\\\": 0.6605962593165519,\\n  \\\"ece\\\": 0.3986379685537164,\\n  \\\"effective_rank\\\": 90.85868369077225,\\n  \\\"perplexity\\\": 568.7553822261486,\\n  \\\"mauve\\\": 0.03346200355624386,\\n  \\\"generation\\\": 3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019K1ST6JPhpQz9Zcp5EQoRm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_4/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "20aaea28-d3ca-4262-8077-f0433b720e80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeggXEhQxw3A4i8qN2sSDQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4451,
+      "cache_read_input_tokens": 25650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4451
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T12:12:21.705Z_
+
+<details><summary>↩ Tool result · `toolu_019K1ST6JPhpQz9Zcp5EQoRm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.2191534832225004,\\n  \\\"self_bleu\\\": 0.012955145381571678,\\n  \\\"distinct_1\\\": 0.0782265625,\\n  \\\"distinct_2\\\": 0.38902647676934976,\\n  \\\"distinct_3\\\": 0.6389709214206472,\\n  \\\"ece\\\": 0.4093275235145233,\\n  \\\"effective_rank\\\": 94.67991310028778,\\n  \\\"perplexity\\\": 734.4069875408463,\\n  \\\"mauve\\\": 0.03221395915210849,\\n  \\\"generation\\\": 4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "3e2f7714-741d-49f9-957a-61b2697d8ca1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.2191534832225004,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.012955145381571678,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0782265625,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38902647676934976,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6389709214206472,\\\\n  \\\\\\\"ece\\\\\\\": 0.4093275235145233,\\\\n  \\\\\\\"effective_rank\\\\\\\": 94.67991310028778,\\\\n  \\\\\\\"perplexity\\\\\\\": 734.4069875408463,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03221395915210849,\\\\n  \\\\\\\"generation\\\\\\\": 4\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.2191534832225004,\\n  \\\"self_bleu\\\": 0.012955145381571678,\\n  \\\"distinct_1\\\": 0.0782265625,\\n  \\\"distinct_2\\\": 0.38902647676934976,\\n  \\\"distinct_3\\\": 0.6389709214206472,\\n  \\\"ece\\\": 0.4093275235145233,\\n  \\\"effective_rank\\\": 94.67991310028778,\\n  \\\"perplexity\\\": 734.4069875408463,\\n  \\\"mauve\\\": 0.03221395915210849,\\n  \\\"generation\\\": 4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the rest of the metrics files (gen_5 through gen_17).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "a05d4d63-b101-4867-903b-c44d562957ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Reading gen_5 through gen_17 metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "18deaebd-93f6-485e-a0e0-d5860b20aa02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hk8ysodtaMSZfYjyTn9BFw`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_5/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f5e6ed0e-ffae-4190-92ec-1c69da9614c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T12:12:27.726Z_
+
+<details><summary>↩ Tool result · `toolu_01Hk8ysodtaMSZfYjyTn9BFw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1711211318469485,\\n  \\\"self_bleu\\\": 0.01318547362277909,\\n  \\\"distinct_1\\\": 0.078,\\n  \\\"distinct_2\\\": 0.3867452089469449,\\n  \\\"distinct_3\\\": 0.6357755589931092,\\n  \\\"ece\\\": 0.4223289904338067,\\n  \\\"effective_rank\\\": 94.21355690907919,\\n  \\\"perplexity\\\": 930.2175796411278,\\n  \\\"mauve\\\": 0.032877843428606696,\\n  \\\"generation\\\": 5\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "12a1c347-3e73-4057-9477-00aa9c15caf6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1711211318469485,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.01318547362277909,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.078,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3867452089469449,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6357755589931092,\\\\n  \\\\\\\"ece\\\\\\\": 0.4223289904338067,\\\\n  \\\\\\\"effective_rank\\\\\\\": 94.21355690907919,\\\\n  \\\\\\\"perplexity\\\\\\\": 930.2175796411278,\\\\n  \\\\\\\"mauve\\\\\\\": 0.032877843428606696,\\\\n  \\\\\\\"generation\\\\\\\": 5\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1711211318469485,\\n  \\\"self_bleu\\\": 0.01318547362277909,\\n  \\\"distinct_1\\\": 0.078,\\n  \\\"distinct_2\\\": 0.3867452089469449,\\n  \\\"distinct_3\\\": 0.6357755589931092,\\n  \\\"ece\\\": 0.4223289904338067,\\n  \\\"effective_rank\\\": 94.21355690907919,\\n  \\\"perplexity\\\": 930.2175796411278,\\n  \\\"mauve\\\": 0.032877843428606696,\\n  \\\"generation\\\": 5\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YJwpi4TSH14oaxauySApQf`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_6/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "04e3d3ca-ed00-4448-8363-f7ee0db68c22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T12:12:28.601Z_
+
+<details><summary>↩ Tool result · `toolu_01YJwpi4TSH14oaxauySApQf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1342597043202582,\\n  \\\"self_bleu\\\": 0.013164066925515193,\\n  \\\"distinct_1\\\": 0.077984375,\\n  \\\"distinct_2\\\": 0.3865030195548403,\\n  \\\"distinct_3\\\": 0.6352599259363427,\\n  \\\"ece\\\": 0.43218205138079857,\\n  \\\"effective_rank\\\": 96.76720582528411,\\n  \\\"perplexity\\\": 1187.469923511066,\\n  \\\"mauve\\\": 0.03300504492556889,\\n  \\\"generation\\\": 6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "cdd00153-3f7f-44cf-8ebe-abff2c329999",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1342597043202582,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013164066925515193,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.077984375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3865030195548403,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6352599259363427,\\\\n  \\\\\\\"ece\\\\\\\": 0.43218205138079857,\\\\n  \\\\\\\"effective_rank\\\\\\\": 96.76720582528411,\\\\n  \\\\\\\"perplexity\\\\\\\": 1187.469923511066,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03300504492556889,\\\\n  \\\\\\\"generation\\\\\\\": 6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1342597043202582,\\n  \\\"self_bleu\\\": 0.013164066925515193,\\n  \\\"distinct_1\\\": 0.077984375,\\n  \\\"distinct_2\\\": 0.3865030195548403,\\n  \\\"distinct_3\\\": 0.6352599259363427,\\n  \\\"ece\\\": 0.43218205138079857,\\n  \\\"effective_rank\\\": 96.76720582528411,\\n  \\\"perplexity\\\": 1187.469923511066,\\n  \\\"mauve\\\": 0.03300504492556889,\\n  \\\"generation\\\": 6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019L9r6zVZRiWYUvjGBYkbeq`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_7/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "ba18a259-0a3b-4173-a0b0-3cb2f4cdc84a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:12:29.556Z_
+
+<details><summary>↩ Tool result · `toolu_019L9r6zVZRiWYUvjGBYkbeq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1312659500832454,\\n  \\\"self_bleu\\\": 0.013159660674108628,\\n  \\\"distinct_1\\\": 0.0780234375,\\n  \\\"distinct_2\\\": 0.3865342697989828,\\n  \\\"distinct_3\\\": 0.6352364880701261,\\n  \\\"ece\\\": 0.437095989913467,\\n  \\\"effective_rank\\\": 98.95042951245603,\\n  \\\"perplexity\\\": 1389.6006933579736,\\n  \\\"mauve\\\": 0.03280184230441472,\\n  \\\"generation\\\": 7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "19489937-e3ac-4b0d-9eb9-252e3ab2be6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1312659500832454,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013159660674108628,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0780234375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3865342697989828,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6352364880701261,\\\\n  \\\\\\\"ece\\\\\\\": 0.437095989913467,\\\\n  \\\\\\\"effective_rank\\\\\\\": 98.95042951245603,\\\\n  \\\\\\\"perplexity\\\\\\\": 1389.6006933579736,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03280184230441472,\\\\n  \\\\\\\"generation\\\\\\\": 7\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1312659500832454,\\n  \\\"self_bleu\\\": 0.013159660674108628,\\n  \\\"distinct_1\\\": 0.0780234375,\\n  \\\"distinct_2\\\": 0.3865342697989828,\\n  \\\"distinct_3\\\": 0.6352364880701261,\\n  \\\"ece\\\": 0.437095989913467,\\n  \\\"effective_rank\\\": 98.95042951245603,\\n  \\\"perplexity\\\": 1389.6006933579736,\\n  \\\"mauve\\\": 0.03280184230441472,\\n  \\\"generation\\\": 7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UvpiqDygWJmyu1p8X1GorM`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_8/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "29b6e1d5-3cdd-48fc-a4ea-1e625d8082fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:12:30.484Z_
+
+<details><summary>↩ Tool result · `toolu_01UvpiqDygWJmyu1p8X1GorM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.140201025769719,\\n  \\\"self_bleu\\\": 0.013159660674108628,\\n  \\\"distinct_1\\\": 0.07803125,\\n  \\\"distinct_2\\\": 0.38647958187173337,\\n  \\\"distinct_3\\\": 0.635056797762465,\\n  \\\"ece\\\": 0.4384142983372553,\\n  \\\"effective_rank\\\": 96.49599583505078,\\n  \\\"perplexity\\\": 1566.0285876856972,\\n  \\\"mauve\\\": 0.03183348032515329,\\n  \\\"generation\\\": 8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "13d5d640-aa42-416c-8da9-98fbce3dcb9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.140201025769719,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013159660674108628,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.07803125,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38647958187173337,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.635056797762465,\\\\n  \\\\\\\"ece\\\\\\\": 0.4384142983372553,\\\\n  \\\\\\\"effective_rank\\\\\\\": 96.49599583505078,\\\\n  \\\\\\\"perplexity\\\\\\\": 1566.0285876856972,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03183348032515329,\\\\n  \\\\\\\"generation\\\\\\\": 8\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.140201025769719,\\n  \\\"self_bleu\\\": 0.013159660674108628,\\n  \\\"distinct_1\\\": 0.07803125,\\n  \\\"distinct_2\\\": 0.38647958187173337,\\n  \\\"distinct_3\\\": 0.635056797762465,\\n  \\\"ece\\\": 0.4384142983372553,\\n  \\\"effective_rank\\\": 96.49599583505078,\\n  \\\"perplexity\\\": 1566.0285876856972,\\n  \\\"mauve\\\": 0.03183348032515329,\\n  \\\"generation\\\": 8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RF1rQZS4B5cEyNu58ic8hs`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_9/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "3c49df38-cee7-4127-84c0-1ede2a74a501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:12:31.415Z_
+
+<details><summary>↩ Tool result · `toolu_01RF1rQZS4B5cEyNu58ic8hs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1455728956244877,\\n  \\\"self_bleu\\\": 0.013177669787001885,\\n  \\\"distinct_1\\\": 0.0779375,\\n  \\\"distinct_2\\\": 0.3859952030875241,\\n  \\\"distinct_3\\\": 0.6341817840903764,\\n  \\\"ece\\\": 0.44055101490626025,\\n  \\\"effective_rank\\\": 99.19346352747691,\\n  \\\"perplexity\\\": 1786.7189393251456,\\n  \\\"mauve\\\": 0.032268915911535204,\\n  \\\"generation\\\": 9\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "17c48de2-d3df-46e2-95e3-388f77ae4368",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1455728956244877,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013177669787001885,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0779375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3859952030875241,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6341817840903764,\\\\n  \\\\\\\"ece\\\\\\\": 0.44055101490626025,\\\\n  \\\\\\\"effective_rank\\\\\\\": 99.19346352747691,\\\\n  \\\\\\\"perplexity\\\\\\\": 1786.7189393251456,\\\\n  \\\\\\\"mauve\\\\\\\": 0.032268915911535204,\\\\n  \\\\\\\"generation\\\\\\\": 9\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1455728956244877,\\n  \\\"self_bleu\\\": 0.013177669787001885,\\n  \\\"distinct_1\\\": 0.0779375,\\n  \\\"distinct_2\\\": 0.3859952030875241,\\n  \\\"distinct_3\\\": 0.6341817840903764,\\n  \\\"ece\\\": 0.44055101490626025,\\n  \\\"effective_rank\\\": 99.19346352747691,\\n  \\\"perplexity\\\": 1786.7189393251456,\\n  \\\"mauve\\\": 0.032268915911535204,\\n  \\\"generation\\\": 9\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UTgPzKo9DdWodn2164k2e2`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_10/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "aac68387-2fdd-4264-85f1-78e90d62be0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013sH5pVAi4d68VHz8BVAmCc`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_11/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "45aab7cd-7b58-4510-b08c-d08045a54878",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T12:12:32.372Z_
+
+<details><summary>↩ Tool result · `toolu_01UTgPzKo9DdWodn2164k2e2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.146767359375643,\\n  \\\"self_bleu\\\": 0.013167734400307957,\\n  \\\"distinct_1\\\": 0.0779296875,\\n  \\\"distinct_2\\\": 0.38604207845373795,\\n  \\\"distinct_3\\\": 0.6342677229331708,\\n  \\\"ece\\\": 0.44432868912731427,\\n  \\\"effective_rank\\\": 101.79922031256538,\\n  \\\"perplexity\\\": 2032.4867871095123,\\n  \\\"mauve\\\": 0.03180046090297499,\\n  \\\"generation\\\": 10\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "6f58992e-2138-48c4-a320-3c6974018455",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.146767359375643,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013167734400307957,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0779296875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38604207845373795,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6342677229331708,\\\\n  \\\\\\\"ece\\\\\\\": 0.44432868912731427,\\\\n  \\\\\\\"effective_rank\\\\\\\": 101.79922031256538,\\\\n  \\\\\\\"perplexity\\\\\\\": 2032.4867871095123,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03180046090297499,\\\\n  \\\\\\\"generation\\\\\\\": 10\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.146767359375643,\\n  \\\"self_bleu\\\": 0.013167734400307957,\\n  \\\"distinct_1\\\": 0.0779296875,\\n  \\\"distinct_2\\\": 0.38604207845373795,\\n  \\\"distinct_3\\\": 0.6342677229331708,\\n  \\\"ece\\\": 0.44432868912731427,\\n  \\\"effective_rank\\\": 101.79922031256538,\\n  \\\"perplexity\\\": 2032.4867871095123,\\n  \\\"mauve\\\": 0.03180046090297499,\\n  \\\"generation\\\": 10\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T12:12:32.931Z_
+
+<details><summary>↩ Tool result · `toolu_013sH5pVAi4d68VHz8BVAmCc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.135959304274167,\\n  \\\"self_bleu\\\": 0.013186904455254724,\\n  \\\"distinct_1\\\": 0.0779296875,\\n  \\\"distinct_2\\\": 0.38626864272377126,\\n  \\\"distinct_3\\\": 0.6347599181237207,\\n  \\\"ece\\\": 0.44933961495200725,\\n  \\\"effective_rank\\\": 104.52444457714289,\\n  \\\"perplexity\\\": 2306.493770668535,\\n  \\\"mauve\\\": 0.03270271177043707,\\n  \\\"generation\\\": 11\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "7e7d36f2-7b71-4f1b-9ca4-98c44c312318",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.135959304274167,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013186904455254724,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0779296875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38626864272377126,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6347599181237207,\\\\n  \\\\\\\"ece\\\\\\\": 0.44933961495200725,\\\\n  \\\\\\\"effective_rank\\\\\\\": 104.52444457714289,\\\\n  \\\\\\\"perplexity\\\\\\\": 2306.493770668535,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03270271177043707,\\\\n  \\\\\\\"generation\\\\\\\": 11\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.135959304274167,\\n  \\\"self_bleu\\\": 0.013186904455254724,\\n  \\\"distinct_1\\\": 0.0779296875,\\n  \\\"distinct_2\\\": 0.38626864272377126,\\n  \\\"distinct_3\\\": 0.6347599181237207,\\n  \\\"ece\\\": 0.44933961495200725,\\n  \\\"effective_rank\\\": 104.52444457714289,\\n  \\\"perplexity\\\": 2306.493770668535,\\n  \\\"mauve\\\": 0.03270271177043707,\\n  \\\"generation\\\": 11\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NFE6Y7jq4qQnVCzgrfsxbM`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_12/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "a6f97ffa-ceb4-4b20-bdae-c0820f24652f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:12:33.779Z_
+
+<details><summary>↩ Tool result · `toolu_01NFE6Y7jq4qQnVCzgrfsxbM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1497893137603608,\\n  \\\"self_bleu\\\": 0.01316591163707211,\\n  \\\"distinct_1\\\": 0.077921875,\\n  \\\"distinct_2\\\": 0.38590926491613214,\\n  \\\"distinct_3\\\": 0.633884904451632,\\n  \\\"ece\\\": 0.45022567179380957,\\n  \\\"effective_rank\\\": 101.98970888704419,\\n  \\\"perplexity\\\": 2479.5631486963866,\\n  \\\"mauve\\\": 0.03214148528888981,\\n  \\\"generation\\\": 12\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "cf8dfdbd-5522-4a77-b9c2-2cb2fd1469cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1497893137603608,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.01316591163707211,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.077921875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38590926491613214,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.633884904451632,\\\\n  \\\\\\\"ece\\\\\\\": 0.45022567179380957,\\\\n  \\\\\\\"effective_rank\\\\\\\": 101.98970888704419,\\\\n  \\\\\\\"perplexity\\\\\\\": 2479.5631486963866,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03214148528888981,\\\\n  \\\\\\\"generation\\\\\\\": 12\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1497893137603608,\\n  \\\"self_bleu\\\": 0.01316591163707211,\\n  \\\"distinct_1\\\": 0.077921875,\\n  \\\"distinct_2\\\": 0.38590926491613214,\\n  \\\"distinct_3\\\": 0.633884904451632,\\n  \\\"ece\\\": 0.45022567179380957,\\n  \\\"effective_rank\\\": 101.98970888704419,\\n  \\\"perplexity\\\": 2479.5631486963866,\\n  \\\"mauve\\\": 0.03214148528888981,\\n  \\\"generation\\\": 12\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019UZjX29bxwS6gm4WXyWjYb`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_13/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "6dfd2c6b-6d8c-40f6-8472-47b6a9e9a15c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T12:12:34.729Z_
+
+<details><summary>↩ Tool result · `toolu_019UZjX29bxwS6gm4WXyWjYb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1522858795428066,\\n  \\\"self_bleu\\\": 0.01314017392076972,\\n  \\\"distinct_1\\\": 0.0776796875,\\n  \\\"distinct_2\\\": 0.38376081063133305,\\n  \\\"distinct_3\\\": 0.6299239050610166,\\n  \\\"ece\\\": 0.4504994422086762,\\n  \\\"effective_rank\\\": 103.26019258908747,\\n  \\\"perplexity\\\": 2579.568440152086,\\n  \\\"mauve\\\": 0.03254074238646469,\\n  \\\"generation\\\": 13\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "e641cb2e-80d9-4997-bf06-831940f46c9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1522858795428066,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.01314017392076972,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0776796875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.38376081063133305,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6299239050610166,\\\\n  \\\\\\\"ece\\\\\\\": 0.4504994422086762,\\\\n  \\\\\\\"effective_rank\\\\\\\": 103.26019258908747,\\\\n  \\\\\\\"perplexity\\\\\\\": 2579.568440152086,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03254074238646469,\\\\n  \\\\\\\"generation\\\\\\\": 13\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1522858795428066,\\n  \\\"self_bleu\\\": 0.01314017392076972,\\n  \\\"distinct_1\\\": 0.0776796875,\\n  \\\"distinct_2\\\": 0.38376081063133305,\\n  \\\"distinct_3\\\": 0.6299239050610166,\\n  \\\"ece\\\": 0.4504994422086762,\\n  \\\"effective_rank\\\": 103.26019258908747,\\n  \\\"perplexity\\\": 2579.568440152086,\\n  \\\"mauve\\\": 0.03254074238646469,\\n  \\\"generation\\\": 13\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RDr6yRfLifSp1PWqAsiQZf`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_14/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "bbf40163-d047-42fa-87f1-c61846059525",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T12:12:35.642Z_
+
+<details><summary>↩ Tool result · `toolu_01RDr6yRfLifSp1PWqAsiQZf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1396564254348411,\\n  \\\"self_bleu\\\": 0.013053737524243719,\\n  \\\"distinct_1\\\": 0.0773359375,\\n  \\\"distinct_2\\\": 0.3798076547473027,\\n  \\\"distinct_3\\\": 0.6222206596978078,\\n  \\\"ece\\\": 0.4539752223896253,\\n  \\\"effective_rank\\\": 105.49368851833543,\\n  \\\"perplexity\\\": 2846.2407436167964,\\n  \\\"mauve\\\": 0.0336700641158474,\\n  \\\"generation\\\": 14\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "aa1ef4e9-1508-44bf-a3d2-02dd0d250344",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1396564254348411,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013053737524243719,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0773359375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3798076547473027,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6222206596978078,\\\\n  \\\\\\\"ece\\\\\\\": 0.4539752223896253,\\\\n  \\\\\\\"effective_rank\\\\\\\": 105.49368851833543,\\\\n  \\\\\\\"perplexity\\\\\\\": 2846.2407436167964,\\\\n  \\\\\\\"mauve\\\\\\\": 0.0336700641158474,\\\\n  \\\\\\\"generation\\\\\\\": 14\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1396564254348411,\\n  \\\"self_bleu\\\": 0.013053737524243719,\\n  \\\"distinct_1\\\": 0.0773359375,\\n  \\\"distinct_2\\\": 0.3798076547473027,\\n  \\\"distinct_3\\\": 0.6222206596978078,\\n  \\\"ece\\\": 0.4539752223896253,\\n  \\\"effective_rank\\\": 105.49368851833543,\\n  \\\"perplexity\\\": 2846.2407436167964,\\n  \\\"mauve\\\": 0.0336700641158474,\\n  \\\"generation\\\": 14\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NHPvpffefuQo92NNGhyC5r`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f6177671-e85a-4677-915f-bc9a8bc3ec5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T12:12:36.586Z_
+
+<details><summary>↩ Tool result · `toolu_01NHPvpffefuQo92NNGhyC5r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1505637440850602,\\n  \\\"self_bleu\\\": 0.013049260738293846,\\n  \\\"distinct_1\\\": 0.07696875,\\n  \\\"distinct_2\\\": 0.3753388698349206,\\n  \\\"distinct_3\\\": 0.6150799231237988,\\n  \\\"ece\\\": 0.4549664372923137,\\n  \\\"effective_rank\\\": 104.75913496264128,\\n  \\\"perplexity\\\": 2923.239071678584,\\n  \\\"mauve\\\": 0.03286614306047033,\\n  \\\"generation\\\": 15\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "56b68069-7e30-4dfe-bdbb-eabb16f39983",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1505637440850602,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013049260738293846,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.07696875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3753388698349206,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6150799231237988,\\\\n  \\\\\\\"ece\\\\\\\": 0.4549664372923137,\\\\n  \\\\\\\"effective_rank\\\\\\\": 104.75913496264128,\\\\n  \\\\\\\"perplexity\\\\\\\": 2923.239071678584,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03286614306047033,\\\\n  \\\\\\\"generation\\\\\\\": 15\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1505637440850602,\\n  \\\"self_bleu\\\": 0.013049260738293846,\\n  \\\"distinct_1\\\": 0.07696875,\\n  \\\"distinct_2\\\": 0.3753388698349206,\\n  \\\"distinct_3\\\": 0.6150799231237988,\\n  \\\"ece\\\": 0.4549664372923137,\\n  \\\"effective_rank\\\": 104.75913496264128,\\n  \\\"perplexity\\\": 2923.239071678584,\\n  \\\"mauve\\\": 0.03286614306047033,\\n  \\\"generation\\\": 15\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y8RsTdcaHBzhEohS4EuuHT`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "59b29450-3447-4549-9f87-1fd77f10738f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GoQjyeDmFZ4hbzVmPJsnc9`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_17/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "b37fb4e9-d944-4b1e-9300-4175e074bb43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJLYYjrd8d7H8a5YXozAbF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 30101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T12:12:37.528Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8RsTdcaHBzhEohS4EuuHT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.207881792174233,\\n  \\\"self_bleu\\\": 0.013375918005464537,\\n  \\\"distinct_1\\\": 0.07609375,\\n  \\\"distinct_2\\\": 0.3665341135477621,\\n  \\\"distinct_3\\\": 0.5965952593009266,\\n  \\\"ece\\\": 0.4500122361206256,\\n  \\\"effective_rank\\\": 96.8262359313302,\\n  \\\"perplexity\\\": 3145.472530663837,\\n  \\\"mauve\\\": 0.03147794071543829,\\n  \\\"generation\\\": 16\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "235c015e-b89f-4a60-b2c4-7e8a309bf098",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.207881792174233,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013375918005464537,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.07609375,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3665341135477621,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.5965952593009266,\\\\n  \\\\\\\"ece\\\\\\\": 0.4500122361206256,\\\\n  \\\\\\\"effective_rank\\\\\\\": 96.8262359313302,\\\\n  \\\\\\\"perplexity\\\\\\\": 3145.472530663837,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03147794071543829,\\\\n  \\\\\\\"generation\\\\\\\": 16\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.207881792174233,\\n  \\\"self_bleu\\\": 0.013375918005464537,\\n  \\\"distinct_1\\\": 0.07609375,\\n  \\\"distinct_2\\\": 0.3665341135477621,\\n  \\\"distinct_3\\\": 0.5965952593009266,\\n  \\\"ece\\\": 0.4500122361206256,\\n  \\\"effective_rank\\\": 96.8262359313302,\\n  \\\"perplexity\\\": 3145.472530663837,\\n  \\\"mauve\\\": 0.03147794071543829,\\n  \\\"generation\\\": 16\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:12:38.062Z_
+
+<details><summary>↩ Tool result · `toolu_01GoQjyeDmFZ4hbzVmPJsnc9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1818698379572277,\\n  \\\"self_bleu\\\": 0.01380398569610328,\\n  \\\"distinct_1\\\": 0.0756015625,\\n  \\\"distinct_2\\\": 0.3616668880225627,\\n  \\\"distinct_3\\\": 0.5865013515836185,\\n  \\\"ece\\\": 0.4544190968987535,\\n  \\\"effective_rank\\\": 99.1478026591456,\\n  \\\"perplexity\\\": 3367.659468085626,\\n  \\\"mauve\\\": 0.03210781258777839,\\n  \\\"generation\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "6582aff0-b2de-41f3-abfe-7709e3b4cdf0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1818698379572277,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.01380398569610328,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0756015625,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3616668880225627,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.5865013515836185,\\\\n  \\\\\\\"ece\\\\\\\": 0.4544190968987535,\\\\n  \\\\\\\"effective_rank\\\\\\\": 99.1478026591456,\\\\n  \\\\\\\"perplexity\\\\\\\": 3367.659468085626,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03210781258777839,\\\\n  \\\\\\\"generation\\\\\\\": 17\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"token_entropy\\\": 1.1818698379572277,\\n  \\\"self_bleu\\\": 0.01380398569610328,\\n  \\\"distinct_1\\\": 0.0756015625,\\n  \\\"distinct_2\\\": 0.3616668880225627,\\n  \\\"distinct_3\\\": 0.5865013515836185,\\n  \\\"ece\\\": 0.4544190968987535,\\n  \\\"effective_rank\\\": 99.1478026591456,\\n  \\\"perplexity\\\": 3367.659468085626,\\n  \\\"mauve\\\": 0.03210781258777839,\\n  \\\"generation\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have all 18 generations of metrics. Let me compile and analyze the data.
+
+Here's the complete data:
+
+| Gen | token_entropy | self_bleu | distinct_1 | distinct_2 | distinct_3 | ece | effective_rank | perplexity | mauve |
+|-----|--------------|-----------|------------|------------|------------|-----|---------------|------------|-------|
+| 0 | 3.234 | 0.0102 | 0.0982 | 0.5178 | 0.8127 | 0.0108 | 46.61 | 26.95 | 0.0341 |
+
+
+| 1 | 1.525 | 0.0103 | 0.0975 | 0.5141 | 0.8104 | 0.3268 | 66.77 | 185.68 | 0.0323 |
+| 2 | 1.296 | 0.0114 | 0.0846 | 0.4390 | 0.7141 | 0.3781 | 79.39 | 380.41 | 0.0336 |
+| 3 | 1.214 | 0.0124 | 0.0798 | 0.4025 | 0.6606 | 0.3986 |
+
+Generating the metrics table... Compiling the performance metrics across iterations... Generating the metrics table...
+
+Now I'm analyzing the token entropy patterns across generations. The baseline real data shows an entropy of 3.234, but there's an immediate and dramatic collapse to 1.525 in the first generation—a drop of over 52%. From there it continues declining more gradually through generations 2-5, then plateaus around 1.13-1.21 for the remaining generations. The critical insight is how sharply entropy drops right at the start.
+
+For perplexity, I'm seeing a very different story—it climbs continuously from 26.95 at generation 0 all the way to 3367.66 by generation 17, with the growth rate slowing over time. The early jumps are steep (nearly 7x from gen 0 to 1, then 5x from gen 1 to 5), but the increases taper off in later generations, suggesting the metric may be approaching some kind of saturation point even though it hasn't fully plateaued yet.
+
+ECE shows a sharp jump right at generation 1, then gradually worsens through the middle generations before stabilizing around 0.45 from generation 10 onward. The diversity metrics are starting to come into view.
+
+Now I'm looking at how distinct-1 and distinct-2 diversity decline across generations. Distinct-1 drops sharply in the first five generations, then essentially flatlines before a slight secondary dip later on. Distinct-2 shows a similar pattern with an even steeper initial decline of about 25% in the first five generations, followed by continued erosion.
+
+Looking at distinct-3, the same two-phase pattern emerges—a significant initial collapse in the early generations, a plateau phase, then another decline kicks in around generation 12-13. This suggests the diversity metrics aren't just monotonically declining but rather showing a distinct collapse followed by a secondary phase of degradation.
+
+Self-BLEU remains relatively low and stable with just a slight uptick toward the end, indicating minimal repetition throughout. MAUVE stays consistently low across all generations, which suggests it's not picking up meaningful variation in this dataset. For effective rank, I'm seeing it climb from around 46 at the start up to roughly 100-105 by generation 10, then...
+
+Actually, looking at the next part—it fluctuates after that, which is counterintuitive since you'd expect effective rank to drop as diversity collapses. This might mean the model is distributing probability more evenly as it loses coherent structure, creating a different kind of entropy signal.
+
+Comparing this extended T=18 run to the earlier MVP experiment at T=10 reveals something important: the secondary diversity decline I'm seeing in generations 13-17 was completely hidden in the shorter window. The initial collapse and plateau patterns match, but perplexity keeps climbing without leveling off, while ECE stabilizes much earlier around generation 10. This suggests the diversity collapse isn't a simple monotonic deceleration—there's actually a two-phase pattern happening.
+
+The key insight is that different metrics saturate at completely different points: token entropy and ECE plateau early, but diversity keeps changing throughout. And perplexity never saturates at all, reaching 3367 by generation 17. The longer time series also gives me more statistical power for trend detection, which wouldn't be possible with just T=10 data.
+
+Now I need to save these findings and check the experiment registry to make sure I'm using the right ID for this analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "6f1cbd3b-5f9c-431b-a208-fdb291bb6728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMvVJDGXsQH5Hcn3aHoTVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26874,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+All 18 generations loaded. Now let me check existing registry entries and prior analysis for comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "a570dde8-1a91-4fc2-b599-4f57aca4c5b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMvVJDGXsQH5Hcn3aHoTVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26874,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FLAvPFe81YHKpBfd65U6Yd`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {},
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "84d53d3f-d0f8-4135-8848-116cc432d318",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMvVJDGXsQH5Hcn3aHoTVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26874,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016mEZcJ9uXaFj7caVmnWhk3`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "4364071e-f808-45e6-9c48-2e83d844d4b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMvVJDGXsQH5Hcn3aHoTVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26874,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T12:13:35.449Z_
+
+<details><summary>↩ Tool result · `toolu_01FLAvPFe81YHKpBfd65U6Yd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_s42_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0, \"checkpoint_path\": \"N/A\", \"notes\": \"D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\", \"wall_clock_seconds\": 921.5, \"gpu_hours\": 0.26}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:10:53.514Z\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T12:07:32.074Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\", \"submitted_at\": \"2026-05-15T12:07:31.820Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:07:30.366Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T11:52:16.658Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\", \"spec\": {\"hypothesis\": \"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\", \"model_name\": \"gpt2-medium\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"batch_size\": 32, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"generalization-P1\"}}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-4\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-3\"}}, \"alpha_sweep_a050_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T06:58:45.880Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-2\"}}, \"alpha_sweep_a025_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T06:58:43.090Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-1\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T06:40:57.548Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"submitted_at\": \"2026-05-15T05:44:47.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\"}, \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"metrics\": {\"progress\": \"2/10 gen (training step 490/5000)\", \"eta_hours\": 3.5}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T06:05:28.905Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"submitted_at\": \"2026-05-15T01:20:05.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16003.6, \"gpu_hours\": 4.45}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}, \"completed_at\": \"2026-05-14T23:39:04.310Z\"}, \"plan_006_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-14T23:31:37.258Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\", \"model_name\": \"pythia-410m\", \"seed\": 43, \"data_path\": \"wikitext-103\", \"num_generations\": 20, \"synthetic_ratio\": 1, \"max_lag\": 10}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}}, \"count\": 20, \"total\": 34, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1343}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "1ae72344-f15f-41d6-93a3-febe2488e5a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:55:26.236Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:10:54.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u resume_plan006_s42.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"114844\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:55:31.984Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hypothesis\\\": \\\"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\\\", \\\"seed\\\": 42, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"data/wikitext103\\\", \\\"data_count\\\": 0, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"notes\\\": \\\"D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\\\", \\\"wall_clock_seconds\\\": 921.5, \\\"gpu_hours\\\": 0.26}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:10:53.514Z\\\", \\\"notes\\\": \\\"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:07:20.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:07:32.074Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"117632\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:07:31.820Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T12:07:30.366Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\"}, \\\"pid\\\": \\\"117632\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:02:06.478Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:04:50.741Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116204\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:02:14.440Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 18.0, \\\"gpu_hours\\\": 0.01}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T12:02:13.557Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:02:31.643Z\\\", \\\"training_hours\\\": 0.01}, \\\"pid\\\": \\\"116204\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:02:32.472Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:02:33.931882+00:00\\\"}]}}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:35:18.700Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:01:58.523Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"115532\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:57:48.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 249.8, \\\"gpu_hours\\\": 0.07}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T11:57:47.340Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\"}, \\\"pid\\\": \\\"115532\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:01:58.523Z\\\"}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:52:16.658Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:41:30.666Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 43212.6, \\\"gpu_hours\\\": 12.0}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T23:41:29.125Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:41:42.336Z\\\", \\\"training_hours\\\": 12.0}, \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"14/20 gen (generating synthetic data)\\\", \\\"gen9_token_entropy\\\": 1.1456, \\\"gen9_ece\\\": 0.4406, \\\"gen9_perplexity\\\": 1786.72, \\\"gen9_distinct_1\\\": 0.0779, \\\"gen9_distinct_2\\\": 0.386, \\\"gen9_distinct_3\\\": 0.6342, \\\"distinct_1_drift_pct_gen0_9\\\": -20.7, \\\"entropy_drift_pct_gen0_1\\\": -52.8, \\\"ppl_drift_pct_gen0_9\\\": 6530.5, \\\"diversity_saturated_at_gen\\\": 5, \\\"eta_hours\\\": 3}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T11:41:43.235Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:41:44.300301+00:00\\\"}]}, \\\"notes\\\": \\\"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\\\", \\\"model_name\\\": \\\"gpt2-medium\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"batch_size\\\": 32, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"generalization-P1\\\"}}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 44, \\\"synthetic_ratio\\\": 0.5, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a050_s42\\\", \\\"priority\\\": \\\"D026-4\\\"}}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 44, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"D026-3\\\"}}, \\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 43, \\\"synthetic_ratio\\\": 0.5, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a050_s42\\\", \\\"priority\\\": \\\"D026-2\\\"}}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 43, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"D026-1\\\"}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:40:57.548Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"89753\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:44:47.124Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T05:44:46.271Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\\\\\"\\\"}, \\\"pid\\\": \\\"89753\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"2/10 gen (training step 490/5000)\\\", \\\"eta_hours\\\": 3.5}}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:05:28.905Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:20:05.044Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 16003.6, \\\"gpu_hours\\\": 4.45}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T01:15:14.747Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:42:25.788Z\\\", \\\"training_hours\\\": 4.45}, \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:42:26.715028+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T05:46:48.692Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.1, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:04:05.726Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:13:22.207Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v2 (failed, data corruption)\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"53069\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T01:18:42.377Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:18:43.329069+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\\\", \\\"completed_at\\\": \\\"2026-05-15T01:26:19.292Z\\\", \\\"notes\\\": \\\"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:49:16.519Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:49:40.162Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_002\\\", \\\"hypothesis\\\": \\\"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\\\", \\\"command\\\": \\\"python method_ablation.py + python permutation_granger.py (差分版)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/mvp/rep_{42,43,44,45}/all_metrics.json\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"N/A (analysis on MVP data)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/mvp/analysis/method_ablation.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T23:49:37.295Z\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:42:18.748Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46716\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T23:36:35.414Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T23:36:36.221435+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}, \\\"completed_at\\\": \\\"2026-05-14T23:39:04.310Z\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:37.257Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:31:37.258Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_006\\\", \\\"hypothesis\\\": \\\"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\\\", \\\"model_name\\\": \\\"pythia-410m\\\", \\\"seed\\\": 43, \\\"data_path\\\": \\\"wikitext-103\\\", \\\"num_generations\\\": 20, \\\"synthetic_ratio\\\": 1, \\\"max_lag\\\": 10}}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.6, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:33:04.665Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:27.106Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\\\", \\\"command\\\": \\\"python bootstrap_ty_validation.py (N_sim=1000)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"synthetic DGP (AR(1) for H0, VAR(2) for H1)\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"N/A (statistical simulation)\\\", \\\"seed\\\": \\\"multiple\\\", \\\"log_path\\\": \\\"results/bootstrap_ty_results.json\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T21:33:24.769Z\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}}, \\\"count\\\": 20, \\\"total\\\": 34, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1343}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_006_s42_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0, \"checkpoint_path\": \"N/A\", \"notes\": \"D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\", \"wall_clock_seconds\": 921.5, \"gpu_hours\": 0.26}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:10:53.514Z\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T12:07:32.074Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\", \"submitted_at\": \"2026-05-15T12:07:31.820Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:07:30.366Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T11:52:16.658Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\", \"spec\": {\"hypothesis\": \"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\", \"model_name\": \"gpt2-medium\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"batch_size\": 32, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"generalization-P1\"}}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-4\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-3\"}}, \"alpha_sweep_a050_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T06:58:45.880Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-2\"}}, \"alpha_sweep_a025_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T06:58:43.090Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-1\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T06:40:57.548Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"submitted_at\": \"2026-05-15T05:44:47.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\"}, \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"metrics\": {\"progress\": \"2/10 gen (training step 490/5000)\", \"eta_hours\": 3.5}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T06:05:28.905Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"submitted_at\": \"2026-05-15T01:20:05.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16003.6, \"gpu_hours\": 4.45}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}, \"completed_at\": \"2026-05-14T23:39:04.310Z\"}, \"plan_006_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-14T23:31:37.258Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\", \"model_name\": \"pythia-410m\", \"seed\": 43, \"data_path\": \"wikitext-103\", \"num_generations\": 20, \"synthetic_ratio\": 1, \"max_lag\": 10}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}}, \"count\": 20, \"total\": 34, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1343}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T12:13:35.466Z_
+
+<details><summary>↩ Tool result · `toolu_016mEZcJ9uXaFj7caVmnWhk3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Cross-Alpha Analysis Memory (2026-05-15)\\n\\n## D027 Multi-Method Consensus Framework (2026-05-15)\\n\\n### 设计决策\\n- **Robust association 定义**: ≥K-1/K 种方法判定显著 + ≥3/4 seed 一致（默认 K=5）\\n- **为什么选 K-1 而非 K**: TY 在 T=10 下 power 仅 5-20%（plan_009），unanimous 会把真信号也排除\\n- **FNR ground truth 是 circular**: consensus 本身是 FNR 的 ground truth，FNR=0% by construction。论文必须诚实标注\\n- **FPR ground truth 用 differenced_xcorr**: 差分后不显著 = 伪回归，这是 non-circular 的\\n\\n### 核心数字（论文 Key Table）\\n| Method | FPR | FNR |\\n|--------|:---:|:---:|\\n| naive | 100% | 0% |\\n| differenced | 0% | 0% |\\n| threshold | 11.1% | 0% |\\n| TY | 0% | 20.8% |\\n| perm_granger | 11.1% | 0% |\\n| consensus | 0% | 0% |\\n\\nTY FNR 20.8%（非预估的 50-94%）——FN 集中在 ece→d2/d3（TY 仅 2/4 seed sig）。\\n\\n### Sensitivity 结论\\n- token_entropy→distinct: **9/9 配置 stable**（极度稳健）\\n- ece→d2/d3: 7/9 stable（borderline，TY dissenter）\\n- canary→perplexity: 3/9（阈值敏感，符合伪回归预期）\\n- self_bleu/effective_rank: 0-2/9（伪回归确认）\\n\\n### D026 batch_size 决策\\nDirector 批准：D026 multi-seed **保持 bs=4**（与 seed=42 可比），generalization 实验用 **bs=32**。原因：multi-seed 的价值是置信区间，需要同条件不同 seed；bs 改变后数据曝光量从 20K→160K sample-steps，training dynamics 不可比。\\n\\n---\\n\\n## D024 Dose-Response: 非单调性确认与解释\\n\\n### 核心数据\\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\\n|---|---|---|---|---|---|---|\\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\\n\\n### 关键发现\\n\\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\\n\\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\\n- α=0.50 的模型在第一代就进入\\\"低熵-高miscalibration\\\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\\n\\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\\\"地板效应\\\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\\n\\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\\n\\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\\n|---|---|---|---|---|---|\\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\\n\\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\\n\\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\\n\\n#### 3. Cross-Correlation Lead-Lag\\n所有 α 下，Δentropy vs Δd1 在 lag=+1 有最强相关（r=0.87-1.03），说明 entropy 变化持续领先 d1 一代。\\n\\nα=0.50 的 ΔECE vs Δd1 在 lag=+1 有 r=-1.013（强负相关），说明 ECE 增加领先 d1 下降一代。（cross-correlation 结果，非因果推断）\\n\\n#### 4. 对后续实验的启示\\n- α=0.75 是 pivotal boundary（D025）：决定 ECE canary 假说能否从定性信号升级为 FDR-sig 结论\\n- a010/a060 补充 dose-response 曲线密度，验证非单调机制\\n- 当前 3 个 α 点的 raw p-values 有清晰定性模式，但统计力不足——需更多 α 点积累 FDR 校正后仍显著的证据\\n\\n### Registry p-value 命名规范 (Reviewer 要求)\\n所有 Granger p-value 字段必须加后缀区分：`_p_raw` 或 `_p_fdr`。不加后缀的旧字段已清理。\\n\\n---\\n\\n## v3 Full Analysis Update (2026-05-15, gen_0–gen_10, 11 点)\\n\\n### v2→v3 变化摘要\\n- 数据：从 gen_0–gen_9（10 点）扩展到 gen_0–gen_10（11 点），三个 α 均有完整 gen_10 数据\\n- Granger 检验数：从 8 对扩展到 12 对（加入反向 d1→entropy, d1→ECE）\\n- 置换次数：从 2000 增加到 2500\\n\\n### v3 Dose-Response（gen0→gen10 drift%）\\n| α | d1% | d2% | d3% | entropy% | ECE% | PPL% |\\n|---|---|---|---|---|---|---|\\n| 0.00 | -13.78 | -9.77 | -4.52 | -5.10 | +51.70 | -21.68 |\\n| 0.25 | -40.34 | -57.14 | -59.85 | -4.10 | +79.72 | -17.19 |\\n| 0.50 | -37.28 | -51.46 | -52.35 | -18.62 | +842.79 | +21.13 |\\n\\n**非单调 dose-response 在 11 gen 数据下依然成立**：α=0.25 的 d1/d2/d3 collapse 均大于 α=0.50。\\n\\n### v3 Granger Causality（12 tests, BH FDR, 2500 perms, differenced）\\n| α | direction | F-stat | p_raw | p_fdr | 备注 |\\n|---|---|---|---|---|---|\\n| 0.00 | entropy→d1 | 48.35 | 0.058 | 0.174 | null control, 不再 borderline sig（v2 时为 0.048）|\\n| 0.00 | ECE→d1 | 0.002 | 0.949 | 0.949 | |\\n| 0.00 | d1→entropy | 0.211 | 0.789 | 0.861 | |\\n| 0.00 | d1→ECE | 0.835 | 0.338 | 0.451 | |\\n| 0.25 | entropy→d1 | 163.24 | 0.015 | 0.093 | raw sig, FDR n.s. |\\n| 0.25 | ECE→d1 | 1.777 | 0.228 | 0.390 | |\\n| 0.25 | d1→entropy | 7.828 | 0.023 | 0.093 | 双向 raw sig |\\n| 0.25 | d1→ECE | 0.737 | 0.459 | 0.551 | |\\n| 0.50 | entropy→d1 | 127.48 | 0.098 | 0.234 | |\\n| 0.50 | ECE→d1 | 79.24 | 0.021 | 0.093 | ECE raw p < entropy raw p |\\n| 0.50 | d1→entropy | 1.999 | 0.224 | 0.390 | |\\n| 0.50 | d1→ECE | 1.574 | 0.282 | 0.422 | |\\n\\n**0/12 FDR-significant。** 定性模式不变：α=0.25 entropy 领先，α=0.50 ECE 领先。\\n\\n关键变化：α=0.00 entropy→d1 p_raw 从 0.048（v2）升至 0.058（v3），不再需要 borderline FP 标注——额外一个 gen 的数据稀释了该信号，符合 null control 预期。\\n\\n### v3 Cross-Correlation\\n| α | Δentropy vs Δd1 peak | r | ΔECE vs Δd1 peak | r |\\n|---|---|---|---|---|\\n| 0.00 | lag=+1 | 0.94 | lag=-2 | 0.70 |\\n| 0.25 | lag=+1 | 0.80 | lag=-3 | -0.57 |\\n| 0.50 | lag=+1 | 0.88 | lag=+1 | -0.95 |\\n\\nentropy 一致在 lag=+1 领先 d1。α=0.50 下 ECE 也在 lag=+1 领先（r=-0.95，强负相关）。\\n\\n### v3 Per-Gen Velocity\\n| α | cum_drift% | mean_v/gen | max_drop |\\n|---|---|---|---|\\n| 0.00 | -13.78 | -0.00135 | gen1→gen2 (-0.0087) |\\n| 0.25 | -40.34 | -0.00396 | gen1→gen2 (-0.0173) |\\n| 0.50 | -37.28 | -0.00366 | gen1→gen2 (-0.0148) |\\n\\nα=0.25 全程 velocity 均快于 α=0.50，且差距在中后期（gen5+）保持稳定。这否定了\\\"α=0.50 早期快后期饱和\\\"的解释。\\n\\n### 产出文件\\n- 服务器 JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json`\\n- Artifact: `art_20260515_b979dd` (cross_alpha_v3_full_analysis)\\n- Registry: `alpha_sweep_a050_s42` metrics 已更新含 gen_10 + p_raw/p_fdr 字段\\n\\n## D024 文献调研：非单调 dose-response 是文献空白 (2026-05-15)\\n\\n### 核心结论\\n**没有论文直接报告过 diversity dose-response 的非单调性。** 这是 novel finding。\\n\\n### 理论锚点（已补入 literature_map.yaml）\\n- **He, Xu & Cheng (2025)** arXiv:2502.18049: 黄金比例权重理论——最优 real data 权重 w*(λ) 非单调非凸，risk landscape 在 mixing ratio 空间上本身不是单调的。我们的结果可视为该理论在 diversity metrics 上的实证验证。\\n- **Xu & Cheng (2025)** arXiv:2509.22341: 过参数化 regime 下 w > 1/3 vs w < 1/3 的 variance 行为质变——1/3 临界阈值与我们 α=0.25 处的行为一致。\\n- **Chen et al. (2025)** arXiv:2510.05133: 20-30% threshold 下稳定、以上退化加速；ECE 先于 accuracy 退化。但未细粒度扫描故未发现非单调性。\\n\\n### Framing 建议\\n- 非单调 dose-response 可作为独立 Results subsection（实证发现，非推测）\\n- 引用 He et al. 作为 risk landscape 非单调的理论先例，但强调我们首次在 diversity metrics 上展示\\n- 为 robust claim 需更细粒度 α sweep + 多 seed 置信区间\\n\\n### 最可信解释排序\\n1. \\\"最危险区间\\\"假说：α=0.25 恰好在\\\"够破坏分布尾部但不足以让模型快速饱和\\\"的区间\\n2. 饱和效应：α=0.50 快速进入 collapsed attractor，cumulative drift 反而小（已被 per-gen velocity 分析部分证伪——α=0.50 全程都慢，不只是后期饱和）\\n3. Regime 切换：不同 α 触发不同训练 regime（需更多 α 点验证）\\n\", \"total_chars\": 6703, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "78490a0f-cc6a-43ba-a7bb-31b8cccfd2d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"content\\\": \\\"# Cross-Alpha Analysis Memory (2026-05-15)\\\\n\\\\n## D027 Multi-Method Consensus Framework (2026-05-15)\\\\n\\\\n### 设计决策\\\\n- **Robust association 定义**: ≥K-1/K 种方法判定显著 + ≥3/4 seed 一致（默认 K=5）\\\\n- **为什么选 K-1 而非 K**: TY 在 T=10 下 power 仅 5-20%（plan_009），unanimous 会把真信号也排除\\\\n- **FNR ground truth 是 circular**: consensus 本身是 FNR 的 ground truth，FNR=0% by construction。论文必须诚实标注\\\\n- **FPR ground truth 用 differenced_xcorr**: 差分后不显著 = 伪回归，这是 non-circular 的\\\\n\\\\n### 核心数字（论文 Key Table）\\\\n| Method | FPR | FNR |\\\\n|--------|:---:|:---:|\\\\n| naive | 100% | 0% |\\\\n| differenced | 0% | 0% |\\\\n| threshold | 11.1% | 0% |\\\\n| TY | 0% | 20.8% |\\\\n| perm_granger | 11.1% | 0% |\\\\n| consensus | 0% | 0% |\\\\n\\\\nTY FNR 20.8%（非预估的 50-94%）——FN 集中在 ece→d2/d3（TY 仅 2/4 seed sig）。\\\\n\\\\n### Sensitivity 结论\\\\n- token_entropy→distinct: **9/9 配置 stable**（极度稳健）\\\\n- ece→d2/d3: 7/9 stable（borderline，TY dissenter）\\\\n- canary→perplexity: 3/9（阈值敏感，符合伪回归预期）\\\\n- self_bleu/effective_rank: 0-2/9（伪回归确认）\\\\n\\\\n### D026 batch_size 决策\\\\nDirector 批准：D026 multi-seed **保持 bs=4**（与 seed=42 可比），generalization 实验用 **bs=32**。原因：multi-seed 的价值是置信区间，需要同条件不同 seed；bs 改变后数据曝光量从 20K→160K sample-steps，training dynamics 不可比。\\\\n\\\\n---\\\\n\\\\n## D024 Dose-Response: 非单调性确认与解释\\\\n\\\\n### 核心数据\\\\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\\\\n|---|---|---|---|---|---|---|\\\\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\\\\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\\\\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\\\\n\\\\n### 关键发现\\\\n\\\\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\\\\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\\\\n\\\\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\\\\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\\\\n- α=0.50 的模型在第一代就进入\\\\\\\"低熵-高miscalibration\\\\\\\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\\\\n\\\\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\\\\\\\"地板效应\\\\\\\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\\\\n\\\\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\\\\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\\\\n\\\\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\\\\n|---|---|---|---|---|---|\\\\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\\\\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\\\\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\\\\n\\\\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\\\\n\\\\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\\\\n\\\\n#### 3. Cross-Correlation Lead-Lag\\\\n所有 α 下，Δentropy vs Δd1 在 lag=+1 有最强相关（r=0.87-1.03），说明 entropy 变化持续领先 d1 一代。\\\\n\\\\nα=0.50 的 ΔECE vs Δd1 在 lag=+1 有 r=-1.013（强负相关），说明 ECE 增加领先 d1 下降一代。（cross-correlation 结果，非因果推断）\\\\n\\\\n#### 4. 对后续实验的启示\\\\n- α=0.75 是 pivotal boundary（D025）：决定 ECE canary 假说能否从定性信号升级为 FDR-sig 结论\\\\n- a010/a060 补充 dose-response 曲线密度，验证非单调机制\\\\n- 当前 3 个 α 点的 raw p-values 有清晰定性模式，但统计力不足——需更多 α 点积累 FDR 校正后仍显著的证据\\\\n\\\\n### Registry p-value 命名规范 (Reviewer 要求)\\\\n所有 Granger p-value 字段必须加后缀区分：`_p_raw` 或 `_p_fdr`。不加后缀的旧字段已清理。\\\\n\\\\n---\\\\n\\\\n## v3 Full Analysis Update (2026-05-15, gen_0–gen_10, 11 点)\\\\n\\\\n### v2→v3 变化摘要\\\\n- 数据：从 gen_0–gen_9（10 点）扩展到 gen_0–gen_10（11 点），三个 α 均有完整 gen_10 数据\\\\n- Granger 检验数：从 8 对扩展到 12 对（加入反向 d1→entropy, d1→ECE）\\\\n- 置换次数：从 2000 增加到 2500\\\\n\\\\n### v3 Dose-Response（gen0→gen10 drift%）\\\\n| α | d1% | d2% | d3% | entropy% | ECE% | PPL% |\\\\n|---|---|---|---|---|---|---|\\\\n| 0.00 | -13.78 | -9.77 | -4.52 | -5.10 | +51.70 | -21.68 |\\\\n| 0.25 | -40.34 | -57.14 | -59.85 | -4.10 | +79.72 | -17.19 |\\\\n| 0.50 | -37.28 | -51.46 | -52.35 | -18.62 | +842.79 | +21.13 |\\\\n\\\\n**非单调 dose-response 在 11 gen 数据下依然成立**：α=0.25 的 d1/d2/d3 collapse 均大于 α=0.50。\\\\n\\\\n### v3 Granger Causality（12 tests, BH FDR, 2500 perms, differenced）\\\\n| α | direction | F-stat | p_raw | p_fdr | 备注 |\\\\n|---|---|---|---|---|---|\\\\n| 0.00 | entropy→d1 | 48.35 | 0.058 | 0.174 | null control, 不再 borderline sig（v2 时为 0.048）|\\\\n| 0.00 | ECE→d1 | 0.002 | 0.949 | 0.949 | |\\\\n| 0.00 | d1→entropy | 0.211 | 0.789 | 0.861 | |\\\\n| 0.00 | d1→ECE | 0.835 | 0.338 | 0.451 | |\\\\n| 0.25 | entropy→d1 | 163.24 | 0.015 | 0.093 | raw sig, FDR n.s. |\\\\n| 0.25 | ECE→d1 | 1.777 | 0.228 | 0.390 | |\\\\n| 0.25 | d1→entropy | 7.828 | 0.023 | 0.093 | 双向 raw sig |\\\\n| 0.25 | d1→ECE | 0.737 | 0.459 | 0.551 | |\\\\n| 0.50 | entropy→d1 | 127.48 | 0.098 | 0.234 | |\\\\n| 0.50 | ECE→d1 | 79.24 | 0.021 | 0.093 | ECE raw p < entropy raw p |\\\\n| 0.50 | d1→entropy | 1.999 | 0.224 | 0.390 | |\\\\n| 0.50 | d1→ECE | 1.574 | 0.282 | 0.422 | |\\\\n\\\\n**0/12 FDR-significant。** 定性模式不变：α=0.25 entropy 领先，α=0.50 ECE 领先。\\\\n\\\\n关键变化：α=0.00 entropy→d1 p_raw 从 0.048（v2）升至 0.058（v3），不再需要 borderline FP 标注——额外一个 gen 的数据稀释了该信号，符合 null control 预期。\\\\n\\\\n### v3 Cross-Correlation\\\\n| α | Δentropy vs Δd1 peak | r | ΔECE vs Δd1 peak | r |\\\\n|---|---|---|---|---|\\\\n| 0.00 | lag=+1 | 0.94 | lag=-2 | 0.70 |\\\\n| 0.25 | lag=+1 | 0.80 | lag=-3 | -0.57 |\\\\n| 0.50 | lag=+1 | 0.88 | lag=+1 | -0.95 |\\\\n\\\\nentropy 一致在 lag=+1 领先 d1。α=0.50 下 ECE 也在 lag=+1 领先（r=-0.95，强负相关）。\\\\n\\\\n### v3 Per-Gen Velocity\\\\n| α | cum_drift% | mean_v/gen | max_drop |\\\\n|---|---|---|---|\\\\n| 0.00 | -13.78 | -0.00135 | gen1→gen2 (-0.0087) |\\\\n| 0.25 | -40.34 | -0.00396 | gen1→gen2 (-0.0173) |\\\\n| 0.50 | -37.28 | -0.00366 | gen1→gen2 (-0.0148) |\\\\n\\\\nα=0.25 全程 velocity 均快于 α=0.50，且差距在中后期（gen5+）保持稳定。这否定了\\\\\\\"α=0.50 早期快后期饱和\\\\\\\"的解释。\\\\n\\\\n### 产出文件\\\\n- 服务器 JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json`\\\\n- Artifact: `art_20260515_b979dd` (cross_alpha_v3_full_analysis)\\\\n- Registry: `alpha_sweep_a050_s42` metrics 已更新含 gen_10 + p_raw/p_fdr 字段\\\\n\\\\n## D024 文献调研：非单调 dose-response 是文献空白 (2026-05-15)\\\\n\\\\n### 核心结论\\\\n**没有论文直接报告过 diversity dose-response 的非单调性。** 这是 novel finding。\\\\n\\\\n### 理论锚点（已补入 literature_map.yaml）\\\\n- **He, Xu & Cheng (2025)** arXiv:2502.18049: 黄金比例权重理论——最优 real data 权重 w*(λ) 非单调非凸，risk landscape 在 mixing ratio 空间上本身不是单调的。我们的结果可视为该理论在 diversity metrics 上的实证验证。\\\\n- **Xu & Cheng (2025)** arXiv:2509.22341: 过参数化 regime 下 w > 1/3 vs w < 1/3 的 variance 行为质变——1/3 临界阈值与我们 α=0.25 处的行为一致。\\\\n- **Chen et al. (2025)** arXiv:2510.05133: 20-30% threshold 下稳定、以上退化加速；ECE 先于 accuracy 退化。但未细粒度扫描故未发现非单调性。\\\\n\\\\n### Framing 建议\\\\n- 非单调 dose-response 可作为独立 Results subsection（实证发现，非推测）\\\\n- 引用 He et al. 作为 risk landscape 非单调的理论先例，但强调我们首次在 diversity metrics 上展示\\\\n- 为 robust claim 需更细粒度 α sweep + 多 seed 置信区间\\\\n\\\\n### 最可信解释排序\\\\n1. \\\\\\\"最危险区间\\\\\\\"假说：α=0.25 恰好在\\\\\\\"够破坏分布尾部但不足以让模型快速饱和\\\\\\\"的区间\\\\n2. 饱和效应：α=0.50 快速进入 collapsed attractor，cumulative drift 反而小（已被 per-gen velocity 分析部分证伪——α=0.50 全程都慢，不只是后期饱和）\\\\n3. Regime 切换：不同 α 触发不同训练 regime（需更多 α 点验证）\\\\n\\\", \\\"total_chars\\\": 6703, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"content\": \"# Cross-Alpha Analysis Memory (2026-05-15)\\n\\n## D027 Multi-Method Consensus Framework (2026-05-15)\\n\\n### 设计决策\\n- **Robust association 定义**: ≥K-1/K 种方法判定显著 + ≥3/4 seed 一致（默认 K=5）\\n- **为什么选 K-1 而非 K**: TY 在 T=10 下 power 仅 5-20%（plan_009），unanimous 会把真信号也排除\\n- **FNR ground truth 是 circular**: consensus 本身是 FNR 的 ground truth，FNR=0% by construction。论文必须诚实标注\\n- **FPR ground truth 用 differenced_xcorr**: 差分后不显著 = 伪回归，这是 non-circular 的\\n\\n### 核心数字（论文 Key Table）\\n| Method | FPR | FNR |\\n|--------|:---:|:---:|\\n| naive | 100% | 0% |\\n| differenced | 0% | 0% |\\n| threshold | 11.1% | 0% |\\n| TY | 0% | 20.8% |\\n| perm_granger | 11.1% | 0% |\\n| consensus | 0% | 0% |\\n\\nTY FNR 20.8%（非预估的 50-94%）——FN 集中在 ece→d2/d3（TY 仅 2/4 seed sig）。\\n\\n### Sensitivity 结论\\n- token_entropy→distinct: **9/9 配置 stable**（极度稳健）\\n- ece→d2/d3: 7/9 stable（borderline，TY dissenter）\\n- canary→perplexity: 3/9（阈值敏感，符合伪回归预期）\\n- self_bleu/effective_rank: 0-2/9（伪回归确认）\\n\\n### D026 batch_size 决策\\nDirector 批准：D026 multi-seed **保持 bs=4**（与 seed=42 可比），generalization 实验用 **bs=32**。原因：multi-seed 的价值是置信区间，需要同条件不同 seed；bs 改变后数据曝光量从 20K→160K sample-steps，training dynamics 不可比。\\n\\n---\\n\\n## D024 Dose-Response: 非单调性确认与解释\\n\\n### 核心数据\\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\\n|---|---|---|---|---|---|---|\\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\\n\\n### 关键发现\\n\\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\\n\\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\\n- α=0.50 的模型在第一代就进入\\\"低熵-高miscalibration\\\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\\n\\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\\\"地板效应\\\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\\n\\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\\n\\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\\n|---|---|---|---|---|---|\\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\\n\\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\\n\\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\\n\\n#### 3. Cross-Correlation Lead-Lag\\n所有 α 下，Δentropy vs Δd1 在 lag=+1 有最强相关（r=0.87-1.03），说明 entropy 变化持续领先 d1 一代。\\n\\nα=0.50 的 ΔECE vs Δd1 在 lag=+1 有 r=-1.013（强负相关），说明 ECE 增加领先 d1 下降一代。（cross-correlation 结果，非因果推断）\\n\\n#### 4. 对后续实验的启示\\n- α=0.75 是 pivotal boundary（D025）：决定 ECE canary 假说能否从定性信号升级为 FDR-sig 结论\\n- a010/a060 补充 dose-response 曲线密度，验证非单调机制\\n- 当前 3 个 α 点的 raw p-values 有清晰定性模式，但统计力不足——需更多 α 点积累 FDR 校正后仍显著的证据\\n\\n### Registry p-value 命名规范 (Reviewer 要求)\\n所有 Granger p-value 字段必须加后缀区分：`_p_raw` 或 `_p_fdr`。不加后缀的旧字段已清理。\\n\\n---\\n\\n## v3 Full Analysis Update (2026-05-15, gen_0–gen_10, 11 点)\\n\\n### v2→v3 变化摘要\\n- 数据：从 gen_0–gen_9（10 点）扩展到 gen_0–gen_10（11 点），三个 α 均有完整 gen_10 数据\\n- Granger 检验数：从 8 对扩展到 12 对（加入反向 d1→entropy, d1→ECE）\\n- 置换次数：从 2000 增加到 2500\\n\\n### v3 Dose-Response（gen0→gen10 drift%）\\n| α | d1% | d2% | d3% | entropy% | ECE% | PPL% |\\n|---|---|---|---|---|---|---|\\n| 0.00 | -13.78 | -9.77 | -4.52 | -5.10 | +51.70 | -21.68 |\\n| 0.25 | -40.34 | -57.14 | -59.85 | -4.10 | +79.72 | -17.19 |\\n| 0.50 | -37.28 | -51.46 | -52.35 | -18.62 | +842.79 | +21.13 |\\n\\n**非单调 dose-response 在 11 gen 数据下依然成立**：α=0.25 的 d1/d2/d3 collapse 均大于 α=0.50。\\n\\n### v3 Granger Causality（12 tests, BH FDR, 2500 perms, differenced）\\n| α | direction | F-stat | p_raw | p_fdr | 备注 |\\n|---|---|---|---|---|---|\\n| 0.00 | entropy→d1 | 48.35 | 0.058 | 0.174 | null control, 不再 borderline sig（v2 时为 0.048）|\\n| 0.00 | ECE→d1 | 0.002 | 0.949 | 0.949 | |\\n| 0.00 | d1→entropy | 0.211 | 0.789 | 0.861 | |\\n| 0.00 | d1→ECE | 0.835 | 0.338 | 0.451 | |\\n| 0.25 | entropy→d1 | 163.24 | 0.015 | 0.093 | raw sig, FDR n.s. |\\n| 0.25 | ECE→d1 | 1.777 | 0.228 | 0.390 | |\\n| 0.25 | d1→entropy | 7.828 | 0.023 | 0.093 | 双向 raw sig |\\n| 0.25 | d1→ECE | 0.737 | 0.459 | 0.551 | |\\n| 0.50 | entropy→d1 | 127.48 | 0.098 | 0.234 | |\\n| 0.50 | ECE→d1 | 79.24 | 0.021 | 0.093 | ECE raw p < entropy raw p |\\n| 0.50 | d1→entropy | 1.999 | 0.224 | 0.390 | |\\n| 0.50 | d1→ECE | 1.574 | 0.282 | 0.422 | |\\n\\n**0/12 FDR-significant。** 定性模式不变：α=0.25 entropy 领先，α=0.50 ECE 领先。\\n\\n关键变化：α=0.00 entropy→d1 p_raw 从 0.048（v2）升至 0.058（v3），不再需要 borderline FP 标注——额外一个 gen 的数据稀释了该信号，符合 null control 预期。\\n\\n### v3 Cross-Correlation\\n| α | Δentropy vs Δd1 peak | r | ΔECE vs Δd1 peak | r |\\n|---|---|---|---|---|\\n| 0.00 | lag=+1 | 0.94 | lag=-2 | 0.70 |\\n| 0.25 | lag=+1 | 0.80 | lag=-3 | -0.57 |\\n| 0.50 | lag=+1 | 0.88 | lag=+1 | -0.95 |\\n\\nentropy 一致在 lag=+1 领先 d1。α=0.50 下 ECE 也在 lag=+1 领先（r=-0.95，强负相关）。\\n\\n### v3 Per-Gen Velocity\\n| α | cum_drift% | mean_v/gen | max_drop |\\n|---|---|---|---|\\n| 0.00 | -13.78 | -0.00135 | gen1→gen2 (-0.0087) |\\n| 0.25 | -40.34 | -0.00396 | gen1→gen2 (-0.0173) |\\n| 0.50 | -37.28 | -0.00366 | gen1→gen2 (-0.0148) |\\n\\nα=0.25 全程 velocity 均快于 α=0.50，且差距在中后期（gen5+）保持稳定。这否定了\\\"α=0.50 早期快后期饱和\\\"的解释。\\n\\n### 产出文件\\n- 服务器 JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json`\\n- Artifact: `art_20260515_b979dd` (cross_alpha_v3_full_analysis)\\n- Registry: `alpha_sweep_a050_s42` metrics 已更新含 gen_10 + p_raw/p_fdr 字段\\n\\n## D024 文献调研：非单调 dose-response 是文献空白 (2026-05-15)\\n\\n### 核心结论\\n**没有论文直接报告过 diversity dose-response 的非单调性。** 这是 novel finding。\\n\\n### 理论锚点（已补入 literature_map.yaml）\\n- **He, Xu & Cheng (2025)** arXiv:2502.18049: 黄金比例权重理论——最优 real data 权重 w*(λ) 非单调非凸，risk landscape 在 mixing ratio 空间上本身不是单调的。我们的结果可视为该理论在 diversity metrics 上的实证验证。\\n- **Xu & Cheng (2025)** arXiv:2509.22341: 过参数化 regime 下 w > 1/3 vs w < 1/3 的 variance 行为质变——1/3 临界阈值与我们 α=0.25 处的行为一致。\\n- **Chen et al. (2025)** arXiv:2510.05133: 20-30% threshold 下稳定、以上退化加速；ECE 先于 accuracy 退化。但未细粒度扫描故未发现非单调性。\\n\\n### Framing 建议\\n- 非单调 dose-response 可作为独立 Results subsection（实证发现，非推测）\\n- 引用 He et al. 作为 risk landscape 非单调的理论先例，但强调我们首次在 diversity metrics 上展示\\n- 为 robust claim 需更细粒度 α sweep + 多 seed 置信区间\\n\\n### 最可信解释排序\\n1. \\\"最危险区间\\\"假说：α=0.25 恰好在\\\"够破坏分布尾部但不足以让模型快速饱和\\\"的区间\\n2. 饱和效应：α=0.50 快速进入 collapsed attractor，cumulative drift 反而小（已被 per-gen velocity 分析部分证伪——α=0.50 全程都慢，不只是后期饱和）\\n3. Regime 切换：不同 α 触发不同训练 regime（需更多 α 点验证）\\n\", \"total_chars\": 6703, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the complete analysis. I found the plan_006_s42 entry in the registry. Let me now write the analysis and save it as a project file, then update the registry.
+
+Let me compile the full 18-gen trajectory data and do the analysis.
+
+Complete data table:
+
+| Gen | token_entropy | self_bleu | distinct_1 | distinct_2 | distinct_3 | ece | effective_rank | perplexity | mauve |
+|-----|--------------|-----------|------------|------------|------------|-----|---------------|------------|-------|
+
+
+| 0 | 3.2342 | 0.01019 | 0.09822 | 0.51780 | 0.81273 | 0.01080 | 46.613 | 26.949 | 0.03407 |
+| 1 | 1.5253 | 0.01031 | 0.09753 | 0.51408 | 0.81039 | 0.32682 | 66.768 | 185.680 | 0.03233 |
+| 2 | 1.2962 | 0.01138 | 0.08461 | 0.43898 | 0.71411 |
+
+Populating the metrics table... Generating metrics table... Generating the metrics table... Looking at the drift from generation 0 to 17, I'm seeing some dramatic shifts—token entropy dropped significantly by 63%, diversity metrics declined across the board, but perplexity and effective rank exploded upward by over 12,000% and 112% respectively, while calibration error spiked dramatically. Extending to T=18 shows the metrics continue degrading, with distinct measures dropping another 2-6 percentage points and perplexity nearly doubling again, though entropy and calibration error have largely plateaued. Breaking this down by phase, the first five generations see the sharpest collapse across all diversity and entropy metrics. Now I'm seeing a third phase where diversity metrics start declining again—distinct_1 through distinct_3 all drop noticeably—while perplexity continues climbing but at a slower rate, and ECE actually improves slightly. This pattern suggests the model is degrading in some ways while stabilizing in others. Let me work through what this means for the overall analysis. Looking at the distinct_3 data, I see the same pattern—a stable plateau from gen_5 through gen_12, then a secondary decline starting at gen_13 that drops 4.6% (from 0.6339 to 0.5865) over five generations, which is notably smaller than the initial collapse.
+
+Now examining the perplexity growth rates across generations...
+
+Calculating the incremental changes through gen_17, I see the pattern continues with notable volatility—gen_12→13 drops sharply to +100.0, then rebounds to +266.7 at gen_13→14, before declining again to +77.0 at gen_14→15. The growth stabilizes somewhat in the later generations around +200-220 range.
+
+Looking at the relative growth rates across broader windows, the multipliers are clearly decelerating: early on the model explodes from 26.95 to 930.2 (a 34.5x jump), then gen_5→10 shows only 2.2x growth, and gen_10→17 slows further to 1.66x. When I fit this to a log scale, the trajectory appears roughly linear, which suggests the exponential growth phase is transitioning toward linear growth.
+
+Now I'll write up the analysis and update the registry with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "907cc8f9-f2ab-4081-acc0-37b61b8d2862",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Uz4PjxJScEAtBVNZwNtso",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19755,
+      "cache_read_input_tokens": 38715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+All data collected. Now compiling the full analysis and saving results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "fe158f09-e628-4dbb-ad0b-483030916ab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Uz4PjxJScEAtBVNZwNtso",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19755,
+      "cache_read_input_tokens": 38715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01RgaUgTv8KeBNbPWRB17h2G`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "memory.md",
+  "content": "# Cross-Alpha Analysis Memory (2026-05-15)\n\n## plan_006_s42 T=18 Extended Generation Analysis (2026-05-15)\n\n### 实验配置\n- 模型: Pythia-410m, 数据: WikiText-103 (全量), α=1.0, seed=42\n- steps_per_gen=10000, batch_size=4, max_length=512, lr=5e-5\n- 完成 gen_0–gen_17 (T=18), gen_18-20 超时未完成 (D034 决定不恢复)\n- GPU hours: 12.0h\n\n### 完整 18 代 Drift Trajectory\n\n| Gen | token_entropy | distinct_1 | distinct_2 | distinct_3 | ece | perplexity | self_bleu | eff_rank | mauve |\n|-----|--------------|------------|------------|------------|-----|------------|-----------|----------|-------|\n| 0 | 3.2342 | 0.0982 | 0.5178 | 0.8127 | 0.0108 | 26.95 | 0.0102 | 46.61 | 0.0341 |\n| 1 | 1.5253 | 0.0975 | 0.5141 | 0.8104 | 0.3268 | 185.68 | 0.0103 | 66.77 | 0.0323 |\n| 2 | 1.2962 | 0.0846 | 0.4390 | 0.7141 | 0.3781 | 380.41 | 0.0114 | 79.39 | 0.0336 |\n| 3 | 1.2141 | 0.0798 | 0.4025 | 0.6606 | 0.3986 | 568.76 | 0.0124 | 90.86 | 0.0335 |\n| 4 | 1.2192 | 0.0782 | 0.3890 | 0.6390 | 0.4093 | 734.41 | 0.0130 | 94.68 | 0.0322 |\n| 5 | 1.1711 | 0.0780 | 0.3867 | 0.6358 | 0.4223 | 930.22 | 0.0132 | 94.21 | 0.0329 |\n| 6 | 1.1343 | 0.0780 | 0.3865 | 0.6353 | 0.4322 | 1187.47 | 0.0132 | 96.77 | 0.0330 |\n| 7 | 1.1313 | 0.0780 | 0.3865 | 0.6352 | 0.4371 | 1389.60 | 0.0132 | 98.95 | 0.0328 |\n| 8 | 1.1402 | 0.0780 | 0.3865 | 0.6351 | 0.4384 | 1566.03 | 0.0132 | 96.50 | 0.0318 |\n| 9 | 1.1456 | 0.0779 | 0.3860 | 0.6342 | 0.4406 | 1786.72 | 0.0132 | 99.19 | 0.0323 |\n| 10 | 1.1468 | 0.0779 | 0.3860 | 0.6343 | 0.4443 | 2032.49 | 0.0132 | 101.80 | 0.0318 |\n| 11 | 1.1360 | 0.0779 | 0.3863 | 0.6348 | 0.4493 | 2306.49 | 0.0132 | 104.52 | 0.0327 |\n| 12 | 1.1498 | 0.0779 | 0.3859 | 0.6339 | 0.4502 | 2479.56 | 0.0132 | 101.99 | 0.0321 |\n| 13 | 1.1523 | 0.0777 | 0.3838 | 0.6299 | 0.4505 | 2579.57 | 0.0131 | 103.26 | 0.0325 |\n| 14 | 1.1397 | 0.0773 | 0.3798 | 0.6222 | 0.4540 | 2846.24 | 0.0131 | 105.49 | 0.0337 |\n| 15 | 1.1506 | 0.0770 | 0.3753 | 0.6151 | 0.4550 | 2923.24 | 0.0130 | 104.76 | 0.0329 |\n| 16 | 1.2079 | 0.0761 | 0.3665 | 0.5966 | 0.4500 | 3145.47 | 0.0134 | 96.83 | 0.0315 |\n| 17 | 1.1819 | 0.0756 | 0.3617 | 0.5865 | 0.4454 | 3367.66 | 0.0138 | 99.15 | 0.0321 |\n\n### 三相 Collapse 动力学（核心发现）\n\n**Phase 1: 急速崩塌 (gen_0→5)**\n- distinct_1: -20.6%, distinct_2: -25.3%, distinct_3: -21.8%\n- token_entropy: -63.8% (gen_0→1 即跌 52.8%)\n- ECE: +3810%, perplexity: +3353%\n- 特征: 所有指标同步大幅漂移\n\n**Phase 2: 表观稳态 (gen_5→12)**\n- distinct_1/2/3: 变化 <0.3% (近乎完全平坦)\n- token_entropy: 在 1.13-1.15 窄幅波动\n- ECE: 从 0.422 缓慢升至 0.450 (+6.6%)\n- perplexity: 从 930 → 2480 (+167%)，仍在增长但 diversity 已稳定\n- 特征: diversity 表观饱和，但 perplexity 持续恶化（分离）\n\n**Phase 3: 二次衰退 (gen_13→17)**\n- distinct_1: -2.7%, distinct_2: -5.8%, distinct_3: -6.9%\n- 断裂点在 gen_13: distinct_2 从 0.3859(gen_12) 跌至 0.3838(gen_13)\n- gen_16-17 加速: distinct_3 单代跌幅 0.019→0.010（gen_15→16 vs gen_16→17）\n- ECE 反而略回落（0.4505→0.4454），与 diversity 脱钩\n- 特征: diversity 的二次下降在 T=10 window 完全不可见\n\n### 总漂移 gen_0→17 (T=18)\n| Metric | gen_0 | gen_17 | Drift% |\n|--------|-------|--------|--------|\n| token_entropy | 3.234 | 1.182 | -63.4% |\n| distinct_1 | 0.0982 | 0.0756 | -23.0% |\n| distinct_2 | 0.5178 | 0.3617 | -30.1% |\n| distinct_3 | 0.8127 | 0.5865 | -27.8% |\n| ece | 0.0108 | 0.4454 | +4024% |\n| perplexity | 26.95 | 3367.66 | +12395% |\n| self_bleu | 0.0102 | 0.0138 | +35.4% |\n\n### T=10 vs T=18 对比\n| Metric | T=10 drift | T=18 drift | 新增漂移 (gen_10→17) |\n|--------|-----------|-----------|---------------------|\n| distinct_1 | -20.7% | -23.0% | -2.3pp (二次衰退) |\n| distinct_2 | -25.5% | -30.1% | -4.6pp (二次衰退) |\n| distinct_3 | -22.0% | -27.8% | -5.8pp (二次衰退) |\n| token_entropy | -64.6% | -63.4% | 已饱和 |\n| ece | +3979% | +4024% | 已饱和 |\n| perplexity | +6531% | +12395% | +5864pp (持续增长) |\n\n### 对统计检验的影响\n1. **TY Granger power 提升**: T=18 vs T=10 对应 bootstrap power ~0.28-0.41 (plan_009 的 T=20 结果)，显著优于 T=10 的 0.05-0.21\n2. **三相结构支持分段线性模型**: 可对 gen_0-5, gen_5-12, gen_13-17 分别拟合趋势\n3. **perplexity 与 diversity 分离**: perplexity 持续增长但 diversity 在 Phase 2 平稳——这对 canary 假说有额外解释力（entropy/ECE 作为 canary 在 Phase 2 已饱和，但 perplexity 作为 downstream 指标仍在恶化）\n\n### 对论文的启示\n- **T=18 数据的独特价值**: Phase 3 二次衰退是 T=10 无法发现的新现象\n- **不宜过度解读 Phase 3**: 单 seed 数据，需 plan_006_s43 等 multi-seed 确认\n- **Perplexity 未饱和**: 18 代仍在增长（约线性增长率 ~200/gen），完全饱和点未知\n\n---\n\n## D027 Multi-Method Consensus Framework (2026-05-15)\n\n### 设计决策\n- **Robust association 定义**: ≥K-1/K 种方法判定显著 + ≥3/4 seed 一致（默认 K=5）\n- **为什么选 K-1 而非 K**: TY 在 T=10 下 power 仅 5-20%（plan_009），unanimous 会把真信号也排除\n- **FNR ground truth 是 circular**: consensus 本身是 FNR 的 ground truth，FNR=0% by construction。论文必须诚实标注\n- **FPR ground truth 用 differenced_xcorr**: 差分后不显著 = 伪回归，这是 non-circular 的\n\n### 核心数字（论文 Key Table）\n| Method | FPR | FNR |\n|--------|:---:|:---:|\n| naive | 100% | 0% |\n| differenced | 0% | 0% |\n| threshold | 11.1% | 0% |\n| TY | 0% | 20.8% |\n| perm_granger | 11.1% | 0% |\n| consensus | 0% | 0% |\n\nTY FNR 20.8%（非预估的 50-94%）——FN 集中在 ece→d2/d3（TY 仅 2/4 seed sig）。\n\n### Sensitivity 结论\n- token_entropy→distinct: **9/9 配置 stable**（极度稳健）\n- ece→d2/d3: 7/9 stable（borderline，TY dissenter）\n- canary→perplexity: 3/9（阈值敏感，符合伪回归预期）\n- self_bleu/effective_rank: 0-2/9（伪回归确认）\n\n### D026 batch_size 决策\nDirector 批准：D026 multi-seed **保持 bs=4**（与 seed=42 可比），generalization 实验用 **bs=32**。原因：multi-seed 的价值是置信区间，需要同条件不同 seed；bs 改变后数据曝光量从 20K→160K sample-steps，training dynamics 不可比。\n\n---\n\n## D024 Dose-Response: 非单调性确认与解释\n\n### 核心数据\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\n|---|---|---|---|---|---|---|\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\n\n### 关键发现\n\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\n\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\n- α=0.50 的模型在第一代就进入\"低熵-高miscalibration\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\n\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\"地板效应\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\n\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\n\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\n|---|---|---|---|---|---|\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\n\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\n\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\n\n#### 3. Cross-Correlation Lead-Lag\n所有 α 下，Δentropy vs Δd1 在 lag=+1 有最强相关（r=0.87-1.03），说明 entropy 变化持续领先 d1 一代。\n\nα=0.50 的 ΔECE vs Δd1 在 lag=+1 有 r=-1.013（强负相关），说明 ECE 增加领先 d1 下降一代。（cross-correlation 结果，非因果推断）\n\n#### 4. 对后续实验的启示\n- α=0.75 是 pivotal boundary（D025）：决定 ECE canary 假说能否从定性信号升级为 FDR-sig 结论\n- a010/a060 补充 dose-response 曲线密度，验证非单调机制\n- 当前 3 个 α 点的 raw p-values 有清晰定性模式，但统计力不足——需更多 α 点积累 FDR 校正后仍显著的证据\n\n### Registry p-value 命名规范 (Reviewer 要求)\n所有 Granger p-value 字段必须加后缀区分：`_p_raw` 或 `_p_fdr`。不加后缀的旧字段已清理。\n\n---\n\n## v3 Full Analysis Update (2026-05-15, gen_0–gen_10, 11 点)\n\n### v2→v3 变化摘要\n- 数据：从 gen_0–gen_9（10 点）扩展到 gen_0–gen_10（11 点），三个 α 均有完整 gen_10 数据\n- Granger 检验数：从 8 对扩展到 12 对（加入反向 d1→entropy, d1→ECE）\n- 置换次数：从 2000 增加到 2500\n\n### v3 Dose-Response（gen0→gen10 drift%）\n| α | d1% | d2% | d3% | entropy% | ECE% | PPL% |\n|---|---|---|---|---|---|---|\n| 0.00 | -13.78 | -9.77 | -4.52 | -5.10 | +51.70 | -21.68 |\n| 0.25 | -40.34 | -57.14 | -59.85 | -4.10 | +79.72 | -17.19 |\n| 0.50 | -37.28 | -51.46 | -52.35 | -18.62 | +842.79 | +21.13 |\n\n**非单调 dose-response 在 11 gen 数据下依然成立**：α=0.25 的 d1/d2/d3 collapse 均大于 α=0.50。\n\n### v3 Granger Causality（12 tests, BH FDR, 2500 perms, differenced）\n| α | direction | F-stat | p_raw | p_fdr | 备注 |\n|---|---|---|---|---|---|\n| 0.00 | entropy→d1 | 48.35 | 0.058 | 0.174 | null control, 不再 borderline sig（v2 时为 0.048）|\n| 0.00 | ECE→d1 | 0.002 | 0.949 | 0.949 | |\n| 0.00 | d1→entropy | 0.211 | 0.789 | 0.861 | |\n| 0.00 | d1→ECE | 0.835 | 0.338 | 0.451 | |\n| 0.25 | entropy→d1 | 163.24 | 0.015 | 0.093 | raw sig, FDR n.s. |\n| 0.25 | ECE→d1 | 1.777 | 0.228 | 0.390 | |\n| 0.25 | d1→entropy | 7.828 | 0.023 | 0.093 | 双向 raw sig |\n| 0.25 | d1→ECE | 0.737 | 0.459 | 0.551 | |\n| 0.50 | entropy→d1 | 127.48 | 0.098 | 0.234 | |\n| 0.50 | ECE→d1 | 79.24 | 0.021 | 0.093 | ECE raw p < entropy raw p |\n| 0.50 | d1→entropy | 1.999 | 0.224 | 0.390 | |\n| 0.50 | d1→ECE | 1.574 | 0.282 | 0.422 | |\n\n**0/12 FDR-significant。** 定性模式不变：α=0.25 entropy 领先，α=0.50 ECE 领先。\n\n关键变化：α=0.00 entropy→d1 p_raw 从 0.048（v2）升至 0.058（v3），不再需要 borderline FP 标注——额外一个 gen 的数据稀释了该信号，符合 null control 预期。\n\n### v3 Cross-Correlation\n| α | Δentropy vs Δd1 peak | r | ΔECE vs Δd1 peak | r |\n|---|---|---|---|---|\n| 0.00 | lag=+1 | 0.94 | lag=-2 | 0.70 |\n| 0.25 | lag=+1 | 0.80 | lag=-3 | -0.57 |\n| 0.50 | lag=+1 | 0.88 | lag=+1 | -0.95 |\n\nentropy 一致在 lag=+1 领先 d1。α=0.50 下 ECE 也在 lag=+1 领先（r=-0.95，强负相关）。\n\n### v3 Per-Gen Velocity\n| α | cum_drift% | mean_v/gen | max_drop |\n|---|---|---|---|\n| 0.00 | -13.78 | -0.00135 | gen1→gen2 (-0.0087) |\n| 0.25 | -40.34 | -0.00396 | gen1→gen2 (-0.0173) |\n| 0.50 | -37.28 | -0.00366 | gen1→gen2 (-0.0148) |\n\nα=0.25 全程 velocity 均快于 α=0.50，且差距在中后期（gen5+）保持稳定。这否定了\"α=0.50 早期快后期饱和\"的解释。\n\n### 产出文件\n- 服务器 JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json`\n- Artifact: `art_20260515_b979dd` (cross_alpha_v3_full_analysis)\n- Registry: `alpha_sweep_a050_s42` metrics 已更新含 gen_10 + p_raw/p_fdr 字段\n\n## D024 文献调研：非单调 dose-response 是文献空白 (2026-05-15)\n\n### 核心结论\n**没有论文直接报告过 diversity dose-response 的非单调性。** 这是 novel finding。\n\n### 理论锚点（已补入 literature_map.yaml）\n- **He, Xu & Cheng (2025)** arXiv:2502.18049: 黄金比例权重理论——最优 real data 权重 w*(λ) 非单调非凸，risk landscape 在 mixing ratio 空间上本身不是单调的。我们的结果可视为该理论在 diversity metrics 上的实证验证。\n- **Xu & Cheng (2025)** arXiv:2509.22341: 过参数化 regime 下 w > 1/3 vs w < 1/3 的 variance 行为质变——1/3 临界阈值与我们 α=0.25 处的行为一致。\n- **Chen et al. (2025)** arXiv:2510.05133: 20-30% threshold 下稳定、以上退化加速；ECE 先于 accuracy 退化。但未细粒度扫描故未发现非单调性。\n\n### Framing 建议\n- 非单调 dose-response 可作为独立 Results subsection（实证发现，非推测）\n- 引用 He et al. 作为 risk landscape 非单调的理论先例，但强调我们首次在 diversity metrics 上展示\n- 为 robust claim 需更细粒度 α sweep + 多 seed 置信区间\n\n### 最可信解释排序\n1. \"最危险区间\"假说：α=0.25 恰好在\"够破坏分布尾部但不足以让模型快速饱和\"的区间\n2. 饱和效应：α=0.50 快速进入 collapsed attractor，cumulative drift 反而小（已被 per-gen velocity 分析部分证伪——α=0.50 全程都慢，不只是后期饱和）\n3. Regime 切换：不同 α 触发不同训练 regime（需更多 α 点验证）"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "b0a5a5fe-ea3e-46e2-9458-e7268f73895e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Uz4PjxJScEAtBVNZwNtso",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19755,
+      "cache_read_input_tokens": 38715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T12:16:51.446Z_
+
+<details><summary>↩ Tool result · `toolu_01RgaUgTv8KeBNbPWRB17h2G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "187bf835-52c8-46ad-a2d8-d2a322e8c97f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SWRo2dqUriqqpMFTGwStai`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "exp_id": "plan_006_s42",
+  "field": "notes",
+  "value": "gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "bf8bd301-e5e8-44f9-a00a-8d0fb651a440",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Uz4PjxJScEAtBVNZwNtso",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19755,
+      "cache_read_input_tokens": 38715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T12:16:57.921Z_
+
+<details><summary>↩ Tool result · `toolu_01SWRo2dqUriqqpMFTGwStai`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:16:57.846Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1347}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "9cb606a2-657c-41e5-95ff-d30290d8c7a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:16:57.846Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:41:30.666Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 43212.6, \\\"gpu_hours\\\": 12.0}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T23:41:29.125Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:41:42.336Z\\\", \\\"training_hours\\\": 12.0}, \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"14/20 gen (generating synthetic data)\\\", \\\"gen9_token_entropy\\\": 1.1456, \\\"gen9_ece\\\": 0.4406, \\\"gen9_perplexity\\\": 1786.72, \\\"gen9_distinct_1\\\": 0.0779, \\\"gen9_distinct_2\\\": 0.386, \\\"gen9_distinct_3\\\": 0.6342, \\\"distinct_1_drift_pct_gen0_9\\\": -20.7, \\\"entropy_drift_pct_gen0_1\\\": -52.8, \\\"ppl_drift_pct_gen0_9\\\": 6530.5, \\\"diversity_saturated_at_gen\\\": 5, \\\"eta_hours\\\": 3}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T11:41:43.235Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:41:44.300301+00:00\\\"}]}, \\\"notes\\\": \\\"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1347}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:16:57.846Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1347}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also update the registry metrics for plan_006_s42 with the T=18 data, and register the analysis as an artifact.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "878dc51f-518c-4a87-a4c6-c1314bc5bcc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4fQWQcAphH4igrNhZeXLY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12348,
+      "cache_read_input_tokens": 58470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Now updating the registry metrics with T=18 data and registering the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "e5212af5-7d12-4af2-bd6f-867e2e8ee898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4fQWQcAphH4igrNhZeXLY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12348,
+      "cache_read_input_tokens": 58470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CDK8e8hHzHEKzKuJvRYkmL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "aac094b2-935d-4cad-bb0d-ab9d2ff1fd08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4fQWQcAphH4igrNhZeXLY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12348,
+      "cache_read_input_tokens": 58470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12348
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T12:17:03.053Z_
+
+<details><summary>↩ Tool result · `toolu_01CDK8e8hHzHEKzKuJvRYkmL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "57014a1f-9db3-4f52-ab6b-902134b52a96",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Pkrr3Lqn4izi5i2X64STLb`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "exp_id": "plan_006_s42",
+  "field": "metrics",
+  "value": {
+    "progress": "18/20 gen (gen_0-17 complete, gen_18-20 timeout)",
+    "gen0_token_entropy": 3.2342,
+    "gen17_token_entropy": 1.1819,
+    "gen0_ece": 0.0108,
+    "gen17_ece": 0.4454,
+    "gen0_perplexity": 26.95,
+    "gen17_perplexity": 3367.66,
+    "gen0_distinct_1": 0.0982,
+    "gen17_distinct_1": 0.0756,
+    "gen0_distinct_2": 0.5178,
+    "gen17_distinct_2": 0.3617,
+    "gen0_distinct_3": 0.8127,
+    "gen17_distinct_3": 0.5865,
+    "token_entropy_drift_pct_gen0_17": -63.4,
+    "distinct_1_drift_pct_gen0_17": -23,
+    "distinct_2_drift_pct_gen0_17": -30.1,
+    "distinct_3_drift_pct_gen0_17": -27.8,
+    "ece_drift_pct_gen0_17": 4024,
+    "ppl_drift_pct_gen0_17": 12395,
+    "phase1_rapid_collapse": "gen0-5",
+    "phase2_apparent_plateau": "gen5-12",
+    "phase3_secondary_decline": "gen13-17",
+    "phase3_d2_decline_pct": -5.8,
+    "phase3_d3_decline_pct": -6.9,
+    "diversity_saturated_at_gen": 5,
+    "diversity_secondary_decline_at_gen": 13,
+    "perplexity_saturated": false
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "66d3c9a8-cc7a-444e-aabe-6f8855f143ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFk9D8LdTghoKAd9iMdBgq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 70818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T12:17:14.149Z_
+
+<details><summary>↩ Tool result · `toolu_01Pkrr3Lqn4izi5i2X64STLb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1172}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "f91d0571-eeb4-4d10-9377-a81d10d9fb80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:17:14.093Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:41:30.666Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 43212.6, \\\"gpu_hours\\\": 12.0}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T23:41:29.125Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:41:42.336Z\\\", \\\"training_hours\\\": 12.0}, \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T11:41:43.235Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:41:44.300301+00:00\\\"}]}, \\\"notes\\\": \\\"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1172}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1172}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01MDvGBnfaGy7Hz48erUK3A8`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "name": "plan_006_s42_T18_analysis",
+  "type": "report",
+  "description": "T=18 extended generation drift analysis for plan_006_s42 (α=1.0, Pythia-410m, WikiText-103). Documents three-phase collapse dynamics: rapid collapse (gen0-5), apparent plateau (gen5-12), secondary diversity decline (gen13-17). Full 18-gen trajectory table for all metrics.",
+  "exp_id": "plan_006_s42",
+  "content_filename": "plan_006_s42_T18_analysis.md",
+  "tags": [
+    "T18",
+    "extended-gen",
+    "three-phase-collapse",
+    "supplementary"
+  ],
+  "content": "# plan_006_s42 T=18 Extended Generation Analysis\n\n## Configuration\n- Model: EleutherAI/pythia-410m\n- Dataset: WikiText-103 (full, not 5k subset)\n- α (synthetic_ratio): 1.0\n- Seed: 42\n- steps_per_gen: 10000, batch_size: 4, lr: 5e-5, max_length: 512\n- Completed: gen_0–gen_17 (T=18), gen_18-20 timeout (D034: T=18 sufficient)\n- GPU hours: 12.0h on A100\n\n## Full 18-Generation Drift Trajectory\n\n| Gen | token_entropy | distinct_1 | distinct_2 | distinct_3 | ece | perplexity | self_bleu | eff_rank | mauve |\n|-----|--------------|------------|------------|------------|-----|------------|-----------|----------|-------|\n| 0 | 3.2342 | 0.0982 | 0.5178 | 0.8127 | 0.0108 | 26.95 | 0.0102 | 46.61 | 0.0341 |\n| 1 | 1.5253 | 0.0975 | 0.5141 | 0.8104 | 0.3268 | 185.68 | 0.0103 | 66.77 | 0.0323 |\n| 2 | 1.2962 | 0.0846 | 0.4390 | 0.7141 | 0.3781 | 380.41 | 0.0114 | 79.39 | 0.0336 |\n| 3 | 1.2141 | 0.0798 | 0.4025 | 0.6606 | 0.3986 | 568.76 | 0.0124 | 90.86 | 0.0335 |\n| 4 | 1.2192 | 0.0782 | 0.3890 | 0.6390 | 0.4093 | 734.41 | 0.0130 | 94.68 | 0.0322 |\n| 5 | 1.1711 | 0.0780 | 0.3867 | 0.6358 | 0.4223 | 930.22 | 0.0132 | 94.21 | 0.0329 |\n| 6 | 1.1343 | 0.0780 | 0.3865 | 0.6353 | 0.4322 | 1187.47 | 0.0132 | 96.77 | 0.0330 |\n| 7 | 1.1313 | 0.0780 | 0.3865 | 0.6352 | 0.4371 | 1389.60 | 0.0132 | 98.95 | 0.0328 |\n| 8 | 1.1402 | 0.0780 | 0.3865 | 0.6351 | 0.4384 | 1566.03 | 0.0132 | 96.50 | 0.0318 |\n| 9 | 1.1456 | 0.0779 | 0.3860 | 0.6342 | 0.4406 | 1786.72 | 0.0132 | 99.19 | 0.0323 |\n| 10 | 1.1468 | 0.0779 | 0.3860 | 0.6343 | 0.4443 | 2032.49 | 0.0132 | 101.80 | 0.0318 |\n| 11 | 1.1360 | 0.0779 | 0.3863 | 0.6348 | 0.4493 | 2306.49 | 0.0132 | 104.52 | 0.0327 |\n| 12 | 1.1498 | 0.0779 | 0.3859 | 0.6339 | 0.4502 | 2479.56 | 0.0132 | 101.99 | 0.0321 |\n| 13 | 1.1523 | 0.0777 | 0.3838 | 0.6299 | 0.4505 | 2579.57 | 0.0131 | 103.26 | 0.0325 |\n| 14 | 1.1397 | 0.0773 | 0.3798 | 0.6222 | 0.4540 | 2846.24 | 0.0131 | 105.49 | 0.0337 |\n| 15 | 1.1506 | 0.0770 | 0.3753 | 0.6151 | 0.4550 | 2923.24 | 0.0130 | 104.76 | 0.0329 |\n| 16 | 1.2079 | 0.0761 | 0.3665 | 0.5966 | 0.4500 | 3145.47 | 0.0134 | 96.83 | 0.0315 |\n| 17 | 1.1819 | 0.0756 | 0.3617 | 0.5865 | 0.4454 | 3367.66 | 0.0138 | 99.15 | 0.0321 |\n\n## Three-Phase Collapse Dynamics\n\n### Phase 1: Rapid Collapse (gen_0→5)\n- distinct_1: 0.0982→0.0780 (-20.6%)\n- distinct_2: 0.5178→0.3867 (-25.3%)\n- distinct_3: 0.8127→0.6358 (-21.8%)\n- token_entropy: 3.234→1.171 (-63.8%, with 52.8% drop at gen_0→1 alone)\n- ECE: 0.0108→0.4223 (+3810%)\n- perplexity: 26.95→930.22 (+3353%)\n\n### Phase 2: Apparent Plateau (gen_5→12)\n- distinct_1/2/3: <0.3% total change (near-flat)\n- token_entropy: oscillates in 1.13-1.15 band\n- ECE: 0.422→0.450 (+6.6%, slow drift)\n- perplexity: 930→2480 (+167%, still growing while diversity is stable)\n- Key observation: diversity-perplexity decoupling — model quality degrades but output diversity appears saturated\n\n### Phase 3: Secondary Decline (gen_13→17)\n- distinct_1: 0.0779→0.0756 (-2.7%)\n- distinct_2: 0.3859→0.3617 (-5.8%)\n- distinct_3: 0.6339→0.5865 (-6.9%)\n- Breakpoint at gen_13: distinct_2 drops from 0.3859 to 0.3838\n- Acceleration at gen_16-17: distinct_3 drops 0.019 and 0.010 in consecutive generations\n- ECE slightly reverses (0.4505→0.4454), decoupling from diversity\n- **This phase is invisible in T=10 data**\n\n## T=10 vs T=18 Comparison\n\n| Metric | T=10 drift (gen0→9) | T=18 drift (gen0→17) | Additional drift gen10→17 |\n|--------|---------------------|----------------------|--------------------------|\n| distinct_1 | -20.7% | -23.0% | -2.3pp |\n| distinct_2 | -25.5% | -30.1% | -4.6pp |\n| distinct_3 | -22.0% | -27.8% | -5.8pp |\n| token_entropy | -64.6% | -63.4% | saturated |\n| ECE | +3979% | +4024% | saturated |\n| perplexity | +6531% | +12395% | +5864pp (still growing) |\n\n## Implications\n\n1. **For statistical power**: T=18 corresponds to TY Granger power ~0.28-0.41 (plan_009 bootstrap at T=20), substantially better than T=10's 0.05-0.21\n2. **For paper narrative**: Three-phase collapse supports a richer story than simple monotonic decay\n3. **Perplexity non-saturation**: 18 generations still insufficient for perplexity plateau — growth rate ~200/gen remains roughly constant\n4. **Metric-dependent saturation**: token_entropy and ECE saturate by gen_5-6; diversity saturates gen_5-12 then resumes decline; perplexity never saturates\n5. **Caution (C001)**: Single seed — Phase 3 secondary decline must be confirmed with multi-seed before citing in paper\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "4771309e-b748-44bb-95fe-a6f4739ea9b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFk9D8LdTghoKAd9iMdBgq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 70818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T12:17:55.814Z_
+
+<details><summary>↩ Tool result · `toolu_01MDvGBnfaGy7Hz48erUK3A8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_90f5b2\", \"name\": \"plan_006_s42_T18_analysis\", \"type\": \"report\", \"description\": \"T=18 extended generation drift analysis for plan_006_s42 (α=1.0, Pythia-410m, WikiText-103). Documents three-phase collapse dynamics: rapid collapse (gen0-5), apparent plateau (gen5-12), secondary diversity decline (gen13-17). Full 18-gen trajectory table for all metrics.\", \"path\": \"projects/distrib_canary_collapse/artifacts/plan_006_s42/report/plan_006_s42_T18_analysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"plan_006_s42\", \"skill\": \"\", \"created_at\": \"2026-05-15T12:17:55.755469+00:00\", \"tags\": [\"T18\", \"extended-gen\", \"three-phase-collapse\", \"supplementary\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "3d68e5c6-aebd-48fc-a52c-44c77fb79234",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_90f5b2\\\", \\\"name\\\": \\\"plan_006_s42_T18_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"T=18 extended generation drift analysis for plan_006_s42 (α=1.0, Pythia-410m, WikiText-103). Documents three-phase collapse dynamics: rapid collapse (gen0-5), apparent plateau (gen5-12), secondary diversity decline (gen13-17). Full 18-gen trajectory table for all metrics.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/plan_006_s42/report/plan_006_s42_T18_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": \\\"plan_006_s42\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:17:55.755469+00:00\\\", \\\"tags\\\": [\\\"T18\\\", \\\"extended-gen\\\", \\\"three-phase-collapse\\\", \\\"supplementary\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_90f5b2\", \"name\": \"plan_006_s42_T18_analysis\", \"type\": \"report\", \"description\": \"T=18 extended generation drift analysis for plan_006_s42 (α=1.0, Pythia-410m, WikiText-103). Documents three-phase collapse dynamics: rapid collapse (gen0-5), apparent plateau (gen5-12), secondary diversity decline (gen13-17). Full 18-gen trajectory table for all metrics.\", \"path\": \"projects/distrib_canary_collapse/artifacts/plan_006_s42/report/plan_006_s42_T18_analysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"plan_006_s42\", \"skill\": \"\", \"created_at\": \"2026-05-15T12:17:55.755469+00:00\", \"tags\": [\"T18\", \"extended-gen\", \"three-phase-collapse\", \"supplementary\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+分析完成。以下是关键发现总结：
+
+---
+
+## plan_006_s42 T=18 分析结果
+
+### 数据完整性
+gen_0–gen_17 共 18 代数据完整，gen_18 为空目录（超时中断）。
+
+### 核心发现：三相 Collapse 动力学
+
+| 阶段 | 区间 | diversity 变化 | 特征 |
+|------|------|---------------|------|
+| **Phase 1** 急速崩塌 | gen_0→5 | d1 -20.6%, d2 -25.3%, d3 -21.8% | entropy 一代跌 52.8%，所有指标同步漂移 |
+| **Phase 2** 表观稳态 | gen_5→12 | d1/d2/d3 < 0.3% | diversity 近乎平坦，但 perplexity 仍涨 167% |
+| **Phase 3** 二次衰退 | gen_13→17 | d2 -5.8%, d3 -6.9% | 断裂点 gen_13，gen_16-17 加速下降 |
+
+### T=10 vs T=18 新增价值
+- Phase 3 二次衰退在 T=10 窗口**完全不可见**——T=10 只能看到 Phase 1+2 的"崩塌→饱和"故事
+- Perplexity **从未饱和**：26.95 → 3367.66 (+12395%)，18 代后仍以 ~200/gen 速率线性增长
+- 指标饱和时间分层：entropy/ECE 在 gen_5 饱和 → diversity 在 gen_5-12 表观饱和 → diversity gen_13 恢复下降 → perplexity 从不饱和
+
+### 统计功效
+T=18 对应 TY Granger power 约 0.28–0.41（参考 plan_009 bootstrap T=20），显著优于 T=10 的 0.05–0.21。
+
+### 注意事项
+单 seed 数据（C001 约束），Phase 3 二次衰退需 plan_006_s43 等 multi-seed 确认后方可写入论文。
+
+---
+
+**产出**: memory.md 已更新 · registry notes+metrics 已写入 · artifact `art_20260515_90f5b2` 已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "uuid": "3634a46b-692f-440b-a715-246b8eb5d161",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJmKqh6MBLD535YwFn6qqr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5251,
+      "cache_read_input_tokens": 71595,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+分析完成。以下是关键发现总结：
+
+---
+
+## plan_006_s42 T=18 分析结果
+
+### 数据完整性
+gen_0–gen_17 共 18 代数据完整，gen_18 为空目录（超时中断）。
+
+### 核心发现：三相 Collapse 动力学
+
+| 阶段 | 区间 | diversity 变化 | 特征 |
+|------|------|---------------|------|
+| **Phase 1** 急速崩塌 | gen_0→5 | d1 -20.6%, d2 -25.3%, d3 -21.8% | entropy 一代跌 52.8%，所有指标同步漂移 |
+| **Phase 2** 表观稳态 | gen_5→12 | d1/d2/d3 < 0.3% | diversity 近乎平坦，但 perplexity 仍涨 167% |
+| **Phase 3** 二次衰退 | gen_13→17 | d2 -5.8%, d3 -6.9% | 断裂点 gen_13，gen_16-17 加速下降 |
+
+### T=10 vs T=18 新增价值
+- Phase 3 二次衰退在 T=10 窗口**完全不可见**——T=10 只能看到 Phase 1+2 的"崩塌→饱和"故事
+- Perplexity **从未饱和**：26.95 → 3367.66 (+12395%)，18 代后仍以 ~200/gen 速率线性增长
+- 指标饱和时间分层：entropy/ECE 在 gen_5 饱和 → diversity 在 gen_5-12 表观饱和 → diversity gen_13 恢复下降 → perplexity 从不饱和
+
+### 统计功效
+T=18 对应 TY Granger power 约 0.28–0.41（参考 plan_009 bootstrap T=20），显著优于 T=10 的 0.05–0.21。
+
+### 注意事项
+单 seed 数据（C001 约束），Phase 3 二次衰退需 plan_006_s43 等 multi-seed 确认后方可写入论文。
+
+---
+
+**产出**: memory.md 已更新 · registry notes+metrics 已写入 · artifact `art_20260515_90f5b2` 已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 392866,
+  "duration_api_ms": 392406,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "ca999a2f-5eab-4e04-9930-50d93e79ec33",
+  "total_cost_usd": 1.24193125,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 86197,
+    "cache_read_input_tokens": 342682,
+    "output_tokens": 21204,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 86197,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 676,
+        "cache_read_input_tokens": 71595,
+        "cache_creation_input_tokens": 5251,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5251
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1579,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016840000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 21204,
+      "cacheReadInputTokens": 342682,
+      "cacheCreationInputTokens": 86197,
+      "webSearchRequests": 0,
+      "costUSD": 1.2402472500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f840803c-c91b-458e-95bb-e35f3f0072ac"
+}
+```
+
+</details>
+
+---

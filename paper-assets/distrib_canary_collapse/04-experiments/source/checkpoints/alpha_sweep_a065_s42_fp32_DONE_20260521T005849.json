@@ -1,0 +1,68 @@
+{
+  "exp_id": "alpha_sweep_a065_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:34:26.984Z",
+    "updated_at": "2026-05-21T00:58:49.030Z",
+    "hypothesis": "D126 Track 3 dip recovery mapping: α=0.65 s42 fp32 填补 sync collapse dip(0.60)→detection recovery(0.75) 的过渡区。α=0.60 存在非单调 PermG dip，α=0.75 恢复到 6/8。α=0.65 确定恢复是渐进还是突变——如果 PermG 已恢复则 dip 仅限 [0.55,0.60]；如果仍被压制则 sync collapse 区扩展至 [0.55,0.65]。",
+    "parent": "alpha_sweep_a060_s42_fp32_v4",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.65 --num_generations 10 --output_dir results/alpha_sweep/a065_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "checkpoint_source": "alpha_sweep_a060_s42_fp32_v4",
+      "eval_data": "data/wikitext103_5k",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a065_s42_fp32",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a065_s42_fp32.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T00:51:11.120Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T00:51:16.270308+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "K4_3sigma": "0/8",
+      "K3_3sigma": "1/8",
+      "threshold_onset_3sigma": "0/8",
+      "naive_xcorr": "2/8",
+      "diff_xcorr": "6/8",
+      "ty_granger": "6/8",
+      "drift_token_entropy": "-29.12%",
+      "drift_ece": "+1693.18%",
+      "drift_perplexity": "+123.75%",
+      "drift_distinct1": "-29.28%",
+      "drift_distinct2": "-36.91%",
+      "drift_distinct3": "-34.10%",
+      "drift_mauve": "-5.23%",
+      "drift_effective_rank": "+66.88%",
+      "D111_direction_check": "applied: naive 2/8→2/8, diff 6/8→6/8, K3 6/8→1/8, K4 1/8→0/8",
+      "D105_note": "threshold_onset_3sigma=0/8: downstream never crosses 3sigma, canary onset gen1(ent)/gen2(ece)",
+      "PermG_marginal": "ece pairs p_raw=0.014-0.025 but p_fdr=0.067 (fails FDR)"
+    },
+    "checkpoint_path": "results/alpha_sweep/a065_s42_fp32/gen_10/checkpoint",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a065_s42_fp32.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T00:57:46.902Z"
+  },
+  "timestamp": "2026-05-21T00:58:49.413905+00:00",
+  "trigger": "update_registry"
+}

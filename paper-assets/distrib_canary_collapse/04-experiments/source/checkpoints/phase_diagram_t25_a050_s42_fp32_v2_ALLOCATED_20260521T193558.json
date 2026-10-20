@@ -1,0 +1,29 @@
+{
+  "exp_id": "phase_diagram_t25_a050_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:31:41.307Z",
+    "updated_at": "2026-05-21T19:35:58.040Z",
+    "hypothesis": "Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 above threshold. At T=10 PermG=6/8, T=15 6/8, T=20 6/8. If T=25 ≥6/8, confirms detection scaling and 6/8 ceiling persistence. v2 restart after v1 disk-full crash at gen_14/25 (M065).",
+    "parent": "phase_diagram_t25_a050_s42_fp32",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "552682",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32_v2.log",
+      "submitted_at": "2026-05-21T19:32:17.943Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T19:35:58.410979+00:00",
+  "trigger": "update_registry"
+}

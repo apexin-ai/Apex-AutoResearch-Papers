@@ -1,0 +1,76 @@
+# reviewer / loop_17.md
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_17.md`
+- **Structured JSON:** [`49a8cd3b1ae69f374085.json`](../../sessions/49/49a8cd3b1ae69f374085.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 17
+reason: max_wall_time
+updated: '2026-05-25T03:18:30+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- westd-19828 只有 **1 个 GPU (cuda:0)**，ROADMAP 曾错写 2 GPU，已修正。提交训练任务禁止用 cuda:1。
+- D102 分析必须用 `run_5method_analysis_d102.py`（memory M063），6-pair basis（排除 mauve），threshold=true_3sigma_d105，n_perm=5000。
+- FPR 统计用 6-pair basis pooling（不是 8-pair）。当前论文数字：PermG 4/60=6.7%（10 seeds），K≥3 6/60=10.0%。
+- 论文 FPR 范围写 "7% to 94%"（概数），精确值写 6.7%。全文已统一为 10 seeds，不要回退到 9 seeds。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-19828 (root)，1× NVIDIA RTX PRO 6000 Blackwell 98GB VRAM
+- 工作目录：`/root/autodl-tmp/distrib_canary_collapse`
+- Python：`/root/miniconda3/bin/python`（conda base）
+- HF cache：`/root/autodl-tmp/.hf_cache`（所有训练命令必须 `export HF_HOME=/root/autodl-tmp/.hf_cache`）
+- 数据：`data/wikitext103_5k`（5000 条 WikiText-103）
+- 已缓存模型：Pythia-410M, Pythia-1.4B, GPT-2-medium, OPT-1.3B, SmolLM3-3B
+- 未缓存：Qwen 系列（且 Qwen2.5-0.8B 不存在，需 Director 确认替代）
+- 活跃进程：C2-s42 PID 32378 (tmux, cuda:0, OPT-1.3B α=0.50 s42)
+- 本地论文：`projects/distrib_canary_collapse/docs/paper/`
+
+### 3. 📊 当前状态
+**刚完成**：
+- s51 null D102 分析审查 → PASS（PermG 0/6, K≥3 0/6，干净 null）
+- C2-s43 CPU 训练问题发现 → CRITICAL 上报 → 进程已 kill，registry 标记 failed
+- C1 intervention prep 审查 → PASS，建议不加 Qwen（scope creep）
+- ROADMAP 审查 2 轮 → GPU 数量修正确认
+
+**RUNNING 实验**：
+- `c2_opt13b_a050_s42_fp32`：OPT-1.3B α=0.50 s42，cuda:0，~26 min elapsed（约 6-7h 总时间）
+
+**等待中**：
+- C2-s42 完成通知 → D102 分析 → 论文更新（这是 3.0→3.5 的关键实验）
+- C2-s43 重跑（等 s42 完成后用 cuda:0）
+- Director 对 C1 范围的决策（加不加 Qwen）
+
+### 4. 📋 待办（条件触发式）
+- C2-s42 训练完成通知 → 验证 all_metrics.json + EXIT_CODE → 审查 D102 分析结果 → 核对论文更新（§4.5 + limitations.tex:5 的 "limited to α=1.0" 措辞）
+- C2-s43 重跑完成 → 同上 D102 审查 → 确认跨 seed 一致性（s42 vs s43 PermG forward 检出率）
+- C2 PermG forward ≥6/8 → 支持 "transition region generalizes"；<4/8 → 需要 negative framing 审查（加载 negative-framing-review skill）
+- C1 实验提交 → 验证 CUDA_VISIBLE_DEVICES=0（绝不用 1）、HF_HOME 设置、intervention 参数
+- 论文章节审查请求 → 先查 paper-quality-lessons skill，按 §7 写作审计维度审
+
+### 5. 🎯 战略上下文
+- **论文目标**：EMNLP 2026 ARR June（DDL ~2026-06-15），当前 R14=3.0 (Findings)，目标 3.5 (Borderline Conference)
+- **升分关键**：C2 成功 = cross-arch claim 从 "α=1.0 only" 扩展到 "transition region also generalizes" → 直接回应审稿人 "Pythia-only phase diagram" 攻击面
+- **α=0.60 anomaly**：K≥3=0/8（不是之前错误的 8/8），影响所有 directional methods。这是之前最大的数据错误，已修正。如果论文任何地方再出现 α=0.60 K≥3≠0/8，立即 CRITICAL。
+- **GPT-2-medium FPR=50%**：PermG standalone 在 GPT-2m null 下 6/6 FP（s42），但 K≥3 consensus 0/6。论文已写明 "standalone PermG claims require architecture-specific null calibration"。C1 intervention 用 GPT-2m 没问题（测 PPL 减少，不测 detection）。
+- **易错点**：(1) 不要混淆 v3_d080 和 v4 分析结果——v4 是权威版本（per D125）；(2) registry 中 "failed" 标记有时是 false failure（如 s51），需独立验证 EXIT_CODE 和输出完整性；(3) 服务器只有 1 GPU，任何声称用 cuda:1 的提交都会静默 fallback 到 CPU。
+
+
+---

@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "alpha": 0.6,
+    "seed": 43,
+    "n_gens": 16,
+    "data_dir": "results/phase_diagram/t15_a060_s43_fp32_14b",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 6,
+    "perm_granger_fdr_reverse_sig": 3,
+    "diff_xcorr_fdr_forward_sig": 6,
+    "diff_xcorr_fdr_reverse_sig": 6,
+    "threshold_forward_sig": 8,
+    "ty_forward_sig": 3,
+    "robust_pairs": 6
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 3, "methods": ["diff", "threshold", "perm"]},
+    {"pair": "token_entropy<distinct_2", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy<distinct_3", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy<mauve", "votes": 1, "methods": ["threshold"]},
+    {"pair": "ece<distinct_1", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece<distinct_2", "votes": 5, "methods": ["naive", "diff", "threshold", "perm", "ty"]},
+    {"pair": "ece<distinct_3", "votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece<mauve", "votes": 1, "methods": ["threshold"]}
+  ]
+}

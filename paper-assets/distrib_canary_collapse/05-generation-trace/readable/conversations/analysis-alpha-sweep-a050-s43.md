@@ -1,0 +1,661 @@
+# analysis alpha sweep a050 s43
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_analysis_alpha_sweep_a050_s43_20260515T220115.jsonl`
+- **Structured JSON:** [`c8aab7baf34a9775bf6c.json`](../../sessions/c8/c8aab7baf34a9775bf6c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T22:02:52.957454+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T22:02:52.957721+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T22:02:52.957885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -100 ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "tail -100 ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T22:02:52.958011+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T22:02:52.958128+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/gen_10/checkpoint/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/gen_10/checkpoint/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T22:02:52.958350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only arch
+…[truncated 6373 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T22:02:52.958584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2341948700181407,\\n    \\\"self_bleu\\\": 0.010826090501434389,\\n    \\\"distinct_1\\\": 0.09833431219002871,\\n    \\\"distinct_2\\\": 0.5131779657560506,\\n    \\\"distinct_3\\\": 0.8056693041846806,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"mauve\\\": 0.03350582133330568,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5287108698524645,\\n    \\\"self_bleu\\\": 0.010964385056351856,\\n    \\\"distinct_1\\\": 0.09963439966763606,\\n    \\\"distinct_2\\\": 0.5176943722008492,\\n    \\\"distinct_3\\\": 0.8097101738292286,\\n    \\\"ece\\\": 0.0663907940972849,\\n    \\\"effective_rank\\\": 58.68632835834813,\\n    \\\"perplexity\\\": 22.980602298378297,\\n    \\\"mauve\\\": 0.029947808319125253,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.531954966017629,\\n    \\\"self_bleu\\\": 0.011435333395463907,\\n    \\\"distinct_1\\\": 0.082609375,\\n    \\\"distinct_2\\\": 0.44063625497074194,\\n    \\\"distinct_3\\\": 0.7311520492507696,\\n    \\\"ece\\\": 0.08155447884196108,\\n    \\\"effective_rank\\\": 63.5943049447372,\\n    \\\"perplexity\\\": 25.880563869621756,\\n    \\\"mauve\\\": 0.03349300020670774,\\n    \\\"generation\\\": 2\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.558767702958145,\\n    \\\"self_bleu\\\": 0.011392020986484683,\\n    \\\"distinct_1\\\": 0.0757265625,\\n    \\\"distinct_2\\\": 0.39397964046594114,\\n    \\\"distinct_3\\\": 0.6658463413490836,\\n    \\\"ece\\\": 0.08563884010151683,\\n    \\\"effective_rank\\\": 65.07588139761073,\\n    \\\"perplexity\\\": 27.101867385398698,\\n    \\\"mauve\\\": 0.03269954649752961,\\n    \\\"generation\\\": 3\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.585236656463364,\\n    \\\"self_bleu\\\": 0.012678422317571627,\\n    \\\"distinct_1\\\": 0.0712890625,\\n 
+…[truncated 3078 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T22:02:52.958753+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config.json\\ngeneration_config.json\\nmodel.safetensors\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T22:02:52.958925+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T22:02:52.959053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T22:02:52.959200+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "alpha_sweep_a050_s43",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "alpha_sweep_a050_s43",
+    "field": "conclusion",
+    "value": "success",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T22:02:52.959383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_s43\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T22:02:13.526Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1557}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T22:02:52.959518+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "alpha_sweep_a050_s43",
+  "field": "checkpoint_path",
+  "value": "results/alpha_sweep/a050_s43/gen_10/checkpoint/",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "alpha_sweep_a050_s43",
+    "field": "checkpoint_path",
+    "value": "results/alpha_sweep/a050_s43/gen_10/checkpoint/",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T22:02:52.959656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_s43\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T22:02:20.051Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43/gen_10/checkpoint/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.127}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T22:02:52.959794+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "alpha_sweep_a050_s43",
+  "field": "metrics",
+  "value": "{'gen0': {'token_entropy': 3.2342, 'ece': 0.0108, 'perplexity': 26.949, 'distinct_1': 0.09833, 'distinct_2': 0.51318, 'distinct_3': 0.80567, 'effective_rank': 46.613, 'mauve': 0.03351}, 'gen10': {'token_entropy': 2.6707, 'ece': 0.09708, 'perplexity': 32.633, 'distinct_1': 0.06241, 'distinct_2': 0.26166, 'distinct_3': 0.4122, 'effective_rank': 59.425, 'mauve': 0.02279}, 'drift_pct': {'token_entropy': -17.42, 'ece': 798.8, 'perplexity': 21.09, 'distinct_1': -36.53, 'distinct_2': -49.01, 'distinct_3': -48.84, 'effective_rank': 27.49, 'mauve': -31.99}}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "alpha_sweep_a050_s43",
+    "field": "metrics",
+    "value": "{'gen0': {'token_entropy': 3.2342, 'ece': 0.0108, 'perplexity': 26.949, 'distinct_1': 0.09833, 'distinct_2': 0.51318, 'distinct_3': 0.80567, 'effective_rank': 46.613, 'mauve': 0.03351}, 'gen10': {'token_entropy': 2.6707, 'ece': 0.09708, 'perplexity': 32.633, 'distinct_1': 0.06241, 'distinct_2': 0.26166, 'distinct_3': 0.4122, 'effective_rank': 59.425, 'mauve': 0.02279}, 'drift_pct': {'token_entropy': -17.42, 'ece': 798.8, 'perplexity': 21.09, 'distinct_1': -36.53, 'distinct_2': -49.01, 'distinct_3': -48.84, 'effective_rank': 27.49, 'mauve': -31.99}}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T22:02:52.959971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_s43\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T22:02:23.377Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43/gen_10/checkpoint/\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\
+…[truncated 604 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T22:02:52.960114+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "alpha_sweep_a050_s43",
+  "field": "completed_at",
+  "value": "2026-05-15T22:00:14Z",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "alpha_sweep_a050_s43",
+    "field": "completed_at",
+    "value": "2026-05-15T22:00:14Z",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T22:02:52.960280+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_s43\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T22:02:23.891Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43/gen_10/checkpoint/\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\
+…[truncated 650 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T22:02:52.960452+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "a050_s43 analysis report",
+  "type": "report",
+  "description": "α=0.50 seed=43 实验分析：逐代指标、drift、跨seed/跨alpha对比",
+  "project": "distrib_canary_collapse",
+  "exp_id": "alpha_sweep_a050_s43",
+  "content_filename": "a050_s43_analysis.md",
+  "tags": "['D026', 'multi-seed', 'alpha-sweep', 'a050']",
+  "content": "# α=0.50 seed=43 Analysis Report\n\n## Gen0 → Gen10 Metrics\n\n| Metric | gen0 | gen10 | drift% |\n|--------|------|-------|--------|\n| token_entropy | 3.2342 | 2.6707 | -17.42% |\n| ECE | 0.0108 | 0.0971 | +798.8% |\n| perplexity | 26.949 | 32.633 | +21.09% |\n| distinct_1 | 0.0983 | 0.0624 | -36.53% |\n| distinct_2 | 0.5132 | 0.2617 | -49.01% |\n| distinct_3 | 0.8057 | 0.4122 | -48.84% |\n| effective_rank | 46.613 | 59.425 | +27.49% |\n| mauve | 0.0335 | 0.0228 | -31.99% |\n\n## Cross-Seed Comparison (α=0.50: s43 vs s42)\n\n| Metric | s43 gen10 | s42 gen10 | rel. diff | s43 drift | s42 drift |\n|--------|-----------|-----------|-----------|-----------|-----------|\n| entropy | 2.6707 | 2.632 | +1.5% | -17.4% | -18.6% |\n| ECE | 0.0971 | 0.102 | -4.8% | +799% | +843% |\n| ppl | 32.633 | 32.64 | -0.02% | +21.1% | +21.1% |\n| d1 | 0.0624 | 0.062 | +0.7% | -36.5% | -37.3% |\n| d2 | 0.2617 | 0.251 | +4.3% | -49.0% | -51.5% |\n| d3 | 0.4122 | 0.387 | +6.5% | -48.8% | -52.4% |\n\nCross-seed consistency: **excellent**. Gen10 absolute values within 1-7%, drift directions and magnitudes tightly aligned.\n\n## Cross-Alpha Comparison (seed=43: α=0.50 vs α=0.25)\n\n| Metric | a050 drift | a025 drift | regime difference |\n|--------|------------|------------|-------------------|\n| entropy | -17.4% | -5.0% | 3.5x more loss at α=0.50 |\n| ECE | +799% | +99% | 8x more calibration collapse |\n| ppl | +21.1% | -18.7% | **direction flip** |\n| d1 | -36.5% | -40.5% | slightly less at α=0.50 |\n| d2 | -49.0% | -56.4% | slightly less at α=0.50 |\n| d3 | -48.8% | -58.7% | slightly less at α=0.50 |\n\nKey finding: ppl direction flips between α=0.25 (improves) and α=0.50 (degrades), confirming regime-dependent behavior (Claim 2).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "a050_s43 analysis report",
+    "type": "report",
+    "description": "α=0.50 seed=43 实验分析：逐代指标、drift、跨seed/跨alpha对比",
+    "project": "distrib_canary_collapse",
+    "exp_id": "alpha_sweep_a050_s43",
+    "content_filename": "a050_s43_analysis.md",
+    "tags": "['D026', 'multi-seed', 'alpha-sweep', 'a050']",
+    "content": "# α=0.50 seed=43 Analysis Report\n\n## Gen0 → Gen10 Metrics\n\n| Metric | gen0 | gen10 | drift% |\n|--------|------|-------|--------|\n| token_entropy | 3.2342 | 2.6707 | -17.42% |\n| ECE | 0.0108 | 0.0971 | +798.8% |\n| perplexity | 26.949 | 32.633 | +21.09% |\n| distinct_1 | 0.0983 | 0.0624 | -36.53% |\n| distinct_2 | 0.5132 | 0.2617 | -49.01% |\n| distinct_3 | 0.8057 | 0.4122 | -48.84% |\n| effective_rank | 46.613 | 59.425 | +27.49% |\n| mauve | 0.0335 | 0.0228 | -31.99% |\n\n## Cross-Seed Comparison (α=0.50: s43 vs s42)\n\n| Metric | s43 gen10 | s42 gen10 | rel. diff | s43 drift | s42 drift |\n|--------|-----------|-----------|-----------|-----------|-----------|\n| entropy | 2.6707 | 2.632 | +1.5% | -17.4% | -18.6% |\n| ECE | 0.0971 | 0.102 | -4.8% | +799% | +843% |\n| ppl | 32.633 | 32.64 | -0.02% | +21.1% | +21.1% |\n| d1 | 0.0624 | 0.062 | +0.7% | -36.5% | -37.3% |\n| d2 | 0.2617 | 0.251 | +4.3% | -49.0% | -51.5% |\n| d3 | 0.4122 | 0.387 | +6.5% | -48.8% | -52.4% |\n\nCross-seed consistency: **excellent**. Gen10 absolute values within 1-7%, drift directions and magnitudes tightly aligned.\n\n## Cross-Alpha Comparison (seed=43: α=0.50 vs α=0.25)\n\n| Metric | a050 drift | a025 drift | regime difference |\n|--------|------------|------------|-------------------|\n| entropy | -17.4% | -5.0% | 3.5x more loss at α=0.50 |\n| ECE | +799% | +99% | 8x more calibration collapse |\n| ppl | +21.1% | -18.7% | **direction flip** |\n| d1 | -36.5% | -40.5% | slightly less at α=0.50 |\n| d2 | -49.0% | -56.4% | slightly less at α=0.50 |\n| d3 | -48.8% | -58.7% | slightly less at α=0.50 |\n\nKey finding: ppl direction flips between α=0.25 (improves) and α=0.50 (degrades), confirming regime-dependent behavior (Claim 2).\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T22:02:52.960619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_d83f87\", \"name\": \"a050_s43 analysis report\", \"type\": \"report\", \"description\": \"α=0.50 seed=43 实验分析：逐代指标、drift、跨seed/跨alpha对比\", \"path\": \"projects/distrib_canary_collapse/artifacts/alpha_sweep_a050_s43/report/a050_s43_analysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"alpha_sweep_a050_s43\", \"skill\": \"\", \"created_at\": \"2026-05-15T22:02:42.392758+00:00\", \"tags\": [\"D026\", \"multi-seed\", \"alpha-sweep\", \"a050\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-15T22:02:52.960777+00:00_
+
+## 分析摘要
+
+### α=0.50 s43 vs s42 跨 seed 对比
+
+| 指标 | s43 drift | s42 drift | gen10 偏差 |
+|------|-----------|-----------|-----------|
+| entropy | -17.4% | -18.6% | +1.5% |
+| ECE | +799% | +843% | -4.8% |
+| ppl | +21.1% | +21.1% | -0.02% |
+| d1 | -36.5% | -37.3% | +0.7% |
+| d2 | -49.0% | -51.5% | +4.3% |
+| d3 | -48.8% | -52.4% | +6.5% |
+
+**跨 seed 一致性极好。** gen10 绝对值偏差 <7%，drift 方向完全一致，幅度紧密对齐。Perplexity 几乎完全相同（32.633 vs 32.64）。
+
+### α=0.50 vs α=0.25（同 seed=43）
+
+关键发现：**perplexity drift 方向翻转**——α=0.25 下 ppl 下降 18.7%（模型变好），α=0.50 下 ppl 上升 21.1%（模型退化）。ECE collapse 在 α=0.50 下是 α=0.25 的 8 倍（+799% vs +99%）。这在两个 seed 上都一致复现，强力支撑 **Claim 2（regime-dependent validity）**。
+
+### D026 影响
+
+α=0.50 两个 seed 已完成且高度一致，该 α 值的 error bar 可以直接用于论文。下一步：cuda:1 可提交 a025_s44。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_alpha_sweep_a050_s43_20260515T220115"
+}
+```
+
+</details>
+
+---

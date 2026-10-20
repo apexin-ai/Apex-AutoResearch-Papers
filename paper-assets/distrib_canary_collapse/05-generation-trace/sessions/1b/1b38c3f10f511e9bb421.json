@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b38c3f10f511e9bb421",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis window sensitivity t11",
+  "task_key": "worker_analysis_window_sensitivity_t11_20260515T235835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_window_sensitivity_t11_20260515T235835_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "0cdda0c54005e40c14ec976de1fd1fe462081b265e573654d4451ed3a7c3ff1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**T=10→T=11 对 consensus 无影响**：4/5 robust pairs 在 T=10 和 T=11 均为 6/6，四个非 TY 方法结果完全一致。之前报告的所有数字无需修正。\n\n**意外发现——TY 在 T=11 反而更差**：\n- T=10: 24/24 feasible TY tests, 1/6 consensus sig pairs (ECE→d3)\n- T=11: **1/24 feasible** TY tests, 0/6 consensus sig pairs\n\n原因：AIC 在 11 个数据点下倾向选 best_p=2（多一个点让更复杂模型的 AIC 更优），但 p_aug=3 后 n_params=7, n_eff=8, df_resid=1，不足以做 Wald test。这是模型选择的 artifact，不是信号不稳定。\n\n5/24 个 seed×pair 出现\"flip\"，但全部是 TY 从 feasible+sig 变为 infeasible，进一步印证 C001 约束的正确性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-window-sensitivity-t11.md"
+}

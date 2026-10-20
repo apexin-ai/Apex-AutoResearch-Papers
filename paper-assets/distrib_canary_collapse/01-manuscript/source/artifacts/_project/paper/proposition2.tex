@@ -1,0 +1,26 @@
+\begin{proposition}[Detection Phase Boundary]
+\label{prop:phase-boundary}
+Under the assumption that the causal signal strength follows
+$S(\alpha) = c \cdot \max(0,\, \alpha - \alpha_\infty)^\beta$,
+the critical contamination ratio at which PermG achieves detection power $\pi^*$ satisfies:
+\begin{equation}
+\alpha_c(T) \;=\; \alpha_\infty + A \cdot T^{-1/(2\beta)},
+\end{equation}
+where $\alpha_\infty$ is the \emph{detection floor} (minimum contamination producing nonzero signal),
+$\beta$ governs signal sub-linearity, and $A = (z^* \sigma / c)^{1/\beta}$ with
+$z^* = \Phi^{-1}(\pi^*)$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+At the detection threshold, $\text{Power}(\alpha_c, T) = \pi^*$. Since $\alpha_c$ lies
+below the sync-dip region, the resonance factor $R(\alpha_c) \approx 1$. From the power
+function $\text{Power} = \Phi(S(\alpha) \cdot \sqrt{T} / \sigma)$, setting
+$S(\alpha_c) \cdot \sqrt{T} / \sigma = z^*$ and substituting the signal model yields
+$c (\alpha_c - \alpha_\infty)^\beta = z^* \sigma / \sqrt{T}$. Solving for $\alpha_c$
+gives the stated form with exponent $\gamma = 1/(2\beta)$.
+\end{proof}
+
+% Empirical validation (Pythia-410M, WikiText, PermG):
+% α_∞ = 0.193, β = 0.208, A = 75.38, γ = 2.408
+% R² = 1.000 on 7 data points (T ∈ {8,10,12,15,20,25,30})
+% Predictions: α_c(5) ≥ 1.0 (undetectable), α_c(40) = 0.203, α_c(50) = 0.199

@@ -1,0 +1,16 @@
+{
+  "exp_id": "t20_a045_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:19:01.912Z",
+    "updated_at": "2026-05-20T11:50:10.756Z",
+    "hypothesis": "D127 Power Theory α_c left-shift 验证: T=20 at α=0.45（blind zone 上界）。T=11 下 α=0.45 PermG=0/8（blind zone confirmed），T=20 提供 2× 数据点——如果 T=20 下 PermG 仍为 0/8 → α_c 不随 T 左移，blind zone 是 fundamental limit；如果 PermG>0 → 统计功效不足是 T=11 blind zone 的部分原因，T=20 缩小 blind zone。",
+    "parent": "alpha_sweep_a045_s42_fp32"
+  },
+  "timestamp": "2026-05-20T11:50:11.370974+00:00",
+  "trigger": "update_registry"
+}

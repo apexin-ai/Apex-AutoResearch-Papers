@@ -1,0 +1,79 @@
+Transfer Entropy Robustness Verification — Results Summary
+===========================================================
+Date: 2026-05-22
+Server: westd-17855
+Script: artifacts/transfer_entropy_robustness.py
+
+Experiments:
+  Sync-dip (α=0.60, PermG=0/8): T10_a060_s42, T15_a060_s42, T20_a060_s42
+  Positive ctrl (PermG=6/8):     T15_a045_s43*, T15_a050_s42, T15_a075_s42
+  (* s43 used because T15_a045_s42 data not available)
+
+4 Conditions (all Symbolic TE, lag=1, canary→downstream):
+  1. Original:        m=2, 500 surrogates
+  2. Detrended:       first-difference (np.diff), m=2, 500 surrogates
+  3. m=3:             m=3, 500 surrogates
+  4. High surrogates: m=2, 2000 surrogates
+
+=== Results Summary ===
+
+Condition          | sync-dip sig | positive sig | Interpretation
+-------------------|-------------|-------------|----------------
+Original           | 4/6         | 0/6         | Reproduces baseline
+Detrended          | 0/6         | 1/6         | ALL sync-dip significance lost
+m=3                | 0/6         | 0/6         | No significance (sample size issue?)
+High surrogates    | 4/6         | 0/6         | Same as original, tighter p
+
+=== Key Diagnostic ===
+
+1. DETRENDING ELIMINATES SYNC-DIP SIGNIFICANCE
+   - Original: 4/6 pairs significant (p<0.001 for mauve pairs)
+   - After first-difference: 0/6 significant (p_min=0.112)
+   - Conclusion: Original TE signal was driven by shared monotonic downward
+     trend (canary↓ + downstream↓), NOT genuine nonlinear information transfer.
+   - The m=2 ordinal patterns (only "up"/"down") are dominated by the shared
+     trend direction, inflating apparent TE.
+
+2. m=3 SHOWS NO SIGNIFICANCE
+   - All 12 pairs non-significant with m=3 (6 patterns vs 2).
+   - Caveat: with T=10-20 data points and m=3, effective series length is
+     T-2=8-18, yielding very few ordinal patterns. Low statistical power may
+     contribute, but the direction matches the detrending result.
+
+3. POSITIVE CONTROLS MOSTLY UNCHANGED
+   - Controls remain non-significant across all conditions (0/6),
+     except T15_a050_s42 distinct_1 detrended (p=0.000) — isolated anomaly.
+   - This single detrended-significant control pair does not support a
+     "reversed significance" interpretation.
+
+4. HIGH SURROGATES CONFIRM ORIGINAL
+   - 2000 surrogates produce identical significance pattern to 500.
+   - Original p-values were already well-resolved.
+
+=== Implications for Paper ===
+
+The Symbolic TE finding (4/6 sync-dip pairs significant) is NOT robust to
+detrending. It should NOT be presented as evidence of nonlinear causal coupling
+in the sync-dip regime.
+
+Options:
+  a) Remove TE claim entirely from the paper.
+  b) Report TE result WITH the detrending caveat as a transparency/honesty point:
+     "Symbolic TE detects shared-trend coupling but not trend-independent
+     information transfer, consistent with the linear shared-cause interpretation."
+  c) Use the negative detrending result as SUPPORTING evidence that the sync-dip
+     phenomenon is driven by shared linear dynamics (shared trend), not nonlinear
+     causal mechanisms — which actually strengthens the PermG-based interpretation.
+
+Recommendation: Option (c) — reframe TE as a diagnostic that confirms the
+shared-trend nature of the coupling, rather than claiming nonlinear causation.
+
+=== Raw Numbers (sync-dip, canary→downstream, lag=1) ===
+
+Exp             Metric      Orig_p   Detrend_p  m3_p    Hi_p
+T10_a060_s42    distinct_1  1.0000   0.7780     1.0000  1.0000
+T10_a060_s42    mauve       0.0000   0.1120     0.5420  0.0000
+T15_a060_s42    distinct_1  0.0720   0.8880     0.6180  0.0740
+T15_a060_s42    mauve       0.0000   0.1260     0.5880  0.0000
+T20_a060_s42    distinct_1  0.0000   0.6860     0.2720  0.0000
+T20_a060_s42    mauve       0.0000   0.2060     0.2980  0.0000

@@ -1,0 +1,15 @@
+{
+  "exp_id": "alpha_sweep_a046_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:56:43.829Z",
+    "updated_at": "2026-05-21T07:42:10.025Z",
+    "hypothesis": "Cross-seed validation below α_c: α=0.46 s43 tests whether non-detection below the phase boundary (s42 expected 0/8) is seed-robust. If both seeds show 0/8, confirms α_c>0.46 across seeds, strengthening the [0.48,0.50] CI."
+  },
+  "timestamp": "2026-05-21T07:42:10.403482+00:00",
+  "trigger": "update_registry"
+}

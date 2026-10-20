@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-05-25",
+  "server": "westd-19828",
+  "disk_available_gb": 61,
+  "working_dir": "/root/autodl-tmp/distrib_canary_collapse",
+  "code_checks": {
+    "intervention_mode_choices": ["none", "predictive", "reactive"],
+    "intervention_mode_help": "none=fixed alpha, predictive=trigger on canary metric, reactive=trigger on downstream metric",
+    "intervention_logic": "Both modes use identical logic: monitor --intervention_metric for gen-over-gen relative drop > --intervention_threshold. When triggered, alpha switches from --synthetic_ratio to --intervention_alpha.",
+    "reactive_metric_note": "distinct_1 is a valid downstream metric (computed in metrics.py via compute_distinct_n). For reactive mode, distinct_1 dropping >15% gen-over-gen triggers intervention.",
+    "existing_dirs": {
+      "c2_opt13b/a050_s42_fp32": "gen_0 through gen_3 (in progress or incomplete)",
+      "c2_opt13b/a050_s43_fp32": "only config.json (previous failed attempt)",
+      "c1_intervention/": "does not exist yet"
+    }
+  },
+  "experiments": [
+    {
+      "name": "C2-s43",
+      "registry_entry": "c2_opt13b_a050_s43",
+      "model": "facebook/opt-1.3b",
+      "description": "C2 replication seed 43, α=0.50, N=10",
+      "output_dir": "results/c2_opt13b/a050_s43_fp32_v2",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && nohup python iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --output_dir results/c2_opt13b/a050_s43_fp32_v2 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch > results/c2_opt13b/a050_s43_fp32_v2/train.log 2>&1 &",
+      "estimated_runtime_hours": "12-14",
+      "estimated_vram_gb": "12-14 (fp32 + gradient_checkpointing)",
+      "estimated_disk_gb": "~15 peak (auto-cleanup keeps gen_0 + last 2 checkpoints)"
+    },
+    {
+      "name": "C1-GPT2m-predictive",
+      "registry_entry": "c1_interv_gpt2m_pred_s42",
+      "model": "gpt2-medium",
+      "description": "C1 intervention, GPT-2-medium, predictive mode (canary: token_entropy), α=1.0→0.0",
+      "output_dir": "results/c1_intervention/gpt2m_pred_s42_fp32",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && nohup python iterative_train.py --model_name gpt2-medium --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 5 --synthetic_ratio 1.0 --output_dir results/c1_intervention/gpt2m_pred_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 > results/c1_intervention/gpt2m_pred_s42_fp32/train.log 2>&1 &",
+      "estimated_runtime_hours": "2-2.5",
+      "estimated_vram_gb": "6-8 (fp32, no gradient_checkpointing)",
+      "estimated_disk_gb": "~5"
+    },
+    {
+      "name": "C1-GPT2m-reactive",
+      "registry_entry": "c1_interv_gpt2m_react_s42",
+      "model": "gpt2-medium",
+      "description": "C1 intervention, GPT-2-medium, reactive mode (downstream: distinct_1), α=1.0→0.0",
+      "output_dir": "results/c1_intervention/gpt2m_react_s42_fp32",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && nohup python iterative_train.py --model_name gpt2-medium --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 5 --synthetic_ratio 1.0 --output_dir results/c1_intervention/gpt2m_react_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.15 --intervention_alpha 0.0 > results/c1_intervention/gpt2m_react_s42_fp32/train.log 2>&1 &",
+      "estimated_runtime_hours": "2-2.5",
+      "estimated_vram_gb": "6-8 (fp32, no gradient_checkpointing)",
+      "estimated_disk_gb": "~5"
+    },
+    {
+      "name": "C1-OPT1.3B-predictive",
+      "registry_entry": "c1_interv_opt13b_pred_s42",
+      "model": "facebook/opt-1.3b",
+      "description": "C1 intervention, OPT-1.3B, predictive mode (canary: token_entropy), α=1.0→0.0",
+      "output_dir": "results/c1_intervention/opt13b_pred_s42_fp32",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && nohup python iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 5 --synthetic_ratio 1.0 --gradient_checkpointing --output_dir results/c1_intervention/opt13b_pred_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 > results/c1_intervention/opt13b_pred_s42_fp32/train.log 2>&1 &",
+      "estimated_runtime_hours": "5-7",
+      "estimated_vram_gb": "12-14 (fp32 + gradient_checkpointing)",
+      "estimated_disk_gb": "~8"
+    },
+    {
+      "name": "C1-OPT1.3B-reactive",
+      "registry_entry": "c1_interv_opt13b_react_s42",
+      "model": "facebook/opt-1.3b",
+      "description": "C1 intervention, OPT-1.3B, reactive mode (downstream: distinct_1), α=1.0→0.0",
+      "output_dir": "results/c1_intervention/opt13b_react_s42_fp32",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && nohup python iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 5 --synthetic_ratio 1.0 --gradient_checkpointing --output_dir results/c1_intervention/opt13b_react_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.15 --intervention_alpha 0.0 > results/c1_intervention/opt13b_react_s42_fp32/train.log 2>&1 &",
+      "estimated_runtime_hours": "5-7",
+      "estimated_vram_gb": "12-14 (fp32 + gradient_checkpointing)",
+      "estimated_disk_gb": "~8"
+    }
+  ],
+  "scheduling_notes": {
+    "disk_constraint": "61G available. C2-s43 alone peaks ~15G. All 5 experiments sequential total ~41G peak — manageable with auto-cleanup.",
+    "gpu_constraint": "Single GPU. Experiments must run sequentially unless multi-GPU available.",
+    "recommended_order": "C1 GPT-2m pair first (shorter, ~5h total) → C2-s43 (~13h) → C1 OPT-1.3B pair (~12h). Total ~30h.",
+    "nohup_note": "All commands use nohup. Output directories must be mkdir -p'd before launch (nohup redirect will fail otherwise)."
+  }
+}

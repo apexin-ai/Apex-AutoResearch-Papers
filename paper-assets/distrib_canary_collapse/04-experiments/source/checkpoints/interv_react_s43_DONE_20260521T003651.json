@@ -1,0 +1,57 @@
+{
+  "exp_id": "interv_react_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:57:59.843Z",
+    "updated_at": "2026-05-21T00:36:51.468Z",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "intervention_mode": "reactive",
+      "intervention_metric": "distinct_1",
+      "intervention_threshold": 0.1,
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --synthetic_ratio 1.0 --intervention_mode reactive --num_generations 10 --output_dir results/intervention/reactive_d1_s43_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "checkpoint_source": "interv_react_s42_fp32",
+      "eval_data": "data/wikitext103_5k",
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_fp32",
+      "log_path": "~/runs/distrib_canary_collapse/interv_react_s43.log"
+    },
+    "hypothesis": "Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.",
+    "reproduce": {
+      "finished_at": "2026-05-21T00:32:27.872Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T00:32:33.993404+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "trigger_gen": 2,
+      "trigger_distinct1_drop_pct": -15.83,
+      "recovery_complete_by_gen": 3,
+      "gen2_ppl": 158.22,
+      "final_ppl": 21.39,
+      "final_distinct_1": 0.0834,
+      "converges_to_alpha0_baseline": true,
+      "cross_seed_match": "s42 trigger Gen 2 (-15.58%), recovery Gen 4 — s43 consistent"
+    },
+    "completed_at": "2026-05-21T00:36:51.468Z"
+  },
+  "timestamp": "2026-05-21T00:36:51.805385+00:00",
+  "trigger": "update_registry"
+}

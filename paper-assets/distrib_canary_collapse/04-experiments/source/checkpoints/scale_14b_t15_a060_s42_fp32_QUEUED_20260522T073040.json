@@ -1,0 +1,15 @@
+{
+  "exp_id": "scale_14b_t15_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:20.424Z",
+    "updated_at": "2026-05-22T07:30:39.922Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=15 α=0.60. At 410M, α=0.60 PermG=0/8 (sync-dip). Cross-T + cross-scale test: if 1.4B also 0/8 at T=15, sync-dip is both T-invariant and scale-invariant — a fundamental structural feature."
+  },
+  "timestamp": "2026-05-22T07:30:40.745971+00:00",
+  "trigger": "update_registry"
+}

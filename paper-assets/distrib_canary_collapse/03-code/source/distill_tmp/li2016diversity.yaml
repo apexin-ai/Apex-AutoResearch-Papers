@@ -1,0 +1,26 @@
+paper_key: "li2016diversity"
+title: "A Diversity-Promoting Objective Function for Neural Conversation Models"
+venue: "NAACL 2016"
+full_text_available: false
+
+research:
+  baselines: ["seq2seq with MLE"]
+  metrics:
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "human evaluation", direction: "higher_better"}
+  datasets:
+    - {name: "two conversational datasets", size: "N/A"}
+  ablation_dimensions:
+    - objective_function (MLE vs MMI)
+  training_recipe: {}
+  method_family: "diversity_promoting_objective"
+
+positioning:
+  core_claim: "Maximum Mutual Information (MMI) objective produces more diverse and appropriate responses than standard MLE in dialogue."
+  key_results: "MMI outperforms MLE on diversity and appropriateness"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

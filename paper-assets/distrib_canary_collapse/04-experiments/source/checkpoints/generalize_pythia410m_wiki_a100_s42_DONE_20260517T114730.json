@@ -1,0 +1,64 @@
+{
+  "exp_id": "generalize_pythia410m_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:08:22.930Z",
+    "updated_at": "2026-05-17T11:47:29.919Z",
+    "hypothesis": "Methodological pitfalls (FPR inflation from single-method reliance) generalize across model architectures and data domains — Pythia-410M on WikiText α=1.0 should reproduce canary→downstream Granger signal with perfect directionality",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s42\"",
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "pid": "247554",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/",
+      "log_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/"
+    },
+    "metrics": {
+      "gen0": {
+        "token_entropy": 3.234,
+        "ece": 0.011,
+        "perplexity": 26.9,
+        "distinct_1": 0.098,
+        "distinct_2": 0.518
+      },
+      "gen9": {
+        "token_entropy": 1.239,
+        "ece": 0.417,
+        "perplexity": 935,
+        "distinct_1": 0.072,
+        "distinct_2": 0.35
+      },
+      "drift_pct": {
+        "token_entropy": -61.7,
+        "ece": 3758.9,
+        "perplexity": 3369.4,
+        "distinct_1": -26.7,
+        "distinct_2": -32.5
+      },
+      "five_method": {
+        "naive_pearson": "15/16",
+        "differenced_xcorr": "16/16",
+        "threshold_onset": "10/16",
+        "toda_yamamoto": "7/16",
+        "permutation_granger": "10/16",
+        "total_sig_rate": "58/80",
+        "best_canaries": "token_entropy, ece",
+        "weak_canary": "effective_rank",
+        "weak_pairs": "self_bleu->distinct_{1,2}"
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T11:47:29.919Z"
+  },
+  "timestamp": "2026-05-17T11:47:30.004218+00:00",
+  "trigger": "update_registry"
+}

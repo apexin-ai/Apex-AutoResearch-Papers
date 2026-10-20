@@ -1,0 +1,56 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Model collapse in iterative training.}
+
+The phenomenon of iterative training collapse was formalized by \citet{shumailov2024curse}, who showed that recursively replacing real data with model-generated text causes progressive tail erosion across VAEs, GMMs, and language models, and by \citet{alemohammad2024mad}, who demonstrated quality--diversity tradeoffs in self-consuming generative loops for image models.
+Theoretical analyses have since sharpened these results: \citet{dohmatob2024tale} recast collapse as a change in scaling-law exponents, showing that even small fractions of synthetic data alter effective scaling behavior, while \citet{dohmatob2025strong} proved that collapse can occur even when synthetic data constitutes a vanishingly small fraction of the training set.
+The role of data accumulation has been a central theme.
+\citet{dey2024breaking} proved that accumulating data across generations---rather than replacing it---prevents divergence of population risk in GMMs, HMMs, and language models.
+\citet{kazdan2025collapse} systematically compared replace and accumulate regimes, finding that synthetic data value depends on the absolute quantity of co-present real data.
+\citet{fu2025selfconsuming} provided generalization bounds for self-consuming loops, establishing that a constant fraction of real data suffices for convergence under accumulation.
+On the calibration side, \citet{he2025golden} showed that optimal real-data weighting converges to the golden-ratio inverse ($1/\varphi \approx 0.618$) in Gaussian and GLM settings, and that the risk landscape is non-monotone in mixing ratio---a theoretical prediction with implications for regime-dependent canary behavior.
+Beyond distributional statistics, \citet{guo2024linguistic} documented progressive decline in lexical, syntactic, and semantic diversity across iterative fine-tuning generations, providing the multi-level diversity metrics that serve as downstream targets in our lead-lag analysis.
+\citet{schaeffer2025position} catalogued eight distinct and sometimes contradictory definitions of ``model collapse'' in the literature, underscoring the importance of explicit operational definitions---a concern our framework addresses by scoping canary prediction to diversity metrics specifically.
+
+\paragraph{Canary metrics and collapse monitoring.}
+
+Several recent works have proposed monitoring metrics that precede or accompany distributional degradation during iterative training.
+\citet{du2026geometric} observe that calibration error rises before accuracy degrades in iteratively trained language models, interpreting this through a geometric-regulation lens.
+\citet{chen2025scales} report a similar pattern across model scales and mixing ratios, noting that ECE increases of 75\% appear at 30\% synthetic contamination before accuracy drops become visible.
+Beyond calibration, SIGMA~\cite{sigma2026spectral} introduces a dual-track spectral framework based on embedding Gram matrices, where divergence between deterministic and stochastic spectral bounds serves as an early collapse diagnostic.
+\citet{kalinowski2026topology} proposes a topological monitoring approach using persistent homology features to detect multi-scale structural loss in representation space.
+DCES~\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal and reports improvements in ECE and entropy preservation.
+\citet{gambetta2024surplexity} introduces surplexity---a surprise-based metric that simultaneously detects collapse and filters training data---demonstrating that high-surplexity selection matches human-data baselines in maintaining distributional balance.
+
+These works collectively demonstrate growing interest in collapse monitoring, yet they share methodological limitations that weaken their lead-lag claims.
+None apply differencing tests to distinguish genuine temporal precedence from spurious co-trending; none cross-validate findings across multiple statistical methods; and none apply false discovery rate correction when testing multiple metric pairs.
+Our work differs from the closest predecessor, \citet{du2026geometric}, in four respects:
+(i)~we compare an entire family of canary metrics rather than a single metric pair;
+(ii)~we cross-validate each lead-lag relationship across five independent statistical methods, quantifying inter-method sensitivity via Cohen's $\kappa$ and intra-method sensitivity via the Toda--Yamamoto augmentation order $d_{\max}$;
+(iii)~we map detectability as a function of contamination regime rather than reporting a single aggregate result; and
+(iv)~we treat method-selection sensitivity itself as a primary finding, showing that it is the dominant source of variation in existing lead-lag conclusions.
+
+\paragraph{Early-warning signals and critical transitions.}
+
+The theoretical foundation for canary-based prediction of system failure originates in ecology and climate science.
+\citet{scheffer2009early} established that complex systems approaching tipping points exhibit generic early-warning signals---rising autocorrelation and variance due to critical slowing down---independent of system-specific mechanisms.
+\citet{scheffer2012anticipating} extended this framework by combining empirical warning indicators with network-architecture analysis, arguing that structural and statistical signals together improve anticipatory power.
+Crucially, \citet{boettiger2012limits} quantified the statistical detection limits of these signals, showing that early-warning power is often negligible in short time series---a constraint directly relevant to iterative training, where the number of generations (typically 5--20) is far smaller than typical ecological datasets.
+\citet{truong2025entropy} connects entropy collapse to critical transitions, characterizing it as a first-order phase transition with universality classes that determine whether classical early-warning signals retain predictive power.
+The model collapse literature has not yet imported these methodological tools: existing canary studies neither frame their claims in terms of detection power under finite samples nor test whether observed lead-lag patterns survive the short-series constraints that \citet{boettiger2012limits} identified as fundamental.
+
+\paragraph{Lead-lag methodology.}
+
+Granger causality~\cite{granger1969investigating} provides the standard econometric framework for testing whether one time series improves prediction of another beyond its own history.
+\citet{shojaie2022granger} review classical and modern extensions, including VAR-based tests, kernel methods, and neural approaches for nonlinear dependencies \cite{marcinkevics2022neural}.
+A key practical issue is non-stationarity: standard Granger tests applied to integrated (unit-root) series produce inflated rejection rates.
+The Toda--Yamamoto procedure addresses this by augmenting the VAR lag order by the integration order and testing only the original lags, yielding valid asymptotic inference regardless of cointegration structure.
+Despite wide use in economics and neuroscience, these methods are largely absent from the machine learning literature on iterative training.
+Existing canary studies rely on visual inspection or naive cross-correlation, which cannot distinguish genuine temporal precedence from shared non-stationary trends.
+Our framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.
+Recent work on causal method reliability reinforces this multi-method rationale.
+\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\% false positive reduction; whereas their approach filters methods \emph{ex ante}, our consensus framework validates conclusions \emph{ex post} across methods already applied.
+\citet{yi2026causalcompass} benchmark causal discovery robustness under eight misspecification scenarios and confirm that no single method dominates universally, directly supporting the multi-method rationale of our consensus framework.
+Independently, \citet{sahoo2026calibration} show that calibration metrics are sensitive to training-distribution perturbation beyond the iterative collapse setting, suggesting that ECE-based canary signals may be confounded by non-collapse sources of calibration drift.
+\citet{falahati2026curated} prove that pluralistic curation of synthetic data can prevent iterative collapse entirely, implying that canary detection is most relevant in uncontrolled data pipelines where such curation is absent.

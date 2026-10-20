@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "058f25a1119b8839d743",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis detection lower bound",
+  "task_key": "worker_analysis_detection_lower_bound_20260521T083840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detection_lower_bound_20260521T083840_result.json",
+    "occurrence": 1,
+    "bytes": 2285970,
+    "sha256": "f72b182023c71a5d04b182a4d26607fdda6015170260b91335044b30afffa78f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "058f25a1119b8839d743-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detection-lower-bound.md"
+}

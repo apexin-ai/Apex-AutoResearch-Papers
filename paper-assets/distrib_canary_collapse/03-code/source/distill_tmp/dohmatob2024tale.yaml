@@ -1,0 +1,119 @@
+paper_key: "dohmatob2024tale"
+title: "A Tale of Tails: Model Collapse as a Change of Scaling Laws"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Hutter LLM (infinite memory)"
+    - "Hutter++ (bigram extension)"
+    - "Autoregressive bigram model"
+    - "4-layer transformer (GCD task)"
+    - "Llama2-7B (LoRA finetuned)"
+  metrics:
+    - {name: "Test error (TV distance)", direction: "lower_better"}
+    - {name: "Test perplexity", direction: "lower_better"}
+    - {name: "Number of correctly predicted GCDs", direction: "higher_better"}
+    - {name: "Cross-entropy loss", direction: "lower_better"}
+  datasets:
+    - {name: "Synthetic Zipf distributions", size: "variable", task: "theory validation"}
+    - {name: "GCD pairs (random integers)", size: "300M-1B samples", task: "arithmetic"}
+    - {name: "Wikitext-103", size: "~2.2M chunks of 128 tokens", task: "LM finetuning"}
+  ablation_dimensions:
+    - zipf_exponent_beta (3/2, 7/5, 2)
+    - tail_cutoff_k
+    - generation_count (1-9)
+    - mixing_ratio_pi (clean data fraction)
+    - model_capacity_d (embedding dimension)
+    - top_p_and_temperature
+    - GCD_base (10, 420, 1000, 2017, 2023, 4913)
+  training_recipe:
+    Llama2: "LoRA, Adam, lr=5e-5, dropout=0.1, 0.062% trainable params"
+    GCD_transformer: "4L, 512d, 8 heads, 17.2M params (encoder-only)"
+    generation: "top_p=0.9, temperature=0.9"
+    hardware: "NYU IT HPC"
+  method_family: "scaling_law_theory_of_collapse"
+
+positioning:
+  core_claim: "Model collapse is fundamentally a change of scaling laws caused by tail truncation/narrowing of data distributions. Establishes double scaling law E_test ≍ T^{-c} + k^{-c'}, where k captures tail degradation. Mixing even 2% real data induces grokking (delayed recovery)."
+  key_results: "Double scaling law validated on Llama2-7B and GCD transformer; multi-generation collapse: E_test^(n) ≍ n·T^{-c}; grokking with 2% real data on Llama2; GCD models plateau on AI data while clean data models keep learning new skills"
+  limitations:
+    - "LLM experiments are finetuning only (compute constraints: 'weeks to run')"
+    - "Grokking exact only in deterministic settings; probabilistic shows smoothed S-shape"
+    - "Theory for simplified (Hutter/bigram) models; actual LLMs more complex"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "The 'synthetic data age' — ChatGPT contributes 0.1% of daily global word production. How will scaling laws change when synthetic data inevitably contaminates training corpora?"
+  tension: "Neural scaling laws underpin the 'scaling is all you need' paradigm. But these laws assume heavy-tailed (Zipf) data. AI generation truncates/narrows tails — what happens to scaling?"
+  key_insight: "Section 2, Theorem 2.1 — AI-generated data cuts/narrows distribution tails (Figure 2 empirically, via top-p and temperature). This yields a double scaling law with an irreducible plateau. The framework unifies loss of scaling, skill loss, multi-generation collapse, and grokking under one mathematical umbrella."
+  argument_chain: "scaling laws need heavy tails → AI generation truncates tails (top-p, temperature, finite sampling) → double scaling law (theory) → loss of skills → multi-generation amplification → mixing produces grokking → validated on Llama2 + GCD transformer"
+  contribution_framing: "4 contributions: (1) double scaling law, (2) triplet scaling law (capacity-limited), (3) multi-generation universality, (4) mitigation via mixing + grokking"
+  intro_structure: "Long intro with progressive research question development, citing Zipf's law, scaling laws, contamination evidence (LAION-5B), then contributions"
+  notable_technique: "Connecting model collapse to scaling laws is the key conceptual innovation — makes the problem relevant to the broader ML community beyond just the synthetic data niche. The GCD 'skill emergence' experiment (Figure 4 right) is a brilliant visual: groups of new GCDs appear as 'bursts' that stop appearing with AI data."
+
+figures:
+  figure_count: 35
+  figure1:
+    type: "motivation"
+    description: "Three mechanisms of tail degradation (top-p, temperature, finite sample) → two consequences (loss of scaling law, loss of skills/GCDs)"
+    narrative_role: "Conceptual framing figure linking cause (tail damage) to effect (scaling breakdown + skill loss)"
+    design_elements: ["distribution tail diagrams", "scaling law curves", "GCD skill illustration"]
+    visual_style: "Split layout: left=mechanisms, top-right=scaling, bottom-right=skill loss"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Three theoretical predictions: double scaling law, multi-generation collapse, grokking"
+      how_gain_highlighted: "Theory curves (broken lines) match empirical points perfectly"
+      design_note: "Three-panel 'signature figure' that previews all main results; theory-experiment overlay"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Llama2 scaling across generations (left), GCD transformer scaling (middle), skill emergence (right)"
+      how_gain_highlighted: "Clean data curves keep descending; AI data curves plateau; skills stop emerging"
+      design_note: "Three diverse experiments in one figure — universality across model types and tasks"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      what_compared: "Llama2 mixing 98% AI + 2% real → grokking curve"
+      how_gain_highlighted: "Grokking prediction from theory perfectly matches LLM experiment"
+      design_note: "Theory-to-practice validation on real LLM — strongest evidence in the paper"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      dimensions_varied: ["top-p setting", "temperature", "generation type"]
+      design_note: "Empirical measurement of tail degradation on Llama2 and GCD — grounds the theoretical assumptions"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["generation count", "top-p value"]
+      design_note: "Multi-generation Hutter++ with top-p showing how inference settings compound collapse"
+  figure_narrative_role: "Fig1(mechanism cartoon) → Fig2(empirical tails) → Fig3(theory preview) → Fig4(main experiments) → Fig5-6(extended theory) → Fig7(grokking validation) → appendix(extensive confirmations)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "GCD bases"
+    col_axis: "accuracy, number of correct GCDs"
+    row_organization: "by_dataset"
+    col_organization: "flat"
+    highlight_strategy: "no highlighting — descriptive"
+    statistical_reporting: "single model values"
+    num_baselines: 0
+    design_note: "Simple descriptive table showing initial model capabilities; sets up the 'skills to lose' baseline"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["training samples (30M/60M/90M)", "clean vs AI data"]
+      variation_style: "full_numbers"
+      design_note: "Shows AI data matches clean at early stages but diverges later — timing of collapse"
+    - table_id: "Table 3"
+      what_varied: ["300M vs 1B samples", "clean vs AI"]
+      variation_style: "full_numbers"
+      design_note: "Scaling comparison: 1B clean data learns new GCDs, 1B AI data doesn't"
+    - table_id: "Table 4"
+      what_varied: ["mixture ratio of AI data", "GCD base"]
+      variation_style: "full_numbers"
+      design_note: "Grokking delay increases monotonically with AI fraction"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended results across all experimental settings"
+    reason: "35 figures + 4 tables in main = very dense paper; appendix has extensive confirmations"

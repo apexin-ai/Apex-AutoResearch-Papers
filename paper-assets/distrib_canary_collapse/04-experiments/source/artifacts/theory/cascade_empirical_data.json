@@ -1,0 +1,130 @@
+{
+  "methodology": {
+    "primary": "Method 2 (M2): Compare treatment trajectory to null (a000_s42_fp32) trajectory at same generation. onset = first t where |treatment(t) - null(t)| > 2 * sigma_null_temporal. sigma_null_temporal = std of null metric values across all 11 generations (0-10).",
+    "robustness": "Method 3 (M3): Compare relative percent changes from gen0 (treatment vs null). Normalizes domain/scale differences. onset = first t where |pct_treatment(t) - pct_null(t)| > 2 * sigma_null_pct.",
+    "baseline": "a000_s42_fp32 (alpha=0, no synthetic data, seed 42, fp32)",
+    "note_c4": "C4 experiments use WikiText null baseline. M2 is confounded by domain shift; M3 (relative changes) gives cleaner comparison."
+  },
+  "thresholds_m2": {
+    "token_entropy": 0.120952,
+    "ece": 0.003930,
+    "distinct_1": 0.009730,
+    "distinct_2": 0.037619,
+    "distinct_3": 0.032510,
+    "mauve": 0.004586
+  },
+  "query1_alpha100": {
+    "description": "alpha=1.0 onset timing — does condition (6) break?",
+    "experiments": {
+      "a100_s42_fp32": {
+        "alpha": 1.0, "seed": 42, "domain": "wikitext",
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3, "entropy_leads": true},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3, "entropy_leads": true}
+      }
+    },
+    "finding": "Even at alpha=1.0, entropy leads diversity by 1 generation (t_H=1, t_D=2). No simultaneous collapse. Condition (6) remains empirically viable."
+  },
+  "query2_c4": {
+    "description": "C4 domain cascade onset — does A1 hold across domains?",
+    "experiments": {
+      "c4_a025_s42_fp32": {
+        "alpha": 0.25, "seed": 42, "domain": "c4",
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 1, "t_M": 1, "entropy_leads": false, "simultaneous": true},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 1, "entropy_leads": true}
+      },
+      "c4_a050_s42_fp32": {
+        "alpha": 0.50, "seed": 42, "domain": "c4",
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 1, "t_M": 1, "entropy_leads": false, "simultaneous": true},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 1, "entropy_leads": true}
+      },
+      "c4_a075_s42_fp32": {
+        "alpha": 0.75, "seed": 42, "domain": "c4",
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 1, "t_M": 1, "entropy_leads": false, "simultaneous": true},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 1, "entropy_leads": true}
+      }
+    },
+    "finding": "M2 shows simultaneous onset on C4, but this is a domain-confound artifact (comparing C4 treatment to WikiText null). M3 (relative changes, domain-normalized) recovers the standard cascade: t_H=1, t_D=2. A1 holds on C4 when properly normalized. MAUVE onset earlier on C4 (gen 1) vs WikiText (gen 3-7+)."
+  },
+  "query3_low_alpha": {
+    "description": "Low-alpha entropy onset — does gen-1 artifact hypothesis hold?",
+    "experiments": {
+      "a010_s42_fp32": {
+        "alpha": 0.10, "seed": 42,
+        "m2": {"t_H": null, "t_ECE": 3, "t_D": 2, "t_M": 1},
+        "m3": {"t_H": null, "t_ECE": 3, "t_D": 2, "t_M": 5},
+        "gen1_H_deviation": 0.004480,
+        "note": "Entropy deviation from null at gen1 = 0.0045, well below threshold 0.121"
+      },
+      "a010_s43_fp32": {
+        "alpha": 0.10, "seed": 43,
+        "m2": {"t_H": null, "t_ECE": null, "t_D": 2, "t_M": 2},
+        "m3": {"t_H": null, "t_ECE": 3, "t_D": 2, "t_M": null},
+        "gen1_H_deviation": 0.003724
+      },
+      "a025_s42_fp32": {
+        "alpha": 0.25, "seed": 42,
+        "m2": {"t_H": null, "t_ECE": 5, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 9, "t_ECE": 5, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.007589
+      },
+      "a025_s43_fp32": {
+        "alpha": 0.25, "seed": 43,
+        "m2": {"t_H": null, "t_ECE": 3, "t_D": 2, "t_M": 7},
+        "m3": {"t_H": null, "t_ECE": 3, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.011340
+      },
+      "a025_s44_fp32": {
+        "alpha": 0.25, "seed": 44,
+        "m2": {"t_H": null, "t_ECE": 2, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 7, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.007414
+      },
+      "a030_s42_fp32": {
+        "alpha": 0.30, "seed": 42,
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.482520
+      },
+      "a035_s42_fp32": {
+        "alpha": 0.35, "seed": 42,
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.500602
+      },
+      "a040_s42_fp32": {
+        "alpha": 0.40, "seed": 42,
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.491270
+      },
+      "a045_s42_fp32": {
+        "alpha": 0.45, "seed": 42,
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.496502
+      },
+      "a045_s43_fp32": {
+        "alpha": 0.45, "seed": 43,
+        "m2": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 3},
+        "m3": {"t_H": 1, "t_ECE": 1, "t_D": 2, "t_M": 2},
+        "gen1_H_deviation": 0.483127
+      }
+    },
+    "context_medium_high_alpha": {
+      "a050_s42_fp32": {"alpha": 0.50, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.477434},
+      "a050_s43_fp32": {"alpha": 0.50, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.471934},
+      "a050_s44_fp32": {"alpha": 0.50, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.459012},
+      "a060_s42_fp32_v4": {"alpha": 0.60, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.808724},
+      "a060_s43_fp32": {"alpha": 0.60, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.796095},
+      "a075_s42_fp32": {"alpha": 0.75, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 0.816803},
+      "a100_s42_fp32": {"alpha": 1.00, "m2": {"t_H": 1, "t_D": 2}, "gen1_H_deviation": 1.080700}
+    },
+    "finding": "Gen-1 artifact hypothesis refuted. At alpha<=0.25, entropy does NOT onset (t_H=None in M2, gen1 deviation 0.004-0.011, far below threshold 0.121). Phase transition at alpha~0.30: gen1 entropy deviation jumps from 0.011 to 0.483. If gen-1 onset were an artifact, it would appear at all alpha values — but it is clearly alpha-dependent. Additionally, distinct_n gen1 deviations are always sub-threshold (0.000-0.019), demonstrating metric-specific sensitivity, not methodological artifact."
+  },
+  "summary": {
+    "cascade_ordering_universal": "Among experiments where entropy exceeds the 2sigma detection threshold (alpha>=0.30), t_H <= t_D holds in 15/15 cases (t_H=1, t_D=2 uniformly). For alpha<0.30 (5 experiments), entropy remains below the 2sigma threshold (gen-1 deviation 0.004-0.011, threshold 0.121), so cascade ordering is neither confirmed nor refuted — signal below detection resolution. Theory-consistent: small alpha produces perturbation within the diversity margin, satisfying condition (6) trivially.",
+    "t_D_invariant": "t_D = 2 in all 17 WikiText experiments (M2), regardless of alpha, seed, or whether entropy has onset. C4 experiments show t_D=1 under M2 (domain confound) but t_D=2 under M3 (domain-normalized). Diversity onset is locked to gen 2 when properly normalized.",
+    "alpha_threshold": "Sharp phase transition for entropy onset between alpha=0.25 (sub-threshold) and alpha=0.30 (strongly above). Gen1 entropy deviation jumps 60x: 0.008 -> 0.483.",
+    "gen1_artifact_status": "Refuted. The gen-1 entropy signal is alpha-dependent (absent at low alpha) and metric-specific (distinct-n never triggers at gen 1). Both properties are inconsistent with a methodological artifact."
+  }
+}

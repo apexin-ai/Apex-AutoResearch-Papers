@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 44,
+    "n_gens": 11,
+    "data_dir": "results/phase_diagram/t10_a050_s44_fp32_14b",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_3"],
+    "threshold_criterion": "true_3sigma_d105",
+    "note": "distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 2,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 2,
+    "diff_xcorr_fdr_reverse_sig": 2,
+    "threshold_forward_sig": 0,
+    "ty_forward_sig": 0,
+    "naive_xcorr_forward_sig": 0,
+    "robust_pairs": 0,
+    "total_pairs": 2
+  },
+  "consensus": [
+    {
+      "pair": "token_entropy<distinct_3",
+      "votes": 2,
+      "methods": ["diff", "perm"]
+    },
+    {
+      "pair": "ece<distinct_3",
+      "votes": 2,
+      "methods": ["diff", "perm"]
+    }
+  ],
+  "pair_details": {
+    "token_entropy<distinct_3": {
+      "naive_xcorr": {"peak_lag": 2, "r": -0.9063, "p": 0.004758, "sig": false, "note": "peak_lag>0 = reverse direction"},
+      "diff_xcorr":  {"peak_lag": -5, "r": 0.9207, "p": 0.026395, "p_fdr": 0.0353, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "perm_granger": {"f_stat": 48.831, "p_fdr": null, "sig_fdr": true},
+      "ty_granger": {"f_stat": null, "p": 0.9845, "sig": false, "dmax": 0}
+    },
+    "ece<distinct_3": {
+      "naive_xcorr": {"peak_lag": 4, "r": 0.9827, "p": 0.000306, "sig": false, "note": "peak_lag>0 = reverse direction"},
+      "diff_xcorr":  {"peak_lag": -5, "r": 0.9674, "p": 0.007126, "p_fdr": 0.0193, "sig_fdr": true},
+      "threshold_onset": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "perm_granger": {"f_stat": 124.327, "p_fdr": null, "sig_fdr": true},
+      "ty_granger": {"f_stat": null, "p": 0.9133, "sig": false, "dmax": 0}
+    }
+  },
+  "metrics_trajectory": {
+    "gen_0":  {"token_entropy": 2.9731, "ece": 0.0081, "distinct_3": 0.8190, "perplexity": 19.83},
+    "gen_1":  {"token_entropy": 2.1888, "ece": 0.0968, "distinct_3": 0.8208, "perplexity": 20.59},
+    "gen_2":  {"token_entropy": 2.1701, "ece": 0.1188, "distinct_3": 0.7524, "perplexity": 24.53},
+    "gen_3":  {"token_entropy": 2.1905, "ece": 0.1278, "distinct_3": 0.6774, "perplexity": 26.80},
+    "gen_4":  {"token_entropy": 2.1784, "ece": 0.1335, "distinct_3": 0.6139, "perplexity": 28.22},
+    "gen_5":  {"token_entropy": 2.2086, "ece": 0.1359, "distinct_3": 0.5705, "perplexity": 29.31},
+    "gen_6":  {"token_entropy": 2.2213, "ece": 0.1393, "distinct_3": 0.5383, "perplexity": 30.57},
+    "gen_7":  {"token_entropy": 2.2196, "ece": 0.1444, "distinct_3": 0.5211, "perplexity": 31.94},
+    "gen_8":  {"token_entropy": 2.2104, "ece": 0.1493, "distinct_3": 0.5155, "perplexity": 33.11},
+    "gen_9":  {"token_entropy": 2.2364, "ece": 0.1502, "distinct_3": 0.5079, "perplexity": 33.83},
+    "gen_10": {"token_entropy": 2.2427, "ece": 0.1504, "distinct_3": 0.5031, "perplexity": 34.45}
+  },
+  "comparison_seeds": {
+    "s42_PermG": 4,
+    "s43_PermG": 6,
+    "s44_PermG": 6,
+    "s42_K3_d3": "TBD",
+    "s43_K3_d3": "TBD",
+    "s44_K3_d3": 0,
+    "note": "α=0.50 onset boundary: PermG moderate but K≥3 consensus weak across all seeds — threshold_onset=0, TY=0"
+  }
+}

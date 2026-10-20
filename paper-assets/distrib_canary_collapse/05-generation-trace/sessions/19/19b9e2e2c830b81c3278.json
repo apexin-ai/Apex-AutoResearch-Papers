@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b9e2e2c830b81c3278",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis icc neff estimation",
+  "task_key": "worker_analysis_icc_neff_estimation_20260521T045230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_icc_neff_estimation_20260521T045230_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "779ed8a1fe4ea5d159b2d5963c08f788e525710fc78004d1318a409c52ed5160"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**α=0.50 (3 seeds)**：\n- 三个 seed 的 PermG 二进制结果**完全一致**：`[1,1,1,0,1,1,1,0]`（6/8 sig）\n- 6 个 canary→distinct 对全部显著，2 个 canary→mauve 对全部不显著\n- **ICC(1,1) = 1.0**（SS_within = 0，无 seed 间分歧）\n- **N_eff = 24 / (1 + 7×1.0) = 3.0**（每个 seed 仅贡献 1 个独立观测）\n- 一致 pair：8/8，不一致：0/8\n\n**α=0.00 null (3 seeds)**：\n- 三个 seed 全部 0/8，ICC 退化（全零，无方差）\n\n已保存至 `artifacts/icc_neff_analysis.json` 并注册 (`art_20260521_14d974`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-icc-neff-estimation.md"
+}

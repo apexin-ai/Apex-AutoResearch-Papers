@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "006afc692d7cd77e7ef4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor gpu experiments",
+  "task_key": "worker_monitor_gpu-experiments_20260515T144846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu-experiments_20260515T144846_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "f265937e1365d229d9e15e10bbc71f72ae2fe82012f41efddfda96eb2b762cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## 状态报告 (2026-05-15 14:51 UTC)\n\n### 实验进度\n\n| 实验 | GPU | 进程 | 完成代数 | 当前状态 | 速度 | ETA (UTC) |\n|------|-----|------|---------|---------|------|-----------|\n| **gen_wiki_gpt2m_a100_s42_v3** | cuda:0 (100%, 55.5/98GB) | 117632 ALIVE | 3/10 | gen_3 训练中 step 1425/5000 (28.5%) | 2.05 it/s | **~22:20** |\n| **alpha_sweep_a025_s43** | cuda:1 (44%, 14.4/98GB) | 121635 ALIVE | 3/10 done, gen_4 starting | gen_3 刚完成 (loss=2.51), gen_4 进入 synthetic gen 阶段 | 15.87 it/s | **~17:30** |\n\n### 时间分析\n\n- **GPT-2m (cuda:0)**: 每代约 55-60 min (含 synthetic gen ~17min + training ~41min)，剩余 ~7.5h。**原 ETA 17:00 UTC 严重低估**，实际要到 ~22:20 UTC。\n- **alpha_sweep (cuda:1)**: 每代约 22-25 min (Pythia-410m 小得多)，剩余 ~2.8h。\n\n### 接力计划\n\ncuda:1 将先空出 (~17:30 UTC)，cuda:0 要到 ~22:20 UTC 才释放。\n\n**gen_wiki_gpt2m_a025_s42** 接力命令已确认可行：\n```bash\npython -u iterative_train.py \\\n  --model_name gpt2-medium \\\n  --data_dir data/wikitext103_5k \\\n  --synthetic_ratio 0.25 \\\n  --num_generations 10 \\\n  --steps_per_gen 5000 \\\n  --batch_size 32 \\\n  --seed 42 \\\n  --output_dir results/gen_wiki_gpt2m_a025_s42\n```\n- 脚本支持 `--model_name gpt2-medium` + `--synthetic_ratio 0.25`\n- 数据目录 `data/wikitext103_5k/` 就绪 (含 train/eval/prompts)\n- 如果想提前利用 cuda:1，alpha_sweep 完成后可以在 cuda:1 上启动此实验（不必等 cuda:0）\n\n### 异常\n\n- **无异常**。两个进程健康运行，GPU 利用率正常（cuda:0 满载符合 GPT-2m 模型大小，cuda:1 44% 符合 Pythia-410m 较小模型特征）。\n- padding_side 警告为正常现象（decoder-only 模型 generate 时的标准 warning），不影响结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-experiments.md"
+}

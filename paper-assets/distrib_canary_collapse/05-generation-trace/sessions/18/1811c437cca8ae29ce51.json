@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1811c437cca8ae29ce51",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check remote paper verify",
+  "task_key": "worker_check_remote_paper_verify_20260518T133549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_remote_paper_verify_20260518T133549_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "e605f762d38179ce4ce9efaa71eed955ec761318aec2b8a1761046c3b184b819"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 文件行数\n| 文件 | 行数 |\n|---|---|\n| experiments.tex | 387 |\n| discussion.tex | 103 |\n\n---\n\n### experiments.tex — 6 项关键词检查\n\n| 关键词 | 结果 | 详情 |\n|---|---|---|\n| `bidirection` | ❌ MISSING | 0 匹配 |\n| `0/28` | ❌ MISSING | 0 匹配 |\n| `13/28` | ❌ MISSING | 0 匹配 |\n| `41/42` | ❌ MISSING | 0 匹配 |\n| `Cross-condition` | ❌ MISSING | 0 匹配 |\n| `97.6` | ❌ MISSING | 0 匹配 |\n\n---\n\n### discussion.tex — 3 项关键词检查\n\n| 关键词 | 结果 | 详情 |\n|---|---|---|\n| `0/28` | ❌ MISSING | 0 匹配 |\n| `13/28` | ❌ MISSING | 0 匹配 |\n| `bidirection` | ❌ MISSING | 0 匹配 |\n\n---\n\n### Table 7 额外检查 (experiments.tex)\n\n| 关键词 | 结果 | 详情 |\n|---|---|---|\n| `5/8` | ✅ 4 匹配 | L349: GPT-2-medium 行; L351: Pythia-1.4B s42 行; L369: TY 讨论段; L373: Scale 段 |\n| `Scale` | ✅ 6 匹配 | L332: subsection 标题; L342: caption; L351/352: 表格行; L369: TY 段; L372: paragraph 标题 |\n| `n_perm` | ❌ MISSING | 0 匹配 |\n\n---\n\n**总结：12 项检查中 9 项 ❌ MISSING，3 项 ✅。** 远程服务器上的论文文件**不包含**最近的修改——`bidirection`、`0/28`、`13/28`、`41/42`、`Cross-condition`、`97.6`、`n_perm` 等关键内容均不存在。需要将本地 `docs/paper/` 的最新版本同步到远程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-remote-paper-verify.md"
+}

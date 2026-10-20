@@ -1,0 +1,2 @@
+Specification curve figure for alpha=0.50 (transition regime).
+Server path: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/spec_curve_analysis/spec_curve_a050.{pdf,png}

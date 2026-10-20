@@ -1,0 +1,35 @@
+\section{Discussion and Conclusion}\label{sec:discussion}
+
+\paragraph{Granger precedence is not causation.}
+Granger causality tests predictive improvement, not true causation~\cite{granger1969investigating,shojaie2022granger}: an unobserved process could independently drive both token entropy and diversity metrics.
+Our central claim is scoped accordingly---``token entropy Granger-precedes diversity collapse''---and bivariate tests cannot exclude confounders; multivariate VAR models would be required to test for confounders directly.
+
+\paragraph{Practical utility paradox.}
+The framework works best where it is least needed: at $\alpha{\geq}0.75$, PermG reliably detects canary precedence, but degradation is already severe; at $\alpha{\leq}0.45$, where early warning would be most valuable, detection remains null.
+However, in realistic pipelines, contamination $\alpha$ is unknown and typically increases over time as web-scraped corpora accumulate machine-generated text.
+A continuous monitoring dashboard would trigger when $\alpha$ crosses the detectability threshold, converting the static limitation into a temporal advantage.
+The regime map itself is actionable: practitioners who know $\alpha{<}0.25$ should invest in data provenance rather than metric monitoring.
+
+\paragraph{Four-layer detection taxonomy.}
+Our results suggest a layered taxonomy ordered by onset threshold:
+(1)~distributional dimensionality (effective rank, onset $\alpha{\approx}0.10$);
+(2)~distributional instability (entropy variance, suggestive at $\alpha{\approx}0.25$);
+(3)~causal coupling (Granger-type, onset $\alpha_c{\approx}0.50$); and
+(4)~dynamical stability (AC1, suggestive but not conclusive at $T{=}11$).
+The 40-percentage-point gap between structural distortion (Layer~1) and causal evidence (Layer~3) constitutes the sharp detection onset.
+Layers~1 and~3 are established; Layers~2 and~4 require longer generation protocols ($T{\geq}50$; \citealt{dakos2012methods}).
+
+\paragraph{Synchronous collapse at $\alpha{=}0.60$.}
+The non-monotonic dip at $\alpha{=}0.60$ (PermG fwd below both $\alpha{=}0.50$ and $\alpha{=}0.75$) is consistent with the $S \times R$ prediction (\S\ref{sec:theory}): relaxation time matching drives $R \to 0$, so entropy and diversity respond within the same generation despite rising signal strength.
+This creates a four-regime structure---blind, onset, synchronous dip, detection---rather than the binary boundary assumed by simpler models.
+
+\paragraph{Method recommendation.}
+The primary value of the multi-method framework is the systematic comparison it enables.
+By applying five methods with different inductive biases, the framework reveals why each succeeds or fails: naive cross-correlation inflates FPR via reverse-directional associations; differenced cross-correlation cannot separate forward from reverse; threshold onset lacks power at $T{=}11$; Toda--Yamamoto achieves moderate detection (3--4/8) but is sensitive to augmentation order.
+This process of elimination converges on PermG as the recommended method: lowest null-control FPR among directionally-specific methods (11.1\%, 4/36 across 6 seeds; DiffXCorr achieves 2.8\% but cannot separate forward from reverse), consistent detection at $\alpha{\geq}0.50$, and clean directional separation (24/24 forward, 0/24 reverse at $\alpha{=}1.0$ on WikiText).
+
+\paragraph{Conclusion.}
+Lead-lag analysis in iterative training collapse is far more fragile than assumed: method choice alone inflates spurious-signal rates to 75\% null-control FPR, first-differencing exposes canary$\to$perplexity associations as entirely spurious, and regime dependence causes the same test to shift from significant to null.
+PermG identifies token entropy as a one-generation-ahead canary for diversity collapse, validated across 15 model-seed combinations spanning six families (345M--6.9B) with detection in 13 cases (87\%).
+Directional asymmetry is domain-dependent (unidirectional on WikiText, bidirectional on C4), and canary-based predictive cessation reduces peak perplexity by 58\%.
+Extended discussion of cross-architecture generalization, domain-dependent directionality, token entropy versus perplexity, NLP-specific constraints, and future directions appears in Appendix~\ref{app:extended_discussion}.

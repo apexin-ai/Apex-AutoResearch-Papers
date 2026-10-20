@@ -1,0 +1,54 @@
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:02:06.478Z",
+    "updated_at": "2026-05-15T12:04:50.741Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "116204",
+      "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log",
+      "submitted_at": "2026-05-15T12:02:14.440Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 18.0,
+      "gpu_hours": 0.01
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T12:02:13.557Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"",
+      "finished_at": "2026-05-15T12:02:31.643Z",
+      "training_hours": 0.01
+    },
+    "pid": "116204",
+    "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T12:02:32.472Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T12:02:33.931882+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-15T12:04:50.821204+00:00",
+  "trigger": "update_registry"
+}

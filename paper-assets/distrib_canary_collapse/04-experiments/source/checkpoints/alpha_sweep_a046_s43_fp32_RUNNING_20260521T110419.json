@@ -1,0 +1,25 @@
+{
+  "exp_id": "alpha_sweep_a046_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:56:43.829Z",
+    "updated_at": "2026-05-21T11:04:18.796Z",
+    "hypothesis": "Cross-seed validation below α_c: α=0.46 s43 tests whether non-detection below the phase boundary (s42 expected 0/8) is seed-robust. If both seeds show 0/8, confirms α_c>0.46 across seeds, strengthening the [0.48,0.50] CI.",
+    "spec": {
+      "command": "python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.46 --seed 43 --n_gen 10 --fp32",
+      "server": "westd-17855",
+      "gpu": "cuda:5",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1",
+      "data_count": "4.4M tokens",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T11:04:19.228930+00:00",
+  "trigger": "update_registry"
+}

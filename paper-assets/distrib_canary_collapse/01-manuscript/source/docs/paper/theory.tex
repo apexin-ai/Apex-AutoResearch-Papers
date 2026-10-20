@@ -1,0 +1,21 @@
+\section{Cascade Ordering}
+\label{sec:cascade}
+
+If distributional collapse follows a predictable ordering across metrics, the earliest-responding metric can serve as a canary signal.
+We formalize known metric properties---entropy as a continuous indicator of mode concentration, diversity as a threshold indicator of lexical coverage---under mode amplification~\cite{shumailov2024curse,dohmatob2024tale} (derivations in Appendix~\ref{app:cascade_theory}).
+
+\begin{designprinciple}[Entropy responds before diversity]\label{thm:entropy_leads}
+Under mode amplification: \textup{(a)} entropy can decrease while the $\epsilon$-effective support $S_\epsilon(p) {=} |\{i: p_i > \epsilon\}|$ (hence distinct-$n$) is unchanged; \textup{(b)} if distinct-$n$ decreases, entropy has already decreased.
+\end{designprinciple}
+
+The asymmetry arises because entropy responds to any mass redistribution (first-order), while diversity changes only when a token probability crosses the generation threshold~$\epsilon$; the margin $\gamma = \min_{i: p_i > \epsilon}(p_i - \epsilon)$ quantifies how much shift diversity absorbs silently.
+
+\begin{designprinciple}[Diversity lag $\geq 1$ generation]\label{prop:div_lag}
+If the per-generation perturbation satisfies $\alpha\|\mathcal{T}(p_t) - p_t\|_\infty < \gamma(p_t, \epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \geq t_H + 1$.
+\end{designprinciple}
+
+ECE co-moves with entropy at zero lag: peakier conditionals simultaneously decrease per-token entropy and increase confidence ($\Delta\mathrm{ECE} \approx \Delta C > 0$ whenever $\Delta\bar{H} < 0$; qualitative argument in Appendix~\ref{app:cascade_theory}).
+The predicted cascade $\{H, \mathrm{ECE}\} \to \mathrm{Distinct}$-$n$ holds in 14/15 experiments at $\alpha \geq 0.30$ (GPT-2-medium s43 bidirectional; within-domain WikiText, $2\sigma$ onset threshold): entropy and ECE onset at generation~1, distinct-$n$ at generation~2 ($t_H{=}t_{\mathrm{ECE}}{=}1$, $t_D{=}2$ uniformly; \S\ref{sec:regime}; Appendix~\ref{app:moment_cascade}).
+Five low-$\alpha$ experiments show no detectable onset, leaving the ordering undefined below the detection threshold.
+The assumption requires monotonic entropy decline; SmolLM3-3B (entropy 0/4; Table~\ref{tab:generalization}) provides an empirical counter-example, possibly due to architectural differences in attention or normalization.
+This cascade establishes entropy as the earliest available canary and explains PermG's directional selectivity: forward tests detect temporal precedence (6/8) while reverse tests find none (0/8) at $\alpha \geq 0.50$.

@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase_diagram_t20_a060_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:39:46.264Z",
+    "updated_at": "2026-05-21T17:58:09.114Z",
+    "hypothesis": "T=20 α=0.60 cross-seed validation for desynchronization analysis (D175). s42=0/8 near-miss p_fdr=0.064. If s43 also shows near-miss (p<0.10), strengthens dissolution-in-progress interpretation.",
+    "parent": "t20_a060_s42_fp32"
+  },
+  "timestamp": "2026-05-21T17:58:09.463884+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,42 @@
+======================================================================
+TRANSFER ENTROPY / MI DECOMPOSITION — KEY FINDINGS
+======================================================================
+
+--- Sync Dip Zone (alpha in [0.55, 0.65]) ---
+  alpha=0.60: avg MI=0.3255, avg TE_fwd=1.1912, avg gap=-0.8657
+  alpha=0.65: avg MI=0.3445, avg TE_fwd=1.3970, avg gap=-1.0525
+
+--- Detection Zone (alpha in [0.40, 0.52]) ---
+  alpha=0.40: avg MI=0.1990, avg TE_fwd=1.3454, avg gap=-1.1464
+  alpha=0.45: avg MI=0.2460, avg TE_fwd=1.5132, avg gap=-1.2673
+  alpha=0.46: avg MI=0.2426, avg TE_fwd=1.5165, avg gap=-1.2738
+  alpha=0.48: avg MI=0.2459, avg TE_fwd=1.3623, avg gap=-1.1163
+  alpha=0.50: avg MI=0.2002, avg TE_fwd=0.9443, avg gap=-0.7442
+  alpha=0.52: avg MI=0.2872, avg TE_fwd=1.4922, avg gap=-1.2050
+
+--- TE Directionality (canary->down vs down->canary) ---
+  alpha=0.25: 4/8 pairs fwd-dominant, avg net TE=0.1359
+  alpha=0.50: 5/8 pairs fwd-dominant, avg net TE=0.4200
+  alpha=0.60: 6/8 pairs fwd-dominant, avg net TE=0.5680
+  alpha=0.75: 6/8 pairs fwd-dominant, avg net TE=0.9927
+  alpha=1.00: 8/8 pairs fwd-dominant, avg net TE=1.5914
+
+--- Bootstrap CI Stability ---
+  T=10: 0/120 TE_fwd CIs include 0 (0.0%)
+  T=20: 0/48 TE_fwd CIs include 0 (0.0%)
+
+--- Hypothesis: High MI + Low TE in sync dip zone ---
+  ece_vs_perplexity:
+    a=0.50: MI=0.1115, TE=1.1020, gap=-0.9905
+    a=0.60: MI=0.5193, TE=0.2793, gap=0.2399
+    --> SUPPORTS hypothesis (MI up, TE down)
+  token_entropy_vs_perplexity:
+    a=0.50: MI=0.0007, TE=1.0303, gap=-1.0296
+    a=0.60: MI=0.1245, TE=0.3172, gap=-0.1927
+    --> SUPPORTS hypothesis (MI up, TE down)
+  [Other 6 pairs]: PARTIAL — MI higher at 0.60 but TE also higher
+
+--- Server Paths ---
+  Results JSON: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/analysis/transfer_entropy/te_mi_results.json
+  Figures: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/analysis/transfer_entropy/fig{1-4}_*.{pdf,png}
+  Script: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/analysis/transfer_entropy/transfer_entropy_analysis.py

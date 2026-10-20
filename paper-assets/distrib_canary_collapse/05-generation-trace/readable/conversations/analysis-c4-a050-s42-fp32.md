@@ -1,0 +1,1472 @@
+# analysis c4 a050 s42 fp32
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_analysis_c4_a050_s42_fp32_20260519T182208.jsonl`
+- **Structured JSON:** [`0b39c12abb9cf8e65d85.json`](../../sessions/0b/0b39c12abb9cf8e65d85.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T18:26:11.192514+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T18:26:11.192932+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T18:26:11.193159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -50 /root/runs/distrib_canary_collapse/c4_a050_s42_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -50 /root/runs/distrib_canary_collapse/c4_a050_s42_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T18:26:11.193344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T18:26:11.193584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 28%|██▊       | 1400/5000 [03:02<07:48,  7.68it/s]\\r 28%|██▊       | 1401/5000 [03:02<07:48,  7.68it/s]\\r 28%|██▊       | 1402/5000 [03:02<07:48,  7.67it/s]\\r 28%|██▊       | 1403/5000 [03:02<07:48,  7.67it/s]\\r 28%|██▊       | 1404/5000 [03:03<07:48,  7.67it/s]\\r 28%|██▊       | 1405/5000 [03:03<07:47,  7.68it/s]\\r 28%|██▊       | 1406/5000 [03:03<07:47,  7.69it/s]\\r 28%|██▊       | 1407/5000 [03:03<07:47,  7.69it/s]\\r 28%|██▊       | 1408/5000 [03:03<07:47,  7.68it/s]\\r 28%|██▊       | 1409/5000 [03:03<07:47,  7.69it/s]\\r 28%|██▊       | 1410/5000 [03:03<07:47,  7.68it/s]\\r 28%|██▊       | 1411/5000 [03:03<07:46,  7.69it/s]\\r 28%|██▊       | 1412/5000 [03:04<07:46,  7.69it/s]\\r 28%|██▊       | 1413/5000 [03:04<07:46,  7.69it/s]\\r 28%|██▊       | 1414/5000 [03:04<07:46,  7.69it/s]\\r 28%|██▊       | 1415/5000 [03:04<07:46,  7.68it/s]\\r 28%|██▊       | 1416/5000 [03:04<07:46,  7.68it/s]\\r 28%|██��       | 1417/5000 [03:04<07:46,  7.68it/s]\\r 28%|██▊       | 1418/5000 [03:04<07:46,  7.68it/s]\\r 28%|██▊       | 1419/5000 [03:04<07:46,  7.68it/s]\\r 28%|██▊       | 1420/5000 [03:05<07:45,  7.69it/s]\\r 28%|██▊       | 1421/5000 [03:05<07:46,  7.68it/s]\\r 28%|██▊       | 1422/5000 [03:05<07:45,  7.69it/s]\\r 28%|██▊       | 1423/5000 [03:05<07:45,  7.68it/s]\\r 28%|██▊       | 1424/5000 [03:05<07:45,  7.68it/s]\\r 28%|██▊       | 1425/5000 [03:05<07:45,  7.68it/s]\\r 29%|██▊       | 1426/5000 [03:05<07:45,  7.68it/s]\\r 29%|██▊       | 1427/5000 [03:06<07:45,  7.68it/s]\\r 29%|██▊       | 1428/5000 [03:06<07:45,  7.67it/s]\\r 29%|██▊       | 1429/5000 [03:06<07:45,  7.67it/s]\\r 29%|██▊       | 1430/5000 [03:06<07:45,  7.67it/s]\\r 29%|██▊       | 1431/5000 [03:06<07:45,  7.67it/s]\\r 29%|██▊       | 1432/5000 [03:06<07:45,  7.67it/s]\\r 29%|██▊       | 1433/5000 [03:06<07:44,  7.67it/s]\\r 29%|██▊       | 1434/5000 [03:06<07:44,  7.68it/s]\\r 29%|██▊       | 1435/5000 [03:07<07:44,  7.68it/s
+…[truncated 6483 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T18:26:11.193842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.109375709334985,\\n    \\\"self_bleu\\\": 0.007200800969691132,\\n    \\\"ece\\\": 0.012183986940979056,\\n    \\\"effective_rank\\\": 68.75195607208018,\\n    \\\"perplexity\\\": 24.012041636486078,\\n    \\\"distinct_1\\\": 0.11494640971031808,\\n    \\\"distinct_2\\\": 0.5570408207436908,\\n    \\\"distinct_3\\\": 0.8387761462806483,\\n    \\\"mauve\\\": 0.8286254660784383,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.3268944713146595,\\n    \\\"self_bleu\\\": 0.007576320079325668,\\n    \\\"ece\\\": 0.16559037567651647,\\n    \\\"effective_rank\\\": 102.52073702734778,\\n    \\\"perplexity\\\": 53.648604426565925,\\n    \\\"distinct_1\\\": 0.11619322327813404,\\n    \\\"distinct_2\\\": 0.5570540665831087,\\n    \\\"distinct_3\\\": 0.8362793492724385,\\n    \\\"mauve\\\": 0.8757107135147529,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.02448571804146,\\n    \\\"self_bleu\\\": 0.006941040462927306,\\n    \\\"ece\\\": 0.260046643962427,\\n    \\\"effective_rank\\\": 124.0121800846211,\\n    \\\"perplexity\\\": 112.73748678024371,\\n    \\\"distinct_1\\\": 0.098671875,\\n    \\\"distinct_2\\\": 0.482964710661802,\\n    \\\"distinct_3\\\": 0.7561602525039454,\\n    \\\"mauve\\\": 0.49367444132055216,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.830724129310021,\\n    \\\"self_bleu\\\": 0.007045271029002651,\\n    \\\"ece\\\": 0.31104148626155464,\\n    \\\"effective_rank\\\": 132.999335191335,\\n    \\\"perplexity\\\": 188.29372067048752,\\n    \\\"distinct_1
+…[truncated 4310 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T18:26:11.194023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T18:26:11.194165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T18:26:11.195056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T18:26:11.195356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py\\n/root/autodl-tmp/distrib_canary_collapse/run_intervention_5method.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T18:26:11.195519+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'c4_a050_s42_fp32'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'c4_a050_s42_fp32'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T18:26:11.195657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.302}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:26:11.195812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T18:26:11.195976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n\\nReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\nanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\nruns full MMCT if null directories are provided.\\n\\nUsage:\\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n\\nInput:  {exp_dir}/all_metrics.json\\nOutput: {exp_dir}/analysis_results.json (or --output path)\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport traceback\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nN_PERM = 5000\\nALPHA_SIG = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n\\n\\ndef load_series(data_dir):\\n    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    with open(path) as f:\\n        data = json.load(f)\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in ALL_METRICS:\\n        vals = []\\n        for d in data:\\n            v = d.get(k)\\n            vals.append(v if v is not None else np.nan)\\n        out[k] = np.array(vals, dtype=float)\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.co
+…[truncated 817 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T18:26:11.196135+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T18:26:11.196322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D105: Global 3sigma recompute for 7 experiments.\\n\\nHandles two data formats:\\n- 5method_leadlag.json (run_5method_analysis output)\\n- analysis_results.json (d102_rerun_8pair output)\\n\\nRecomputes threshold_onset with true 3sigma, keeps other 4 methods unchanged,\\nrecalculates K>=4 and K>=3.\\n\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nfrom itertools import product\\nfrom datetime import datetime\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef extract(metrics_list, name):\\n    return np.array([m[name] for m in sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef onset_gen_3sigma(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 3 * sigma\\n    for i in range(1, len(s)):\\n        if s[i] > thresh:\\n            return i\\n    return None\\n\\n\\ndef threshold_lead_3sigma(c, d, cn, dn):\\n    co = onset_gen_3sigma(c, cn)\\n    do = onset_gen_3sigma(d, dn)\\n    if co is None or do is None:\\n        return {\\\"canary_onset\\\": co, \\\"downstream_onset\\\": do, \\\"lead_time\\\": None, \\\"significant\\\": False}\\n    lt = do - co\\n    return {\\\"canary_onset\\\": int(co), \\\"downstream_onset\\\": int(do), \\\"lead_time\\\": int(lt), \\\"significant\\\": bool(lt > 0)}\\n\\n\\ndef onset_gen_2sigma(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 2 * sigma\\n    for i in range(1, len(s)):\\n        if s[
+…[truncated 820 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T18:26:11.196478+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['exp_id', 'metrics', 'conclusion']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['exp_id', 'metrics', 'conclusion']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:26:11.196641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"interv_react_s43_fp32\": {\"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.8, \"trigger_distinct1_from\": 0.0983, \"trigger_distinct1_to\": 0.0827, \"gen2_ppl\": 158.2, \"recovery_ppl\": 21.4, \"recovery_complete_by_gen\": 3, \"converges_to_alpha0_baseline\": true, \"precision\": \"fp32\", \"cross_seed_note\": \"s42(fp32): trigger G2 d1=-15.58%, ppl=157.09, recovery G4. s43(fp32): trigger G2 d1=-15.8%, ppl=158.2, recovery G3. Highly consistent.\"}}, \"generalize_pythia1b_c4_a100_s43\": {\"metrics\": {\"robust_pairs_K4_3sigma\": \"5/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"2/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"conclusion\": \"success\"}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, \"generalize_pythia14b_wiki_a100_s43\": {\"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"3/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, \"generalize_pythia14b_wiki_a100_s42\": {\"metrics\": {\"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"conclusion\": \"success\"}}, \"count\": 5, \"total\": 88, \"baseline\": null}, \"error\": null, \"met
+…[truncated 41 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T18:26:11.196825+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:26:11.196957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"595 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T18:26:11.197081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -100 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -100 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T18:26:11.197284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n            \\\"detection_rate\\\": round(k4 / total, 4) if total > 0 else 0.0,\\n            \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\",\\n        }\\n\\n    # 4. Build output\\n    output = {\\n        \\\"exp_dir\\\": exp_dir,\\n        \\\"n_generations\\\": n_gens,\\n        \\\"drift_pct\\\": drift,\\n        \\\"lead_lag\\\": lead_lag,\\n        \\\"mmct\\\": mmct_result,\\n        \\\"consensus_detail\\\": consensus_counts,\\n        \\\"pair_details\\\": _clean(all_pairs),\\n    }\\n\\n    if output_path is None:\\n        output_path = os.path.join(exp_dir, \\\"analysis_results.json\\\")\\n    os.makedirs(os.path.dirname(output_path) or \\\".\\\", exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {output_path}\\\")\\n\\n    # Print summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"SUMMARY: {exp_dir}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"Generations: {n_gens}\\\")\\n    print(f\\\"\\\\nDrift (gen0->gen{n_gens-1}):\\\")\\n    for k, v in drift.items():\\n        if v is not None:\\n            print(f\\\"  {k:20s}: {v:+.2f}%\\\")\\n    print(f\\\"\\\\nLead-lag (forward significant / total):\\\")\\n    for method, counts in lead_lag.items():\\n        key = \\\"forward\\\" if \\\"forward\\\" in counts else \\\"sig\\\"\\n        print(f\\\"  {method:20s}: {counts[key]}/{counts['total']}\\\")\\n    print(f\\\"\\\\nMMCT: {mmct_result.get('mode', 'N/A')}, \\\"\\n          f\\\"detection_rate={mmct_result.get('detection_rate', 'N/A')}\\\")\\n\\n    return output\\n\\n\\ndef _save_5method_format(all_pairs, n_gens, exp_dir, analysis_dir):\\n    \\\"\\\"\\\"Save lead-lag results in the format expected by MMCT module.\\\"\\\"\\\"\\n    pairs_out = []\\n    for p in all_pairs:\\n        r = p[\\\"results\\\"]\\n        pair_entry
+…[truncated 2495 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T18:26:11.198212+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -300 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -300 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:26:11.199294+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Batch lead-lag analysis for distributional canary collapse experiments.\\n\\nReads all_metrics.json from an experiment directory, runs 5-method lead-lag\\nanalysis on all canary-diversity pairs, computes K>=4 consensus, and optionally\\nruns full MMCT if null directories are provided.\\n\\nUsage:\\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16\\n    python batch_analysis.py --exp_dir results/alpha_sweep/a010_s43_bf16 \\\\\\n        --null_dirs results/alpha_sweep/a000_s42 results/alpha_sweep/a000_s43\\n\\nInput:  {exp_dir}/all_metrics.json\\nOutput: {exp_dir}/analysis_results.json (or --output path)\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport traceback\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nN_PERM = 5000\\nALPHA_SIG = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nALL_METRICS = [\\\"token_entropy\\\", \\\"ece\\\", \\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\",\\n               \\\"distinct_3\\\", \\\"effective_rank\\\", \\\"mauve\\\"]\\n\\n\\ndef load_series(data_dir):\\n    path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    with open(path) as f:\\n        data = json.load(f)\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in ALL_METRICS:\\n        vals = []\\n        for d in data:\\n            v = d.get(k)\\n            vals.append(v if v is not None else np.nan)\\n        out[k] = np.array(vals, dtype=float)\\n    return out, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.co
+…[truncated 7250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T18:26:11.199542+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -300 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -300 /root/autodl-tmp/distrib_canary_collapse/batch_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T18:26:11.199834+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Y = y[p_total:]\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, p_total + 1):\\n        cols_r.append(y[p_total - lag: T - lag])\\n    for lag in range(max_lag + 1, p_total + 1):\\n        cols_r.append(x[p_total - lag: T - lag])\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[p_total - lag: T - lag])\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return {\\\"method\\\": \\\"ty_granger\\\", \\\"chi2\\\": None, \\\"p_value\\\": None,\\n                \\\"significant\\\": False, \\\"note\\\": \\\"lstsq failed\\\"}\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n    df_resid = n - X_u.shape[1]\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return {\\\"method\\\": \\\"ty_granger\\\", \\\"chi2\\\": None, \\\"p_value\\\": None,\\n                \\\"significant\\\": False, \\\"note\\\": f\\\"df_resid={df_resid}\\\"}\\n    q = max_lag\\n    W = n * (rss_r - rss_u) / rss_u\\n    p_val = 1.0 - stats.chi2.cdf(W, q)\\n    return {\\n        \\\"method\\\": \\\"ty_granger\\\",\\n        \\\"chi2\\\": round(float(W), 4),\\n        \\\"p_value\\\": round(float(p_val), 6),\\n        \\\"d_max\\\": int(d_max),\\n        \\\"df_resid\\\": int(df_resid),\\n        \\\"significant\\\": bool(p_val < ALPHA_SIG),\\n    }\\n\\n\\n# ── Run all 5 methods on one pair ──\\n\\ndef run_pair(series, cn, dn):\\n    c, d = series[cn], series[dn]\\n    results = {}\\n    results[\\\"naive_xcorr\\\"] = naive_xcorr(c, d, cn, dn)\\n    results[\\\"diff_xcorr\\\"] = diff_xcorr(c, d, cn, dn)\\n    results[\\\"threshold_onset\\\"] = threshold_onset(c, d, cn, dn)\\n    # forward: canary -> downstream (x=canary causes y=downstream)\\n    results[\\\"pe
+…[truncated 7473 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T18:26:11.200103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ ",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/ ",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T18:26:11.200312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s42_fp32\\na010_s43_bf16\\na010_s43_fp32\\na025_s42_fp32\\na025_s43_fp32\\na025_s44_fp32\\na030_s42_fp32\\na035_s42_fp32\\na040_s42_fp32\\na050_s42_fp32\\na050_s43_fp32\\na050_s44_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\na060_s43_fp32\\na075_s42_fp32\\nc4_a050_s42_fp32\\nc4_a075_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:26:11.200675+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u batch_analysis.py --exp_dir results/alpha_sweep/c4_a050_s42_fp32 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u batch_analysis.py --exp_dir results/alpha_sweep/c4_a050_s42_fp32 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T18:26:11.200854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/c4_a050_s42_fp32\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/alpha_sweep/c4_a050_s42_fp32/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/c4_a050_s42_fp32\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -47.99%\\n  ece                 : +3103.74%\\n  perplexity          : +2931.59%\\n  distinct_1          : -9.78%\\n  distinct_2          : -15.72%\\n  distinct_3          : -17.75%\\n  effective_rank      : +112.05%\\n  mauve               : -54.25%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 8/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 8/8\\n  perm_granger_fwd    : 8/8\\n  perm_granger_rev    : 7/8\\n  ty_granger          : 4/8\\n  consensus_k4        : 8/8\\n\\nMMCT: weighted_pair_forward, detection_rate=1.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T18:26:11.201040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:26:11.201435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/c4_a050_s42_fp32\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -47.99,\\n    \\\"ece\\\": 3103.74,\\n    \\\"perplexity\\\": 2931.59,\\n    \\\"distinct_1\\\": -9.78,\\n    \\\"distinct_2\\\": -15.72,\\n    \\\"distinct_3\\\": -17.75,\\n    \\\"effective_rank\\\": 112.05,\\n    \\\"mauve\\\": -54.25\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 4,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 1.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"
+…[truncated 8882 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T18:26:11.201667+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report",
+  "description": "Create artifact directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report",
+    "description": "Create artifact directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T18:26:11.201970+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T18:26:11.202145+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32.md",
+  "content": "# Analysis: c4_a050_s42_fp32\n\n**Date**: 2026-05-19\n**Server**: westd-17855\n**Precision**: fp32\n**Parent (bf16)**: alpha_sweep_c4_a050_s42_bf16\n\n## Purpose\n\nDetermine whether the bf16 parent's PermG fwd=0/8 at C4 α=0.50 is a precision artifact or a true blind zone.\n\n## Result Summary\n\n**Conclusion: bf16 precision artifact confirmed.** fp32 rerun yields PermG fwd=8/8, K≥4=8/8. C4 α=0.50 has strong causal lead-lag signal; bf16 completely masked it.\n\n## Training Completion\n\n- EXIT_CODE=0 (normal exit)\n- 11 generations (gen 0–10)\n- All metrics computed, sentinel written\n\n## Per-Generation Metrics\n\n| Gen | token_entropy | distinct_1 | distinct_2 | distinct_3 | perplexity | mauve | ece |\n|-----|--------------|------------|------------|------------|------------|-------|-----|\n| 0 | 3.109 | 0.1149 | 0.5570 | 0.8388 | 24.01 | 0.829 | 0.012 |\n| 1 | 2.327 | 0.1162 | 0.5571 | 0.8363 | 53.65 | 0.876 | 0.166 |\n| 2 | 2.024 | 0.0987 | 0.4830 | 0.7562 | 112.74 | 0.494 | 0.260 |\n| 3 | 1.831 | 0.0955 | 0.4583 | 0.7134 | 188.29 | 0.450 | 0.311 |\n| 4 | 1.725 | 0.0951 | 0.4460 | 0.6873 | 260.55 | 0.367 | 0.339 |\n| 5 | 1.679 | 0.0971 | 0.4469 | 0.6781 | 331.59 | 0.382 | 0.353 |\n| 6 | 1.650 | 0.0990 | 0.4511 | 0.6785 | 407.93 | 0.420 | 0.364 |\n| 7 | 1.626 | 0.1007 | 0.4579 | 0.6801 | 480.53 | 0.393 | 0.375 |\n| 8 | 1.617 | 0.1020 | 0.4634 | 0.6858 | 559.26 | 0.402 | 0.383 |\n| 9 | 1.610 | 0.1035 | 0.4698 | 0.6934 | 637.24 | 0.377 | 0.387 |\n| 10 | 1.617 | 0.1037 | 0.4695 | 0.6899 | 727.95 | 0.379 | 0.390 |\n\n## Drift (gen 0 → gen 10)\n\n| Metric | gen 0 | gen 10 | Δ% |\n|--------|-------|--------|-----|\n| token_entropy | 3.109 | 1.617 | -48.0% |\n| distinct_1 | 0.115 | 0.104 | -9.8% |\n| distinct_2 | 0.557 | 0.469 | -15.7% |\n| distinct_3 | 0.839 | 0.690 | -17.8% |\n| perplexity | 24.01 | 727.95 | +2932% |\n| mauve | 0.829 | 0.379 | -54.3% |\n| ece | 0.012 | 0.390 | +3104% |\n| effective_rank | 68.75 | 145.79 | +112.1% |\n\n## Lead-Lag Analysis (D102: 8-pair, D105: 3σ, D106: PermG fwd)\n\n### Method Summary\n\n| Method | Sig/Total |\n|--------|-----------|\n| naive_xcorr | 8/8 |\n| diff_xcorr (FDR) | 8/8 |\n| threshold_onset (3σ) | 8/8 |\n| **perm_granger_fwd (FDR)** | **8/8** |\n| perm_granger_rev (FDR) | 7/8 |\n| ty_granger | 4/8 |\n| **consensus K≥4** | **8/8** |\n| consensus K≥3 | 8/8 |\n\n### Per-Pair Consensus\n\n| Pair | K | Methods |\n|------|---|---------|\n| token_entropy→distinct_1 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy→distinct_2 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy→distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy→mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece→distinct_1 | 4 | naive, diff, thresh, pg_fwd |\n| ece→distinct_2 | 4 | naive, diff, thresh, pg_fwd |\n| ece→distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece→mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n\n### Threshold Onset (3σ)\n\nAll 8 pairs: canary onset at gen 1, downstream onset at gen 2–3 (lead time 1–2 gens).\n\n### PermG Forward (FDR-corrected)\n\n| Pair | F-stat | p_fdr |\n|------|--------|-------|\n| token_entropy→distinct_1 | 157.41 | 0.0036 |\n| ece→distinct_3 | 229.43 | 0.0028 |\n| ece→mauve | 153.78 | 0.0029 |\n| (all 8 pairs significant) | | |\n\n## bf16 vs fp32 Comparison\n\n| Metric | bf16 parent | fp32 (this) |\n|--------|-------------|-------------|\n| token_entropy (gen 0) | 3.136 | 3.109 |\n| token_entropy (final) | 1.94 | 1.617 |\n| token_entropy Δ% | -38.2% | -48.0% |\n| distinct_1 Δ% | -20.3% | -9.8% |\n| perplexity (final) | 122.8 | 727.95 |\n| mauve (final) | 0.078 | 0.379 |\n| ece (final) | 0.259 | 0.390 |\n| **PermG fwd** | **0/8** | **8/8** |\n| **PermG rev** | **0/8** | **7/8** |\n| **K≥4** | **0/8** | **8/8** |\n\n## Interpretation\n\n1. **bf16 precision artifact confirmed**: The complete flip from 0/8 to 8/8 on PermG fwd (D106 primary metric) demonstrates that bf16 numerical precision destroyed the causal signal at C4 α=0.50. This validates D079 (fp32 mandatory for ≤3B models).\n\n2. **C4 α=0.50 is NOT a blind zone**: Strong causal lead-lag exists across all 8 canary-diversity pairs. Canaries (token_entropy, ece) lead downstream diversity metrics (d1–d3, mauve) by 1–2 generations at the 3σ threshold.\n\n3. **Dynamics differ in fp32**: fp32 shows deeper collapse (entropy -48% vs -38%, ppl +2932% vs +402%) but paradoxically higher remaining mauve (0.379 vs 0.078). This suggests bf16 introduced different collapse dynamics, not just masking the signal.\n\n4. **Dose-response regime map update**: C4 α=0.50 should be reclassified from \"blind zone / no signal\" to \"active signal with strong causal structure.\" Any other bf16-only 0/8 results at moderate α values are candidates for fp32 reruns.\n\n## Files\n\n- Results: `westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/`\n- Analysis: `westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/analysis_results.json`\n- Log: `westd-17855:/root/runs/distrib_canary_collapse/c4_a050_s42_fp32.log`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32.md",
+    "content": "# Analysis: c4_a050_s42_fp32\n\n**Date**: 2026-05-19\n**Server**: westd-17855\n**Precision**: fp32\n**Parent (bf16)**: alpha_sweep_c4_a050_s42_bf16\n\n## Purpose\n\nDetermine whether the bf16 parent's PermG fwd=0/8 at C4 α=0.50 is a precision artifact or a true blind zone.\n\n## Result Summary\n\n**Conclusion: bf16 precision artifact confirmed.** fp32 rerun yields PermG fwd=8/8, K≥4=8/8. C4 α=0.50 has strong causal lead-lag signal; bf16 completely masked it.\n\n## Training Completion\n\n- EXIT_CODE=0 (normal exit)\n- 11 generations (gen 0–10)\n- All metrics computed, sentinel written\n\n## Per-Generation Metrics\n\n| Gen | token_entropy | distinct_1 | distinct_2 | distinct_3 | perplexity | mauve | ece |\n|-----|--------------|------------|------------|------------|------------|-------|-----|\n| 0 | 3.109 | 0.1149 | 0.5570 | 0.8388 | 24.01 | 0.829 | 0.012 |\n| 1 | 2.327 | 0.1162 | 0.5571 | 0.8363 | 53.65 | 0.876 | 0.166 |\n| 2 | 2.024 | 0.0987 | 0.4830 | 0.7562 | 112.74 | 0.494 | 0.260 |\n| 3 | 1.831 | 0.0955 | 0.4583 | 0.7134 | 188.29 | 0.450 | 0.311 |\n| 4 | 1.725 | 0.0951 | 0.4460 | 0.6873 | 260.55 | 0.367 | 0.339 |\n| 5 | 1.679 | 0.0971 | 0.4469 | 0.6781 | 331.59 | 0.382 | 0.353 |\n| 6 | 1.650 | 0.0990 | 0.4511 | 0.6785 | 407.93 | 0.420 | 0.364 |\n| 7 | 1.626 | 0.1007 | 0.4579 | 0.6801 | 480.53 | 0.393 | 0.375 |\n| 8 | 1.617 | 0.1020 | 0.4634 | 0.6858 | 559.26 | 0.402 | 0.383 |\n| 9 | 1.610 | 0.1035 | 0.4698 | 0.6934 | 637.24 | 0.377 | 0.387 |\n| 10 | 1.617 | 0.1037 | 0.4695 | 0.6899 | 727.95 | 0.379 | 0.390 |\n\n## Drift (gen 0 → gen 10)\n\n| Metric | gen 0 | gen 10 | Δ% |\n|--------|-------|--------|-----|\n| token_entropy | 3.109 | 1.617 | -48.0% |\n| distinct_1 | 0.115 | 0.104 | -9.8% |\n| distinct_2 | 0.557 | 0.469 | -15.7% |\n| distinct_3 | 0.839 | 0.690 | -17.8% |\n| perplexity | 24.01 | 727.95 | +2932% |\n| mauve | 0.829 | 0.379 | -54.3% |\n| ece | 0.012 | 0.390 | +3104% |\n| effective_rank | 68.75 | 145.79 | +112.1% |\n\n## Lead-Lag Analysis (D102: 8-pair, D105: 3σ, D106: PermG fwd)\n\n### Method Summary\n\n| Method | Sig/Total |\n|--------|-----------|\n| naive_xcorr | 8/8 |\n| diff_xcorr (FDR) | 8/8 |\n| threshold_onset (3σ) | 8/8 |\n| **perm_granger_fwd (FDR)** | **8/8** |\n| perm_granger_rev (FDR) | 7/8 |\n| ty_granger | 4/8 |\n| **consensus K≥4** | **8/8** |\n| consensus K≥3 | 8/8 |\n\n### Per-Pair Consensus\n\n| Pair | K | Methods |\n|------|---|---------|\n| token_entropy→distinct_1 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy→distinct_2 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy→distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy→mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece→distinct_1 | 4 | naive, diff, thresh, pg_fwd |\n| ece→distinct_2 | 4 | naive, diff, thresh, pg_fwd |\n| ece→distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece→mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n\n### Threshold Onset (3σ)\n\nAll 8 pairs: canary onset at gen 1, downstream onset at gen 2–3 (lead time 1–2 gens).\n\n### PermG Forward (FDR-corrected)\n\n| Pair | F-stat | p_fdr |\n|------|--------|-------|\n| token_entropy→distinct_1 | 157.41 | 0.0036 |\n| ece→distinct_3 | 229.43 | 0.0028 |\n| ece→mauve | 153.78 | 0.0029 |\n| (all 8 pairs significant) | | |\n\n## bf16 vs fp32 Comparison\n\n| Metric | bf16 parent | fp32 (this) |\n|--------|-------------|-------------|\n| token_entropy (gen 0) | 3.136 | 3.109 |\n| token_entropy (final) | 1.94 | 1.617 |\n| token_entropy Δ% | -38.2% | -48.0% |\n| distinct_1 Δ% | -20.3% | -9.8% |\n| perplexity (final) | 122.8 | 727.95 |\n| mauve (final) | 0.078 | 0.379 |\n| ece (final) | 0.259 | 0.390 |\n| **PermG fwd** | **0/8** | **8/8** |\n| **PermG rev** | **0/8** | **7/8** |\n| **K≥4** | **0/8** | **8/8** |\n\n## Interpretation\n\n1. **bf16 precision artifact confirmed**: The complete flip from 0/8 to 8/8 on PermG fwd (D106 primary metric) demonstrates that bf16 numerical precision destroyed the causal signal at C4 α=0.50. This validates D079 (fp32 mandatory for ≤3B models).\n\n2. **C4 α=0.50 is NOT a blind zone**: Strong causal lead-lag exists across all 8 canary-diversity pairs. Canaries (token_entropy, ece) lead downstream diversity metrics (d1–d3, mauve) by 1–2 generations at the 3σ threshold.\n\n3. **Dynamics differ in fp32**: fp32 shows deeper collapse (entropy -48% vs -38%, ppl +2932% vs +402%) but paradoxically higher remaining mauve (0.379 vs 0.078). This suggests bf16 introduced different collapse dynamics, not just masking the signal.\n\n4. **Dose-response regime map update**: C4 α=0.50 should be reclassified from \"blind zone / no signal\" to \"active signal with strong causal structure.\" Any other bf16-only 0/8 results at moderate α values are candidates for fp32 reruns.\n\n## Files\n\n- Results: `westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/`\n- Analysis: `westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/analysis_results.json`\n- Log: `westd-17855:/root/runs/distrib_canary_collapse/c4_a050_s42_fp32.log`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T18:26:11.202382+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T18:26:11.202534+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "analysis_c4_a050_s42_fp32",
+  "type": "report",
+  "description": "C4 α=0.50 fp32 rerun analysis: bf16 precision artifact confirmed (PermG fwd 0/8→8/8)",
+  "project": "distrib_canary_collapse",
+  "exp_id": "c4_a050_s42_fp32",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32.md",
+  "tags": "['fp32', 'precision-artifact', 'c4', 'alpha050', 'permg']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "analysis_c4_a050_s42_fp32",
+    "type": "report",
+    "description": "C4 α=0.50 fp32 rerun analysis: bf16 precision artifact confirmed (PermG fwd 0/8→8/8)",
+    "project": "distrib_canary_collapse",
+    "exp_id": "c4_a050_s42_fp32",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32.md",
+    "tags": "['fp32', 'precision-artifact', 'c4', 'alpha050', 'permg']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T18:26:11.202848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_2bf704\", \"name\": \"analysis_c4_a050_s42_fp32\", \"type\": \"report\", \"description\": \"C4 α=0.50 fp32 rerun analysis: bf16 precision artifact confirmed (PermG fwd 0/8→8/8)\", \"path\": \"projects/distrib_canary_collapse/artifacts/c4_a050_s42_fp32/report/analysis_c4_a050_s42_fp32_2bf704.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"c4_a050_s42_fp32\", \"skill\": \"\", \"created_at\": \"2026-05-19T18:25:39.034787+00:00\", \"tags\": [\"fp32\", \"precision-artifact\", \"c4\", \"alpha050\", \"permg\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T18:26:11.203005+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "field": "hypothesis",
+  "value": "bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "c4_a050_s42_fp32",
+    "field": "hypothesis",
+    "value": "bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T18:26:11.203177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"c4_a050_s42_fp32\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:25:41.085Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5491}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:26:11.203396+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "field": "metrics",
+  "value": "{'permg_fwd_fdr_sig': '8/8', 'permg_rev_fdr_sig': '7/8', 'consensus_K4_3sigma': '8/8', 'consensus_K3_3sigma': '8/8', 'threshold_onset_3sigma': '8/8', 'naive_xcorr_sig': '8/8', 'diff_xcorr_fdr_sig': '8/8', 'ty_granger_sig': '4/8', 'mmct_detection_rate': 1, 'drift_token_entropy_pct': -47.99, 'drift_distinct1_pct': -9.78, 'drift_distinct2_pct': -15.72, 'drift_distinct3_pct': -17.75, 'drift_perplexity_pct': 2931.59, 'drift_mauve_pct': -54.25, 'drift_ece_pct': 3103.74, 'gen0_token_entropy': 3.109, 'gen10_token_entropy': 1.617, 'gen0_perplexity': 24.01, 'gen10_perplexity': 727.95, 'gen0_mauve': 0.829, 'gen10_mauve': 0.379, 'gen0_ece': 0.012, 'gen10_ece': 0.39, 'n_generations': 11, 'precision': 'fp32', 'bf16_comparison': 'PermG fwd 0/8→8/8, precision artifact confirmed'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "c4_a050_s42_fp32",
+    "field": "metrics",
+    "value": "{'permg_fwd_fdr_sig': '8/8', 'permg_rev_fdr_sig': '7/8', 'consensus_K4_3sigma': '8/8', 'consensus_K3_3sigma': '8/8', 'threshold_onset_3sigma': '8/8', 'naive_xcorr_sig': '8/8', 'diff_xcorr_fdr_sig': '8/8', 'ty_granger_sig': '4/8', 'mmct_detection_rate': 1, 'drift_token_entropy_pct': -47.99, 'drift_distinct1_pct': -9.78, 'drift_distinct2_pct': -15.72, 'drift_distinct3_pct': -17.75, 'drift_perplexity_pct': 2931.59, 'drift_mauve_pct': -54.25, 'drift_ece_pct': 3103.74, 'gen0_token_entropy': 3.109, 'gen10_token_entropy': 1.617, 'gen0_perplexity': 24.01, 'gen10_perplexity': 727.95, 'gen0_mauve': 0.829, 'gen10_mauve': 0.379, 'gen0_ece': 0.012, 'gen10_ece': 0.39, 'n_generations': 11, 'precision': 'fp32', 'bf16_comparison': 'PermG fwd 0/8→8/8, precision artifact confirmed'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T18:26:11.203623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"c4_a050_s42_fp32\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:25:54.520Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}, \"metrics\": {\"permg_fwd_fdr_sig\": \"8/8\", \"permg_rev_fdr_sig\": \"7/8\", \"consensus_K4_3sigma\": \"8/8\", \"consensus_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr_sig\": \"8/8\", \"diff_xcorr_fdr_sig\": \"8/8\", \"ty_granger_sig\": \"4/8\", \"mmct_detection_rate\": 1, \"drift_token_entropy_pct\": -47.99, \"drift_distinct1_pct\": -9.78, \"drift_distinct2_pct\": -15.72, \"drift_distinct
+…[truncated 506 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T18:26:11.203784+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "field": "checkpoint_path",
+  "value": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "c4_a050_s42_fp32",
+    "field": "checkpoint_path",
+    "value": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T18:26:11.203960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"c4_a050_s42_fp32\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:25:56.102Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}, \"metrics\": {\"permg_fwd_fdr_sig\": \"8/8\", \"permg_rev_fdr_sig\": \"7/8\", \"consensus_K4_3sigma\": \"8/8\", \"consensus_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr_sig\": \"8/8\", \"diff_xcorr_fdr_sig\": \"8/8\", \"ty_granger_sig\": \"4/8\", \"mmct_detection_rate\": 1, \"drift_token_entropy_pct\": -47.99, \"drift_distinct1_pct\": -9.78, \"drift_distinct2_pct\": -15.72, \"drift_distinct
+…[truncated 623 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T18:26:11.204106+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "c4_a050_s42_fp32",
+    "field": "conclusion",
+    "value": "success",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T18:26:11.204231+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "field": "status",
+  "value": "DONE",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "c4_a050_s42_fp32",
+    "field": "status",
+    "value": "DONE",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T18:26:11.204427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"c4_a050_s42_fp32\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:26:00.145Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}, \"metrics\": {\"permg_fwd_fdr_sig\": \"8/8\", \"permg_rev_fdr_sig\": \"7/8\", \"consensus_K4_3sigma\": \"8/8\", \"consensus_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr_sig\": \"8/8\", \"diff_xcorr_fdr_sig\": \"8/8\", \"ty_granger_sig\": \"4/8\", \"mmct_detection_rate\": 1, \"drift_token_entropy_pct\": -47.99, \"drift_distinct1_pct\": -9.78, \"drift_distinct2_pct\": -15.72, \"drift_distinct
+…[truncated 652 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T18:26:11.204658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"c4_a050_s42_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-19T18:26:00.846Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}, \"metrics\": {\"permg_fwd_fdr_sig\": \"8/8\", \"permg_rev_fdr_sig\": \"7/8\", \"consensus_K4_3sigma\": \"8/8\", \"consensus_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr_sig\": \"8/8\", \"diff_xcorr_fdr_sig\": \"8/8\", \"ty_granger_sig\": \"4/8\", \"mmct_detection_rate\": 1, \"drift_token_entropy_pct\": -47.99, \"drift_distinct1_pct\": -9.78, \"drift_distinct2_pct\": -15.72, \"drift_distinct3_pct
+…[truncated 746 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-19T18:26:11.204859+00:00_
+
+分析完成，实验已推进到 DONE。
+
+## 结论：bf16 precision artifact 确认
+
+| | bf16 parent | fp32 (本实验) |
+|---|---|---|
+| **PermG fwd (D106)** | **0/8** | **8/8** |
+| PermG rev | 0/8 | 7/8 |
+| K≥4 (3σ) | 0/8 | 8/8 |
+| token_entropy Δ | -38.2% | -48.0% |
+| perplexity final | 122.8 | 727.95 |
+| mauve final | 0.078 | 0.379 |
+
+C4 α=0.50 **不是 blind zone**——bf16 精度完全抹杀了因果信号。fp32 下所有 8 对 canary→diversity 都呈现显著的前向因果领先（canary onset gen 1, downstream onset gen 2–3）。D079 (fp32 mandatory for ≤3B) 再次被验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_c4_a050_s42_fp32_20260519T182208"
+}
+```
+
+</details>
+
+---

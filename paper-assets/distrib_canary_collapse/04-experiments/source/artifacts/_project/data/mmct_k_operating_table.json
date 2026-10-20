@@ -1,0 +1,336 @@
+{
+  "description": "MMCT K-threshold operating characteristics (K=2,3,4,5)",
+  "methodology": {
+    "fpr": "6-pair basis, 6 null seeds (s45-s50), 36 total pairs from fpr_transparency_all_seeds.json",
+    "tpr": "8-pair basis from dose_response_d120_recompiled.csv (alpha_sweep+gpt2+wikitext+fp32+T=10)",
+    "k2_estimation": "K\u22652 for TPR estimated via pigeonhole lower/upper bound from per-method counts; midpoint used",
+    "note": "FPR uses 6-pair (mauve excluded); TPR uses 8-pair (includes mauve). FPR is slightly conservative, TPR slightly diluted vs 6-pair."
+  },
+  "key_metrics": {
+    "k2_fpr": 0.3888888888888889,
+    "k3_fpr": 0.16666666666666666,
+    "k4_fpr": 0.0,
+    "k5_fpr": 0.0,
+    "k3_tpr_a050": 0.6666666666666666,
+    "k4_tpr_a050": 0.25,
+    "k3_tpr_a075": 0.375,
+    "k4_tpr_a075": 0.0,
+    "k3_tpr_a100": 0.75,
+    "k4_tpr_a100": 0.25
+  },
+  "results": [
+    {
+      "alpha": 0.0,
+      "n_seeds": 6,
+      "n_pairs_per_seed": 6,
+      "total_pairs": 36,
+      "pair_basis": "6-pair (null JSON, s45-s50)",
+      "k2_rate": 0.3888888888888889,
+      "k3_rate": 0.16666666666666666,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count": 14,
+      "k3_count": 6,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": true,
+      "is_fpr": true
+    },
+    {
+      "alpha": 0.05,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a005_s42_fp32_v3_d080"
+      ],
+      "k2_rate": 0.3125,
+      "k2_rate_range": [
+        0.25,
+        0.375
+      ],
+      "k3_rate": 0.25,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 2.5,
+      "k3_count": 2,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.1,
+      "n_seeds": 2,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 16,
+      "pair_basis": "8-pair (CSV fp32, 2 seeds)",
+      "experiments": [
+        "a010_s42_fp32",
+        "a010_s43_fp32"
+      ],
+      "k2_rate": 0.59375,
+      "k2_rate_range": [
+        0.5,
+        0.6875
+      ],
+      "k3_rate": 0.25,
+      "k4_rate": 0.125,
+      "k5_rate": 0.0,
+      "k2_count_est": 9.5,
+      "k3_count": 4,
+      "k4_count": 2,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.25,
+      "n_seeds": 3,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 24,
+      "pair_basis": "8-pair (CSV fp32, 3 seeds)",
+      "experiments": [
+        "a025_s42_fp32",
+        "a025_s43_fp32",
+        "a025_s44"
+      ],
+      "k2_rate": 0.0625,
+      "k2_rate_range": [
+        0.0,
+        0.125
+      ],
+      "k3_rate": 0.0,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 1.5,
+      "k3_count": 0,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.3,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a030_s42_fp32"
+      ],
+      "k2_rate": 0.125,
+      "k2_rate_range": [
+        0.0,
+        0.25
+      ],
+      "k3_rate": 0.0,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 1.0,
+      "k3_count": 0,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.35,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a035_s42_fp32"
+      ],
+      "k2_rate": 0.125,
+      "k2_rate_range": [
+        0.0,
+        0.25
+      ],
+      "k3_rate": 0.0,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 1.0,
+      "k3_count": 0,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.4,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a040_s42_fp32"
+      ],
+      "k2_rate": 0.3125,
+      "k2_rate_range": [
+        0.125,
+        0.5
+      ],
+      "k3_rate": 0.125,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 2.5,
+      "k3_count": 1,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.45,
+      "n_seeds": 2,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 16,
+      "pair_basis": "8-pair (CSV fp32, 2 seeds)",
+      "experiments": [
+        "a045_s42_fp32",
+        "a045_s43_fp32"
+      ],
+      "k2_rate": 0.125,
+      "k2_rate_range": [
+        0.0,
+        0.25
+      ],
+      "k3_rate": 0.0,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 2.0,
+      "k3_count": 0,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.5,
+      "n_seeds": 3,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 24,
+      "pair_basis": "8-pair (CSV fp32, 3 seeds)",
+      "experiments": [
+        "a050_s42_fp32",
+        "a050_s43_fp32",
+        "a050_s44_fp32"
+      ],
+      "k2_rate": 0.8541666666666666,
+      "k2_rate_range": [
+        0.8333333333333334,
+        0.875
+      ],
+      "k3_rate": 0.6666666666666666,
+      "k4_rate": 0.25,
+      "k5_rate": 0.041666666666666664,
+      "k2_count_est": 20.5,
+      "k3_count": 16,
+      "k4_count": 6,
+      "k5_count": 1,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.55,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a055_s42_fp32"
+      ],
+      "k2_rate": 0.625,
+      "k2_rate_range": [
+        0.5,
+        0.75
+      ],
+      "k3_rate": 0.125,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 5.0,
+      "k3_count": 1,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.6,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a060_s42_fp32_v3_d080"
+      ],
+      "k2_rate": 0.8125,
+      "k2_rate_range": [
+        0.75,
+        0.875
+      ],
+      "k3_rate": 0.375,
+      "k4_rate": 0.25,
+      "k5_rate": 0.0,
+      "k2_count_est": 6.5,
+      "k3_count": 3,
+      "k4_count": 2,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 0.75,
+      "n_seeds": 3,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 24,
+      "pair_basis": "8-pair (CSV fp32, 3 seeds)",
+      "experiments": [
+        "a075_s42_fp32",
+        "a075_s43",
+        "a075_s44"
+      ],
+      "k2_rate": 0.7291666666666666,
+      "k2_rate_range": [
+        0.6666666666666666,
+        0.7916666666666666
+      ],
+      "k3_rate": 0.375,
+      "k4_rate": 0.0,
+      "k5_rate": 0.0,
+      "k2_count_est": 17.5,
+      "k3_count": 9,
+      "k4_count": 0,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    },
+    {
+      "alpha": 1.0,
+      "n_seeds": 1,
+      "n_pairs_per_seed": 8,
+      "total_pairs": 8,
+      "pair_basis": "8-pair (CSV fp32, 1 seeds)",
+      "experiments": [
+        "a100_s42_fp32"
+      ],
+      "k2_rate": 0.75,
+      "k2_rate_range": [
+        0.75,
+        0.75
+      ],
+      "k3_rate": 0.75,
+      "k4_rate": 0.25,
+      "k5_rate": 0.0,
+      "k2_count_est": 6.0,
+      "k3_count": 6,
+      "k4_count": 2,
+      "k5_count": 0,
+      "k2_exact": false,
+      "is_fpr": false
+    }
+  ]
+}

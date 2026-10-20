@@ -1,0 +1,28 @@
+5-Method Lead-Lag Analysis: phase_diagram_t15_a045_s42_fp32
+alpha=0.45, seed=42, T=15 (16 generations), fp32
+
+=== SUMMARY ===
+PermG FDR forward significant: 8/8
+PermG FDR reverse significant: 0/8
+Diff xcorr FDR forward sig: 8/8
+Diff xcorr FDR reverse sig: 8/8
+Threshold onset forward sig: 0/8
+TY Granger forward sig: 4/8
+Robust pairs (>=3/5 methods): 4/8
+
+=== CONSENSUS ===
+token_entropy->distinct_1  2/5 [diff, perm]
+token_entropy->distinct_2  2/5 [diff, perm]
+token_entropy->distinct_3  2/5 [diff, perm]
+token_entropy->perplexity  2/5 [diff, perm]
+ece->distinct_1            3/5 [diff, perm, ty]
+ece->distinct_2            3/5 [diff, perm, ty]
+ece->distinct_3            3/5 [diff, perm, ty]
+ece->perplexity            4/5 [naive, diff, perm, ty]
+
+=== KEY OBSERVATION ===
+At T=10, alpha=0.45 gave PermG=0/8 (below alpha_c(10)~0.487).
+At T=15, alpha=0.45 gives PermG=8/8 (above alpha_c(15)~0.304).
+This confirms the T-dependent detection threshold: more generations lower the alpha_c boundary.
+
+Full JSON at: westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s42_fp32/analysis/5method_leadlag.json

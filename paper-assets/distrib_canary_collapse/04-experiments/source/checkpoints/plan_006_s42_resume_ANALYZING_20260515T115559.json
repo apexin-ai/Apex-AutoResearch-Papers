@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan_006_s42_resume",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:55:26.236Z",
+    "updated_at": "2026-05-15T11:55:59.396Z",
+    "spec": {
+      "command": "python -u resume_plan006_s42.py",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "114844",
+      "log_path": "~/runs/distrib_canary_collapse/plan_006_s42_resume.log",
+      "submitted_at": "2026-05-15T11:55:31.984Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）",
+      "seed": 42,
+      "model_name": "EleutherAI/pythia-410m",
+      "data_path": "data/wikitext103",
+      "data_count": 0
+    }
+  },
+  "timestamp": "2026-05-15T11:55:59.473275+00:00",
+  "trigger": "update_registry"
+}

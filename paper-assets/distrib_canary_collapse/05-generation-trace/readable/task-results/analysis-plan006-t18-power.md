@@ -1,0 +1,55 @@
+# analysis plan006 t18 power
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_plan006_t18_power_20260515T121134_result.json`
+- **Structured JSON:** [`9a0f07d76ea3781fbaab.json`](../../sessions/9a/9a0f07d76ea3781fbaab.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+分析完成。以下是关键发现总结：
+
+---
+
+## plan_006_s42 T=18 分析结果
+
+### 数据完整性
+gen_0–gen_17 共 18 代数据完整，gen_18 为空目录（超时中断）。
+
+### 核心发现：三相 Collapse 动力学
+
+| 阶段 | 区间 | diversity 变化 | 特征 |
+|------|------|---------------|------|
+| **Phase 1** 急速崩塌 | gen_0→5 | d1 -20.6%, d2 -25.3%, d3 -21.8% | entropy 一代跌 52.8%，所有指标同步漂移 |
+| **Phase 2** 表观稳态 | gen_5→12 | d1/d2/d3 < 0.3% | diversity 近乎平坦，但 perplexity 仍涨 167% |
+| **Phase 3** 二次衰退 | gen_13→17 | d2 -5.8%, d3 -6.9% | 断裂点 gen_13，gen_16-17 加速下降 |
+
+### T=10 vs T=18 新增价值
+- Phase 3 二次衰退在 T=10 窗口**完全不可见**——T=10 只能看到 Phase 1+2 的"崩塌→饱和"故事
+- Perplexity **从未饱和**：26.95 → 3367.66 (+12395%)，18 代后仍以 ~200/gen 速率线性增长
+- 指标饱和时间分层：entropy/ECE 在 gen_5 饱和 → diversity 在 gen_5-12 表观饱和 → diversity gen_13 恢复下降 → perplexity 从不饱和
+
+### 统计功效
+T=18 对应 TY Granger power 约 0.28–0.41（参考 plan_009 bootstrap T=20），显著优于 T=10 的 0.05–0.21。
+
+### 注意事项
+单 seed 数据（C001 约束），Phase 3 二次衰退需 plan_006_s43 等 multi-seed 确认后方可写入论文。
+
+---
+
+**产出**: memory.md 已更新 · registry notes+metrics 已写入 · artifact `art_20260515_90f5b2` 已注册。
+
+---

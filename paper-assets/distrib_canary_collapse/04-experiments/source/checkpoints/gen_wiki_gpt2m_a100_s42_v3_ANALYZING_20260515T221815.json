@@ -1,0 +1,47 @@
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:07:20.050Z",
+    "updated_at": "2026-05-15T22:18:15.472Z",
+    "spec": {
+      "hypothesis": "Method sensitivity patterns (Granger FDR collapse, cross-correlation dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture universality of methodological pitfalls",
+      "seed": 42,
+      "model_name": "gpt2-medium",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T12:07:30.366Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"",
+      "finished_at": "2026-05-15T22:14:43.852Z",
+      "training_hours": 10.12
+    },
+    "pid": "117632",
+    "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log",
+    "metrics": {
+      "progress": "gen 4/10 (generating synthetic text), ~45%"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T22:14:45.029003+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T22:18:15.604308+00:00",
+  "trigger": "update_registry"
+}

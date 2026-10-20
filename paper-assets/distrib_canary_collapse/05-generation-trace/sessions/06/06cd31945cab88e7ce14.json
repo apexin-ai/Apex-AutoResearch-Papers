@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06cd31945cab88e7ce14",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mmct full coverage",
+  "task_key": "worker_analysis_mmct_full_coverage_20260519T031507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_full_coverage_20260519T031507_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "45e9e6c3a900e7b359e1b3996bb3528ba7282e8306e1af740ac8418322c4fecb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**执行内容：**\n1. 为 `a010_s42` 生成了缺失的 unified 5-method 分析数据\n2. 重新运行 MMCT，覆盖 20 个实验：13 个 alpha-sweep (含新增的 a010、a060) + 7 个 Table 7 generalize 条件\n\n**关键结果：**\n- FPR = 0（所有 6 种 MMCT 模式在 alpha=0.00 均无假阳性）\n- `weighted_pair_forward` 检测率随 alpha 单调递增：0.00 → 0.125 → 0.438 → 0.583 → 0.750 → 0.792 → 0.813 (Table 7 均值)\n- Table 7 全部 7 个泛化条件在 `weighted_pair_forward` 下检测率 6/8 到 8/8\n- `uniform` 和 `weighted_global` 模式较保守，仅在 alpha>=0.75 有少量检测\n\n**无法运行的实验：**\n- `a010_s43`, `a010_s44`, `a025_s42`: 实验目录不存在\n- `gen_wiki_gpt2m_a100_s43`: 未完成（3/11 generations）\n\n产出文件：`artifacts/mmct_full_results.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmct-full-coverage.md"
+}

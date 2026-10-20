@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 42,
+    "T": 25,
+    "n_gens": 26,
+    "model": "Pythia-410M",
+    "precision": "fp32",
+    "data_dir": "results/phase_diagram/t25_a050_s42_fp32",
+    "server": "westd-17855",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "threshold_criterion": "true_3sigma_d105",
+    "note": "v3: gen_0-12 from v2, gen_13-25 from v3 (resumed --start_gen 13 after v2 disk-full crash)"
+  },
+  "pairs": [
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 5, "r": -0.8171, "p_value": 6e-06, "significant": true},
+        "diff_xcorr": {"peak_lag": -1, "r": 0.8211, "p_value": 1e-06, "p_fdr": 4e-06, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 6, "lead_time": 5, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1643.3275, "p_value": 0.0004, "p_fdr": 0.0008, "significant_fdr": true},
+        "ty_granger": {"f_stat": 5.7423, "p_value": 0.0029, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -5, "r": -0.8171, "p_value": 6e-06, "significant": true},
+        "diff_xcorr": {"peak_lag": 1, "r": 0.8211, "p_value": 1e-06, "p_fdr": 4e-06, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 6, "downstream_onset": 1, "lead_time": -5, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1.0823, "p_value": 0.317137, "p_fdr": 0.422849, "significant_fdr": false},
+        "ty_granger": {"f_stat": 0.7033, "p_value": 0.557, "significant": false, "order": 3, "k_opt": 2, "d_max": 1}
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 5, "r": -0.8699, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.7321, "p_value": 0.000162, "p_fdr": 0.000259, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 8, "lead_time": 7, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 768.7199, "p_value": 0.0008, "p_fdr": 0.00128, "significant_fdr": true},
+        "ty_granger": {"f_stat": 7.3693, "p_value": 0.0007, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -5, "r": -0.8699, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 4, "r": 0.7321, "p_value": 0.000162, "p_fdr": 0.000259, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 8, "downstream_onset": 1, "lead_time": -7, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 0.6307, "p_value": 0.422849, "p_fdr": 0.422849, "significant_fdr": false},
+        "ty_granger": {"f_stat": 2.5154, "p_value": 0.0703, "significant": false, "order": 3, "k_opt": 2, "d_max": 1}
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 5, "r": -0.9067, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.6928, "p_value": 0.000399, "p_fdr": 0.000665, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 10, "lead_time": 9, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 227.6239, "p_value": 0.0014, "p_fdr": 0.001867, "significant_fdr": true},
+        "ty_granger": {"f_stat": 5.9688, "p_value": 0.0024, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -5, "r": -0.9067, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 4, "r": 0.6928, "p_value": 0.000399, "p_fdr": 0.000665, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 10, "downstream_onset": 1, "lead_time": -9, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 0.2373, "p_value": 0.622849, "p_fdr": 0.622849, "significant_fdr": false},
+        "ty_granger": {"f_stat": 2.5392, "p_value": 0.0668, "significant": false, "order": 3, "k_opt": 2, "d_max": 1}
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 5, "r": -0.9118, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 3, "r": -0.351, "p_value": 0.109236, "p_fdr": 0.10923, "significant_fdr": false},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 0.5111, "p_value": 0.479091, "p_fdr": 0.49293, "significant_fdr": false},
+        "ty_granger": {"f_stat": 1.0369, "p_value": 0.3895, "significant": false, "order": 3, "k_opt": 2, "d_max": 1}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -5, "r": -0.9118, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -3, "r": -0.351, "p_value": 0.109236, "p_fdr": 0.10923, "significant_fdr": false},
+        "threshold_onset": {"canary_onset": null, "downstream_onset": 1, "lead_time": null, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1.5091, "p_value": 0.232849, "p_fdr": 0.377205, "significant_fdr": false},
+        "ty_granger": {"f_stat": 4.2187, "p_value": 0.0111, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {"peak_lag": -1, "r": 0.9741, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -1, "r": 0.918, "p_value": 0.0, "p_fdr": 0.0, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 6, "lead_time": 5, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 461.4716, "p_value": 0.0004, "p_fdr": 0.000533, "significant_fdr": true},
+        "ty_granger": {"f_stat": 9.9153, "p_value": 0.0003, "significant": true, "order": 3, "k_opt": 2, "d_max": 0}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": 1, "r": 0.9741, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 1, "r": 0.918, "p_value": 0.0, "p_fdr": 0.0, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 6, "downstream_onset": 1, "lead_time": -5, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1.4757, "p_value": 0.238849, "p_fdr": 0.377205, "significant_fdr": false},
+        "ty_granger": {"f_stat": 4.9153, "p_value": 0.0151, "significant": true, "order": 3, "k_opt": 2, "d_max": 0}
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 1, "r": 0.9589, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.8426, "p_value": 3e-06, "p_fdr": 5e-06, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 8, "lead_time": 7, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 365.7352, "p_value": 0.0004, "p_fdr": 0.000533, "significant_fdr": true},
+        "ty_granger": {"f_stat": 1.0004, "p_value": 0.3772, "significant": false, "order": 3, "k_opt": 2, "d_max": 0}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -1, "r": 0.9589, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 4, "r": 0.8426, "p_value": 3e-06, "p_fdr": 5e-06, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 8, "downstream_onset": 1, "lead_time": -7, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1.8332, "p_value": 0.190849, "p_fdr": 0.377205, "significant_fdr": false},
+        "ty_granger": {"f_stat": 7.3123, "p_value": 0.0012, "significant": true, "order": 3, "k_opt": 2, "d_max": 0}
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {"peak_lag": 1, "r": 0.9507, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": -4, "r": 0.8141, "p_value": 7e-06, "p_fdr": 1.4e-05, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": 10, "lead_time": 9, "significant": true, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 281.177, "p_value": 0.0004, "p_fdr": 0.000533, "significant_fdr": true},
+        "ty_granger": {"f_stat": 3.3077, "p_value": 0.0474, "significant": true, "order": 3, "k_opt": 2, "d_max": 0}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": -1, "r": 0.9507, "p_value": 0.0, "significant": true},
+        "diff_xcorr": {"peak_lag": 4, "r": 0.8141, "p_value": 7e-06, "p_fdr": 1.4e-05, "significant_fdr": true},
+        "threshold_onset": {"canary_onset": 10, "downstream_onset": 1, "lead_time": -9, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 1.9553, "p_value": 0.178849, "p_fdr": 0.377205, "significant_fdr": false},
+        "ty_granger": {"f_stat": 9.0341, "p_value": 0.0006, "significant": true, "order": 3, "k_opt": 2, "d_max": 0}
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {"peak_lag": -5, "r": 0.7983, "p_value": 1.4e-05, "significant": true},
+        "diff_xcorr": {"peak_lag": 3, "r": -0.3754, "p_value": 0.085176, "p_fdr": 0.097344, "significant_fdr": false},
+        "threshold_onset": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 0.3308, "p_value": 0.545091, "p_fdr": 0.545091, "significant_fdr": false},
+        "ty_granger": {"f_stat": 3.832, "p_value": 0.0188, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      },
+      "reverse": {
+        "naive_xcorr": {"peak_lag": 5, "r": 0.7983, "p_value": 1.4e-05, "significant": true},
+        "diff_xcorr": {"peak_lag": -3, "r": -0.3754, "p_value": 0.085176, "p_fdr": 0.097344, "significant_fdr": false},
+        "threshold_onset": {"canary_onset": null, "downstream_onset": 1, "lead_time": null, "significant": false, "threshold": "true_3sigma_d105"},
+        "perm_granger": {"f_stat": 3.4382, "p_value": 0.074385, "p_fdr": 0.377205, "significant_fdr": false},
+        "ty_granger": {"f_stat": 3.5535, "p_value": 0.0251, "significant": true, "order": 3, "k_opt": 2, "d_max": 1}
+      }
+    }
+  ],
+  "consensus": [
+    {"pair": "token_entropy→distinct_1", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy→distinct_2", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy→distinct_3", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy→mauve", "votes": 0, "methods": []},
+    {"pair": "ece→distinct_1", "votes": 5, "methods": ["naive", "diff", "threshold", "perm", "ty"]},
+    {"pair": "ece→distinct_2", "votes": 3, "methods": ["diff", "threshold", "perm"]},
+    {"pair": "ece→distinct_3", "votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "ece→mauve", "votes": 2, "methods": ["naive", "ty"]}
+  ],
+  "summary": {
+    "perm_granger_fdr_forward_sig": 6,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 6,
+    "diff_xcorr_fdr_reverse_sig": 6,
+    "threshold_forward_sig": 6,
+    "ty_forward_sig": 6,
+    "robust_pairs": 6
+  },
+  "paths": {
+    "results_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32",
+    "checkpoint_last": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32/gen_25/checkpoint",
+    "analysis_json": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32/analysis/5method_leadlag.json",
+    "analysis_txt": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32/analysis/5method_summary.txt"
+  }
+}

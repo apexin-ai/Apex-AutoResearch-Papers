@@ -1,0 +1,827 @@
+{
+  "meta": {
+    "alpha": 0.6,
+    "seed": 43,
+    "n_gens": 21,
+    "data_dir": "results/phase_diagram/t20_a060_s43_fp32",
+    "methods": [
+      "naive_xcorr",
+      "diff_xcorr",
+      "threshold_onset",
+      "perm_granger",
+      "ty_granger"
+    ],
+    "n_perm": 5000,
+    "canaries": [
+      "token_entropy",
+      "ece"
+    ],
+    "downstreams": [
+      "distinct_1",
+      "distinct_2",
+      "distinct_3",
+      "mauve"
+    ],
+    "threshold_criterion": "true_3sigma_d105"
+  },
+  "pairs": [
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 5,
+          "r": -0.8558,
+          "p_value": 2.4e-05,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -3,
+          "r": 0.8745,
+          "p_value": 4e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 6,
+          "lead_time": 5,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 751.81,
+          "p_value": 0.039792,
+          "significant": true,
+          "p_fdr": 0.054123,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 17.2705,
+          "p_value": 0.0,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -5,
+          "r": -0.8558,
+          "p_value": 2.4e-05,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 3,
+          "r": 0.8745,
+          "p_value": 4e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 6,
+          "downstream_onset": 1,
+          "lead_time": -5,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.6359,
+          "p_value": 0.45191,
+          "significant": false,
+          "p_fdr": 0.611763,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 2.7668,
+          "p_value": 0.0659,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 5,
+          "r": -0.8854,
+          "p_value": 5e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -4,
+          "r": 0.8498,
+          "p_value": 3.1e-05,
+          "significant": true,
+          "p_fdr": 4.5e-05,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 7,
+          "lead_time": 6,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 560.8175,
+          "p_value": 0.040592,
+          "significant": true,
+          "p_fdr": 0.054123,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 17.8809,
+          "p_value": 0.0,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -5,
+          "r": -0.8854,
+          "p_value": 5e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 4,
+          "r": 0.8498,
+          "p_value": 3.1e-05,
+          "significant": true,
+          "p_fdr": 4.5e-05,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 7,
+          "downstream_onset": 1,
+          "lead_time": -6,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.601,
+          "p_value": 0.462907,
+          "significant": false,
+          "p_fdr": 0.611763,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 3.1768,
+          "p_value": 0.0442,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 5,
+          "r": -0.9119,
+          "p_value": 1e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -4,
+          "r": 0.8478,
+          "p_value": 3.4e-05,
+          "significant": true,
+          "p_fdr": 4.5e-05,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 10,
+          "lead_time": 9,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 406.5513,
+          "p_value": 0.040392,
+          "significant": true,
+          "p_fdr": 0.054123,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 7.4307,
+          "p_value": 0.0013,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -5,
+          "r": -0.9119,
+          "p_value": 1e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 4,
+          "r": 0.8478,
+          "p_value": 3.4e-05,
+          "significant": true,
+          "p_fdr": 4.5e-05,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 10,
+          "downstream_onset": 1,
+          "lead_time": -9,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.4251,
+          "p_value": 0.535293,
+          "significant": false,
+          "p_fdr": 0.611763,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 2.0905,
+          "p_value": 0.1306,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "token_entropy",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 3,
+          "r": -0.9399,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 3,
+          "r": -0.5707,
+          "p_value": 0.016725,
+          "significant": true,
+          "p_fdr": 0.019114,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 2.0634,
+          "p_value": 0.185963,
+          "significant": false,
+          "p_fdr": 0.212529,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 0.2826,
+          "p_value": 0.8374,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -3,
+          "r": -0.9399,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -3,
+          "r": -0.5707,
+          "p_value": 0.016725,
+          "significant": true,
+          "p_fdr": 0.019114,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": 1,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.398,
+          "p_value": 0.526495,
+          "significant": false,
+          "p_fdr": 0.611763,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 0.8715,
+          "p_value": 0.4708,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_1",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -1,
+          "r": 0.9655,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -3,
+          "r": 0.9233,
+          "p_value": 0.0,
+          "significant": true,
+          "p_fdr": 0.0,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 6,
+          "lead_time": 5,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 424.4001,
+          "p_value": 0.004599,
+          "significant": true,
+          "p_fdr": 0.033592,
+          "significant_fdr": true
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 4.7296,
+          "p_value": 0.0108,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 1,
+          "r": 0.9655,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 3,
+          "r": 0.9233,
+          "p_value": 0.0,
+          "significant": true,
+          "p_fdr": 0.0,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 6,
+          "downstream_onset": 1,
+          "lead_time": -5,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 3.0341,
+          "p_value": 0.10198,
+          "significant": false,
+          "p_fdr": 0.271947,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 5.2596,
+          "p_value": 0.0069,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_2",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 1,
+          "r": 0.9646,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -4,
+          "r": 0.8974,
+          "p_value": 2e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 7,
+          "lead_time": 6,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 344.9623,
+          "p_value": 0.008398,
+          "significant": true,
+          "p_fdr": 0.033592,
+          "significant_fdr": true
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 4.9888,
+          "p_value": 0.0086,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -1,
+          "r": 0.9646,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 4,
+          "r": 0.8974,
+          "p_value": 2e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 7,
+          "downstream_onset": 1,
+          "lead_time": -6,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 3.3682,
+          "p_value": 0.086583,
+          "significant": false,
+          "p_fdr": 0.271947,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 5.0688,
+          "p_value": 0.0081,
+          "significant": true,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "distinct_3",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.9627,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -4,
+          "r": 0.8969,
+          "p_value": 3e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": 10,
+          "lead_time": 9,
+          "significant": true,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 275.3599,
+          "p_value": 0.013797,
+          "significant": true,
+          "p_fdr": 0.036792,
+          "significant_fdr": true
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 0.3212,
+          "p_value": 0.7279,
+          "significant": false,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.9627,
+          "p_value": 0.0,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 4,
+          "r": 0.8969,
+          "p_value": 3e-06,
+          "significant": true,
+          "p_fdr": 8e-06,
+          "significant_fdr": true
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 10,
+          "downstream_onset": 1,
+          "lead_time": -9,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 3.4614,
+          "p_value": 0.086183,
+          "significant": false,
+          "p_fdr": 0.271947,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 8.4274,
+          "p_value": 0.0014,
+          "significant": true,
+          "order": 2,
+          "k_opt": 2,
+          "d_max": 0
+        }
+      }
+    },
+    {
+      "canary": "ece",
+      "downstream": "mauve",
+      "forward": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": 2,
+          "r": 0.8414,
+          "p_value": 6e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": -2,
+          "r": 0.3221,
+          "p_value": 0.192338,
+          "significant": false,
+          "p_fdr": 0.192338,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": 1,
+          "downstream_onset": null,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 1.0442,
+          "p_value": 0.346131,
+          "significant": false,
+          "p_fdr": 0.346131,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 2.8594,
+          "p_value": 0.0602,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      },
+      "reverse": {
+        "naive_xcorr": {
+          "method": "naive_xcorr",
+          "peak_lag": -2,
+          "r": 0.8414,
+          "p_value": 6e-06,
+          "significant": true
+        },
+        "diff_xcorr": {
+          "method": "diff_xcorr",
+          "peak_lag": 2,
+          "r": 0.3221,
+          "p_value": 0.192338,
+          "significant": false,
+          "p_fdr": 0.192338,
+          "significant_fdr": false
+        },
+        "threshold_onset": {
+          "method": "threshold_onset",
+          "canary_onset": null,
+          "downstream_onset": 1,
+          "lead_time": null,
+          "significant": false,
+          "threshold": "true_3sigma_d105"
+        },
+        "perm_granger": {
+          "method": "perm_granger",
+          "f_stat": 0.0389,
+          "p_value": 0.841032,
+          "significant": false,
+          "p_fdr": 0.841032,
+          "significant_fdr": false
+        },
+        "ty_granger": {
+          "method": "ty_granger",
+          "f_stat": 1.3254,
+          "p_value": 0.2915,
+          "significant": false,
+          "order": 3,
+          "k_opt": 2,
+          "d_max": 1
+        }
+      }
+    }
+  ],
+  "consensus": [
+    {
+      "pair": "token_entropy<distinct_1",
+      "votes": 3,
+      "methods": [
+        "diff",
+        "threshold",
+        "ty"
+      ]
+    },
+    {
+      "pair": "token_entropy<distinct_2",
+      "votes": 3,
+      "methods": [
+        "diff",
+        "threshold",
+        "ty"
+      ]
+    },
+    {
+      "pair": "token_entropy<distinct_3",
+      "votes": 3,
+      "methods": [
+        "diff",
+        "threshold",
+        "ty"
+      ]
+    },
+    {
+      "pair": "token_entropy<mauve",
+      "votes": 0,
+      "methods": []
+    },
+    {
+      "pair": "ece<distinct_1",
+      "votes": 5,
+      "methods": [
+        "naive",
+        "diff",
+        "threshold",
+        "perm",
+        "ty"
+      ]
+    },
+    {
+      "pair": "ece<distinct_2",
+      "votes": 4,
+      "methods": [
+        "diff",
+        "threshold",
+        "perm",
+        "ty"
+      ]
+    },
+    {
+      "pair": "ece<distinct_3",
+      "votes": 3,
+      "methods": [
+        "diff",
+        "threshold",
+        "perm"
+      ]
+    },
+    {
+      "pair": "ece<mauve",
+      "votes": 0,
+      "methods": []
+    }
+  ],
+  "summary": {
+    "perm_granger_fdr_forward_sig": 3,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 7,
+    "diff_xcorr_fdr_reverse_sig": 7,
+    "threshold_forward_sig": 6,
+    "ty_forward_sig": 5,
+    "robust_pairs": 6
+  }
+}

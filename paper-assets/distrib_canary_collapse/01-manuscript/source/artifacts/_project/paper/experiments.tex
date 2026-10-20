@@ -1,0 +1,202 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+We study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \cite{biderman2023pythia}, a 410M-parameter autoregressive language model.
+Pythia provides a controlled setting: small enough for multi-seed experiments across five contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.
+Training data is drawn from WikiText-103 \cite{merity2017pointer}, using 5{,}000-sample subsets per generation.
+
+Our protocol follows the full-replacement paradigm of \citet{shumailov2024curse}.
+Each generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\alpha$ fraction synthetic data and $(1{-}\alpha)$ fraction real data; (2)~generate 5{,}000 synthetic samples from the fine-tuned model; (3)~fully replace the synthetic pool.
+We run $T{=}10$ generations (11 time points including the generation-0 baseline) across contamination levels $\alpha \in \{0.00, 0.25, 0.50, 0.75, 1.00\}$.
+The $\alpha{=}1.0$ condition uses four random seeds $\{42, 43, 44, 45\}$; other conditions use seed~42, with multi-seed replication in progress.
+
+We track two \emph{canary metrics}---cheap-to-compute statistics hypothesized to precede downstream degradation, inspired by early-warning signals in dynamical systems \cite{scheffer2009early}---and three \emph{downstream metrics}.
+Canary metrics are token entropy (next-token prediction entropy averaged over held-out samples) and expected calibration error (ECE).
+Downstream metrics are distinct-1 and distinct-2 ($n$-gram diversity \cite{li2016diversity}) and perplexity.
+We additionally evaluate effective rank and Self-BLEU as candidate canaries (\S\ref{sec:case_study}).
+Results for distinct-3 are reported in Appendix~\ref{app:distinct3}.
+
+All hypothesis tests apply Benjamini--Hochberg (BH) FDR correction at $q{=}0.05$.
+Permutation Granger causality tests use 5{,}000 permutations on first-differenced series \cite{shojaie2022granger}.
+Cross-correlation analysis uses a maximum lag of 5 generations.
+Table~\ref{tab:drift_summary} summarizes raw metric drift from generation~0 to generation~10 across all five contamination levels.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Metric drift (\%, generation~0$\to$10) across contamination levels. $\alpha{=}1.0$: 4-seed mean${\pm}$std; other levels: single seed (seed=42). Non-monotonic distinct-1 pattern across $\alpha \in \{0.25, 0.50\}$ is observed at seed=42, pending multi-seed confirmation.}
+\label{tab:drift_summary}
+\begin{tabular}{lccccc}
+\toprule
+$\alpha$ & Entropy & ECE & Distinct-1 & Distinct-2 & Perplexity \\
+\midrule
+0.00 & $-5.1$ & $+51.7$ & $-13.8$ & $-9.8$ & $-21.7$ \\
+0.25 & $-4.1$ & $+79.7$ & $-40.3$ & $-57.1$ & $-17.2$ \\
+0.50 & $-18.6$ & $+842.8$ & $-37.3$ & $-51.5$ & $+21.1$ \\
+0.75 & $-27.7$ & $+1809.5$ & $-32.7$ & $-41.3$ & $+182.1$ \\
+1.00 & $-60.8{\pm}1.2$ & $+3782{\pm}30$ & $-27.8{\pm}1.6$ & $-34.0{\pm}3.3$ & $+3673{\pm}45$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Method Sensitivity Analysis}
+\label{sec:method_sensitivity}
+
+We open with Claim~3---method sensitivity---because it conditions the interpretation of all subsequent results.
+If different statistical methods yield contradictory conclusions on the same data, any single-method analysis is unreliable by construction.
+
+\paragraph{Five-method ablation.}
+We apply five lead-lag detection methods to the $\alpha{=}1.0$ condition (4~seeds, 16 canary$\to$downstream pairs).
+The fraction of pairs reaching BH-corrected FDR significance varies dramatically by method: naive cross-correlation \textbf{16/16} (100\%), differenced cross-correlation \textbf{14/16} (87.5\%), threshold onset detection \textbf{9/16} (56.3\%), permutation Granger causality \textbf{6/16} (37.5\%), and Toda--Yamamoto Granger \textbf{4/16} (25.0\%).
+Method choice alone swings significance from \textbf{100\% to 25\%}.
+The spurious-signal rate---the fraction of pairs detected by the most liberal method but not confirmed by the most conservative---is \textbf{75\%} across all five methods and \textbf{62.5\%} when excluding Toda--Yamamoto, whose low statistical power at $T{=}10$ inflates this rate (\S\ref{sec:consensus_validation}).
+Table~\ref{tab:method_comparison} reports significance rates restricted to 8 validated canary$\to$downstream pairs (excluding failed candidates); the 16-pair rates above include effective rank and Self-BLEU to capture the full method-sensitivity landscape.
+
+\paragraph{First-differencing diagnostic.}
+A single preprocessing decision can eliminate an entire analysis channel.
+For canary$\to$diversity pairs at $\alpha{=}1.0$, all pairs retain unanimous FDR significance after first-differencing (24/24$\to$24/24), confirming genuine temporal precedence rather than shared-trend confounding.
+For canary$\to$perplexity, however, undifferenced tests find near-universal significance ($F{=}16$--$36$) while differenced tests find \textbf{zero} significant pairs ($F{\approx}0$, $p{=}0.99$; Figure~\ref{fig:differencing_dmax}a).
+The apparent canary$\to$perplexity relationship is entirely an artifact of co-trending.
+
+\paragraph{Augmentation order sensitivity.}
+Toda--Yamamoto Granger tests show extreme sensitivity to the augmentation order $d_{\max}$ (Figure~\ref{fig:differencing_dmax}b).
+At $d_{\max}{=}0$ (most permissive), approximately 6\% of pairs are rejected; at adaptive $d_{\max}$ determined by ADF unit-root tests, 75\%; at $d_{\max}{=}1$ (most conservative), \textbf{94\%}.
+This single hyperparameter swings conclusions from near-universal significance to near-universal non-significance.
+
+\paragraph{Inter-method agreement.}
+Cohen's $\kappa$, averaged over all method pairs, is \textbf{0.185} (poor agreement); this value is consistent across contamination levels ($\alpha{=}0.0$ through $\alpha{=}1.0$), indicating that method disagreement is a structural property of the analysis rather than a regime-specific artifact.
+Cross-architecture validation on GPT-2-medium (12 canary$\to$downstream pairs) yields Fleiss' $\kappa{=}0.091$, also in the ``slight agreement'' range, confirming that low inter-method agreement is not architecture-specific.
+Restricting to three informative methods (excluding naive cross-correlation and Toda--Yamamoto, which anchor the permissive and conservative extremes respectively) raises $\kappa$ to 0.667 (substantial agreement), indicating that the low full-panel $\kappa$ is driven by the deliberate inclusion of methods spanning the entire permissive-to-conservative spectrum rather than by fundamental incoherence among methods.
+Table~\ref{tab:method_comparison} extends the analysis across contamination levels.
+At $\alpha{=}0.0$ (no synthetic data, serving as null control), naive cross-correlation finds \textbf{100\%} of pairs significant---a textbook spurious-regression outcome in trending time series.
+Permutation Granger and Toda--Yamamoto correctly find 0\%.
+At $\alpha{=}0.50$, correlation-based methods (naive, differenced, threshold) unanimously find significance while causal methods unanimously find non-significance (Figure~\ref{fig:consensus_heatmap}), the most extreme method$\times$regime divergence in our experiments.
+
+\paragraph{Method$\times$regime interaction.}
+Table~\ref{tab:method_comparison} reveals that the correlation-versus-causal divergence is not uniform across contamination levels.
+At $\alpha{=}0.25$, differenced cross-correlation drops to 25\% and threshold onset to 37.5\%, while naive cross-correlation remains at 100\%---demonstrating that even partial detrending removes marginal associations at low contamination.
+The graded response across methods, combined with the block structure visible in Figure~\ref{fig:consensus_heatmap}, motivates the regime-dependent analysis in \S\ref{sec:regime}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{FDR significance rates (\%) for five lead-lag methods across contamination levels. Each cell reports the fraction of 8 primary canary$\to$downstream pairs (token entropy and ECE $\times$ 4 downstream metrics) reaching BH-corrected significance ($q{=}0.05$); failed candidates (effective rank, Self-BLEU) excluded per \S\ref{sec:case_study}. $\alpha{=}0.75$ is analyzed separately as single-seed data (\S\ref{sec:regime}). FPR$_\text{null}$: false positive rate at the $\alpha{=}0.0$ null control.}
+\label{tab:method_comparison}
+\begin{tabular}{lcccccc}
+\toprule
+Method & $\alpha{=}0.0$ & $\alpha{=}0.25$ & $\alpha{=}0.50$ & $\alpha{=}0.75$ & $\alpha{=}1.0$ & FPR$_\text{null}$ \\
+\midrule
+Naive XCorr     & 100   & 100  & 100  & ---  & 100   & 100  \\
+Diff.\ XCorr   & 37.5  & 25   & 100  & ---  & 100   & 37.5 \\
+Threshold       & 62.5  & 37.5 & 100  & ---  & 100   & 62.5 \\
+Perm.\ Granger  & 0     & 0    & 0    & ---  & 75    & 0    \\
+Toda--Yamamoto  & 0     & 37.5 & 0    & ---  & 59.4  & 0    \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Regime-Dependent Detectability}
+\label{sec:regime}
+
+Beyond method choice, the contamination level~$\alpha$ determines whether a temporal lead exists to detect.
+We present regime effects at two levels: raw metric drift (method-independent) and Granger-causal detectability.
+
+\paragraph{Raw drift.}
+Table~\ref{tab:drift_summary} shows that diversity collapse occurs at \emph{all} contamination levels, not only under full synthetic replacement.
+Distinct-1 declines by 13.8\% even at $\alpha{=}0.0$ (attributable to fine-tuning on repeated real-data subsets), and more steeply at intermediate contamination: $-40.3\%$ ($\alpha{=}0.25$), $-37.3\%$ ($\alpha{=}0.50$), $-32.7\%$ ($\alpha{=}0.75$), and $-27.8{\pm}1.6\%$ ($\alpha{=}1.0$).
+The non-monotonic pattern---diversity declining \emph{more} at moderate~$\alpha$ than at extreme~$\alpha$---is observed at seed=42 and requires multi-seed confirmation before drawing conclusions about the relationship between contamination level and collapse severity.
+
+\paragraph{Granger-causal detectability.}
+Despite ubiquitous drift, causal detectability is sharply regime-dependent (Figure~\ref{fig:regime_map}).
+Permutation Granger tests (first-differenced, BH-corrected) find 0/8 pairs FDR-significant at $\alpha{=}0.00$, 0/8 at $\alpha{=}0.25$, 0/8 at $\alpha{=}0.50$, and \textbf{6/8} at $\alpha{=}1.0$ in the cross-$\alpha$ pooled analysis.
+At $\alpha{=}0.75$ (single seed, seed=42), 3/8 pairs reach FDR significance; this result requires multi-seed replication before serving as primary evidence.
+Within-$\alpha$ multi-seed analysis at $\alpha{=}1.0$ yields \textbf{24/24} canary$\to$diversity pairs FDR-significant across all four seeds, with 0/24 in the reverse direction, confirming temporal asymmetry.
+The detectability boundary---the regime below which canary metrics no longer develop sufficient temporal lead for causal inference---lies at $\alpha \approx 0.50$--$0.75$, consistent with theoretical expectations about signal-to-noise limits in short time series \cite{boettiger2012limits}.
+This boundary is sharp rather than gradual: method-level consensus ($K{\geq}4/5$) identifies 0--1 of 16 candidate pairs as robust at $\alpha{\leq}0.50$ but 11/16 at $\alpha{=}0.75$ (single seed, pre-pipeline filtering; the stricter $K{\geq}4/5$, $S{\geq}3/4$ criterion at $\alpha{=}1.0$ retains 6/16 after excluding failed candidates and spurious channels per \S\ref{sec:case_study}).
+The lower count at $\alpha{=}1.0$ despite stronger contamination reflects the stricter validation standard: multi-seed replication ($S{\geq}3/4$) filters seed-specific artifacts, and pipeline filtering removes the perplexity channel (spurious per \S\ref{sec:method_sensitivity}) and failed canary candidates (effective rank, Self-BLEU), both of which contribute to the $\alpha{=}0.75$ single-seed count.
+
+\paragraph{Synchronous collapse at $\alpha{=}0.50$.}
+The $\alpha{=}0.50$ regime provides particularly informative evidence.
+Correlation-based methods unanimously find significance (Table~\ref{tab:method_comparison}) while causal methods unanimously find non-significance.
+This extreme method$\times$regime interaction arises because canary and downstream metrics collapse \emph{synchronously} at moderate contamination, preserving high correlation but eliminating the temporal lead required for Granger-causal inference.
+We highlight this as a \emph{positive finding}: it delineates the regime boundary where naive analysis is most dangerous---high correlation coexists with zero causal precedence, maximizing the risk of spurious conclusions.
+Figure~\ref{fig:consensus_heatmap} visualizes this interaction across all method$\times\alpha$ combinations, revealing a clear block structure that separates correlation-based methods from causal methods as a function of regime.
+
+
+\subsection{Case Study: Canary Prediction of Diversity Collapse}
+\label{sec:case_study}
+
+Having established method sensitivity (Claim~3) and regime dependence (Claim~2), we present the conditions under which canary prediction succeeds (Claim~1).
+We scope this claim precisely: canary metrics predict \emph{diversity collapse} (declining distinct-$n$), not model collapse broadly.
+
+\paragraph{Full synthetic replacement ($\alpha{=}1.0$, 4 seeds).}
+Token entropy Granger-causes distinct-1 and distinct-2 with a consistent one-generation lead.
+Cross-correlation peaks at lag$={+}1$ with $|r|{>}0.99$ (cross-seed standard deviation: 0.0).
+Figure~\ref{fig:metric_trajectory} illustrates the one-generation offset between token entropy decline and distinct-1 decline, visible across all four seeds.
+Permutation Granger tests (first-differenced) confirm all canary$\to$diversity pairs as FDR-significant across all four seeds, including distinct-3 (Appendix~\ref{app:distinct3}).
+Reverse-direction tests (downstream$\to$canary) find \textbf{0/24} FDR-significant (all $p{>}0.49$), confirming directional asymmetry.
+
+\paragraph{High contamination ($\alpha{=}0.75$, single seed).}
+At $\alpha{=}0.75$ (seed=42), three of four forward-direction pairs reach FDR significance: ECE$\to$distinct-1 ($p_\text{fdr}{=}0.046$), ECE$\to$distinct-2 ($p_\text{fdr}{=}0.046$), and token entropy$\to$distinct-2 ($p_\text{fdr}{=}0.048$).
+Token entropy$\to$distinct-1 is borderline ($p_\text{fdr}{=}0.054$).
+All four reverse directions are non-significant ($p{>}0.49$).
+These single-seed results require multi-seed confirmation before serving as primary evidence.
+
+\paragraph{ECE as a conditional secondary canary.}
+ECE performs equivalently to token entropy across four of five methods (naive, differenced, threshold, permutation Granger).
+Its classification as ``secondary'' is driven entirely by Toda--Yamamoto Type~II errors at $T{=}10$, where bootstrap power analysis yields estimated power of 0.05--0.20 depending on $d_{\max}$.
+Resolving ECE's true canary status requires longer time series.
+
+\paragraph{Failed canary candidates.}
+Not all metrics serve as canaries.
+Effective rank and Self-BLEU show no detectable lead-lag relationship with any downstream metric under any method or contamination level, and are excluded from the consensus framework.
+
+\paragraph{Consensus filtering.}
+Of 16 canary$\to$downstream pairs tested at $\alpha{=}1.0$ (4 candidate canaries $\times$ 4 downstream metrics), \textbf{6 survive} the full consensus pipeline ($K{\geq}4/5$ methods, $S{\geq}3/4$ seeds): token entropy and ECE each predicting distinct-1 and distinct-2 (4 pairs; distinct-3 results in Appendix~\ref{app:distinct3} bring the total to~6).
+The 10 eliminated pairs comprise all canary$\to$perplexity relationships (identified as spurious by the first-differencing diagnostic) and all effective-rank and Self-BLEU pairs (failed canaries).
+The consensus framework reduces the naive 100\% significance rate to the 37.5\% rate supported by the most conservative individual methods (Figure~\ref{fig:consensus_workflow}).
+
+
+\subsection{Consensus Framework Validation}
+\label{sec:consensus_validation}
+
+We validate the consensus framework's calibration using built-in experimental controls.
+
+\paragraph{False positive rate.}
+At $\alpha{=}0.0$, no synthetic data is injected; any detected lead-lag association is a false positive.
+Individual-method FPR ranges from \textbf{100\%} (naive cross-correlation: 8/8 pairs) through 62.5\% (threshold) and 37.5\% (differenced) down to \textbf{0\%} (permutation Granger and Toda--Yamamoto).
+The consensus framework at $K{\geq}4/5$ achieves \textbf{FPR${=}$0\%}, matching the best individual methods while providing robustness against miscalibration of any single method (Table~\ref{tab:fpr_fnr}).
+
+\paragraph{False negative rate.}
+At $\alpha{=}1.0$, we define 6 ground-truth pairs (token entropy and ECE $\to$ distinct-1/2/3), validated independently by the first-differencing diagnostic: all 6 pairs retain FDR significance after differencing, ruling out shared-trend confounding.
+The consensus framework ($K{\geq}4/5$, $S{\geq}3/4$) recovers all~6 (\textbf{FNR${=}$0\%}).
+Toda--Yamamoto alone yields FNR${=}$33.3\% (2/6), missing ECE$\to$distinct-2 and ECE$\to$distinct-3 due to Type~II errors at $T{=}10$.
+We note a design asymmetry: FPR is validated on method-only data (single seed at $\alpha{=}0.0$), while FNR uses method$\times$seed joint data (4~seeds at $\alpha{=}1.0$).
+Full joint calibration---multi-seed null-control experiments---remains future work.
+Table~\ref{tab:fpr_fnr} reports the calibration results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{False positive and false negative rates for individual methods and the consensus framework. FPR: $\alpha{=}0.0$ null control (single seed). FNR: $\alpha{=}1.0$ against 6 ground-truth pairs independently validated by first-differencing. Note dimension asymmetry: FPR is method-only; FNR is method$\times$seed joint (\S\ref{sec:consensus_validation}).}
+\label{tab:fpr_fnr}
+\begin{tabular}{lcc}
+\toprule
+Criterion & FPR ($\alpha{=}0.0$) & FNR ($\alpha{=}1.0$) \\
+\midrule
+Naive XCorr              & 100\%  & 0\%  \\
+Differenced XCorr        & 37.5\% & 0\%  \\
+Threshold Onset          & 62.5\% & 0\%  \\
+Permutation Granger      & 0\%    & 0\%  \\
+Toda--Yamamoto           & 0\%    & 33.3\% \\
+\midrule
+Consensus ($K{\geq}4/5$)              & 0\%    & 0\%  \\
+Consensus ($K{\geq}4/5$, $S{\geq}3/4$) & 0\%    & 0\%  \\
+\bottomrule
+\end{tabular}
+\end{table}

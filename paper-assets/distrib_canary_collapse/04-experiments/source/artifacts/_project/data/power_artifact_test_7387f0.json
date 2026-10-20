@@ -1,0 +1,1389 @@
+{
+  "config": {
+    "n_sim": 1000,
+    "n_perm": 1000,
+    "alphas": [
+      0.0,
+      0.1,
+      0.25,
+      0.45,
+      0.5,
+      0.6,
+      0.75,
+      1.0
+    ],
+    "T_values": [
+      5,
+      10,
+      15,
+      20,
+      25
+    ],
+    "n_pairs": 8,
+    "fdr_q": 0.05,
+    "var_a": 0.5,
+    "var_c": 0.5,
+    "sigma": 1.0,
+    "calibration": {
+      "c_scale": 1.3622,
+      "c_concave": 1.1797,
+      "S_max": 1.0217,
+      "b_calibrated": 1.0217
+    }
+  },
+  "H0_results": {
+    "a0.00_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.0,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.013,
+      "detection_rate": 0.011,
+      "mean_detection_fraction": 0.0016
+    },
+    "a0.00_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.0,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.059,
+      "detection_rate": 0.054,
+      "mean_detection_fraction": 0.0074
+    },
+    "a0.00_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.0,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.067,
+      "detection_rate": 0.062,
+      "mean_detection_fraction": 0.0084
+    },
+    "a0.00_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.0,
+      "T": 20,
+      "b": 0.0,
+      "mean_permg_score": 0.059,
+      "detection_rate": 0.055,
+      "mean_detection_fraction": 0.0074
+    },
+    "a0.00_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.0,
+      "T": 25,
+      "b": 0.0,
+      "mean_permg_score": 0.057,
+      "detection_rate": 0.054,
+      "mean_detection_fraction": 0.0071
+    },
+    "a0.10_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.1,
+      "T": 5,
+      "b": 0.13622395833333334,
+      "mean_permg_score": 0.012,
+      "detection_rate": 0.012,
+      "mean_detection_fraction": 0.0015
+    },
+    "a0.10_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.1,
+      "T": 10,
+      "b": 0.13622395833333334,
+      "mean_permg_score": 0.057,
+      "detection_rate": 0.051,
+      "mean_detection_fraction": 0.0071
+    },
+    "a0.10_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.1,
+      "T": 15,
+      "b": 0.13622395833333334,
+      "mean_permg_score": 0.078,
+      "detection_rate": 0.072,
+      "mean_detection_fraction": 0.0097
+    },
+    "a0.10_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.1,
+      "T": 20,
+      "b": 0.13622395833333334,
+      "mean_permg_score": 0.123,
+      "detection_rate": 0.105,
+      "mean_detection_fraction": 0.0154
+    },
+    "a0.10_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.1,
+      "T": 25,
+      "b": 0.13622395833333334,
+      "mean_permg_score": 0.146,
+      "detection_rate": 0.116,
+      "mean_detection_fraction": 0.0182
+    },
+    "a0.25_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.25,
+      "T": 5,
+      "b": 0.34055989583333335,
+      "mean_permg_score": 0.016,
+      "detection_rate": 0.014,
+      "mean_detection_fraction": 0.002
+    },
+    "a0.25_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.25,
+      "T": 10,
+      "b": 0.34055989583333335,
+      "mean_permg_score": 0.145,
+      "detection_rate": 0.115,
+      "mean_detection_fraction": 0.0181
+    },
+    "a0.25_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.25,
+      "T": 15,
+      "b": 0.34055989583333335,
+      "mean_permg_score": 0.32,
+      "detection_rate": 0.232,
+      "mean_detection_fraction": 0.04
+    },
+    "a0.25_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.25,
+      "T": 20,
+      "b": 0.34055989583333335,
+      "mean_permg_score": 0.47,
+      "detection_rate": 0.312,
+      "mean_detection_fraction": 0.0587
+    },
+    "a0.25_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.25,
+      "T": 25,
+      "b": 0.34055989583333335,
+      "mean_permg_score": 0.696,
+      "detection_rate": 0.409,
+      "mean_detection_fraction": 0.087
+    },
+    "a0.45_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.45,
+      "T": 5,
+      "b": 0.6130078125,
+      "mean_permg_score": 0.024,
+      "detection_rate": 0.019,
+      "mean_detection_fraction": 0.003
+    },
+    "a0.45_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.45,
+      "T": 10,
+      "b": 0.6130078125,
+      "mean_permg_score": 0.386,
+      "detection_rate": 0.267,
+      "mean_detection_fraction": 0.0483
+    },
+    "a0.45_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.45,
+      "T": 15,
+      "b": 0.6130078125,
+      "mean_permg_score": 1.222,
+      "detection_rate": 0.603,
+      "mean_detection_fraction": 0.1527
+    },
+    "a0.45_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.45,
+      "T": 20,
+      "b": 0.6130078125,
+      "mean_permg_score": 2.4,
+      "detection_rate": 0.809,
+      "mean_detection_fraction": 0.3
+    },
+    "a0.45_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.45,
+      "T": 25,
+      "b": 0.6130078125,
+      "mean_permg_score": 3.46,
+      "detection_rate": 0.928,
+      "mean_detection_fraction": 0.4325
+    },
+    "a0.50_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.5,
+      "T": 5,
+      "b": 0.6811197916666667,
+      "mean_permg_score": 0.008,
+      "detection_rate": 0.007,
+      "mean_detection_fraction": 0.001
+    },
+    "a0.50_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.5,
+      "T": 10,
+      "b": 0.6811197916666667,
+      "mean_permg_score": 0.555,
+      "detection_rate": 0.362,
+      "mean_detection_fraction": 0.0694
+    },
+    "a0.50_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.5,
+      "T": 15,
+      "b": 0.6811197916666667,
+      "mean_permg_score": 1.782,
+      "detection_rate": 0.725,
+      "mean_detection_fraction": 0.2228
+    },
+    "a0.50_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.5,
+      "T": 20,
+      "b": 0.6811197916666667,
+      "mean_permg_score": 3.001,
+      "detection_rate": 0.892,
+      "mean_detection_fraction": 0.3751
+    },
+    "a0.50_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.5,
+      "T": 25,
+      "b": 0.6811197916666667,
+      "mean_permg_score": 4.451,
+      "detection_rate": 0.979,
+      "mean_detection_fraction": 0.5564
+    },
+    "a0.60_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.6,
+      "T": 5,
+      "b": 0.81734375,
+      "mean_permg_score": 0.012,
+      "detection_rate": 0.011,
+      "mean_detection_fraction": 0.0015
+    },
+    "a0.60_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.6,
+      "T": 10,
+      "b": 0.81734375,
+      "mean_permg_score": 0.928,
+      "detection_rate": 0.469,
+      "mean_detection_fraction": 0.116
+    },
+    "a0.60_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.6,
+      "T": 15,
+      "b": 0.81734375,
+      "mean_permg_score": 2.956,
+      "detection_rate": 0.869,
+      "mean_detection_fraction": 0.3695
+    },
+    "a0.60_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.6,
+      "T": 20,
+      "b": 0.81734375,
+      "mean_permg_score": 4.53,
+      "detection_rate": 0.975,
+      "mean_detection_fraction": 0.5663
+    },
+    "a0.60_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.6,
+      "T": 25,
+      "b": 0.81734375,
+      "mean_permg_score": 5.783,
+      "detection_rate": 0.997,
+      "mean_detection_fraction": 0.7229
+    },
+    "a0.75_T5": {
+      "hypothesis": "H0",
+      "alpha": 0.75,
+      "T": 5,
+      "b": 1.0216796875,
+      "mean_permg_score": 0.034,
+      "detection_rate": 0.023,
+      "mean_detection_fraction": 0.0043
+    },
+    "a0.75_T10": {
+      "hypothesis": "H0",
+      "alpha": 0.75,
+      "T": 10,
+      "b": 1.0216796875,
+      "mean_permg_score": 1.821,
+      "detection_rate": 0.703,
+      "mean_detection_fraction": 0.2276
+    },
+    "a0.75_T15": {
+      "hypothesis": "H0",
+      "alpha": 0.75,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.503,
+      "detection_rate": 0.969,
+      "mean_detection_fraction": 0.5629
+    },
+    "a0.75_T20": {
+      "hypothesis": "H0",
+      "alpha": 0.75,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.348,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.7935
+    },
+    "a0.75_T25": {
+      "hypothesis": "H0",
+      "alpha": 0.75,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.119,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8899
+    },
+    "a1.00_T5": {
+      "hypothesis": "H0",
+      "alpha": 1.0,
+      "T": 5,
+      "b": 1.3622395833333334,
+      "mean_permg_score": 0.022,
+      "detection_rate": 0.018,
+      "mean_detection_fraction": 0.0027
+    },
+    "a1.00_T10": {
+      "hypothesis": "H0",
+      "alpha": 1.0,
+      "T": 10,
+      "b": 1.3622395833333334,
+      "mean_permg_score": 3.647,
+      "detection_rate": 0.904,
+      "mean_detection_fraction": 0.4559
+    },
+    "a1.00_T15": {
+      "hypothesis": "H0",
+      "alpha": 1.0,
+      "T": 15,
+      "b": 1.3622395833333334,
+      "mean_permg_score": 6.605,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8256
+    },
+    "a1.00_T20": {
+      "hypothesis": "H0",
+      "alpha": 1.0,
+      "T": 20,
+      "b": 1.3622395833333334,
+      "mean_permg_score": 7.569,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.9461
+    },
+    "a1.00_T25": {
+      "hypothesis": "H0",
+      "alpha": 1.0,
+      "T": 25,
+      "b": 1.3622395833333334,
+      "mean_permg_score": 7.861,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.9826
+    }
+  },
+  "H0_concave_results": {
+    "a0.00_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.0,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.012,
+      "detection_rate": 0.01,
+      "mean_detection_fraction": 0.0015
+    },
+    "a0.00_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.0,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.039,
+      "detection_rate": 0.035,
+      "mean_detection_fraction": 0.0049
+    },
+    "a0.00_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.0,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.073,
+      "detection_rate": 0.068,
+      "mean_detection_fraction": 0.0091
+    },
+    "a0.00_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.0,
+      "T": 20,
+      "b": 0.0,
+      "mean_permg_score": 0.062,
+      "detection_rate": 0.055,
+      "mean_detection_fraction": 0.0077
+    },
+    "a0.00_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.0,
+      "T": 25,
+      "b": 0.0,
+      "mean_permg_score": 0.071,
+      "detection_rate": 0.066,
+      "mean_detection_fraction": 0.0089
+    },
+    "a0.10_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.1,
+      "T": 5,
+      "b": 0.37306467425905265,
+      "mean_permg_score": 0.012,
+      "detection_rate": 0.012,
+      "mean_detection_fraction": 0.0015
+    },
+    "a0.10_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.1,
+      "T": 10,
+      "b": 0.37306467425905265,
+      "mean_permg_score": 0.139,
+      "detection_rate": 0.115,
+      "mean_detection_fraction": 0.0174
+    },
+    "a0.10_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.1,
+      "T": 15,
+      "b": 0.37306467425905265,
+      "mean_permg_score": 0.324,
+      "detection_rate": 0.231,
+      "mean_detection_fraction": 0.0405
+    },
+    "a0.10_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.1,
+      "T": 20,
+      "b": 0.37306467425905265,
+      "mean_permg_score": 0.627,
+      "detection_rate": 0.387,
+      "mean_detection_fraction": 0.0784
+    },
+    "a0.10_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.1,
+      "T": 25,
+      "b": 0.37306467425905265,
+      "mean_permg_score": 0.943,
+      "detection_rate": 0.53,
+      "mean_detection_fraction": 0.1179
+    },
+    "a0.25_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.25,
+      "T": 5,
+      "b": 0.5898670426036978,
+      "mean_permg_score": 0.018,
+      "detection_rate": 0.016,
+      "mean_detection_fraction": 0.0022
+    },
+    "a0.25_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.25,
+      "T": 10,
+      "b": 0.5898670426036978,
+      "mean_permg_score": 0.346,
+      "detection_rate": 0.244,
+      "mean_detection_fraction": 0.0432
+    },
+    "a0.25_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.25,
+      "T": 15,
+      "b": 0.5898670426036978,
+      "mean_permg_score": 1.13,
+      "detection_rate": 0.557,
+      "mean_detection_fraction": 0.1412
+    },
+    "a0.25_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.25,
+      "T": 20,
+      "b": 0.5898670426036978,
+      "mean_permg_score": 2.191,
+      "detection_rate": 0.802,
+      "mean_detection_fraction": 0.2739
+    },
+    "a0.25_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.25,
+      "T": 25,
+      "b": 0.5898670426036978,
+      "mean_permg_score": 3.16,
+      "detection_rate": 0.901,
+      "mean_detection_fraction": 0.395
+    },
+    "a0.45_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.45,
+      "T": 5,
+      "b": 0.7913896829691798,
+      "mean_permg_score": 0.018,
+      "detection_rate": 0.015,
+      "mean_detection_fraction": 0.0022
+    },
+    "a0.45_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.45,
+      "T": 10,
+      "b": 0.7913896829691798,
+      "mean_permg_score": 0.823,
+      "detection_rate": 0.446,
+      "mean_detection_fraction": 0.1029
+    },
+    "a0.45_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.45,
+      "T": 15,
+      "b": 0.7913896829691798,
+      "mean_permg_score": 2.607,
+      "detection_rate": 0.848,
+      "mean_detection_fraction": 0.3259
+    },
+    "a0.45_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.45,
+      "T": 20,
+      "b": 0.7913896829691798,
+      "mean_permg_score": 4.267,
+      "detection_rate": 0.966,
+      "mean_detection_fraction": 0.5334
+    },
+    "a0.45_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.45,
+      "T": 25,
+      "b": 0.7913896829691798,
+      "mean_permg_score": 5.595,
+      "detection_rate": 0.998,
+      "mean_detection_fraction": 0.6994
+    },
+    "a0.50_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.5,
+      "T": 5,
+      "b": 0.8341979716470578,
+      "mean_permg_score": 0.016,
+      "detection_rate": 0.013,
+      "mean_detection_fraction": 0.002
+    },
+    "a0.50_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.5,
+      "T": 10,
+      "b": 0.8341979716470578,
+      "mean_permg_score": 0.967,
+      "detection_rate": 0.483,
+      "mean_detection_fraction": 0.1209
+    },
+    "a0.50_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.5,
+      "T": 15,
+      "b": 0.8341979716470578,
+      "mean_permg_score": 2.965,
+      "detection_rate": 0.877,
+      "mean_detection_fraction": 0.3706
+    },
+    "a0.50_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.5,
+      "T": 20,
+      "b": 0.8341979716470578,
+      "mean_permg_score": 4.778,
+      "detection_rate": 0.981,
+      "mean_detection_fraction": 0.5972
+    },
+    "a0.50_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.5,
+      "T": 25,
+      "b": 0.8341979716470578,
+      "mean_permg_score": 6.012,
+      "detection_rate": 0.997,
+      "mean_detection_fraction": 0.7515
+    },
+    "a0.60_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.6,
+      "T": 5,
+      "b": 0.913818092992297,
+      "mean_permg_score": 0.023,
+      "detection_rate": 0.018,
+      "mean_detection_fraction": 0.0029
+    },
+    "a0.60_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.6,
+      "T": 10,
+      "b": 0.913818092992297,
+      "mean_permg_score": 1.214,
+      "detection_rate": 0.551,
+      "mean_detection_fraction": 0.1517
+    },
+    "a0.60_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.6,
+      "T": 15,
+      "b": 0.913818092992297,
+      "mean_permg_score": 3.569,
+      "detection_rate": 0.933,
+      "mean_detection_fraction": 0.4461
+    },
+    "a0.60_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.6,
+      "T": 20,
+      "b": 0.913818092992297,
+      "mean_permg_score": 5.423,
+      "detection_rate": 0.999,
+      "mean_detection_fraction": 0.6779
+    },
+    "a0.60_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.6,
+      "T": 25,
+      "b": 0.913818092992297,
+      "mean_permg_score": 6.585,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8231
+    },
+    "a0.75_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.75,
+      "T": 5,
+      "b": 1.0216796875,
+      "mean_permg_score": 0.034,
+      "detection_rate": 0.025,
+      "mean_detection_fraction": 0.0043
+    },
+    "a0.75_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.75,
+      "T": 10,
+      "b": 1.0216796875,
+      "mean_permg_score": 1.792,
+      "detection_rate": 0.704,
+      "mean_detection_fraction": 0.224
+    },
+    "a0.75_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.75,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.633,
+      "detection_rate": 0.972,
+      "mean_detection_fraction": 0.5791
+    },
+    "a0.75_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.75,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.292,
+      "detection_rate": 0.999,
+      "mean_detection_fraction": 0.7865
+    },
+    "a0.75_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 0.75,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.139,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8924
+    },
+    "a1.00_T5": {
+      "hypothesis": "H0_concave",
+      "alpha": 1.0,
+      "T": 5,
+      "b": 1.1797340852073956,
+      "mean_permg_score": 0.033,
+      "detection_rate": 0.023,
+      "mean_detection_fraction": 0.0041
+    },
+    "a1.00_T10": {
+      "hypothesis": "H0_concave",
+      "alpha": 1.0,
+      "T": 10,
+      "b": 1.1797340852073956,
+      "mean_permg_score": 2.524,
+      "detection_rate": 0.819,
+      "mean_detection_fraction": 0.3155
+    },
+    "a1.00_T15": {
+      "hypothesis": "H0_concave",
+      "alpha": 1.0,
+      "T": 15,
+      "b": 1.1797340852073956,
+      "mean_permg_score": 5.658,
+      "detection_rate": 0.996,
+      "mean_detection_fraction": 0.7073
+    },
+    "a1.00_T20": {
+      "hypothesis": "H0_concave",
+      "alpha": 1.0,
+      "T": 20,
+      "b": 1.1797340852073956,
+      "mean_permg_score": 7.026,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8782
+    },
+    "a1.00_T25": {
+      "hypothesis": "H0_concave",
+      "alpha": 1.0,
+      "T": 25,
+      "b": 1.1797340852073956,
+      "mean_permg_score": 7.639,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.9549
+    }
+  },
+  "H1_results": {
+    "a0.00_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.0,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.011,
+      "detection_rate": 0.009,
+      "mean_detection_fraction": 0.0014
+    },
+    "a0.00_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.0,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.062,
+      "detection_rate": 0.051,
+      "mean_detection_fraction": 0.0077
+    },
+    "a0.00_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.0,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.068,
+      "detection_rate": 0.059,
+      "mean_detection_fraction": 0.0085
+    },
+    "a0.00_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.0,
+      "T": 20,
+      "b": 0.0,
+      "mean_permg_score": 0.058,
+      "detection_rate": 0.054,
+      "mean_detection_fraction": 0.0073
+    },
+    "a0.00_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.0,
+      "T": 25,
+      "b": 0.0,
+      "mean_permg_score": 0.051,
+      "detection_rate": 0.047,
+      "mean_detection_fraction": 0.0064
+    },
+    "a0.10_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.1,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.013,
+      "detection_rate": 0.013,
+      "mean_detection_fraction": 0.0016
+    },
+    "a0.10_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.1,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.05,
+      "detection_rate": 0.046,
+      "mean_detection_fraction": 0.0063
+    },
+    "a0.10_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.1,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.046,
+      "detection_rate": 0.044,
+      "mean_detection_fraction": 0.0057
+    },
+    "a0.10_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.1,
+      "T": 20,
+      "b": 0.0,
+      "mean_permg_score": 0.069,
+      "detection_rate": 0.066,
+      "mean_detection_fraction": 0.0086
+    },
+    "a0.10_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.1,
+      "T": 25,
+      "b": 0.0,
+      "mean_permg_score": 0.066,
+      "detection_rate": 0.061,
+      "mean_detection_fraction": 0.0083
+    },
+    "a0.25_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.25,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.018,
+      "detection_rate": 0.014,
+      "mean_detection_fraction": 0.0022
+    },
+    "a0.25_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.25,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.055,
+      "detection_rate": 0.05,
+      "mean_detection_fraction": 0.0069
+    },
+    "a0.25_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.25,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.057,
+      "detection_rate": 0.052,
+      "mean_detection_fraction": 0.0071
+    },
+    "a0.25_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.25,
+      "T": 20,
+      "b": 0.0,
+      "mean_permg_score": 0.058,
+      "detection_rate": 0.054,
+      "mean_detection_fraction": 0.0073
+    },
+    "a0.25_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.25,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.116,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8895
+    },
+    "a0.45_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.45,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.01,
+      "detection_rate": 0.008,
+      "mean_detection_fraction": 0.0013
+    },
+    "a0.45_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.45,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.059,
+      "detection_rate": 0.055,
+      "mean_detection_fraction": 0.0074
+    },
+    "a0.45_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.45,
+      "T": 15,
+      "b": 0.0,
+      "mean_permg_score": 0.061,
+      "detection_rate": 0.057,
+      "mean_detection_fraction": 0.0076
+    },
+    "a0.45_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.45,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.313,
+      "detection_rate": 0.999,
+      "mean_detection_fraction": 0.7891
+    },
+    "a0.45_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.45,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.149,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8936
+    },
+    "a0.50_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.5,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.014,
+      "detection_rate": 0.013,
+      "mean_detection_fraction": 0.0018
+    },
+    "a0.50_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.5,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.049,
+      "detection_rate": 0.046,
+      "mean_detection_fraction": 0.0061
+    },
+    "a0.50_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.5,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.629,
+      "detection_rate": 0.98,
+      "mean_detection_fraction": 0.5786
+    },
+    "a0.50_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.5,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.268,
+      "detection_rate": 0.999,
+      "mean_detection_fraction": 0.7835
+    },
+    "a0.50_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.5,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.205,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.9006
+    },
+    "a0.60_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.6,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.009,
+      "detection_rate": 0.008,
+      "mean_detection_fraction": 0.0011
+    },
+    "a0.60_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.6,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.059,
+      "detection_rate": 0.047,
+      "mean_detection_fraction": 0.0074
+    },
+    "a0.60_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.6,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.524,
+      "detection_rate": 0.975,
+      "mean_detection_fraction": 0.5655
+    },
+    "a0.60_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.6,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.373,
+      "detection_rate": 0.999,
+      "mean_detection_fraction": 0.7966
+    },
+    "a0.60_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.6,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.172,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8965
+    },
+    "a0.75_T5": {
+      "hypothesis": "H1",
+      "alpha": 0.75,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.022,
+      "detection_rate": 0.02,
+      "mean_detection_fraction": 0.0027
+    },
+    "a0.75_T10": {
+      "hypothesis": "H1",
+      "alpha": 0.75,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.053,
+      "detection_rate": 0.048,
+      "mean_detection_fraction": 0.0066
+    },
+    "a0.75_T15": {
+      "hypothesis": "H1",
+      "alpha": 0.75,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.605,
+      "detection_rate": 0.973,
+      "mean_detection_fraction": 0.5756
+    },
+    "a0.75_T20": {
+      "hypothesis": "H1",
+      "alpha": 0.75,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.314,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.7893
+    },
+    "a0.75_T25": {
+      "hypothesis": "H1",
+      "alpha": 0.75,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.176,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.897
+    },
+    "a1.00_T5": {
+      "hypothesis": "H1",
+      "alpha": 1.0,
+      "T": 5,
+      "b": 0.0,
+      "mean_permg_score": 0.019,
+      "detection_rate": 0.015,
+      "mean_detection_fraction": 0.0024
+    },
+    "a1.00_T10": {
+      "hypothesis": "H1",
+      "alpha": 1.0,
+      "T": 10,
+      "b": 0.0,
+      "mean_permg_score": 0.057,
+      "detection_rate": 0.052,
+      "mean_detection_fraction": 0.0071
+    },
+    "a1.00_T15": {
+      "hypothesis": "H1",
+      "alpha": 1.0,
+      "T": 15,
+      "b": 1.0216796875,
+      "mean_permg_score": 4.626,
+      "detection_rate": 0.974,
+      "mean_detection_fraction": 0.5783
+    },
+    "a1.00_T20": {
+      "hypothesis": "H1",
+      "alpha": 1.0,
+      "T": 20,
+      "b": 1.0216796875,
+      "mean_permg_score": 6.267,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.7834
+    },
+    "a1.00_T25": {
+      "hypothesis": "H1",
+      "alpha": 1.0,
+      "T": 25,
+      "b": 1.0216796875,
+      "mean_permg_score": 7.182,
+      "detection_rate": 1.0,
+      "mean_detection_fraction": 0.8978
+    }
+  },
+  "apparent_onset": {
+    "H0": {
+      "5": null,
+      "10": 0.6199,
+      "15": 0.3945,
+      "20": 0.3257,
+      "25": 0.2851
+    },
+    "H0_concave": {
+      "5": null,
+      "10": 0.525,
+      "15": 0.2238,
+      "20": 0.1408,
+      "25": 0.0935
+    },
+    "H1": {
+      "5": null,
+      "10": null,
+      "15": 0.474,
+      "20": 0.3444,
+      "25": 0.1701
+    },
+    "observed": {
+      "5": 4.5634,
+      "10": 1.0771,
+      "15": 0.4629,
+      "20": 0.2542,
+      "25": 0.1597
+    }
+  },
+  "scaling_fit": {
+    "H0": {
+      "c": 4.1889,
+      "gamma": 0.8476,
+      "r2": 0.9765,
+      "p": 0.011806
+    },
+    "H0_concave": {
+      "c": 37.5802,
+      "gamma": 1.8688,
+      "r2": 0.9967,
+      "p": 0.001663
+    },
+    "H1": {
+      "c": 104.2237,
+      "gamma": 1.9639,
+      "r2": 0.9199,
+      "p": 0.182677
+    },
+    "observed": {
+      "c": 130.39,
+      "gamma": 2.083
+    }
+  },
+  "conclusion": "shape_mismatch",
+  "explanation": "\u03b3 comparison alone is insufficient: H0' (concave k=0.5) gives \u03b3=1.869, close to observed \u03b3=2.083 (\u0394\u03b3=0.214). However, shape comparison reveals structural incompatibility: H0' MAE=0.2611 vs H1 MAE=0.1159 (ratio 2.3x). H0' predicts 14/40 cells with intermediate detection (0.1-0.9); observed data is binary (0/8 or 6/8).",
+  "shape_comparison": {
+    "observed_pattern": "binary: 0.0 below alpha_c(T), 0.75 above (6/8 ceiling)",
+    "H0": {
+      "shape_MAE": 0.1921,
+      "intermediate_cells": 15,
+      "total_cells": 40,
+      "intermediate_fraction": 0.375,
+      "key_mismatches": [
+        {
+          "cell": "a1.00_T10",
+          "predicted": 0.904,
+          "observed": 0.0,
+          "diff": 0.904
+        },
+        {
+          "cell": "a0.75_T10",
+          "predicted": 0.703,
+          "observed": 0.0,
+          "diff": 0.703
+        },
+        {
+          "cell": "a0.45_T15",
+          "predicted": 0.603,
+          "observed": 0.0,
+          "diff": 0.603
+        },
+        {
+          "cell": "a0.60_T10",
+          "predicted": 0.469,
+          "observed": 0.0,
+          "diff": 0.469
+        },
+        {
+          "cell": "a0.50_T10",
+          "predicted": 0.362,
+          "observed": 0.0,
+          "diff": 0.362
+        },
+        {
+          "cell": "a0.25_T25",
+          "predicted": 0.409,
+          "observed": 0.75,
+          "diff": -0.341
+        },
+        {
+          "cell": "a0.25_T20",
+          "predicted": 0.312,
+          "observed": 0.0,
+          "diff": 0.312
+        },
+        {
+          "cell": "a0.45_T10",
+          "predicted": 0.267,
+          "observed": 0.0,
+          "diff": 0.267
+        },
+        {
+          "cell": "a0.75_T20",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.75_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        }
+      ]
+    },
+    "H0_concave": {
+      "shape_MAE": 0.2611,
+      "intermediate_cells": 14,
+      "total_cells": 40,
+      "intermediate_fraction": 0.35,
+      "key_mismatches": [
+        {
+          "cell": "a0.45_T15",
+          "predicted": 0.848,
+          "observed": 0.0,
+          "diff": 0.848
+        },
+        {
+          "cell": "a1.00_T10",
+          "predicted": 0.819,
+          "observed": 0.0,
+          "diff": 0.819
+        },
+        {
+          "cell": "a0.25_T20",
+          "predicted": 0.802,
+          "observed": 0.0,
+          "diff": 0.802
+        },
+        {
+          "cell": "a0.75_T10",
+          "predicted": 0.704,
+          "observed": 0.0,
+          "diff": 0.704
+        },
+        {
+          "cell": "a0.25_T15",
+          "predicted": 0.557,
+          "observed": 0.0,
+          "diff": 0.557
+        },
+        {
+          "cell": "a0.60_T10",
+          "predicted": 0.551,
+          "observed": 0.0,
+          "diff": 0.551
+        },
+        {
+          "cell": "a0.10_T25",
+          "predicted": 0.53,
+          "observed": 0.0,
+          "diff": 0.53
+        },
+        {
+          "cell": "a0.50_T10",
+          "predicted": 0.483,
+          "observed": 0.0,
+          "diff": 0.483
+        },
+        {
+          "cell": "a0.45_T10",
+          "predicted": 0.446,
+          "observed": 0.0,
+          "diff": 0.446
+        },
+        {
+          "cell": "a0.10_T20",
+          "predicted": 0.387,
+          "observed": 0.0,
+          "diff": 0.387
+        }
+      ]
+    },
+    "H1": {
+      "shape_MAE": 0.1159,
+      "intermediate_cells": 0,
+      "total_cells": 40,
+      "intermediate_fraction": 0.0,
+      "key_mismatches": [
+        {
+          "cell": "a0.25_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.45_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.50_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.60_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.75_T20",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.75_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a1.00_T20",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a1.00_T25",
+          "predicted": 1.0,
+          "observed": 0.75,
+          "diff": 0.25
+        },
+        {
+          "cell": "a0.45_T20",
+          "predicted": 0.999,
+          "observed": 0.75,
+          "diff": 0.249
+        },
+        {
+          "cell": "a0.50_T20",
+          "predicted": 0.999,
+          "observed": 0.75,
+          "diff": 0.249
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 566.1,
+  "reviewer_note": {
+    "gamma_comparison": "H0 linear: \u03b3=0.848. H0' concave (k=0.5): \u03b3=1.869, \u0394\u03b3=0.214 from observed 2.083. \u03b3 comparison alone does not exclude smooth signal artifact.",
+    "shape_comparison": "Shape comparison resolves the ambiguity: H0' predicts gradual detection increase; observed data shows binary 0/8 or 6/8. P_max=0.75 ceiling and absence of intermediate detection rates are incompatible with any smooth signal model.",
+    "n_perm_note": "Simulation uses n_perm=1000 (vs experimental 5000). Qualitative conclusions unchanged."
+  }
+}

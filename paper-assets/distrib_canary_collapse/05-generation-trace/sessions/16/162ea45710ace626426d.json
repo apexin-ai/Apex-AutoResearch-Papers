@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "162ea45710ace626426d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d120 batch tasks",
+  "task_key": "worker_analysis_d120_batch_tasks_20260520T071242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d120_batch_tasks_20260520T071242_result.json",
+    "occurrence": 1,
+    "bytes": 4697,
+    "sha256": "e790fc259156437bf8513da6beadaf17b3583e8eb7bb91d473f65134b90cdf02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有分析脚本完成。现在编译汇总报告。\n\n---\n\n## 汇总报告\n\n### Task 1: scale_14b_c4_s42_fp32 5-method 分析 ✅\n\n模型: Pythia-1.4B, 数据: C4, α=1.0, seed=42, 11 代\n\n| Method | Fwd sig / Total |\n|--------|----------------|\n| PermG_fwd (FDR) | **8/8** |\n| PermG_rev | 0/8 |\n| Diff XCorr (FDR) | **8/8** |\n| Naive XCorr | **8/8** |\n| Threshold Onset | **0/8** (all None — 无 onset 检测到) |\n| TY Granger | **0/8** (all p > 0.45, dmax=1) |\n\n**K≥3 = 8/8**, K≥4 = 0/8\n\n所有 8 pairs 的 consensus 均为 3/5 [naive, diff, perm]。Threshold onset 全部 None（信号太强导致所有 gen 都超阈值，无法确定 onset 时间点）。TY 全部 not significant（dmax=1，df_resid 不足）。\n\n---\n\n### Task 2: Padding Robustness TY 重跑 ✅\n\n目录: `results/padding_robustness/a100_s42_fp32`  \n模型: Pythia-410M, α=1.0, seed=42, 11 代\n\n| Method | Fwd sig / Total |\n|--------|----------------|\n| PermG_fwd (FDR) | **6/8** |\n| Diff XCorr (FDR) | **6/8** |\n| Naive XCorr | **6/8** |\n| Threshold Onset | **0/8** |\n| TY Granger | **0/8** (all TY_p > 0.2) |\n\n**K≥3 = 6/8**, K≥4 = 0/8\n\n**TY 仍为 0/8，D120 修复未改变 padding 实验的 TY 结论。** mauve pairs (2/8) 无信号是一致的。TY=0/8 非 bug — 是短序列 T=11 下 TY 检验力不足。\n\n---\n\n### Task 3: TY FPR_null α=0.0 分析 ✅ ⚠️\n\n目录: `results/alpha_sweep/a000_s42_fp32`  \n模型: Pythia-410M, α=0.0 (null baseline), seed=42, 11 代\n\n| Method | Fwd sig / Total |\n|--------|----------------|\n| PermG_fwd (FDR) | **0/8** ✅ |\n| Diff XCorr (FDR) | **4/8** ⚠️ |\n| Naive XCorr | **2/8** |\n| Threshold Onset | **3/8** ⚠️ |\n| TY Granger | **1/8** ⚠️ |\n\n**K≥3 = 1/8**（token_entropy→distinct_2, methods: diff+threshold+ty）\n\n**关键发现**: TY 在 α=0.0 null 条件下有 **1 个 false positive**:\n- `token_entropy→distinct_2`: TY_p=0.0228, dmax=1\n\n对比旧 m035 CSV 中 α=0.0 的 TY=0/8，D120 修复后 TY 变成 1/8。FPR 从 0% 升至 12.5%（per-pair）。Diff_xcorr 和 threshold_onset 的 FPR 更高（4/8 和 3/8）。**K≥3 consensus 的 null FPR = 1/8 = 12.5%**。\n\n---\n\n### Task 4: v3_d080 变体调查 ✅\n\n对比了以下目录的 config.json:\n- `a005_s42_fp32` / `a005_s42_fp32_v3` / `a005_s42_fp32_v3_d080`\n- `a060_s42_fp32` / `a060_s42_fp32_v3_d080`\n- 标准 `a050_s42_fp32`\n\n**结论: 所有 config.json 完全相同** — 没有 `weight_decay` 字段。\n\n训练脚本 `iterative_train.py` 在 line 180 硬编码 `weight_decay=0.01`，且无 `--weight_decay` CLI 参数。\n\n\"d080\" 的含义 **只能从命名推断**: 很可能是临时将代码中 `weight_decay` 从 0.01 改为 0.08（或 0.80），运行完后恢复。由于没有 train.log、没有 git 记录在服务器上，**无法 100% 确认实际使用的 decay 值**。\n\nv3_d080 目录没有 train.log，无额外 .sh 或 .cmd 文件。唯一的代码引用在 `aggregate_phase3.py` 和 `run_dose_response_m035.py` 中，仅作为目录名使用。\n\n---\n\n### Task 5: Heatmap CSV model 列检查 ✅\n\n唯一找到的 heatmap CSV: `artifacts/dose_response_m035/consensus_heatmap_data.csv`\n\n**该 CSV 不含 model 列。** 列为: `alpha, dirname, pair, naive_sig, diff_sig, threshold_sig, permG_sig, TY_sig, consensus_votes`\n\n所有条目均为 alpha_sweep 实验（Pythia-410M），通过 dirname 区分（如 `a050_s42_fp32`）。**不存在 `consensus_heatmap_d120_data.csv`** — d120 版本的 heatmap CSV 尚未生成。\n\n因此 GPT-2 vs Pythia-410M 的问题不适用于当前 CSV。\n\n---\n\n### Task 6: 实验进度速查 ✅\n\n找到 **6 个仍在运行** 的实验（非 7 个，部分可能已在查询间完成）：\n\n| 实验名 | 当前gen/总gen | Step进度 | 总体进度 | 速度 | 预估剩余 |\n|--------|-------------|---------|---------|------|---------|\n| qwen35_08b_wiki_a100_s43_fp32 | 10/10 (resume) | 238/5000 | ~91% | ~1.93 it/s | ~21 min |\n| scale_69b_a100_s43 | 10/10 | 1274/5000 | ~93% | ~1.72 it/s | ~36 min |\n| alpha_sweep_a025_s44_fp32 | 10/10 | 1190/5000 | ~93% | ~7.69 it/s | ~8 min |\n| data_strategy_ablation_s42 | 7/10 | 944/5000 | ~65% | ~7.68 it/s | ~42 min |\n| alpha_sweep_a045_s43_fp32 | 4/10 (synth gen) | — | ~36% | ~7.69 it/s | ~66 min |\n| qwen35_08b_fp32 | 2/10 | 1092/5000 | ~20% | ~2.12 it/s | ~6.4h |\n\n已完成的近期实验: scale_69b_a100_s42, pythia410m_wiki_a100_s43_fp32, interv_pred_a075_s42_fp32_v4, interv_react_s43_fp32, alpha_sweep_a045_s42_fp32, c4_a025/a050/a075_s42_fp32, a025_s43_fp32, a030/a035_s42_fp32 等。\n\n失败: `alpha_sweep_a060_s43_fp32` (EXIT_CODE=124, timeout)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d120-batch-tasks.md"
+}

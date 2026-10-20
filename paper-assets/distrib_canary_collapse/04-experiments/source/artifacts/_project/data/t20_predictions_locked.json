@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-05-20T10:50:57Z",
+  "method": "Power Theory \u221aT scaling from T=10 sigmoid fit",
+  "t10_data": {
+    "alpha_values": [
+      0.0,
+      0.05,
+      0.1,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.75,
+      1.0
+    ],
+    "permg_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      3,
+      6,
+      6
+    ],
+    "n_pairs": 8,
+    "excluded": [
+      "alpha=0.60 (sync dip, S\u00d7R non-monotonic regime)"
+    ]
+  },
+  "t10_sigmoid_params": {
+    "k": 200.0,
+    "alpha_c": 0.4755,
+    "y_max": 0.7518,
+    "formula": "rate = y_max / (1 + exp(-k * (alpha - alpha_c)))",
+    "fit_std_errors": {
+      "k": 14.2031,
+      "alpha_c": 0.0018,
+      "y_max": 0.0016
+    }
+  },
+  "power_theory": {
+    "assumption": "S(\u03b1)\u00d7R(\u03b1) invariant to T at first order; effect size scales as \u221aT",
+    "formula": "z_T20 = z_T10 \u00d7 \u221a(T20/T10); rate_T20 = \u03a6(z_T20)",
+    "scaling_factor": 1.4142,
+    "continuity_correction": "rate=0 mapped to 0.0625 for probit transform"
+  },
+  "predictions": {
+    "t20_a045": {
+      "predicted_permg_count": 0,
+      "predicted_rate": 0.0001,
+      "confidence": "medium \u2014 near phase transition, key falsifiable test",
+      "t10_rate_used": 0.0046,
+      "t10_source": "sigmoid fit",
+      "z_t10": -2.6082,
+      "z_t20": -3.6886
+    },
+    "t20_a050": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.8257,
+      "confidence": "high \u2014 already above threshold at T=10",
+      "t10_rate_used": 0.7463,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6628,
+      "z_t20": 0.9373
+    },
+    "t20_a060": {
+      "predicted_permg_count": 3,
+      "predicted_rate": 0.3261,
+      "confidence": "low \u2014 sync dip regime, S\u00d7R non-monotonic",
+      "t10_rate_used": 0.375,
+      "t10_source": "actual (sync dip)",
+      "z_t10": -0.3186,
+      "z_t20": -0.4506
+    },
+    "t20_a075": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.832,
+      "confidence": "high \u2014 already above threshold at T=10",
+      "t10_rate_used": 0.7518,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6803,
+      "z_t20": 0.9621
+    },
+    "t20_a100": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.832,
+      "confidence": "high \u2014 already above threshold at T=10",
+      "t10_rate_used": 0.7518,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6803,
+      "z_t20": 0.9621
+    }
+  },
+  "notes": "\u03b1=0.60 prediction uncertain due to S\u00d7R non-monotonic regime (sync dip). Probit continuity correction 1/(2n)=0.0625 applied for rate=0 points. \u03b1=0.45 is the key falsifiable test: >0 at T=20 means left-shift of phase boundary confirmed."
+}

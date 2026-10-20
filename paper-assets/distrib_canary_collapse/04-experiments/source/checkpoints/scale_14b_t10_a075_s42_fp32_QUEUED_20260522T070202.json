@@ -1,0 +1,15 @@
+{
+  "exp_id": "scale_14b_t10_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:01:56.128Z",
+    "updated_at": "2026-05-22T07:02:02.358Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=10 α=0.75. At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent."
+  },
+  "timestamp": "2026-05-22T07:02:02.777334+00:00",
+  "trigger": "update_registry"
+}

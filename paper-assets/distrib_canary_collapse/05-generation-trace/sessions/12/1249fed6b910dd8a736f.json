@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1249fed6b910dd8a736f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit a040 s42 fp32",
+  "task_key": "worker_submit_a040_s42_fp32_20260519T140649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_a040_s42_fp32_20260519T140649_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "751aa9b45f282b2147dc9f208f96a32d29ebacd558b6783b01e2335cc6bb8562"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**问题：新进程 PID 146540 落在了 GPU 0 而非 GPU 4。**\n\nnvidia-smi 显示 PID 146540（6516 MiB）与 PID 137279 共享 GPU-a138b1c5（= GPU 0），GPU 4 仍为空。\n\n原因：命令中 `CUDA_VISIBLE_DEVICES=0 python ...` 覆盖了 submit_training_job 框架的 GPU 映射（cuda_visible_devices=4），导致进程跑到了物理 GPU 0。\n\n需要：\n1. kill 掉 PID 146540 / tmux session `alpha_sweep_a040_s42_fp32`\n2. 修正命令为 `CUDA_VISIBLE_DEVICES=4 python ...`（或去掉命令中的 CUDA_VISIBLE_DEVICES，依赖框架映射）\n3. 重新提交\n\n是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a040-s42-fp32.md"
+}

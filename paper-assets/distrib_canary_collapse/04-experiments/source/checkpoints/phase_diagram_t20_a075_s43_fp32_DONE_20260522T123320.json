@@ -1,0 +1,72 @@
+{
+  "exp_id": "phase_diagram_t20_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:10:24.644Z",
+    "updated_at": "2026-05-22T12:33:19.301Z",
+    "hypothesis": "T=20 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(20)≈0.250. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=20 and completes T=20 row cross-seed coverage (4/4 α values). T=20 is the row where sync-dip shows seed-dependent dissolution (s43=3/8 at α=0.60 vs s42=0/8).",
+    "parent": "phase_diagram_t20_a075_s42_fp32",
+    "server": "westd-17855",
+    "gpu": "cuda:4",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-17855",
+      "gpu": "cuda:4",
+      "started_at": "2026-05-22T04:10:50.974Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 20 --steps_per_gen 5000 --output_dir results/phase_diagram/t20_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-22T12:20:42.946Z",
+      "training_hours": 8.16
+    },
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43
+    },
+    "pid": "603933",
+    "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t20_a075_s43_fp32.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T12:20:50.326921+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "d102_5method": {
+        "perm_granger_fdr_forward_sig": 6,
+        "perm_granger_fdr_reverse_sig": 0,
+        "diff_xcorr_fdr_forward_sig": 8,
+        "threshold_forward_sig": 6,
+        "ty_forward_sig": 5,
+        "robust_pairs_3of5": 7,
+        "n_perm": 5000,
+        "downstream": "mauve",
+        "threshold": "true_3sigma_d105",
+        "sig_pairs": [
+          "te→d1",
+          "te→d2",
+          "te→d3",
+          "ece→d1",
+          "ece→d2",
+          "ece→d3"
+        ],
+        "nonsig_pairs": [
+          "te→mauve",
+          "ece→mauve"
+        ]
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t20_a075_s43_fp32",
+    "completed_at": "2026-05-22T12:33:19.301Z"
+  },
+  "timestamp": "2026-05-22T12:33:20.125904+00:00",
+  "trigger": "update_registry"
+}

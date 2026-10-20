@@ -1,0 +1,15 @@
+{
+  "exp_id": "interv_pred_a075_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:22:16.709Z",
+    "updated_at": "2026-05-18T23:22:25.818Z",
+    "hypothesis": "Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix."
+  },
+  "timestamp": "2026-05-18T23:22:26.143980+00:00",
+  "trigger": "update_registry"
+}

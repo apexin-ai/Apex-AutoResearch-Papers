@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d67889ed09e13fa1b89",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t10 a060 s44 cuda3 17855",
+  "task_key": "worker_ops_deploy-t10-a060-s44-cuda3-17855_20260523T083954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t10-a060-s44-cuda3-17855_20260523T083954_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "6880708f2547b88ca1c920d3a584fc4bdeeaee16cbe4322513c248b9c9047934"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已启动并确认 GPU 占用：\n\n| 实验 | 服务器 | GPU | PID | 显存占用 |\n|------|--------|-----|-----|----------|\n| `scale_14b_t10_a060_s44_fp32` | westd-17855 | cuda:3 | **780907** | 10293 MiB |\n| `scale_14b_t10_a075_s44_fp32` | westd-19828 | cuda:1 | **865467** | 20582 MiB |\n\nwestd-19828:cuda:0 仍在运行（27727 MiB, 98% util），未受影响。\n\n两个实验均处于 gen_0 baseline 阶段，正常加载模型中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t10-a060-s44-cuda3-17855.md"
+}

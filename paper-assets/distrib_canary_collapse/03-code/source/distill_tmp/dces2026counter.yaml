@@ -1,0 +1,30 @@
+paper_key: "dces2026counter"
+title: "Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling"
+venue: "MDPI Electronics 2026"
+full_text_available: false
+
+research:
+  baselines: ["naive random sampling", "PPL filtering", "SemDeDup"]
+  metrics:
+    - {name: "Perplexity (PPL)", direction: "lower_better"}
+    - {name: "training loss", direction: "lower_better"}
+    - {name: "entropy", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-2", size: "N/A", task: "OOD evaluation"}
+    - {name: "Alpaca", size: "N/A", task: "in-distribution"}
+  ablation_dimensions:
+    - sampling_strategy (random, PPL_filter, SemDeDup, DCES)
+    - model_scale (GPT-2, OPT-125M, Qwen, OPT-6.7B)
+    - iteration_count (10 rounds)
+  training_recipe: {models: "GPT-2, OPT-125M, Qwen, OPT-6.7B"}
+  method_family: "dynamic_data_selection_for_collapse"
+
+positioning:
+  core_claim: "DCES (Dynamic Center-Edge Sampling) constructs automated bias-correction via dynamic inter/intra-cluster sampling, reducing PPL degradation from 33.14→29.70 (vs naive) on OPT-125M after 10 self-training rounds."
+  key_results: "OPT-125M WikiText-2 PPL: naive 23.56→33.14; DCES →29.70; SemDeDup →30.50"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

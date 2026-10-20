@@ -1,0 +1,71 @@
+{
+  "exp_id": "intervention_reactive_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:25:52.494Z",
+    "updated_at": "2026-05-18T14:54:52.686Z",
+    "hypothesis": "Reactive intervention baseline: monitoring distinct_1 drop >10% as trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether downstream-triggered intervention (without canary) can halt collapse, serving as comparison for predictive (canary-triggered) intervention.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "340964",
+      "log_path": "~/runs/distrib_canary_collapse/intervention_reactive_s42.log",
+      "submitted_at": "2026-05-18T10:26:06.968Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/",
+      "wall_clock_seconds": 16125.7,
+      "gpu_hours": 4.48
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T14:50:43.171Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T14:50:46.960650+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "trigger_gen": 2,
+      "trigger_distinct1_drop_pct": -15.58,
+      "gen0_distinct_1": 0.0982,
+      "gen0_ppl": 26.95,
+      "gen0_entropy": 3.234,
+      "gen2_distinct_1": 0.0823,
+      "gen2_ppl": 157.09,
+      "gen2_entropy": 1.478,
+      "gen10_distinct_1": 0.0844,
+      "gen10_ppl": 21.24,
+      "gen10_entropy": 3.071,
+      "gen10_ece": 0.0152,
+      "gen10_mauve": 0.0289,
+      "distinct_1_drift_pct": -14.1,
+      "ppl_drift_pct": -21.2,
+      "entropy_drift_pct": -5,
+      "vs_no_intervention_ppl_gen10": 1003.73,
+      "vs_no_intervention_distinct1_gen10": 0.0704,
+      "recovery_complete_by_gen": 4,
+      "converges_to_alpha0_baseline": true
+    },
+    "completed_at": "2026-05-18T14:54:52.686Z"
+  },
+  "timestamp": "2026-05-18T14:54:52.781199+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "phase_diagram_t25_a060_s42_fp32_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:00:56.727Z",
+    "updated_at": "2026-05-22T06:38:20.996Z",
+    "hypothesis": "Phase Diagram T=25 α=0.60: sync-dip dissolution test (v3 resume from gen_14). At T=10/15/20 α=0.60 = 0/8 (3-T invariant). Partial d102 on 13 gens showed 0/8 (strong Scenario B signal). If full 25 gens also 0/8, sync-dip is permanent structural feature. v3 resumes from gen_13 checkpoint after v2 disk-full crash at gen_14.",
+    "parent": "phase_diagram_t25_a060_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "v2 crash残留 gen_0-13 完整, resume from gen_14 via --start_gen 14",
+      "eval_data": "data/wikitext103_5k",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 14\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "582540",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v3.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:38:19.439Z"
+    }
+  },
+  "timestamp": "2026-05-22T06:38:21.532948+00:00",
+  "trigger": "update_registry"
+}

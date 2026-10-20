@@ -1,0 +1,212 @@
+{
+  "experiments": [
+    {
+      "exp_id": "a000_s42_fp32",
+      "alpha": 0.0,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 2,
+      "current_K3": 0,
+      "difference": 2
+    },
+    {
+      "exp_id": "a010_s42_fp32",
+      "alpha": 0.1,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": true, "naive": false, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2}
+      ],
+      "equal_weight_K3": 2,
+      "current_K3": 0,
+      "difference": 2
+    },
+    {
+      "exp_id": "a025_s42_fp32",
+      "alpha": 0.25,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 0,
+      "current_K3": 0,
+      "difference": 0
+    },
+    {
+      "exp_id": "a025_s43_fp32",
+      "alpha": 0.25,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0}
+      ],
+      "equal_weight_K3": 0,
+      "current_K3": 0,
+      "difference": 0
+    },
+    {
+      "exp_id": "a045_s42_fp32",
+      "alpha": 0.45,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 0,
+      "current_K3": 0,
+      "difference": 0
+    },
+    {
+      "exp_id": "a045_s43_fp32",
+      "alpha": 0.45,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 0,
+      "current_K3": 0,
+      "difference": 0
+    },
+    {
+      "exp_id": "a050_s42_fp32",
+      "alpha": 0.5,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": true}, "equal_weight_K": 5, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "ece<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": true}, "equal_weight_K": 5, "equal_weight_sig": true, "current_consensus_votes": 5},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0}
+      ],
+      "equal_weight_K3": 6,
+      "current_K3": 6,
+      "difference": 0
+    },
+    {
+      "exp_id": "a060_s42_fp32_v4",
+      "alpha": 0.6,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2},
+        {"pair": "ece<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_2", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_3", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 0,
+      "current_K3": 0,
+      "difference": 0
+    },
+    {
+      "exp_id": "a075_s42_fp32",
+      "alpha": 0.75,
+      "T": 10,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": false, "threshold": false, "ty": true}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 2, "equal_weight_sig": false, "current_consensus_votes": 2}
+      ],
+      "equal_weight_K3": 6,
+      "current_K3": 6,
+      "difference": 0
+    },
+    {
+      "exp_id": "t20/a100_s42_fp32",
+      "alpha": 1.0,
+      "T": 20,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1},
+        {"pair": "ece<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": true}, "equal_weight_K": 5, "equal_weight_sig": true, "current_consensus_votes": 5},
+        {"pair": "ece<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": true}, "equal_weight_K": 5, "equal_weight_sig": true, "current_consensus_votes": 5},
+        {"pair": "ece<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 1}
+      ],
+      "equal_weight_K3": 6,
+      "current_K3": 6,
+      "difference": 0
+    },
+    {
+      "exp_id": "t20/a045_s42_fp32",
+      "alpha": 0.45,
+      "T": 20,
+      "pairs": [
+        {"pair": "token_entropy<distinct_1", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "token_entropy<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": true}, "equal_weight_K": 5, "equal_weight_sig": true, "current_consensus_votes": 4},
+        {"pair": "token_entropy<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "token_entropy<mauve", "methods": {"permg": false, "diffxcorr": false, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 1, "equal_weight_sig": false, "current_consensus_votes": 0},
+        {"pair": "ece<distinct_1", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<distinct_2", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": true, "ty": false}, "equal_weight_K": 4, "equal_weight_sig": true, "current_consensus_votes": 3},
+        {"pair": "ece<distinct_3", "methods": {"permg": true, "diffxcorr": true, "naive": true, "threshold": false, "ty": false}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2},
+        {"pair": "ece<mauve", "methods": {"permg": false, "diffxcorr": true, "naive": true, "threshold": false, "ty": true}, "equal_weight_K": 3, "equal_weight_sig": true, "current_consensus_votes": 2}
+      ],
+      "equal_weight_K3": 7,
+      "current_K3": 3,
+      "difference": 4
+    }
+  ],
+  "summary": {
+    "total_experiments": 11,
+    "experiments_with_difference": 3,
+    "max_difference": 4,
+    "total_pair_vote_differences": 59,
+    "naive_xcorr_direction_filtered_count": 57,
+    "diff_xcorr_direction_filtered_count": 10,
+    "note": "equal-weight = significance only (no direction filter); current = significance + direction filter (D111: peak_lag < 0) for xcorr methods",
+    "conclusion": "Equal-weight (no direction filter) vs current (with D111 direction filter) differs in 3/11 experiments. The difference is driven by NaiveXCorr having significance with peak_lag > 0 (reverse direction), which passes significance-only check but is filtered by D111. Critical: null experiment (a=0.00) inflates from 0 to 2 K>=3 pairs without direction filter. Direction filtering is essential for FPR control. At strong signal (a>=0.50 T=10), both methods agree perfectly at K3 level. Largest divergence at t20/a045 (+4 pairs) where NaiveXCorr is broadly significant but often in wrong direction."
+  }
+}

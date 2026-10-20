@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp_v3_rep42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:25:39.728Z",
+    "updated_at": "2026-05-14T06:47:59.908Z",
+    "spec": {
+      "command": "python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000",
+      "server": "autodl-rtx6000",
+      "gpu": "cuda:0",
+      "pid": "7909",
+      "log_path": "~/runs/distrib_canary_collapse/mvp_v3_rep42.log",
+      "submitted_at": "2026-05-14T06:26:16.939Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "gpu_model": "RTX PRO 6000 Blackwell 96GB",
+      "tmux_session": "mvp_v3_rep42",
+      "checkpoint_path": "N/A",
+      "failure_reason": "MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required; 无 PYTHONUNBUFFERED 导致日志丢失",
+      "wall_clock_seconds": 1303.0,
+      "gpu_hours": 0.36
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T06:47:59.908Z"
+  },
+  "timestamp": "2026-05-14T06:47:59.942994+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_006_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:31:35.454Z",
+    "updated_at": "2026-05-14T23:31:35.454Z",
+    "spec": {
+      "plan_id": "plan_006",
+      "hypothesis": "token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series",
+      "model_name": "pythia-410m",
+      "seed": 42,
+      "data_path": "wikitext-103",
+      "num_generations": 20,
+      "synthetic_ratio": 1,
+      "max_lag": 10
+    }
+  },
+  "timestamp": "2026-05-14T23:31:35.483900+00:00",
+  "trigger": "update_registry"
+}

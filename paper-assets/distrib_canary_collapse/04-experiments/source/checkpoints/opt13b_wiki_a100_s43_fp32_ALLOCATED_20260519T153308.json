@@ -1,0 +1,25 @@
+{
+  "exp_id": "opt13b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:10:53.215Z",
+    "updated_at": "2026-05-19T15:33:08.298Z",
+    "hypothesis": "OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。",
+    "parent": "gen_opt13b_a100_s43_bf16",
+    "spec": {
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-19T15:33:08.505690+00:00",
+  "trigger": "update_registry"
+}

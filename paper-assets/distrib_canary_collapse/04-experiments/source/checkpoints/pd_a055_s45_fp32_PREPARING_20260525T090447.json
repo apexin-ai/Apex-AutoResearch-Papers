@@ -1,0 +1,14 @@
+{
+  "exp_id": "pd_a055_s45_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:04:46.432Z",
+    "updated_at": "2026-05-25T09:04:46.432Z"
+  },
+  "timestamp": "2026-05-25T09:04:47.128982+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08412532acbe6367b097",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d065 cp appendix rewrite",
+  "task_key": "worker_paper_d065_cp_appendix_rewrite_20260518T142654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d065_cp_appendix_rewrite_20260518T142654_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "68fc4016a8242fd140e14b9e6de6bb8605e3d75cc4a6014f3a2601f7ce70eaae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换完成。验证结果：\n\n- `grep -c \"FPR|66.7|ordering|reversal|complementary\"` = **4** (≥3 ✅)\n- `grep -c \"independent evidence\"` = **0** (= 0 ✅)\n- em-dash (—) = **0** ✅\n\nChange-Point 段落已按 D065 要求重写：\n1. 第一段：null control FPR 66.7% (12/18) 先讲，说明单调漂移即可触发断点\n2. 第二段：ordering reversal 作为核心论点（null: downstream gen 2 先变 → canary gen 4-8 后变；treatment: canary gen 1 先变 → downstream gen 2-4 后变），用 \"complementary evidence from a distinct statistical framework\"\n3. 第三段：caveats（无多重比较校正、token_entropy gen-1 split 仅 1 点导致 1/3 seeds 显著、T=11 power 限制）\n4. 新增 α=0.00 null control 表格（`tab:cp_null`），保留原 α=0.75 表格（`tab:cp_results`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d065-cp-appendix-rewrite.md"
+}

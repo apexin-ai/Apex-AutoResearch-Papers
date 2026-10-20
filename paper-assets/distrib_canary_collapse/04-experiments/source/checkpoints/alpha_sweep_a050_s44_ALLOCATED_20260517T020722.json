@@ -1,0 +1,33 @@
+{
+  "exp_id": "alpha_sweep_a050_s44",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T06:58:50.550Z",
+    "updated_at": "2026-05-17T02:07:22.064Z",
+    "completed_at": "2026-05-16T00:03:52.118Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "hypothesis": "α=0.50 third seed: determines if boundary regime is 1/3 or 2/3 seeds showing signal, directly affecting paper's boundary characterization",
+      "parent": "alpha_sweep_a050_s43",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "pythia-410m",
+      "seed": 44
+    }
+  },
+  "timestamp": "2026-05-17T02:07:22.139586+00:00",
+  "trigger": "update_registry"
+}

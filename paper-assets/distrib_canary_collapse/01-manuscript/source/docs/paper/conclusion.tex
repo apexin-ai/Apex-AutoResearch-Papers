@@ -1,0 +1,7 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Iterative training collapse exhibits a steep detection onset: PermG detection jumps from 0/8 to 6/8 significant pairs (95\% CI $[0.25, 0.92]$) within 2~percentage points of $\alpha_c \approx 0.50$, organizing three regimes (blind, onset, detection) that characterize when statistical monitoring can and cannot succeed.
+The detection boundary shifts leftward with longer observation ($\alpha_c(T) \propto T^{-\eta}$), and systematic method comparison reveals that single-method analyses are unreliable: null-control FPR spans 6.7\% (PermG; 95\% CI $[1.8\%, 16.2\%]$, 10~seeds) to 94.4\%.
+Token entropy exhibits robust one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\alpha{=}1.0$; ${\geq}6/8$ in 11/15 cross-architecture conditions at $\alpha{=}1.0$).
+The blind zone below $\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.

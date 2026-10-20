@@ -1,0 +1,82 @@
+# analysis dmax sensitivity
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_dmax-sensitivity_20260514T210356_result.json`
+- **Structured JSON:** [`65b2cc3dfc4d855b2f6c.json`](../../sessions/65/65b2cc3dfc4d855b2f6c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+JSON 完整。结果汇总：
+
+---
+
+## d_max 敏感度分析结果
+
+### 1. 三组 Spurious Rate
+
+| d_max 设置 | TY 显著对数 | Spurious Rate | df_resid |
+|-----------|-----------|---------------|----------|
+| d_max=0（假设平稳） | 12/16 | **25%** | 7 |
+| d_max=adaptive（ADF） | 4/16 | **75%** | 1-4（变化） |
+| d_max=1（统一保守） | 1/16 | **94%** | 4 |
+
+结论方向一致：naive 相关性大幅高估显著性。三组设置都发现 spurious rate ≥ 25%。
+
+### 2. Pair 级 Verdict 变化
+
+| Pair | d_max=0 | adaptive | d_max=1 |
+|------|---------|----------|---------|
+| token_entropy→distinct_1 | SIG | SIG | n.s. |
+| token_entropy→distinct_2 | SIG | SIG | n.s. |
+| token_entropy→distinct_3 | SIG | SIG | n.s. |
+| token_entropy→perplexity | **SIG** | n.s. | n.s. |
+| ece→distinct_1 | SIG | SIG | SIG |
+| ece→distinct_2 | **SIG** | n.s. | n.s. |
+| ece→distinct_3 | **SIG** | n.s. | n.s. |
+| ece→perplexity | SIG | n.s. | n.s. |
+| effective_rank→* (4 pairs) | SIG | n.s. | n.s. |
+| self_bleu→* (4 pairs) | n.s. | n.s. | n.s. |
+
+- **self_bleu**: 三组全部 n.s.，确认不是有效 canary
+- **ece→distinct_1**: 三组全部 SIG，最鲁棒的 canary pair
+- **token_entropy→distinct_1/2/3**: 在 adaptive 下 SIG，但 d_max=1 翻转为 n.s.（power 不足）
+
+### 3. ECE Canary 地位
+
+- **ece→distinct_2/3** 仅在 d_max=0 下翻转为 SIGNIFICANT
+- d_max=0 对 seeds 42/43 的 p≈0，但 seeds 44/45 在 adaptive/d_max=1 下 p>0.3
+- 结论：ECE 对 distinct_2/3 的因果信号依赖平稳性假设，不够鲁棒。只有 **ece→distinct_1** 跨所有 d_max 设置保持显著
+
+### 4. token_entropy→perplexity
+
+- d_max=0: 4/4 seeds 显著（p 从 0.0005 到 0.005）
+- adaptive 和 d_max=1: 4/4 seeds 不显著（p 从 0.21 到 0.79），结果完全相同
+- 原因：token_entropy 的 ADF 积分阶数为 0，perplexity 为 1，adaptive d_max = max(0,1) = 1，与固定 d_max=1 完全一致
+- 这对 pair 的显著性完全取决于是否补偿 perplexity 的非平稳性
+
+### 5. 总结论
+
+**TY 结论对 d_max 定性鲁棒，定量敏感：**
+- 三组设置都认为 naive Pearson 大幅高估（spurious rate 25%–94%）
+- 核心 robust pair（ece→distinct_1）在所有设置下不变
+- token_entropy 的 canary 强度取决于 d_max：d_max=0 下是最强 canary（4 targets 全 SIG），d_max≥1 下丢失 perplexity
+- self_bleu 在任何设置下都不是有效 canary
+- d_max=0 的 25% spurious rate 是下界（最乐观估计），d_max=1 的 94% 是上界（最保守）
+
+文件已保存至 `results/mvp/analysis/method_ablation_dmax_sensitivity.json`。
+
+---

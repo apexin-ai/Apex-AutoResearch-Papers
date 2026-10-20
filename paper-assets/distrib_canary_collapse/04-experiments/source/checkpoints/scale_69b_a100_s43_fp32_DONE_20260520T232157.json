@@ -1,0 +1,35 @@
+{
+  "exp_id": "scale_69b_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:44:02.526Z",
+    "updated_at": "2026-05-20T23:21:57.340Z",
+    "hypothesis": "Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。",
+    "parent": "scale_69b_a100_s42",
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-6.9b",
+      "seed": 43,
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --synthetic_ratio 1.0 --gradient_checkpointing --num_generations 10 --output_dir results/scale_check/pythia69b_wiki_a100_s43_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "checkpoint_source": "scale_69b_a100_s42",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T23:21:54.015Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 247.88 MiB is free. Including non-PyTorch memory, this process has 94.72 GiB memory in use. Of the allocated memory 93.81 GiB is allocated by PyTorch, ",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T23:21:57.340Z"
+  },
+  "timestamp": "2026-05-20T23:21:57.670040+00:00",
+  "trigger": "update_registry"
+}

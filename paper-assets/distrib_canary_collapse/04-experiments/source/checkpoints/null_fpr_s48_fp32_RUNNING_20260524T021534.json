@@ -1,0 +1,23 @@
+{
+  "exp_id": "null_fpr_s48_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:14:59.144Z",
+    "updated_at": "2026-05-24T02:15:34.302Z",
+    "hypothesis": "Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s48_fp32 --seed 48 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 48
+    }
+  },
+  "timestamp": "2026-05-24T02:15:34.790174+00:00",
+  "trigger": "update_registry"
+}

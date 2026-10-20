@@ -1,0 +1,29 @@
+paper_key: "gu2025datamixing"
+title: "Data Mixing Can Induce Phase Transitions in Knowledge Acquisition"
+venue: "ICLR 2025 Spotlight"
+full_text_available: false
+
+research:
+  baselines: ["smooth scaling law assumption"]
+  metrics:
+    - {name: "biography memorization rate", direction: "higher_better"}
+    - {name: "critical mixing ratio threshold", direction: "N/A"}
+  datasets:
+    - {name: "synthetic biography dataset", size: "N/A"}
+    - {name: "web-scraped data", size: "N/A"}
+  ablation_dimensions:
+    - mixing_ratio
+    - model_size
+    - training_duration
+  training_recipe: {focus: "controlled experiments on data mixing"}
+  method_family: "phase_transition_analysis"
+
+positioning:
+  core_claim: "Knowledge acquisition from mixed data exhibits phase transitions (not smooth scaling) w.r.t. mixing ratio and model size. Modeled as knapsack capacity allocation with power-law phase transition."
+  key_results: "Critical threshold in mixing ratio and model size for knowledge memorization; power-law relationship"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase_diagram_t10_a050_s43_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:17:48.057Z",
+    "updated_at": "2026-05-22T04:17:56.312Z",
+    "hypothesis": "T=10 α=0.50 cross-seed validation (v2 resume from gen_6). s42=6/8 (D102 confirmed). α=0.50 above α_c(10). If s43 also ~6/8, confirms detection onset at T=10 is robust across seeds.",
+    "parent": "phase_diagram_t10_a050_s43_fp32"
+  },
+  "timestamp": "2026-05-22T04:17:56.724561+00:00",
+  "trigger": "update_registry"
+}

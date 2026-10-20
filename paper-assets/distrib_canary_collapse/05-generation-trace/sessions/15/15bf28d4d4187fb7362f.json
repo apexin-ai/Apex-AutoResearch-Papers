@@ -1,0 +1,1032 @@
+{
+  "schema_version": "1.0",
+  "id": "15bf28d4d4187fb7362f",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis cross alpha v3 full",
+  "task_key": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cross_alpha_v3_full_20260515T054603.jsonl",
+    "occurrence": 1,
+    "bytes": 66221,
+    "sha256": "decc94c04118da7b5b05319dad4cce400b8b72b3a672b0e3a39d209e8bd6aa11"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:51:28.544427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T05:51:28.544706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T05:51:28.544872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T05:51:28.544999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T05:51:28.545129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42\\\\na025_s42\\\\na050_s42\\\\na075_s42\\\\nalpha_monotonicity.png\\\\nanalysis\\\\nanalysis_summary.json\\\\npooled_panel_results.json\\\\npooled_panel_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:51:28.545272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T05:51:28.545412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:51:28.545534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T05:51:28.545651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:51:28.545767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T05:51:28.545892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:51:28.546062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"content\\\": \\\"# Cross-Alpha Analysis Memory (2026-05-15)\\\\n\\\\n## D024 Dose-Response: 非单调性确认与解释\\\\n\\\\n### 核心数据\\\\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\\\\n|---|---|---|---|---|---|---|\\\\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\\\\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\\\\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\\\\n\\\\n### 关键发现\\\\n\\\\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\\\\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\\\\n\\\\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\\\\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\\\\n- α=0.50 的模型在第一代就进入\\\\\\\"低熵-高miscalibration\\\\\\\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\\\\n\\\\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\\\\\\\"地板效应\\\\\\\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\\\\n\\\\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\\\\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\\\\n\\\\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\\\\n|---|---|---|---|---|---|\\\\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\\\\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\\\\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\\\\n\\\\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\\\\n\\\\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\\\\n\\\\n#### 3. Cross-Correlation Lead-Lag\\\\n所有 \n…[truncated 1583 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T05:51:28.546273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T05:51:28.546482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5178027030111348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127277321747353,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03406737671684175,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.990560020858481,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01031278388147428,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09752517633628247,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5140825545933428,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8103854590526204,\\\\n    \\\\\\\"ece\\\\\\\": 0.011467273049856756,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.678408698897236,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.2989086452224,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03232946507236373,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0210253027501817,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012505416640113377,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08881482826974563,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4793637756472019,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7812764075469314,\\\\n    \\\\\\\"ece\\\\\\\": 0.013906892470819027,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.338910681815804,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.01379036647208,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029787866232434207,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0143118826392152,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012909035398434401,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08869935695152098,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4780932546937348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7806446484638926,\\\\n    \\\\\\\"ece\\\\\\\": 0.014883063665359266,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.27625189085914,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.261704890002928,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02652903668843056,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.040745918964843,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011961223108689292,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0\n…[truncated 1889 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T05:51:28.546632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:51:28.546778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint\\\\nmetrics.json\\\\nsynthetic_data\\\\ntrainer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:51:28.546899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T05:51:28.547025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 2.6318347101325883,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.014770833007177193,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.0616015625,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.2513457136383878,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.38725605087579495,\\\\n  \\\\\\\"ece\\\\\\\": 0.10186436632046407,\\\\n  \\\\\\\"effective_rank\\\\\\\": 59.333082005900366,\\\\n  \\\\\\\"perplexity\\\\\\\": 32.64437138918603,\\\\n  \\\\\\\"mauve\\\\\\\": 0.02096017446211481,\\\\n  \\\\\\\"generation\\\\\\\": 10\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T05:51:28.547154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T05:51:28.547286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T05:51:28.547410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:51:28.547523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_alpha_analysis.json\\\\ncross_alpha_analysis.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T05:51:28.547647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T05:51:28.547917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\nUses permutation to build a null distribution of the Granger F-statistic,\\\\navoiding asymptotic assumptions that fail on short series (T<20).\\\\nFirst-differences the series to handle non-stationarity, then uses random\\\\nshuffle (not circular shift) since differencing removes autocorrelation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\ndef _build_lag_matrix(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build design matrices for restricted and unrestricted Granger models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = len(y)\\\\n    n = T - max_lag\\\\n    Y = y[max_lag:]\\\\n\\\\n    cols_r = [np.ones(n)]\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_r.append(y[max_lag - lag: T - lag])\\\\n\\\\n    cols_u = list(cols_r)\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_u.append(x[max_lag - lag: T - lag])\\\\n\\\\n    X_r = np.column_stack(cols_r)\\\\n    X_u = np.column_stack(cols_u)\\\\n    return Y, X_r, X_u\\\\n\\\\n\\\\ndef _granger_f_stat(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    n = len(Y)\\\\n    q = max_lag\\\\n\\\\n    try:\\\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\\\n    except np.linalg.LinAlgError:\\\\n        return np.nan\\\\n\\\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\\\n\\\\n    k_u = X_u.shape[1]\\\\n    df_resid = n - k_u\\\\n\\\\n    if df_resid <= 0 or rss_u < 1e-15:\\\\n        return np.nan\\\\n\\\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\\\n    return F\\\\n\\\\n\\\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\\\n                              difference=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\n    Tests whether x Granger-causes y using permutation null distribution.\\\\n    First-differences se\n…[truncated 7407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T05:51:28.548088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T05:51:28.548304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5178027030111348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127277321747353,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03406737671684175,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.990560020858481,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01031278388147428,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09752517633628247,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5140825545933428,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8103854590526204,\\\\n    \\\\\\\"ece\\\\\\\": 0.011467273049856756,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.678408698897236,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.2989086452224,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03232946507236373,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0210253027501817,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012505416640113377,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08881482826974563,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4793637756472019,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7812764075469314,\\\\n    \\\\\\\"ece\\\\\\\": 0.013906892470819027,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.338910681815804,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.01379036647208,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029787866232434207,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0143118826392152,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012909035398434401,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08869935695152098,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4780932546937348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7806446484638926,\\\\n    \\\\\\\"ece\\\\\\\": 0.014883063665359266,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.27625189085914,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.261704890002928,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02652903668843056,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.040745918964843,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011961223108689292,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0\n…[truncated 3137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T05:51:28.548467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T05:51:28.548632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T05:51:28.548837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5178027030111348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127277321747353,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03406737671684175,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.9801468398259607,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01031278388147428,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09752517633628247,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5140825545933428,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8103854590526204,\\\\n    \\\\\\\"ece\\\\\\\": 0.009291145604813379,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.16547174933001,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.42885537868007,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03232946507236373,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0223667885402876,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011575246786352291,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08021875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.42426893960109063,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7061907217300271,\\\\n    \\\\\\\"ece\\\\\\\": 0.0110968454714855,\\\\n    \\\\\\\"effective_rank\\\\\\\": 50.11173063318254,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.439162394857053,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0313970720990311,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.064337538134456,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012257819742079068,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.071734375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3636981538918273,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6138533414584603,\\\\n    \\\\\\\"ece\\\\\\\": 0.013005489093940583,\\\\n    \\\\\\\"effective_rank\\\\\\\": 50.25302434037376,\\\\n    \\\\\\\"perplexity\\\\\\\": 21.269056531256208,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029946276327954068,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.084497906864695,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.0115253138770118,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0673046875,\\\\n    \\\\\n…[truncated 3091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:51:28.549052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5178027030111348,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127277321747353,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03406737671684175,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.517377906714129,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01031278388147428,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09752517633628247,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5140825545933428,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8103854590526204,\\\\n    \\\\\\\"ece\\\\\\\": 0.06693498841180144,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.56433721113924,\\\\n    \\\\\\\"perplexity\\\\\\\": 22.95843441419726,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03232946507236373,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.4984176253550356,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01131595121983228,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0826796875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4311283681903765,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7152768012000188,\\\\n    \\\\\\\"ece\\\\\\\": 0.08714580169874889,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.590245251860246,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.376527821628653,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03322813096493746,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.564376331651781,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011669167689985884,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.07559375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3838154985585825,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6400803137549024,\\\\n    \\\\\\\"ece\\\\\\\": 0.08800493897858175,\\\\n    \\\\\\\"effective_rank\\\\\\\": 64.59108964475801,\\\\n    \\\\\\\"perplexity\\\\\\\": 27.48484973964157,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0309399337533844,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5485591490224033,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012043368823452387,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.07059375,\\\\n    \\\\\\\"d\n…[truncated 3064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T05:51:28.549292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat > /root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py << 'PYEOF'\nimport json, os, sys\nimport numpy as np\n\nsys.path.insert(0, '/root/autodl-tmp/distrib_canary_collapse')\nfrom permutation_granger import permutation_granger_test\n\nBASE = '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep'\nALPHAS = {'a000': 0.00, 'a025': 0.25, 'a050': 0.50}\nDIRS = {'a000': 'a000_s42', 'a025': 'a025_s42', 'a050': 'a050_s42'}\nN_PERM = 2500\nMAX_LAG = 1\n\n# Load data\ndata = {}\nfor key, dirname in DIRS.items():\n    path = os.path.join(BASE, dirname, 'all_metrics.json')\n    with open(path) as f:\n        data[key] = json.load(f)\n\n# === 1. Dose-response table (gen0→gen10) ===\nmetrics_keys = ['distinct_1', 'distinct_2', 'distinct_3', 'token_entropy', 'ece', 'perplexity']\ndose_response = {}\nfor key in ALPHAS:\n    gen0 = data[key][0]\n    gen10 = data[key][10]\n    row = {'alpha': ALPHAS[key]}\n    for m in metrics_keys:\n        v0, v10 = gen0[m], gen10[m]\n        drift_pct = (v10 - v0) / v0 * 100 if v0 != 0 else float('inf')\n        row[m] = {'gen0': round(v0, 6), 'gen10': round(v10, 6), 'drift_pct': round(drift_pct, 2)}\n    dose_response[key] = row\n\n# === 2. Permutation Granger (differenced) ===\ngranger_results = []\ntest_pairs = [\n    ('token_entropy', 'distinct_1', 'entropy→d1'),\n    ('ece', 'distinct_1', 'ECE→d1'),\n    ('distinct_1', 'token_entropy', 'd1→entropy'),\n    ('distinct_1', 'ece', 'd1→ECE'),\n]\n\nall_p_raw = []\ntest_labels = []\n\nfor key in ['a000', 'a025', 'a050']:\n    series = data[key]\n    for cause_key, effect_key, label in test_pairs:\n        x = np.array([g[cause_key] for g in series])\n        y = np.array([g[effect_key] for g in series])\n        res = permutation_granger_test(x, y, max_lag=MAX_LAG, n_perm=N_PERM, seed=42, difference=True)\n        entry = {\n            'alpha': ALPHAS[key],\n            'alpha_key': key,\n            'direction': label,\n            'cause': cause_key,\n            'effect': effect_key,\n            'f_stat': round(res['f_stat'], 4) if res['f_stat'] is not None else None,\n            'p_raw': round(res['p_value'], 6) if res['p_value'] is not None else None,\n            'n_perm': res['n_perm'],\n            'effect_size_f2': round(res['effect_size_f2'], 4) if res.get('effect_size_f2') is not None else None,\n        }\n        granger_results.append(entry)\n        if res['p_value'] is not None:\n            all_p_raw.append(res['p_value'])\n            test_labels.append(f\"{key}_{label}\")\n\n# BH FDR correction\nn_tests = len(all_p_raw)\nsorted_indices = np.argsort(all_p_raw)\np_sorted = np.array(all_p_raw)[sorted_indices]\nranks = np.arange(1, n_tests + 1)\np_fdr = np.minimum(1.0, np.minimum.accumulate((p_sorted * n_tests / ranks)[::-1])[::-1])\n\nfdr_map = {}\nfor i, idx in enumerate(sorted_indices):\n    fdr_map[test_labels[idx]] = round(float(p_fdr[i]), 6)\n\n# Attach FDR to results\np_idx = 0\nfor entry in granger_results:\n    if entry['p_raw'] is not None:\n        lab = f\"{entry['alpha_key']}_{entry['direction']}\"\n        entry['p_fdr'] = fdr_map[lab]\n        p_idx += 1\n    else:\n        entry['p_fdr'] = None\n\n# === 3. Cross-correlation lead-lag ===\ndef cross_corr_lag(x, y, max_lag=3):\n    x = np.array(x)\n    y = np.array(y)\n    dx = np.diff(x)\n    dy = np.diff(y)\n    if np.std(dx) < 1e-15 or np.std(dy) < 1e-15:\n        return {'peak_lag': None, 'peak_r': None, 'lags': {}}\n    results = {}\n    for lag in range(-max_lag, max_lag + 1):\n        if lag > 0:\n            a, b = dx[:-lag], dy[lag:]\n        elif lag < 0:\n            a, b = dx[-lag:], dy[:lag]\n        else:\n            a, b = dx, dy\n        if len(a) < 3:\n            continue\n        r = np.corrcoef(a, b)[0, 1]\n        results[lag] = round(float(r), 4)\n    if not results:\n        return {'peak_lag': None, 'peak_r': None, 'lags': {}}\n    best_lag = max(results, key=lambda k: abs(results[k]))\n    return {'peak_lag': best_lag, 'peak_r': results[best_lag], 'lags': results}\n\nxcorr_results = {}\nfor key in ['a000', 'a025', 'a050']:\n    series = data[key]\n    entropy = [g['token_entropy'] for g in series]\n    d1 = [g['distinct_1'] for g in series]\n    ece = [g['ece'] for g in series]\n    xcorr_results[key] = {\n        'alpha': ALPHAS[key],\n        'entropy_vs_d1': cross_corr_lag(entropy, d1),\n        'ece_vs_d1': cross_corr_lag(ece, d1),\n    }\n\n# === 4. Per-gen velocity (Δd1 per gen) ===\nvelocity_results = {}\nfor key in ['a000', 'a025', 'a050']:\n    series = data[key]\n    d1_vals = [g['distinct_1'] for g in series]\n    deltas = [round(d1_vals[i+1] - d1_vals[i], 6) for i in range(len(d1_vals)-1)]\n    velocity_results[key] = {\n        'alpha': ALPHAS[key],\n        'd1_values': [round(v, 6) for v in d1_vals],\n        'd1_deltas': deltas,\n        'cumulative_drift_pct': round((d1_vals[-1] - d1_vals[0]) / d1_vals[0] * 100, 2),\n        'mean_velocity': round(np.mean(deltas), 6),\n        'max_drop_gen': int(np.argmin(deltas)),\n        'max_drop_value': round(min(deltas), 6),\n    }\n\n# === Compile output ===\noutput = {\n    'version': 'v3_full',\n    'n_generations': 11,\n    'gen_range': 'gen_0 to gen_10',\n    'date': '2026-05-15',\n    'statistical_config': {\n        'granger_max_lag': MAX_LAG,\n        'granger_n_perm': N_PERM,\n        'granger_differenced': True,\n        'fdr_method': 'benjamini-hochberg',\n        'n_independent_tests': n_tests,\n    },\n    'dose_response': dose_response,\n    'granger_causality': granger_results,\n    'cross_correlation': xcorr_results,\n    'per_gen_velocity': velocity_results,\n}\n\nout_dir = os.path.join(BASE, '..', 'analysis')\nos.makedirs(out_dir, exist_ok=True)\nout_path = os.path.join(out_dir, 'cross_alpha_v3_full.json')\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"Saved to {out_path}\")\nprint(f\"\\n=== DOSE-RESPONSE (gen0→gen10 drift%) ===\")\nprint(f\"{'α':<6} {'d1%':<10} {'d2%':<10} {'d3%':<10} {'entropy%':<12} {'ECE%':<12} {'PPL%':<10}\")\nfor key in ['a000', 'a025', 'a050']:\n    r = dose_response[key]\n    print(f\"{r['alpha']:<6} {r['distinct_1']['drift_pct']:<10} {r['distinct_2']['drift_pct']:<10} \"\n          f\"{r['distinct_3']['drift_pct']:<10} {r['token_entropy']['drift_pct']:<12} \"\n          f\"{r['ece']['drift_pct']:<12} {r['perplexity']['drift_pct']:<10}\")\n\nprint(f\"\\n=== GRANGER CAUSALITY (n_tests={n_tests}) ===\")\nprint(f\"{'α':<6} {'direction':<16} {'F-stat':<10} {'p_raw':<10} {'p_fdr':<10}\")\nfor e in granger_results:\n    p_raw_s = f\"{e['p_raw']:.4f}\" if e['p_raw'] is not None else \"N/A\"\n    p_fdr_s = f\"{e['p_fdr']:.4f}\" if e['p_fdr'] is not None else \"N/A\"\n    f_s = f\"{e['f_stat']:.4f}\" if e['f_stat'] is not None else \"N/A\"\n    print(f\"{e['alpha']:<6} {e['direction']:<16} {f_s:<10} {p_raw_s:<10} {p_fdr_s:<10}\")\n\nprint(f\"\\n=== CROSS-CORRELATION PEAK LAG ===\")\nfor key in ['a000', 'a025', 'a050']:\n    xc = xcorr_results[key]\n    print(f\"α={xc['alpha']}: entropy_vs_d1 peak_lag={xc['entropy_vs_d1']['peak_lag']} r={xc['entropy_vs_d1']['peak_r']}, \"\n          f\"ece_vs_d1 peak_lag={xc['ece_vs_d1']['peak_lag']} r={xc['ece_vs_d1']['peak_r']}\")\n\nprint(f\"\\n=== PER-GEN VELOCITY (d1 Δ) ===\")\nfor key in ['a000', 'a025', 'a050']:\n    v = velocity_results[key]\n    print(f\"α={v['alpha']}: cum_drift={v['cumulative_drift_pct']}%, mean_v={v['mean_velocity']:.6f}, \"\n          f\"max_drop=gen{v['max_drop_gen']}→gen{v['max_drop_gen']+1} ({v['max_drop_value']:.6f})\")\n    print(f\"  deltas: {v['d1_deltas']}\")\n\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T05:51:28.549524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T05:51:28.549652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python cross_alpha_v3_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T05:51:28.549799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved to /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/../analysis/cross_alpha_v3_full.json\\\\n\\\\n=== DOSE-RESPONSE (gen0→gen10 drift%) ===\\\\nα      d1%        d2%        d3%        entropy%     ECE%         PPL%      \\\\n0.0    -13.78     -9.77      -4.52      -5.1         51.7         -21.68    \\\\n0.25   -40.34     -57.14     -59.85     -4.1         79.72        -17.19    \\\\n0.5    -37.28     -51.46     -52.35     -18.62       842.79       21.13     \\\\n\\\\n=== GRANGER CAUSALITY (n_tests=12) ===\\\\nα      direction        F-stat     p_raw      p_fdr     \\\\n0.0    entropy→d1       48.3527    0.0580     0.1739    \\\\n0.0    ECE→d1           0.0021     0.9492     0.9492    \\\\n0.0    d1→entropy       0.2110     0.7889     0.8606    \\\\n0.0    d1→ECE           0.8347     0.3383     0.4510    \\\\n0.25   entropy→d1       163.2408   0.0152     0.0928    \\\\n0.25   ECE→d1           1.7773     0.2275     0.3900    \\\\n0.25   d1→entropy       7.8281     0.0232     0.0928    \\\\n0.25   d1→ECE           0.7367     0.4590     0.5508    \\\\n0.5    entropy→d1       127.4778   0.0976     0.2341    \\\\n0.5    ECE→d1           79.2410    0.0208     0.0928    \\\\n0.5    d1→entropy       1.9994     0.2235     0.3900    \\\\n0.5    d1→ECE           1.5744     0.2815     0.4222    \\\\n\\\\n=== CROSS-CORRELATION PEAK LAG ===\\\\nα=0.0: entropy_vs_d1 peak_lag=1 r=0.9408, ece_vs_d1 peak_lag=-2 r=0.7037\\\\nα=0.25: entropy_vs_d1 peak_lag=1 r=0.8006, ece_vs_d1 peak_lag=-3 r=-0.5701\\\\nα=0.5: entropy_vs_d1 peak_lag=1 r=0.8826, ece_vs_d1 peak_lag=1 r=-0.9544\\\\n\\\\n=== PER-GEN VELOCITY (d1 Δ) ===\\\\nα=0.0: cum_drift=-13.78%, mean_v=-0.001354, max_drop=gen1→gen2 (-0.008710)\\\\n  deltas: [-0.00069, -0.00871, -0.000115, -0.001861, -0.001203, -0.001166, -0.000102, 0.000579, -0.000298, 3.1e-05]\\\\nα=0.25: cum_drift=-40.34%, mean_v=-0.003962, max_drop=gen1→gen2 (-0.017306)\\\\n  deltas: [-0.00069, -0.017306, -0.008484, -0.00443, -0.003781, -0.002193, -0.001088\n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T05:51:28.550008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "cross_alpha_v3_full",
+              "type": "data",
+              "description": "Cross-Alpha v3 full analysis (gen0-gen10, 11 gens): dose-response, Granger causality (12 tests, BH FDR), cross-correlation, per-gen velocity for α=0.00/0.25/0.50",
+              "project": "distrib_canary_collapse",
+              "exp_id": "alpha_sweep",
+              "content_filename": "cross_alpha_v3_full.json",
+              "tags": "['analysis', 'v3', 'granger', 'dose-response', 'fdr']",
+              "content": "{\n  \"version\": \"v3_full\",\n  \"n_generations\": 11,\n  \"gen_range\": \"gen_0 to gen_10\",\n  \"date\": \"2026-05-15\",\n  \"note\": \"Full JSON saved on server at results/analysis/cross_alpha_v3_full.json. This is a summary.\",\n  \"dose_response_drift_pct_gen0_to_gen10\": {\n    \"a000\": {\"d1\": -13.78, \"d2\": -9.77, \"d3\": -4.52, \"entropy\": -5.1, \"ece\": 51.7, \"ppl\": -21.68},\n    \"a025\": {\"d1\": -40.34, \"d2\": -57.14, \"d3\": -59.85, \"entropy\": -4.1, \"ece\": 79.72, \"ppl\": -17.19},\n    \"a050\": {\"d1\": -37.28, \"d2\": -51.46, \"d3\": -52.35, \"entropy\": -18.62, \"ece\": 842.79, \"ppl\": 21.13}\n  },\n  \"granger_causality\": {\n    \"n_tests\": 12,\n    \"fdr_method\": \"benjamini-hochberg\",\n    \"fdr_significant_count\": 0,\n    \"results\": [\n      {\"alpha\": 0.00, \"direction\": \"entropy→d1\", \"F\": 48.3527, \"p_raw\": 0.058, \"p_fdr\": 0.1739},\n      {\"alpha\": 0.00, \"direction\": \"ECE→d1\", \"F\": 0.0021, \"p_raw\": 0.9492, \"p_fdr\": 0.9492},\n      {\"alpha\": 0.00, \"direction\": \"d1→entropy\", \"F\": 0.211, \"p_raw\": 0.7889, \"p_fdr\": 0.8606},\n      {\"alpha\": 0.00, \"direction\": \"d1→ECE\", \"F\": 0.8347, \"p_raw\": 0.3383, \"p_fdr\": 0.451},\n      {\"alpha\": 0.25, \"direction\": \"entropy→d1\", \"F\": 163.2408, \"p_raw\": 0.0152, \"p_fdr\": 0.0928},\n      {\"alpha\": 0.25, \"direction\": \"ECE→d1\", \"F\": 1.7773, \"p_raw\": 0.2275, \"p_fdr\": 0.39},\n      {\"alpha\": 0.25, \"direction\": \"d1→entropy\", \"F\": 7.8281, \"p_raw\": 0.0232, \"p_fdr\": 0.0928},\n      {\"alpha\": 0.25, \"direction\": \"d1→ECE\", \"F\": 0.7367, \"p_raw\": 0.459, \"p_fdr\": 0.5508},\n      {\"alpha\": 0.50, \"direction\": \"entropy→d1\", \"F\": 127.4778, \"p_raw\": 0.0976, \"p_fdr\": 0.2341},\n      {\"alpha\": 0.50, \"direction\": \"ECE→d1\", \"F\": 79.241, \"p_raw\": 0.0208, \"p_fdr\": 0.0928},\n      {\"alpha\": 0.50, \"direction\": \"d1→entropy\", \"F\": 1.9994, \"p_raw\": 0.2235, \"p_fdr\": 0.39},\n      {\"alpha\": 0.50, \"direction\": \"d1→ECE\", \"F\": 1.5744, \"p_raw\": 0.2815, \"p_fdr\": 0.4222}\n    ]\n  },\n  \"cross_correlation_peak_lag\": {\n    \"a000\": {\"entropy_vs_d1\": {\"lag\": 1, \"r\": 0.9408}, \"ece_vs_d1\": {\"lag\": -2, \"r\": 0.7037}},\n    \"a025\": {\"entropy_vs_d1\": {\"lag\": 1, \"r\": 0.8006}, \"ece_vs_d1\": {\"lag\": -3, \"r\": -0.5701}},\n    \"a050\": {\"entropy_vs_d1\": {\"lag\": 1, \"r\": 0.8826}, \"ece_vs_d1\": {\"lag\": 1, \"r\": -0.9544}}\n  },\n  \"per_gen_velocity\": {\n    \"a000\": {\"cum_drift_pct\": -13.78, \"mean_v\": -0.001354},\n    \"a025\": {\"cum_drift_pct\": -40.34, \"mean_v\": -0.003962, \"max_drop\": \"gen1→gen2 (-0.0173)\"},\n    \"a050\": {\"cum_drift_pct\": -37.28, \"mean_v\": -0.003661, \"max_drop\": \"gen1→gen2 (-0.0148)\"}\n  }\n}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T05:51:28.550181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'version': 'v3_full', 'n...en1→gen2 (-0.0148)'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T05:51:28.550347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "alpha_sweep_a050_s42",
+              "field": "metrics",
+              "value": "{'n_generations': 11, 'gen_range': 'gen_0-gen_10', 'gen10_d1': 0.0616, 'gen10_d2': 0.2513, 'gen10_d3': 0.3873, 'gen10_entropy': 2.6318, 'gen10_ece': 0.1019, 'gen10_ppl': 32.644, 'drift_d1_pct': -37.28, 'drift_d2_pct': -51.46, 'drift_d3_pct': -52.35, 'drift_entropy_pct': -18.62, 'drift_ece_pct': 842.79, 'drift_ppl_pct': 21.13, 'granger_entropy_to_d1_F': 127.4778, 'granger_entropy_to_d1_p_raw': 0.0976, 'granger_entropy_to_d1_p_fdr': 0.2341, 'granger_ece_to_d1_F': 79.241, 'granger_ece_to_d1_p_raw': 0.0208, 'granger_ece_to_d1_p_fdr': 0.0928, 'fdr_method': 'benjamini-hochberg', 'fdr_n_tests': 12, 'fdr_significant_count': 0}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T05:51:28.550538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:48:51.045Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:20:05.044Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 16003.6, \\\"gpu_hours\\\": 4.45}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T01:15:14.747Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:42:25.788Z\\\", \\\"training_hours\\\": 4.45}, \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"metrics\\\": {\\\"n_generations\\\": 11, \\\"gen_range\\\": \\\"gen_0-gen_10\\\", \\\"gen10_d1\\\": 0.0616, \\\"gen10_d2\\\": 0.2513, \\\"gen10_d3\n…[truncated 954 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T05:51:28.550749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "cross_alpha_v3_full",
+              "type": "data",
+              "description": "Cross-Alpha v3 full analysis (gen0-gen10, 11 gens): dose-response, Granger causality (12 tests, BH FDR), cross-correlation, per-gen velocity for α=0.00/0.25/0.50",
+              "project": "distrib_canary_collapse",
+              "exp_id": "alpha_sweep",
+              "content_filename": "cross_alpha_v3_full.json",
+              "tags": "['analysis', 'v3', 'granger', 'dose-response', 'fdr']",
+              "content": "{\"version\":\"v3_full\",\"n_generations\":11,\"gen_range\":\"gen_0 to gen_10\",\"date\":\"2026-05-15\",\"dose_response_drift_pct\":{\"a000\":{\"d1\":-13.78,\"d2\":-9.77,\"d3\":-4.52,\"entropy\":-5.1,\"ece\":51.7,\"ppl\":-21.68},\"a025\":{\"d1\":-40.34,\"d2\":-57.14,\"d3\":-59.85,\"entropy\":-4.1,\"ece\":79.72,\"ppl\":-17.19},\"a050\":{\"d1\":-37.28,\"d2\":-51.46,\"d3\":-52.35,\"entropy\":-18.62,\"ece\":842.79,\"ppl\":21.13}},\"granger\":{\"n_tests\":12,\"fdr_method\":\"BH\",\"fdr_sig\":0,\"results\":[{\"a\":0.0,\"dir\":\"entropy→d1\",\"F\":48.35,\"p_raw\":0.058,\"p_fdr\":0.174},{\"a\":0.0,\"dir\":\"ECE→d1\",\"F\":0.002,\"p_raw\":0.949,\"p_fdr\":0.949},{\"a\":0.0,\"dir\":\"d1→entropy\",\"F\":0.211,\"p_raw\":0.789,\"p_fdr\":0.861},{\"a\":0.0,\"dir\":\"d1→ECE\",\"F\":0.835,\"p_raw\":0.338,\"p_fdr\":0.451},{\"a\":0.25,\"dir\":\"entropy→d1\",\"F\":163.24,\"p_raw\":0.015,\"p_fdr\":0.093},{\"a\":0.25,\"dir\":\"ECE→d1\",\"F\":1.777,\"p_raw\":0.228,\"p_fdr\":0.39},{\"a\":0.25,\"dir\":\"d1→entropy\",\"F\":7.828,\"p_raw\":0.023,\"p_fdr\":0.093},{\"a\":0.25,\"dir\":\"d1→ECE\",\"F\":0.737,\"p_raw\":0.459,\"p_fdr\":0.551},{\"a\":0.50,\"dir\":\"entropy→d1\",\"F\":127.48,\"p_raw\":0.098,\"p_fdr\":0.234},{\"a\":0.50,\"dir\":\"ECE→d1\",\"F\":79.24,\"p_raw\":0.021,\"p_fdr\":0.093},{\"a\":0.50,\"dir\":\"d1→entropy\",\"F\":1.999,\"p_raw\":0.224,\"p_fdr\":0.39},{\"a\":0.50,\"dir\":\"d1→ECE\",\"F\":1.574,\"p_raw\":0.282,\"p_fdr\":0.422}]},\"xcorr\":{\"a000\":{\"entropy_d1\":{\"lag\":1,\"r\":0.94},\"ece_d1\":{\"lag\":-2,\"r\":0.70}},\"a025\":{\"entropy_d1\":{\"lag\":1,\"r\":0.80},\"ece_d1\":{\"lag\":-3,\"r\":-0.57}},\"a050\":{\"entropy_d1\":{\"lag\":1,\"r\":0.88},\"ece_d1\":{\"lag\":1,\"r\":-0.95}}},\"velocity\":{\"a000\":{\"cum\":-13.78,\"mean_v\":-0.00135},\"a025\":{\"cum\":-40.34,\"mean_v\":-0.00396},\"a050\":{\"cum\":-37.28,\"mean_v\":-0.00366}}}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T05:51:28.550907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'version': 'v3_full', 'n...8, 'mean_v': -0.00366}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T05:51:28.551031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "cross_alpha_v3_full",
+              "type": "data",
+              "description": "Cross-Alpha v3 full analysis (gen0-gen10, 11 gens): dose-response, Granger causality (12 tests, BH FDR), cross-correlation, per-gen velocity for α=0.00/0.25/0.50",
+              "project": "distrib_canary_collapse",
+              "exp_id": "alpha_sweep",
+              "source_path": "/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json",
+              "tags": "['analysis', 'v3', 'granger', 'dose-response', 'fdr']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T05:51:28.551166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T05:51:28.551314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T05:51:28.551658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"version\\\\\\\": \\\\\\\"v3_full\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"gen_range\\\\\\\": \\\\\\\"gen_0 to gen_10\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-15\\\\\\\",\\\\n  \\\\\\\"statistical_config\\\\\\\": {\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"granger_n_perm\\\\\\\": 2500,\\\\n    \\\\\\\"granger_differenced\\\\\\\": true,\\\\n    \\\\\\\"fdr_method\\\\\\\": \\\\\\\"benjamini-hochberg\\\\\\\",\\\\n    \\\\\\\"n_independent_tests\\\\\\\": 12\\\\n  },\\\\n  \\\\\\\"dose_response\\\\\\\": {\\\\n    \\\\\\\"a000\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.0,\\\\n      \\\\\\\"distinct_1\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.098216,\\\\n        \\\\\\\"gen10\\\\\\\": 0.08468,\\\\n        \\\\\\\"drift_pct\\\\\\\": -13.78\\\\n      },\\\\n      \\\\\\\"distinct_2\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.517803,\\\\n        \\\\\\\"gen10\\\\\\\": 0.467199,\\\\n        \\\\\\\"drift_pct\\\\\\\": -9.77\\\\n      },\\\\n      \\\\\\\"distinct_3\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.812728,\\\\n        \\\\\\\"gen10\\\\\\\": 0.77602,\\\\n        \\\\\\\"drift_pct\\\\\\\": -4.52\\\\n      },\\\\n      \\\\\\\"token_entropy\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 3.234195,\\\\n        \\\\\\\"gen10\\\\\\\": 3.069313,\\\\n        \\\\\\\"drift_pct\\\\\\\": -5.1\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.010805,\\\\n        \\\\\\\"gen10\\\\\\\": 0.016391,\\\\n        \\\\\\\"drift_pct\\\\\\\": 51.7\\\\n      },\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 26.948959,\\\\n        \\\\\\\"gen10\\\\\\\": 21.107704,\\\\n        \\\\\\\"drift_pct\\\\\\\": -21.68\\\\n      }\\\\n    },\\\\n    \\\\\\\"a025\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.25,\\\\n      \\\\\\\"distinct_1\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.098216,\\\\n        \\\\\\\"gen10\\\\\\\": 0.058594,\\\\n        \\\\\\\"drift_pct\\\\\\\": -40.34\\\\n      },\\\\n      \\\\\\\"distinct_2\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.517803,\\\\n        \\\\\\\"gen10\\\\\\\": 0.221939,\\\\n        \\\\\\\"drift_pct\\\\\\\": -57.14\\\\n      },\\\\n      \\\\\\\"distinct_3\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.812728,\\\\n        \\\\\\\"gen10\\\\\\\": 0.326271,\\\\n        \\\\\\\"drift_pct\\\\\\\": -59.85\\\\n      },\\\\n      \\\\\\\"token_entropy\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 3.234195,\\\\n        \\\\\\\"gen10\\\\\\\": 3.101744,\n…[truncated 8702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T05:51:28.551854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "cross_alpha_v3_full_analysis",
+              "type": "report",
+              "description": "Cross-Alpha v3 full analysis (gen0-gen10, 11 gens): dose-response, Granger causality (12 tests, BH FDR), cross-correlation, per-gen velocity for α=0.00/0.25/0.50. Full JSON on server: results/analysis/cross_alpha_v3_full.json",
+              "project": "distrib_canary_collapse",
+              "exp_id": "alpha_sweep",
+              "content": "Cross-Alpha v3 Full Analysis Report (2026-05-15)\n=================================================\nGen range: gen_0 to gen_10 (11 points)\nFull JSON: server westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json\n\nDOSE-RESPONSE (gen0→gen10 drift%)\nα      d1%      d2%      d3%      entropy%   ECE%      PPL%\n0.00   -13.78   -9.77    -4.52    -5.10      +51.70    -21.68\n0.25   -40.34   -57.14   -59.85   -4.10      +79.72    -17.19\n0.50   -37.28   -51.46   -52.35   -18.62     +842.79   +21.13\n\nNon-monotonic dose-response confirmed: α=0.25 collapse > α=0.50 across d1/d2/d3.\n\nGRANGER CAUSALITY (12 tests, BH FDR, 2500 perms, max_lag=1, differenced)\nα      direction        F-stat    p_raw    p_fdr\n0.00   entropy→d1       48.35     0.058    0.174   (null control, not significant)\n0.00   ECE→d1           0.002     0.949    0.949\n0.00   d1→entropy       0.211     0.789    0.861\n0.00   d1→ECE           0.835     0.338    0.451\n0.25   entropy→d1       163.24    0.015    0.093   (raw sig, FDR n.s.)\n0.25   ECE→d1           1.777     0.228    0.390\n0.25   d1→entropy       7.828     0.023    0.093   (bidirectional at raw level)\n0.25   d1→ECE           0.737     0.459    0.551\n0.50   entropy→d1       127.48    0.098    0.234\n0.50   ECE→d1           79.24     0.021    0.093   (ECE raw p < entropy raw p at α=0.50)\n0.50   d1→entropy       1.999     0.224    0.390\n0.50   d1→ECE           1.574     0.282    0.422\n\n0/12 FDR-significant. Qualitative pattern: entropy leads at α=0.25, ECE leads at α=0.50.\n\nCROSS-CORRELATION PEAK LAG\nα=0.00: entropy_vs_d1 lag=+1 r=0.94, ece_vs_d1 lag=-2 r=0.70\nα=0.25: entropy_vs_d1 lag=+1 r=0.80, ece_vs_d1 lag=-3 r=-0.57\nα=0.50: entropy_vs_d1 lag=+1 r=0.88, ece_vs_d1 lag=+1 r=-0.95\n\nPER-GEN VELOCITY\nα=0.00: cum_drift=-13.78%, mean_v=-0.00135, max_drop gen1→gen2\nα=0.25: cum_drift=-40.34%, mean_v=-0.00396, max_drop gen1→gen2 (-0.0173)\nα=0.50: cum_drift=-37.28%, mean_v=-0.00366, max_drop gen1→gen2 (-0.0148)",
+              "content_filename": "cross_alpha_v3_full_report.txt",
+              "tags": "['analysis', 'v3', 'granger', 'dose-response', 'fdr']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T05:51:28.552034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_b979dd\\\", \\\"name\\\": \\\"cross_alpha_v3_full_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Cross-Alpha v3 full analysis (gen0-gen10, 11 gens): dose-response, Granger causality (12 tests, BH FDR), cross-correlation, per-gen velocity for α=0.00/0.25/0.50. Full JSON on server: results/analysis/cross_alpha_v3_full.json\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/alpha_sweep/report/cross_alpha_v3_full_report.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": \\\"alpha_sweep\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T05:49:54.194213+00:00\\\", \\\"tags\\\": [\\\"analysis\\\", \\\"v3\\\", \\\"granger\\\", \\\"dose-response\\\", \\\"fdr\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T05:51:28.552211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "memory.md",
+              "content": "# Cross-Alpha Analysis Memory (2026-05-15)\n\n## D024 Dose-Response: 非单调性确认与解释\n\n### 核心数据\n| α | d1 drift (gen0-9) | d2 drift | d3 drift | entropy drift | ECE drift | PPL drift |\n|---|---|---|---|---|---|---|\n| 0.00 | -13.8% | -9.4% | -4.3% | -5.1% | +51.7% | -21.7% |\n| 0.25 | -39.9% | -55.8% | -57.7% | -4.1% | +79.7% | -17.2% |\n| 0.50 | -36.6% | -50.5% | -51.0% | -18.6% | +800% | +19.1% |\n\n### 关键发现\n\n#### 1. 非单调 dose-response 的机制（方向正确，待更多 α 点确认）\nα=0.50 的 diversity collapse 弱于 α=0.25，**不是因为 α=0.50 前期 collapse 更快然后饱和**（两者早期速率 α=0.50 反而更慢），而是因为 **α=0.50 在 gen1 触发了完全不同的 collapse regime**：\n\n- **Entropy 崩塌**：α=0.50 gen0→gen1 entropy 暴跌 0.717（3.23→2.52），α=0.25 仅跌 0.254\n- **ECE 爆炸**：α=0.50 gen0→gen1 ECE 从 0.011 跳至 0.067 (6x)，α=0.25 ECE 反而微降\n- α=0.50 的模型在第一代就进入\"低熵-高miscalibration\"状态，后续 diversity 下降变慢（velocity ratio 0.15 vs α=0.25 的 0.09）\n\n**解释**：高合成比例迫使模型立即收窄输出分布（entropy 崩塌），形成 diversity 下降的\"地板效应\"。3 个 α 点不足以确认，a010/a060/a075 将提供更完整曲线。\n\n#### 2. ECE vs Entropy Canary 信号（⚠️ 假说，非结论，待 α=0.75 确认）\nDifferenced Permutation Granger 因果检验（max_lag=1, 2000 permutations）**raw p-values**：\n\n| α | entropy→d1 F | entropy→d1 p_raw | ECE→d1 F | ECE→d1 p_raw | 备注 |\n|---|---|---|---|---|---|\n| 0.00 | 48.35 | 0.048 | 0.002 | 0.958 | ⚠️ α=0.00 为无污染 control，不应有因果信号；p=0.048 恰在 5% 边界，判定为 borderline false positive（符合 FPR 预期） |\n| 0.25 | 163.24 | 0.012 | 1.78 | 0.238 | entropy raw p 最低 |\n| 0.50 | 100.89 | 0.105 | 62.69 | 0.021 | ECE raw p < entropy raw p |\n\n**⚠️ 关键统计限制：BH FDR 校正后（8 对同时检验），所有 α=0.50 的 Granger 检验均不显著（0/8 FDR-sig）。** 上表仅反映 raw p-values 的定性模式（ECE raw p 在高 α 下低于 entropy raw p），不构成 regime switch 的硬证据。\n\n**当前状态**：regime switch 是值得追踪的**假说**，α=0.75 将是关键验证点。在 FDR 校正后显著之前，不写入 paper framing 或 decisions 作为 confirmed finding。\n\n#### 3. Cross-Correlation Lead-Lag\n所有 α 下，Δentropy vs Δd1 在 lag=+1 有最强相关（r=0.87-1.03），说明 entropy 变化持续领先 d1 一代。\n\nα=0.50 的 ΔECE vs Δd1 在 lag=+1 有 r=-1.013（强负相关），说明 ECE 增加领先 d1 下降一代。（cross-correlation 结果，非因果推断）\n\n#### 4. 对后续实验的启示\n- α=0.75 是 pivotal boundary（D025）：决定 ECE canary 假说能否从定性信号升级为 FDR-sig 结论\n- a010/a060 补充 dose-response 曲线密度，验证非单调机制\n- 当前 3 个 α 点的 raw p-values 有清晰定性模式，但统计力不足——需更多 α 点积累 FDR 校正后仍显著的证据\n\n### Registry p-value 命名规范 (Reviewer 要求)\n所有 Granger p-value 字段必须加后缀区分：`_p_raw` 或 `_p_fdr`。不加后缀的旧字段已清理。\n\n---\n\n## v3 Full Analysis Update (2026-05-15, gen_0–gen_10, 11 点)\n\n### v2→v3 变化摘要\n- 数据：从 gen_0–gen_9（10 点）扩展到 gen_0–gen_10（11 点），三个 α 均有完整 gen_10 数据\n- Granger 检验数：从 8 对扩展到 12 对（加入反向 d1→entropy, d1→ECE）\n- 置换次数：从 2000 增加到 2500\n\n### v3 Dose-Response（gen0→gen10 drift%）\n| α | d1% | d2% | d3% | entropy% | ECE% | PPL% |\n|---|---|---|---|---|---|---|\n| 0.00 | -13.78 | -9.77 | -4.52 | -5.10 | +51.70 | -21.68 |\n| 0.25 | -40.34 | -57.14 | -59.85 | -4.10 | +79.72 | -17.19 |\n| 0.50 | -37.28 | -51.46 | -52.35 | -18.62 | +842.79 | +21.13 |\n\n**非单调 dose-response 在 11 gen 数据下依然成立**：α=0.25 的 d1/d2/d3 collapse 均大于 α=0.50。\n\n### v3 Granger Causality（12 tests, BH FDR, 2500 perms, differenced）\n| α | direction | F-stat | p_raw | p_fdr | 备注 |\n|---|---|---|---|---|---|\n| 0.00 | entropy→d1 | 48.35 | 0.058 | 0.174 | null control, 不再 borderline sig（v2 时为 0.048）|\n| 0.00 | ECE→d1 | 0.002 | 0.949 | 0.949 | |\n| 0.00 | d1→entropy | 0.211 | 0.789 | 0.861 | |\n| 0.00 | d1→ECE | 0.835 | 0.338 | 0.451 | |\n| 0.25 | entropy→d1 | 163.24 | 0.015 | 0.093 | raw sig, FDR n.s. |\n| 0.25 | ECE→d1 | 1.777 | 0.228 | 0.390 | |\n| 0.25 | d1→entropy | 7.828 | 0.023 | 0.093 | 双向 raw sig |\n| 0.25 | d1→ECE | 0.737 | 0.459 | 0.551 | |\n| 0.50 | entropy→d1 | 127.48 | 0.098 | 0.234 | |\n| 0.50 | ECE→d1 | 79.24 | 0.021 | 0.093 | ECE raw p < entropy raw p |\n| 0.50 | d1→entropy | 1.999 | 0.224 | 0.390 | |\n| 0.50 | d1→ECE | 1.574 | 0.282 | 0.422 | |\n\n**0/12 FDR-significant。** 定性模式不变：α=0.25 entropy 领先，α=0.50 ECE 领先。\n\n关键变化：α=0.00 entropy→d1 p_raw 从 0.048（v2）升至 0.058（v3），不再需要 borderline FP 标注——额外一个 gen 的数据稀释了该信号，符合 null control 预期。\n\n### v3 Cross-Correlation\n| α | Δentropy vs Δd1 peak | r | ΔECE vs Δd1 peak | r |\n|---|---|---|---|---|\n| 0.00 | lag=+1 | 0.94 | lag=-2 | 0.70 |\n| 0.25 | lag=+1 | 0.80 | lag=-3 | -0.57 |\n| 0.50 | lag=+1 | 0.88 | lag=+1 | -0.95 |\n\nentropy 一致在 lag=+1 领先 d1。α=0.50 下 ECE 也在 lag=+1 领先（r=-0.95，强负相关）。\n\n### v3 Per-Gen Velocity\n| α | cum_drift% | mean_v/gen | max_drop |\n|---|---|---|---|\n| 0.00 | -13.78 | -0.00135 | gen1→gen2 (-0.0087) |\n| 0.25 | -40.34 | -0.00396 | gen1→gen2 (-0.0173) |\n| 0.50 | -37.28 | -0.00366 | gen1→gen2 (-0.0148) |\n\nα=0.25 全程 velocity 均快于 α=0.50，且差距在中后期（gen5+）保持稳定。这否定了\"α=0.50 早期快后期饱和\"的解释。\n\n### 产出文件\n- 服务器 JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json`\n- Artifact: `art_20260515_b979dd` (cross_alpha_v3_full_analysis)\n- Registry: `alpha_sweep_a050_s42` metrics 已更新含 gen_10 + p_raw/p_fdr 字段\n\n## D024 文献调研：非单调 dose-response 是文献空白 (2026-05-15)\n\n### 核心结论\n**没有论文直接报告过 diversity dose-response 的非单调性。** 这是 novel finding。\n\n### 理论锚点（已补入 literature_map.yaml）\n- **He, Xu & Cheng (2025)** arXiv:2502.18049: 黄金比例权重理论——最优 real data 权重 w*(λ) 非单调非凸，risk landscape 在 mixing ratio 空间上本身不是单调的。我们的结果可视为该理论在 diversity metrics 上的实证验证。\n- **Xu & Cheng (2025)** arXiv:2509.22341: 过参数化 regime 下 w > 1/3 vs w < 1/3 的 variance 行为质变——1/3 临界阈值与我们 α=0.25 处的行为一致。\n- **Chen et al. (2025)** arXiv:2510.05133: 20-30% threshold 下稳定、以上退化加速；ECE 先于 accuracy 退化。但未细粒度扫描故未发现非单调性。\n\n### Framing 建议\n- 非单调 dose-response 可作为独立 Results subsection（实证发现，非推测）\n- 引用 He et al. 作为 risk landscape 非单调的理论先例，但强调我们首次在 diversity metrics 上展示\n- 为 robust claim 需更细粒度 α sweep + 多 seed 置信区间\n\n### 最可信解释排序\n1. \"最危险区间\"假说：α=0.25 恰好在\"够破坏分布尾部但不足以让模型快速饱和\"的区间\n2. 饱和效应：α=0.50 快速进入 collapsed attractor，cumulative drift 反而小（已被 per-gen velocity 分析部分证伪——α=0.50 全程都慢，不只是后期饱和）\n3. Regime 切换：不同 α 触发不同训练 regime（需更多 α 点验证）\n"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T05:51:28.552431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T05:51:28.552594+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**v3 分析结果（gen_0–gen_10, 11 点, 12 对 Granger 检验）：**\n\n| 项目 | 结论 |\n|---|---|\n| **非单调 dose-response** | 确认。α=0.25 d1 drift -40.34% > α=0.50 -37.28%，d2/d3 同理 |\n| **Granger FDR** | 0/12 显著。α=0.00 entropy→d1 p_raw=0.058（v2 是 0.048，不再 borderline sig） |\n| **定性模式** | 不变：α=0.25 entropy 主导（p_raw=0.015），α=0.50 ECE 主导（p_raw=0.021） |\n| **α=0.25 双向信号** | d1→entropy p_raw=0.023，提示 feedback loop（但 FDR=0.093 n.s.）|\n| **Cross-corr** | entropy 一致 lag=+1 领先 d1；α=0.50 ECE lag=+1 r=-0.95 |\n| **Velocity** | α=0.25 全程快于 α=0.50，否定\"α=0.50 早期快后期饱和\"解释 |\n\n**已更新**：registry `alpha_sweep_a050_s42` metrics（含 gen_10 + p_raw/p_fdr 字段）、memory.md、artifact `art_20260515_b979dd`。服务器 JSON: `results/analysis/cross_alpha_v3_full.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_alpha_v3_full_20260515T054603"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cross-alpha-v3-full.md"
+}

@@ -1,0 +1,50 @@
+{
+  "exp_id": "alpha_sweep_a046_s42_fp32",
+  "alpha": 0.46,
+  "seed": 42,
+  "precision": "fp32",
+  "n_gens": 11,
+  "n_perm": 5000,
+  "analysis_version": "D102+D105+D111",
+  "threshold_criterion": "true_3sigma_d105",
+  "direction_filter": "peak_lag<0 (D111 corrected)",
+  "fdr_method": "BH q=0.05",
+  "summary": {
+    "perm_granger_fdr_forward_sig": 0,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 0,
+    "diff_xcorr_fdr_reverse_sig": 0,
+    "threshold_onset_3sigma_sig": 0,
+    "ty_forward_sig": 0,
+    "robust_pairs_K3": 0,
+    "robust_pairs_K4": 0
+  },
+  "consensus": [
+    {"pair": "token_entropy→distinct_1", "K": 0, "methods": []},
+    {"pair": "token_entropy→distinct_2", "K": 0, "methods": []},
+    {"pair": "token_entropy→distinct_3", "K": 0, "methods": []},
+    {"pair": "token_entropy→mauve", "K": 0, "methods": []},
+    {"pair": "ece→distinct_1", "K": 0, "methods": []},
+    {"pair": "ece→distinct_2", "K": 0, "methods": []},
+    {"pair": "ece→distinct_3", "K": 0, "methods": []},
+    {"pair": "ece→mauve", "K": 0, "methods": []}
+  ],
+  "drift_pct": {
+    "token_entropy": {"gen0": 3.2342, "gen10": 2.6078, "pct": -19.4},
+    "ece": {"gen0": 0.0108, "gen10": 0.0982, "pct": 808.5},
+    "perplexity": {"gen0": 26.949, "gen10": 30.5696, "pct": 13.4},
+    "distinct_1": {"gen0": 0.098, "gen10": 0.064, "pct": -34.7},
+    "distinct_2": {"gen0": 0.5141, "gen10": 0.2763, "pct": -46.3},
+    "distinct_3": {"gen0": 0.8127, "gen10": 0.4404, "pct": -45.8},
+    "mauve": {"gen0": 0.0311, "gen10": 0.0243, "pct": -22.0}
+  },
+  "onset_gens": {
+    "token_entropy": 1,
+    "ece": 3,
+    "distinct_1": null,
+    "distinct_2": null,
+    "distinct_3": null,
+    "mauve": null
+  },
+  "interpretation": "PermG 0/8 fwd sig (0/8 reverse) — complete blind zone at alpha=0.46. All 5 methods yield 0/8, consistent with alpha=0.45 (0/8) and alpha=0.48 (0/8). Confirms phase transition lower bound: alpha_c > 0.46. Despite moderate downstream drift (distinct_2 -46.3%, distinct_3 -45.8%), no lead-lag signal detectable. ECE drift +808.5% shows canary sensitivity but no forward causality."
+}

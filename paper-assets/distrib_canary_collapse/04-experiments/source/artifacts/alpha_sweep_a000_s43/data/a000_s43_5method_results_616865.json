@@ -1,0 +1,104 @@
+{
+  "experiment": "alpha_sweep_a000_s43",
+  "alpha": 0.0,
+  "seed": 43,
+  "n_generations": 11,
+  "status": "completed",
+  "metrics": {
+    "gen0": {
+      "token_entropy": 3.2342,
+      "ece": 0.01080,
+      "perplexity": 26.949,
+      "distinct_1": 0.09833,
+      "distinct_2": 0.51318,
+      "distinct_3": 0.80567,
+      "effective_rank": 46.613,
+      "mauve": 0.03351
+    },
+    "gen10": {
+      "token_entropy": 3.0907,
+      "ece": 0.01482,
+      "perplexity": 21.469,
+      "distinct_1": 0.08465,
+      "distinct_2": 0.46312,
+      "distinct_3": 0.76723,
+      "effective_rank": 43.720,
+      "mauve": 0.02646
+    },
+    "drift_pct": {
+      "token_entropy": -4.44,
+      "ece": 37.16,
+      "perplexity": -20.34,
+      "distinct_1": -13.91,
+      "distinct_2": -9.75,
+      "distinct_3": -4.77,
+      "effective_rank": -6.21,
+      "mauve": -21.05
+    }
+  },
+  "five_method_analysis": {
+    "config": {
+      "n_perm": 5000,
+      "fdr_alpha": 0.05,
+      "threshold_criterion": "3x_sigma_drift"
+    },
+    "summary": {
+      "perm_granger_fdr_forward_sig": 0,
+      "perm_granger_fdr_reverse_sig": 0,
+      "diff_xcorr_fdr_forward_sig": 3,
+      "diff_xcorr_fdr_reverse_sig": 3,
+      "threshold_forward_sig": 1,
+      "ty_forward_sig": 1,
+      "robust_pairs_ge3": 0
+    },
+    "consensus": [
+      {"pair": "token_entropy->distinct_1", "votes": 2, "methods": ["naive", "ty"]},
+      {"pair": "token_entropy->distinct_2", "votes": 2, "methods": ["naive", "diff"]},
+      {"pair": "token_entropy->distinct_3", "votes": 2, "methods": ["naive", "diff"]},
+      {"pair": "token_entropy->perplexity", "votes": 1, "methods": ["diff"]},
+      {"pair": "ece->distinct_1", "votes": 2, "methods": ["naive", "threshold"]},
+      {"pair": "ece->distinct_2", "votes": 1, "methods": ["naive"]},
+      {"pair": "ece->distinct_3", "votes": 1, "methods": ["naive"]},
+      {"pair": "ece->perplexity", "votes": 0, "methods": []}
+    ],
+    "per_pair_perm_granger": {
+      "token_entropy->distinct_1": {"f_stat": 6.251, "p_raw": 0.0796, "p_fdr": 0.2122, "significant": false},
+      "token_entropy->distinct_2": {"f_stat": 27.108, "p_raw": 0.0796, "p_fdr": 0.2122, "significant": false},
+      "token_entropy->distinct_3": {"f_stat": 25.119, "p_raw": 0.0796, "p_fdr": 0.2122, "significant": false},
+      "token_entropy->perplexity": {"f_stat": 0.009, "p_raw": 0.9286, "p_fdr": 0.9286, "significant": false},
+      "ece->distinct_1": {"f_stat": 0.413, "p_raw": 0.5812, "p_fdr": 0.9208, "significant": false},
+      "ece->distinct_2": {"f_stat": 0.021, "p_raw": 0.9208, "p_fdr": 0.9286, "significant": false},
+      "ece->distinct_3": {"f_stat": 0.273, "p_raw": 0.6912, "p_fdr": 0.9208, "significant": false},
+      "ece->perplexity": {"f_stat": 0.024, "p_raw": 0.9286, "p_fdr": 0.9286, "significant": false}
+    },
+    "per_pair_ty_granger": {
+      "token_entropy->distinct_1": {"wald_F": 306.067, "p_value": 0.0364, "significant": true, "d_max": 2, "df_resid": 1},
+      "token_entropy->distinct_2": {"wald_F": 0.335, "p_value": 0.6661, "significant": false, "d_max": 2},
+      "token_entropy->distinct_3": {"wald_F": 0.712, "p_value": 0.5537, "significant": false, "d_max": 2},
+      "token_entropy->perplexity": {"wald_F": 0.000, "p_value": 0.9913, "significant": false, "d_max": 2},
+      "ece->distinct_1": {"wald_F": 70.859, "p_value": 0.0753, "significant": false, "d_max": 2},
+      "ece->distinct_2": {"wald_F": 0.838, "p_value": 0.5282, "significant": false, "d_max": 2},
+      "ece->distinct_3": {"wald_F": 0.452, "p_value": 0.6233, "significant": false, "d_max": 2},
+      "ece->perplexity": {"wald_F": 0.001, "p_value": 0.9863, "significant": false, "d_max": 2}
+    }
+  },
+  "cross_seed_comparison": {
+    "a000_s42_drift_pct": {
+      "token_entropy": -5.1,
+      "ece": 51.7,
+      "perplexity": -21.7,
+      "distinct_1": -13.8,
+      "distinct_2": -9.8,
+      "distinct_3": -4.5
+    },
+    "a000_s43_drift_pct": {
+      "token_entropy": -4.4,
+      "ece": 37.2,
+      "perplexity": -20.3,
+      "distinct_1": -13.9,
+      "distinct_2": -9.8,
+      "distinct_3": -4.8
+    },
+    "consistency": "high - all drift directions match, magnitudes within noise except ECE (inherently noisier)"
+  }
+}

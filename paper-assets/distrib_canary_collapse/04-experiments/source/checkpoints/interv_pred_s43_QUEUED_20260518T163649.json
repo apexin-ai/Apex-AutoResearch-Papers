@@ -1,0 +1,28 @@
+{
+  "exp_id": "interv_pred_s43",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:33:43.711Z",
+    "updated_at": "2026-05-18T16:36:49.876Z",
+    "hypothesis": "Intervention predictive multi-seed s43: Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s43\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "9977",
+      "log_path": "~/runs/distrib_canary_collapse/interv_pred_s43.log",
+      "submitted_at": "2026-05-18T16:36:24.687Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T16:36:49.998694+00:00",
+  "trigger": "update_registry"
+}

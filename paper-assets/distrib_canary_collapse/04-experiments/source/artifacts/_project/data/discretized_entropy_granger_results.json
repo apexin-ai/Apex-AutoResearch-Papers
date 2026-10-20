@@ -1,0 +1,33 @@
+{
+  "description": "SF4: Discretized entropy Granger precedence test",
+  "method": "permutation_granger (n_perm=5000, max_lag=1, first-differenced)",
+  "bin_sizes": [5, 10, 15, 20],
+  "bin_methods": ["equal_width", "equal_freq"],
+  "n_experiments": 7,
+  "summary": {
+    "continuous_sig_distinct_1": "7/7",
+    "binned_sig_distinct_1": {
+      "bins_5_equal_width": "3/7",
+      "bins_5_equal_freq": "0/7",
+      "bins_10_equal_width": "5/7",
+      "bins_10_equal_freq": "1/7",
+      "bins_15_equal_width": "6/7",
+      "bins_15_equal_freq": "7/7",
+      "bins_20_equal_width": "7/7",
+      "bins_20_equal_freq": "7/7"
+    }
+  },
+  "pythia410m_detail": {
+    "continuous": {"p": 0.0002, "sig": true},
+    "bins_5_equal_width":  {"p": 0.0346, "sig": true,  "n_unique": 3},
+    "bins_5_equal_freq":   {"p": 0.7003, "sig": false, "n_unique": 5},
+    "bins_10_equal_width": {"p": 0.0036, "sig": true,  "n_unique": 4},
+    "bins_10_equal_freq":  {"p": 0.7564, "sig": false, "n_unique": 10},
+    "bins_15_equal_width": {"p": 0.0036, "sig": true,  "n_unique": 4},
+    "bins_15_equal_freq":  {"p": 0.0018, "sig": true,  "n_unique": 11},
+    "bins_20_equal_width": {"p": 0.001,  "sig": true,  "n_unique": 5},
+    "bins_20_equal_freq":  {"p": 0.0016, "sig": true,  "n_unique": 11}
+  },
+  "models_tested": ["pythia-410m", "gpt2-medium", "opt-1.3b", "pythia-1b(x2)", "pythia-1.4b(x2)"],
+  "conclusion": "Granger precedence is robust to discretization at >=15 bins (7/7 for both methods). At coarse resolution (5 bins equal-freq: 0/7; 5 bins equal-width: 3/7), signal degrades significantly. Equal-width binning preserves signal better than equal-freq at low bin counts because entropy trajectories are right-skewed (sharp gen0-2 drop then plateau). Key takeaway: continuous resolution boosts detection power, but even moderate discretization (>=15 levels) preserves the causal signal."
+}

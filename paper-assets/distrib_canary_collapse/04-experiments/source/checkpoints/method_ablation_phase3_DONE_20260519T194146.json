@@ -1,0 +1,36 @@
+{
+  "exp_id": "method_ablation_phase3",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:10:03.625Z",
+    "updated_at": "2026-05-19T19:41:46.400Z",
+    "hypothesis": "Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。",
+    "conclusion": "success",
+    "metrics": {
+      "alpha_points": 7,
+      "methods": 5,
+      "total_pairs": "8-32 per alpha",
+      "permG_step_change": "0% (alpha<=0.50) → 100% (alpha=0.60) → 83% (alpha=0.75)",
+      "TY_only_at_alpha100": "59% FDR-corrected",
+      "blind_zone_confirmed": "alpha=0.10 same as null (permG/TY=0%)",
+      "fdr_flips_at_a050": 12
+    },
+    "spec": {
+      "command": "CPU analysis (zero GPU)",
+      "server": "westd-17855",
+      "data_path": "results/alpha_sweep/* (7 alpha points)",
+      "data_count": 7,
+      "model_name": "N/A (analysis)",
+      "seed": 42,
+      "checkpoint_path": "artifacts/method_ablation_phase3/",
+      "log_path": "artifacts/method_ablation_phase3/method_ablation_phase3_summary.md"
+    },
+    "completed_at": "2026-05-18T23:45:15.785Z"
+  },
+  "timestamp": "2026-05-19T19:41:46.632317+00:00",
+  "trigger": "update_registry"
+}

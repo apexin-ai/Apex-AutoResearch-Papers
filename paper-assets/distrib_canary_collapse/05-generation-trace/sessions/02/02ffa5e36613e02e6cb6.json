@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ffa5e36613e02e6cb6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t25 a050 v3",
+  "task_key": "worker_analysis_d102-t25-a050-v3_20260522T073252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t25-a050-v3_20260522T073252_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "a93f9c5cab6262b4bd6a8e0eb3aa70c486411e8ecd3a840e42db25644d9a7174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**完成。** Phase Diagram 最后一格 (20/20) 已分析并注册。\n\n| 指标 | 值 |\n|---|---|\n| **PermG (fwd)** | **6/8** |\n| PermG (rev) | 0/8 |\n| DiffXCorr (fwd) | 6/8 |\n| Threshold Onset | 6/8 |\n| TY Granger | 6/8 |\n| **Robust K≥3** | **6/8** |\n| Final MAUVE | 0.024 |\n\nα=0.50 的 PermG 跨 T 完整一致：T=5→0/8, T=10/15/20/25→6/8。6/8 ceiling 在所有 T≥10 确认。Registry 已转 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t25-a050-v3.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "scale_14b_t10_a060_s44_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:18:27.298Z",
+    "updated_at": "2026-05-23T13:02:13.629Z",
+    "hypothesis": "Third-seed (s44) replication of 1.4B T=10 α=0.60: s42 and s43 both show PermG=4/8 (sync-dip dissolved). If s44 also shows 4/8, confirms sync-dip dissolution is seed-robust at 1.4B.",
+    "parent": "scale_14b_t10_a060_s42_fp32_v2"
+  },
+  "timestamp": "2026-05-23T13:02:14.058122+00:00",
+  "trigger": "update_registry"
+}

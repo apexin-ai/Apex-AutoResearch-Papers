@@ -1,0 +1,99 @@
+paper_key: "dohmatob2025strong"
+title: "Strong Model Collapse"
+venue: "ICLR 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines:
+    - "Training on real data only (p2=0)"
+    - "Weighted single-step mixing (Jain et al. 2024)"
+    - "Iterative/dynamic mixing (Ferbach et al. 2024)"
+  metrics:
+    - {name: "Test error (MSE)", direction: "lower_better"}
+    - {name: "Test loss (cross-entropy)", direction: "lower_better"}
+    - {name: "Scaling law exponents (implicit)", direction: "higher_better"}
+  datasets:
+    - {name: "Gaussian synthetic data", size: "n=500, d=600"}
+    - {name: "MNIST", size: "10K-50K", task: "regression"}
+    - {name: "BabiStories", size: "2.2M train + 22K val", task: "LM pretraining"}
+    - {name: "TinyStories test set", size: "N/A", task: "evaluation"}
+  ablation_dimensions:
+    - synthetic_proportion_p2 (0-1, 11 values)
+    - model_size_hidden_dim (100-10000)
+    - model_depth_layers (12, 18, 24)
+    - data_quality_c2 (0, 0.1, 0.5, 1.0)
+    - mixing_strategy (single-step vs iterative)
+    - mixing_weight_alpha
+  training_recipe:
+    MNIST: "SGD, lr=0.1, batch=128, 400 epochs"
+    GPT2: "d=768, 12/18/24 layers, 12 heads, context=512, lr=5e-3, dropout=0.05, weight_decay=0.1, warmup=2000"
+    synthetic_gen: "GPT-2-small, temperature=1, top-p=1"
+    hardware: "not specified"
+  method_family: "strong_collapse_theory"
+
+positioning:
+  core_claim: "Even 1% synthetic data causes irreversible model collapse (test error plateaus above baseline) — 'strong model collapse'. Larger models amplify collapse in underparameterized regime but can mitigate it past interpolation threshold (double descent in collapse)."
+  key_results: "Etest ≃ B+V+ζ where ζ=p2²c² is irreducible collapse term; 1% synthetic data causes visible scaling law degradation in GPT-2; optimal mixing weight α*→0 as n→∞; iterative mixing underperforms real-only training"
+  limitations:
+    - "Theory assumes Gaussian features, linear labels, ridge regression"
+    - "Random projections as neural network proxy"
+    - "No practical mitigation beyond discarding synthetic data"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Within the scaling laws paradigm that underpins ChatGPT and Llama training — can even small amounts of synthetic data cause collapse?"
+  tension: "Prior work showed collapse with fully synthetic data. The natural hope is that mixing real + synthetic data can fix it. This paper kills that hope."
+  key_insight: "Section 3, Theorem 1 — bias-variance decomposition Etest ≃ B+V+ζ reveals an extra term ζ=p2²c² from synthetic data that does NOT vanish as n→∞. Even p2=0.01 means ζ≈0.0001·c², creating an irreducible floor. This is 'strong' model collapse."
+  argument_chain: "scaling laws paradigm → mix real+synthetic data → new bias-variance decomposition with extra ζ term → ζ doesn't vanish (strong collapse) → model size effect (double descent) → existing mixing strategies fail → validated on MNIST + GPT-2/BabiStories"
+  contribution_framing: "2 results framed as research questions: Q1 (is collapse inevitable with mixing?) → yes (strong collapse), Q2 (do larger models help?) → double descent"
+  intro_structure: "2 paragraphs: P1=model collapse context (with extensive citations), P2=scaling concerns for ChatGPT/Llama; then S1.1=contributions"
+  notable_technique: "The Pareto diagram (Figure 1) is a novel visualization: real-only error on x-axis, mixed-data error on y-axis, model size as color. Points above diagonal = collapse. Creates immediate intuition about when and how much collapse occurs."
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "teaser_result"
+    description: "Pareto diagram comparing test error with real-only vs mixed data, with model size encoded as color, across synthetic data quality levels"
+    narrative_role: "Immediate visual proof that mixed data always hurts (points above diagonal), with model size interaction"
+    design_elements: ["scatter plot", "diagonal reference line", "colorbar for model size", "quality level panels"]
+    visual_style: "3-panel scatter with color gradient, Pareto frontiers annotated"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Bias B, Variance V, Extra term ζ, and total Etest as function of model width"
+      how_gain_highlighted: "ζ term clearly shows as irreducible floor above clean-data curve; double descent visible"
+      design_note: "4-panel decomposition makes the mechanism transparent — readers can see exactly which component causes collapse"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Scaling laws under different synthetic proportions p2 (theory vs experiment)"
+      how_gain_highlighted: "Theory curves (broken) perfectly overlay experiment (solid); increasing p2 bends scaling curve"
+      design_note: "Theory-experiment agreement is pixel-perfect — strongest validation"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      what_compared: "GPT-2 test loss vs tokens under varying p2 (left) and model size with p2=1 (right)"
+      how_gain_highlighted: "Even p2=0.001 visibly bends the scaling curve; larger models cross over at ~10^10 tokens"
+      design_note: "The GPT-2 experiment is the clincher — theory predictions hold for real LLMs"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["model width m", "data quality c²", "synthetic proportion p2"]
+      design_note: "4 panels × multiple p2 curves — exhaustive exploration of the parameter space"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["model hidden dim (100-10000)", "sample count"]
+      design_note: "MNIST fully-trained network confirms theory predictions from random projections proxy"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["synthetic proportion p2 (0-0.9)", "sample count"]
+      design_note: "Random feature model (left) vs fully-trained (right) — both show same pattern"
+  figure_narrative_role: "Fig1(Pareto overview) → Fig2(B-V-ζ decomposition) → Fig3-5(theory validation on toy) → Fig6-7(MNIST) → Fig8(GPT-2) → Fig9-10(mixing strategy failure)"
+
+tables:
+  table_count: 0
+  main_result_table: "N/A — all results via figures; scaling law exponents and Pareto frontiers visualized"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Proofs, additional experiments, training details"
+    reason: "Theory-heavy paper; all visual evidence in main text, proofs in appendix"

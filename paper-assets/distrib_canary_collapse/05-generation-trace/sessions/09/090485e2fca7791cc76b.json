@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "090485e2fca7791cc76b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix 19828 14b model",
+  "task_key": "worker_ops_fix-19828-14b-model_20260522T070352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-19828-14b-model_20260522T070352_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "ba6c96b702c3087e13cdadfb9157453141cb4274f1696c22b9c7db36dc8cf66a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地路径完全可用。GPTNeoXForCausalLM, 1415M 参数。\n\n**汇报**：\n\n| 项目 | 结果 |\n|------|------|\n| **失败原因** | HF 缓存 `models--EleutherAI--pythia-1.4b-deduped` 条目损坏（只有 `.no_exist` marker + `refs/main`，无实际模型文件）。`from_pretrained` 在线下载尝试失败（AutoDL 网络代理不稳定），导致 `OSError: model-00001-of-00002.safetensors not found` |\n| **模型下载** | 通过 ModelScope CDN 成功下载到 `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped/`（~14 min，含 safetensors + pytorch_model.bin 共 ~8GB）|\n| **离线验证** | `from_pretrained('/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped')` 离线加载成功：1415M params, GPTNeoXForCausalLM |\n| **HF 缓存兼容** | symlink hack 不起作用——HF hub 缓存需要 blob-based 结构。**重启实验时需用 `--model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped`** 代替 `EleutherAI/pythia-1.4b-deduped` |\n| **磁盘** | 19828 数据盘 250G，用 106G→~114G（下载后），剩余 ~136G，可用于 1.4B 实验 |\n\n**重启命令需修改**：`--model_name` 从 `EleutherAI/pythia-1.4b-deduped` 改为 `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-19828-14b-model.md"
+}

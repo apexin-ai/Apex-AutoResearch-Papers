@@ -1,0 +1,26 @@
+{
+  "exp_id": "conditional_granger_d061",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:49:34.807Z",
+    "updated_at": "2026-05-18T22:50:48.457Z",
+    "hypothesis": "Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。",
+    "conclusion": "success",
+    "spec": {
+      "command": "CPU analysis (zero GPU)",
+      "server": "local",
+      "data_path": "results/mvp/rep_42_v3 (Pythia-410M alpha=1.0 s42)",
+      "data_count": 11,
+      "model_name": "N/A (analysis)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/d061_conditional_granger_analysis.md"
+    }
+  },
+  "timestamp": "2026-05-18T22:50:48.594558+00:00",
+  "trigger": "update_registry"
+}

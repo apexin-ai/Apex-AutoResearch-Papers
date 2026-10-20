@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai}
+\citation{fu2024towards}
+\citation{dohmatob2024model}
+\citation{vela2022sigma}
+\citation{alemohammad2024selfconsuming}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Collapse Monitoring.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Time-Series Causality in ML.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Iterative Training Protocol}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Metric Families}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canary Metrics (Hypothesized Leading Indicators).}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Target Metrics (Collapse Endpoints).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Statistical Framework}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Correlation Analysis.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal Onset Analysis.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Toda-Yamamoto Testing.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-correlation lead-lag summary under $\alpha =1.0$, 4 seeds. Negative lag indicates canary leads target. Results shown for max\_lag=7; max\_lag=5 yields qualitatively identical conclusions.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:mvp}{{1}{4}{Cross-correlation lead-lag summary under $\alpha =1.0$, 4 seeds. Negative lag indicates canary leads target. Results shown for max\_lag=7; max\_lag=5 yields qualitatively identical conclusions}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-correlation summary across contamination regimes. ``Sig.''\ denotes number of seeds with $p < 0.05$. The canary$\to $perplexity row is non-significant at \emph  {every} $\alpha $.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:sweep}{{2}{4}{Cross-correlation summary across contamination regimes. ``Sig.''\ denotes number of seeds with $p < 0.05$. The canary$\to $perplexity row is non-significant at \emph {every} $\alpha $}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Canary Lead Under Full Self-Consumption}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:mvp}{{4.1}{4}{Canary Lead Under Full Self-Consumption}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Perplexity onset.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Decoupling Diagram}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:sweep}{{4.2}{4}{The Decoupling Diagram}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Metric values at generation 10 across contamination ratios, illustrating the decoupling between diversity and quality degradation.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:gen10}{{3}{5}{Metric values at generation 10 across contamination ratios, illustrating the decoupling between diversity and quality degradation}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Agreement between naive Pearson cross-correlation and Toda-Yamamoto testing. ``Overturned'' indicates pairs where naive analysis finds significance but TY does not.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:method}{{4}{5}{Agreement between naive Pearson cross-correlation and Toda-Yamamoto testing. ``Overturned'' indicates pairs where naive analysis finds significance but TY does not}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Methodological Validation}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:method}{{4.3}{5}{Methodological Validation}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Extended trajectory key statistics ($\alpha {=}1.0$, 20 generations). Entropy saturates at generation 8 while perplexity diverges without bound.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:extended}{{5}{6}{Extended trajectory key statistics ($\alpha {=}1.0$, 20 generations). Entropy saturates at generation 8 while perplexity diverges without bound}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Extended Trajectory Analysis}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:extended}{{4.4}{6}{Extended Trajectory Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{The lag=$-5.5$ is a saturation artifact, not a truncation artifact.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Asymptotic decoupling provides mechanistic evidence.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Domain Validation}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:c4}{{4.5}{6}{Cross-Domain Validation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces WikiText-103 vs.\ C4 canary behavior at $\alpha {=}0.50$. Canary ranking reverses across domains while decoupling from perplexity is preserved.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:c4}{{6}{7}{WikiText-103 vs.\ C4 canary behavior at $\alpha {=}0.50$. Canary ranking reverses across domains while decoupling from perplexity is preserved}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Generation 10 metrics: WikiText-103 vs.\ C4 at $\alpha {=}0.50$.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:c4_gen10}{{7}{7}{Generation 10 metrics: WikiText-103 vs.\ C4 at $\alpha {=}0.50$}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Scale Spot-Check}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scale}{{4.6}{7}{Scale Spot-Check}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Canary-Triggered Intervention}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:intervention}{{4.7}{7}{Canary-Triggered Intervention}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scale comparison: Pythia-410M vs.\ 1.4B at $\alpha {=}0.50$. Larger models show slower collapse and reduced canary lead magnitude.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:scale}{{8}{8}{Scale comparison: Pythia-410M vs.\ 1.4B at $\alpha {=}0.50$. Larger models show slower collapse and reduced canary lead magnitude}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Intervention experiment: CRS-triggered real data injection vs.\ no-intervention baseline ($\alpha {=}0.75$). No metric reaches statistical significance ($p > 0.1$ for all).}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:intervention}{{9}{8}{Intervention experiment: CRS-triggered real data injection vs.\ no-intervention baseline ($\alpha {=}0.75$). No metric reaches statistical significance ($p > 0.1$ for all)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Data Strategy Ablation}{8}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:datastrategy}{{4.8}{8}{Data Strategy Ablation}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Accumulate vs.\ replace data strategies at $\alpha {=}0.50$. Accumulate slows collapse but eliminates canary predictive lead.}}{9}{table.caption.21}\protected@file@percent }
+\newlabel{tab:accreplace}{{10}{9}{Accumulate vs.\ replace data strategies at $\alpha {=}0.50$. Accumulate slows collapse but eliminates canary predictive lead}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}An Information-Theoretic Argument for Decoupling}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for Monitoring Practice}{9}{subsection.5.2}\protected@file@percent }
+\bibstyle{aaai}
+\bibcite{shumailov2024ai}{1}
+\bibcite{fu2024towards}{2}
+\bibcite{dohmatob2024model}{3}
+\bibcite{vela2022sigma}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data diversity.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation protocol.}{10}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal resolution.}{10}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\bibcite{alemohammad2024selfconsuming}{5}
+\bibcite{du2024synthetic}{6}
+\bibcite{truong2024phase}{7}
+\bibcite{kalinowski2024topo}{8}
+\bibcite{toda1995statistical}{9}
+\bibcite{li2022distinct}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Material}{11}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Signal Onset Table}{11}{subsection.A.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces $2\sigma $ onset generation by metric and seed ($\alpha {=}1.0$). Lead time = target onset $-$ canary onset.}}{11}{table.caption.27}\protected@file@percent }
+\newlabel{tab:onset}{{11}{11}{$2\sigma $ onset generation by metric and seed ($\alpha {=}1.0$). Lead time = target onset $-$ canary onset}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Accumulate vs.\ Replace Full Trajectories}{11}{subsection.A.2}\protected@file@percent }
+\gdef \@abspage@last{11}

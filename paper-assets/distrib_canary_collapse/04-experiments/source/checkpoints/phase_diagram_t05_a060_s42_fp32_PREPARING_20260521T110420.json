@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase_diagram_t05_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:42:48.245Z",
+    "updated_at": "2026-05-21T11:04:19.813Z",
+    "hypothesis": "Phase Diagram T=5 α=0.60: At T=5, theory predicts α_c(5)≥1.0, making even the sync-dip region undetectable. α=0.60 is the sync-dip center at T=10 (PermG=0/8). If T=5 also shows 0/8, it's consistent with both α_c theory and sync-dip structural nature. If >0/8, it would challenge the α_c(T) model since theory predicts no detection at T=5 for any α."
+  },
+  "timestamp": "2026-05-21T11:04:20.150943+00:00",
+  "trigger": "update_registry"
+}

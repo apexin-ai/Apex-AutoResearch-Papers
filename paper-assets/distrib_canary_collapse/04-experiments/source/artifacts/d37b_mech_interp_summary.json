@@ -1,0 +1,7 @@
+{
+  "a005": {"last_gen": 10, "attention_entropy": 1.1737, "head_diversity": 0.7101, "activation_norm": 51.64, "logit_confidence": 0.4591, "effective_rank": 731.9},
+  "a025": {"last_gen": 10, "attention_entropy": 1.1808, "head_diversity": 0.696, "activation_norm": 55.8, "logit_confidence": 0.4632, "effective_rank": 734.47},
+  "a050": {"last_gen": 10, "attention_entropy": 1.1269, "head_diversity": 0.6957, "activation_norm": 47.67, "logit_confidence": 0.4956, "effective_rank": 788.51},
+  "a075": {"last_gen": 10, "attention_entropy": 1.1321, "head_diversity": 0.6924, "activation_norm": 43.15, "logit_confidence": 0.5804, "effective_rank": 853.71},
+  "a100": {"last_gen": 10, "attention_entropy": 1.1822, "head_diversity": 0.7003, "activation_norm": 47.89, "logit_confidence": 0.7376, "effective_rank": 904.66}
+}

@@ -1,0 +1,88 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:06:55.402Z",
+    "updated_at": "2026-05-17T17:58:01.067Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "269777",
+      "log_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/",
+      "submitted_at": "2026-05-17T13:06:55.275Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/",
+      "wall_clock_seconds": 17465.8,
+      "gpu_hours": 4.85
+    },
+    "hypothesis": "Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)",
+    "parent": "generalize_pythia1b_c4_a100_s42",
+    "conclusion": "success",
+    "metrics": {
+      "gen0": {
+        "token_entropy": 2.956,
+        "ece": 0.012,
+        "perplexity": 20.6,
+        "distinct_1": 0.114,
+        "distinct_2": 0.556,
+        "distinct_3": 0.836,
+        "mauve": 0.73
+      },
+      "gen10": {
+        "token_entropy": 1.256,
+        "ece": 0.456,
+        "perplexity": 1682.6,
+        "distinct_1": 0.089,
+        "distinct_2": 0.394,
+        "distinct_3": 0.604,
+        "mauve": 0.296
+      },
+      "drift_pct": {
+        "token_entropy": -57.5,
+        "ece": 3562.9,
+        "perplexity": 8068.6,
+        "distinct_1": -22.2,
+        "distinct_2": -29.1,
+        "distinct_3": -27.8,
+        "mauve": -59.4
+      },
+      "table5_8pairs": {
+        "naive_xcorr": "7/8",
+        "diff_xcorr_fdr": "8/8",
+        "threshold_onset": "8/8",
+        "permg_fwd_fdr": "8/8",
+        "permg_rev_fdr": "3/8",
+        "ty_granger": "4/8",
+        "consensus_ge3": "8/8",
+        "consensus_ge4": "8/8",
+        "note": "All 8 pairs ≥4/5 consensus. PermG fwd 8/8 strongest of all generalize exps. Rev 3/8 (ece→d1/d2/d3) shows some bidirectionality but forward still dominant. Mauve drift -59.4% (much larger than WikiText) → all methods detect mauve pairs."
+      },
+      "per_pair": {
+        "entropy_d1": "4/5",
+        "entropy_d2": "4/5",
+        "entropy_d3": "4/5",
+        "entropy_mauve": "4/5",
+        "ece_d1": "5/5",
+        "ece_d2": "5/5",
+        "ece_d3": "5/5",
+        "ece_mauve": "5/5"
+      }
+    },
+    "completed_at": "2026-05-17T17:58:01.067Z"
+  },
+  "timestamp": "2026-05-17T17:58:01.159476+00:00",
+  "trigger": "update_registry"
+}

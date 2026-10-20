@@ -1,0 +1,62 @@
+{
+  "best_model": "Random Forest",
+  "best_loocv_auroc": 0.6818,
+  "n_samples": 19,
+  "class_distribution": {"detected": 8, "not_detected": 11},
+  "cv_method": "LOOCV",
+  "all_models": {
+    "Logistic Regression": {"auroc": 0.5227, "accuracy": 0.6316},
+    "Decision Tree (d=2)": {"auroc": 0.4773, "accuracy": 0.5789},
+    "Decision Tree (d=3)": {"auroc": 0.4830, "accuracy": 0.4737},
+    "Random Forest": {"auroc": 0.6818, "accuracy": 0.6842}
+  },
+  "single_feature_auroc": {
+    "drift_token_entropy": {"auroc": 0.5341, "accuracy": 0.6316},
+    "drift_distinct_1": {"auroc": 0.0, "accuracy": 0.4737},
+    "drift_ece": {"auroc": 0.5909, "accuracy": 0.6842},
+    "drift_perplexity": {"auroc": 0.2955, "accuracy": 0.6316}
+  },
+  "alpha_only_auroc": 0.7727,
+  "lr_coefficients": {
+    "drift_token_entropy": -0.3400,
+    "drift_distinct_1": -0.2663,
+    "drift_ece": 0.4084,
+    "drift_perplexity": 0.2076
+  },
+  "lr_intercept": -0.3635,
+  "dt_feature_importances": {
+    "drift_token_entropy": 0.1228,
+    "drift_distinct_1": 0.2090,
+    "drift_ece": 0.0,
+    "drift_perplexity": 0.6682
+  },
+  "rf_feature_importances": {
+    "drift_token_entropy": 0.2248,
+    "drift_distinct_1": 0.1445,
+    "drift_ece": 0.2921,
+    "drift_perplexity": 0.3386
+  },
+  "decision_tree_text": "|--- drift_perplexity <= -0.1559\n|   |--- drift_token_entropy <= -0.0754\n|   |   |--- class: 0\n|   |--- drift_token_entropy >  -0.0754\n|   |   |--- class: 0\n|--- drift_perplexity >  -0.1559\n|   |--- drift_distinct_1 <= -0.0155\n|   |   |--- class: 0\n|   |--- drift_distinct_1 >  -0.0155\n|   |   |--- class: 1\n",
+  "data": [
+    {"name": "c4_a025_s42_fp32", "alpha": 0.25, "seed": 42, "dataset": "c4", "permg": 0, "detected": 0, "drift_token_entropy": -0.2858, "drift_distinct_1": 0.0108, "drift_ece": 15.4839, "drift_perplexity": 1.7856, "oof_prob": 0.9376},
+    {"name": "c4_a050_s42_fp32", "alpha": 0.50, "seed": 42, "dataset": "c4", "permg": 8, "detected": 1, "drift_token_entropy": -0.2517, "drift_distinct_1": 0.0108, "drift_ece": 12.5908, "drift_perplexity": 1.2342, "oof_prob": 0.5545},
+    {"name": "c4_a075_s42_fp32", "alpha": 0.75, "seed": 42, "dataset": "c4", "permg": 8, "detected": 1, "drift_token_entropy": -0.3192, "drift_distinct_1": 0.0108, "drift_ece": 17.0215, "drift_perplexity": 2.1700, "oof_prob": 0.4302},
+    {"name": "a005_s42_fp32_v3_d080", "alpha": 0.05, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.0704, "drift_distinct_1": -0.0065, "drift_ece": -0.1480, "drift_perplexity": -0.2801, "oof_prob": 0.4306},
+    {"name": "a010_s42_fp32", "alpha": 0.10, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.0767, "drift_distinct_1": -0.0065, "drift_ece": -0.0689, "drift_perplexity": -0.2902, "oof_prob": 0.2422},
+    {"name": "a010_s43_fp32", "alpha": 0.10, "seed": 43, "dataset": "wikitext", "permg": 3, "detected": 1, "drift_token_entropy": -0.0742, "drift_distinct_1": -0.0144, "drift_ece": -0.0236, "drift_perplexity": -0.2799, "oof_prob": 0.0400},
+    {"name": "a025_s42_fp32", "alpha": 0.25, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.0777, "drift_distinct_1": -0.0038, "drift_ece": -0.1703, "drift_perplexity": -0.2807, "oof_prob": 0.0290},
+    {"name": "a025_s43_fp32", "alpha": 0.25, "seed": 43, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.0788, "drift_distinct_1": -0.0166, "drift_ece": -0.1489, "drift_perplexity": -0.2784, "oof_prob": 0.3533},
+    {"name": "a025_s44_fp32", "alpha": 0.25, "seed": 44, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.0776, "drift_distinct_1": 0.0061, "drift_ece": -0.2752, "drift_perplexity": -0.2859, "oof_prob": 0.1356},
+    {"name": "a030_s42_fp32", "alpha": 0.30, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.2245, "drift_distinct_1": -0.0038, "drift_ece": 4.8020, "drift_perplexity": -0.2175, "oof_prob": 0.1715},
+    {"name": "a035_s42_fp32", "alpha": 0.35, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.2301, "drift_distinct_1": -0.0038, "drift_ece": 5.1247, "drift_perplexity": -0.1914, "oof_prob": 0.1387},
+    {"name": "a040_s42_fp32", "alpha": 0.40, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.2272, "drift_distinct_1": -0.0038, "drift_ece": 5.2990, "drift_perplexity": -0.1759, "oof_prob": 0.2516},
+    {"name": "a045_s42_fp32", "alpha": 0.45, "seed": 42, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.2288, "drift_distinct_1": -0.0038, "drift_ece": 5.1705, "drift_perplexity": -0.1637, "oof_prob": 0.3200},
+    {"name": "a050_s42_fp32", "alpha": 0.50, "seed": 42, "dataset": "wikitext", "permg": 6, "detected": 1, "drift_token_entropy": -0.2230, "drift_distinct_1": -0.0065, "drift_ece": 5.5246, "drift_perplexity": -0.1331, "oof_prob": 0.7190},
+    {"name": "a050_s43_fp32", "alpha": 0.50, "seed": 43, "dataset": "wikitext", "permg": 6, "detected": 1, "drift_token_entropy": -0.2213, "drift_distinct_1": -0.0144, "drift_ece": 5.4981, "drift_perplexity": -0.1285, "oof_prob": 0.6894},
+    {"name": "a050_s44_fp32", "alpha": 0.50, "seed": 44, "dataset": "wikitext", "permg": 6, "detected": 1, "drift_token_entropy": -0.2173, "drift_distinct_1": -0.0026, "drift_ece": 5.1506, "drift_perplexity": -0.1481, "oof_prob": 0.3325},
+    {"name": "a060_s42_fp32_v3_d080", "alpha": 0.60, "seed": 42, "dataset": "wikitext", "permg": 3, "detected": 1, "drift_token_entropy": -0.3127, "drift_distinct_1": -0.0065, "drift_ece": 10.5092, "drift_perplexity": 0.0973, "oof_prob": 0.6003},
+    {"name": "a060_s43_fp32", "alpha": 0.60, "seed": 43, "dataset": "wikitext", "permg": 0, "detected": 0, "drift_token_entropy": -0.3215, "drift_distinct_1": -0.0166, "drift_ece": 11.0718, "drift_perplexity": 0.1008, "oof_prob": 0.9604},
+    {"name": "a075_s42_fp32", "alpha": 0.75, "seed": 42, "dataset": "wikitext", "permg": 6, "detected": 1, "drift_token_entropy": -0.3278, "drift_distinct_1": -0.0038, "drift_ece": 11.4906, "drift_perplexity": 0.1800, "oof_prob": 0.4133}
+  ],
+  "recommendation": "not_reported"
+}

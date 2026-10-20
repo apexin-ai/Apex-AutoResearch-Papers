@@ -1,0 +1,15 @@
+{
+  "exp_id": "null_fpr_s50_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:15:01.660Z",
+    "updated_at": "2026-05-24T02:15:14.457Z",
+    "hypothesis": "Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI"
+  },
+  "timestamp": "2026-05-24T02:15:14.923793+00:00",
+  "trigger": "update_registry"
+}

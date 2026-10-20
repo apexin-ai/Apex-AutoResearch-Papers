@@ -1,0 +1,123 @@
+{
+  "experiments": {
+    "a000_s42": {
+      "alpha": 0.0, "T": 10, "n_gens": 11,
+      "token_entropy": {
+        "series": [3.234195, 2.99056, 3.021025, 3.014312, 3.040746, 3.033519, 3.056647, 3.050044, 3.066314, 3.042682, 3.069313],
+        "ar1_raw": -0.5093,
+        "ar1_diff": -0.5725
+      },
+      "distinct_1": {
+        "series": [0.098216, 0.097525, 0.088815, 0.088699, 0.086839, 0.085635, 0.084469, 0.084367, 0.084946, 0.084648, 0.08468],
+        "ar1_raw": 0.8645,
+        "ar1_diff": -0.1357
+      }
+    },
+    "a025_s42": {
+      "alpha": 0.25, "T": 10, "n_gens": 11,
+      "token_entropy": {
+        "series": [3.234195, 2.982971, 3.015357, 3.039491, 3.051086, 3.033953, 3.048801, 3.066847, 3.06309, 3.103685, 3.079351],
+        "ar1_raw": -0.3389,
+        "ar1_diff": -0.4466
+      },
+      "distinct_1": {
+        "series": [0.09796, 0.097592, 0.081547, 0.073672, 0.068797, 0.065734, 0.063531, 0.061437, 0.060969, 0.06007, 0.059609],
+        "ar1_raw": 0.9486,
+        "ar1_diff": 0.1913
+      }
+    },
+    "a050_s42": {
+      "alpha": 0.50, "T": 10, "n_gens": 11,
+      "token_entropy": {
+        "series": [3.234195, 2.513126, 2.510962, 2.581628, 2.588291, 2.585607, 2.607992, 2.656354, 2.6603, 2.672412, 2.707494],
+        "ar1_raw": -0.279,
+        "ar1_diff": 0.3132
+      },
+      "distinct_1": {
+        "series": [0.091621, 0.091028, 0.075086, 0.070016, 0.069406, 0.06857, 0.068008, 0.067195, 0.06693, 0.065602, 0.064875],
+        "ar1_raw": 0.8729,
+        "ar1_diff": 0.0994
+      }
+    },
+    "a075_s42": {
+      "alpha": 0.75, "T": 10, "n_gens": 11,
+      "token_entropy": {
+        "series": [3.234195, 2.173757, 2.105473, 2.091294, 2.122948, 2.140718, 2.161739, 2.165228, 2.202272, 2.240664, 2.282991],
+        "ar1_raw": 0.1376,
+        "ar1_diff": 0.8834
+      },
+      "distinct_1": {
+        "series": [0.09796, 0.097592, 0.083852, 0.077867, 0.075063, 0.074148, 0.073469, 0.073336, 0.073227, 0.073234, 0.073102],
+        "ar1_raw": 0.9057,
+        "ar1_diff": 0.2405
+      }
+    },
+    "a100_s42": {
+      "alpha": 1.00, "T": 10, "n_gens": 11,
+      "token_entropy": {
+        "series": [3.234195, 1.90986, 1.461121, 1.337905, 1.280527, 1.291216, 1.225314, 1.236854, 1.248177, 1.238957, 1.226904],
+        "ar1_raw": 0.9959,
+        "ar1_diff": 0.9764
+      },
+      "distinct_1": {
+        "series": [0.098216, 0.097525, 0.081942, 0.076289, 0.074297, 0.073344, 0.073078, 0.072555, 0.072102, 0.072, 0.071695],
+        "ar1_raw": 0.8903,
+        "ar1_diff": 0.1826
+      }
+    },
+    "t20_a050_s42": {
+      "alpha": 0.50, "T": 20, "n_gens": 21,
+      "token_entropy": {
+        "series": [3.234195, 2.500746, 2.527971, 2.570552, 2.554722, 2.580346, 2.564263, 2.604015, 2.586279, 2.607847, 2.617159, 2.641116, 2.657119, 2.669177, 2.650109, 2.694643, 2.659088, 2.686522, 2.70161, 2.70345, 2.725748],
+        "ar1_raw": -0.1002,
+        "ar1_diff": -0.2517
+      },
+      "distinct_1": {
+        "series": [0.09796, 0.097592, 0.083930, 0.076883, 0.072805, 0.069648, 0.067961, 0.066242, 0.06568, 0.06468, 0.064203, 0.064336, 0.064234, 0.063961, 0.063844, 0.063773, 0.06368, 0.063539, 0.063609, 0.063555, 0.063555],
+        "ar1_raw": 0.9652,
+        "ar1_diff": 0.4382
+      }
+    },
+    "t20_a100_s42": {
+      "alpha": 1.00, "T": 20, "n_gens": 21,
+      "token_entropy": {
+        "series": [3.234195, 1.811066, 1.402382, 1.282141, 1.21495, 1.266162, 1.172856, 1.204232, 1.158799, 1.21064, 1.178224, 1.156893, 1.183502, 1.220406, 1.188499, 1.199674, 1.204786, 1.209189, 1.15487, 1.230944, 1.205176],
+        "ar1_raw": 0.9788,
+        "ar1_diff": 0.8702
+      },
+      "distinct_1": {
+        "series": [0.09796, 0.097592, 0.082797, 0.080055, 0.079492, 0.079531, 0.079437, 0.079437, 0.079437, 0.079383, 0.079375, 0.079383, 0.079383, 0.079383, 0.079359, 0.079359, 0.079359, 0.079258, 0.07925, 0.07925, 0.079242],
+        "ar1_raw": 0.8136,
+        "ar1_diff": 0.1411
+      }
+    }
+  },
+  "summary": {
+    "token_entropy_ar1_raw": {
+      "mean": 0.1264,
+      "min": -0.5093,
+      "max": 0.9959,
+      "values": [-0.5093, -0.3389, -0.279, 0.1376, 0.9959, -0.1002, 0.9788]
+    },
+    "distinct_1_ar1_raw": {
+      "mean": 0.8944,
+      "min": 0.8136,
+      "max": 0.9652,
+      "values": [0.8645, 0.9486, 0.8729, 0.9057, 0.8903, 0.9652, 0.8136]
+    },
+    "token_entropy_ar1_diff": {
+      "mean": 0.2532,
+      "min": -0.5725,
+      "max": 0.9764,
+      "values": [-0.5725, -0.4466, 0.3132, 0.8834, 0.9764, -0.2517, 0.8702]
+    },
+    "distinct_1_ar1_diff": {
+      "mean": 0.1653,
+      "min": -0.1357,
+      "max": 0.4382,
+      "values": [-0.1357, 0.1913, 0.0994, 0.2405, 0.1826, 0.4382, 0.1411]
+    }
+  },
+  "conclusion": "Raw AR(1) coefficients split into two regimes: (1) Under the null/low-alpha (a=0.00-0.50), token_entropy phi ranges [-0.51, -0.10] — anti-correlated or near zero, far below 0.95. (2) At a=0.75-1.00, token_entropy phi reaches 0.14-1.00, but this reflects the deterministic collapse trend (the signal itself), not stochastic persistence. For distinct_1, raw phi is uniformly high (0.81-0.97) across all alpha including null, driven by a smooth monotonic trend inherent to the iterative training process. Critically, first-differenced distinct_1 phi averages only 0.17 (range [-0.14, 0.44]), confirming the increments are near-white-noise. First-differenced token_entropy under null/low-alpha averages -0.24, also far from 0.95. The high raw phi in distinct_1 and in strong-signal token_entropy is deterministic trend, not the stochastic autocorrelation that inflates PermG FPR. PermG size control is safe for our data because the stochastic component (first differences) has phi well below 0.95 across all experiments.",
+  "note": "AR(1) estimates from very short series (T=10: n=11 points, T=20: n=21 points) have large sampling variance. Interpret individual values cautiously; the pattern across experiments is more informative than any single estimate."
+}

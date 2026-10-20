@@ -1,0 +1,53 @@
+_next_id: 10
+constraints:
+- id: C002
+  added: 2026-05-16 00:29 UTC
+  summary: 论文真源为 docs/paper/，禁止直接编辑 artifacts/_project/paper/。需要同步时从 docs/paper/ 复制覆盖。
+  scope: all
+  reason: 两目录已分叉，artifacts 版本落后且缺内容，独立维护导致 Reviewer 误报和数字不一致风险。
+  decision_id: D046
+- id: C003
+  added: 2026-05-16 02:38 UTC
+  summary: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据——3-seed 已确认 TY 在低 α 下种子不稳定（d_max 跨 seed
+    0→1→2，df_resid 从 7 降至 1）
+  scope: all
+  reason: C001 multi-seed 验证完成：0/8 pairs 在 3 seed 一致显著，根因是 T=11 下 ADF 积分阶数不稳定。TY 只在
+    α=1.0 (4-seed pooled) 可用。
+- id: C004
+  added: 2026-05-16 11:25 UTC
+  summary: 禁止任何 Agent session 在未确认实验状态的情况下 kill 正在运行的训练进程或 rm -rf 实验输出目录。操作前必须先 SSH
+    检查进程存活 + 目录 generation 进度。
+  scope: all
+  reason: 2026-05-16 并发 Agent session 误杀已运行 7h 的 a075_s43/s44 实验，导致 ~14 GPU-hours
+    浪费。根因是另一 session 未检查实验进度就执行了 kill + rm -rf + 重启。
+- id: C005
+  added: 2026-05-18 20:58 UTC
+  summary: EXIT_CODE=129 (SIGHUP) 不等于实验失败——必须先检查 gen 目录和 all_metrics.json 完整性再判定
+  scope: all
+  reason: 'M015: 连续三次误判（C4 α=0.50、α=0.60、GPT-2m s43），浪费诊断 Worker + GPU 空转时间'
+  decision_id: M015
+- id: C007
+  added: 2026-05-19 23:28 UTC
+  summary: 'M031: 提交实验前必须 df -h 确认目标服务器剩余空间 ≥ 实验预估大小 2x。大模型(≥3B)优先分配到大容量服务器。19828
+    仅 250G 总容量，谨慎使用'
+  scope: worker
+  reason: smollm3_s43 因 19828 磁盘满失败（250G/250G），4.21h GPU 时间浪费
+  decision_id: M031
+- id: C008
+  added: 2026-05-20 01:51 UTC
+  summary: K 值计算 threshold 投票必须使用 registry `threshold_onset_3sigma` 字段，禁止使用 JSON 的
+    `3x_sigma_drift` 或 `significant`。D105+D111 必须联合应用，禁止独立 patch 叠加。
+  scope: all
+  reason: 'M034: Worker 两次使用错误 threshold 标准（regular significant 和 3x_sigma_drift），导致
+    K 值系统性虚高。3x_sigma_drift 是简单幅值检查，D105 true 3sigma 是带 FDR 校正的统计检验，中等信号时差异 0/8 vs
+    8/8。'
+  decision_id: D116
+- id: C009
+  added: 2026-05-20 03:13 UTC
+  summary: 'M035: D111 direction filter 已修正 peak_lag > 0 → peak_lag < 0。xcorr 约定:
+    lag<0 = canary leads downstream (forward causation)。所有分析脚本必须使用 peak_lag < 0 作为
+    forward direction 判定条件。'
+  scope: all
+  reason: 'M035 sign reversal bug: D111 原 filter `peak_lag > 0` 实为反向因果。修正后 K≥3 从 ~0/8
+    恢复至 ≥5/8 in 11/13 experiments。D116 "K≥3 collapse" 确认为 bug artifact (D117)。'
+  decision_id: D117

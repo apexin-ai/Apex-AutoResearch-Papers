@@ -1,0 +1,73 @@
+{
+  "exp_id": "alpha_sweep_a052_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:14:05.887Z",
+    "updated_at": "2026-05-21T06:59:50.920Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.52 --output_dir results/alpha_sweep/a052_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "421887",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log",
+      "submitted_at": "2026-05-21T02:28:34.161Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42
+    },
+    "hypothesis": "Transition region microstructure: α=0.52 probes just above the estimated α_c≈0.48-0.50 boundary. If PermG>0/8, confirms sharp transition; if 0/8, the blind zone extends past 0.50 and the apparent step-function at 0.50 was seed-specific.",
+    "reproduce": {
+      "finished_at": "2026-05-21T06:52:49.505Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T06:52:55.121087+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "3/8",
+      "PermG_rev": "0/8",
+      "DiffXCorr_fwd": "4/8",
+      "DiffXCorr_rev": "1/8",
+      "threshold_onset_3sigma": "8/8",
+      "TY_fwd": "5/8",
+      "K_ge3": "6/8",
+      "K_ge4": "0/8",
+      "robust_pairs": [
+        "token_entropy->distinct_1",
+        "token_entropy->distinct_2",
+        "token_entropy->distinct_3",
+        "ece->distinct_1",
+        "ece->distinct_2",
+        "ece->mauve"
+      ],
+      "drift_token_entropy": -26.28,
+      "drift_ece": 1273.35,
+      "drift_perplexity": 47.55,
+      "drift_distinct_1": -32.2,
+      "drift_distinct_2": -42.26,
+      "drift_distinct_3": -41.48,
+      "drift_mauve": -16.8,
+      "wall_clock_s": 15800
+    },
+    "checkpoint_path": "results/alpha_sweep/a052_s42_fp32/gen_10/checkpoint",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T06:59:51.555659+00:00",
+  "trigger": "update_registry"
+}

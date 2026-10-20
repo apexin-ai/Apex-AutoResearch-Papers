@@ -1,0 +1,20 @@
+Table 7 Row: GPT-2-medium / Wiki (s43, bf16)
+
+Naive=8/8 | Diff.XCorr=7/8 | Threshold=8/8 | PermG(fwd)=1/8 | PermG(rev)=0/8 | TY=0/8 | K>=4/5=1/8 | MMCT=6/8
+
+Cross-seed comparison (s42 fp32 vs s43 bf16):
+  s42 fp32: 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 | 8/8
+  s43 bf16: 8/8 | 7/8 | 8/8 | 1/8 | 0/8 | 0/8 | 1/8 | 6/8
+  CONFOUND: s42=fp32, s43=bf16 (not fair cross-seed)
+  Entropy drift: s42=-86.6%, s43=-16.6%
+
+MMCT detail (weighted_forward, 6/8 sig):
+  SIG: te->d1, te->d2, te->d3, te->ppl, ece->d2, ece->ppl
+  non-sig: ece->d1 (p=0.16), ece->d3 (p=0.20)
+
+Metrics:
+  gen0:  entropy=3.602, d1=0.1092, ece=0.0111, ppl=32.91
+  gen10: entropy=3.004, d1=0.0724, ece=0.0716, ppl=55.49
+  Drift: entropy=-16.6%, d1=-33.7%, d2=-39.6%, d3=-33.5%, ece=+548%, ppl=+68.6%
+
+Source: westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_bf16/analysis/5method_leadlag.json

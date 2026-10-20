@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06c8d04d4b9aa0472673",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "setup opt13b 19828 disk model",
+  "task_key": "worker_setup_opt13b_19828_disk_model_20260519T153016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_opt13b_19828_disk_model_20260519T153016_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "18b62da02fc9153e5bda96dfc0f7e426e57a938463ee7f45ac2c30cb29831b24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 状态 |\n|------|------|\n| 磁盘 | 27G 可用 / 250G（未清理，空间充足） |\n| OPT-1.3B | 已下载到 HF cache，1.32B params，fp32 |\n| cuda:0 | **空闲**（0 MiB used / 97887 MiB） |\n| cuda:1 | 占用中（64685 MiB / 97887 MiB） |\n\nOPT-1.3B 模型缓存不额外占磁盘（HF cache 之前就 40G，模型 ~2.6G 被吸收进去，df 显示 used 没变是因为四舍五入到 224G）。s43 fp32 实验可直接在 cuda:0 上跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-opt13b-19828-disk-model.md"
+}

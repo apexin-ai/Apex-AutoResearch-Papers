@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "exp_id": "alpha_sweep_a055_s42_fp32",
+    "alpha": 0.55,
+    "seed": 42,
+    "model": "EleutherAI/pythia-410m",
+    "dataset": "wikitext-103-v1",
+    "precision": "fp32",
+    "n_gens": 11,
+    "steps_per_gen": 5000,
+    "n_perm": 5000,
+    "threshold_criterion": "true_3sigma_d105",
+    "direction_filter": "peak_lag < 0 (D111)",
+    "fdr_method": "BH q=0.05",
+    "analysis_date": "2026-05-20"
+  },
+  "metrics_drift": {
+    "token_entropy": {"gen_0": 3.2342, "gen_10": 2.3578, "delta": -0.876, "pct_change": -27.1},
+    "ece": {"gen_0": 0.0108, "gen_10": 0.1623, "delta": 0.1515, "pct_change": 1402.8},
+    "perplexity": {"gen_0": 26.95, "gen_10": 44.77, "delta": 17.82, "pct_change": 66.1},
+    "distinct_1": {"gen_0": 0.098, "gen_10": 0.0667, "delta": -0.0313, "pct_change": -31.9},
+    "distinct_2": {"gen_0": 0.5141, "gen_10": 0.2968, "delta": -0.2173, "pct_change": -42.3},
+    "distinct_3": {"gen_0": 0.8127, "gen_10": 0.4779, "delta": -0.3348, "pct_change": -41.2},
+    "mauve": {"gen_0": 0.0311, "gen_10": 0.0259, "delta": -0.0052, "pct_change": -16.7},
+    "eff_rank": {"gen_0": 46.61, "gen_10": 71.48, "delta": 24.87, "pct_change": 53.4}
+  },
+  "lead_lag_summary": {
+    "perm_granger_fwd": 0,
+    "perm_granger_rev": 0,
+    "diff_xcorr_fwd": 8,
+    "threshold_onset_3sigma_fwd": 0,
+    "ty_granger_fwd": 1,
+    "naive_xcorr_fwd": 1,
+    "K_geq3": 0,
+    "K_geq4": 0,
+    "robust_pairs": 0
+  },
+  "pairs": [
+    {
+      "canary": "token_entropy", "downstream": "distinct_1",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 330.654, "p_raw": 0.092, "p_fdr": 0.092, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.888, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.176, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 5, "r": -0.985, "sig_forward": false}
+    },
+    {
+      "canary": "token_entropy", "downstream": "distinct_2",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 362.067, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.890, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.053, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 5, "r": -0.989, "sig_forward": false}
+    },
+    {
+      "canary": "token_entropy", "downstream": "distinct_3",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 217.112, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.886, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.219, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 5, "r": -0.988, "sig_forward": false}
+    },
+    {
+      "canary": "token_entropy", "downstream": "mauve",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 47.534, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -1, "r": -0.903, "p_fdr": 0.007, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.057, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 1, "r": -0.826, "sig_forward": false}
+    },
+    {
+      "canary": "ece", "downstream": "distinct_1",
+      "K": 2, "methods_sig": ["diff", "ty"],
+      "perm_granger": {"f_stat": 274.078, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.918, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.020, "sig": true, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 2, "r": 0.986, "sig_forward": false}
+    },
+    {
+      "canary": "ece", "downstream": "distinct_2",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 228.116, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.927, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.545, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 2, "r": 0.985, "sig_forward": false}
+    },
+    {
+      "canary": "ece", "downstream": "distinct_3",
+      "K": 1, "methods_sig": ["diff"],
+      "perm_granger": {"f_stat": 210.398, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -5, "r": 0.924, "p_fdr": 0.045, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.360, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": 2, "r": 0.976, "sig_forward": false}
+    },
+    {
+      "canary": "ece", "downstream": "mauve",
+      "K": 2, "methods_sig": ["naive", "diff"],
+      "perm_granger": {"f_stat": 37.950, "p_raw": 0.072, "p_fdr": 0.072, "sig": false},
+      "diff_xcorr": {"peak_lag": -1, "r": -0.865, "p_fdr": 0.011, "sig": true},
+      "threshold_onset_3sigma": {"canary_onset": 1, "downstream_onset": null, "lead_time": null, "sig": false},
+      "ty_granger": {"f_stat": 0.072, "p": 0.207, "sig": false, "dmax": 1},
+      "naive_xcorr": {"peak_lag": -5, "r": 0.841, "sig_forward": true}
+    }
+  ]
+}

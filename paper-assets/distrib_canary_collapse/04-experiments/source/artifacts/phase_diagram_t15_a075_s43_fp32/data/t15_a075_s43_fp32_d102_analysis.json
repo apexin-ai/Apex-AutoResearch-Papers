@@ -1,0 +1,49 @@
+{
+  "exp_id": "phase_diagram_t15_a075_s43_fp32",
+  "T": 15,
+  "alpha": 0.75,
+  "seed": 43,
+  "precision": "fp32",
+  "d102_config": {
+    "downstream": "mauve",
+    "threshold": "true_3sigma_d105"
+  },
+  "permg_fwd": 6,
+  "permg_total": "6/8",
+  "robust_pairs": "6/8",
+  "per_generation_mauve": {
+    "gen_0": 0.0315,
+    "gen_1": 0.0313,
+    "gen_2": 0.0303,
+    "gen_3": 0.0298,
+    "gen_4": 0.0313,
+    "gen_5": 0.0326,
+    "gen_6": 0.0285,
+    "gen_7": 0.0305,
+    "gen_8": 0.0316,
+    "gen_9": 0.0324,
+    "gen_10": 0.0319,
+    "gen_11": 0.0322,
+    "gen_12": 0.0323,
+    "gen_13": 0.0324,
+    "gen_14": 0.0339,
+    "gen_15": 0.0338
+  },
+  "consensus_detail": {
+    "token_entropy<distinct_1": {"votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    "token_entropy<distinct_2": {"votes": 4, "methods": ["diff", "threshold", "perm", "ty"]},
+    "token_entropy<distinct_3": {"votes": 3, "methods": ["diff", "perm", "ty"]},
+    "token_entropy<mauve": {"votes": 1, "methods": ["diff"]},
+    "ece<distinct_1": {"votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    "ece<distinct_2": {"votes": 4, "methods": ["naive", "diff", "threshold", "perm"]},
+    "ece<distinct_3": {"votes": 3, "methods": ["naive", "diff", "perm"]},
+    "ece<mauve": {"votes": 1, "methods": ["diff"]}
+  },
+  "mauve_bottleneck": true,
+  "cross_seed_comparison": {
+    "s42_permg_fwd": "6/8",
+    "s43_permg_fwd": "6/8",
+    "consistent": true
+  },
+  "conclusion": "s43 confirms s42: PermG 6/8 at alpha=0.75 T=15. MAUVE pairs remain bottleneck (1/5 each). Cross-seed fully consistent."
+}

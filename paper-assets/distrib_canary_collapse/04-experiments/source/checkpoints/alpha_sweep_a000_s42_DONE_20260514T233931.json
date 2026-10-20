@@ -1,0 +1,70 @@
+{
+  "exp_id": "alpha_sweep_a000_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:01:37.470Z",
+    "updated_at": "2026-05-14T23:39:31.317Z",
+    "spec": {
+      "hypothesis": "α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染",
+      "model_name": "EleutherAI/pythia-410m",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse",
+      "data_count": 716506,
+      "seed": 42,
+      "synthetic_ratio": 0,
+      "num_generations": 10,
+      "steps_per_gen": 5000,
+      "command": "alpha_sweep",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "46716",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T23:36:35.414Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T23:36:36.221435+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log",
+    "metrics": {
+      "gen0": {
+        "perplexity": 26.95,
+        "token_entropy": 3.234,
+        "ece": 0.0108,
+        "distinct_1": 0.098,
+        "distinct_2": 0.518,
+        "distinct_3": 0.813,
+        "effective_rank": 46.61
+      },
+      "gen10": {
+        "perplexity": 21.11,
+        "token_entropy": 3.069,
+        "ece": 0.0164,
+        "distinct_1": 0.085,
+        "distinct_2": 0.467,
+        "distinct_3": 0.776,
+        "effective_rank": 44.82
+      },
+      "ppl_trend": "stable (26.95 → 21.11, -21.7%)",
+      "entropy_trend": "stable (3.234 → 3.069, -5.1%)",
+      "ece_trend": "stable (0.011 → 0.016)"
+    },
+    "completed_at": "2026-05-14T23:39:04.310Z"
+  },
+  "timestamp": "2026-05-14T23:39:31.346733+00:00",
+  "trigger": "update_registry"
+}

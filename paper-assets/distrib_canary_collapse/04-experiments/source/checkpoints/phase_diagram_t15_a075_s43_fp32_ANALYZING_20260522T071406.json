@@ -1,0 +1,34 @@
+{
+  "exp_id": "phase_diagram_t15_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:01:02.772Z",
+    "updated_at": "2026-05-22T07:14:06.218Z",
+    "hypothesis": "T=15 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(15)≈0.304. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=15 and seed robustness of high-α detection.",
+    "parent": "phase_diagram_t15_a075_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "checkpoint_source": "phase_diagram_t15_a075_s42_fp32_v2 (cross-seed, s42=6/8 D102 confirmed)",
+      "eval_data": "data/wikitext103_5k",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "582768",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s43_fp32.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T07:14:04.492Z"
+    }
+  },
+  "timestamp": "2026-05-22T07:14:06.987272+00:00",
+  "trigger": "update_registry"
+}

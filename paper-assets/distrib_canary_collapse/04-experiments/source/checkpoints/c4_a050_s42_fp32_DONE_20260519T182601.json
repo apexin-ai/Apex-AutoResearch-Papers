@@ -1,0 +1,73 @@
+{
+  "exp_id": "c4_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:57.965Z",
+    "updated_at": "2026-05-19T18:26:00.846Z",
+    "hypothesis": "bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone",
+    "parent": "alpha_sweep_c4_a050_s42",
+    "spec": {
+      "data_path": "data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:5",
+    "pid": "152615",
+    "log_path": "~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-19T18:20:17.068Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:20:20.777203+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg_fwd_fdr_sig": "8/8",
+      "permg_rev_fdr_sig": "7/8",
+      "consensus_K4_3sigma": "8/8",
+      "consensus_K3_3sigma": "8/8",
+      "threshold_onset_3sigma": "8/8",
+      "naive_xcorr_sig": "8/8",
+      "diff_xcorr_fdr_sig": "8/8",
+      "ty_granger_sig": "4/8",
+      "mmct_detection_rate": 1,
+      "drift_token_entropy_pct": -47.99,
+      "drift_distinct1_pct": -9.78,
+      "drift_distinct2_pct": -15.72,
+      "drift_distinct3_pct": -17.75,
+      "drift_perplexity_pct": 2931.59,
+      "drift_mauve_pct": -54.25,
+      "drift_ece_pct": 3103.74,
+      "gen0_token_entropy": 3.109,
+      "gen10_token_entropy": 1.617,
+      "gen0_perplexity": 24.01,
+      "gen10_perplexity": 727.95,
+      "gen0_mauve": 0.829,
+      "gen10_mauve": 0.379,
+      "gen0_ece": 0.012,
+      "gen10_ece": 0.39,
+      "n_generations": 11,
+      "precision": "fp32",
+      "bf16_comparison": "PermG fwd 0/8→8/8, precision artifact confirmed"
+    },
+    "checkpoint_path": "westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T18:26:00.846Z"
+  },
+  "timestamp": "2026-05-19T18:26:01.101134+00:00",
+  "trigger": "update_registry"
+}

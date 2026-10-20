@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "0424b1be36e0b94aa2c4",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops t10a060 kill d102",
+  "task_key": "worker_ops_t10a060-kill-d102_20260522T191507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a060-kill-d102_20260522T191507.log",
+    "occurrence": 1,
+    "bytes": 1056858,
+    "sha256": "5bb0ccdc91dc4203c139fd62b63a8a73f6a84886ab1a9f58ab797ecb44248fb2"
+  },
+  "statistics": {
+    "messages": 397,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 151,
+      "tool_call": 108,
+      "tool_result": 108,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "0424b1be36e0b94aa2c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0424b1be36e0b94aa2c4-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "0424b1be36e0b94aa2c4-part-0002.json",
+          "message_count": 22
+        },
+        {
+          "path": "0424b1be36e0b94aa2c4-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-t10a060-kill-d102.md"
+}

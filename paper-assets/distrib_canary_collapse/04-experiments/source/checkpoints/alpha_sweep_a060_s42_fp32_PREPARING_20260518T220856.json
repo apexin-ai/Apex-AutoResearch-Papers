@@ -1,0 +1,42 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:56:18.971Z",
+    "updated_at": "2026-05-18T22:08:55.824Z",
+    "hypothesis": "fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32.log",
+      "submitted_at": "2026-05-18T21:56:48.507Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T22:07:36.660Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T22:07:40.036683+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T22:08:56.085609+00:00",
+  "trigger": "update_registry"
+}

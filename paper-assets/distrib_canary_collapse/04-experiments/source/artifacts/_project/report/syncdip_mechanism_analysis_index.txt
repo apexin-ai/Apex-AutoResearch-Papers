@@ -1,0 +1,1 @@
+Track B+C results. PDF files on westd-17855: artifacts/syncdip_mechanism_analysis.pdf, artifacts/mauve_variance_analysis.pdf. JSON summaries: artifacts/syncdip_mechanism_summary.json, artifacts/mauve_variance_summary.json

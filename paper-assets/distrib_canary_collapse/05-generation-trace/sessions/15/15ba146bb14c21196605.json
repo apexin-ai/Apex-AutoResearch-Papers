@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ba146bb14c21196605",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis failure mode smollm3 14b",
+  "task_key": "worker_analysis_failure_mode_smollm3_14b_20260520T080348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_failure_mode_smollm3_14b_20260520T080348_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "598dd04194e7c6ceae3e0f978be1ee6e5f228433604e07205b8f5aaf86837f99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**不是 scale 效应。** Pythia-6.9B (7/8 sig) 和 Qwen-0.8B (8/8 sig) 表明大模型可以保留 MMCT 信号。两个\"失败\"模型有各自不同的根因：\n\n1. **SmolLM3-3B — Entropy-Diversity Decoupling**：entropy 轨迹呈强 U 型（gen 0→2 骤降至 0.94，gen 10 反弹至 1.70），与 distinct_1 的单调下降走向相反，破坏了 Granger 因果关系。ECE 通道完好 (3/3 distinct pairs 显著)。\n\n2. **Pythia-1.4B s42 — Entropy 早期饱和 + 种子不幸**：entropy gen 2 后锁定在 ~1.28 几乎不动，变异量被噪声淹没。但 s43 种子 robust_pairs=7，证明非系统性问题。\n\n3. **Mauve 跨所有模型系统性弱**（Qwen-0.8B 除外），根因是动态范围仅 ~0.01、T=11 统计功效不足。\n\n报告已保存至 `artifacts/failure_mode_analysis/report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-failure-mode-smollm3-14b.md"
+}

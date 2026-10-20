@@ -1,0 +1,550 @@
+{
+  "pipeline_version": "v1",
+  "date": "2026-05-15",
+  "data_sources": [
+    "d028_fpr_null_control.json",
+    "d028_fpr_null_control_full.json",
+    "cross_alpha_v6.json",
+    "cross_alpha_v4.json",
+    "mvp/analysis/method_ablation.json",
+    "mvp/analysis/consensus/consensus_classification.json"
+  ],
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Naive Correlation Scan",
+      "description": "Undifferenced Pearson correlation, no multiple-testing correction",
+      "role_in_pipeline": "Baseline showing that raw correlation flags all pairs as significant regardless of true causal structure",
+      "data_framework": "d028 per-method FPR analysis (8 unidirectional canary->downstream pairs, seed 42)",
+      "summary": {
+        "total_pairs_per_alpha": 8,
+        "sig_rate_all_alphas": 1.0,
+        "eliminated": 0,
+        "interpretation": "Naive Pearson is uninformative: 100% sig rate even at null control"
+      },
+      "per_alpha": {
+        "0.00": {
+          "input": 8,
+          "sig": 8,
+          "eliminated": 0,
+          "sig_rate": 1.0,
+          "note": "Null control (zero canary injection) - all 8 significant = 100% FPR"
+        },
+        "0.25": {
+          "input": 8,
+          "sig": 8,
+          "eliminated": 0,
+          "sig_rate": 1.0
+        },
+        "0.50": {
+          "input": 8,
+          "sig": 8,
+          "eliminated": 0,
+          "sig_rate": 1.0
+        },
+        "1.00": {
+          "input": 8,
+          "sig": 8,
+          "eliminated": 0,
+          "sig_rate": 1.0,
+          "note": "4-seed data: 32/32 per-seed tests also all significant"
+        }
+      },
+      "case_studies": [
+        {
+          "case": "alpha=0.0 null control: 100% false positive rate",
+          "details": "At alpha=0.0 (zero canary injection), naive Pearson reports 8/8 pairs significant (p < 0.05). Textbook spurious regression: shared non-stationarity in iterative training drives co-movement absent any causal link.",
+          "data": {
+            "pairs": [
+              "token_entropy->distinct_1",
+              "token_entropy->distinct_2",
+              "token_entropy->distinct_3",
+              "token_entropy->perplexity",
+              "ece->distinct_1",
+              "ece->distinct_2",
+              "ece->distinct_3",
+              "ece->perplexity"
+            ],
+            "p_values_raw": [0.002496, 0.006055, 0.007303, 0.0, 0.005344, 0.009665, 0.022381, 0.018795],
+            "p_values_fdr": [0.009984, 0.011685, 0.011685, 0.0, 0.011685, 0.012887, 0.022381, 0.02148],
+            "all_significant": true,
+            "all_significant_after_fdr": true
+          }
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "First-Differencing",
+      "description": "First-differenced cross-correlation removes shared non-stationary trends",
+      "role_in_pipeline": "Eliminates spurious associations driven by common training trends, but retains residual FP from correlated innovations",
+      "data_framework": "d028 per-method FPR analysis (8 unidirectional pairs, seed 42)",
+      "summary": {
+        "null_control_fpr_raw": 0.5,
+        "null_control_fpr_fdr": 0.375,
+        "reduction_from_naive": "Eliminates 0-75% of naive-significant pairs depending on alpha"
+      },
+      "per_alpha": {
+        "0.00": {
+          "input": 8,
+          "sig_raw": 4,
+          "sig_fdr": 3,
+          "eliminated_from_naive": 4,
+          "fpr_raw": 0.5,
+          "fpr_fdr": 0.375,
+          "note": "Still 50% FPR raw - differencing alone is insufficient"
+        },
+        "0.25": {
+          "input": 8,
+          "sig_raw": 2,
+          "sig_fdr": 2,
+          "eliminated_from_naive": 6
+        },
+        "0.50": {
+          "input": 8,
+          "sig_raw": 8,
+          "sig_fdr": 8,
+          "eliminated_from_naive": 0,
+          "note": "Signal strong enough to survive differencing"
+        },
+        "1.00": {
+          "input": 8,
+          "sig_raw": 8,
+          "sig_fdr": 8,
+          "eliminated_from_naive": 0,
+          "note": "4-seed: 32/32 per-seed sig raw, 32/32 sig FDR"
+        }
+      },
+      "null_control_pair_detail": {
+        "pairs": [
+          "token_entropy->distinct_1",
+          "token_entropy->distinct_2",
+          "token_entropy->distinct_3",
+          "token_entropy->perplexity",
+          "ece->distinct_1",
+          "ece->distinct_2",
+          "ece->distinct_3",
+          "ece->perplexity"
+        ],
+        "p_values_raw": [0.000157, 0.00325, 0.044726, 2e-06, 0.051439, 0.192837, 0.202654, 0.096018],
+        "p_values_fdr": [0.000628, 0.008667, 0.082302, 1.6e-05, 0.082302, 0.202654, 0.202654, 0.128024],
+        "sig_raw_mask": [true, true, true, true, false, false, false, false],
+        "eliminated_pairs": ["ece->distinct_1", "ece->distinct_2", "ece->distinct_3", "ece->perplexity"],
+        "surviving_fp_pairs": ["token_entropy->distinct_1", "token_entropy->distinct_2", "token_entropy->distinct_3", "token_entropy->perplexity"],
+        "note": "Differencing removes all ECE->downstream spurious correlations at null but leaves all 4 token_entropy->downstream as residual FP"
+      },
+      "case_studies": [
+        {
+          "case": "alpha=0.0: differenced FPR ~50% (D028 finding)",
+          "details": "At null control, differencing reduces naive 8/8 sig to 4/8 sig (FPR=50% raw, 37.5% FDR). Surviving FP are all token_entropy->downstream. ECE->downstream spurious links are successfully eliminated.",
+          "data": {
+            "naive_sig": 8,
+            "differenced_sig": 4,
+            "reduction_pct": 50.0,
+            "eliminated_category": "ECE->downstream (4 pairs)",
+            "surviving_fp_category": "token_entropy->downstream (4 pairs)"
+          }
+        },
+        {
+          "case": "alpha=0.25: differencing eliminates 6/8 pairs",
+          "details": "At low canary fraction (25%), differencing removes most naive associations, leaving only 2/8 significant. Shows differencing is more effective at low signal-to-noise."
+        },
+        {
+          "case": "Method ablation at alpha=1.0: differenced 14/16 sig vs naive 16/16",
+          "details": "At full canary injection with 4 seeds, differencing eliminates 2/16 pairs that naive finds significant. Source: method_ablation.json summary.",
+          "data": {
+            "naive_significant": 16,
+            "differenced_significant": 14,
+            "eliminated_count": 2,
+            "source": "method_ablation.json"
+          }
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Permutation Granger + BH FDR",
+      "description": "Non-parametric Granger causality (differenced series, 5000 permutations) with Benjamini-Hochberg FDR correction across all tests",
+      "role_in_pipeline": "Tests directional predictability beyond autocorrelation; FDR controls family-wise false discovery rate",
+      "data_framework": "v6 cross-alpha (5 alphas x 8 bidirectional directions = 40 tests, BH-corrected together)",
+      "summary_v6": {
+        "total_tests": 40,
+        "raw_sig": 14,
+        "fdr_sig": 6,
+        "eliminated_by_fdr": 8,
+        "raw_sig_rate": 0.35,
+        "fdr_sig_rate": 0.15
+      },
+      "summary_v4": {
+        "total_tests": 32,
+        "raw_sig": 10,
+        "fdr_sig": 1,
+        "eliminated_by_fdr": 9,
+        "fdr_sig_rate": 0.03125,
+        "only_surviving": "ECE->d1 @ alpha=1.0 (p_fdr=0.0192)",
+        "note": "4-alpha version (no alpha=0.75) for robustness comparison"
+      },
+      "null_control_validation": {
+        "alpha": 0.0,
+        "raw_sig": 0,
+        "fdr_sig": 0,
+        "fpr": 0.0,
+        "note": "Permutation Granger achieves 0% FPR at null control (cf. naive 100%, differenced 50%)",
+        "p_values_raw": [0.058941, 0.093906, 0.080919, 0.67033, 0.955045, 0.549451, 0.350649, 0.365634]
+      },
+      "per_alpha_v6": {
+        "0.00": {
+          "raw_sig": 0,
+          "fdr_sig": 0,
+          "note": "All 8 directions correctly non-significant at null control"
+        },
+        "0.25": {
+          "raw_sig": 3,
+          "fdr_sig": 0,
+          "raw_sig_pairs": [
+            {"direction": "entropy->d1", "p_raw": 0.0150, "p_fdr": 0.0667},
+            {"direction": "d1->entropy", "p_raw": 0.0236, "p_fdr": 0.0858},
+            {"direction": "d2->entropy", "p_raw": 0.0498, "p_fdr": 0.1285}
+          ],
+          "note": "All 3 raw-sig eliminated by FDR; includes 2 reverse directions"
+        },
+        "0.50": {
+          "raw_sig": 2,
+          "fdr_sig": 0,
+          "raw_sig_pairs": [
+            {"direction": "ECE->d1", "p_raw": 0.0190, "p_fdr": 0.0760},
+            {"direction": "ECE->d2", "p_raw": 0.0394, "p_fdr": 0.1285}
+          ],
+          "note": "Both raw-sig eliminated by FDR"
+        },
+        "0.75": {
+          "raw_sig": 4,
+          "fdr_sig": 3,
+          "raw_sig_pairs": [
+            {"direction": "entropy->d1", "p_raw": 0.0106, "p_fdr": 0.0540, "fdr_sig": false},
+            {"direction": "ECE->d1", "p_raw": 0.0038, "p_fdr": 0.0460, "fdr_sig": true, "f_stat": 443.38, "effect_size_f2": 73.90},
+            {"direction": "entropy->d2", "p_raw": 0.0072, "p_fdr": 0.0480, "fdr_sig": true},
+            {"direction": "ECE->d2", "p_raw": 0.0032, "p_fdr": 0.0460, "fdr_sig": true}
+          ]
+        },
+        "1.00": {
+          "raw_sig": 5,
+          "fdr_sig": 3,
+          "raw_sig_pairs": [
+            {"direction": "entropy->d1", "p_raw": 0.0060, "p_fdr": 0.0480, "fdr_sig": true},
+            {"direction": "ECE->d1", "p_raw": 0.0006, "p_fdr": 0.0240, "fdr_sig": true},
+            {"direction": "entropy->d2", "p_raw": 0.0108, "p_fdr": 0.0540, "fdr_sig": false},
+            {"direction": "ECE->d2", "p_raw": 0.0046, "p_fdr": 0.0460, "fdr_sig": true},
+            {"direction": "d2->ECE", "p_raw": 0.0430, "p_fdr": 0.1285, "fdr_sig": false}
+          ]
+        }
+      },
+      "fdr_surviving_pairs": [
+        {"alpha": 0.75, "direction": "ECE->d1", "p_raw": 0.0038, "p_fdr": 0.0460, "f_stat": 443.38, "effect_size_f2": 73.90},
+        {"alpha": 0.75, "direction": "entropy->d2", "p_raw": 0.0072, "p_fdr": 0.0480},
+        {"alpha": 0.75, "direction": "ECE->d2", "p_raw": 0.0032, "p_fdr": 0.0460},
+        {"alpha": 1.00, "direction": "entropy->d1", "p_raw": 0.0060, "p_fdr": 0.0480},
+        {"alpha": 1.00, "direction": "ECE->d1", "p_raw": 0.0006, "p_fdr": 0.0240},
+        {"alpha": 1.00, "direction": "ECE->d2", "p_raw": 0.0046, "p_fdr": 0.0460}
+      ],
+      "fdr_eliminated_pairs": [
+        {"alpha": 0.25, "direction": "entropy->d1", "p_raw": 0.0150, "p_fdr": 0.0667},
+        {"alpha": 0.25, "direction": "d1->entropy", "p_raw": 0.0236, "p_fdr": 0.0858},
+        {"alpha": 0.25, "direction": "d2->entropy", "p_raw": 0.0498, "p_fdr": 0.1285},
+        {"alpha": 0.50, "direction": "ECE->d1", "p_raw": 0.0190, "p_fdr": 0.0760},
+        {"alpha": 0.50, "direction": "ECE->d2", "p_raw": 0.0394, "p_fdr": 0.1285},
+        {"alpha": 0.75, "direction": "entropy->d1", "p_raw": 0.0106, "p_fdr": 0.0540},
+        {"alpha": 1.00, "direction": "entropy->d2", "p_raw": 0.0108, "p_fdr": 0.0540},
+        {"alpha": 1.00, "direction": "d2->ECE", "p_raw": 0.0430, "p_fdr": 0.1285}
+      ],
+      "case_studies": [
+        {
+          "case": "v6: FDR reduces raw 14/40 to 6/40 significant tests",
+          "details": "Of 40 tests (5 alphas x 8 directions), 14 show raw p<0.05 but only 6 survive BH correction. All 6 survivors are at high-canary regimes (alpha>=0.75) and involve entropy/ECE -> diversity directions only. No reverse (downstream->canary) directions survive.",
+          "data": {
+            "raw_sig_by_alpha": [0, 3, 2, 4, 5],
+            "fdr_sig_by_alpha": [0, 0, 0, 3, 3],
+            "alpha_labels": [0.0, 0.25, 0.5, 0.75, 1.0]
+          }
+        },
+        {
+          "case": "v4 vs v6: adding alpha=0.75 changes FDR landscape",
+          "details": "v4 (32 tests): raw 10/32 -> FDR 1/32 (only ECE->d1 @ alpha=1.0 survives). v6 (40 tests): raw 14/40 -> FDR 6/40. Adding alpha=0.75 contributes 4 raw-sig tests (3 survive FDR), and redistributed BH thresholds allow 2 more alpha=1.0 tests to pass.",
+          "data": {
+            "v4": {"tests": 32, "raw_sig": 10, "fdr_sig": 1},
+            "v6": {"tests": 40, "raw_sig": 14, "fdr_sig": 6}
+          }
+        },
+        {
+          "case": "0% FPR at null control",
+          "details": "At alpha=0.0, permutation Granger correctly rejects all 8 directions (0/8 sig), while naive gives 100% FP and differenced gives 50% FP. This validates the method's specificity."
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "Multi-seed Replication",
+      "description": "Cross-seed consistency check: requires >=4/5 methods significant across >=3/4 independent seeds",
+      "role_in_pipeline": "Guards against seed-specific artifacts; quantifies single-seed overestimation",
+      "data_framework": "consensus_classification (alpha=1.0, 4 seeds: 42/43/44/45, 16 canary->downstream pairs, 5 methods)",
+      "data_availability": {
+        "alpha_1.0": "Complete (4 seeds)",
+        "alpha_0.25_0.50": "Pending D026 multi-seed experiments",
+        "alpha_0.75": "Single-seed only (method agreement, no seed replication)"
+      },
+      "summary": {
+        "total_pairs_tested": 16,
+        "single_seed_robust_alpha075": 11,
+        "multi_seed_robust_alpha100": 6,
+        "eliminated_by_multi_seed": 5,
+        "overestimation_rate": 0.45,
+        "note": "Single-seed overestimates robustness by ~45% (11 vs 6)"
+      },
+      "consensus_params": {
+        "method_threshold": ">=4/5 methods",
+        "seed_threshold": ">=3/4 seeds",
+        "methods": ["naive_pearson", "differenced_xcorr", "threshold_onset", "toda_yamamoto", "permutation_granger"]
+      },
+      "robust_pairs_alpha100": [
+        {
+          "pair": "token_entropy->distinct_1",
+          "n_sig_methods": 5,
+          "method_verdicts": [true, true, true, true, true],
+          "seed_counts": [4, 4, 4, 4, 4],
+          "note": "Perfect agreement: 5/5 methods, 4/4 seeds each"
+        },
+        {
+          "pair": "token_entropy->distinct_2",
+          "n_sig_methods": 5,
+          "method_verdicts": [true, true, true, true, true],
+          "seed_counts": [4, 4, 4, 4, 4]
+        },
+        {
+          "pair": "token_entropy->distinct_3",
+          "n_sig_methods": 5,
+          "method_verdicts": [true, true, true, true, true],
+          "seed_counts": [4, 4, 4, 4, 3],
+          "note": "perm_granger 3/4 seeds (still passes threshold)"
+        },
+        {
+          "pair": "ece->distinct_1",
+          "n_sig_methods": 4,
+          "method_verdicts": [true, true, true, false, true],
+          "seed_counts": [4, 4, 4, 2, 4],
+          "note": "TY fails (2/4 seeds) but other 4 methods pass"
+        },
+        {
+          "pair": "ece->distinct_2",
+          "n_sig_methods": 4,
+          "method_verdicts": [true, true, true, false, true],
+          "seed_counts": [4, 4, 4, 2, 4],
+          "note": "TY fails (2/4 seeds)"
+        },
+        {
+          "pair": "ece->distinct_3",
+          "n_sig_methods": 4,
+          "method_verdicts": [true, true, true, false, true],
+          "seed_counts": [4, 4, 4, 2, 4],
+          "note": "TY fails (2/4 seeds)"
+        }
+      ],
+      "eliminated_pairs_alpha100": [
+        {
+          "pair": "token_entropy->perplexity",
+          "n_sig_methods": 3,
+          "method_verdicts": [true, true, true, false, false],
+          "seed_counts": [4, 4, 4, 0, 0],
+          "elimination_reason": "threshold_onset 0/4 seeds, perm_granger 0/4 seeds"
+        },
+        {
+          "pair": "ece->perplexity",
+          "n_sig_methods": 3,
+          "method_verdicts": [true, true, true, false, false],
+          "seed_counts": [4, 4, 4, 0, 0],
+          "elimination_reason": "TY 0/4 seeds, perm_granger 0/4 seeds"
+        },
+        {
+          "pair": "self_bleu->perplexity",
+          "n_sig_methods": 2,
+          "method_verdicts": [true, false, true, false, false],
+          "seed_counts": [4, 2, 3, 0, 0],
+          "elimination_reason": "Only naive + threshold pass; differenced, TY, perm all fail"
+        },
+        {
+          "pair": "self_bleu->distinct_1",
+          "n_sig_methods": 1,
+          "method_verdicts": [true, false, false, false, false],
+          "seed_counts": [4, 2, 0, 1, 1],
+          "elimination_reason": "Only naive passes"
+        },
+        {
+          "pair": "self_bleu->distinct_2",
+          "n_sig_methods": 2,
+          "method_verdicts": [true, true, false, false, false],
+          "seed_counts": [4, 3, 0, 1, 1],
+          "elimination_reason": "Only naive + differenced pass"
+        },
+        {
+          "pair": "self_bleu->distinct_3",
+          "n_sig_methods": 2,
+          "method_verdicts": [true, true, false, false, false],
+          "seed_counts": [4, 3, 0, 1, 1],
+          "elimination_reason": "Only naive + differenced pass"
+        },
+        {
+          "pair": "effective_rank->perplexity",
+          "n_sig_methods": 2,
+          "method_verdicts": [true, true, false, false, false],
+          "seed_counts": [3, 4, 0, 0, 0],
+          "elimination_reason": "Only naive + differenced; no causal methods pass"
+        },
+        {
+          "pair": "effective_rank->distinct_1",
+          "n_sig_methods": 2,
+          "method_verdicts": [true, true, false, false, false],
+          "seed_counts": [4, 3, 0, 1, 1],
+          "elimination_reason": "Only naive + differenced pass"
+        },
+        {
+          "pair": "effective_rank->distinct_2",
+          "n_sig_methods": 1,
+          "method_verdicts": [true, false, false, false, false],
+          "seed_counts": [4, 2, 0, 1, 0],
+          "elimination_reason": "Only naive passes"
+        },
+        {
+          "pair": "effective_rank->distinct_3",
+          "n_sig_methods": 1,
+          "method_verdicts": [true, false, false, false, false],
+          "seed_counts": [4, 2, 0, 1, 0],
+          "elimination_reason": "Only naive passes"
+        }
+      ],
+      "single_seed_overestimation": {
+        "alpha_075_single_seed": {
+          "mode": "method_agreement_only (>=4/5 methods, 1 seed)",
+          "robust_count": 11,
+          "robust_pairs": [
+            "token_entropy->perplexity",
+            "token_entropy->distinct_1",
+            "token_entropy->distinct_2",
+            "token_entropy->distinct_3",
+            "ece->perplexity",
+            "ece->distinct_1",
+            "ece->distinct_2",
+            "ece->distinct_3",
+            "effective_rank->distinct_1",
+            "effective_rank->distinct_2",
+            "effective_rank->distinct_3"
+          ]
+        },
+        "alpha_100_multi_seed": {
+          "mode": "full_consensus (>=4/5 methods, >=3/4 seeds)",
+          "robust_count": 6,
+          "robust_pairs": [
+            "token_entropy->distinct_1",
+            "token_entropy->distinct_2",
+            "token_entropy->distinct_3",
+            "ece->distinct_1",
+            "ece->distinct_2",
+            "ece->distinct_3"
+          ]
+        },
+        "eliminated_by_multi_seed": {
+          "count": 5,
+          "pairs": [
+            "token_entropy->perplexity",
+            "ece->perplexity",
+            "effective_rank->distinct_1",
+            "effective_rank->distinct_2",
+            "effective_rank->distinct_3"
+          ],
+          "note": "These 5 pairs appeared ROBUST with single-seed method agreement at alpha=0.75 but fail the stricter multi-seed criterion at alpha=1.0"
+        }
+      },
+      "cross_alpha_regime_summary": {
+        "source": "v6 consensus comparison",
+        "per_alpha_robust_count": {
+          "0.00": 0,
+          "0.25": 1,
+          "0.50": 0,
+          "0.75": 11,
+          "1.00": 6
+        },
+        "regime_dependent_pairs": 11,
+        "stable_pairs": 5,
+        "note": "Regime comparison uses single-seed method agreement for alpha<1.0 and 4-seed full consensus for alpha=1.0"
+      },
+      "constraint_c001": "DO NOT cite TY cross-alpha trends from Phase 2 single-seed data. D026 multi-seed needed to confirm TY non-monotonic pattern (0%->62.5%->0%->59.4%) is reproducible vs noise.",
+      "pending": "D026 multi-seed experiments for alpha=0.25/0.50 still in progress",
+      "case_studies": [
+        {
+          "case": "Single-seed overestimation: alpha=0.75 (11 robust) vs alpha=1.0 multi-seed (6 robust)",
+          "details": "At alpha=0.75 with one seed, method agreement alone marks 11/16 pairs ROBUST. At alpha=1.0 with 4-seed consensus, only 6/16 survive. The 5 eliminated pairs appeared robust in seed 42 but fail cross-seed replication: token_entropy->ppl (threshold_onset/perm_granger 0/4 seeds), ece->ppl (TY/perm_granger 0/4), effective_rank->d1/d2/d3 (only 1-2 seeds for causal methods)."
+        },
+        {
+          "case": "token_entropy->perplexity: single-seed ROBUST, multi-seed spurious",
+          "details": "At alpha=0.75 (seed 42), token_entropy->ppl achieves 4/5 method agreement -> ROBUST. At alpha=1.0 across 4 seeds, only 3/5 methods pass: threshold_onset sig in 0/4 seeds (onset detection unreliable), perm_granger sig in 0/4 seeds. Classification: NOT ROBUST.",
+          "data": {
+            "alpha_075_methods": 4,
+            "alpha_100_methods": 3,
+            "alpha_100_seed_counts": [4, 4, 4, 0, 0],
+            "failing_methods": ["threshold_onset (0/4 seeds)", "permutation_granger (0/4 seeds)"]
+          }
+        }
+      ]
+    }
+  ],
+  "pipeline_funnels": {
+    "funnel_A_null_control": {
+      "description": "Pipeline filtering at alpha=0.0 (null control) - all significance is FP",
+      "framework": "d028, 8 canary->downstream pairs",
+      "stages": [
+        {"stage": 1, "name": "Naive", "sig": 8, "eliminated": 0, "fpr": 1.0},
+        {"stage": 2, "name": "Differenced", "sig": 4, "eliminated": 4, "fpr": 0.5},
+        {"stage": 3, "name": "Perm Granger", "sig": 0, "eliminated": 4, "fpr": 0.0}
+      ],
+      "note": "Pipeline correctly rejects all FP at null control by Stage 3"
+    },
+    "funnel_B_cross_alpha_granger": {
+      "description": "Granger + FDR filtering across all alphas",
+      "framework_v6": {
+        "total_tests": 40,
+        "raw_sig": 14,
+        "fdr_sig": 6,
+        "note": "5 alphas x 8 bidirectional directions"
+      },
+      "framework_v4": {
+        "total_tests": 32,
+        "raw_sig": 10,
+        "fdr_sig": 1,
+        "note": "4 alphas x 8 bidirectional directions"
+      }
+    },
+    "funnel_C_method_consensus": {
+      "description": "Full pipeline at alpha=1.0 with 4-seed consensus",
+      "framework": "method_ablation, 16 canary->downstream pairs, 4 seeds",
+      "stages": [
+        {"stage": 1, "name": "Naive", "sig": 16, "eliminated": 0},
+        {"stage": 2, "name": "Differenced", "sig": 14, "eliminated": 2},
+        {"stage": 3, "name": "Perm Granger (>=3/4 seeds)", "sig": 6, "eliminated": 8},
+        {"stage": 4, "name": "Full Consensus (>=4/5 methods, >=3/4 seeds)", "sig": 6, "eliminated": 0}
+      ],
+      "note": "At alpha=1.0, Stages 3 and 4 converge to the same 6 pairs. Multi-seed replication's main value is at lower alphas where single-seed overestimates."
+    }
+  },
+  "final_robust_pairs": {
+    "count": 6,
+    "confirmed_at": "alpha=1.0, 4-seed full consensus",
+    "pairs": [
+      {"canary": "token_entropy", "downstream": "distinct_1", "methods": "5/5", "interpretation": "Entropy collapse Granger-causes unigram diversity loss"},
+      {"canary": "token_entropy", "downstream": "distinct_2", "methods": "5/5", "interpretation": "Entropy collapse Granger-causes bigram diversity loss"},
+      {"canary": "token_entropy", "downstream": "distinct_3", "methods": "5/5", "interpretation": "Entropy collapse Granger-causes trigram diversity loss"},
+      {"canary": "ece", "downstream": "distinct_1", "methods": "4/5", "interpretation": "Calibration degradation Granger-causes unigram diversity loss"},
+      {"canary": "ece", "downstream": "distinct_2", "methods": "4/5", "interpretation": "Calibration degradation Granger-causes bigram diversity loss"},
+      {"canary": "ece", "downstream": "distinct_3", "methods": "4/5", "interpretation": "Calibration degradation Granger-causes trigram diversity loss"}
+    ],
+    "pattern": "Both canary metrics (entropy, ECE) predict all 3 diversity n-grams but NOT perplexity. self_bleu and effective_rank fail as canaries.",
+    "pending": "D026 multi-seed verification at alpha=0.25/0.50 to confirm dose-response curve"
+  }
+}

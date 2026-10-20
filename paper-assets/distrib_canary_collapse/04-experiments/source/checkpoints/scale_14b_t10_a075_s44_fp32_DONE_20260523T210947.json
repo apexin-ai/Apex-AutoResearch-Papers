@@ -1,0 +1,33 @@
+{
+  "exp_id": "scale_14b_t10_a075_s44_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:18:30.361Z",
+    "updated_at": "2026-05-23T21:09:47.476Z",
+    "hypothesis": "Third-seed (s44) replication of 1.4B T=10 α=0.75: s42 shows PermG=5/8, s43 pending. If s44 reaches 5-6/8, confirms high-α detection robustness at 1.4B scale.",
+    "parent": "scale_14b_t10_a075_s42_fp32_v2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing",
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "pid": 865467,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 44,
+      "precision": "fp32",
+      "log_path": "results/phase_diagram/t10_a075_s44_fp32_14b.log",
+      "checkpoint_path": "results/phase_diagram/t10_a075_s44_fp32_14b",
+      "checkpoint_source": "scale_14b_t10_a075_s42_fp32_v2",
+      "eval_data": "data/wikitext103_5k"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T21:09:47.476Z"
+  },
+  "timestamp": "2026-05-23T21:09:47.914034+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp_v3_rep43",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:25:42.195Z",
+    "updated_at": "2026-05-14T06:25:46.871Z",
+    "spec": {
+      "hypothesis": "至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性",
+      "model_name": "EleutherAI/pythia-410m",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "seed": 43,
+      "server": "autodl-rtx6000",
+      "gpu": "cuda:1",
+      "synthetic_ratio": 1,
+      "num_generations": 10,
+      "steps_per_gen": 5000,
+      "n_prompts": 5000,
+      "parent": "mvp_v2_rep43"
+    }
+  },
+  "timestamp": "2026-05-14T06:25:46.885895+00:00",
+  "trigger": "update_registry"
+}

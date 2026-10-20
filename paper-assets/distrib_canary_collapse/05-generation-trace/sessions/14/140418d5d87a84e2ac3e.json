@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "140418d5d87a84e2ac3e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure regime map v2 fix",
+  "task_key": "worker_figure_regime-map-v2-fix_20260515T135541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_regime-map-v2-fix_20260515T135541_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "70e3f1da92aa01a848919da2a9a1d4ef75b865ef1cb6ee06d67a61f19dacae59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`regime_map_fdr.pdf` 已用 `cross_alpha_v6.json` 的真实 FDR p-value 重新生成，artifact 已注册为 `regime_map_fdr_v2`（`art_20260515_06ffe6`）。\n\n修正摘要：\n- α=1.0 的 4 个方向 p_fdr 从硬编码 0.001 修正为 0.024–0.054\n- entropy→d2 @ α=1.0（p=0.054）和 entropy→d1 @ α=0.75（p=0.054）正确落在阈值线下方\n- 所有 5 个 α × 4 个方向均有数据点（无 NaN）\n- consensus_heatmap.pdf 未改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-regime-map-v2-fix.md"
+}

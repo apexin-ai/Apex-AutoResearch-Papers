@@ -1,0 +1,41 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:54:58.834Z",
+    "updated_at": "2026-05-19T00:24:45.562Z",
+    "hypothesis": "SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s42_fp32",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "399348",
+      "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v2.log",
+      "submitted_at": "2026-05-18T21:55:14.219Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 42,
+      "wall_clock_seconds": 8971.3,
+      "gpu_hours": 2.49
+    },
+    "conclusion": "failed",
+    "notes": "D080: torch_dtype=None → loaded as bfloat16 (native), not fp32 as D079 requires. Data invalid. Kill and restart with fixed code.",
+    "reproduce": {
+      "finished_at": "2026-05-19T00:24:43.576Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-19T00:24:45.562Z"
+  },
+  "timestamp": "2026-05-19T00:24:45.712605+00:00",
+  "trigger": "update_registry"
+}

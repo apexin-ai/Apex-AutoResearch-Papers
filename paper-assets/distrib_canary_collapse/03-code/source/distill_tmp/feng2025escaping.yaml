@@ -1,0 +1,28 @@
+paper_key: "feng2025escaping"
+title: "Escaping Model Collapse via Synthetic Data Verification"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines: ["unguided self-consuming loop"]
+  metrics:
+    - {name: "model collapse rate", direction: "lower_better"}
+    - {name: "improvement/convergence bounds", direction: "N/A"}
+  datasets:
+    - {name: "MNIST", size: "60K", task: "VAE experiments"}
+    - {name: "XSUM", size: "N/A", task: "LM fine-tuning"}
+  ablation_dimensions:
+    - verifier_reliability
+    - training_iteration
+  training_recipe: {models: "linear regression (theory), VAE, SmolLM2-135M"}
+  method_family: "verifier_guided_retraining"
+
+positioning:
+  core_claim: "External verification (human/superior model) prevents collapse short-term, but unless verifier is perfectly reliable, gains plateau and converge toward verifier's 'knowledge center'."
+  key_results: "Near-term improvement with verifier; long-term convergence to verifier limit"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

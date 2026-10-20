@@ -1,0 +1,35 @@
+5-Method Lead-Lag Analysis Summary
+Alpha=0.75, Seed=42, T=15, Generations=16
+Model: EleutherAI/pythia-410m, fp32
+============================================================
+
+Robust pairs (>=3/5 methods agree): 6/8
+
+Per-method forward significance:
+  Perm Granger (FDR): 6/8
+  Diff XCorr (FDR):   7/8
+  Threshold Onset:    4/8
+  TY Granger:         4/8
+
+Consensus detail:
+  token_entropy<distinct_1  5/5  [naive, diff, threshold, perm, ty]
+  token_entropy<distinct_2  4/5  [diff, threshold, perm, ty]
+  token_entropy<distinct_3  3/5  [diff, perm, ty]
+  token_entropy<mauve       2/5  [naive, diff]
+  ece<distinct_1            4/5  [naive, diff, threshold, perm]
+  ece<distinct_2            4/5  [naive, diff, threshold, perm]
+  ece<distinct_3            3/5  [naive, diff, perm]
+  ece<mauve                 2/5  [naive, ty]
+
+Perm Granger reverse: 0/8 (clean directional asymmetry)
+
+Key metrics trajectory (gen 0 → 15):
+  perplexity:   26.9 → 86.9  (+223%)
+  token_entropy: 3.23 → 2.40  (-26%)
+  ece:          0.011 → 0.217  (+1909%)
+  distinct_1:   0.098 → 0.073  (-25%)
+  mauve:        0.031 → 0.030  (-3%)
+  eff_rank:     46.6 → 76.2   (+64%)
+
+Hypothesis: Phase Diagram T=15 α=0.75: α_c(15)≈0.304, α=0.75 >> threshold.
+Result: PermG=6/8, confirming detection. Consistent with T=10 (6/8) and T=20 (6/8).

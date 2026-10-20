@@ -1,0 +1,26 @@
+paper_key: "jing2022understanding"
+title: "Understanding Dimensional Collapse in Contrastive Self-supervised Learning"
+venue: "ICLR 2022"
+full_text_available: false
+
+research:
+  baselines: ["SimCLR (linear projector)"]
+  metrics:
+    - {name: "ImageNet classification accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "ImageNet", size: "1.28M images"}
+  ablation_dimensions:
+    - projector_type
+    - representation_dimensionality
+  training_recipe: {}
+  method_family: "dimensional_collapse_analysis"
+
+positioning:
+  core_claim: "Contrastive learning embeddings suffer dimensional collapse (spanning lower-dimensional subspace); DirectCLR directly optimizes representation space without trainable projector."
+  key_results: "DirectCLR outperforms SimCLR with linear projector on ImageNet"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

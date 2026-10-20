@@ -1,0 +1,35 @@
+{
+  "exp_id": "c4_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:14:59.039Z",
+    "updated_at": "2026-05-20T00:16:43.632Z",
+    "hypothesis": "C4 α=0.75 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32, detection regime). s43 tests seed robustness. If PermG≥6/8 → C4 detection regime is seed-robust at α=0.75; combined with c4_a050_s43 → C4 dose-response has multi-seed coverage at both onset and detection α.",
+    "parent": "",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "484093",
+      "log_path": "~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log",
+      "submitted_at": "2026-05-20T00:15:54.585Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    }
+  },
+  "timestamp": "2026-05-20T00:16:43.885650+00:00",
+  "trigger": "update_registry"
+}

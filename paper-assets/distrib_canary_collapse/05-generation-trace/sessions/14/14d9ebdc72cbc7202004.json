@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14d9ebdc72cbc7202004",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "cpu heatmap data audit",
+  "task_key": "worker_cpu_heatmap-data-audit_20260521T184750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_heatmap-data-audit_20260521T184750_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "bf94d6f73e6d406f978c794ba42d068e38a0da4a3d25f3949db11136cfb255ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果摘要：\n\n**实际完成 15/20 格（非 13/20）**，5 格 RUNNING。所有 PermG 值已通过 5method_leadlag.json 文件交叉验证，与 registry 一致。\n\n### Heatmap Grid (PermG fwd /8)\n\n| T\\α | 0.45 | 0.50 | 0.60 | 0.75 |\n|-----|------|------|------|------|\n| T=5 | 0 | 0 | 0 | 0 |\n| T=10 | 0 | 6 | 0 | 6 |\n| T=15 | 6 | 6 | 0 | **RUNNING** |\n| T=20 | 5 | 6 | 0 | 6 |\n| T=25 | **RUNNING** | **RUNNING** | **RUNNING** | **RUNNING** |\n\n### 关键发现\n\n1. **数据分布在 3 个不同路径**：T=5/T=15/T=25 在 `phase_diagram/`，T=10 在 `alpha_sweep/`，T=20 在 `t20/`\n2. **跨 2 台服务器**：T=15 α=0.45 和 T=25 α=0.75 在 westd-19828，其余在 westd-17855\n3. **α=0.60 列全零**：所有已完成的 T 值均 PermG=0/8（sync-dip structural）\n4. **现有 heatmap 脚本** `phase_diagram_draft.py` 缺少 T=15 α=0.60 数据点，需更新\n5. **T=25 进度**：4 个格子均在 14-15/26 gens 左右\n\nManifest 已写入 `artifacts/heatmap_data_manifest.json` 并注册，包含 `heatmap_grid.matrix` 可直接用于绘图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-heatmap-data-audit.md"
+}

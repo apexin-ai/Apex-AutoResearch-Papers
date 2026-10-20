@@ -1,0 +1,58 @@
+\begin{table}[t]
+\centering
+\caption{Single-method inference errors across contamination levels.
+Each cell shows the verdict (significant or not) based on multi-seed majority ($\geq$2/3 seeds with $\geq$4/8 pairs significant).
+\checkmark\ = correct, \textcolor{red}{FP} = false positive, \textcolor{blue}{FN} = false negative, $\circ$ = ambiguous ground truth (either verdict plausible).
+Naive XCorr produces false positives at \emph{every} $\alpha$ including the null control, while TY Granger misses true signals at $\alpha{=}0.75$.
+Only the multi-method consensus ($K{\geq}3$) is correct at all tested levels.}
+\label{tab:single-method-errors}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+ & \multicolumn{2}{c}{\textit{No signal}} & \textit{Ambiguous} & \multicolumn{2}{c}{\textit{Causal signal}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-4} \cmidrule(lr){5-6}
+Method & $\alpha{=}0.00$ & $\alpha{=}0.25$ & $\alpha{=}0.50$ & $\alpha{=}0.75$ & $\alpha{=}1.00$ \\
+\midrule
+Naive XCorr
+  & \textcolor{red}{FP}{\scriptsize\ 8,7,8}
+  & \textcolor{red}{FP}{\scriptsize\ 8,8}
+  & $\circ${\scriptsize\ 8,8,8}
+  & \checkmark{\scriptsize\ 8,8,8}
+  & ---$^\dagger$ \\
+Diff XCorr (FDR)
+  & \checkmark{\scriptsize\ 4,3,3}
+  & \checkmark{\scriptsize\ 3,1}
+  & $\circ${\scriptsize\ 8,6,6}
+  & \checkmark{\scriptsize\ 8,8,8}
+  & ---$^\dagger$ \\
+Threshold Onset
+  & \checkmark{\scriptsize\ 3,1,1}
+  & \checkmark{\scriptsize\ 0,0}
+  & $\circ${\scriptsize\ 0,0,0}
+  & \checkmark{\scriptsize\ 4,0,4}
+  & ---$^\dagger$ \\
+Perm Granger (FDR)
+  & \checkmark{\scriptsize\ 0,0,0}
+  & \checkmark{\scriptsize\ 0,0}
+  & $\circ${\scriptsize\ 0,6,3}
+  & \checkmark{\scriptsize\ 8,5,6}
+  & ---$^\dagger$ \\
+TY Granger
+  & \checkmark{\scriptsize\ 1,1,0}
+  & \checkmark{\scriptsize\ 0,2}
+  & $\circ${\scriptsize\ 0,0,0}
+  & \textcolor{blue}{FN}{\scriptsize\ 1,1,1}
+  & ---$^\dagger$ \\
+\midrule
+\textbf{Consensus ($K{\geq}3$)}
+  & \checkmark
+  & \checkmark
+  & $\circ$
+  & \checkmark
+  & ---$^\dagger$ \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Subscript numbers: per-seed significant pair counts out of 8 (seeds 42, 43, 44).} \\
+\multicolumn{6}{l}{\footnotesize $^\dagger$Raw experimental data for $\alpha{=}1.00$ no longer available on server.} \\
+\end{tabular}%
+}
+\end{table}

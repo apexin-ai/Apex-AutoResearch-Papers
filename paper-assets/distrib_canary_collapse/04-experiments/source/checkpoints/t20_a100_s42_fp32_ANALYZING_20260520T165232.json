@@ -1,0 +1,39 @@
+{
+  "exp_id": "t20_a100_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:23:28.680Z",
+    "updated_at": "2026-05-20T16:52:31.849Z",
+    "hypothesis": "D126 战线1: T=20 extended generation 验证 canary lead-lag 在长序列下的演化。α=1.0 是最强信号点，T=20 下 PermG 应保持或增强（更多数据点提升统计功效）。如果 K≥3 在 gen 11-20 下降 → collapse 饱和后 canary 失效；如果保持 → 长期监控可行。",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 1.0 --output_dir results/t20/a100_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "301936",
+      "log_path": "~/runs/distrib_canary_collapse/t20_a100_s42_fp32.log",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "num_generations": 20
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:2",
+    "account": "root",
+    "pid": "301936",
+    "log_path": "~/runs/distrib_canary_collapse/t20_a100_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 1.0 --output_dir results/t20/a100_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-20T16:52:31.202Z"
+    }
+  },
+  "timestamp": "2026-05-20T16:52:32.121150+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "alpha_sweep_a005_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T20:52:49.138Z",
+    "updated_at": "2026-05-18T22:41:36.976Z",
+    "hypothesis": "α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。",
+    "parent": "alpha_sweep_a010_s42_v2",
+    "server": "westd-17855",
+    "gpu": "cuda:4",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-17855",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-18T20:56:02.420Z",
+      "finished_at": "2026-05-18T22:07:42.851Z",
+      "training_hours": 1.19
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "completed_at": "2026-05-18T22:07:45.970Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T22:07:49.417515+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "FAILED EXIT_CODE=127: python not found. Root cause: conda not initialized in .bashrc on westd-17855, so non-interactive shell has no PATH to /root/miniconda3/bin/python. Fix: run `conda init bash` then retry. Packages (torch etc.) already installed in base env."
+      }
+    },
+    "notes": "FAILED EXIT_CODE=127: python not found. Root cause: conda not initialized in .bashrc on westd-17855, so non-interactive shell has no PATH to /root/miniconda3/bin/python. Fix: run `conda init bash` then retry. Packages (torch etc.) already installed in base env."
+  },
+  "timestamp": "2026-05-18T22:41:37.110827+00:00",
+  "trigger": "update_registry"
+}

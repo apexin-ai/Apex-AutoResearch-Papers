@@ -1,0 +1,579 @@
+experiments:
+- id: plan_001
+  claim: 2
+  description: 'α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: α-sweep 基准实验。D025 统一参数。
+  registry_id: alpha_sweep_a025_s42_fp32
+- id: plan_001b
+  claim: 3
+  description: 'α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen ×
+    seed=42。FPR ground truth'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D028: perm_granger/TY 0% FPR，naive 100% FPR'
+  registry_id: alpha_sweep_a000_s42
+- id: plan_001c
+  claim: 2
+  description: 'α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction
+    最极端例证'
+  registry_id: alpha_sweep_a050_s42_fp32
+- id: plan_001d
+  claim: 1
+  description: 'α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust'
+  registry_id: alpha_sweep_a075_s42_fp32
+- id: plan_045
+  claim: 2
+  description: 'α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位
+    diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值'
+  registry_id: alpha_sweep_a005_s42_v3
+- id: plan_025
+  claim: 2
+  description: 'α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime
+    map 下界，验证极低污染下 signal 是否存在'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D061: regime map 5→7 点，精确刻画低端 boundary。D075: canary blind zone confirmed'
+  registry_id: alpha_sweep_a010_s42_fp32
+- id: plan_026
+  claim: 2
+  description: 'α=0.60 sweep: Pythia-410M × WikiText-103 × α=0.60 × 10 gen × seed=42。填补
+    0.50→0.75 boundary gap'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D061: 精确定位 detectability threshold'
+  registry_id: alpha_sweep_a060_s42_fp32_v3
+- id: plan_011
+  claim: 2
+  description: 'Multi-seed α=0.25 s43: Pythia-410M × WikiText-103 × α=0.25 × 10 gen
+    × seed=43'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_001
+  notes: 'DONE: diversity drift 跨 seed <1.3pp'
+  registry_id: alpha_sweep_a025_s43_fp32
+- id: plan_012
+  claim: 2
+  description: 'Multi-seed α=0.50 s43: Pythia-410M × WikiText-103 × α=0.50 × 10 gen
+    × seed=43'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_001c
+  notes: 'DONE: drift direction identical to s42, <7% deviation'
+  registry_id: alpha_sweep_a050_s43_fp32
+- id: plan_013
+  claim: 2
+  description: 'Multi-seed α=0.25 s44: seed=44'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_011
+  registry_id: alpha_sweep_a025_s44_fp32
+- id: plan_014
+  claim: 2
+  description: 'Multi-seed α=0.50 s44: seed=44'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_012
+  notes: 'D044: s42/s43 deviation <7%, s44 confirms boundary regime with high seed
+    variance'
+  registry_id: alpha_sweep_a050_s44_fp32
+- id: plan_002
+  claim: 3
+  description: 'Method ablation Phase 1: MVP 4-seed 数据，5 种方法对比'
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  notes: Phase 1 完成：TY 在 N=11 下失效，Claim 3 重构为方法选择敏感性
+  registry_id: method_ablation_phase1
+- id: plan_002b
+  claim: 3
+  description: 'Method ablation Phase 2: 跨 α pooled panel（α=0.0/0.25/0.50/0.75/1.0），56-row
+    分析矩阵'
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  - plan_001b
+  - plan_001c
+  - plan_001d
+  - plan_002
+  notes: 'D028-D030: cross_alpha_analysis_v4 统一 FDR 校正。raw 10/32 sig → FDR 仅 1/32'
+  registry_id: method_ablation_phase2
+- id: plan_003
+  claim: 1
+  description: 'MVP 结果 formalization: 4-seed 100% SC 结果，lead time 精确量化'
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: mvp_v4_rep42
+- id: plan_006
+  claim: 1
+  description: 'Extended run: Pythia-410M × α=1.0 × 20 gen × 2 seeds (max_lag=10)。T=20
+    下 lead-lag 稳健性验证'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D034: gen 18/20 timeout 但 T=18 数据足够。Phase 3 二次衰退发现'
+  registry_id: plan_006_s42
+- id: plan_009
+  claim: 3
+  description: 'Bootstrap/Permutation TY 验证: Monte Carlo 模拟 TY Granger 在 T=10/T=20
+    下的 Type I error rate 和 power'
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  notes: D014 Dream 三档一致 CRITICAL。零 GPU
+  registry_id: plan_009_bootstrap_ty
+- id: plan_015
+  claim: 1
+  description: 'Baseline generalization: Pythia-410M × WikiText-103 × α=1.0 × seed=42，统一参数
+    (n_perm=5000) 分析'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: Table 7 Baseline 行。K≥4=6/8
+  registry_id: generalize_pythia410m_wiki_a100_s42
+- id: plan_016
+  claim: 1
+  description: 'OPT-1.3B 跨架构: OPT-1.3B × WikiText-103 × α=1.0 × seed=42'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  notes: Table 7 Arch:OPT 行。K≥4=6/8, PermG rev=2/8
+  registry_id: generalize_opt1b_wiki_a100_s42
+- id: plan_010
+  claim: 1
+  description: 'GPT-2-medium 跨架构: GPT-2-medium × WikiText-103 × α=1.0 × seed=42 (v3
+    旧参数)'
+  priority: P1
+  gpu_budget_hours: 5
+  deps: []
+  notes: v3 用旧参数完成，v4 正在重跑统一参数
+  registry_id: gen_wiki_gpt2m_a100_s42_v4
+- id: plan_021
+  claim: 1
+  description: 'GPT-2-medium v4 重跑: 统一参数 (n_perm=5000, xcorr_lag=5, granger_lag=1)
+    重新分析，填 Table 7'
+  priority: P0
+  gpu_budget_hours: 5
+  deps:
+  - plan_010
+  notes: 当前 RUNNING。GPT-2m 数据被删后重跑训练+分析
+  registry_id: gen_wiki_gpt2m_a100_s42_v4
+- id: plan_034
+  claim: 1
+  description: 'GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 ×
+    seed=43'
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - plan_021
+  notes: 跨架构 multi-seed 验证，确认 GPT-2m 结果非单 seed 偶然
+  registry_id: gen_gpt2m_a100_s43_bf16
+- id: plan_030
+  claim: 1
+  description: 'OPT-1.3B multi-seed s43: OPT-1.3B × WikiText-103 × α=1.0 × seed=43'
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - plan_016
+  notes: Architecture multi-seed coverage
+  registry_id: opt13b_wiki_a100_s43_fp32
+- id: plan_017
+  claim: 1
+  description: 'Pythia-1.4B Scale s42: Pythia-1.4B × WikiText-103 × α=1.0 × seed=42'
+  priority: P0
+  gpu_budget_hours: 12
+  deps: []
+  notes: Table 7 Scale 行。K≥4=5/8, TY=0/8 (underpowered)
+  registry_id: generalize_pythia14b_wiki_a100_s42
+- id: plan_018
+  claim: 1
+  description: 'Pythia-1.4B Scale s43: Pythia-1.4B × WikiText-103 × α=1.0 × seed=43'
+  priority: P0
+  gpu_budget_hours: 12
+  deps:
+  - plan_017
+  notes: K≥4=6/8, 好于 s42 的 5/8。需用 n_perm=5000 重跑分析
+  registry_id: generalize_pythia14b_wiki_a100_s43
+- id: plan_027
+  claim: 1
+  description: 'Pythia-6.9B α=1.0 s42: Pythia-6.9B × WikiText-103 × α=1.0 × seed=42。17×
+    scale-up 验证'
+  priority: P1
+  gpu_budget_hours: 50
+  deps:
+  - plan_017
+  - plan_018
+  notes: 'D060: gradient_checkpointing + adamw_torch（先试标准优化器，OOM 才 fallback 8-bit）。磁盘
+    auto-cleanup 已就绪'
+  registry_id: scale_69b_a100_s42
+- id: plan_028
+  claim: 1
+  description: 'Pythia-6.9B α=1.0 s43: 6.9B multi-seed 验证'
+  priority: P2
+  gpu_budget_hours: 50
+  deps:
+  - plan_027
+  notes: '条件: plan_027 结果正面才启动'
+  registry_id: scale_69b_a100_s43_fp32
+- id: plan_029
+  claim: 2
+  description: 'Pythia-6.9B α=0.75: 大模型 regime boundary 验证'
+  priority: P2
+  gpu_budget_hours: 50
+  deps:
+  - plan_027
+  notes: '条件: plan_027 正面。验证 regime map 是否跨 scale 稳定'
+- id: plan_036
+  claim: 1
+  description: 'Pythia-1.4B × C4: 1.4B 跨域验证'
+  priority: P2
+  gpu_budget_hours: 12
+  deps:
+  - plan_017
+  notes: Scale + Domain 交叉，如 GPU 充裕则做
+  registry_id: scale_14b_c4_s42_fp32
+- id: plan_019
+  claim: 1
+  description: 'C4 domain s42: Pythia-1B × C4 × α=1.0 × seed=42'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: Table 7 Domain:C4 行。K≥4=7/8, PermG rev=4/8
+  registry_id: generalize_pythia1b_c4_a100_s42_v2
+- id: plan_020
+  claim: 1
+  description: 'C4 domain s43: Pythia-1B × C4 × α=1.0 × seed=43'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_019
+  notes: Multi-seed 验证 C4 结果非偶然
+  registry_id: generalize_pythia1b_c4_a100_s43
+- id: plan_035
+  claim: 2
+  description: 'C4 α=0.75: Pythia-410M × C4 × α=0.75 × seed=42。跨域 regime boundary'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - plan_019
+  - plan_001d
+  notes: 验证 0.50→0.75 boundary 是否跨域稳定
+  registry_id: c4_a075_s42_fp32
+- id: plan_022
+  claim: 1
+  description: 'Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制
+    token_entropy 后测 ECE→diversity。用 α=1.0 seeds 42-45 现有数据'
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  notes: 'D061: 已完成（零 GPU 分析任务）。token_entropy 和 ECE 互为 redundant（控制一个消除另一个的 signal）。简化
+    canary quality narrative。artifact: d061_conditional_granger_analysis.md。需补 registry
+    注册'
+- id: plan_023
+  claim: 4
+  description: 'Intervention predictive s42: Pythia-410M × α=1.0 × 10 gen, token_entropy
+    drop >15% → α=0.0。验证 canary-based early warning 的实际价值'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D061: 最高 ROI 实验。Baseline = MVP s42 no-intervention 数据'
+  registry_id: intervention_predictive_s42
+- id: plan_024
+  claim: 4
+  description: 'Intervention reactive s42: Pythia-410M × α=1.0 × 10 gen, distinct_1
+    drop >10% → α=0.0。Reactive baseline 对照'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: 'D061: 与 predictive 对照。Reactive 使用 downstream metric 而非 canary。cuda:1 PID
+    340964'
+  registry_id: intervention_reactive_s42
+- id: plan_031
+  claim: 4
+  description: 'Intervention predictive s43: seed=43 multi-seed 验证'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - plan_023
+  notes: '条件: plan_023 结果正面'
+  registry_id: interv_pred_s43_bf16
+- id: plan_032
+  claim: 4
+  description: 'Intervention reactive s43: seed=43 multi-seed 验证'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - plan_024
+  notes: '条件: plan_024 结果正面'
+  registry_id: interv_react_s43
+- id: plan_033
+  claim: 4
+  description: 'Intervention at α=0.75: Pythia-410M × α=0.75 × 10 gen, predictive
+    + reactive。在 transitional regime 下验证干预效果'
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - plan_023
+  - plan_024
+  notes: 验证干预在非极端污染下是否仍有效
+  registry_id: interv_pred_a075_s42_fp32_v4
+- id: plan_037
+  claim: 4
+  description: 'Intervention 1.4B: Pythia-1.4B × α=1.0 × 10 gen, predictive + reactive。跨
+    scale 干预验证'
+  priority: P2
+  gpu_budget_hours: 24
+  deps:
+  - plan_023
+  - plan_024
+  - plan_017
+  notes: 验证干预在大模型上的效果
+  registry_id: interv_pred_14b_s42_fp32
+- id: plan_008
+  claim: 1
+  description: '数据策略 ablation: α=0.50 下 accumulate vs replace 对比 × 3 seeds × 10 gen'
+  priority: P2
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  registry_id: data_strategy_ablation_s43
+- id: plan_038
+  claim: 3
+  description: 'Method ablation Phase 3: 扩展 pooled panel 加入 α=0.10/0.60 数据，更新 method×regime
+    interaction 证据'
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_025
+  - plan_026
+  - plan_002b
+  notes: 7 点 regime map 下的完整 method ablation。实际扩展至 10-α regime map (0.00-1.00)
+  registry_id: method_ablation_phase3
+- id: plan_039
+  claim: 2
+  description: 'α=0.10 multi-seed s43: 验证极低污染下结果的 seed stability'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - plan_025
+  notes: '条件: plan_025 显示有趣 signal'
+  registry_id: alpha_sweep_a010_s43
+- id: plan_040
+  claim: 2
+  description: 'α=0.60 multi-seed s43: 验证 boundary regime 的 seed sensitivity'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - plan_026
+  notes: '条件: plan_026 在 boundary 附近'
+  registry_id: alpha_sweep_a060_s43_fp32
+- id: plan_004
+  claim: 2
+  description: 'Cross-domain α=0.50: C4 × Pythia-410M × α=0.50 × 3 seeds × 10 gen'
+  priority: P2
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  notes: 验证 canary ranking 跨域转移
+  registry_id: alpha_sweep_c4_a050_s42_bf16
+- id: plan_005
+  claim: 1
+  description: 'Scale spot-check α=0.50: Pythia-1.4B × α=0.50 × 3 seeds × 10 gen'
+  priority: P2
+  gpu_budget_hours: 24
+  deps:
+  - plan_001
+  notes: 单点验证 canary lead 跨规模保持
+  registry_id: scale_14b_a050_s42
+- id: plan_007
+  claim: 4
+  description: 'Intervention CRS-weighted: Pythia-410M × α=0.75 × 3 seeds × 10 gen
+    (legacy design)'
+  priority: P3
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  - plan_002
+  notes: D014 降级为 illustration。已被 plan_023/024 的 predictive/reactive 设计替代
+- id: plan_041
+  claim: 1
+  description: 'SmolLM3-3B 跨架构 (2025): SmolLM3-3B-Base × WikiText-103 × α=1.0 × 10
+    gen × seed=42。2025 年 HuggingFace 模型，第 6 个独立架构族验证泛化'
+  priority: P0
+  gpu_budget_hours: 15
+  deps: []
+  notes: HuggingFaceTB/SmolLM3-3B-Base, 2025-07-08 发布, 3B params, 11.2T tokens。替代
+    Gemma 4 E2B (D073 弃用)
+  registry_id: smollm3_3b_wiki_a100_s42_v3
+- id: plan_042
+  claim: 1
+  description: 'Qwen3.5-0.8B 跨架构 (2026): Qwen3.5-0.8B-Base × WikiText-103 × α=1.0
+    × 10 gen × seed=42。2026 年阿里前沿小模型，验证跨架构泛化'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  notes: Qwen/Qwen3.5-0.8B-Base, 2026-03-02 发布, 0.8B params, Apache 2.0。用户要求立即启动准备
+  registry_id: qwen35_08b_wiki_a100_s42_v2
+- id: plan_043
+  claim: 1
+  description: 'SmolLM3-3B multi-seed s43: seed=43 验证'
+  priority: P2
+  gpu_budget_hours: 15
+  deps:
+  - plan_041
+  notes: '条件: plan_041 结果正面'
+  registry_id: smollm3_3b_wiki_a100_s43_fp32
+- id: plan_044
+  claim: 1
+  description: 'Qwen3.5-0.8B multi-seed s43: seed=43 验证'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - plan_042
+  notes: '条件: plan_042 结果正面'
+  registry_id: qwen35_08b_wiki_a100_s43_fp32
+- id: plan_046
+  claim: 2
+  description: 'α=0.30 onset refinement: Pythia-410M × WikiText-103 × α=0.30 × 10
+    gen × seed=42 × fp32。D098 onset boundary [0.25, 0.50] 精化'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_001
+  notes: D098 onset 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 定位 onset 到 ±0.05
+    精度
+  registry_id: alpha_sweep_a030_s42_fp32
+- id: plan_047
+  claim: 2
+  description: 'α=0.40 onset refinement: Pythia-410M × WikiText-103 × α=0.40 × 10
+    gen × seed=42 × fp32。D098 onset boundary 精化'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_001
+  notes: D098 onset 精化：与 α=0.30 配合将 onset 定位到 ±0.05。如果 0.30/0.40 都 PermG=0 → onset
+    ≥ 0.40
+  registry_id: alpha_sweep_a040_s42_fp32_v2
+- id: plan_048
+  claim: 2
+  description: 'α=0.35 onset refinement: Pythia-410M × WikiText-103 × α=0.35 × 10
+    gen × seed=42 × fp32。D098 onset boundary 精化到 ±0.05'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_046
+  - plan_047
+  notes: α=0.35 PermG=0/8 确认 onset ≥ 0.35。与 a030/a040 并行定位 onset
+  registry_id: alpha_sweep_a035_s42_fp32
+- id: plan_049
+  claim: 1
+  description: 'Pythia-410M cross-seed s43: Pythia-410M × WikiText-103 × α=1.0 × 10
+    gen × seed=43 × fp32。Base model cross-seed verification'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - plan_015
+  notes: 410M 是 dose-response base model，Table 7 α=1.0 仅 s42 单 seed。5/8 架构单 seed 是审稿攻击面。Also
+    supports Claim 3 (method sensitivity across seeds)
+  registry_id: pythia410m_wiki_a100_s43_fp32
+- id: plan_050
+  claim: 2
+  description: 'α=0.45 onset precision: Pythia-410M × WikiText-103 × α=0.45 × 10 gen
+    × seed=42 × fp32。Onset 精化到 ±0.025'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_047
+  - plan_001c
+  notes: α=0.40 PermG=0/8, α=0.50 PermG=6/8。α=0.45 决定 onset 在 [0.40,0.45] 还是 [0.45,0.50]
+  registry_id: alpha_sweep_a045_s42_fp32
+- id: plan_051
+  claim: 2
+  description: 'C4 α=0.25 cross-domain onset: Pythia-410M × C4 × α=0.25 × 10 gen ×
+    seed=42 × fp32。Cross-domain onset comparison'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - plan_004
+  notes: WikiText onset ∈ (0.40, 0.50)。C4 α=0.50 已 PermG=8/8(fp32)。α=0.25 测 C4 onset
+    是否显著低于 WikiText
+  registry_id: c4_a025_s42_fp32
+- id: plan_t20_a025
+  claim: 2
+  description: 'T=20 α=0.25: Pythia-410M × WikiText-103 × α=0.25 × 20 gen × seed=42
+    × fp32。Power Theory T-dependent α_c prediction dose-response'
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - plan_t20_a050
+  notes: 'D135: T=20 dose-response。Blind zone 验证——α=0.25 在 T=20 下是否仍 PermG=0'
+  registry_id: t20_a025_s42_fp32
+- id: plan_t20_a045
+  claim: 2
+  description: 'T=20 α=0.45: Pythia-410M × WikiText-103 × α=0.45 × 20 gen × seed=42
+    × fp32。Onset boundary T-dependence'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D135: T=20 onset boundary。T=11 onset ∈ (0.40,0.50)，T=20 可能左移'
+  registry_id: t20_a045_s42_fp32
+- id: plan_t20_a050
+  claim: 2
+  description: 'T=20 α=0.50: Pythia-410M × WikiText-103 × α=0.50 × 20 gen × seed=42
+    × fp32。Critical point T-dependence baseline'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D135: T=20 critical point。T=11 PermG=6/8 at α=0.50，T=20 统计功效应更强'
+  registry_id: t20_a050_s42_fp32
+- id: plan_t20_a060
+  claim: 2
+  description: 'T=20 α=0.60: Pythia-410M × WikiText-103 × α=0.60 × 20 gen × seed=42
+    × fp32。Sync-collapse dip T-dependence'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D135: T=11 sync-collapse dip at α=0.60。T=20 验证 dip 持久性还是 transient'
+  registry_id: t20_a060_s42_fp32
+- id: plan_t20_a075
+  claim: 2
+  description: 'T=20 α=0.75: Pythia-410M × WikiText-103 × α=0.75 × 20 gen × seed=42
+    × fp32。Detection regime T-dependence'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D135: T=20 detection regime。T=11 PermG=6/8，T=20 应更稳健'
+  registry_id: t20_a075_s42_fp32
+- id: plan_t20_a100
+  claim: 2
+  description: 'T=20 α=1.00: Pythia-410M × WikiText-103 × α=1.00 × 20 gen × seed=42
+    × fp32。Full contamination T=20 anchor'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  notes: 'D135: T=20 full contamination anchor。与 plan_006 (旧参数 T=20) 对比'
+  registry_id: t20_a100_s42_fp32

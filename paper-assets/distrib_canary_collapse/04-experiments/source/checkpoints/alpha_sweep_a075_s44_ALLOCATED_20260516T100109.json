@@ -1,0 +1,37 @@
+{
+  "exp_id": "alpha_sweep_a075_s44",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T06:16:20.468Z",
+    "updated_at": "2026-05-16T10:01:09.232Z",
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\"",
+      "finished_at": "2026-05-16T09:53:04.189Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-16T09:53:05.475Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T09:53:09.379555+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: SafetensorError No space left on device — model.save_pretrained() at line 252 | 已有成果: 最后一轮训练已完成 (5000 steps, loss=0.3493) 但 checkpoint 未保存 | 建议: 清磁盘后重跑"
+      }
+    },
+    "notes": "失败原因: SafetensorError No space left on device — model.save_pretrained() at line 252 | 已有成果: 最后一轮训练已完成 (5000 steps, loss=0.3493) 但 checkpoint 未保存 | 建议: 清磁盘后重跑"
+  },
+  "timestamp": "2026-05-16T10:01:09.337461+00:00",
+  "trigger": "update_registry"
+}

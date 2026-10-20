@@ -1,0 +1,16 @@
+{
+  "exp_id": "alpha_sweep_a005_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:22:50.997Z",
+    "updated_at": "2026-05-19T00:23:08.607Z",
+    "hypothesis": "D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.",
+    "parent": "alpha_sweep_a005_s42"
+  },
+  "timestamp": "2026-05-19T00:23:08.747284+00:00",
+  "trigger": "update_registry"
+}

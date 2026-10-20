@@ -1,0 +1,91 @@
+paper_key: "noci2024mind"
+title: "Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Transformers"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Standard softmax attention (with spectral gap)"
+    - "Identity attention matrix"
+    - "Orthogonal value matrices"
+  metrics:
+    - {name: "Stable rank sr(M)", direction: "higher_better"}
+    - {name: "Gradient norm", direction: "context_dependent"}
+  datasets:
+    - {name: "Synthetic Heaviside function", size: "synthetic"}
+  ablation_dimensions:
+    - depth (L=1,2,4,8)
+    - width/context_length (T=10-1000)
+    - initialization_scheme (default, Xavier, He)
+    - architecture_variant (single-layer, +LayerNorm, +skip connections)
+    - spectral_gap_removal (with/without)
+  training_recipe:
+    architecture: "single-head attention-only transformers"
+    initialization: "N(0,1) for value matrices"
+    task: "Heaviside function learning"
+    hardware: "N/A (theoretical focus)"
+  method_family: "spectral_analysis_signal_propagation"
+
+positioning:
+  core_claim: "Softmax attention creates a spectral gap (eigenvalue 1 vs O(T^{-1/2}) bulk) causing a NEW form of rank collapse in width (sequence length), distinct from known depth collapse. Removing this gap via A⊥ = A - T^{-1}·1 prevents width collapse."
+  key_results: "Width collapse rate |sr-1|=O(T^{1-4L}); proposed fix makes rank scale linearly with T; gradient explosion bounded by T^{L-1}"
+  limitations:
+    - "Analysis primarily for single-layer; multi-layer key-query attention has unknown spectral properties"
+    - "Multiple outlier eigenvalues emerge beyond first layer, reducing fix effectiveness"
+    - "Dynamical isometry provably unachievable (Prop 7-8)"
+    - "Training experiments inconclusive; no large-scale validation"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Transformers excel but face training instability — what goes wrong at initialization in softmax attention?"
+  tension: "Prior work identified rank collapse in depth, but missed a fundamental width-dependent collapse caused by attention's spectral structure."
+  key_insight: "Section 2, Theorem 2 — the spectral gap between eigenvalue 1 and the O(T^{-1/2}) bulk is the root cause. Removing it (A⊥) resolves width collapse and controls gradients."
+  argument_chain: "training instability → spectral analysis of attention at init → identify spectral gap → prove width collapse + gradient explosion → propose A⊥ fix → theoretical guarantees → experiments verify (partially)"
+  contribution_framing: "4 contributions: diagnose width collapse, identify spectral gap cause, propose fix with proofs, analyze modified model's kernel/Jacobian spectra"
+  intro_structure: "3 sections: S1.1=background on signal propagation, S1.2=contributions, S1.3=organization"
+  notable_technique: "Using free probability theory (free multiplicative convolution) to derive exact spectral distributions — mathematically rigorous yet yields clean design insight (subtract the rank-1 component)"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "problem_illustration"
+    description: "Eigenvalue distribution of Random Markov matrix: circular bulk at O(T^{-1/2}) radius with isolated eigenvalue at 1"
+    narrative_role: "Visually establishes the spectral gap — the core phenomenon the paper addresses"
+    design_elements: ["eigenvalue scatter plot", "bulk vs outlier annotation", "scaling annotation"]
+    visual_style: "Complex plane scatter with circle overlay showing bulk distribution"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Stable rank vs context length (width collapse) and vs depth, with/without spectral gap removal"
+      how_gain_highlighted: "Proposed fix maintains linear rank growth vs flat collapse"
+      design_note: "Dual-panel (width vs depth); theoretical predictions overlaid on empirical curves"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Gradient norm scaling with width at layer 1"
+      how_gain_highlighted: "Linear trend confirmed across architectures"
+      design_note: "Log-log scale reveals power-law relationships clearly"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Gradient norm vs depth for Random Markov vs key-query attention"
+      how_gain_highlighted: "Fix controls gradients for Random Markov but not fully for key-query"
+      design_note: "Honest about limitations — key-query case shows fix is partial"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["architecture variant (base, +LN, +skip)"]
+      design_note: "Shows width collapse is universal across architectures — not an artifact of simplified setup"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["initialization scheme (Xavier, He, upscaled skip)"]
+      design_note: "Reveals degenerate behavior under standard initialization choices — motivates rethinking defaults"
+  figure_narrative_role: "Fig1(spectral gap visualization) → Fig2(collapse proof) → Fig3(universality across architectures) → Fig4-5(gradient analysis) → Fig6-7(training + eigenvalue evolution) → Fig8(initialization pitfalls)"
+
+tables:
+  table_count: 0
+  main_result_table: "N/A — purely theoretical paper, all results presented as propositions + figures"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Proof details and additional experimental configurations"
+    reason: "Theoretical paper — proofs in appendix, key results as numbered propositions in main text"

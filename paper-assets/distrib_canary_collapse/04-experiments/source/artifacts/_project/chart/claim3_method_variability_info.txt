@@ -1,0 +1,1 @@
+Remote path: westd-19828:/root/autodl-tmp/distrib_canary_collapse/figures/claim3_method_variability.pdf (34K) and .png (154K)\n\nVisual: Dot-strip layer with 5 method sig rates per condition (TY range 0/8-6/8), green consensus band at 5/8-6/8. Narrative: individual methods vary widely, consensus absorbs variance.

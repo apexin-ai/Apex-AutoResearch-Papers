@@ -1,0 +1,64 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T19:10:05.988Z",
+    "updated_at": "2026-05-20T18:52:02.437Z",
+    "hypothesis": "SmolLM3-3B 在 iterative self-distillation 下会表现出与 SmolLM2 类似的 distributional collapse 模式（熵递减、diversity 下降），验证 collapse 现象的模型规模泛化性。",
+    "parent": "smollm3_3b_wiki_a100_s42_v3",
+    "server": "westd-17855",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T19:10:25.279Z",
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43\"",
+      "finished_at": "2026-05-20T18:37:40.616Z",
+      "training_hours": 23.45
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T23:23:16.597Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T23:23:22.164642+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T18:37:46.019228+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "note": "19828 磁盘满失败，转 17855:cuda:3 从头重跑。PID=211078。retry_count=1。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43_17855 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-17855",
+      "gpu": "cuda:3",
+      "pid": "211078",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 43,
+      "precision": "fp32 (D079/D080)",
+      "checkpoint_source": "/root/autodl-tmp/models/SmolLM3-3B-Base/ (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "pid": 211078,
+    "conclusion": "success",
+    "checkpoint_path": "results/generalize/smollm3_3b_wiki_a100_s43_17855/gen_10",
+    "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s43_fp32.log"
+  },
+  "timestamp": "2026-05-20T18:52:02.753840+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "scale_14b_a050_s42_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:24:05.784Z",
+    "updated_at": "2026-05-20T23:06:11.443Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --bf16 --output_dir results/scale_check/pythia14b_a050_s42_bf16\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "619318",
+      "log_path": "~/runs/distrib_canary_collapse/scale_14b_a050_s42_bf16.log",
+      "submitted_at": "2026-05-20T23:05:33.809Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T23:06:11.917251+00:00",
+  "trigger": "update_registry"
+}

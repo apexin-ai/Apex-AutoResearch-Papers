@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1434bfd747115272f77e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code csmp implementation",
+  "task_key": "worker_code_csmp_implementation_20260518T161544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_csmp_implementation_20260518T161544_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "549c03f002b7f3b192206d2a39cca278053998f0aafad18cdc742e04503ae802"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出摘要：\n\n**文件结构**（`csmp/` 下 5 个文件）:\n- `__init__.py`, `cusum_monitor.py`, `calibrate.py`, `evaluate.py`, `run_csmp.py`\n\n**产出**（`artifacts/csmp_results/`）:\n- `calibration.json`, `evaluation.json`, `csmp_report.md`\n\n**关键结果**:\n\n| k | h | FAR | predictive alarm | reactive alarm |\n|---|---|-----|-----------------|---------------|\n| 0.05 | 1.5297 | 0% | gen 3 (EDD=2) | gen 2 (EDD=0) |\n| 0.1 | 1.0047 | 0% | gen 1 (EDD=0) | gen 1 (EDD=-1) |\n| 0.25 | ~0 | 0% | gen 1 (EDD=0) | gen 1 (EDD=-1) |\n| 0.5 | ~0 | 0% | gen 1 (EDD=0) | gen 1 (EDD=-1) |\n| 1.0 | ~0 | 0% | gen 1 (EDD=0) | gen 1 (EDD=-1) |\n\n- k >= 0.1 时 CUSUM 在 gen 1 即发出 alarm，与 predictive trigger 同步，比 reactive trigger 早 1 代\n- k=0.05 因 null 数据漂移导致 h 较高，检测延迟到 gen 3\n- 推荐操作点 k=0.25：null 上 CUSUM 统计量恒为零（h 近零即可控制 FAR），对 collapse 信号响应即时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-csmp-implementation.md"
+}

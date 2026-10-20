@@ -1,0 +1,70 @@
+{
+  "exp_id": "data_strategy_ablation_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:45:33.830Z",
+    "updated_at": "2026-05-20T19:41:10.276Z",
+    "hypothesis": "数据累积策略 ablation cross-seed：accumulate 模式 α=0.50 seed=43。验证 s42 结果（data_strategy_ablation_s42）的 seed robustness。如果 s42/s43 PermG 一致 → accumulate 效果 seed-robust；如果不同 → 策略效果 seed-sensitive。Baseline: alpha_sweep_a050_s43_fp32 (replace, PermG=6/8)。",
+    "parent": "data_strategy_ablation_s42",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "531127",
+      "log_path": "~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log",
+      "submitted_at": "2026-05-20T05:05:18.046Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "precision": "fp32",
+      "data_strategy": "accumulate",
+      "checkpoint_source": "N/A - training from scratch, parent is derivation chain only",
+      "eval_data": "N/A - training experiment not eval",
+      "wall_clock_seconds": 52552.2,
+      "gpu_hours": 14.6
+    },
+    "metrics": {
+      "perm_granger_fdr_forward_sig": 0,
+      "perm_granger_fdr_reverse_sig": 0,
+      "diff_xcorr_fdr_forward_sig": 2,
+      "diff_xcorr_fdr_reverse_sig": 2,
+      "threshold_onset_forward_sig": 0,
+      "ty_forward_sig": 3,
+      "robust_pairs_K3": 0,
+      "robust_pairs_K4": 0,
+      "n_generations": 10,
+      "alpha": 0.5,
+      "seed": 43,
+      "data_strategy": "accumulate",
+      "baseline_exp": "alpha_sweep_a050_s43_fp32",
+      "threshold_criterion": "true_3sigma_d105"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T09:27:03.761Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T09:27:08.767973+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "results/ablation/accumulate_a050_s43/gen_10",
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T19:41:10.276Z"
+  },
+  "timestamp": "2026-05-20T19:41:10.569333+00:00",
+  "trigger": "update_registry"
+}

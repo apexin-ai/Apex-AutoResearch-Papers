@@ -1,0 +1,29 @@
+paper_key: "truong2025entropy"
+title: "Entropy Collapse: A Universal Failure Mode of Intelligent Systems"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["second-order transition assumption (null hypothesis)"]
+  metrics:
+    - {name: "entropy order parameter m", direction: "context_dependent"}
+    - {name: "hysteresis ΔH_hyst (nats)", direction: "lower_better"}
+    - {name: "relaxation exponent ν", direction: "context_dependent"}
+  datasets:
+    - {name: "SmallGPT (2-layer autoregressive transformer)", size: "N=50 vocabulary, 92 conditions, 8 seeds"}
+  ablation_dimensions:
+    - feedback_amplification_alpha
+    - novelty_regeneration_beta
+    - feedback_curvature_class (Class1 convex vs Class2 linear)
+  training_recipe: {model: "SmallGPT, 2-layer autoregressive, N=50 vocab"}
+  method_family: "entropy_collapse_phase_transition_theory"
+
+positioning:
+  core_claim: "Entropy collapse is a first-order (discontinuous) phase transition at α_c=1/(1-β), with hysteresis and no early warning signals. Unifies AI model collapse, economic sclerosis, and evolutionary bottlenecks."
+  key_results: "ΔH_hyst=2.92 nats (neural) > 2.73 (theory); ν=1.14±0.13; two universality classes"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

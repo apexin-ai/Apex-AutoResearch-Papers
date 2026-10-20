@@ -1,0 +1,58 @@
+{
+  "seed": 51,
+  "alpha": 0.0,
+  "model": "pythia-410m",
+  "precision": "fp32",
+  "T": 10,
+  "n_gens": 11,
+  "analysis": {
+    "PermG_fwd_fdr": "0/8",
+    "PermG_rev_fdr": "0/8",
+    "diff_xcorr_fdr_fwd": "5/8",
+    "diff_xcorr_fdr_rev": "5/8",
+    "naive_xcorr_fwd_D111": "2/8",
+    "threshold_onset_3sigma": "7/8",
+    "TY_granger": "1/8",
+    "K_ge_3": "0/8",
+    "K_ge_4": "0/8"
+  },
+  "permg_fwd_fdr_significant_pairs": 0,
+  "permg_rev_fdr_significant_pairs": 0,
+  "ty_granger_note": "TY 1/8: token_entropy->mauve p=0.0104 (single pair, not FDR-corrected across pairs for TY)",
+  "fpr_10seed": {
+    "permg_fp_total": 4,
+    "permg_total_pairs": 60,
+    "permg_fpr": 0.0667,
+    "permg_fpr_pct": "6.7%",
+    "permg_ci_95": [
+      0.0185,
+      0.162
+    ],
+    "permg_ci_95_pct": [
+      "1.8%",
+      "16.2%"
+    ],
+    "seeds_with_zero_fp": "8/10",
+    "K_ge3_fpr": "0/60 = 0.0%"
+  },
+  "fpr_9seed_previous": {
+    "permg_fp_total": 4,
+    "permg_total_pairs": 54,
+    "permg_fpr": 0.0741,
+    "permg_fpr_pct": "7.4%",
+    "permg_ci_95": [
+      0.0206,
+      0.1789
+    ],
+    "permg_ci_95_pct": [
+      "2.1%",
+      "17.9%"
+    ],
+    "seeds_with_zero_fp": "7/9"
+  },
+  "improvement": {
+    "fpr_delta": "7.4% -> 6.7%",
+    "ci_upper_delta": "17.9% -> 16.2%",
+    "ci_width_reduction": "15.8pp -> 14.4pp"
+  }
+}

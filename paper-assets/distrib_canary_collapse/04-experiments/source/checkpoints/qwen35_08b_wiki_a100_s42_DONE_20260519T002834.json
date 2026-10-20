@@ -1,0 +1,64 @@
+{
+  "exp_id": "qwen35_08b_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T20:52:52.006Z",
+    "updated_at": "2026-05-19T00:28:34.624Z",
+    "hypothesis": "Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。",
+    "server": "westd-17855",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-17855",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-18T20:56:03.044Z",
+      "command": "python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32",
+      "finished_at": "2026-05-19T00:27:32.988Z",
+      "training_hours": 3.52
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "completed_at": "2026-05-18T22:08:22.536Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T22:08:25.543963+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T00:27:37.370959+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "pid": "55423",
+      "tmux_session": "qwen35_08b_fp32",
+      "log_path": "~/runs/distrib_canary_collapse/qwen35_08b_fp32.log",
+      "submitted_at": "2026-05-19T06:09:21Z",
+      "submitted_via": "ssh_execute_manual",
+      "backend": "tmux",
+      "account": "root",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "Qwen3.5-0.8B-Base",
+      "seed": 42,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T00:28:34.789232+00:00",
+  "trigger": "update_registry"
+}

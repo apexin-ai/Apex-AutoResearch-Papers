@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b903c712eef01382e1c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "hotfix metrics mauve tryexcept",
+  "task_key": "worker_hotfix_metrics_mauve_tryexcept_20260517T201134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_metrics_mauve_tryexcept_20260517T201134_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "a41318f4eb5d182633547a66ecefe7a6366e178929fb846294060d28107e82b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改**: `/root/autodl-tmp/distrib_canary_collapse/metrics.py` 第 323-328 行\n\nMAUVE 调用已包裹在 try/except 中：失败时打印警告并设 `results[\"mauve\"] = None`。`json.dump` 会将 `None` 序列化为 `null`，不影响其他 metrics 计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/hotfix-metrics-mauve-tryexcept.md"
+}

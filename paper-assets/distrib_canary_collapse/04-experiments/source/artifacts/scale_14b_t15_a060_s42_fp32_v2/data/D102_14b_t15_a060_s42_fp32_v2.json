@@ -1,0 +1,57 @@
+{
+  "exp_id": "scale_14b_t15_a060_s42_fp32_v2",
+  "analysis": "d102_5method_leadlag",
+  "config": {
+    "alpha": 0.60,
+    "seed": 42,
+    "T": 15,
+    "model": "pythia-1.4b-deduped",
+    "precision": "fp32",
+    "n_gens": 16,
+    "threshold_criterion": "true_3sigma_d105",
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "canaries": ["token_entropy", "ece"],
+    "n_perm": 5000
+  },
+  "summary": {
+    "PermG_fwd": "6/8",
+    "PermG_rev": "0/8",
+    "diff_xcorr_fdr_fwd": "7/8",
+    "diff_xcorr_fdr_rev": "7/8",
+    "naive_xcorr_fwd_D111": "4/8",
+    "threshold_onset_3sigma": "6/8",
+    "TY_granger": "1/8",
+    "K_ge_3": "6/8",
+    "K_ge_4": "3/8",
+    "total_pairs": 8,
+    "asymmetry": "strong (6 vs 0)"
+  },
+  "consensus": [
+    {"pair": "token_entropy→distinct_1", "votes": "3/5", "methods": ["diff", "threshold", "perm"]},
+    {"pair": "token_entropy→distinct_2", "votes": "4/5", "methods": ["diff", "threshold", "perm", "ty"]},
+    {"pair": "token_entropy→distinct_3", "votes": "3/5", "methods": ["diff", "threshold", "perm"]},
+    {"pair": "token_entropy→mauve", "votes": "1/5", "methods": ["naive"]},
+    {"pair": "ece→distinct_1", "votes": "4/5", "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece→distinct_2", "votes": "4/5", "methods": ["naive", "diff", "threshold", "perm"]},
+    {"pair": "ece→distinct_3", "votes": "3/5", "methods": ["diff", "threshold", "perm"]},
+    {"pair": "ece→mauve", "votes": "2/5", "methods": ["naive", "diff"]}
+  ],
+  "scale_comparison": {
+    "410M_T15_a060": "0/8 PermG fwd (sync-dip)",
+    "14B_T15_a060": "6/8 PermG fwd (strong signal)",
+    "14B_T10_a060": "4/8 PermG fwd (reference)",
+    "interpretation": "Sync-dip NOT scale-invariant at T=15. 1.4B recovers strong causal signal (6/8), even stronger than T=10 (4/8). Longer T amplifies lead-lag at scale."
+  },
+  "drift": {
+    "token_entropy": "2.973 → 2.144 (-27.9%)",
+    "ece": "0.008 → 0.234 (+2791%)",
+    "perplexity": "19.83 → 68.70 (+246.5%)",
+    "distinct_1": "0.099 → 0.073 (-26.0%)",
+    "distinct_2": "0.522 → 0.347 (-33.6%)",
+    "distinct_3": "0.821 → 0.563 (-31.4%)",
+    "mauve": "0.033 → 0.029 (-12.0%)"
+  },
+  "server": "westd-17855",
+  "output_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32_14b",
+  "analysis_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32_14b/analysis/5method_leadlag.json"
+}

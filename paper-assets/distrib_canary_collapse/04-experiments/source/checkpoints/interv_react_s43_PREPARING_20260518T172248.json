@@ -1,0 +1,30 @@
+{
+  "exp_id": "interv_react_s43",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:57:59.843Z",
+    "updated_at": "2026-05-18T17:22:48.090Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s43\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "12279",
+      "log_path": "~/runs/distrib_canary_collapse/interv_react_s43.log",
+      "submitted_at": "2026-05-18T16:57:59.705Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "kill_reason": "missing --bf16, killed during Gen 0 generation phase"
+    },
+    "hypothesis": "Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T17:22:48.193211+00:00",
+  "trigger": "update_registry"
+}

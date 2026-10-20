@@ -1,0 +1,16 @@
+{
+  "exp_id": "interv_react_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:41:42.984Z",
+    "updated_at": "2026-05-19T13:43:03.269Z",
+    "hypothesis": "Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance.",
+    "parent": "intervention_reactive_s42"
+  },
+  "timestamp": "2026-05-19T13:43:03.459766+00:00",
+  "trigger": "update_registry"
+}

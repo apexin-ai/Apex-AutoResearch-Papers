@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19831eeaec6d628ce16e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix d080 19828 smollm3 restart",
+  "task_key": "worker_fix_d080_19828_smollm3_restart_20260519T002312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d080_19828_smollm3_restart_20260519T002312_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "ccce64c7a7306b7f7401629f4f6758c4757d81512cefd9c1edabf237a4593ff4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D080 执行完成。\n\n**结果：**\n- v2 进程 (PID 399353) 已 kill，cuda:1 显存已释放\n- 旧数据 `smollm3_3b_wiki_a100_s42_fp32/` 已删除\n- Registry: v2 标记 `conclusion=killed`，v3 已创建并提交\n- v3 (PID 408266) 已在 cuda:1 上启动，13835MiB 显存，94% 利用率\n- 当前处于 Generation 0 baseline 合成数据阶段，无 NaN\n- 显存 13.8GB 符合 fp32 预期（3B * 4B ≈ 12GB + overhead），v2 的 bfloat16 生成阶段只需约 6GB，确认 dtype 已修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d080-19828-smollm3-restart.md"
+}

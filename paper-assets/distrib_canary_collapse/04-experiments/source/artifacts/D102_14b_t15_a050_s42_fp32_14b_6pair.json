@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "alpha": 0.5,
+    "seed": 42,
+    "T": 15,
+    "n_gens": 16,
+    "data_dir": "results/phase_diagram/t15_a050_s42_fp32_14b",
+    "methods": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+    "n_perm": 5000,
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3"],
+    "threshold_criterion": "true_3sigma_d105",
+    "note": "6-pair (distinct_1/2/3 only, mauve excluded)"
+  },
+  "summary": {
+    "perm_granger_fdr_forward_sig": 3,
+    "perm_granger_fdr_reverse_sig": 0,
+    "robust_pairs": 1,
+    "total_pairs": 6
+  },
+  "consensus": [
+    {"pair": "token_entropy<distinct_1", "votes": 2, "methods": ["naive", "ty"]},
+    {"pair": "token_entropy<distinct_2", "votes": 2, "methods": ["naive", "ty"]},
+    {"pair": "token_entropy<distinct_3", "votes": 2, "methods": ["naive", "ty"]},
+    {"pair": "ece<distinct_1", "votes": 1, "methods": ["perm"]},
+    {"pair": "ece<distinct_2", "votes": 2, "methods": ["naive", "perm"]},
+    {"pair": "ece<distinct_3", "votes": 3, "methods": ["naive", "perm", "ty"]}
+  ],
+  "metrics_trajectory": {
+    "gen_0": {"token_entropy": 2.9731, "ece": 0.0081, "distinct_1": 0.0992, "distinct_2": 0.5222, "distinct_3": 0.8211, "perplexity": 19.83, "mauve": null},
+    "gen_1": {"token_entropy": 2.1745, "ece": 0.1011, "distinct_1": 0.099, "distinct_2": 0.5225, "distinct_3": 0.8212, "perplexity": 20.89, "mauve": null},
+    "gen_2": {"token_entropy": 2.185, "ece": 0.122, "distinct_1": 0.0866, "distinct_2": 0.4563, "distinct_3": 0.7511, "perplexity": 25.5, "mauve": null},
+    "gen_3": {"token_entropy": 2.2081, "ece": 0.127, "distinct_1": 0.0789, "distinct_2": 0.4009, "distinct_3": 0.6696, "perplexity": 27.03, "mauve": null},
+    "gen_4": {"token_entropy": 2.1981, "ece": 0.1339, "distinct_1": 0.0749, "distinct_2": 0.3656, "distinct_3": 0.6111, "perplexity": 28.79, "mauve": null},
+    "gen_5": {"token_entropy": 2.2249, "ece": 0.1374, "distinct_1": 0.0723, "distinct_2": 0.3432, "distinct_3": 0.5687, "perplexity": 30.25, "mauve": null},
+    "gen_6": {"token_entropy": 2.1974, "ece": 0.144, "distinct_1": 0.0708, "distinct_2": 0.3309, "distinct_3": 0.5421, "perplexity": 31.43, "mauve": null},
+    "gen_7": {"token_entropy": 2.2457, "ece": 0.141, "distinct_1": 0.0704, "distinct_2": 0.3251, "distinct_3": 0.5291, "perplexity": 31.91, "mauve": null},
+    "gen_8": {"token_entropy": 2.2548, "ece": 0.1453, "distinct_1": 0.0699, "distinct_2": 0.3204, "distinct_3": 0.5203, "perplexity": 32.88, "mauve": null},
+    "gen_9": {"token_entropy": 2.2596, "ece": 0.1482, "distinct_1": 0.0695, "distinct_2": 0.3167, "distinct_3": 0.5118, "perplexity": 34.21, "mauve": null},
+    "gen_10": {"token_entropy": 2.2517, "ece": 0.1513, "distinct_1": 0.0693, "distinct_2": 0.3145, "distinct_3": 0.5075, "perplexity": 35.04, "mauve": null},
+    "gen_11": {"token_entropy": 2.2872, "ece": 0.1494, "distinct_1": 0.0691, "distinct_2": 0.3132, "distinct_3": 0.5048, "perplexity": 35.41, "mauve": null},
+    "gen_12": {"token_entropy": 2.3103, "ece": 0.1504, "distinct_1": 0.0688, "distinct_2": 0.3111, "distinct_3": 0.5001, "perplexity": 35.99, "mauve": null},
+    "gen_13": {"token_entropy": 2.31, "ece": 0.1513, "distinct_1": 0.0686, "distinct_2": 0.3091, "distinct_3": 0.4967, "perplexity": 36.27, "mauve": null},
+    "gen_14": {"token_entropy": 2.3067, "ece": 0.1537, "distinct_1": 0.0685, "distinct_2": 0.3082, "distinct_3": 0.4952, "perplexity": 37.06, "mauve": null},
+    "gen_15": {"token_entropy": 2.3222, "ece": 0.1526, "distinct_1": 0.0683, "distinct_2": 0.3074, "distinct_3": 0.4935, "perplexity": 37.36, "mauve": null}
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "description": "Pythia-1.4B α-sweep phase diagram data for appendix table",
+  "created": "2026-05-25",
+  "source": "registry read_registry(fields=[*]), filtered for 14b experiments",
+  "notes": [
+    "s44 experiments and some s43 use 6-pair basis (MAUVE null, 6 valid pairs)",
+    "Bidirectional confounding marked when PermG_rev > 0",
+    "C008: K≥3 uses threshold_onset_3sigma from registry, not 3x_sigma_drift",
+    "C009: direction filter uses peak_lag < 0 (canary leads downstream)"
+  ],
+  "experiments": {
+    "T10": {
+      "a045": {
+        "s42": {
+          "exp_id": "scale_14b_t10_a045_s42_fp32",
+          "permg_fwd": 0, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 0, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "DiffXCorr 8/8 but bidirectional (8/8 reverse), no robust pairs"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t10_a045_s43_fp32",
+          "permg_fwd": 1, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 2, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "PermG marginal (ece->distinct_1 only)"
+        },
+        "s44": {
+          "exp_id": "scale_14b_t10_a045_s44_fp32",
+          "permg_fwd": 0, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 0, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a050": {
+        "s42": {
+          "exp_id": "scale_14b_t10_a050_s42_fp32_v2",
+          "permg_fwd": 4, "permg_fwd_total": 8,
+          "permg_rev": 2, "permg_rev_total": 8,
+          "k_ge_3": 3, "k_ge_3_total": 8,
+          "bidirectional": true,
+          "note": "Corrected per Reviewer #141"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t10_a050_s43_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 1, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "MAUVE null, 6-pair basis"
+        },
+        "s44": {
+          "exp_id": "scale_14b_t10_a050_s44_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 0, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a060": {
+        "s42": {
+          "exp_id": "scale_14b_t10_a060_s42_fp32_v2",
+          "permg_fwd": 4, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 3, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "1.4B does NOT show sync-dip at alpha=0.60 T=10"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t10_a060_s43_fp32",
+          "permg_fwd": 4, "permg_fwd_total": 8,
+          "permg_rev": 6, "permg_rev_total": 8,
+          "k_ge_3": 3, "k_ge_3_total": 8,
+          "bidirectional": true,
+          "note": "Effective PermG 4/6 on valid pairs, bidirectional confounding"
+        },
+        "s44": {
+          "exp_id": "scale_14b_t10_a060_s44_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 5, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a075": {
+        "s42": {
+          "exp_id": "scale_14b_t10_a075_s42_fp32_v2",
+          "permg_fwd": 5, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 5, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "Corrected per Reviewer #141: DiffXCorr 8/8->6/8, TY NaN->3/8"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t10_a075_s43_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 8,
+          "permg_rev": 5, "permg_rev_total": 8,
+          "k_ge_3": 5, "k_ge_3_total": 8,
+          "bidirectional": true,
+          "note": "Bidirectional confounding (rev=5/8), seed-specific"
+        },
+        "s44": {
+          "exp_id": "scale_14b_t10_a075_s44_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 6, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      }
+    },
+    "T15": {
+      "a045": {
+        "s42": {
+          "exp_id": "scale_14b_t15_a045_s42_fp32",
+          "permg_fwd": 3, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 4, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "threshold_fwd=2/8, ty_fwd=6/8"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t15_a045_s43_fp32",
+          "permg_fwd": 5, "permg_fwd_total": 6,
+          "permg_rev": 3, "permg_rev_total": 6,
+          "k_ge_3": 3, "k_ge_3_total": 6,
+          "bidirectional": true,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a050": {
+        "s42": {
+          "exp_id": "scale_14b_t15_a050_s42_fp32_v3",
+          "permg_fwd": 3, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 2, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "410M T=15 a=0.50=6/8 K>=3 vs 1.4B=2/8"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t15_a050_s43_fp32",
+          "permg_fwd": 3, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 3, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a060": {
+        "s42": {
+          "exp_id": "scale_14b_t15_a060_s42_fp32_v2",
+          "permg_fwd": 6, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 6, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "threshold_onset_3sigma=6/8"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t15_a060_s43_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 3, "permg_rev_total": 6,
+          "k_ge_3": 6, "k_ge_3_total": 6,
+          "bidirectional": true,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      },
+      "a075": {
+        "s42": {
+          "exp_id": "scale_14b_t15_a075_s42_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 8,
+          "permg_rev": 0, "permg_rev_total": 8,
+          "k_ge_3": 6, "k_ge_3_total": 8,
+          "bidirectional": false,
+          "note": "threshold_fwd=7/8, ty_fwd=5/8, K>=4=6/8"
+        },
+        "s43": {
+          "exp_id": "scale_14b_t15_a075_s43_fp32",
+          "permg_fwd": 6, "permg_fwd_total": 6,
+          "permg_rev": 0, "permg_rev_total": 6,
+          "k_ge_3": 6, "k_ge_3_total": 6,
+          "bidirectional": false,
+          "basis": "6-pair",
+          "note": "d102 6-pair analysis"
+        }
+      }
+    }
+  },
+  "latex_table": "\\begin{table}[h]\n\\centering\n\\caption{Pythia-1.4B phase diagram: PermG forward detection across contamination levels ($\\alpha$) and observation windows ($T$). Fwd/Rev: FDR-significant forward/reverse pairs; $K{\\geq}3$: multi-method consensus pairs. $\\dagger$ marks bidirectional confounding (reverse $>0$). Denominator is 8 (canonical pairs) unless marked $^{*}$ (6-pair basis, MAUVE unavailable).}\n\\label{tab:14b_phase_diagram}\n\\begin{tabular}{@{}llcccl@{}}\n\\toprule\n$T$ & $\\alpha$ & Seed & Fwd & Rev & $K{\\geq}3$ \\\\\n\\midrule\n\\multirow{12}{*}{10}\n & \\multirow{3}{*}{0.45} & 42 & 0/8 & 0/8 & 0/8 \\\\\n &                       & 43 & 1/8 & 0/8 & 2/8 \\\\\n &                       & 44 & 0/6$^{*}$ & 0/6$^{*}$ & 0/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.50} & 42 & 4/8 & 2/8$^{\\dagger}$ & 3/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 0/6$^{*}$ & 1/6$^{*}$ \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 0/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.60} & 42 & 4/8 & 0/8 & 3/8 \\\\\n &                       & 43 & 4/8 & 6/8$^{\\dagger}$ & 3/8 \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 5/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.75} & 42 & 5/8 & 0/8 & 5/8 \\\\\n &                       & 43 & 6/8 & 5/8$^{\\dagger}$ & 5/8 \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 6/6$^{*}$ \\\\\n\\midrule\n\\multirow{8}{*}{15}\n & \\multirow{2}{*}{0.45} & 42 & 3/8 & 0/8 & 4/8 \\\\\n &                       & 43 & 5/6$^{*}$ & 3/6$^{*\\dagger}$ & 3/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.50} & 42 & 3/8 & 0/8 & 2/8 \\\\\n &                       & 43 & 3/6$^{*}$ & 0/6$^{*}$ & 3/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.60} & 42 & 6/8 & 0/8 & 6/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 3/6$^{*\\dagger}$ & 6/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.75} & 42 & 6/8 & 0/8 & 6/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 0/6$^{*}$ & 6/6$^{*}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+}

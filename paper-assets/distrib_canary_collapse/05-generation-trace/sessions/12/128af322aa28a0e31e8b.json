@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "128af322aa28a0e31e8b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis baseline 410m unified rerun",
+  "task_key": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_baseline_410m_unified_rerun_20260518T003545_result.json",
+    "occurrence": 1,
+    "bytes": 1899,
+    "sha256": "327a062ce4480ca02159b8ad232d905f6ea28fed770d9f81afde15416ad91601"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果与旧 registry 值有显著差异，主要原因是统一参数（xcorr max_lag 从 3→5、n_perm 从 1000→5000、不做 FDR）。\n\n---\n\n## 结果\n\n**Raw p<0.05 计数**（统一参数：n_perm=5000, xcorr_lag=5, granger_lag=1, no FDR）：\n\n| 方法 | X/8 | 旧值 | 差异 |\n|------|-----|------|------|\n| naive_xcorr | 8/8 | 7/8 | +1（max_lag 5 更宽，token_entropy→perplexity 边际显著 p=0.0455） |\n| diff_xcorr | 8/8 | 6/8 | +2（同上原因） |\n| threshold_onset | 8/8 | 6/8 | +2（可能旧分析用了 4 canary × 4 downstream 不同 pair 集） |\n| permg_fwd | 6/8 | 6/8 | 一致 |\n| permg_rev | 3/8 | 0/8 | +3（ece→distinct_{1,2,3} 反向 p≈0.027-0.031，n_perm=5000 下刚过阈值） |\n| ty_granger | 4/8 | 6/8 | -2（受 C003 约束，TY 在短序列不稳定） |\n| K≥3 | 8/8 | — | — |\n| K≥4 | 6/8 | 6/8 | 一致 |\n\n**Per-pair PG raw p-values**：\n\n| Pair | PG_fwd_p | PG_rev_p |\n|------|----------|----------|\n| token_entropy→perplexity | 0.5841 | 0.9658 |\n| token_entropy→distinct_1 | 0.0002 | 0.4921 |\n| token_entropy→distinct_2 | 0.0012 | 0.4805 |\n| token_entropy→distinct_3 | 0.0012 | 0.5047 |\n| ece→perplexity | 0.8040 | 0.1418 |\n| ece→distinct_1 | 0.0002 | 0.0274 |\n| ece→distinct_2 | 0.0006 | 0.0286 |\n| ece→distinct_3 | 0.0006 | 0.0306 |\n\n**差异原因汇总**：\n- `naive_xcorr`/`diff_xcorr` 增加：max_lag 从 3→5 捕获了更多滞后相关\n- `permg_rev` 增加 3 个：ece→distinct_{1,2,3} 反向因果刚过 0.05 阈值（0.027-0.031），n_perm=5000 精度更高\n- `ty_granger` 减少 2 个：旧分析可能用了不同 pair 集（4 canary 而非 2）；ece→distinct_{2,3} 和 ece→perplexity 的 TY p 值在 0.09-0.13 区间\n\n结果已保存至 `results/generalize/pythia410m_wiki_a100_s42/analysis/pythia410m_8pair_5method_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-baseline-410m-unified-rerun.md"
+}

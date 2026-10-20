@@ -1,0 +1,67 @@
+{
+  "exp_id": "phase_diagram_t25_a060_s42_fp32_v3",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:00:56.727Z",
+    "updated_at": "2026-05-22T07:05:48.435Z",
+    "hypothesis": "T=25 α=0.60 sync-dip dissolution test (v3 resume from gen_14). At T=10/15/20 α=0.60 all show PermG=0/8 (sync-dip zone). If T=25 PermG>0/8, confirms sync-dip dissolves with longer training horizons. If PermG=0/8, sync-dip is permanent → C3 upgrade.",
+    "parent": "phase_diagram_t25_a060_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "v2 crash残留 gen_0-13 完整, resume from gen_14 via --start_gen 14",
+      "eval_data": "data/wikitext103_5k",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 14\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "582540",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v3.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:38:19.439Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:38:29.580423+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": 5,
+      "PermG_rev": 0,
+      "total_pairs": 8,
+      "asymmetry": "strong",
+      "robust_pairs_ge3": 6,
+      "robust_pairs_ge4": 3,
+      "diff_xcorr_fdr_fwd": 8,
+      "diff_xcorr_fdr_rev": 8,
+      "threshold_fwd": 6,
+      "ty_fwd": 4,
+      "threshold_criterion": "true_3sigma_d105",
+      "downstreams": [
+        "distinct_1",
+        "distinct_2",
+        "distinct_3",
+        "mauve"
+      ],
+      "n_gens": 26,
+      "scenario": "A_dissolution_confirmed"
+    },
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a060_s42_fp32",
+    "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v3.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T07:05:48.920587+00:00",
+  "trigger": "update_registry"
+}

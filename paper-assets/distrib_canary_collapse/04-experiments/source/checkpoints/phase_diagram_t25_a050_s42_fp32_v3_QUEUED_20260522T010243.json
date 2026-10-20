@@ -1,0 +1,24 @@
+{
+  "exp_id": "phase_diagram_t25_a050_s42_fp32_v3",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:01:00.286Z",
+    "updated_at": "2026-05-22T01:02:43.347Z",
+    "hypothesis": "Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 above threshold. At T=10/15/20 PermG=6/8 consistently. v3 resumes from gen_12 checkpoint after v2 disk-full crash at gen_13. If T=25 ≥6/8, confirms detection scaling and 6/8 ceiling persistence across all T.",
+    "parent": "phase_diagram_t25_a050_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "v2 crash残留 gen_0-12 完整, resume from gen_13 via --start_gen 13",
+      "eval_data": "data/wikitext103_5k"
+    }
+  },
+  "timestamp": "2026-05-22T01:02:43.757747+00:00",
+  "trigger": "update_registry"
+}

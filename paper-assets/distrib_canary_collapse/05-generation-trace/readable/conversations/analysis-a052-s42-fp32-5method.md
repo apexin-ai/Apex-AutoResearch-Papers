@@ -1,0 +1,1580 @@
+# analysis a052 s42 fp32 5method
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/chats/worker_analysis_a052_s42_fp32_5method_20260521T070055.jsonl`
+- **Structured JSON:** [`2f26d218090b848999fd.json`](../../sessions/2f/2f26d218090b848999fd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+53 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T07:03:52.303859+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T07:03:52.304216+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T07:03:52.304427+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T07:03:52.304576+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T07:03:52.304736+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls -d /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T07:03:52.304865+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T07:03:52.304993+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/gen_*/all_metrics.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T07:03:52.305134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42_fp32\\na000_s45_fp32\\na000_s47_fp32\\na000_s47_fp32.log\\na005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s42_fp32\\na010_s43_bf16\\na010_s43_fp32\\na025_s42_fp32\\na025_s43_fp32\\na025_s44_fp32\\na030_s42_fp32\\na035_s42_fp32\\na040_s42_fp32\\na045_s42_fp32\\na045_s43_fp32\\na046_s42_fp32\\na046_s43_fp32\\na046_s43_fp32.log\\na048_s42_fp32\\na050_postd093_s42_fp32\\na050_s42_fp32\\na050_s43_fp32\\na050_s44_fp32\\na052_s42_fp32\\na052_s43_fp32\\na052_s43_fp32.log\\na055_s42_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\na060_s42_fp32_v4\\na060_s43_fp32\\na065_s42_fp32\\na070_s42_fp32\\na075_s42_fp32\\na100_s42_fp32\\nc4_a025_s42_fp32\\nc4_a050_s42_fp32\\nc4_a075_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T07:03:52.305325+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T07:03:52.305471+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis_results.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T07:03:52.305624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:03:52.305809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a052_s42_fp32\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -26.28,\\n    \\\"ece\\\": 1273.35,\\n    \\\"perplexity\\\": 47.55,\\n    \\\"distinct_1\\\": -32.2,\\n    \\\"distinct_2\\\": -42.26,\\n    \\\"distinct_3\\\": -41.48,\\n    \\\"effective_rank\\\": 51.59,\\n    \\\"mauve\\\": -16.8\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 1,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 4,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 5,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entrop
+…[truncated 608 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T07:03:52.305970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T07:03:52.306101+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T07:03:52.306273+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T07:03:52.306427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/aggregate_phase3.py\\n/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/batch_tyfix_rerun.py\\n/root/autodl-tmp/distrib_canary_collapse/compile_dose_response.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_cascade_onset.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_cascade_onset_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/diagnostic_compare.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/early_stopping_analysis_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/eval_task_degradation.py\\n/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\n/root/autodl-tmp/distrib_canary_collapse/metrics.py\\n/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\n/root/autodl-tmp/distrib_canary_collapse/phase_space_trajectory.py\\n/root/autodl-tmp/distrib_canary_collapse/phase_transition_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_fix.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_5k_v5.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_c4_v4.py\\n/root/autodl-tmp/distrib_canary_collapse/prepare_data.py\\n/root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py\\n/root/autodl-tmp/distrib_canary_collapse/run_dose_response_m035.py\\n/root/autodl-tmp/distrib_canary_collapse/run_intervention_5method.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T07:03:52.306559+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T07:03:52.306754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8495,\\n          \\\"p_value\\\": 0.068498,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.068498,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 189.3435,\\n          \\\"p_value\\\": 0.006999,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.043192,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.9433,\\n          \\\"p_value\\\": 0.376925,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.95021,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 0.0752,\\n          \\\"p_value\\\": 0.783872,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": false\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.9236,\\n          \\\"p_value\\\": 0.001053,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n 
+…[truncated 1566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T07:03:52.306941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T07:03:52.307158+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREA
+…[truncated 380 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T07:03:52.307361+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -60 /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T07:03:52.307529+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D105: Global 3sigma recompute for 7 experiments.\\n\\nHandles two data formats:\\n- 5method_leadlag.json (run_5method_analysis output)\\n- analysis_results.json (d102_rerun_8pair output)\\n\\nRecomputes threshold_onset with true 3sigma, keeps other 4 methods unchanged,\\nrecalculates K>=4 and K>=3.\\n\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nfrom itertools import product\\nfrom datetime import datetime\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef extract(metrics_list, name):\\n    return np.array([m[name] for m in sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef onset_gen_3sigma(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 3 * sigma\\n    for i in range(1, len(s)):\\n        if s[i] > thresh:\\n            return i\\n    return None\\n\\n\\ndef threshold_lead_3sigma(c, d, cn, dn):\\n    co = onset_gen_3sigma(c, cn)\\n    do = onset_gen_3sigma(d, dn)\\n    if co is None or do is None:\\n        return {\\\"canary_onset\\\": co, \\\"downstream_onset\\\": do, \\\"lead_time\\\": None, \\\"significant\\\": False}\\n    lt = do - co\\n    return {\\\"canary_onset\\\": int(co), \\\"downstream_onset\\\": int(do), \\\"lead_time\\\": int(lt), \\\"significant\\\": bool(lt > 0)}\\n\\n\\ndef onset_gen_2sigma(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 2 * sigma\\n    for i in range(1, len(s)):\\n        if s[
+…[truncated 163 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T07:03:52.307703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"3sigma\\|threshold_onset_3sigma\\|peak_lag < 0\\|peak_lag > 0\\|D105\\|D111\\|direction\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"3sigma\\|threshold_onset_3sigma\\|peak_lag < 0\\|peak_lag > 0\\|D105\\|D111\\|direction\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T07:03:52.307834+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T07:03:52.307954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T07:03:52.308076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"335 /root/autodl-tmp/distrib_canary_collapse/recompute_3sigma_d105.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T07:03:52.308194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"3sigma\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"3sigma\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T07:03:52.308534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"169:        \\\"threshold\\\": \\\"true_3sigma_d105\\\",\\n277:            \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T07:03:52.308668+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"peak_lag\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T07:03:52.308802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"104:        \\\"peak_lag\\\": int(best_lag),\\n133:        \\\"peak_lag\\\": int(best_lag),\\n360:            nl = str(f['naive_xcorr']['peak_lag'])\\n362:            dl = str(f['diff_xcorr']['peak_lag'])\\n373:    # Consensus table (D111: peak_lag < 0 for naive/diff xcorr)\\n382:        if f[\\\"naive_xcorr\\\"][\\\"significant\\\"] and f[\\\"naive_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n384:        if f[\\\"diff_xcorr\\\"].get(\\\"significant_fdr\\\", False) and f[\\\"diff_xcorr\\\"][\\\"peak_lag\\\"] < 0:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T07:03:52.308967+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"add_argument\\|argparse\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"add_argument\\|argparse\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T07:03:52.309095+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T07:03:52.309215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"add_argument\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T07:03:52.309377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"453:    parser.add_argument(\\\"--data_dir\\\", required=True, help=\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\")\\n454:    parser.add_argument(\\\"--alpha\\\", type=float, required=True, help=\\\"Alpha value (e.g. 0.0, 0.75)\\\")\\n455:    parser.add_argument(\\\"--seed\\\", type=int, required=True, help=\\\"Random seed\\\")\\n456:    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Check data availability without running analysis\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T07:03:52.309523+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u run_5method_analysis_d102.py --data_dir results/alpha_sweep/a052_s42_fp32 --alpha 0.52 --seed 42",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u run_5method_analysis_d102.py --data_dir results/alpha_sweep/a052_s42_fp32 --alpha 0.52 --seed 42",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T07:03:52.309699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==== ================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.52 | seed=42\\nData: results/alpha_sweep/a052_s42_fp32\\n==== ================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary ₆ downstream)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy<distinct_1   -0.980     5   0.955    -5   0.0230   None 132.437   0.6499            0.650  0.7682     0\\ntoken_entropy<distinct_2   -0.990     5   0.833    -1   0.0205   None 457.562   0.6499            0.650  0.2332     1\\ntoken_entropy<distinct_3   -0.994     5  -0.857     5   0.0685   None 153.998   0.6499        *   0.650  0.2492     1\\ntoken_entropy<mauve        -0.904     3  -0.844     3   0.0272   None   0.337   0.6499            0.650  0.0258     1\\nece<distinct_1              0.977     2   0.965    -5   0.0205   None 109.111   0.6499            0.650  0.7676     1\\nece<distinct_2              0.971     2   0.884    -1   0.0123   None 256.786   0.6499        *   0.650  0.3576     1\\nece<distinct_3              0.958     2   0.850    -5   0.0685   None 189.344   0.6499        *   0.650  0.9843     1\\nece<mauve                   0.924    -3  -0.743     3   0.0685   None   0.407   0.6499            0.650  0.0833     1\\n\\n====================================================================================================\\nREVERSE (downstream ₆ canary)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+…[truncated 2166 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T07:03:52.309937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T07:03:52.310365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.52,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"results/alpha_sweep/a052_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9804,\\n          \\\"p_value\\\": 0.000571,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.8428,\\n              \\\"p\\\": 0.035135\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.8061,\\n              \\\"p\\\": 0.028548\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.773,\\n              \\\"p\\\": 0.024494\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.7064,\\n              \\\"p\\\": 0.033407\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7577,\\n              \\\"p\\\": 0.011124\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.5026,\\n              \\\"p\\\": 0.115118\\n            },\\n            {\\n              \\\"lag\\\":
+…[truncated 8561 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T07:03:52.310626+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/5method_summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s42_fp32/analysis/5method_summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T07:03:52.310771+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T07:03:52.310912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=0.52, Seed=42, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 0/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 3/8\\n  Diff XCorr (FDR):   5/8\\n  Threshold Onset:    0/8\\n  TY Granger:         1/8\\n\\nConsensus detail:\\n  token_entropy<distinct_1  1/5  [diff]\\n  token_entropy<distinct_2  1/5  [diff]\\n  token_entropy<distinct_3  1/5  [perm]\\n  token_entropy<mauve       1/5  [ty]\\n  ece<distinct_1            1/5  [diff]\\n  ece<distinct_2            2/5  [diff, perm]\\n  ece<distinct_3            1/5  [perm]\\n  ece<mauve                 1/5  [naive]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T07:03:52.311061+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T07:03:52.311233+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'alpha_sweep_a052_s42_fp32'}",
+  "project": "distrib_canary_collapse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'alpha_sweep_a052_s42_fp32'}",
+    "project": "distrib_canary_collapse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T07:03:52.311421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5014}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T07:03:52.311568+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "distrib_canary_collapse",
+  "limit": "5",
+  "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "distrib_canary_collapse",
+    "limit": "5",
+    "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T07:03:52.311788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a052_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"3/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"4/8\", \"DiffXCorr_rev\": \"1/8\", \"threshold_onset_3sigma\": \"8/8\", \"TY_fwd\": \"5/8\", \"K_ge3\": \"6/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [\"token_entropy->distinct_1\", \"token_entropy->distinct_2\", \"token_entropy->distinct_3\", \"ece->distinct_1\", \"ece->distinct_2\", \"ece->mauve\"], \"drift_token_entropy\": -26.28, \"drift_ece\": 1273.35, \"drift_perplexity\": 47.55, \"drift_distinct_1\": -32.2, \"drift_distinct_2\": -42.26, \"drift_distinct_3\": -41.48, \"drift_mauve\": -16.8, \"wall_clock_s\": 15800}, \"conclusion\": \"success\"}, \"t20_a025_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 1, \"diff_xcorr_fdr_reverse_sig\": 1, \"threshold_onset_forward_sig\": 4, \"ty_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0, \"n_generations\": 20, \"alpha\": 0.25, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\", \"drift_pct\": {\"token_entropy\": -3.27, \"distinct_1\": -40.42, \"distinct_2\": -58.71, \"distinct_3\": -62.92, \"ece\": 84.91, \"perplexity\": -18.62, \"mauve\": -34.3}, \"final_perplexity\": 21.93, \"final_token_entropy\": 3.1286, \"final_mauve\": 0.0204, \"predicted_permg\": 3, \"observed_permg\": 3, \"prediction_verdict\": \"EXACT_MATCH\", \"blind_zone_conclusion\": \"power_breakthrough_as_predicted\"}, \"conclusion\": \"success\"}, \"alpha_sweep_a048_s42_fp32\": {\"status\": \"DONE\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"1/8\", \"DiffXCorr_rev\": \"1/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"3/8\", \"K_ge3\": \"1/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [\"ece→distinct_1 (naive,diff,ty)\"], \"drift_token_entropy\": \"-18.6%\", \"drift_ece\": \"+799.6%\"
+…[truncated 1061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T07:03:52.311993+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "alpha_sweep_a052_s42_fp32",
+  "field": "metrics",
+  "value": "{'PermG_fwd': '3/8', 'PermG_rev': '0/8', 'DiffXCorr_fwd': '5/8', 'DiffXCorr_rev': '5/8', 'threshold_onset_3sigma': '0/8', 'TY_fwd': '1/8', 'K_ge3': '0/8', 'K_ge4': '0/8', 'robust_pairs': [], 'drift_token_entropy': -26.28, 'drift_ece': 1273.35, 'drift_perplexity': 47.55, 'drift_distinct_1': -32.2, 'drift_distinct_2': -42.26, 'drift_distinct_3': -41.48, 'drift_mauve': -16.8, 'analysis_script': 'run_5method_analysis_d102.py', 'threshold_criterion': 'true_3sigma_d105', 'n_perm': 5000, 'analysis_server': 'westd-17855'}",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "alpha_sweep_a052_s42_fp32",
+    "field": "metrics",
+    "value": "{'PermG_fwd': '3/8', 'PermG_rev': '0/8', 'DiffXCorr_fwd': '5/8', 'DiffXCorr_rev': '5/8', 'threshold_onset_3sigma': '0/8', 'TY_fwd': '1/8', 'K_ge3': '0/8', 'K_ge4': '0/8', 'robust_pairs': [], 'drift_token_entropy': -26.28, 'drift_ece': 1273.35, 'drift_perplexity': 47.55, 'drift_distinct_1': -32.2, 'drift_distinct_2': -42.26, 'drift_distinct_3': -41.48, 'drift_mauve': -16.8, 'analysis_script': 'run_5method_analysis_d102.py', 'threshold_criterion': 'true_3sigma_d105', 'n_perm': 5000, 'analysis_server': 'westd-17855'}",
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T07:03:52.312200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a052_s42_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:14:05.887Z\", \"updated_at\": \"2026-05-21T07:03:25.576Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.52 --output_dir results/alpha_sweep/a052_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"421887\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log\", \"submitted_at\": \"2026-05-21T02:28:34.161Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 16278.2, \"gpu_hours\": 4.52}, \"hypothesis\": \"Transition region microstructure: α=0.52 probes just above the estimated α_c≈0.48-0.50 boundary. If PermG>0/8, confirms sharp transition; if 0/8, the blind zone extends past 0.50 and the apparent step-function at 0.50 was seed-specific.\", \"reproduce\": {\"finished_at\": \"2026-05-21T06:52:49.505Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T06:52:55.121087+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"3/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"5/8\", \"DiffXCorr_rev\": \"5/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge3\": \"0/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [], \"drift_token_entropy\": -26.28, \"drift_ece\": 1273.35, \"drift_perplexity\": 47.55, \"drift_distinct_1\": -32.2, \"drift_distinct_2\": -42.26, \"drift_distinct_3\": -41.48, \"drift_mauve\": -16.8, \"analysis_script\": \"run_5method_analysis_d102.py\", \"threshold_criterion\": \"true_3sigma_d105\", \"n_perm\": 5000, \"analysis_server\": \"westd-17855\"}, \"
+…[truncated 298 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T07:03:52.312448+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T07:03:52.312592+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T07:03:52.312727+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "a052_s42_fp32_5method_d102",
+  "type": "data",
+  "description": "5-method leadlag analysis (D102+D105+D111) for α=0.52 s42 fp32. PermG 3/8 fwd, 0/8 rev. ThresholdOnset 3sigma 0/8. K≥3=0/8. Robust pairs=0.",
+  "project": "distrib_canary_collapse",
+  "exp_id": "alpha_sweep_a052_s42_fp32",
+  "content_filename": "a052_s42_fp32_5method_summary.txt",
+  "content": "5-Method Lead-Lag Analysis (D102+D105+D111)\nAlpha=0.52, Seed=42, Generations=11, N_perm=5000\nServer: westd-17855\nScript: run_5method_analysis_d102.py\nThreshold: true_3sigma_d105\n============================================================\n\nPer-method forward significance:\n  Perm Granger (FDR): 3/8\n  Perm Granger rev:   0/8\n  Diff XCorr (FDR):   5/8\n  Threshold Onset:    0/8  (3sigma — all pairs have None onset)\n  TY Granger:         1/8\n\nConsensus (K votes):\n  token_entropy→distinct_1  1/5  [diff]\n  token_entropy→distinct_2  1/5  [diff]\n  token_entropy→distinct_3  1/5  [perm]\n  token_entropy→mauve       1/5  [ty]\n  ece→distinct_1            1/5  [diff]\n  ece→distinct_2            2/5  [diff, perm]\n  ece→distinct_3            1/5  [perm]\n  ece→mauve                 1/5  [naive]\n\nRobust pairs (K≥3): 0/8\nK≥4: 0/8\n\nNote: Old registry had threshold_onset_3sigma=8/8, K≥3=6/8 from pre-D102 analysis\nusing non-3sigma threshold. D102 reanalysis with true_3sigma_d105 corrects to 0/8.\nPermG asymmetry (3 fwd / 0 rev) confirms directional signal exists above α_c.",
+  "tags": "['5method', 'leadlag', 'd102', 'd105', 'd111', 'alpha_sweep', 'dose_response']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "a052_s42_fp32_5method_d102",
+    "type": "data",
+    "description": "5-method leadlag analysis (D102+D105+D111) for α=0.52 s42 fp32. PermG 3/8 fwd, 0/8 rev. ThresholdOnset 3sigma 0/8. K≥3=0/8. Robust pairs=0.",
+    "project": "distrib_canary_collapse",
+    "exp_id": "alpha_sweep_a052_s42_fp32",
+    "content_filename": "a052_s42_fp32_5method_summary.txt",
+    "content": "5-Method Lead-Lag Analysis (D102+D105+D111)\nAlpha=0.52, Seed=42, Generations=11, N_perm=5000\nServer: westd-17855\nScript: run_5method_analysis_d102.py\nThreshold: true_3sigma_d105\n============================================================\n\nPer-method forward significance:\n  Perm Granger (FDR): 3/8\n  Perm Granger rev:   0/8\n  Diff XCorr (FDR):   5/8\n  Threshold Onset:    0/8  (3sigma — all pairs have None onset)\n  TY Granger:         1/8\n\nConsensus (K votes):\n  token_entropy→distinct_1  1/5  [diff]\n  token_entropy→distinct_2  1/5  [diff]\n  token_entropy→distinct_3  1/5  [perm]\n  token_entropy→mauve       1/5  [ty]\n  ece→distinct_1            1/5  [diff]\n  ece→distinct_2            2/5  [diff, perm]\n  ece→distinct_3            1/5  [perm]\n  ece→mauve                 1/5  [naive]\n\nRobust pairs (K≥3): 0/8\nK≥4: 0/8\n\nNote: Old registry had threshold_onset_3sigma=8/8, K≥3=6/8 from pre-D102 analysis\nusing non-3sigma threshold. D102 reanalysis with true_3sigma_d105 corrects to 0/8.\nPermG asymmetry (3 fwd / 0 rev) confirms directional signal exists above α_c.",
+    "tags": "['5method', 'leadlag', 'd102', 'd105', 'd111', 'alpha_sweep', 'dose_response']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T07:03:52.312905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_087a33\", \"name\": \"a052_s42_fp32_5method_d102\", \"type\": \"data\", \"description\": \"5-method leadlag analysis (D102+D105+D111) for α=0.52 s42 fp32. PermG 3/8 fwd, 0/8 rev. ThresholdOnset 3sigma 0/8. K≥3=0/8. Robust pairs=0.\", \"path\": \"projects/distrib_canary_collapse/artifacts/alpha_sweep_a052_s42_fp32/data/a052_s42_fp32_5method_summary.txt\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"alpha_sweep_a052_s42_fp32\", \"skill\": \"\", \"created_at\": \"2026-05-21T07:03:43.529427+00:00\", \"tags\": [\"5method\", \"leadlag\", \"d102\", \"d105\", \"d111\", \"alpha_sweep\", \"dose_response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-21T07:03:52.313087+00:00_
+
+完成。总结：
+
+**α=0.52 s42 fp32 — D102 5method 分析结果**
+
+| 指标 | 值 |
+|------|------|
+| PermG fwd (FDR) | **3/8** |
+| PermG rev (FDR) | 0/8 |
+| DiffXCorr fwd (FDR) | 5/8 |
+| ThresholdOnset 3sigma | **0/8** |
+| TY fwd | 1/8 |
+| K≥3 | **0/8** |
+| K≥4 | 0/8 |
+
+关键发现：PermG 存在方向性不对称（3 fwd / 0 rev），确认 α=0.52 已在 α_c 以上有因果信号。但 3sigma threshold onset 全部为 None（信号幅度不足 3σ），导致 K 投票无法积累到 ≥3。
+
+旧 registry 的 threshold_onset_3sigma=8/8、K≥3=6/8 来自 pre-D102 分析（使用非 3sigma 阈值），已修正。Conclusion 维持 **success**（PermG > 0/8）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_a052_s42_fp32_5method_20260521T070055"
+}
+```
+
+</details>
+
+---

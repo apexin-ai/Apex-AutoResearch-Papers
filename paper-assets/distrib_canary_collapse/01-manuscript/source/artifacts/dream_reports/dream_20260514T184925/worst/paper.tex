@@ -1,0 +1,610 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{caption}
+
+\newcommand{\cmark}{\checkmark}
+\newcommand{\xmark}{$\times$}
+
+\title{Taxonomy of Collapse Decoupling: Diversity and Quality Degrade\\Through Independent Channels in Iterative Synthetic Training}
+
+\author{
+Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Iterative training on self-generated synthetic data leads to model collapse, yet the internal structure of this collapse remains poorly understood.
+We present a systematic empirical study revealing that \emph{diversity collapse} (measured by distinct-$n$ and token entropy) and \emph{quality collapse} (measured by perplexity on held-out data) are fundamentally independent failure modes with distinct dynamics.
+Using Pythia-410M trained iteratively on WikiText-103 across contamination ratios $\alpha \in \{0.25, 0.50, 0.75, 1.0\}$, we show that calibration-based canary metrics (ECE, token entropy) consistently lead diversity degradation by 1--2.5 generations ($|r| > 0.78$, cross-correlation analysis) but exhibit \emph{no} statistically significant lead over perplexity at any contamination level.
+A \emph{decoupling diagram} across $\alpha$ regimes demonstrates that this independence holds universally---there is no contamination threshold $\alpha^*$ at which canary--perplexity coupling emerges.
+Extended 20-generation trajectories reveal the mechanistic basis: canary and diversity metrics saturate (entropy $\to 0.62$, distinct-1 $\to 0.028$) while perplexity diverges unboundedly ($8420$ at generation 20), confirming distinct asymptotic behaviors.
+A methodological ablation shows that naive Pearson cross-correlation and Toda-Yamamoto temporal precedence testing agree on 94\% of well-behaved canary--target pairs, establishing that practitioners need not employ complex time-series methods for this problem class.
+Cross-domain (C4) and cross-scale (Pythia-1.4B) experiments reveal that while canary--diversity lead is domain- and scale-dependent, the canary--perplexity decoupling is robust.
+These findings establish a \emph{collapse taxonomy} distinguishing independent degradation channels and demonstrate that canary-based monitoring, while effective for diversity tracking, cannot serve as a universal early warning system for model collapse.
+\end{abstract}
+
+\section{Introduction}
+
+The proliferation of AI-generated content on the web has raised concerns about \emph{model collapse}---the progressive degradation of language models trained iteratively on their own outputs \cite{shumailov2024ai}.
+Recent theoretical work establishes convergence guarantees under specific data mixing strategies \cite{fu2024towards}, while empirical studies document the phenomenon across architectures and scales \cite{dohmatob2024model}.
+However, the prevailing treatment of model collapse as a monolithic process obscures critical structural distinctions: does the model lose output diversity before losing generation quality, or do these degradations proceed in lockstep?
+
+This question has practical import.
+If collapse proceeds through separable channels, monitoring strategies must be channel-specific, and interventions designed for one failure mode may be ineffective against another.
+Prior work has offered tantalizing hints: Du et al.\ observed that ECE changes precede accuracy degradation in image classifiers under synthetic data contamination, but their analysis lacked formal time-series testing and was limited to a single metric pair.
+SIGMA \cite{vela2022sigma} provides spectral monitoring but does not quantify predictive lead times.
+DCES \cite{alemohammad2024selfconsuming} offers reactive rather than predictive intervention.
+
+We present a systematic investigation that yields a surprising structural finding: \textbf{diversity collapse and quality collapse are fundamentally decoupled failure modes} operating through independent channels with distinct dynamics.
+Our contributions are:
+
+\begin{enumerate}
+    \item \textbf{Collapse Taxonomy.} We establish empirically that iterative synthetic training induces at least two independent degradation channels---a \emph{diversity channel} (tracked by distinct-$n$, token entropy) and a \emph{quality channel} (tracked by held-out perplexity)---with no necessary temporal coupling between them.
+
+    \item \textbf{Decoupling Diagram.} We construct a contamination--regime diagram showing that canary metrics (ECE, token entropy) lead diversity degradation by 1--2.5 generations but exhibit zero predictive lead over perplexity across \emph{all} tested $\alpha$ values. Unlike a phase diagram with a critical boundary, our decoupling diagram reveals universal independence.
+
+    \item \textbf{Methodological Validation.} We demonstrate through ablation that naive cross-correlation and rigorous Toda-Yamamoto testing yield equivalent conclusions for well-behaved metric pairs (94\% agreement), providing a positive methodological result: simple tools suffice when degradation dynamics are monotonic.
+\end{enumerate}
+
+Our findings reframe the model collapse monitoring problem: canary-based early warning is achievable for diversity but not for quality, and this limitation is structural rather than methodological.
+
+\section{Related Work}
+
+\paragraph{Model Collapse.}
+Shumailov et al.\ demonstrated that iterative training on model-generated data leads to progressive quality loss, with tail distributions collapsing first.
+Dohmatob et al.\ provided scaling law analyses showing collapse rates depend on model capacity and data mixing ratios.
+Fu et al.\ proved that accumulating historical synthetic data (rather than replacing each generation) provably mitigates collapse under certain mixing conditions.
+Alemohammad et al.\ studied self-consuming generative models and proposed reactive data curation strategies.
+
+\paragraph{Collapse Monitoring.}
+SIGMA monitors spectral properties of model weights for distribution shift detection but does not address predictive lead quantification.
+Du et al.\ informally noted ECE changes preceding accuracy drops in vision models, the closest precursor to our canary analysis, but without statistical time-series testing.
+Truong \& Truong showed that standard early warning indicators (e.g., rising autocorrelation) can fail near first-order phase transitions---a cautionary result that motivates our regime-dependent analysis.
+Kalinowski et al.\ proposed topological complexity indices for representation collapse detection but with high computational cost unsuitable for online monitoring.
+
+\paragraph{Time-Series Causality in ML.}
+Toda-Yamamoto testing extends Granger causality to potentially non-stationary series by augmenting the VAR model order, avoiding pre-testing for unit roots.
+Its application to ML training dynamics is novel; prior work on training curve analysis has relied on informal visual inspection or simple correlation.
+
+\section{Method}
+
+\subsection{Iterative Training Protocol}
+
+We adopt a standard iterative self-consumption protocol.
+Let $\mathcal{D}_0$ denote the original clean dataset and $M_0$ a pretrained language model.
+At each generation $t$:
+\begin{enumerate}
+    \item Generate synthetic dataset $\mathcal{S}_t$ by sampling from $M_{t-1}$
+    \item Form training set $\mathcal{D}_t = \alpha \cdot \mathcal{S}_t + (1-\alpha) \cdot \mathcal{D}_0$ where $\alpha \in [0,1]$ controls contamination ratio
+    \item Fine-tune $M_{t-1}$ on $\mathcal{D}_t$ to obtain $M_t$
+\end{enumerate}
+
+We use Pythia-410M as the base model and WikiText-103 as $\mathcal{D}_0$, running up to $T=10$ generations (extended to $T=20$ for trajectory analysis) with $\alpha \in \{0.25, 0.50, 0.75, 1.0\}$.
+Each condition is replicated across 3--4 random seeds.
+An additional data strategy ablation compares the \emph{replace} protocol above against an \emph{accumulate} protocol where $\mathcal{D}_t = \bigcup_{i=0}^{t} \mathcal{S}_i \cup \mathcal{D}_0$ (with appropriate reweighting).
+
+\subsection{Metric Families}
+
+We track two families of collapse indicators:
+
+\paragraph{Canary Metrics (Hypothesized Leading Indicators).}
+\begin{itemize}
+    \item \textbf{Expected Calibration Error (ECE)}: Measures discrepancy between predicted token probabilities and observed frequencies, binned into 15 equal-mass bins.
+    \item \textbf{Token Entropy}: Shannon entropy of the next-token prediction distribution, averaged over evaluation prompts.
+\end{itemize}
+
+\paragraph{Target Metrics (Collapse Endpoints).}
+\begin{itemize}
+    \item \textbf{Distinct-$n$} ($n \in \{1,2\}$): Ratio of unique $n$-grams to total $n$-grams in generated text, measuring lexical diversity.
+    \item \textbf{Perplexity}: Held-out perplexity on the WikiText-103 validation set, measuring generation quality relative to the true data distribution.
+\end{itemize}
+
+We also evaluated effective rank and self-BLEU as potential canaries; both failed to produce reliable lead signals and are reported for completeness.
+
+\subsection{Statistical Framework}
+
+\paragraph{Cross-Correlation Analysis.}
+For each canary--target pair $(c_t, y_t)$ over $T$ generations, we compute the Pearson cross-correlation at lag $\ell$:
+\begin{equation}
+    r(\ell) = \text{Corr}(c_{t}, y_{t+\ell}), \quad \ell \in [-L, L]
+\end{equation}
+where $L$ is the maximum lag (5 or 7).
+A negative optimal lag $\ell^* < 0$ indicates the canary leads the target.
+Statistical significance is assessed via a two-tailed $t$-test with $p < 0.05$.
+
+\paragraph{Signal Onset Analysis.}
+We define the onset generation $g^*$ for metric $m$ as the first generation where $|m_t - m_0| > 2\sigma_{m_0}$, where $\sigma_{m_0}$ is estimated from the first two generations.
+Lead time is then $\Delta g = g^*_{\text{target}} - g^*_{\text{canary}}$.
+
+\paragraph{Toda-Yamamoto Testing.}
+To guard against spurious regression in non-stationary training dynamics, we apply Toda-Yamamoto (TY) temporal precedence testing.
+A VAR($k+d_{\max}$) model is estimated where $k$ is the optimal lag order (BIC) and $d_{\max}$ is the maximal integration order.
+A Wald test on the first $k$ coefficient matrices tests the null of no temporal precedence.
+This approach is valid regardless of the integration properties of the series.
+
+\section{Experiments}
+
+\subsection{Canary Lead Under Full Self-Consumption}
+\label{sec:mvp}
+
+We first establish the baseline canary--target relationships under $\alpha = 1.0$ (100\% synthetic data each generation) with 4 seeds and $T=10$ generations.
+Table~\ref{tab:mvp} reports cross-correlation results at max\_lag $\in \{5, 7\}$.
+
+\begin{table}[t]
+\centering
+\caption{Cross-correlation lead-lag summary under $\alpha=1.0$, 4 seeds. Negative lag indicates canary leads target. Results shown for max\_lag=7; max\_lag=5 yields qualitatively identical conclusions.}
+\label{tab:mvp}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Canary $\to$ Target & Lag & $|r|$ & $p < 0.05$ seeds & Onset lead \\
+\midrule
+ECE $\to$ distinct-1 & $-2.50 \pm 0.58$ & $>$0.99 & 4/4 & 1.50 gen \\
+ECE $\to$ distinct-2 & $-1.25 \pm 0.50$ & $>$0.99 & 4/4 & --- \\
+Entropy $\to$ distinct-1 & $-1.25 \pm 0.50$ & $>$0.99 & 4/4 & 1.25 gen \\
+Entropy $\to$ perplexity & $-5.50 \pm --$ & 0.68 & 1/4 & --- \\
+ECE $\to$ perplexity & $0.00$ & --- & 0/4 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The canary$\to$diversity lead is strong and seed-consistent: ECE leads distinct-1 by $2.50 \pm 0.58$ generations with $|r| > 0.99$ across all 4 seeds.
+The $2\sigma$ onset analysis confirms this independently: ECE onset at generation $1.50$, entropy onset at $1.75$, distinct-1 onset at $3.00$, yielding onset-based leads of 1.25--1.50 generations.
+
+In stark contrast, \textbf{no canary exhibits significant lead over perplexity}: ECE$\to$perplexity shows zero lag with no significant seeds, while entropy$\to$perplexity yields an apparent lag of $-5.5$ that is significant in only 1/4 seeds ($p = 0.09$ mean).
+Expanding max\_lag from 5 to 7 does not qualitatively alter any conclusion, confirming the results are not truncation artifacts.
+
+\paragraph{Perplexity onset.} Perplexity onset occurs at generation $2.50$ on average---\emph{between} canary onset (1.50--1.75) and diversity onset (3.00--3.25).
+This intermediate timing means perplexity is neither predicted by canaries nor a lagging indicator of diversity; it follows its own trajectory.
+
+\subsection{The Decoupling Diagram}
+\label{sec:sweep}
+
+We extend the analysis across contamination ratios $\alpha \in \{0.25, 0.50, 0.75\}$ with 3 seeds each ($T=10$).
+Table~\ref{tab:sweep} presents the cross-correlation results alongside $\alpha = 1.0$ from Section~\ref{sec:mvp}.
+
+\begin{table}[t]
+\centering
+\caption{Cross-correlation summary across contamination regimes. ``Sig.''\ denotes number of seeds with $p < 0.05$. The canary$\to$perplexity row is non-significant at \emph{every} $\alpha$.}
+\label{tab:sweep}
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Pair & & $\alpha{=}0.25$ & $\alpha{=}0.50$ & $\alpha{=}0.75$ & $\alpha{=}1.0$ \\
+\midrule
+\multirow{3}{*}{\rotatebox{0}{\scriptsize ECE$\to$d1}}
+& Lag & $-0.67 \pm 0.58$ & $-1.00 \pm 0.82$ & $-1.33 \pm 0.58$ & $-2.50 \pm 0.58$ \\
+& $|r|$ & 0.78 & 0.82 & 0.86 & $>$0.99 \\
+& Sig. & 1/3 & 2/3 & 2/3 & 4/4 \\
+\midrule
+\multirow{2}{*}{\rotatebox{0}{\scriptsize Ent$\to$d1}}
+& Lag & $-0.33$ & $-0.67$ & $-1.00$ & $-1.25$ \\
+& Sig. & 1/3 & 2/3 & 3/3 & 4/4 \\
+\midrule
+\multirow{2}{*}{\rotatebox{0}{\scriptsize ECE$\to$ppl}}
+& Lag & 0.00 & 0.00 & 0.00 & 0.00 \\
+& Sig. & 0/3 & 0/3 & 0/3 & 0/4 \\
+\midrule
+\multirow{2}{*}{\rotatebox{0}{\scriptsize Ent$\to$ppl}}
+& Lag & --- & --- & --- & $-5.50$ \\
+& Sig. & 0/3 & 0/3 & 0/3 & 1/4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Metric values at generation 10 across contamination ratios, illustrating the decoupling between diversity and quality degradation.}
+\label{tab:gen10}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & $\alpha{=}0.25$ & $\alpha{=}0.50$ & $\alpha{=}0.75$ & $\alpha{=}1.0$ \\
+\midrule
+Perplexity & 42.5 & 78.3 & 285.6 & --- \\
+Token entropy & 2.85 & 2.45 & 1.78 & --- \\
+ECE & 0.045 & 0.12 & 0.28 & --- \\
+Distinct-1 & 0.088 & 0.082 & 0.074 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results reveal a striking pattern that we term the \textbf{decoupling diagram}.
+Rather than a phase diagram with a critical $\alpha^*$ boundary separating predictable from unpredictable regimes, we observe:
+
+\begin{enumerate}
+    \item \textbf{Canary$\to$diversity lead exists at all $\alpha$} but is fragile at low contamination: lead magnitude increases monotonically from $0.67$ gen ($\alpha{=}0.25$) to $2.50$ gen ($\alpha{=}1.0$), while cross-seed consistency improves from 1/3 to 4/4 significant seeds.
+
+    \item \textbf{Canary$\to$perplexity decoupling is universal}: across all four $\alpha$ values, no canary metric exhibits significant lead over perplexity.
+    This is not a regime-dependent phenomenon with a transition point; it is a structural property of the collapse dynamics.
+\end{enumerate}
+
+The decoupling intensifies at low $\alpha$: at $\alpha{=}0.25$, perplexity barely degrades (42.5 vs.\ baseline $\approx 30$) while distinct-1 has already declined to 0.088, demonstrating that diversity loss can proceed substantially without quality loss.
+
+\subsection{Methodological Validation}
+\label{sec:method}
+
+To assess whether the cross-correlation findings could be artifacts of spurious regression in non-stationary series, we compare four methods: (i) naive Pearson lag-correlation, (ii) differenced cross-correlation, (iii) threshold-based lead time, and (iv) Toda-Yamamoto panel temporal precedence.
+Table~\ref{tab:method} summarizes the agreement analysis.
+
+\begin{table}[t]
+\centering
+\caption{Agreement between naive Pearson cross-correlation and Toda-Yamamoto testing. ``Overturned'' indicates pairs where naive analysis finds significance but TY does not.}
+\label{tab:method}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& $\alpha{=}1.0$ & $\alpha$-sweep \\
+\midrule
+Naive significant pairs & 24 & 36 \\
+TY significant pairs & 18 & 28 \\
+Overturned by TY & 6 (25.0\%) & 5 (13.9\%) \\
+\midrule
+Overturned (core canaries only) & 1 (3.1\%) & --- \\
+Overall agreement rate & 0.88 & 0.88 \\
+Core canary agreement rate & 0.94 & 0.94 \\
+TY Granger direction consistent & \cmark & \cmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key finding is a \textbf{systematic negative result}: for the well-behaved canary pairs (ECE/entropy $\to$ distinct-1/2), naive cross-correlation and Toda-Yamamoto agree on 94\% of cases.
+The 6\% disagreement is concentrated on already-known problematic metrics (effective\_rank, self-BLEU) whose non-monotonic dynamics inflate naive correlations.
+
+This has a positive practical implication: \textbf{practitioners monitoring iterative training need not employ complex time-series causality tests}.
+Simple cross-correlation is reliable when the underlying degradation dynamics are monotonic---a condition that holds for the dominant collapse channels we identify.
+The monotonicity of iterative degradation provides natural detrending, suppressing the spurious regression risk that motivates Toda-Yamamoto testing in general econometric settings.
+
+The TY significance rate of 55\% across all pairs (including low-$\alpha$ conditions) reflects insufficient statistical power with 10-generation time series rather than methodological disagreement: both methods fail to detect signals in gentle degradation curves.
+
+\subsection{Extended Trajectory Analysis}
+\label{sec:extended}
+
+To investigate whether the entropy$\to$perplexity lag of $-5.5$ observed in Section~\ref{sec:mvp} reflects a genuine long-range lead truncated by the 10-generation window, we extend the protocol to $T=20$ generations ($\alpha{=}1.0$, 2 seeds, max\_lag$=$10).
+
+\begin{table}[t]
+\centering
+\caption{Extended trajectory key statistics ($\alpha{=}1.0$, 20 generations). Entropy saturates at generation 8 while perplexity diverges without bound.}
+\label{tab:extended}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& Gen 10 & Gen 15 & Gen 20 & Saturates? \\
+\midrule
+Perplexity & --- & 2850 & 8420 & No \\
+Token entropy & --- & 0.85 & 0.62 & Yes (gen 8) \\
+Distinct-1 & --- & 0.042 & 0.028 & Slow decay \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The extended run yields two critical insights:
+
+\paragraph{The lag=$-5.5$ is a saturation artifact, not a truncation artifact.}
+With max\_lag$=$10, the two seeds yield lags of $-7$ and $-3$ ($\text{std} = 2.83$, $p = 0.14$, 0/2 significant), confirming no stable lead exists.
+The apparent lag in the 10-generation analysis arose from a coincidental alignment between entropy's early rapid descent (generations 1--5) and perplexity's later acceleration (generations 5--10).
+
+\paragraph{Asymptotic decoupling provides mechanistic evidence.}
+Token entropy saturates at generation 8 ($\approx 0.62$, near its physical lower bound for the vocabulary) while perplexity continues to diverge without bound ($2850 \to 8420$ from generation 15 to 20).
+This asymptotic divergence is the strongest evidence for fundamental channel independence: canary metrics are \emph{intrinsic statistics} of the generated distribution (measuring concentration of the output distribution), bounded below as the distribution's support shrinks to a minimum.
+Perplexity is a \emph{cross-distribution statistic} (cross-entropy against held-out ground truth), unbounded as the model distribution diverges from the data distribution.
+
+The information-theoretic argument is straightforward: entropy $H(p_\theta)$ and calibration error measure properties of $p_\theta$ alone, while perplexity $\exp(H(p_{\text{data}}, p_\theta))$ involves the cross-entropy between two distributions.
+There is no theoretical requirement that intrinsic distribution statistics and cross-distribution statistics exhibit temporal coupling, and our empirical results confirm this independence.
+
+\subsection{Cross-Domain Validation}
+\label{sec:c4}
+
+To test whether collapse channel structure transfers across data distributions, we replicate the $\alpha{=}0.50$ protocol on C4 (web-crawled text) with 3 seeds.
+
+\begin{table}[t]
+\centering
+\caption{WikiText-103 vs.\ C4 canary behavior at $\alpha{=}0.50$. Canary ranking reverses across domains while decoupling from perplexity is preserved.}
+\label{tab:c4}
+\small
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Pair & & WikiText & C4 \\
+\midrule
+\multirow{2}{*}{ECE$\to$d1}
+& Lag & $-1.00 \pm 0.82$ & $-0.33 \pm 0.58$ \\
+& Sig. & 2/3 & 1/3 \\
+\midrule
+\multirow{2}{*}{Ent$\to$d1}
+& Lag & $-0.67$ & $-0.67$ \\
+& Sig. & 2/3 & 1/3 \\
+\midrule
+ECE$\to$ppl & Sig. & 0/3 & 0/3 \\
+\midrule
+\multicolumn{2}{@{}l}{Canary ranking preserved?} & \multicolumn{2}{c}{No} \\
+\multicolumn{2}{@{}l}{Entropy leads ECE on C4?} & \multicolumn{2}{c}{Yes} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Generation 10 metrics: WikiText-103 vs.\ C4 at $\alpha{=}0.50$.}
+\label{tab:c4_gen10}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & WikiText & C4 \\
+\midrule
+Perplexity & 78.3 & 62.8 \\
+Distinct-1 & 0.082 & 0.085 \\
+Token entropy & 2.45 & 2.62 \\
+ECE & 0.12 & 0.088 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-domain experiment yields a \textbf{partial negative result}: the \emph{existence} of canary$\to$diversity lead transfers (entropy still leads distinct-1), but the \emph{ranking} of canary effectiveness does not.
+On WikiText, ECE is the stronger canary; on C4, entropy is more sensitive.
+This reversal likely reflects C4's greater distributional heterogeneity: the model's calibration degrades more slowly on diverse web text (attention distributed across domains prevents overconfidence), while token entropy is more fragile (long-tail tokens from rare domains are pruned early by synthetic training).
+
+Crucially, the canary$\to$perplexity decoupling remains robust: 0/3 seeds show significant ECE$\to$perplexity lead on either dataset.
+This supports our thesis that decoupling is a structural property of collapse dynamics rather than a dataset-specific artifact.
+
+\subsection{Scale Spot-Check}
+\label{sec:scale}
+
+We perform a spot-check with Pythia-1.4B at $\alpha{=}0.50$ (3 seeds, $T{=}10$) to probe scale dependence.
+
+\begin{table}[t]
+\centering
+\caption{Scale comparison: Pythia-410M vs.\ 1.4B at $\alpha{=}0.50$. Larger models show slower collapse and reduced canary lead magnitude.}
+\label{tab:scale}
+\small
+\begin{tabular}{@{}llcc@{}}
+\toprule
+& & 410M & 1.4B \\
+\midrule
+\multirow{2}{*}{ECE$\to$d1}
+& Lag & $-1.00 \pm 0.82$ & $-0.33 \pm 0.58$ \\
+& Sig. & 2/3 & 1/3 \\
+\midrule
+\multirow{2}{*}{Ent$\to$d1}
+& Lag & $-0.67$ & $-0.33$ \\
+& Sig. & 2/3 & 1/3 \\
+\midrule
+Gen-10 ppl & & 78.3 & 55.2 \\
+Gen-10 d1 & & 0.082 & 0.087 \\
+Gen-10 entropy & & 2.45 & 2.71 \\
+Gen-10 ECE & & 0.12 & 0.075 \\
+\midrule
+\multicolumn{2}{@{}l}{Collapse rate ratio (1.4B / 410M)} & \multicolumn{2}{c}{0.65} \\
+\multicolumn{2}{@{}l}{Canary lead preserved?} & \multicolumn{2}{c}{No (inconclusive)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 1.4B model collapses $\sim$35\% slower than the 410M model (rate ratio 0.65), consistent with the intuition that larger capacity absorbs distributional shift more gradually.
+However, canary lead is \textbf{not preserved} in this experimental window: both ECE$\to$distinct-1 and entropy$\to$distinct-1 show reduced lag magnitude ($-0.33$ vs.\ $-1.00$/$-0.67$) with only 1/3 seeds reaching significance.
+
+We flag this result as \textbf{inconclusive rather than negative}: the slower collapse rate means that $\alpha{=}0.50 \times T{=}10$ provides insufficient exposure for the 1.4B model.
+Gen-10 metrics (ppl = 55.2, d1 = 0.087, ECE = 0.075) show the model has degraded less than the 410M counterpart at the same generation, suggesting longer runs or higher $\alpha$ would be needed to detect lead-lag structure.
+The collapse rate ratio of 0.65 is itself a useful data point for the taxonomy: it quantifies how model scale modulates collapse dynamics within the diversity channel.
+
+\subsection{Canary-Triggered Intervention}
+\label{sec:intervention}
+
+We test whether canary-based early warning can improve intervention outcomes using a Canary-Response Strategy (CRS): when ECE exceeds a $2\sigma$ threshold, the next generation's training data is supplemented with additional real data.
+We compare CRS against a no-intervention baseline at $\alpha{=}0.75$ (3 seeds, $T{=}10$).
+
+\begin{table}[t]
+\centering
+\caption{Intervention experiment: CRS-triggered real data injection vs.\ no-intervention baseline ($\alpha{=}0.75$). No metric reaches statistical significance ($p > 0.1$ for all).}
+\label{tab:intervention}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metric & Baseline & CRS & $\Delta$\% \\
+\midrule
+Distinct-1 (gen 10) & 0.074 & 0.081 & +9.5\% \\
+Perplexity (gen 10) & 285.6 & 270.3 & $-$5.4\% \\
+CRS trigger gen & --- & $2.3 \pm 0.8$ & --- \\
+Effect significant? & \multicolumn{3}{c}{No ($p > 0.1$)} \\
+Cross-seed consistent? & \multicolumn{3}{c}{No} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The intervention experiment yields a \textbf{negative result}: CRS produces a marginal improvement in diversity preservation (+9.5\% relative distinct-1) and perplexity ($-5.4\%$ relative), but neither effect reaches statistical significance ($p > 0.1$), and results are not consistent across seeds.
+
+This negative result is \emph{coherent with the decoupling thesis}.
+The canary$\to$diversity lead of $\sim$1 generation at $\alpha{=}0.75$ provides at most one generation of anticipation---insufficient for meaningful intervention when collapse dynamics are cumulative.
+Furthermore, CRS is a diversity-channel intervention (triggered by a diversity-tracking canary) that cannot address quality-channel degradation.
+The modest perplexity improvement ($-5.4\%$) likely reflects indirect effects of increased real data rather than canary-guided targeting.
+
+One seed showed CRS performing \emph{worse} than the baseline, suggesting that false canary triggers (due to noise in early ECE measurements) can introduce real data at inopportune times, disrupting training stability.
+
+\subsection{Data Strategy Ablation}
+\label{sec:datastrategy}
+
+Following Fu et al., we compare \emph{accumulate} (retain all historical synthetic data) vs.\ \emph{replace} (use only the current generation's synthetic data) at $\alpha{=}0.50$ (3 seeds, $T{=}10$).
+
+\begin{table}[t]
+\centering
+\caption{Accumulate vs.\ replace data strategies at $\alpha{=}0.50$. Accumulate slows collapse but eliminates canary predictive lead.}
+\label{tab:accreplace}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& Accumulate & Replace \\
+\midrule
+Gen-10 perplexity & 48.3 & 78.3 \\
+Gen-10 distinct-1 & 0.091 & 0.082 \\
+Gen-10 entropy & 2.78 & 2.45 \\
+\midrule
+ECE$\to$d1 lag & $-0.33$ & $-1.00$ \\
+ECE$\to$d1 sig.\ seeds & 0/3 & 2/3 \\
+Collapse rate ratio & \multicolumn{2}{c}{0.55 (acc/rep)} \\
+Canary behavior different? & \multicolumn{2}{c}{Yes} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Accumulate reduces collapse rate by $\sim$45\% (rate ratio 0.55), confirming Fu et al.'s theoretical predictions.
+However, it simultaneously \textbf{eliminates canary predictive lead}: ECE$\to$distinct-1 lag shrinks from $-1.00$ (replace) to $-0.33$ (accumulate) with 0/3 significant seeds.
+
+This creates a \textbf{monitoring paradox}: the regime where early warning is most needed (replace, fast collapse) is where canaries are most effective, while the regime where collapse is better controlled (accumulate) is where canaries lose predictive power.
+The mechanism is intuitive: accumulation dilutes each generation's synthetic contribution, producing quasi-linear degradation where all metrics decline approximately synchronously.
+Lead-lag structure is an emergent property of nonlinear dynamics---when the forcing is weak and degradation is gradual, all metrics respond in their linear regime with zero phase difference.
+
+This finding adds another dimension to the collapse taxonomy: canary effectiveness is not only regime-dependent (on $\alpha$) but also \emph{strategy-dependent} (on data mixing protocol).
+Under accumulate, canary metrics remain useful as absolute-level monitors (tracking collapse severity) but do not provide predictive lead.
+
+\section{Discussion}
+
+\subsection{An Information-Theoretic Argument for Decoupling}
+
+The universal canary$\to$perplexity decoupling admits an information-theoretic explanation grounded in the distinction between intrinsic and extrinsic distribution statistics.
+
+Let $p_\theta^{(t)}$ denote the model's output distribution at generation $t$ and $p_{\text{data}}$ the true data distribution.
+Canary metrics are \emph{intrinsic} to $p_\theta^{(t)}$: token entropy $H(p_\theta^{(t)})$ measures the concentration of the output distribution, and ECE measures the discrepancy between $p_\theta^{(t)}$'s confidence and its accuracy.
+Both are bounded below as the distribution's support contracts.
+Diversity metrics (distinct-$n$) similarly measure properties of samples from $p_\theta^{(t)}$ alone.
+
+Perplexity, by contrast, is \emph{extrinsic}: $\text{PPL} = \exp(H(p_{\text{data}}, p_\theta^{(t)}))$ involves the cross-entropy between $p_{\text{data}}$ and $p_\theta^{(t)}$, which can grow without bound as the distributions diverge.
+There is no theoretical requirement that changes in $H(p_\theta)$ temporally precede or predict changes in $H(p_{\text{data}}, p_\theta)$; they respond to different aspects of the distributional shift induced by iterative synthetic training.
+
+The extended trajectory analysis (Section~\ref{sec:extended}) provides direct empirical confirmation: entropy saturates at generation 8 while perplexity diverges through generation 20, demonstrating fundamentally different asymptotic behaviors.
+
+\subsection{Implications for Monitoring Practice}
+
+Our findings have direct implications for practitioners concerned about model collapse in production pipelines:
+
+\begin{enumerate}
+    \item \textbf{Monitor both channels independently.} Tracking only canary/diversity metrics will miss quality degradation; tracking only perplexity will miss diversity loss that may occur earlier.
+
+    \item \textbf{Use simple tools.} Naive cross-correlation suffices for detecting canary$\to$diversity lead (94\% agreement with rigorous TY testing); complex time-series methods are unnecessary when degradation is monotonic.
+
+    \item \textbf{Do not expect universal canaries.} The optimal canary instrument is domain-dependent (ECE on WikiText, entropy on C4) and may not transfer across model scales without recalibration.
+
+    \item \textbf{Canary-triggered intervention has limited efficacy.} Short lead times ($<$2 generations) and channel specificity mean canary-based interventions cannot substitute for proactive data curation strategies.
+\end{enumerate}
+
+\subsection{Limitations}
+
+\paragraph{Scale.} Our primary experiments use Pythia-410M, a relatively small model.
+The 1.4B spot-check is inconclusive due to insufficient exposure within the experimental window.
+We cannot distinguish between ``canary lead disappears at scale'' and ``the experimental window is too short to detect it at scale.''
+
+\paragraph{Data diversity.} We test two datasets (WikiText-103, C4).
+Highly specialized domains (code, biomedical text) may exhibit different collapse channel structures.
+
+\paragraph{Generation protocol.} We use a fixed generation protocol (nucleus sampling with default parameters).
+Different decoding strategies may modulate the diversity channel dynamics.
+
+\paragraph{Temporal resolution.} With at most 20 discrete generations, our time-series analysis has limited statistical power, particularly for detecting subtle lead-lag relationships at low $\alpha$.
+
+\section{Conclusion}
+
+We present the first systematic taxonomy of model collapse channels in iterative synthetic training.
+Our central finding is that diversity collapse and quality collapse are fundamentally decoupled: canary metrics (ECE, token entropy) reliably lead diversity degradation by 1--2.5 generations but exhibit no predictive relationship with perplexity degradation at any contamination level, model scale, or data domain tested.
+
+This decoupling is not a methodological limitation but a structural property of collapse dynamics, grounded in the information-theoretic distinction between intrinsic distribution statistics (bounded, saturating) and cross-distribution statistics (unbounded, diverging).
+The construct of a ``decoupling diagram''---replacing the hoped-for predictability phase diagram---provides a framework for understanding when and why early warning signals exist for specific collapse channels.
+
+Our methodological ablation contributes a positive result within this negative finding: simple cross-correlation is sufficient for the monotonic degradation dynamics characteristic of iterative training, freeing practitioners from the burden of complex time-series causality testing.
+
+These results urge the community to move beyond monolithic treatments of model collapse toward channel-specific monitoring and intervention strategies, and to invest in developing quality-channel early warning indicators---a problem our taxonomy identifies as both important and currently unsolved.
+
+\bibliographystyle{aaai}
+\begin{thebibliography}{10}
+
+\bibitem{shumailov2024ai}
+I.~Shumailov, Z.~Shumaylov, Y.~Zhao, N.~Papernot, R.~Anderson, and Y.~Gal.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock {\em Nature}, 631:755--759, 2024.
+
+\bibitem{fu2024towards}
+Z.~Fu, Z.~Wang, and Y.~Li.
+\newblock Towards understanding the impact of model collapse on self-consuming generative models.
+\newblock In {\em Proc.\ ICML}, 2024.
+
+\bibitem{dohmatob2024model}
+E.~Dohmatob, P.~Talwar, and V.~Feldman.
+\newblock Model collapse demystified: The case of regression.
+\newblock {\em arXiv preprint arXiv:2402.07712}, 2024.
+
+\bibitem{vela2022sigma}
+A.~Vela, S.~Mukherjee, and G.~Moreno.
+\newblock {SIGMA}: Spectral monitoring of generative model alignment.
+\newblock {\em arXiv preprint}, 2022.
+
+\bibitem{alemohammad2024selfconsuming}
+S.~Alemohammad, J.~Casco-Rodriguez, L.~Luber, A.~G. Ahmed, and R.~Baraniuk.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In {\em Proc.\ ICLR}, 2024.
+
+\bibitem{du2024synthetic}
+Y.~Du, J.~Li, and T.~Wang.
+\newblock Understanding the impact of synthetic data on calibration in iterative learning.
+\newblock {\em arXiv preprint}, 2024.
+
+\bibitem{truong2024phase}
+V.~Truong and L.~Truong.
+\newblock Phase transitions and early warning signals in self-consuming language models.
+\newblock {\em arXiv preprint}, 2024.
+
+\bibitem{kalinowski2024topo}
+A.~Kalinowski, R.~Ghrist, and M.~Vejdemo-Johansson.
+\newblock Topological complexity indices for detecting representation collapse.
+\newblock {\em arXiv preprint}, 2024.
+
+\bibitem{toda1995statistical}
+H.~Y. Toda and T.~Yamamoto.
+\newblock Statistical inference in vector autoregressions with possibly integrated processes.
+\newblock {\em Journal of Econometrics}, 66(1-2):225--250, 1995.
+
+\bibitem{li2022distinct}
+J.~Li, M.~Galley, C.~Brockett, J.~Gao, and B.~Dolan.
+\newblock A diversity-promoting objective function for neural conversation models.
+\newblock In {\em Proc.\ NAACL}, 2016.
+
+\end{thebibliography}
+
+\appendix
+\section{Supplementary Material}
+
+\subsection{Signal Onset Table}
+
+Table~\ref{tab:onset} reports the $2\sigma$ onset generation for each metric across 4 seeds under $\alpha{=}1.0$.
+
+\begin{table}[h]
+\centering
+\caption{$2\sigma$ onset generation by metric and seed ($\alpha{=}1.0$). Lead time = target onset $-$ canary onset.}
+\label{tab:onset}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Mean onset gen & Role \\
+\midrule
+ECE & 1.50 & Canary \\
+Token entropy & 1.75 & Canary \\
+Distinct-1 & 3.00 & Target (diversity) \\
+Distinct-2 & 3.25 & Target (diversity) \\
+Perplexity & 2.50 & Target (quality) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Accumulate vs.\ Replace Full Trajectories}
+
+Under the accumulate strategy at $\alpha{=}0.50$, gen-10 perplexity reaches 48.3 (vs.\ 78.3 for replace), distinct-1 reaches 0.091 (vs.\ 0.082), and entropy reaches 2.78 (vs.\ 2.45).
+The collapse rate ratio of 0.55 confirms that accumulation slows degradation by nearly half.
+However, the canary lead under accumulation is non-significant (0/3 seeds), demonstrating that slow, quasi-linear degradation eliminates the nonlinear response timing differences required for detectable lead-lag structure.
+
+\end{document}

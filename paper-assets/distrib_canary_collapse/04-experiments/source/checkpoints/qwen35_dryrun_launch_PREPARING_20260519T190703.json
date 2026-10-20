@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen35_dryrun_launch",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:31:44.039Z",
+    "updated_at": "2026-05-19T19:07:02.672Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T19:07:03.028037+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,60 @@
+{
+  "exp_id": "intervention_predictive_s42",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:31:03.869Z",
+    "updated_at": "2026-05-18T16:33:33.782Z",
+    "hypothesis": "Predictive intervention: monitoring token_entropy drop >15% as early-warning trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether canary-triggered intervention halts collapse earlier than reactive (downstream-triggered) intervention, demonstrating canary's practical utility.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "351357",
+      "log_path": "~/runs/distrib_canary_collapse/intervention_predictive_s42.log",
+      "submitted_at": "2026-05-18T11:50:57.141Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/",
+      "wall_clock_seconds": 16956.6,
+      "gpu_hours": 4.71
+    },
+    "conclusion": "success",
+    "metrics": {
+      "trigger_gen": 1,
+      "trigger_entropy_drop_pct": -40.71,
+      "gen0_ppl": 26.95,
+      "gen0_entropy": 3.234,
+      "gen0_distinct_1": 0.0982,
+      "gen0_ece": 0.0108,
+      "gen1_ppl": 56.99,
+      "gen1_entropy": 1.918,
+      "gen1_distinct_1": 0.0975,
+      "gen1_ece": 0.205,
+      "gen2_ppl": 20.81,
+      "gen2_entropy": 3.055,
+      "gen10_ppl": 21.29,
+      "gen10_entropy": 3.079,
+      "gen10_eff_rank": 44.1,
+      "gen10_mauve": 0.0272,
+      "recovery_complete_by_gen": 2,
+      "vs_reactive_trigger_advantage": "1 gen earlier",
+      "vs_reactive_peak_ppl_reduction": "63% (56.99 vs 157.09)",
+      "vs_reactive_recovery_advantage": "1 gen faster (Gen 2 vs Gen 4)",
+      "converges_to_alpha0_baseline": true
+    },
+    "completed_at": "2026-05-18T16:33:33.782Z"
+  },
+  "timestamp": "2026-05-18T16:33:33.882212+00:00",
+  "trigger": "update_registry"
+}

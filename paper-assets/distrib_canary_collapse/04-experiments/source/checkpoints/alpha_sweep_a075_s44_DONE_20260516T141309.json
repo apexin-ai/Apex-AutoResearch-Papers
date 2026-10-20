@@ -1,0 +1,51 @@
+{
+  "exp_id": "alpha_sweep_a075_s44",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T06:16:20.468Z",
+    "updated_at": "2026-05-16T14:13:09.364Z",
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\"",
+      "finished_at": "2026-05-16T14:13:08.016Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-16T09:53:05.475Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T09:53:09.379555+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: SafetensorError No space left on device — model.save_pretrained() at line 252 | 已有成果: 最后一轮训练已完成 (5000 steps, loss=0.3493) 但 checkpoint 未保存 | 建议: 清磁盘后重跑"
+      }
+    },
+    "notes": "第三次重启 (17:57 UTC)：第二次运行 (09:56-~17:00, Gen 0-3) 被另一 Agent 会话 kill+rm-rf+重启，~7h GPU 浪费。原因：并发 Agent 会话判断需重跑。当前为第三次运行，从 Gen 0 开始，预计 ~10-12h 完成。",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "184342",
+      "log_path": "/tmp/a075_s44.log",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "pythia-410m",
+      "seed": 44
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T14:13:09.463999+00:00",
+  "trigger": "update_registry"
+}

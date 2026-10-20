@@ -1,0 +1,101 @@
+{
+  "exp_id": "gen_gpt2m_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:45:29.110Z",
+    "updated_at": "2026-05-19T15:12:26.084Z",
+    "hypothesis": "GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.",
+    "parent": "gen_wiki_gpt2m_a100_s42_v4",
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T23:50:22.092Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\"",
+      "finished_at": "2026-05-19T15:07:30.624Z",
+      "training_hours": 15.29
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "407859",
+      "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log",
+      "submitted_at": "2026-05-19T00:21:13.371Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 53472.7,
+      "gpu_hours": 14.85
+    },
+    "pid": "407859",
+    "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T15:07:34.310909+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "generations": 11,
+      "d1_drift_pct": -24.9,
+      "token_entropy_drift_pct": -83.6,
+      "perm_granger_fwd": "8/8",
+      "perm_granger_rev": "5/8",
+      "diff_xcorr_fwd": "8/8",
+      "diff_xcorr_rev": "8/8",
+      "threshold_onset": "0/8",
+      "ty_granger_fwd": "4/8",
+      "robust_pairs_K3": "4/8",
+      "robust_pairs_K4": "1/8",
+      "token_entropy": {
+        "gen0": 3.571,
+        "gen10": 0.587
+      },
+      "distinct_1": {
+        "gen0": 0.103,
+        "gen10": 0.0774
+      },
+      "distinct_2": {
+        "gen0": 0.5513,
+        "gen10": 0.3696
+      },
+      "distinct_3": {
+        "gen0": 0.8569,
+        "gen10": 0.6285
+      },
+      "perplexity": {
+        "gen0": 32.63,
+        "gen10": 15024
+      },
+      "ece": {
+        "gen0": 0.011,
+        "gen10": 0.517
+      },
+      "effective_rank": {
+        "gen0": 2.37,
+        "gen10": 33.34
+      },
+      "mauve": {
+        "gen0": 0.034,
+        "gen10": 0.028
+      }
+    },
+    "checkpoint_path": "results/gen_wiki_gpt2m_a100_s43",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T15:12:26.084Z"
+  },
+  "timestamp": "2026-05-19T15:12:26.302937+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8cb79049a83de3b3af",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix non confirming count",
+  "task_key": "worker_fix_non-confirming-count_20260523T193810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_non-confirming-count_20260523T193810_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "19f01d843cc3ff0dc6f1ecbc28fee4daea1aa17de1a670f38e71c77c34e2b9a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**根因**：实际有 11 个 confirming + 4 个 non-confirming = 15，原文误写为 \"10/15\" + \"5 non-confirming\"，且只列了 4 个条件。\n\n**两处修改**（`experiments.tex`）：\n- L103: `10/15` → `11/15`\n- L104: `The 5 non-confirming conditions span four failure modes:` → `The four non-confirming conditions each represent a distinct failure mode:`\n\n与 `appendix.tex` L460 的 \"11 of 15\" 一致。`abstract.tex` 和 `introduction.tex` 不涉及此数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-non-confirming-count.md"
+}

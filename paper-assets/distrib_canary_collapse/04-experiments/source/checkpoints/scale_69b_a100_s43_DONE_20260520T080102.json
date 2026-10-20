@@ -1,0 +1,61 @@
+{
+  "exp_id": "scale_69b_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:03:25.659Z",
+    "updated_at": "2026-05-20T08:01:02.167Z",
+    "hypothesis": "Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。",
+    "parent": "scale_69b_a100_s42",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --bf16 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --output_dir results/scale_check/pythia69b_wiki_a100_s43",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-6.9b",
+      "seed": 43,
+      "gpu_model": "RTX PRO 6000 Blackwell 98GB",
+      "precision": "bf16",
+      "gradient_checkpointing": true,
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "177515",
+      "checkpoint_source": "EleutherAI/pythia-6.9b (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T07:53:59.912Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T07:54:04.734036+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "PermG_fwd": "6/8",
+      "PermG_rev": "0/8",
+      "diff_xcorr_fdr": "6/8",
+      "naive_xcorr": "6/8",
+      "threshold_onset": "0/8",
+      "TY_granger": "0/8",
+      "K_ge3": "6/8",
+      "K_ge4": "0/8",
+      "d120_canonical": true,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/",
+    "log_path": "~/runs/distrib_canary_collapse/scale_69b_a100_s43.log",
+    "completed_at": "2026-05-20T07:59:36.340Z"
+  },
+  "timestamp": "2026-05-20T08:01:02.436365+00:00",
+  "trigger": "update_registry"
+}

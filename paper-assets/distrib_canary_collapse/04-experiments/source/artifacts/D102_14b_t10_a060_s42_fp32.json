@@ -1,0 +1,46 @@
+{
+  "exp_id": "phase_diagram_t10_a060_s42_fp32_14b",
+  "analysis": "d102_5method_leadlag",
+  "config": {
+    "alpha": 0.60,
+    "seed": 42,
+    "T": 10,
+    "model": "pythia-1.4b-deduped",
+    "precision": "fp32",
+    "n_gens": 11,
+    "threshold_criterion": "true_3sigma_d105",
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "canaries": ["token_entropy", "ece"],
+    "n_perm": 5000
+  },
+  "summary": {
+    "PermG_fwd": 4,
+    "PermG_rev": 0,
+    "total_pairs": 8,
+    "asymmetry": "strong",
+    "robust_pairs_ge3": 3,
+    "diff_xcorr_fdr_fwd": 8,
+    "diff_xcorr_fdr_rev": 8,
+    "threshold_fwd": 0,
+    "ty_fwd": 0
+  },
+  "consensus": [
+    {"pair": "token_entropy→distinct_1", "votes": "2/5", "methods": ["diff", "perm"]},
+    {"pair": "token_entropy→distinct_2", "votes": "1/5", "methods": ["diff"]},
+    {"pair": "token_entropy→distinct_3", "votes": "1/5", "methods": ["diff"]},
+    {"pair": "token_entropy→mauve", "votes": "2/5", "methods": ["naive", "diff"]},
+    {"pair": "ece→distinct_1", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→distinct_2", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→distinct_3", "votes": "3/5", "methods": ["naive", "diff", "perm"]},
+    {"pair": "ece→mauve", "votes": "2/5", "methods": ["naive", "diff"]}
+  ],
+  "notes": {
+    "mauve_null_gens": "gen_0 and gen_1 have mauve=null; analysis used NaN handling",
+    "naive_xcorr_note": "token_entropy pairs show positive lag (reverse direction in naive_xcorr due to orientation); ece pairs show negative lag (forward)",
+    "ty_note": "TY Granger all NaN due to LAPACK convergence issues with short T=10 series + NaN mauve values",
+    "scale_comparison": "410M t10_a060 was sync-dip (0/8 PermG fwd); 1.4B shows signal (4/8 PermG fwd) — sync-dip is NOT scale-invariant"
+  },
+  "server": "westd-17855",
+  "output_dir": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b",
+  "analysis_path": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a060_s42_fp32_14b/analysis/5method_leadlag.json"
+}

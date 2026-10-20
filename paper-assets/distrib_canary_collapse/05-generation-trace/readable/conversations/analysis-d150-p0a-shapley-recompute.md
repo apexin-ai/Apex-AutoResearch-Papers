@@ -1,0 +1,2559 @@
+# analysis d150 p0a shapley recompute
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 0
+- **Tool calls:** 42
+- **Original source:** `logs/chats/worker_analysis_d150_p0a_shapley_recompute_20260520T134235.jsonl`
+- **Structured JSON:** [`8a89f9734fb690659f76.json`](../../sessions/8a/8a89f9734fb690659f76.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+85 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T13:55:40.715636+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T13:55:40.715978+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T13:55:40.716141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"5method_leadlag.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"5method_leadlag.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T13:55:40.716307+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/distrib_canary_collapse -name \"5method_leadlag.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/distrib_canary_collapse -name \"5method_leadlag.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T13:55:40.716491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a075_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410
+…[truncated 1619 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T13:55:40.716640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*shapley*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*shapley*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T13:55:40.716767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/distrib_canary_collapse -name \"*shapley*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/distrib_canary_collapse -name \"*shapley*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T13:55:40.716903+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/distrib_canary_collapse': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T13:55:40.717038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/shapley_values.json\\n/root/autodl-tmp/distrib_canary_collapse/docs/paper/figures/shapley_method_contribution.pdf\\n/root/autodl-tmp/distrib_canary_collapse/docs/paper_backup_d059/figures/shapley_method_contribution.pdf\\n/root/autodl-tmp/distrib_canary_collapse/docs/paper_backup_d059/figures/shapley_method_contribution.png\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v2.py\\n/root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py\\n/root/autodl-tmp/distrib_canary_collapse/shapley_figure_final.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T13:55:40.717163+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/distrib_canary_collapse': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T13:55:40.717349+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rl \"true_3sigma_d105\" /root/autodl-tmp/distrib_canary_collapse/results --include=\"5method_leadlag.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -rl \"true_3sigma_d105\" /root/autodl-tmp/distrib_canary_collapse/results --include=\"5method_leadlag.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T13:55:40.717526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a075_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/r
+…[truncated 1188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T13:55:40.717677+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T13:55:40.717918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute true Shapley values with three threshold choices for comparison.\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom itertools import combinations\\nfrom math import factorial, ceil\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\\nMETHOD_LABELS = ['Naive\\\\nXCorr', 'Diff XCorr\\\\n(FDR)', 'Threshold\\\\nOnset', 'Perm Granger\\\\n(FDR)', 'TY\\\\nGranger']\\nN = len(METHODS)\\n\\nREFERENCE_PAIRS = [\\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\\n    ('token_entropy', 'distinct_3'), ('ece', 'distinct_1'),\\n    ('ece', 'distinct_2'), ('ece', 'distinct_3'),\\n]\\n\\ndef load_null_verdicts():\\n    verdicts = []\\n    base = '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep'\\n    for seed in [42, 43, 44]:\\n        with open(f'{base}/a000_s{seed}/analysis/5method_leadlag.json') as f:\\n            data = json.load(f)\\n        for pair in data['pairs']:\\n            fwd = pair['forward']\\n            row = {\\n                0: fwd['naive_xcorr']['significant'],\\n                1: fwd['diff_xcorr'].get('significant_fdr', fwd['diff_xcorr']['significant']),\\n                2: fwd['threshold_onset']['significant'],\\n                3: fwd['perm_granger'].get('significant_fdr', fwd['perm_granger']['significant']),\\n                4: fwd['ty_granger']['significant'],\\n            }\\n            verdicts.append({'seed': seed, 'pair': (pair['canary'], pair['downstream']), 'votes': row})\\n    return verdicts\\n\\ndef load_signal_verdicts():\\n    with open('/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json') as f:\\n        data = json.load(f)\\n    m2i = {'naive': 0, 'differenced': 1, 'threshold': 2, 'permutation_granger': 3, 'TY': 4}\\n    verdicts = []\\n    for e in data['panel']:\\n       
+…[truncated 6800 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T13:55:40.718072+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root -maxdepth 3 -name \"distrib_canary*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root -maxdepth 3 -name \"distrib_canary*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T13:55:40.718207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse\\n/root/runs/distrib_canary_collapse\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T13:55:40.718414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T13:55:40.718550+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"5method_leadlag.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"5method_leadlag.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T13:55:40.718892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 0.5,\\n  \\\"seed\\\": 42,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.9726,\\n          \\\"p_value\\\": 0.000235,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7182,\\n              \\\"p\\\": 0.107963\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.722,\\n              \\\"p\\\": 0.066906\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.7111,\\n              \\\"p\\\": 0.047993\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.6786,\\n              \\\"p\\\": 0.044452\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7024,\\n              \\\"p\\\": 0.023507\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4478,\\n              \\\"p\\\": 0.167268\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8816,\\n              \\\"p\\\": 0.000743\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8295,\
+…[truncated 8548 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T13:55:40.719088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s43_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a040_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a030_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a075_s42_fp32/analysis/5met
+…[truncated 2052 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T13:55:40.719296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -rl \"true_3sigma_d105\" /root/autodl-tmp/distrib_canary_collapse/results --include=\"5method_leadlag.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -rl \"true_3sigma_d105\" /root/autodl-tmp/distrib_canary_collapse/results --include=\"5method_leadlag.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T13:55:40.719506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s43_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a040_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a030_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a075_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a035_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a045_s42_fp32/analysis/5method_leadlag.jso
+…[truncated 1606 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T13:55:40.719664+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T13:55:40.719836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 0.0,\\n  \\\"seed\\\": 42,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9023,\\n          \\\"p_value\\\": 0.013857,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9023,\\n              \\\"p\\\": 0.013857\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7904,\\n              \\\"p\\\": 0.034399\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.694,\\n              \\\"p\\\": 0.056207\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.3609,\\n              \\\"p\\\": 0.339995\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.741,\\n              \\\"p\\\": 0.014202\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.3702,\\n              \\\"p\\\": 0.262357\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8365,\\n              \\\"p\\\": 0.002552\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8667,\\
+…[truncated 447 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T13:55:40.720090+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '19828'})\n\nprint(json.dumps(results))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '19828'})\n\nprint(json.dumps(results))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T13:55:40.720534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[{\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_1\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_2\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_3\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->mauve\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"ece->distinct_1\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"ece->distinct_2\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"19828\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42\\\", \\\"alpha\\\": 0.0, \\
+…[truncated 9123 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T13:55:40.720737+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T13:55:40.720969+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \\\"\\\\nimport json, glob\\\\n\\\\nCANONICAL = [\\\\n    (\\\\'token_entropy\\\\', \\\\'distinct_1\\\\'), (\\\\'token_entropy\\\\', \\\\'distinct_2\\\\'),\\\\n    (\\\\'token_entropy\\\\', \\\\'distinct_3\\\\'), (\\\\'token_entropy\\\\', \\\\'mauve\\\\'),\\\\n    (\\\\'ece\\\\', \\\\'distinct_1\\\\'), (\\\\'ece\\\\', \\\\'distinct_2\\\\'),\\\\n    (\\\\'ece\\\\', \\\\'distinct_3\\\\'), (\\\\'ece\\\\', \\\\'mauve\\\\'),\\\\n]\\\\nMETHODS = [\\\\'naive_xcorr\\\\', \\\\'diff_xcorr\\\\', \\\\'threshold_onset\\\\', \\\\'perm_granger\\\\', \\\\'ty_granger\\\\']\\\\n\\\\nresults = []\\\\nfiles = glob.glob(\\\\'results/**/5method_leadlag.json\\\\', recursive=True)\\\\nfor fp in sorted(files):\\\\n    with open(fp) as f:\\\\n        data = json.load(f)\\\\n    cfg = data.get(\\\\'config\\\\', {})\\\\n    if cfg.get(\\\\'threshold_criterion\\\\') != \\\\'true_3sigma_d105\\\\':\\\\n        continue\\\\n    alpha = data[\\\\'alpha\\\\']\\\\n    seed = data[\\\\'seed\\\\']\\\\n    exp = fp.replace(\\\\'results/\\\\', \\\\'\\\\').replace(\\\\'/analysis/5method_leadlag.json\\\\', \\\\'\\\\')\\\\n    for pair in data[\\\\'pairs\\\\']:\\\\n        c, d = pair[\\\\'canary\\\\'], pair[\\\\'downstream\\\\']\\\\n        if (c, d) not in CANONICAL:\\\\n            continue\\\\n        fwd = pair[\\\\'forward\\\\']\\\\n        v = {}\\\\n        for m in METHODS:\\\\n            if m not in fwd:\\\\n                v[m] = False; continue\\\\n            md = fwd[m]\\\\n            if m in (\\\\'diff_xcorr\\\\', \\\\'perm_granger\\\\'):\\\\n                v[m] = bool(md.get(\\\\'significant_fdr\\\\', md.get(\\\\'significant\\\\', False)))\\\\n            else:\\\\n                v[m] = bool(md.get(\\\\'significant\\\\', False))\\\\n        results.append({\\\\'exp\\\\': exp, \\\\'alpha\\\\': alpha, \\\\'seed\\\\': seed, 
+…[truncated 291 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T13:55:40.721175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/miniconda3/bin/python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T13:55:40.721355+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T13:55:40.721500+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    cfg = data.get('config', {})\n    if cfg.get('threshold_criterion') != 'true_3sigma_d105':\n        continue\n    alpha = data['alpha']\n    seed = data['seed']\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T13:55:40.721642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T13:55:40.721797+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -10 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -10 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T13:55:40.721936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"results/alpha_sweep/a050_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T13:55:40.722085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T13:55:40.722272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"results/alpha_sweep/a050_s42_fp32\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9395,\\n          \\\"p_value\\\": 0.005382,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.5073,\\n              \\\"p\\\": 0.304328\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.4893,\\n              \\\"p\\\": 0.265137\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.3849,\\n              \\\"p\\\": 0.346371\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.6828,\\n              \\\"p\\\": 0.042658\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.8089,\\n              \\\"p\\\": 0.004604\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4368,\\n              \\\"p\\\": 0.179219\\n            },\\n            {\\n              \\\"lag\\\":
+…[truncated 384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T13:55:40.722486+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    # Handle both formats\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    # Handle both formats\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nprint(json.dumps(results))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T13:55:40.722866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[{\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_1\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_2\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": true}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->distinct_3\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": true, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"token_entropy->mauve\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": true, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"ece->distinct_1\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s42_fp32\\\", \\\"alpha\\\": 0.0, \\\"seed\\\": 42, \\\"pair\\\": \\\"ece->distinct_2\\\", \\\"v\\\": {\\\"naive_xcorr\\\": true, \\\"diff_xcorr\\\": false, \\\"threshold_onset\\\": false, \\\"perm_granger\\\": false, \\\"ty_granger\\\": false}, \\\"server\\\": \\\"17855\\\"}, {\\\"exp\\\": \\\"alpha_sweep/a000_s4
+…[truncated 9015 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T13:55:40.723077+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nwith open('/tmp/verdicts_17855.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} observations from {len(set(r[\\\"exp\\\"] for r in results))} experiments')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '17855'})\n\nwith open('/tmp/verdicts_17855.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} observations from {len(set(r[\\\"exp\\\"] for r in results))} experiments')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T13:55:40.723231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved 248 observations from 31 experiments\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T13:55:40.723401+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '19828'})\n\nwith open('/tmp/verdicts_19828.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} observations from {len(set(r[\\\"exp\\\"] for r in results))} experiments')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json, glob\n\nCANONICAL = [\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\n    ('token_entropy', 'distinct_3'), ('token_entropy', 'mauve'),\n    ('ece', 'distinct_1'), ('ece', 'distinct_2'),\n    ('ece', 'distinct_3'), ('ece', 'mauve'),\n]\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\nresults = []\nfiles = glob.glob('results/**/5method_leadlag.json', recursive=True)\nfor fp in sorted(files):\n    with open(fp) as f:\n        data = json.load(f)\n    meta = data.get('meta', {})\n    cfg = data.get('config', {})\n    tc = meta.get('threshold_criterion', cfg.get('threshold_criterion', ''))\n    if tc != 'true_3sigma_d105':\n        continue\n    alpha = meta.get('alpha', data.get('alpha'))\n    seed = meta.get('seed', data.get('seed'))\n    exp = fp.replace('results/', '').replace('/analysis/5method_leadlag.json', '')\n    for pair in data['pairs']:\n        c, d = pair['canary'], pair['downstream']\n        if (c, d) not in CANONICAL:\n            continue\n        fwd = pair['forward']\n        v = {}\n        for m in METHODS:\n            if m not in fwd:\n                v[m] = False; continue\n            md = fwd[m]\n            if m in ('diff_xcorr', 'perm_granger'):\n                v[m] = bool(md.get('significant_fdr', md.get('significant', False)))\n            else:\n                v[m] = bool(md.get('significant', False))\n        results.append({'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': f'{c}->{d}', 'v': v, 'server': '19828'})\n\nwith open('/tmp/verdicts_19828.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} observations from {len(set(r[\\\"exp\\\"] for r in results))} experiments')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T13:55:40.723547+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved 232 observations from 29 experiments\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T13:55:40.723705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "wc -c /tmp/verdicts_17855.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "wc -c /tmp/verdicts_17855.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T13:55:40.723870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"58509 /tmp/verdicts_17855.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T13:55:40.724030+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport json, gzip, base64\nwith open('/tmp/verdicts_17855.json') as f:\n    data = json.load(f)\n# Compact: only keep essential fields\ncompact = []\nfor r in data:\n    compact.append([r['exp'], r['alpha'], r['seed'], r['pair'],\n                     [r['v']['naive_xcorr'], r['v']['diff_xcorr'], r['v']['threshold_onset'],\n                      r['v']['perm_granger'], r['v']['ty_granger']]])\nraw = json.dumps(compact).encode()\ncompressed = gzip.compress(raw)\nprint(base64.b64encode(compressed).decode())\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport json, gzip, base64\nwith open('/tmp/verdicts_17855.json') as f:\n    data = json.load(f)\n# Compact: only keep essential fields\ncompact = []\nfor r in data:\n    compact.append([r['exp'], r['alpha'], r['seed'], r['pair'],\n                     [r['v']['naive_xcorr'], r['v']['diff_xcorr'], r['v']['threshold_onset'],\n                      r['v']['perm_granger'], r['v']['ty_granger']]])\nraw = json.dumps(compact).encode()\ncompressed = gzip.compress(raw)\nprint(base64.b64encode(compressed).decode())\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T13:55:40.724174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9TAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlmPbHhmCODpjUp2g6sojh6PiJj+c9faQz0AbvGIOqba+xBjGLsfmh0GKpL8Sh0rSVxnFvaNv9cO8qPxPpx+OkQ5FcShWPI4rIqnvlI9TPIqFhEBwguqR5QSAft54E/e9meFJojASo0ljOdJDHOZzgb6mhAjkGfPxpyM/8slj2iodiuJQjI6fzR4u/ZUDgNzDJHGIWl8U/Ntm0zzUq+Wv5vR219G6el7eL6s6z95Hm+ubfPYqlb/9sIPPQO5FpHBi8pRoBKZ0ynqYthGzcQgVO/VRRhVIOMR8YuxeurtlXeRZD2Ry15idTcDUS58Xj2N40rlfilMWKBsGlStdsVJRDHn5+dxsuKyy8+s9yL+NavqAeRzo8ubSF3E5lqvtSERM3eabD41CaRxBc87Zxy45ptjZqfQlVI6kyjaWVER7AdSyKJDFeJY6V+16u1qtueI+Jz87L0upAQWF2AFMXwXmYLCh3xFA1U/3e+AoFschOOH4t6sXi+XmtnrYXj+23aZp29O9wuvQm3rTKJTGETSp2UQsZcEzMCiAwTiGNBvtvF41p3lxXc0LkHH0CMIjGIYQdfjT6konSIUJJczOwvLwVvO7Zn7/d9tkdtEb1QDfeQcgRQM5CJjwJMn/SVvKsnhFjaEYDEMxY2lREJy3372AFA3kIKCq+gtwMGOxx9aDDcNQjCQzV78B4Nav0L1iAAA=\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T13:55:40.724388+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/compute_shapley_v2.py << 'PYEOF'\nimport json, gzip, base64, datetime\nimport numpy as np\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nMETHOD_IDX = {m: i for i, m in enumerate(METHODS)}\nN = len(METHODS)\n\nPAIRS_8 = [\n    'token_entropy->distinct_1', 'token_entropy->distinct_2',\n    'token_entropy->distinct_3', 'token_entropy->mauve',\n    'ece->distinct_1', 'ece->distinct_2',\n    'ece->distinct_3', 'ece->mauve',\n]\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\n# Load 19828 data\nwith open('/tmp/verdicts_19828.json') as f:\n    data_19828 = json.load(f)\n\n# Decode 17855 data\nB64 = \"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9TAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlmPbHhmCODpjUp2g6sojh6PiJj+c9faQz0AbvGIOqba+xBjGLsfmh0GKpL8Sh0rSVxnFvaNv9cO8qPxPpx+OkQ5FcShWPI4rIqnvlI9TPIqFhEBwguqR5QSAft54E/e9meFJojASo0ljOdJDHOZzgb6mhAjkGfPxpyM/8slj2iodiuJQjI6fzR4u/ZUDgNzDJHGIWl8U/Ntm0zzUq+Wv5vR219G6el7eL6s6z95Hm+ubfPYqlb/9sIPPQO5FpHBi8pRoBKZ0ynqYthGzcQgVO/VRRhVIOMR8YuxeurtlXeRZD2Ry15idTcDUS58Xj2N40rlfilMWKBsGlStdsVJRDHn5+dxsuKyy8+s9yL+NavqAeRzo8ubSF3E5lqvtSERM3eabD41CaRxBc87Zxy45ptjZqfQlVI6kyjaWVER7AdSyKJDFeJY6V+16u1qtueI+Jz87L0upAQWF2AFMXwXmYLCh3xFA1U/3e+AoFschOOH4t6sXi+XmtnrYXj+23aZp29O9wuvQm3rTKJTGETSp2UQsZcEzMCiAwTiGNBvtvF41p3lxXc0LkHH0CMIjGIYQdfjT6konSIUJJczOwvLwVvO7Zn7/d9tkdtEb1QDfeQcgRQM5CJjwJMn/SVvKsnhFjaEYDEMxY2lREJy3372AFA3kIKCq+gtwMGOxx9aDDcNQjCQzV78B4Nav0L1iAAA=\"\nraw = gzip.decompress(base64.b64decode(B64))\ncompact_17855 = json.loads(raw)\n\n# Convert compact format to full format\ndata_17855 = []\nfor row in compact_17855:\n    exp, alpha, seed, pair, bools = row\n    data_17855.append({\n        'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': pair,\n        'v': {m: bools[i] for i, m in enumerate(METHODS)},\n        'server': '17855'\n    })\n\n# Combine all data\nall_data = data_19828 + data_17855\n\n# Separate null (alpha=0) and signal (alpha>0)\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\n# Stats\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nprint(f\"Total: {len(all_data)} obs from {len(set(d['exp'] for d in all_data))} experiments\")\nprint(f\"Null (alpha=0): {len(null_obs)} obs from {len(null_exps)} experiments\")\nprint(f\"Signal (alpha>0): {len(signal_obs)} obs from {len(signal_exps)} experiments\")\n\n# Per-method stats\nprint(\"\\n=== Per-method stats ===\")\nfor m in METHODS:\n    fpr_sig = sum(1 for d in null_obs if d['v'][m]) / len(null_obs) if null_obs else 0\n    fnr_6 = sum(1 for d in signal_obs if d['pair'] in PAIRS_6 and not d['v'][m]) / max(1, sum(1 for d in signal_obs if d['pair'] in PAIRS_6))\n    fnr_8 = sum(1 for d in signal_obs if not d['v'][m]) / len(signal_obs) if signal_obs else 0\n    print(f\"  {m:<20s}: FPR={fpr_sig:.4f}, FNR_6={fnr_6:.4f}, FNR_8={fnr_8:.4f}\")\n\ndef coalition_value_fpr(coalition_indices, observations, pair_filter=None):\n    \"\"\"FPR: fraction of obs where ANY method in coalition reports significant\"\"\"\n    if not coalition_indices:\n        return 0.0\n    obs = [d for d in observations if pair_filter is None or d['pair'] in pair_filter]\n    if not obs:\n        return 0.0\n    detected = sum(1 for d in obs if any(d['v'][METHODS[i]] for i in coalition_indices))\n    return detected / len(obs)\n\ndef coalition_value_fnr(coalition_indices, observations, pair_filter=None):\n    \"\"\"FNR: fraction of obs where NO method in coalition reports significant\"\"\"\n    if not coalition_indices:\n        return 1.0\n    obs = [d for d in observations if pair_filter is None or d['pair'] in pair_filter]\n    if not obs:\n        return 0.0\n    missed = sum(1 for d in obs if not any(d['v'][METHODS[i]] for i in coalition_indices))\n    return missed / len(obs)\n\ndef compute_shapley(method_idx, value_func, n=N):\n    \"\"\"Exact Shapley value via full 2^(n-1) coalition enumeration\"\"\"\n    other = [j for j in range(n) if j != method_idx]\n    phi = 0.0\n    for size in range(n):\n        w = factorial(size) * factorial(n - size - 1) / factorial(n)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\n# Compute Shapley values for all configurations\nresults = {}\nfor label, fnr_pairs in [('main_result_6pair', PAIRS_6), ('robustness_8pair', PAIRS_8)]:\n    print(f\"\\n=== {label} (FNR pairs: {len(fnr_pairs)}) ===\")\n    \n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    \n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, lambda S, no=null_obs: coalition_value_fpr(S, no, PAIRS_8))\n        sn = compute_shapley(i, lambda S, so=signal_obs, fp=fnr_pairs: coalition_value_fnr(S, so, fp))\n        sc = sf + sn  # Combined = FPR contribution + FNR contribution\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.4f}, FNR={sn:+.4f}, Combined={sc:+.4f}\")\n    \n    print(f\"  SUM FPR: {sum(fpr_shapley.values()):+.4f}\")\n    print(f\"  SUM FNR: {sum(fnr_shapley.values()):+.4f}\")\n    \n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\n# Build output JSON\ndata_sources = []\nfor d in all_data:\n    src = f\"{d['server']}:{d['exp']}\"\n    if src not in data_sources:\n        data_sources.append(src)\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(null_exps),\n    'n_signal_experiments': len(signal_exps),\n    'n_null_obs': len(null_obs),\n    'n_signal_obs': len(signal_obs),\n    'fpr_pairs': PAIRS_8,\n    'fnr_pairs_6': PAIRS_6,\n    'fnr_pairs_8': PAIRS_8,\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nwith open('/tmp/shapley_values_v2.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to /tmp/shapley_values_v2.json\")\nPYEOF\npython3 /tmp/compute_shapley_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat > /tmp/compute_shapley_v2.py << 'PYEOF'\nimport json, gzip, base64, datetime\nimport numpy as np\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nMETHOD_IDX = {m: i for i, m in enumerate(METHODS)}\nN = len(METHODS)\n\nPAIRS_8 = [\n    'token_entropy->distinct_1', 'token_entropy->distinct_2',\n    'token_entropy->distinct_3', 'token_entropy->mauve',\n    'ece->distinct_1', 'ece->distinct_2',\n    'ece->distinct_3', 'ece->mauve',\n]\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\n# Load 19828 data\nwith open('/tmp/verdicts_19828.json') as f:\n    data_19828 = json.load(f)\n\n# Decode 17855 data\nB64 = \"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9TAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlmPbHhmCODpjUp2g6sojh6PiJj+c9faQz0AbvGIOqba+xBjGLsfmh0GKpL8Sh0rSVxnFvaNv9cO8qPxPpx+OkQ5FcShWPI4rIqnvlI9TPIqFhEBwguqR5QSAft54E/e9meFJojASo0ljOdJDHOZzgb6mhAjkGfPxpyM/8slj2iodiuJQjI6fzR4u/ZUDgNzDJHGIWl8U/Ntm0zzUq+Wv5vR219G6el7eL6s6z95Hm+ubfPYqlb/9sIPPQO5FpHBi8pRoBKZ0ynqYthGzcQgVO/VRRhVIOMR8YuxeurtlXeRZD2Ry15idTcDUS58Xj2N40rlfilMWKBsGlStdsVJRDHn5+dxsuKyy8+s9yL+NavqAeRzo8ubSF3E5lqvtSERM3eabD41CaRxBc87Zxy45ptjZqfQlVI6kyjaWVER7AdSyKJDFeJY6V+16u1qtueI+Jz87L0upAQWF2AFMXwXmYLCh3xFA1U/3e+AoFschOOH4t6sXi+XmtnrYXj+23aZp29O9wuvQm3rTKJTGETSp2UQsZcEzMCiAwTiGNBvtvF41p3lxXc0LkHH0CMIjGIYQdfjT6konSIUJJczOwvLwVvO7Zn7/d9tkdtEb1QDfeQcgRQM5CJjwJMn/SVvKsnhFjaEYDEMxY2lREJy3372AFA3kIKCq+gtwMGOxx9aDDcNQjCQzV78B4Nav0L1iAAA=\"\nraw = gzip.decompress(base64.b64decode(B64))\ncompact_17855 = json.loads(raw)\n\n# Convert compact format to full format\ndata_17855 = []\nfor row in compact_17855:\n    exp, alpha, seed, pair, bools = row\n    data_17855.append({\n        'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': pair,\n        'v': {m: bools[i] for i, m in enumerate(METHODS)},\n        'server': '17855'\n    })\n\n# Combine all data\nall_data = data_19828 + data_17855\n\n# Separate null (alpha=0) and signal (alpha>0)\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\n# Stats\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nprint(f\"Total: {len(all_data)} obs from {len(set(d['exp'] for d in all_data))} experiments\")\nprint(f\"Null (alpha=0): {len(null_obs)} obs from {len(null_exps)} experiments\")\nprint(f\"Signal (alpha>0): {len(signal_obs)} obs from {len(signal_exps)} experiments\")\n\n# Per-method stats\nprint(\"\\n=== Per-method stats ===\")\nfor m in METHODS:\n    fpr_sig = sum(1 for d in null_obs if d['v'][m]) / len(null_obs) if null_obs else 0\n    fnr_6 = sum(1 for d in signal_obs if d['pair'] in PAIRS_6 and not d['v'][m]) / max(1, sum(1 for d in signal_obs if d['pair'] in PAIRS_6))\n    fnr_8 = sum(1 for d in signal_obs if not d['v'][m]) / len(signal_obs) if signal_obs else 0\n    print(f\"  {m:<20s}: FPR={fpr_sig:.4f}, FNR_6={fnr_6:.4f}, FNR_8={fnr_8:.4f}\")\n\ndef coalition_value_fpr(coalition_indices, observations, pair_filter=None):\n    \"\"\"FPR: fraction of obs where ANY method in coalition reports significant\"\"\"\n    if not coalition_indices:\n        return 0.0\n    obs = [d for d in observations if pair_filter is None or d['pair'] in pair_filter]\n    if not obs:\n        return 0.0\n    detected = sum(1 for d in obs if any(d['v'][METHODS[i]] for i in coalition_indices))\n    return detected / len(obs)\n\ndef coalition_value_fnr(coalition_indices, observations, pair_filter=None):\n    \"\"\"FNR: fraction of obs where NO method in coalition reports significant\"\"\"\n    if not coalition_indices:\n        return 1.0\n    obs = [d for d in observations if pair_filter is None or d['pair'] in pair_filter]\n    if not obs:\n        return 0.0\n    missed = sum(1 for d in obs if not any(d['v'][METHODS[i]] for i in coalition_indices))\n    return missed / len(obs)\n\ndef compute_shapley(method_idx, value_func, n=N):\n    \"\"\"Exact Shapley value via full 2^(n-1) coalition enumeration\"\"\"\n    other = [j for j in range(n) if j != method_idx]\n    phi = 0.0\n    for size in range(n):\n        w = factorial(size) * factorial(n - size - 1) / factorial(n)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\n# Compute Shapley values for all configurations\nresults = {}\nfor label, fnr_pairs in [('main_result_6pair', PAIRS_6), ('robustness_8pair', PAIRS_8)]:\n    print(f\"\\n=== {label} (FNR pairs: {len(fnr_pairs)}) ===\")\n    \n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    \n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, lambda S, no=null_obs: coalition_value_fpr(S, no, PAIRS_8))\n        sn = compute_shapley(i, lambda S, so=signal_obs, fp=fnr_pairs: coalition_value_fnr(S, so, fp))\n        sc = sf + sn  # Combined = FPR contribution + FNR contribution\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.4f}, FNR={sn:+.4f}, Combined={sc:+.4f}\")\n    \n    print(f\"  SUM FPR: {sum(fpr_shapley.values()):+.4f}\")\n    print(f\"  SUM FNR: {sum(fnr_shapley.values()):+.4f}\")\n    \n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\n# Build output JSON\ndata_sources = []\nfor d in all_data:\n    src = f\"{d['server']}:{d['exp']}\"\n    if src not in data_sources:\n        data_sources.append(src)\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(null_exps),\n    'n_signal_experiments': len(signal_exps),\n    'n_null_obs': len(null_obs),\n    'n_signal_obs': len(signal_obs),\n    'fpr_pairs': PAIRS_8,\n    'fnr_pairs_6': PAIRS_6,\n    'fnr_pairs_8': PAIRS_8,\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nwith open('/tmp/shapley_values_v2.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to /tmp/shapley_values_v2.json\")\nPYEOF\npython3 /tmp/compute_shapley_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T13:55:40.724697+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/compute_shapley_v2.py << \\\\'PYEOF\\\\'\\\\nimport json, gzip, base64, datetime\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\nfrom math import factorial\\\\n\\\\nMETHODS = [\\\\'naive_xcorr\\\\', \\\\'diff_xcorr\\\\', \\\\'threshold_onset\\\\', \\\\'perm_granger\\\\', \\\\'ty_granger\\\\']\\\\nMETHOD_IDX = {m: i for i, m in enumerate(METHODS)}\\\\nN = len(METHODS)\\\\n\\\\nPAIRS_8 = [\\\\n    \\\\'token_entropy->distinct_1\\\\', \\\\'token_entropy->distinct_2\\\\',\\\\n    \\\\'token_entropy->distinct_3\\\\', \\\\'token_entropy->mauve\\\\',\\\\n    \\\\'ece->distinct_1\\\\', \\\\'ece->distinct_2\\\\',\\\\n    \\\\'ece->distinct_3\\\\', \\\\'ece->mauve\\\\',\\\\n]\\\\nPAIRS_6 = [p for p in PAIRS_8 if \\\\'mauve\\\\' not in p]\\\\n\\\\n# Load 19828 data\\\\nwith open(\\\\'/tmp/verdicts_19828.json\\\\') as f:\\\\n    data_19828 = json.load(f)\\\\n\\\\n# Decode 17855 data\\\\nB64 = \\\"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9TAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlm
+…[truncated 6920 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T13:55:40.724892+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2",
+  "description": "Create shapley_v2 output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2",
+    "description": "Create shapley_v2 output directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T13:55:40.725022+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T13:55:40.725159+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/tmp/compute_shapley_v2.py",
+  "content": "import json, gzip, base64, datetime\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nN = len(METHODS)\n\nPAIRS_8 = [\n    'token_entropy->distinct_1', 'token_entropy->distinct_2',\n    'token_entropy->distinct_3', 'token_entropy->mauve',\n    'ece->distinct_1', 'ece->distinct_2',\n    'ece->distinct_3', 'ece->mauve',\n]\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_19828.json') as f:\n    data_19828 = json.load(f)\n\nB64 = \"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9DAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlmPbHhmCODpjUp2g6sojh6PiJj+c9faQz0AbvGIOqba+xBjGLsfmh0GKpL8Sh0rSVxnFvaNv9cO8qPxPpx+OkQ5FcShWPI4rIqnvlI9TPIqFhEBwguqR5QSAft54E/e9meFJojASo0ljOdJDHOZzgb6mhAjkGfPxpyM/8slj2iodiuJQjI6fzR4u/ZUDgNzDJHGIWl8U/Ntm0zzUq+Wv5vR219G6el7eL6s6z95Hm+ubfPYqlb/9sIPPQO5FpHBi8pRoBKZ0ynqYthGzcQgVO/VRRhVIOMR8YuxeurtlXeRZD2Ry15idTcDUS58Xj2N40rlfilMWKBsGlStdsVJRDHn5+dxsuKyy8+s9yL+NavqAeRzo8ubSF3E5lqvtSERM3eabD41CaRxBc87Zxy45ptjZqfQlVI6kyjaWVER7AdSyKJDFeJY6V+16u1qtueI+Jz87L0upAQWF2AFMXwXmYLCh3xFA1U/3e+AoFschOOH4t6sXi+XmtnrYXj+23aZp29O9wuvQm3rTKJTGETSp2UQsZcEzMCiAwTiGNBvtvF41p3lxXc0LkHH0CMIjGIYQdfjT6konSIUJJczOwvLwVvO7Zn7/d9tkdtEb1QDfeQcgRQM5CJjwJMn/SVvKsnhFjaEYDEMxY2lREJy3372AFA3kIKCq+gtwMGOxx9aDDcNQjCQzV78B4Nav0L1iAAA=\"\nraw = gzip.decompress(base64.b64decode(B64))\ncompact_17855 = json.loads(raw)\n\ndata_17855 = []\nfor row in compact_17855:\n    exp, alpha, seed, pair, bools = row\n    data_17855.append({\n        'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': pair,\n        'v': {m: bools[i] for i, m in enumerate(METHODS)},\n        'server': '17855'\n    })\n\nall_data = data_19828 + data_17855\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nprint(f\"Total: {len(all_data)} obs from {len(set(d['exp'] for d in all_data))} experiments\")\nprint(f\"Null (alpha=0): {len(null_obs)} obs from {len(null_exps)} experiments\")\nprint(f\"Signal (alpha>0): {len(signal_obs)} obs from {len(signal_exps)} experiments\")\nprint(f\"Null experiments: {null_exps}\")\n\nprint(\"\\n=== Per-method raw stats ===\")\nfor m in METHODS:\n    fpr = sum(1 for d in null_obs if d['v'][m]) / len(null_obs) if null_obs else 0\n    fnr6 = sum(1 for d in signal_obs if d['pair'] in PAIRS_6 and not d['v'][m]) / max(1, sum(1 for d in signal_obs if d['pair'] in PAIRS_6))\n    fnr8 = sum(1 for d in signal_obs if not d['v'][m]) / len(signal_obs) if signal_obs else 0\n    print(f\"  {m:<20s}: FPR={fpr:.4f}, FNR_6={fnr6:.4f}, FNR_8={fnr8:.4f}\")\n\ndef coalition_fpr(indices, obs, pair_filter):\n    if not indices:\n        return 0.0\n    filtered = [d for d in obs if d['pair'] in pair_filter]\n    if not filtered:\n        return 0.0\n    return sum(1 for d in filtered if any(d['v'][METHODS[i]] for i in indices)) / len(filtered)\n\ndef coalition_fnr(indices, obs, pair_filter):\n    if not indices:\n        return 1.0\n    filtered = [d for d in obs if d['pair'] in pair_filter]\n    if not filtered:\n        return 0.0\n    return sum(1 for d in filtered if not any(d['v'][METHODS[i]] for i in indices)) / len(filtered)\n\ndef compute_shapley(method_idx, value_func):\n    other = [j for j in range(N) if j != method_idx]\n    phi = 0.0\n    for size in range(N):\n        w = factorial(size) * factorial(N - size - 1) / factorial(N)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\nresults = {}\nfor label, fnr_pairs in [('main_result_6pair', PAIRS_6), ('robustness_8pair', PAIRS_8)]:\n    print(f\"\\n=== {label} (FNR pairs: {len(fnr_pairs)}) ===\")\n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, lambda S, no=null_obs: coalition_fpr(S, no, PAIRS_8))\n        sn = compute_shapley(i, lambda S, so=signal_obs, fp=fnr_pairs: coalition_fnr(S, so, fp))\n        sc = sf + sn\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.6f}, FNR={sn:+.6f}, Comb={sc:+.6f}\")\n    print(f\"  SUM FPR: {sum(fpr_shapley.values()):+.6f}\")\n    print(f\"  SUM FNR: {sum(fnr_shapley.values()):+.6f}\")\n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\ndata_sources = []\nfor d in all_data:\n    src = f\"{d['server']}:{d['exp']}\"\n    if src not in data_sources:\n        data_sources.append(src)\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(null_exps),\n    'n_signal_experiments': len(signal_exps),\n    'n_null_obs': len(null_obs),\n    'n_signal_obs': len(signal_obs),\n    'fpr_pairs': PAIRS_8,\n    'fnr_pairs_6': PAIRS_6,\n    'fnr_pairs_8': PAIRS_8,\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nwith open('/tmp/shapley_values_v2.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to /tmp/shapley_values_v2.json\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/tmp/compute_shapley_v2.py",
+    "content": "import json, gzip, base64, datetime\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nN = len(METHODS)\n\nPAIRS_8 = [\n    'token_entropy->distinct_1', 'token_entropy->distinct_2',\n    'token_entropy->distinct_3', 'token_entropy->mauve',\n    'ece->distinct_1', 'ece->distinct_2',\n    'ece->distinct_3', 'ece->mauve',\n]\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_19828.json') as f:\n    data_19828 = json.load(f)\n\nB64 = \"H4sIAFC7DWoC/8Wc3U7bQBCFXwVxTYs9Ywe46YsgZJnEQET+ig2IPn0ptJRYsb3zc4YbUKTofNmZHM/Mep3Ly+N6tburq/a5aXandZZlVVtQdbNjOj45yr5nJ0cFnRwdd9v7ZlM1m+5hu3v59mOxbLvlZt5V+eu7LruHx+bk6P3vTb1qe/+url7fY+RQn7NH+/PCg8KjFOti1vXjU/Of8Omz6xHNvDmcjQN5MMsTVp4h8r2oy76l5Ydw9cTVIjvP3gElyhZaIEUDOQh42DReMC/7yDgUxGEs5yM1w+IjjLxn2hxkKSmHgjiM5fST48IYtAtAnaDqamuMypsuVm/KvK/MCkN8euGBGei8nCk8upih/i6RcrAFSOu7hgiOTphUn3CCNDiDRnATN9mAyn2DEarXEoMobEmMJmEy5NRNJeorbZGozgh1e9i5J51YIMCkKWeMRksCYvSSMBnyNMa0PoH1GaNvD33Rky5g5pCQKIzEaBImRZ7umNYnsD5j9E2h597QwqCWSspRlnAphpXlKZEDSY1owJAuwMkRafIMkbds63KvSWPUiCEGURRIn5REks0UQxAfV6Spu+fCyxaj+qa4Fz3HFTZfDCVAiqGo9DAYlHDRksbMxRFp4topL03dPfYOdug5rUDVCTGIokAMBmHy42OKNHX3VIj2oZTyprCXWbXbtt0iu+B9htYeE/cS1LzBCxYKyEFAbPrS3GNdUmJt8cUwFGO7IV5mnm4auqpJKbrbf1IKj1GMS7FMikMIL4vInOGQgIniYgm7S2HZ2x8uMXfApRhDBgQURlIsRw+HEH4emBT3zYDAAzptc7SLfeEC5AEBhmIwDMWYK8EBhJ8LJsUJKc4AcUu8Z9nhI4gzzIyhxVHw8jiGh8yci2NkEIqAsPa0ZRLGLSOFyUYAFMWhGI4y9b8jGJ/zhskAQgMYBLDH/1NTN1POH94cCuIwlmPbHhmCODpjUp2g6sojh6PiJj+c9faQz0AbvGIOqba+xBjGLsfmh0GKpL8Sh0rSVxnFvaNv9cO8qPxPpx+OkQ5FcShWPI4rIqnvlI9TPIqFhEBwguqR5QSAft54E/e9meFJojASo0ljOdJDHOZzgb6mhAjkGfPxpyM/8slj2iodiuJQjI6fzR4u/ZUDgNzDJHGIWl8U/Ntm0zzUq+Wv5vR219G6el7eL6s6z95Hm+ubfPYqlb/9sIPPQO5FpHBi8pRoBKZ0ynqYthGzcQgVO/VRRhVIOMR8YuxeurtlXeRZD2Ry15idTcDUS58Xj2N40rlfilMWKBsGlStdsVJRDHn5+dxsuKyy8+s9yL+NavqAeRzo8ubSF3E5lqvtSERM3eabD41CaRxBc87Zxy45ptjZqfQlVI6kyjaWVER7AdSyKJDFeJY6V+16u1qtueI+Jz87L0upAQWF2AFMXwXmYLCh3xFA1U/3e+AoFschOOH4t6sXi+XmtnrYXj+23aZp29O9wuvQm3rTKJTGETSp2UQsZcEzMCiAwTiGNBvtvF41p3lxXc0LkHH0CMIjGIYQdfjT6konSIUJJczOwvLwVvO7Zn7/d9tkdtEb1QDfeQcgRQM5CJjwJMn/SVvKsnhFjaEYDEMxY2lREJy3372AFA3kIKCq+gtwMGOxx9aDDcNQjCQzV78B4Nav0L1iAAA=\"\nraw = gzip.decompress(base64.b64decode(B64))\ncompact_17855 = json.loads(raw)\n\ndata_17855 = []\nfor row in compact_17855:\n    exp, alpha, seed, pair, bools = row\n    data_17855.append({\n        'exp': exp, 'alpha': alpha, 'seed': seed, 'pair': pair,\n        'v': {m: bools[i] for i, m in enumerate(METHODS)},\n        'server': '17855'\n    })\n\nall_data = data_19828 + data_17855\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nprint(f\"Total: {len(all_data)} obs from {len(set(d['exp'] for d in all_data))} experiments\")\nprint(f\"Null (alpha=0): {len(null_obs)} obs from {len(null_exps)} experiments\")\nprint(f\"Signal (alpha>0): {len(signal_obs)} obs from {len(signal_exps)} experiments\")\nprint(f\"Null experiments: {null_exps}\")\n\nprint(\"\\n=== Per-method raw stats ===\")\nfor m in METHODS:\n    fpr = sum(1 for d in null_obs if d['v'][m]) / len(null_obs) if null_obs else 0\n    fnr6 = sum(1 for d in signal_obs if d['pair'] in PAIRS_6 and not d['v'][m]) / max(1, sum(1 for d in signal_obs if d['pair'] in PAIRS_6))\n    fnr8 = sum(1 for d in signal_obs if not d['v'][m]) / len(signal_obs) if signal_obs else 0\n    print(f\"  {m:<20s}: FPR={fpr:.4f}, FNR_6={fnr6:.4f}, FNR_8={fnr8:.4f}\")\n\ndef coalition_fpr(indices, obs, pair_filter):\n    if not indices:\n        return 0.0\n    filtered = [d for d in obs if d['pair'] in pair_filter]\n    if not filtered:\n        return 0.0\n    return sum(1 for d in filtered if any(d['v'][METHODS[i]] for i in indices)) / len(filtered)\n\ndef coalition_fnr(indices, obs, pair_filter):\n    if not indices:\n        return 1.0\n    filtered = [d for d in obs if d['pair'] in pair_filter]\n    if not filtered:\n        return 0.0\n    return sum(1 for d in filtered if not any(d['v'][METHODS[i]] for i in indices)) / len(filtered)\n\ndef compute_shapley(method_idx, value_func):\n    other = [j for j in range(N) if j != method_idx]\n    phi = 0.0\n    for size in range(N):\n        w = factorial(size) * factorial(N - size - 1) / factorial(N)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\nresults = {}\nfor label, fnr_pairs in [('main_result_6pair', PAIRS_6), ('robustness_8pair', PAIRS_8)]:\n    print(f\"\\n=== {label} (FNR pairs: {len(fnr_pairs)}) ===\")\n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, lambda S, no=null_obs: coalition_fpr(S, no, PAIRS_8))\n        sn = compute_shapley(i, lambda S, so=signal_obs, fp=fnr_pairs: coalition_fnr(S, so, fp))\n        sc = sf + sn\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.6f}, FNR={sn:+.6f}, Comb={sc:+.6f}\")\n    print(f\"  SUM FPR: {sum(fpr_shapley.values()):+.6f}\")\n    print(f\"  SUM FNR: {sum(fnr_shapley.values()):+.6f}\")\n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\ndata_sources = []\nfor d in all_data:\n    src = f\"{d['server']}:{d['exp']}\"\n    if src not in data_sources:\n        data_sources.append(src)\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(null_exps),\n    'n_signal_experiments': len(signal_exps),\n    'n_null_obs': len(null_obs),\n    'n_signal_obs': len(signal_obs),\n    'fpr_pairs': PAIRS_8,\n    'fnr_pairs_6': PAIRS_6,\n    'fnr_pairs_8': PAIRS_8,\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nwith open('/tmp/shapley_values_v2.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to /tmp/shapley_values_v2.json\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T13:55:40.725378+00:00_
+
+File created successfully at: /tmp/compute_shapley_v2.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T13:55:40.725504+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "base64 /tmp/compute_shapley_v2.py | tr -d '\\n'",
+  "description": "Base64 encode the script for transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "base64 /tmp/compute_shapley_v2.py | tr -d '\\n'",
+    "description": "Base64 encode the script for transfer"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T13:55:40.725647+00:00_
+
+aW1wb3J0IGpzb24sIGd6aXAsIGJhc2U2NCwgZGF0ZXRpbWUKZnJvbSBpdGVydG9vbHMgaW1wb3J0IGNvbWJpbmF0aW9ucwpmcm9tIG1hdGggaW1wb3J0IGZhY3RvcmlhbAoKTUVUSE9EUyA9IFsnbmFpdmVfeGNvcnInLCAnZGlmZl94Y29ycicsICd0aHJlc2hvbGRfb25zZXQnLCAncGVybV9ncmFuZ2VyJywgJ3R5X2dyYW5nZXInXQpOID0gbGVuKE1FVEhPRFMpCgpQQUlSU184ID0gWwogICAgJ3Rva2VuX2VudHJvcHktPmRpc3RpbmN0XzEnLCAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMicsCiAgICAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMycsICd0b2tlbl9lbnRyb3B5LT5tYXV2ZScsCiAgICAnZWNlLT5kaXN0aW5jdF8xJywgJ2VjZS0+ZGlzdGluY3RfMicsCiAgICAnZWNlLT5kaXN0aW5jdF8zJywgJ2VjZS0+bWF1dmUnLApdClBBSVJTXzYgPSBbcCBmb3IgcCBpbiBQQUlSU184IGlmICdtYXV2ZScgbm90IGluIHBdCgp3aXRoIG9wZW4oJy90bXAvdmVyZGljdHNfMTk4MjguanNvbicpIGFzIGY6CiAgICBkYXRhXzE5ODI4ID0ganNvbi5sb2FkKGYpCgpCNjQgPSAiSDRzSUFGQzdEV29DLzhXYzNVN2JRQkNGWHdWeFRZczlZd2U0NllzZ1pKbkVRRVQraWcySVBuMHB0SlJZc2IzemM0WWJVS1RvZk5tWkhNL01lcDNMeStONnRidXJxL2E1YVhhbmRaWmxWVnRRZGJOak9qNDV5cjVuSjBjRm5Sd2RkOXY3WmxNMW0rNWh1M3Y1OW1PeGJMdmxadDVWK2V1N0xydUh4K2JrNlAzdlRiMXFlLyt1cmw3ZlkrUlFuN05IKy9QQ2c4S2pGT3RpMXZYalUvT2Y4T216NnhITnZEbWNqUU41TU1zVFZwNGg4cjJveTc2bDVZZHc5Y1RWSWp2UDNnRWx5aFphSUVVRE9RaDQyRFJlTUMvN3lEZ1V4R0VzNXlNMXcrSWpqTHhuMmh4a0tTbUhnamlNNWZTVDQ4SVl0QXRBbmFEcWFtdU15cHN1Vm0vS3ZLL01Da044ZXVHQkdlaThuQ2s4dXBpaC9pNlJjckFGU091N2hnaU9UcGhVbjNDQ05EaURSbkFUTjltQXluMkRFYXJYRW9Nb2JFbU1KbUV5NU5STkplb3JiWkdvemdoMWU5aTVKNTFZSU1Da0tXZU1Sa3NDWXZTU01CbnlOTWEwUG9IMUdhTnZEMzNSa3k1ZzVwQ1FLSXpFYUJJbVJaN3VtTlluc0Q1ajlFMmg1OTdRd3FDV1NzcFJsbkFwaHBYbEtaRURTWTFvd0pBdXdNa1JhZklNa2JkczYzS3ZTV1BVaUNFR1VSUkluNVJFa3MwVVF4QWZWNlNwdStmQ3l4YWorcWE0RnozSEZUWmZEQ1ZBaXFHbzlEQVlsSERSa3NiTXhSRnA0dG9wTDAzZFBmWU9kdWc1clVEVkNUR0lva0FNQm1IeTQyT0tOSFgzVklqMm9aVHlwckNYV2JYYnR0MGl1K0I5aHRZZUUvY1MxTHpCQ3hZS3lFRkFiUHJTM0dOZFVtSnQ4Y1V3RkdPN0lWNW1ubTRhdXFwSkticmJmMUlLajFHTVM3Rk1pa01JTDR2SW5PR1FnSW5pWWdtN1MySFoyeDh1TVhmQXBSaERCZ1FVUmxJc1J3K0hFSDRlbUJUM3pZREFBenB0YzdTTGZlRUM1QUVCaG1Jd0RNV1lLOEVCaEo4TEpzVUpLYzRBY1V1OFo5bmhJNGd6ekl5aHhWSHc4amlHaDh5Y2kyTmtFSXFBc1BhMFpSTEdMU09GeVVZQUZNV2hHSTR5OWI4akdKL3poc2tBUWdNWUJMREgvMU5U
+…[truncated 6544 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T13:55:40.725799+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "echo 'aW1wb3J0IGpzb24sIGd6aXAsIGJhc2U2NCwgZGF0ZXRpbWUKZnJvbSBpdGVydG9vbHMgaW1wb3J0IGNvbWJpbmF0aW9ucwpmcm9tIG1hdGggaW1wb3J0IGZhY3RvcmlhbAoKTUVUSE9EUyA9IFsnbmFpdmVfeGNvcnInLCAnZGlmZl94Y29ycicsICd0aHJlc2hvbGRfb25zZXQnLCAncGVybV9ncmFuZ2VyJywgJ3R5X2dyYW5nZXInXQpOID0gbGVuKE1FVEhPRFMpCgpQQUlSU184ID0gWwogICAgJ3Rva2VuX2VudHJvcHktPmRpc3RpbmN0XzEnLCAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMicsCiAgICAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMycsICd0b2tlbl9lbnRyb3B5LT5tYXV2ZScsCiAgICAnZWNlLT5kaXN0aW5jdF8xJywgJ2VjZS0+ZGlzdGluY3RfMicsCiAgICAnZWNlLT5kaXN0aW5jdF8zJywgJ2VjZS0+bWF1dmUnLApdClBBSVJTXzYgPSBbcCBmb3IgcCBpbiBQQUlSU184IGlmICdtYXV2ZScgbm90IGluIHBdCgp3aXRoIG9wZW4oJy90bXAvdmVyZGljdHNfMTk4MjguanNvbicpIGFzIGY6CiAgICBkYXRhXzE5ODI4ID0ganNvbi5sb2FkKGYpCgpCNjQgPSAiSDRzSUFGQzdEV29DLzhXYzNVN2JRQkNGWHdWeFRZczlZd2U0NllzZ1pKbkVRRVQraWcySVBuMHB0SlJZc2IzemM0WWJVS1RvZk5tWkhNL01lcDNMeStONnRidXJxL2E1YVhhbmRaWmxWVnRRZGJOak9qNDV5cjVuSjBjRm5Sd2RkOXY3WmxNMW0rNWh1M3Y1OW1PeGJMdmxadDVWK2V1N0xydUh4K2JrNlAzdlRiMXFlLyt1cmw3ZlkrUlFuN05IKy9QQ2c4S2pGT3RpMXZYalUvT2Y4T216NnhITnZEbWNqUU41TU1zVFZwNGg4cjJveTc2bDVZZHc5Y1RWSWp2UDNnRWx5aFphSUVVRE9RaDQyRFJlTUMvN3lEZ1V4R0VzNXlNMXcrSWpqTHhuMmh4a0tTbUhnamlNNWZTVDQ4SVl0QXRBbmFEcWFtdU15cHN1Vm0vS3ZLL01Da044ZXVHQkdlaThuQ2s4dXBpaC9pNlJjckFGU091N2hnaU9UcGhVbjNDQ05EaURSbkFUTjltQXluMkRFYXJYRW9Nb2JFbU1KbUV5NU5STkplb3JiWkdvemdoMWU5aTVKNTFZSU1Da0tXZU1Sa3NDWXZTU01CbnlOTWEwUG9IMUdhTnZEMzNSa3k1ZzVwQ1FLSXpFYUJJbVJaN3VtTlluc0Q1ajlFMmg1OTdRd3FDV1NzcFJsbkFwaHBYbEtaRURTWTFvd0pBdXdNa1JhZklNa2JkczYzS3ZTV1BVaUNFR1VSUkluNVJFa3MwVVF4QWZWNlNwdStmQ3l4YWorcWE0RnozSEZUWmZEQ1ZBaXFHbzlEQVlsSERSa3NiTXhSRnA0dG9wTDAzZFBmWU9kdWc1clVEVkNUR0lva0FNQm1IeTQyT0tOSFgzVklqMm9aVHlwckNYV2JYYnR0MGl1K0I5aHRZZUUvY1MxTHpCQ3hZS3lFRkFiUHJTM0dOZFVtSnQ4Y1V3RkdPN0lWNW1ubTRhdXFwSkticmJmMUlLajFHTVM3Rk1pa01JTDR2SW5PR1FnSW5pWWdtN1MySFoyeDh1TVhmQXBSaERCZ1FVUmxJc1J3K0hFSDRlbUJUM3pZREFBenB0YzdTTGZlRUM1QUVCaG1Jd0RNV1lLOEVCaEo4TEpzVUpLYzRBY1V1OFo5bmhJNGd6ekl5aHhWSHc4amlHaDh5Y2kyTmtFSXFBc1BhMFpSTEdMU09GeVVZQUZNV2hHSTR5OWI4akdKL3poc2tBUWdNWUJMREgvMU5UTjFQT0g5NGNDdUl3bG1QYkhobUNPRHBqVXAyZzZzb2poNlBpSmorYzlmYVF6MEFidkdJT3FiYSt4QmpHTHNmbWgwR0twTDhTaDByU1Z4bkZ2YU52OWNPOHFQeFBweCtPa1E1RmNTaFdQSTRySXFudmxJOVRQSXFGaEVCd2d1cVI1UVNBZnQ1NEUvZTltZUZKb2pBU28wbGpPZEpESE9aemdiNm1oQWprR2ZQeHB5TS84c2xqMmlvZGl1SlFqSTZmelI0dS9aVURnTnpESkhHSVdsOFUvTnRtMHp6VXErV3Y1dlIyMTlHNmVsN2VMNnM2ejk1SG0rdWJmUFlxbGIvOXNJUFBRTzVGcEhCaThwUm9CS1oweW5xWXRoR3pjUWdWTy9WUlJoVklPTVI4WXV4ZXVydGxYZVJaRDJSeTE1aWRUY0RVUzU4WGoyTjQwcmxmaWxNV0tCc0dsU3Rkc1ZKUkRIbjUrZHhzdUt5eTgrczl5TCtOYXZxQWVSem84dWJTRjNFNWxxdnRTRVJNM2VhYkQ0MUNhUnhCYzg3Wnh5NDVwdGpacWZRbFZJNmt5amFXVkVSN0FkU3lLSkRGZUpZNlYrMTZ1MXF0dWVJK0p6ODdMMHVwQVFXRjJBRk1Yd1htWUxDaDN4RkExVS8zZStBb0ZzY2hPT0g0dDZzWGkrWG10bnJZWGorMjNhWnAyOU85d3V2UW0zclRLSlRHRVRTcDJVUXNaY0V6TUNpQXdUaUdOQnZ0dkY0MXAzbHhYYzBMa0hIMENNSWpHSVlRZGZqVDZrb25TSVVKSmN6T3d2THdWdk83Wm43L2Q5dGtkdEViMVFEZmVRY2dSUU01Q0pqd0pNbi9TVnZLc25oRmphRVlERU14WTJsUkVKeTMzNzJBRkEza0lLQ3ErZ3R3TUdPeHg5YUREY05RakNRelY3OEI0TmF2MEwxaUFBQT0iCnJhdyA9IGd6aXAuZGVjb21wcmVzcyhiYXNlNjQuYjY0ZGVjb2RlKEI2NCkpCmNvbXBhY3RfMTc4NTUgPSBqc29uLmxvYWRzKHJhdykKCmRhdGFfMTc4NTUgPSBbXQpmb3Igcm93IGluIGNvbXBhY3RfMTc4NTU6CiAgICBleHAsIGFscGhhLCBzZWVkLCBwYWlyLCBib29scyA9IHJvdwogICAgZGF0YV8xNzg1NS5hcHBlbmQoewogICAgICAgICdleHAnOiBleHAsICdhbHBoYSc6IGFscGhhLCAnc2VlZCc6IHNlZWQsICdwYWlyJzogcGFpciwKICAgICAgICAndic6IHttOiBib29sc1tpXSBmb3IgaSwgbSBpbiBlbnVtZXJhdGUoTUVUSE9EUyl9LAogICAgICAgICdzZXJ2ZXInOiAnMTc4NTUnCiAgICB9KQoKYWxsX2RhdGEgPSBkYXRhXzE5ODI4ICsgZGF0YV8xNzg1NQoKbnVsbF9vYnMgPSBbZCBmb3IgZCBpbiBhbGxfZGF0YSBpZiBkWydhbHBoYSddID09IDAuMF0Kc2lnbmFsX29icyA9IFtkIGZvciBkIGluIGFsbF9kYXRhIGlmIGRbJ2FscGhhJ10gPiAwLjBdCgpudWxsX2V4cHMgPSBzb3J0ZWQoc2V0KGRbJ2V4cCddIGZvciBkIGluIG51bGxfb2JzKSkKc2lnbmFsX2V4cHMgPSBzb3J0ZWQoc2V0KGRbJ2V4cCddIGZvciBkIGluIHNpZ25hbF9vYnMpKQpwcmludChmIlRvdGFsOiB7bGVuKGFsbF9kYXRhKX0gb2JzIGZyb20ge2xlbihzZXQoZFsnZXhwJ10gZm9yIGQgaW4gYWxsX2RhdGEpKX0gZXhwZXJpbWVudHMiKQpwcmludChmIk51bGwgKGFscGhhPTApOiB7bGVuKG51bGxfb2JzKX0gb2JzIGZyb20ge2xlbihudWxsX2V4cHMpfSBleHBlcmltZW50cyIpCnByaW50KGYiU2lnbmFsIChhbHBoYT4wKToge2xlbihzaWduYWxfb2JzKX0gb2JzIGZyb20ge2xlbihzaWduYWxfZXhwcyl9IGV4cGVyaW1lbnRzIikKcHJpbnQoZiJOdWxsIGV4cGVyaW1lbnRzOiB7bnVsbF9leHBzfSIpCgpwcmludCgiXG49PT0gUGVyLW1ldGhvZCByYXcgc3RhdHMgPT09IikKZm9yIG0gaW4gTUVUSE9EUzoKICAgIGZwciA9IHN1bSgxIGZvciBkIGluIG51bGxfb2JzIGlmIGRbJ3YnXVttXSkgLyBsZW4obnVsbF9vYnMpIGlmIG51bGxfb2JzIGVsc2UgMAogICAgZm5yNiA9IHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgZFsncGFpciddIGluIFBBSVJTXzYgYW5kIG5vdCBkWyd2J11bbV0pIC8gbWF4KDEsIHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgZFsncGFpciddIGluIFBBSVJTXzYpKQogICAgZm5yOCA9IHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgbm90IGRbJ3YnXVttXSkgLyBsZW4oc2lnbmFsX29icykgaWYgc2lnbmFsX29icyBlbHNlIDAKICAgIHByaW50KGYiICB7bTo8MjBzfTogRlBSPXtmcHI6LjRmfSwgRk5SXzY9e2ZucjY6LjRmfSwgRk5SXzg9e2Zucjg6LjRmfSIpCgpkZWYgY29hbGl0aW9uX2ZwcihpbmRpY2VzLCBvYnMsIHBhaXJfZmlsdGVyKToKICAgIGlmIG5vdCBpbmRpY2VzOgogICAgICAgIHJldHVybiAwLjAKICAgIGZpbHRlcmVkID0gW2QgZm9yIGQgaW4gb2JzIGlmIGRbJ3BhaXInXSBpbiBwYWlyX2ZpbHRlcl0KICAgIGlmIG5vdCBmaWx0ZXJlZDoKICAgICAgICByZXR1cm4gMC4wCiAgICByZXR1cm4gc3VtKDEgZm9yIGQgaW4gZmlsdGVyZWQgaWYgYW55KGRbJ3YnXVtNRVRIT0RTW2ldXSBmb3IgaSBpbiBpbmRpY2VzKSkgLyBsZW4oZmlsdGVyZWQpCgpkZWYgY29hbGl0aW9uX2ZucihpbmRpY2VzLCBvYnMsIHBhaXJfZmlsdGVyKToKICAgIGlmIG5vdCBpbmRpY2VzOgogICAgICAgIHJldHVybiAxLjAKICAgIGZpbHRlcmVkID0gW2QgZm9yIGQgaW4gb2JzIGlmIGRbJ3BhaXInXSBpbiBwYWlyX2ZpbHRlcl0KICAgIGlmIG5vdCBmaWx0ZXJlZDoKICAgICAgICByZXR1cm4gMC4wCiAgICByZXR1cm4gc3VtKDEgZm9yIGQgaW4gZmlsdGVyZWQgaWYgbm90IGFueShkWyd2J11bTUVUSE9EU1tpXV0gZm9yIGkgaW4gaW5kaWNlcykpIC8gbGVuKGZpbHRlcmVkKQoKZGVmIGNvbXB1dGVfc2hhcGxleShtZXRob2RfaWR4LCB2YWx1ZV9mdW5jKToKICAgIG90aGVyID0gW2ogZm9yIGogaW4gcmFuZ2UoTikgaWYgaiAhPSBtZXRob2RfaWR4XQogICAgcGhpID0gMC4wCiAgICBmb3Igc2l6ZSBpbiByYW5nZShOKToKICAgICAgICB3ID0gZmFjdG9yaWFsKHNpemUpICogZmFjdG9yaWFsKE4gLSBzaXplIC0gMSkgLyBmYWN0b3JpYWwoTikKICAgICAgICBmb3IgUyBpbiBjb21iaW5hdGlvbnMob3RoZXIsIHNpemUpOgogICAgICAgICAgICBTX2xpc3QgPSBzb3J0ZWQobGlzdChTKSkKICAgICAgICAgICAgU19wbHVzX2kgPSBzb3J0ZWQoU19saXN0ICsgW21ldGhvZF9pZHhdKQogICAgICAgICAgICBtYXJnaW5hbCA9IHZhbHVlX2Z1bmMoU19wbHVzX2kpIC0gdmFsdWVfZnVuYyhTX2xpc3QpCiAgICAgICAgICAgIHBoaSArPSB3ICogbWFyZ2luYWwKICAgIHJldHVybiBwaGkKCnJlc3VsdHMgPSB7fQpmb3IgbGFiZWwsIGZucl9wYWlycyBpbiBbKCdtYWluX3Jlc3VsdF82cGFpcicsIFBBSVJTXzYpLCAoJ3JvYnVzdG5lc3NfOHBhaXInLCBQQUlSU184KV06CiAgICBwcmludChmIlxuPT09IHtsYWJlbH0gKEZOUiBwYWlyczoge2xlbihmbnJfcGFpcnMpfSkgPT09IikKICAgIGZwcl9zaGFwbGV5ID0ge30KICAgIGZucl9zaGFwbGV5ID0ge30KICAgIGNvbWJpbmVkX3NoYXBsZXkgPSB7fQogICAgZm9yIGksIG0gaW4gZW51bWVyYXRlKE1FVEhPRFMpOgogICAgICAgIHNmID0gY29tcHV0ZV9zaGFwbGV5KGksIGxhbWJkYSBTLCBubz1udWxsX29iczogY29hbGl0aW9uX2ZwcihTLCBubywgUEFJUlNfOCkpCiAgICAgICAgc24gPSBjb21wdXRlX3NoYXBsZXkoaSwgbGFtYmRhIFMsIHNvPXNpZ25hbF9vYnMsIGZwPWZucl9wYWlyczogY29hbGl0aW9uX2ZucihTLCBzbywgZnApKQogICAgICAgIHNjID0gc2YgKyBzbgogICAgICAgIGZwcl9zaGFwbGV5W21dID0gcm91bmQoc2YsIDYpCiAgICAgICAgZm5yX3NoYXBsZXlbbV0gPSByb3VuZChzbiwgNikKICAgICAgICBjb21iaW5lZF9zaGFwbGV5W21dID0gcm91bmQoc2MsIDYpCiAgICAgICAgcHJpbnQoZiIgIHttOjwyMHN9OiBGUFI9e3NmOisuNmZ9LCBGTlI9e3NuOisuNmZ9LCBDb21iPXtzYzorLjZmfSIpCiAgICBwcmludChmIiAgU1VNIEZQUjoge3N1bShmcHJfc2hhcGxleS52YWx1ZXMoKSk6Ky42Zn0iKQogICAgcHJpbnQoZiIgIFNVTSBGTlI6IHtzdW0oZm5yX3NoYXBsZXkudmFsdWVzKCkpOisuNmZ9IikKICAgIHJlc3VsdHNbbGFiZWxdID0gewogICAgICAgICdmcHJfc2hhcGxleSc6IGZwcl9zaGFwbGV5LAogICAgICAgICdmbnJfc2hhcGxleSc6IGZucl9zaGFwbGV5LAogICAgICAgICdjb21iaW5lZF9zaGFwbGV5JzogY29tYmluZWRfc2hhcGxleSwKICAgIH0KCmRhdGFfc291cmNlcyA9IFtdCmZvciBkIGluIGFsbF9kYXRhOgogICAgc3JjID0gZiJ7ZFsnc2VydmVyJ119OntkWydleHAnXX0iCiAgICBpZiBzcmMgbm90IGluIGRhdGFfc291cmNlczoKICAgICAgICBkYXRhX3NvdXJjZXMuYXBwZW5kKHNyYykKCm91dHB1dCA9IHsKICAgICd2ZXJzaW9uJzogJ3YyX2QxMjBfY29tcGxpYW50JywKICAgICdnZW5lcmF0ZWRfYXQnOiBkYXRldGltZS5kYXRldGltZS5ub3coKS5pc29mb3JtYXQoKSwKICAgICdkYXRhX3NvdXJjZXMnOiBkYXRhX3NvdXJjZXMsCiAgICAndGhyZXNob2xkX2NyaXRlcmlvbic6ICd0cnVlXzNzaWdtYV9kMTA1JywKICAgICduX21ldGhvZHMnOiBOLAogICAgJ25fY29hbGl0aW9ucyc6IDIqKk4sCiAgICAnbl9udWxsX2V4cGVyaW1lbnRzJzogbGVuKG51bGxfZXhwcyksCiAgICAnbl9zaWduYWxfZXhwZXJpbWVudHMnOiBsZW4oc2lnbmFsX2V4cHMpLAogICAgJ25fbnVsbF9vYnMnOiBsZW4obnVsbF9vYnMpLAogICAgJ25fc2lnbmFsX29icyc6IGxlbihzaWduYWxfb2JzKSwKICAgICdmcHJfcGFpcnMnOiBQQUlSU184LAogICAgJ2Zucl9wYWlyc182JzogUEFJUlNfNiwKICAgICdmbnJfcGFpcnNfOCc6IFBBSVJTXzgsCiAgICAnbWV0aG9kcyc6IE1FVEhPRFMsCiAgICAnbWFpbl9yZXN1bHRfNnBhaXInOiByZXN1bHRzWydtYWluX3Jlc3VsdF82cGFpciddLAogICAgJ3JvYnVzdG5lc3NfOHBhaXInOiByZXN1bHRzWydyb2J1c3RuZXNzXzhwYWlyJ10sCn0KCndpdGggb3BlbignL3RtcC9zaGFwbGV5X3ZhbHVlc192Mi5qc29uJywgJ3cnKSBhcyBmOgogICAganNvbi5kdW1wKG91dHB1dCwgZiwgaW5kZW50PTIpCnByaW50KGYiXG5KU09OIHNhdmVkIHRvIC90bXAvc2hhcGxleV92YWx1ZXNfdjIuanNvbiIpCg==' | base64 -d > /tmp/compute_shapley_v2.py && python3 /tmp/compute_shapley_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "echo 'aW1wb3J0IGpzb24sIGd6aXAsIGJhc2U2NCwgZGF0ZXRpbWUKZnJvbSBpdGVydG9vbHMgaW1wb3J0IGNvbWJpbmF0aW9ucwpmcm9tIG1hdGggaW1wb3J0IGZhY3RvcmlhbAoKTUVUSE9EUyA9IFsnbmFpdmVfeGNvcnInLCAnZGlmZl94Y29ycicsICd0aHJlc2hvbGRfb25zZXQnLCAncGVybV9ncmFuZ2VyJywgJ3R5X2dyYW5nZXInXQpOID0gbGVuKE1FVEhPRFMpCgpQQUlSU184ID0gWwogICAgJ3Rva2VuX2VudHJvcHktPmRpc3RpbmN0XzEnLCAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMicsCiAgICAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMycsICd0b2tlbl9lbnRyb3B5LT5tYXV2ZScsCiAgICAnZWNlLT5kaXN0aW5jdF8xJywgJ2VjZS0+ZGlzdGluY3RfMicsCiAgICAnZWNlLT5kaXN0aW5jdF8zJywgJ2VjZS0+bWF1dmUnLApdClBBSVJTXzYgPSBbcCBmb3IgcCBpbiBQQUlSU184IGlmICdtYXV2ZScgbm90IGluIHBdCgp3aXRoIG9wZW4oJy90bXAvdmVyZGljdHNfMTk4MjguanNvbicpIGFzIGY6CiAgICBkYXRhXzE5ODI4ID0ganNvbi5sb2FkKGYpCgpCNjQgPSAiSDRzSUFGQzdEV29DLzhXYzNVN2JRQkNGWHdWeFRZczlZd2U0NllzZ1pKbkVRRVQraWcySVBuMHB0SlJZc2IzemM0WWJVS1RvZk5tWkhNL01lcDNMeStONnRidXJxL2E1YVhhbmRaWmxWVnRRZGJOak9qNDV5cjVuSjBjRm5Sd2RkOXY3WmxNMW0rNWh1M3Y1OW1PeGJMdmxadDVWK2V1N0xydUh4K2JrNlAzdlRiMXFlLyt1cmw3ZlkrUlFuN05IKy9QQ2c4S2pGT3RpMXZYalUvT2Y4T216NnhITnZEbWNqUU41TU1zVFZwNGg4cjJveTc2bDVZZHc5Y1RWSWp2UDNnRWx5aFphSUVVRE9RaDQyRFJlTUMvN3lEZ1V4R0VzNXlNMXcrSWpqTHhuMmh4a0tTbUhnamlNNWZTVDQ4SVl0QXRBbmFEcWFtdU15cHN1Vm0vS3ZLL01Da044ZXVHQkdlaThuQ2s4dXBpaC9pNlJjckFGU091N2hnaU9UcGhVbjNDQ05EaURSbkFUTjltQXluMkRFYXJYRW9Nb2JFbU1KbUV5NU5STkplb3JiWkdvemdoMWU5aTVKNTFZSU1Da0tXZU1Sa3NDWXZTU01CbnlOTWEwUG9IMUdhTnZEMzNSa3k1ZzVwQ1FLSXpFYUJJbVJaN3VtTlluc0Q1ajlFMmg1OTdRd3FDV1NzcFJsbkFwaHBYbEtaRURTWTFvd0pBdXdNa1JhZklNa2JkczYzS3ZTV1BVaUNFR1VSUkluNVJFa3MwVVF4QWZWNlNwdStmQ3l4YWorcWE0RnozSEZUWmZEQ1ZBaXFHbzlEQVlsSERSa3NiTXhSRnA0dG9wTDAzZFBmWU9kdWc1clVEVkNUR0lva0FNQm1IeTQyT0tOSFgzVklqMm9aVHlwckNYV2JYYnR0MGl1K0I5aHRZZUUvY1MxTHpCQ3hZS3lFRkFiUHJTM0dOZFVtSnQ4Y1V3RkdPN0lWNW1ubTRhdXFwSkticmJmMUlLajFHTVM3Rk1pa01JTDR2SW5PR1FnSW5pWWdtN1MySFoyeDh1TVhmQXBSaERCZ1FVUmxJc1J3K0hFSDRlbUJUM3pZREFBenB0YzdTTGZlRUM1QUVCaG1Jd0RNV1lLOEVCaEo4TEpzVUpLYzRBY1V1OFo5bmhJNGd6ekl5aHhWSHc4amlHaDh5Y2kyTmtFSXFBc1BhMFpSTEdMU09GeVVZQUZNV2hHSTR5OWI4akdKL3poc2tBUWdNWUJMREgvMU5UTjFQT0g5NGNDdUl3bG1QYkhobUNPRHBqVXAyZzZzb2poNlBpSmorYzlmYVF6MEFidkdJT3FiYSt4QmpHTHNmbWgwR0twTDhTaDByU1Z4bkZ2YU52OWNPOHFQeFBweCtPa1E1RmNTaFdQSTRySXFudmxJOVRQSXFGaEVCd2d1cVI1UVNBZnQ1NEUvZTltZUZKb2pBU28wbGpPZEpESE9aemdiNm1oQWprR2ZQeHB5TS84c2xqMmlvZGl1SlFqSTZmelI0dS9aVURnTnpESkhHSVdsOFUvTnRtMHp6VXErV3Y1dlIyMTlHNmVsN2VMNnM2ejk1SG0rdWJmUFlxbGIvOXNJUFBRTzVGcEhCaThwUm9CS1oweW5xWXRoR3pjUWdWTy9WUlJoVklPTVI4WXV4ZXVydGxYZVJaRDJSeTE1aWRUY0RVUzU4WGoyTjQwcmxmaWxNV0tCc0dsU3Rkc1ZKUkRIbjUrZHhzdUt5eTgrczl5TCtOYXZxQWVSem84dWJTRjNFNWxxdnRTRVJNM2VhYkQ0MUNhUnhCYzg3Wnh5NDVwdGpacWZRbFZJNmt5amFXVkVSN0FkU3lLSkRGZUpZNlYrMTZ1MXF0dWVJK0p6ODdMMHVwQVFXRjJBRk1Yd1htWUxDaDN4RkExVS8zZStBb0ZzY2hPT0g0dDZzWGkrWG10bnJZWGorMjNhWnAyOU85d3V2UW0zclRLSlRHRVRTcDJVUXNaY0V6TUNpQXdUaUdOQnZ0dkY0MXAzbHhYYzBMa0hIMENNSWpHSVlRZGZqVDZrb25TSVVKSmN6T3d2THdWdk83Wm43L2Q5dGtkdEViMVFEZmVRY2dSUU01Q0pqd0pNbi9TVnZLc25oRmphRVlERU14WTJsUkVKeTMzNzJBRkEza0lLQ3ErZ3R3TUdPeHg5YUREY05RakNRelY3OEI0TmF2MEwxaUFBQT0iCnJhdyA9IGd6aXAuZGVjb21wcmVzcyhiYXNlNjQuYjY0ZGVjb2RlKEI2NCkpCmNvbXBhY3RfMTc4NTUgPSBqc29uLmxvYWRzKHJhdykKCmRhdGFfMTc4NTUgPSBbXQpmb3Igcm93IGluIGNvbXBhY3RfMTc4NTU6CiAgICBleHAsIGFscGhhLCBzZWVkLCBwYWlyLCBib29scyA9IHJvdwogICAgZGF0YV8xNzg1NS5hcHBlbmQoewogICAgICAgICdleHAnOiBleHAsICdhbHBoYSc6IGFscGhhLCAnc2VlZCc6IHNlZWQsICdwYWlyJzogcGFpciwKICAgICAgICAndic6IHttOiBib29sc1tpXSBmb3IgaSwgbSBpbiBlbnVtZXJhdGUoTUVUSE9EUyl9LAogICAgICAgICdzZXJ2ZXInOiAnMTc4NTUnCiAgICB9KQoKYWxsX2RhdGEgPSBkYXRhXzE5ODI4ICsgZGF0YV8xNzg1NQoKbnVsbF9vYnMgPSBbZCBmb3IgZCBpbiBhbGxfZGF0YSBpZiBkWydhbHBoYSddID09IDAuMF0Kc2lnbmFsX29icyA9IFtkIGZvciBkIGluIGFsbF9kYXRhIGlmIGRbJ2FscGhhJ10gPiAwLjBdCgpudWxsX2V4cHMgPSBzb3J0ZWQoc2V0KGRbJ2V4cCddIGZvciBkIGluIG51bGxfb2JzKSkKc2lnbmFsX2V4cHMgPSBzb3J0ZWQoc2V0KGRbJ2V4cCddIGZvciBkIGluIHNpZ25hbF9vYnMpKQpwcmludChmIlRvdGFsOiB7bGVuKGFsbF9kYXRhKX0gb2JzIGZyb20ge2xlbihzZXQoZFsnZXhwJ10gZm9yIGQgaW4gYWxsX2RhdGEpKX0gZXhwZXJpbWVudHMiKQpwcmludChmIk51bGwgKGFscGhhPTApOiB7bGVuKG51bGxfb2JzKX0gb2JzIGZyb20ge2xlbihudWxsX2V4cHMpfSBleHBlcmltZW50cyIpCnByaW50KGYiU2lnbmFsIChhbHBoYT4wKToge2xlbihzaWduYWxfb2JzKX0gb2JzIGZyb20ge2xlbihzaWduYWxfZXhwcyl9IGV4cGVyaW1lbnRzIikKcHJpbnQoZiJOdWxsIGV4cGVyaW1lbnRzOiB7bnVsbF9leHBzfSIpCgpwcmludCgiXG49PT0gUGVyLW1ldGhvZCByYXcgc3RhdHMgPT09IikKZm9yIG0gaW4gTUVUSE9EUzoKICAgIGZwciA9IHN1bSgxIGZvciBkIGluIG51bGxfb2JzIGlmIGRbJ3YnXVttXSkgLyBsZW4obnVsbF9vYnMpIGlmIG51bGxfb2JzIGVsc2UgMAogICAgZm5yNiA9IHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgZFsncGFpciddIGluIFBBSVJTXzYgYW5kIG5vdCBkWyd2J11bbV0pIC8gbWF4KDEsIHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgZFsncGFpciddIGluIFBBSVJTXzYpKQogICAgZm5yOCA9IHN1bSgxIGZvciBkIGluIHNpZ25hbF9vYnMgaWYgbm90IGRbJ3YnXVttXSkgLyBsZW4oc2lnbmFsX29icykgaWYgc2lnbmFsX29icyBlbHNlIDAKICAgIHByaW50KGYiICB7bTo8MjBzfTogRlBSPXtmcHI6LjRmfSwgRk5SXzY9e2ZucjY6LjRmfSwgRk5SXzg9e2Zucjg6LjRmfSIpCgpkZWYgY29hbGl0aW9uX2ZwcihpbmRpY2VzLCBvYnMsIHBhaXJfZmlsdGVyKToKICAgIGlmIG5vdCBpbmRpY2VzOgogICAgICAgIHJldHVybiAwLjAKICAgIGZpbHRlcmVkID0gW2QgZm9yIGQgaW4gb2JzIGlmIGRbJ3BhaXInXSBpbiBwYWlyX2ZpbHRlcl0KICAgIGlmIG5vdCBmaWx0ZXJlZDoKICAgICAgICByZXR1cm4gMC4wCiAgICByZXR1cm4gc3VtKDEgZm9yIGQgaW4gZmlsdGVyZWQgaWYgYW55KGRbJ3YnXVtNRVRIT0RTW2ldXSBmb3IgaSBpbiBpbmRpY2VzKSkgLyBsZW4oZmlsdGVyZWQpCgpkZWYgY29hbGl0aW9uX2ZucihpbmRpY2VzLCBvYnMsIHBhaXJfZmlsdGVyKToKICAgIGlmIG5vdCBpbmRpY2VzOgogICAgICAgIHJldHVybiAxLjAKICAgIGZpbHRlcmVkID0gW2QgZm9yIGQgaW4gb2JzIGlmIGRbJ3BhaXInXSBpbiBwYWlyX2ZpbHRlcl0KICAgIGlmIG5vdCBmaWx0ZXJlZDoKICAgICAgICByZXR1cm4gMC4wCiAgICByZXR1cm4gc3VtKDEgZm9yIGQgaW4gZmlsdGVyZWQgaWYgbm90IGFueShkWyd2J11bTUVUSE9EU1tpXV0gZm9yIGkgaW4gaW5kaWNlcykpIC8gbGVuKGZpbHRlcmVkKQoKZGVmIGNvbXB1dGVfc2hhcGxleShtZXRob2RfaWR4LCB2YWx1ZV9mdW5jKToKICAgIG90aGVyID0gW2ogZm9yIGogaW4gcmFuZ2UoTikgaWYgaiAhPSBtZXRob2RfaWR4XQogICAgcGhpID0gMC4wCiAgICBmb3Igc2l6ZSBpbiByYW5nZShOKToKICAgICAgICB3ID0gZmFjdG9yaWFsKHNpemUpICogZmFjdG9yaWFsKE4gLSBzaXplIC0gMSkgLyBmYWN0b3JpYWwoTikKICAgICAgICBmb3IgUyBpbiBjb21iaW5hdGlvbnMob3RoZXIsIHNpemUpOgogICAgICAgICAgICBTX2xpc3QgPSBzb3J0ZWQobGlzdChTKSkKICAgICAgICAgICAgU19wbHVzX2kgPSBzb3J0ZWQoU19saXN0ICsgW21ldGhvZF9pZHhdKQogICAgICAgICAgICBtYXJnaW5hbCA9IHZhbHVlX2Z1bmMoU19wbHVzX2kpIC0gdmFsdWVfZnVuYyhTX2xpc3QpCiAgICAgICAgICAgIHBoaSArPSB3ICogbWFyZ2luYWwKICAgIHJldHVybiBwaGkKCnJlc3VsdHMgPSB7fQpmb3IgbGFiZWwsIGZucl9wYWlycyBpbiBbKCdtYWluX3Jlc3VsdF82cGFpcicsIFBBSVJTXzYpLCAoJ3JvYnVzdG5lc3NfOHBhaXInLCBQQUlSU184KV06CiAgICBwcmludChmIlxuPT09IHtsYWJlbH0gKEZOUiBwYWlyczoge2xlbihmbnJfcGFpcnMpfSkgPT09IikKICAgIGZwcl9zaGFwbGV5ID0ge30KICAgIGZucl9zaGFwbGV5ID0ge30KICAgIGNvbWJpbmVkX3NoYXBsZXkgPSB7fQogICAgZm9yIGksIG0gaW4gZW51bWVyYXRlKE1FVEhPRFMpOgogICAgICAgIHNmID0gY29tcHV0ZV9zaGFwbGV5KGksIGxhbWJkYSBTLCBubz1udWxsX29iczogY29hbGl0aW9uX2ZwcihTLCBubywgUEFJUlNfOCkpCiAgICAgICAgc24gPSBjb21wdXRlX3NoYXBsZXkoaSwgbGFtYmRhIFMsIHNvPXNpZ25hbF9vYnMsIGZwPWZucl9wYWlyczogY29hbGl0aW9uX2ZucihTLCBzbywgZnApKQogICAgICAgIHNjID0gc2YgKyBzbgogICAgICAgIGZwcl9zaGFwbGV5W21dID0gcm91bmQoc2YsIDYpCiAgICAgICAgZm5yX3NoYXBsZXlbbV0gPSByb3VuZChzbiwgNikKICAgICAgICBjb21iaW5lZF9zaGFwbGV5W21dID0gcm91bmQoc2MsIDYpCiAgICAgICAgcHJpbnQoZiIgIHttOjwyMHN9OiBGUFI9e3NmOisuNmZ9LCBGTlI9e3NuOisuNmZ9LCBDb21iPXtzYzorLjZmfSIpCiAgICBwcmludChmIiAgU1VNIEZQUjoge3N1bShmcHJfc2hhcGxleS52YWx1ZXMoKSk6Ky42Zn0iKQogICAgcHJpbnQoZiIgIFNVTSBGTlI6IHtzdW0oZm5yX3NoYXBsZXkudmFsdWVzKCkpOisuNmZ9IikKICAgIHJlc3VsdHNbbGFiZWxdID0gewogICAgICAgICdmcHJfc2hhcGxleSc6IGZwcl9zaGFwbGV5LAogICAgICAgICdmbnJfc2hhcGxleSc6IGZucl9zaGFwbGV5LAogICAgICAgICdjb21iaW5lZF9zaGFwbGV5JzogY29tYmluZWRfc2hhcGxleSwKICAgIH0KCmRhdGFfc291cmNlcyA9IFtdCmZvciBkIGluIGFsbF9kYXRhOgogICAgc3JjID0gZiJ7ZFsnc2VydmVyJ119OntkWydleHAnXX0iCiAgICBpZiBzcmMgbm90IGluIGRhdGFfc291cmNlczoKICAgICAgICBkYXRhX3NvdXJjZXMuYXBwZW5kKHNyYykKCm91dHB1dCA9IHsKICAgICd2ZXJzaW9uJzogJ3YyX2QxMjBfY29tcGxpYW50JywKICAgICdnZW5lcmF0ZWRfYXQnOiBkYXRldGltZS5kYXRldGltZS5ub3coKS5pc29mb3JtYXQoKSwKICAgICdkYXRhX3NvdXJjZXMnOiBkYXRhX3NvdXJjZXMsCiAgICAndGhyZXNob2xkX2NyaXRlcmlvbic6ICd0cnVlXzNzaWdtYV9kMTA1JywKICAgICduX21ldGhvZHMnOiBOLAogICAgJ25fY29hbGl0aW9ucyc6IDIqKk4sCiAgICAnbl9udWxsX2V4cGVyaW1lbnRzJzogbGVuKG51bGxfZXhwcyksCiAgICAnbl9zaWduYWxfZXhwZXJpbWVudHMnOiBsZW4oc2lnbmFsX2V4cHMpLAogICAgJ25fbnVsbF9vYnMnOiBsZW4obnVsbF9vYnMpLAogICAgJ25fc2lnbmFsX29icyc6IGxlbihzaWduYWxfb2JzKSwKICAgICdmcHJfcGFpcnMnOiBQQUlSU184LAogICAgJ2Zucl9wYWlyc182JzogUEFJUlNfNiwKICAgICdmbnJfcGFpcnNfOCc6IFBBSVJTXzgsCiAgICAnbWV0aG9kcyc6IE1FVEhPRFMsCiAgICAnbWFpbl9yZXN1bHRfNnBhaXInOiByZXN1bHRzWydtYWluX3Jlc3VsdF82cGFpciddLAogICAgJ3JvYnVzdG5lc3NfOHBhaXInOiByZXN1bHRzWydyb2J1c3RuZXNzXzhwYWlyJ10sCn0KCndpdGggb3BlbignL3RtcC9zaGFwbGV5X3ZhbHVlc192Mi5qc29uJywgJ3cnKSBhcyBmOgogICAganNvbi5kdW1wKG91dHB1dCwgZiwgaW5kZW50PTIpCnByaW50KGYiXG5KU09OIHNhdmVkIHRvIC90bXAvc2hhcGxleV92YWx1ZXNfdjIuanNvbiIpCg==' | base64 -d > /tmp/compute_shapley_v2.py && python3 /tmp/compute_shapley_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T13:55:40.726022+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: \\\"echo 'aW1wb3J0IGpzb24sIGd6aXAsIGJhc2U2NCwgZGF0ZXRpbWUKZnJvbSBpdGVydG9vbHMgaW1wb3J0IGNvbWJpbmF0aW9ucwpmcm9tIG1hdGggaW1wb3J0IGZhY3RvcmlhbAoKTUVUSE9EUyA9IFsnbmFpdmVfeGNvcnInLCAnZGlmZl94Y29ycicsICd0aHJlc2hvbGRfb25zZXQnLCAncGVybV9ncmFuZ2VyJywgJ3R5X2dyYW5nZXInXQpOID0gbGVuKE1FVEhPRFMpCgpQQUlSU184ID0gWwogICAgJ3Rva2VuX2VudHJvcHktPmRpc3RpbmN0XzEnLCAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMicsCiAgICAndG9rZW5fZW50cm9weS0+ZGlzdGluY3RfMycsICd0b2tlbl9lbnRyb3B5LT5tYXV2ZScsCiAgICAnZWNlLT5kaXN0aW5jdF8xJywgJ2VjZS0+ZGlzdGluY3RfMicsCiAgICAnZWNlLT5kaXN0aW5jdF8zJywgJ2VjZS0+bWF1dmUnLApdClBBSVJTXzYgPSBbcCBmb3IgcCBpbiBQQUlSU184IGlmICdtYXV2ZScgbm90IGluIHBdCgp3aXRoIG9wZW4oJy90bXAvdmVyZGljdHNfMTk4MjguanNvbicpIGFzIGY6CiAgICBkYXRhXzE5ODI4ID0ganNvbi5sb2FkKGYpCgpCNjQgPSAiSDRzSUFGQzdEV29DLzhXYzNVN2JRQkNGWHdWeFRZczlZd2U0NllzZ1pKbkVRRVQraWcySVBuMHB0SlJZc2IzemM0WWJVS1RvZk5tWkhNL01lcDNMeStONnRidXJxL2E1YVhhbmRaWmxWVnRRZGJOak9qNDV5cjVuSjBjRm5Sd2RkOXY3WmxNMW0rNWh1M3Y1OW1PeGJMdmxadDVWK2V1N0xydUh4K2JrNlAzdlRiMXFlLyt1cmw3ZlkrUlFuN05IKy9QQ2c4S2pGT3RpMXZYalUvT2Y4T216NnhITnZEbWNqUU41TU1zVFZwNGg4cjJveTc2bDVZZHc5Y1RWSWp2UDNnRWx5aFphSUVVRE9RaDQyRFJlTUMvN3lEZ1V4R0VzNXlNMXcrSWpqTHhuMmh4a0tTbUhnamlNNWZTVDQ4SVl0QXRBbmFEcWFtdU15cHN1Vm0vS3ZLL01Da044ZXVHQkdlaThuQ2s4dXBpaC9pNlJjckFGU091N2hnaU9UcGhVbjNDQ05EaURSbkFUTjltQXluMkRFYXJYRW9Nb2JFbU1KbUV5NU5STkplb3JiWkdvemdoMWU5aTVKNTFZSU1Da0tXZU1Sa3NDWXZTU01CbnlOTWEwUG9IMUdhTnZEMzNSa3k1ZzVwQ1FLSXpFYUJJbVJaN3VtTlluc0Q1ajlFMmg1OTdRd3FDV1NzcFJsbkFwaHBYbEtaRURTWTFvd0pBdXdNa1JhZklNa2JkczYzS3ZTV1BVaUNFR1VSUkluNVJFa3MwVVF4QWZWNlNwdStmQ3l4YWorcWE0RnozSEZUWmZEQ1ZBaXFHbzlEQVlsSERSa3NiTXhSRnA0dG9wTDAzZFBmWU9kdWc1clVEVkNUR0lva0FNQm1IeTQyT0tOSFgzVklqMm9aVHlwckNYV2JYYnR0MGl1K0I5aHRZZUUvY1MxTHpCQ3hZS3lFRkFiUHJTM0dOZFVtSnQ4Y1V3RkdPN0lWNW1ubTRhdXFwSkticmJmMUlLajFHTVM3Rk1pa01JTDR2SW5PR1FnSW5pWWdtN1MySFoyeDh1TVhmQXBSaERCZ1FVUmxJc1J3K0hFSDRlbUJUM3pZREFBenB0YzdTTGZlRUM1QUVCaG1Jd0RNV1lLOEVCaEo4TEpz
+…[truncated 7388 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T13:55:40.726228+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "which python3 && python3 --version",
+  "description": "Check local Python availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "which python3 && python3 --version",
+    "description": "Check local Python availability"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T13:55:40.726413+00:00_
+
+/usr/bin/python3
+Python 3.14.4
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T13:55:40.726541+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+  "description": "Check matplotlib availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+    "description": "Check matplotlib availability"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T13:55:40.726657+00:00_
+
+3.10.9
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T13:55:40.726788+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /tmp/verdicts_19828.json | gzip | base64 -w0",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cat /tmp/verdicts_19828.json | gzip | base64 -w0",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-20T13:55:40.726907+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /tmp/verdicts_17855.json | gzip | base64 -w0",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /tmp/verdicts_17855.json | gzip | base64 -w0",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T13:55:40.727036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"H4sIAAAAAAAAA+Xd727iRhQF8Fep+Nw2GIx22w99kaqyHDMJVsC2bIfddNV3r51/IllAjOfMzD2XbxtIIn6aPblzr8fw94+Z+d7M/vxllt9u876sq5u8KB53j8MXJsvnq3nWpcvZr8Pz22aTD984/301fNUZsx6+SJfDv5u8bMff0NcPpspM1bd18/TbX+uy68uq6LNk/PH98B0/ZlVe7k32vajb8Sf69tEMT63Lu7v3x+7ybTc+2G9a023q7Tqrq870B880pt1l921e3ZsPP/D0+cH/nl9nu39+ZJb88XXxdTY8FkC8uDrx8lrEu/xxb05h314nr9YUJm5yx98cmmkV19fH+JRWEWVTyo7laMi6b8Y0N/l8PtoWH23zA9sCXVIhaxkJionm6xOCnZhwinWejaddMZFjjF4rg/rE7mlBvgg72IvqoxvPOnhRi8XytExoozlxCR2h4TeskVY0/J41LJSrLl5opK2Lk3xEdXGST+xkx83H1jCmp20pujRG/UPqCOUpjY5QUC4DlI1pUNzOVQ6RtjJO8hFVxkk+ospo4yOqjMmRdjg5sKkZpSKgFJURAaVoGh2gwKZRENKhNjKsYewrjkF5HJXR2scTvMXq53Z44fXcTqz/pBApx04VQuWIpgtVaUoJ66ODT2EiGUukPZAsfekZG3yuyk0liqQrlSicE6lKY8o4YHUARoik/YEHB5/CHJIVydWRHvmQpmbCioBSTHUQUIoJqwNUZz4JO8jpPHVZjH0zRwgeWe5C3hcZdQ1D3g7JDOXYr/q6+5EWGbAwvn1/NJ26LDJ2jNjbG+XR0tM0NYdVEVCOkSpCSpTLaVKaG61sjKSFcZLOa2GMruPpF214PKEbR8SL7K5Zfm6HdQ5TYVyO7SqMyxFTV67i2MaesdpfnnM1Kk0oY/mchqRJ45fVz+PkL6LqJ2ibB4Ey7GchUK/ZPAa1/xvr4uQZ/Vgp+VpLB566LAasjtF4ZMFbnrGpuRoJkdKk0RVKk8uJUJp3z7FCklbGaTx1WYxcGSfuTa10XLFLz9DUXIyESCkmORApxTjHRUq2d71UGXu6GtanL4+EQ1V7H8k8tUjf32f92MjYstWQv03FeuXvW7Fe+a0kxOs9uxGpbH0lQqk1pmzzVwclUSRfWukjQFnDWIng4EG1HZSAvSSRdQarTi9lRXVlkpRUV6bagAovqvfDX4+66ZPlbfatfCizPJkf3zYkfj8eRANYZlQ9gmWGFg+ONN69ZM8EwDKUVThTbVYZyiqKKfmyy2h8xt03/WL3TtRaUuFUkR2qF6nIQwtIqdqYslROEFBfJAlOD7n7hMfPtPm2/NfcvPgO9wNntgK8t574FEsNqDew1MSiwdojTFJIwU6xPSjYKbYJxThJwjk23LdXVV/hYvGBhYsx0X19QjBY8CFChJasvoKceuPqo74KDClTeW2e+k2ZJylPiXW55uRVLfQgvm+20PP5ntjXEGuysgu0Sp9EAanhYxvcyrE7Pu5ku+IKWVy2a68illr6MBmJvoJERy6+IReXrO0FWsWPlt2tZ6P69srFZPU2G89Jy29+gWsLJLNEF0gmqbruYtH3ALhrOXtdZ6jixHJW2qlQ1niy9bfxySSzKaCYMbux+9rLL4cFW17+EsvRz0ZaUMUpBVdYz9lMk/l1HUT2wybZGqPZJDEGsQW/OSmMTFl3MViO2ouxKg+u9PcSPoB2u3q73S2zT/cHv3zWTrY/s+mIXo4J/PKPV/n1yz9n5cVPcuAKYycr2T7Q4rffPtDiazgQLTnQZdWPz1Z9WVc3TWvWZdGPL683Httpu4vh6P2LT/LJLOsln0yyOrL9AY9wm3IE98JazL+uF9ZfbVCftx8JcMZpmS+Zg3wgtiZ/Aa4TKRNr7JjenxazU2bRhr5bMIrWe2gn9wLuVB+9rbTl9NHKyjbqjGWYCjo5jF2R
+…[truncated 192 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T13:55:40.727191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"H4sIAAAAAAAAA+Xd33LSQBQG8FdxuFabkNBWL3wRx9lJYYFMIcQkpVbHdxdqqxSJutlzds93uFOgM/0N+ebbf0k/fhvZL/Xo/atRsaqXhWnvra0viiRJTJuPzbzOxqPXT2/uPpW8TXb/a62d7f6Tj3f/rouy2f94t7m1lbFV12zqhzcfZmXbldW0M+n+x7e7T3wbVUW5tebLdNPsf6Jr7uzurVk5nx+/1i0b2y43q5nZVK3tdm/Mi1W7f6e2zdosmqJa2Obg5e7h+MXvj79ms318ZZReXU8mo91r3Noxifbpjf/B7j8ayZqFtkb4YtfF3da6OH/94tKhdmqHprTfKC2mL5FO4URFOqUSDOmcxmh9MvnFM9vMzJLr5Ig5UVmj5GyaPoVj01QrCpuwZMWSIeuWSAvSu0RakAL20/41ss+/owxp2jfUSDVWMJkWonnJtBCF66t1Dy2M1KNeQY0684lYpcOQOIPeR1/2D18Wu0CfPy8Fy7kSLM3K2p6nsO6r3r5WuqUn3nVgZydqcw43hm/OAJerR3FCEXFqczzpGRaMVa790nExlovovBijXG+v5uQiru76KhFq1NeI0KMDjWBxPDVQeAEkn4Aq8EZo0oHXLwkXqEh9vJqTC1ukHkqg8a6HUms4Ecs0/xcw11WmJF6gmJJ4gQLr49UcXdg29VBqjSlsm7orcSKZ9W39Zgc+NUu8ZFqEpSMybISohtcqjmzsDdIAXyZig3oiMQp0GBLmNpmsb+k6U7lFSseFOPxHxwUJq68XqESdqYAt6mlUmlHIGh2mxMlj3jdOyMX3qHswybAYA10yLkZWfblxBr8BrmK8BvUkQpxe8DQqzSRaffaND3KV81A6LsQYl44LcZeoN1dzbgFL1NOoNKKxz+mGQ+LEcZKYetN2s+Rd1iMVVadEd1HSq3kHvmLZvGNhaexziHXAto3+9YacuwrDKg8u2gOPJn2zdfHt6z46JrMCPK6BzMr54F4ZXyvMCQhnKGSlBmtSkGByTF5FxRFv4nr6rh/WG0xj5pECi5JMCmvojEawwjzq3hkK2pnDiRqTGbczgwmxUnjq3h7W+0hj5pECy7obIw0b/LGAEbBYM00XKGhrDieqzGbAfdKoRJgcXv6eS59+8P7lAVPkKq0ENMSpBnI1xDEHKrX+ROM1LBEVoWmJqL2RPblniHkJYyY1F1y7EsF4lesJxmvbYWCcfZoh2NgnfqMw1WYV8NjvYCZYLk8tdR/6ou+fitPipJRCixNWDy3QMUFnKmqTDjfqDGjsDnU/fzSMiNOfV313Bl2JP7IbVRt8Hcn90qXDIuzdeGuB+tPdGnm9N8TFG3mdNzxRZyqh+nOaG+y/tuZ61RKD5T+NlxjMeXhQkBfjSUgDrXCTURInwISUxBk8oUGZIPulj0Tcm0kje+WfcaD1yh8Ik3jZsxuRinYeiUIpfopKgdSazTBtSvYtntMyLzEYpE2BV3vjXNFAdQq33huHiVGocMu+IZVyQ7mwlW2KVfnVXizqbrw29+VtaYo0+blBfDNPLw+h6dvkwAl8AIndLXRhid0t8/QDFzvSjk5QMsTCMJNW5k4OE1bqo/NpuZI3YQ+k9UO3LIs8TY64gtuYYhDCwxY5hGZXixxSc6lFn3MiQyNMgJmwujMMMBmmtaLk9fO9rbKJSa5vXlCfbz8a95NFLjs7ftG8eumR5tVLDzmLHmIljEYOcDiZ2Xwe+caqbkIzcpb/vPdJ4WSa0S5z+ziMXebhD1a74AOWtG6wCTa5+BxyjXCUi0GMkeF2vVmt1pnJjrU/fypcYcdZbuDk8/4JLfF8gO0tBj7KOhsF3aO8taDPJONwG9dkaMnb13Uxm5XVwjSbm7u2q2zbXrxYXgBbKxdgljkc5zXLHJCzmEWXM40YYULNIdWcXIQJNKFUdErbabGyF2l+Y6a56qJlgMrMKANU
+…[truncated 260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T13:55:40.727426+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "echo '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' | base64 -d | gunzip > /tmp/verdicts_19828.json && echo \"19828 OK: $(wc -c < /tmp/verdicts_19828.json) bytes\"",
+  "description": "Decompress 19828 verdict data locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "echo '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' | base64 -d | gunzip > /tmp/verdicts_19828.json && echo \"19828 OK: $(wc -c < /tmp/verdicts_19828.json) bytes\"",
+    "description": "Decompress 19828 verdict data locally"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T13:55:40.727593+00:00_
+
+Exit code 1
+base64: error: invalid input
+
+gzip: stdin: unexpected end of file
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T13:55:40.727720+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "echo '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' | base64 -d | gunzip > /tmp/verdicts_17855.json && echo \"17855 OK: $(wc -c < /tmp/verdicts_17855.json) bytes\"",
+  "description": "Decompress 17855 verdict data locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "echo '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' | base64 -d | gunzip > /tmp/verdicts_17855.json && echo \"17855 OK: $(wc -c < /tmp/verdicts_17855.json) bytes\"",
+    "description": "Decompress 17855 verdict data locally"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T13:55:40.727858+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(echo 'H4sIAAAAAAAAA+Xd727iRhQF8Fep+Nw2GI…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T13:55:40.728033+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "python3 -c \"\nimport json\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nPAIRS_8 = ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve']\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_19828.json') as f:\n    all_data = json.load(f)\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\n# For each bitmask (0..31), count detected/missed for each pair filter\nresult = {'null_total_8': 0, 'signal_total_6': 0, 'signal_total_8': 0}\nnull_8 = [d for d in null_obs if d['pair'] in PAIRS_8]\nsig_6 = [d for d in signal_obs if d['pair'] in PAIRS_6]\nsig_8 = [d for d in signal_obs if d['pair'] in PAIRS_8]\nresult['null_total_8'] = len(null_8)\nresult['signal_total_6'] = len(sig_6)\nresult['signal_total_8'] = len(sig_8)\n\n# For each coalition bitmask, count FPR detections and FNR misses\nfpr_detected = {}  # bitmask -> count detected in null\nfnr_missed_6 = {}  # bitmask -> count missed in signal (6-pair)\nfnr_missed_8 = {}  # bitmask -> count missed in signal (8-pair)\n\nfor mask in range(32):\n    methods_in = [i for i in range(5) if mask & (1 << i)]\n    if not methods_in:\n        fpr_detected[mask] = 0\n        fnr_missed_6[mask] = len(sig_6)\n        fnr_missed_8[mask] = len(sig_8)\n        continue\n    \n    det = sum(1 for d in null_8 if any(d['v'][METHODS[i]] for i in methods_in))\n    fpr_detected[mask] = det\n    \n    miss6 = sum(1 for d in sig_6 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_6[mask] = miss6\n    \n    miss8 = sum(1 for d in sig_8 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_8[mask] = miss8\n\nresult['fpr_detected'] = fpr_detected\nresult['fnr_missed_6'] = fnr_missed_6\nresult['fnr_missed_8'] = fnr_missed_8\n\n# Also output experiment counts for metadata\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nresult['null_exps'] = null_exps\nresult['signal_exps'] = signal_exps\n\nprint(json.dumps(result))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "python3 -c \"\nimport json\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nPAIRS_8 = ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve']\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_19828.json') as f:\n    all_data = json.load(f)\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\n# For each bitmask (0..31), count detected/missed for each pair filter\nresult = {'null_total_8': 0, 'signal_total_6': 0, 'signal_total_8': 0}\nnull_8 = [d for d in null_obs if d['pair'] in PAIRS_8]\nsig_6 = [d for d in signal_obs if d['pair'] in PAIRS_6]\nsig_8 = [d for d in signal_obs if d['pair'] in PAIRS_8]\nresult['null_total_8'] = len(null_8)\nresult['signal_total_6'] = len(sig_6)\nresult['signal_total_8'] = len(sig_8)\n\n# For each coalition bitmask, count FPR detections and FNR misses\nfpr_detected = {}  # bitmask -> count detected in null\nfnr_missed_6 = {}  # bitmask -> count missed in signal (6-pair)\nfnr_missed_8 = {}  # bitmask -> count missed in signal (8-pair)\n\nfor mask in range(32):\n    methods_in = [i for i in range(5) if mask & (1 << i)]\n    if not methods_in:\n        fpr_detected[mask] = 0\n        fnr_missed_6[mask] = len(sig_6)\n        fnr_missed_8[mask] = len(sig_8)\n        continue\n    \n    det = sum(1 for d in null_8 if any(d['v'][METHODS[i]] for i in methods_in))\n    fpr_detected[mask] = det\n    \n    miss6 = sum(1 for d in sig_6 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_6[mask] = miss6\n    \n    miss8 = sum(1 for d in sig_8 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_8[mask] = miss8\n\nresult['fpr_detected'] = fpr_detected\nresult['fnr_missed_6'] = fnr_missed_6\nresult['fnr_missed_8'] = fnr_missed_8\n\n# Also output experiment counts for metadata\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nresult['null_exps'] = null_exps\nresult['signal_exps'] = signal_exps\n\nprint(json.dumps(result))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T13:55:40.728237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"null_total_8\\\": 24, \\\"signal_total_6\\\": 156, \\\"signal_total_8\\\": 208, \\\"fpr_detected\\\": {\\\"0\\\": 0, \\\"1\\\": 22, \\\"2\\\": 9, \\\"3\\\": 22, \\\"4\\\": 6, \\\"5\\\": 22, \\\"6\\\": 12, \\\"7\\\": 22, \\\"8\\\": 0, \\\"9\\\": 22, \\\"10\\\": 9, \\\"11\\\": 22, \\\"12\\\": 6, \\\"13\\\": 22, \\\"14\\\": 12, \\\"15\\\": 22, \\\"16\\\": 2, \\\"17\\\": 22, \\\"18\\\": 11, \\\"19\\\": 22, \\\"20\\\": 8, \\\"21\\\": 22, \\\"22\\\": 14, \\\"23\\\": 22, \\\"24\\\": 2, \\\"25\\\": 22, \\\"26\\\": 11, \\\"27\\\": 22, \\\"28\\\": 8, \\\"29\\\": 22, \\\"30\\\": 14, \\\"31\\\": 22}, \\\"fnr_missed_6\\\": {\\\"0\\\": 156, \\\"1\\\": 5, \\\"2\\\": 19, \\\"3\\\": 0, \\\"4\\\": 142, \\\"5\\\": 0, \\\"6\\\": 19, \\\"7\\\": 0, \\\"8\\\": 68, \\\"9\\\": 5, \\\"10\\\": 19, \\\"11\\\": 0, \\\"12\\\": 62, \\\"13\\\": 0, \\\"14\\\": 19, \\\"15\\\": 0, \\\"16\\\": 126, \\\"17\\\": 5, \\\"18\\\": 17, \\\"19\\\": 0, \\\"20\\\": 118, \\\"21\\\": 0, \\\"22\\\": 17, \\\"23\\\": 0, \\\"24\\\": 61, \\\"25\\\": 5, \\\"26\\\": 17, \\\"27\\\": 0, \\\"28\\\": 55, \\\"29\\\": 0, \\\"30\\\": 17, \\\"31\\\": 0}, \\\"fnr_missed_8\\\": {\\\"0\\\": 208, \\\"1\\\": 9, \\\"2\\\": 54, \\\"3\\\": 3, \\\"4\\\": 184, \\\"5\\\": 3, \\\"6\\\": 46, \\\"7\\\": 2, \\\"8\\\": 110, \\\"9\\\": 9, \\\"10\\\": 52, \\\"11\\\": 3, \\\"12\\\": 98, \\\"13\\\": 3, \\\"14\\\": 46, \\\"15\\\": 2, \\\"16\\\": 174, \\\"17\\\": 9, \\\"18\\\": 50, \\\"19\\\": 3, \\\"20\\\": 159, \\\"21\\\": 3, \\\"22\\\": 43, \\\"23\\\": 2, \\\"24\\\": 101, \\\"25\\\": 9, \\\"26\\\": 48, \\\"27\\\": 3, \\\"28\\\": 90, \\\"29\\\": 3, \\\"30\\\": 43, \\\"31\\\": 2}, \\\"null_exps\\\": [\\\"alpha_sweep/a000_s42\\\", \\\"alpha_sweep/a000_s43\\\", \\\"alpha_sweep/a000_s44\\\"], \\\"signal_exps\\\": [\\\"ablation/accumulate_a050_s43\\\", \\\"alpha_sweep/a010_s42\\\", \\\"alpha_sweep/a025_s43\\\", \\\"alpha_sweep/a025_s44\\\", \\\"alpha_sweep/a050_s42\\\", \\\"alpha_sweep/a050_s
+…[truncated 884 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T13:55:40.728445+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nPAIRS_8 = ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve']\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_17855.json') as f:\n    all_data = json.load(f)\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\nresult = {'null_total_8': 0, 'signal_total_6': 0, 'signal_total_8': 0}\nnull_8 = [d for d in null_obs if d['pair'] in PAIRS_8]\nsig_6 = [d for d in signal_obs if d['pair'] in PAIRS_6]\nsig_8 = [d for d in signal_obs if d['pair'] in PAIRS_8]\nresult['null_total_8'] = len(null_8)\nresult['signal_total_6'] = len(sig_6)\nresult['signal_total_8'] = len(sig_8)\n\nfpr_detected = {}\nfnr_missed_6 = {}\nfnr_missed_8 = {}\n\nfor mask in range(32):\n    methods_in = [i for i in range(5) if mask & (1 << i)]\n    if not methods_in:\n        fpr_detected[mask] = 0\n        fnr_missed_6[mask] = len(sig_6)\n        fnr_missed_8[mask] = len(sig_8)\n        continue\n    det = sum(1 for d in null_8 if any(d['v'][METHODS[i]] for i in methods_in))\n    fpr_detected[mask] = det\n    miss6 = sum(1 for d in sig_6 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_6[mask] = miss6\n    miss8 = sum(1 for d in sig_8 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_8[mask] = miss8\n\nresult['fpr_detected'] = fpr_detected\nresult['fnr_missed_6'] = fnr_missed_6\nresult['fnr_missed_8'] = fnr_missed_8\n\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nresult['null_exps'] = null_exps\nresult['signal_exps'] = signal_exps\n\nprint(json.dumps(result))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nPAIRS_8 = ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve']\nPAIRS_6 = [p for p in PAIRS_8 if 'mauve' not in p]\n\nwith open('/tmp/verdicts_17855.json') as f:\n    all_data = json.load(f)\n\nnull_obs = [d for d in all_data if d['alpha'] == 0.0]\nsignal_obs = [d for d in all_data if d['alpha'] > 0.0]\n\nresult = {'null_total_8': 0, 'signal_total_6': 0, 'signal_total_8': 0}\nnull_8 = [d for d in null_obs if d['pair'] in PAIRS_8]\nsig_6 = [d for d in signal_obs if d['pair'] in PAIRS_6]\nsig_8 = [d for d in signal_obs if d['pair'] in PAIRS_8]\nresult['null_total_8'] = len(null_8)\nresult['signal_total_6'] = len(sig_6)\nresult['signal_total_8'] = len(sig_8)\n\nfpr_detected = {}\nfnr_missed_6 = {}\nfnr_missed_8 = {}\n\nfor mask in range(32):\n    methods_in = [i for i in range(5) if mask & (1 << i)]\n    if not methods_in:\n        fpr_detected[mask] = 0\n        fnr_missed_6[mask] = len(sig_6)\n        fnr_missed_8[mask] = len(sig_8)\n        continue\n    det = sum(1 for d in null_8 if any(d['v'][METHODS[i]] for i in methods_in))\n    fpr_detected[mask] = det\n    miss6 = sum(1 for d in sig_6 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_6[mask] = miss6\n    miss8 = sum(1 for d in sig_8 if not any(d['v'][METHODS[i]] for i in methods_in))\n    fnr_missed_8[mask] = miss8\n\nresult['fpr_detected'] = fpr_detected\nresult['fnr_missed_6'] = fnr_missed_6\nresult['fnr_missed_8'] = fnr_missed_8\n\nnull_exps = sorted(set(d['exp'] for d in null_obs))\nsignal_exps = sorted(set(d['exp'] for d in signal_obs))\nresult['null_exps'] = null_exps\nresult['signal_exps'] = signal_exps\n\nprint(json.dumps(result))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T13:55:40.728659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"null_total_8\\\": 8, \\\"signal_total_6\\\": 180, \\\"signal_total_8\\\": 240, \\\"fpr_detected\\\": {\\\"0\\\": 0, \\\"1\\\": 8, \\\"2\\\": 4, \\\"3\\\": 8, \\\"4\\\": 3, \\\"5\\\": 8, \\\"6\\\": 5, \\\"7\\\": 8, \\\"8\\\": 0, \\\"9\\\": 8, \\\"10\\\": 4, \\\"11\\\": 8, \\\"12\\\": 3, \\\"13\\\": 8, \\\"14\\\": 5, \\\"15\\\": 8, \\\"16\\\": 1, \\\"17\\\": 8, \\\"18\\\": 4, \\\"19\\\": 8, \\\"20\\\": 3, \\\"21\\\": 8, \\\"22\\\": 5, \\\"23\\\": 8, \\\"24\\\": 1, \\\"25\\\": 8, \\\"26\\\": 4, \\\"27\\\": 8, \\\"28\\\": 3, \\\"29\\\": 8, \\\"30\\\": 5, \\\"31\\\": 8}, \\\"fnr_missed_6\\\": {\\\"0\\\": 180, \\\"1\\\": 1, \\\"2\\\": 39, \\\"3\\\": 0, \\\"4\\\": 169, \\\"5\\\": 1, \\\"6\\\": 39, \\\"7\\\": 0, \\\"8\\\": 90, \\\"9\\\": 1, \\\"10\\\": 35, \\\"11\\\": 0, \\\"12\\\": 88, \\\"13\\\": 1, \\\"14\\\": 35, \\\"15\\\": 0, \\\"16\\\": 140, \\\"17\\\": 1, \\\"18\\\": 36, \\\"19\\\": 0, \\\"20\\\": 132, \\\"21\\\": 1, \\\"22\\\": 36, \\\"23\\\": 0, \\\"24\\\": 71, \\\"25\\\": 1, \\\"26\\\": 32, \\\"27\\\": 0, \\\"28\\\": 70, \\\"29\\\": 1, \\\"30\\\": 32, \\\"31\\\": 0}, \\\"fnr_missed_8\\\": {\\\"0\\\": 240, \\\"1\\\": 13, \\\"2\\\": 78, \\\"3\\\": 11, \\\"4\\\": 224, \\\"5\\\": 13, \\\"6\\\": 74, \\\"7\\\": 11, \\\"8\\\": 141, \\\"9\\\": 13, \\\"10\\\": 73, \\\"11\\\": 11, \\\"12\\\": 135, \\\"13\\\": 13, \\\"14\\\": 70, \\\"15\\\": 11, \\\"16\\\": 195, \\\"17\\\": 13, \\\"18\\\": 73, \\\"19\\\": 11, \\\"20\\\": 183, \\\"21\\\": 13, \\\"22\\\": 70, \\\"23\\\": 11, \\\"24\\\": 118, \\\"25\\\": 13, \\\"26\\\": 68, \\\"27\\\": 11, \\\"28\\\": 114, \\\"29\\\": 13, \\\"30\\\": 66, \\\"31\\\": 11}, \\\"null_exps\\\": [\\\"alpha_sweep/a000_s42_fp32\\\"], \\\"signal_exps\\\": [\\\"alpha_sweep/a005_s42_fp32_v3_d080\\\", \\\"alpha_sweep/a010_s42_fp32\\\", \\\"alpha_sweep/a010_s43_fp32\\\", \\\"alpha_sweep/a025_s42_fp32\\\", \\\"alpha_sweep/a025_s43_fp32\\\", \\\"alpha_sweep/a025_s44_fp32\\\", \\\"alpha_sweep/a030_s
+…[truncated 1046 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T13:55:40.728874+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/tmp/shapley_compute.py",
+  "content": "import json, datetime\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nN = 5\n\n# Data from westd-19828 (3 null + 26 signal experiments)\nd19828 = {\n    \"null_total_8\": 24, \"signal_total_6\": 156, \"signal_total_8\": 208,\n    \"fpr_detected\": {0:0,1:22,2:9,3:22,4:6,5:22,6:12,7:22,8:0,9:22,10:9,11:22,12:6,13:22,14:12,15:22,16:2,17:22,18:11,19:22,20:8,21:22,22:14,23:22,24:2,25:22,26:11,27:22,28:8,29:22,30:14,31:22},\n    \"fnr_missed_6\": {0:156,1:5,2:19,3:0,4:142,5:0,6:19,7:0,8:68,9:5,10:19,11:0,12:62,13:0,14:19,15:0,16:126,17:5,18:17,19:0,20:118,21:0,22:17,23:0,24:61,25:5,26:17,27:0,28:55,29:0,30:17,31:0},\n    \"fnr_missed_8\": {0:208,1:9,2:54,3:3,4:184,5:3,6:46,7:2,8:110,9:9,10:52,11:3,12:98,13:3,14:46,15:2,16:174,17:9,18:50,19:3,20:159,21:3,22:43,23:2,24:101,25:9,26:48,27:3,28:90,29:3,30:43,31:2},\n    \"null_exps\": [\"alpha_sweep/a000_s42\",\"alpha_sweep/a000_s43\",\"alpha_sweep/a000_s44\"],\n    \"signal_exps\": [\"ablation/accumulate_a050_s43\",\"alpha_sweep/a010_s42\",\"alpha_sweep/a025_s43\",\"alpha_sweep/a025_s44\",\"alpha_sweep/a050_s42\",\"alpha_sweep/a050_s43\",\"alpha_sweep/a050_s44\",\"alpha_sweep/a055_s42_fp32\",\"alpha_sweep/a075_s42\",\"alpha_sweep/a075_s43\",\"alpha_sweep/a075_s44\",\"alpha_sweep/c4_a050_s43_fp32\",\"alpha_sweep/c4_a075_s43_fp32\",\"gen_opt13b_wiki_a100_s43_fp32\",\"gen_wiki_gpt2m_a100_s43\",\"generalize/gpt2m_wiki_a100_s42\",\"generalize/opt1b_wiki_a100_s42\",\"generalize/pythia14b_wiki_a100_s42\",\"generalize/pythia14b_wiki_a100_s43\",\"generalize/pythia1b_c4_a100_s42\",\"generalize/pythia1b_c4_a100_s43\",\"generalize/pythia410m_wiki_a100_s42\",\"generalize/smollm3_3b_wiki_a100_s42_fp32_v3\",\"intervention/predictive_te_s42\",\"intervention/reactive_d1_s42\",\"scale_check/pythia14b_a050_s42\"],\n}\n\n# Data from westd-17855 (1 null + 30 signal experiments)\nd17855 = {\n    \"null_total_8\": 8, \"signal_total_6\": 180, \"signal_total_8\": 240,\n    \"fpr_detected\": {0:0,1:8,2:4,3:8,4:3,5:8,6:5,7:8,8:0,9:8,10:4,11:8,12:3,13:8,14:5,15:8,16:1,17:8,18:4,19:8,20:3,21:8,22:5,23:8,24:1,25:8,26:4,27:8,28:3,29:8,30:5,31:8},\n    \"fnr_missed_6\": {0:180,1:1,2:39,3:0,4:169,5:1,6:39,7:0,8:90,9:1,10:35,11:0,12:88,13:1,14:35,15:0,16:140,17:1,18:36,19:0,20:132,21:1,22:36,23:0,24:71,25:1,26:32,27:0,28:70,29:1,30:32,31:0},\n    \"fnr_missed_8\": {0:240,1:13,2:78,3:11,4:224,5:13,6:74,7:11,8:141,9:13,10:73,11:11,12:135,13:13,14:70,15:11,16:195,17:13,18:73,19:11,20:183,21:13,22:70,23:11,24:118,25:13,26:68,27:11,28:114,29:13,30:66,31:11},\n    \"null_exps\": [\"alpha_sweep/a000_s42_fp32\"],\n    \"signal_exps\": [\"alpha_sweep/a005_s42_fp32_v3_d080\",\"alpha_sweep/a010_s42_fp32\",\"alpha_sweep/a010_s43_fp32\",\"alpha_sweep/a025_s42_fp32\",\"alpha_sweep/a025_s43_fp32\",\"alpha_sweep/a025_s44_fp32\",\"alpha_sweep/a030_s42_fp32\",\"alpha_sweep/a035_s42_fp32\",\"alpha_sweep/a040_s42_fp32\",\"alpha_sweep/a045_s42_fp32\",\"alpha_sweep/a050_postd093_s42_fp32\",\"alpha_sweep/a050_s42_fp32\",\"alpha_sweep/a050_s43_fp32\",\"alpha_sweep/a050_s44_fp32\",\"alpha_sweep/a060_s42_fp32_v3_d080\",\"alpha_sweep/a060_s42_fp32_v4\",\"alpha_sweep/a060_s43_fp32\",\"alpha_sweep/a075_s42_fp32\",\"alpha_sweep/c4_a025_s42_fp32\",\"alpha_sweep/c4_a050_s42_fp32\",\"alpha_sweep/c4_a075_s42_fp32\",\"generalize/gpt2m_wiki_a100_s43_bf16\",\"generalize/pythia410m_wiki_a100_s43\",\"generalize/qwen35_08b_wiki_a100_s42_fp32_v2\",\"generalize/qwen35_08b_wiki_a100_s43_fp32\",\"generalize/smollm3_3b_wiki_a100_s43_17855\",\"padding_robustness/a100_s42_fp32\",\"scale/14b_c4_s42_fp32\",\"scale_check/pythia69b_wiki_a100_s42\",\"scale_check/pythia69b_wiki_a100_s43\"],\n}\n\n# Combine counts\nnull_total = d19828[\"null_total_8\"] + d17855[\"null_total_8\"]\nsig_total_6 = d19828[\"signal_total_6\"] + d17855[\"signal_total_6\"]\nsig_total_8 = d19828[\"signal_total_8\"] + d17855[\"signal_total_8\"]\n\nfpr_det = {}\nfnr_miss_6 = {}\nfnr_miss_8 = {}\nfor m in range(32):\n    fpr_det[m] = d19828[\"fpr_detected\"][m] + d17855[\"fpr_detected\"][m]\n    fnr_miss_6[m] = d19828[\"fnr_missed_6\"][m] + d17855[\"fnr_missed_6\"][m]\n    fnr_miss_8[m] = d19828[\"fnr_missed_8\"][m] + d17855[\"fnr_missed_8\"][m]\n\nprint(f\"Combined: {null_total} null obs, {sig_total_6} signal-6 obs, {sig_total_8} signal-8 obs\")\nprint(f\"Null experiments: {len(d19828['null_exps']) + len(d17855['null_exps'])}\")\nprint(f\"Signal experiments: {len(d19828['signal_exps']) + len(d17855['signal_exps'])}\")\n\ndef mask_for(indices):\n    m = 0\n    for i in indices:\n        m |= (1 << i)\n    return m\n\ndef v_fpr(indices):\n    if not indices: return 0.0\n    return fpr_det[mask_for(indices)] / null_total\n\ndef v_fnr(indices, use_6pair=True):\n    if not indices: return 1.0\n    if use_6pair:\n        return fnr_miss_6[mask_for(indices)] / sig_total_6\n    else:\n        return fnr_miss_8[mask_for(indices)] / sig_total_8\n\ndef compute_shapley(method_idx, value_func):\n    other = [j for j in range(N) if j != method_idx]\n    phi = 0.0\n    for size in range(N):\n        w = factorial(size) * factorial(N - size - 1) / factorial(N)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\n# Per-method raw stats\nprint(\"\\n=== Per-method individual stats ===\")\nfor i, m in enumerate(METHODS):\n    fpr_i = fpr_det[1 << i] / null_total\n    fnr6_i = fnr_miss_6[1 << i] / sig_total_6\n    fnr8_i = fnr_miss_8[1 << i] / sig_total_8\n    tpr6_i = 1 - fnr6_i\n    tpr8_i = 1 - fnr8_i\n    print(f\"  {m:<20s}: FPR={fpr_i:.4f}, TPR_6={tpr6_i:.4f}(FNR={fnr6_i:.4f}), TPR_8={tpr8_i:.4f}(FNR={fnr8_i:.4f})\")\n\nresults = {}\nfor label, use_6 in [('main_result_6pair', True), ('robustness_8pair', False)]:\n    print(f\"\\n=== {label} ===\")\n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, v_fpr)\n        sn = compute_shapley(i, lambda S, u6=use_6: v_fnr(S, u6))\n        sc = sf + sn\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.6f}, FNR={sn:+.6f}, Combined={sc:+.6f}\")\n\n    fpr_sum = sum(fpr_shapley.values())\n    fnr_sum = sum(fnr_shapley.values())\n    # Verify: sum should equal v(grand) - v(empty)\n    grand_fpr = v_fpr(list(range(N)))\n    grand_fnr = v_fnr(list(range(N)), use_6)\n    print(f\"  SUM FPR: {fpr_sum:+.6f} (v(grand)={grand_fpr:.4f})\")\n    print(f\"  SUM FNR: {fnr_sum:+.6f} (v(grand)-v(empty)={grand_fnr - 1.0:.4f})\")\n\n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\n# Build data sources\ndata_sources = [f\"19828:{e}\" for e in d19828['null_exps'] + d19828['signal_exps']] + \\\n               [f\"17855:{e}\" for e in d17855['null_exps'] + d17855['signal_exps']]\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(d19828['null_exps']) + len(d17855['null_exps']),\n    'n_signal_experiments': len(d19828['signal_exps']) + len(d17855['signal_exps']),\n    'n_null_obs': null_total,\n    'n_signal_obs_6pair': sig_total_6,\n    'n_signal_obs_8pair': sig_total_8,\n    'fpr_pairs': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve'],\n    'fnr_pairs_6': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','ece->distinct_1','ece->distinct_2','ece->distinct_3'],\n    'fnr_pairs_8': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve'],\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nout_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json'\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to {out_path}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/tmp/shapley_compute.py",
+    "content": "import json, datetime\nfrom itertools import combinations\nfrom math import factorial\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nN = 5\n\n# Data from westd-19828 (3 null + 26 signal experiments)\nd19828 = {\n    \"null_total_8\": 24, \"signal_total_6\": 156, \"signal_total_8\": 208,\n    \"fpr_detected\": {0:0,1:22,2:9,3:22,4:6,5:22,6:12,7:22,8:0,9:22,10:9,11:22,12:6,13:22,14:12,15:22,16:2,17:22,18:11,19:22,20:8,21:22,22:14,23:22,24:2,25:22,26:11,27:22,28:8,29:22,30:14,31:22},\n    \"fnr_missed_6\": {0:156,1:5,2:19,3:0,4:142,5:0,6:19,7:0,8:68,9:5,10:19,11:0,12:62,13:0,14:19,15:0,16:126,17:5,18:17,19:0,20:118,21:0,22:17,23:0,24:61,25:5,26:17,27:0,28:55,29:0,30:17,31:0},\n    \"fnr_missed_8\": {0:208,1:9,2:54,3:3,4:184,5:3,6:46,7:2,8:110,9:9,10:52,11:3,12:98,13:3,14:46,15:2,16:174,17:9,18:50,19:3,20:159,21:3,22:43,23:2,24:101,25:9,26:48,27:3,28:90,29:3,30:43,31:2},\n    \"null_exps\": [\"alpha_sweep/a000_s42\",\"alpha_sweep/a000_s43\",\"alpha_sweep/a000_s44\"],\n    \"signal_exps\": [\"ablation/accumulate_a050_s43\",\"alpha_sweep/a010_s42\",\"alpha_sweep/a025_s43\",\"alpha_sweep/a025_s44\",\"alpha_sweep/a050_s42\",\"alpha_sweep/a050_s43\",\"alpha_sweep/a050_s44\",\"alpha_sweep/a055_s42_fp32\",\"alpha_sweep/a075_s42\",\"alpha_sweep/a075_s43\",\"alpha_sweep/a075_s44\",\"alpha_sweep/c4_a050_s43_fp32\",\"alpha_sweep/c4_a075_s43_fp32\",\"gen_opt13b_wiki_a100_s43_fp32\",\"gen_wiki_gpt2m_a100_s43\",\"generalize/gpt2m_wiki_a100_s42\",\"generalize/opt1b_wiki_a100_s42\",\"generalize/pythia14b_wiki_a100_s42\",\"generalize/pythia14b_wiki_a100_s43\",\"generalize/pythia1b_c4_a100_s42\",\"generalize/pythia1b_c4_a100_s43\",\"generalize/pythia410m_wiki_a100_s42\",\"generalize/smollm3_3b_wiki_a100_s42_fp32_v3\",\"intervention/predictive_te_s42\",\"intervention/reactive_d1_s42\",\"scale_check/pythia14b_a050_s42\"],\n}\n\n# Data from westd-17855 (1 null + 30 signal experiments)\nd17855 = {\n    \"null_total_8\": 8, \"signal_total_6\": 180, \"signal_total_8\": 240,\n    \"fpr_detected\": {0:0,1:8,2:4,3:8,4:3,5:8,6:5,7:8,8:0,9:8,10:4,11:8,12:3,13:8,14:5,15:8,16:1,17:8,18:4,19:8,20:3,21:8,22:5,23:8,24:1,25:8,26:4,27:8,28:3,29:8,30:5,31:8},\n    \"fnr_missed_6\": {0:180,1:1,2:39,3:0,4:169,5:1,6:39,7:0,8:90,9:1,10:35,11:0,12:88,13:1,14:35,15:0,16:140,17:1,18:36,19:0,20:132,21:1,22:36,23:0,24:71,25:1,26:32,27:0,28:70,29:1,30:32,31:0},\n    \"fnr_missed_8\": {0:240,1:13,2:78,3:11,4:224,5:13,6:74,7:11,8:141,9:13,10:73,11:11,12:135,13:13,14:70,15:11,16:195,17:13,18:73,19:11,20:183,21:13,22:70,23:11,24:118,25:13,26:68,27:11,28:114,29:13,30:66,31:11},\n    \"null_exps\": [\"alpha_sweep/a000_s42_fp32\"],\n    \"signal_exps\": [\"alpha_sweep/a005_s42_fp32_v3_d080\",\"alpha_sweep/a010_s42_fp32\",\"alpha_sweep/a010_s43_fp32\",\"alpha_sweep/a025_s42_fp32\",\"alpha_sweep/a025_s43_fp32\",\"alpha_sweep/a025_s44_fp32\",\"alpha_sweep/a030_s42_fp32\",\"alpha_sweep/a035_s42_fp32\",\"alpha_sweep/a040_s42_fp32\",\"alpha_sweep/a045_s42_fp32\",\"alpha_sweep/a050_postd093_s42_fp32\",\"alpha_sweep/a050_s42_fp32\",\"alpha_sweep/a050_s43_fp32\",\"alpha_sweep/a050_s44_fp32\",\"alpha_sweep/a060_s42_fp32_v3_d080\",\"alpha_sweep/a060_s42_fp32_v4\",\"alpha_sweep/a060_s43_fp32\",\"alpha_sweep/a075_s42_fp32\",\"alpha_sweep/c4_a025_s42_fp32\",\"alpha_sweep/c4_a050_s42_fp32\",\"alpha_sweep/c4_a075_s42_fp32\",\"generalize/gpt2m_wiki_a100_s43_bf16\",\"generalize/pythia410m_wiki_a100_s43\",\"generalize/qwen35_08b_wiki_a100_s42_fp32_v2\",\"generalize/qwen35_08b_wiki_a100_s43_fp32\",\"generalize/smollm3_3b_wiki_a100_s43_17855\",\"padding_robustness/a100_s42_fp32\",\"scale/14b_c4_s42_fp32\",\"scale_check/pythia69b_wiki_a100_s42\",\"scale_check/pythia69b_wiki_a100_s43\"],\n}\n\n# Combine counts\nnull_total = d19828[\"null_total_8\"] + d17855[\"null_total_8\"]\nsig_total_6 = d19828[\"signal_total_6\"] + d17855[\"signal_total_6\"]\nsig_total_8 = d19828[\"signal_total_8\"] + d17855[\"signal_total_8\"]\n\nfpr_det = {}\nfnr_miss_6 = {}\nfnr_miss_8 = {}\nfor m in range(32):\n    fpr_det[m] = d19828[\"fpr_detected\"][m] + d17855[\"fpr_detected\"][m]\n    fnr_miss_6[m] = d19828[\"fnr_missed_6\"][m] + d17855[\"fnr_missed_6\"][m]\n    fnr_miss_8[m] = d19828[\"fnr_missed_8\"][m] + d17855[\"fnr_missed_8\"][m]\n\nprint(f\"Combined: {null_total} null obs, {sig_total_6} signal-6 obs, {sig_total_8} signal-8 obs\")\nprint(f\"Null experiments: {len(d19828['null_exps']) + len(d17855['null_exps'])}\")\nprint(f\"Signal experiments: {len(d19828['signal_exps']) + len(d17855['signal_exps'])}\")\n\ndef mask_for(indices):\n    m = 0\n    for i in indices:\n        m |= (1 << i)\n    return m\n\ndef v_fpr(indices):\n    if not indices: return 0.0\n    return fpr_det[mask_for(indices)] / null_total\n\ndef v_fnr(indices, use_6pair=True):\n    if not indices: return 1.0\n    if use_6pair:\n        return fnr_miss_6[mask_for(indices)] / sig_total_6\n    else:\n        return fnr_miss_8[mask_for(indices)] / sig_total_8\n\ndef compute_shapley(method_idx, value_func):\n    other = [j for j in range(N) if j != method_idx]\n    phi = 0.0\n    for size in range(N):\n        w = factorial(size) * factorial(N - size - 1) / factorial(N)\n        for S in combinations(other, size):\n            S_list = sorted(list(S))\n            S_plus_i = sorted(S_list + [method_idx])\n            marginal = value_func(S_plus_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\n# Per-method raw stats\nprint(\"\\n=== Per-method individual stats ===\")\nfor i, m in enumerate(METHODS):\n    fpr_i = fpr_det[1 << i] / null_total\n    fnr6_i = fnr_miss_6[1 << i] / sig_total_6\n    fnr8_i = fnr_miss_8[1 << i] / sig_total_8\n    tpr6_i = 1 - fnr6_i\n    tpr8_i = 1 - fnr8_i\n    print(f\"  {m:<20s}: FPR={fpr_i:.4f}, TPR_6={tpr6_i:.4f}(FNR={fnr6_i:.4f}), TPR_8={tpr8_i:.4f}(FNR={fnr8_i:.4f})\")\n\nresults = {}\nfor label, use_6 in [('main_result_6pair', True), ('robustness_8pair', False)]:\n    print(f\"\\n=== {label} ===\")\n    fpr_shapley = {}\n    fnr_shapley = {}\n    combined_shapley = {}\n    for i, m in enumerate(METHODS):\n        sf = compute_shapley(i, v_fpr)\n        sn = compute_shapley(i, lambda S, u6=use_6: v_fnr(S, u6))\n        sc = sf + sn\n        fpr_shapley[m] = round(sf, 6)\n        fnr_shapley[m] = round(sn, 6)\n        combined_shapley[m] = round(sc, 6)\n        print(f\"  {m:<20s}: FPR={sf:+.6f}, FNR={sn:+.6f}, Combined={sc:+.6f}\")\n\n    fpr_sum = sum(fpr_shapley.values())\n    fnr_sum = sum(fnr_shapley.values())\n    # Verify: sum should equal v(grand) - v(empty)\n    grand_fpr = v_fpr(list(range(N)))\n    grand_fnr = v_fnr(list(range(N)), use_6)\n    print(f\"  SUM FPR: {fpr_sum:+.6f} (v(grand)={grand_fpr:.4f})\")\n    print(f\"  SUM FNR: {fnr_sum:+.6f} (v(grand)-v(empty)={grand_fnr - 1.0:.4f})\")\n\n    results[label] = {\n        'fpr_shapley': fpr_shapley,\n        'fnr_shapley': fnr_shapley,\n        'combined_shapley': combined_shapley,\n    }\n\n# Build data sources\ndata_sources = [f\"19828:{e}\" for e in d19828['null_exps'] + d19828['signal_exps']] + \\\n               [f\"17855:{e}\" for e in d17855['null_exps'] + d17855['signal_exps']]\n\noutput = {\n    'version': 'v2_d120_compliant',\n    'generated_at': datetime.datetime.now().isoformat(),\n    'data_sources': data_sources,\n    'threshold_criterion': 'true_3sigma_d105',\n    'n_methods': N,\n    'n_coalitions': 2**N,\n    'n_null_experiments': len(d19828['null_exps']) + len(d17855['null_exps']),\n    'n_signal_experiments': len(d19828['signal_exps']) + len(d17855['signal_exps']),\n    'n_null_obs': null_total,\n    'n_signal_obs_6pair': sig_total_6,\n    'n_signal_obs_8pair': sig_total_8,\n    'fpr_pairs': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve'],\n    'fnr_pairs_6': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','ece->distinct_1','ece->distinct_2','ece->distinct_3'],\n    'fnr_pairs_8': ['token_entropy->distinct_1','token_entropy->distinct_2','token_entropy->distinct_3','token_entropy->mauve','ece->distinct_1','ece->distinct_2','ece->distinct_3','ece->mauve'],\n    'methods': METHODS,\n    'main_result_6pair': results['main_result_6pair'],\n    'robustness_8pair': results['robustness_8pair'],\n}\n\nout_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json'\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nJSON saved to {out_path}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T13:55:40.729099+00:00_
+
+File created successfully at: /tmp/shapley_compute.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T13:55:40.729232+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /tmp/shapley_compute.py",
+  "description": "Run Shapley value computation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /tmp/shapley_compute.py",
+    "description": "Run Shapley value computation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T13:55:40.729396+00:00_
+
+Combined: 32 null obs, 336 signal-6 obs, 448 signal-8 obs
+Null experiments: 4
+Signal experiments: 56
+
+=== Per-method individual stats ===
+  naive_xcorr         : FPR=0.9375, TPR_6=0.9821(FNR=0.0179), TPR_8=0.9509(FNR=0.0491)
+  diff_xcorr          : FPR=0.4062, TPR_6=0.8274(FNR=0.1726), TPR_8=0.7054(FNR=0.2946)
+  threshold_onset     : FPR=0.2812, TPR_6=0.0744(FNR=0.9256), TPR_8=0.0893(FNR=0.9107)
+  perm_granger        : FPR=0.0000, TPR_6=0.5298(FNR=0.4702), TPR_8=0.4397(FNR=0.5603)
+  ty_granger          : FPR=0.0938, TPR_6=0.2083(FNR=0.7917), TPR_8=0.1763(FNR=0.8237)
+
+=== main_result_6pair ===
+  naive_xcorr         : FPR=+0.611979, FNR=-0.451687, Combined=+0.160293
+  diff_xcorr          : FPR=+0.174479, FNR=-0.302877, Combined=-0.128398
+  threshold_onset     : FPR=+0.111979, FNR=-0.021627, Combined=+0.090352
+  perm_granger        : FPR=+0.000000, FNR=-0.164236, Combined=-0.164236
+  ty_granger          : FPR=+0.039063, FNR=-0.059573, Combined=-0.020511
+  SUM FPR: +0.937500 (v(grand)=0.9375)
+  SUM FNR: -1.000000 (v(grand)-v(empty)=-1.0000)
+
+=== robustness_8pair ===
+  naive_xcorr         : FPR=+0.611979, FNR=-0.488653, Combined=+0.123326
+  diff_xcorr          : FPR=+0.174479, FNR=-0.263951, Combined=-0.089472
+  threshold_onset     : FPR=+0.111979, FNR=-0.030506, Combined=+0.081473
+  perm_granger        : FPR=+0.000000, FNR=-0.136533, Combined=-0.136533
+  ty_granger          : FPR=+0.039063, FNR=-0.051339, Combined=-0.012277
+  SUM FPR: +0.937500 (v(grand)=0.9375)
+  SUM FNR: -0.970982 (v(grand)-v(empty)=-0.9710)
+
+JSON saved to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T13:55:40.729583+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/tmp/shapley_figure.py",
+  "content": "import json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json') as f:\n    data = json.load(f)\n\nMETHODS = data['methods']\nMETHOD_LABELS = ['Naive\\nXCorr', 'Diff XCorr\\n(FDR)', 'Threshold\\nOnset', 'Perm Granger\\n(FDR)', 'TY\\nGranger']\nN = len(METHODS)\n\nm6 = data['main_result_6pair']\nm8 = data['robustness_8pair']\n\nfpr6 = [m6['fpr_shapley'][m] for m in METHODS]\nfnr6 = [m6['fnr_shapley'][m] for m in METHODS]\ncomb6 = [m6['combined_shapley'][m] for m in METHODS]\n\nfpr8 = [m8['fpr_shapley'][m] for m in METHODS]\nfnr8 = [m8['fnr_shapley'][m] for m in METHODS]\ncomb8 = [m8['combined_shapley'][m] for m in METHODS]\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans', 'font.size': 10,\n    'axes.titlesize': 11, 'axes.labelsize': 10,\n    'xtick.labelsize': 8, 'ytick.labelsize': 9,\n    'legend.fontsize': 9, 'figure.dpi': 300,\n    'savefig.dpi': 300, 'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False, 'axes.spines.right': False,\n})\n\nfig, axes = plt.subplots(1, 3, figsize=(14, 4.5))\n\nx = np.arange(N)\nwidth = 0.35\n\nCOLOR_6 = '#2166AC'\nCOLOR_8 = '#B2182B'\n\n# Panel (a): FPR Shapley\nax = axes[0]\nbars1 = ax.bar(x - width/2, fpr6, width, label='6-pair', color=COLOR_6, alpha=0.85)\nbars2 = ax.bar(x + width/2, fpr8, width, label='8-pair', color=COLOR_8, alpha=0.85)\nax.set_ylabel('Shapley Value (FPR)')\nax.set_title('(a) FPR Contribution')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.legend(loc='upper right', framealpha=0.8)\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            ax.text(bar.get_x() + bar.get_width()/2., h + 0.01,\n                    f'{h:.3f}', ha='center', va='bottom', fontsize=7)\n\n# Panel (b): FNR Shapley\nax = axes[1]\nbars1 = ax.bar(x - width/2, fnr6, width, label='6-pair', color=COLOR_6, alpha=0.85)\nbars2 = ax.bar(x + width/2, fnr8, width, label='8-pair', color=COLOR_8, alpha=0.85)\nax.set_ylabel('Shapley Value (FNR)')\nax.set_title('(b) FNR Reduction')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.legend(loc='lower right', framealpha=0.8)\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            off = -0.015 if h < 0 else 0.01\n            va = 'top' if h < 0 else 'bottom'\n            ax.text(bar.get_x() + bar.get_width()/2., h + off,\n                    f'{h:.3f}', ha='center', va=va, fontsize=7)\n\n# Panel (c): Combined Shapley\nax = axes[2]\nbars1 = ax.bar(x - width/2, comb6, width, label='6-pair',\n               color=[COLOR_6 if v < 0 else '#D6604D' for v in comb6], alpha=0.85)\nbars2 = ax.bar(x + width/2, comb8, width, label='8-pair',\n               color=[COLOR_8 if v < 0 else '#F4A582' for v in comb8], alpha=0.85)\nax.set_ylabel('Shapley Value (FPR + FNR)')\nax.set_title('(c) Combined (lower = better)')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            off = -0.008 if h < 0 else 0.008\n            va = 'top' if h < 0 else 'bottom'\n            ax.text(bar.get_x() + bar.get_width()/2., h + off,\n                    f'{h:+.3f}', ha='center', va=va, fontsize=7, fontweight='bold')\n\n# Custom legend for panel c\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=COLOR_6, alpha=0.85, label='6-pair (beneficial)'),\n                   Patch(facecolor='#D6604D', alpha=0.85, label='6-pair (costly)'),\n                   Patch(facecolor=COLOR_8, alpha=0.85, label='8-pair (beneficial)'),\n                   Patch(facecolor='#F4A582', alpha=0.85, label='8-pair (costly)')]\nax.legend(handles=legend_elements, loc='upper right', fontsize=7, framealpha=0.8)\n\nplt.tight_layout()\nout = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution'\nplt.savefig(f'{out}.pdf')\nplt.savefig(f'{out}.png')\nplt.close()\nprint(f'Figure saved: {out}.pdf and {out}.png')\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/tmp/shapley_figure.py",
+    "content": "import json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json') as f:\n    data = json.load(f)\n\nMETHODS = data['methods']\nMETHOD_LABELS = ['Naive\\nXCorr', 'Diff XCorr\\n(FDR)', 'Threshold\\nOnset', 'Perm Granger\\n(FDR)', 'TY\\nGranger']\nN = len(METHODS)\n\nm6 = data['main_result_6pair']\nm8 = data['robustness_8pair']\n\nfpr6 = [m6['fpr_shapley'][m] for m in METHODS]\nfnr6 = [m6['fnr_shapley'][m] for m in METHODS]\ncomb6 = [m6['combined_shapley'][m] for m in METHODS]\n\nfpr8 = [m8['fpr_shapley'][m] for m in METHODS]\nfnr8 = [m8['fnr_shapley'][m] for m in METHODS]\ncomb8 = [m8['combined_shapley'][m] for m in METHODS]\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans', 'font.size': 10,\n    'axes.titlesize': 11, 'axes.labelsize': 10,\n    'xtick.labelsize': 8, 'ytick.labelsize': 9,\n    'legend.fontsize': 9, 'figure.dpi': 300,\n    'savefig.dpi': 300, 'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False, 'axes.spines.right': False,\n})\n\nfig, axes = plt.subplots(1, 3, figsize=(14, 4.5))\n\nx = np.arange(N)\nwidth = 0.35\n\nCOLOR_6 = '#2166AC'\nCOLOR_8 = '#B2182B'\n\n# Panel (a): FPR Shapley\nax = axes[0]\nbars1 = ax.bar(x - width/2, fpr6, width, label='6-pair', color=COLOR_6, alpha=0.85)\nbars2 = ax.bar(x + width/2, fpr8, width, label='8-pair', color=COLOR_8, alpha=0.85)\nax.set_ylabel('Shapley Value (FPR)')\nax.set_title('(a) FPR Contribution')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.legend(loc='upper right', framealpha=0.8)\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            ax.text(bar.get_x() + bar.get_width()/2., h + 0.01,\n                    f'{h:.3f}', ha='center', va='bottom', fontsize=7)\n\n# Panel (b): FNR Shapley\nax = axes[1]\nbars1 = ax.bar(x - width/2, fnr6, width, label='6-pair', color=COLOR_6, alpha=0.85)\nbars2 = ax.bar(x + width/2, fnr8, width, label='8-pair', color=COLOR_8, alpha=0.85)\nax.set_ylabel('Shapley Value (FNR)')\nax.set_title('(b) FNR Reduction')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.legend(loc='lower right', framealpha=0.8)\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            off = -0.015 if h < 0 else 0.01\n            va = 'top' if h < 0 else 'bottom'\n            ax.text(bar.get_x() + bar.get_width()/2., h + off,\n                    f'{h:.3f}', ha='center', va=va, fontsize=7)\n\n# Panel (c): Combined Shapley\nax = axes[2]\nbars1 = ax.bar(x - width/2, comb6, width, label='6-pair',\n               color=[COLOR_6 if v < 0 else '#D6604D' for v in comb6], alpha=0.85)\nbars2 = ax.bar(x + width/2, comb8, width, label='8-pair',\n               color=[COLOR_8 if v < 0 else '#F4A582' for v in comb8], alpha=0.85)\nax.set_ylabel('Shapley Value (FPR + FNR)')\nax.set_title('(c) Combined (lower = better)')\nax.set_xticks(x)\nax.set_xticklabels(METHOD_LABELS)\nax.axhline(0, color='gray', linewidth=0.8, linestyle='--')\nax.grid(True, alpha=0.15, axis='y')\nfor bars in [bars1, bars2]:\n    for bar in bars:\n        h = bar.get_height()\n        if abs(h) > 0.005:\n            off = -0.008 if h < 0 else 0.008\n            va = 'top' if h < 0 else 'bottom'\n            ax.text(bar.get_x() + bar.get_width()/2., h + off,\n                    f'{h:+.3f}', ha='center', va=va, fontsize=7, fontweight='bold')\n\n# Custom legend for panel c\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=COLOR_6, alpha=0.85, label='6-pair (beneficial)'),\n                   Patch(facecolor='#D6604D', alpha=0.85, label='6-pair (costly)'),\n                   Patch(facecolor=COLOR_8, alpha=0.85, label='8-pair (beneficial)'),\n                   Patch(facecolor='#F4A582', alpha=0.85, label='8-pair (costly)')]\nax.legend(handles=legend_elements, loc='upper right', fontsize=7, framealpha=0.8)\n\nplt.tight_layout()\nout = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution'\nplt.savefig(f'{out}.pdf')\nplt.savefig(f'{out}.png')\nplt.close()\nprint(f'Figure saved: {out}.pdf and {out}.png')\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T13:55:40.729758+00:00_
+
+File created successfully at: /tmp/shapley_figure.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T13:55:40.729881+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /tmp/shapley_figure.py",
+  "description": "Generate Shapley contribution bar chart"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /tmp/shapley_figure.py",
+    "description": "Generate Shapley contribution bar chart"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T13:55:40.730000+00:00_
+
+Figure saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution.pdf and /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T13:55:40.730119+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_method_contribution.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T13:55:40.730740+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T13:55:40.730916+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T13:55:40.731099+00:00_
+
+1	{
+2	  "version": "v2_d120_compliant",
+3	  "generated_at": "2026-05-20T13:54:43.392607",
+4	  "data_sources": [
+5	    "19828:alpha_sweep/a000_s42",
+6	    "19828:alpha_sweep/a000_s43",
+7	    "19828:alpha_sweep/a000_s44",
+8	    "19828:ablation/accumulate_a050_s43",
+9	    "19828:alpha_sweep/a010_s42",
+10	    "19828:alpha_sweep/a025_s43",
+11	    "19828:alpha_sweep/a025_s44",
+12	    "19828:alpha_sweep/a050_s42",
+13	    "19828:alpha_sweep/a050_s43",
+14	    "19828:alpha_sweep/a050_s44",
+15	    "19828:alpha_sweep/a055_s42_fp32",
+16	    "19828:alpha_sweep/a075_s42",
+17	    "19828:alpha_sweep/a075_s43",
+18	    "19828:alpha_sweep/a075_s44",
+19	    "19828:alpha_sweep/c4_a050_s43_fp32",
+20	    "19828:alpha_sweep/c4_a075_s43_fp32",
+21	    "19828:gen_opt13b_wiki_a100_s43_fp32",
+22	    "19828:gen_wiki_gpt2m_a100_s43",
+23	    "19828:generalize/gpt2m_wiki_a100_s42",
+24	    "19828:generalize/opt1b_wiki_a100_s42",
+25	    "19828:generalize/pythia14b_wiki_a100_s42",
+26	    "19828:generalize/pythia14b_wiki_a100_s43",
+27	    "19828:generalize/pythia1b_c4_a100_s42",
+28	    "19828:generalize/pythia1b_c4_a100_s43",
+29	    "19828:generalize/pythia410m_wiki_a100_s42",
+30	    "19828:generalize/smollm3_3b_wiki_a100_s42_fp32_v3",
+31	    "19828:intervention/predictive_te_s42",
+32	    "19828:intervention/reactive_d1_s42",
+33	    "19828:scale_check/pythia14b_a050_s42",
+34	    "17855:alpha_sweep/a000_s42_fp32",
+35	    "17855:alpha_sweep/a005_s42_fp32_v3_d080",
+36	    "17855:alpha_sweep/a010_s42_fp32",
+37	    "17855:alpha_sweep/a010_s43_fp32",
+38	    "17855:alpha_sweep/a025_s42_fp32",
+39	    "17855:alpha_sweep/a025_s43_fp32",
+40	    "17855:alpha_sweep/a025_s44_fp32",
+41	    "17855:alpha_sweep/a030_s42_fp32",
+42	    "17855:alpha_sweep/a035_s42_fp32",
+43	    "17855:alpha_sweep/a040_s42_fp32",
+44	    "17855:alpha_sweep/a045_s42_fp32",
+45	    "17855:alpha_sweep/a050_postd093_s42_fp32",
+46	    "17855:alpha_sweep/a050_s42_fp32",
+47	    "17855:alpha_sweep/a050_s43_fp32",
+48	    "17855:alpha_sweep/a050_s44_fp3
+…[truncated 3304 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-20T13:55:40.731302+00:00_
+
+完成。输出文件：
+
+**`artifacts/shapley_v2/shapley_values_v2.json`** — 完整 Shapley 值（60 个数据源，4 null + 56 signal experiments，32 coalition enumeration）
+
+**`artifacts/shapley_v2/shapley_method_contribution.pdf`** — 三面板 grouped bar chart
+
+### 主结果摘要（6-pair FNR, Combined = FPR + FNR，越负越好）
+
+| Method | FPR Shapley | FNR Shapley | Combined |
+|---|---|---|---|
+| **perm_granger** | +0.000 | −0.164 | **−0.164** (最优) |
+| **diff_xcorr** | +0.174 | −0.303 | **−0.128** |
+| ty_granger | +0.039 | −0.060 | −0.021 |
+| threshold_onset | +0.112 | −0.022 | +0.090 |
+| naive_xcorr | +0.612 | −0.452 | +0.160 (最差) |
+
+关键发现：perm_granger 零 FPR 贡献 + 中等 FNR 减少 = 综合最佳。naive_xcorr 虽然 FNR 减少最强（−0.452），但 FPR 代价太大（+0.612）。8-pair robustness 结果趋势一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_d150_p0a_shapley_recompute_20260520T134235"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,73 @@
+{
+  "exp_id": "alpha_sweep_a030_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:16:27.139Z",
+    "updated_at": "2026-05-19T20:33:35.713Z",
+    "spec": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.30 --output_dir results/alpha_sweep/a030_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "148710",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log",
+      "submitted_at": "2026-05-19T14:15:42.000Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied",
+      "wall_clock_seconds": 22673.7,
+      "gpu_hours": 6.3
+    },
+    "hypothesis": "D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。",
+    "parent": "alpha_sweep_a025_s42_fp32",
+    "reproduce": {
+      "finished_at": "2026-05-19T20:28:59.724Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T20:29:03.980658+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg_fwd": "0/8",
+      "permg_rev": "0/8",
+      "k_ge3": "6/8",
+      "k_ge4": "3/8",
+      "naive_xcorr": "8/8",
+      "diff_xcorr": "4/8",
+      "threshold_onset": "8/8",
+      "ty_granger": "5/8",
+      "drift_entropy_pct": -17.32,
+      "drift_ece_pct": 549.38,
+      "drift_d1_pct": -36.72,
+      "drift_d2_pct": -49.75,
+      "drift_d3_pct": -50.09,
+      "drift_mauve_pct": -26.09,
+      "n_generations": 11,
+      "n_perm": 5000,
+      "alpha_bh": 0.05,
+      "precision": "fp32"
+    },
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a030_s42_fp32",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T20:33:35.714Z"
+  },
+  "timestamp": "2026-05-19T20:33:35.928452+00:00",
+  "trigger": "update_registry"
+}

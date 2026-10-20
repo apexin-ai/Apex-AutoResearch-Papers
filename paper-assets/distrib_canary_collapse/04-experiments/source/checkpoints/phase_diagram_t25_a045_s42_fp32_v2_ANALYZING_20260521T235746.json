@@ -1,0 +1,38 @@
+{
+  "exp_id": "phase_diagram_t25_a045_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:36:44.452Z",
+    "updated_at": "2026-05-21T23:57:45.701Z",
+    "hypothesis": "Phase Diagram T=25 α=0.45: theory predicts α_c(25)≈0.232, α=0.45 is above threshold. At T=10 α=0.45 yields PermG=0/8 (below α_c(10)=0.487). If T=25 shows PermG>0/8, confirms that longer training enables detection at contamination levels undetectable at T=10. Key test of α_c(T) decreasing monotonically. v2 of failed v1 (HF_HOME missing in command).",
+    "parent": "phase_diagram_t25_a045_s42_fp32",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a045_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "519272",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a045_s42_fp32_v2.log",
+      "submitted_at": "2026-05-21T13:37:38.929Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_source": "n/a (retry of v1, full training from scratch)",
+      "eval_data": "n/a (training experiment, not eval)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T23:57:43.939Z"
+    }
+  },
+  "timestamp": "2026-05-21T23:57:46.085966+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "alpha_sweep_a035_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:56.167Z",
+    "updated_at": "2026-05-19T14:38:24.265Z",
+    "hypothesis": "D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。",
+    "parent": "alpha_sweep_a030_s42_fp32"
+  },
+  "timestamp": "2026-05-19T14:38:24.457402+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bb1ef72b3dabfb28ae6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check null t15 s42 log and d102",
+  "task_key": "worker_ops_check_null_t15_s42_log_and_d102_20260524T094719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_null_t15_s42_log_and_d102_20260524T094719_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "1395714ba2864989f77e3f7eda8f28ab783d8741a781e42f7ccd387eca04dcd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`null_t15_s42_fp32`: **success** | D102: PermG fwd **0/8**, rev **0/8**, K≥3 **0/8**\n\nNull 条件下 FPR 完美为零，与 s43（PermG 0/8, K≥3 1/8）一致。两颗 seed 共同确认 T=15 null baseline 无假阳性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-null-t15-s42-log-and-d102.md"
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "c4_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:37:54.299Z",
+    "updated_at": "2026-05-19T18:26:32.894Z",
+    "hypothesis": "Claim 2 cross-domain validation: canary lead-lag generalizes from WikiText to C4 at α=0.75 regime boundary, expecting PermG_fwd signal comparable to WikiText parent (6/8)",
+    "parent": "alpha_sweep_a075_s42_fp32",
+    "spec": {
+      "data_path": "data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:2",
+    "pid": "151771",
+    "log_path": "~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log",
+    "reproduce": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-19T18:20:08.048Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:20:11.695721+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "results/alpha_sweep/c4_a075_s42_fp32/gen_10/checkpoint",
+    "metrics": {
+      "PermG_fwd": "8/8",
+      "PermG_rev": "0/8",
+      "K_ge_3_3sigma": "8/8",
+      "K_ge_4_3sigma": "8/8",
+      "threshold_onset_3sigma": "8/8",
+      "naive_xcorr": "8/8",
+      "diff_xcorr": "8/8",
+      "TY_granger": "6/8",
+      "drift_token_entropy": -35.32,
+      "drift_ece": 2809.23,
+      "drift_perplexity": 2152.6,
+      "drift_distinct_1": -12.4,
+      "drift_distinct_2": -15.41,
+      "drift_distinct_3": -14.59,
+      "drift_mauve": -42.26,
+      "drift_effective_rank": 110.31,
+      "gen0_token_entropy": 3.1094,
+      "gen10_token_entropy": 2.011,
+      "gen0_perplexity": 24.01,
+      "gen10_perplexity": 540.9
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T18:26:33.145415+00:00",
+  "trigger": "update_registry"
+}

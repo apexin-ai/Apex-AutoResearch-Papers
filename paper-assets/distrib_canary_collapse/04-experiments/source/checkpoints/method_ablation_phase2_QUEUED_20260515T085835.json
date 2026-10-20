@@ -1,0 +1,25 @@
+{
+  "exp_id": "method_ablation_phase2",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:58:35.270Z",
+    "updated_at": "2026-05-15T08:58:35.270Z",
+    "spec": {
+      "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+      "command": "python method_ablation_phase2.py",
+      "server": "westd-19828",
+      "data_path": "results/alpha_sweep + results/mvp",
+      "data_count": 56,
+      "model_name": "N/A (analysis)",
+      "seed": "42,43,44,45",
+      "checkpoint_path": "N/A",
+      "log_path": "results/method_ablation_phase2_panel.json"
+    }
+  },
+  "timestamp": "2026-05-15T08:58:35.333128+00:00",
+  "trigger": "update_registry"
+}

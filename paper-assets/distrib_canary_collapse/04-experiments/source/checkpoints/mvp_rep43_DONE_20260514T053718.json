@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp_rep43",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:12:14.237Z",
+    "updated_at": "2026-05-14T05:37:18.575Z",
+    "spec": {
+      "command": "python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 10000",
+      "server": "autodl-rtx6000",
+      "gpu": "cuda:1",
+      "pid": "3956",
+      "log_path": "~/runs/distrib_canary_collapse/mvp_rep43.log",
+      "submitted_at": "2026-05-14T05:34:47.702Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103",
+      "data_count": 716506,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "gpu_model": "RTX PRO 6000 Blackwell 96GB",
+      "tmux_session": "mvp_rep43",
+      "checkpoint_path": "N/A",
+      "kill_reason": "参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000",
+      "wall_clock_seconds": 150.9,
+      "gpu_hours": 0.04
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T05:37:18.575Z"
+  },
+  "timestamp": "2026-05-14T05:37:18.583304+00:00",
+  "trigger": "update_registry"
+}

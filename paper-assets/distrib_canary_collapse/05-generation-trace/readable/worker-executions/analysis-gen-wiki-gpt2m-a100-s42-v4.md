@@ -1,0 +1,3119 @@
+# analysis gen wiki gpt2m a100 s42 v4
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_analysis_gen_wiki_gpt2m_a100_s42_v4_20260518T113124.log`
+- **Structured JSON:** [`8d02410e29e76c783283.json`](../../sessions/8d/8d02410e29e76c783283.json)
+
+## Before a recorded user message
+
+65 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c325b2b9-b4c5-40a0-8839-031f8f1a8cff",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779104400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5f091f6d-2fbb-4b5d-87c6-6763be3a2cbd",
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the experiment output directory and finding existing analysis scripts on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "037317cc-658f-4a8b-a1d9-d3d0c8c28f1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSFgWLnVRq518sccWsB8km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14382,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14382
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始分析 GPT-2m 实验结果。先检查数据完整性和已有分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "659eb5fd-d3e6-4e13-9a16-6e7628d96781",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSFgWLnVRq518sccWsB8km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14382,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14382
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S5H36ShYkw1JNtVgCpzWRG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+  "max_results": 7
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "0bdadbea-3765-4969-a585-9f7aa63bef52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSFgWLnVRq518sccWsB8km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14382,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14382
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T11:31:37.386Z_
+
+<details><summary>↩ Tool result · `toolu_01S5H36ShYkw1JNtVgCpzWRG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "6213ab96-33e6-4af5-a0a6-c6b82988652f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 34
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NhsHwjMD3CMc652jbBT4W6`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ce8b526a-019a-414e-a3d6-805dc6d62068",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUVF7CrBE6cy7iGaLk7zM6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2787,
+      "cache_read_input_tokens": 26223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2787
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T11:31:43.433Z_
+
+<details><summary>↩ Tool result · `toolu_01NhsHwjMD3CMc652jbBT4W6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 20\\ndrwxr-xr-x 13 root root 4096 May 18 19:26 .\\ndrwxr-xr-x 10 root root 4096 May 18 10:45 ..\\n-rw-r--r--  1 root root    2 May 18 19:26 EXIT_CODE\\n-rw-r--r--  1 root root 4002 May 18 19:26 all_metrics.json\\n-rw-r--r--  1 root root  417 May 18 09:25 config.json\\ndrwxr-xr-x  3 root root   60 May 18 09:40 gen_0\\ndrwxr-xr-x  5 root root  101 May 18 10:36 gen_1\\ndrwxr-xr-x  5 root root  101 May 18 19:26 gen_10\\ndrwxr-xr-x  5 root root  101 May 18 11:34 gen_2\\ndrwxr-xr-x  5 root root  101 May 18 12:34 gen_3\\ndrwxr-xr-x  5 root root  101 May 18 13:34 gen_4\\ndrwxr-xr-x  5 root root  101 May 18 14:33 gen_5\\ndrwxr-xr-x  5 root root  101 May 18 15:31 gen_6\\ndrwxr-xr-x  5 root root  101 May 18 16:30 gen_7\\ndrwxr-xr-x  5 root root  101 May 18 17:29 gen_8\\ndrwxr-xr-x  5 root root  101 May 18 18:28 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "784ddc3a-f80b-4830-9114-2480696cd975",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x 13 root root 4096 May 18 19:26 .\\\\ndrwxr-xr-x 10 root root 4096 May 18 10:45 ..\\\\n-rw-r--r--  1 root root    2 May 18 19:26 EXIT_CODE\\\\n-rw-r--r--  1 root root 4002 May 18 19:26 all_metrics.json\\\\n-rw-r--r--  1 root root  417 May 18 09:25 config.json\\\\ndrwxr-xr-x  3 root root   60 May 18 09:40 gen_0\\\\ndrwxr-xr-x  5 root root  101 May 18 10:36 gen_1\\\\ndrwxr-xr-x  5 root root  101 May 18 19:26 gen_10\\\\ndrwxr-xr-x  5 root root  101 May 18 11:34 gen_2\\\\ndrwxr-xr-x  5 root root  101 May 18 12:34 gen_3\\\\ndrwxr-xr-x  5 root root  101 May 18 13:34 gen_4\\\\ndrwxr-xr-x  5 root root  101 May 18 14:33 gen_5\\\\ndrwxr-xr-x  5 root root  101 May 18 15:31 gen_6\\\\ndrwxr-xr-x  5 root root  101 May 18 16:30 gen_7\\\\ndrwxr-xr-x  5 root root  101 May 18 17:29 gen_8\\\\ndrwxr-xr-x  5 root root  101 May 18 18:28 gen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 20\\ndrwxr-xr-x 13 root root 4096 May 18 19:26 .\\ndrwxr-xr-x 10 root root 4096 May 18 10:45 ..\\n-rw-r--r--  1 root root    2 May 18 19:26 EXIT_CODE\\n-rw-r--r--  1 root root 4002 May 18 19:26 all_metrics.json\\n-rw-r--r--  1 root root  417 May 18 09:25 config.json\\ndrwxr-xr-x  3 root root   60 May 18 09:40 gen_0\\ndrwxr-xr-x  5 root root  101 May 18 10:36 gen_1\\ndrwxr-xr-x  5 root root  101 May 18 19:26 gen_10\\ndrwxr-xr-x  5 root root  101 May 18 11:34 gen_2\\ndrwxr-xr-x  5 root root  101 May 18 12:34 gen_3\\ndrwxr-xr-x  5 root root  101 May 18 13:34 gen_4\\ndrwxr-xr-x  5 root root  101 May 18 14:33 gen_5\\ndrwxr-xr-x  5 root root  101 May 18 15:31 gen_6\\ndrwxr-xr-x  5 root root  101 May 18 16:30 gen_7\\ndrwxr-xr-x  5 root root  101 May 18 17:29 gen_8\\ndrwxr-xr-x  5 root root  101 May 18 18:28 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TQfeGc4TqUH8KGmzoJV4X4`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 2 -name \"*8pair*\" -o -name \"*table7*\" -o -name \"*unified*\" -o -name \"*full_8pair*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "421b51df-b16a-4909-9106-f7eaf6ebc985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUVF7CrBE6cy7iGaLk7zM6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2787,
+      "cache_read_input_tokens": 26223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2787
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T11:31:43.817Z_
+
+<details><summary>↩ Tool result · `toolu_01TQfeGc4TqUH8KGmzoJV4X4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "a9711145-f998-4c32-9b47-6bfa129f4381",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018hE7wTBEnpQrHxAgQJKgZc`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "gen_wiki_gpt2m_a100_s42_v4"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "c0a30cef-e2b2-4725-bcfa-62ed699cc4ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUVF7CrBE6cy7iGaLk7zM6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2787,
+      "cache_read_input_tokens": 26223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2787
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T11:31:44.744Z_
+
+<details><summary>↩ Tool result · `toolu_018hE7wTBEnpQrHxAgQJKgZc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1365}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "3bbdc055-3e5a-47dc-930b-dbbee87f30b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1365}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1365}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+10 generations 完整 (gen_0 到 gen_10)。继续检查数据文件和查找分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "31e40f75-1ff7-4945-9826-619a5693f2eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbDGj7xWT4mTXXnNwrHA2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 29010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qr6U5AKNjUv3dMvYvC5saw`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "069bc4b2-a287-44fb-86bc-8049be420307",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbDGj7xWT4mTXXnNwrHA2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 29010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T11:31:49.344Z_
+
+<details><summary>↩ Tool result · `toolu_01Qr6U5AKNjUv3dMvYvC5saw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009416174177092937,\\n    \\\"distinct_1\\\": 0.10438217196075171,\\n    \\\"distinct_2\\\": 0.5483082347267149,\\n    \\\"distinct_3\\\": 0.844118478604334,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"mauve\\\": 0.031453640812650854,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.6619039705526137,\\n    \\\"self_bleu\\\": 0.009189199530506422,\\n    \\\"distinct_1\\\": 0.1041694653412144,\\n    \\\"distinct_2\\\": 0.5488274854537669,\\n    \\\"distinct_3\\\": 0.8451327433628318,\\n    \\\"ece\\\": 0.22732727795367996,\\n    \\\"effective_rank\\\": 2.682961572877425,\\n    \\\"perplexity\\\": 99.13115657163468,\\n    \\\"mauve\\\": 0.031515119768772866,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.9516518203810497,\\n    \\\"self_bleu\\\": 0.01182562523555886,\\n    \\\"distinct_1\\\": 0.0959220232647282,\\n    \\\"distinct_2\\\": 0.5053585956567995,\\n    \\\"distinct_3\\\": 0.7873442279259335,\\n    \\\"ece\\\": 0.4090446151887576,\\n    \\\"effective_rank\\\": 8.489930452986181,\\n    \\\"perplexity\\\": 751.2703192970538,\\n    \\\"mauve\\\": 0.0326872051438139,\\n    \\\"generation\\\": 2\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.7294514831428662,\\n    \\\"self_bleu\\\": 0.011973124159031795,\\n    \\\"distinct_1\\\": 0.09294638880423826,\\n    \\\"distinct_2\\\": 0.4816528099018566,\\n    \\\"distinct_3\\\": 0.7561164289900372,\\n    \\\"ece\\\": 0.46962506639254176,\\n    \\\"effective_rank\\\": 12.864870335105259,\\n    \\\"perplexity\\\": 2311.5724127176554,\\n    \\\"mauve\\\": 0.03358168452782756,\\n    \\\"generation\\\": 3\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.6344993267970863,\\n    \\\"self_bleu\\\": 0.011897255957114168,\\n    \\\"distinct_1\\\": 0.0920703125,\\n    \\\"distinct_2\\\": 0.4732302596114032,\\n    \\\"distinct_3\\\": 0.7421287832622385,\\n    \\\"ece\\\": 0.4952923262077743,\\n    \\\"effective_rank\\\": 14.844269974492313,\\n    \\\"perplexity\\\": 4652.9200791209605,\\n    \\\"mauve\\\": 0.033725012824749934,\\n    \\\"generation\\\": 4\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5806490206806093,\\n    \\\"self_bleu\\\": 0.011870837005988883,\\n    \\\"distinct_1\\\": 0.091828125,\\n    \\\"distinct_2\\\": 0.4717146227704904,\\n    \\\"distinct_3\\\": 0.739480304379756,\\n    \\\"ece\\\": 0.5059420437685302,\\n    \\\"effective_rank\\\": 16.848156352646928,\\n    \\\"perplexity\\\": 6985.939467771172,\\n    \\\"mauve\\\": 0.033916342497155735,\\n    \\\"generation\\\": 5\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5434417904535445,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.4716521222822053,\\n    \\\"distinct_3\\\": 0.7393474898045282,\\n    \\\"ece\\\": 0.5123819737206337,\\n    \\\"effective_rank\\\": 18.871939268845342,\\n    \\\"perplexity\\\": 9676.02224223039,\\n    \\\"mauve\\\": 0.0340057220287227,\\n    \\\"generation\\\": 6\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.520361066914683,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.471659934843241,\\n    \\\"distinct_3\\\": 0.739378740292817,\\n    \\\"ece\\\": 0.5145584933030305,\\n    \\\"effective_rank\\\": 20.61412431180014,\\n    \\\"perplexity\\\": 11429.448853692887,\\n    \\\"mauve\\\": 0.03434528274173847,\\n    \\\"generation\\\": 7\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5052271537412971,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.471659934843241,\\n    \\\"distinct_3\\\": 0.7393943655369615,\\n    \\\"ece\\\": 0.5161110820646524,\\n    \\\"effective_rank\\\": 22.497410378102487,\\n    \\\"perplexity\\\": 12790.061369410529,\\n    \\\"mauve\\\": 0.03537793109765091,\\n    \\\"generation\\\": 8\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.49395924597480406,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.47168337252634784,\\n    \\\"distinct_3\\\": 0.7394256160252504,\\n    \\\"ece\\\": 0.5173700948206741,\\n    \\\"effective_rank\\\": 23.50607812305624,\\n    \\\"perplexity\\\": 14250.40877324568,\\n    \\\"mauve\\\": 0.034944415646920246,\\n    \\\"generation\\\": 9\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.47939285222225714,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.47168337252634784,\\n    \\\"distinct_3\\\": 0.7394256160252504,\\n    \\\"ece\\\": 0.5216203934558574,\\n    \\\"effective_rank\\\": 25.00183414780994,\\n    \\\"perplexity\\\": 16520.549051989605,\\n    \\\"mauve\\\": 0.03392477031469131,\\n    \\\"generation\\\": 10\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "b36a52ea-24a6-472c-bad0-b1f0bd294e0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.5714236302655937,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009416174177092937,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.10438217196075171,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5483082347267149,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.844118478604334,\\\\n    \\\\\\\"ece\\\\\\\": 0.011165005425486723,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.3722373141584847,\\\\n    \\\\\\\"perplexity\\\\\\\": 32.63152881690869,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031453640812650854,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.6619039705526137,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.009189199530506422,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.1041694653412144,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5488274854537669,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8451327433628318,\\\\n    \\\\\\\"ece\\\\\\\": 0.22732727795367996,\\\\n    \\\\\\\"effective_rank\\\\\\\": 2.682961572877425,\\\\n    \\\\\\\"perplexity\\\\\\\": 99.13115657163468,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031515119768772866,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.9516518203810497,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01182562523555886,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0959220232647282,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5053585956567995,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7873442279259335,\\\\n    \\\\\\\"ece\\\\\\\": 0.4090446151887576,\\\\n    \\\\\\\"effective_rank\\\\\\\": 8.489930452986181,\\\\n    \\\\\\\"perplexity\\\\\\\": 751.2703192970538,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0326872051438139,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.7294514831428662,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011973124159031795,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09294638880423826,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4816528099018566,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7561164289900372,\\\\n    \\\\\\\"ece\\\\\\\": 0.46962506639254176,\\\\n    \\\\\\\"effective_rank\\\\\\\": 12.864870335105259,\\\\n    \\\\\\\"perplexity\\\\\\\": 2311.5724127176554,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03358168452782756,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.6344993267970863,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011897255957114168,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0920703125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4732302596114032,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7421287832622385,\\\\n    \\\\\\\"ece\\\\\\\": 0.4952923262077743,\\\\n    \\\\\\\"effective_rank\\\\\\\": 14.844269974492313,\\\\n    \\\\\\\"perplexity\\\\\\\": 4652.9200791209605,\\\\n    \\\\\\\"mauve\\\\\\\": 0.033725012824749934,\\\\n    \\\\\\\"generation\\\\\\\": 4\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.5806490206806093,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011870837005988883,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.091828125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4717146227704904,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.739480304379756,\\\\n    \\\\\\\"ece\\\\\\\": 0.5059420437685302,\\\\n    \\\\\\\"effective_rank\\\\\\\": 16.848156352646928,\\\\n    \\\\\\\"perplexity\\\\\\\": 6985.939467771172,\\\\n    \\\\\\\"mauve\\\\\\\": 0.033916342497155735,\\\\n    \\\\\\\"generation\\\\\\\": 5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.5434417904535445,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011851189983282261,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0917890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4716521222822053,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7393474898045282,\\\\n    \\\\\\\"ece\\\\\\\": 0.5123819737206337,\\\\n    \\\\\\\"effective_rank\\\\\\\": 18.871939268845342,\\\\n    \\\\\\\"perplexity\\\\\\\": 9676.02224223039,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0340057220287227,\\\\n    \\\\\\\"generation\\\\\\\": 6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.520361066914683,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011851189983282261,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0917890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.471659934843241,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.739378740292817,\\\\n    \\\\\\\"ece\\\\\\\": 0.5145584933030305,\\\\n    \\\\\\\"effective_rank\\\\\\\": 20.61412431180014,\\\\n    \\\\\\\"perplexity\\\\\\\": 11429.448853692887,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03434528274173847,\\\\n    \\\\\\\"generation\\\\\\\": 7\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.5052271537412971,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011851189983282261,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0917890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.471659934843241,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7393943655369615,\\\\n    \\\\\\\"ece\\\\\\\": 0.5161110820646524,\\\\n    \\\\\\\"effective_rank\\\\\\\": 22.497410378102487,\\\\n    \\\\\\\"perplexity\\\\\\\": 12790.061369410529,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03537793109765091,\\\\n    \\\\\\\"generation\\\\\\\": 8\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.49395924597480406,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011851189983282261,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0917890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.47168337252634784,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7394256160252504,\\\\n    \\\\\\\"ece\\\\\\\": 0.5173700948206741,\\\\n    \\\\\\\"effective_rank\\\\\\\": 23.50607812305624,\\\\n    \\\\\\\"perplexity\\\\\\\": 14250.40877324568,\\\\n    \\\\\\\"mauve\\\\\\\": 0.034944415646920246,\\\\n    \\\\\\\"generation\\\\\\\": 9\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 0.47939285222225714,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011851189983282261,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0917890625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.47168337252634784,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7394256160252504,\\\\n    \\\\\\\"ece\\\\\\\": 0.5216203934558574,\\\\n    \\\\\\\"effective_rank\\\\\\\": 25.00183414780994,\\\\n    \\\\\\\"perplexity\\\\\\\": 16520.549051989605,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03392477031469131,\\\\n    \\\\\\\"generation\\\\\\\": 10\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.5714236302655937,\\n    \\\"self_bleu\\\": 0.009416174177092937,\\n    \\\"distinct_1\\\": 0.10438217196075171,\\n    \\\"distinct_2\\\": 0.5483082347267149,\\n    \\\"distinct_3\\\": 0.844118478604334,\\n    \\\"ece\\\": 0.011165005425486723,\\n    \\\"effective_rank\\\": 2.3722373141584847,\\n    \\\"perplexity\\\": 32.63152881690869,\\n    \\\"mauve\\\": 0.031453640812650854,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 1.6619039705526137,\\n    \\\"self_bleu\\\": 0.009189199530506422,\\n    \\\"distinct_1\\\": 0.1041694653412144,\\n    \\\"distinct_2\\\": 0.5488274854537669,\\n    \\\"distinct_3\\\": 0.8451327433628318,\\n    \\\"ece\\\": 0.22732727795367996,\\n    \\\"effective_rank\\\": 2.682961572877425,\\n    \\\"perplexity\\\": 99.13115657163468,\\n    \\\"mauve\\\": 0.031515119768772866,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.9516518203810497,\\n    \\\"self_bleu\\\": 0.01182562523555886,\\n    \\\"distinct_1\\\": 0.0959220232647282,\\n    \\\"distinct_2\\\": 0.5053585956567995,\\n    \\\"distinct_3\\\": 0.7873442279259335,\\n    \\\"ece\\\": 0.4090446151887576,\\n    \\\"effective_rank\\\": 8.489930452986181,\\n    \\\"perplexity\\\": 751.2703192970538,\\n    \\\"mauve\\\": 0.0326872051438139,\\n    \\\"generation\\\": 2\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.7294514831428662,\\n    \\\"self_bleu\\\": 0.011973124159031795,\\n    \\\"distinct_1\\\": 0.09294638880423826,\\n    \\\"distinct_2\\\": 0.4816528099018566,\\n    \\\"distinct_3\\\": 0.7561164289900372,\\n    \\\"ece\\\": 0.46962506639254176,\\n    \\\"effective_rank\\\": 12.864870335105259,\\n    \\\"perplexity\\\": 2311.5724127176554,\\n    \\\"mauve\\\": 0.03358168452782756,\\n    \\\"generation\\\": 3\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.6344993267970863,\\n    \\\"self_bleu\\\": 0.011897255957114168,\\n    \\\"distinct_1\\\": 0.0920703125,\\n    \\\"distinct_2\\\": 0.4732302596114032,\\n    \\\"distinct_3\\\": 0.7421287832622385,\\n    \\\"ece\\\": 0.4952923262077743,\\n    \\\"effective_rank\\\": 14.844269974492313,\\n    \\\"perplexity\\\": 4652.9200791209605,\\n    \\\"mauve\\\": 0.033725012824749934,\\n    \\\"generation\\\": 4\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5806490206806093,\\n    \\\"self_bleu\\\": 0.011870837005988883,\\n    \\\"distinct_1\\\": 0.091828125,\\n    \\\"distinct_2\\\": 0.4717146227704904,\\n    \\\"distinct_3\\\": 0.739480304379756,\\n    \\\"ece\\\": 0.5059420437685302,\\n    \\\"effective_rank\\\": 16.848156352646928,\\n    \\\"perplexity\\\": 6985.939467771172,\\n    \\\"mauve\\\": 0.033916342497155735,\\n    \\\"generation\\\": 5\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5434417904535445,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.4716521222822053,\\n    \\\"distinct_3\\\": 0.7393474898045282,\\n    \\\"ece\\\": 0.5123819737206337,\\n    \\\"effective_rank\\\": 18.871939268845342,\\n    \\\"perplexity\\\": 9676.02224223039,\\n    \\\"mauve\\\": 0.0340057220287227,\\n    \\\"generation\\\": 6\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.520361066914683,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.471659934843241,\\n    \\\"distinct_3\\\": 0.739378740292817,\\n    \\\"ece\\\": 0.5145584933030305,\\n    \\\"effective_rank\\\": 20.61412431180014,\\n    \\\"perplexity\\\": 11429.448853692887,\\n    \\\"mauve\\\": 0.03434528274173847,\\n    \\\"generation\\\": 7\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.5052271537412971,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.471659934843241,\\n    \\\"distinct_3\\\": 0.7393943655369615,\\n    \\\"ece\\\": 0.5161110820646524,\\n    \\\"effective_rank\\\": 22.497410378102487,\\n    \\\"perplexity\\\": 12790.061369410529,\\n    \\\"mauve\\\": 0.03537793109765091,\\n    \\\"generation\\\": 8\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.49395924597480406,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.47168337252634784,\\n    \\\"distinct_3\\\": 0.7394256160252504,\\n    \\\"ece\\\": 0.5173700948206741,\\n    \\\"effective_rank\\\": 23.50607812305624,\\n    \\\"perplexity\\\": 14250.40877324568,\\n    \\\"mauve\\\": 0.034944415646920246,\\n    \\\"generation\\\": 9\\n  },\\n  {\\n    \\\"token_entropy\\\": 0.47939285222225714,\\n    \\\"self_bleu\\\": 0.011851189983282261,\\n    \\\"distinct_1\\\": 0.0917890625,\\n    \\\"distinct_2\\\": 0.47168337252634784,\\n    \\\"distinct_3\\\": 0.7394256160252504,\\n    \\\"ece\\\": 0.5216203934558574,\\n    \\\"effective_rank\\\": 25.00183414780994,\\n    \\\"perplexity\\\": 16520.549051989605,\\n    \\\"mauve\\\": 0.03392477031469131,\\n    \\\"generation\\\": 10\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016NvsZvicvmAUfaYM2zRBnj`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -maxdepth 2 -name \"*8pair*\" -o -name \"*table7*\" -o -name \"*unified*\" -o -name \"*full_8pair*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "6cfe0b68-833b-4377-8c76-eb59ac7fd312",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbDGj7xWT4mTXXnNwrHA2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 29010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T11:31:50.255Z_
+
+<details><summary>↩ Tool result · `toolu_016NvsZvicvmAUfaYM2zRBnj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "b7ffdd3e-58ee-4dd3-9e52-7570e193562c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/pythia14b_8pair_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_unified_generalize.py\\n/root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\\n/root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012cTrrqdFmT48RW2fVW5uJp`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/EXIT_CODE",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "9c356456-bcf1-4074-b9d0-e3f855b6fc95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbDGj7xWT4mTXXnNwrHA2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1209,
+      "cache_read_input_tokens": 29010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T11:31:51.055Z_
+
+<details><summary>↩ Tool result · `toolu_012cTrrqdFmT48RW2fVW5uJp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "4a79e77e-8280-418d-b853-f408d4b61d41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+数据完整，EXIT_CODE=0。找到多个分析脚本，查看最相关的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "2d33b27d-5273-4561-ab46-610529a7d9a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118zGxCxZHwxU6G56MFYLrf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3248,
+      "cache_read_input_tokens": 30219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3248
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T9DMnJCe78FBbEPaVfCn6T`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/extract_table7_8pair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "563381cb-d186-47e6-b1af-bfad05fac4f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118zGxCxZHwxU6G56MFYLrf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3248,
+      "cache_read_input_tokens": 30219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3248
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T11:31:55.315Z_
+
+<details><summary>↩ Tool result · `toolu_01T9DMnJCe78FBbEPaVfCn6T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Extract 8-pair subset from n_perm=5000 data for Table 7 comparison.\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE)\\n\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\nfrom permutation_granger import permutation_granger_test\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\nSHORT = {\\\"token_entropy\\\": \\\"ent\\\", \\\"ece\\\": \\\"ece\\\", \\\"perplexity\\\": \\\"ppl\\\",\\n         \\\"distinct_1\\\": \\\"d1\\\", \\\"distinct_2\\\": \\\"d2\\\", \\\"distinct_3\\\": \\\"d3\\\"}\\n\\nCONDITIONS = [\\n    (\\\"pythia410m_wiki_a100_s42\\\", \\\"Baseline 410M\\\"),\\n    (\\\"opt1b_wiki_a100_s42\\\", \\\"OPT-1.3B\\\"),\\n    (\\\"pythia14b_wiki_a100_s42\\\", \\\"Scale 1.4B s42\\\"),\\n    (\\\"pythia1b_c4_a100_s42\\\", \\\"C4 s42\\\"),\\n    (\\\"pythia1b_c4_a100_s43\\\", \\\"C4 s43\\\"),\\n    (\\\"pythia14b_wiki_a100_s43\\\", \\\"Scale 1.4B s43\\\"),\\n]\\n\\nOLD_TABLE7 = {\\n    \\\"Baseline 410M\\\": {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 3, \\\"TY\\\": 4, \\\"K>=4\\\": 6},\\n    \\\"OPT-1.3B\\\":      {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 2, \\\"TY\\\": 6, \\\"K>=4\\\": 6},\\n    \\\"Scale 1.4B s42\\\": {\\\"Naive\\\": 7, \\\"Diff\\\": 6, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 5, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 5},\\n    \\\"C4 s42\\\":         {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 6, \\\"PG_fwd\\\": 8, \\\"PG_rev\\\": 4, \\\"TY\\\": 4, \\\"K>=4\\\": 7},\\n    \\\"C4 s43\\\":         {\\\"Naive\\\": None, \\\"Diff\\\": None, \\\"Thresh\\\": None, \\\"PG_fwd\\\": None, \\\"PG_rev\\\": None, \\\"TY\\\": None, \\\"K>=4\\\": None},\\n    \\\"Scale 1.4B s43\\\": {\\\"Naive\\\": 8, \\\"Diff\\\": 6, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 2, \\\"TY\\\": 4, \\\"K>=4\\\": 6},\\n}\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nany_flip = False\\n\\nfor exp_name, label in CONDITIONS:\\n    exp_dir = os.path.join(BASE, \\\"results\\\", \\\"generalize\\\", exp_name)\\n    all_path = os.path.join(exp_dir, \\\"all_metrics.json\\\")\\n    \\n    with open(all_path) as f:\\n        metrics_list = json.load(f)\\n    metrics_list = sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])\\n    \\n    print(f\\\"\\\\n## 条件: {label} ({exp_name})\\\")\\n    print(f\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\")\\n    print(f\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\")\\n    \\n    counts = {\\\"Naive\\\": 0, \\\"Diff\\\": 0, \\\"Thresh\\\": 0, \\\"PG_fwd\\\": 0, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 0}\\n    pair_details = []\\n    \\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            c = extract(metrics_list, cn)\\n            d = extract(metrics_list, dn)\\n            pair_label = f\\\"{SHORT[cn]}→{SHORT[dn]}\\\"\\n            \\n            # Method 1: Naive Pearson\\n            res_naive = naive_pearson(c, d, cn, dn, max_lag=5)\\n            naive_p = res_naive.get(\\\"p_value\\\", 1.0)\\n            naive_sig = naive_p < ALPHA if naive_p is not None else False\\n            \\n            # Method 2: Differenced xcorr\\n            res_diff = diff_xcorr(c, d, cn, dn)\\n            diff_p = res_diff.get(\\\"p_value\\\", 1.0)\\n            diff_sig = diff_p < ALPHA if diff_p is not None else False\\n            \\n            # Method 3: Threshold onset\\n            res_thresh = threshold_lead(c, d, cn, dn)\\n            thresh_sig = res_thresh.get(\\\"significant\\\", False)\\n            thresh_lead = res_thresh.get(\\\"lead_time\\\")\\n            \\n            # Method 4: Toda-Yamamoto\\n            res_ty = toda_yamamoto(c, d, cn, dn)\\n            ty_p = res_ty.get(\\\"p_value\\\", 1.0)\\n            ty_sig = ty_p < ALPHA if ty_p is not None else False\\n            \\n            # Method 5: Permutation Granger (forward: canary -> downstream)\\n            co = orient(c, cn)\\n            do_ = orient(d, dn)\\n            res_pg_fwd = permutation_granger_test(co, do_, max_lag=1, n_perm=N_PERM, seed=42)\\n            pg_fwd_p = res_pg_fwd.get(\\\"p_value\\\", 1.0)\\n            pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\n            \\n            # Method 6: Permutation Granger (reverse: downstream -> canary)\\n            res_pg_rev = permutation_granger_test(do_, co, max_lag=1, n_perm=N_PERM, seed=42)\\n            pg_rev_p = res_pg_rev.get(\\\"p_value\\\", 1.0)\\n            pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\n            \\n            # Count K (forward methods only: naive, diff, thresh, PG_fwd, TY)\\n            k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\n            \\n            if naive_sig: counts[\\\"Naive\\\"] += 1\\n            if diff_sig: counts[\\\"Diff\\\"] += 1\\n            if thresh_sig: counts[\\\"Thresh\\\"] += 1\\n            if pg_fwd_sig: counts[\\\"PG_fwd\\\"] += 1\\n            if pg_rev_sig: counts[\\\"PG_rev\\\"] += 1\\n            if ty_sig: counts[\\\"TY\\\"] += 1\\n            if k_fwd >= 4: counts[\\\"K>=4\\\"] += 1\\n            \\n            naive_s = f\\\"{naive_p:.4f}\\\" if naive_p is not None else \\\"N/A\\\"\\n            diff_s = f\\\"{diff_p:.4f}\\\" if diff_p is not None else \\\"N/A\\\"\\n            thresh_s = f\\\"L={thresh_lead}\\\" if thresh_sig else \\\"✗\\\"\\n            ty_s = f\\\"{ty_p:.4f}\\\" if ty_p is not None else \\\"N/A\\\"\\n            pg_fwd_s = f\\\"{pg_fwd_p:.4f}\\\" if pg_fwd_p is not None else \\\"N/A\\\"\\n            pg_rev_s = f\\\"{pg_rev_p:.4f}\\\" if pg_rev_p is not None else \\\"N/A\\\"\\n            \\n            n_mark = \\\"✓\\\" if naive_sig else \\\"✗\\\"\\n            d_mark = \\\"✓\\\" if diff_sig else \\\"✗\\\"\\n            t_mark = \\\"✓\\\" if ty_sig else \\\"✗\\\"\\n            pf_mark = \\\"✓\\\" if pg_fwd_sig else \\\"✗\\\"\\n            pr_mark = \\\"✓\\\" if pg_rev_sig else \\\"✗\\\"\\n            \\n            print(f\\\"| {pair_label} | {naive_s} {n_mark} | {diff_s} {d_mark} | {thresh_s} | {ty_s} {t_mark} | {pg_fwd_s} {pf_mark} | {pg_rev_s} {pr_mark} | {k_fwd}/5 |\\\")\\n    \\n    # Summary line\\n    summary_new = f\\\"Naive={counts['Naive']}/8, Diff={counts['Diff']}/8, Thresh={counts['Thresh']}/8, PG_fwd={counts['PG_fwd']}/8, PG_rev={counts['PG_rev']}/8, TY={counts['TY']}/8, K>=4={counts['K>=4']}/8\\\"\\n    print(f\\\"\\\\nSummary: {summary_new}\\\")\\n    \\n    old = OLD_TABLE7[label]\\n    if old[\\\"Naive\\\"] is not None:\\n        old_str = f\\\"Naive={old['Naive']}/8, Diff={old['Diff']}/8, Thresh={old['Thresh']}/8, PG_fwd={old['PG_fwd']}/8, PG_rev={old['PG_rev']}/8, TY={old['TY']}/8, K>=4={old['K>=4']}/8\\\"\\n        print(f\\\"旧值:    {old_str}\\\")\\n        \\n        # Check for flips\\n        flips = []\\n        methods_to_check = [\\\"Naive\\\", \\\"Diff\\\", \\\"Thresh\\\", \\\"PG_fwd\\\", \\\"PG_rev\\\", \\\"TY\\\", \\\"K>=4\\\"]\\n        for m in methods_to_check:\\n            if old[m] != counts[m]:\\n                flips.append(f\\\"{m}: {old[m]}/8→{counts[m]}/8\\\")\\n        \\n        if flips:\\n            print(f\\\"Flip:    {', '.join(flips)}\\\")\\n            # Check for PG_fwd specifically\\n            for m in [\\\"PG_fwd\\\"]:\\n                if old[m] != counts[m]:\\n                    any_flip = True\\n        else:\\n            print(f\\\"Flip:    无\\\")\\n    else:\\n        print(f\\\"旧值:    TBD (新条件)\\\")\\n        print(f\\\"Flip:    N/A\\\")\\n\\nif any_flip:\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*60)\\n    print(\\\"⚠️ FLIP DETECTED: PG_fwd significance count changed vs old Table 7\\\")\\n    print(\\\"=\\\"*60)\\nelse:\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*60)\\n    print(\\\"✓ No PG_fwd significance flips detected\\\")\\n    print(\\\"=\\\"*60)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "c86196c1-9038-474d-ab5d-e9d9cc877dad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Extract 8-pair subset from n_perm=5000 data for Table 7 comparison.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\nimport numpy as np\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\nsys.path.insert(0, BASE)\\\\n\\\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\nSHORT = {\\\\\\\"token_entropy\\\\\\\": \\\\\\\"ent\\\\\\\", \\\\\\\"ece\\\\\\\": \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\": \\\\\\\"ppl\\\\\\\",\\\\n         \\\\\\\"distinct_1\\\\\\\": \\\\\\\"d1\\\\\\\", \\\\\\\"distinct_2\\\\\\\": \\\\\\\"d2\\\\\\\", \\\\\\\"distinct_3\\\\\\\": \\\\\\\"d3\\\\\\\"}\\\\n\\\\nCONDITIONS = [\\\\n    (\\\\\\\"pythia410m_wiki_a100_s42\\\\\\\", \\\\\\\"Baseline 410M\\\\\\\"),\\\\n    (\\\\\\\"opt1b_wiki_a100_s42\\\\\\\", \\\\\\\"OPT-1.3B\\\\\\\"),\\\\n    (\\\\\\\"pythia14b_wiki_a100_s42\\\\\\\", \\\\\\\"Scale 1.4B s42\\\\\\\"),\\\\n    (\\\\\\\"pythia1b_c4_a100_s42\\\\\\\", \\\\\\\"C4 s42\\\\\\\"),\\\\n    (\\\\\\\"pythia1b_c4_a100_s43\\\\\\\", \\\\\\\"C4 s43\\\\\\\"),\\\\n    (\\\\\\\"pythia14b_wiki_a100_s43\\\\\\\", \\\\\\\"Scale 1.4B s43\\\\\\\"),\\\\n]\\\\n\\\\nOLD_TABLE7 = {\\\\n    \\\\\\\"Baseline 410M\\\\\\\": {\\\\\\\"Naive\\\\\\\": 8, \\\\\\\"Diff\\\\\\\": 8, \\\\\\\"Thresh\\\\\\\": 8, \\\\\\\"PG_fwd\\\\\\\": 6, \\\\\\\"PG_rev\\\\\\\": 3, \\\\\\\"TY\\\\\\\": 4, \\\\\\\"K>=4\\\\\\\": 6},\\\\n    \\\\\\\"OPT-1.3B\\\\\\\":      {\\\\\\\"Naive\\\\\\\": 8, \\\\\\\"Diff\\\\\\\": 8, \\\\\\\"Thresh\\\\\\\": 8, \\\\\\\"PG_fwd\\\\\\\": 6, \\\\\\\"PG_rev\\\\\\\": 2, \\\\\\\"TY\\\\\\\": 6, \\\\\\\"K>=4\\\\\\\": 6},\\\\n    \\\\\\\"Scale 1.4B s42\\\\\\\": {\\\\\\\"Naive\\\\\\\": 7, \\\\\\\"Diff\\\\\\\": 6, \\\\\\\"Thresh\\\\\\\": 8, \\\\\\\"PG_fwd\\\\\\\": 5, \\\\\\\"PG_rev\\\\\\\": 0, \\\\\\\"TY\\\\\\\": 0, \\\\\\\"K>=4\\\\\\\": 5},\\\\n    \\\\\\\"C4 s42\\\\\\\":         {\\\\\\\"Naive\\\\\\\": 8, \\\\\\\"Diff\\\\\\\": 8, \\\\\\\"Thresh\\\\\\\": 6, \\\\\\\"PG_fwd\\\\\\\": 8, \\\\\\\"PG_rev\\\\\\\": 4, \\\\\\\"TY\\\\\\\": 4, \\\\\\\"K>=4\\\\\\\": 7},\\\\n    \\\\\\\"C4 s43\\\\\\\":         {\\\\\\\"Naive\\\\\\\": None, \\\\\\\"Diff\\\\\\\": None, \\\\\\\"Thresh\\\\\\\": None, \\\\\\\"PG_fwd\\\\\\\": None, \\\\\\\"PG_rev\\\\\\\": None, \\\\\\\"TY\\\\\\\": None, \\\\\\\"K>=4\\\\\\\": None},\\\\n    \\\\\\\"Scale 1.4B s43\\\\\\\": {\\\\\\\"Naive\\\\\\\": 8, \\\\\\\"Diff\\\\\\\": 6, \\\\\\\"Thresh\\\\\\\": 8, \\\\\\\"PG_fwd\\\\\\\": 6, \\\\\\\"PG_rev\\\\\\\": 2, \\\\\\\"TY\\\\\\\": 4, \\\\\\\"K>=4\\\\\\\": 6},\\\\n}\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nany_flip = False\\\\n\\\\nfor exp_name, label in CONDITIONS:\\\\n    exp_dir = os.path.join(BASE, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\", exp_name)\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    \\\\n    with open(all_path) as f:\\\\n        metrics_list = json.load(f)\\\\n    metrics_list = sorted(metrics_list, key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    \\\\n    print(f\\\\\\\"\\\\\\\\n## 条件: {label} ({exp_name})\\\\\\\")\\\\n    print(f\\\\\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\\\\\")\\\\n    print(f\\\\\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\\\\\")\\\\n    \\\\n    counts = {\\\\\\\"Naive\\\\\\\": 0, \\\\\\\"Diff\\\\\\\": 0, \\\\\\\"Thresh\\\\\\\": 0, \\\\\\\"PG_fwd\\\\\\\": 0, \\\\\\\"PG_rev\\\\\\\": 0, \\\\\\\"TY\\\\\\\": 0, \\\\\\\"K>=4\\\\\\\": 0}\\\\n    pair_details = []\\\\n    \\\\n    for cn in CANARIES:\\\\n        for dn in DOWNSTREAMS:\\\\n            c = extract(metrics_list, cn)\\\\n            d = extract(metrics_list, dn)\\\\n            pair_label = f\\\\\\\"{SHORT[cn]}→{SHORT[dn]}\\\\\\\"\\\\n            \\\\n            # Method 1: Naive Pearson\\\\n            res_naive = naive_pearson(c, d, cn, dn, max_lag=5)\\\\n            naive_p = res_naive.get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n            naive_sig = naive_p < ALPHA if naive_p is not None else False\\\\n            \\\\n            # Method 2: Differenced xcorr\\\\n            res_diff = diff_xcorr(c, d, cn, dn)\\\\n            diff_p = res_diff.get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n            diff_sig = diff_p < ALPHA if diff_p is not None else False\\\\n            \\\\n            # Method 3: Threshold onset\\\\n            res_thresh = threshold_lead(c, d, cn, dn)\\\\n            thresh_sig = res_thresh.get(\\\\\\\"significant\\\\\\\", False)\\\\n            thresh_lead = res_thresh.get(\\\\\\\"lead_time\\\\\\\")\\\\n            \\\\n            # Method 4: Toda-Yamamoto\\\\n            res_ty = toda_yamamoto(c, d, cn, dn)\\\\n            ty_p = res_ty.get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n            ty_sig = ty_p < ALPHA if ty_p is not None else False\\\\n            \\\\n            # Method 5: Permutation Granger (forward: canary -> downstream)\\\\n            co = orient(c, cn)\\\\n            do_ = orient(d, dn)\\\\n            res_pg_fwd = permutation_granger_test(co, do_, max_lag=1, n_perm=N_PERM, seed=42)\\\\n            pg_fwd_p = res_pg_fwd.get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n            pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\\\n            \\\\n            # Method 6: Permutation Granger (reverse: downstream -> canary)\\\\n            res_pg_rev = permutation_granger_test(do_, co, max_lag=1, n_perm=N_PERM, seed=42)\\\\n            pg_rev_p = res_pg_rev.get(\\\\\\\"p_value\\\\\\\", 1.0)\\\\n            pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\\\n            \\\\n            # Count K (forward methods only: naive, diff, thresh, PG_fwd, TY)\\\\n            k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\\\n            \\\\n            if naive_sig: counts[\\\\\\\"Naive\\\\\\\"] += 1\\\\n            if diff_sig: counts[\\\\\\\"Diff\\\\\\\"] += 1\\\\n            if thresh_sig: counts[\\\\\\\"Thresh\\\\\\\"] += 1\\\\n            if pg_fwd_sig: counts[\\\\\\\"PG_fwd\\\\\\\"] += 1\\\\n            if pg_rev_sig: counts[\\\\\\\"PG_rev\\\\\\\"] += 1\\\\n            if ty_sig: counts[\\\\\\\"TY\\\\\\\"] += 1\\\\n            if k_fwd >= 4: counts[\\\\\\\"K>=4\\\\\\\"] += 1\\\\n            \\\\n            naive_s = f\\\\\\\"{naive_p:.4f}\\\\\\\" if naive_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n            diff_s = f\\\\\\\"{diff_p:.4f}\\\\\\\" if diff_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n            thresh_s = f\\\\\\\"L={thresh_lead}\\\\\\\" if thresh_sig else \\\\\\\"✗\\\\\\\"\\\\n            ty_s = f\\\\\\\"{ty_p:.4f}\\\\\\\" if ty_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n            pg_fwd_s = f\\\\\\\"{pg_fwd_p:.4f}\\\\\\\" if pg_fwd_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n            pg_rev_s = f\\\\\\\"{pg_rev_p:.4f}\\\\\\\" if pg_rev_p is not None else \\\\\\\"N/A\\\\\\\"\\\\n            \\\\n            n_mark = \\\\\\\"✓\\\\\\\" if naive_sig else \\\\\\\"✗\\\\\\\"\\\\n            d_mark = \\\\\\\"✓\\\\\\\" if diff_sig else \\\\\\\"✗\\\\\\\"\\\\n            t_mark = \\\\\\\"✓\\\\\\\" if ty_sig else \\\\\\\"✗\\\\\\\"\\\\n            pf_mark = \\\\\\\"✓\\\\\\\" if pg_fwd_sig else \\\\\\\"✗\\\\\\\"\\\\n            pr_mark = \\\\\\\"✓\\\\\\\" if pg_rev_sig else \\\\\\\"✗\\\\\\\"\\\\n            \\\\n            print(f\\\\\\\"| {pair_label} | {naive_s} {n_mark} | {diff_s} {d_mark} | {thresh_s} | {ty_s} {t_mark} | {pg_fwd_s} {pf_mark} | {pg_rev_s} {pr_mark} | {k_fwd}/5 |\\\\\\\")\\\\n    \\\\n    # Summary line\\\\n    summary_new = f\\\\\\\"Naive={counts['Naive']}/8, Diff={counts['Diff']}/8, Thresh={counts['Thresh']}/8, PG_fwd={counts['PG_fwd']}/8, PG_rev={counts['PG_rev']}/8, TY={counts['TY']}/8, K>=4={counts['K>=4']}/8\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\nSummary: {summary_new}\\\\\\\")\\\\n    \\\\n    old = OLD_TABLE7[label]\\\\n    if old[\\\\\\\"Naive\\\\\\\"] is not None:\\\\n        old_str = f\\\\\\\"Naive={old['Naive']}/8, Diff={old['Diff']}/8, Thresh={old['Thresh']}/8, PG_fwd={old['PG_fwd']}/8, PG_rev={old['PG_rev']}/8, TY={old['TY']}/8, K>=4={old['K>=4']}/8\\\\\\\"\\\\n        print(f\\\\\\\"旧值:    {old_str}\\\\\\\")\\\\n        \\\\n        # Check for flips\\\\n        flips = []\\\\n        methods_to_check = [\\\\\\\"Naive\\\\\\\", \\\\\\\"Diff\\\\\\\", \\\\\\\"Thresh\\\\\\\", \\\\\\\"PG_fwd\\\\\\\", \\\\\\\"PG_rev\\\\\\\", \\\\\\\"TY\\\\\\\", \\\\\\\"K>=4\\\\\\\"]\\\\n        for m in methods_to_check:\\\\n            if old[m] != counts[m]:\\\\n                flips.append(f\\\\\\\"{m}: {old[m]}/8→{counts[m]}/8\\\\\\\")\\\\n        \\\\n        if flips:\\\\n            print(f\\\\\\\"Flip:    {', '.join(flips)}\\\\\\\")\\\\n            # Check for PG_fwd specifically\\\\n            for m in [\\\\\\\"PG_fwd\\\\\\\"]:\\\\n                if old[m] != counts[m]:\\\\n                    any_flip = True\\\\n        else:\\\\n            print(f\\\\\\\"Flip:    无\\\\\\\")\\\\n    else:\\\\n        print(f\\\\\\\"旧值:    TBD (新条件)\\\\\\\")\\\\n        print(f\\\\\\\"Flip:    N/A\\\\\\\")\\\\n\\\\nif any_flip:\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\n    print(\\\\\\\"⚠️ FLIP DETECTED: PG_fwd significance count changed vs old Table 7\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*60)\\\\nelse:\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\n    print(\\\\\\\"✓ No PG_fwd significance flips detected\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*60)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Extract 8-pair subset from n_perm=5000 data for Table 7 comparison.\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE)\\n\\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\\nfrom permutation_granger import permutation_granger_test\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\nSHORT = {\\\"token_entropy\\\": \\\"ent\\\", \\\"ece\\\": \\\"ece\\\", \\\"perplexity\\\": \\\"ppl\\\",\\n         \\\"distinct_1\\\": \\\"d1\\\", \\\"distinct_2\\\": \\\"d2\\\", \\\"distinct_3\\\": \\\"d3\\\"}\\n\\nCONDITIONS = [\\n    (\\\"pythia410m_wiki_a100_s42\\\", \\\"Baseline 410M\\\"),\\n    (\\\"opt1b_wiki_a100_s42\\\", \\\"OPT-1.3B\\\"),\\n    (\\\"pythia14b_wiki_a100_s42\\\", \\\"Scale 1.4B s42\\\"),\\n    (\\\"pythia1b_c4_a100_s42\\\", \\\"C4 s42\\\"),\\n    (\\\"pythia1b_c4_a100_s43\\\", \\\"C4 s43\\\"),\\n    (\\\"pythia14b_wiki_a100_s43\\\", \\\"Scale 1.4B s43\\\"),\\n]\\n\\nOLD_TABLE7 = {\\n    \\\"Baseline 410M\\\": {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 3, \\\"TY\\\": 4, \\\"K>=4\\\": 6},\\n    \\\"OPT-1.3B\\\":      {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 2, \\\"TY\\\": 6, \\\"K>=4\\\": 6},\\n    \\\"Scale 1.4B s42\\\": {\\\"Naive\\\": 7, \\\"Diff\\\": 6, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 5, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 5},\\n    \\\"C4 s42\\\":         {\\\"Naive\\\": 8, \\\"Diff\\\": 8, \\\"Thresh\\\": 6, \\\"PG_fwd\\\": 8, \\\"PG_rev\\\": 4, \\\"TY\\\": 4, \\\"K>=4\\\": 7},\\n    \\\"C4 s43\\\":         {\\\"Naive\\\": None, \\\"Diff\\\": None, \\\"Thresh\\\": None, \\\"PG_fwd\\\": None, \\\"PG_rev\\\": None, \\\"TY\\\": None, \\\"K>=4\\\": None},\\n    \\\"Scale 1.4B s43\\\": {\\\"Naive\\\": 8, \\\"Diff\\\": 6, \\\"Thresh\\\": 8, \\\"PG_fwd\\\": 6, \\\"PG_rev\\\": 2, \\\"TY\\\": 4, \\\"K>=4\\\": 6},\\n}\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nany_flip = False\\n\\nfor exp_name, label in CONDITIONS:\\n    exp_dir = os.path.join(BASE, \\\"results\\\", \\\"generalize\\\", exp_name)\\n    all_path = os.path.join(exp_dir, \\\"all_metrics.json\\\")\\n    \\n    with open(all_path) as f:\\n        metrics_list = json.load(f)\\n    metrics_list = sorted(metrics_list, key=lambda x: x[\\\"generation\\\"])\\n    \\n    print(f\\\"\\\\n## 条件: {label} ({exp_name})\\\")\\n    print(f\\\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\")\\n    print(f\\\"|------|---------|--------|--------|------|----------|----------|--------|\\\")\\n    \\n    counts = {\\\"Naive\\\": 0, \\\"Diff\\\": 0, \\\"Thresh\\\": 0, \\\"PG_fwd\\\": 0, \\\"PG_rev\\\": 0, \\\"TY\\\": 0, \\\"K>=4\\\": 0}\\n    pair_details = []\\n    \\n    for cn in CANARIES:\\n        for dn in DOWNSTREAMS:\\n            c = extract(metrics_list, cn)\\n            d = extract(metrics_list, dn)\\n            pair_label = f\\\"{SHORT[cn]}→{SHORT[dn]}\\\"\\n            \\n            # Method 1: Naive Pearson\\n            res_naive = naive_pearson(c, d, cn, dn, max_lag=5)\\n            naive_p = res_naive.get(\\\"p_value\\\", 1.0)\\n            naive_sig = naive_p < ALPHA if naive_p is not None else False\\n            \\n            # Method 2: Differenced xcorr\\n            res_diff = diff_xcorr(c, d, cn, dn)\\n            diff_p = res_diff.get(\\\"p_value\\\", 1.0)\\n            diff_sig = diff_p < ALPHA if diff_p is not None else False\\n            \\n            # Method 3: Threshold onset\\n            res_thresh = threshold_lead(c, d, cn, dn)\\n            thresh_sig = res_thresh.get(\\\"significant\\\", False)\\n            thresh_lead = res_thresh.get(\\\"lead_time\\\")\\n            \\n            # Method 4: Toda-Yamamoto\\n            res_ty = toda_yamamoto(c, d, cn, dn)\\n            ty_p = res_ty.get(\\\"p_value\\\", 1.0)\\n            ty_sig = ty_p < ALPHA if ty_p is not None else False\\n            \\n            # Method 5: Permutation Granger (forward: canary -> downstream)\\n            co = orient(c, cn)\\n            do_ = orient(d, dn)\\n            res_pg_fwd = permutation_granger_test(co, do_, max_lag=1, n_perm=N_PERM, seed=42)\\n            pg_fwd_p = res_pg_fwd.get(\\\"p_value\\\", 1.0)\\n            pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\\n            \\n            # Method 6: Permutation Granger (reverse: downstream -> canary)\\n            res_pg_rev = permutation_granger_test(do_, co, max_lag=1, n_perm=N_PERM, seed=42)\\n            pg_rev_p = res_pg_rev.get(\\\"p_value\\\", 1.0)\\n            pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\\n            \\n            # Count K (forward methods only: naive, diff, thresh, PG_fwd, TY)\\n            k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\\n            \\n            if naive_sig: counts[\\\"Naive\\\"] += 1\\n            if diff_sig: counts[\\\"Diff\\\"] += 1\\n            if thresh_sig: counts[\\\"Thresh\\\"] += 1\\n            if pg_fwd_sig: counts[\\\"PG_fwd\\\"] += 1\\n            if pg_rev_sig: counts[\\\"PG_rev\\\"] += 1\\n            if ty_sig: counts[\\\"TY\\\"] += 1\\n            if k_fwd >= 4: counts[\\\"K>=4\\\"] += 1\\n            \\n            naive_s = f\\\"{naive_p:.4f}\\\" if naive_p is not None else \\\"N/A\\\"\\n            diff_s = f\\\"{diff_p:.4f}\\\" if diff_p is not None else \\\"N/A\\\"\\n            thresh_s = f\\\"L={thresh_lead}\\\" if thresh_sig else \\\"✗\\\"\\n            ty_s = f\\\"{ty_p:.4f}\\\" if ty_p is not None else \\\"N/A\\\"\\n            pg_fwd_s = f\\\"{pg_fwd_p:.4f}\\\" if pg_fwd_p is not None else \\\"N/A\\\"\\n            pg_rev_s = f\\\"{pg_rev_p:.4f}\\\" if pg_rev_p is not None else \\\"N/A\\\"\\n            \\n            n_mark = \\\"✓\\\" if naive_sig else \\\"✗\\\"\\n            d_mark = \\\"✓\\\" if diff_sig else \\\"✗\\\"\\n            t_mark = \\\"✓\\\" if ty_sig else \\\"✗\\\"\\n            pf_mark = \\\"✓\\\" if pg_fwd_sig else \\\"✗\\\"\\n            pr_mark = \\\"✓\\\" if pg_rev_sig else \\\"✗\\\"\\n            \\n            print(f\\\"| {pair_label} | {naive_s} {n_mark} | {diff_s} {d_mark} | {thresh_s} | {ty_s} {t_mark} | {pg_fwd_s} {pf_mark} | {pg_rev_s} {pr_mark} | {k_fwd}/5 |\\\")\\n    \\n    # Summary line\\n    summary_new = f\\\"Naive={counts['Naive']}/8, Diff={counts['Diff']}/8, Thresh={counts['Thresh']}/8, PG_fwd={counts['PG_fwd']}/8, PG_rev={counts['PG_rev']}/8, TY={counts['TY']}/8, K>=4={counts['K>=4']}/8\\\"\\n    print(f\\\"\\\\nSummary: {summary_new}\\\")\\n    \\n    old = OLD_TABLE7[label]\\n    if old[\\\"Naive\\\"] is not None:\\n        old_str = f\\\"Naive={old['Naive']}/8, Diff={old['Diff']}/8, Thresh={old['Thresh']}/8, PG_fwd={old['PG_fwd']}/8, PG_rev={old['PG_rev']}/8, TY={old['TY']}/8, K>=4={old['K>=4']}/8\\\"\\n        print(f\\\"旧值:    {old_str}\\\")\\n        \\n        # Check for flips\\n        flips = []\\n        methods_to_check = [\\\"Naive\\\", \\\"Diff\\\", \\\"Thresh\\\", \\\"PG_fwd\\\", \\\"PG_rev\\\", \\\"TY\\\", \\\"K>=4\\\"]\\n        for m in methods_to_check:\\n            if old[m] != counts[m]:\\n                flips.append(f\\\"{m}: {old[m]}/8→{counts[m]}/8\\\")\\n        \\n        if flips:\\n            print(f\\\"Flip:    {', '.join(flips)}\\\")\\n            # Check for PG_fwd specifically\\n            for m in [\\\"PG_fwd\\\"]:\\n                if old[m] != counts[m]:\\n                    any_flip = True\\n        else:\\n            print(f\\\"Flip:    无\\\")\\n    else:\\n        print(f\\\"旧值:    TBD (新条件)\\\")\\n        print(f\\\"Flip:    N/A\\\")\\n\\nif any_flip:\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*60)\\n    print(\\\"⚠️ FLIP DETECTED: PG_fwd significance count changed vs old Table 7\\\")\\n    print(\\\"=\\\"*60)\\nelse:\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*60)\\n    print(\\\"✓ No PG_fwd significance flips detected\\\")\\n    print(\\\"=\\\"*60)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lu4oi8FVpt6iNLLHy2fYnM`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "a4a2e4a0-160d-47d2-b2ba-ee07cc2c2097",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118zGxCxZHwxU6G56MFYLrf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3248,
+      "cache_read_input_tokens": 30219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3248
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T11:31:55.923Z_
+
+<details><summary>↩ Tool result · `toolu_01Lu4oi8FVpt6iNLLHy2fYnM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Complete 8-pair 6-method analysis for Pythia-1B C4 experiment.\\n\\n8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\\n6 methods: Naive XCorr, Diff XCorr, Threshold Onset, PermG forward, PermG reverse, TY Granger\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE_DIR)\\nfrom permutation_granger import permutation_granger_test\\n\\nDATA_PATH = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\",\\n                         \\\"pythia1b_c4_a100_s42\\\", \\\"all_metrics.json\\\")\\nOUT_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\",\\n                       \\\"pythia1b_c4_a100_s42\\\", \\\"analysis\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                  \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nMAX_LAG = 1\\nN_PERM = 1000\\nSEED = 42\\nFDR_Q = 0.05\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef extract(metrics_list, name):\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef _onset_gen(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 2 * sigma\\n    for i in range(1, len(s)):\\n        if s[i] > thresh:\\n            return i\\n    return None\\n\\n\\ndef _adf_order(series, max_d=2):\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    xo, yo = orient(c, cn), orient(d, dn)\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag > 0:\\n            xx, yy = xo[:-lag], yo[lag:]\\n        elif lag < 0:\\n            xx, yy = xo[-lag:], yo[:lag]\\n        else:\\n            xx, yy = xo, yo\\n        if len(xx) < 4:\\n            continue\\n        r, p = stats_pearsonr(xx, yy)\\n        if abs(r) > abs(best_r):\\n            best_r, best_lag, best_p = r, lag, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"r\\\": float(best_r), \\\"lag\\\": int(best_lag),\\n        \\\"p_value\\\": float(best_p),\\n        \\\"significant\\\": bool(best_p < 0.05 and best_lag > 0),\\n    }\\n\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    xo, yo = orient(c, cn), orient(d, dn)\\n    dx, dy = np.diff(xo), np.diff(yo)\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag > 0:\\n            xx, yy = dx[:-lag], dy[lag:]\\n        elif lag < 0:\\n            xx, yy = dx[-lag:], dy[:lag]\\n        else:\\n            xx, yy = dx, dy\\n        if len(xx) < 4:\\n            continue\\n        r, p = stats_pearsonr(xx, yy)\\n        if abs(r) > abs(best_r):\\n            best_r, best_lag, best_p = r, lag, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"r\\\": float(best_r), \\\"lag\\\": int(best_lag),\\n        \\\"p_value\\\": float(best_p),\\n        \\\"significant\\\": bool(best_p < 0.05),\\n    }\\n\\n\\ndef threshold_lead(c, d, cn, dn):\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n    \\n\\n... [截断: 输出过长，省略 7536 字符] ...\\n\\n       sig = r.get(\\\"sig_fdr\\\", r.get(\\\"significant\\\", False))\\n                else:\\n                    sig = r.get(\\\"significant\\\", False)\\n                if sig:\\n                    sig_pairs.append(pk)\\n        cnt = len(sig_pairs)\\n        pairs_str = \\\", \\\".join(sig_pairs) if sig_pairs else \\\"none\\\"\\n        label = method_short[mn]\\n        print(f\\\"{label:<28s} {cnt}/8     {pairs_str}\\\")\\n\\n    # Consensus\\n    for thresh in [3, 4, 5]:\\n        cnt = sum(1 for v in pair_votes.values() if v >= thresh)\\n        pairs = [pk for pk, v in pair_votes.items() if v >= thresh]\\n        pairs_str = \\\", \\\".join(pairs) if pairs else \\\"none\\\"\\n        print(f\\\"{'Consensus >=' + str(thresh) + '/6':<28s} {cnt}/8     {pairs_str}\\\")\\n\\n    # Detailed per-pair results\\n    print()\\n    print(\\\"=\\\" * 70)\\n    print(\\\"DETAILED RESULTS\\\")\\n    print(\\\"-\\\" * 70)\\n    for cn in CANARY:\\n        for dn in DOWNSTREAM:\\n            pk = f\\\"{cn}->{dn}\\\"\\n            pr = results[pk]\\n            print(f\\\"\\\\n  {pk}:\\\")\\n            for mn in morder:\\n                r = pr[mn]\\n                if \\\"error\\\" in r:\\n                    print(f\\\"    {method_short[mn]:>8s}: ERROR - {r['error']}\\\")\\n                    continue\\n                parts = []\\n                if \\\"r\\\" in r:\\n                    parts.append(f\\\"r={r['r']:.4f}\\\")\\n                if \\\"lag\\\" in r:\\n                    parts.append(f\\\"lag={r['lag']}\\\")\\n                if \\\"lead_time\\\" in r:\\n                    parts.append(f\\\"lead={r['lead_time']}\\\")\\n                if \\\"canary_onset\\\" in r:\\n                    parts.append(f\\\"c_onset={r['canary_onset']}\\\")\\n                if \\\"downstream_onset\\\" in r:\\n                    parts.append(f\\\"d_onset={r['downstream_onset']}\\\")\\n                if \\\"f_stat\\\" in r:\\n                    parts.append(f\\\"F={r['f_stat']:.4f}\\\")\\n                if \\\"wald_F\\\" in r and r[\\\"wald_F\\\"] is not None:\\n                    parts.append(f\\\"F={r['wald_F']:.4f}\\\")\\n                if \\\"p_value\\\" in r and r[\\\"p_value\\\"] is not None:\\n                    parts.append(f\\\"p={r['p_value']:.4f}\\\")\\n                if \\\"p_fdr\\\" in r:\\n                    parts.append(f\\\"p_fdr={r['p_fdr']:.4f}\\\")\\n                if \\\"d_max\\\" in r:\\n                    parts.append(f\\\"d_max={r['d_max']}\\\")\\n                if \\\"df_resid\\\" in r:\\n                    parts.append(f\\\"df_resid={r['df_resid']}\\\")\\n                sig = r.get(\\\"sig_fdr\\\", r.get(\\\"significant\\\", False))\\n                sig_str = \\\"SIG\\\" if sig else \\\"n.s.\\\"\\n                detail = \\\", \\\".join(parts)\\n                print(f\\\"    {method_short[mn]:>8s}: {sig_str:4s} | {detail}\\\")\\n\\n    # Save JSON\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n    output = {\\n        \\\"experiment\\\": \\\"pythia1b_c4_a100_s42\\\",\\n        \\\"model\\\": \\\"pythia-1b\\\",\\n        \\\"dataset\\\": \\\"c4\\\",\\n        \\\"alpha\\\": 1.0,\\n        \\\"seed\\\": 42,\\n        \\\"n_generations\\\": n_gens,\\n        \\\"canonical_pairs\\\": [f\\\"{cn}->{dn}\\\" for cn in CANARY for dn in DOWNSTREAM],\\n        \\\"methods\\\": list(method_short.values()),\\n        \\\"parameters\\\": {\\n            \\\"max_lag\\\": MAX_LAG, \\\"n_perm\\\": N_PERM, \\\"seed\\\": SEED, \\\"fdr_q\\\": FDR_Q,\\n        },\\n        \\\"trajectory\\\": {m: {\\\"gen0\\\": gen0[m], \\\"gen10\\\": gen10[m],\\n                          \\\"drift_pct\\\": round((gen10[m] - gen0[m]) / abs(gen0[m]) * 100, 2)\\n                          if abs(gen0[m]) > 1e-12 else 0.0}\\n                       for m in all_metrics_names},\\n        \\\"per_pair\\\": results,\\n        \\\"pair_votes\\\": pair_votes,\\n        \\\"method_sig_counts\\\": {method_short[mn]: method_sig_counts[mn] for mn in morder},\\n    }\\n\\n    class NE(json.JSONEncoder):\\n        def default(self, o):\\n            if isinstance(o, (np.integer,)): return int(o)\\n            if isinstance(o, (np.floating,)): return float(o)\\n            if isinstance(o, np.ndarray): return o.tolist()\\n            if isinstance(o, np.bool_): return bool(o)\\n            return super().default(o)\\n\\n    out_path = os.path.join(OUT_DIR, \\\"c4_8pair_6method_analysis.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, cls=NE)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "783c8bee-4d24-4864-99ac-ae0f7a5d2db9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Complete 8-pair 6-method analysis for Pythia-1B C4 experiment.\\\\n\\\\n8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\\\\n6 methods: Naive XCorr, Diff XCorr, Threshold Onset, PermG forward, PermG reverse, TY Granger\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\nsys.path.insert(0, BASE_DIR)\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nDATA_PATH = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\",\\\\n                         \\\\\\\"pythia1b_c4_a100_s42\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\nOUT_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\",\\\\n                       \\\\\\\"pythia1b_c4_a100_s42\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                  \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\nMAX_LAG = 1\\\\nN_PERM = 1000\\\\nSEED = 42\\\\nFDR_Q = 0.05\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef extract(metrics_list, name):\\\\n    return np.array([m[name] for m in sorted(metrics_list,\\\\n                                              key=lambda x: x[\\\\\\\"generation\\\\\\\"])])\\\\n\\\\n\\\\ndef _onset_gen(series, name):\\\\n    s = orient(series, name)\\\\n    base, sigma = s[0], np.std(s)\\\\n    if sigma < 1e-12:\\\\n        return None\\\\n    thresh = base + 2 * sigma\\\\n    for i in range(1, len(s)):\\\\n        if s[i] > thresh:\\\\n            return i\\\\n    return None\\\\n\\\\n\\\\ndef _adf_order(series, max_d=2):\\\\n    for d in range(max_d + 1):\\\\n        s = series.copy()\\\\n        for _ in range(d):\\\\n            s = np.diff(s)\\\\n        if len(s) < 5:\\\\n            return d\\\\n        try:\\\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\\\n                return d\\\\n        except Exception:\\\\n            pass\\\\n    return max_d\\\\n\\\\n\\\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\\\n    xo, yo = orient(c, cn), orient(d, dn)\\\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag > 0:\\\\n            xx, yy = xo[:-lag], yo[lag:]\\\\n        elif lag < 0:\\\\n            xx, yy = xo[-lag:], yo[:lag]\\\\n        else:\\\\n            xx, yy = xo, yo\\\\n        if len(xx) < 4:\\\\n            continue\\\\n        r, p = stats_pearsonr(xx, yy)\\\\n        if abs(r) > abs(best_r):\\\\n            best_r, best_lag, best_p = r, lag, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"r\\\\\\\": float(best_r), \\\\\\\"lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"p_value\\\\\\\": float(best_p),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < 0.05 and best_lag > 0),\\\\n    }\\\\n\\\\n\\\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\\\n    xo, yo = orient(c, cn), orient(d, dn)\\\\n    dx, dy = np.diff(xo), np.diff(yo)\\\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag > 0:\\\\n            xx, yy = dx[:-lag], dy[lag:]\\\\n        elif lag < 0:\\\\n            xx, yy = dx[-lag:], dy[:lag]\\\\n        else:\\\\n            xx, yy = dx, dy\\\\n        if len(xx) < 4:\\\\n            continue\\\\n        r, p = stats_pearsonr(xx, yy)\\\\n        if abs(r) > abs(best_r):\\\\n            best_r, best_lag, best_p = r, lag, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"r\\\\\\\": float(best_r), \\\\\\\"lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"p_value\\\\\\\": float(best_p),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < 0.05),\\\\n    }\\\\n\\\\n\\\\ndef threshold_lead(c, d, cn, dn):\\\\n    co = _onset_gen(c, cn)\\\\n    do = _onset_gen(d, dn)\\\\n    if co is None or do is None:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": None if co is None else int(co),\\\\n            \\\\\\\"downstream_onset\\\\\\\": None if do is None else int(do),\\\\n            \\\\\\\"lead_time\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n        }\\\\n    lt = do - co\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": int(co),\\\\n        \\\\\\\"downstream_onset\\\\\\\": int(do),\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 7536 字符] ...\\\\n\\\\n       sig = r.get(\\\\\\\"sig_fdr\\\\\\\", r.get(\\\\\\\"significant\\\\\\\", False))\\\\n                else:\\\\n                    sig = r.get(\\\\\\\"significant\\\\\\\", False)\\\\n                if sig:\\\\n                    sig_pairs.append(pk)\\\\n        cnt = len(sig_pairs)\\\\n        pairs_str = \\\\\\\", \\\\\\\".join(sig_pairs) if sig_pairs else \\\\\\\"none\\\\\\\"\\\\n        label = method_short[mn]\\\\n        print(f\\\\\\\"{label:<28s} {cnt}/8     {pairs_str}\\\\\\\")\\\\n\\\\n    # Consensus\\\\n    for thresh in [3, 4, 5]:\\\\n        cnt = sum(1 for v in pair_votes.values() if v >= thresh)\\\\n        pairs = [pk for pk, v in pair_votes.items() if v >= thresh]\\\\n        pairs_str = \\\\\\\", \\\\\\\".join(pairs) if pairs else \\\\\\\"none\\\\\\\"\\\\n        print(f\\\\\\\"{'Consensus >=' + str(thresh) + '/6':<28s} {cnt}/8     {pairs_str}\\\\\\\")\\\\n\\\\n    # Detailed per-pair results\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"DETAILED RESULTS\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n    for cn in CANARY:\\\\n        for dn in DOWNSTREAM:\\\\n            pk = f\\\\\\\"{cn}->{dn}\\\\\\\"\\\\n            pr = results[pk]\\\\n            print(f\\\\\\\"\\\\\\\\n  {pk}:\\\\\\\")\\\\n            for mn in morder:\\\\n                r = pr[mn]\\\\n                if \\\\\\\"error\\\\\\\" in r:\\\\n                    print(f\\\\\\\"    {method_short[mn]:>8s}: ERROR - {r['error']}\\\\\\\")\\\\n                    continue\\\\n                parts = []\\\\n                if \\\\\\\"r\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"r={r['r']:.4f}\\\\\\\")\\\\n                if \\\\\\\"lag\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"lag={r['lag']}\\\\\\\")\\\\n                if \\\\\\\"lead_time\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"lead={r['lead_time']}\\\\\\\")\\\\n                if \\\\\\\"canary_onset\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"c_onset={r['canary_onset']}\\\\\\\")\\\\n                if \\\\\\\"downstream_onset\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"d_onset={r['downstream_onset']}\\\\\\\")\\\\n                if \\\\\\\"f_stat\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"F={r['f_stat']:.4f}\\\\\\\")\\\\n                if \\\\\\\"wald_F\\\\\\\" in r and r[\\\\\\\"wald_F\\\\\\\"] is not None:\\\\n                    parts.append(f\\\\\\\"F={r['wald_F']:.4f}\\\\\\\")\\\\n                if \\\\\\\"p_value\\\\\\\" in r and r[\\\\\\\"p_value\\\\\\\"] is not None:\\\\n                    parts.append(f\\\\\\\"p={r['p_value']:.4f}\\\\\\\")\\\\n                if \\\\\\\"p_fdr\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"p_fdr={r['p_fdr']:.4f}\\\\\\\")\\\\n                if \\\\\\\"d_max\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"d_max={r['d_max']}\\\\\\\")\\\\n                if \\\\\\\"df_resid\\\\\\\" in r:\\\\n                    parts.append(f\\\\\\\"df_resid={r['df_resid']}\\\\\\\")\\\\n                sig = r.get(\\\\\\\"sig_fdr\\\\\\\", r.get(\\\\\\\"significant\\\\\\\", False))\\\\n                sig_str = \\\\\\\"SIG\\\\\\\" if sig else \\\\\\\"n.s.\\\\\\\"\\\\n                detail = \\\\\\\", \\\\\\\".join(parts)\\\\n                print(f\\\\\\\"    {method_short[mn]:>8s}: {sig_str:4s} | {detail}\\\\\\\")\\\\n\\\\n    # Save JSON\\\\n    os.makedirs(OUT_DIR, exist_ok=True)\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"pythia-1b\\\\\\\",\\\\n        \\\\\\\"dataset\\\\\\\": \\\\\\\"c4\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": 1.0,\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"n_generations\\\\\\\": n_gens,\\\\n        \\\\\\\"canonical_pairs\\\\\\\": [f\\\\\\\"{cn}->{dn}\\\\\\\" for cn in CANARY for dn in DOWNSTREAM],\\\\n        \\\\\\\"methods\\\\\\\": list(method_short.values()),\\\\n        \\\\\\\"parameters\\\\\\\": {\\\\n            \\\\\\\"max_lag\\\\\\\": MAX_LAG, \\\\\\\"n_perm\\\\\\\": N_PERM, \\\\\\\"seed\\\\\\\": SEED, \\\\\\\"fdr_q\\\\\\\": FDR_Q,\\\\n        },\\\\n        \\\\\\\"trajectory\\\\\\\": {m: {\\\\\\\"gen0\\\\\\\": gen0[m], \\\\\\\"gen10\\\\\\\": gen10[m],\\\\n                          \\\\\\\"drift_pct\\\\\\\": round((gen10[m] - gen0[m]) / abs(gen0[m]) * 100, 2)\\\\n                          if abs(gen0[m]) > 1e-12 else 0.0}\\\\n                       for m in all_metrics_names},\\\\n        \\\\\\\"per_pair\\\\\\\": results,\\\\n        \\\\\\\"pair_votes\\\\\\\": pair_votes,\\\\n        \\\\\\\"method_sig_counts\\\\\\\": {method_short[mn]: method_sig_counts[mn] for mn in morder},\\\\n    }\\\\n\\\\n    class NE(json.JSONEncoder):\\\\n        def default(self, o):\\\\n            if isinstance(o, (np.integer,)): return int(o)\\\\n            if isinstance(o, (np.floating,)): return float(o)\\\\n            if isinstance(o, np.ndarray): return o.tolist()\\\\n            if isinstance(o, np.bool_): return bool(o)\\\\n            return super().default(o)\\\\n\\\\n    out_path = os.path.join(OUT_DIR, \\\\\\\"c4_8pair_6method_analysis.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, cls=NE)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Complete 8-pair 6-method analysis for Pythia-1B C4 experiment.\\n\\n8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\\n6 methods: Naive XCorr, Diff XCorr, Threshold Onset, PermG forward, PermG reverse, TY Granger\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nimport warnings\\nimport numpy as np\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nsys.path.insert(0, BASE_DIR)\\nfrom permutation_granger import permutation_granger_test\\n\\nDATA_PATH = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\",\\n                         \\\"pythia1b_c4_a100_s42\\\", \\\"all_metrics.json\\\")\\nOUT_DIR = os.path.join(BASE_DIR, \\\"results\\\", \\\"generalize\\\",\\n                       \\\"pythia1b_c4_a100_s42\\\", \\\"analysis\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                  \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\nMAX_LAG = 1\\nN_PERM = 1000\\nSEED = 42\\nFDR_Q = 0.05\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef extract(metrics_list, name):\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef _onset_gen(series, name):\\n    s = orient(series, name)\\n    base, sigma = s[0], np.std(s)\\n    if sigma < 1e-12:\\n        return None\\n    thresh = base + 2 * sigma\\n    for i in range(1, len(s)):\\n        if s[i] > thresh:\\n            return i\\n    return None\\n\\n\\ndef _adf_order(series, max_d=2):\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    xo, yo = orient(c, cn), orient(d, dn)\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag > 0:\\n            xx, yy = xo[:-lag], yo[lag:]\\n        elif lag < 0:\\n            xx, yy = xo[-lag:], yo[:lag]\\n        else:\\n            xx, yy = xo, yo\\n        if len(xx) < 4:\\n            continue\\n        r, p = stats_pearsonr(xx, yy)\\n        if abs(r) > abs(best_r):\\n            best_r, best_lag, best_p = r, lag, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"r\\\": float(best_r), \\\"lag\\\": int(best_lag),\\n        \\\"p_value\\\": float(best_p),\\n        \\\"significant\\\": bool(best_p < 0.05 and best_lag > 0),\\n    }\\n\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    xo, yo = orient(c, cn), orient(d, dn)\\n    dx, dy = np.diff(xo), np.diff(yo)\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag > 0:\\n            xx, yy = dx[:-lag], dy[lag:]\\n        elif lag < 0:\\n            xx, yy = dx[-lag:], dy[:lag]\\n        else:\\n            xx, yy = dx, dy\\n        if len(xx) < 4:\\n            continue\\n        r, p = stats_pearsonr(xx, yy)\\n        if abs(r) > abs(best_r):\\n            best_r, best_lag, best_p = r, lag, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"r\\\": float(best_r), \\\"lag\\\": int(best_lag),\\n        \\\"p_value\\\": float(best_p),\\n        \\\"significant\\\": bool(best_p < 0.05),\\n    }\\n\\n\\ndef threshold_lead(c, d, cn, dn):\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n    \\n\\n... [截断: 输出过长，省略 7536 字符] ...\\n\\n       sig = r.get(\\\"sig_fdr\\\", r.get(\\\"significant\\\", False))\\n                else:\\n                    sig = r.get(\\\"significant\\\", False)\\n                if sig:\\n                    sig_pairs.append(pk)\\n        cnt = len(sig_pairs)\\n        pairs_str = \\\", \\\".join(sig_pairs) if sig_pairs else \\\"none\\\"\\n        label = method_short[mn]\\n        print(f\\\"{label:<28s} {cnt}/8     {pairs_str}\\\")\\n\\n    # Consensus\\n    for thresh in [3, 4, 5]:\\n        cnt = sum(1 for v in pair_votes.values() if v >= thresh)\\n        pairs = [pk for pk, v in pair_votes.items() if v >= thresh]\\n        pairs_str = \\\", \\\".join(pairs) if pairs else \\\"none\\\"\\n        print(f\\\"{'Consensus >=' + str(thresh) + '/6':<28s} {cnt}/8     {pairs_str}\\\")\\n\\n    # Detailed per-pair results\\n    print()\\n    print(\\\"=\\\" * 70)\\n    print(\\\"DETAILED RESULTS\\\")\\n    print(\\\"-\\\" * 70)\\n    for cn in CANARY:\\n        for dn in DOWNSTREAM:\\n            pk = f\\\"{cn}->{dn}\\\"\\n            pr = results[pk]\\n            print(f\\\"\\\\n  {pk}:\\\")\\n            for mn in morder:\\n                r = pr[mn]\\n                if \\\"error\\\" in r:\\n                    print(f\\\"    {method_short[mn]:>8s}: ERROR - {r['error']}\\\")\\n                    continue\\n                parts = []\\n                if \\\"r\\\" in r:\\n                    parts.append(f\\\"r={r['r']:.4f}\\\")\\n                if \\\"lag\\\" in r:\\n                    parts.append(f\\\"lag={r['lag']}\\\")\\n                if \\\"lead_time\\\" in r:\\n                    parts.append(f\\\"lead={r['lead_time']}\\\")\\n                if \\\"canary_onset\\\" in r:\\n                    parts.append(f\\\"c_onset={r['canary_onset']}\\\")\\n                if \\\"downstream_onset\\\" in r:\\n                    parts.append(f\\\"d_onset={r['downstream_onset']}\\\")\\n                if \\\"f_stat\\\" in r:\\n                    parts.append(f\\\"F={r['f_stat']:.4f}\\\")\\n                if \\\"wald_F\\\" in r and r[\\\"wald_F\\\"] is not None:\\n                    parts.append(f\\\"F={r['wald_F']:.4f}\\\")\\n                if \\\"p_value\\\" in r and r[\\\"p_value\\\"] is not None:\\n                    parts.append(f\\\"p={r['p_value']:.4f}\\\")\\n                if \\\"p_fdr\\\" in r:\\n                    parts.append(f\\\"p_fdr={r['p_fdr']:.4f}\\\")\\n                if \\\"d_max\\\" in r:\\n                    parts.append(f\\\"d_max={r['d_max']}\\\")\\n                if \\\"df_resid\\\" in r:\\n                    parts.append(f\\\"df_resid={r['df_resid']}\\\")\\n                sig = r.get(\\\"sig_fdr\\\", r.get(\\\"significant\\\", False))\\n                sig_str = \\\"SIG\\\" if sig else \\\"n.s.\\\"\\n                detail = \\\", \\\".join(parts)\\n                print(f\\\"    {method_short[mn]:>8s}: {sig_str:4s} | {detail}\\\")\\n\\n    # Save JSON\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n    output = {\\n        \\\"experiment\\\": \\\"pythia1b_c4_a100_s42\\\",\\n        \\\"model\\\": \\\"pythia-1b\\\",\\n        \\\"dataset\\\": \\\"c4\\\",\\n        \\\"alpha\\\": 1.0,\\n        \\\"seed\\\": 42,\\n        \\\"n_generations\\\": n_gens,\\n        \\\"canonical_pairs\\\": [f\\\"{cn}->{dn}\\\" for cn in CANARY for dn in DOWNSTREAM],\\n        \\\"methods\\\": list(method_short.values()),\\n        \\\"parameters\\\": {\\n            \\\"max_lag\\\": MAX_LAG, \\\"n_perm\\\": N_PERM, \\\"seed\\\": SEED, \\\"fdr_q\\\": FDR_Q,\\n        },\\n        \\\"trajectory\\\": {m: {\\\"gen0\\\": gen0[m], \\\"gen10\\\": gen10[m],\\n                          \\\"drift_pct\\\": round((gen10[m] - gen0[m]) / abs(gen0[m]) * 100, 2)\\n                          if abs(gen0[m]) > 1e-12 else 0.0}\\n                       for m in all_metrics_names},\\n        \\\"per_pair\\\": results,\\n        \\\"pair_votes\\\": pair_votes,\\n        \\\"method_sig_counts\\\": {method_short[mn]: method_sig_counts[mn] for mn in morder},\\n    }\\n\\n    class NE(json.JSONEncoder):\\n        def default(self, o):\\n            if isinstance(o, (np.integer,)): return int(o)\\n            if isinstance(o, (np.floating,)): return float(o)\\n            if isinstance(o, np.ndarray): return o.tolist()\\n            if isinstance(o, np.bool_): return bool(o)\\n            return super().default(o)\\n\\n    out_path = os.path.join(OUT_DIR, \\\"c4_8pair_6method_analysis.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, cls=NE)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have two scripts to reference:
+1. `extract_table7_8pair.py` - The cleaner one that directly produces Table 7 format. It uses `method_ablation` module's functions and `permutation_granger` module. It uses n_perm=5000 and the exact 8 pairs I need (canary: token_entropy, ece; downstream: perplexity, distinct_1, distinct_2, distinct_3).
+
+2. `c4_full_8pair_analysis.py` - More detailed analysis but uses n_perm=1000 and downstream includes mauve instead of perplexity.
+
+
+The `extract_table7_8pair.py` script is the right template since it already has the exact canary and downstream metrics I need, plus the correct permutation count. I'll adapt it for gpt2m by checking what the `method_ablation` module provides and then creating a modified version.
+
+Looking more closely at the existing script, it iterates over multiple experimental conditions, so I could either extend it or write a standalone version just for gpt2m. A standalone script seems simpler. I also need to verify how the Diff method applies FDR correction to the cross-correlation p-values, since the task specifies FDR < 0.05 rather than just a raw threshold.
+
+Checking the FDR application... I should stick with the existing `extract_table7_8pair.py` methodology since it already produced the reference Table 7 results, but I need to verify which functions are actually being imported from `method_ablation` and ensure I'm applying FDR correction to the diff results as the task specifies. I'm noticing a mismatch between the reference table values and what's in the script—the task shows OPT-1.3B and C4 with Diff = 6/8, but the script has 8/8 for both, which suggests the reference uses FDR correction while the script uses raw p-values. I'll switch to FDR for the Diff column to align with the task's expected results. Now I'm building a comprehensive script that loads the data, computes all six methods across the eight pairs, applies FDR correction to Diff, calculates K≥4, performs drift analysis, and outputs the results to JSON.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "81077999-998f-4c59-9f16-120d331d63da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019n4YNTXWJBvGmvF5d8qXtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7797,
+      "cache_read_input_tokens": 33467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+`extract_table7_8pair.py` 是最好的模板。看一下 `method_ablation` 模块确认接口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "09b934fc-8e38-4976-be27-30da2db25f0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019n4YNTXWJBvGmvF5d8qXtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7797,
+      "cache_read_input_tokens": 33467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012nubBs5k5kvtoKQkajV9qz`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -120 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "af357511-7f6a-40e0-a9f8-63c6e6bb0b37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019n4YNTXWJBvGmvF5d8qXtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7797,
+      "cache_read_input_tokens": 33467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T11:32:31.176Z_
+
+<details><summary>↩ Tool result · `toolu_012nubBs5k5kvtoKQkajV9qz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return data\\n\\n\\ndef extract(metrics_list, name):\\n    \\\"\\\"\\\"Extract a single metric as numpy array, sorted by generation.\\\"\\\"\\\"\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef orient(series, name):\\n    \\\"\\\"\\\"Orient so degradation = positive direction.\\\"\\\"\\\"\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\n# On non-stationary series, shared trends inflate r and produce\\n# spurious significance — this is the baseline we expect to overcount.\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n    }\\n\\n\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\n# First-differencing removes deterministic and stochastic trends,\\n# yielding stationary increments. Cross-correlation on Δ-series\\n# is less susceptible to spurious regression.\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Cross-correlation on first-differenced (Δ) series.\\\"\\\"\\\"\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "996f8ff7-fe86-4ce6-88f3-c0c6d49dea32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Method ablation: compare four lead-lag estimation methods.\\\\n\\\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\\\nquantifying the spurious regression rate when non-stationary series are\\\\ncorrelated without proper detrending.\\\\n\\\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\\\nOutput: results/mvp/analysis/method_ablation.json\\\\n        (with BH FDR correction and effect sizes)\\\\n\\\\nMethods:\\\\n  1. Naive Pearson lag-correlation (raw levels)\\\\n  2. Differenced cross-correlation (first-differenced series)\\\\n  3. Threshold-based lead time (2-sigma onset detection)\\\\n  4. Toda-Yamamoto augmented-lag Granger causality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nfrom itertools import product\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"effective_rank\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\n\\\\n# Sign conventions: \\\\\\\"higher is worse\\\\\\\" kept as-is; \\\\\\\"lower is worse\\\\\\\" negated\\\\n# so that degradation = positive direction in all analyses.\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                   \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\nALPHA = 0.05\\\\n\\\\n\\\\ndef load_metrics(data_dir, seeds):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all_metrics.json for each seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    data = {}\\\\n    for s in seeds:\\\\n        path = os.path.join(data_dir, f\\\\\\\"rep_{s}\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\n        with open(path) as f:\\\\n            data[s] = json.load(f)\\\\n    return data\\\\n\\\\n\\\\ndef extract(metrics_list, name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract a single metric as numpy array, sorted by generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return np.array([m[name] for m in sorted(metrics_list,\\\\n                                              key=lambda x: x[\\\\\\\"generation\\\\\\\"])])\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Orient so degradation = positive direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\\\n# On non-stationary series, shared trends inflate r and produce\\\\n# spurious significance — this is the baseline we expect to overcount.\\\\n\\\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"r\\\\\\\": round(float(best_r), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(best_p), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < ALPHA),\\\\n    }\\\\n\\\\n\\\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\\\n# First-differencing removes deterministic and stochastic trends,\\\\n# yielding stationary increments. Cross-correlation on Δ-series\\\\n# is less susceptible to spurious regression.\\\\n\\\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cross-correlation on first-differenced (Δ) series.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\\\n    n = len(dx)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag >= 0:\\\\n            a, b = dx[lag:], dy[:n - lag]\\\\n        else:\\\\n            a, b = dx[:n + lag], dy[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"r\\\\\\\": round(float(best_r), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(best_p), 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < ALPHA),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Method ablation: compare four lead-lag estimation methods.\\n\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\nquantifying the spurious regression rate when non-stationary series are\\ncorrelated without proper detrending.\\n\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\nOutput: results/mvp/analysis/method_ablation.json\\n        (with BH FDR correction and effect sizes)\\n\\nMethods:\\n  1. Naive Pearson lag-correlation (raw levels)\\n  2. Differenced cross-correlation (first-differenced series)\\n  3. Threshold-based lead time (2-sigma onset detection)\\n  4. Toda-Yamamoto augmented-lag Granger causality\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nfrom itertools import product\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.stats.multitest import multipletests\\nfrom statsmodels.tsa.stattools import adfuller\\nfrom permutation_granger import permutation_granger_test\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nCANARY = [\\\"token_entropy\\\", \\\"self_bleu\\\", \\\"ece\\\", \\\"effective_rank\\\"]\\nDOWNSTREAM = [\\\"perplexity\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"]\\n\\n# Sign conventions: \\\"higher is worse\\\" kept as-is; \\\"lower is worse\\\" negated\\n# so that degradation = positive direction in all analyses.\\nHIGHER_IS_WORSE = {\\\"self_bleu\\\", \\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"effective_rank\\\",\\n                   \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nALPHA = 0.05\\n\\n\\ndef load_metrics(data_dir, seeds):\\n    \\\"\\\"\\\"Load all_metrics.json for each seed.\\\"\\\"\\\"\\n    data = {}\\n    for s in seeds:\\n        path = os.path.join(data_dir, f\\\"rep_{s}\\\", \\\"all_metrics.json\\\")\\n        with open(path) as f:\\n            data[s] = json.load(f)\\n    return data\\n\\n\\ndef extract(metrics_list, name):\\n    \\\"\\\"\\\"Extract a single metric as numpy array, sorted by generation.\\\"\\\"\\\"\\n    return np.array([m[name] for m in sorted(metrics_list,\\n                                              key=lambda x: x[\\\"generation\\\"])])\\n\\n\\ndef orient(series, name):\\n    \\\"\\\"\\\"Orient so degradation = positive direction.\\\"\\\"\\\"\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\n# ─── Method 1: Naive Pearson lag-correlation (raw levels) ────────────────────\\n# On non-stationary series, shared trends inflate r and produce\\n# spurious significance — this is the baseline we expect to overcount.\\n\\ndef naive_pearson(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Pearson cross-correlation on raw (non-stationary) levels.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n    }\\n\\n\\n# ─── Method 2: Differenced cross-correlation ────────────────────────────────\\n# First-differencing removes deterministic and stochastic trends,\\n# yielding stationary increments. Cross-correlation on Δ-series\\n# is less susceptible to spurious regression.\\n\\ndef diff_xcorr(c, d, cn, dn, max_lag=3):\\n    \\\"\\\"\\\"Cross-correlation on first-differenced (Δ) series.\\\"\\\"\\\"\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-max_lag, max_lag + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\": int(best_lag),\\n        \\\"r\\\": round(float(best_r), 4),\\n        \\\"p_value\\\": round(float(best_p), 6),\\n        \\\"significant\\\": bool(best_p < ALPHA),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TMXx5BnYrbbHzc7kwuMVKr`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "2d0f93a9-cfac-43e6-a075-3da8d1c00d91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019n4YNTXWJBvGmvF5d8qXtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7797,
+      "cache_read_input_tokens": 33467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7797
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T11:32:31.783Z_
+
+<details><summary>↩ Tool result · `toolu_01TMXx5BnYrbbHzc7kwuMVKr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences series by default to handle non-stationarity, then\\n    uses random shuffle of x to build the null (differencing removes\\n    autocorrelation, making shuffle appropriate).\\n\\n    Args:\\n        x: 1D array, potential cause\\n        y: 1D array, potential effect\\n        max_lag: number of lags in the model\\n        n_perm: number of permutations for null distribution\\n        seed: random seed for reproducibility\\n        difference: if True, first-difference both series before testing\\n\\n    Returns:\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\n                        effect_size_f2, significant (p<0.05)\\n    \\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    assert len(x) == len(y), \\\"x and y must have the same length\\\"\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "63c0da8b-69c4-4b76-a4fe-9b0ad28783ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\nUses permutation to build a null distribution of the Granger F-statistic,\\\\navoiding asymptotic assumptions that fail on short series (T<20).\\\\nFirst-differences the series to handle non-stationarity, then uses random\\\\nshuffle (not circular shift) since differencing removes autocorrelation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\ndef _build_lag_matrix(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build design matrices for restricted and unrestricted Granger models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = len(y)\\\\n    n = T - max_lag\\\\n    Y = y[max_lag:]\\\\n\\\\n    cols_r = [np.ones(n)]\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_r.append(y[max_lag - lag: T - lag])\\\\n\\\\n    cols_u = list(cols_r)\\\\n    for lag in range(1, max_lag + 1):\\\\n        cols_u.append(x[max_lag - lag: T - lag])\\\\n\\\\n    X_r = np.column_stack(cols_r)\\\\n    X_u = np.column_stack(cols_u)\\\\n    return Y, X_r, X_u\\\\n\\\\n\\\\ndef _granger_f_stat(y, x, max_lag):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\\\n    n = len(Y)\\\\n    q = max_lag\\\\n\\\\n    try:\\\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\\\n    except np.linalg.LinAlgError:\\\\n        return np.nan\\\\n\\\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\\\n\\\\n    k_u = X_u.shape[1]\\\\n    df_resid = n - k_u\\\\n\\\\n    if df_resid <= 0 or rss_u < 1e-15:\\\\n        return np.nan\\\\n\\\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\\\n    return F\\\\n\\\\n\\\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\\\n                              difference=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\n    Tests whether x Granger-causes y using permutation null distribution.\\\\n    First-differences series by default to handle non-stationarity, then\\\\n    uses random shuffle of x to build the null (differencing removes\\\\n    autocorrelation, making shuffle appropriate).\\\\n\\\\n    Args:\\\\n        x: 1D array, potential cause\\\\n        y: 1D array, potential effect\\\\n        max_lag: number of lags in the model\\\\n        n_perm: number of permutations for null distribution\\\\n        seed: random seed for reproducibility\\\\n        difference: if True, first-difference both series before testing\\\\n\\\\n    Returns:\\\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\\\n                        effect_size_f2, significant (p<0.05)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x = np.asarray(x, dtype=float)\\\\n    y = np.asarray(y, dtype=float)\\\\n    assert len(x) == len(y), \\\\\\\"x and y must have the same length\\\\\\\"\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Permutation-based Granger causality test.\\n\\nUses permutation to build a null distribution of the Granger F-statistic,\\navoiding asymptotic assumptions that fail on short series (T<20).\\nFirst-differences the series to handle non-stationarity, then uses random\\nshuffle (not circular shift) since differencing removes autocorrelation.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\n\\n\\ndef _build_lag_matrix(y, x, max_lag):\\n    \\\"\\\"\\\"Build design matrices for restricted and unrestricted Granger models.\\\"\\\"\\\"\\n    T = len(y)\\n    n = T - max_lag\\n    Y = y[max_lag:]\\n\\n    cols_r = [np.ones(n)]\\n    for lag in range(1, max_lag + 1):\\n        cols_r.append(y[max_lag - lag: T - lag])\\n\\n    cols_u = list(cols_r)\\n    for lag in range(1, max_lag + 1):\\n        cols_u.append(x[max_lag - lag: T - lag])\\n\\n    X_r = np.column_stack(cols_r)\\n    X_u = np.column_stack(cols_u)\\n    return Y, X_r, X_u\\n\\n\\ndef _granger_f_stat(y, x, max_lag):\\n    \\\"\\\"\\\"Compute Granger F-statistic: does x help predict y beyond y's own lags?\\\"\\\"\\\"\\n    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\\n    n = len(Y)\\n    q = max_lag\\n\\n    try:\\n        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\\n        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\\n    except np.linalg.LinAlgError:\\n        return np.nan\\n\\n    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\\n    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\\n\\n    k_u = X_u.shape[1]\\n    df_resid = n - k_u\\n\\n    if df_resid <= 0 or rss_u < 1e-15:\\n        return np.nan\\n\\n    F = ((rss_r - rss_u) / q) / (rss_u / df_resid)\\n    return F\\n\\n\\ndef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\n                              difference=True):\\n    \\\"\\\"\\\"Permutation-based Granger causality test.\\n\\n    Tests whether x Granger-causes y using permutation null distribution.\\n    First-differences series by default to handle non-stationarity, then\\n    uses random shuffle of x to build the null (differencing removes\\n    autocorrelation, making shuffle appropriate).\\n\\n    Args:\\n        x: 1D array, potential cause\\n        y: 1D array, potential effect\\n        max_lag: number of lags in the model\\n        n_perm: number of permutations for null distribution\\n        seed: random seed for reproducibility\\n        difference: if True, first-difference both series before testing\\n\\n    Returns:\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\n                        effect_size_f2, significant (p<0.05)\\n    \\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    assert len(x) == len(y), \\\"x and y must have the same length\\\"\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also see the rest of the method_ablation.py, particularly the `threshold_lead` and `toda_yamamoto` functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "7244c9e5-c288-4d13-8b79-03a65e55c2cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UweFuuXukM1pkadBGAjJBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4614,
+      "cache_read_input_tokens": 41264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4614
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+接口清楚了。现在创建并运行 GPT-2m 分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "5ce31cc7-93c4-4932-84d5-592db8733b68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UweFuuXukM1pkadBGAjJBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4614,
+      "cache_read_input_tokens": 41264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4614
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KV85yxuW9BRvBLaVKZSBoz`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def threshold_lead\\|def toda_yamamoto\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "c34195a3-c607-41cc-b686-bc7370f51279",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UweFuuXukM1pkadBGAjJBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4614,
+      "cache_read_input_tokens": 41264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4614
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T11:32:36.014Z_
+
+<details><summary>↩ Tool result · `toolu_01KV85yxuW9BRvBLaVKZSBoz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "2f1194ad-eae0-4357-95ec-147f000c9064",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mb23px48qTHtszwL4p4GFV`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def threshold_lead\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "fbc97ae4-60a1-47bf-91f2-4eb6f2d217be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZce8FQb4n8MtajtB282HZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 45878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011uAKpdGgw6YGxm5pCyGVth`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"def toda_yamamoto\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "f8c86c8f-2270-4186-8726-8dc6c12e6be2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZce8FQb4n8MtajtB282HZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 45878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T11:32:40.430Z_
+
+<details><summary>↩ Tool result · `toolu_01Mb23px48qTHtszwL4p4GFV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"142:def threshold_lead(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ad36ab5c-cf39-4cd3-83af-e6427b43688e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"142:def threshold_lead(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"142:def threshold_lead(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T11:32:40.961Z_
+
+<details><summary>↩ Tool result · `toolu_011uAKpdGgw6YGxm5pCyGVth`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"193:def toda_yamamoto(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "8d920b30-c072-44e0-a420-2ba6d618d451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"193:def toda_yamamoto(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"193:def toda_yamamoto(c, d, cn, dn):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LQEeBkS8mmLqRNQ38hSf7u`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "sed -n '142,250p' /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "71dcba9d-7a80-478c-af97-4e4b60d92537",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1aqyMeof9e2mhtoECbbAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 46185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T11:32:43.774Z_
+
+<details><summary>↩ Tool result · `toolu_01LQEeBkS8mmLqRNQ38hSf7u`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "8613cd54-2d9f-4747-b09c-a5868176ec2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DnGpxicH2KEVw1E3aMSjBi`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -n +142 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ee3304c0-b934-44a0-9e1e-0760edfd26c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P72UcFEyiDZ7b48GyuR7K2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 46677,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T11:32:47.550Z_
+
+<details><summary>↩ Tool result · `toolu_01DnGpxicH2KEVw1E3aMSjBi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def threshold_lead(c, d, cn, dn):\\n    \\\"\\\"\\\"Lead time based on 2σ signal-onset detection.\\\"\\\"\\\"\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        missing = []\\n        if co is None:\\n            missing.append(\\\"canary\\\")\\n        if do is None:\\n            missing.append(\\\"downstream\\\")\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"onset not detected for: {', '.join(missing)}\\\",\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n        \\\"lead_time\\\": int(lt),\\n        \\\"significant\\\": bool(lt > 0),\\n    }\\n\\n\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\n# series, but the Wald test is restricted to the first p lag coefficients.\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\n# so power is low — significant results here are highly credible.\\n\\ndef _adf_order(series, max_d=2):\\n    \\\"\\\"\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\"\\\"\\\"\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception\\n\\n... [截断: 输出过长，省略 14508 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "e8f2cdb6-db72-42ca-9e13-8f1ac6bbfa66",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def threshold_lead(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Lead time based on 2σ signal-onset detection.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    co = _onset_gen(c, cn)\\\\n    do = _onset_gen(d, dn)\\\\n    if co is None or do is None:\\\\n        missing = []\\\\n        if co is None:\\\\n            missing.append(\\\\\\\"canary\\\\\\\")\\\\n        if do is None:\\\\n            missing.append(\\\\\\\"downstream\\\\\\\")\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": None if co is None else int(co),\\\\n            \\\\\\\"downstream_onset\\\\\\\": None if do is None else int(do),\\\\n            \\\\\\\"lead_time\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"onset not detected for: {', '.join(missing)}\\\\\\\",\\\\n        }\\\\n    lt = do - co\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": int(co),\\\\n        \\\\\\\"downstream_onset\\\\\\\": int(do),\\\\n        \\\\\\\"lead_time\\\\\\\": int(lt),\\\\n        \\\\\\\"significant\\\\\\\": bool(lt > 0),\\\\n    }\\\\n\\\\n\\\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\\\n# series, but the Wald test is restricted to the first p lag coefficients.\\\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\\\n# so power is low — significant results here are highly credible.\\\\n\\\\ndef _adf_order(series, max_d=2):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for d in range(max_d + 1):\\\\n        s = series.copy()\\\\n        for _ in range(d):\\\\n            s = np.diff(s)\\\\n        if len(s) < 5:\\\\n            return d\\\\n        try:\\\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\\\n                return d\\\\n        except Exception:\\\\n            pass\\\\n    return max_d\\\\n\\\\n\\\\ndef toda_yamamoto(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n\\\\n    dc, dd = _adf_order(x), _adf_order(y)\\\\n    d_max = max(dc, dd)\\\\n\\\\n    # With T=10, only p=1 is feasible regardless of AIC\\\\n    p = 1\\\\n    k = p + d_max                       # total lags in augmented VAR\\\\n    T_eff = n - k                        # effective sample after lagging\\\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\\\n    df_resid = T_eff - n_params\\\\n\\\\n    if df_resid < 1:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"no residual df (T_eff={T_eff}, params={n_params})\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # OLS for the downstream equation:\\\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\\\n    Y = y[k:]\\\\n    X_cols = [np.ones(T_eff)]\\\\n    for l in range(1, k + 1):\\\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\\\n    X = np.column_stack(X_cols)\\\\n\\\\n    try:\\\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\\\n        resid = Y - X @ beta\\\\n        sigma2 = np.sum(resid ** 2) / df_resid\\\\n        XtX_inv = np.linalg.inv(X.T @ X)\\\\n    except Exception:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"OLS failed (singular design matrix)\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # Wald test on first p canary-lag coefficients only.\\\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\\\n    R = np.zeros((p, n_params))\\\\n    for i, idx in enumerate(test_idx):\\\\n        R[i, idx] = 1.0\\\\n\\\\n    Rb = R @ beta\\\\n    try:\\\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\\\n        # F-test is more appropriate than χ² with few residual df\\\\n        F = W / p\\\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\\\n    except Exception\\\\n\\\\n... [截断: 输出过长，省略 14508 字符] ...\\\\n\\\\n_fc = output[\\\\\\\"fdr_correction\\\\\\\"][\\\\\\\"per_method\\\\\\\"][_m]\\\\n        print(f\\\\\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\\\\\"\\\\n              f\\\\\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    print(f\\\\\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print(f\\\\\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  Spurious regression rate: {spur_rate:.1%}  \\\\\\\"\\\\n          f\\\\\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\\\\\")\\\\n\\\\n    if n_spur:\\\\n        print(f\\\\\\\"\\\\\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\\\\\")\\\\n        for r in all_pairs:\\\\n            if r[\\\\\\\"spurious\\\\\\\"]:\\\\n                print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    robust = [r for r in all_pairs if r[\\\\\\\"robust\\\\\\\"]]\\\\n    if robust:\\\\n        print(f\\\\\\\"\\\\\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\\\\\")\\\\n        for r in robust:\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}\\\\\\\")\\\\n\\\\n    # ── Dual classification: 5-method vs 4-method ──\\\\n    print()\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 72)\\\\n    print(\\\\\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\\\\\")\\\\n    print()\\\\n    print(f\\\\\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\\\\\")\\\\n    print(f\\\\\\\"  {'-' * 44}\\\\\\\")\\\\n    print(f\\\\\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\\\\\"\\\\n          f\\\\\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\\\\\")\\\\n    print(f\\\\\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\\\\\"\\\\n          f\\\\\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\\\\\")\\\\n    print()\\\\n\\\\n    if flipped:\\\\n        print(f\\\\\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\\\\\")\\\\n        for r in flipped:\\\\n            s5 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            s4 = \\\\\\\"spurious\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"robust\\\\\\\"\\\\n            print(f\\\\\\\"    {r['canary']} → {r['downstream']}: \\\\\\\"\\\\n                  f\\\\\\\"5m={s5} ({r['methods_agree_5']}/5), \\\\\\\"\\\\n                  f\\\\\\\"4m={s4} ({r['methods_agree_4']}/4)\\\\\\\")\\\\n            if r[\\\\\\\"spurious_reason_5method\\\\\\\"]:\\\\n                print(f\\\\\\\"      reason: {r['spurious_reason_5method']}\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"  No flipped pairs between 5-method and 4-method.\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"PER-PAIR DUAL CLASSIFICATION\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 72)\\\\n    hdr2 = (f\\\\\\\"  {'Canary':<16} {'Downstream':<12} \\\\\\\"\\\\n            f\\\\\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\\\\\")\\\\n    print(hdr2)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 68)\\\\n    for r in all_pairs:\\\\n        r5 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_5method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_5method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        r4 = \\\\\\\"ROB\\\\\\\" if r[\\\\\\\"robust_4method\\\\\\\"] else \\\\\\\"spu\\\\\\\" if r[\\\\\\\"spurious_4method\\\\\\\"] else \\\\\\\"---\\\\\\\"\\\\n        reason = r[\\\\\\\"spurious_reason_5method\\\\\\\"] or \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {r['canary']:<16} {r['downstream']:<12} \\\\\\\"\\\\n              f\\\\\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\\\\\")\\\\n\\\\n    # Per-seed detail for significant TY pairs\\\\n    if robust:\\\\n        print()\\\\n        print(\\\\\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 72)\\\\n        for r in robust:\\\\n            print(f\\\\\\\"  {r['canary']} → {r['downstream']}:\\\\\\\")\\\\n            for s in r[\\\\\\\"per_seed\\\\\\\"]:\\\\n                ty = s[\\\\\\\"toda_yamamoto\\\\\\\"]\\\\n                sig_mark = \\\\\\\"*\\\\\\\" if ty[\\\\\\\"significant\\\\\\\"] else \\\\\\\" \\\\\\\"\\\\n                f_str = f\\\\\\\"F={ty['wald_F']:.2f}\\\\\\\" if ty[\\\\\\\"wald_F\\\\\\\"] is not None else \\\\\\\"F=N/A\\\\\\\"\\\\n                p_str = f\\\\\\\"p_raw={ty['p_raw']:.4f}\\\\\\\" if ty[\\\\\\\"p_raw\\\\\\\"] is not None else \\\\\\\"p=N/A\\\\\\\"\\\\n                fdr_str = f\\\\\\\", p_fdr={ty['p_fdr']:.4f}\\\\\\\" if ty.get(\\\\\\\"p_fdr\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                es_str = f\\\\\\\", f2={ty['effect_size_f2']:.4f}\\\\\\\" if ty.get(\\\\\\\"effect_size_f2\\\\\\\") is not None else \\\\\\\"\\\\\\\"\\\\n                print(f\\\\\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def threshold_lead(c, d, cn, dn):\\n    \\\"\\\"\\\"Lead time based on 2σ signal-onset detection.\\\"\\\"\\\"\\n    co = _onset_gen(c, cn)\\n    do = _onset_gen(d, dn)\\n    if co is None or do is None:\\n        missing = []\\n        if co is None:\\n            missing.append(\\\"canary\\\")\\n        if do is None:\\n            missing.append(\\\"downstream\\\")\\n        return {\\n            \\\"method\\\": \\\"threshold_onset\\\",\\n            \\\"canary_onset\\\": None if co is None else int(co),\\n            \\\"downstream_onset\\\": None if do is None else int(do),\\n            \\\"lead_time\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"onset not detected for: {', '.join(missing)}\\\",\\n        }\\n    lt = do - co\\n    return {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": int(co),\\n        \\\"downstream_onset\\\": int(do),\\n        \\\"lead_time\\\": int(lt),\\n        \\\"significant\\\": bool(lt > 0),\\n    }\\n\\n\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\n# series, but the Wald test is restricted to the first p lag coefficients.\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\n# so power is low — significant results here are highly credible.\\n\\ndef _adf_order(series, max_d=2):\\n    \\\"\\\"\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\"\\\"\\\"\\n    for d in range(max_d + 1):\\n        s = series.copy()\\n        for _ in range(d):\\n            s = np.diff(s)\\n        if len(s) < 5:\\n            return d\\n        try:\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\n                return d\\n        except Exception:\\n            pass\\n    return max_d\\n\\n\\ndef toda_yamamoto(c, d, cn, dn):\\n    \\\"\\\"\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\"\\\"\\\"\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n\\n    dc, dd = _adf_order(x), _adf_order(y)\\n    d_max = max(dc, dd)\\n\\n    # With T=10, only p=1 is feasible regardless of AIC\\n    p = 1\\n    k = p + d_max                       # total lags in augmented VAR\\n    T_eff = n - k                        # effective sample after lagging\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\n    df_resid = T_eff - n_params\\n\\n    if df_resid < 1:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": f\\\"no residual df (T_eff={T_eff}, params={n_params})\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # OLS for the downstream equation:\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\n    Y = y[k:]\\n    X_cols = [np.ones(T_eff)]\\n    for l in range(1, k + 1):\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\n    X = np.column_stack(X_cols)\\n\\n    try:\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\n        resid = Y - X @ beta\\n        sigma2 = np.sum(resid ** 2) / df_resid\\n        XtX_inv = np.linalg.inv(X.T @ X)\\n    except Exception:\\n        return {\\n            \\\"method\\\": \\\"toda_yamamoto\\\", \\\"p\\\": p, \\\"d_max\\\": d_max, \\\"k\\\": k,\\n            \\\"wald_F\\\": None, \\\"p_value\\\": None, \\\"significant\\\": False,\\n            \\\"note\\\": \\\"OLS failed (singular design matrix)\\\",\\n            \\\"d_canary\\\": dc, \\\"d_downstream\\\": dd,\\n        }\\n\\n    # Wald test on first p canary-lag coefficients only.\\n    # Column layout: [const, x.L1, y.L1, x.L2, y.L2, ...]\\n    # x.Ll is at column 2*(l-1)+1 for l=1..k; we test l=1..p.\\n    test_idx = [2 * (l - 1) + 1 for l in range(1, p + 1)]\\n    R = np.zeros((p, n_params))\\n    for i, idx in enumerate(test_idx):\\n        R[i, idx] = 1.0\\n\\n    Rb = R @ beta\\n    try:\\n        cov_Rb = sigma2 * (R @ XtX_inv @ R.T)\\n        W = float(Rb @ np.linalg.inv(cov_Rb) @ Rb)\\n        # F-test is more appropriate than χ² with few residual df\\n        F = W / p\\n        pval = float(1.0 - stats.f.cdf(F, p, df_resid))\\n    except Exception\\n\\n... [截断: 输出过长，省略 14508 字符] ...\\n\\n_fc = output[\\\"fdr_correction\\\"][\\\"per_method\\\"][_m]\\n        print(f\\\"  {_m:<24} {_fc['raw_significant']:>2} raw-sig -> \\\"\\n              f\\\"{_fc['fdr_significant']:>2} FDR-sig (of {_fc['total_tests']})\\\")\\n    print()\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 72)\\n    print(f\\\"  Naive significant:       {n_naive:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Differenced significant: {n_diff:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Threshold significant:   {n_thresh:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Toda-Yamamoto significant: {n_ty:>2}/{len(all_pairs)}\\\")\\n    print(f\\\"  Perm Granger significant:  {n_pg:>2}/{len(all_pairs)}\\\")\\n    print()\\n    print(f\\\"  Spurious regression rate: {spur_rate:.1%}  \\\"\\n          f\\\"({n_spur} naive-SIG ∩ TY-n.s. / {n_naive} naive-SIG)\\\")\\n\\n    if n_spur:\\n        print(f\\\"\\\\n  Spurious pairs (naive SIG → TY n.s.):\\\")\\n        for r in all_pairs:\\n            if r[\\\"spurious\\\"]:\\n                print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    robust = [r for r in all_pairs if r[\\\"robust\\\"]]\\n    if robust:\\n        print(f\\\"\\\\n  Robust pairs (naive SIG ∧ TY SIG):\\\")\\n        for r in robust:\\n            print(f\\\"    {r['canary']} → {r['downstream']}\\\")\\n\\n    # ── Dual classification: 5-method vs 4-method ──\\n    print()\\n    print(\\\"=\\\" * 72)\\n    print(\\\"DUAL CLASSIFICATION: 5-method (with TY) vs 4-method (without TY)\\\")\\n    print(\\\"=\\\" * 72)\\n    print(\\\"  TY demoted per D013/D015: power=0.05-0.20 at T=10\\\")\\n    print()\\n    print(f\\\"  {'':20s} {'5-method':>12} {'4-method':>12}\\\")\\n    print(f\\\"  {'-' * 44}\\\")\\n    print(f\\\"  {'Spurious':<20s} {n_spur_5:>2}/{len(all_pairs)} ({spur_rate_5:.0%})\\\"\\n          f\\\"      {n_spur_4:>2}/{len(all_pairs)} ({spur_rate_4:.0%})\\\")\\n    print(f\\\"  {'Robust':<20s} {n_robust_5:>2}/{len(all_pairs)}\\\"\\n          f\\\"            {n_robust_4:>2}/{len(all_pairs)}\\\")\\n    print()\\n\\n    if flipped:\\n        print(f\\\"  Flipped pairs (spurious↔robust between 5/4-method): {len(flipped)}\\\")\\n        for r in flipped:\\n            s5 = \\\"spurious\\\" if r[\\\"spurious_5method\\\"] else \\\"robust\\\"\\n            s4 = \\\"spurious\\\" if r[\\\"spurious_4method\\\"] else \\\"robust\\\"\\n            print(f\\\"    {r['canary']} → {r['downstream']}: \\\"\\n                  f\\\"5m={s5} ({r['methods_agree_5']}/5), \\\"\\n                  f\\\"4m={s4} ({r['methods_agree_4']}/4)\\\")\\n            if r[\\\"spurious_reason_5method\\\"]:\\n                print(f\\\"      reason: {r['spurious_reason_5method']}\\\")\\n    else:\\n        print(\\\"  No flipped pairs between 5-method and 4-method.\\\")\\n\\n    print()\\n    print(\\\"PER-PAIR DUAL CLASSIFICATION\\\")\\n    print(\\\"-\\\" * 72)\\n    hdr2 = (f\\\"  {'Canary':<16} {'Downstream':<12} \\\"\\n            f\\\"{'5m':>4} {'4m':>4}  {'5/5':>4} {'4/4':>4}  Reason\\\")\\n    print(hdr2)\\n    print(\\\"  \\\" + \\\"-\\\" * 68)\\n    for r in all_pairs:\\n        r5 = \\\"ROB\\\" if r[\\\"robust_5method\\\"] else \\\"spu\\\" if r[\\\"spurious_5method\\\"] else \\\"---\\\"\\n        r4 = \\\"ROB\\\" if r[\\\"robust_4method\\\"] else \\\"spu\\\" if r[\\\"spurious_4method\\\"] else \\\"---\\\"\\n        reason = r[\\\"spurious_reason_5method\\\"] or \\\"\\\"\\n        print(f\\\"  {r['canary']:<16} {r['downstream']:<12} \\\"\\n              f\\\"{r5:>4} {r4:>4}  {r['methods_agree_5']:>1}/5  {r['methods_agree_4']:>1}/4  {reason}\\\")\\n\\n    # Per-seed detail for significant TY pairs\\n    if robust:\\n        print()\\n        print(\\\"TODA-YAMAMOTO DETAILS (robust pairs)\\\")\\n        print(\\\"-\\\" * 72)\\n        for r in robust:\\n            print(f\\\"  {r['canary']} → {r['downstream']}:\\\")\\n            for s in r[\\\"per_seed\\\"]:\\n                ty = s[\\\"toda_yamamoto\\\"]\\n                sig_mark = \\\"*\\\" if ty[\\\"significant\\\"] else \\\" \\\"\\n                f_str = f\\\"F={ty['wald_F']:.2f}\\\" if ty[\\\"wald_F\\\"] is not None else \\\"F=N/A\\\"\\n                p_str = f\\\"p_raw={ty['p_raw']:.4f}\\\" if ty[\\\"p_raw\\\"] is not None else \\\"p=N/A\\\"\\n                fdr_str = f\\\", p_fdr={ty['p_fdr']:.4f}\\\" if ty.get(\\\"p_fdr\\\") is not None else \\\"\\\"\\n                es_str = f\\\", f2={ty['effect_size_f2']:.4f}\\\" if ty.get(\\\"effect_size_f2\\\") is not None else \\\"\\\"\\n                print(f\\\"    seed {s['seed']}: {f_str}, {p_str}{fdr_str}{es_str} {sig_mark}\\\")\\n\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the code. Let me create the analysis script for GPT-2m. I'll base it on `extract_table7_8pair.py` since it already does exactly what I need, but I'll:
+
+1. Only analyze the gpt2m_wiki_a100_s42 experiment
+2. Apply FDR to Diff column (collect all 8 diff p-values, apply BH correction)
+3. Add drift analysis
+4. Output comprehensive results
+
+Let me write the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "b16679cf-a75e-4afe-a6a0-5ef1814c7261",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kTAfYRooS8p28CC5mz3gg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3988,
+      "cache_read_input_tokens": 46901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+现在编写并运行 GPT-2m 分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "9e49c21b-7322-4600-9c33-7b7d000a2264",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kTAfYRooS8p28CC5mz3gg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3988,
+      "cache_read_input_tokens": 46901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FDdtuyQD5zt125nuJ2zBps`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/gpt2m_8pair_analysis.py << 'PYEOF'\n\"\"\"8-pair Table 7 analysis for GPT-2-medium WikiText-103 experiment.\"\"\"\nimport json, os, sys\nimport numpy as np\nfrom statsmodels.stats.multitest import multipletests\n\nBASE = \"/root/autodl-tmp/distrib_canary_collapse\"\nsys.path.insert(0, BASE)\n\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\nfrom permutation_granger import permutation_granger_test\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"]\nSHORT = {\"token_entropy\": \"ent\", \"ece\": \"ece\", \"perplexity\": \"ppl\",\n         \"distinct_1\": \"d1\", \"distinct_2\": \"d2\", \"distinct_3\": \"d3\"}\n\nEXP_DIR = os.path.join(BASE, \"results\", \"generalize\", \"gpt2m_wiki_a100_s42\")\nDATA_PATH = os.path.join(EXP_DIR, \"all_metrics.json\")\n\nN_PERM = 5000\nALPHA = 0.05\nXCORR_LAG = 5\nGRANGER_LAG = 1\n\nwith open(DATA_PATH) as f:\n    metrics_list = json.load(f)\nmetrics_list = sorted(metrics_list, key=lambda x: x[\"generation\"])\nn_gens = len(metrics_list)\n\nprint(f\"Loaded {n_gens} generations from {DATA_PATH}\")\n\n# ── Drift analysis ──\nall_metric_names = [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\",\n                    \"self_bleu\", \"effective_rank\", \"mauve\"]\ngen0 = metrics_list[0]\ngen10 = metrics_list[-1]\n\nprint(\"\\n## Drift Analysis (gen0 -> gen10)\")\nprint(f\"{'Metric':<20s} {'Gen0':>14s} {'Gen10':>14s} {'Change%':>10s}\")\nprint(\"-\" * 60)\ndrift_data = {}\nfor m in all_metric_names:\n    v0, v10 = gen0[m], gen10[m]\n    if abs(v0) > 1e-12:\n        pct = (v10 - v0) / abs(v0) * 100\n    else:\n        pct = 0.0\n    drift_data[m] = {\"gen0\": v0, \"gen10\": v10, \"drift_pct\": round(pct, 2)}\n    print(f\"{m:<20s} {v0:>14.6f} {v10:>14.6f} {pct:>+10.1f}%\")\n\n# ── Per-pair analysis ──\nprint(\"\\n## 8-Pair Analysis (n_perm=5000)\")\nprint(f\"| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\")\nprint(f\"|------|---------|--------|--------|------|----------|----------|--------|\")\n\nresults = {}\ndiff_pvals = []\npair_keys = []\n\nfor cn in CANARIES:\n    for dn in DOWNSTREAMS:\n        c = extract(metrics_list, cn)\n        d = extract(metrics_list, dn)\n        pk = f\"{SHORT[cn]}->{SHORT[dn]}\"\n        pair_keys.append(pk)\n\n        res_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_LAG)\n        res_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_LAG)\n        res_thresh = threshold_lead(c, d, cn, dn)\n        res_ty = toda_yamamoto(c, d, cn, dn)\n\n        co = orient(c, cn)\n        do_ = orient(d, dn)\n        res_pg_fwd = permutation_granger_test(co, do_, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\n        res_pg_rev = permutation_granger_test(do_, co, max_lag=GRANGER_LAG, n_perm=N_PERM, seed=42)\n\n        diff_pvals.append(res_diff.get(\"p_value\", 1.0))\n\n        results[pk] = {\n            \"naive\": res_naive,\n            \"diff\": res_diff,\n            \"thresh\": res_thresh,\n            \"ty\": res_ty,\n            \"pg_fwd\": res_pg_fwd,\n            \"pg_rev\": res_pg_rev,\n        }\n\n# Apply FDR to Diff p-values\ndiff_pvals_arr = np.array(diff_pvals)\nreject_fdr, pvals_fdr, _, _ = multipletests(diff_pvals_arr, alpha=ALPHA, method='fdr_bh')\n\nfor i, pk in enumerate(pair_keys):\n    results[pk][\"diff\"][\"p_fdr\"] = float(pvals_fdr[i])\n    results[pk][\"diff\"][\"sig_fdr\"] = bool(reject_fdr[i])\n\n# ── Print and count ──\ncounts = {\"Naive\": 0, \"Diff\": 0, \"Thresh\": 0, \"PG_fwd\": 0, \"PG_rev\": 0, \"TY\": 0, \"K>=4\": 0}\n\nfor pk in pair_keys:\n    r = results[pk]\n    naive_p = r[\"naive\"].get(\"p_value\", 1.0)\n    naive_sig = naive_p < ALPHA if naive_p is not None else False\n\n    diff_sig = r[\"diff\"][\"sig_fdr\"]  # FDR-corrected\n\n    thresh_sig = r[\"thresh\"].get(\"significant\", False)\n    thresh_lt = r[\"thresh\"].get(\"lead_time\")\n\n    ty_p = r[\"ty\"].get(\"p_value\", 1.0)\n    ty_sig = ty_p < ALPHA if ty_p is not None else False\n\n    pg_fwd_p = r[\"pg_fwd\"].get(\"p_value\", 1.0)\n    pg_fwd_sig = pg_fwd_p < ALPHA if pg_fwd_p is not None else False\n\n    pg_rev_p = r[\"pg_rev\"].get(\"p_value\", 1.0)\n    pg_rev_sig = pg_rev_p < ALPHA if pg_rev_p is not None else False\n\n    k_fwd = sum([naive_sig, diff_sig, thresh_sig, pg_fwd_sig, ty_sig])\n\n    if naive_sig: counts[\"Naive\"] += 1\n    if diff_sig: counts[\"Diff\"] += 1\n    if thresh_sig: counts[\"Thresh\"] += 1\n    if pg_fwd_sig: counts[\"PG_fwd\"] += 1\n    if pg_rev_sig: counts[\"PG_rev\"] += 1\n    if ty_sig: counts[\"TY\"] += 1\n    if k_fwd >= 4: counts[\"K>=4\"] += 1\n\n    ns = f\"{naive_p:.4f}\" if naive_p is not None else \"N/A\"\n    ds = f\"{r['diff']['p_fdr']:.4f}\"\n    ts = f\"L={thresh_lt}\" if thresh_sig else \"x\"\n    tys = f\"{ty_p:.4f}\" if ty_p is not None else \"N/A\"\n    pfs = f\"{pg_fwd_p:.4f}\" if pg_fwd_p is not None else \"N/A\"\n    prs = f\"{pg_rev_p:.4f}\" if pg_rev_p is not None else \"N/A\"\n\n    nm = \"Y\" if naive_sig else \"N\"\n    dm = \"Y\" if diff_sig else \"N\"\n    tm = \"Y\" if ty_sig else \"N\"\n    pfm = \"Y\" if pg_fwd_sig else \"N\"\n    prm = \"Y\" if pg_rev_sig else \"N\"\n\n    print(f\"| {pk:<10s} | {ns} {nm} | {ds} {dm} | {ts:<6s} | {tys} {tm} | {pfs} {pfm} | {prs} {prm} | {k_fwd}/5 |\")\n\nprint(f\"\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\")\nprint(f\"| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\")\nprint(f\"|-------|------|--------|--------|--------|-----|------|\")\nprint(f\"| {counts['Naive']}/8 | {counts['Diff']}/8 | {counts['Thresh']}/8 | {counts['PG_fwd']}/8 | {counts['PG_rev']}/8 | {counts['TY']}/8 | {counts['K>=4']}/8 |\")\n\n# ── Save JSON ──\nclass NE(json.JSONEncoder):\n    def default(self, o):\n        if isinstance(o, (np.integer,)): return int(o)\n        if isinstance(o, (np.floating,)): return float(o)\n        if isinstance(o, np.ndarray): return o.tolist()\n        if isinstance(o, np.bool_): return bool(o)\n        return super().default(o)\n\nout_dir = os.path.join(EXP_DIR, \"analysis\")\nos.makedirs(out_dir, exist_ok=True)\noutput = {\n    \"experiment\": \"gpt2m_wiki_a100_s42\",\n    \"model\": \"gpt2-medium\",\n    \"dataset\": \"wikitext103_5k\",\n    \"alpha_mix\": 1.0,\n    \"seed\": 42,\n    \"n_generations\": n_gens,\n    \"parameters\": {\"n_perm\": N_PERM, \"xcorr_lag\": XCORR_LAG, \"granger_lag\": GRANGER_LAG},\n    \"table7_row\": counts,\n    \"drift\": drift_data,\n    \"per_pair\": results,\n}\nout_path = os.path.join(out_dir, \"gpt2m_8pair_table7.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2, cls=NE)\nprint(f\"\\nSaved: {out_path}\")\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "90e001eb-6605-474c-9cfe-5c4f8b3c8153",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kTAfYRooS8p28CC5mz3gg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3988,
+      "cache_read_input_tokens": 46901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3988
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T11:33:30.746Z_
+
+<details><summary>↩ Tool result · `toolu_01FDdtuyQD5zt125nuJ2zBps`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "f77632a3-fdce-4038-a26f-6fbec01e1e84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016t17ZMFhJee5W5pssshRXA`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python gpt2m_8pair_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "e1839df3-f9ff-499e-9684-bfc557132edc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8Ed7pyAoYFQXdg5rt8N9F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3152,
+      "cache_read_input_tokens": 50889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3152
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T11:33:38.034Z_
+
+<details><summary>↩ Tool result · `toolu_016t17ZMFhJee5W5pssshRXA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n\\n## Drift Analysis (gen0 -> gen10)\\nMetric                         Gen0          Gen10    Change%\\n------------------------------------------------------------\\ntoken_entropy              3.571424       0.479393      -86.6%\\nece                        0.011165       0.521620    +4571.9%\\nperplexity                32.631529   16520.549052   +50527.6%\\ndistinct_1                 0.104382       0.091789      -12.1%\\ndistinct_2                 0.548308       0.471683      -14.0%\\ndistinct_3                 0.844118       0.739426      -12.4%\\nself_bleu                  0.009416       0.011851      +25.9%\\neffective_rank             2.372237      25.001834     +953.9%\\nmauve                      0.031454       0.033925       +7.9%\\n\\n## 8-Pair Analysis (n_perm=5000)\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\n|------|---------|--------|--------|------|----------|----------|--------|\\n| ent->ppl   | 0.0199 Y | 0.0016 Y | L=7    | 0.9998 N | 0.4989 N | 0.1820 N | 3/5 |\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\n| ece->ppl   | 0.0076 Y | 0.0029 Y | L=6    | 0.2254 N | 0.8796 N | 0.6107 N | 3/5 |\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\n\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\n|-------|------|--------|--------|--------|-----|------|\\n| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "6adf16a4-fc3a-4140-b91d-1f973c4a7a3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\\\n\\\\n## Drift Analysis (gen0 -> gen10)\\\\nMetric                         Gen0          Gen10    Change%\\\\n------------------------------------------------------------\\\\ntoken_entropy              3.571424       0.479393      -86.6%\\\\nece                        0.011165       0.521620    +4571.9%\\\\nperplexity                32.631529   16520.549052   +50527.6%\\\\ndistinct_1                 0.104382       0.091789      -12.1%\\\\ndistinct_2                 0.548308       0.471683      -14.0%\\\\ndistinct_3                 0.844118       0.739426      -12.4%\\\\nself_bleu                  0.009416       0.011851      +25.9%\\\\neffective_rank             2.372237      25.001834     +953.9%\\\\nmauve                      0.031454       0.033925       +7.9%\\\\n\\\\n## 8-Pair Analysis (n_perm=5000)\\\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\\\n|------|---------|--------|--------|------|----------|----------|--------|\\\\n| ent->ppl   | 0.0199 Y | 0.0016 Y | L=7    | 0.9998 N | 0.4989 N | 0.1820 N | 3/5 |\\\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\\\n| ece->ppl   | 0.0076 Y | 0.0029 Y | L=6    | 0.2254 N | 0.8796 N | 0.6107 N | 3/5 |\\\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\\\n\\\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\\\n|-------|------|--------|--------|--------|-----|------|\\\\n| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\\\n\\\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n\\n## Drift Analysis (gen0 -> gen10)\\nMetric                         Gen0          Gen10    Change%\\n------------------------------------------------------------\\ntoken_entropy              3.571424       0.479393      -86.6%\\nece                        0.011165       0.521620    +4571.9%\\nperplexity                32.631529   16520.549052   +50527.6%\\ndistinct_1                 0.104382       0.091789      -12.1%\\ndistinct_2                 0.548308       0.471683      -14.0%\\ndistinct_3                 0.844118       0.739426      -12.4%\\nself_bleu                  0.009416       0.011851      +25.9%\\neffective_rank             2.372237      25.001834     +953.9%\\nmauve                      0.031454       0.033925       +7.9%\\n\\n## 8-Pair Analysis (n_perm=5000)\\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\\n|------|---------|--------|--------|------|----------|----------|--------|\\n| ent->ppl   | 0.0199 Y | 0.0016 Y | L=7    | 0.9998 N | 0.4989 N | 0.1820 N | 3/5 |\\n| ent->d1    | 0.0000 Y | 0.0000 Y | L=2    | 0.1160 N | 0.0006 Y | 0.0964 N | 4/5 |\\n| ent->d2    | 0.0000 Y | 0.0000 Y | L=2    | 0.0017 Y | 0.0020 Y | 0.1052 N | 5/5 |\\n| ent->d3    | 0.0000 Y | 0.0000 Y | L=2    | 0.0000 Y | 0.0024 Y | 0.1062 N | 5/5 |\\n| ece->ppl   | 0.0076 Y | 0.0029 Y | L=6    | 0.2254 N | 0.8796 N | 0.6107 N | 3/5 |\\n| ece->d1    | 0.0000 Y | 0.0007 Y | L=1    | 0.0000 Y | 0.0006 Y | 0.0032 Y | 5/5 |\\n| ece->d2    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0160 Y | 5/5 |\\n| ece->d3    | 0.0000 Y | 0.0000 Y | L=1    | 0.0000 Y | 0.0010 Y | 0.0084 Y | 5/5 |\\n\\n## Table 7 Row: GPT-2m WikiText-103 (seed=42)\\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\\n|-------|------|--------|--------|--------|-----|------|\\n| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\\n\\nSaved: /root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+分析完成。结果在预期范围内。
+
+**Table 7 Row: GPT-2m WikiText-103 (seed=42)**
+
+| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |
+|-------|------|--------|--------|--------|-----|------|
+| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |
+
+与参考行对比完全一致（Baseline Pythia-410M 也是 Naive=8, PG_fwd=6, PG_rev=3, K>=4=6）。TY=5/8 略高于 Baseline 的 4/8。
+
+现在注册报告和更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "210cdb0f-b338-4b3e-ae45-a180313a0a0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQcWVZPBrmQjxh3hYpRK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1253,
+      "cache_read_input_tokens": 54041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01U3ZC6edpq8UPHxAP2dJzJF`</summary>
+
+```json
+{
+  "name": "GPT-2m WikiText-103 8-pair Table 7 Analysis",
+  "type": "report",
+  "description": "8-pair causality analysis for GPT-2-medium on WikiText-103 (seed=42, n_perm=5000). Table 7 row: Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=5/8, K>=4=6/8. Drift: token_entropy -86.6%, ece +4571.9%, ppl +50527.6%, distinct_1 -12.1%.",
+  "project": "distrib_canary_collapse",
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "content_filename": "gpt2m_wiki_8pair_table7_report.md",
+  "tags": [
+    "table7",
+    "gpt2m",
+    "8pair",
+    "causality"
+  ],
+  "content": "# GPT-2-medium WikiText-103 8-Pair Table 7 Analysis\n\n**Experiment**: gen_wiki_gpt2m_a100_s42_v4\n**Model**: gpt2-medium (355M)\n**Dataset**: wikitext103_5k, alpha=1.0, seed=42\n**Generations**: 11 (gen0-gen10), 5000 steps/gen\n**Parameters**: n_perm=5000, xcorr_lag=5, granger_lag=1\n\n## Table 7 Row\n\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\n|-------|------|--------|--------|--------|-----|------|\n| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 |\n\n## Per-Pair Detail\n\n| Pair | Naive | Diff(FDR) | Thresh | TY | PG_fwd | PG_rev | K |\n|------|-------|-----------|--------|-----|--------|--------|---|\n| ent->ppl | Y (p=0.0199) | Y (q=0.0016) | Y (L=7) | N (p=0.9998) | N (p=0.4989) | N (p=0.1820) | 3/5 |\n| ent->d1 | Y (p=0.0000) | Y (q=0.0000) | Y (L=2) | N (p=0.1160) | Y (p=0.0006) | N (p=0.0964) | 4/5 |\n| ent->d2 | Y (p=0.0000) | Y (q=0.0000) | Y (L=2) | Y (p=0.0017) | Y (p=0.0020) | N (p=0.1052) | 5/5 |\n| ent->d3 | Y (p=0.0000) | Y (q=0.0000) | Y (L=2) | Y (p=0.0000) | Y (p=0.0024) | N (p=0.1062) | 5/5 |\n| ece->ppl | Y (p=0.0076) | Y (q=0.0029) | Y (L=6) | N (p=0.2254) | N (p=0.8796) | N (p=0.6107) | 3/5 |\n| ece->d1 | Y (p=0.0000) | Y (q=0.0007) | Y (L=1) | Y (p=0.0000) | Y (p=0.0006) | Y (p=0.0032) | 5/5 |\n| ece->d2 | Y (p=0.0000) | Y (q=0.0000) | Y (L=1) | Y (p=0.0000) | Y (p=0.0010) | Y (p=0.0160) | 5/5 |\n| ece->d3 | Y (p=0.0000) | Y (q=0.0000) | Y (L=1) | Y (p=0.0000) | Y (p=0.0010) | Y (p=0.0084) | 5/5 |\n\n## Drift Analysis (gen0 -> gen10)\n\n| Metric | Gen0 | Gen10 | Change% |\n|--------|------|-------|---------|\n| token_entropy | 3.5714 | 0.4794 | -86.6% |\n| ece | 0.0112 | 0.5216 | +4571.9% |\n| perplexity | 32.63 | 16520.55 | +50527.6% |\n| distinct_1 | 0.1044 | 0.0918 | -12.1% |\n| distinct_2 | 0.5483 | 0.4717 | -14.0% |\n| distinct_3 | 0.8441 | 0.7394 | -12.4% |\n| self_bleu | 0.0094 | 0.0119 | +25.9% |\n| effective_rank | 2.3722 | 25.0018 | +953.9% |\n| mauve | 0.0315 | 0.0339 | +7.9% |\n\n## Comparison with Other Conditions\n\n| Row | Naive | Diff | Thresh | PG fwd | PG rev | TY | K>=4 |\n|-----|-------|------|--------|--------|--------|-----|------|\n| Baseline (Pythia-410M) | 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 4/8 | 6/8 |\n| **GPT-2m (355M)** | **8/8** | **8/8** | **8/8** | **6/8** | **3/8** | **5/8** | **6/8** |\n| OPT-1.3B | 8/8 | 6/8 | 8/8 | 6/8 | 2/8 | 6/8 | 6/8 |\n| Pythia-1.4B s42 | 7/8 | 6/8 | 8/8 | 5/8 | 0/8 | 0/8 | 5/8 |\n| C4 s42 | 8/8 | 6/8 | 8/8 | 6/8 | 3/8 | 3/8 | 6/8 |\n\n## Key Findings\n\n1. **K>=4 = 6/8**: Strong consensus, matching Baseline and OPT-1.3B level. GPT-2m confirms canary-downstream causal signal generalizes across architectures.\n2. **Naive/Diff/Thresh all 8/8**: Perfect detection on correlation-based and threshold methods, consistent with strong monotonic degradation trends.\n3. **PG_fwd = 6/8, PG_rev = 3/8**: Correct asymmetry (forward > reverse), confirming directional causality from canary to downstream.\n4. **TY = 5/8**: Higher than Baseline (4/8), driven by ece->d1/d2/d3 and ent->d2/d3 pairs. The two ppl pairs fail TY (p=0.9998 and 0.2254), consistent with perplexity's delayed onset (L=6-7) reducing TY power.\n5. **Perplexity explosion**: +50527.6% drift (32.6 -> 16520.5), the most extreme among all conditions, indicating severe model collapse in GPT-2m.\n6. **Token entropy collapse**: -86.6% (3.57 -> 0.48), more severe than typical Pythia experiments, suggesting GPT-2m is more susceptible to distributional narrowing.\n\n## JSON Output\nFull per-pair results saved to: `/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/analysis/gpt2m_8pair_table7.json`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "97cc8fc7-655a-485b-a351-135a2bcac301",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQcWVZPBrmQjxh3hYpRK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1253,
+      "cache_read_input_tokens": 54041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T11:34:12.058Z_
+
+<details><summary>↩ Tool result · `toolu_01U3ZC6edpq8UPHxAP2dJzJF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_bd30d8\", \"name\": \"GPT-2m WikiText-103 8-pair Table 7 Analysis\", \"type\": \"report\", \"description\": \"8-pair causality analysis for GPT-2-medium on WikiText-103 (seed=42, n_perm=5000). Table 7 row: Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=5/8, K>=4=6/8. Drift: token_entropy -86.6%, ece +4571.9%, ppl +50527.6%, distinct_1 -12.1%.\", \"path\": \"projects/distrib_canary_collapse/artifacts/gen_wiki_gpt2m_a100_s42_v4/report/gpt2m_wiki_8pair_table7_report.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"skill\": \"\", \"created_at\": \"2026-05-18T11:34:11.897200+00:00\", \"tags\": [\"table7\", \"gpt2m\", \"8pair\", \"causality\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "5b6cea2e-20b0-4a92-bddf-15a4a1e14ed5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_bd30d8\\\", \\\"name\\\": \\\"GPT-2m WikiText-103 8-pair Table 7 Analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"8-pair causality analysis for GPT-2-medium on WikiText-103 (seed=42, n_perm=5000). Table 7 row: Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=5/8, K>=4=6/8. Drift: token_entropy -86.6%, ece +4571.9%, ppl +50527.6%, distinct_1 -12.1%.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/gen_wiki_gpt2m_a100_s42_v4/report/gpt2m_wiki_8pair_table7_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T11:34:11.897200+00:00\\\", \\\"tags\\\": [\\\"table7\\\", \\\"gpt2m\\\", \\\"8pair\\\", \\\"causality\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_bd30d8\", \"name\": \"GPT-2m WikiText-103 8-pair Table 7 Analysis\", \"type\": \"report\", \"description\": \"8-pair causality analysis for GPT-2-medium on WikiText-103 (seed=42, n_perm=5000). Table 7 row: Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=5/8, K>=4=6/8. Drift: token_entropy -86.6%, ece +4571.9%, ppl +50527.6%, distinct_1 -12.1%.\", \"path\": \"projects/distrib_canary_collapse/artifacts/gen_wiki_gpt2m_a100_s42_v4/report/gpt2m_wiki_8pair_table7_report.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"skill\": \"\", \"created_at\": \"2026-05-18T11:34:11.897200+00:00\", \"tags\": [\"table7\", \"gpt2m\", \"8pair\", \"causality\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+报告已注册。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "e61555bf-059a-4deb-81d0-9621ef3d7c57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AP2ndWF1P6qVY8nZ9tGcM4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2880,
+      "cache_read_input_tokens": 55294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2880
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QCY2xXVmiVYqtqAbBp2foC`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "distrib_canary_collapse",
+  "spec": {
+    "command": "python run_unified_generalize.py --model gpt2-medium --data wikitext103_5k --alpha 1.0 --seed 42 --n_gen 10 --steps 5000",
+    "server": "westd-19828",
+    "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+    "data_count": 5000,
+    "model_name": "gpt2-medium",
+    "seed": 42,
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/",
+    "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "b5fbdcfb-6c58-412a-a312-19fa9d62dc5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AP2ndWF1P6qVY8nZ9tGcM4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2880,
+      "cache_read_input_tokens": 55294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2880
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T11:34:18.990Z_
+
+<details><summary>↩ Tool result · `toolu_01QCY2xXVmiVYqtqAbBp2foC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: ANALYZING → RUNNING. Allowed: ['DONE']\", \"metadata\": {\"elapsed_seconds\": 0.1349}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "7c7efbff-bb69-4050-ba8d-508d8b8347cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: ANALYZING → RUNNING. Allowed: ['DONE']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1349}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: ANALYZING → RUNNING. Allowed: ['DONE']\", \"metadata\": {\"elapsed_seconds\": 0.1349}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SwCwPWktxonmDtKxhJc24W`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "spec",
+  "value": {
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/",
+    "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log"
+  },
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "e632697e-0a83-49e4-ad24-51fa3140fd3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019LyxC9uYDsSFWmD819CEXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 58174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 434
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T11:34:22.801Z_
+
+<details><summary>↩ Tool result · `toolu_01SwCwPWktxonmDtKxhJc24W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:22.704Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2299}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "20db6dac-1fce-410d-bf91-7c1cd3a873b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:20:50.055Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:34:22.704Z\\\", \\\"hypothesis\\\": \\\"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T11:28:28.313Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T11:28:30.486134+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2299}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:22.704Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2299}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01T524qGhFbinVNCD1bPuS9f`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "metrics",
+  "value": {
+    "naive": "8/8",
+    "diff": "8/8",
+    "thresh": "8/8",
+    "pg_fwd": "6/8",
+    "pg_rev": "3/8",
+    "ty": "5/8",
+    "k_gte4": "6/8",
+    "n_perm": 5000,
+    "xcorr_lag": 5,
+    "granger_lag": 1,
+    "drift_token_entropy_pct": -86.6,
+    "drift_ece_pct": 4571.9,
+    "drift_ppl_pct": 50527.6,
+    "drift_distinct1_pct": -12.1
+  },
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ca44ec4b-1cc1-4483-b55c-85fac60403cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013owDNjC8Nd8ZX6gjY8a8qu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 58608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 617
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-18T11:34:27.712Z_
+
+<details><summary>↩ Tool result · `toolu_01T524qGhFbinVNCD1bPuS9f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:27.597Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.265}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "946f14d2-1d40-46a9-b28e-62abe5f5af33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:20:50.055Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:34:27.597Z\\\", \\\"hypothesis\\\": \\\"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T11:28:28.313Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T11:28:30.486134+00:00\\\"}]}, \\\"metrics\\\": {\\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"8/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"5/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"drift_token_entropy_pct\\\": -86.6, \\\"drift_ece_pct\\\": 4571.9, \\\"drift_ppl_pct\\\": 50527.6, \\\"drift_distinct1_pct\\\": -12.1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.265}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:27.597Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.265}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QrmypTGGqc6zcXoRsPUKEU`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "637f02a3-c18f-4b9f-8c89-cef8ec270be5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APZamrYrAXpEsf1HLarmKJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 59225,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-18T11:34:30.870Z_
+
+<details><summary>↩ Tool result · `toolu_01QrmypTGGqc6zcXoRsPUKEU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:30.770Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2337}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ab5878aa-99fb-40e1-8bc5-76f8e90f3895",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:20:50.055Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:34:30.770Z\\\", \\\"hypothesis\\\": \\\"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T11:28:28.313Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T11:28:30.486134+00:00\\\"}]}, \\\"metrics\\\": {\\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"8/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"5/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"drift_token_entropy_pct\\\": -86.6, \\\"drift_ece_pct\\\": 4571.9, \\\"drift_ppl_pct\\\": 50527.6, \\\"drift_distinct1_pct\\\": -12.1}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2337}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:30.770Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2337}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016i5SPsYDsGyL8AGdL3LHJm`</summary>
+
+```json
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "field": "status",
+  "value": "DONE",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "b6f06265-8c9a-4437-966f-3d4bb26389dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K8cDhVtG9eFRPL7TjLBo5T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 60095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-18T11:34:34.888Z_
+
+<details><summary>↩ Tool result · `toolu_016i5SPsYDsGyL8AGdL3LHJm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:34.397Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T11:34:34.397Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6191}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "ddd639f7-7b4b-44ab-9e2d-cbc7203db28e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_wiki_gpt2m_a100_s42_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:20:50.055Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:34:34.397Z\\\", \\\"hypothesis\\\": \\\"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T11:28:28.313Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T11:28:30.486134+00:00\\\"}]}, \\\"metrics\\\": {\\\"naive\\\": \\\"8/8\\\", \\\"diff\\\": \\\"8/8\\\", \\\"thresh\\\": \\\"8/8\\\", \\\"pg_fwd\\\": \\\"6/8\\\", \\\"pg_rev\\\": \\\"3/8\\\", \\\"ty\\\": \\\"5/8\\\", \\\"k_gte4\\\": \\\"6/8\\\", \\\"n_perm\\\": 5000, \\\"xcorr_lag\\\": 5, \\\"granger_lag\\\": 1, \\\"drift_token_entropy_pct\\\": -86.6, \\\"drift_ece_pct\\\": 4571.9, \\\"drift_ppl_pct\\\": 50527.6, \\\"drift_distinct1_pct\\\": -12.1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T11:34:34.397Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6191}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gen_wiki_gpt2m_a100_s42_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-18T11:34:34.397Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"naive\": \"8/8\", \"diff\": \"8/8\", \"thresh\": \"8/8\", \"pg_fwd\": \"6/8\", \"pg_rev\": \"3/8\", \"ty\": \"5/8\", \"k_gte4\": \"6/8\", \"n_perm\": 5000, \"xcorr_lag\": 5, \"granger_lag\": 1, \"drift_token_entropy_pct\": -86.6, \"drift_ece_pct\": 4571.9, \"drift_ppl_pct\": 50527.6, \"drift_distinct1_pct\": -12.1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T11:34:34.397Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6191}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+分析完成，实验已标记 DONE(success)。
+
+## 结果摘要
+
+**Table 7 GPT-2m 行**:
+
+| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |
+|-------|------|--------|--------|--------|-----|------|
+| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | **6/8** |
+
+**与 Baseline (Pythia-410M) 几乎一致**：Naive/Diff/Thresh/PG_fwd/PG_rev/K>=4 完全相同，TY 从 4/8 提升到 5/8。
+
+**Drift 亮点**：
+- token_entropy: -86.6% (严重坍缩)
+- perplexity: +50527.6% (32.6 → 16520.5，所有条件中最极端)
+- distinct_1/2/3: -12% ~ -14%
+
+**结论**: GPT-2m 确认 canary-downstream 因果信号跨架构泛化成立，K>=4=6/8 与其他条件 (5/8-6/8) 一致。报告已注册 (`art_20260518_bd30d8`)，registry 已更新为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "uuid": "990f0880-66c8-479d-9f1d-120978f73368",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tmrseEbpQ57P9XcjGkKHv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 60823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 65_
+
+分析完成，实验已标记 DONE(success)。
+
+## 结果摘要
+
+**Table 7 GPT-2m 行**:
+
+| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |
+|-------|------|--------|--------|--------|-----|------|
+| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | **6/8** |
+
+**与 Baseline (Pythia-410M) 几乎一致**：Naive/Diff/Thresh/PG_fwd/PG_rev/K>=4 完全相同，TY 从 4/8 提升到 5/8。
+
+**Drift 亮点**：
+- token_entropy: -86.6% (严重坍缩)
+- perplexity: +50527.6% (32.6 → 16520.5，所有条件中最极端)
+- distinct_1/2/3: -12% ~ -14%
+
+**结论**: GPT-2m 确认 canary-downstream 因果信号跨架构泛化成立，K>=4=6/8 与其他条件 (5/8-6/8) 一致。报告已注册 (`art_20260518_bd30d8`)，registry 已更新为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 195737,
+  "duration_api_ms": 188817,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "087991f9-01a8-4bd9-b6e7-2fe07ac8179b",
+  "total_cost_usd": 0.9912830000000001,
+  "usage": {
+    "input_tokens": 21,
+    "cache_creation_input_tokens": 49768,
+    "cache_read_input_tokens": 814814,
+    "output_tokens": 10792,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 49768,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 370,
+        "cache_read_input_tokens": 60823,
+        "cache_creation_input_tokens": 786,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 786
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2811,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002921,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 21,
+      "outputTokens": 10792,
+      "cacheReadInputTokens": 814814,
+      "cacheCreationInputTokens": 49768,
+      "webSearchRequests": 0,
+      "costUSD": 0.9883620000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "773582f8-351f-4d36-a742-095355764fab"
+}
+```
+
+</details>
+
+---

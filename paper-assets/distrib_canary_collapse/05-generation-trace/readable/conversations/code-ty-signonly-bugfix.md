@@ -1,0 +1,2159 @@
+# code ty signonly bugfix
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_code_ty_signonly_bugfix_20260520T060407.jsonl`
+- **Structured JSON:** [`5fb286eac97d97c678f4.json`](../../sessions/5f/5fb286eac97d97c678f4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T06:09:59.333759+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T06:09:59.334279+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T06:09:59.334611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"signonly\\|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"signonly\\|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T06:09:59.334862+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T06:09:59.335092+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "python3 -c \"import statsmodels; print('version:', statsmodels.__version__); from statsmodels.tsa.vector_ar.var_model import VARResults; help(VARResults.test_causality)\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "python3 -c \"import statsmodels; print('version:', statsmodels.__version__); from statsmodels.tsa.vector_ar.var_model import VARResults; help(VARResults.test_causality)\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T06:09:59.335347+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T06:09:59.335634+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"signonly\\|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"signonly\\|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T06:09:59.335868+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T06:09:59.336092+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport statsmodels\nprint('version:', statsmodels.__version__)\nfrom statsmodels.tsa.vector_ar.var_model import VARResults\nhelp(VARResults.test_causality)\n\" 2>&1 | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport statsmodels\nprint('version:', statsmodels.__version__)\nfrom statsmodels.tsa.vector_ar.var_model import VARResults\nhelp(VARResults.test_causality)\n\" 2>&1 | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T06:09:59.336409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"version: 0.14.6\\nHelp on function test_causality in module statsmodels.tsa.vector_ar.var_model:\\n\\ntest_causality(self, caused, causing=None, kind='f', signif=0.05)\\n    Test Granger causality\\n\\n    Parameters\\n    ----------\\n    caused : int or str or sequence of int or str\\n        If int or str, test whether the variable specified via this index\\n        (int) or name (str) is Granger-caused by the variable(s) specified\\n        by `causing`.\\n        If a sequence of int or str, test whether the corresponding\\n        variables are Granger-caused by the variable(s) specified\\n        by `causing`.\\n    causing : int or str or sequence of int or str or None, default: None\\n        If int or str, test whether the variable specified via this index\\n        (int) or name (str) is Granger-causing the variable(s) specified by\\n        `caused`.\\n        If a sequence of int or str, test whether the corresponding\\n        variables are Granger-causing the variable(s) specified by\\n        `caused`.\\n        If None, `causing` is assumed to be the complement of `caused`.\\n    kind : {'f', 'wald'}\\n        Perform F-test or Wald (chi-sq) test\\n    signif : float, default 5%\\n        Significance level for computing critical values for test,\\n        defaulting to standard 0.05 level\\n\\n    Notes\\n    -----\\n    Null hypothesis is that there is no Granger-causality for the indicated\\n    variables. The degrees of freedom in the F-test are based on the\\n    number of variables in the VAR system, that is, degrees of freedom\\n    are equal to the number of equations in the VAR times degree of freedom\\n    of a single equation.\\n\\n    Test for Granger-causality as described in chapter 7.6.3 of [1]_.\\n    Test H0: \\\"`causing` does not Granger-cause the remaining variables of\\n    the system\\\" against  H1: \\\"`causing` is Granger-causal for the\\n    remaining variables\\\".\\n
+…[truncated 316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T06:09:59.338015+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -nE \"signonly|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -nE \"signonly|test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T06:09:59.338311+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T06:09:59.338621+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"signonly\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"signonly\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T06:09:59.338922+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T06:09:59.339176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"223:        test_result = result.test_causality(causing=1, caused=0, signonly=False)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T06:09:59.344637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"223:        test_result = result.test_causality(causing=1, caused=0, signonly=False)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 5
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T06:09:59.344988+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "sed -n '210,240p' /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "sed -n '210,240p' /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T06:09:59.345242+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T06:09:59.345497+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "head -240 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "head -240 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T06:09:59.345904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREA
+…[truncated 6832 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T06:09:59.346217+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -n +220 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -n +220 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T06:09:59.349895+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    try:\\n        model = VAR(data)\\n        result = model.fit(total_order)\\n        test_result = result.test_causality(causing=1, caused=0, signonly=False)\\n        f_stat = float(test_result.summary().data[0][1])\\n        p_value = float(test_result.summary().data[0][2])\\n        return {\\n            \\\"method\\\": \\\"ty_granger\\\",\\n            \\\"f_stat\\\": round(f_stat, 4),\\n            \\\"p_value\\\": round(p_value, 4),\\n            \\\"significant\\\": bool(p_value < ALPHA),\\n            \\\"order\\\": total_order,\\n            \\\"k_opt\\\": best_k,\\n            \\\"d_max\\\": d_max,\\n        }\\n    except Exception as e:\\n        return {\\n            \\\"method\\\": \\\"ty_granger\\\",\\n            \\\"f_stat\\\": None,\\n            \\\"p_value\\\": None,\\n            \\\"significant\\\": False,\\n            \\\"error\\\": str(e),\\n            \\\"order\\\": total_order,\\n            \\\"k_opt\\\": best_k,\\n            \\\"d_max\\\": d_max,\\n        }\\n\\n\\ndef run(args):\\n    data_dir = args.data_dir\\n    alpha_val = args.alpha\\n    seed = args.seed\\n\\n    series, n_gens = load_series(data_dir)\\n\\n    print(f\\\"==== {'=' * 96}\\\")\\n    print(f\\\"5-METHOD LEAD-LAG ANALYSIS | alpha={alpha_val} | seed={seed}\\\")\\n    print(f\\\"Data: {data_dir}\\\")\\n    print(f\\\"==== {'=' * 96}\\\")\\n    print(f\\\"Loaded {n_gens} generations\\\")\\n\\n    if args.dry_run:\\n        print(\\\"--dry-run: data loaded successfully, exiting\\\")\\n        return\\n\\n    # Build pairs (D102 8-pair config)\\n    pairs = [{\\\"canary\\\": c, \\\"downstream\\\": d} for c in CANARIES for d in DOWNSTREAMS]\\n    all_results = {\\n        \\\"meta\\\": {\\n            \\\"alpha\\\": alpha_val,\\n            \\\"seed\\\": seed,\\n            \\\"n_gens\\\": n_gens,\\n            \\\"data_dir\\\": data_dir,\\n            \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\",
+…[truncated 7473 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T06:09:59.350311+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom statsmodels.tsa.vector_ar.hypothesis_test_results import CausalityTestResults\nhelp(CausalityTestResults)\n\" 2>&1 | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom statsmodels.tsa.vector_ar.hypothesis_test_results import CausalityTestResults\nhelp(CausalityTestResults)\n\" 2>&1 | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T06:09:59.350611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Help on class CausalityTestResults in module statsmodels.tsa.vector_ar.hypothesis_test_results:\\n\\nclass CausalityTestResults(HypothesisTestResults)\\n |  CausalityTestResults(causing, caused, test_statistic, crit_value, pvalue, df, signif, test='granger', method=None)\\n |\\n |  Results class for Granger-causality and instantaneous causality.\\n |\\n |  Parameters\\n |  ----------\\n |  causing : list of str\\n |      This list contains the potentially causing variables.\\n |  caused : list of str\\n |      This list contains the potentially caused variables.\\n |  test_statistic : float\\n |  crit_value : float\\n |  pvalue : float\\n |  df : int\\n |      Degrees of freedom.\\n |  signif : float\\n |      Significance level.\\n |  test : str {``\\\"granger\\\"``, ``\\\"inst\\\"``}, default: ``\\\"granger\\\"``\\n |      If ``\\\"granger\\\"``, Granger-causality has been tested. If ``\\\"inst\\\"``,\\n |      instantaneous causality has been tested.\\n |  method : str {``\\\"f\\\"``, ``\\\"wald\\\"``}\\n |      The kind of test. ``\\\"f\\\"`` indicates an F-test, ``\\\"wald\\\"`` indicates a\\n |      Wald-test.\\n |\\n |  Method resolution order:\\n |      CausalityTestResults\\n |      HypothesisTestResults\\n |      builtins.object\\n |\\n |  Methods defined here:\\n |\\n |  __eq__(self, other)\\n |      Return self==value.\\n |\\n |  __init__(self, causing, caused, test_statistic, crit_value, pvalue, df, signif, test='granger', method=None)\\n |      Initialize self.  See help(type(self)) for accurate signature.\\n |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T06:09:59.350895+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && cp run_5method_analysis_d102.py run_5method_analysis_d102.py.bak_pre_ty_fix && sed -i 's/test_result = result.test_causality(causing=1, caused=0, signonly=False)/test_result = result.test_causality(causing=1, caused=0, kind=\"f\")/' run_5method_analysis_d102.py && sed -i 's/f_stat = float(test_result.summary().data\\[0\\]\\[1\\])/f_stat = float(test_result.test_statistic)/' run_5method_analysis_d102.py && sed -i 's/p_value = float(test_result.summary().data\\[0\\]\\[2\\])/p_value = float(test_result.pvalue)/' run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && cp run_5method_analysis_d102.py run_5method_analysis_d102.py.bak_pre_ty_fix && sed -i 's/test_result = result.test_causality(causing=1, caused=0, signonly=False)/test_result = result.test_causality(causing=1, caused=0, kind=\"f\")/' run_5method_analysis_d102.py && sed -i 's/f_stat = float(test_result.summary().data\\[0\\]\\[1\\])/f_stat = float(test_result.test_statistic)/' run_5method_analysis_d102.py && sed -i 's/p_value = float(test_result.summary().data\\[0\\]\\[2\\])/p_value = float(test_result.pvalue)/' run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T06:09:59.351134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T06:09:59.353490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_causality\\|test_statistic\\|pvalue\\|f_stat\\|p_value\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_causality\\|test_statistic\\|pvalue\\|f_stat\\|p_value\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T06:09:59.353802+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T06:09:59.354039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T06:09:59.354312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"223:        test_result = result.test_causality(causing=1, caused=0, kind=\\\"f\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T06:09:59.354551+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_statistic\\|pvalue\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_statistic\\|pvalue\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T06:09:59.354772+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T06:09:59.354990+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"test_statistic\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"test_statistic\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T06:09:59.355207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -n \"signonly\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -n \"signonly\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T06:09:59.356557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"224:        f_stat = float(test_result.test_statistic)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T06:09:59.356804+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T06:09:59.357062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T06:09:59.357316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T06:09:59.357563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42_fp32\\na005_s42_fp32\\na005_s42_fp32_v2\\na005_s42_fp32_v3\\na005_s42_fp32_v3_d080\\na010_s42_bf16\\na010_s42_fp32\\na010_s43_bf16\\na010_s43_fp32\\na025_s42_fp32\\na025_s43_fp32\\na025_s44_fp32\\na030_s42_fp32\\na035_s42_fp32\\na040_s42_fp32\\na045_s42_fp32\\na045_s43_fp32\\na050_postd093_s42_fp32\\na050_s42_fp32\\na050_s43_fp32\\na050_s44_fp32\\na060_s42\\na060_s42_bf16\\na060_s42_fp32\\na060_s42_fp32_v2\\na060_s42_fp32_v3_d080\\na060_s43_fp32\\na075_s42_fp32\\na100_s42_fp32\\nc4_a025_s42_fp32\\nc4_a050_s42_fp32\\nc4_a075_s42_fp32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T06:09:59.357795+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gpt2m_wiki_a100_s43\\ngpt2m_wiki_a100_s43_bf16\\nopt13b_wiki_a100_s43_bf16\\npythia410m_wiki_a100_s43\\nqwen35_08b_wiki_a100_s42_fp32_v2\\nqwen35_08b_wiki_a100_s43_fp32\\nsmollm3_3b_wiki_a100_s43_17855\\nsmollm3_3b_wiki_a100_s43_17855.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T06:09:59.358041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/alpha_sweep/a050_s42_fp32 --alpha 0.50 --seed 42 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/alpha_sweep/a050_s42_fp32 --alpha 0.50 --seed 42 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T06:09:59.360389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==== ================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.5 | seed=42\\nData: results/alpha_sweep/a050_s42_fp32\\n==== ================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary ₆ downstream)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy<distinct_1   -0.940     5   0.968    -2   0.0002   None 1687.113   0.6108        *   0.611  0.0016     1\\ntoken_entropy<distinct_2   -0.952     5   0.968    -2   0.0002      9 529.225   0.6108        *   0.611  0.0909     1\\ntoken_entropy<distinct_3   -0.971     4   0.900    -2   0.0031      9  93.088   0.6108        *   0.611  0.0062     1\\ntoken_entropy<mauve        -0.841     4  -0.875     4   0.0255   None   0.066   0.6108            0.611  0.4864     1\\nece<distinct_1              0.983    -1   0.991    -1   0.0000   None 514.678   0.6108        *   0.611  0.3929     1\\nece<distinct_2              0.939    -1   0.975    -2   0.0002      8 203.985   0.6108        *   0.611  0.8585     1\\nece<distinct_3              0.806    -1   0.924    -2   0.0017      8  72.971   0.6108        *   0.611  0.0175     1\\nece<mauve                   0.861     2   0.793     5   0.1094   None   0.461   0.6108            0.611  0.8820     1\\n\\n====================================================================================================\\nREVERSE (downstream ₆ canary)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+…[truncated 2273 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T06:09:59.360877+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/alpha_sweep/a075_s42_fp32 --alpha 0.75 --seed 42 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/alpha_sweep/a075_s42_fp32 --alpha 0.75 --seed 42 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T06:09:59.361147+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/generalize/gpt2m_wiki_a100_s43 --alpha 1.0 --seed 43 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/generalize/gpt2m_wiki_a100_s43 --alpha 1.0 --seed 43 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T06:09:59.361474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==== ================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.75 | seed=42\\nData: results/alpha_sweep/a075_s42_fp32\\n==== ================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary ₆ downstream)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy<distinct_1    0.952    -5   0.984    -5   0.0033   None 3763.633   0.4555        *   0.456  0.3634     1\\ntoken_entropy<distinct_2    0.941    -5   0.994    -5   0.0011   None 1339.263   0.4555        *   0.456  0.0492     1\\ntoken_entropy<distinct_3    0.938    -5   0.990    -5   0.0019   None 182.593   0.4555        *   0.456  0.2158     1\\ntoken_entropy<mauve         0.775    -5  -0.798    -4   0.0651   None   0.596   0.4555            0.456  0.0725     1\\nece<distinct_1              0.996    -3   0.986    -1   0.0000   None 504.894   0.4555        *   0.456  0.0288     0\\nece<distinct_2              0.996    -4   0.983    -4   0.0011   None 704.148   0.4555        *   0.456  0.0214     0\\nece<distinct_3              0.997    -4   0.986    -4   0.0011   None 565.821   0.4555        *   0.456  0.8846     1\\nece<mauve                   0.877    -5  -0.719    -4   0.1077   None   0.595   0.4555            0.456  0.5748     1\\n\\n====================================================================================================\\nREVERSE (downstream ₆ canary)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+…[truncated 2252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T06:09:59.361762+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/generalize/gpt2m_wiki_a100_s43 --alpha 1.0 --seed 43 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\\", line 298, in run\\n    fwd_perm = perm_granger(c, d, cn, dn, seed)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\\", line 177, in perm_granger\\n    result = permutation_granger_test(x, y, max_lag=1, n_perm=N_PERM, seed=seed, difference=True)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/permutation_granger.py\\\", line 68, in permutation_granger_test\\n    assert T > max_lag + 2, f\\\"Series too short: T={T}, need > {max_lag + 2}\\\"\\n           ^^^^^^^^^^^^^^^\\nAssertionError: Series too short: T=0, need > 3\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T06:09:59.362062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json') as f:\n    d = json.load(f)\nfor p in d['pairs']:\n    ty = p['forward']['ty_granger']\n    print(f\\\"{p['canary']}<{p['downstream']}: F={ty.get('f_stat')}, p={ty.get('p_value')}, sig={ty.get('significant')}, err={ty.get('error','')}\\\")\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json') as f:\n    d = json.load(f)\nfor p in d['pairs']:\n    ty = p['forward']['ty_granger']\n    print(f\\\"{p['canary']}<{p['downstream']}: F={ty.get('f_stat')}, p={ty.get('p_value')}, sig={ty.get('significant')}, err={ty.get('error','')}\\\")\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-20T06:09:59.364382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T06:09:59.364707+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"token_entropy<distinct_1: F=636.6385, p=0.0016, sig=True, err=\\ntoken_entropy<distinct_2: F=10.1625, p=0.0909, sig=False, err=\\ntoken_entropy<distinct_3: F=159.719, p=0.0062, sig=True, err=\\ntoken_entropy<mauve: F=1.1919, p=0.4864, sig=False, err=\\nece<distinct_1: F=1.689, p=0.3929, sig=False, err=\\nece<distinct_2: F=0.2486, p=0.8585, sig=False, err=\\nece<distinct_3: F=56.224, p=0.0175, sig=True, err=\\nece<mauve: F=0.2112, p=0.882, sig=False, err=\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T06:09:59.364967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis_results.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T06:09:59.365290+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/generalize/pythia410m_wiki_a100_s43 --alpha 1.0 --seed 43 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_5method_analysis_d102.py --data_dir results/generalize/pythia410m_wiki_a100_s43 --alpha 1.0 --seed 43 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T06:09:59.365604+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==== ================================================================================================\\n5-METHOD LEAD-LAG ANALYSIS | alpha=1.0 | seed=43\\nData: results/generalize/pythia410m_wiki_a100_s43\\n==== ================================================================================================\\nLoaded 11 generations\\n\\n====================================================================================================\\nFORWARD (canary ₆ downstream)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\n----------------------------------------------------------------------------------------------------\\ntoken_entropy<distinct_1    0.994    -1   0.998    -1   0.0000   None 1714.760   0.3909        *   0.391  0.0568     0\\ntoken_entropy<distinct_2    0.998    -1   0.998    -1   0.0000   None 1851.436   0.3909        *   0.391  0.0238     0\\ntoken_entropy<distinct_3    0.997    -1   0.994    -2   0.0000   None 791.531   0.3909        *   0.391  0.0009     0\\ntoken_entropy<mauve        -0.582    -5  -0.620     5   0.2644   None   1.989   0.3909            0.391  0.7001     1\\nece<distinct_1              0.993    -3   0.959    -1   0.0001   None 963.611   0.3909        *   0.391  0.3625     1\\nece<distinct_2              0.995    -3   0.978    -1   0.0000   None 1731.362   0.3909        *   0.391  0.0163     1\\nece<distinct_3              0.996    -3   0.995    -1   0.0000   None 1799.835   0.3909        *   0.391  0.0018     1\\nece<mauve                  -0.691    -5   0.584    -2   0.1472   None   1.018   0.3909            0.391  0.6246     1\\n\\n====================================================================================================\\nREVERSE (downstream ₆ canary)\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+…[truncated 2286 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T06:09:59.365938+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py | base64 > /tmp/script_b64.txt && wc -c /tmp/script_b64.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py | base64 > /tmp/script_b64.txt && wc -c /tmp/script_b64.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T06:09:59.366178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"24170 /tmp/script_b64.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T06:09:59.368553+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /tmp/script_b64.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /tmp/script_b64.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T06:09:59.368928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"IiIiNS1tZXRob2QgbGVhZC1sYWcgYW5hbHlzaXM6IGdlbmVyYWxpemVkIENMSSB2ZXJzaW9uLgoK\\nVXNhZ2U6CiAgICBweXRob24gcnVuXzVtZXRob2RfYW5hbHlzaXMucHkgLS1kYXRhX2RpciByZXN1\\nbHRzL2FscGhhX3N3ZWVwL2EwMDBfczQzIC0tYWxwaGEgMC4wIC0tc2VlZCA0MwogICAgcHl0aG9u\\nIHJ1bl81bWV0aG9kX2FuYWx5c2lzLnB5IC0tZGF0YV9kaXIgcmVzdWx0cy9hbHBoYV9zd2VlcC9h\\nMDAwX3M0MyAtLWFscGhhIDAuMCAtLXNlZWQgNDMgLS1kcnktcnVuCiIiIgoKaW1wb3J0IGFyZ3Bh\\ncnNlCmltcG9ydCBqc29uCmltcG9ydCBvcwppbXBvcnQgc3lzCmltcG9ydCBnbG9iIGFzIGdsb2Jf\\nbW9kdWxlCmltcG9ydCBudW1weSBhcyBucApmcm9tIHNjaXB5IGltcG9ydCBzdGF0cwpmcm9tIHN0\\nYXRzbW9kZWxzLnRzYS5zdGF0dG9vbHMgaW1wb3J0IGFkZnVsbGVyCgpzeXMucGF0aC5pbnNlcnQo\\nMCwgIi9yb290L2F1dG9kbC10bXAvZGlzdHJpYl9jYW5hcnlfY29sbGFwc2UiKQpmcm9tIHBlcm11\\ndGF0aW9uX2dyYW5nZXIgaW1wb3J0IHBlcm11dGF0aW9uX2dyYW5nZXJfdGVzdAoKTl9QRVJNID0g\\nNTAwMApBTFBIQSA9IDAuMDUKCkNBTkFSSUVTID0gWyJ0b2tlbl9lbnRyb3B5IiwgImVjZSJdCkRP\\nV05TVFJFQU1TID0gWyJkaXN0aW5jdF8xIiwgImRpc3RpbmN0XzIiLCAiZGlzdGluY3RfMyIsICJt\\nYXV2ZSJdCgpISUdIRVJfSVNfV09SU0UgPSB7ImVjZSJ9CkxPV0VSX0lTX1dPUlNFID0geyJ0b2tl\\nbl9lbnRyb3B5IiwgImRpc3RpbmN0XzEiLCAiZGlzdGluY3RfMiIsICJkaXN0aW5jdF8zIiwgIm1h\\ndXZlIn0KCgpkZWYgbG9hZF9zZXJpZXMoZGF0YV9kaXIpOgogICAgIiIiTG9hZCBtZXRyaWNzIC0g\\nZnJvbSBhbGxfbWV0cmljcy5qc29uIGlmIGF2YWlsYWJsZSwgZWxzZSBhZ2dyZWdhdGUgZ2VuX1gv\\nbWV0cmljcy5qc29uLiIiIgogICAgYWxsX3BhdGggPSBvcy5wYXRoLmpvaW4oZGF0YV9kaXIsICJh\\nbGxfbWV0cmljcy5qc29uIikKICAgIGlmIG9zLnBhdGguZXhpc3RzKGFsbF9wYXRoKToKICAgICAg\\nICB3aXRoIG9wZW4oYWxsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgIGRhdGEgPSBqc29uLmxvYWQo\\nZikKICAgIGVsc2U6CiAgICAgICAgIyBBZ2dyZWdhdGUgZnJvbSBwZXItZ2VuZXJhdGlvbiBtZXRy\\naWNzCiAgICAgICAgZ2VuX2RpcnMgPSBzb3J0ZWQoZ2xvYl9tb2R1bGUuZ2xvYihvcy5wYXRoLmpv\\naW4oZGF0YV9kaXIsICJnZW5fKiIpKSwKICAgICAgICAgICAgICAgICAgICAgICAgIGtleT1sYW1i\\nZGEgeDogaW50KG9zLnBhdGguYmFzZW5hbWUoeCkuc3BsaXQoIl8iKVsxXSkpCiAgICAgICAgZGF0\\nYSA9IFtdCiAgICAgICAgZm9yIGdkIGluIGdlbl9kaXJzOgogICAgICAgICAgICBtcCA9IG9zLnBh\\ndGguam9pbihnZCwgIm1ldHJpY3MuanNvbiIpCiAgICAgICAg
+…[truncated 6410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T06:09:59.369246+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && grep -n \"signonly\" run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "cd /root/autodl-tmp/distrib_canary_collapse && grep -n \"signonly\" run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T06:09:59.369504+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && grep -n \\\"signonly\\\" run_5method_analysis_d102.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 6.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T06:09:59.369715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T06:09:59.369924+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 20240 May 20 13:08 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T06:09:59.370135+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"test_causality\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T06:09:59.370407+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T06:09:59.370648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"ty_granger\\|TY\\|toda\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"ty_granger\\|TY\\|toda\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T06:09:59.370870+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T06:09:59.371090+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "grep -n \"ty_granger\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T06:09:59.371392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"189:def ty_granger(c, d, cn, dn):\\n222:            \\\"method\\\": \\\"ty_granger\\\", \\\"wald_F\\\": None, \\\"p_value\\\": None,\\n244:                \\\"method\\\": \\\"ty_granger\\\", \\\"wald_F\\\": None, \\\"p_value\\\": None,\\n262:            \\\"method\\\": \\\"ty_granger\\\", \\\"wald_F\\\": None, \\\"p_value\\\": None,\\n268:        \\\"method\\\": \\\"ty_granger\\\",\\n309:        \\\"methods\\\": [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"],\\n334:            fwd_ty = ty_granger(c, d, cn, dn)\\n341:            rev_ty = ty_granger(d, c, dn, cn)\\n353:                    \\\"ty_granger\\\": fwd_ty,\\n359:                    \\\"ty_granger\\\": rev_ty,\\n399:        tyf = f\\\"{f['ty_granger']['wald_F']:.3f}\\\" if f['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n400:        typ = f\\\"{f['ty_granger']['p_value']:.4f}\\\" if f['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n401:        dmax = str(f['ty_granger']['d_max'])\\n422:        tyf = f\\\"{r['ty_granger']['wald_F']:.3f}\\\" if r['ty_granger']['wald_F'] is not None else \\\"N/A\\\"\\n423:        typ = f\\\"{r['ty_granger']['p_value']:.4f}\\\" if r['ty_granger']['p_value'] is not None else \\\"N/A\\\"\\n424:        dmax = str(r['ty_granger']['d_max'])\\n444:        if f[\\\"ty_granger\\\"][\\\"significant\\\"]:\\n457:        \\\"ty_forward_sig\\\": sum(1 for p in pair_results if p[\\\"forward\\\"][\\\"ty_granger\\\"][\\\"significant\\\"]),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T06:09:59.371687+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -280 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19828",
+    "command": "head -280 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T06:09:59.372122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"5-method lead-lag analysis: generalized CLI version.\\n\\nUsage:\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport glob as glob_module\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"]\\n\\nHIGHER_IS_WORSE = {\\\"ece\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"mauve\\\"}\\n\\n\\ndef load_series(data_dir):\\n    \\\"\\\"\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\"\\\"\\\"\\n    all_path = os.path.join(data_dir, \\\"all_metrics.json\\\")\\n    if os.path.exists(all_path):\\n        with open(all_path) as f:\\n            data = json.load(f)\\n    else:\\n        # Aggregate from per-generation metrics\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\"gen_*\\\")),\\n                         key=lambda x: int(os.path.basename(x).split(\\\"_\\\")[1]))\\n        data = []\\n        for gd in gen_dirs:\\n            mp = os.path.join(gd, \\\"metrics.json\\\")\\n            if os.path.exists(mp):\\n                with open(mp) as f:\\n                    data.append(json.load(f))\\n        if not data:\\n            raise FileNotFoundError(f\\\"No metrics found in {data_dir}\\\")\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    out = {}\\n    for k in CANARIES + DOWNSTREA
+…[truncated 7236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T06:09:59.374577+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nexps = [\n    ('a050_s42', 'results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json'),\n    ('a075_s42', 'results/alpha_sweep/a075_s42_fp32/analysis/5method_leadlag.json'),\n    ('pythia410m', 'results/generalize/pythia410m_wiki_a100_s43/analysis/5method_leadlag.json'),\n]\nfor name, path in exps:\n    with open(f'/root/autodl-tmp/distrib_canary_collapse/{path}') as f:\n        d = json.load(f)\n    ty_fwd = sum(1 for p in d['pairs'] if p['forward']['ty_granger']['significant'])\n    ty_rev = sum(1 for p in d['pairs'] if p['reverse']['ty_granger']['significant'])\n    perm_fwd = d['summary']['perm_granger_fdr_forward_sig']\n    diff_fwd = d['summary']['diff_xcorr_fdr_forward_sig']\n    robust = d['summary']['robust_pairs']\n    print(f'{name}: TY_fwd={ty_fwd}/8, TY_rev={ty_rev}/8, PermG={perm_fwd}/8, DiffFDR={diff_fwd}/8, K>=3={robust}/8')\n    # per-pair TY detail\n    for p in d['pairs']:\n        ty = p['forward']['ty_granger']\n        cn, dn = p['canary'], p['downstream']\n        perm = p['forward']['perm_granger']\n        print(f'  {cn}<{dn}: TY p={ty[\\\"p_value\\\"]}, sig={ty[\\\"significant\\\"]}, F={ty.get(\\\"f_stat\\\",\\\"?\\\")}, PermG p={perm[\\\"p_value\\\"]}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nexps = [\n    ('a050_s42', 'results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json'),\n    ('a075_s42', 'results/alpha_sweep/a075_s42_fp32/analysis/5method_leadlag.json'),\n    ('pythia410m', 'results/generalize/pythia410m_wiki_a100_s43/analysis/5method_leadlag.json'),\n]\nfor name, path in exps:\n    with open(f'/root/autodl-tmp/distrib_canary_collapse/{path}') as f:\n        d = json.load(f)\n    ty_fwd = sum(1 for p in d['pairs'] if p['forward']['ty_granger']['significant'])\n    ty_rev = sum(1 for p in d['pairs'] if p['reverse']['ty_granger']['significant'])\n    perm_fwd = d['summary']['perm_granger_fdr_forward_sig']\n    diff_fwd = d['summary']['diff_xcorr_fdr_forward_sig']\n    robust = d['summary']['robust_pairs']\n    print(f'{name}: TY_fwd={ty_fwd}/8, TY_rev={ty_rev}/8, PermG={perm_fwd}/8, DiffFDR={diff_fwd}/8, K>=3={robust}/8')\n    # per-pair TY detail\n    for p in d['pairs']:\n        ty = p['forward']['ty_granger']\n        cn, dn = p['canary'], p['downstream']\n        perm = p['forward']['perm_granger']\n        print(f'  {cn}<{dn}: TY p={ty[\\\"p_value\\\"]}, sig={ty[\\\"significant\\\"]}, F={ty.get(\\\"f_stat\\\",\\\"?\\\")}, PermG p={perm[\\\"p_value\\\"]}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T06:09:59.374936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a050_s42: TY_fwd=3/8, TY_rev=3/8, PermG=6/8, DiffFDR=7/8, K>=3=6/8\\n  token_entropy&lt;distinct_1: TY p=0.0016, sig=True, F=636.6385, PermG p=0.0012\\n  token_entropy&lt;distinct_2: TY p=0.0909, sig=False, F=10.1625, PermG p=0.016597\\n  token_entropy&lt;distinct_3: TY p=0.0062, sig=True, F=159.719, PermG p=0.028194\\n  token_entropy&lt;mauve: TY p=0.4864, sig=False, F=1.1919, PermG p=0.730054\\n  ece&lt;distinct_1: TY p=0.3929, sig=False, F=1.689, PermG p=0.002\\n  ece&lt;distinct_2: TY p=0.8585, sig=False, F=0.2486, PermG p=0.016597\\n  ece&lt;distinct_3: TY p=0.0175, sig=True, F=56.224, PermG p=0.022396\\n  ece&lt;mauve: TY p=0.882, sig=False, F=0.2112, PermG p=0.534493\\na075_s42: TY_fwd=3/8, TY_rev=2/8, PermG=6/8, DiffFDR=6/8, K>=3=6/8\\n  token_entropy&lt;distinct_1: TY p=0.3634, sig=False, F=1.8973, PermG p=0.0016\\n  token_entropy&lt;distinct_2: TY p=0.0492, sig=True, F=19.4829, PermG p=0.008198\\n  token_entropy&lt;distinct_3: TY p=0.2158, sig=False, F=3.7902, PermG p=0.009998\\n  token_entropy&lt;mauve: TY p=0.0725, sig=False, F=12.9634, PermG p=0.440912\\n  ece&lt;distinct_1: TY p=0.0288, sig=True, F=5.7112, PermG p=0.007399\\n  ece&lt;distinct_2: TY p=0.0214, sig=True, F=6.459, PermG p=0.002599\\n  ece&lt;distinct_3: TY p=0.8846, sig=False, F=0.2071, PermG p=0.003799\\n  ece&lt;mauve: TY p=0.5748, sig=False, F=0.8676, PermG p=0.455509\\npythia410m: TY_fwd=4/8, TY_rev=4/8, PermG=6/8, DiffFDR=6/8, K>=3=6/8\\n  token_entropy<distinct_1: TY p=0.0568, sig=False, F=4.1927, PermG p=0.002\\n  token_entropy<distinct_2: TY p=0.0238, sig=True, F=6.1872, PermG p=0.0016\\n  token_entropy<distinct_3: TY p=0.0009, sig=True, F=19.0543, PermG p=0.005799\\n  token_entropy<mauve: TY p=0.7001, sig=False, F=0.5411, PermG p=0.203759\\n  ece<distinct_1: TY p=0.3625, sig=False, F=1.9049, PermG p=0.0018\\n  ece<distinct_2: TY p=0.0163, sig=True, F=60.4855, PermG p=0.0002\\n  ece<distinct_3: TY p=0.0018, sig=True, F=544.1793, PermG p=0.0002\\n  ece<mauve: TY p=0.6246, si
+…[truncated 141 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T06:09:59.375278+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+````json
+{
+  "name": "TY Granger signonly bug fix report",
+  "type": "report",
+  "project": "distrib_canary_collapse",
+  "description": "修复 run_5method_analysis_d102.py 中 TY Granger test_causality() signonly 参数 bug，含 3 实验验证结果",
+  "content_filename": "ty_granger_signonly_fix_report.md",
+  "tags": "['bugfix', 'ty_granger', '5method', 'P0']",
+  "content": "# TY Granger `signonly` Bug Fix Report\n\n**Date**: 2026-05-20\n**Server**: westd-17855\n**File**: `run_5method_analysis_d102.py` (line 223)\n\n## Bug\n\n```python\n# BEFORE (line 223):\ntest_result = result.test_causality(causing=1, caused=0, signonly=False)\nf_stat = float(test_result.summary().data[0][1])\np_value = float(test_result.summary().data[0][2])\n```\n\n`signonly` is not a valid parameter for `statsmodels.tsa.vector_ar.var_model.VARResults.test_causality()` (v0.14.6). Valid params: `caused, causing, kind, signif`. Every TY call threw `TypeError`, caught by except → `significant=False` → TY=0/8 everywhere.\n\n## Fix\n\n```python\n# AFTER:\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\nf_stat = float(test_result.test_statistic)\np_value = float(test_result.pvalue)\n```\n\nBackup: `run_5method_analysis_d102.py.bak_pre_ty_fix`\n\n## Verification (3 experiments on westd-17855)\n\n| exp_id | α | TY_before | TY_after | PermG_fwd | diff_fdr_fwd | K≥3_before | K≥3_after |\n|--------|-----|-----------|----------|-----------|--------------|------------|-----------|\n| a050_s42_fp32 | 0.50 | 0/8 | **3/8** | 6/8 | 7/8 | 5/8 | **6/8** |\n| a075_s42_fp32 | 0.75 | 0/8 | **3/8** | 6/8 | 6/8 | 6/8 | 6/8 |\n| pythia410m_wiki_a100_s43 | 1.00 | 0/8 | **4/8** | 6/8 | 6/8 | 6/8 | 6/8 |\n\n### Per-pair TY detail (forward, post-fix)\n\n**a050 (α=0.50)**:\n- token_entropy→distinct_1: F=636.6, **p=0.0016** ✓\n- token_entropy→distinct_2: F=10.2, p=0.091\n- token_entropy→distinct_3: F=159.7, **p=0.006** ✓\n- token_entropy→mauve: F=1.2, p=0.486\n- ece→distinct_1: F=1.7, p=0.393\n- ece→distinct_2: F=0.2, p=0.859\n- ece→distinct_3: F=56.2, **p=0.018** ✓\n- ece→mauve: F=0.2, p=0.882\n\n**a075 (α=0.75)**:\n- token_entropy→distinct_2: F=19.5, **p=0.049** ✓\n- ece→distinct_1: F=5.7, **p=0.029** ✓\n- ece→distinct_2: F=6.5, **p=0.021** ✓\n\n**pythia410m (α=1.0)**:\n- token_entropy→distinct_2: F=6.2, **p=0.024** ✓\n- token_entropy→distinct_3: F=19.1, **p=0.001** ✓\n- ece→distinct_2: F=60.5, **p=0.016** ✓\n- ece→distinct_3: F=544.2, **p=0.002** ✓\n\n## Impact on K≥3\n\n- a050: K≥3 from 5/8 → **6/8** (token_entropy→distinct_1 gained TY vote: 2→3)\n- a075, pythia410m: K≥3 unchanged at 6/8 (TY adds votes to already-robust pairs)\n\n## 19828 Status\n\n19828 has a different TY implementation (manual OLS + Wald F-test, no `test_causality()` call). Not affected by this bug. No sync needed.\n\n## Note: Table display alignment\n\nThe printed table has a column alignment issue — TY_F column shows PermFDR value. **JSON output is correct** (verified by direct JSON read). Display-only bug, does not affect data.\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "TY Granger signonly bug fix report",
+    "type": "report",
+    "project": "distrib_canary_collapse",
+    "description": "修复 run_5method_analysis_d102.py 中 TY Granger test_causality() signonly 参数 bug，含 3 实验验证结果",
+    "content_filename": "ty_granger_signonly_fix_report.md",
+    "tags": "['bugfix', 'ty_granger', '5method', 'P0']",
+    "content": "# TY Granger `signonly` Bug Fix Report\n\n**Date**: 2026-05-20\n**Server**: westd-17855\n**File**: `run_5method_analysis_d102.py` (line 223)\n\n## Bug\n\n```python\n# BEFORE (line 223):\ntest_result = result.test_causality(causing=1, caused=0, signonly=False)\nf_stat = float(test_result.summary().data[0][1])\np_value = float(test_result.summary().data[0][2])\n```\n\n`signonly` is not a valid parameter for `statsmodels.tsa.vector_ar.var_model.VARResults.test_causality()` (v0.14.6). Valid params: `caused, causing, kind, signif`. Every TY call threw `TypeError`, caught by except → `significant=False` → TY=0/8 everywhere.\n\n## Fix\n\n```python\n# AFTER:\ntest_result = result.test_causality(causing=1, caused=0, kind=\"f\")\nf_stat = float(test_result.test_statistic)\np_value = float(test_result.pvalue)\n```\n\nBackup: `run_5method_analysis_d102.py.bak_pre_ty_fix`\n\n## Verification (3 experiments on westd-17855)\n\n| exp_id | α | TY_before | TY_after | PermG_fwd | diff_fdr_fwd | K≥3_before | K≥3_after |\n|--------|-----|-----------|----------|-----------|--------------|------------|-----------|\n| a050_s42_fp32 | 0.50 | 0/8 | **3/8** | 6/8 | 7/8 | 5/8 | **6/8** |\n| a075_s42_fp32 | 0.75 | 0/8 | **3/8** | 6/8 | 6/8 | 6/8 | 6/8 |\n| pythia410m_wiki_a100_s43 | 1.00 | 0/8 | **4/8** | 6/8 | 6/8 | 6/8 | 6/8 |\n\n### Per-pair TY detail (forward, post-fix)\n\n**a050 (α=0.50)**:\n- token_entropy→distinct_1: F=636.6, **p=0.0016** ✓\n- token_entropy→distinct_2: F=10.2, p=0.091\n- token_entropy→distinct_3: F=159.7, **p=0.006** ✓\n- token_entropy→mauve: F=1.2, p=0.486\n- ece→distinct_1: F=1.7, p=0.393\n- ece→distinct_2: F=0.2, p=0.859\n- ece→distinct_3: F=56.2, **p=0.018** ✓\n- ece→mauve: F=0.2, p=0.882\n\n**a075 (α=0.75)**:\n- token_entropy→distinct_2: F=19.5, **p=0.049** ✓\n- ece→distinct_1: F=5.7, **p=0.029** ✓\n- ece→distinct_2: F=6.5, **p=0.021** ✓\n\n**pythia410m (α=1.0)**:\n- token_entropy→distinct_2: F=6.2, **p=0.024** ✓\n- token_entropy→distinct_3: F=19.1, **p=0.001** ✓\n- ece→distinct_2: F=60.5, **p=0.016** ✓\n- ece→distinct_3: F=544.2, **p=0.002** ✓\n\n## Impact on K≥3\n\n- a050: K≥3 from 5/8 → **6/8** (token_entropy→distinct_1 gained TY vote: 2→3)\n- a075, pythia410m: K≥3 unchanged at 6/8 (TY adds votes to already-robust pairs)\n\n## 19828 Status\n\n19828 has a different TY implementation (manual OLS + Wald F-test, no `test_causality()` call). Not affected by this bug. No sync needed.\n\n## Note: Table display alignment\n\nThe printed table has a column alignment issue — TY_F column shows PermFDR value. **JSON output is correct** (verified by direct JSON read). Display-only bug, does not affect data.\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T06:09:59.375630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_db5b35\", \"name\": \"TY Granger signonly bug fix report\", \"type\": \"report\", \"description\": \"修复 run_5method_analysis_d102.py 中 TY Granger test_causality() signonly 参数 bug，含 3 实验验证结果\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/ty_granger_signonly_fix_report.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T06:09:49.898238+00:00\", \"tags\": [\"bugfix\", \"ty_granger\", \"5method\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-20T06:09:59.375933+00:00_
+
+修复完成。汇总：
+
+**Bug**: `run_5method_analysis_d102.py:223` 调用 `test_causality(signonly=False)` — `signonly` 不是 statsmodels 0.14.6 的合法参数，导致所有 TY 检验异常，静默返回 0/8。
+
+**Fix**: 移除 `signonly`，改用 `kind="f"`；结果提取从 `summary().data` 改为直接访问 `test_result.test_statistic` / `test_result.pvalue`。
+
+**验证结果**:
+
+| 实验 | α | TY 修复前 | TY 修复后 | K≥3 变化 |
+|------|---|----------|----------|---------|
+| a050_s42 | 0.50 | 0/8 | **3/8** | 5→**6**/8 |
+| a075_s42 | 0.75 | 0/8 | **3/8** | 6/8 不变 |
+| pythia410m | 1.0 | 0/8 | **4/8** | 6/8 不变 |
+
+**19828 不受影响** — 它使用手动 OLS+Wald 实现，不调用 `test_causality()`。
+
+**附带发现**: 表格打印有列对齐 bug（TY_F 列误显示 PermFDR 值），JSON 数据正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_ty_signonly_bugfix_20260520T060407"
+}
+```
+
+</details>
+
+---

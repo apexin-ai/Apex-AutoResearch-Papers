@@ -1,0 +1,28 @@
+{
+  "exp_id": "scale_69b_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:03:54.429Z",
+    "updated_at": "2026-05-18T18:46:15.263Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --batch_size 4 --output_dir results/scale_check/pythia69b_wiki_a100_s42\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "29028",
+      "log_path": "~/runs/distrib_canary_collapse/scale_69b_a100_s42.log",
+      "submitted_at": "2026-05-18T18:03:54.276Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16."
+  },
+  "timestamp": "2026-05-18T18:46:15.378862+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,8 @@
+method,fpr,sig_pairs,total_pairs,note
+naive_xcorr,1.000,8,8,direction-blind; high FPR under null
+diff_in_diff,0.500,4,8,moderate FPR
+threshold_3sigma,0.500,4,8,moderate FPR
+permutation_granger,0.000,0,8,zero FPR — primary indicator
+toda_yamamoto,0.250,2,8,low FPR
+K_ge3_consensus,0.375,3,8,consensus inherits component FPR
+K_ge4_consensus,0.000,0,8,strict consensus eliminates FPR

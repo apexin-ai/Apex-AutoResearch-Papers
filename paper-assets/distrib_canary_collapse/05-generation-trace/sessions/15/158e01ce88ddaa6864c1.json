@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "158e01ce88ddaa6864c1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit d111 full sweep 9alpha",
+  "task_key": "worker_audit_d111_full_sweep_9alpha_20260519T232440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_d111_full_sweep_9alpha_20260519T232440_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "d36dc2a09a3c750a809f399ee37d85ed2bffa44bcf8f0a47db60753ea994e3fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D111 方向检查审计完成。汇总：\n\n**全部 9 个 α 值均需修正**，核心发现：\n\n| α | naive | diff | K≥3 | K≥4 |\n|---|-------|------|-----|-----|\n| 0.00 | 1.000→0.625 | 0.500→0.000 | 0.375→0.125 | 0→0 |\n| 0.05 | 0.875→0.375 | 0.375→0.000 | 0.375→0.000 | 0→0 |\n| 0.10 | 0.875→0.500 | 0.750→0.125 | 0.500→0.250 | 0.250→0 |\n| 0.25 | 1.000→0.625 | 0.375→0.250 | 0.500→0.250 | 0→0 |\n| 0.35 | 1.000→1.000 | 0.500→0.000 | 0.750→0.500 | 0.250→0 |\n| 0.50 | 1.000→0.625 | 0.875→0.125 | 0.875→0.625 | 0.750→0.250 |\n| 0.60 | 0.875→0.500 | 1.000→0.000 | 1.000→0.750 | 0.875→0.125 |\n| 0.75 | 0.875→0.000 | 0.750→0.000 | 0.875→0.750 | 0.750→0 |\n| 1.00 | 1.000→0.000 | 0.750→0.000 | 0.750→0.750 | 0.750→0 |\n\n**关键发现**：\n- **diff_fwd 在 7/9 个 α 值为 0** — 几乎所有 diff_xcorr 显著峰都在负 lag\n- **α≥0.75 时 naive_fwd 也为 0** — 高污染时交叉相关一致性地在反方向达峰\n- **K≥4 从 0.750 降至 0.000 (α=0.75, 1.00)** — 但 K≥3 仍维持 0.750，因为 threshold+permG+TY 不受影响\n- 方向检查后，高 α 的 forward evidence 完全由 threshold onset、PermG 和 TY 承载\n\n已完成：\n1. 审计报告 → `artifacts/d111_full_sweep_audit.md`\n2. CSV 更新 → `dose_response_5method_regime.csv` + `consensus_heatmap_data.csv`\n3. Registry → 8 个实验的 note 已标注 D111 direction-checked"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-d111-full-sweep-9alpha.md"
+}

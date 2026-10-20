@@ -1,0 +1,24 @@
+{
+  "exp_id": "phase_diagram_t15_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:01:02.772Z",
+    "updated_at": "2026-05-22T01:02:33.147Z",
+    "hypothesis": "T=15 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(15)≈0.304. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=15 and seed robustness of high-α detection.",
+    "parent": "phase_diagram_t15_a075_s42_fp32_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "checkpoint_source": "phase_diagram_t15_a075_s42_fp32_v2 (cross-seed, s42=6/8 D102 confirmed)",
+      "eval_data": "data/wikitext103_5k"
+    }
+  },
+  "timestamp": "2026-05-22T01:02:33.668455+00:00",
+  "trigger": "update_registry"
+}

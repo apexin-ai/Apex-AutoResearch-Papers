@@ -1,0 +1,1 @@
+Symbolic TE (ordinal patterns) analysis. Files on westd-17855: artifacts/transfer_entropy_analysis.py, artifacts/transfer_entropy_results.pdf, artifacts/transfer_entropy_summary.json. Key: 4/6 pairs significant in sync-dip, 0 in controls.

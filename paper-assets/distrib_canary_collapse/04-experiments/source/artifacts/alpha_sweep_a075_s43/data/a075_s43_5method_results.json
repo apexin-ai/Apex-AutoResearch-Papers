@@ -1,0 +1,32 @@
+meta: alpha=0.75, seed=43, T=11, n_perm=5000, model=Pythia-410M, data=WikiText-103_5k
+
+SUMMARY
+- perm_granger_fdr_forward_sig: 5/8
+- perm_granger_fdr_reverse_sig: 0/8
+- diff_xcorr_fdr_forward_sig: 8/8
+- threshold_forward_sig: 4/8
+- ty_forward_sig: 1/8
+- robust_pairs (consensus ge3/5): 6/8
+
+PERM GRANGER FDR (FORWARD)
+token_entropy->distinct_1: fdr_p=0.0555, F=365.40, NOT sig
+token_entropy->distinct_2: fdr_p=0.0218, F=420.43, SIG*
+token_entropy->distinct_3: fdr_p=0.0176, F=765.76, SIG*
+token_entropy->perplexity: fdr_p=0.0704, F=25.96, NOT sig
+ece->distinct_1: fdr_p=0.0188, F=235.06, SIG*
+ece->distinct_2: fdr_p=0.0188, F=174.70, SIG*
+ece->distinct_3: fdr_p=0.0176, F=217.58, SIG*
+ece->perplexity: fdr_p=0.0501, F=29.80, NOT sig
+
+CONSENSUS (forward)
+token_entropy->distinct_1: 3/5 [naive, diff, threshold]
+token_entropy->distinct_2: 4/5 [naive, diff, threshold, perm]
+token_entropy->distinct_3: 4/5 [naive, diff, threshold, perm]
+token_entropy->perplexity: 3/5 [naive, diff, threshold]
+ece->distinct_1: 2/5 [diff, perm]
+ece->distinct_2: 3/5 [naive, diff, perm]
+ece->distinct_3: 4/5 [naive, diff, perm, ty]
+ece->perplexity: 2/5 [naive, diff]
+
+DIRECTIONALITY: Perfect - 0/8 reverse perm Granger FDR significant
+Full data: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json

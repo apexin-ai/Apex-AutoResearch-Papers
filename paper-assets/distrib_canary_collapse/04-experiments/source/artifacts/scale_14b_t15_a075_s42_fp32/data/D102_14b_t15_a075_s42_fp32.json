@@ -1,0 +1,37 @@
+{
+  "exp_id": "scale_14b_t15_a075_s42_fp32",
+  "model": "pythia-1.4b-deduped",
+  "T": 15,
+  "alpha": 0.75,
+  "seed": 42,
+  "n_gens": 16,
+  "d102_summary": {
+    "perm_granger_fdr_forward_sig": 6,
+    "perm_granger_fdr_reverse_sig": 0,
+    "diff_xcorr_fdr_forward_sig": 8,
+    "diff_xcorr_fdr_reverse_sig": 8,
+    "threshold_forward_sig": 7,
+    "ty_forward_sig": 5,
+    "robust_pairs_K3": 6,
+    "robust_pairs_K4": 6
+  },
+  "drift": {
+    "perplexity": {"gen0": 19.83, "gen15": 97.26, "pct": "+390.5%"},
+    "mauve": {"gen0": 0.0349, "gen15": 0.0337, "pct": "-3.6%"},
+    "token_entropy": {"gen0": 2.9731, "gen15": 2.0972, "pct": "-29.5%"},
+    "ece": {"gen0": 0.0081, "gen15": 0.2584, "pct": "+3091.2%"},
+    "distinct_1": {"gen0": 0.0992, "gen15": 0.0800, "pct": "-19.4%"},
+    "distinct_2": {"gen0": 0.5222, "gen15": 0.4005, "pct": "-23.3%"},
+    "distinct_3": {"gen0": 0.8211, "gen15": 0.6576, "pct": "-19.9%"}
+  },
+  "consensus_detail": {
+    "token_entropy→distinct_1": "5/5 [naive, diff, threshold, perm, ty]",
+    "token_entropy→distinct_2": "4/5 [diff, threshold, perm, ty]",
+    "token_entropy→distinct_3": "4/5 [diff, threshold, perm, ty]",
+    "token_entropy→mauve": "1/5 [threshold]",
+    "ece→distinct_1": "4/5 [naive, diff, threshold, perm]",
+    "ece→distinct_2": "5/5 [naive, diff, threshold, perm, ty]",
+    "ece→distinct_3": "5/5 [naive, diff, threshold, perm, ty]",
+    "ece→mauve": "0/5 [none]"
+  }
+}

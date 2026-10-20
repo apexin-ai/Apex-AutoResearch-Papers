@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1518759ff103c60a86d0",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779351902.md",
+  "task_key": "loop_15_1779351902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779351902.md",
+    "occurrence": 1,
+    "bytes": 4877,
+    "sha256": "b882fc7717f06cc501f2bd9ae818dd7691d32d72e83a05738b1fbe409f6a0787"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-21T05:46:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828:cuda:0/1 + westd-17855:cuda:0/1/2/3/4/5，共 8 张。白名单外的 GPU 即使 Director 指令也必须 push back\n- fp32 是主轴精度（D079），alpha sweep 系列必须 fp32，bf16 仅用于特定对比实验\n- PermG 是唯一主指标（M037），K≥3 frozen，其他方法（diff_xcorr/naive_xcorr/TY）仅辅助\n- T=20 系列实验是 predict-then-verify 核心——T=20 结果到达前，Power Theory 预测已 git lock-in（commit bad72cc），不可事后修改预测\n- D141: C1 onset 必须 T-qualified + \"consistent with\" 措辞；D143: TY=7/8 已撤回（d_max artifact）\n- data_strategy_ablation_s43 也处于 ANALYZING 状态（自 09:27），可能需要后续处理\n\n### 2. 🖥️ 基础设施快照\n- **westd-19828**: /root/autodl-tmp/distrib_canary_collapse, conda base (/root/miniconda3), RTX PRO 6000 Blackwell ×2 (98GB)\n- **westd-17855**: 同路径同环境, RTX PRO 6000 Blackwell ×6 (98GB)\n- HF_HOME=/root/autodl-tmp/.hf_cache, TRANSFORMERS_OFFLINE=1\n- 分析脚本: run_5method_analysis_d102.py（参数: --results_dir, --n_perm 5000, BH FDR q=0.05, D105 true 3sigma, D111 direction filter peak_lag<0）\n- 活跃 cron（6个）: smollm3_3b_wiki_a100_s43_fp32(pid=211078), scale_14b_a050_s42_fp32(pid=538774), t20_a100(pid=301936), t20_a050(pid=302503), t20_a060(pid=311201), t20_a075(pid=322146)\n- t20_a045_s42_fp32 在 report 中标为 RUNNING（westd-17855:cuda:5, pid=332328）但不在 reconcile 列表中——需确认 cron 是否注册\n- 本地 artifacts: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/\n\n### 3. 📊 当前状态\n**刚做完**: 收到 alpha_sweep_a055_s42_fp32 完成回调（ANALYZING），已派 Worker `worker_analysis_alpha_sweep_a055_s42_fp32_20260520T134300` 做 5-method 分析。已向 Director 汇报 a055 完成 + 空闲 GPU（westd-19828:cuda:0）+ 建议铺 t20_a025。\n\n**RUNNING (7)**:\n| exp_id | server:gpu | 说明 |\n|--------|-----------|------|\n| t20_a100_s42_fp32 | 17855:cuda:2 | T=20 α=1.0 Power Theory 验证 |\n| t20_a050_s42_fp32 | 17855:cuda:1 | T=20 α=0.50 onset boundary |\n| t20_a060_s42_fp32 | 17855:cuda:4 | T=20 α=0.60 non-monotonic dip |\n| t20_a075_s42_fp32 | 17855:cuda:0 | T=20 α=0.75 detection regime |\n| t20_a045_s42_fp32 | 17855:cuda:5 | T=20 α=0.45 blind zone 上界 |\n| smollm3_3b_wiki_a100_s43_fp32 | 17855:cuda:3 | SmolLM3-3B cross-arch |\n| scale_14b_a050_s42_fp32 | 19828:cuda:1 | Pythia-1.4B scale 验证 |\n\n**PREPARING (9)**: t20_a025, alpha_sweep_a065, generalize_pythia1b_c4_a100_s43_v2, alpha_sweep_a010_bf16, scale_14b_a050_bf16, interv_react_s43, gen_gpt2m_a100_s43, qwen35_dryrun_launch, scale_69b_a100_s43_fp32\n\n**等待中**: Worker 分析 a055 回调; Director 对空闲 GPU 分配决策; data_strategy_ablation_s43 仍在 ANALYZING（可能被遗漏）\n\n### 4. 📋 待办（条件触发式）\n- Worker a055 分析完成 → 读 PermG 结果 → update registry DONE + metrics → 更新 report.md → 向 Director 汇报（含 dose-response 判定：dip 在 [0.50,0.55] 还是 [0.55,0.60]）→ 文献联动\n- Director 确认 westd-19828:cuda:0 铺 t20_a025 → 提交实验\n- 任一 T=20 实验完成 → 对比 git lock-in 预测（commit bad72cc）→ predict-then-verify 验证 → 汇报 Director\n- smollm3_s43 完成 → cross-architecture 多 seed 验证分析\n- scale_14b 完成 → domain×scale 交互分析\n- data_strategy_ablation_s43 需要处理——检查是否有 Worker 在分析，如果没有需要补派\n\n### 5. 🎯 战略上下文\n**项目阶段**: Day 2, Discovery Paper \"A Detection Phase Transition in Iterative Model Collapse\"，目标 EMNLP 2026 ARR June cycle (~24 days)。Paper Agent 正在做 8-page compression reframe（1216→335 lines）。\n\n**核心发现**: α_c ∈ [0.45, 0.50] steep onset phase transition, 4 regimes (blind/onset/sync-collapse-dip/detection), Power Theory √T 外推。\n\n**dose-response 关键数据链**（a055 的位置）:\n- α=0.45: PermG=0/8 (blind zone)\n- α=0.50: PermG=6/8 (onset, steep jump)\n- α=0.55: **待分析** ← 当前\n- α=0.60 v4: PermG=0/8 (sync collapse dip, 非单调)\n- α=0.65: PREPARING\n- α=0.75: PermG=6/8 (detection recovery)\n\n**T=20 predict-then-verify** 是当前最高价值工作——Power Theory 预测已 lock-in，T=20 结果到达即可验证。5 个 T=20 实验同时在跑（a045/a050/a060/a075/a100）。\n\n**易错点**:\n- 不要把 a055 的结果用来修改已 lock-in 的 T=20 预测——预测是 T=11 → T=20 外推，a055 是 T=11 数据\n- α=0.60 的 PermG=0/8 是 v4 的结果（v1-v3 有 bug/precision 问题），引用时必须标注 v4\n- data_strategy_ablation_s43 已经在 ANALYZING 停了 4+ 小时，可能是之前的 Worker 分析失败或遗漏，需要检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779351902.md"
+}

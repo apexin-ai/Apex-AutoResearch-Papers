@@ -1,0 +1,25 @@
+{
+  "task": "D105",
+  "timestamp": "2026-05-20T00:38:00",
+  "source_files": {
+    "westd-19828": "/root/autodl-tmp/distrib_canary_collapse/results/analysis/3sigma_recompute_d105.json",
+    "westd-17855": "/root/autodl-tmp/distrib_canary_collapse/results/analysis/3sigma_recompute_d105_17855.json"
+  },
+  "fix_applied": "method_ablation.py _onset_gen: thresh = base + 2*sigma -> base + 3*sigma",
+  "config": {
+    "canaries": ["token_entropy", "ece"],
+    "downstreams": ["distinct_1", "distinct_2", "distinct_3", "mauve"],
+    "n_pairs": 8,
+    "threshold_sigma": 3,
+    "sig_criterion": "fdr_permethod"
+  },
+  "summary": {
+    "scale_69b_a100_s42":                 {"server": "westd-17855", "PermG_fwd": "7/8", "PermG_rev": "0/8", "K4_3sigma": 3, "K3_3sigma": 8, "Thr_3sigma": "2/8", "Thr_2sigma": "8/8"},
+    "qwen35_08b_wiki_a100_s42_v2":        {"server": "westd-17855", "PermG_fwd": "8/8", "PermG_rev": "0/8", "K4_3sigma": 6, "K3_3sigma": 8, "Thr_3sigma": "0/8", "Thr_2sigma": "8/8"},
+    "padding_robustness_a100_s42_fp32":    {"server": "westd-17855", "PermG_fwd": "6/8", "PermG_rev": "0/8", "K4_3sigma": 6, "K3_3sigma": 6, "Thr_3sigma": "0/8", "Thr_2sigma": "5/8"},
+    "generalize_pythia410m_wiki_a100_s42": {"server": "westd-19828", "PermG_fwd": "6/8", "PermG_rev": "0/8", "K4_3sigma": 1, "K3_3sigma": 6, "Thr_3sigma": "2/8", "Thr_2sigma": "8/8"},
+    "gen_wiki_gpt2m_a100_s42_v4":          {"server": "westd-19828", "PermG_fwd": "6/8", "PermG_rev": "3/8", "K4_3sigma": 2, "K3_3sigma": 6, "Thr_3sigma": "0/8", "Thr_2sigma": "6/8"},
+    "gen_gpt2m_a100_s43_fp32":             {"server": "westd-19828", "PermG_fwd": "6/8", "PermG_rev": "4/8", "K4_3sigma": 4, "K3_3sigma": 6, "Thr_3sigma": "0/8", "Thr_2sigma": "8/8"},
+    "generalize_opt1b_wiki_a100_s42":      {"server": "westd-19828", "PermG_fwd": "6/8", "PermG_rev": "0/8", "K4_3sigma": 2, "K3_3sigma": 6, "Thr_3sigma": "2/8", "Thr_2sigma": "8/8"}
+  }
+}

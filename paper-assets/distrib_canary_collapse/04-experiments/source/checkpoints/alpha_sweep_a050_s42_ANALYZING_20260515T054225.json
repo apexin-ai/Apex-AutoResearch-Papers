@@ -1,0 +1,61 @@
+{
+  "exp_id": "alpha_sweep_a050_s42",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:52:15.427Z",
+    "updated_at": "2026-05-15T05:42:25.862Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "73737",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log",
+      "submitted_at": "2026-05-15T01:20:05.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T01:15:14.747Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\"",
+      "finished_at": "2026-05-15T05:42:25.788Z",
+      "training_hours": 4.45
+    },
+    "pid": "73737",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log",
+    "metrics": {
+      "progress": "10/10 gen (final synthesis pending gen10 eval)",
+      "gen9_ppl": 32.11,
+      "gen9_token_entropy": 2.633,
+      "gen9_ece": 0.097,
+      "gen9_distinct_1": 0.062,
+      "gen9_distinct_2": 0.256,
+      "gen9_distinct_3": 0.398,
+      "gen9_eff_rank": 59.53,
+      "gen9_mauve": 0.0194,
+      "distinct_1_drift_pct_gen0_9": -36.6,
+      "distinct_2_drift_pct_gen0_9": -50.5,
+      "distinct_3_drift_pct_gen0_9": -51,
+      "token_entropy_drift_pct_gen0_9": -18.6,
+      "ece_drift_pct_gen0_9": 800,
+      "ppl_drift_pct_gen0_9": 19.1,
+      "granger_ece_to_d1_p_raw": 0.021,
+      "granger_entropy_to_d1_p_raw": 0.105,
+      "d024_non_monotonic": true,
+      "d024_ece_vs_entropy_note": "ECE raw p < entropy raw p at α=0.50 (0.021 vs 0.105), both non-sig after FDR; regime switch hypothesis pending α=0.75 confirmation"
+    }
+  },
+  "timestamp": "2026-05-15T05:42:25.897309+00:00",
+  "trigger": "update_registry"
+}

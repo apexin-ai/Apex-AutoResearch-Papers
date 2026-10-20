@@ -1,0 +1,32 @@
+{
+  "exp_id": "scale_14b_t15_a075_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:02:45.511Z",
+    "updated_at": "2026-05-23T06:19:06.976Z",
+    "hypothesis": "1.4B T=15 α=0.75: strong contamination at longer horizon. If PermG≥5/8, confirms 1.4B detection extends to T=15.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir outputs/scale_14b_t15_a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing",
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "pid": 793171,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 42,
+      "log_path": "/root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log",
+      "tmux_session": "scale_14b_t15_a075",
+      "precision": "fp32"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "outputs/scale_14b_t15_a075_s42_fp32",
+    "log_path": "/root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log",
+    "completed_at": "2026-05-23T06:19:06.976Z"
+  },
+  "timestamp": "2026-05-23T06:19:07.440402+00:00",
+  "trigger": "update_registry"
+}

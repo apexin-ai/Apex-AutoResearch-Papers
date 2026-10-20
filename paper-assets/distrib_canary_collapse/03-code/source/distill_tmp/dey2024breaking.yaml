@@ -1,0 +1,30 @@
+paper_key: "dey2024breaking"
+title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["data replacement loop", "data accumulation loop"]
+  metrics:
+    - {name: "cross-entropy validation loss", direction: "lower_better"}
+    - {name: "test loss/MSE", direction: "lower_better"}
+  datasets:
+    - {name: "TinyStories", size: "470M tokens"}
+    - {name: "GEOM-Drugs", size: "40k molecular conformations"}
+    - {name: "CelebA", size: "200k face images"}
+  ablation_dimensions:
+    - data_regime (replacement vs accumulation)
+    - model_family (GPT-2, Llama2, GeoDiff, VAE)
+    - model_scale (12M/42M/125M)
+  training_recipe: {models: "GPT-2, Llama2 (12M/42M/125M), GeoDiff, VAE"}
+  method_family: "data_accumulation_for_collapse_prevention"
+
+positioning:
+  core_claim: "Model collapse is NOT inevitable — accumulating synthetic data alongside real data (instead of replacing) avoids collapse. Proven theoretically for linear models and empirically across LMs, diffusion models, and VAEs."
+  key_results: "Accumulation regime: bounded test error; Replacement regime: collapse"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

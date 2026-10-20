@@ -1,0 +1,55 @@
+{
+  "exp_id": "alpha_sweep_a025_s44",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:58:48.224Z",
+    "updated_at": "2026-05-16T02:49:46.894Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "147811",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log",
+      "submitted_at": "2026-05-15T22:04:28.318Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 17118.6,
+      "gpu_hours": 4.76
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T22:04:26.677Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"",
+      "finished_at": "2026-05-16T02:24:25.056Z",
+      "training_hours": 4.33
+    },
+    "pid": "147811",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:24:26.614491+00:00"
+        }
+      ]
+    },
+    "metrics": "{\n  \"gen0\": {\n    \"token_entropy\": 3.2342, \"ece\": 0.01080, \"perplexity\": 26.949,\n    \"distinct_1\": 0.09809, \"distinct_2\": 0.51324, \"distinct_3\": 0.80577,\n    \"effective_rank\": 46.613, \"mauve\": 0.02954\n  },\n  \"gen10\": {\n    \"token_entropy\": 3.0721, \"ece\": 0.01804, \"perplexity\": 21.984,\n    \"distinct_1\": 0.05884, \"distinct_2\": 0.22703, \"distinct_3\": 0.33644,\n    \"effective_rank\": 44.354, \"mauve\": 0.01753\n  },\n  \"drift_pct\": {\n    \"token_entropy\": -5.01, \"ece\": +67.0, \"perplexity\": -18.42,\n    \"distinct_1\": -40.01, \"distinct_2\": -55.77, \"distinct_3\": -58.24,\n    \"effective_rank\": -4.85, \"mauve\": -40.65\n  }\n}",
+    "conclusion": "success",
+    "checkpoint_path": "results/alpha_sweep/a025_s44/gen_10/checkpoint",
+    "completed_at": "2026-05-16T02:49:46.894Z"
+  },
+  "timestamp": "2026-05-16T02:49:46.978689+00:00",
+  "trigger": "update_registry"
+}

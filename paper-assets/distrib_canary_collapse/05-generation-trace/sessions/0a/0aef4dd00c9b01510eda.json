@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aef4dd00c9b01510eda",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis diffxcorr fdr t10 a045 s42",
+  "task_key": "worker_analysis_diffxcorr-fdr-t10-a045-s42_20260523T214417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_diffxcorr-fdr-t10-a045-s42_20260523T214417_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "8d1becb26bfda0cfe42d0dfe1987d62bc365db6b94d1097cd6bcc4374667b8d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果总结\n\n**α=0.45, s42, T=10, Pythia-1.4B** 标准 5-method 分析（true_3sigma_d105, FDR 校正）：\n\n| 方法 | Forward | Reverse |\n|------|---------|---------|\n| DiffXCorr (FDR) | **8/8** | **8/8** |\n| PermG (FDR) | 0/8 | 0/8 |\n| Threshold Onset | 0/8 | — |\n| TY Granger | 2/8 | — |\n| Naive XCorr | 2/8 | — |\n| **Robust pairs (≥3/5)** | **0/8** | |\n\n**关键发现**：DiffXCorr 8/8 经 BH-FDR 校正后仍全部显著（p_fdr 范围 0.024–0.038），不像 α=0.50 s42 校正后从 8/8 降到 4/8。但 DiffXCorr **正反向均 8/8**（双向对称），说明是并发共变而非因果领先，且无其他方法支持——robust pairs = 0/8。此实验在 phase diagram 中应归类为**无可靠 lead-lag 信号**。\n\n产出已写入：\n- `artifacts/D102_14b_t10_a045_s42_fp32_d3.json`\n- `artifacts/_project/diffxcorr_fdr_t10_a045_s42_20260523.md`\n- Registry `scale_14b_t10_a045_s42_fp32` metrics 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diffxcorr-fdr-t10-a045-s42.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "15d64b90a9aa4eb998d7",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops download models 19828",
+  "task_key": "worker_ops_download-models-19828_20260522T032729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-models-19828_20260522T032729.log",
+    "occurrence": 1,
+    "bytes": 1015353,
+    "sha256": "49d6daced8dff7d0b840e9083499a9ef67e885beed123aad902b25d27bb8cb1d"
+  },
+  "statistics": {
+    "messages": 706,
+    "user_turns": 0,
+    "tool_calls": 254,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 194,
+      "tool_call": 254,
+      "tool_result": 254,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 706,
+      "chunks": [
+        {
+          "path": "15d64b90a9aa4eb998d7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15d64b90a9aa4eb998d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15d64b90a9aa4eb998d7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "15d64b90a9aa4eb998d7-part-0004.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-models-19828.md"
+}

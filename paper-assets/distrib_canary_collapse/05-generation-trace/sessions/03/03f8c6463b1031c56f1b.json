@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03f8c6463b1031c56f1b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze check all and d102 19828",
+  "task_key": "worker_analyze_check-all-and-d102-19828_20260522T004426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_check-all-and-d102-19828_20260522T004426_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "fa6c8838b43395bf9c901a5ef469a1ffe1924983c8e2696b6480a0f57721c670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary of all experiments on westd-19828:\n\n```\nt20_a045_s43_fp32:              gen 19/19 training (step ~378/5000, ~10min left) | RUNNING\nt25_a075_s43_fp32:              gen 1/24 training (step 2328/5000)              | RUNNING\ngeneralize_pythia410m_wiki_a100_s42: 11 gens, EXIT_CODE=0                      | COMPLETED\n```\n\n两个 phase_diagram 实验都还在跑，无法立即执行 D102 分析。t20_a045_s43_fp32 最接近完成——gen_19 训练中，还剩约 10 分钟训练 + 后续 metric 计算时间。t25_a075_s43_fp32 才到第 2 代，预计还需很长时间。\n\n要不要等 t20 完成后自动跑 D102？我可以过 15 分钟再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-check-all-and-d102-19828.md"
+}

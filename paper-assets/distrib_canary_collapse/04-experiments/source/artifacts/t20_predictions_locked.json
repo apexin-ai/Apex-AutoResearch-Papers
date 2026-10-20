@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-05-20T10:50:57Z",
+  "bootstrap_added_at": "2026-05-20T11:15:00Z",
+  "method": "Power Theory √T scaling from T=10 sigmoid fit",
+  "t10_data": {
+    "alpha_values": [
+      0.0,
+      0.05,
+      0.1,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.75,
+      1.0
+    ],
+    "permg_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      3,
+      6,
+      6
+    ],
+    "n_pairs": 8,
+    "excluded": [
+      "alpha=0.60 (sync dip, S×R non-monotonic regime)"
+    ]
+  },
+  "t10_sigmoid_params": {
+    "k": 200.0,
+    "alpha_c": 0.4755,
+    "y_max": 0.7518,
+    "formula": "rate = y_max / (1 + exp(-k * (alpha - alpha_c)))",
+    "fit_std_errors": {
+      "k": 14.2031,
+      "alpha_c": 0.0018,
+      "y_max": 0.0016
+    },
+    "bootstrap_95ci": {
+      "k": [73.6101, 499.9488],
+      "alpha_c": [0.425265, 0.557708],
+      "y_max": [0.69124, 0.894626],
+      "n_boot": 10000,
+      "n_successful": 10000,
+      "seed": 42
+    }
+  },
+  "power_theory": {
+    "assumption": "S(α)×R(α) invariant to T at first order; effect size scales as √T",
+    "formula": "z_T20 = z_T10 × √(T20/T10); rate_T20 = Φ(z_T20)",
+    "scaling_factor": 1.4142,
+    "continuity_correction": "rate=0 mapped to 0.0625 for probit transform"
+  },
+  "predictions": {
+    "t20_a045": {
+      "predicted_permg_count": 0,
+      "predicted_rate": 0.0001,
+      "predicted_range": [0, 7],
+      "rate_95ci": [0.01502, 0.827715],
+      "rate_median": 0.01502,
+      "confidence": "medium — near phase transition, key falsifiable test",
+      "t10_rate_used": 0.0046,
+      "t10_source": "sigmoid fit",
+      "z_t10": -2.6082,
+      "z_t20": -3.6886
+    },
+    "t20_a050": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.8257,
+      "predicted_range": [0, 7],
+      "rate_95ci": [0.01502, 0.829926],
+      "rate_median": 0.829924,
+      "confidence": "high — already above threshold at T=10",
+      "t10_rate_used": 0.7463,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6628,
+      "z_t20": 0.9373
+    },
+    "t20_a060": {
+      "predicted_permg_count": 3,
+      "predicted_rate": 0.3261,
+      "predicted_range": [2, 3],
+      "rate_95ci": [0.32613, 0.32613],
+      "rate_median": 0.32613,
+      "confidence": "low — sync dip regime, S×R non-monotonic; CI reflects only √T scaling uncertainty (fixed T=10 rate)",
+      "t10_rate_used": 0.375,
+      "t10_source": "actual (sync dip)",
+      "z_t10": -0.3186,
+      "z_t20": -0.4506
+    },
+    "t20_a075": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.832,
+      "predicted_range": [6, 8],
+      "rate_95ci": [0.759972, 0.961628],
+      "rate_median": 0.829926,
+      "confidence": "high — already above threshold at T=10",
+      "t10_rate_used": 0.7518,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6803,
+      "z_t20": 0.9621
+    },
+    "t20_a100": {
+      "predicted_permg_count": 7,
+      "predicted_rate": 0.832,
+      "predicted_range": [6, 8],
+      "rate_95ci": [0.759972, 0.961628],
+      "rate_median": 0.829926,
+      "confidence": "high — already above threshold at T=10",
+      "t10_rate_used": 0.7518,
+      "t10_source": "sigmoid fit",
+      "z_t10": 0.6803,
+      "z_t20": 0.9621
+    }
+  },
+  "notes": "α=0.60 prediction uncertain due to S×R non-monotonic regime (sync dip). Probit continuity correction 1/(2n)=0.0625 applied for rate=0 points. α=0.45 is the key falsifiable test: >0 at T=20 means left-shift of phase boundary confirmed. Bootstrap N=10000 (seed=42): α=0.45 and α=0.50 have wide CIs [0/8, 7/8] because alpha_c uncertainty spans the phase transition; α≥0.75 has tight CIs [6/8, 8/8]."
+}

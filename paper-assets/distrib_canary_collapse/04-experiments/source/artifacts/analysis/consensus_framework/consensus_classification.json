@@ -1,0 +1,364 @@
+{
+  "classifications": [
+    {
+      "pair_index": 0,
+      "n_sig_methods": 3,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        0,
+        0
+      ],
+      "canary": "token_entropy",
+      "downstream": "perplexity",
+      "pair_label": "token_entropy\u2192perplexity"
+    },
+    {
+      "pair_index": 1,
+      "n_sig_methods": 5,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "canary": "token_entropy",
+      "downstream": "distinct_1",
+      "pair_label": "token_entropy\u2192distinct_1"
+    },
+    {
+      "pair_index": 2,
+      "n_sig_methods": 5,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "canary": "token_entropy",
+      "downstream": "distinct_2",
+      "pair_label": "token_entropy\u2192distinct_2"
+    },
+    {
+      "pair_index": 3,
+      "n_sig_methods": 5,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        4,
+        3
+      ],
+      "canary": "token_entropy",
+      "downstream": "distinct_3",
+      "pair_label": "token_entropy\u2192distinct_3"
+    },
+    {
+      "pair_index": 4,
+      "n_sig_methods": 2,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        false,
+        true,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        2,
+        3,
+        0,
+        0
+      ],
+      "canary": "self_bleu",
+      "downstream": "perplexity",
+      "pair_label": "self_bleu\u2192perplexity"
+    },
+    {
+      "pair_index": 5,
+      "n_sig_methods": 1,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        2,
+        0,
+        1,
+        1
+      ],
+      "canary": "self_bleu",
+      "downstream": "distinct_1",
+      "pair_label": "self_bleu\u2192distinct_1"
+    },
+    {
+      "pair_index": 6,
+      "n_sig_methods": 2,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        3,
+        0,
+        1,
+        1
+      ],
+      "canary": "self_bleu",
+      "downstream": "distinct_2",
+      "pair_label": "self_bleu\u2192distinct_2"
+    },
+    {
+      "pair_index": 7,
+      "n_sig_methods": 2,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        3,
+        0,
+        1,
+        1
+      ],
+      "canary": "self_bleu",
+      "downstream": "distinct_3",
+      "pair_label": "self_bleu\u2192distinct_3"
+    },
+    {
+      "pair_index": 8,
+      "n_sig_methods": 3,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        0,
+        0
+      ],
+      "canary": "ece",
+      "downstream": "perplexity",
+      "pair_label": "ece\u2192perplexity"
+    },
+    {
+      "pair_index": 9,
+      "n_sig_methods": 4,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        2,
+        4
+      ],
+      "canary": "ece",
+      "downstream": "distinct_1",
+      "pair_label": "ece\u2192distinct_1"
+    },
+    {
+      "pair_index": 10,
+      "n_sig_methods": 4,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        2,
+        4
+      ],
+      "canary": "ece",
+      "downstream": "distinct_2",
+      "pair_label": "ece\u2192distinct_2"
+    },
+    {
+      "pair_index": 11,
+      "n_sig_methods": 4,
+      "is_robust": true,
+      "method_verdicts": [
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "seed_counts": [
+        4,
+        4,
+        4,
+        2,
+        4
+      ],
+      "canary": "ece",
+      "downstream": "distinct_3",
+      "pair_label": "ece\u2192distinct_3"
+    },
+    {
+      "pair_index": 12,
+      "n_sig_methods": 2,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        3,
+        4,
+        0,
+        0,
+        0
+      ],
+      "canary": "effective_rank",
+      "downstream": "perplexity",
+      "pair_label": "effective_rank\u2192perplexity"
+    },
+    {
+      "pair_index": 13,
+      "n_sig_methods": 2,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        3,
+        0,
+        1,
+        1
+      ],
+      "canary": "effective_rank",
+      "downstream": "distinct_1",
+      "pair_label": "effective_rank\u2192distinct_1"
+    },
+    {
+      "pair_index": 14,
+      "n_sig_methods": 1,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        2,
+        0,
+        1,
+        0
+      ],
+      "canary": "effective_rank",
+      "downstream": "distinct_2",
+      "pair_label": "effective_rank\u2192distinct_2"
+    },
+    {
+      "pair_index": 15,
+      "n_sig_methods": 1,
+      "is_robust": false,
+      "method_verdicts": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "seed_counts": [
+        4,
+        2,
+        0,
+        1,
+        0
+      ],
+      "canary": "effective_rank",
+      "downstream": "distinct_3",
+      "pair_label": "effective_rank\u2192distinct_3"
+    }
+  ],
+  "n_robust": 6,
+  "n_non_robust": 10,
+  "params": {
+    "method_threshold": 4,
+    "seed_threshold": 3,
+    "n_methods": 5,
+    "n_seeds": 4
+  }
+}

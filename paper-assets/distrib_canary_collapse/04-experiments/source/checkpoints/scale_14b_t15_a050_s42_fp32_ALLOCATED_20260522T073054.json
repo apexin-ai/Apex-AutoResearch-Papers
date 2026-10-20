@@ -1,0 +1,22 @@
+{
+  "exp_id": "scale_14b_t15_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:02:18.300Z",
+    "updated_at": "2026-05-22T07:30:53.636Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=15 α=0.50. At 410M, α=0.50 PermG=6/8 (above α_c(15)≈0.304). If 1.4B consistent, confirms detection at moderate α is robust to model scale.",
+    "spec": {
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T07:30:54.077793+00:00",
+  "trigger": "update_registry"
+}

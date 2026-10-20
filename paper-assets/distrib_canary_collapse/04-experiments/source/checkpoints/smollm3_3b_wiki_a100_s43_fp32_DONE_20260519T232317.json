@@ -1,0 +1,41 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:10:05.988Z",
+    "updated_at": "2026-05-19T23:23:17.174Z",
+    "hypothesis": "SmolLM3-3B s43 cross-seed 验证：s42 PermG=6/8, rev=0/8（强单向因果信号）。SmolLM3 是唯一非 Pythia/GPT/OPT 系的 3B 架构，审稿人重点关注。s43 验证此结果非 seed 偶然。Table 7 cross-seed + Claim 1。",
+    "parent": "smollm3_3b_wiki_a100_s42_v3",
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T19:10:25.279Z",
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43\"",
+      "finished_at": "2026-05-19T23:23:13.896Z",
+      "training_hours": 4.21
+    },
+    "spec": {
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 43,
+      "precision": "fp32 (D079/D080)",
+      "checkpoint_source": "/root/autodl-tmp/models/SmolLM3-3B-Base/ (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "pid": "466636",
+    "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s43_fp32.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T23:23:16.597Z"
+  },
+  "timestamp": "2026-05-19T23:23:17.699481+00:00",
+  "trigger": "update_registry"
+}

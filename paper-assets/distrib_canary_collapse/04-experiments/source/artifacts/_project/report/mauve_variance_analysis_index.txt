@@ -1,0 +1,1 @@
+MAUVE floor effect confirmed. Mean CV=0.089 (lowest), Mean SNR=4.68, 100% near-floor. PDF on westd-17855: artifacts/mauve_variance_analysis.pdf, JSON: artifacts/mauve_variance_summary.json

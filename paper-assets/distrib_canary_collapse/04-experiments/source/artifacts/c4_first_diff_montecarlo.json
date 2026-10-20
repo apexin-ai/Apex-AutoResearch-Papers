@@ -1,0 +1,99 @@
+{
+  "dgp": {
+    "Ts": [
+      11,
+      21
+    ],
+    "phis": [
+      0.5,
+      0.87
+    ],
+    "betas": [
+      0.0,
+      0.46,
+      0.92
+    ],
+    "n_reps": 2000,
+    "n_perms": 1000,
+    "seed": 42,
+    "burn_in": 50,
+    "alpha": 0.05
+  },
+  "results": {
+    "T11": {
+      "phi0.5": {
+        "beta0.0": {
+          "raw_perm_rate": 0.074,
+          "diff_perm_rate": 0.066
+        },
+        "beta0.46": {
+          "raw_perm_power": 0.2655,
+          "diff_perm_power": 0.144,
+          "power_loss_pct": 45.8
+        },
+        "beta0.92": {
+          "raw_perm_power": 0.622,
+          "diff_perm_power": 0.3485,
+          "power_loss_pct": 44.0
+        }
+      },
+      "phi0.87": {
+        "beta0.0": {
+          "raw_perm_rate": 0.103,
+          "diff_perm_rate": 0.058
+        },
+        "beta0.46": {
+          "raw_perm_power": 0.3055,
+          "diff_perm_power": 0.0995,
+          "power_loss_pct": 67.4
+        },
+        "beta0.92": {
+          "raw_perm_power": 0.6415,
+          "diff_perm_power": 0.261,
+          "power_loss_pct": 59.3
+        }
+      }
+    },
+    "T21": {
+      "phi0.5": {
+        "beta0.0": {
+          "raw_perm_rate": 0.0585,
+          "diff_perm_rate": 0.053
+        },
+        "beta0.46": {
+          "raw_perm_power": 0.54,
+          "diff_perm_power": 0.2995,
+          "power_loss_pct": 44.5
+        },
+        "beta0.92": {
+          "raw_perm_power": 0.9435,
+          "diff_perm_power": 0.7445,
+          "power_loss_pct": 21.1
+        }
+      },
+      "phi0.87": {
+        "beta0.0": {
+          "raw_perm_rate": 0.1175,
+          "diff_perm_rate": 0.0525
+        },
+        "beta0.46": {
+          "raw_perm_power": 0.7045,
+          "diff_perm_power": 0.2325,
+          "power_loss_pct": 67.0
+        },
+        "beta0.92": {
+          "raw_perm_power": 0.972,
+          "diff_perm_power": 0.667,
+          "power_loss_pct": 31.4
+        }
+      }
+    }
+  },
+  "summary": {
+    "size_control_table": "T=11, phi=0.5: raw_fpr=0.074, diff_fpr=0.066\nT=11, phi=0.87: raw_fpr=0.103, diff_fpr=0.058\nT=21, phi=0.5: raw_fpr=0.0585, diff_fpr=0.053\nT=21, phi=0.87: raw_fpr=0.1175, diff_fpr=0.0525",
+    "power_table": "T=11, phi=0.5, beta=0.46: raw=0.2655, diff=0.144, loss=45.8%\nT=11, phi=0.5, beta=0.92: raw=0.622, diff=0.3485, loss=44.0%\nT=11, phi=0.87, beta=0.46: raw=0.3055, diff=0.0995, loss=67.4%\nT=11, phi=0.87, beta=0.92: raw=0.6415, diff=0.261, loss=59.3%\nT=21, phi=0.5, beta=0.46: raw=0.54, diff=0.2995, loss=44.5%\nT=21, phi=0.5, beta=0.92: raw=0.9435, diff=0.7445, loss=21.1%\nT=21, phi=0.87, beta=0.46: raw=0.7045, diff=0.2325, loss=67.0%\nT=21, phi=0.87, beta=0.92: raw=0.972, diff=0.667, loss=31.4%",
+    "key_finding": "",
+    "conclusion": ""
+  },
+  "elapsed_minutes": 52.0
+}

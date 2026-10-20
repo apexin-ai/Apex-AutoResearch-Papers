@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006_s43",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:31:37.257Z",
+    "updated_at": "2026-05-16T00:03:46.006Z",
+    "spec": {
+      "plan_id": "plan_006",
+      "hypothesis": "Multi-seed replication of three-phase collapse dynamics: verify Phase 3 secondary decline (gen 13+) reproduces with seed=43, confirming it is not a single-seed artifact",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "data_path": "data/wikitext103_5k",
+      "num_generations": 18,
+      "synthetic_ratio": 1,
+      "max_lag": 10,
+      "data_count": 5000,
+      "steps_per_gen": 5000,
+      "parent": "plan_006_s42",
+      "claim": 1,
+      "priority": "P0"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T00:03:46.084124+00:00",
+  "trigger": "update_registry"
+}

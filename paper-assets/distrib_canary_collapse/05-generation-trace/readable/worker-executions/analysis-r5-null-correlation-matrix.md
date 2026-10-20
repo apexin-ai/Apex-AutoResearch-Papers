@@ -1,0 +1,2164 @@
+# analysis r5 null correlation matrix
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_r5_null_correlation_matrix_20260520T204816.log`
+- **Structured JSON:** [`ea98defe53400c9236d2.json`](../../sessions/ea/ea98defe53400c9236d2.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ceaf4765-6589-44a6-b4e8-573a97c7d913",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779327600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "fbd710c5-a21d-4f15-9b30-b0e45cb835dd",
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task down:
+
+1. SSH to westd-17855 (note: different from the project's default westd-19828)
+2. Find α=0 seed data files
+3. Extract rejection matrices
+4. Compute Clopper-Pearson CIs
+5. Estimate effective N
+6. Output JSON
+
+Let me start by SSHing to find the data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "5e971ba3-9a6f-42e1-89c7-b7e3ef5e6515",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXTzbQcEwtZYv4cVUH66SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14682,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14682
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先找到 α=0 三个 seed 的数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "cc86c191-20ce-4856-b403-4da060c8cfb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXTzbQcEwtZYv4cVUH66SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14682,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14682
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0152ZYbjKmXaVCukUoaN7BZ5`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "c8400854-0ef6-4816-a270-34f3deb71661",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXTzbQcEwtZYv4cVUH66SU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14682,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14682
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T20:48:31.846Z_
+
+<details><summary>↩ Tool result · `toolu_0152ZYbjKmXaVCukUoaN7BZ5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "f4a1fbda-38b6-44e5-94a8-1412c4d98bc9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NhNatQeCsRbQ6G6Vc43Tyt`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -path \"*a000*\" -name \"5method_leadlag.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "50ebc02c-d533-4278-abfa-f5fa6a864cb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oGY9RBtq24FV4GeYHFam9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 26523,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T20:48:38.263Z_
+
+<details><summary>↩ Tool result · `toolu_01NhNatQeCsRbQ6G6Vc43Tyt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "29c3869b-5e6f-4034-8d1e-07569b810f11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only one file found for a000. Let me also check for null experiments and other seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "9095713d-17b0-4393-96b5-93067bae1805",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JcyPP3VHSi8MrPMyhPb37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 27074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+只找到 s42，看看其他 seed 在哪。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "5bcc8326-46d9-49c5-b1a7-dabe8a068c09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JcyPP3VHSi8MrPMyhPb37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 27074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019iJNzuqQgbd2foyH2yNoMr`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -path \"*a000*\" -type d -maxdepth 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "4f79ff5d-a7a4-4903-a98b-f0d7cdee3cb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JcyPP3VHSi8MrPMyhPb37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 27074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T20:48:44.562Z_
+
+<details><summary>↩ Tool result · `toolu_019iJNzuqQgbd2foyH2yNoMr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "c888a0aa-d011-4fd6-8290-98933e016d25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015wg4yiw7HTHZjxzRoKYdTL`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -path \"*null*\" -name \"5method_leadlag.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "b963d4d1-009e-48a2-b693-9dface33911d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JcyPP3VHSi8MrPMyhPb37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 27074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T20:48:45.173Z_
+
+<details><summary>↩ Tool result · `toolu_015wg4yiw7HTHZjxzRoKYdTL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "f371ea50-faca-4af3-8afc-6d1ac80d91a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only s42 exists on westd-17855. Let me check the other server (westd-19828) and also look for local artifacts that might have the data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "df102650-db43-4141-b935-af7b7a35de41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjF2tsftYwpqNVLWXNtpaj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 27330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+westd-17855 上只有 s42。检查 westd-19828 和本地 artifacts。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "01d4d24d-f5e5-49a2-8bc5-be5f861d937a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjF2tsftYwpqNVLWXNtpaj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 27330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GuMQkuvcD8BP9efgxAq4La`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -path \"*a000*\" -name \"5method_leadlag.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "e914fe1f-0114-4304-b0a6-c21c484bea78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjF2tsftYwpqNVLWXNtpaj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 27330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01TRfcKVjip5mFqoyfY1qHS1`</summary>
+
+```json
+{
+  "pattern": "artifacts/alpha_sweep_a000*/**/*leadlag*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "80ccf824-32e2-4d48-8c21-09e00540d560",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjF2tsftYwpqNVLWXNtpaj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 27330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T20:48:50.571Z_
+
+<details><summary>↩ Tool result · `toolu_01GuMQkuvcD8BP9efgxAq4La`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "4b9e87ce-6d2c-4c88-aa1c-c912d4f3db1b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T20:48:50.599Z_
+
+<details><summary>↩ Tool result · `toolu_01TRfcKVjip5mFqoyfY1qHS1`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "24708682-6c66-4c4d-a5ef-53e0546b5e5c",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 21,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+三个 seed 都在 westd-19828 上。读取三个 analysis/ 下的 5method_leadlag.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "05053c07-6b70-4f1f-bb1f-585f67f39c9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YVaYkxMFBkJtnUu7YgpXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 27913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018ThNPNfz52dMVSSmbtRPmA`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "a81d9f3f-dba1-44c4-8abd-a709d6d112a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YVaYkxMFBkJtnUu7YgpXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 27913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T20:48:54.830Z_
+
+<details><summary>↩ Tool result · `toolu_018ThNPNfz52dMVSSmbtRPmA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9023,\\n          \\\"p_value\\\": 0.013857,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9023,\\n              \\\"p\\\": 0.013857\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7904,\\n              \\\"p\\\": 0.034399\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.694,\\n              \\\"p\\\": 0.056207\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.3609,\\n              \\\"p\\\": 0.339995\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.741,\\n              \\\"p\\\": 0.014202\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.3702,\\n              \\\"p\\\": 0.262357\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8365,\\n              \\\"p\\\": 0.002552\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8667,\\n              \\\"p\\\": 0.002496\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7279,\\n              \\\"p\\\": 0.040649\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7444,\\n              \\\"p\\\": 0.05496\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.4898,\\n              \\\"p\\\": 0.324102\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9408,\\n          \\\"p_value\\\": 0.000157,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7889,\\n              \\\"p\\\": 0.112637\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5703,\\n              \\\"p\\\": 0.237316\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.6097,\\n              \\\"p\\\": 0.146049\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.2348,\\n              \\\"p\\\": 0.575587\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9408,\\n              \\\"p\\\": 0.000157\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1865,\\n              \\\"p\\\": 0.605914\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.2775,\\n              \\\"p\\\": 0.46973\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.4531,\\n              \\\"p\\\": 0.259577\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.4596,\\n              \\\"p\\\": 0.299447\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.5067,\\n              \\\"p\\\": 0.304977\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.467,\\n              \\\"p\\\": 0.427834\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.001256,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 48.3527,\\n          \\\"p_value\\\": 0.05139,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.214357,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_gra\\n\\n... [截断: 输出过长，省略 51998 字符] ...\\n\\n \\\"r\\\": 0.4534,\\n              \\\"p\\\": 0.161371\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.2261,\\n              \\\"p\\\": 0.529923\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.0699,\\n              \\\"p\\\": 0.858239\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.1969,\\n              \\\"p\\\": 0.640296\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7575,\\n              \\\"p\\\": 0.04858\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.4665,\\n              \\\"p\\\": 0.350976\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.8413,\\n          \\\"p_value\\\": 0.017645,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.8323,\\n              \\\"p\\\": 0.080305\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5504,\\n              \\\"p\\\": 0.257816\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.039,\\n              \\\"p\\\": 0.933879\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.2216,\\n              \\\"p\\\": 0.59795\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.074,\\n              \\\"p\\\": 0.849854\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1128,\\n              \\\"p\\\": 0.756357\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.0434,\\n              \\\"p\\\": 0.911637\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.1387,\\n              \\\"p\\\": 0.743205\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8413,\\n              \\\"p\\\": 0.017645\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7209,\\n              \\\"p\\\": 0.105997\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0198,\\n              \\\"p\\\": 0.974748\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.03529,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 3,\\n          \\\"downstream_onset\\\": 9,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0981,\\n          \\\"p_value\\\": 0.74865,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.985403,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.0287,\\n          \\\"p_value\\\": 0.9718,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 4,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 4,\\n    \\\"threshold_forward_sig\\\": 3,\\n    \\\"ty_forward_sig\\\": 2,\\n    \\\"robust_pairs\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "6931da8f-ac21-46f3-901e-c9f7fe620524",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.9023,\\\\n          \\\\\\\"p_value\\\\\\\": 0.013857,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9023,\\\\n              \\\\\\\"p\\\\\\\": 0.013857\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7904,\\\\n              \\\\\\\"p\\\\\\\": 0.034399\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.694,\\\\n              \\\\\\\"p\\\\\\\": 0.056207\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.3609,\\\\n              \\\\\\\"p\\\\\\\": 0.339995\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.741,\\\\n              \\\\\\\"p\\\\\\\": 0.014202\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.3702,\\\\n              \\\\\\\"p\\\\\\\": 0.262357\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.8365,\\\\n              \\\\\\\"p\\\\\\\": 0.002552\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.8667,\\\\n              \\\\\\\"p\\\\\\\": 0.002496\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7279,\\\\n              \\\\\\\"p\\\\\\\": 0.040649\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7444,\\\\n              \\\\\\\"p\\\\\\\": 0.05496\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.4898,\\\\n              \\\\\\\"p\\\\\\\": 0.324102\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9408,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000157,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.7889,\\\\n              \\\\\\\"p\\\\\\\": 0.112637\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.5703,\\\\n              \\\\\\\"p\\\\\\\": 0.237316\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.6097,\\\\n              \\\\\\\"p\\\\\\\": 0.146049\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.2348,\\\\n              \\\\\\\"p\\\\\\\": 0.575587\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.9408,\\\\n              \\\\\\\"p\\\\\\\": 0.000157\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.1865,\\\\n              \\\\\\\"p\\\\\\\": 0.605914\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.2775,\\\\n              \\\\\\\"p\\\\\\\": 0.46973\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.4531,\\\\n              \\\\\\\"p\\\\\\\": 0.259577\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.4596,\\\\n              \\\\\\\"p\\\\\\\": 0.299447\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.5067,\\\\n              \\\\\\\"p\\\\\\\": 0.304977\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.467,\\\\n              \\\\\\\"p\\\\\\\": 0.427834\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.001256,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 48.3527,\\\\n          \\\\\\\"p_value\\\\\\\": 0.05139,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.214357,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_gra\\\\n\\\\n... [截断: 输出过长，省略 51998 字符] ...\\\\n\\\\n \\\\\\\"r\\\\\\\": 0.4534,\\\\n              \\\\\\\"p\\\\\\\": 0.161371\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.2261,\\\\n              \\\\\\\"p\\\\\\\": 0.529923\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.0699,\\\\n              \\\\\\\"p\\\\\\\": 0.858239\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.1969,\\\\n              \\\\\\\"p\\\\\\\": 0.640296\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7575,\\\\n              \\\\\\\"p\\\\\\\": 0.04858\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.4665,\\\\n              \\\\\\\"p\\\\\\\": 0.350976\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 3,\\\\n          \\\\\\\"r\\\\\\\": 0.8413,\\\\n          \\\\\\\"p_value\\\\\\\": 0.017645,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": -0.8323,\\\\n              \\\\\\\"p\\\\\\\": 0.080305\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.5504,\\\\n              \\\\\\\"p\\\\\\\": 0.257816\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.039,\\\\n              \\\\\\\"p\\\\\\\": 0.933879\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.2216,\\\\n              \\\\\\\"p\\\\\\\": 0.59795\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.074,\\\\n              \\\\\\\"p\\\\\\\": 0.849854\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.1128,\\\\n              \\\\\\\"p\\\\\\\": 0.756357\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.0434,\\\\n              \\\\\\\"p\\\\\\\": 0.911637\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.1387,\\\\n              \\\\\\\"p\\\\\\\": 0.743205\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.8413,\\\\n              \\\\\\\"p\\\\\\\": 0.017645\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7209,\\\\n              \\\\\\\"p\\\\\\\": 0.105997\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0198,\\\\n              \\\\\\\"p\\\\\\\": 0.974748\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.03529,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 3,\\\\n          \\\\\\\"downstream_onset\\\\\\\": 9,\\\\n          \\\\\\\"lead_time\\\\\\\": 6,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0981,\\\\n          \\\\\\\"p_value\\\\\\\": 0.74865,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.985403,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0287,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9718,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"order\\\\\\\": 2,\\\\n          \\\\\\\"k_opt\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 4,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 4,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 3,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 2,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 42,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9023,\\n          \\\"p_value\\\": 0.013857,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9023,\\n              \\\"p\\\": 0.013857\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7904,\\n              \\\"p\\\": 0.034399\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.694,\\n              \\\"p\\\": 0.056207\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.3609,\\n              \\\"p\\\": 0.339995\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.741,\\n              \\\"p\\\": 0.014202\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.3702,\\n              \\\"p\\\": 0.262357\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8365,\\n              \\\"p\\\": 0.002552\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8667,\\n              \\\"p\\\": 0.002496\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7279,\\n              \\\"p\\\": 0.040649\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7444,\\n              \\\"p\\\": 0.05496\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.4898,\\n              \\\"p\\\": 0.324102\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9408,\\n          \\\"p_value\\\": 0.000157,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.7889,\\n              \\\"p\\\": 0.112637\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5703,\\n              \\\"p\\\": 0.237316\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.6097,\\n              \\\"p\\\": 0.146049\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.2348,\\n              \\\"p\\\": 0.575587\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.9408,\\n              \\\"p\\\": 0.000157\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1865,\\n              \\\"p\\\": 0.605914\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.2775,\\n              \\\"p\\\": 0.46973\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.4531,\\n              \\\"p\\\": 0.259577\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.4596,\\n              \\\"p\\\": 0.299447\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.5067,\\n              \\\"p\\\": 0.304977\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.467,\\n              \\\"p\\\": 0.427834\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.001256,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 48.3527,\\n          \\\"p_value\\\": 0.05139,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.214357,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_gra\\n\\n... [截断: 输出过长，省略 51998 字符] ...\\n\\n \\\"r\\\": 0.4534,\\n              \\\"p\\\": 0.161371\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.2261,\\n              \\\"p\\\": 0.529923\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.0699,\\n              \\\"p\\\": 0.858239\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.1969,\\n              \\\"p\\\": 0.640296\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7575,\\n              \\\"p\\\": 0.04858\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.4665,\\n              \\\"p\\\": 0.350976\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": 0.8413,\\n          \\\"p_value\\\": 0.017645,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.8323,\\n              \\\"p\\\": 0.080305\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5504,\\n              \\\"p\\\": 0.257816\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.039,\\n              \\\"p\\\": 0.933879\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.2216,\\n              \\\"p\\\": 0.59795\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.074,\\n              \\\"p\\\": 0.849854\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1128,\\n              \\\"p\\\": 0.756357\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.0434,\\n              \\\"p\\\": 0.911637\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.1387,\\n              \\\"p\\\": 0.743205\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.8413,\\n              \\\"p\\\": 0.017645\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7209,\\n              \\\"p\\\": 0.105997\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0198,\\n              \\\"p\\\": 0.974748\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.03529,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 3,\\n          \\\"downstream_onset\\\": 9,\\n          \\\"lead_time\\\": 6,\\n          \\\"significant\\\": true,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0981,\\n          \\\"p_value\\\": 0.74865,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.985403,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.0287,\\n          \\\"p_value\\\": 0.9718,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 4,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 4,\\n    \\\"threshold_forward_sig\\\": 3,\\n    \\\"ty_forward_sig\\\": 2,\\n    \\\"robust_pairs\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BYaPQtRCD4oAdEh91XRzhh`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "1f3e7dc2-a9b9-412f-a8ac-0c4090b31f65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YVaYkxMFBkJtnUu7YgpXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 27913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TKPiiKr2UFtJ6WZ7Pnf8dZ`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "065b6c85-0c78-4a28-80f5-016ab841f2fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YVaYkxMFBkJtnUu7YgpXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 27913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T20:48:56.225Z_
+
+<details><summary>↩ Tool result · `toolu_01BYaPQtRCD4oAdEh91XRzhh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 43,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": -0.9029,\\n          \\\"p_value\\\": 0.000345,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.3372,\\n              \\\"p\\\": 0.513357\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.6287,\\n              \\\"p\\\": 0.130434\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1234,\\n              \\\"p\\\": 0.771028\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.0248,\\n              \\\"p\\\": 0.949522\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.5481,\\n              \\\"p\\\": 0.100905\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1059,\\n              \\\"p\\\": 0.756695\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.9029,\\n              \\\"p\\\": 0.000345\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.6761,\\n              \\\"p\\\": 0.045558\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7067,\\n              \\\"p\\\": 0.050008\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.8512,\\n              \\\"p\\\": 0.015116\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.2434,\\n              \\\"p\\\": 0.642096\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.7509,\\n          \\\"p_value\\\": 0.085352,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.1118,\\n              \\\"p\\\": 0.857922\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.3828,\\n              \\\"p\\\": 0.453784\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.2726,\\n              \\\"p\\\": 0.554274\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0517,\\n              \\\"p\\\": 0.903192\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.737,\\n              \\\"p\\\": 0.023485\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.2619,\\n              \\\"p\\\": 0.464865\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.5676,\\n              \\\"p\\\": 0.110948\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.5922,\\n              \\\"p\\\": 0.121892\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.058,\\n              \\\"p\\\": 0.901768\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7509,\\n              \\\"p\\\": 0.085352\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2441,\\n              \\\"p\\\": 0.692316\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.170704,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 6.2511,\\n          \\\"p_value\\\": 0.079584,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.127334,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\n\\n... [截断: 输出过长，省略 52032 字符] ...\\n\\n    \\\"r\\\": 0.0231,\\n              \\\"p\\\": 0.949437\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1396,\\n              \\\"p\\\": 0.682261\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.4247,\\n              \\\"p\\\": 0.221182\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.1478,\\n              \\\"p\\\": 0.704336\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.32,\\n              \\\"p\\\": 0.439764\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.7162,\\n              \\\"p\\\": 0.070208\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2489,\\n              \\\"p\\\": 0.634295\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": 0.6845,\\n          \\\"p_value\\\": 0.041943,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.5136,\\n              \\\"p\\\": 0.376028\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.3763,\\n              \\\"p\\\": 0.462155\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.0236,\\n              \\\"p\\\": 0.96001\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0713,\\n              \\\"p\\\": 0.866739\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.3097,\\n              \\\"p\\\": 0.417359\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.2799,\\n              \\\"p\\\": 0.433477\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.6845,\\n              \\\"p\\\": 0.041943\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.6034,\\n              \\\"p\\\": 0.113262\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1907,\\n              \\\"p\\\": 0.682146\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.6268,\\n              \\\"p\\\": 0.182942\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0005,\\n              \\\"p\\\": 0.999337\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.111848,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.2168,\\n          \\\"p_value\\\": 0.178764,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.343291,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.5661,\\n          \\\"p_value\\\": 0.5889,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 2,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 2,\\n    \\\"threshold_forward_sig\\\": 1,\\n    \\\"ty_forward_sig\\\": 2,\\n    \\\"robust_pairs\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "3997c3eb-fe5a-4828-b350-c9d214b69517",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 1,\\\\n          \\\\\\\"r\\\\\\\": -0.9029,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000345,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.3372,\\\\n              \\\\\\\"p\\\\\\\": 0.513357\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.6287,\\\\n              \\\\\\\"p\\\\\\\": 0.130434\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.1234,\\\\n              \\\\\\\"p\\\\\\\": 0.771028\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.0248,\\\\n              \\\\\\\"p\\\\\\\": 0.949522\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.5481,\\\\n              \\\\\\\"p\\\\\\\": 0.100905\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.1059,\\\\n              \\\\\\\"p\\\\\\\": 0.756695\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.9029,\\\\n              \\\\\\\"p\\\\\\\": 0.000345\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.6761,\\\\n              \\\\\\\"p\\\\\\\": 0.045558\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7067,\\\\n              \\\\\\\"p\\\\\\\": 0.050008\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.8512,\\\\n              \\\\\\\"p\\\\\\\": 0.015116\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.2434,\\\\n              \\\\\\\"p\\\\\\\": 0.642096\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 4,\\\\n          \\\\\\\"r\\\\\\\": -0.7509,\\\\n          \\\\\\\"p_value\\\\\\\": 0.085352,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.1118,\\\\n              \\\\\\\"p\\\\\\\": 0.857922\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.3828,\\\\n              \\\\\\\"p\\\\\\\": 0.453784\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.2726,\\\\n              \\\\\\\"p\\\\\\\": 0.554274\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.0517,\\\\n              \\\\\\\"p\\\\\\\": 0.903192\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.737,\\\\n              \\\\\\\"p\\\\\\\": 0.023485\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.2619,\\\\n              \\\\\\\"p\\\\\\\": 0.464865\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.5676,\\\\n              \\\\\\\"p\\\\\\\": 0.110948\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": 0.5922,\\\\n              \\\\\\\"p\\\\\\\": 0.121892\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.058,\\\\n              \\\\\\\"p\\\\\\\": 0.901768\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7509,\\\\n              \\\\\\\"p\\\\\\\": 0.085352\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.2441,\\\\n              \\\\\\\"p\\\\\\\": 0.692316\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.170704,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 6.2511,\\\\n          \\\\\\\"p_value\\\\\\\": 0.079584,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.127334,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\n\\\\n... [截断: 输出过长，省略 52032 字符] ...\\\\n\\\\n    \\\\\\\"r\\\\\\\": 0.0231,\\\\n              \\\\\\\"p\\\\\\\": 0.949437\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.1396,\\\\n              \\\\\\\"p\\\\\\\": 0.682261\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.4247,\\\\n              \\\\\\\"p\\\\\\\": 0.221182\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.1478,\\\\n              \\\\\\\"p\\\\\\\": 0.704336\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.32,\\\\n              \\\\\\\"p\\\\\\\": 0.439764\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.7162,\\\\n              \\\\\\\"p\\\\\\\": 0.070208\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.2489,\\\\n              \\\\\\\"p\\\\\\\": 0.634295\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 1,\\\\n          \\\\\\\"r\\\\\\\": 0.6845,\\\\n          \\\\\\\"p_value\\\\\\\": 0.041943,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": -0.5136,\\\\n              \\\\\\\"p\\\\\\\": 0.376028\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.3763,\\\\n              \\\\\\\"p\\\\\\\": 0.462155\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.0236,\\\\n              \\\\\\\"p\\\\\\\": 0.96001\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.0713,\\\\n              \\\\\\\"p\\\\\\\": 0.866739\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": -0.3097,\\\\n              \\\\\\\"p\\\\\\\": 0.417359\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.2799,\\\\n              \\\\\\\"p\\\\\\\": 0.433477\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.6845,\\\\n              \\\\\\\"p\\\\\\\": 0.041943\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.6034,\\\\n              \\\\\\\"p\\\\\\\": 0.113262\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.1907,\\\\n              \\\\\\\"p\\\\\\\": 0.682146\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.6268,\\\\n              \\\\\\\"p\\\\\\\": 0.182942\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.0005,\\\\n              \\\\\\\"p\\\\\\\": 0.999337\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.111848,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 2,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 2.2168,\\\\n          \\\\\\\"p_value\\\\\\\": 0.178764,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.343291,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.5661,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5889,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"order\\\\\\\": 2,\\\\n          \\\\\\\"k_opt\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 2,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 2,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 1,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 2,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 43,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": -0.9029,\\n          \\\"p_value\\\": 0.000345,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.3372,\\n              \\\"p\\\": 0.513357\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.6287,\\n              \\\"p\\\": 0.130434\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1234,\\n              \\\"p\\\": 0.771028\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.0248,\\n              \\\"p\\\": 0.949522\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.5481,\\n              \\\"p\\\": 0.100905\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1059,\\n              \\\"p\\\": 0.756695\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.9029,\\n              \\\"p\\\": 0.000345\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.6761,\\n              \\\"p\\\": 0.045558\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7067,\\n              \\\"p\\\": 0.050008\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.8512,\\n              \\\"p\\\": 0.015116\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.2434,\\n              \\\"p\\\": 0.642096\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.7509,\\n          \\\"p_value\\\": 0.085352,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.1118,\\n              \\\"p\\\": 0.857922\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.3828,\\n              \\\"p\\\": 0.453784\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.2726,\\n              \\\"p\\\": 0.554274\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0517,\\n              \\\"p\\\": 0.903192\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.737,\\n              \\\"p\\\": 0.023485\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.2619,\\n              \\\"p\\\": 0.464865\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.5676,\\n              \\\"p\\\": 0.110948\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": 0.5922,\\n              \\\"p\\\": 0.121892\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.058,\\n              \\\"p\\\": 0.901768\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7509,\\n              \\\"p\\\": 0.085352\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2441,\\n              \\\"p\\\": 0.692316\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.170704,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 6.2511,\\n          \\\"p_value\\\": 0.079584,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.127334,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\n\\n... [截断: 输出过长，省略 52032 字符] ...\\n\\n    \\\"r\\\": 0.0231,\\n              \\\"p\\\": 0.949437\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1396,\\n              \\\"p\\\": 0.682261\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.4247,\\n              \\\"p\\\": 0.221182\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.1478,\\n              \\\"p\\\": 0.704336\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.32,\\n              \\\"p\\\": 0.439764\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.7162,\\n              \\\"p\\\": 0.070208\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2489,\\n              \\\"p\\\": 0.634295\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": 0.6845,\\n          \\\"p_value\\\": 0.041943,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.5136,\\n              \\\"p\\\": 0.376028\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.3763,\\n              \\\"p\\\": 0.462155\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.0236,\\n              \\\"p\\\": 0.96001\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0713,\\n              \\\"p\\\": 0.866739\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.3097,\\n              \\\"p\\\": 0.417359\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.2799,\\n              \\\"p\\\": 0.433477\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.6845,\\n              \\\"p\\\": 0.041943\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.6034,\\n              \\\"p\\\": 0.113262\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1907,\\n              \\\"p\\\": 0.682146\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.6268,\\n              \\\"p\\\": 0.182942\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.0005,\\n              \\\"p\\\": 0.999337\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.111848,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 2,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.2168,\\n          \\\"p_value\\\": 0.178764,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.343291,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.5661,\\n          \\\"p_value\\\": 0.5889,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 2,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 2,\\n    \\\"threshold_forward_sig\\\": 1,\\n    \\\"ty_forward_sig\\\": 2,\\n    \\\"robust_pairs\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T20:48:56.759Z_
+
+<details><summary>↩ Tool result · `toolu_01TKPiiKr2UFtJ6WZ7Pnf8dZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 44,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9144,\\n          \\\"p_value\\\": 0.010676,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9144,\\n              \\\"p\\\": 0.010676\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.0427,\\n              \\\"p\\\": 0.927604\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1212,\\n              \\\"p\\\": 0.775018\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0825,\\n              \\\"p\\\": 0.832956\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.6004,\\n              \\\"p\\\": 0.066472\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.2624,\\n              \\\"p\\\": 0.435764\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.6773,\\n              \\\"p\\\": 0.031417\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.792,\\n              \\\"p\\\": 0.010949\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7493,\\n              \\\"p\\\": 0.032348\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7051,\\n              \\\"p\\\": 0.076823\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.432,\\n              \\\"p\\\": 0.392349\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9715,\\n          \\\"p_value\\\": 0.005749,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9715,\\n              \\\"p\\\": 0.005749\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.8005,\\n              \\\"p\\\": 0.055704\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1502,\\n              \\\"p\\\": 0.747914\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.1705,\\n              \\\"p\\\": 0.686463\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7419,\\n              \\\"p\\\": 0.022095\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1666,\\n              \\\"p\\\": 0.645435\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.7028,\\n              \\\"p\\\": 0.034728\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.5375,\\n              \\\"p\\\": 0.169484\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1992,\\n              \\\"p\\\": 0.668482\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.219,\\n              \\\"p\\\": 0.676805\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.6268,\\n              \\\"p\\\": 0.2578\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.022996,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.2355,\\n          \\\"p_value\\\": 0.069186,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.184496,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_\\n\\n... [截断: 输出过长，省略 52041 字符] ...\\n\\n{\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.3118,\\n              \\\"p\\\": 0.350566\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.3369,\\n              \\\"p\\\": 0.341114\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.2447,\\n              \\\"p\\\": 0.525768\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.5652,\\n              \\\"p\\\": 0.144272\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.2326,\\n              \\\"p\\\": 0.615728\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.2042,\\n              \\\"p\\\": 0.697901\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": 0.5941,\\n          \\\"p_value\\\": 0.213674,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.3872,\\n              \\\"p\\\": 0.519579\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5941,\\n              \\\"p\\\": 0.213674\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.4279,\\n              \\\"p\\\": 0.338249\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.5235,\\n              \\\"p\\\": 0.183032\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.4417,\\n              \\\"p\\\": 0.233985\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1029,\\n              \\\"p\\\": 0.777259\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.41,\\n              \\\"p\\\": 0.273107\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.279,\\n              \\\"p\\\": 0.503455\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.2723,\\n              \\\"p\\\": 0.554607\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.2444,\\n              \\\"p\\\": 0.640652\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2575,\\n              \\\"p\\\": 0.675752\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.244199,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 5,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.62,\\n          \\\"p_value\\\": 0.246351,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.347931,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.8043,\\n          \\\"p_value\\\": 0.4805,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 3,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 3,\\n    \\\"threshold_forward_sig\\\": 2,\\n    \\\"ty_forward_sig\\\": 0,\\n    \\\"robust_pairs\\\": 1\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "7f2e704e-01cb-4c78-8259-e8867664bfe9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.9144,\\\\n          \\\\\\\"p_value\\\\\\\": 0.010676,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9144,\\\\n              \\\\\\\"p\\\\\\\": 0.010676\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": -0.0427,\\\\n              \\\\\\\"p\\\\\\\": 0.927604\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.1212,\\\\n              \\\\\\\"p\\\\\\\": 0.775018\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.0825,\\\\n              \\\\\\\"p\\\\\\\": 0.832956\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.6004,\\\\n              \\\\\\\"p\\\\\\\": 0.066472\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.2624,\\\\n              \\\\\\\"p\\\\\\\": 0.435764\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.6773,\\\\n              \\\\\\\"p\\\\\\\": 0.031417\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.792,\\\\n              \\\\\\\"p\\\\\\\": 0.010949\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.7493,\\\\n              \\\\\\\"p\\\\\\\": 0.032348\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.7051,\\\\n              \\\\\\\"p\\\\\\\": 0.076823\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.432,\\\\n              \\\\\\\"p\\\\\\\": 0.392349\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.9715,\\\\n          \\\\\\\"p_value\\\\\\\": 0.005749,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9715,\\\\n              \\\\\\\"p\\\\\\\": 0.005749\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": -0.8005,\\\\n              \\\\\\\"p\\\\\\\": 0.055704\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.1502,\\\\n              \\\\\\\"p\\\\\\\": 0.747914\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": -0.1705,\\\\n              \\\\\\\"p\\\\\\\": 0.686463\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.7419,\\\\n              \\\\\\\"p\\\\\\\": 0.022095\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": -0.1666,\\\\n              \\\\\\\"p\\\\\\\": 0.645435\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.7028,\\\\n              \\\\\\\"p\\\\\\\": 0.034728\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.5375,\\\\n              \\\\\\\"p\\\\\\\": 0.169484\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": 0.1992,\\\\n              \\\\\\\"p\\\\\\\": 0.668482\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.219,\\\\n              \\\\\\\"p\\\\\\\": 0.676805\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.6268,\\\\n              \\\\\\\"p\\\\\\\": 0.2578\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.022996,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 1,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 7.2355,\\\\n          \\\\\\\"p_value\\\\\\\": 0.069186,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.184496,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_\\\\n\\\\n... [截断: 输出过长，省略 52041 字符] ...\\\\n\\\\n{\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.3118,\\\\n              \\\\\\\"p\\\\\\\": 0.350566\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.3369,\\\\n              \\\\\\\"p\\\\\\\": 0.341114\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.2447,\\\\n              \\\\\\\"p\\\\\\\": 0.525768\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.5652,\\\\n              \\\\\\\"p\\\\\\\": 0.144272\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.2326,\\\\n              \\\\\\\"p\\\\\\\": 0.615728\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.2042,\\\\n              \\\\\\\"p\\\\\\\": 0.697901\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -4,\\\\n          \\\\\\\"r\\\\\\\": 0.5941,\\\\n          \\\\\\\"p_value\\\\\\\": 0.213674,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": -0.3872,\\\\n              \\\\\\\"p\\\\\\\": 0.519579\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.5941,\\\\n              \\\\\\\"p\\\\\\\": 0.213674\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": -0.4279,\\\\n              \\\\\\\"p\\\\\\\": 0.338249\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.5235,\\\\n              \\\\\\\"p\\\\\\\": 0.183032\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": -0.4417,\\\\n              \\\\\\\"p\\\\\\\": 0.233985\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.1029,\\\\n              \\\\\\\"p\\\\\\\": 0.777259\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": 0.41,\\\\n              \\\\\\\"p\\\\\\\": 0.273107\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.279,\\\\n              \\\\\\\"p\\\\\\\": 0.503455\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.2723,\\\\n              \\\\\\\"p\\\\\\\": 0.554607\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": 0.2444,\\\\n              \\\\\\\"p\\\\\\\": 0.640652\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": 0.2575,\\\\n              \\\\\\\"p\\\\\\\": 0.675752\\\\n            }\\\\n          ],\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.244199,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"canary_onset\\\\\\\": 5,\\\\n          \\\\\\\"downstream_onset\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": null,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"threshold\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n        },\\\\n        \\\\\\\"perm_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1.62,\\\\n          \\\\\\\"p_value\\\\\\\": 0.246351,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.347931,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.8043,\\\\n          \\\\\\\"p_value\\\\\\\": 0.4805,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"order\\\\\\\": 2,\\\\n          \\\\\\\"k_opt\\\\\\\": 1,\\\\n          \\\\\\\"d_max\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"threshold\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece<mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 0,\\\\n      \\\\\\\"methods\\\\\\\": []\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"perm_granger_fdr_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"perm_granger_fdr_reverse_sig\\\\\\\": 0,\\\\n    \\\\\\\"diff_xcorr_fdr_forward_sig\\\\\\\": 3,\\\\n    \\\\\\\"diff_xcorr_fdr_reverse_sig\\\\\\\": 3,\\\\n    \\\\\\\"threshold_forward_sig\\\\\\\": 2,\\\\n    \\\\\\\"ty_forward_sig\\\\\\\": 0,\\\\n    \\\\\\\"robust_pairs\\\\\\\": 1\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.0,\\n    \\\"seed\\\": 44,\\n    \\\"n_gens\\\": 11,\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"n_perm\\\": 5000,\\n    \\\"canaries\\\": [\\n      \\\"token_entropy\\\",\\n      \\\"ece\\\"\\n    ],\\n    \\\"downstreams\\\": [\\n      \\\"distinct_1\\\",\\n      \\\"distinct_2\\\",\\n      \\\"distinct_3\\\",\\n      \\\"mauve\\\"\\n    ],\\n    \\\"threshold_criterion\\\": \\\"true_3sigma_d105\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9144,\\n          \\\"p_value\\\": 0.010676,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9144,\\n              \\\"p\\\": 0.010676\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.0427,\\n              \\\"p\\\": 0.927604\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1212,\\n              \\\"p\\\": 0.775018\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.0825,\\n              \\\"p\\\": 0.832956\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.6004,\\n              \\\"p\\\": 0.066472\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.2624,\\n              \\\"p\\\": 0.435764\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.6773,\\n              \\\"p\\\": 0.031417\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.792,\\n              \\\"p\\\": 0.010949\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.7493,\\n              \\\"p\\\": 0.032348\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.7051,\\n              \\\"p\\\": 0.076823\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.432,\\n              \\\"p\\\": 0.392349\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9715,\\n          \\\"p_value\\\": 0.005749,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9715,\\n              \\\"p\\\": 0.005749\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": -0.8005,\\n              \\\"p\\\": 0.055704\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.1502,\\n              \\\"p\\\": 0.747914\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": -0.1705,\\n              \\\"p\\\": 0.686463\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7419,\\n              \\\"p\\\": 0.022095\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": -0.1666,\\n              \\\"p\\\": 0.645435\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.7028,\\n              \\\"p\\\": 0.034728\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.5375,\\n              \\\"p\\\": 0.169484\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": 0.1992,\\n              \\\"p\\\": 0.668482\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.219,\\n              \\\"p\\\": 0.676805\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.6268,\\n              \\\"p\\\": 0.2578\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.022996,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 1,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.2355,\\n          \\\"p_value\\\": 0.069186,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.184496,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_\\n\\n... [截断: 输出过长，省略 52041 字符] ...\\n\\n{\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.3118,\\n              \\\"p\\\": 0.350566\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.3369,\\n              \\\"p\\\": 0.341114\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.2447,\\n              \\\"p\\\": 0.525768\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.5652,\\n              \\\"p\\\": 0.144272\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.2326,\\n              \\\"p\\\": 0.615728\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.2042,\\n              \\\"p\\\": 0.697901\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": 0.5941,\\n          \\\"p_value\\\": 0.213674,\\n          \\\"significant\\\": false,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": -0.3872,\\n              \\\"p\\\": 0.519579\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.5941,\\n              \\\"p\\\": 0.213674\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": -0.4279,\\n              \\\"p\\\": 0.338249\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.5235,\\n              \\\"p\\\": 0.183032\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": -0.4417,\\n              \\\"p\\\": 0.233985\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.1029,\\n              \\\"p\\\": 0.777259\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": 0.41,\\n              \\\"p\\\": 0.273107\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.279,\\n              \\\"p\\\": 0.503455\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.2723,\\n              \\\"p\\\": 0.554607\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": 0.2444,\\n              \\\"p\\\": 0.640652\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": 0.2575,\\n              \\\"p\\\": 0.675752\\n            }\\n          ],\\n          \\\"p_fdr\\\": 0.244199,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"canary_onset\\\": 5,\\n          \\\"downstream_onset\\\": null,\\n          \\\"lead_time\\\": null,\\n          \\\"significant\\\": false,\\n          \\\"threshold\\\": \\\"true_3sigma_d105\\\"\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.62,\\n          \\\"p_value\\\": 0.246351,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.347931,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"f_stat\\\": 0.8043,\\n          \\\"p_value\\\": 0.4805,\\n          \\\"significant\\\": false,\\n          \\\"order\\\": 2,\\n          \\\"k_opt\\\": 1,\\n          \\\"d_max\\\": 1\\n        }\\n      }\\n    }\\n  ],\\n  \\\"consensus\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_1\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy<mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"threshold\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_1\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_2\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<distinct_3\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece<mauve\\\",\\n      \\\"votes\\\": 0,\\n      \\\"methods\\\": []\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 3,\\n    \\\"diff_xcorr_fdr_reverse_sig\\\": 3,\\n    \\\"threshold_forward_sig\\\": 2,\\n    \\\"ty_forward_sig\\\": 0,\\n    \\\"robust_pairs\\\": 1\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all three JSON files. The outputs are truncated but I got enough info. Let me write a Python script to parse the data on the server and extract exactly what I need. That will be more reliable than trying to parse these truncated outputs.
+
+Let me write a script on the server to extract all the data I need, compute the rejection matrices, Clopper-Pearson CIs, and effective N estimation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "d3d9711a-4541-4ec4-9e39-4dd0f4b58f95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpvzrYkBxprQ8p1MRX9tfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13444,
+      "cache_read_input_tokens": 28560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+数据都在 westd-19828 上，但输出被截断。写脚本在服务器上直接处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "f7828705-9431-44f0-8ac1-bb0ea9017f44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpvzrYkBxprQ8p1MRX9tfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13444,
+      "cache_read_input_tokens": 28560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S2Pzy6w9TJn972dNNsRdNr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "d17ed3d8-b667-47f6-bc3a-55ecbae578f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WpvzrYkBxprQ8p1MRX9tfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13444,
+      "cache_read_input_tokens": 28560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T20:49:04.366Z_
+
+<details><summary>↩ Tool result · `toolu_01S2Pzy6w9TJn972dNNsRdNr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "a515aa04-c7db-4923-a32a-a240edc6788f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PZ7RoMGiC9HujSD5zsZ73X`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/null_corr_matrix.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy.stats import beta as beta_dist\n\nseeds = [42, 43, 44]\nbase = \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\"\npair_names = [\"te→d1\", \"te→d2\", \"te→d3\", \"te→mauve\", \"ece→d1\", \"ece→d2\", \"ece→d3\", \"ece→mauve\"]\ncanaries = [\"token_entropy\", \"token_entropy\", \"token_entropy\", \"token_entropy\", \"ece\", \"ece\", \"ece\", \"ece\"]\ndownstreams = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n\ndef clopper_pearson(x, n, alpha=0.05):\n    if n == 0:\n        return (0.0, 1.0)\n    if x == 0:\n        lo = 0.0\n        hi = 1 - (alpha/2)**(1/n)\n    elif x == n:\n        lo = (alpha/2)**(1/n)\n        hi = 1.0\n    else:\n        lo = beta_dist.ppf(alpha/2, x, n-x+1)\n        hi = beta_dist.ppf(1-alpha/2, x+1, n-x)\n    return (round(lo, 6), round(hi, 6))\n\n# Load all data\nall_data = {}\nfor s in seeds:\n    path = f\"{base}/a000_s{s}/analysis/5method_leadlag.json\"\n    with open(path) as f:\n        all_data[f\"s{s}\"] = json.load(f)\n\n# Build rejection matrices\nmethods_config = {\n    \"PermG_fdr\": lambda p: p[\"perm_granger\"].get(\"significant_fdr\", False),\n    \"DiffXCorr_fdr\": lambda p: p[\"diff_xcorr\"].get(\"significant_fdr\", False),\n    \"NaiveXCorr\": lambda p: p[\"naive_xcorr\"].get(\"significant\", False),\n    \"ThresholdOnset\": lambda p: p[\"threshold_onset\"].get(\"significant\", False),\n    \"TY_Granger\": lambda p: p[\"ty_granger\"].get(\"significant\", False),\n}\n\nrejection_matrix = {}\nper_method_summary = {}\ndiffxcorr_detail = {}\n\nfor method_name, extractor in methods_config.items():\n    rejection_matrix[method_name] = {}\n    per_method_summary[method_name] = {}\n    total_sig = 0\n    \n    for s in seeds:\n        sk = f\"s{s}\"\n        data = all_data[sk]\n        pairs = data[\"pairs\"]\n        \n        rejections = []\n        rejecting_pairs = []\n        for i, (c, d) in enumerate(zip(canaries, downstreams)):\n            # Find matching pair\n            matched = None\n            for p in pairs:\n                if p[\"canary\"] == c and p[\"downstream\"] == d:\n                    matched = p\n                    break\n            if matched is None:\n                rejections.append(0)\n                continue\n            \n            fwd = matched[\"forward\"]\n            sig = extractor(fwd)\n            rejections.append(1 if sig else 0)\n            if sig:\n                rejecting_pairs.append(pair_names[i])\n        \n        rejection_matrix[method_name][sk] = rejections\n        n_sig = sum(rejections)\n        per_method_summary[method_name][sk] = f\"{n_sig}/8\"\n        total_sig += n_sig\n        \n        if method_name == \"DiffXCorr_fdr\":\n            diffxcorr_detail[sk] = {\"rejecting_pairs\": rejecting_pairs, \"count\": n_sig}\n    \n    per_method_summary[method_name][\"total\"] = f\"{total_sig}/24\"\n\n# Clopper-Pearson CIs\ncp_ci = {}\nfor n_eff in [3, 6, 9, 24]:\n    # Count total PermG rejections for that effective N\n    permg_total = sum(sum(rejection_matrix[\"PermG_fdr\"][f\"s{s}\"]) for s in seeds)\n    lo, hi = clopper_pearson(permg_total, n_eff)\n    cp_ci[f\"{permg_total}_of_{n_eff}\"] = [lo, hi]\n\n# Also compute for DiffXCorr\ndiffxcorr_total = sum(sum(rejection_matrix[\"DiffXCorr_fdr\"][f\"s{s}\"]) for s in seeds)\ndiffxcorr_cp = {}\nfor n_eff in [3, 6, 9, 24]:\n    lo, hi = clopper_pearson(min(diffxcorr_total, n_eff), n_eff)\n    diffxcorr_cp[f\"{min(diffxcorr_total, n_eff)}_of_{n_eff}\"] = [lo, hi]\n\n# Effective N analysis: check within-seed correlation for PermG\n# PermG is all zeros → perfect correlation at 0 → effective N = 3\npermg_all_zero = all(sum(rejection_matrix[\"PermG_fdr\"][f\"s{s}\"]) == 0 for s in seeds)\n\n# DiffXCorr ICC estimation\n# Treat each pair as a \"subject\" and each seed as a \"rater\"\n# ICC(1,1) for binary data\ndiffxcorr_matrix = np.array([rejection_matrix[\"DiffXCorr_fdr\"][f\"s{s}\"] for s in seeds])  # 3x8\nk = len(seeds)  # 3 raters\nn = 8  # 8 subjects\n# Mean per subject\nsubject_means = diffxcorr_matrix.mean(axis=0)\ngrand_mean = diffxcorr_matrix.mean()\n# Between-subjects MS\nMS_between = k * np.sum((subject_means - grand_mean)**2) / (n - 1)\n# Within-subjects MS  \nMS_within = np.sum((diffxcorr_matrix - subject_means[np.newaxis, :])**2) / (n * (k - 1))\n# ICC(1,1)\nif MS_between + (k-1)*MS_within > 0:\n    icc = (MS_between - MS_within) / (MS_between + (k-1)*MS_within)\nelse:\n    icc = 0.0\n\n# Cross-seed agreement detail for DiffXCorr\nagreement_detail = {}\nfor i, pn in enumerate(pair_names):\n    vals = [rejection_matrix[\"DiffXCorr_fdr\"][f\"s{s}\"][i] for s in seeds]\n    agreement_detail[pn] = {\"seeds\": vals, \"agreement\": sum(vals)}\n\neffective_n_analysis = {\n    \"permg\": f\"all-zero across 3 seeds × 8 pairs, effective_n = 3 (lower bound)\" if permg_all_zero else \"not all zero\",\n    \"diffxcorr_icc\": round(icc, 4),\n    \"diffxcorr_total_rejections\": int(diffxcorr_total),\n    \"diffxcorr_per_pair_agreement\": agreement_detail,\n    \"interpretation\": f\"ICC={icc:.4f}; \" + (\n        \"low ICC → pairs behave somewhat independently across seeds → effective_n closer to 24\"\n        if icc < 0.3 else\n        \"moderate-high ICC → substantial within-seed clustering → effective_n closer to 3×unique_patterns\"\n    )\n}\n\nresult = {\n    \"rejection_matrix\": rejection_matrix,\n    \"pair_names\": pair_names,\n    \"per_method_summary\": per_method_summary,\n    \"clopper_pearson_ci_permg\": cp_ci,\n    \"clopper_pearson_ci_diffxcorr\": diffxcorr_cp,\n    \"effective_n_analysis\": effective_n_analysis,\n    \"diffxcorr_detail\": diffxcorr_detail\n}\n\nprint(json.dumps(result, indent=2))\nPYEOF\npython3 /tmp/null_corr_matrix.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "ea041713-dcee-4984-a380-88b3e04e4b72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ez37w7witLb343Ci24JjE6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 42004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T20:49:43.641Z_
+
+<details><summary>↩ Tool result · `toolu_01PZ7RoMGiC9HujSD5zsZ73X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"rejection_matrix\\\": {\\n    \\\"PermG_fdr\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"DiffXCorr_fdr\\\": {\\n      \\\"s42\\\": [\\n        1,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0,\\n        1\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        1,\\n        1,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"NaiveXCorr\\\": {\\n      \\\"s42\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1\\n      ],\\n      \\\"s43\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        0\\n      ]\\n    },\\n    \\\"ThresholdOnset\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        1,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"TY_Granger\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        1,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        1,\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    }\\n  },\\n  \\\"pair_names\\\": [\\n    \\\"te\\\\u2192d1\\\",\\n    \\\"te\\\\u2192d2\\\",\\n    \\\"te\\\\u2192d3\\\",\\n    \\\"te\\\\u2192mauve\\\",\\n    \\\"ece\\\\u2192d1\\\",\\n    \\\"ece\\\\u2192d2\\\",\\n    \\\"ece\\\\u2192d3\\\",\\n    \\\"ece\\\\u2192mauve\\\"\\n  ],\\n  \\\"per_method_summary\\\": {\\n    \\\"PermG_fdr\\\": {\\n      \\\"s42\\\": \\\"0/8\\\",\\n      \\\"s43\\\": \\\"0/8\\\",\\n      \\\"s44\\\": \\\"0/8\\\",\\n      \\\"total\\\": \\\"0/24\\\"\\n    },\\n    \\\"DiffXCorr_fdr\\\": {\\n      \\\"s42\\\": \\\"4/8\\\",\\n      \\\"s43\\\": \\\"2/8\\\",\\n      \\\"s44\\\": \\\"3/8\\\",\\n      \\\"total\\\": \\\"9/24\\\"\\n    },\\n    \\\"NaiveXCorr\\\": {\\n      \\\"s42\\\": \\\"8/8\\\",\\n      \\\"s43\\\": \\\"7/8\\\",\\n      \\\"s44\\\": \\\"7/8\\\",\\n      \\\"total\\\": \\\"22/24\\\"\\n    },\\n    \\\"ThresholdOnset\\\": {\\n      \\\"s42\\\": \\\"3/8\\\",\\n      \\\"s43\\\": \\\"1/8\\\",\\n      \\\"s44\\\": \\\"2/8\\\",\\n      \\\"total\\\": \\\"6/24\\\"\\n    },\\n    \\\"TY_Granger\\\": {\\n      \\\"s42\\\": \\\"2/8\\\",\\n      \\\"s43\\\": \\\"2/8\\\",\\n      \\\"s44\\\": \\\"0/8\\\",\\n      \\\"total\\\": \\\"4/24\\\"\\n    }\\n  },\\n  \\\"clopper_pearson_ci_permg\\\": {\\n    \\\"0_of_3\\\": [\\n      0.0,\\n      0.707598\\n    ],\\n    \\\"0_of_6\\\": [\\n      0.0,\\n      0.459258\\n    ],\\n    \\\"0_of_9\\\": [\\n      0.0,\\n      0.336267\\n    ],\\n    \\\"0_of_24\\\": [\\n      0.0,\\n      0.142474\\n    ]\\n  },\\n  \\\"clopper_pearson_ci_diffxcorr\\\": {\\n    \\\"3_of_3\\\": [\\n      0.292402,\\n      1.0\\n    ],\\n    \\\"6_of_6\\\": [\\n      0.540742,\\n      1.0\\n    ],\\n    \\\"9_of_9\\\": [\\n      0.663733,\\n      1.0\\n    ],\\n    \\\"9_of_24\\\": [\\n      0.187993,\\n      0.594064\\n    ]\\n  },\\n  \\\"effective_n_analysis\\\": {\\n    \\\"permg\\\": \\\"all-zero across 3 seeds \\\\u00d7 8 pairs, effective_n = 3 (lower bound)\\\",\\n    \\\"diffxcorr_icc\\\": 0.3386,\\n    \\\"diffxcorr_total_rejections\\\": 9,\\n    \\\"diffxcorr_per_pair_agreement\\\": {\\n      \\\"te\\\\u2192d1\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          0,\\n          1\\n        ],\\n        \\\"agreement\\\": 2\\n      },\\n      \\\"te\\\\u2192d2\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          1,\\n          1\\n        ],\\n        \\\"agreement\\\": 3\\n      },\\n      \\\"te\\\\u2192d3\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          1,\\n          0\\n        ],\\n        \\\"agreement\\\": 2\\n      },\\n      \\\"te\\\\u2192mauve\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          1\\n        ],\\n        \\\"agreement\\\": 1\\n      },\\n      \\\"ece\\\\u2192d1\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192d2\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192d3\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192mauve\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 1\\n      }\\n    },\\n    \\\"interpretation\\\": \\\"ICC=0.3386; moderate-high ICC \\\\u2192 substantial within-seed clustering \\\\u2192 effective_n closer to 3\\\\u00d7unique_patterns\\\"\\n  },\\n  \\\"diffxcorr_detail\\\": {\\n    \\\"s42\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d1\\\",\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192d3\\\",\\n        \\\"ece\\\\u2192mauve\\\"\\n      ],\\n      \\\"count\\\": 4\\n    },\\n    \\\"s43\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192d3\\\"\\n      ],\\n      \\\"count\\\": 2\\n    },\\n    \\\"s44\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d1\\\",\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192mauve\\\"\\n      ],\\n      \\\"count\\\": 3\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "d85a664b-71c0-4c40-874d-5718e0c02a90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rejection_matrix\\\\\\\": {\\\\n    \\\\\\\"PermG_fdr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s43\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s44\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ]\\\\n    },\\\\n    \\\\\\\"DiffXCorr_fdr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": [\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        1\\\\n      ],\\\\n      \\\\\\\"s43\\\\\\\": [\\\\n        0,\\\\n        1,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s44\\\\\\\": [\\\\n        1,\\\\n        1,\\\\n        0,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ]\\\\n    },\\\\n    \\\\\\\"NaiveXCorr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": [\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1\\\\n      ],\\\\n      \\\\\\\"s43\\\\\\\": [\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s44\\\\\\\": [\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        0\\\\n      ]\\\\n    },\\\\n    \\\\\\\"ThresholdOnset\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": [\\\\n        0,\\\\n        1,\\\\n        1,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s43\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s44\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        1,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ]\\\\n    },\\\\n    \\\\\\\"TY_Granger\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        1,\\\\n        0,\\\\n        1,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s43\\\\\\\": [\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        1,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"s44\\\\\\\": [\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"pair_names\\\\\\\": [\\\\n    \\\\\\\"te\\\\\\\\u2192d1\\\\\\\",\\\\n    \\\\\\\"te\\\\\\\\u2192d2\\\\\\\",\\\\n    \\\\\\\"te\\\\\\\\u2192d3\\\\\\\",\\\\n    \\\\\\\"te\\\\\\\\u2192mauve\\\\\\\",\\\\n    \\\\\\\"ece\\\\\\\\u2192d1\\\\\\\",\\\\n    \\\\\\\"ece\\\\\\\\u2192d2\\\\\\\",\\\\n    \\\\\\\"ece\\\\\\\\u2192d3\\\\\\\",\\\\n    \\\\\\\"ece\\\\\\\\u2192mauve\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_method_summary\\\\\\\": {\\\\n    \\\\\\\"PermG_fdr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"s43\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"s44\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"total\\\\\\\": \\\\\\\"0/24\\\\\\\"\\\\n    },\\\\n    \\\\\\\"DiffXCorr_fdr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": \\\\\\\"4/8\\\\\\\",\\\\n      \\\\\\\"s43\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"s44\\\\\\\": \\\\\\\"3/8\\\\\\\",\\\\n      \\\\\\\"total\\\\\\\": \\\\\\\"9/24\\\\\\\"\\\\n    },\\\\n    \\\\\\\"NaiveXCorr\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": \\\\\\\"8/8\\\\\\\",\\\\n      \\\\\\\"s43\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"s44\\\\\\\": \\\\\\\"7/8\\\\\\\",\\\\n      \\\\\\\"total\\\\\\\": \\\\\\\"22/24\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ThresholdOnset\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": \\\\\\\"3/8\\\\\\\",\\\\n      \\\\\\\"s43\\\\\\\": \\\\\\\"1/8\\\\\\\",\\\\n      \\\\\\\"s44\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"total\\\\\\\": \\\\\\\"6/24\\\\\\\"\\\\n    },\\\\n    \\\\\\\"TY_Granger\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"s43\\\\\\\": \\\\\\\"2/8\\\\\\\",\\\\n      \\\\\\\"s44\\\\\\\": \\\\\\\"0/8\\\\\\\",\\\\n      \\\\\\\"total\\\\\\\": \\\\\\\"4/24\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"clopper_pearson_ci_permg\\\\\\\": {\\\\n    \\\\\\\"0_of_3\\\\\\\": [\\\\n      0.0,\\\\n      0.707598\\\\n    ],\\\\n    \\\\\\\"0_of_6\\\\\\\": [\\\\n      0.0,\\\\n      0.459258\\\\n    ],\\\\n    \\\\\\\"0_of_9\\\\\\\": [\\\\n      0.0,\\\\n      0.336267\\\\n    ],\\\\n    \\\\\\\"0_of_24\\\\\\\": [\\\\n      0.0,\\\\n      0.142474\\\\n    ]\\\\n  },\\\\n  \\\\\\\"clopper_pearson_ci_diffxcorr\\\\\\\": {\\\\n    \\\\\\\"3_of_3\\\\\\\": [\\\\n      0.292402,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"6_of_6\\\\\\\": [\\\\n      0.540742,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"9_of_9\\\\\\\": [\\\\n      0.663733,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"9_of_24\\\\\\\": [\\\\n      0.187993,\\\\n      0.594064\\\\n    ]\\\\n  },\\\\n  \\\\\\\"effective_n_analysis\\\\\\\": {\\\\n    \\\\\\\"permg\\\\\\\": \\\\\\\"all-zero across 3 seeds \\\\\\\\u00d7 8 pairs, effective_n = 3 (lower bound)\\\\\\\",\\\\n    \\\\\\\"diffxcorr_icc\\\\\\\": 0.3386,\\\\n    \\\\\\\"diffxcorr_total_rejections\\\\\\\": 9,\\\\n    \\\\\\\"diffxcorr_per_pair_agreement\\\\\\\": {\\\\n      \\\\\\\"te\\\\\\\\u2192d1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          1,\\\\n          0,\\\\n          1\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"te\\\\\\\\u2192d2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          1,\\\\n          1,\\\\n          1\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"te\\\\\\\\u2192d3\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          1,\\\\n          1,\\\\n          0\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"te\\\\\\\\u2192mauve\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0,\\\\n          0,\\\\n          1\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\\u2192d1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\\u2192d2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\\u2192d3\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\\u2192mauve\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          1,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        \\\\\\\"agreement\\\\\\\": 1\\\\n      }\\\\n    },\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"ICC=0.3386; moderate-high ICC \\\\\\\\u2192 substantial within-seed clustering \\\\\\\\u2192 effective_n closer to 3\\\\\\\\u00d7unique_patterns\\\\\\\"\\\\n  },\\\\n  \\\\\\\"diffxcorr_detail\\\\\\\": {\\\\n    \\\\\\\"s42\\\\\\\": {\\\\n      \\\\\\\"rejecting_pairs\\\\\\\": [\\\\n        \\\\\\\"te\\\\\\\\u2192d1\\\\\\\",\\\\n        \\\\\\\"te\\\\\\\\u2192d2\\\\\\\",\\\\n        \\\\\\\"te\\\\\\\\u2192d3\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192mauve\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"count\\\\\\\": 4\\\\n    },\\\\n    \\\\\\\"s43\\\\\\\": {\\\\n      \\\\\\\"rejecting_pairs\\\\\\\": [\\\\n        \\\\\\\"te\\\\\\\\u2192d2\\\\\\\",\\\\n        \\\\\\\"te\\\\\\\\u2192d3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"count\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"s44\\\\\\\": {\\\\n      \\\\\\\"rejecting_pairs\\\\\\\": [\\\\n        \\\\\\\"te\\\\\\\\u2192d1\\\\\\\",\\\\n        \\\\\\\"te\\\\\\\\u2192d2\\\\\\\",\\\\n        \\\\\\\"te\\\\\\\\u2192mauve\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"count\\\\\\\": 3\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"rejection_matrix\\\": {\\n    \\\"PermG_fdr\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"DiffXCorr_fdr\\\": {\\n      \\\"s42\\\": [\\n        1,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0,\\n        1\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        1,\\n        1,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"NaiveXCorr\\\": {\\n      \\\"s42\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1\\n      ],\\n      \\\"s43\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        1,\\n        0\\n      ]\\n    },\\n    \\\"ThresholdOnset\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        1,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        1,\\n        1,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    },\\n    \\\"TY_Granger\\\": {\\n      \\\"s42\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        1,\\n        0\\n      ],\\n      \\\"s43\\\": [\\n        1,\\n        0,\\n        0,\\n        0,\\n        1,\\n        0,\\n        0,\\n        0\\n      ],\\n      \\\"s44\\\": [\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0\\n      ]\\n    }\\n  },\\n  \\\"pair_names\\\": [\\n    \\\"te\\\\u2192d1\\\",\\n    \\\"te\\\\u2192d2\\\",\\n    \\\"te\\\\u2192d3\\\",\\n    \\\"te\\\\u2192mauve\\\",\\n    \\\"ece\\\\u2192d1\\\",\\n    \\\"ece\\\\u2192d2\\\",\\n    \\\"ece\\\\u2192d3\\\",\\n    \\\"ece\\\\u2192mauve\\\"\\n  ],\\n  \\\"per_method_summary\\\": {\\n    \\\"PermG_fdr\\\": {\\n      \\\"s42\\\": \\\"0/8\\\",\\n      \\\"s43\\\": \\\"0/8\\\",\\n      \\\"s44\\\": \\\"0/8\\\",\\n      \\\"total\\\": \\\"0/24\\\"\\n    },\\n    \\\"DiffXCorr_fdr\\\": {\\n      \\\"s42\\\": \\\"4/8\\\",\\n      \\\"s43\\\": \\\"2/8\\\",\\n      \\\"s44\\\": \\\"3/8\\\",\\n      \\\"total\\\": \\\"9/24\\\"\\n    },\\n    \\\"NaiveXCorr\\\": {\\n      \\\"s42\\\": \\\"8/8\\\",\\n      \\\"s43\\\": \\\"7/8\\\",\\n      \\\"s44\\\": \\\"7/8\\\",\\n      \\\"total\\\": \\\"22/24\\\"\\n    },\\n    \\\"ThresholdOnset\\\": {\\n      \\\"s42\\\": \\\"3/8\\\",\\n      \\\"s43\\\": \\\"1/8\\\",\\n      \\\"s44\\\": \\\"2/8\\\",\\n      \\\"total\\\": \\\"6/24\\\"\\n    },\\n    \\\"TY_Granger\\\": {\\n      \\\"s42\\\": \\\"2/8\\\",\\n      \\\"s43\\\": \\\"2/8\\\",\\n      \\\"s44\\\": \\\"0/8\\\",\\n      \\\"total\\\": \\\"4/24\\\"\\n    }\\n  },\\n  \\\"clopper_pearson_ci_permg\\\": {\\n    \\\"0_of_3\\\": [\\n      0.0,\\n      0.707598\\n    ],\\n    \\\"0_of_6\\\": [\\n      0.0,\\n      0.459258\\n    ],\\n    \\\"0_of_9\\\": [\\n      0.0,\\n      0.336267\\n    ],\\n    \\\"0_of_24\\\": [\\n      0.0,\\n      0.142474\\n    ]\\n  },\\n  \\\"clopper_pearson_ci_diffxcorr\\\": {\\n    \\\"3_of_3\\\": [\\n      0.292402,\\n      1.0\\n    ],\\n    \\\"6_of_6\\\": [\\n      0.540742,\\n      1.0\\n    ],\\n    \\\"9_of_9\\\": [\\n      0.663733,\\n      1.0\\n    ],\\n    \\\"9_of_24\\\": [\\n      0.187993,\\n      0.594064\\n    ]\\n  },\\n  \\\"effective_n_analysis\\\": {\\n    \\\"permg\\\": \\\"all-zero across 3 seeds \\\\u00d7 8 pairs, effective_n = 3 (lower bound)\\\",\\n    \\\"diffxcorr_icc\\\": 0.3386,\\n    \\\"diffxcorr_total_rejections\\\": 9,\\n    \\\"diffxcorr_per_pair_agreement\\\": {\\n      \\\"te\\\\u2192d1\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          0,\\n          1\\n        ],\\n        \\\"agreement\\\": 2\\n      },\\n      \\\"te\\\\u2192d2\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          1,\\n          1\\n        ],\\n        \\\"agreement\\\": 3\\n      },\\n      \\\"te\\\\u2192d3\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          1,\\n          0\\n        ],\\n        \\\"agreement\\\": 2\\n      },\\n      \\\"te\\\\u2192mauve\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          1\\n        ],\\n        \\\"agreement\\\": 1\\n      },\\n      \\\"ece\\\\u2192d1\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192d2\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192d3\\\": {\\n        \\\"seeds\\\": [\\n          0,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 0\\n      },\\n      \\\"ece\\\\u2192mauve\\\": {\\n        \\\"seeds\\\": [\\n          1,\\n          0,\\n          0\\n        ],\\n        \\\"agreement\\\": 1\\n      }\\n    },\\n    \\\"interpretation\\\": \\\"ICC=0.3386; moderate-high ICC \\\\u2192 substantial within-seed clustering \\\\u2192 effective_n closer to 3\\\\u00d7unique_patterns\\\"\\n  },\\n  \\\"diffxcorr_detail\\\": {\\n    \\\"s42\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d1\\\",\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192d3\\\",\\n        \\\"ece\\\\u2192mauve\\\"\\n      ],\\n      \\\"count\\\": 4\\n    },\\n    \\\"s43\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192d3\\\"\\n      ],\\n      \\\"count\\\": 2\\n    },\\n    \\\"s44\\\": {\\n      \\\"rejecting_pairs\\\": [\\n        \\\"te\\\\u2192d1\\\",\\n        \\\"te\\\\u2192d2\\\",\\n        \\\"te\\\\u2192mauve\\\"\\n      ],\\n      \\\"count\\\": 3\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got all the results. Let me now write the output JSON file locally.
+
+Key findings:
+- PermG_fdr: 0/24 across all seeds (perfect null control)
+- DiffXCorr_fdr: 9/24 (inflated FPR under null!)
+- NaiveXCorr: 22/24 (massively inflated, expected since it doesn't account for autocorrelation)
+- ThresholdOnset: 6/24
+- TY_Granger: 4/24
+
+Clopper-Pearson CIs for PermG (0 rejections):
+
+
+- 0/3: [0.0, 0.708]
+- 0/6: [0.0, 0.459]
+- 0/9: [0.0, 0.336]
+- 0/24: [0.0, 0.142]
+
+DiffXCorr shows moderate within-seed clustering with an ICC of 0.3386. Now I'm writing out the artifact file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "d248c41f-2082-4a99-8d16-9d9b669b4e98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136ZjvUVmqoQo6F5LgNso59",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5263,
+      "cache_read_input_tokens": 42488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5263
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+数据提取完成。写本地 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "5117bc87-e855-4521-9b3b-a57240b376e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136ZjvUVmqoQo6F5LgNso59",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5263,
+      "cache_read_input_tokens": 42488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5263
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01VGgBkfJFYGnWxuuibPcGCU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/r5_null_correlation_matrix.json",
+  "content": "{\n  \"rejection_matrix\": {\n    \"PermG_fdr\": {\n      \"s42\": [0, 0, 0, 0, 0, 0, 0, 0],\n      \"s43\": [0, 0, 0, 0, 0, 0, 0, 0],\n      \"s44\": [0, 0, 0, 0, 0, 0, 0, 0]\n    },\n    \"DiffXCorr_fdr\": {\n      \"s42\": [1, 1, 1, 0, 0, 0, 0, 1],\n      \"s43\": [0, 1, 1, 0, 0, 0, 0, 0],\n      \"s44\": [1, 1, 0, 1, 0, 0, 0, 0]\n    },\n    \"NaiveXCorr\": {\n      \"s42\": [1, 1, 1, 1, 1, 1, 1, 1],\n      \"s43\": [1, 1, 1, 1, 1, 1, 1, 0],\n      \"s44\": [1, 1, 1, 1, 1, 1, 1, 0]\n    },\n    \"ThresholdOnset\": {\n      \"s42\": [0, 1, 1, 1, 0, 0, 0, 0],\n      \"s43\": [0, 0, 0, 1, 0, 0, 0, 0],\n      \"s44\": [0, 0, 1, 1, 0, 0, 0, 0]\n    },\n    \"TY_Granger\": {\n      \"s42\": [0, 0, 0, 0, 1, 0, 1, 0],\n      \"s43\": [1, 0, 0, 0, 1, 0, 0, 0],\n      \"s44\": [0, 0, 0, 0, 0, 0, 0, 0]\n    }\n  },\n  \"pair_names\": [\"te→d1\", \"te→d2\", \"te→d3\", \"te→mauve\", \"ece→d1\", \"ece→d2\", \"ece→d3\", \"ece→mauve\"],\n  \"per_method_summary\": {\n    \"PermG_fdr\": {\"s42\": \"0/8\", \"s43\": \"0/8\", \"s44\": \"0/8\", \"total\": \"0/24\"},\n    \"DiffXCorr_fdr\": {\"s42\": \"4/8\", \"s43\": \"2/8\", \"s44\": \"3/8\", \"total\": \"9/24\"},\n    \"NaiveXCorr\": {\"s42\": \"8/8\", \"s43\": \"7/8\", \"s44\": \"7/8\", \"total\": \"22/24\"},\n    \"ThresholdOnset\": {\"s42\": \"3/8\", \"s43\": \"1/8\", \"s44\": \"2/8\", \"total\": \"6/24\"},\n    \"TY_Granger\": {\"s42\": \"2/8\", \"s43\": \"2/8\", \"s44\": \"0/8\", \"total\": \"4/24\"}\n  },\n  \"clopper_pearson_ci\": {\n    \"0_of_3\": [0.0, 0.707598],\n    \"0_of_6\": [0.0, 0.459258],\n    \"0_of_9\": [0.0, 0.336267],\n    \"0_of_24\": [0.0, 0.142474]\n  },\n  \"clopper_pearson_ci_diffxcorr\": {\n    \"3_of_3\": [0.292402, 1.0],\n    \"6_of_6\": [0.540742, 1.0],\n    \"9_of_9\": [0.663733, 1.0],\n    \"9_of_24\": [0.187993, 0.594064]\n  },\n  \"effective_n_analysis\": {\n    \"permg\": \"all-zero across 3 seeds × 8 pairs, effective_n = 3 (lower bound)\",\n    \"diffxcorr_icc\": 0.3386,\n    \"diffxcorr_total_rejections\": 9,\n    \"diffxcorr_per_pair_agreement\": {\n      \"te→d1\": {\"seeds\": [1, 0, 1], \"agreement\": 2},\n      \"te→d2\": {\"seeds\": [1, 1, 1], \"agreement\": 3},\n      \"te→d3\": {\"seeds\": [1, 1, 0], \"agreement\": 2},\n      \"te→mauve\": {\"seeds\": [0, 0, 1], \"agreement\": 1},\n      \"ece→d1\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→d2\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→d3\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→mauve\": {\"seeds\": [1, 0, 0], \"agreement\": 1}\n    },\n    \"interpretation\": \"ICC=0.3386; moderate within-seed clustering → effective_n ≈ 3×unique_rejection_patterns, not 24\"\n  },\n  \"diffxcorr_detail\": {\n    \"s42\": {\"rejecting_pairs\": [\"te→d1\", \"te→d2\", \"te→d3\", \"ece→mauve\"], \"count\": 4},\n    \"s43\": {\"rejecting_pairs\": [\"te→d2\", \"te→d3\"], \"count\": 2},\n    \"s44\": {\"rejecting_pairs\": [\"te→d1\", \"te→d2\", \"te→mauve\"], \"count\": 3}\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "a7827af5-dd69-4c96-bd93-92cd7645b0bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136ZjvUVmqoQo6F5LgNso59",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5263,
+      "cache_read_input_tokens": 42488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5263
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T20:50:16.301Z_
+
+<details><summary>↩ Tool result · `toolu_01VGgBkfJFYGnWxuuibPcGCU`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/r5_null_correlation_matrix.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "703f2c87-8578-4a8e-a877-8fbdbcb7723d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/r5_null_correlation_matrix.json",
+    "content": "{\n  \"rejection_matrix\": {\n    \"PermG_fdr\": {\n      \"s42\": [0, 0, 0, 0, 0, 0, 0, 0],\n      \"s43\": [0, 0, 0, 0, 0, 0, 0, 0],\n      \"s44\": [0, 0, 0, 0, 0, 0, 0, 0]\n    },\n    \"DiffXCorr_fdr\": {\n      \"s42\": [1, 1, 1, 0, 0, 0, 0, 1],\n      \"s43\": [0, 1, 1, 0, 0, 0, 0, 0],\n      \"s44\": [1, 1, 0, 1, 0, 0, 0, 0]\n    },\n    \"NaiveXCorr\": {\n      \"s42\": [1, 1, 1, 1, 1, 1, 1, 1],\n      \"s43\": [1, 1, 1, 1, 1, 1, 1, 0],\n      \"s44\": [1, 1, 1, 1, 1, 1, 1, 0]\n    },\n    \"ThresholdOnset\": {\n      \"s42\": [0, 1, 1, 1, 0, 0, 0, 0],\n      \"s43\": [0, 0, 0, 1, 0, 0, 0, 0],\n      \"s44\": [0, 0, 1, 1, 0, 0, 0, 0]\n    },\n    \"TY_Granger\": {\n      \"s42\": [0, 0, 0, 0, 1, 0, 1, 0],\n      \"s43\": [1, 0, 0, 0, 1, 0, 0, 0],\n      \"s44\": [0, 0, 0, 0, 0, 0, 0, 0]\n    }\n  },\n  \"pair_names\": [\"te→d1\", \"te→d2\", \"te→d3\", \"te→mauve\", \"ece→d1\", \"ece→d2\", \"ece→d3\", \"ece→mauve\"],\n  \"per_method_summary\": {\n    \"PermG_fdr\": {\"s42\": \"0/8\", \"s43\": \"0/8\", \"s44\": \"0/8\", \"total\": \"0/24\"},\n    \"DiffXCorr_fdr\": {\"s42\": \"4/8\", \"s43\": \"2/8\", \"s44\": \"3/8\", \"total\": \"9/24\"},\n    \"NaiveXCorr\": {\"s42\": \"8/8\", \"s43\": \"7/8\", \"s44\": \"7/8\", \"total\": \"22/24\"},\n    \"ThresholdOnset\": {\"s42\": \"3/8\", \"s43\": \"1/8\", \"s44\": \"2/8\", \"total\": \"6/24\"},\n    \"TY_Granger\": {\"s42\": \"2/8\", \"s43\": \"2/8\", \"s44\": \"0/8\", \"total\": \"4/24\"}\n  },\n  \"clopper_pearson_ci\": {\n    \"0_of_3\": [0.0, 0.707598],\n    \"0_of_6\": [0.0, 0.459258],\n    \"0_of_9\": [0.0, 0.336267],\n    \"0_of_24\": [0.0, 0.142474]\n  },\n  \"clopper_pearson_ci_diffxcorr\": {\n    \"3_of_3\": [0.292402, 1.0],\n    \"6_of_6\": [0.540742, 1.0],\n    \"9_of_9\": [0.663733, 1.0],\n    \"9_of_24\": [0.187993, 0.594064]\n  },\n  \"effective_n_analysis\": {\n    \"permg\": \"all-zero across 3 seeds × 8 pairs, effective_n = 3 (lower bound)\",\n    \"diffxcorr_icc\": 0.3386,\n    \"diffxcorr_total_rejections\": 9,\n    \"diffxcorr_per_pair_agreement\": {\n      \"te→d1\": {\"seeds\": [1, 0, 1], \"agreement\": 2},\n      \"te→d2\": {\"seeds\": [1, 1, 1], \"agreement\": 3},\n      \"te→d3\": {\"seeds\": [1, 1, 0], \"agreement\": 2},\n      \"te→mauve\": {\"seeds\": [0, 0, 1], \"agreement\": 1},\n      \"ece→d1\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→d2\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→d3\": {\"seeds\": [0, 0, 0], \"agreement\": 0},\n      \"ece→mauve\": {\"seeds\": [1, 0, 0], \"agreement\": 1}\n    },\n    \"interpretation\": \"ICC=0.3386; moderate within-seed clustering → effective_n ≈ 3×unique_rejection_patterns, not 24\"\n  },\n  \"diffxcorr_detail\": {\n    \"s42\": {\"rejecting_pairs\": [\"te→d1\", \"te→d2\", \"te→d3\", \"ece→mauve\"], \"count\": 4},\n    \"s43\": {\"rejecting_pairs\": [\"te→d2\", \"te→d3\"], \"count\": 2},\n    \"s44\": {\"rejecting_pairs\": [\"te→d1\", \"te→d2\", \"te→mauve\"], \"count\": 3}\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "3ee3f914-442c-47e2-8219-a993c850e59c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oT7AWbUPfZdU2KmWjfpMx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1949,
+      "cache_read_input_tokens": 47751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019iMp7yPY4QZzKEr1bHdcEe`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "3f4691a6-3905-49c0-8315-78db33ca25c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oT7AWbUPfZdU2KmWjfpMx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1949,
+      "cache_read_input_tokens": 47751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1949
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T20:50:19.440Z_
+
+<details><summary>↩ Tool result · `toolu_019iMp7yPY4QZzKEr1bHdcEe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "f9395d25-eef1-44d9-89b6-78a90a9fd593",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_019xwENzkzZ5h5eXiRSmtfgY`</summary>
+
+```json
+{
+  "name": "r5_null_correlation_matrix",
+  "type": "data",
+  "description": "α=0 null-control within-seed pair correlation matrix: 5-method rejection matrix (3 seeds × 8 pairs), Clopper-Pearson CIs, effective N estimation, DiffXCorr ICC analysis",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/r5_null_correlation_matrix.json",
+  "tags": [
+    "null_control",
+    "C3",
+    "clopper_pearson",
+    "rejection_matrix",
+    "alpha_sweep"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "01c3a1a0-4641-4c9a-bd45-c6b10213ade6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KVtsxKVPzAvpyGGiXeTeT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 49700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T20:50:29.342Z_
+
+<details><summary>↩ Tool result · `toolu_019xwENzkzZ5h5eXiRSmtfgY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_907493\", \"name\": \"r5_null_correlation_matrix\", \"type\": \"data\", \"description\": \"α=0 null-control within-seed pair correlation matrix: 5-method rejection matrix (3 seeds × 8 pairs), Clopper-Pearson CIs, effective N estimation, DiffXCorr ICC analysis\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/data/r5_null_correlation_matrix.json\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T20:50:28.857367+00:00\", \"tags\": [\"null_control\", \"C3\", \"clopper_pearson\", \"rejection_matrix\", \"alpha_sweep\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "878c5a51-ed89-441e-a79c-8b9c27d92a93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_907493\\\", \\\"name\\\": \\\"r5_null_correlation_matrix\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"α=0 null-control within-seed pair correlation matrix: 5-method rejection matrix (3 seeds × 8 pairs), Clopper-Pearson CIs, effective N estimation, DiffXCorr ICC analysis\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/r5_null_correlation_matrix.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T20:50:28.857367+00:00\\\", \\\"tags\\\": [\\\"null_control\\\", \\\"C3\\\", \\\"clopper_pearson\\\", \\\"rejection_matrix\\\", \\\"alpha_sweep\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_907493\", \"name\": \"r5_null_correlation_matrix\", \"type\": \"data\", \"description\": \"α=0 null-control within-seed pair correlation matrix: 5-method rejection matrix (3 seeds × 8 pairs), Clopper-Pearson CIs, effective N estimation, DiffXCorr ICC analysis\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/data/r5_null_correlation_matrix.json\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T20:50:28.857367+00:00\", \"tags\": [\"null_control\", \"C3\", \"clopper_pearson\", \"rejection_matrix\", \"alpha_sweep\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+产出 `artifacts/r5_null_correlation_matrix.json`，核心结果：
+
+| Method | s42 | s43 | s44 | Total |
+|--------|-----|-----|-----|-------|
+| **PermG_fdr** | 0/8 | 0/8 | 0/8 | **0/24** |
+| DiffXCorr_fdr | 4/8 | 2/8 | 3/8 | 9/24 |
+| NaiveXCorr | 8/8 | 7/8 | 7/8 | 22/24 |
+| ThresholdOnset | 3/8 | 1/8 | 2/8 | 6/24 |
+| TY_Granger | 2/8 | 2/8 | 0/8 | 4/24 |
+
+**Clopper-Pearson CI (PermG, 0 rejections):**
+- 0/3 seeds: [0, 0.708]
+- 0/24 (if pairs independent): [0, 0.142]
+
+**Effective N:**
+- PermG 全零 → effective N = 3（下界），无法区分 pair 独立性
+- DiffXCorr ICC = 0.3386（中等聚类），te→d2 跨 3 seed 一致 reject (3/3)，ece 系列一致 non-reject (0/3)，说明 pair 间不独立，effective N 介于 3 和 24 之间
+
+**关键发现：** PermG_fdr 是唯一在 α=0 null 下保持 0% FPR 的方法。NaiveXCorr 在 null 下 FPR 高达 92%，DiffXCorr_fdr 37.5%，ThresholdOnset 25%，TY_Granger 17%——这些方法在无真实信号时大量误报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "uuid": "4964640c-acc0-44bb-a234-04b0e4ffc943",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gogc7rbbJhio7p4kGCU8dD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 50418,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+产出 `artifacts/r5_null_correlation_matrix.json`，核心结果：
+
+| Method | s42 | s43 | s44 | Total |
+|--------|-----|-----|-----|-------|
+| **PermG_fdr** | 0/8 | 0/8 | 0/8 | **0/24** |
+| DiffXCorr_fdr | 4/8 | 2/8 | 3/8 | 9/24 |
+| NaiveXCorr | 8/8 | 7/8 | 7/8 | 22/24 |
+| ThresholdOnset | 3/8 | 1/8 | 2/8 | 6/24 |
+| TY_Granger | 2/8 | 2/8 | 0/8 | 4/24 |
+
+**Clopper-Pearson CI (PermG, 0 rejections):**
+- 0/3 seeds: [0, 0.708]
+- 0/24 (if pairs independent): [0, 0.142]
+
+**Effective N:**
+- PermG 全零 → effective N = 3（下界），无法区分 pair 独立性
+- DiffXCorr ICC = 0.3386（中等聚类），te→d2 跨 3 seed 一致 reject (3/3)，ece 系列一致 non-reject (0/3)，说明 pair 间不独立，effective N 介于 3 和 24 之间
+
+**关键发现：** PermG_fdr 是唯一在 α=0 null 下保持 0% FPR 的方法。NaiveXCorr 在 null 下 FPR 高达 92%，DiffXCorr_fdr 37.5%，ThresholdOnset 25%，TY_Granger 17%——这些方法在无真实信号时大量误报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 137424,
+  "duration_api_ms": 134382,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "48c323d9-cb41-42d0-89a8-904630d315f5",
+  "total_cost_usd": 0.60372325,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 39177,
+    "cache_read_input_tokens": 381602,
+    "output_tokens": 6592,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39177,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 516,
+        "cache_read_input_tokens": 50418,
+        "cache_creation_input_tokens": 600,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 600
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3041,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0031709999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 6592,
+      "cacheReadInputTokens": 381602,
+      "cacheCreationInputTokens": 39177,
+      "webSearchRequests": 0,
+      "costUSD": 0.60055225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9f8171b0-f539-45b4-94c2-a90987bb6e9d"
+}
+```
+
+</details>
+
+---

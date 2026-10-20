@@ -1,0 +1,89 @@
+# diagnose scale 14b c4 s42 fp32
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_scale_14b_c4_s42_fp32_20260520T070230_result.json`
+- **Structured JSON:** [`316b2be81616c4c077b7.json`](../../sessions/31/316b2be81616c4c077b7.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部结果如下：
+
+---
+
+### 1. EXIT_CODE sentinel
+```
+0
+```
+
+### 2. all_metrics.json（完整）
+```json
+[
+  {"generation": 0,  "token_entropy": 2.8660, "perplexity": 18.84,    "effective_rank": 71.22,  "mauve": 0.8407, "ece": 0.0118, "self_bleu": 0.0073, "distinct_1": 0.1159, "distinct_2": 0.5631, "distinct_3": 0.8449},
+  {"generation": 1,  "token_entropy": 1.3287, "perplexity": 140.80,   "effective_rank": 138.72, "mauve": 0.8153, "ece": 0.3412, "self_bleu": 0.0073, "distinct_1": 0.1164, "distinct_2": 0.5680, "distinct_3": 0.8498},
+  {"generation": 2,  "token_entropy": 1.2157, "perplexity": 258.68,   "effective_rank": 148.06, "mauve": 0.4283, "ece": 0.3850, "self_bleu": 0.0076, "distinct_1": 0.1059, "distinct_2": 0.5206, "distinct_3": 0.7919},
+  {"generation": 3,  "token_entropy": 1.1905, "perplexity": 366.24,   "effective_rank": 151.72, "mauve": 0.4296, "ece": 0.4057, "self_bleu": 0.0075, "distinct_1": 0.1056, "distinct_2": 0.5179, "distinct_3": 0.7875},
+  {"generation": 4,  "token_entropy": 1.1950, "perplexity": 472.79,   "effective_rank": 153.25, "mauve": 0.4314, "ece": 0.4153, "self_bleu": 0.0075, "distinct_1": 0.1055, "distinct_2": 0.5169, "distinct_3": 0.7861},
+  {"generation": 5,  "token_entropy": 1.2131, "perplexity": 587.74,   "effective_rank": 155.53, "mauve": 0.4569, "ece": 0.4220, "self_bleu": 0.0075, "distinct_1": 0.1052, "distinct_2": 0.5150, "distinct_3": 0.7831},
+  {"generation": 6,  "token_entropy": 1.2242, "perplexity": 678.75,   "effective_rank": 154.96, "mauve": 0.4937, "ece": 0.4278, "self_bleu": 0.0075, "distinct_1": 0.1050, "distinct_2": 0.5143, "distinct_3": 0.7820},
+  {"generation": 7,  "token_entropy": 1.2274, "perplexity": 826.53,   "effective_rank": 157.16, "mauve": 0.4651, "ece": 0.4359, "self_bleu": 0.0075, "distinct_1": 0.1050, "distinct_2": 0.5141, "distinct_3": 0.7817},
+  {"generation": 8,  "token_entropy": 1.2435, "perplexity": 937.90,   "effective_rank": 156.59, "mauve": 0.4869, "ece": 0.4384, "self_bleu": 0.0075, "distinct_1": 0.1050, "distinct_2": 0.5139, "distinct_3": 0.7815},
+  {"generation": 9,  "token_entropy": 1.2532, "perplexity": 1052.93,  "effective_rank": 157.55, "mauve": 0.4675, "ece": 0.4424, "self_bleu": 0.0075, "distinct_1": 0.1050, "distinct_2": 0.5136, "distinct_3": 0.7810},
+  {"generation": 10, "token_entropy": 1.2504, "perplexity": 1181.80,  "effective_rank": 156.62, "mauve": 0.4550, "ece": 0.4460, "self_bleu": 0.0075, "distinct_1": 0.1050, "distinct_2": 0.5132, "distinct_3": 0.7799}
+]
+```
+所有 entry 均 `intervention_triggered: false`, `effective_alpha: 1.0`。
+
+### 3. Generation 目录
+```
+gen_0   May 20 06:42
+gen_1   May 20 09:07
+gen_2   May 20 09:56
+gen_3   May 20 10:45
+gen_4   May 20 11:33
+gen_5   May 20 12:22
+gen_6   May 20 13:11
+gen_7   May 20 14:00
+gen_8   May 20 14:49
+gen_9   May 20 14:01
+gen_10  May 20 14:49
+```
+gen_0 ~ gen_10 共 11 个目录全部存在。
+
+### 4. gen_9/checkpoint 完整性
+```
+config.json              784 bytes
+generation_config.json   131 bytes
+model.safetensors        5.66 GB
+tokenizer.json           3.56 MB
+tokenizer_config.json    377 bytes
+```
+checkpoint 完整（14B 模型 safetensors 5.66GB 合理）。
+
+### 5. cron 日志路径
+```
+ls: cannot access '/root/runs/distrib_canary_collapse/scale_14b_c4_s42_fp32.log': No such file or directory
+```
+**不存在。**
+
+### 6. tmux session
+无匹配 `scale_14b` 的 tmux session（进程已正常退出）。
+
+---
+
+**结论：实验完全成功。** EXIT_CODE=0，all_metrics.json 包含完整 11 个 generation（gen 0-10）数据，gen_9 checkpoint 完整。Cron 误判原因：`~/runs/distrib_canary_collapse/scale_14b_c4_s42_fp32.log` 不存在——cron 监控找不到日志文件，也没检测到活跃 tmux session 或 W&B run，于是判定 "process dead"，但实际上实验已经跑完退出了。
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase_diagram_t10_a050_s44_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:25:27.989Z",
+    "updated_at": "2026-05-22T23:25:37.902Z",
+    "hypothesis": "Seed variance tie-breaker: 410M α=0.50 T=10 seed 44. s42=6/8, s43=0/8 — s44 breaks the tie to determine whether α=0.50 detection is robust or seed-dependent."
+  },
+  "timestamp": "2026-05-22T23:25:38.332429+00:00",
+  "trigger": "update_registry"
+}

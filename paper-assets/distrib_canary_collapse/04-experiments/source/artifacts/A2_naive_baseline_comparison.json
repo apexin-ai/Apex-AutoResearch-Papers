@@ -1,0 +1,59 @@
+{
+  "task": "A2",
+  "description": "Naive baseline comparison: PPL-slope and Variance-threshold vs PermG",
+  "model": "Pythia-410M",
+  "T": 10,
+  "precision": "fp32",
+  "n_experiments": 26,
+  "n_alpha_values": 18,
+  "fpr": {
+    "n_null": 3,
+    "ppl_slope_2": {"fp": 3, "rate": 1.0},
+    "ppl_slope_3": {"fp": 3, "rate": 1.0},
+    "var_threshold": {"fp": 2, "rate": 0.667},
+    "permg_fwd": {"fp": 0, "rate": 0.0}
+  },
+  "onset_alpha_s42": {
+    "ppl_slope_2": 0.1,
+    "ppl_slope_3": 0.1,
+    "var_threshold": 0.1,
+    "permg_fwd": 0.5
+  },
+  "var_thresholds_from_null": {
+    "distinct_1": 2.044e-05,
+    "distinct_2": 4.200e-04,
+    "distinct_3": 4.361e-04
+  },
+  "cross_seed": {
+    "0.0":  {"n": 3, "ppl2": 3, "ppl3": 3, "var": 2, "permg": 0},
+    "0.1":  {"n": 2, "ppl2": 2, "ppl3": 2, "var": 2, "permg": 0},
+    "0.25": {"n": 3, "ppl2": 3, "ppl3": 3, "var": 3, "permg": 0},
+    "0.45": {"n": 2, "ppl2": 2, "ppl3": 2, "var": 2, "permg": 0},
+    "0.46": {"n": 2, "ppl2": 2, "ppl3": 2, "var": 2, "permg": 0},
+    "0.5":  {"n": 3, "ppl2": 3, "ppl3": 3, "var": 3, "permg": 3},
+    "0.52": {"n": 2, "ppl2": 2, "ppl3": 2, "var": 2, "permg": 1}
+  },
+  "key_finding": "PPL-slope has 100% FPR (fires at null due to natural perplexity drift); variance-threshold has 67% FPR. PermG has 0% FPR but onset at alpha=0.50. However, baseline 'onset' at alpha=0.10 is meaningless because the same signal fires at alpha=0.00. PermG is the only method that cleanly separates null from contaminated.",
+  "per_alpha_seed42": {
+    "0.00": {"ppl2": true, "ppl3": true, "var": false, "pg_fwd": 0, "pg_k3": 1, "pg_k4": 0},
+    "0.10": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 3, "pg_k4": 1},
+    "0.25": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 1, "pg_k4": 0},
+    "0.30": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 3, "pg_k4": 0},
+    "0.35": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 2, "pg_k4": 0},
+    "0.40": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 3, "pg_k4": 1},
+    "0.45": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 1, "pg_k4": 0},
+    "0.50": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 6, "pg_k3": 6, "pg_k4": 5},
+    "0.52": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 3, "pg_k3": 6, "pg_k4": 0},
+    "0.60": {"note": "s42 skipped (no metrics), s43 available: pg_fwd=0/8"},
+    "0.65": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 0, "pg_k3": 6, "pg_k4": 1},
+    "0.75": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 6, "pg_k3": 7, "pg_k4": 6},
+    "1.00": {"ppl2": true, "ppl3": true, "var": true, "pg_fwd": 6, "pg_k3": 6, "pg_k4": 6}
+  },
+  "ppl_trajectories_seed42": {
+    "a000": [26.9, 19.3, 20.0, 20.3, 20.5, 20.9, 21.0, 21.0, 20.9, 21.0, 21.1],
+    "a025": [26.9, 19.4, 20.4, 20.8, 21.1, 21.3, 21.5, 21.9, 21.9, 22.3, 22.1],
+    "a050": [26.9, 23.4, 26.7, 27.6, 28.7, 29.7, 29.9, 30.1, 31.0, 31.4, 31.5],
+    "a075": [26.9, 31.8, 44.3, 50.5, 55.5, 61.0, 64.2, 68.9, 73.9, 76.0, 77.7],
+    "a100": [26.9, 57.4, 162.2, 279.2, 394.0, 508.9, 598.7, 722.6, 814.7, 935.0, 1017.8]
+  }
+}

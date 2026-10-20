@@ -1,0 +1,1 @@
+TE Robustness Results:\n- Original: sync-dip 4/6 sig, controls 0/6 (reproduced)\n- Detrended: sync-dip 0/6 sig — ALL significance GONE\n- m=3: 0/6\n- 2000 surrogates: 4/6 (same as original)\nConclusion: Original TE was shared monotonic trend artifact. Not genuine nonlinear information transfer.\nFiles on westd-17855: artifacts/transfer_entropy_robustness.{py,json,pdf,png}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "intervention_reactive_s42",
+  "project": "distrib_canary_collapse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:25:52.494Z",
+    "updated_at": "2026-05-18T10:39:13.838Z",
+    "hypothesis": "Reactive intervention baseline: monitoring distinct_1 drop >10% as trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether downstream-triggered intervention (without canary) can halt collapse, serving as comparison for predictive (canary-triggered) intervention.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "340964",
+      "log_path": "~/runs/distrib_canary_collapse/intervention_reactive_s42.log",
+      "submitted_at": "2026-05-18T10:26:06.968Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T10:39:13.935668+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "gen_opt13b_a100_s43_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:29:50.031Z",
+    "updated_at": "2026-05-18T20:31:14.879Z",
+    "hypothesis": "OPT-1.3B multi-seed s43 bf16: facebook/opt-1.3b × WikiText-103 × α=1.0 × seed=43. Validates cross-architecture canary lead-lag at 1.3B scale (Meta OPT family, 6th architecture).",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/opt13b_wiki_a100_s43_bf16",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "44884",
+      "log_path": "~/runs/distrib_canary_collapse/gen_opt13b_a100_s43_bf16.log",
+      "submitted_at": "2026-05-18T20:29:53.751Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "facebook/opt-1.3b",
+      "seed": 43,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 81.1,
+      "gpu_hours": 0.02
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-18T20:31:14.879Z"
+  },
+  "timestamp": "2026-05-18T20:31:15.017825+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1de579932cfcef8c854f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor rep44 wallclock",
+  "task_key": "worker_monitor_rep44-wallclock_20260514T190246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rep44-wallclock_20260514T190246_result.json",
+    "occurrence": 1,
+    "bytes": 242,
+    "sha256": "6b5cb85b018069230aa1d62df10521d80bb3c00994d0f3ae4d7776cd600d6363"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。mvp_v4_rep44 registry 已更新：\n- **wall_clock_seconds**: 15134\n- **gpu_hours**: 4.20\n\n推算依据：日志文件创建时间 (21:35:16) → 最后写入时间 (01:47:30)，与 rep45 (15212s/4.23h) 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rep44-wallclock.md"
+}

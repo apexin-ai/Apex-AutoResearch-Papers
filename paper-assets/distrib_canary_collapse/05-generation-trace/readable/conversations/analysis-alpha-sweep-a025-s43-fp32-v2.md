@@ -1,0 +1,786 @@
+# analysis alpha sweep a025 s43 fp32 v2
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213.jsonl`
+- **Structured JSON:** [`c49723ba41797d18d6f0.json`](../../sessions/c4/c49723ba41797d18d6f0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T14:23:22.084197+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T14:23:22.084496+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T14:23:22.084657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ps -p 123809 -o pid=,args= 2>/dev/null || echo \"PROCESS_EXITED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ps -p 123809 -o pid=,args= 2>/dev/null || echo \"PROCESS_EXITED\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T14:23:22.084796+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T14:23:22.084921+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ps -p 123809 -o pid=,args=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ps -p 123809 -o pid=,args=",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:23:22.085043+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T14:23:22.085186+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "tail -300 /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "tail -300 /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T14:23:22.085407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 78%|███████▊  | 3900/5000 [08:28<02:23,  7.67it/s]\\r 78%|███████▊  | 3901/5000 [08:28<02:23,  7.64it/s]\\r 78%|███████▊  | 3902/5000 [08:28<02:23,  7.65it/s]\\r 78%|███████▊  | 3903/5000 [08:28<02:23,  7.65it/s]\\r 78%|███████▊  | 3904/5000 [08:28<02:23,  7.66it/s]\\r 78%|███████▊  | 3905/5000 [08:28<02:22,  7.66it/s]\\r 78%|███████▊  | 3906/5000 [08:28<02:23,  7.64it/s]\\r 78%|███████▊  | 3907/5000 [08:29<02:23,  7.61it/s]\\r 78%|███████▊  | 3908/5000 [08:29<02:22,  7.65it/s]\\r 78%|███████▊  | 3909/5000 [08:29<02:22,  7.66it/s]\\r 78%|███████▊  | 3910/5000 [08:29<02:22,  7.66it/s]\\r 78%|███████▊  | 3911/5000 [08:29<02:22,  7.66it/s]\\r 78%|███████▊  | 3912/5000 [08:29<02:21,  7.67it/s]\\r 78%|███████▊  | 3913/5000 [08:29<02:21,  7.68it/s]\\r 78%|███████▊  | 3914/5000 [08:29<02:21,  7.65it/s]\\r 78%|███████▊  | 3915/5000 [08:30<02:21,  7.66it/s]\\r 78%|███████▊  | 3916/5000 [08:30<02:21,  7.66it/s]\\r 78%|███████▊  | 3917/5000 [08:30<02:21,  7.66it/s]\\r 78%|███████▊  | 3918/5000 [08:30<02:21,  7.67it/s]\\r 78%|███████▊  | 3919/5000 [08:30<02:20,  7.67it/s]\\r 78%|███████▊  | 3920/5000 [08:30<02:20,  7.68it/s]\\r 78%|███████▊  | 3921/5000 [08:30<02:20,  7.67it/s]\\r 78%|███████▊  | 3922/5000 [08:30<02:20,  7.67it/s]\\r 78%|███████▊  | 3923/5000 [08:31<02:20,  7.66it/s]\\r 78%|███████▊  | 3924/5000 [08:31<02:20,  7.67it/s]\\r 78%|███████▊  | 3925/5000 [08:31<02:20,  7.67it/s]\\r 79%|███████▊  | 3926/5000 [08:31<02:20,  7.67it/s]\\r 79%|███████▊  | 3927/5000 [08:31<02:19,  7.67it/s]\\r 79%|███████▊  | 3928/5000 [08:31<02:19,  7.67it/s]\\r 79%|███████���  | 3929/5000 [08:31<02:19,  7.67it/s]\\r 79%|███████▊  | 3930/5000 [08:32<02:21,  7.58it/s]\\r 79%|███████▊  | 3931/5000 [08:32<02:19,  7.66it/s]\\r 79%|███████▊  | 3932/5000 [08:32<02:19,  7.67it/s]\\r 79%|███████▊  | 3933/5000 [08:32<02:19,  7.67it/s]\\r 79%|███████▊  | 3934/5000 [08:32<02:18,  7.67it/s]\\r 79%|███████▊  | 3935/5000 [08:32<02:19,  7.66it/
+…[truncated 6480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T14:23:22.085625+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep \"=== FINAL METRICS ===\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep \"=== FINAL METRICS ===\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T14:23:22.085759+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T14:23:22.085878+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep \"Generation \" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep \"Generation \" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T14:23:22.086000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Generation 0 (baseline)\\nGeneration 1/10\\nGeneration 2/10\\nGeneration 3/10\\nGeneration 4/10\\nGeneration 5/10\\nGeneration 6/10\\nGeneration 7/10\\nGeneration 8/10\\nGeneration 9/10\\nGeneration 10/10\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T14:23:22.086116+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/all_metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T14:23:22.086336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.011587147839828423,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09826975532304685,\\n    \\\"distinct_2\\\": 0.5146237399644992,\\n    \\\"distinct_3\\\": 0.8139529202934542,\\n    \\\"mauve\\\": 0.0314907126188509,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.25\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.9792196851434545,\\n    \\\"self_bleu\\\": 0.011755471442383066,\\n    \\\"ece\\\": 0.009195498337247192,\\n    \\\"effective_rank\\\": 49.44224265381305,\\n    \\\"perplexity\\\": 19.447440066726486,\\n    \\\"distinct_1\\\": 0.09663940689677597,\\n    \\\"distinct_2\\\": 0.5111736157967044,\\n    \\\"distinct_3\\\": 0.8110021786492375,\\n    \\\"mauve\\\": 0.03125231646418338,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.25\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0117717210342096,\\n    \\\"self_bleu\\\": 0.012764832846435821,\\n    \\\"ece\\\": 0.011813241930881917,\\n    \\\"effective_rank\\\": 50.03465708611733,\\n    \\\"perplexity\\\": 20.26272241168136,\\n    \\\"distinct_1\\\": 0.08142634883157295,\\n    \\\"distinct_2\\\": 0.4348662298875737,\\n    \\\"distinct_3\\\": 0.7290723583909933,\\n    \\\"mauve\\\": 0.03297912400089039,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.25\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.047970566905636,\\n    \\\"self_bleu\\\": 0.012746725116779191,\\n    \\\"ece\\\": 0.00899750245260586,\\n    \\\"effective_rank\\\": 50.90753882785444,\\n    \\\"perplexity\\\": 20.736005022945815,\\n
+…[truncated 4358 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T14:23:22.086502+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/EXIT_CODE",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/EXIT_CODE",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T14:23:22.086628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T14:23:22.086773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -A 2 \"perm_granger\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -A 2 \"perm_granger\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T14:23:22.086896+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T14:23:22.087010+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "grep -i \"lead.lag\\|granger\\|MMCT\\|K_opt\\|canary\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "grep -i \"lead.lag\\|granger\\|MMCT\\|K_opt\\|canary\" /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T14:23:22.087131+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T14:23:22.087246+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T14:23:22.087389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis_results.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T14:23:22.087503+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-17855",
+    "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43_fp32/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T14:23:22.087840+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a025_s43_fp32\\\",\\n  \\\"n_generations\\\": 10,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -4.94,\\n    \\\"ece\\\": 64.77,\\n    \\\"perplexity\\\": -18.38,\\n    \\\"distinct_1\\\": -38.95,\\n    \\\"distinct_2\\\": -53.35,\\n    \\\"distinct_3\\\": -54.8,\\n    \\\"effective_rank\\\": -1.99,\\n    \\\"mauve\\\": -35.59\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 4,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entrop
+…[truncated 8815 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-19T14:23:22.088051+00:00_
+
+实验 **正常完成**。完整结果如下：
+
+## 状态
+
+- **进程**: 123809 已退出，EXIT_CODE=0
+- **完成度**: gen 0→10 全部完成，all_metrics.json + analysis_results.json 均已写入
+
+## 核心指标
+
+| 指标 | gen 0 | gen 10 | drift_pct |
+|------|-------|--------|-----------|
+| distinct_1 | 0.0983 | 0.0595 | **-38.95%** |
+| distinct_2 | 0.5146 | 0.2330 | -53.35% |
+| distinct_3 | 0.8140 | 0.3511 | -54.80% |
+| token_entropy | 3.234 | 3.069 | -4.94% |
+| perplexity | 26.95 | 21.95 | -18.38% |
+| effective_rank | 46.61 | 44.91 | -1.99% |
+| mauve | 0.0315 | 0.0207 | -35.59% |
+| ece | 0.0108 | 0.0218 | +64.77% |
+
+## Lead-lag 分析
+
+| 方法 | forward sig / total |
+|------|-------------------|
+| PermG (fwd) | **0/8** |
+| PermG (rev) | 0/8 |
+| consensus_k≥4 | **0/8** |
+| MMCT detection_rate | **0.0** |
+| TY Granger | 6/8 (但 C003 约束：低α下 TY 不可信) |
+| naive_xcorr | 8/8 |
+| threshold_onset | 4/8 |
+
+最高 consensus vote = 3 (token_entropy→d1/d2/d3 各 3 票: naive+thresh+ty)，均未达 K≥4 阈值。
+
+## 与 bf16 s43 对比
+
+| | bf16 s43 | fp32 s43 |
+|--|----------|----------|
+| d1_drift_pct | -40.5% | -38.95% |
+| PermG | 0/8 | 0/8 |
+| consensus_k≥4 | 0/8 | 0/8 |
+
+fp32 和 bf16 结果高度一致：d1 drift 幅度相近（-39% vs -40.5%），PermG 和 consensus 均为 0/8。
+
+## 对 dose-response map 的影响
+
+α=0.25 fp32 s43 确认了 s42 的结论：
+- **drift 幅度跨 seed 稳定**（d1 ≈ -39~-40%），precision 格式（fp32 vs bf16）无显著影响
+- **PermG=0/8 跨 seed 稳定**——α=0.25 处于 lead-lag 信号不可检出区域
+- dose-response map 中 α=0.25 可标记为 "drift present, no detectable lead-lag"，与 α=0.50 形成对照
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213"
+}
+```
+
+</details>
+
+---

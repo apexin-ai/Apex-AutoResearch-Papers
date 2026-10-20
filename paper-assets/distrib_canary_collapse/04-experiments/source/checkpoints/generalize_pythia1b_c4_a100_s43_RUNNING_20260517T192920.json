@@ -1,0 +1,31 @@
+{
+  "exp_id": "generalize_pythia1b_c4_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:15:09.476Z",
+    "updated_at": "2026-05-17T19:29:19.906Z",
+    "hypothesis": "C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然",
+    "parent": "generalize_pythia1b_c4_a100_s42_v2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 43,
+      "model_path": "/root/autodl-tmp/.hf_cache/pythia-1b-local",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "288678",
+      "checkpoint_source": "pretrained:EleutherAI/pythia-1b",
+      "eval_data": "/root/autodl-tmp/distrib_canary_collapse/data/c4_5k/eval"
+    }
+  },
+  "timestamp": "2026-05-17T19:29:20.033854+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "method_ablation_phase3",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:10:03.625Z",
+    "updated_at": "2026-05-18T23:10:10.098Z",
+    "hypothesis": "Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T23:10:10.253271+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v4",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:20:50.055Z",
+    "updated_at": "2026-05-18T01:27:13.240Z",
+    "hypothesis": "GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行",
+    "parent": "gen_wiki_gpt2m_a100_s42_v3",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/generalize/gpt2m_wiki_a100_s42\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "310460",
+      "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log",
+      "submitted_at": "2026-05-18T01:25:54.171Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T01:27:13.351482+00:00",
+  "trigger": "update_registry"
+}

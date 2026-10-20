@@ -1,0 +1,53 @@
+{
+  "exp_id": "alpha_sweep_a000_s48_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:06:51.978Z",
+    "updated_at": "2026-05-21T12:51:37.006Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s48_fp32 --seed 48 --fp32",
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "pid": "656188",
+      "log_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s48_fp32/all_metrics.json",
+      "submitted_at": "2026-05-21T08:10:27.755Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k",
+      "data_count": "5000",
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 48,
+      "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s48_fp32/",
+      "wall_clock_seconds": 16627.4,
+      "gpu_hours": 4.62
+    },
+    "hypothesis": "D160 FPR CI narrowing: 7th null seed (α=0.0, s48, fp32) extends PermG FPR toward 0/56. With s42/s43/s44/s45/s46/s47, narrows Clopper-Pearson CI to [0%, 6.4%] (N=56), strengthening zero-FPR claim.",
+    "reproduce": {
+      "finished_at": "2026-05-21T12:39:40.809Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T12:39:46.428112+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "permg_fwd": "0/8",
+      "robust_pairs": "1/8",
+      "all_permfdr_nonsig": true,
+      "note": "1 robust pair (token_entropy→distinct_1 3/5) but PermG=0/8"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T12:47:35.122Z"
+  },
+  "timestamp": "2026-05-21T12:51:37.439172+00:00",
+  "trigger": "update_registry"
+}

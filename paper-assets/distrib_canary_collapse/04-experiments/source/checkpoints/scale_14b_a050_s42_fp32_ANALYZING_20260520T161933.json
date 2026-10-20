@@ -1,0 +1,36 @@
+{
+  "exp_id": "scale_14b_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:49:21.885Z",
+    "updated_at": "2026-05-20T16:19:33.159Z",
+    "hypothesis": "Pythia-1.4B at onset boundary α=0.50: tests if canary lead-lag persists at 1.4B scale in the boundary regime. 410M shows PermG=6/8 at α=0.50. If 1.4B also detects → onset boundary is scale-independent; if not → onset shifts with model size. Claim 1 cross-scale dose-response.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "538774",
+      "log_path": "~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log",
+      "submitted_at": "2026-05-20T05:49:48.469Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "precision": "fp32"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T16:19:32.507Z"
+    }
+  },
+  "timestamp": "2026-05-20T16:19:33.535676+00:00",
+  "trigger": "update_registry"
+}

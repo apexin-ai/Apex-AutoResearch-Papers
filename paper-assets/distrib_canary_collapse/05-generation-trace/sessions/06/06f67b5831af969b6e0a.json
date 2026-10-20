@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06f67b5831af969b6e0a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t10 a075 s42 fp32 v2",
+  "task_key": "worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "81c040650f498ac280317850768f7b63a988aff68791352bbac0685b6d5e8ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验验证完成，D102 分析已运行。结果汇总：\n\n## 实验状态\n\n| 项目 | 结果 |\n|------|------|\n| EXIT_CODE | **0** (成功) |\n| Checkpoints | gen_9, gen_10 存在 (5.3GB each) |\n| all_metrics.json | 11 条 (gen 0-10) |\n\n## D102 5-Method Lead-Lag 分析 (1.4B, T=10, α=0.75, seed=42)\n\n| 指标 | 值 |\n|------|------|\n| **PermG_fwd** | **5/8** |\n| PermG_rev | 0/8 |\n| diff_xcorr_fdr_fwd | 7/8 |\n| naive_xcorr_fwd_D111 | 6/8 |\n| threshold_onset_3sigma | 0/8 (downstream onset 全为 None) |\n| TY_granger | 0/8 |\n| **K≥3** | **5/8** |\n| K≥4 | 0/8 |\n\n## Drift Statistics (gen0 → gen10)\n\n| Metric | gen0 | gen10 | Change |\n|--------|------|-------|--------|\n| perplexity | 19.83 | 89.37 | +350.7% |\n| ece | 0.008 | 0.266 | +3179.7% |\n| token_entropy | 2.97 | 1.97 | -33.8% |\n| distinct_1 | 0.099 | 0.081 | -18.8% |\n| distinct_2 | 0.522 | 0.407 | -22.1% |\n| distinct_3 | 0.821 | 0.670 | -18.4% |\n| effective_rank | 52.7 | 99.9 | +89.7% |\n| mauve | null | 0.031 | — |\n\n## 对比 410M 基线\n\n410M PermG=6/8，1.4B PermG=**5/8**——方向一致，信号略弱。5 个 forward-significant pair 的共识分布：5 个 K=3（naive+diff+perm），2 个 K=1，1 个 K=0。mauve pair 在两个 canary 上均无信号。\n\n结果已保存至服务器 `/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_11gen.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t10-a075-s42-fp32-v2.md"
+}

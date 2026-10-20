@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "191e5616606c99b8367f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix d080 19828 fix submit",
+  "task_key": "worker_fix_d080_19828_fix_submit_20260519T001857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d080_19828_fix_submit_20260519T001857_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "357edc007e6da177a591ad36cabb44dd8dbf622be2667475df848352e1502085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n### D080 执行结果\n\n| 项目 | 结果 |\n|------|------|\n| **iterative_train.py 修复** | ✅ 2 处 `else None` → `else torch.float32`，md5: `a51bddbed6f1bdf79051283d5238fd19` |\n| **scale_14b metrics** | ✅ gen_0→10 完整。token_entropy -24.4%, distinct_3 -49.8%, perplexity +78.6%, mauve -28.2%, ece 0.007→0.153 |\n| **SmolLM3 dtype** | `bfloat16` — 不受 D080 bug 影响 |\n| **GPT-2m dtype** | config 为 `None`（默认 float32 加载）— 修复后显式传 float32，正确 |\n| **GPT-2m 提交** | ✅ PID 407859, tmux session `gen_gpt2m_a100_s43_fp32`, cuda:0 |\n\n**无异常发现。** SmolLM3 在 cuda:1 正常运行（bfloat16 路径不受影响），GPT-2m 已在 cuda:0 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d080-19828-fix-submit.md"
+}

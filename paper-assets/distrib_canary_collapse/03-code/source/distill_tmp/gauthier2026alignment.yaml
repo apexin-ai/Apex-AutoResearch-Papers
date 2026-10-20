@@ -1,0 +1,28 @@
+paper_key: "gauthier2026alignment"
+title: "Explaining and Preventing Alignment Collapse in Iterative RLHF"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["standard iterative RLHF (PPO-style)"]
+  metrics:
+    - {name: "alignment quality", direction: "higher_better"}
+    - {name: "reward hacking frequency", direction: "lower_better"}
+  datasets:
+    - {name: "controlled environments", size: "N/A"}
+    - {name: "LLM alignment pipeline", size: "N/A", model: "Llama-3.2-1B"}
+  ablation_dimensions:
+    - optimization_method (standard RLHF vs FPO)
+    - steering_term (included vs dropped)
+  training_recipe: {models: "Llama-3.2-1B", method: "FPO (foresighted policy optimization)"}
+  method_family: "alignment_collapse_prevention"
+
+positioning:
+  core_claim: "Standard iterative RLHF drops a 'parameter-steering term' from the Stackelberg game gradient, causing alignment collapse (policy exploits RM blind spots). FPO restores this term via regularization."
+  key_results: "FPO prevents alignment collapse on Llama-3.2-1B"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

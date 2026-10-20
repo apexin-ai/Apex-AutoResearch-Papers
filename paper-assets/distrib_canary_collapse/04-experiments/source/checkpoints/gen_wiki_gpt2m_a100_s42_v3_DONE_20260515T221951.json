@@ -1,0 +1,55 @@
+{
+  "exp_id": "gen_wiki_gpt2m_a100_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:07:20.050Z",
+    "updated_at": "2026-05-15T22:19:51.170Z",
+    "spec": {
+      "hypothesis": "Method sensitivity patterns (Granger FDR collapse, cross-correlation dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture universality of methodological pitfalls",
+      "seed": 42,
+      "model_name": "gpt2-medium",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000
+    },
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T12:07:30.366Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"",
+      "finished_at": "2026-05-15T22:14:43.852Z",
+      "training_hours": 10.12
+    },
+    "pid": "117632",
+    "log_path": "~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log",
+    "metrics": {
+      "token_entropy_drift_pct": -86.5,
+      "ece_drift_pct": 4544,
+      "perplexity_drift_pct": 44693,
+      "distinct_1_drift_pct": -12.4,
+      "distinct_2_drift_pct": -14.7,
+      "distinct_3_drift_pct": -12.7,
+      "cross_arch_note": "vs Pythia-410m: same qualitative pattern (entropy leads diversity), more extreme calibration collapse but milder diversity loss. 14/16 xcorr pairs peak at lag=0. Granger selective: canary→diversity sig (p<0.003), canary→ppl not sig."
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T22:14:45.029003+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "results/gen_wiki_gpt2m_a100_s42/",
+    "completed_at": "2026-05-15T22:18:22.762Z"
+  },
+  "timestamp": "2026-05-15T22:19:51.227507+00:00",
+  "trigger": "update_registry"
+}

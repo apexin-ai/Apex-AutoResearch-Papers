@@ -1,0 +1,831 @@
+# cron hook alpha sweep a010 s43
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/cron_hook_alpha_sweep_a010_s43.jsonl`
+- **Structured JSON:** [`04aa2501256ee274d637.json`](../../sessions/04/04aa2501256ee274d637.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T00:36:04.509105+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: alpha_sweep_a010_s43
+- project: distrib_canary_collapse
+- server: westd-17855
+- log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T00:36:14.699994+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T00:36:14.750701+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T00:36:17.510371+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T00:36:17.912521+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T00:36:18.419385+00:00_
+
+Error: result (147,674 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-09c540fa/b1860507-15dd-45b4-b0a6-bfa3d1060892/tool-results/mcp-agent-ml-research-read_registry-1779150978059.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-09c540fa/b1860507-15dd-45b4-b0a6-bfa3d1060892/tool-results/mcp-agent-ml-research-read_registry-1779150978059.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 909
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T00:36:18.419773+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T00:36:18.419981+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "distrib_canary_collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T00:36:22.380293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"scale_69b_a100_s42\", \"success\": true, \"actions\": [\"Job still running (pid=29028)\"]}, {\"exp_id\": \"gen_gpt2m_a100_s43_fp32\", \"success\": true, \"actions\": [\"Job still running (pid=407859)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4467
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T00:36:22.380967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T00:36:03Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 82 个实验 — ALLOCATED 5, ANALYZING 1, DONE 66, PREPARING 6, RUNNING 4\\n**DONE 分布**: failed 7, killed 21, negative 1, success 37\\n\\n### GPU 占用\\n- **实际运行**: 4 张 — westd-17855:cuda:0(scale_69b_a100_s42), westd-17855:cuda:3(alpha_sweep_a005_s42), westd-17855:cuda:2(alpha_sweep_a060_s42_fp32_v2), westd-19828:cuda:0(gen_gpt2m_a100_s43_fp32)\\n\\n### 💾 磁盘余量\\n- **westd-19828**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-17855**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `scale_69b_a100_s42` | westd-17855 | cuda:0 | 29028 | `~/runs/distrib_canary_collapse/scale_69b_a100_s42.log` |\\n| `alpha_sweep_a005_s42` | westd-17855 | cuda:3 | ? | `—` |\\n| `alpha_sweep_a060_s42_fp32_v2` | westd-17855 | cuda:2 | 55503 | `~/runs/distrib_canary_collapse/a060_s42_fp32.log` |\\n| `gen_gpt2m_a100_s43_fp32` | westd-19828 | cuda:0 | 407859 | `~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `qwen35_08b_wiki_a100_s42` [killed] — 2026-05-19T00:28:40 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `smollm3_3b_wiki_a100_s42_v2` [failed] — 2026-05-19T00:24:45 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `interv_pred_a075_s42_fp32` [failed] — 2026-05-19T00:22:38 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `alpha_sweep_a060_s42_fp32` [failed] — 2026-05-19T00:22:38 — EXIT_CODE=127 (command no
+…[truncated 5607 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3961
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T00:36:22.431585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-19 00:08 UTC | 更新原因: D080→D081 根因纠正（dtype bug 非 PyTorch 版本）+ permG 改为 BH FDR 校正数字\\n\\n> **阶段**: 8 卡冲刺 Day 2（D080/D081 dtype bug 修复中 → fp32 实验重启）\\n\\n## 核心方向\\n**D067 升级**: analysis → method paper。核心方法贡献：\\n1. **MMCT (Multi-Method Consensus Test)** — null-calibrated 加权共识检验，FPR=0, 79.2% detection at α=0.75\\n2. **Canary 盲区 (D075)** — α=0.10 下 canary 与 null 不可区分，但 diversity drift 已达 -39.6%\\n\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~27 days）\\n\\n## ⚠️ D080→D081: iterative_train.py dtype 加载 bug（活跃问题）\\n**根因**：`iterative_train.py` L213/L218 在 `bf16=False` 时传 `torch_dtype=None`，Pythia-410M 原生 dtype=fp16，无 AMP/GradScaler → warmup 后梯度溢出 NaN。（初始误诊为 PyTorch 版本差异已纠正，见 D081）\\n- **修复**：`None` → `torch.float32`，两台服务器同步\\n- 3 个 fp32 实验（a005/a060/interv_a075）需 kill + 代码修复 + 重跑\\n- Qwen3.5 待确认原生 dtype（bf16/fp32 则不受影响）\\n- bf16 实验和 westd-19828 实验不受影响\\n\\n## ⚠️ D079: bf16 系统性混淆（已落地）\\nbf16 stochastic rounding 系统性抑制 collapse（entropy 5.2×, ppl ~730×）。\\n- Table 7 + dose-response 主轴只用 fp32\\n- 所有新小模型(≤3B) fp32 强制\\n- 6.9B 因内存限制保持 bf16，framing 为\\\"bf16 下 pattern persistence\\\"\\n\\n## 当前进展\\n- 37 成功 / 1 负向 / 4 真失败 / 4+ RUNNING\\n- **scale_14b_a050_s42 完成** ✅ — 1.4B canary lead-lag 确认（entropy leads d1 by 1 gen, d1 -36.0% vs 410M -37.3%）\\n- Phase 3 method ablation 完成 ✅（plan_038, 7×5 BH FDR 矩阵）\\n- Conditional Granger 完成 ✅（plan_022/D061）\\n- fp32 dose-response: 5 点确认 + α=0.05/0.60 等 dtype 修复后重跑\\n\\n## GPU 分配\\n| Server:GPU | exp_id | 状态 | 精度 | 备注 |\\n|------------|--------|------|------|------|\\n| 17855:cuda:0 | scale_69b_a100_s42 | RUNNING | bf16 | ~18h remaining |\\n| 17855:cuda:1 | qwen35_08b_wiki_a100_s42 | ⚠️ 检查中 | fp32 | D081 可能受影响 |\\n| 17855:cuda:2 | — | **空闲** | — | 等 dtype fix → a060 fp32 |\\n| 17855:cuda:3 | — | **空闲*
+…[truncated 3251 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4011
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T00:36:26.848775+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'alpha_sweep_a010_s43'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'alpha_sweep_a010_s43'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T00:36:27.099645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2319}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 250
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T00:36:31.919321+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T00:36:32.220890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a010_s43\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T20:31:10.893Z\", \"updated_at\": \"2026-05-19T00:36:01.124Z\", \"hypothesis\": \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --bf16 --output_dir results/alpha_sweep/a010_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"45284\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\", \"submitted_at\": \"2026-05-18T20:31:19.609Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"reproduce\": {\"finished_at\": \"2026-05-19T00:36:00.765Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:36:04.103044+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2107}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T00:36:32.221438+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "alpha_sweep_a010_s43",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "alpha_sweep_a010_s43",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T00:36:32.322550+00:00_
+
+&lt;persisted-output>
+Output too large (49KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-09c540fa/b1860507-15dd-45b4-b0a6-bfa3d1060892/tool-results/toolu_01BuwY8CSsMY65Dz2f2Ha1tU.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml:378:  registry_id: alpha_sweep_a010_s43
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/decisions.yaml:1316:  - exp_id: alpha_sweep_a010_s43
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md:42:| 17855:cuda:5 | alpha_sweep_a010_s43 | 待确认 | bf16 | 应已完成(was gen 7/10) |
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md:88:| D078 | 2026-05-18 | bf16 精度桥梁策略：用 α=0.10 (fp32 s42 vs bf16 s43) 验证精度影响 | alpha_sweep_a060_s42_bf16, alpha_sweep_a010_s42_v2, alpha_sweep_a010_s43 |
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_interv_react_s43_bf16.jsonl:10:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_interv_react_s43_bf16.jsonl:11:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_interv_react_s43_bf16.jsonl:12:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_interv_react_s43_bf16.jsonl:29:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_alpha_sweep_a005_s42.jsonl:12:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_alpha_sweep_a005_s42.jsonl:13:[Omitted long matching line]
+/home/ubuntu/.
+…[truncated 331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "Grep",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T00:36:40.562358+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T00:36:40.612897+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T00:36:52.452324+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T00:36:52.954112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T00:36:53.055384+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'exp_id': 'alpha_sweep_a010_s42_v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'exp_id': 'alpha_sweep_a010_s42_v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T00:36:53.306672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2359}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T00:36:59.493762+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['exp_id', 'hypothesis', 'conclusion', 'metrics']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distrib_canary_collapse",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['exp_id', 'hypothesis', 'conclusion', 'metrics']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T00:36:59.696354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen35_08b_wiki_a100_s42\": {\"hypothesis\": \"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\", \"conclusion\": \"killed\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"hypothesis\": \"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\", \"conclusion\": \"failed\"}, \"interv_pred_a075_s42_fp32\": {\"hypothesis\": \"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\", \"conclusion\": \"failed\"}, \"alpha_sweep_a060_s42_fp32\": {\"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\", \"conclusion\": \"failed\"}, \"scale_14b_a050_s42\": {\"hypothesis\": \"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perpl
+…[truncated 27255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T00:37:46.393886+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:alpha_sweep_a010_s43",
+  "project": "distrib_canary_collapse",
+  "task_prompt": "## 任务：分析 alpha_sweep_a010_s43 实验结果\n\n### 实验信息\n- exp_id: alpha_sweep_a010_s43\n- 模型: EleutherAI/pythia-410m, seed=43, α=0.10 (synthetic_ratio), bf16\n- 数据: WikiText-103 5k samples, 10 generations, 5000 steps/gen\n- 服务器: westd-17855\n- 日志: ~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\n- 结果目录: ~/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16 (或类似路径，需要确认)\n- Hypothesis: \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\"\n\n### 背景\n- D075 发现：α=0.10 是 canary 盲区——diversity drift 已经很大(-39.6%) 但 entropy canary 信号与 null (α=0.00) 不可区分\n- D078 精度桥梁策略：用 α=0.10 fp32 s42 vs bf16 s43 比较精度影响\n- D079: bf16 stochastic rounding 系统性抑制 collapse (entropy 5.2x, ppl ~730x at α=1.0)\n\n### 对比基线\nfp32 s42 (alpha_sweep_a010_s42_v2, conclusion=negative):\n- d1 drift: -39.6%\n- PermG BH-FDR: 0/8 (或类似)\n- Canary 与 null 不可区分\n\nNull control (α=0.00 s43, alpha_sweep_a000_s43):\n- token_entropy drift: -4.4%\n- d1 drift: -13.9%\n- PermG: 0/8\n\n### 你需要做的\n\n1. **SSH 到 westd-17855**，读取日志文件尾部确认训练正常完成（10 generations 全部跑完，无错误）\n\n2. **提取 per-generation metrics**：\n   - 从日志或结果 JSON 中提取每一代的: token_entropy, ece, perplexity, distinct_1, distinct_2, distinct_3, effective_rank, mauve\n   - 计算 gen0→gen10 的 drift percentage\n\n3. **运行 5-method lead-lag analysis**（如果结果目录中有 metrics.py 或类似分析脚本）：\n   - 检查结果目录下是否有分析结果 JSON\n   - 如果没有，找到项目中的分析脚本（可能在 ~/distrib_canary_collapse/ 下）并运行\n   - 提取: naive_xcorr, diff_xcorr, threshold_onset, perm_granger (fwd/rev), ty_granger\n   - 用 n_perm=5000, xcorr_lag=5 统一参数\n\n4. **对比分析**：\n   - vs fp32 s42: diversity drift 差异（D079 预测 bf16 应更小）\n   - vs null (α=0.00 s43): 盲区是否复现（canary metrics 是否与 null 不可区分）\n   - D078 精度桥梁结论：bf16 对 α=0.10 regime 影响有多大？\n\n5. **判断 conclusion**：\n   - 如果 s43 bf16 复现了盲区模式（diversity drift 大但 canary 无信号）→ success（validates D075）\n   - 如果 bf16 使盲区消失（canary 能检测到）→ success（but different interpretation for D078）\n   - 如果数据异常/不完整 → failed\n\n6. **输出格式**（写入 save_project_file 到 report 或直接输出）：\n```\n## alpha_sweep_a010_s43 分析结果\n\n### 训练状态\n完成状态: [正常/异常]\nGenerations: [实际完成数]\n\n### Per-Generation Metrics\n| Gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n...\n\n### Drift (gen0 → gen_final)\ntoken_entropy: X%\nece: X%\nperplexity: X%\ndistinct_1: X%\n...\n\n### 5-Method Lead-Lag\nnaive_xcorr_fwd: X/8\ndiff_xcorr_fwd: X/8\nthreshold_onset_fwd: X/8\nperm_granger_fwd: X/8 (FDR)\nperm_granger_rev: X/8\nty_granger_fwd: X/8\nK>=4: X/8\n\n### 对比\nvs fp32 s42: [diversity drift 差异, canary signal 差异]\nvs null s43: [是否可区分]\nD078 精度桥梁: [bf16 影响评估]\n\n### Conclusion\n[success/negative/failed] + 理由\n```\n\n### 注意事项\n- 先确认结果目录的实际路径（可能需要 find 或 ls）\n- 如果分析脚本在 ~/distrib_canary_collapse/ 下找，常见名: metrics.py, analyze.py, run_analysis.py\n- bf16 实验的 collapse 应该比 fp32 更轻（D079 经验）\n- 所有数字必须从实际文件中提取，不要编造\n",
+  "tool_groups": "['ssh', 'registry', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:alpha_sweep_a010_s43",
+    "project": "distrib_canary_collapse",
+    "task_prompt": "## 任务：分析 alpha_sweep_a010_s43 实验结果\n\n### 实验信息\n- exp_id: alpha_sweep_a010_s43\n- 模型: EleutherAI/pythia-410m, seed=43, α=0.10 (synthetic_ratio), bf16\n- 数据: WikiText-103 5k samples, 10 generations, 5000 steps/gen\n- 服务器: westd-17855\n- 日志: ~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\n- 结果目录: ~/distrib_canary_collapse/results/alpha_sweep/a010_s43_bf16 (或类似路径，需要确认)\n- Hypothesis: \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\"\n\n### 背景\n- D075 发现：α=0.10 是 canary 盲区——diversity drift 已经很大(-39.6%) 但 entropy canary 信号与 null (α=0.00) 不可区分\n- D078 精度桥梁策略：用 α=0.10 fp32 s42 vs bf16 s43 比较精度影响\n- D079: bf16 stochastic rounding 系统性抑制 collapse (entropy 5.2x, ppl ~730x at α=1.0)\n\n### 对比基线\nfp32 s42 (alpha_sweep_a010_s42_v2, conclusion=negative):\n- d1 drift: -39.6%\n- PermG BH-FDR: 0/8 (或类似)\n- Canary 与 null 不可区分\n\nNull control (α=0.00 s43, alpha_sweep_a000_s43):\n- token_entropy drift: -4.4%\n- d1 drift: -13.9%\n- PermG: 0/8\n\n### 你需要做的\n\n1. **SSH 到 westd-17855**，读取日志文件尾部确认训练正常完成（10 generations 全部跑完，无错误）\n\n2. **提取 per-generation metrics**：\n   - 从日志或结果 JSON 中提取每一代的: token_entropy, ece, perplexity, distinct_1, distinct_2, distinct_3, effective_rank, mauve\n   - 计算 gen0→gen10 的 drift percentage\n\n3. **运行 5-method lead-lag analysis**（如果结果目录中有 metrics.py 或类似分析脚本）：\n   - 检查结果目录下是否有分析结果 JSON\n   - 如果没有，找到项目中的分析脚本（可能在 ~/distrib_canary_collapse/ 下）并运行\n   - 提取: naive_xcorr, diff_xcorr, threshold_onset, perm_granger (fwd/rev), ty_granger\n   - 用 n_perm=5000, xcorr_lag=5 统一参数\n\n4. **对比分析**：\n   - vs fp32 s42: diversity drift 差异（D079 预测 bf16 应更小）\n   - vs null (α=0.00 s43): 盲区是否复现（canary metrics 是否与 null 不可区分）\n   - D078 精度桥梁结论：bf16 对 α=0.10 regime 影响有多大？\n\n5. **判断 conclusion**：\n   - 如果 s43 bf16 复现了盲区模式（diversity drift 大但 canary 无信号）→ success（validates D075）\n   - 如果 bf16 使盲区消失（canary 能检测到）→ success（but different interpretation for D078）\n   - 如果数据异常/不完整 → failed\n\n6. **输出格式**（写入 save_project_file 到 report 或直接输出）：\n```\n## alpha_sweep_a010_s43 分析结果\n\n### 训练状态\n完成状态: [正常/异常]\nGenerations: [实际完成数]\n\n### Per-Generation Metrics\n| Gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n...\n\n### Drift (gen0 → gen_final)\ntoken_entropy: X%\nece: X%\nperplexity: X%\ndistinct_1: X%\n...\n\n### 5-Method Lead-Lag\nnaive_xcorr_fwd: X/8\ndiff_xcorr_fwd: X/8\nthreshold_onset_fwd: X/8\nperm_granger_fwd: X/8 (FDR)\nperm_granger_rev: X/8\nty_granger_fwd: X/8\nK>=4: X/8\n\n### 对比\nvs fp32 s42: [diversity drift 差异, canary signal 差异]\nvs null s43: [是否可区分]\nD078 精度桥梁: [bf16 影响评估]\n\n### Conclusion\n[success/negative/failed] + 理由\n```\n\n### 注意事项\n- 先确认结果目录的实际路径（可能需要 find 或 ls）\n- 如果分析脚本在 ~/distrib_canary_collapse/ 下找，常见名: metrics.py, analyze.py, run_analysis.py\n- bf16 实验的 collapse 应该比 fp32 更轻（D079 经验）\n- 所有数字必须从实际文件中提取，不要编造\n",
+    "tool_groups": "['ssh', 'registry', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T00:37:49.405474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_alpha_sweep_a010_s43_20260519T003747\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_alpha_sweep_a010_s43_20260519T003747.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_alpha_sweep_a010_s43_20260519T003747 started. Use get_worker_status('worker_analysis_alpha_sweep_a010_s43_20260519T003747') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:alpha_sweep_a010_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3011
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-19T00:38:27.203769+00:00_
+
+已派 Worker 分析 `alpha_sweep_a010_s43` 结果。Worker 将 SSH 到 westd-17855 提取 metrics、运行 5-method analysis、对比 fp32 s42 和 null baseline。等待 Worker 回调后更新 registry 并汇报 Director。
+
+当前状态：
+- 2 个实验仍在运行（scale_69b_a100_s42, gen_gpt2m_a100_s43_fp32）
+- 5 个 ALLOCATED 实验等待 D081 dtype fix 部署后提交
+- alpha_sweep_a010_s43 进入分析阶段
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:alpha_sweep_a010_s43"
+}
+```
+
+</details>
+
+---

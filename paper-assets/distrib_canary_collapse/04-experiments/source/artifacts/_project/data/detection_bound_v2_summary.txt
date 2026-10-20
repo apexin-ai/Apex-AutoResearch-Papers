@@ -1,0 +1,21 @@
+Detection Lower Bound v2 修正结果
+
+v1→v2 修复:
+- α=0.50: 0/8 → 6/8 (从 JSON 读取)
+- α=0.52: 0/8 → 3/8
+- α=0.10 s43: 0/8 → 3/8
+
+Joint model: rate(α,T) = 0.70 / (1 + exp(-100*(α - α_c(T))))
+α_c(T) = 0.193 + 75.68 * T^(-2.41)
+α_c(T=10) = 0.487 (v1错误值0.67)
+α_c(T=20) = 0.248
+Sigmoid k=100
+R² = 0.883
+
+Remote files: westd-17855:/root/distrib_canary_collapse/artifacts/detection_bound_v2/
+- detection_bound_results_v2.json
+- fig_delta_min_vs_T.pdf/png
+- fig_signal_strength.pdf/png  
+- fig_phase_boundary.pdf/png
+- proposition.tex
+Script: scripts/detection_lower_bound_v2.py

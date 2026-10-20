@@ -1,0 +1,28 @@
+{
+  "exp_id": "alpha_sweep_a050_s44_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:31:02.887Z",
+    "updated_at": "2026-05-19T05:31:20.782Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s44_fp32\"",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "96734",
+      "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log",
+      "submitted_at": "2026-05-19T05:31:02.665Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43."
+  },
+  "timestamp": "2026-05-19T05:31:20.986777+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "alpha_sweep_a060_s42_fp32_v4",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:24:33.768Z",
+    "updated_at": "2026-05-20T11:57:36.930Z",
+    "hypothesis": "α=0.60 sits in the transition zone between onset [0.45,0.50] and detection ≥0.75; expect intermediate PermG signal strength due to dose-response gradient in synthetic contamination level",
+    "parent": "alpha_sweep_a060_s42_fp32_v3",
+    "spec": {
+      "command": "python run_iterative_training.py --model EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --seed 42 --output_dir results/alpha_sweep/a060_s42_fp32_v4",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "295535",
+      "log_path": "results/alpha_sweep/a060_s42_fp32_v4/analysis/5method_leadlag.json",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "precision": "fp32",
+      "note": "D125: standard params rerun replacing v3_d080 variant. Identical params to a050_s42_fp32 except alpha=0.60.",
+      "checkpoint_path": "results/alpha_sweep/a060_s42_fp32_v4"
+    },
+    "server": "westd-17855",
+    "gpu": "cuda:5",
+    "account": "root",
+    "pid": "295535",
+    "log_path": "~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v4.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v4 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"",
+      "finished_at": "2026-05-20T11:43:49.235Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T11:44:05.236301+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-20T11:52:47.473Z",
+    "metrics": {
+      "PermG_fwd": "0/8",
+      "PermG_rev": "0/8",
+      "TY_granger": "0/8",
+      "diff_xcorr_fdr": "6/8",
+      "naive_xcorr": "2/8",
+      "threshold_onset_3sigma": "0/8",
+      "K_geq3": "0/8",
+      "K_geq4": "0/8",
+      "robust_pairs": 0,
+      "n_gens": 11,
+      "n_perm": 5000,
+      "threshold_criterion": "true_3sigma_d105"
+    }
+  },
+  "timestamp": "2026-05-20T11:57:37.201356+00:00",
+  "trigger": "update_registry"
+}

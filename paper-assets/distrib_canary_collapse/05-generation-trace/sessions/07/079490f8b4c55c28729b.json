@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "079490f8b4c55c28729b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a050 s42 5method urgent",
+  "task_key": "worker_analysis_a050_s42_5method_urgent_20260516T203706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a050_s42_5method_urgent_20260516T203706_result.json",
+    "occurrence": 1,
+    "bytes": 5990,
+    "sha256": "f2bfef9f215baa9044e582eac6220ea23baa3eee26d5a0a198c67339f1cdde12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data. Here's the complete output:\n\n---\n\n```\n=== a050_s42 5-method Results ===\n\nFORWARD (canary → downstream)\nPair                       NaiveR  NLag  DiffR  DLag  DiffFDR_p  Onset  PermF     PermFDR_p  TY_F    TY_p    dmax\ntoken_entropy→distinct_1   -0.973     4  0.883    -1    0.0023*   None   127.478   0.0974     48.846  0.0905    2\ntoken_entropy→distinct_2   -0.979     4  0.887    -3    0.0078*   None    35.753   0.0974      2.398  0.3650    2\ntoken_entropy→distinct_3   -0.978     4  0.888    -3    0.0078*   None    12.429   0.0974      1.141  0.4790    2\ntoken_entropy→perplexity   -0.905     1  0.920    -1    0.0014*   None    12.138   0.0974     32.830  0.1100    2\nece→distinct_1              0.955    -1  0.954    -1    0.0005*   None    79.241   0.0852      6.102  0.2449    2\nece→distinct_2              0.938    -5  0.955    -3    0.0016*   None    28.060   0.0852     56.784  0.0840    2\nece→distinct_3              0.937    -5  0.939    -3    0.0023*   None    12.689   0.0852      0.051  0.8591    2\nece→perplexity              0.900    -1  0.916    -1    0.0014*   None    15.211   0.0852     79.689  0.0710    2\n\nREVERSE (downstream → canary)\nPair                       NaiveR  NLag  DiffR  DLag  DiffFDR_p  Onset  PermF    PermFDR_p  TY_F   TY_p    dmax\ndistinct_1→token_entropy   -0.973    -4  0.883     1    0.0023*   None    1.999   0.4706     0.004  0.9603    2\ndistinct_2→token_entropy   -0.979    -4  0.887     3    0.0078*   None    1.235   0.4706     5.014  0.2674    2\ndistinct_3→token_entropy   -0.978    -4  0.888     3    0.0078*   None    0.264   0.6351     3.536  0.3111    2\nperplexity→token_entropy   -0.905    -1  0.920     1    0.0014*   None    4.162   0.4119     0.160  0.7579    2\ndistinct_1→ece              0.955     1  0.954     1    0.0005*   None    1.574   0.4706     0.268  0.6960    2\ndistinct_2→ece              0.938     5  0.955     3    0.0016*   None    1.078   0.4706     2.143  0.3815    2\ndistinct_3→ece              0.937     5  0.939     3    0.0023*   None    0.372   0.6351     1.209  0.4698    2\nperplexity→ece              0.900     1  0.916     1    0.0014*   None    3.875   0.4119     0.271  0.6946    2\n\nCONSENSUS (forward):\n  token_entropy→distinct_1  2/5  [naive, diff]\n  token_entropy→distinct_2  2/5  [naive, diff]\n  token_entropy→distinct_3  2/5  [naive, diff]\n  token_entropy→perplexity  2/5  [naive, diff]\n  ece→distinct_1            1/5  [diff]\n  ece→distinct_2            1/5  [diff]\n  ece→distinct_3            1/5  [diff]\n  ece→perplexity            1/5  [diff]\n\n  Robust pairs (>=3/5): 0/8\n  Perm Granger FDR sig (fwd): 0/8\n  Diff XCorr FDR sig (fwd): 8/8\n  Threshold sig: 0/8\n  TY sig: 0/8\n```\n\n```\n=== Pipeline Parameter Comparison ===\n\n| Parameter              | method_ablation.py (MVP)              | analyze_alpha_sweep.py (old sweep)        | run_5method_analysis.py (new)         |\n|------------------------|---------------------------------------|-------------------------------------------|---------------------------------------|\n| n_perm (perm_granger)  | 1000                                  | 5000                                      | 5000                                  |\n| max_lag (xcorr)        | 3                                     | 3                                         | 5                                     |\n| max_lag (perm_granger) | 1                                     | 1                                         | 1                                     |\n| FDR method             | BH (statsmodels multipletests)        | BH (statsmodels multipletests)            | BH (custom implementation)            |\n| FDR family scope       | per-method, ALL pairs×seeds (~64)     | per-alpha, per-method (8×N_seeds)         | per-direction, per-method (8 pairs)   |\n| Naive xcorr p-value    | parametric pearsonr                   | **permutation-based** (5000 perms)        | parametric pearsonr                   |\n| Diff xcorr p-value     | parametric pearsonr                   | **permutation-based** (5000 perms)        | parametric pearsonr                   |\n| Canaries               | 4 (ent, bleu, ece, rank)              | 2 (ent, ece)                              | 2 (ent, ece)                          |\n| Downstreams            | 4                                     | 4                                         | 4                                     |\n| Data scope             | MVP rep_{42-45} (multi-seed)          | all alpha_sweep runs (multi-seed)         | single run (single-seed)              |\n| Preprocessing          | orient (sign flip)                    | orient (sign flip)                        | orient (sign flip)                    |\n| Differencing           | in perm_granger only                  | in perm_granger + diff method             | in perm_granger + diff method         |\n| TY d_max               | ADF-determined                        | ADF-determined                            | ADF-determined                        |\n```\n\n**Critical differences that affect results:**\n\n1. **max_lag 3→5 (xcorr)**: New pipeline searches wider lags. At T=11, lag=4-5 uses only 6-7 points — very noisy, inflates naive r by cherry-picking.\n\n2. **Naive/Diff p-value method**: `analyze_alpha_sweep` uses permutation p (5000 shuffles), which is much more conservative than parametric pearsonr at T=11. The new pipeline's parametric pearsonr p-values are anti-conservative because pearsonr assumes i.i.d. normality which non-stationary series violate.\n\n3. **FDR family size**: New pipeline corrects only 8 tests together (tightest family = most power). `method_ablation` pooled up to 64 (most conservative).\n\n4. **Perm Granger n_perm**: `method_ablation` used only 1000 permutations (coarser p resolution: min p=1/1001��0.001), while both sweep scripts use 5000 (min p≈0.0002)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a050-s42-5method-urgent.md"
+}

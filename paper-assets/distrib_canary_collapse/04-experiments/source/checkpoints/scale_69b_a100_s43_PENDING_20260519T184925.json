@@ -1,0 +1,27 @@
+{
+  "exp_id": "scale_69b_a100_s43",
+  "project": "distrib_canary_collapse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:03:25.659Z",
+    "updated_at": "2026-05-19T18:49:25.308Z",
+    "hypothesis": "Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。",
+    "parent": "scale_69b_a100_s42",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --bf16 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --output_dir results/scale_check/pythia69b_wiki_a100_s43",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-6.9b",
+      "seed": 43,
+      "gpu_model": "RTX PRO 6000 Blackwell 98GB",
+      "precision": "bf16",
+      "gradient_checkpointing": true
+    }
+  },
+  "timestamp": "2026-05-19T18:49:25.512947+00:00",
+  "trigger": "update_registry"
+}

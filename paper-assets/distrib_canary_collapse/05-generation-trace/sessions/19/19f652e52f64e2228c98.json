@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19f652e52f64e2228c98",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a048 s43 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a048_s43_fp32_20260521T071507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a048_s43_fp32_20260521T071507_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "cb8f31b02fc596dddc48e86744fce028f0eac87df5b0b70aa86e123799e1e15e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n### alpha_sweep_a048_s43_fp32 — 5-Method Analysis\n\n| Method | Forward | Reverse |\n|--------|---------|---------|\n| PermG (FDR) | **0/8** | 0/8 |\n| DiffXCorr (FDR+D111) | 2/8 | 3/8 |\n| Threshold 3σ (D105) | **0/8** | — |\n| TY Granger | 2/8 | 2/8 |\n| **K≥3** | **0/8** | |\n| **K≥4** | **0/8** | |\n\n### Cross-seed comparison (α=0.48)\n\n| | s42 | s43 |\n|--|-----|-----|\n| PermG_fwd | 0/8 | 0/8 |\n| DiffXCorr_fwd | 1/8 | 2/8 |\n| TY_fwd | 3/8 | 2/8 |\n| K≥3 | 1/8 | 0/8 |\n\n### Drift (gen0→gen10)\n- token_entropy: **-19.0%**, ece: **+835.0%**, perplexity: +18.1%\n- distinct_1: -35.2%, distinct_2: -47.5%, distinct_3: -47.6%, mauve: -15.8%\n\n### Onset (D105 3σ)\n- token_entropy: gen 1, ece: gen 3, all downstreams: None\n\n**Wall clock**: 14510s (~4.0h)\n\n**Conclusion**: s43 confirms s42 — α=0.48 is a true blind zone, not seed artifact. Both seeds show PermG=0/8 and K≥3≤1/8 despite substantial drift. Phase transition α_c ∈ (0.48, 0.50], width ≤0.02."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a048-s43-fp32.md"
+}

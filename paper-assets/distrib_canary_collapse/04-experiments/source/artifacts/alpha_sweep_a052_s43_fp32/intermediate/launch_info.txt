@@ -1,0 +1,1 @@
+Launched 2026-05-21 on westd-17855 cuda:4. tmux session: a052_s43_fp32. α=0.52, seed=43, fp32, 10 gens x 5000 steps.

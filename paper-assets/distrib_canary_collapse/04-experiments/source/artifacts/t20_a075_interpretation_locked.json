@@ -1,0 +1,32 @@
+{
+  "locked_at": "2026-05-20T17:45:00Z",
+  "locked_by": "director",
+  "purpose": "Pre-register interpretation protocol for t20_a075_s42_fp32 BEFORE results arrive. Prevents post-hoc narrative fitting.",
+  "context": {
+    "t10_a075_permg": "5/8 (s42=6, s43=5, s44=0; mean=0.458)",
+    "t20_prediction_v2": {"predicted_count": 7, "predicted_rate": 0.806, "ci_95": [6, 8]},
+    "t20_a050_observed": "6/8 (T-invariant vs T=10 6/8)",
+    "t20_a100_observed": "6/8 (T-invariant vs T=10 6/8)"
+  },
+  "scenarios": {
+    "A_t_invariance": {
+      "condition": "t20_a075 PermG = 5/8 or 6/8 (within ±1 of T=10)",
+      "interpretation": "T-invariance confirmed across ALL tested α levels. Detection is α-threshold-driven; T=10 already captures asymptotic regime. Signal saturation at T=10 means 6/8 structural ceiling (2 mauve true nulls) applies universally.",
+      "paper_action": "Full T-invariance narrative. S×R: signal is α-driven, T provides estimation sample size. T=10 sufficiency directly rebuts 'T=11 too short' reviewer concern.",
+      "strength": "Strongest version of T-sufficiency claim"
+    },
+    "B_partial_power_gain": {
+      "condition": "t20_a075 PermG = 7/8 or 8/8",
+      "interpretation": "Power gain observed at α=0.75 (transitional regime) but not at α=0.50/1.0 (saturated regime). At α=0.50, 6/8 ceiling is structural. At α=0.75, one or more borderline pairs cross FDR threshold with doubled sequence length. Hybrid: T-invariance in strong-signal regime + √T gain in transitional regime.",
+      "paper_action": "Nuanced narrative: 'Detection rate is T-stable in the saturated regime (α≥0.50 at T=10), with marginal √T-driven power gain near the onset boundary (α=0.75). T=10 is sufficient for contamination levels above the detection onset.'",
+      "strength": "Still supports T-sufficiency for practical detection; adds nuance about transitional regime"
+    },
+    "C_unexpected_regression": {
+      "condition": "t20_a075 PermG ≤ 3/8",
+      "interpretation": "Unexpected. Possible causes: (1) seed effect (s42 at α=0.75 T=10 was 6/8, but s44 was 0/8 — high variance); (2) T=20 introduces additional non-stationarity that degrades PermG; (3) data quality issue. Requires investigation before any narrative commitment.",
+      "paper_action": "Report with investigation. Do NOT commit to T-invariance or √T narrative until root cause is understood. Flag as limitation if seed-driven.",
+      "strength": "No narrative commitment; investigation-first"
+    }
+  },
+  "decision_rule": "Scenario selection is deterministic based on PermG count. No post-hoc reinterpretation allowed. If PermG=4, treat as Scenario A (within noise of 5/8 T=10 baseline given high seed variance at α=0.75)."
+}

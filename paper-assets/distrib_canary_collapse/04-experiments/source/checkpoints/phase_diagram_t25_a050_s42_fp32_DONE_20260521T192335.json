@@ -1,0 +1,40 @@
+{
+  "exp_id": "phase_diagram_t25_a050_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:23:34.127Z",
+    "updated_at": "2026-05-21T19:23:34.822Z",
+    "hypothesis": "Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 is above threshold. At T=10 α=0.50 is the phase transition point (PermG=6/8), at T=20 yields 8/8. If T=25 shows ≥6/8, confirms robust detection scaling with T. Maps T=25 row at α=0.50.",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "519969",
+      "log_path": "~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32.log",
+      "submitted_at": "2026-05-21T13:37:45.112Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "wall_clock_seconds": 20749.7,
+      "gpu_hours": 5.76
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T19:23:32.900Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T19:23:34.822Z"
+  },
+  "timestamp": "2026-05-21T19:23:35.320597+00:00",
+  "trigger": "update_registry"
+}

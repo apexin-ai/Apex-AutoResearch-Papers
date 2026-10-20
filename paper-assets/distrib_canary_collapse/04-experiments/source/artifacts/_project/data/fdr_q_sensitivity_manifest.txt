@@ -1,0 +1,8 @@
+Location: westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/rebuttal/
+Files: fdr_q_sensitivity.json, fdr_q_sensitivity_summary.txt
+
+Results:
+α=0.75: q=0.01 → 0/24, q=0.05 → 19/24, q=0.10 → 24/24
+α=0.00: q=0.01 → 0/16, q=0.05 → 0/16, q=0.10 → 0/16
+
+Conclusion: Treatment vs null separation is qualitatively robust to q choice. q=0.01 fails due to BH rank-1 threshold (0.00125) being too strict for T=11 statistical power, not signal absence.

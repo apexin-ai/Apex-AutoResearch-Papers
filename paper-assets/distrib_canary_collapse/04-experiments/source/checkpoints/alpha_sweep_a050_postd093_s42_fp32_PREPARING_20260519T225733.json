@@ -1,0 +1,14 @@
+{
+  "exp_id": "alpha_sweep_a050_postd093_s42_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:57:33.388Z",
+    "updated_at": "2026-05-19T22:57:33.388Z"
+  },
+  "timestamp": "2026-05-19T22:57:33.625810+00:00",
+  "trigger": "update_registry"
+}

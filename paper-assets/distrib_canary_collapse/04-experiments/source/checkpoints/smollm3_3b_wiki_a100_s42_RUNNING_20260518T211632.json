@@ -1,0 +1,28 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:14:35.317Z",
+    "updated_at": "2026-05-18T21:16:32.221Z",
+    "hypothesis": "SmolLM3-3B cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab, 2025-07 release). Tests if entropy-leads-diversity canary pattern transfers to a recent 3B-scale model. Paired with Qwen3.5-0.8B to cover both 0.8B and 3B parameter scales for modern architectures.",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --gen_batch_size 64 --output_dir results/generalize/smollm3_3b_wiki_a100_s42",
+      "server": "westd-19828",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 42,
+      "checkpoint_path": "results/generalize/smollm3_3b_wiki_a100_s42",
+      "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42.log",
+      "gpu": "cuda:1",
+      "tmux_session": "smollm3_3b_wiki_a100_s42",
+      "pid": 395612
+    }
+  },
+  "timestamp": "2026-05-18T21:16:32.470480+00:00",
+  "trigger": "update_registry"
+}

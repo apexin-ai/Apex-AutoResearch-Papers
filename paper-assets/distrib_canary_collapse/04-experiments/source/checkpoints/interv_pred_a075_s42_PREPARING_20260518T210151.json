@@ -1,0 +1,14 @@
+{
+  "exp_id": "interv_pred_a075_s42",
+  "project": "distrib_canary_collapse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:01:51.433Z",
+    "updated_at": "2026-05-18T21:01:51.433Z"
+  },
+  "timestamp": "2026-05-18T21:01:51.574758+00:00",
+  "trigger": "update_registry"
+}
