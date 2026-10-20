@@ -1,0 +1,320 @@
+# Research conversation: I need you to output a single complete JSON object for a revised research idea. Do not add any explanation or commentary
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 3
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a5f280911ae630872.jsonl`
+- **Structured JSON:** [`fb1edcb086efc8889770.json`](../../sessions/fb/fb1edcb086efc8889770.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+3 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T06:57:23.179Z_
+
+I need you to output a single complete JSON object for a revised research idea. Do not add any explanation or commentary outside the JSON. Here is the complete JSON to output:
+
+The JSON has these fields: title, project_name, source, level, core_problem, opportunity, landscape, approach, resource_estimate, target_venues, key_references, description, change_type.
+
+All fields from the original must be preserved with only the specific targeted changes listed below. Please output the complete JSON with all fields.
+
+ORIGINAL VALUES TO KEEP UNCHANGED:
+- title: "Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment"
+- project_name: "cls_lora_cultural_preservation"
+- source: "web_research"
+- level: "solid"
+- change_type: "minor"
+
+CORE_PROBLEM (unchanged):
+"Cross-lingual fine-tuning systematically suppresses culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' Recent mechanistic work (arXiv:2504.10191) reveals the suppression is often behavioral rather than purely representational: cultural knowledge frequently survives as recoverable activations in deeper layers but is no longer surfaced in model outputs after fine-tuning. No training-time method prevents this dual representational-and-behavioral suppression, forcing practitioners to choose between cross-lingual capability and cultural authenticity."
+
+OPPORTUNITY (unchanged):
+"'Rethinking Cross-lingual Alignment' (arXiv:2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at different model layers is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source. arXiv:2504.10191 corroborates this by showing cultural knowledge is conserved as steerable activation-space vectors in specific deeper layers. Crucially, this means CLS-LoRA's freezing strategy serves a dual purpose—it preserves both the representational encoding of cultural knowledge AND the behavioral routing pathway through which that knowledge reaches outputs—preventing both failure modes simultaneously. This is feasible with any open-source dense multilingual model via a lightweight per-layer probing step."
+
+LANDSCAPE (MODIFIED — add two new citations):
+"INCLINE (arXiv:2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. Middle-Layer Representation Alignment (arXiv:2502.14830, ACL 2025, Liu & Niehues) provides the empirical foundation for CLS-LoRA's factual-transfer layer partition: through translation retrieval probing across 1,190 language pairs on Llama 3 and Qwen 2.5, it establishes that layer 16 (50% depth in a 32-layer model) is the key integration point for cross-lingual semantic alignment, and that incorporating a middle-layer alignment objective consistently improves cross-lingual task performance particularly for lower-resource languages. CLS-LoRA extends this by additionally protecting cultural-knowledge layers (concentrated at deeper layers ~72–94% model depth, per arXiv:2504.10191) from LoRA updates—a protection axis entirely absent from Liu & Niehues, whose work does not distinguish factual from cultural knowledge and proposes no cultural preservation objective. Cross-Lingual Transfer of Cultural Knowledge (arXiv:2506.01675, ACL 2025 short paper, Zhang et al.) provides empirical background showing cultural knowledge transfer is asymmetric: high-resource language pairs exhibit bidirectional transfer while low-resource languages primarily export cultural knowledge to English without reciprocal benefit, driven by a frequency-based pretraining data mechanism. This asymmetry directly motivates training-time prevention of cultural erasure—low-resource languages are disproportionately at risk and most in need of the protection CLS-LoRA provides. AlignX (arXiv:2509.24338, EMNLP 2025) and CM-Align (arXiv:2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv:2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv:2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv:2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. arXiv:2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via cultural customization vectors that cultural knowledge survives as steerable activation-space vectors concentrated in layers 23–30 across tested architectures and can be steered—supporting our premise but addressing control at inference time, not prevention during training.\n\nTwo directly related selective-LoRA methods require explicit differentiation. MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) detects language-aware neurons in a teacher model and injects extracted knowledge into language-pair-specific LoRA modules in a student model for multilingual machine translation, achieving +1.7 BLEU on average. While MLAS-LoRA and CLS-LoRA both employ a probe-then-selective-LoRA pipeline, they differ on three critical axes: (1) task domain—MLAS-LoRA targets MT translation quality whereas CLS-LoRA targets cultural knowledge preservation during instruction fine-tuning; (2) partition dimension—MLAS-LoRA partitions along language-pair specificity (language-A vs language-B neurons) whereas CLS-LoRA partitions along the factual-transfer vs cultural-localization semantic axis, which cuts across language pairs; and (3) objective—MLAS-LoRA optimizes translation accuracy via teacher-student knowledge distillation whereas CLS-LoRA optimizes a cultural-preservation signal with no distillation component. The cultural-preservation objective is the categorical novelty: no prior selective-LoRA work defines a 'keep culturally-grounded outputs intact' training signal. Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to prevent catastrophic forgetting of source-language task performance during target-language adaptation—addressing cross-lingual interference but not the factual-vs-cultural layer distinction or cultural knowledge preservation as a first-class objective."
+
+APPROACH (MODIFIED — add mechanistic bridge and specify probe data):
+"We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline has four stages.\n\nMechanistic bridge. Our layer-freezing strategy rests on a key assumption connecting inference-time observations to training-time interventions: the layer indices most sensitive to cultural-vs-factual activation steering at inference time (arXiv:2510.26024, corroborated by cultural customization vectors in arXiv:2504.10191 concentrated at layers 23–30) identify the weight matrices that implement cultural routing. LoRA updates modify precisely these weight matrices; applying LoRA to cultural-knowledge layers therefore disrupts the routing pathways through which culturally-grounded representations reach outputs—even when the representations themselves persist as recoverable vectors. Freezing these layers during training preserves both the routing weights and the residual-stream geometry that steerability depends on. Stage 1 below empirically validates this assumption: if post-full-LoRA probe accuracy at cultural-knowledge layers is preserved, erasure is behavioral (routing pathways disrupted by LoRA) and layer freezing is the correct intervention; if probe accuracy drops, erasure is partly representational and the KL-divergence regularizer in Stage 3 becomes critical. If Stage 3's L_factual-only LoRA itself disrupts L_cultural probes, the auxiliary KL penalty is applied to anchor cultural-layer activations to their pretrained distribution.\n\nStage 1 — Structural diagnostic: Before the main sweep, we run full-LoRA instruction fine-tuning on a held-out model checkpoint and measure per-layer cultural probe accuracy before and after. If probe accuracy is maintained post-training (consistent with arXiv:2504.10191), erasure is confirmed as behavioral (pathway disruption); if probe accuracy drops, erasure is partly representational. This ablation sharpens the mechanistic story and validates the layer-freezing strategy regardless of which failure mode dominates. An automated entropy-based partition fallback replaces human inspection when probe curves are bimodal or noisy, reducing the agent failure mode from prior review.\n\nStage 2 — Layer profiling: Lightweight linear probes (one per transformer layer) are trained on a small parallel corpus to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers (~50% model depth, per arXiv:2502.14830) for factual transfer and deeper layers (~72–94% depth, per arXiv:2504.10191 and arXiv:2510.26024) for cultural knowledge. For cultural-localization probes, we use held-out splits of CulturalBench (ACL 2025; 1,696 human-verified questions across 45 global regions), which is publicly available for training use. For factual-transfer probes, we use held-out splits of TyDiQA and XQUAD. SemEval-2026 Task 7 data (BLEnD) is reserved strictly for final evaluation and is not used in probe training, consistent with the task's evaluation-only rules (confirmed via the official task repository). No new annotation is required.\n\nStage 3 — Selective LoRA training: LoRA adapters (via Hugging Face PEFT target_modules) are inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations.\n\nStage 4 — Evaluation: Experiments run on Qwen3-8B (primary: confirmed dense, 36 transformer layers, 119 languages and dialects, 8.2B parameters) and Aya-23-8B (secondary: confirmed dense decoder-only, 23 languages, 8B parameters) for cross-architecture generalization. LLaMA 4 Scout is excluded—its 48-block, 16-expert MoE architecture makes the factual-vs-cultural layer partition from arXiv:2510.26024, established on dense models, methodologically inapplicable without separate MoE-specific validation. Evaluation uses CulturalBench and SemEval-2026 Task 7 as primary cultural metrics. The transfer-localization plane from arXiv:2510.26024 is used where possible; if evaluation code is not publicly released (no GitHub repository found as of May 2026), we employ a defined fallback—a 2D scatter of cross-lingual factual accuracy (XQUAD/TyDiQA) vs cultural localization accuracy (CulturalBench) across languages, normalized to the pre-fine-tuning baseline, yielding the same interpretive framework. We compare against full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA (adapted to the instruction-FT setting), and Source-Shielded Updates baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space."
+
+RESOURCE_ESTIMATE (unchanged from original):
+{
+  "manual": {
+    "gpu_hours": "~200h A100 80GB (~80h H100 equivalent)",
+    "gpu_utilization": "~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs",
+    "timeline": "4–6 months",
+    "team": "1–2 researchers",
+    "estimated_gpu_cost": "~$300–410 (A100 at $1.49–2.06/hr via RunPod/Lambda)"
+  },
+  "human_in_loop": {
+    "gpu_hours": "~130h A100 80GB (~52h H100 equivalent)",
+    "gpu_utilization": "~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual",
+    "timeline": "6–8 weeks",
+    "team": "1 researcher, ~30min/day check-in",
+    "claude_api_cost": "$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)",
+    "estimated_gpu_cost": "~$190–270 (A100 at $1.49–2.06/hr)",
+    "risk_note": "Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; the automated entropy-based partition fallback reduces (but does not eliminate) this risk; daily human review of the partition heatmap before LoRA runs remains the essential gate"
+  },
+  "auto_research": {
+    "gpu_hours": "~280–320h A100 80GB (~110–130h H100 equivalent); within the ≤200h H100 hard constraint",
+    "gpu_utilization": "~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions",
+    "sweep": "3 LoRA rank values (8, 16, 32) × 2 layer partition thresholds × 2 model families (Qwen3-8B, Aya-23-8B) × 2 regularization strengths × 2 seeds = 48 core training runs; plus ~12 baseline runs (full-LoRA, Surgical Steering, INCLINE, Source-Shielded Updates) and Stage 1 structural diagnostic runs",
+    "timeline": "5–8 days with 4–6 concurrent A100 GPUs (or 3–5 days with H100s)",
+    "team": "0 (2–3h of initial harness setup and config-space definition)",
+    "claude_api_cost": "$200–350 (~1500–2500 turns across experiment planning, result parsing, and ablation branching)",
+    "estimated_gpu_cost": "~$420–660 (A100 at $1.49–2.06/hr)",
+    "speed_bottleneck": "Number of concurrent GPUs and the ~1h cultural benchmark evaluation per checkpoint; evaluation can be partially parallelized across checkpoints on separate GPUs",
+    "risk_note": "Bimodal probe distributions are now handled by an automated entropy-based partition fallback. The Stage 1 structural diagnostic also provides an early signal: if cultural probe accuracy is unaffected by full-LoRA training, the layer-freezing strategy is validated before the main sweep begins, allowing early termination of degenerate configurations."
+  }
+}
+
+TARGET_VENUES (unchanged):
+[
+  "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — viable only with auto-research mode given the 15-day window from May 10, 2026",
+  "EACL 2027 (ARR submission deadline August 3, 2026) — primary target for human-in-loop or manual mode",
+  "AAAI 2027 (submission deadline expected July–August 2026, TBC)"
+]
+
+KEY_REFERENCES (MODIFIED — add two new entries):
+[
+  "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv:2510.26024, 2025)",
+  "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025 Outstanding Paper, arXiv:2410.12462)",
+  "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs (ACL 2025, arXiv:2502.14830, Liu & Niehues)",
+  "Cross-Lingual Transfer of Cultural Knowledge: An Asymmetric Phenomenon (ACL 2025 short paper, arXiv:2506.01675)",
+  "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation (ACL 2025, aclanthology.org/2025.acl-long.762)",
+  "Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates (arXiv:2512.04844, Nov 2025)",
+  "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv:2509.24338)",
+  "CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv:2509.08541, 2025)",
+  "Language Surgery in Multilingual Large Language Models / ITLC (arXiv:2506.12450, 2025)",
+  "Improving Multilingual Language Models by Aligning Representations through Steering (arXiv:2505.12584, 2025)",
+  "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv:2504.10191, 2025)",
+  "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv:2106.09685)"
+]
+
+DESCRIPTION (MODIFIED — brief update to mention new citations and mechanistic bridge):
+"Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. Recent mechanistic work (arXiv:2504.10191) reveals this erasure is often behavioral (pathway disruption) rather than purely representational, since cultural knowledge frequently persists as recoverable activation-space vectors concentrated in layers 23–30 across tested architectures. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents both failure modes through a four-stage pipeline.\n\nA mechanistic bridge paragraph (placed before Stage 1) formalizes why inference-time steerability implies training-time freezing: the layer indices most sensitive to cultural activation steering identify the weight matrices that implement cultural routing; LoRA updates to those weights disrupt routing pathways even when representations persist; freezing those layers preserves both routing weights and residual-stream geometry. Stage 1 empirically validates this: if post-full-LoRA cultural probe accuracy is preserved, erasure is behavioral and freezing is the correct intervention; if accuracy drops, erasure is partly representational and the KL regularizer becomes critical.\n\nStage 2 runs lightweight linear probes to partition layers: factual-transfer probes are trained on TyDiQA/XQUAD held-out splits; cultural-localization probes are trained on held-out splits of CulturalBench (ACL 2025, publicly available for training use); SemEval-2026 Task 7 data (BLEnD) is reserved strictly for final evaluation per its evaluation-only rules. The partition aligns with two ACL 2025 results: middle layers (~50% depth) for factual transfer (arXiv:2502.14830, Liu & Niehues) and deeper layers (~72–94% depth) for cultural knowledge (arXiv:2504.10191, arXiv:2510.26024). Stage 3 applies LoRA exclusively to factual-transfer layers with an optional KL-divergence penalty. Stage 4 experiments run on Qwen3-8B and Aya-23-8B; evaluation uses CulturalBench and SemEval-2026 Task 7.\n\nTwo new ACL 2025 citations ground the work: (a) Middle-Layer Representation Alignment (arXiv:2502.14830) establishes middle-layer primacy for cross-lingual factual transfer via 1,190-language-pair probing—CLS-LoRA extends this by protecting cultural layers; (b) Cross-Lingual Transfer of Cultural Knowledge (arXiv:2506.01675) shows asymmetric transfer patterns where low-resource languages primarily export cultural knowledge without reciprocal benefit, motivating training-time prevention. CLS-LoRA is differentiated from MLAS-LoRA (ACL 2025) across three axes: task domain (MT quality vs cultural preservation), partition dimension (language-pair specificity vs factual-cultural semantic axis), and objective (translation accuracy via distillation vs cultural preservation with no distillation). The auto-research sweep covers 48 core runs (~110–130h H100), within the ≤200h H100 constraint, targeting a Pareto improvement over full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA, and Source-Shielded Updates in the transfer-localization trade-off space."
+
+Please output the complete JSON object now with all fields filled in exactly as specified above. Output ONLY the JSON, nothing else.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "51bd2696-ef8b-4c6d-9fda-28dde4dfc541",
+  "agentId": "a5f280911ae630872",
+  "type": "user",
+  "uuid": "59ee2ef8-fa96-48ac-896e-8c72c9e94ecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1e1bb9a5-aa7a-476e-870a-8a27ca025155",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T06:57:23.185Z_
+
+```json
+{
+  "parentUuid": "59ee2ef8-fa96-48ac-896e-8c72c9e94ecf",
+  "isSidechain": true,
+  "agentId": "a5f280911ae630872",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "387000eb-99b3-4841-9332-ed6fc01c35ed",
+  "timestamp": "2026-05-10T06:57:23.185Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1e1bb9a5-aa7a-476e-870a-8a27ca025155",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T06:58:57.563Z_
+
+```json
+{
+  "title": "Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment",
+  "project_name": "cls_lora_cultural_preservation",
+  "source": "web_research",
+  "level": "solid",
+  "change_type": "minor",
+  "core_problem": "Cross-lingual fine-tuning systematically suppresses culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' Recent mechanistic work (arXiv:2504.10191) reveals the suppression is often behavioral rather than purely representational: cultural knowledge frequently survives as recoverable activations in deeper layers but is no longer surfaced in model outputs after fine-tuning. No training-time method prevents this dual representational-and-behavioral suppression, forcing practitioners to choose between cross-lingual capability and cultural authenticity.",
+  "opportunity": "'Rethinking Cross-lingual Alignment' (arXiv:2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at different model layers is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source. arXiv:2504.10191 corroborates this by showing cultural knowledge is conserved as steerable activation-space vectors in specific deeper layers. Crucially, this means CLS-LoRA's freezing strategy serves a dual purpose—it preserves both the representational encoding of cultural knowledge AND the behavioral routing pathway through which that knowledge reaches outputs—preventing both failure modes simultaneously. This is feasible with any open-source dense multilingual model via a lightweight per-layer probing step.",
+  "landscape": "INCLINE (arXiv:2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. Middle-Layer Representation Alignment (arXiv:2502.14830, ACL 2025, Liu & Niehues) provides the empirical foundation for CLS-LoRA's factual-transfer layer partition: through translation retrieval probing across 1,190 language pairs on Llama 3 and Qwen 2.5, it establishes that layer 16 (50% depth in a 32-layer model) is the key integration point for cross-lingual semantic alignment, and that incorporating a middle-layer alignment objective consistently improves cross-lingual task performance particularly for lower-resource languages. CLS-LoRA extends this by additionally protecting cultural-knowledge layers (concentrated at deeper layers ~72–94% model depth, per arXiv:2504.10191) from LoRA updates—a protection axis entirely absent from Liu & Niehues, whose work does not distinguish factual from cultural knowledge and proposes no cultural preservation objective. Cross-Lingual Transfer of Cultural Knowledge (arXiv:2506.01675, ACL 2025 short paper, Zhang et al.) provides empirical background showing cultural knowledge transfer is asymmetric: high-resource language pairs exhibit bidirectional transfer while low-resource languages primarily export cultural knowledge to English without reciprocal benefit, driven by a frequency-based pretraining data mechanism. This asymmetry directly motivates training-time prevention of cultural erasure—low-resource languages are disproportionately at risk and most in need of the protection CLS-LoRA provides. AlignX (arXiv:2509.24338, EMNLP 2025) and CM-Align (arXiv:2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv:2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv:2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv:2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. arXiv:2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via cultural customization vectors that cultural knowledge survives as steerable activation-space vectors concentrated in layers 23–30 across tested architectures and can be steered—supporting our premise but addressing control at inference time, not prevention during training.\n\nTwo directly related selective-LoRA methods require explicit differentiation. MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) detects language-aware neurons in a teacher model and injects extracted knowledge into language-pair-specific LoRA modules in a student model for multilingual machine translation, achieving +1.7 BLEU on average. While MLAS-LoRA and CLS-LoRA both employ a probe-then-selective-LoRA pipeline, they differ on three critical axes: (1) task domain—MLAS-LoRA targets MT translation quality whereas CLS-LoRA targets cultural knowledge preservation during instruction fine-tuning; (2) partition dimension—MLAS-LoRA partitions along language-pair specificity (language-A vs language-B neurons) whereas CLS-LoRA partitions along the factual-transfer vs cultural-localization semantic axis, which cuts across language pairs; and (3) objective—MLAS-LoRA optimizes translation accuracy via teacher-student knowledge distillation whereas CLS-LoRA optimizes a cultural-preservation signal with no distillation component. The cultural-preservation objective is the categorical novelty: no prior selective-LoRA work defines a 'keep culturally-grounded outputs intact' training signal. Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to prevent catastrophic forgetting of source-language task performance during target-language adaptation—addressing cross-lingual interference but not the factual-vs-cultural layer distinction or cultural knowledge preservation as a first-class objective.",
+  "approach": "We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline has four stages.\n\nMechanistic bridge. Our layer-freezing strategy rests on a key assumption connecting inference-time observations to training-time interventions: the layer indices most sensitive to cultural-vs-factual activation steering at inference time (arXiv:2510.26024, corroborated by cultural customization vectors in arXiv:2504.10191 concentrated at layers 23–30) identify the weight matrices that implement cultural routing. LoRA updates modify precisely these weight matrices; applying LoRA to cultural-knowledge layers therefore disrupts the routing pathways through which culturally-grounded representations reach outputs—even when the representations themselves persist as recoverable vectors. Freezing these layers during training preserves both the routing weights and the residual-stream geometry that steerability depends on. Stage 1 below empirically validates this assumption: if post-full-LoRA probe accuracy at cultural-knowledge layers is preserved, erasure is behavioral (routing pathways disrupted by LoRA) and layer freezing is the correct intervention; if probe accuracy drops, erasure is partly representational and the KL-divergence regularizer in Stage 3 becomes critical. If Stage 3's L_factual-only LoRA itself disrupts L_cultural probes, the auxiliary KL penalty is applied to anchor cultural-layer activations to their pretrained distribution.\n\nStage 1 — Structural diagnostic: Before the main sweep, we run full-LoRA instruction fine-tuning on a held-out model checkpoint and measure per-layer cultural probe accuracy before and after. If probe accuracy is maintained post-training (consistent with arXiv:2504.10191), erasure is confirmed as behavioral (pathway disruption); if probe accuracy drops, erasure is partly representational. This ablation sharpens the mechanistic story and validates the layer-freezing strategy regardless of which failure mode dominates. An automated entropy-based partition fallback replaces human inspection when probe curves are bimodal or noisy, reducing the agent failure mode from prior review.\n\nStage 2 — Layer profiling: Lightweight linear probes (one per transformer layer) are trained on a small parallel corpus to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers (~50% model depth, per arXiv:2502.14830) for factual transfer and deeper layers (~72–94% depth, per arXiv:2504.10191 and arXiv:2510.26024) for cultural knowledge. For cultural-localization probes, we use held-out splits of CulturalBench (ACL 2025; 1,696 human-verified questions across 45 global regions), which is publicly available for training use. For factual-transfer probes, we use held-out splits of TyDiQA and XQUAD. SemEval-2026 Task 7 data (BLEnD) is reserved strictly for final evaluation and is not used in probe training, consistent with the task's evaluation-only rules (confirmed via the official task repository). No new annotation is required.\n\nStage 3 — Selective LoRA training: LoRA adapters (via Hugging Face PEFT target_modules) are inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations.\n\nStage 4 — Evaluation: Experiments run on Qwen3-8B (primary: confirmed dense, 36 transformer layers, 119 languages and dialects, 8.2B parameters) and Aya-23-8B (secondary: confirmed dense decoder-only, 23 languages, 8B parameters) for cross-architecture generalization. LLaMA 4 Scout is excluded—its 48-block, 16-expert MoE architecture makes the factual-vs-cultural layer partition from arXiv:2510.26024, established on dense models, methodologically inapplicable without separate MoE-specific validation. Evaluation uses CulturalBench and SemEval-2026 Task 7 as primary cultural metrics. The transfer-localization plane from arXiv:2510.26024 is used where possible; if evaluation code is not publicly released (no GitHub repository found as of May 2026), we employ a defined fallback—a 2D scatter of cross-lingual factual accuracy (XQUAD/TyDiQA) vs cultural localization accuracy (CulturalBench) across languages, normalized to the pre-fine-tuning baseline, yielding the same interpretive framework. We compare against full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA (adapted to the instruction-FT setting), and Source-Shielded Updates baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 80GB (~80h H100 equivalent)",
+      "gpu_utilization": "~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300–410 (A100 at $1.49–2.06/hr via RunPod/Lambda)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h A100 80GB (~52h H100 equivalent)",
+      "gpu_utilization": "~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)",
+      "estimated_gpu_cost": "~$190–270 (A100 at $1.49–2.06/hr)",
+      "risk_note": "Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; the automated entropy-based partition fallback reduces (but does not eliminate) this risk; daily human review of the partition heatmap before LoRA runs remains the essential gate"
+    },
+    "auto_research": {
+      "gpu_hours": "~280–320h A100 80GB (~110–130h H100 equivalent); within the ≤200h H100 hard constraint",
+      "gpu_utilization": "~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions",
+      "sweep": "3 LoRA rank values (8, 16, 32) × 2 layer partition thresholds × 2 model families (Qwen3-8B, Aya-23-8B) × 2 regularization strengths × 2 seeds = 48 core training runs; plus ~12 baseline runs (full-LoRA, Surgical Steering, INCLINE, Source-Shielded Updates) and Stage 1 structural diagnostic runs",
+      "timeline": "5–8 days with 4–6 concurrent A100 GPUs (or 3–5 days with H100s)",
+      "team": "0 (2–3h of initial harness setup and config-space definition)",
+      "claude_api_cost": "$200–350 (~1500–2500 turns across experiment planning, result parsing, and ablation branching)",
+      "estimated_gpu_cost": "~$420–660 (A100 at $1.49–2.06/hr)",
+      "speed_bottleneck": "Number of concurrent GPUs and the ~1h cultural benchmark evaluation per checkpoint; evaluation can be partially parallelized across checkpoints on separate GPUs",
+      "risk_note": "Bimodal probe distributions are now handled by an automated entropy-based partition fallback. The Stage 1 structural diagnostic also provides an early signal: if cultural probe accuracy is unaffected by full-LoRA training, the layer-freezing strategy is validated before the main sweep begins, allowing early termination of degenerate configurations."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — viable only with auto-research mode given the 15-day window from May 10, 2026",
+    "EACL 2027 (ARR submission deadline August 3, 2026) — primary target for human-in-loop or manual mode",
+    "AAAI 2027 (submission deadline expected July–August 2026, TBC)"
+  ],
+  "key_references": [
+    "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv:2510.26024, 2025)",
+    "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025 Outstanding Paper, arXiv:2410.12462)",
+    "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs (ACL 2025, arXiv:2502.14830, Liu & Niehues)",
+    "Cross-Lingual Transfer of Cultural Knowledge: An Asymmetric Phenomenon (ACL 2025 short paper, arXiv:2506.01675)",
+    "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation (ACL 2025, aclanthology.org/2025.acl-long.762)",
+    "Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates (arXiv:2512.04844, Nov 2025)",
+    "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv:2509.24338)",
+    "CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv:2509.08541, 2025)",
+    "Language Surgery in Multilingual Large Language Models / ITLC (arXiv:2506.12450, 2025)",
+    "Improving Multilingual Language Models by Aligning Representations through Steering (arXiv:2505.12584, 2025)",
+    "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv:2504.10191, 2025)",
+    "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv:2106.09685)"
+  ],
+  "description": "Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. Recent mechanistic work (arXiv:2504.10191) reveals this erasure is often behavioral (pathway disruption) rather than purely representational, since cultural knowledge frequently persists as recoverable activation-space vectors concentrated in layers 23–30 across tested architectures. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents both failure modes through a four-stage pipeline.\n\nA mechanistic bridge paragraph (placed before Stage 1) formalizes why inference-time steerability implies training-time freezing: the layer indices most sensitive to cultural activation steering identify the weight matrices that implement cultural routing; LoRA updates to those weights disrupt routing pathways even when representations persist; freezing those layers preserves both routing weights and residual-stream geometry. Stage 1 empirically validates this: if post-full-LoRA cultural probe accuracy is preserved, erasure is behavioral and freezing is the correct intervention; if accuracy drops, erasure is partly representational and the KL regularizer becomes critical.\n\nStage 2 runs lightweight linear probes to partition layers: factual-transfer probes are trained on TyDiQA/XQUAD held-out splits; cultural-localization probes are trained on held-out splits of CulturalBench (ACL 2025, publicly available for training use); SemEval-2026 Task 7 data (BLEnD) is reserved strictly for final evaluation per its evaluation-only rules. The partition aligns with two ACL 2025 results: middle layers (~50% depth) for factual transfer (arXiv:2502.14830, Liu & Niehues) and deeper layers (~72–94% depth) for cultural knowledge (arXiv:2504.10191, arXiv:2510.26024). Stage 3 applies LoRA exclusively to factual-transfer layers with an optional KL-divergence penalty. Stage 4 experiments run on Qwen3-8B and Aya-23-8B; evaluation uses CulturalBench and SemEval-2026 Task 7.\n\nTwo new ACL 2025 citations ground the work: (a) Middle-Layer Representation Alignment (arXiv:2502.14830) establishes middle-layer primacy for cross-lingual factual transfer via 1,190-language-pair probing—CLS-LoRA extends this by protecting cultural layers; (b) Cross-Lingual Transfer of Cultural Knowledge (arXiv:2506.01675) shows asymmetric transfer patterns where low-resource languages primarily export cultural knowledge without reciprocal benefit, motivating training-time prevention. CLS-LoRA is differentiated from MLAS-LoRA (ACL 2025) across three axes: task domain (MT quality vs cultural preservation), partition dimension (language-pair specificity vs factual-cultural semantic axis), and objective (translation accuracy via distillation vs cultural preservation with no distillation). The auto-research sweep covers 48 core runs (~110–130h H100), within the ≤200h H100 constraint, targeting a Pareto improvement over full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA, and Source-Shielded Updates in the transfer-localization trade-off space."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "387000eb-99b3-4841-9332-ed6fc01c35ed",
+  "isSidechain": true,
+  "agentId": "a5f280911ae630872",
+  "requestId": "req_011CatTEKNek3fgjaGZkxCFy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9347da08-14c3-4620-ac04-13171feebca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "1e1bb9a5-aa7a-476e-870a-8a27ca025155",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01P2rz7vWmj4iKGYguAjQwy7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13900,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 5079,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13900
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5079,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 13900,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13900,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

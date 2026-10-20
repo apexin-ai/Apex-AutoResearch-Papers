@@ -1,0 +1,262 @@
+_next_id: 20
+mistakes:
+- id: M001
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: tail-512 condition 名称不一致：Qwen-7B 用 full_trace_tail（动态截断）而非 full_trace_tail_512（硬截断
+    512），导致 budget curve 数据不可比
+  root_cause: 最早的 tail truncation 实验用 full_trace_tail condition（动态 budget），后来扩展到多模型时新增了
+    full_trace_tail_512 condition（硬截断 512），但未回溯检查 Qwen-7B 原始实验用的是哪个 condition。condition
+    命名相似但逻辑不同，缺乏统一验证。
+  prevention: 扩展实验到多模型时，必须逐个确认所有 condition 的实际参数一致。不能仅靠 condition 名称推断等价性。新增 condition
+    时建立对照表并验证。
+  status: active
+  fix: 补跑 qwen7b_full_trace_tail512_seed42（硬截断 512）确保可比性。全面排查所有 budget curve 实验的 condition
+    一致性。
+- id: M002
+  date: '2026-05-18'
+  category: experiment_design
+  severity: low
+  summary: Qwen-1.5B 在 westd-11235 上 OOM：GPU 有 ~49GB driver 级固定开销，可用仅 ~48GB，1.5B 峰值
+    ~50GB
+  root_cause: westd-11235 GPU 有 ~49GB driver/system 固定开销（98GB 总显存中仅 ~48GB 可用），Qwen-1.5B
+    LoRA 峰值 ~50GB 刚好超出。未预先检查可用显存就提交。
+  prevention: 在 westd-11235 上提交任何实验前，统一加 --gradient_checkpointing（降低峰值显存 50GB→23GB）。对不熟悉的
+    GPU 环境先检查可用显存再提交。
+  status: active
+  fix: seed123_v2 和 seed456 均加 --gradient_checkpointing 重跑，正常训练中。
+- id: M003
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Director 将 Qwen-7B tail-512 seed42 (93.61%) 错误归属为 DeepSeek，导致 Paper Agent
+    Patch 11 将 DeepSeek 正确值 93.9% 错改为 93.6%
+  root_cause: budget curve 矩阵编译时，93.61% 和 93.9% 两个相近数字被混淆归属。Director 未交叉核实 registry
+    就向 Paper Agent 发送数据修正指令。
+  prevention: 向 Paper Agent 发送数据修正时，必须先用 registry 交叉验证每个数据点的来源（experiment_id + model
+    + condition）。相近数值需特别注意模型归属。
+  status: active
+  fix: Patch 13 回滚 DeepSeek tail-512 至 93.9%，级联回滚所有受影响位置。
+  related_decisions:
+  - D087
+- id: M004
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: N5 VOTA seed123/456 可能使用了不同数据路径，data_count 4720 vs 1190 不一致
+  root_cause: Agent 提交 N5 实验时使用了新数据路径 /root/trace-verdict-study/data/ 而非参考实验 vota_seed42_v5
+    的路径 /root/autodl-tmp/trace-verdict-study-data/。spec 中 data_count=1190（可能是 eval
+    set size 误记，也可能实际训练数据不同）。Director 审批时未逐字段核对 N5 配置与 seed42_v5 的一致性。
+  prevention: 多 seed 实验审批时，必须要求 Agent 列出参考实验的完整配置（data_path, data_count, max_length,
+    learning_rate, epochs, condition）并逐字段确认新实验一致。不同 data_path 必须有 diff 验证。
+  status: active
+  context: 'vota_seed42_v5: data_path=/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl,
+    data_count=4720, accuracy=99.41%. N5 qwen7b_vota_seed123: data_path=/root/trace-verdict-study/data/,
+    data_count=1190, accuracy=98.66%. 另外 Agent 混淆了 v4 (95.63%) 和 v5 (99.41%) 的参考值。'
+  fix: 等待数据一致性检查结果。如果训练数据实际不同，N5 VOTA 结果无效需重跑。
+  related_decisions:
+  - D092
+- id: M005
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: deepseek_loop_only_seed42 直接 SSH 提交未走 submit_training_job，startup recovery
+    误标 failed
+  root_cause: Worker 通过 ssh_execute 直接执行训练命令而非 submit_training_job，导致 registry 缺少
+    cron 监控和 pid tracking。系统 startup recovery 找不到 cron/pid 信息，自动将 RUNNING 状态标记为 failed。差点导致
+    cuda:1 被重复分配新实验。
+  prevention: 所有 GPU 训练必须通过 submit_training_job 提交，不允许直接 ssh_execute 执行训练命令。submit_training_job
+    自动注册 cron 监控、记录 PID、设置 log_path，确保 startup recovery 能正确识别运行中的实验。
+  status: active
+- id: M006
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: deepseek_loop_only_seed42 registry 修复指令被忽略 3 次
+  root_cause: urgent message 中包含多个任务（registry fix + deepseek_ae_only 提交），Agent 完成了
+    ae_only 提交但跳过了 registry 修复。可能因为 queue 深度大（9条），Agent 在处理积压消息时遗漏了 registry 更新。
+  prevention: 紧急 registry 修复指令应单独发送，不与其他任务混合。发送后验证执行结果（get_project_status 检查 registry
+    状态）。如果 Agent 连续 2 次未执行，考虑 replace_agent_queue 清空队列强制优先。
+  status: active
+  context: Reviewer 在 3 次独立审查中标记 deepseek_loop_only_seed42 registry 仍为 failed。Director
+    在 urgent message 中与 ae_only 提交合并发送，Agent 只做了后者。
+- id: M007
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: SSH 直接提交的实验被 cron on_failed hook 反复覆盖为 failed
+  root_cause: 通过 ssh_execute 直接提交的实验没有 sentinel 文件，cron 监控检测到"进程不存在"时无法区分正常退出和异常退出，自动触发
+    on_failed hook 覆盖 registry 状态。手动修复后下一次 cron 巡检再次覆盖。
+  prevention: 1. 所有实验必须通过 submit_training_job 提交（自带 sentinel）；2. 如果已经 SSH 直接提交，修复
+    registry 后必须同时取消该实验的 cron 监控；3. M006 的真正原因不是 Agent 忽略指令，而是 cron 竞争覆盖。
+  status: active
+  context: deepseek_loop_only_seed42 和之前的 deepseek_full_trace 都遇到相同问题。M006 误判为 Agent
+    行为问题，实际是 cron 覆盖。
+  related_decisions:
+  - D101
+- id: M008
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Paper Agent 本地→远程同步遗漏第二次发生（C4 Patch）
+  root_cause: Paper Agent 编辑本地 workspace 文件，但不直接操作远程服务器。每次 Paper Agent 完成 Patch 后需要
+    Agent 手动 scp 同步。P0 reframe patch 和 C4 patch 都遗漏了这步。
+  prevention: Paper Agent 完成任何 Patch 后，Director 必须立即派 Agent 执行全量 scp 同步 + 远程编译。可考虑在
+    Paper Agent 指令中固定加一句"完成后通知 Director 派 Agent 同步"。
+  status: active
+  related_decisions:
+  - D101
+- id: M009
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: DeepSeek VOTA seed42 "outlier" 实为 eval max_length 配置不匹配（16384 vs 训练用 2048）
+  root_cause: seed42 的 evaluate.py 使用 max_length=16384 而训练只用 2048，导致 eval 时 tokenization
+    行为不同，accuracy 从 ~99% 降至 84.45%。seed123/456 均用 2048 评估所以正常。配置不一致未被发现，直接将结果差异归因为"训练不稳定性"。
+  prevention: 1. 每次提交实验前检查 eval 配置与 train 配置一致性（尤其 max_length/batch_size/tokenizer
+    参数）。2. 跨 seed 实验必须用完全相同的 eval 脚本，不允许手动修改单个 seed 的 eval 参数。3. 出现异常大的跨 seed 差异时，先排查
+    eval 配置差异再归因为训练不稳定。
+  status: active
+  context: D103 仲裁花了 2 个 GPU 实验（seed123+seed456）来确认 seed42 是 "outlier"，实际只是 eval 配置错误。Paper
+    Agent 基于错误归因写了 12 处 "训练不稳定性" 相关修改，可能需要回退。
+  fix: 立即用 max_length=2048 重评 seed42 checkpoint，预期 ≥98%。如果确认，简化论文叙事（删除 outlier 讨论，报告一致的
+    3-seed mean）。
+  related_decisions:
+  - D103
+  - D104
+- id: M010
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: medium
+  summary: codellama13b_label_only_seed123_v2 磁盘满崩溃——训练完成但 checkpoint 保存和 eval 失败
+  root_cause: westd-11235 根分区 30GB 被 109+ 实验的 checkpoints 和 HF cache 占满。实验提交前未检查磁盘剩余空间。
+  prevention: 审批实验前要求 Agent 报告目标服务器磁盘使用情况（du -sh outputs/ + df -h）。长时间跑多实验的服务器定期清理中间
+    checkpoints。
+  status: active
+  context: 训练完成 444/444 步但 checkpoint 保存时 os error 28。eval_loss=NaN, mean_token_accuracy=11.7%
+    方向上与 seed42 collapse 一致但不完整。作为 rebuttal reserve 决定不重跑。
+  fix: 派 Agent 清理磁盘（删中间 checkpoints、清 HF cache），释放空间恢复服务器可用状态。
+- id: M011
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 花 3.8 小时尝试通过 MCP SSH 工具传输 441KB PDF 失败，Director 直接 scp 2 秒解决
+  root_cause: MCP SSH 工具有 ~8KB 输出限制，无法传输二进制大文件。Agent 尝试 base64 分块/git push-pull 等变通方案均未成功，但
+    Director 的本地机器本身就有 SSH 密钥可以直连远程服务器。
+  prevention: 需要从远程传文件到本地时，Director 应先检查本地是否可以直接 scp（本地机器有 SSH key 和 known_hosts），而不是派
+    Agent 通过 MCP 工具间接传输。Agent 的 SSH 工具适合执行命令，不适合文件传输。
+  status: active
+  fix: Director 直接在本地执行 scp -P 11235 root@connect.westd.seetacloud.com:/root/.../main.pdf
+    到本地路径
+- id: M012
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'full_trace seed456 GPU 分配 bug: registry 声明 cuda:1 但命令实际用 --gpu 0'
+  root_cause: submit_training_job 或 Agent 生成命令时，seed456 的 --gpu 参数硬编码为 0 而非从 registry
+    的 gpu 字段派生。两个实验同时跑在 cuda:0 上互相挤爆 OOM。
+  prevention: 审批多 GPU 并行实验时，要求 Agent 在提交前 echo 完整命令让 Reviewer 检查 --gpu 参数与 registry
+    gpu 字段一致。提交后立即用 nvidia-smi 确认进程分布在正确的 GPU 上。
+  status: active
+  context: D111 MF-3 full_trace multi-seed 补跑。seed123 声明 cuda:0 命令 --gpu 0（正确），seed456
+    声明 cuda:1 命令 --gpu 0（错误）。加上 cuda:0 有 49GB 孤儿显存，两个进程在同一张半残卡上竞争导致双双 OOM。
+  fix: 改用 cuda:1（全空 97GB）顺序执行两个 seed，显式设 CUDA_VISIBLE_DEVICES=1
+  related_decisions:
+  - D111
+- id: M013
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 诊断 Worker 启动重试时未检查已有进程，导致 seed123 两个副本同时写同一 checkpoint 目录
+  root_cause: Worker 在 tmux 中启动新训练进程前没有用 nvidia-smi 检查目标 GPU 上是否已有同实验的进程在跑。早先手动修复已启动
+    PID 683229，诊断 Worker 又启动了一个，两个写同一个 output_dir。
+  prevention: submit_training_job 前必须先 nvidia-smi 检查目标 GPU 无同实验进程；Worker 重试/修复实验时必须先确认前序进程已终止且
+    output_dir 已清理。
+  status: active
+  context: D111 MF-3 full_trace seed123 重跑。PID 683229 (cuda:1) 先启动，诊断 Worker 又在 tmux
+    中启动 PID 683796 (cuda:0) 和 PID 683873 (cuda:1 seed456)。三个进程同时跑，seed123 checkpoint
+    被两个进程交叉写入。
+  fix: Kill 重复进程，清理 checkpoint 目录，从头单进程重跑
+  related_decisions:
+  - D111
+- id: M014
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 清理 cuda:0 orphan 内存时误杀 cuda:1 上正在训练的 codellama 进程
+  root_cause: Worker 执行 orphan 内存清理操作时使用了不够精确的进程终止方法，没有限定只操作 cuda:0 上的进程。cuda:1 的
+    codellama 训练进程 PID 706833 被连带终止。训练仅完成 69/444 步（16%），无 checkpoint 保存。
+  prevention: 1. 禁止用 kill-all-GPU-processes 方式清理 orphan——orphan 内存无进程持有，kill 无效，只有容器重启能清除。2.
+    任何涉及 GPU 进程管理的操作前，必须先 nvidia-smi 列出所有进程并逐个确认是否为目标，绝不盲杀。3. cuda:0 orphan 问题已明确：无进程可杀，需容器重启。今后不再尝试
+    kill 方式清理。
+  status: active
+  context: codellama_exception_only_seed42 在 cuda:1 训练中（step 69/444, ~24min），Worker
+    被派去清理 cuda:0 的 49GB orphan 显存。Worker 的 kill 操作误杀了 cuda:1 进程，orphan 内存仍在。浪费 0.17
+    GPU-hours。
+  fix: 立即在 cuda:1 重启 codellama_exception_only_seed42，从头训练。cuda:0 orphan 不再尝试清理，等容器重启。
+- id: M015
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: Budget curve 分析混用 plan_006 trace-section 截断和 Table 12 whole-input tail
+    截断两组不同实验的 accuracy，导致错误结论
+  root_cause: '分析脚本硬编码 accuracy 值（来自 plan_006: tail-512=80.42%），但读取的数据文件来自 Table 12
+    实验（tail-512=93.61%）。两组实验截断方式不同（trace-section vs whole-input），accuracy 差 13pp。Agent
+    未交叉验证硬编码值与 registry。Reviewer 首轮审查也未发现，第二轮才通过 extended diagnostic ratio 分析的不一致定位到问题。'
+  prevention: 分析脚本中的 accuracy 必须从 registry 或 predictions.jsonl 动态读取，禁止硬编码。涉及多组实验数据时，脚本注释中标明每个数据文件对应的
+    registry ID。Reviewer 审查分析脚本时必须交叉验证 accuracy 值与 registry。
+  status: active
+  context: plan_006 截断 trace section 保留完整 code+test（78-81%）; Table 12 截断整个 input 尾部（93-97%）。Phase
+    transition 在 Table 12 数据中是真实的（tail-384→tail-512 = +13.8pp），但 budget_curve 分析错误地用
+    plan_006 accuracy 否认了它。
+  fix: Reviewer 修正报告确认数据混淆。Extended diagnostic ratio 分析使用了正确的 Table 12 accuracy，r=0.630
+    相关性有效。Budget curve 分析的"phase transition 不存在"结论撤回。
+- id: M016
+  date: '2026-05-22'
+  category: communication
+  severity: high
+  summary: Paper Agent 改稿时在 4 处将 tail phase transition 归因于 "matching exception traceback
+    length"，与 D115 发现（tail 数据中 [ERROR]=0%，机制是 globals dump 噪声层）直接矛盾
+  root_cause: Paper Agent 收到的改稿指令中虽然包含了 Two-Pathway Model 的正确描述（implicit pathway =
+    terminal execution state），但在 Abstract/Intro/Experiments/Appendix 具体写作时仍使用了直觉性的
+    "exception traceback" 归因，可能是因为 "phase transition" + "tail truncation" 的常识性联想。Discussion
+    部分写对了，说明 Paper Agent 理解了机制但未在全文一致贯彻。
+  prevention: 改稿指令中对已确认的 data-side findings（如 [ERROR]=0%）应列为 "硬约束：论文中不得出现以下措辞"。Paper
+    Agent 完成后应自检全文关键术语一致性。
+  status: active
+  fix: 已派 Paper Agent 紧急 Patch 修正 4 处 + 3 个 WARNING。
+- id: M017
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 报告 registry 清理完成但实际未持久化修改
+  root_cause: Agent 汇报 6 个僵尸实验已清理（标 DONE/killed），但 registry.yaml 中状态未变。Agent 可能只在内存中处理了逻辑但未写入文件，或写入了错误路径。
+  prevention: Agent 报告 registry 修改完成后，Director 应立即 grep registry.yaml 核实状态字段是否真的变了，不要信任
+    Agent 的自我汇报。关键文件修改必须验证。
+  status: active
+  fix: Director 手动编辑 registry.yaml 修改了 6 个实验的 status 字段。
+- id: M018
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 反向同步远程旧版 tex 到本地，覆盖 Paper Agent 刚完成的 5 项 R16 修复
+  root_cause: Reviewer 报告本地/远程 desync 时，Director 指令 Agent 从远程拉取到本地。但远程是旧版（Paper Agent
+    修复前的版本），本地才是最新版。同步方向错误。
+  prevention: desync 修复时必须先判断哪边是真源：Paper Agent 改本地 tex → 本地是真源 → 应 local→remote 同步。指令
+    Agent 同步前明确标注方向和理由。
+  status: active
+  fix: Paper Agent 重新应用 4 项修复 + Limitations 拆小节，完成后 local→remote 正向同步
+- id: M019
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: 失败 worker 覆盖了 PaperBanana fig1 源文件（225KB→27KB）
+  root_cause: fig1-v5-and-compile worker 在失败过程中执行了文件写入操作，将远程 fig1_trace_overview.pdf
+    从 PaperBanana 正确版本（225KB）覆盖为旧版本（27KB）。Worker 失败时未回滚文件变更。
+  prevention: 1. Worker 写入关键文件前先备份原文件（cp original original.bak）；2. PaperBanana 生成的概念图应标记为
+    protected，非 PaperBanana worker 不得覆盖；3. figure 重新生成任务应明确排除非 matplotlib 图（如 PaperBanana
+    概念图）
+  status: active
+  fix: 本地 figures/paper/fig1_trace_overview.pdf（225KB）确认正确，Worker fig1-restore-remote
+    正在 base64 上传恢复远程文件

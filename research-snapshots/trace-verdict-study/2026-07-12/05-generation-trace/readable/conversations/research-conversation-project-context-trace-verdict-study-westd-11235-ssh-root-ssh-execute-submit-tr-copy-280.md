@@ -1,0 +1,1017 @@
+# Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: westd-11235 - SSH 账户: root（调用 ssh_execute / submit_training_
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-2/d9788b43-8cd0-4d99-b291-db5f3e72bffa.jsonl`
+- **Structured JSON:** [`c8c19d4b2facb42cb9bc.json`](../../sessions/c8/c8c19d4b2facb42cb9bc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T12:02:30.144Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T12:02:30.144Z",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "content": "&lt;project_context>\n# 项目: trace-verdict-study\n\n## 运行环境\n- 服务器名: westd-11235\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/trace-verdict-study\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：在论文 Discussion 中新增 \"Irreducible Error Ceiling\" 段落\n\n### 背景\n我们发现 Qwen-1.5B 和 Qwen-7B 在 exception_only 条件下完全一致：99.83% accuracy，且错误样本完全重叠（id=901, 905）。这证明错误是 representation-inherent irreducible error，不是模型容量问题。\n\n### 要编辑的文件\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex`\n\n### 当前文件结构\n文件包含以下段落（\\paragraph）：\n1. \"Why exception\\_only outperforms ae\\_only.\"\n2. \"SFT vs.\\ regex incremental analysis.\"\n3. \"Format marker sensitivity.\"\n4. \"Tier hierarchy: practical implications.\"\n\n### 要做什么\n在 \"Tier hierarchy: practical implications.\" 段之前（即在 \"Format marker sensitivity.\" 段之后），插入一个新段落：\n\n```latex\n\\paragraph{Irreducible error ceiling.}\n```\n\n内容要点（用学术论文风格写，LaTeX 格式）：\n1. samples 901 和 905（均来自 HumanEval/95 `check_dict_case`）被所有模型一致误判——Qwen-7B（3 seeds × 99.83%）、Qwen-1.5B（99.83%）、DeepSeek-6.7B 的 2/3 seeds 也命中这两个样本\n2. 根因：Python `all()` 对 generator 短路求值会触发 `GeneratorExit`（`BaseException` 子类），tracer 将其标记为 `[ERROR]` 事件，模型合理但错误地预测 fail\n3. 99.83% (1188/1190) 是 exception\\_only 表征的理论上限（representation-inherent irreducible error）\n4. 关键结论句：\"These results demonstrate that exception-only accuracy is \\emph{signal-limited} rather than \\emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.\"\n5. 可以加一句：跨模型 error set 完全重叠（Qwen-1.5B ∩ Qwen-7B = {901, 905}）提供了 mechanistic confirmation\n\n### 写作规范\n- 所有数字需要有来源（我们的实验）\n- 不要 cherry-pick\n- 用 `\\texttt{}` 标记代码/函数名\n- 用 `$` 标记数学符号\n- 保持与其他段落的格式一致\n- 简洁有力，不要冗长（目标 8-12 行 LaTeX）\n\n### 验证\n编辑完后，Read 整个文件确认格式正确、段落位置正确。"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T12:02:30.149Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T12:02:30.149Z",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T12:02:30.186Z_
+
+&lt;project_context>
+# 项目: trace-verdict-study
+
+## 运行环境
+- 服务器名: westd-11235
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/trace-verdict-study
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：在论文 Discussion 中新增 "Irreducible Error Ceiling" 段落
+
+### 背景
+我们发现 Qwen-1.5B 和 Qwen-7B 在 exception_only 条件下完全一致：99.83% accuracy，且错误样本完全重叠（id=901, 905）。这证明错误是 representation-inherent irreducible error，不是模型容量问题。
+
+### 要编辑的文件
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex`
+
+### 当前文件结构
+文件包含以下段落（\paragraph）：
+1. "Why exception\_only outperforms ae\_only."
+2. "SFT vs.\ regex incremental analysis."
+3. "Format marker sensitivity."
+4. "Tier hierarchy: practical implications."
+
+### 要做什么
+在 "Tier hierarchy: practical implications." 段之前（即在 "Format marker sensitivity." 段之后），插入一个新段落：
+
+```latex
+\paragraph{Irreducible error ceiling.}
+```
+
+内容要点（用学术论文风格写，LaTeX 格式）：
+1. samples 901 和 905（均来自 HumanEval/95 `check_dict_case`）被所有模型一致误判——Qwen-7B（3 seeds × 99.83%）、Qwen-1.5B（99.83%）、DeepSeek-6.7B 的 2/3 seeds 也命中这两个样本
+2. 根因：Python `all()` 对 generator 短路求值会触发 `GeneratorExit`（`BaseException` 子类），tracer 将其标记为 `[ERROR]` 事件，模型合理但错误地预测 fail
+3. 99.83% (1188/1190) 是 exception\_only 表征的理论上限（representation-inherent irreducible error）
+4. 关键结论句："These results demonstrate that exception-only accuracy is \emph{signal-limited} rather than \emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling."
+5. 可以加一句：跨模型 error set 完全重叠（Qwen-1.5B ∩ Qwen-7B = {901, 905}）提供了 mechanistic confirmation
+
+### 写作规范
+- 所有数字需要有来源（我们的实验）
+- 不要 cherry-pick
+- 用 `\texttt{}` 标记代码/函数名
+- 用 `$` 标记数学符号
+- 保持与其他段落的格式一致
+- 简洁有力，不要冗长（目标 8-12 行 LaTeX）
+
+### 验证
+编辑完后，Read 整个文件确认格式正确、段落位置正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e02c89a8-4b41-43be-9775-22e301bf2164",
+  "type": "user",
+  "uuid": "25689015-b238-4b04-914b-93b64b824c11",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T12:02:30.185Z_
+
+```json
+{
+  "parentUuid": "25689015-b238-4b04-914b-93b64b824c11",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "359c801a-9034-4ffe-ba39-3b57aad70725",
+  "timestamp": "2026-05-16T12:02:30.185Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T12:02:30.185Z_
+
+```json
+{
+  "parentUuid": "359c801a-9034-4ffe-ba39-3b57aad70725",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "899de9fe-5a59-4d37-adce-efd516ed8abd",
+  "timestamp": "2026-05-16T12:02:30.185Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T12:02:30.185Z_
+
+```json
+{
+  "parentUuid": "899de9fe-5a59-4d37-adce-efd516ed8abd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ede11231-e90a-465e-a1d1-3e6814f8e658",
+  "timestamp": "2026-05-16T12:02:30.185Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add irreducible error ceiling paragraph to paper discussion",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:02:33.138Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current discussion.tex file to understand its structure and then insert the new paragraph.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ede11231-e90a-465e-a1d1-3e6814f8e658",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DMJRTyig1rhoKVqzC5",
+  "type": "assistant",
+  "uuid": "f01079c4-4e7c-43b0-a908-bd1bedac37b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrSCrShYhJMxejqHwyoEkR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11542,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11542,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11542,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11542
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T12:02:33.523Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01L2nateRe3SysnMXbLXzcki`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f01079c4-4e7c-43b0-a908-bd1bedac37b7",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DMJRTyig1rhoKVqzC5",
+  "type": "assistant",
+  "uuid": "21c6ae46-4e59-45ac-b760-60e0b64397da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrSCrShYhJMxejqHwyoEkR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11542,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11542,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11542,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11542
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T12:02:33.535Z_
+
+<details><summary>↩ Tool result · `toolu_01L2nateRe3SysnMXbLXzcki`</summary>
+
+```text
+1	\section{Discussion}
+2	
+3	Verdict prediction is fundamentally fault detection: the model determines whether execution deviated from expected behavior.
+4	Exception events are the most explicit deviation signal---self-contained diagnostic moments that explain why \texttt{exception\_only} matches or exceeds VOTA: non-exception components dilute the model's attention without providing complementary information.
+5	
+6	The Tier~1 accuracy (${\geq}$99\%) confirms that fault indicator presence detection is sufficient.
+7	The contribution lies in quantifying the cost of richer representations: adding trace information actively \emph{hurts} (VOTA $<$ \texttt{exception\_only}, Table~\ref{tab:ablation}), compounded by tokenizer-driven truncation on DeepSeek (\S\ref{sec:cross_model}).
+8	The 6.22pp SFT advantage over the best regex concentrates on caught-exception boundary cases, confirming the model learns semantic distinctions beyond mere presence detection (Appendix~\ref{sec:regex_baselines}).
+9	Training dynamics reveal that DeepSeek seeds with near-identical losses differ by 8.24pp in accuracy (Appendix~\ref{sec:training_dynamics}), and the 0.50pp cross-model exception gap provides a clean capability measure unconfounded by truncation (Appendix~\ref{sec:robustness_analysis}).
+10	Irreducible error analysis is in Appendix~\ref{sec:irreducible}.
+11	
+12	\paragraph{Why exception\_only outperforms ae\_only.}
+13	Although \texttt{ae\_only} achieves 99.92\% on seed 42, it is a strict superset of the exception signal: assertion-point comparisons include the exception event (when present) plus additional information such as fallback local variable states.
+14	Multi-seed evaluation reveals that this extra content introduces noise: \texttt{ae\_only} achieves 99.64\% mean accuracy ($\pm$0.49, seeds 42/123/456) while \texttt{exception\_only} achieves 99.83\% ($\pm$0.00).
+15	The zero-variance result for \texttt{exception\_only} indicates that it captures a minimal sufficient signal---the compact exception event---while \texttt{ae\_only}'s additional components (fallback locals, assertion formatting) occasionally mislead the model, manifesting as seed-dependent variance ($\sigma{=}$0.49pp).
+16	Thus \texttt{exception\_only} is both more precise and more stable than its superset.
+17	
+18	\paragraph{SFT vs.\ regex incremental analysis.}
+19	The gap between B5 (format marker, 99.33\%) and SFT \texttt{exception\_only} (99.83\%) isolates the value of learned semantic understanding (McNemar $p{=}0.041$, Table~\ref{tab:regex}).
+20	Among 8 test samples where pass-labeled code triggers exceptions (from 2 distinct problems), the SFT model correctly classifies 6 (all from MBPP/113, a try/except ValueError pattern) while B5 misclassifies all 8. The 2 remaining errors (HumanEval/95, GeneratorExit) are irreducible. At the problem level, SFT handles 1/2 exception-type edge cases vs B5's 0/2.
+21	This confirms that SFT learns a genuine semantic boundary---distinguishing caught from uncaught exceptions---rather than merely detecting exception presence or format markers.
+22	
+23	\paragraph{Format marker sensitivity.}
+24	The B5 baseline (Appendix~\ref{sec:regex_baselines}) achieves 99.33\% by exploiting a deterministic format marker (\texttt{[No exception data in trace]}) present in all pass samples.
+25	This near-ceiling performance from a trivial pattern raises a concern: does SFT also learn this shortcut?
+26	The answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\ B5's 0/8.
+27	Future trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.
+28	
+29	\paragraph{Tier hierarchy: practical implications.}
+30	The two-tier structure (Tier~1 ${\geq}$99\%; Tier~2 = 85.6\%) has direct engineering implications for trace-augmented systems.
+31	First, it implies a \emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution.
+32	Second, the hierarchy suggests a fallback design: systems should attempt Tier~1 extraction (exception events) and only resort to Tier~2 signals (loop compression) when no exception is raised---though our results show that even Tier~2 alone substantially outperforms no-trace baselines (+10.50pp).
+33	Third, the minimal token footprint of Tier~1 signals (${\sim}$200 tokens vs.\ ${\sim}$2{,}600 for VOTA) makes them viable for deployment in token-constrained settings (e.g., real-time CI pipelines, mobile inference).
+34	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21c6ae46-4e59-45ac-b760-60e0b64397da",
+  "isSidechain": false,
+  "promptId": "e02c89a8-4b41-43be-9775-22e301bf2164",
+  "type": "user",
+  "uuid": "80cc6573-2cc7-4db6-8a7a-c934be361209",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\n\nVerdict prediction is fundamentally fault detection: the model determines whether execution deviated from expected behavior.\nException events are the most explicit deviation signal---self-contained diagnostic moments that explain why \\texttt{exception\\_only} matches or exceeds VOTA: non-exception components dilute the model's attention without providing complementary information.\n\nThe Tier~1 accuracy (${\\geq}$99\\%) confirms that fault indicator presence detection is sufficient.\nThe contribution lies in quantifying the cost of richer representations: adding trace information actively \\emph{hurts} (VOTA $<$ \\texttt{exception\\_only}, Table~\\ref{tab:ablation}), compounded by tokenizer-driven truncation on DeepSeek (\\S\\ref{sec:cross_model}).\nThe 6.22pp SFT advantage over the best regex concentrates on caught-exception boundary cases, confirming the model learns semantic distinctions beyond mere presence detection (Appendix~\\ref{sec:regex_baselines}).\nTraining dynamics reveal that DeepSeek seeds with near-identical losses differ by 8.24pp in accuracy (Appendix~\\ref{sec:training_dynamics}), and the 0.50pp cross-model exception gap provides a clean capability measure unconfounded by truncation (Appendix~\\ref{sec:robustness_analysis}).\nIrreducible error analysis is in Appendix~\\ref{sec:irreducible}.\n\n\\paragraph{Why exception\\_only outperforms ae\\_only.}\nAlthough \\texttt{ae\\_only} achieves 99.92\\% on seed 42, it is a strict superset of the exception signal: assertion-point comparisons include the exception event (when present) plus additional information such as fallback local variable states.\nMulti-seed evaluation reveals that this extra content introduces noise: \\texttt{ae\\_only} achieves 99.64\\% mean accuracy ($\\pm$0.49, seeds 42/123/456) while \\texttt{exception\\_only} achieves 99.83\\% ($\\pm$0.00).\nThe zero-variance result for \\texttt{exception\\_only} indicates that it captures a minimal sufficient signal---the compact exception event---while \\texttt{ae\\_only}'s additional components (fallback locals, assertion formatting) occasionally mislead the model, manifesting as seed-dependent variance ($\\sigma{=}$0.49pp).\nThus \\texttt{exception\\_only} is both more precise and more stable than its superset.\n\n\\paragraph{SFT vs.\\ regex incremental analysis.}\nThe gap between B5 (format marker, 99.33\\%) and SFT \\texttt{exception\\_only} (99.83\\%) isolates the value of learned semantic understanding (McNemar $p{=}0.041$, Table~\\ref{tab:regex}).\nAmong 8 test samples where pass-labeled code triggers exceptions (from 2 distinct problems), the SFT model correctly classifies 6 (all from MBPP/113, a try/except ValueError pattern) while B5 misclassifies all 8. The 2 remaining errors (HumanEval/95, GeneratorExit) are irreducible. At the problem level, SFT handles 1/2 exception-type edge cases vs B5's 0/2.\nThis confirms that SFT learns a genuine semantic boundary---distinguishing caught from uncaught exceptions---rather than merely detecting exception presence or format markers.\n\n\\paragraph{Format marker sensitivity.}\nThe B5 baseline (Appendix~\\ref{sec:regex_baselines}) achieves 99.33\\% by exploiting a deterministic format marker (\\texttt{[No exception data in trace]}) present in all pass samples.\nThis near-ceiling performance from a trivial pattern raises a concern: does SFT also learn this shortcut?\nThe answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\\ B5's 0/8.\nFuture trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.\n\n\\paragraph{Tier hierarchy: practical implications.}\nThe two-tier structure (Tier~1 ${\\geq}$99\\%; Tier~2 = 85.6\\%) has direct engineering implications for trace-augmented systems.\nFirst, it implies a \\emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution.\nSecond, the hierarchy suggests a fallback design: systems should attempt Tier~1 extraction (exception events) and only resort to Tier~2 signals (loop compression) when no exception is raised---though our results show that even Tier~2 alone substantially outperforms no-trace baselines (+10.50pp).\nThird, the minimal token footprint of Tier~1 signals (${\\sim}$200 tokens vs.\\ ${\\sim}$2{,}600 for VOTA) makes them viable for deployment in token-constrained settings (e.g., real-time CI pipelines, mobile inference).\n",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  },
+  "sourceToolAssistantUUID": "21c6ae46-4e59-45ac-b760-60e0b64397da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-16T12:02:36.598Z_
+
+Now I'll insert the new paragraph between "Format marker sensitivity." and "Tier hierarchy: practical implications."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80cc6573-2cc7-4db6-8a7a-c934be361209",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DMYfxtCKiiZigRBvDR",
+  "type": "assistant",
+  "uuid": "494db991-229d-4ebb-bfa7-7f3e65ca4388",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKDRroj3uge4cigDwMwFF4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 23383,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 23383,
+          "cache_creation_input_tokens": 1423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T12:02:42.674Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NMwt9y6FLWkFT66fmiaZAm`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+  "old_string": "\\paragraph{Tier hierarchy: practical implications.}",
+  "new_string": "\\paragraph{Irreducible error ceiling.}\nSamples 901 and 905---both from HumanEval/95 (\\texttt{check\\_dict\\_case})---are misclassified by every model configuration we tested: Qwen-7B across 3 seeds ($99.83\\%$ accuracy each), Qwen-1.5B ($99.83\\%$), and 2 of 3 DeepSeek-6.7B seeds.\nThe root cause is deterministic: Python's \\texttt{all()} short-circuits generator evaluation, raising \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass) which the tracer records as an \\texttt{[ERROR]} event despite the test passing.\nModels reasonably but incorrectly infer failure from this exception signal.\nThe error sets overlap completely across scales (Qwen-1.5B $\\cap$ Qwen-7B $= \\{901, 905\\}$), providing mechanistic confirmation that $99.83\\%$ (1188/1190) constitutes the representation-inherent irreducible error ceiling for \\texttt{exception\\_only}.\nThese results demonstrate that exception-only accuracy is \\emph{signal-limited} rather than \\emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.\n\n\\paragraph{Tier hierarchy: practical implications.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "494db991-229d-4ebb-bfa7-7f3e65ca4388",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DMYfxtCKiiZigRBvDR",
+  "type": "assistant",
+  "uuid": "18dee069-1ebb-4649-ab69-25d61f267d1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKDRroj3uge4cigDwMwFF4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1423,
+      "cache_read_input_tokens": 23383,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 23383,
+          "cache_creation_input_tokens": 1423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T12:02:42.705Z_
+
+<details><summary>↩ Tool result · `toolu_01NMwt9y6FLWkFT66fmiaZAm`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18dee069-1ebb-4649-ab69-25d61f267d1f",
+  "isSidechain": false,
+  "promptId": "e02c89a8-4b41-43be-9775-22e301bf2164",
+  "type": "user",
+  "uuid": "0786e397-2654-4989-b050-fa04c6fd5b47",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+    "oldString": "\\paragraph{Tier hierarchy: practical implications.}",
+    "newString": "\\paragraph{Irreducible error ceiling.}\nSamples 901 and 905---both from HumanEval/95 (\\texttt{check\\_dict\\_case})---are misclassified by every model configuration we tested: Qwen-7B across 3 seeds ($99.83\\%$ accuracy each), Qwen-1.5B ($99.83\\%$), and 2 of 3 DeepSeek-6.7B seeds.\nThe root cause is deterministic: Python's \\texttt{all()} short-circuits generator evaluation, raising \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass) which the tracer records as an \\texttt{[ERROR]} event despite the test passing.\nModels reasonably but incorrectly infer failure from this exception signal.\nThe error sets overlap completely across scales (Qwen-1.5B $\\cap$ Qwen-7B $= \\{901, 905\\}$), providing mechanistic confirmation that $99.83\\%$ (1188/1190) constitutes the representation-inherent irreducible error ceiling for \\texttt{exception\\_only}.\nThese results demonstrate that exception-only accuracy is \\emph{signal-limited} rather than \\emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.\n\n\\paragraph{Tier hierarchy: practical implications.}",
+    "originalFile": "\\section{Discussion}\n\nVerdict prediction is fundamentally fault detection: the model determines whether execution deviated from expected behavior.\nException events are the most explicit deviation signal---self-contained diagnostic moments that explain why \\texttt{exception\\_only} matches or exceeds VOTA: non-exception components dilute the model's attention without providing complementary information.\n\nThe Tier~1 accuracy (${\\geq}$99\\%) confirms that fault indicator presence detection is sufficient.\nThe contribution lies in quantifying the cost of richer representations: adding trace information actively \\emph{hurts} (VOTA $<$ \\texttt{exception\\_only}, Table~\\ref{tab:ablation}), compounded by tokenizer-driven truncation on DeepSeek (\\S\\ref{sec:cross_model}).\nThe 6.22pp SFT advantage over the best regex concentrates on caught-exception boundary cases, confirming the model learns semantic distinctions beyond mere presence detection (Appendix~\\ref{sec:regex_baselines}).\nTraining dynamics reveal that DeepSeek seeds with near-identical losses differ by 8.24pp in accuracy (Appendix~\\ref{sec:training_dynamics}), and the 0.50pp cross-model exception gap provides a clean capability measure unconfounded by truncation (Appendix~\\ref{sec:robustness_analysis}).\nIrreducible error analysis is in Appendix~\\ref{sec:irreducible}.\n\n\\paragraph{Why exception\\_only outperforms ae\\_only.}\nAlthough \\texttt{ae\\_only} achieves 99.92\\% on seed 42, it is a strict superset of the exception signal: assertion-point comparisons include the exception event (when present) plus additional information such as fallback local variable states.\nMulti-seed evaluation reveals that this extra content introduces noise: \\texttt{ae\\_only} achieves 99.64\\% mean accuracy ($\\pm$0.49, seeds 42/123/456) while \\texttt{exception\\_only} achieves 99.83\\% ($\\pm$0.00).\nThe zero-variance result for \\texttt{exception\\_only} indicates that it captures a minimal sufficient signal---the compact exception event---while \\texttt{ae\\_only}'s additional components (fallback locals, assertion formatting) occasionally mislead the model, manifesting as seed-dependent variance ($\\sigma{=}$0.49pp).\nThus \\texttt{exception\\_only} is both more precise and more stable than its superset.\n\n\\paragraph{SFT vs.\\ regex incremental analysis.}\nThe gap between B5 (format marker, 99.33\\%) and SFT \\texttt{exception\\_only} (99.83\\%) isolates the value of learned semantic understanding (McNemar $p{=}0.041$, Table~\\ref{tab:regex}).\nAmong 8 test samples where pass-labeled code triggers exceptions (from 2 distinct problems), the SFT model correctly classifies 6 (all from MBPP/113, a try/except ValueError pattern) while B5 misclassifies all 8. The 2 remaining errors (HumanEval/95, GeneratorExit) are irreducible. At the problem level, SFT handles 1/2 exception-type edge cases vs B5's 0/2.\nThis confirms that SFT learns a genuine semantic boundary---distinguishing caught from uncaught exceptions---rather than merely detecting exception presence or format markers.\n\n\\paragraph{Format marker sensitivity.}\nThe B5 baseline (Appendix~\\ref{sec:regex_baselines}) achieves 99.33\\% by exploiting a deterministic format marker (\\texttt{[No exception data in trace]}) present in all pass samples.\nThis near-ceiling performance from a trivial pattern raises a concern: does SFT also learn this shortcut?\nThe answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\\ B5's 0/8.\nFuture trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.\n\n\\paragraph{Tier hierarchy: practical implications.}\nThe two-tier structure (Tier~1 ${\\geq}$99\\%; Tier~2 = 85.6\\%) has direct engineering implications for trace-augmented systems.\nFirst, it implies a \\emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution.\nSecond, the hierarchy suggests a fallback design: systems should attempt Tier~1 extraction (exception events) and only resort to Tier~2 signals (loop compression) when no exception is raised---though our results show that even Tier~2 alone substantially outperforms no-trace baselines (+10.50pp).\nThird, the minimal token footprint of Tier~1 signals (${\\sim}$200 tokens vs.\\ ${\\sim}$2{,}600 for VOTA) makes them viable for deployment in token-constrained settings (e.g., real-time CI pipelines, mobile inference).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 26,
+        "oldLines": 6,
+        "newStart": 26,
+        "newLines": 13,
+        "lines": [
+          " The answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\\ B5's 0/8.",
+          " Future trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.",
+          " ",
+          "+\\paragraph{Irreducible error ceiling.}",
+          "+Samples 901 and 905---both from HumanEval/95 (\\texttt{check\\_dict\\_case})---are misclassified by every model configuration we tested: Qwen-7B across 3 seeds ($99.83\\%$ accuracy each), Qwen-1.5B ($99.83\\%$), and 2 of 3 DeepSeek-6.7B seeds.",
+          "+The root cause is deterministic: Python's \\texttt{all()} short-circuits generator evaluation, raising \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass) which the tracer records as an \\texttt{[ERROR]} event despite the test passing.",
+          "+Models reasonably but incorrectly infer failure from this exception signal.",
+          "+The error sets overlap completely across scales (Qwen-1.5B $\\cap$ Qwen-7B $= \\{901, 905\\}$), providing mechanistic confirmation that $99.83\\%$ (1188/1190) constitutes the representation-inherent irreducible error ceiling for \\texttt{exception\\_only}.",
+          "+These results demonstrate that exception-only accuracy is \\emph{signal-limited} rather than \\emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.",
+          "+",
+          " \\paragraph{Tier hierarchy: practical implications.}",
+          " The two-tier structure (Tier~1 ${\\geq}$99\\%; Tier~2 = 85.6\\%) has direct engineering implications for trace-augmented systems.",
+          " First, it implies a \\emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "18dee069-1ebb-4649-ab69-25d61f267d1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0786e397-2654-4989-b050-fa04c6fd5b47",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add irreducible error ceiling paragraph to paper discussion",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T12:02:45.481Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01N3HkarFVnqgCck3C261J63`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0786e397-2654-4989-b050-fa04c6fd5b47",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DNDqfSemDFoa9GLB5X",
+  "type": "assistant",
+  "uuid": "50cd9ed2-d780-4c18-aa08-ad6ed16f291f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkiNXSsgjwKaagjc3Tznxs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 565,
+      "cache_read_input_tokens": 24806,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 565,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 24806,
+          "cache_creation_input_tokens": 565,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 565
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T12:02:45.485Z_
+
+<details><summary>↩ Tool result · `toolu_01N3HkarFVnqgCck3C261J63`</summary>
+
+```text
+1	\section{Discussion}
+2	
+3	Verdict prediction is fundamentally fault detection: the model determines whether execution deviated from expected behavior.
+4	Exception events are the most explicit deviation signal---self-contained diagnostic moments that explain why \texttt{exception\_only} matches or exceeds VOTA: non-exception components dilute the model's attention without providing complementary information.
+5	
+6	The Tier~1 accuracy (${\geq}$99\%) confirms that fault indicator presence detection is sufficient.
+7	The contribution lies in quantifying the cost of richer representations: adding trace information actively \emph{hurts} (VOTA $<$ \texttt{exception\_only}, Table~\ref{tab:ablation}), compounded by tokenizer-driven truncation on DeepSeek (\S\ref{sec:cross_model}).
+8	The 6.22pp SFT advantage over the best regex concentrates on caught-exception boundary cases, confirming the model learns semantic distinctions beyond mere presence detection (Appendix~\ref{sec:regex_baselines}).
+9	Training dynamics reveal that DeepSeek seeds with near-identical losses differ by 8.24pp in accuracy (Appendix~\ref{sec:training_dynamics}), and the 0.50pp cross-model exception gap provides a clean capability measure unconfounded by truncation (Appendix~\ref{sec:robustness_analysis}).
+10	Irreducible error analysis is in Appendix~\ref{sec:irreducible}.
+11	
+12	\paragraph{Why exception\_only outperforms ae\_only.}
+13	Although \texttt{ae\_only} achieves 99.92\% on seed 42, it is a strict superset of the exception signal: assertion-point comparisons include the exception event (when present) plus additional information such as fallback local variable states.
+14	Multi-seed evaluation reveals that this extra content introduces noise: \texttt{ae\_only} achieves 99.64\% mean accuracy ($\pm$0.49, seeds 42/123/456) while \texttt{exception\_only} achieves 99.83\% ($\pm$0.00).
+15	The zero-variance result for \texttt{exception\_only} indicates that it captures a minimal sufficient signal---the compact exception event---while \texttt{ae\_only}'s additional components (fallback locals, assertion formatting) occasionally mislead the model, manifesting as seed-dependent variance ($\sigma{=}$0.49pp).
+16	Thus \texttt{exception\_only} is both more precise and more stable than its superset.
+17	
+18	\paragraph{SFT vs.\ regex incremental analysis.}
+19	The gap between B5 (format marker, 99.33\%) and SFT \texttt{exception\_only} (99.83\%) isolates the value of learned semantic understanding (McNemar $p{=}0.041$, Table~\ref{tab:regex}).
+20	Among 8 test samples where pass-labeled code triggers exceptions (from 2 distinct problems), the SFT model correctly classifies 6 (all from MBPP/113, a try/except ValueError pattern) while B5 misclassifies all 8. The 2 remaining errors (HumanEval/95, GeneratorExit) are irreducible. At the problem level, SFT handles 1/2 exception-type edge cases vs B5's 0/2.
+21	This confirms that SFT learns a genuine semantic boundary---distinguishing caught from uncaught exceptions---rather than merely detecting exception presence or format markers.
+22	
+23	\paragraph{Format marker sensitivity.}
+24	The B5 baseline (Appendix~\ref{sec:regex_baselines}) achieves 99.33\% by exploiting a deterministic format marker (\texttt{[No exception data in trace]}) present in all pass samples.
+25	This near-ceiling performance from a trivial pattern raises a concern: does SFT also learn this shortcut?
+26	The answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\ B5's 0/8.
+27	Future trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.
+28	
+29	\paragraph{Irreducible error ceiling.}
+30	Samples 901 and 905---both from HumanEval/95 (\texttt{check\_dict\_case})---are misclassified by every model configuration we tested: Qwen-7B across 3 seeds ($99.83\%$ accuracy each), Qwen-1.5B ($99.83\%$), and 2 of 3 DeepSeek-6.7B seeds.
+31	The root cause is deterministic: Python's \texttt{all()} short-circuits generator evaluation, raising \texttt{GeneratorExit} (a \texttt{BaseException} subclass) which the tracer records as an \texttt{[ERROR]} event despite the test passing.
+32	Models reasonably but incorrectly infer failure from this exception signal.
+33	The error sets overlap completely across scales (Qwen-1.5B $\cap$ Qwen-7B $= \{901, 905\}$), providing mechanistic confirmation that $99.83\%$ (1188/1190) constitutes the representation-inherent irreducible error ceiling for \texttt{exception\_only}.
+34	These results demonstrate that exception-only accuracy is \emph{signal-limited} rather than \emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.
+35	
+36	\paragraph{Tier hierarchy: practical implications.}
+37	The two-tier structure (Tier~1 ${\geq}$99\%; Tier~2 = 85.6\%) has direct engineering implications for trace-augmented systems.
+38	First, it implies a \emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution.
+39	Second, the hierarchy suggests a fallback design: systems should attempt Tier~1 extraction (exception events) and only resort to Tier~2 signals (loop compression) when no exception is raised---though our results show that even Tier~2 alone substantially outperforms no-trace baselines (+10.50pp).
+40	Third, the minimal token footprint of Tier~1 signals (${\sim}$200 tokens vs.\ ${\sim}$2{,}600 for VOTA) makes them viable for deployment in token-constrained settings (e.g., real-time CI pipelines, mobile inference).
+41	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50cd9ed2-d780-4c18-aa08-ad6ed16f291f",
+  "isSidechain": false,
+  "promptId": "e02c89a8-4b41-43be-9775-22e301bf2164",
+  "type": "user",
+  "uuid": "62b73b64-5c9c-4d52-802a-84d108e8e016",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\n\nVerdict prediction is fundamentally fault detection: the model determines whether execution deviated from expected behavior.\nException events are the most explicit deviation signal---self-contained diagnostic moments that explain why \\texttt{exception\\_only} matches or exceeds VOTA: non-exception components dilute the model's attention without providing complementary information.\n\nThe Tier~1 accuracy (${\\geq}$99\\%) confirms that fault indicator presence detection is sufficient.\nThe contribution lies in quantifying the cost of richer representations: adding trace information actively \\emph{hurts} (VOTA $<$ \\texttt{exception\\_only}, Table~\\ref{tab:ablation}), compounded by tokenizer-driven truncation on DeepSeek (\\S\\ref{sec:cross_model}).\nThe 6.22pp SFT advantage over the best regex concentrates on caught-exception boundary cases, confirming the model learns semantic distinctions beyond mere presence detection (Appendix~\\ref{sec:regex_baselines}).\nTraining dynamics reveal that DeepSeek seeds with near-identical losses differ by 8.24pp in accuracy (Appendix~\\ref{sec:training_dynamics}), and the 0.50pp cross-model exception gap provides a clean capability measure unconfounded by truncation (Appendix~\\ref{sec:robustness_analysis}).\nIrreducible error analysis is in Appendix~\\ref{sec:irreducible}.\n\n\\paragraph{Why exception\\_only outperforms ae\\_only.}\nAlthough \\texttt{ae\\_only} achieves 99.92\\% on seed 42, it is a strict superset of the exception signal: assertion-point comparisons include the exception event (when present) plus additional information such as fallback local variable states.\nMulti-seed evaluation reveals that this extra content introduces noise: \\texttt{ae\\_only} achieves 99.64\\% mean accuracy ($\\pm$0.49, seeds 42/123/456) while \\texttt{exception\\_only} achieves 99.83\\% ($\\pm$0.00).\nThe zero-variance result for \\texttt{exception\\_only} indicates that it captures a minimal sufficient signal---the compact exception event---while \\texttt{ae\\_only}'s additional components (fallback locals, assertion formatting) occasionally mislead the model, manifesting as seed-dependent variance ($\\sigma{=}$0.49pp).\nThus \\texttt{exception\\_only} is both more precise and more stable than its superset.\n\n\\paragraph{SFT vs.\\ regex incremental analysis.}\nThe gap between B5 (format marker, 99.33\\%) and SFT \\texttt{exception\\_only} (99.83\\%) isolates the value of learned semantic understanding (McNemar $p{=}0.041$, Table~\\ref{tab:regex}).\nAmong 8 test samples where pass-labeled code triggers exceptions (from 2 distinct problems), the SFT model correctly classifies 6 (all from MBPP/113, a try/except ValueError pattern) while B5 misclassifies all 8. The 2 remaining errors (HumanEval/95, GeneratorExit) are irreducible. At the problem level, SFT handles 1/2 exception-type edge cases vs B5's 0/2.\nThis confirms that SFT learns a genuine semantic boundary---distinguishing caught from uncaught exceptions---rather than merely detecting exception presence or format markers.\n\n\\paragraph{Format marker sensitivity.}\nThe B5 baseline (Appendix~\\ref{sec:regex_baselines}) achieves 99.33\\% by exploiting a deterministic format marker (\\texttt{[No exception data in trace]}) present in all pass samples.\nThis near-ceiling performance from a trivial pattern raises a concern: does SFT also learn this shortcut?\nThe answer is partially yes---the format marker correlates perfectly with the pass class---but the SFT model additionally handles the 8 boundary samples where exceptions occur in passing code, achieving 6/8 correct vs.\\ B5's 0/8.\nFuture trace designs should avoid such deterministic format cues to ensure models learn from exception semantics rather than formatting artifacts.\n\n\\paragraph{Irreducible error ceiling.}\nSamples 901 and 905---both from HumanEval/95 (\\texttt{check\\_dict\\_case})---are misclassified by every model configuration we tested: Qwen-7B across 3 seeds ($99.83\\%$ accuracy each), Qwen-1.5B ($99.83\\%$), and 2 of 3 DeepSeek-6.7B seeds.\nThe root cause is deterministic: Python's \\texttt{all()} short-circuits generator evaluation, raising \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass) which the tracer records as an \\texttt{[ERROR]} event despite the test passing.\nModels reasonably but incorrectly infer failure from this exception signal.\nThe error sets overlap completely across scales (Qwen-1.5B $\\cap$ Qwen-7B $= \\{901, 905\\}$), providing mechanistic confirmation that $99.83\\%$ (1188/1190) constitutes the representation-inherent irreducible error ceiling for \\texttt{exception\\_only}.\nThese results demonstrate that exception-only accuracy is \\emph{signal-limited} rather than \\emph{capacity-limited}: the 1.5B model achieves identical performance to the 7B model, with both reaching the representation's theoretical ceiling.\n\n\\paragraph{Tier hierarchy: practical implications.}\nThe two-tier structure (Tier~1 ${\\geq}$99\\%; Tier~2 = 85.6\\%) has direct engineering implications for trace-augmented systems.\nFirst, it implies a \\emph{diminishing returns} principle: once a Tier~1 signal is available, adding more trace information provides no benefit and may actively degrade performance through attention dilution.\nSecond, the hierarchy suggests a fallback design: systems should attempt Tier~1 extraction (exception events) and only resort to Tier~2 signals (loop compression) when no exception is raised---though our results show that even Tier~2 alone substantially outperforms no-trace baselines (+10.50pp).\nThird, the minimal token footprint of Tier~1 signals (${\\sim}$200 tokens vs.\\ ${\\sim}$2{,}600 for VOTA) makes them viable for deployment in token-constrained settings (e.g., real-time CI pipelines, mobile inference).\n",
+      "numLines": 41,
+      "startLine": 1,
+      "totalLines": 41
+    }
+  },
+  "sourceToolAssistantUUID": "50cd9ed2-d780-4c18-aa08-ad6ed16f291f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-16T12:02:49.740Z_
+
+段落已插入，位于 "Format marker sensitivity." 之后、"Tier hierarchy: practical implications." 之前（第29–34行）。6行 LaTeX，涵盖了所有要求的要点：跨模型 error set 重叠、GeneratorExit 根因、99.83% 理论上限、signal-limited vs capacity-limited 结论。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62b73b64-5c9c-4d52-802a-84d108e8e016",
+  "isSidechain": false,
+  "requestId": "req_011Cb6DNRvwA5ChzSQoY2AhM",
+  "type": "assistant",
+  "uuid": "c3964024-b984-41b2-9ba3-c3de6f309874",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHSWc8BxKa4rBrxUXEiDRC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1728,
+      "cache_read_input_tokens": 25371,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 25371,
+          "cache_creation_input_tokens": 1728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c3964024-b984-41b2-9ba3-c3de6f309874",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add irreducible error ceiling paragraph to paper discussion",
+  "sessionId": "d9788b43-8cd0-4d99-b291-db5f3e72bffa"
+}
+```
+
+---

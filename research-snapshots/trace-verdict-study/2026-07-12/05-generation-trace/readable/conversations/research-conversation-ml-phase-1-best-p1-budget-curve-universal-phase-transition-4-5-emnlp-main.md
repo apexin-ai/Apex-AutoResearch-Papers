@@ -1,0 +1,3585 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/ade1eae3-df3a-4ca2-93e1-df33217e5c08.jsonl`
+- **Structured JSON:** [`4b992d4f752b8646115d.json`](../../sessions/4b/4b992d4f752b8646115d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T11:40:47.583Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T11:40:47.583Z",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强竞争力\n核心假设：['tail-384 全 4 模型 ≤81%（与 tail-256 统计等价），phase transition 在 384-512 之间是 sharp cliff', 'cross-seed tail-512 标准差 ≤2pp，convergence band 紧密，phase transition 位置 seed-robust', 'CodeLlama tail-2048 正常完成（匹配 Qwen/DeepSeek pattern），4 模型 budget curve 完整', '4 模型 budget curve 展示 universal sharp phase transition + universal exception ceiling → 构成独立 contribution', 'label_only 26%/74% causal decomposition 被认可为独立 methodological contribution', \"'feature engineering' 批评被 4-model universality + phase transition structure 有效反驳\"]\n关键指标范围：{'tail_384_accuracy_4model_mean': [76, 81], 'tail_384_vs_tail256_max_diff_pp': [0, 3], 'cross_seed_tail512_std_pp_max': [0, 2.0], 'codellama_tail2048_accuracy': [95, 98], 'phase_transition_256to512_pp_min_across_models': [15, 23], 'exception_ceiling_4model_nonoutlier': [99.3, 100], 'paper_distinct_contributions': [4, 5], 'emnlp_main_accept_probability': [0.55, 0.75]}\n叙事方向：原始 framing 完全成立。5 contributions: (1) exception dominance universal across 4 models/3 families/2 scales, (2) information density > gradient dilution with 26%/74% causal decomposition, (3) two-tier diagnostic hierarchy with multi-seed validation, (4) universal sharp phase transition at ~400 tokens confirming diagnostic signal locality, (5) LoRA training stability as practical bottleneck (D9/D10)。Budget curve 作为核心 Figure 展示 'why exception works' 的机制解释—— exception 等价于 trace 末尾 diagnostic moment，而 phase transition 证明这个 moment 的信息高度局部化。Paper 叙事完整闭环：fault detection task → diagnostic signal extraction → phase transition confirms signal locality → exception_only is the optimal extraction。Claims 无需调整，数据自证。\n\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: trace-verdict-study\nfocus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story 是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。\n\n## paper_framing.md\n\n# Paper Framing — trace-verdict-study\n\n> v3.0 — [UPDATED 2026-05-15] D030 CLOSED: DeepSeek VOTA 84.45% confirmed correct (confirmatory re-eval). **Critical narrative fix**: to_chat_text() preserves labels → VOTA 训练时 verdict label 未被截断 → 论文中 \"label truncation/corruption\" 措辞对 VOTA 不成立。正确叙事: trace INPUT content 被截断 (91.7% samples), 84.45% 反映 trace information loss。新增 D11: VOTA cross-model gap confounded by training-time truncation。数据集来源：HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 LLM-generated solutions = 5910 samples。\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR submission)\n- Fallback: EMNLP 2026 Findings\n- Deadline: ARR May 25, 2026\n\n## Core Insight\n\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The most effective signal is the **exception event** — a compact, structured diagnostic moment that consistently outperforms all other trace representations across models (Qwen 99.83% ± 0.00 across 3 seeds; DeepSeek 91-99% depending on seed, but always > VOTA 84.45% and no_trace 73.36%). In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.** Cross-model absolute performance depends on LoRA initialization stability, but exception_only's relative dominance over other components is robust.\n\nVOTA's primary contribution is **fault indicator isolation** — automatically extracting exception events from noisy full traces — rather than generic trace compression. The \"compression helps\" narrative was a stepping stone; the real mechanism is diagnostic signal extraction.\n\n## Core Claims (3)\n\n### Claim 1: Exception events are the most effective trace component for verdict prediction\n\nException summaries consistently achieve the highest verdict prediction accuracy across both models tested, outperforming all other trace representations in every seed. On Qwen-2.5-Coder-7B, performance is perfectly robust: 99.83% ± 0.00 (3 seeds). On DeepSeek-Coder-6.7B, absolute accuracy is seed-dependent (seed42=99.83% epoch1, seed123=91.43% epoch1; Δ=8.40pp), consistent with LoRA initialization sensitivity — but exception_only still dominates VOTA (84.45%) and no_trace (73.36%) in all seeds. This contrasts with VOTA (cross-model gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning.\n\n**Supporting evidence:**\n- `vota_exception_only_seed42_v2`: Qwen 99.83%, ECE=0.0027\n- `deepseek_exception_only_seed42`: DeepSeek 99.83% (epoch1) / 99.33% (epoch3)\n- `deepseek_exception_only_seed456`: DeepSeek 99.33% (epoch3), CI [98.82, 99.75] — 与 seed42 完全一致\n- `deepseek_exception_only_seed123`: DeepSeek 91.43% (epoch1) / 91.09% (epoch3) — LoRA init sensitivity outlier\n- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp vs Qwen)\n- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp vs Qwen)\n- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison\n\n**DeepSeek seed analysis** ✅ (FINALIZED, D029):\n\n| Seed | Epoch 3 (final) | fail_recall | pass_recall | train_loss | Errors | CI |\n|------|-----------------|-------------|-------------|------------|--------|-----|\n| 42   | 99.33%          | 1.0         | 0.9906      | —          | 8/1190 | — |\n| 456  | 99.33%          | 1.0         | 0.9906      | 0.1225     | 8/1190 | [98.82, 99.75] |\n| 123  | 91.09%          | 0.705       | 0.993       | 0.122      | —      | [89.4, 92.6] |\n\nseed42 与 seed456 结果**完全一致**（均 8/1190 错误，99.33%），seed123 为离群值。seed123 的 fail_recall 仅 0.705 — LoRA 初始化落入差的局部最优，未充分学到 exception→fail 映射。**关键发现**: seed456 和 seed123 的 train_loss 几乎相同（0.1225 vs 0.122），但 accuracy 差 8.2pp — token-level loss 掩盖了 sample-level 分类能力的巨大差异（详见 D10）。\n\n**Irreducible error analysis** ✅: 3 seeds 错误的 2 个样本 (id=901, 905) 均来自 HumanEval/95 (`check_dict_case`)，根因为 Python `all()` 对 generator expression 短路触发 `GeneratorExit`（`BaseException` 子类，非真正错误）。tracer 将其标记为 `[ERROR]`，exception_only 模型看到 7 行 `[ERROR] GeneratorExit`，合理但错误地预测 fail。整个 1190 条测试集仅这 2 条含 `GeneratorExit`，模型无训练信号学习其良性本质。**这确认 99.83% 是 exception_only 表征的理论上限，剩余 0.17% 是 representation-inherent irreducible error，而非模型不足。**\n\n**Seed robustness** ✅: Qwen exception_only 3-seed 完全一致，构成本文最强 robustness 证据：\n\n| Seed | Accuracy | 95% CI | Errors |\n|------|----------|--------|--------|\n| 42 | 99.83% | [99.58, 100] | 2/1190 |\n| 123 | 99.83% | [99.58, 100] | 2/1190 |\n| 456 | 99.83% | [99.58, 100] | 2/1190 |\n\n3 seeds 错误样本 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限，variance = 0。\n\n**DeepSeek cross-model** ✅ (D029): 3-seed 完整数据 — seed42/456=99.33%, seed123=91.09%。2/3 seeds 鲁棒，seed123 为 LoRA 初始化离群值（fail_recall 仅 0.705）。Qwen 3-seed 完美稳定 (99.83% ± 0.00) vs DeepSeek 高方差（σ≈4.8pp），暗示 exception signal 的 learnability 与模型 LoRA 训练稳定性相关。但即使最差 seed (91.09%) 仍优于 VOTA (84.45%) 和 no_trace (73.36%)，relative dominance robust。\n\n### Claim 2: Information density, not gradient dilution, drives trace compression benefit\n\nFull traces help verdict prediction (81.76% [`full_trace_seed42_v5`], +6.6pp over baseline), but VOTA achieves 99.41% [`vota_seed42_v5`] (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.22% [`full_trace_label_only_seed42`]), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.\n\nCross-model evidence reinforces this: VOTA gap (14.96pp) partly tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), though **confounded by DeepSeek training-time trace truncation** (91.7% of VOTA samples truncated to ~2048 tokens; see D11). The two factors cannot be disentangled in the current design. Exception signal partially bypasses both bottlenecks (token-short, no truncation; consistently best component on both models), though DeepSeek shows seed-dependent absolute performance (91-99%).\n\n**Supporting evidence:**\n- `full_trace_label_only_seed42`: 86.22%, ECE=0.1107 (gradient dilution fix, +4.5pp over standard full_trace)\n- `full_trace_seed42_v5`: 81.76%, ECE=0.0958 (standard full_trace)\n- `vota_seed42_v5`: 99.41%, ECE=0.0054\n- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)\n- CRUXEval literature data (Wang et al.)\n\n### Claim 3: Two-tier diagnostic hierarchy for verdict prediction\n\nComponent ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:\n- **Tier 1 — diagnostic moment signals**: exception summaries (99.83% [`vota_exception_only_seed42_v2`]) and assertion-point information (99.92% [`vota_ae_only_seed42`]) are individually near-perfect and sufficient for verdict prediction on Qwen. These signals are structurally simple and consistently the most effective component on both models, though DeepSeek absolute performance is seed-dependent.\n- **Tier 2 — behavioral patterns**: loop compression (85.63% [`vota_loop_only_seed42`]) carries substantial signal but is model-dependent and fully subsumed by Tier 1.\n\nCombining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.63% vs 86.22%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.\n\n**Supporting evidence:**\n- `vota_exception_only_seed42_v2`: 99.83%, ECE=0.0027 (Tier 1 exception)\n- `vota_ae_only_seed42`: 99.92%, ECE=0.0004 (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)\n- `vota_loop_only_seed42`: 85.63%, ECE=0.0831 (Tier 2 behavioral)\n- `full_trace_label_only_seed42`: 86.22%, ECE=0.1107 (≈ loop_only, confirming extraction equivalence)\n- `deepseek_exception_only_seed42`: 99.83% epoch1 / 99.33% epoch3 (Tier 1 cross-model validation)\n- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)\n\n**Calibration**: 完整 calibration 数据确认 Tier 1 信号不仅 accuracy 近完美，置信度校准也近完美：\n\n| Condition | Accuracy | ECE | Brier | 解读 |\n|-----------|----------|-----|-------|------|\n| ae_only | 99.92% | 0.0004 | 0.0008 | 近乎完美校准 |\n| exception_only | 99.83% | 0.0027 | 0.0013 | 近乎完美校准 |\n| VOTA | 99.41% | 0.0054 | 0.005 | 优秀，但 Tier 2 引入轻微 noise |\n| loop_only | 85.63% | 0.0831 | — | Tier 2 单独校准中等 |\n| label_only | 86.22% | 0.1107 | — | gradient dilution fix 仍 miscalibrated |\n| full_trace | 81.76% | 0.0958 | — | 中度 miscalibrated |\n| no_trace | 75.13% | 0.1715 | 0.1972 | 严重 miscalibrated |\n\nno_trace ECE 是 exception_only 的 **~63x**（0.1715/0.0027），Brier 是 **~150x**（0.1972/0.0013）。Trace signal（尤其 Tier 1）不仅提升 accuracy，更从根本上改善模型 calibration。\n\n**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.\n\n## Cross-Model Evidence Summary\n\n| Condition | Qwen-2.5-Coder-7B | DeepSeek-Coder-6.7B | Cross-model gap | Interpretation |\n|-----------|-------------------|---------------------|-----------------|----------------|\n| exception_only | 99.83% ± 0.00 (3 seeds) | seed42/456: 99.33%; seed123: 91.09% | 0.50-8.74pp (seed-dependent) | **Best component on both models**; 2/3 DeepSeek seeds match Qwen-level; 1 outlier still > VOTA |\n| VOTA | 99.41% | 84.45% | -14.96pp | Model-dependent — requires execution reasoning; **also confounded by DeepSeek training-time trace truncation** (91.7% of VOTA samples truncated from mean 2626 to ~2048 tokens; labels preserved via to_chat_text(), see D11) |\n| no_trace | 75.13% | 73.36% | -1.77pp | Baseline gap tracks general capability |\n| full_trace | 81.76% | collapsed (v3 pending) | N/A | DeepSeek v1 label truncation bug |\n\n**Key insight**: Exception_only is consistently the best component on both models (even worst DeepSeek seed 91.09% > VOTA 84.45%). Cross-model gap 与 signal complexity 正相关, but exception signal's absolute effectiveness also depends on LoRA training stability. Qwen: perfectly robust (3 seeds identical). DeepSeek: 2/3 seeds at 99.33% (matching Qwen-level), 1 outlier at 91.09% (LoRA initialization). Median performance robust; seed sensitivity suggests smaller/weaker models may need training stabilization (multi-seed selection, warmup tuning) for optimal exception signal utilization.\n\n## VOTA Repositioning\n\n**旧叙事**: VOTA 是 trace compression 方法，价值在于\"压缩使 trace 更有效\"。\n\n**新叙事**: VOTA 是 **fault indicator isolation** 方法，核心价值在于自动从 noisy execution traces 中提取 exception events 等 diagnostic signals。\n\n**证据链**:\n1. exception_only (99.83%) ≥ VOTA full (99.41%) — 压缩后的其他组件（loop, ae）不仅无益，反而引入 noise\n2. VOTA 跨模型 gap = 14.96pp — 因为 VOTA 包含 model-dependent 的 Tier 2 组件（loop compression 需要 execution reasoning）\n3. exception_only 在两个模型上均为最优组件 — isolate 出 Tier 1 后，相对优势 robust（虽然 DeepSeek 绝对值 seed-dependent）\n4. vota_no_ae (99.41%) = VOTA (99.41%) — actual/expected 移除无影响，exception 是真正的 active ingredient\n\n**论文中的表述**: \"VOTA's trace compression pipeline incidentally isolates exception events — the minimal sufficient diagnostic signal. Its value lies not in making traces shorter, but in separating high-specificity fault indicators from low-specificity behavioral patterns.\"\n\n**对 Method section 的影响**: VOTA 仍然完整描述（loop compression + exception + actual/expected），但 Results/Discussion 明确指出 exception isolation 是核心机制，其他组件是 model-capability-dependent bonus。\n\n## Story Spine\n\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.\n\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that \"no single trace representation consistently outperforms others.\" TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.\n\n- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are consistently the most effective trace component, achieving near-perfect accuracy on Qwen (99.83% ± 0.00, 3 seeds) and outperforming all alternatives on DeepSeek (91-99% vs VOTA 84.45%). Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.\n\n- **Headline result**: \"Exception events consistently achieve the highest verdict accuracy across models (Qwen 99.83%, DeepSeek 91-99%), outperforming VOTA traces (84.45% on DeepSeek, -14.96pp gap) — demonstrating that fault indicator isolation, not trace reasoning, is the robust mechanism for verdict prediction. DeepSeek seed sensitivity reveals LoRA training stability as a secondary factor for smaller models.\"\n\n## Story Arc\n\n1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.\n\n2. **First result — traces help, compression helps more** (single model): no_trace 75.13% → full_trace 81.76% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.\n\n3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The \"trace reasoning\" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).\n\n4. **Cross-model stress test — consistent dominance, not universal perfection**: Exception_only is the best component on both models (even DeepSeek worst seed 91.09% > VOTA 84.45%), but absolute performance is seed-dependent on DeepSeek (91-99% vs Qwen's perfectly stable 99.83%). VOTA degrades by 14.96pp. The structurally simplest component is the most robust, but LoRA initialization sensitivity introduces variance on weaker models. Qwen seed robustness (3-seed variance = 0) + calibration (ECE=0.0027) 确认 exception signal 在强模型上的 reliability。DeepSeek seed sensitivity 揭示 training stability 作为 secondary bottleneck。\n\n5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. VOTA's value is fault indicator isolation — automatically extracting exceptions from noisy traces — not generic compression. Simpler signals are more robust; complexity tolerance depends on model capability.\n\n## Dataset Characteristics\n\n### Data duplication analysis\n\n| Condition | Total | Unique | Duplication rate | Cause |\n|-----------|-------|--------|------------------|-------|\n| exception_only_train | 4720 | 2858 | 39.45% | 同题多个 passing 解映射为相同 (input, output) — 无异常 → 同一 trace |\n| exception_only_test | 1190 | 607 | 48.99% | 同上 |\n| raw_traces | 5910 | 5803 | 1.81% | 完整 trace 含行号/变量值/内存地址，几乎不重复 |\n\n**Train-test input overlap: 0（无数据泄漏）**\n\n**解读**: exception_only 高重复率是 representation 的自然属性，非数据问题。多个正确解对同一测试用例执行时若均无异常，exception_only 表征退化为相同的空/无异常标记。这恰好说明 exception signal 的 compactness — 它仅编码 fault presence，不编码 solution identity。raw_traces 重复率极低 (1.81%) 因为完整 trace 包含 solution-specific 信息（变量值、内存地址）。尽管高重复率意味着有效训练样本少于名义数量，模型仍达 99.83% — 进一步确认 exception signal 的 learnability。\n\n## DeepSeek full_trace 处理\n\n**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。v3 RUNNING（label-preserving truncation fix）。\n\n**处理方案**: v3 正在 cuda:0 上训练，预计 5/16 完成。\n\n**VOTA vs full_trace 截断机制区分** (D030 token analysis 确认):\n- **full_trace v1**: SFTTrainer right-truncation 切掉了 verdict **label** → 100% predict fail → 坍塌。根因: DeepSeek tokenizer 对 full_trace 产生 >2048 tokens, label 在截断窗口外。\n- **VOTA**: `to_chat_text()` 保留 verdict label（label 完整），但 91.7% 的样本 **trace content（input）被截断**（mean 2626 → ~2048 tokens）。84.45% 是真实结果，反映 trace 信息损失对模型学习的影响，**不是** label corruption。\n- **exception_only**: token 长度远低于 2048，不受截断影响，跨模型对比 clean。\n\n**对论文叙事的影响**: 论文中所有 \"right-truncation corrupts/removes the verdict label\" 措辞**对 VOTA 不成立**——label 完整保留，被截断的是 trace input。正确表述: \"trace content truncation causes information loss\"。VOTA cross-model gap (14.96pp) 有两个贡献因素: (1) model capability, (2) training-time trace truncation on DeepSeek (see D11)。\n\n## External Benchmark (DebugBench) Positioning\n\n**DebugBench 仅作泛化性验证，不作 trace importance 证据。**\n\n| Condition | Main Dataset | DebugBench | Δ interpretation |\n|-----------|-------------|------------|------------------|\n| no_trace | 75.13% | 96.71% | DebugBench 天花板高，baseline 已强 |\n| VOTA | 99.41% | 99.77% | +3.06pp lift — 边际 |\n| exception_only | 99.83% | 100.00% | +3.29pp lift — 边际 |\n\n**主数据集 trace lift = 24.70pp**（no_trace → exception_only），DebugBench trace lift 不到其 1/7。\n\n**论文定位规则**：\n- DebugBench → 泛化性证据（exception_only 100% = 跨数据集鲁棒性）\n- Trace importance 论证 → 仅依赖主数据集（24.7pp lift）\n- 禁止用 DebugBench 的 3.29pp lift 论证 \"trace 的核心价值\"——审稿人会攻击天花板效应\n\n## Venue Fit Risks\n\n| Risk | Assessment | Mitigation |\n|------|-----------|------------|\n| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |\n| 单数据集 | HumanEval + MBPP-sanitized 是唯一数据源 (591 problems × 10 solutions) | 定位为 empirical study, 深度优于广度; 两个标准 benchmark 组合覆盖多样编程题型; exception_only 有效训练样本仅 2858 unique 即达 99.83%, 暗示 signal 的 simplicity 降低对数据量的依赖 |\n| \"只是 feature engineering\" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |\n| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |\n| Seed robustness (Qwen) | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |\n| Seed robustness (DeepSeek) | ✅ 3-seed 完整: 2/3 at 99.33%, 1 at 91.09% | LoRA initialization sensitivity — median robust, worst still > all alternatives; 转化为 training stability finding (D9/D10) |\n| Calibration | ✅ 完整数据: Tier 1 ECE≤0.003, no_trace ECE=0.171 (~63x gap) | Brier ~150x gap 进一步确认 |\n| 只用 2 个模型 | 有限但有意义的 diversity | Architecture + pretraining data (5.5T vs 2T) + CRUXEval gap (17.5pp) 构成充分差异 |\n| 数据重复率 | exception_only 训练集 39.45% 重复 | 非数据泄漏（train-test overlap = 0）；是 representation compactness 的自然结果；有效样本仍足够学习 |\n\n## Anticipated Reviewer Concerns\n\n| Concern | Planned Response |\n|---------|-----------------|\n| \"exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？\" | full_trace 也包含 [ERROR] 但仅 81.76%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.13%. |\n| \"为什么 exception_only > VOTA? adding info 反而降?\" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.0027 vs VOTA ECE=0.0054. 部分样本 loop 正常但有 exception, 引入矛盾信号. |\n| \"CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence\" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |\n| \"只有 2 个模型，universality claim 太强\" | 同意是 limitation. 两模型在 architecture (RoPE vs ALiBi), pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. Exception signal 的 structural simplicity 提供 inductive argument for broader generalization. |\n| \"99.83% 可能 saturated, 看不出 exception 到底学了什么\" | Calibration 双指标: exception_only ECE=0.0027, Brier=0.0013 (近完美校准). 对比 no_trace ECE=0.1715, Brier=0.1972 (~63x/~150x gap). **Irreducible error 根因已明确**: 2/1190 errors 均因 Python `all()` 短路触发 `GeneratorExit`（`BaseException` 子类，非真正错误），tracer 将其标记为 `[ERROR]`。模型看到 7 行 `[ERROR] GeneratorExit` 合理预测 fail，但代码实际正确。整个测试集仅这 2 条含 `GeneratorExit`，无训练信号可学习其良性本质。99.83% 是 representation 的理论上限，非 saturation artifact。 |\n| \"只用了 1 个 seed\" | Qwen ✅: 3 seeds 99.83% ± 0.00. DeepSeek ✅: 3 seeds 完整 — seed42/456=99.33%, seed123=91.09%。2/3 鲁棒，1 离群。median=99.33%, worst=91.09% (仍 > VOTA 84.45%)。论文透明报告所有 seeds，将 seed sensitivity 转化为 LoRA training stability 的 finding（D9）。 |\n| \"eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?\" | Discussion D1: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |\n| \"DeepSeek full_trace 坍塌是 bug 不是 finding\" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |\n| \"calibration 数据只有 1 个 seed\" | Seed robustness 已证明 accuracy variance=0 (3 seeds), calibration 在 accuracy 完全一致的前提下 expected 也一致. ECE/Brier 的极小值 (0.0027/0.0013) 留有极小 variance 空间. |\n| \"DeepSeek epoch1 > epoch3, 为什么用 epoch3 报告?\" | 正文报告所有 seeds 的 final + best checkpoint。seed42: epoch1=99.83%, epoch3=99.33%。seed123: epoch1=91.43%, epoch3=91.09%。D7 讨论 early stopping + D9 讨论 LoRA initialization sensitivity。不 cherry-pick best seed。 |\n| \"DeepSeek seed sensitivity 说明 exception signal 不 robust\" | Exception_only 在所有 seeds 上仍优于其他条件（worst seed 91.09% > VOTA 84.45%）。Seed sensitivity 是 LoRA training 问题而非 signal 问题——Qwen 3 seeds 完美证明 signal 本身 robust。D9 讨论 training stabilization 作为 practical recommendation。 |\n| \"exception_only 数据集 ~40-49% 重复，有效训练样本不足？\" | 重复源自 representation compactness：同题多个 passing 解均无异常 → 相同 trace。**非数据泄漏**（train-test input overlap = 0）。raw_traces 仅 1.81% 重复，确认重复是 exception_only 表征特性而非数据收集问题。模型在有效样本仅 2858 unique 的条件下仍达 99.83%，反而说明 exception signal 的高 learnability — 少量 unique 样本即可充分学习 fault detection pattern。 |\n\n## Discussion 要点\n\n### D1: eval_loss vs verdict accuracy 解耦\nDeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.\n\n### D2: CRUXEval gap 假说 (revised — D030 confound)\nVOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model \"execution reasoning readiness\" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim. **注意**: 我们的训练/测试数据来自 HumanEval + MBPP-sanitized（非 CRUXEval），CRUXEval-I 分数仅作为衡量两个模型 execution reasoning 能力差异的外部参照。论文中必须明确区分数据来源与外部基准引用。**D030/D034 truncation evidence**: 14.96pp gap 中截断效应有因果证据: group_analysis 显示 train-truncated 83.04% vs train-intact 100% (Fisher p≈0, 推理时无截断)。截断因果方向可 claim，模型能力差异是 residual confound。CRUXEval gap 数值吻合可能部分巧合。论文中截断效应应作为 established factor 讨论（有 group_analysis 因果证据），模型能力假说标注为 residual confound hypothesis。\n\n### D3: Simplicity as robustness (revised)\nException signal 在两模型上均为最优组件，其结构简单性确保了相对优势的跨模型 robustness。但 DeepSeek seed sensitivity 揭示：simplicity 确保 signal 本身 robust，但 LoRA 训练过程是否稳定收敛到正确映射取决于模型。**trace design 应匹配 deployment model 的能力下界**，且需关注 training stability（建议：多 seed 验证 + 考虑 training stabilization 技巧如 warmup、learning rate schedule）。\n\n### D4: Checkpoint selection 与 gap 报告 (revised)\n正文报告所有 seeds 的 final checkpoint 结果 + best checkpoint 结果，不 cherry-pick。DeepSeek seed42: epoch1=99.83%, epoch3=99.33%（退化 0.50pp）。DeepSeek seed123: epoch1=91.43%, epoch3=91.09%（退化 0.34pp）。两个 seed 均显示轻微 epoch 退化，但核心差异在 epoch1 起点（8.40pp gap），不是训练过程。\n\n### D5: Irreducible samples — GeneratorExit 根因分析\n3 seeds 的 2/1190 errors 完全相同（id=901, 905, 均来自 HumanEval/95 `check_dict_case`），方向一致（pass→fail false negatives）。\n\n**根因**: Python `all()` 对 generator expression 短路时丢弃未耗尽的 generator，触发 `GeneratorExit`。`GeneratorExit` 继承自 `BaseException`（非 `Exception`），是 Python 内部控制流机制而非真正错误。但 tracer 对所有 caught exceptions 统一标记 `[ERROR]`，导致 exception_only 模型看到 7 行 `[ERROR] GeneratorExit`，合理但错误地预测 fail。\n\n**为何不可约**:\n1. **表征局限**: exception_only 条件下模型仅见异常数据，无法访问控制流、返回值或 assertion 结果。`GeneratorExit` 在此表征中与真正错误不可区分。\n2. **跨 seed 确定性**: 3 个 random seeds 产生完全相同的 errors，确认这是 data/representation 属性而非模型初始化随机性。\n3. **训练集无信号**: 整个 1190 条测试集仅这 2 条含 `GeneratorExit`，训练集中也缺乏足够的 `GeneratorExit` 良性样本供模型学习。\n4. **人类也会犯错**: 仅看 exception trace（7 行 `[ERROR]`），人类审查者在不了解 Python generator protocol 的情况下也会预测 fail。\n\n**对论文的意义**: (1) 99.83% 是 exception_only representation 在此数据集上的理论 ceiling，非 saturation artifact；(2) 揭示 tracer 设计的改进方向——区分 `BaseException` 子类（如 `GeneratorExit`, `KeyboardInterrupt`）与 `Exception` 子类（真正的程序错误）可消除此类 irreducible error；(3) 提供 concrete evidence 说明 exception_only 模型\"理解\"的是 `[ERROR]` tag 的 fault indicator 语义，而非 exception type 的 fine-grained 含义。\n\n### D6: Calibration as secondary evidence\nCalibration 数据提供独立于 accuracy 的 evidence dimension。no_trace Brier=0.1972 说明模型无 trace 时不仅预测错，且对错误预测过度自信。exception_only Brier=0.0013 说明模型在有 exception signal 时几乎完美区分确定性和不确定性。这支持 Claim 1 的 \"sufficient signal\" 论点——exception 不仅让模型预测对，还让模型 \"知道自己对\"。\n\n### D7: Early stopping for exception signal (revised — D030 epoch1 data complete)\n3-seed epoch1 完整数据：seed42 epoch1=99.83% → epoch3=99.33%（-0.50pp）；**seed456 epoch1=99.33% → epoch3=99.33%（0.00pp）**；seed123 epoch1=91.43% → epoch3=91.09%（-0.34pp）。**seed42 的 epoch1=99.83%（匹配 Qwen）是该 seed 独有的 LoRA 初始化运气，不是 DeepSeek epoch1 的通用属性。** seed456 epoch1=epoch3 说明 epoch 退化非普遍现象。核心差异仍是 LoRA 初始化（epoch1 起点差 8.40pp），不是 overfitting。Early stopping 无法挽救差的初始化（seed123）。**Implication**: (1) 报告 DeepSeek 结果时应使用 median/2-of-3 (99.33%)，不应以 seed42 epoch1=99.83% 作为 headline；(2) epoch1 peak 是 LoRA 初始化运气的副产物，不具推广性。对比: VOTA 在 DeepSeek 上 84.45% **已确认正确**（D030 关闭: confirmatory re-eval max_length=16384 → 84.45%，与原始训练评估精确一致；D030 根因是 evaluate.py v2 的 max_length=2048 eval-time 截断 bug 导致 82.6% 预测为 garbage tokens）。\n\n### D9: LoRA initialization sensitivity as secondary bottleneck [NEW — D028]\nDeepSeek exception_only seed42=99.83% vs seed123=91.43% (epoch1), 8.40pp gap。Qwen 3 seeds 完全一致。假说：exception signal 的 learnability 取决于 (1) signal 本身的结构简单性（cross-model robust）+ (2) LoRA 初始化是否落入能正确映射 exception→verdict 的 basin。Qwen-7B 可能因模型更强/LoRA landscape 更平滑而对初始化不敏感。DeepSeek-6.7B（CRUXEval-I 39% vs Qwen 56.5%）的 loss landscape 可能更 rugged，LoRA 初始化更易陷入 suboptimal basin（seed123 的 fail_recall 仅 70-72% 说明模型未学到 exception→fail 映射的关键部分）。**论文角度**: 这不是 negative result——它揭示了 trace SFT 的 practical consideration（training stability），可作为 contribution 的一部分。建议 Discussion 讨论 training stabilization 策略（warmup, lr schedule, LoRA rank 调整, multi-seed selection）。\n\n### D10: Train loss ≈ but accuracy ≠ across seeds [NEW — D029]\nDeepSeek exception_only seed456 (train_loss=0.1225) 与 seed123 (train_loss=0.122) 训练损失几乎相同，但 accuracy 差 8.2pp（99.33% vs 91.09%）。关键差异集中在 fail_recall（1.0 vs 0.705）——token-level loss 在所有 tokens 上平均，掩盖了 fail 类少数样本的 sample-level 分类能力差异。**Implication**: (1) 扩展 D1 (eval_loss vs accuracy decoupling) 到训练阶段：train_loss 同样不是 verdict task accuracy 的可靠代理指标；(2) 对 checkpoint selection 的实际建议更强：必须用 task-specific metric (accuracy/F1)，甚至 train_loss 收敛也不保证 task performance；(3) fail 类作为少数类（28.5%），其学习质量被平均 loss 稀释——这在 class-imbalanced 设置下是 general pattern，可推广到其他 verdict/detection 任务。\n\n### D11: VOTA cross-model gap: training-time trace truncation as causal factor [NEW — D030 token analysis + group_analysis]\nD030 token analysis 确认: `to_chat_text()` 保留 labels（verdict label 在训练时未被截断），但 91.7% 的 DeepSeek VOTA 训练样本的 **trace content** 从 mean 2626 tokens 被截断到 ~2048 tokens。\n\n**Group analysis 提供因果证据**: 将测试集按训练截断状态分组（推理时无截断, max_length=16384），train-truncated 组 accuracy=83.04% vs train-intact 组 accuracy=100%, Fisher exact p≈0。**截断的因果方向可以 claim**: 训练时 trace 被截断导致模型学到的信息不完整 → 推理时即使看到完整 trace 也无法正确判断。模型能力差异是残余 confound（无法完全分离）。\n\n**Implications**: (1) 论文中所有 \"right-truncation corrupts/removes the verdict label\" 措辞对 VOTA 不成立——label 完整保留，被截断的是 trace INPUT content；(2) 14.96pp gap 中截断效应有因果证据（group_analysis），模型能力差异是 residual confound；(3) exception_only 因 token 长度短（远低于 2048）不受截断影响，其跨模型对比更 clean——进一步强化 Claim 1 \"most robust component\" 叙事；(4) 论文应讨论 max_length 的影响作为 limitation/future work；(5) group_analysis 数据可作为 Table/Figure 纳入论文——展示截断的因果效应。\n\n### D8: Data duplication as representation signature\nexception_only 训练集 39.45% 重复（4720→2858 unique），测试集 48.99%（1190→607 unique），而 raw_traces 仅 1.81%（5910→5803 unique）。重复源自 exception_only 表征的 design-by-intent compactness：同一编程题的多个 passing 解执行时均无异常，exception_only 表征退化为相同的空标记。这一数据特征本身就是 Claim 3 two-tier hierarchy 的佐证——Tier 1 信号仅编码 fault presence/absence，不编码 solution-level details，因此天然高重复。Train-test input overlap = 0 排除数据泄漏。\n\n## Contingency Framing (已解决, 留存档)\n\n### Claim 1 — RESOLVED (D029: seed456=99.33% confirms \"consistently best component\")\nseed456 与 seed42 完全一致（均 99.33%），seed123 为孤立离群值。Claim 1 定稿为 \"exception events consistently best component across models; absolute performance seed-dependent on DeepSeek (2/3 seeds robust, 1 outlier from LoRA init sensitivity); relative dominance over all alternatives robust across all seeds\"。\"0pp universal gap\" 叙事已放弃，转为数据驱动的 nuanced framing。\n\n### Claim 2 — RESOLVED (D006 + D009)\nv5 full_trace 81.76%. plan_002 label-only 86.22%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.\n\n## 与 v1 Framing 的关键差异\n\n| 维度 | v1 | v2.9 |\n|------|----|----|\n| Headline | VOTA compression 优于 full trace | Exception events are the most effective diagnostic signal |\n| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal consistently best across models; absolute performance seed-dependent on DeepSeek |\n| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |\n| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |\n| VOTA 定位 | 核心方法 — trace compression | **Fault indicator isolation** — 价值在于提取 exception, 非 generic compression |\n| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |\n| DeepSeek full_trace | N/A | v1 collapsed (label truncation), v3 pending |\n| Seed robustness | 未验证 | Qwen ✅ 99.83% ± 0.00 (3 seeds); DeepSeek ⚠️ seed-dependent (91-99%, D028) |\n| Irreducible error | 未分析 | ✅ GeneratorExit 根因明确，99.83% = representation ceiling |\n| Calibration | 未验证 | ✅ 完整 ECE+Brier, ~63x/~150x gap vs no_trace |\n| Data duplication | 未分析 | ✅ exception_only ~40% 重复（representation compactness），train-test overlap = 0 |\n| Early stopping | 未讨论 | DeepSeek epoch1→epoch3 轻微退化 (0.3-0.5pp); 核心问题是 LoRA 初始化 (seed123 epoch1=91.43%), 非 overfitting |\n| Narrative arc | \"VOTA helps\" | \"Exception events are consistently best; VOTA's value is isolating them; training stability matters\" |\n\n\n## experiment_plan (with registry status)\n\n- id: plan_001\n  claim: 1\n  description: 'Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception\n    info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。'\n  priority: P0\n  gpu_budget_hours: 3\n  deps: []\n  registry_id: vota_no_ae_seed42\n  notes: 如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定\n    Claim 1 强度和论文 framing。\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.994\n    majority_baseline: 0.7151\n    lift: 0.279\n    n: 1190\n    pass_f1: 0.996\n    fail_f1: 0.989\n    accuracy_ci_lower: 0.989\n    accuracy_ci_upper: 0.998\n    lift_vs_notrace: 0.243\n    lift_vs_notrace_ci_lower: 0.218\n    lift_vs_notrace_ci_upper: 0.268\n    train_loss: 0.0908\n    eval_loss: 0.2215\n    wall_clock_seconds: 6397.88\n- id: plan_002\n  claim: 2\n  description: 'Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace\n    tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。'\n  priority: P0\n  gpu_budget_hours: 3\n  deps: []\n  registry_id: full_trace_label_only_seed42\n  notes: 如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是\n    trace noise/length 本身就有害。\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8622\n    accuracy_ci_lower: 0.8437\n    accuracy_ci_upper: 0.8807\n    majority_baseline: 0.7151\n    lift: 0.1471\n    n: 1190\n    pass_precision: 0.8821\n    pass_recall: 0.9318\n    pass_f1: 0.9063\n    fail_precision: 0.8007\n    fail_recall: 0.6873\n    fail_f1: 0.7397\n    train_loss: 0.2505\n    eval_loss: 0.3205\n    lift_vs_notrace: 0.1109\n    lift_vs_notrace_ci_lower: 0.0849\n    lift_vs_notrace_ci_upper: 0.137\n    lift_vs_standard_fulltrace: 0.0445\n    lift_vs_standard_fulltrace_ci_lower: 0.0235\n    lift_vs_standard_fulltrace_ci_upper: 0.0655\n    lift_vs_standard_fulltrace_pvalue: 0\n- id: plan_003\n  claim: 3\n  description: 'VOTA component ablation: 分别测试 (a) 只有 actual/expected, (b) 只有 exception\n    summary, (c) 只有 loop compression, (d) 全量 VOTA。量化每个组件的贡献。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_001\n  registry_id: vota_loop_only_seed42\n  notes: '4 个 sub-conditions。registry IDs: vota_loop_only_seed42 (loop_only 85.6%),\n    vota_exception_only_seed42_v2 (exception_only 99.83%), vota_ae_only_seed42 (ae_only\n    99.92%)。plan_001 vota_no_ae_seed42 (99.4%) 覆盖 ae 冗余确认。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8563\n    majority_baseline: 0.7151\n    lift: 0.1412\n    n: 1190\n    pass_precision: 0.9239\n    pass_recall: 0.8707\n    pass_f1: 0.8966\n    fail_precision: 0.7165\n    fail_recall: 0.8201\n    fail_f1: 0.7648\n    accuracy_ci:\n    - 0.8353\n    - 0.8756\n    bootstrap_vs_no_trace:\n      diff: 0.105\n      ci:\n      - 0.0824\n      - 0.1286\n      significant: true\n    bootstrap_vs_vota:\n      diff: -0.1378\n      ci:\n      - -0.1571\n      - -0.1185\n      significant: true\n    bootstrap_vs_full_trace:\n      diff: 0.0387\n      ci:\n      - 0.0185\n      - 0.0597\n      significant: true\n    train_loss: 0.0718\n    wall_clock_seconds: 7425.65\n- id: plan_004\n  claim: 1\n  description: '第二模型验证: DeepSeek-Coder-6.7B 上复现 4 条件（VOTA/no_trace/full_trace/exception_only），与\n    DCSH 同模型直接对比。exception_only 跨模型验证 exception dominance。'\n  priority: P1\n  gpu_budget_hours: 8\n  deps:\n  - plan_001\n  registry_id: deepseek_exception_only_seed42\n  notes: '4 条件: deepseek_vota_seed42 (84.45% ✅), deepseek_no_trace_seed42 (73.36%\n    ✅), deepseek_exception_only_seed42 (99.33% ✅), deepseek_full_trace_seed42_v3 (RUNNING,\n    label truncation fix). 3/4 完成, full_trace v3 待完成。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9933\n    majority_baseline: 0.7151\n    lift: 0.2782\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9906\n    pass_f1: 0.9953\n    fail_precision: 0.9769\n    fail_recall: 1\n    fail_f1: 0.9883\n    epoch1_checkpoint_eval:\n      accuracy: 0.9983\n      fail_recall: 1\n      fail_precision: 0.9941\n      pass_recall: 0.9976\n      conclusion: epoch1_better_by_0.50pp\n- id: plan_005\n  claim: 1\n  description: '第二任务验证: 在 DebugBench subset 上测试 exception_only/VOTA/no_trace。验证 verdict\n    task 跨任务泛化性。'\n  priority: P1\n  gpu_budget_hours: 6\n  deps:\n  - plan_001\n  registry_id: debugbench_exception_only_seed42\n  notes: 3/3 完成。debugbench_exception_only_seed42=100.0% (426/426, Wilson CI [99.14%,100%]),\n    debugbench_vota_seed42=99.77% (1 error), debugbench_no_trace_seed42=96.71%。定位为\n    generalization validation（非 trace importance evidence，因 no_trace baseline 96.71%\n    已很高，marginal contribution 仅 3.29pp）。\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 1\n    majority_baseline: 0.5141\n    lift: 0.4859\n    n: 426\n    pass_precision: 1\n    pass_recall: 1\n    pass_f1: 1\n    fail_precision: 1\n    fail_recall: 1\n    fail_f1: 1\n    accuracy_ci_wilson:\n    - 0.9914\n    - 1\n    accuracy_ci_bootstrap:\n    - 1\n    - 1\n    train_loss: 0.2435\n    eval_loss: 0.4157\n    train_runtime_sec: 837\n- id: plan_006\n  claim: 2\n  description: 'Trace length ablation: 测试不同截断长度 (256/512/1024/no_limit) 对 full_trace\n    准确率的影响。2048tok 取消（train_sft.py 硬编码 max_length=2048，与 no_limit 等价）。'\n  priority: P1\n  gpu_budget_hours: 8\n  deps:\n  - plan_002\n  registry_id: full_trace_256tok_seed42\n  notes: '4 点设计: 256tok=78.82% (DONE), 512tok=80.42% (DONE), 1024tok (RUNNING), no_limit=81.76%\n    (full_trace_seed42_v5)。2048tok killed（max_length=2048 硬编码使其与 no_limit 等价）。Registry\n    IDs: full_trace_256tok_seed42, full_trace_512tok_seed42, full_trace_1024tok_seed42,\n    full_trace_seed42_v5。趋势: 更多 trace 略有帮助但收益递减，且全部远低于 exception_only (99.83%)。'\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.7882\n    majority_baseline: 0.7151\n    lift: 0.0731\n    n: 1190\n    pass_precision: 0.903\n    pass_recall: 0.788\n    pass_f1: 0.842\n    fail_precision: 0.597\n    fail_recall: 0.788\n    fail_f1: 0.679\n    accuracy_ci:\n    - 0.764\n    - 0.81\n    train_loss: 0.1094\n    train_runtime_sec: 3047\n    epochs: 3\n- id: plan_007\n  claim: 3\n  description: 'Calibration analysis: ECE + reliability diagrams 对比 VOTA/no_trace/full_trace\n    的 calibration 质量。验证 trace SFT 对 verdict task 改善 calibration 的假说。'\n  priority: P2\n  gpu_budget_hours: 1\n  deps: []\n  registry_id: calibration_analysis_seed42\n  notes: 纯 eval，不需要额外训练。用已有 checkpoint 的 logits 计算。\n  status: DONE\n  conclusion: success\n  metrics:\n    no_trace:\n      ece: 0.171476\n      mce: 0.475643\n      brier_score: 0.197152\n      accuracy: 0.751261\n      n_samples: 1190\n    full_trace:\n      ece: 0.095817\n      mce: 0.249061\n      brier_score: 0.143924\n      accuracy: 0.817647\n      n_samples: 1190\n    label_only:\n      ece: 0.110686\n      mce: 0.417124\n      brier_score: 0.120144\n      accuracy: 0.862185\n      n_samples: 1190\n    loop_only:\n      ece: 0.083085\n      mce: 0.183406\n      brier_score: 0.118335\n      accuracy: 0.856303\n      n_samples: 1190\n    ae_only:\n      ece: 0.000415\n      mce: 0.000415\n      brier_score: 0.000847\n      accuracy: 0.99916\n      n_samples: 1190\n    exception_only:\n      ece: 0.002717\n      mce: 0.835484\n      brier_score: 0.001311\n      accuracy: 0.998319\n      n_samples: 1190\n    vota:\n      ece: 0.00541\n      mce: 0.622459\n      brier_score: 0.005234\n      accuracy: 0.994118\n      n_samples: 1190\n- id: plan_008\n  claim: 1\n  description: 'Seed robustness: 3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar\n    test + bootstrap CI。'\n  priority: P2\n  gpu_budget_hours: 6\n  deps:\n  - plan_001\n  registry_id: exception_only_seed456\n  notes: 'Seed robustness 完成。Qwen exception_only: 99.83% ± 0.00 (seeds 42/123/456,\n    irreducible 2/1190). Qwen VOTA: seed42=99.41%, seed456=99.08% (Δ<0.4pp). DeepSeek\n    exception_only: seed42/456=99.33%, seed123=91.09% (LoRA outlier). Registry IDs:\n    exception_only_seed123, exception_only_seed456, vota_seed456_v2, deepseek_exception_only_seed42/123/456.'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci:\n    - 0.9958\n    - 1\n    majority_baseline: 0.7151\n    lift: 0.2832\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n    vs_seed42:\n      seed42_accuracy: 0.9983\n      seed456_accuracy: 0.9983\n      diff: 0\n      note: identical accuracy to 4 decimal places; no predictions.jsonl for paired\n        bootstrap\n    train_loss: 0.1087\n    eval_loss: 0.4629\n    train_runtime_sec: 4541\n    epochs: 3\n- id: plan_mvp_vota\n  claim: 1\n  description: 'MVP: VOTA trace SFT for test verdict prediction'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: vota_seed42_v4\n  notes: 完成。95.63% accuracy, +20.5pp over baseline.\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9563\n    majority_baseline: 0.7151\n    lift: 0.2412\n    n: 1190\n    pass_precision: 0.944\n    pass_recall: 0.998\n    pass_f1: 0.97\n    fail_precision: 0.993\n    fail_recall: 0.853\n    fail_f1: 0.917\n    lift_vs_notrace: 0.205\n    lift_vs_notrace_ci_lower: 0.177\n    lift_vs_notrace_ci_upper: 0.234\n    train_loss: 0.046\n    eval_loss: 0.0842\n- id: plan_mvp_notrace\n  claim: 1\n  description: 'MVP: No-trace baseline for test verdict prediction'\n  priority: P0\n  gpu_budget_hours: 1\n  deps: []\n  registry_id: no_trace_seed42_v4\n  notes: 完成。75.13% accuracy (majority baseline 71.51%).\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7513\n    majority_baseline: 0.7151\n    lift: 0.0361\n    pass_precision: 0.8776\n    pass_recall: 0.7579\n    pass_f1: 0.8134\n    fail_precision: 0.5473\n    fail_recall: 0.7345\n    fail_f1: 0.6272\n    train_loss: 0.18\n    eval_loss: 0.6454\n    eval_mean_token_accuracy: 0.8897\n- id: plan_mvp_fulltrace\n  claim: 2\n  description: 'MVP: Full execution trace SFT for test verdict prediction'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: full_trace_seed42_v2\n  notes: 完成。28.49% accuracy, model collapse (100% predict fail).\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.284\n    majority_baseline: 0.7151\n    lift: -0.4311\n    n: 1190\n    pass_precision: 0.923\n    pass_recall: 0.085\n    pass_f1: 0.155\n    fail_precision: 0.445\n    fail_recall: 0.785\n    fail_f1: 0.568\n    train_loss: 0.0373\n    eval_loss: 0.082\n    eval_mean_token_accuracy: 0.984\n- id: plan_012\n  claim: 1\n  description: 'Cross-scale validation: Qwen-2.5-Coder-1.5B 上复现 4 条件 (exception_only/vota/no_trace/full_trace)。\n    验证 exception signal 的 scale invariance 假说。'\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - plan_003\n  registry_id: qwen15b_exception_only_seed42\n  notes: '4 条件: exception_only=99.83% (=7B, DONE), vota=99.58% (DONE), no_trace=67.31%\n    (DONE), full_trace=RUNNING。关键发现: 1.5B=7B on exception → signal-limited not capacity-limited。\n    Registry IDs: qwen15b_exception_only_seed42, qwen15b_vota_seed42, qwen15b_no_trace_seed42,\n    qwen15b_full_trace_seed42。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci_lower: 0.9958\n    accuracy_ci_upper: 1\n    majority_baseline: 0.7151\n    lift: 0.283\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n    train_loss: 0.1347\n    eval_loss: 0.5761\n    wall_clock_seconds: 1762\n- id: plan_013\n  claim: 1\n  description: 'Cross-family validation: CodeLlama-13B-Instruct 上测试 3 条件 (exception_only/no_trace/vota)。\n    验证 exception dominance 跨 LLaMA 家族 + 更大 scale 的泛化性。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps: []\n  registry_id: codellama13b_exception_only_seed42\n  notes: 'Model downloaded. 0/3 done, queued. Registry IDs: codellama13b_exception_only_seed42,\n    codellama13b_no_trace_seed42, codellama13b_vota_seed42。回应 R2-N2 scope concern:\n    4 models × 3 families × 2 scales。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci_lower: 0.9958\n    accuracy_ci_upper: 1\n    pass_f1: 0.9988\n    fail_f1: 0.9971\n    n_test: 1190\n- id: plan_014\n  claim: 3\n  description: 'Multi-seed expansion: loop_only + ae_only + label_only 各 3 seeds。\n    回应 R2-N3 single-seed concern，验证 Tier 层级划分稳定性。'\n  priority: P0\n  gpu_budget_hours: 12\n  deps:\n  - plan_003\n  registry_id: ae_only_seed123\n  notes: 'ae_only 3-seed done (mean 99.64%). label_only 3-seed done (mean 86.39%).\n    loop_only: seed42 done, seed123 RUNNING, seed456 queued。Registry IDs: ae_only_seed123/456,\n    label_only_seed123/456, loop_only_seed123/456。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9908\n    n: 1190\n    pass_recall: 0.987\n    fail_recall: 1\n    majority_baseline: 0.7151\n    lift: 0.2757\n- id: plan_015\n  claim: 1\n  description: 'Format marker removal control: 移除 [No exception data in trace] 格式标记后重训\n    exception_only × 3 seeds。回应 R1-N1 format shortcut concern。'\n  priority: P0\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: exception_only_nomarker_seed42\n  notes: '计划中。如果移除标记后 SFT 仍 ≥99%，证明模型学到的是异常语义而非格式 shortcut。 Registry IDs: exception_only_nomarker_seed42/123/456。'\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9655\n    n: 1190\n    accuracy_ci:\n    - 0.955\n    - 0.976\n- id: plan_016\n  claim: 1\n  description: 'Fine-grained phase transition: tail-384 × 4 模型，精确定位 256→512 phase\n    transition 是 sharp 还是 gradual。'\n  priority: P1\n  gpu_budget_hours: 16\n  deps:\n  - plan_006\n  notes: 4 模型各 1 个实验。如果 tail-384 仍在 ~77% (≈tail-256)，证明 transition 是 sharp；如果 ~85%，证明是\n    gradual。对 phase transition claim 的强度有决定性影响。\n  status: planned\n- id: plan_017\n  claim: 1\n  description: 'Cross-seed budget curve: tail-512 × 4 模型 × 3 seeds，验证 phase transition\n    后 convergence band 的 robustness。'\n  priority: P1\n  gpu_budget_hours: 24\n  deps:\n  - plan_016\n  notes: tail-512 是 phase transition 后第一个点，验证 93-97% convergence 是否 seed-robust。审稿人必问\n    single-seed robustness。\n  status: planned\n- id: plan_018\n  claim: 1\n  description: 'Error analysis: 用已有 predictions.jsonl 分析 failure modes（哪类程序/错误容易被误判）。不需\n    GPU。'\n  priority: P1\n  gpu_budget_hours: 0\n  deps: []\n  notes: 分析 exception_only/vota/full_trace/no_trace 的错误模式差异。重点关注 Tier 1 vs Tier 2\n    的 failure mode 是否不同。\n  status: planned\n- id: plan_019\n  claim: 1\n  description: 'Cross-model calibration: 4 模型 × exception_only 的 ECE/Brier 对比。验证 calibration\n    quality 跨模型 universal。'\n  priority: P1\n  gpu_budget_hours: 1\n  deps: []\n  notes: 纯 eval，用已有 checkpoint。当前只有 Qwen-7B 的 calibration 数据，需要扩展到 4 模型。\n  status: planned\n- id: plan_020\n  claim: 2\n  description: 'Few-shot prompting baseline: GPT-4o/Claude 直接判断 pass/fail（0-shot +\n    3-shot），作为 non-SFT upper bound 对比。'\n  priority: P2\n  gpu_budget_hours: 0\n  deps: []\n  notes: 不需 GPU，用 API 调用。如果 few-shot < exception_only SFT，说明 SFT 在 verdict task 上超越\n    frontier model 的 few-shot 能力，claim 更强。\n  status: planned\n- id: plan_021\n  claim: 1\n  description: 'OOD generalization: 在不同编程语言/项目的 trace 上测试 exception_only 泛化性。'\n  priority: P2\n  gpu_budget_hours: 12\n  deps: []\n  notes: 需要构建 OOD 测试集（不同语言的 trace）。如果 exception_only 在 OOD 上仍强，大幅强化 generalization\n    claim。\n  status: planned\n- id: plan_022\n  claim: 2\n  description: 'Training dynamics: 记录 exception_only vs full_trace 的 learning curve（每\n    50 steps eval），分析收敛速度差异。'\n  priority: P2\n  gpu_budget_hours: 8\n  deps: []\n  notes: 如果 exception_only 收敛更快，支持 information density 假说。需要修改训练脚本加 intermediate eval。\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: no_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: vota_seed42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: no_trace_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: vota_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: no_trace_seed42_v3\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    train_loss: 0.18\n    eval_loss: 0.645\n    eval_mean_token_accuracy: 0.89\n    accuracy: 0.7513\n    majority_baseline: 0.7151\n    lift: 0.0361\n    pass_precision: 0.8776\n    pass_recall: 0.7579\n    pass_f1: 0.8134\n    fail_precision: 0.5473\n    fail_recall: 0.7345\n    fail_f1: 0.6272\n- exp_id: vota_seed42_v3\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    train_loss: 0.046\n    eval_loss: 0.085\n    eval_mean_token_accuracy: 0.983\n    accuracy: 0.992\n    majority_baseline: 0.7151\n    lift: 0.276\n    pass_precision: 0.99\n    pass_recall: 0.99\n    pass_f1: 0.99\n    fail_precision: 0.99\n    fail_recall: 0.99\n    fail_f1: 0.99\n- exp_id: full_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    train_loss: 0.037\n    eval_loss: 0.084\n    eval_mean_token_accuracy: 0.984\n    accuracy: 0.284\n    majority_baseline: 0.7151\n    lift: -0.431\n    pass_precision: 0.88\n    pass_recall: 0.08\n    pass_f1: 0.16\n    fail_precision: 0.31\n    fail_recall: 0.97\n    fail_f1: 0.57\n- exp_id: no_trace_seed42_v4\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7513\n    majority_baseline: 0.7151\n    lift: 0.0361\n    pass_precision: 0.8776\n    pass_recall: 0.7579\n    pass_f1: 0.8134\n    fail_precision: 0.5473\n    fail_recall: 0.7345\n    fail_f1: 0.6272\n    train_loss: 0.18\n    eval_loss: 0.6454\n    eval_mean_token_accuracy: 0.8897\n- exp_id: vota_seed42_v4\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9563\n    majority_baseline: 0.7151\n    lift: 0.2412\n    n: 1190\n    pass_precision: 0.944\n    pass_recall: 0.998\n    pass_f1: 0.97\n    fail_precision: 0.993\n    fail_recall: 0.853\n    fail_f1: 0.917\n    lift_vs_notrace: 0.205\n    lift_vs_notrace_ci_lower: 0.177\n    lift_vs_notrace_ci_upper: 0.234\n    train_loss: 0.046\n    eval_loss: 0.0842\n- exp_id: full_trace_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.284\n    majority_baseline: 0.7151\n    lift: -0.4311\n    n: 1190\n    pass_precision: 0.923\n    pass_recall: 0.085\n    pass_f1: 0.155\n    fail_precision: 0.445\n    fail_recall: 0.785\n    fail_f1: 0.568\n    train_loss: 0.0373\n    eval_loss: 0.082\n    eval_mean_token_accuracy: 0.984\n- exp_id: full_trace_seed42_v5\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8176\n    majority_baseline: 0.7151\n    lift: 0.1025\n    n: 1190\n    pass_precision: 0.8774\n    pass_recall: 0.866\n    pass_f1: 0.8717\n    fail_precision: 0.6743\n    fail_recall: 0.6962\n    fail_f1: 0.6851\n    accuracy_ci_lower: 0.797\n    accuracy_ci_upper: 0.839\n    lift_vs_notrace: 0.0664\n    lift_vs_notrace_ci_lower: 0.0437\n    lift_vs_notrace_ci_upper: 0.0899\n    train_loss: 0.05\n    eval_loss: 0.0867\n    wall_clock_seconds: 7852\n    epoch_level:\n      epoch1_accuracy: 0.8303\n      epoch2_accuracy: 0.763\n      final_accuracy: 0.8176\n      trend: non_monotonic_epoch1_best_epoch2_collapse\n- exp_id: vota_seed42_v5\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9941\n    majority_baseline: 0.7151\n    lift: 0.279\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9882\n    pass_f1: 0.9941\n    fail_precision: 0.9714\n    fail_recall: 1\n    fail_f1: 0.9855\n    lift_vs_notrace: 0.2428\n    lift_vs_notrace_ci_lower: 0.2185\n    lift_vs_notrace_ci_upper: 0.2681\n    accuracy_ci_lower: 0.9882\n    accuracy_ci_upper: 0.9983\n    train_loss: 0.05\n    eval_loss: 0.0867\n    eval_mean_token_accuracy: 0.9828\n    wall_clock_seconds: 8443\n    epoch_level:\n      epoch1_accuracy: 0.9933\n      epoch2_accuracy: 0.9941\n      final_accuracy: 0.9941\n      trend: monotonic_increasing_then_stable\n- exp_id: no_trace_seed42_v5\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7513\n    accuracy_ci_lower: 0.7277\n    accuracy_ci_upper: 0.7748\n    majority_baseline: 0.7151\n    lift: 0.0361\n    lift_ci_lower: 0.0042\n    lift_ci_upper: 0.0706\n    n: 1190\n    pass_precision: 0.8776\n    pass_recall: 0.7579\n    pass_f1: 0.8134\n    fail_precision: 0.5473\n    fail_recall: 0.7345\n    fail_f1: 0.6272\n    epoch_level:\n      epoch1_accuracy: 0.7429\n      epoch2_accuracy: 0.763\n      final_accuracy: 0.7513\n      trend: non_monotonic_epoch2_best\n- exp_id: full_trace_label_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8622\n    accuracy_ci_lower: 0.8437\n    accuracy_ci_upper: 0.8807\n    majority_baseline: 0.7151\n    lift: 0.1471\n    n: 1190\n    pass_precision: 0.8821\n    pass_recall: 0.9318\n    pass_f1: 0.9063\n    fail_precision: 0.8007\n    fail_recall: 0.6873\n    fail_f1: 0.7397\n    train_loss: 0.2505\n    eval_loss: 0.3205\n    lift_vs_notrace: 0.1109\n    lift_vs_notrace_ci_lower: 0.0849\n    lift_vs_notrace_ci_upper: 0.137\n    lift_vs_standard_fulltrace: 0.0445\n    lift_vs_standard_fulltrace_ci_lower: 0.0235\n    lift_vs_standard_fulltrace_ci_upper: 0.0655\n    lift_vs_standard_fulltrace_pvalue: 0\n- exp_id: vota_no_ae_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.994\n    majority_baseline: 0.7151\n    lift: 0.279\n    n: 1190\n    pass_f1: 0.996\n    fail_f1: 0.989\n    accuracy_ci_lower: 0.989\n    accuracy_ci_upper: 0.998\n    lift_vs_notrace: 0.243\n    lift_vs_notrace_ci_lower: 0.218\n    lift_vs_notrace_ci_upper: 0.268\n    train_loss: 0.0908\n    eval_loss: 0.2215\n    wall_clock_seconds: 6397.88\n- exp_id: vota_ae_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9992\n    accuracy_ci:\n    - 0.9975\n    - 1\n    bootstrap_pairwise:\n      ae_only_vs_no_trace:\n        diff: 0.2479\n        ci:\n        - 0.2235\n        - 0.2731\n        p_value: 0\n        significant: true\n      ae_only_vs_exception_only:\n        diff: 0.0008\n        ci:\n        - -0.0017\n        - 0.0034\n        p_value: 0.8002\n        significant: false\n      ae_only_vs_vota:\n        diff: 0.005\n        ci:\n        - 0.0017\n        - 0.0092\n        p_value: 0.0046\n        significant: true\n    config:\n      n_bootstrap: 10000\n      seed: 42\n      method: paired_bootstrap\n- exp_id: vota_exception_only_seed42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: vota_loop_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8563\n    majority_baseline: 0.7151\n    lift: 0.1412\n    n: 1190\n    pass_precision: 0.9239\n    pass_recall: 0.8707\n    pass_f1: 0.8966\n    fail_precision: 0.7165\n    fail_recall: 0.8201\n    fail_f1: 0.7648\n    accuracy_ci:\n    - 0.8353\n    - 0.8756\n    bootstrap_vs_no_trace:\n      diff: 0.105\n      ci:\n      - 0.0824\n      - 0.1286\n      significant: true\n    bootstrap_vs_vota:\n      diff: -0.1378\n      ci:\n      - -0.1571\n      - -0.1185\n      significant: true\n    bootstrap_vs_full_trace:\n      diff: 0.0387\n      ci:\n      - 0.0185\n      - 0.0597\n      significant: true\n    train_loss: 0.0718\n    wall_clock_seconds: 7425.65\n- exp_id: vota_exception_only_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    majority_baseline: 0.7151\n    lift: 0.2832\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.998\n    pass_f1: 0.999\n    fail_precision: 0.994\n    fail_recall: 1\n    fail_f1: 0.997\n    lift_vs_notrace: 0.2471\n    lift_vs_notrace_ci_lower: 0.2227\n    lift_vs_notrace_ci_upper: 0.2714\n    lift_vs_fulltrace: 0.1807\n    lift_vs_fulltrace_ci_lower: 0.1588\n    lift_vs_fulltrace_ci_upper: 0.2034\n    lift_vs_vota: 0.0067\n    lift_vs_vota_ci_lower: 0.0017\n    lift_vs_vota_ci_upper: 0.0126\n    lift_vs_vota_pvalue: 0.01\n- exp_id: deepseek_vota_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8445\n    majority_baseline: 0.7151\n    lift: 0.1294\n    accuracy_ci:\n    - 0.826\n    - 0.864\n    pass_precision: 0.821\n    pass_recall: 1\n    pass_f1: 0.902\n    fail_precision: 1\n    fail_recall: 0.454\n    fail_f1: 0.625\n    eval_loss_epoch1: 0.0679\n    eval_loss_epoch2: 0.095\n    eval_loss_epoch3: 0.1121\n    final_train_loss: 0.0522\n    epoch1_checkpoint_eval:\n      accuracy: 0.7815\n      accuracy_ci:\n      - 0.76\n      - 0.803\n      fail_recall: 0.233\n      fail_precision: 1\n      pass_recall: 1\n      pass_precision: 0.766\n      fail_f1: 0.378\n      pass_f1: 0.867\n      conclusion: epoch3_final_is_better\n    reeval_with_fixed_script:\n      accuracy: 0.16\n      accuracy_ci:\n      - 0.139\n      - 0.18\n      fail_f1: 0.61\n      fail_precision: 0.9\n      fail_recall: 0.47\n      pass_f1: 0.07\n      pass_precision: 1\n      pass_recall: 0.04\n      note: 'CATASTROPHIC: re-eval with corrected evaluate.py shows 16% (vs original\n        84.45%). Model predicts fail for almost everything. Previous 84.45% may have\n        been from buggy eval. NEEDS INVESTIGATION.'\n    group_analysis:\n      train_truncated:\n        n: 1091\n        accuracy: 0.8304\n        ci_95:\n        - 0.8075\n        - 0.8524\n        correct: 906\n        incorrect: 185\n        pass_accuracy: 1\n        pass_n: 822\n        fail_accuracy: 0.3123\n        fail_n: 269\n      train_intact:\n        n: 99\n        accuracy: 1\n        ci_95:\n        - 1\n        - 1\n        correct: 99\n        incorrect: 0\n        pass_accuracy: 1\n        pass_n: 29\n        fail_accuracy: 1\n        fail_n: 70\n      fisher_exact:\n        odds_ratio: 0\n        p_value: 0\n      overall_accuracy: 0.8445\n      max_length: 2048\n      note: 'Grouped by whether training sample content exceeded token budget (DeepSeek\n        tokenizer, max_length=2048). Inference used full-length input (no truncation).\n        All 185 errors from truncated group''s fail class (fail_recall=31.2%). Intact\n        group: 100% accuracy.'\n- exp_id: deepseek_no_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.7336\n    majority_baseline: 0.7151\n    lift: 0.0185\n    n: 1190\n    pass_precision: 0.817\n    pass_recall: 0.808\n    pass_f1: 0.813\n    fail_precision: 0.532\n    fail_recall: 0.546\n    fail_f1: 0.539\n    accuracy_ci:\n    - 0.708\n    - 0.757\n    lift_ci:\n    - -0.009\n    - 0.046\n- exp_id: deepseek_full_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy_no_truncation: 0.2849\n    accuracy_with_truncation_fix: 0.1059\n    accuracy_with_truncation_fix_ci:\n    - 0.089\n    - 0.123\n    majority_baseline: 0.7151\n    n: 1190\n    note: 'Both evals show model failure. No-truncation: all predict fail. With-truncation:\n      garbage tokens. LoRA training itself failed due to label truncation during training.'\n- exp_id: deepseek_exception_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9933\n    majority_baseline: 0.7151\n    lift: 0.2782\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9906\n    pass_f1: 0.9953\n    fail_precision: 0.9769\n    fail_recall: 1\n    fail_f1: 0.9883\n    epoch1_checkpoint_eval:\n      accuracy: 0.9983\n      fail_recall: 1\n      fail_precision: 0.9941\n      pass_recall: 0.9976\n      conclusion: epoch1_better_by_0.50pp\n- exp_id: calibration_analysis_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    no_trace:\n      ece: 0.171476\n      mce: 0.475643\n      brier_score: 0.197152\n      accuracy: 0.751261\n      n_samples: 1190\n    full_trace:\n      ece: 0.095817\n      mce: 0.249061\n      brier_score: 0.143924\n      accuracy: 0.817647\n      n_samples: 1190\n    label_only:\n      ece: 0.110686\n      mce: 0.417124\n      brier_score: 0.120144\n      accuracy: 0.862185\n      n_samples: 1190\n    loop_only:\n      ece: 0.083085\n      mce: 0.183406\n      brier_score: 0.118335\n      accuracy: 0.856303\n      n_samples: 1190\n    ae_only:\n      ece: 0.000415\n      mce: 0.000415\n      brier_score: 0.000847\n      accuracy: 0.99916\n      n_samples: 1190\n    exception_only:\n      ece: 0.002717\n      mce: 0.835484\n      brier_score: 0.001311\n      accuracy: 0.998319\n      n_samples: 1190\n    vota:\n      ece: 0.00541\n      mce: 0.622459\n      brier_score: 0.005234\n      accuracy: 0.994118\n      n_samples: 1190\n- exp_id: vota_seed123\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: vota_seed456\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exception_only_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci:\n    - 0.9958\n    - 1\n    majority_baseline: 0.7151\n    lift: 0.2832\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n    train_loss: 0.1096\n    train_runtime_sec: 7507\n    epochs: 3\n    seed_comparison:\n      seed42_accuracy: 0.9983\n      seed456_accuracy: 0.9983\n      seed123_accuracy: 0.9983\n      max_diff: 0\n      note: identical accuracy to 4 decimal places across all 3 seeds (42/456/123);\n        each has exactly 2/1190 errors; exception_only fully seed-robust\n- exp_id: exception_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci:\n    - 0.9958\n    - 1\n    majority_baseline: 0.7151\n    lift: 0.2832\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n    vs_seed42:\n      seed42_accuracy: 0.9983\n      seed456_accuracy: 0.9983\n      diff: 0\n      note: identical accuracy to 4 decimal places; no predictions.jsonl for paired\n        bootstrap\n    train_loss: 0.1087\n    eval_loss: 0.4629\n    train_runtime_sec: 4541\n    epochs: 3\n- exp_id: deepseek_exception_only_seed123\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.9109\n    pass_precision: 1\n    pass_recall: 0.993\n    pass_f1: 0.996\n    fail_precision: 0.976\n    fail_recall: 0.705\n    fail_f1: 0.818\n    ci_95:\n    - 0.894\n    - 0.926\n    train_loss: 0.122\n    train_runtime_sec: 6384\n- exp_id: deepseek_full_trace_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: vota_seed456_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9908\n    pass_precision: 1\n    pass_recall: 0.987\n    pass_f1: 0.993\n    fail_precision: 0.969\n    fail_recall: 1\n    fail_f1: 0.984\n    ci_95:\n    - 0.985\n    - 0.996\n- exp_id: deepseek_full_trace_seed42_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7916\n    majority_baseline: 0.7151\n    lift: 0.0765\n    n: 1190\n    pass_precision: 0.857\n    pass_recall: 0.851\n    pass_f1: 0.854\n    fail_precision: 0.632\n    fail_recall: 0.643\n    fail_f1: 0.637\n    accuracy_ci:\n    - 0.768\n    - 0.813\n    train_loss: 0.0547\n    train_runtime_seconds: 8891\n    epochs: 3\n    reeval_discrepancy:\n      reeval_accuracy: 0.285\n      reeval_note: 'RESOLVED: 28.5% was caused by eval max_length=16384 (OOD). Re-eval\n        with max_length=2048 reproduces 79.16%. predictions.jsonl updated to maxlen2048\n        results.'\n      status: RESOLVED\n- exp_id: deepseek_exception_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9933\n    majority_baseline: 0.7151\n    lift: 0.2782\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9906\n    pass_f1: 0.9953\n    fail_precision: 0.9769\n    fail_recall: 1\n    fail_f1: 0.9883\n    accuracy_ci:\n    - 0.9882\n    - 0.9975\n    train_loss: 0.1225\n    eval_loss: 0.4824\n    train_runtime_sec: 6246\n    seed_comparison:\n      seed42_accuracy: 0.9933\n      seed456_accuracy: 0.9933\n      seed123_accuracy: 0.9109\n      note: seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds\n        robust.\n    epoch1_checkpoint_eval:\n      accuracy: 0.993\n      accuracy_ci:\n      - 0.988\n      - 0.997\n      fail_f1: 0.99\n      fail_precision: 0.98\n      fail_recall: 1\n      pass_f1: 1\n      pass_precision: 1\n      pass_recall: 0.99\n      conclusion: epoch1 (99.3%) ≈ epoch3 (99.33%), 1 epoch convergence confirmed\n- exp_id: full_trace_256tok_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.7882\n    majority_baseline: 0.7151\n    lift: 0.0731\n    n: 1190\n    pass_precision: 0.903\n    pass_recall: 0.788\n    pass_f1: 0.842\n    fail_precision: 0.597\n    fail_recall: 0.788\n    fail_f1: 0.679\n    accuracy_ci:\n    - 0.764\n    - 0.81\n    train_loss: 0.1094\n    train_runtime_sec: 3047\n    epochs: 3\n- exp_id: full_trace_512tok_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.8042\n    majority_baseline: 0.7151\n    lift: 0.0891\n    pass_precision: 0.8705\n    pass_recall: 0.8531\n    pass_f1: 0.8617\n    fail_precision: 0.6489\n    fail_recall: 0.6814\n    fail_f1: 0.6647\n    n: 1190\n    accuracy_ci:\n    - 0.7815\n    - 0.8261\n- exp_id: full_trace_1024tok_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.7723\n    majority_baseline: 0.7151\n    lift: 0.0571\n    n: 1190\n    accuracy_ci:\n    - 0.7487\n    - 0.7958\n    pass_precision: 0.9006\n    pass_recall: 0.7662\n    pass_f1: 0.8279\n    fail_precision: 0.573\n    fail_recall: 0.7876\n    fail_f1: 0.6634\n    train_loss: 0.0634\n    train_runtime_sec: 5553\n    epochs: 3\n- exp_id: full_trace_2048tok_seed42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: debugbench_exception_bug_fix\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: debugbench_exception_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 1\n    majority_baseline: 0.5141\n    lift: 0.4859\n    n: 426\n    pass_precision: 1\n    pass_recall: 1\n    pass_f1: 1\n    fail_precision: 1\n    fail_recall: 1\n    fail_f1: 1\n    accuracy_ci_wilson:\n    - 0.9914\n    - 1\n    accuracy_ci_bootstrap:\n    - 1\n    - 1\n    train_loss: 0.2435\n    eval_loss: 0.4157\n    train_runtime_sec: 837\n- exp_id: debugbench_no_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9671\n    majority_baseline: 0.5141\n    lift: 0.4531\n    pass_precision: 1\n    pass_recall: 0.936\n    pass_f1: 0.967\n    fail_precision: 0.937\n    fail_recall: 1\n    fail_f1: 0.967\n    accuracy_ci:\n    - 0.948\n    - 0.984\n    train_loss: 0.249\n    eval_loss: 0.532\n- exp_id: debugbench_vota_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9977\n    majority_baseline: 0.5141\n    lift: 0.4836\n    n: 426\n    pass_precision: 1\n    pass_recall: 1\n    pass_f1: 1\n    fail_precision: 1\n    fail_recall: 1\n    fail_f1: 1\n    accuracy_ci:\n    - 0.993\n    - 1\n    train_loss: 0.098\n    eval_loss: 0.1179\n    eval_mean_token_accuracy: 0.9737\n    errors: 1\n- exp_id: eval_missing_predictions_batch\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: eval_missing_predictions_batch_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: ae_only_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9908\n    n: 1190\n    pass_recall: 0.987\n    fail_recall: 1\n    majority_baseline: 0.7151\n    lift: 0.2757\n- exp_id: ae_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9992\n    n: 1190\n    majority_baseline: 0.7151\n    lift: 0.2841\n    seed_comparison:\n      seed42_accuracy: 0.9992\n      seed123_accuracy: 0.9908\n      seed456_accuracy: 0.9992\n      mean_accuracy: 0.9964\n      std: 0.0049\n      note: 2/3 seeds = 99.92%, seed123 = 99.08%. Mean = 99.64% ± 0.49\n- exp_id: regex_baseline_analysis\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    regex_B1_ERROR_presence: 0.9345\n    regex_B2_Traceback: 0.7151\n    regex_B3_any_keyword: 0.9345\n    regex_B4_exception_type: 0.9361\n    regex_B5_format_marker: 0.9933\n    regex_B6_error_count_ge2: 0.9202\n    sft_exception_only: 0.9983\n    best_regex_gap_vs_sft: -0.0622\n    B5_mcnemar_p: 0.041\n    n: 1190\n- exp_id: label_only_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8706\n    n: 1190\n    pass_recall: 0.974\n    fail_recall: 0.611\n    pass_f1: 0.915\n    fail_f1: 0.729\n- exp_id: label_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.859\n    n: 1190\n    pass_recall: 0.938\n    fail_recall: 0.661\n    pass_f1: 0.905\n    fail_f1: 0.727\n- exp_id: exception_only_nomarker_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9655\n    n: 1190\n    accuracy_ci:\n    - 0.955\n    - 0.976\n- exp_id: loop_only_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8588\n    majority_baseline: 0.7151\n    lift: 0.1437\n    n: 1190\n    pass_precision: 0.9129\n    pass_recall: 0.8872\n    pass_f1: 0.8999\n    fail_precision: 0.7355\n    fail_recall: 0.7876\n    fail_f1: 0.7607\n    accuracy_ci:\n    - 0.8403\n    - 0.8773\n- exp_id: loop_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8664\n    n: 1190\n    pass_precision: 0.9179\n    pass_recall: 0.8931\n    pass_f1: 0.9053\n    fail_precision: 0.7486\n    fail_recall: 0.7994\n    fail_f1: 0.7732\n    accuracy_ci:\n    - 0.847\n    - 0.884\n    seed_comparison:\n      seed42_accuracy: 0.8563\n      seed123_accuracy: 0.8588\n      seed456_accuracy: 0.8664\n      mean_accuracy: 0.8605\n      std: 0.0053\n      note: 3-seed mean = 86.05% ± 0.53%. Moderate variance, seed456 best. loop_only\n        is weakest trace condition (vs exception_only 99.83%, ae_only 99.64%, vota\n        99.41%).\n- exp_id: exception_only_nomarker_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9832\n    n: 1190\n    ci_95:\n    - 0.9756\n    - 0.9899\n    pass_f1: 0.9882\n    fail_f1: 0.9705\n    pass_precision: 0.9882\n    pass_recall: 0.9882\n    fail_precision: 0.9705\n    fail_recall: 0.9705\n    lift_over_majority: 0.2681\n- exp_id: exception_only_nomarker_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9807\n    n: 1190\n    errors: 23\n    ci_95:\n    - 0.9712\n    - 0.9871\n    pass_f1: 0.9865\n    fail_f1: 0.9658\n    pass_precision: 0.9836\n    pass_recall: 0.9894\n    fail_precision: 0.9731\n    fail_recall: 0.9587\n    lift_over_majority: 0.266\n- exp_id: qwen1.5b_exception_only_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen1.5b_no_trace_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen1.5b_vota_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen1.5b_full_trace_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: codellama_exception_only_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: codellama_no_trace_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: codellama_vota_seed42\n  name: ''\n  status: QUEUED\n  conclusion: killed\n  metrics: {}\n- exp_id: codellama13b_exception_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci_lower: 0.9958\n    accuracy_ci_upper: 1\n    pass_f1: 0.9988\n    fail_f1: 0.9971\n    n_test: 1190\n- exp_id: codellama13b_no_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.765\n    n: 1190\n    majority_baseline: 0.7151\n    lift: 0.05\n    pass_precision: 0.84\n    pass_recall: 0.83\n    pass_f1: 0.84\n    fail_precision: 0.59\n    fail_recall: 0.59\n    fail_f1: 0.59\n    accuracy_ci:\n    - 0.738\n    - 0.787\n- exp_id: codellama13b_vota_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9857\n    accuracy_ci_lower: 0.979\n    accuracy_ci_upper: 0.9916\n    pass_f1: 0.99\n    fail_f1: 0.9748\n    n_test: 1190\n- exp_id: qwen15b_no_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.6731\n    n: 1190\n    pass_f1: 0.7527\n    fail_f1: 0.518\n    lift_over_majority: -0.042\n    training_time_sec: 851\n- exp_id: qwen15b_vota_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9958\n    n: 1190\n    pass_recall: 0.9976\n    fail_recall: 0.9912\n    pass_f1: 0.9971\n    fail_f1: 0.9926\n    training_time_sec: 2922\n- exp_id: qwen15b_full_trace_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7706\n    n: 1190\n- exp_id: qwen15b_exception_only_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    accuracy_ci_lower: 0.9958\n    accuracy_ci_upper: 1\n    majority_baseline: 0.7151\n    lift: 0.283\n    n: 1190\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n    train_loss: 0.1347\n    eval_loss: 0.5761\n    wall_clock_seconds: 1762\n- exp_id: qwen15b_nomarker_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.978\n    n: 1190\n    accuracy_ci:\n    - 0.97\n    - 0.986\n    majority_baseline: 0.715\n    lift: 0.263\n    pass_precision: 0.97\n    pass_recall: 1\n    pass_f1: 0.98\n    fail_precision: 1\n    fail_recall: 0.92\n    fail_f1: 0.96\n- exp_id: codellama13b_exception_only_seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 1\n    n: 1190\n    errors: 0\n    pass_precision: 1\n    pass_recall: 1\n    pass_f1: 1\n    fail_precision: 1\n    fail_recall: 1\n    fail_f1: 1\n    lift_over_majority: 0.2849\n- exp_id: codellama13b_exception_only_seed456\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9983\n    n: 1190\n    errors: 2\n    pass_precision: 1\n    pass_recall: 0.9976\n    pass_f1: 0.9988\n    fail_precision: 0.9941\n    fail_recall: 1\n    fail_f1: 0.9971\n- exp_id: codellama13b_nomarker_seed42\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: full_trace_tail_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.973\n    accuracy_ci:\n    - 0.964\n    - 0.982\n    majority_baseline: 0.7151\n    lift: 0.258\n    n: 1190\n    pass_precision: 0.98\n    pass_recall: 0.99\n    pass_f1: 0.98\n    fail_precision: 0.97\n    fail_recall: 0.94\n    fail_f1: 0.95\n- exp_id: full_trace_tail_512_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.936\n    accuracy_ci:\n    - 0.922\n    - 0.95\n    majority_baseline: 0.7151\n    lift: 0.221\n    n: 1190\n    pass_precision: 0.98\n    pass_recall: 0.93\n    pass_f1: 0.95\n    fail_precision: 0.85\n    fail_recall: 0.94\n    fail_f1: 0.89\n- exp_id: full_trace_tail_256_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.7748\n    accuracy_ci:\n    - 0.7496\n    - 0.7975\n    majority_baseline: 0.7151\n    lift: 0.0597\n    n: 1190\n    pass_f1: 0.8333\n    fail_f1: 0.6528\n- exp_id: full_trace_tail_1024_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9647\n    accuracy_ci:\n    - 0.9546\n    - 0.9748\n    majority_baseline: 0.7151\n    lift: 0.2496\n    n: 1190\n    pass_f1: 0.9753\n    fail_f1: 0.9381\n- exp_id: zeroshot_qwen7b_exception_only\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.8908\n    accuracy_ci_lower: 0.8731\n    accuracy_ci_upper: 0.9076\n    pass_precision: 0.8815\n    pass_recall: 0.9788\n    pass_f1: 0.9276\n    fail_precision: 0.9265\n    fail_recall: 0.6696\n    fail_f1: 0.7774\n    n_test: 1190\n    n_unknown: 0\n- exp_id: zeroshot_deepseek7b_exception_only\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9059\n    accuracy_ci_lower: 0.8899\n    accuracy_ci_upper: 0.9218\n    pass_precision: 0.9743\n    pass_recall: 0.8919\n    pass_f1: 0.9313\n    fail_precision: 0.7762\n    fail_recall: 0.941\n    fail_f1: 0.8507\n    n_test: 1190\n    n_unknown: 0\n- exp_id: zeroshot_codellama13b_exception_only\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.5101\n    accuracy_ci_lower: 0.4824\n    accuracy_ci_upper: 0.5395\n    pass_precision: 1\n    pass_recall: 0.3502\n    pass_f1: 0.5187\n    fail_precision: 0.3585\n    fail_recall: 0.9115\n    fail_f1: 0.5146\n    n_test: 1190\n    n_unknown: 30\n- exp_id: fewshot_qwen7b_exception_only\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9084\n    accuracy_ci_lower: 0.8908\n    accuracy_ci_upper: 0.9244\n    pass_precision: 0.9245\n    pass_recall: 0.9495\n    pass_f1: 0.9368\n    fail_precision: 0.8639\n    fail_recall: 0.8053\n    fail_f1: 0.8336\n    n_test: 1190\n    n_unknown: 0\n- exp_id: zeroshot_qwen15b_exception_only\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9345\n    accuracy_ci_lower: 0.9202\n    accuracy_ci_upper: 0.9479\n    pass_f1: 0.969\n    fail_f1: 0.873\n    pass_recall: 0.9906\n    fail_recall: 0.7935\n    n_test: 1190\n    n_unknown: 24\n- exp_id: deepseek_full_trace_tail2048_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9496\n    accuracy_ci_lower: 0.937\n    accuracy_ci_upper: 0.9622\n    pass_precision: 0.9692\n    pass_recall: 0.96\n    pass_f1: 0.9646\n    fail_precision: 0.902\n    fail_recall: 0.9233\n    fail_f1: 0.9125\n    n_test: 1190\n- exp_id: qwen15b_full_trace_tail2048_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.979\n    accuracy_ci_lower: 0.9706\n    accuracy_ci_upper: 0.9874\n    pass_precision: 0.9758\n    pass_recall: 0.9953\n    pass_f1: 0.9855\n    fail_precision: 0.9876\n    fail_recall: 0.9381\n    fail_f1: 0.9622\n    n_test: 1190\n- exp_id: deepseek_full_trace_head2048_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.787\n    accuracy_ci_lower: 0.765\n    accuracy_ci_upper: 0.81\n    majority_baseline: 0.715\n    lift_pp: 7.2\n    pass_precision: 0.84\n    pass_recall: 0.86\n    pass_f1: 0.85\n    fail_precision: 0.63\n    fail_recall: 0.6\n    fail_f1: 0.62\n- exp_id: qwen15b_full_trace_head2048_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7529\n    accuracy_ci_lower: 0.7286\n    accuracy_ci_upper: 0.7782\n    pass_precision: 0.799\n    pass_recall: 0.874\n    pass_f1: 0.835\n    fail_precision: 0.587\n    fail_recall: 0.448\n    fail_f1: 0.508\n    n_test: 1190\n- exp_id: full_trace_tail256_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.789\n    accuracy_ci_lower: 0.765\n    accuracy_ci_upper: 0.813\n    pass_f1: 0.845\n    fail_f1: 0.671\n    n_test: 1190\n- exp_id: qwen15b_full_trace_tail256_seed42\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.726\n    accuracy_ci_lower: 0.7\n    accuracy_ci_upper: 0.753\n    majority_baseline: 0.715\n    lift_over_majority: 0.011\n    lift_ci_lower: -0.021\n    lift_ci_upper: 0.044\n    pass_precision: 0.82\n    pass_recall: 0.79\n    pass_f1: 0.8\n    fail_precision: 0.52\n    fail_recall: 0.57\n    fail_f1: 0.54\n    eval_loss: 0.5936\n    train_loss: 0.2687\n- exp_id: deepseek_full_trace_tail256_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7639\n    accuracy_ci_lower: 0.7403\n    accuracy_ci_upper: 0.7874\n    pass_precision: 0.8058\n    pass_recall: 0.8825\n    pass_f1: 0.8424\n    fail_precision: 0.6124\n    fail_recall: 0.4661\n    fail_f1: 0.5293\n    majority_baseline: 0.7151\n    lift: 0.0487\n    eval_loss: 0.5117\n    train_loss: 0.2367\n- exp_id: qwen15b_full_trace_tail512_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.956\n    accuracy_ci_lower: 0.945\n    accuracy_ci_upper: 0.968\n    majority_baseline: 0.715\n    lift_over_majority: 0.241\n    eval_loss: 0.263\n    train_loss: 0.154\n    pass_precision: 0.98\n    pass_recall: 0.96\n    pass_f1: 0.97\n    fail_precision: 0.91\n    fail_recall: 0.94\n    fail_f1: 0.92\n    eval_mean_token_accuracy: 0.949\n- exp_id: deepseek_full_trace_tail512_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.939\n    accuracy_ci_lower: 0.926\n    accuracy_ci_upper: 0.953\n    majority_baseline: 0.715\n    lift_over_majority: 0.224\n    pass_precision: 0.97\n    pass_recall: 0.94\n    pass_f1: 0.96\n    fail_precision: 0.86\n    fail_recall: 0.94\n    fail_f1: 0.9\n    n_test: 1190\n- exp_id: deepseek_full_trace_tail1024_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.9647\n    accuracy_ci_lower: 0.9538\n    accuracy_ci_upper: 0.9748\n    pass_precision: 0.964\n    pass_recall: 0.987\n    pass_f1: 0.976\n    fail_precision: 0.966\n    fail_recall: 0.909\n    fail_f1: 0.936\n    majority_baseline: 0.7151\n    n_test: 1190\n- exp_id: qwen15b_full_trace_tail1024_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.966\n    accuracy_ci_low: 0.955\n    accuracy_ci_high: 0.976\n    pass_precision: 0.96\n    pass_recall: 0.99\n    pass_f1: 0.98\n    fail_precision: 0.97\n    fail_recall: 0.91\n    fail_f1: 0.94\n    eval_loss: 0.1983\n    train_loss: 0.1187\n    majority_baseline: 0.715\n    lift_over_majority_pp: 25\n- exp_id: codellama13b_full_trace_tail512_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 97.5\n    accuracy_ci_low: 96.6\n    accuracy_ci_high: 98.4\n    majority_baseline: 71.5\n    lift_over_majority: 26\n    pass_precision: 0.98\n    pass_recall: 0.99\n    pass_f1: 0.98\n    fail_precision: 0.97\n    fail_recall: 0.94\n    fail_f1: 0.95\n    train_loss: 0.124\n    eval_loss: 0.249\n- exp_id: codellama13b_full_trace_head2048_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.7992\n    majority_baseline: 0.7151\n    lift: 0.084\n    n_test: 1190\n    pass_precision: 0.8566\n    pass_recall: 0.8637\n    pass_f1: 0.8602\n    fail_precision: 0.6506\n    fail_recall: 0.6372\n    fail_f1: 0.6438\n    train_loss: 0.0452\n    eval_loss: 0.111\n    accuracy_ci_lower: 0.7765\n    accuracy_ci_upper: 0.8227\n- exp_id: codellama13b_full_trace_tail1024_seed42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: codellama13b_full_trace_tail256_seed42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy: 0.779\n    accuracy_ci_lower: 0.757\n    accuracy_ci_upper: 0.803\n    pass_f1: 0.843\n    fail_f1: 0.626\n    pass_precision: 0.856\n    pass_recall: 0.831\n    fail_precision: 0.604\n    fail_recall: 0.649\n    majority_baseline: 0.715\n    lift: 0.064\n    train_loss: 0.245\n    eval_loss: 0.615\n- exp_id: codellama13b_full_trace_tail1024_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy: 0.876\n    accuracy_ci_lower: 0.856\n    accuracy_ci_upper: 0.893\n    majority_baseline: 0.715\n    lift_pp: 16.1\n    pass_precision: 0.85\n    pass_recall: 1\n    pass_f1: 0.92\n    fail_precision: 1\n    fail_recall: 0.56\n    fail_f1: 0.72\n    n_test: 1190\n    train_loss: 0.0937\n    eval_loss: 0.1859\n- exp_id: codellama13b_full_trace_tail2048_seed42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: codellama13b_full_trace_tail2048_seed42_v2\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    accuracy_epoch1: 0.2849\n    accuracy_epoch3: 0.2958\n    pass_recall_epoch3: 0.016\n    fail_recall_epoch3: 0.997\n    majority_baseline: 0.715\n    n_test: 1190\n    note: 'Catastrophic failure: model predicts fail for almost everything. Full-sequence\n      loss dilution with CodeLlama tokenizer at 2048 tokens.'\n- exp_id: codellama13b_full_trace_tail1024_seed42_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    accuracy_epoch1: 0.9824\n    accuracy_epoch3: 0.9756\n    pass_f1_epoch1: 0.988\n    fail_f1_epoch1: 0.968\n    pass_f1_epoch3: 0.983\n    fail_f1_epoch3: 0.955\n    best_accuracy: 0.9824\n    best_epoch: 1\n    overfitting: true\n- exp_id: codellama13b_full_trace_tail2048_seed42_v3\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: qwen7b_full_trace_head2048_seed42\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n\n\n## what_if (hypothetical experiments — additive)\n\n- name: fine_grained_phase_transition\n  claim: Phase transition claim\n  description: tail-384 × 4 models 精确定位 phase transition 拐点\n  estimated_gpu_hours: 16.0\n- name: cross_seed_budget_curve\n  claim: Robustness\n  description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness\n  estimated_gpu_hours: 24.0\n- name: few_shot_baseline\n  claim: Claim 1 强化\n  description: GPT-4o/Claude few-shot verdict prediction baseline 对比\n  estimated_gpu_hours: 0.0\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T11:40:47.586Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T11:40:47.586Z",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T11:40:47.610Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强竞争力
+核心假设：['tail-384 全 4 模型 ≤81%（与 tail-256 统计等价），phase transition 在 384-512 之间是 sharp cliff', 'cross-seed tail-512 标准差 ≤2pp，convergence band 紧密，phase transition 位置 seed-robust', 'CodeLlama tail-2048 正常完成（匹配 Qwen/DeepSeek pattern），4 模型 budget curve 完整', '4 模型 budget curve 展示 universal sharp phase transition + universal exception ceiling → 构成独立 contribution', 'label_only 26%/74% causal decomposition 被认可为独立 methodological contribution', "'feature engineering' 批评被 4-model universality + phase transition structure 有效反驳"]
+关键指标范围：{'tail_384_accuracy_4model_mean': [76, 81], 'tail_384_vs_tail256_max_diff_pp': [0, 3], 'cross_seed_tail512_std_pp_max': [0, 2.0], 'codellama_tail2048_accuracy': [95, 98], 'phase_transition_256to512_pp_min_across_models': [15, 23], 'exception_ceiling_4model_nonoutlier': [99.3, 100], 'paper_distinct_contributions': [4, 5], 'emnlp_main_accept_probability': [0.55, 0.75]}
+叙事方向：原始 framing 完全成立。5 contributions: (1) exception dominance universal across 4 models/3 families/2 scales, (2) information density > gradient dilution with 26%/74% causal decomposition, (3) two-tier diagnostic hierarchy with multi-seed validation, (4) universal sharp phase transition at ~400 tokens confirming diagnostic signal locality, (5) LoRA training stability as practical bottleneck (D9/D10)。Budget curve 作为核心 Figure 展示 'why exception works' 的机制解释—— exception 等价于 trace 末尾 diagnostic moment，而 phase transition 证明这个 moment 的信息高度局部化。Paper 叙事完整闭环：fault detection task → diagnostic signal extraction → phase transition confirms signal locality → exception_only is the optimal extraction。Claims 无需调整，数据自证。
+
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: trace-verdict-study
+focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story 是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+
+## paper_framing.md
+
+# Paper Framing — trace-verdict-study
+
+> v3.0 — [UPDATED 2026-05-15] D030 CLOSED: DeepSeek VOTA 84.45% confirmed correct (confirmatory re-eval). **Critical narrative fix**: to_chat_text() preserves labels → VOTA 训练时 verdict label 未被截断 → 论文中 "label truncation/corruption" 措辞对 VOTA 不成立。正确叙事: trace INPUT content 被截断 (91.7% samples), 84.45% 反映 trace information loss。新增 D11: VOTA cross-model gap confounded by training-time truncation。数据集来源：HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 LLM-generated solutions = 5910 samples。
+
+## Target Venue
+- Primary: EMNLP 2026 Main (ARR submission)
+- Fallback: EMNLP 2026 Findings
+- Deadline: ARR May 25, 2026
+
+## Core Insight
+
+Verdict prediction (pass/fail) is fundamentally a **fault detection** task. The most effective signal is the **exception event** — a compact, structured diagnostic moment that consistently outperforms all other trace representations across models (Qwen 99.83% ± 0.00 across 3 seeds; DeepSeek 91-99% depending on seed, but always > VOTA 84.45% and no_trace 73.36%). In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.** Cross-model absolute performance depends on LoRA initialization stability, but exception_only's relative dominance over other components is robust.
+
+VOTA's primary contribution is **fault indicator isolation** — automatically extracting exception events from noisy full traces — rather than generic trace compression. The "compression helps" narrative was a stepping stone; the real mechanism is diagnostic signal extraction.
+
+## Core Claims (3)
+
+### Claim 1: Exception events are the most effective trace component for verdict prediction
+
+Exception summaries consistently achieve the highest verdict prediction accuracy across both models tested, outperforming all other trace representations in every seed. On Qwen-2.5-Coder-7B, performance is perfectly robust: 99.83% ± 0.00 (3 seeds). On DeepSeek-Coder-6.7B, absolute accuracy is seed-dependent (seed42=99.83% epoch1, seed123=91.43% epoch1; Δ=8.40pp), consistent with LoRA initialization sensitivity — but exception_only still dominates VOTA (84.45%) and no_trace (73.36%) in all seeds. This contrasts with VOTA (cross-model gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning.
+
+**Supporting evidence:**
+- `vota_exception_only_seed42_v2`: Qwen 99.83%, ECE=0.0027
+- `deepseek_exception_only_seed42`: DeepSeek 99.83% (epoch1) / 99.33% (epoch3)
+- `deepseek_exception_only_seed456`: DeepSeek 99.33% (epoch3), CI [98.82, 99.75] — 与 seed42 完全一致
+- `deepseek_exception_only_seed123`: DeepSeek 91.43% (epoch1) / 91.09% (epoch3) — LoRA init sensitivity outlier
+- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp vs Qwen)
+- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp vs Qwen)
+- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison
+
+**DeepSeek seed analysis** ✅ (FINALIZED, D029):
+
+| Seed | Epoch 3 (final) | fail_recall | pass_recall | train_loss | Errors | CI |
+|------|-----------------|-------------|-------------|------------|--------|-----|
+| 42   | 99.33%          | 1.0         | 0.9906      | —          | 8/1190 | — |
+| 456  | 99.33%          | 1.0         | 0.9906      | 0.1225     | 8/1190 | [98.82, 99.75] |
+| 123  | 91.09%          | 0.705       | 0.993       | 0.122      | —      | [89.4, 92.6] |
+
+seed42 与 seed456 结果**完全一致**（均 8/1190 错误，99.33%），seed123 为离群值。seed123 的 fail_recall 仅 0.705 — LoRA 初始化落入差的局部最优，未充分学到 exception→fail 映射。**关键发现**: seed456 和 seed123 的 train_loss 几乎相同（0.1225 vs 0.122），但 accuracy 差 8.2pp — token-level loss 掩盖了 sample-level 分类能力的巨大差异（详见 D10）。
+
+**Irreducible error analysis** ✅: 3 seeds 错误的 2 个样本 (id=901, 905) 均来自 HumanEval/95 (`check_dict_case`)，根因为 Python `all()` 对 generator expression 短路触发 `GeneratorExit`（`BaseException` 子类，非真正错误）。tracer 将其标记为 `[ERROR]`，exception_only 模型看到 7 行 `[ERROR] GeneratorExit`，合理但错误地预测 fail。整个 1190 条测试集仅这 2 条含 `GeneratorExit`，模型无训练信号学习其良性本质。**这确认 99.83% 是 exception_only 表征的理论上限，剩余 0.17% 是 representation-inherent irreducible error，而非模型不足。**
+
+**Seed robustness** ✅: Qwen exception_only 3-seed 完全一致，构成本文最强 robustness 证据：
+
+| Seed | Accuracy | 95% CI | Errors |
+|------|----------|--------|--------|
+| 42 | 99.83% | [99.58, 100] | 2/1190 |
+| 123 | 99.83% | [99.58, 100] | 2/1190 |
+| 456 | 99.83% | [99.58, 100] | 2/1190 |
+
+3 seeds 错误样本 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限，variance = 0。
+
+**DeepSeek cross-model** ✅ (D029): 3-seed 完整数据 — seed42/456=99.33%, seed123=91.09%。2/3 seeds 鲁棒，seed123 为 LoRA 初始化离群值（fail_recall 仅 0.705）。Qwen 3-seed 完美稳定 (99.83% ± 0.00) vs DeepSeek 高方差（σ≈4.8pp），暗示 exception signal 的 learnability 与模型 LoRA 训练稳定性相关。但即使最差 seed (91.09%) 仍优于 VOTA (84.45%) 和 no_trace (73.36%)，relative dominance robust。
+
+### Claim 2: Information density, not gradient dilution, drives trace compression benefit
+
+Full traces help verdict prediction (81.76% [`full_trace_seed42_v5`], +6.6pp over baseline), but VOTA achieves 99.41% [`vota_seed42_v5`] (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.22% [`full_trace_label_only_seed42`]), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.
+
+Cross-model evidence reinforces this: VOTA gap (14.96pp) partly tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), though **confounded by DeepSeek training-time trace truncation** (91.7% of VOTA samples truncated to ~2048 tokens; see D11). The two factors cannot be disentangled in the current design. Exception signal partially bypasses both bottlenecks (token-short, no truncation; consistently best component on both models), though DeepSeek shows seed-dependent absolute performance (91-99%).
+
+**Supporting evidence:**
+- `full_trace_label_only_seed42`: 86.22%, ECE=0.1107 (gradient dilution fix, +4.5pp over standard full_trace)
+- `full_trace_seed42_v5`: 81.76%, ECE=0.0958 (standard full_trace)
+- `vota_seed42_v5`: 99.41%, ECE=0.0054
+- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)
+- CRUXEval literature data (Wang et al.)
+
+### Claim 3: Two-tier diagnostic hierarchy for verdict prediction
+
+Component ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:
+- **Tier 1 — diagnostic moment signals**: exception summaries (99.83% [`vota_exception_only_seed42_v2`]) and assertion-point information (99.92% [`vota_ae_only_seed42`]) are individually near-perfect and sufficient for verdict prediction on Qwen. These signals are structurally simple and consistently the most effective component on both models, though DeepSeek absolute performance is seed-dependent.
+- **Tier 2 — behavioral patterns**: loop compression (85.63% [`vota_loop_only_seed42`]) carries substantial signal but is model-dependent and fully subsumed by Tier 1.
+
+Combining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.63% vs 86.22%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.
+
+**Supporting evidence:**
+- `vota_exception_only_seed42_v2`: 99.83%, ECE=0.0027 (Tier 1 exception)
+- `vota_ae_only_seed42`: 99.92%, ECE=0.0004 (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)
+- `vota_loop_only_seed42`: 85.63%, ECE=0.0831 (Tier 2 behavioral)
+- `full_trace_label_only_seed42`: 86.22%, ECE=0.1107 (≈ loop_only, confirming extraction equivalence)
+- `deepseek_exception_only_seed42`: 99.83% epoch1 / 99.33% epoch3 (Tier 1 cross-model validation)
+- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)
+
+**Calibration**: 完整 calibration 数据确认 Tier 1 信号不仅 accuracy 近完美，置信度校准也近完美：
+
+| Condition | Accuracy | ECE | Brier | 解读 |
+|-----------|----------|-----|-------|------|
+| ae_only | 99.92% | 0.0004 | 0.0008 | 近乎完美校准 |
+| exception_only | 99.83% | 0.0027 | 0.0013 | 近乎完美校准 |
+| VOTA | 99.41% | 0.0054 | 0.005 | 优秀，但 Tier 2 引入轻微 noise |
+| loop_only | 85.63% | 0.0831 | — | Tier 2 单独校准中等 |
+| label_only | 86.22% | 0.1107 | — | gradient dilution fix 仍 miscalibrated |
+| full_trace | 81.76% | 0.0958 | — | 中度 miscalibrated |
+| no_trace | 75.13% | 0.1715 | 0.1972 | 严重 miscalibrated |
+
+no_trace ECE 是 exception_only 的 **~63x**（0.1715/0.0027），Brier 是 **~150x**（0.1972/0.0013）。Trace signal（尤其 Tier 1）不仅提升 accuracy，更从根本上改善模型 calibration。
+
+**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.
+
+## Cross-Model Evidence Summary
+
+| Condition | Qwen-2.5-Coder-7B | DeepSeek-Coder-6.7B | Cross-model gap | Interpretation |
+|-----------|-------------------|---------------------|-----------------|----------------|
+| exception_only | 99.83% ± 0.00 (3 seeds) | seed42/456: 99.33%; seed123: 91.09% | 0.50-8.74pp (seed-dependent) | **Best component on both models**; 2/3 DeepSeek seeds match Qwen-level; 1 outlier still > VOTA |
+| VOTA | 99.41% | 84.45% | -14.96pp | Model-dependent — requires execution reasoning; **also confounded by DeepSeek training-time trace truncation** (91.7% of VOTA samples truncated from mean 2626 to ~2048 tokens; labels preserved via to_chat_text(), see D11) |
+| no_trace | 75.13% | 73.36% | -1.77pp | Baseline gap tracks general capability |
+| full_trace | 81.76% | collapsed (v3 pending) | N/A | DeepSeek v1 label truncation bug |
+
+**Key insight**: Exception_only is consistently the best component on both models (even worst DeepSeek seed 91.09% > VOTA 84.45%). Cross-model gap 与 signal complexity 正相关, but exception signal's absolute effectiveness also depends on LoRA training stability. Qwen: perfectly robust (3 seeds identical). DeepSeek: 2/3 seeds at 99.33% (matching Qwen-level), 1 outlier at 91.09% (LoRA initialization). Median performance robust; seed sensitivity suggests smaller/weaker models may need training stabilization (multi-seed selection, warmup tuning) for optimal exception signal utilization.
+
+## VOTA Repositioning
+
+**旧叙事**: VOTA 是 trace compression 方法，价值在于"压缩使 trace 更有效"。
+
+**新叙事**: VOTA 是 **fault indicator isolation** 方法，核心价值在于自动从 noisy execution traces 中提取 exception events 等 diagnostic signals。
+
+**证据链**:
+1. exception_only (99.83%) ≥ VOTA full (99.41%) — 压缩后的其他组件（loop, ae）不仅无益，反而引入 noise
+2. VOTA 跨模型 gap = 14.96pp — 因为 VOTA 包含 model-dependent 的 Tier 2 组件（loop compression 需要 execution reasoning）
+3. exception_only 在两个模型上均为最优组件 — isolate 出 Tier 1 后，相对优势 robust（虽然 DeepSeek 绝对值 seed-dependent）
+4. vota_no_ae (99.41%) = VOTA (99.41%) — actual/expected 移除无影响，exception 是真正的 active ingredient
+
+**论文中的表述**: "VOTA's trace compression pipeline incidentally isolates exception events — the minimal sufficient diagnostic signal. Its value lies not in making traces shorter, but in separating high-specificity fault indicators from low-specificity behavioral patterns."
+
+**对 Method section 的影响**: VOTA 仍然完整描述（loop compression + exception + actual/expected），但 Results/Discussion 明确指出 exception isolation 是核心机制，其他组件是 model-capability-dependent bonus。
+
+## Story Spine
+
+- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.
+
+- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that "no single trace representation consistently outperforms others." TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.
+
+- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are consistently the most effective trace component, achieving near-perfect accuracy on Qwen (99.83% ± 0.00, 3 seeds) and outperforming all alternatives on DeepSeek (91-99% vs VOTA 84.45%). Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.
+
+- **Headline result**: "Exception events consistently achieve the highest verdict accuracy across models (Qwen 99.83%, DeepSeek 91-99%), outperforming VOTA traces (84.45% on DeepSeek, -14.96pp gap) — demonstrating that fault indicator isolation, not trace reasoning, is the robust mechanism for verdict prediction. DeepSeek seed sensitivity reveals LoRA training stability as a secondary factor for smaller models."
+
+## Story Arc
+
+1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.
+
+2. **First result — traces help, compression helps more** (single model): no_trace 75.13% → full_trace 81.76% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.
+
+3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The "trace reasoning" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).
+
+4. **Cross-model stress test — consistent dominance, not universal perfection**: Exception_only is the best component on both models (even DeepSeek worst seed 91.09% > VOTA 84.45%), but absolute performance is seed-dependent on DeepSeek (91-99% vs Qwen's perfectly stable 99.83%). VOTA degrades by 14.96pp. The structurally simplest component is the most robust, but LoRA initialization sensitivity introduces variance on weaker models. Qwen seed robustness (3-seed variance = 0) + calibration (ECE=0.0027) 确认 exception signal 在强模型上的 reliability。DeepSeek seed sensitivity 揭示 training stability 作为 secondary bottleneck。
+
+5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. VOTA's value is fault indicator isolation — automatically extracting exceptions from noisy traces — not generic compression. Simpler signals are more robust; complexity tolerance depends on model capability.
+
+## Dataset Characteristics
+
+### Data duplication analysis
+
+| Condition | Total | Unique | Duplication rate | Cause |
+|-----------|-------|--------|------------------|-------|
+| exception_only_train | 4720 | 2858 | 39.45% | 同题多个 passing 解映射为相同 (input, output) — 无异常 → 同一 trace |
+| exception_only_test | 1190 | 607 | 48.99% | 同上 |
+| raw_traces | 5910 | 5803 | 1.81% | 完整 trace 含行号/变量值/内存地址，几乎不重复 |
+
+**Train-test input overlap: 0（无数据泄漏）**
+
+**解读**: exception_only 高重复率是 representation 的自然属性，非数据问题。多个正确解对同一测试用例执行时若均无异常，exception_only 表征退化为相同的空/无异常标记。这恰好说明 exception signal 的 compactness — 它仅编码 fault presence，不编码 solution identity。raw_traces 重复率极低 (1.81%) 因为完整 trace 包含 solution-specific 信息（变量值、内存地址）。尽管高重复率意味着有效训练样本少于名义数量，模型仍达 99.83% — 进一步确认 exception signal 的 learnability。
+
+## DeepSeek full_trace 处理
+
+**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。v3 RUNNING（label-preserving truncation fix）。
+
+**处理方案**: v3 正在 cuda:0 上训练，预计 5/16 完成。
+
+**VOTA vs full_trace 截断机制区分** (D030 token analysis 确认):
+- **full_trace v1**: SFTTrainer right-truncation 切掉了 verdict **label** → 100% predict fail → 坍塌。根因: DeepSeek tokenizer 对 full_trace 产生 >2048 tokens, label 在截断窗口外。
+- **VOTA**: `to_chat_text()` 保留 verdict label（label 完整），但 91.7% 的样本 **trace content（input）被截断**（mean 2626 → ~2048 tokens）。84.45% 是真实结果，反映 trace 信息损失对模型学习的影响，**不是** label corruption。
+- **exception_only**: token 长度远低于 2048，不受截断影响，跨模型对比 clean。
+
+**对论文叙事的影响**: 论文中所有 "right-truncation corrupts/removes the verdict label" 措辞**对 VOTA 不成立**——label 完整保留，被截断的是 trace input。正确表述: "trace content truncation causes information loss"。VOTA cross-model gap (14.96pp) 有两个贡献因素: (1) model capability, (2) training-time trace truncation on DeepSeek (see D11)。
+
+## External Benchmark (DebugBench) Positioning
+
+**DebugBench 仅作泛化性验证，不作 trace importance 证据。**
+
+| Condition | Main Dataset | DebugBench | Δ interpretation |
+|-----------|-------------|------------|------------------|
+| no_trace | 75.13% | 96.71% | DebugBench 天花板高，baseline 已强 |
+| VOTA | 99.41% | 99.77% | +3.06pp lift — 边际 |
+| exception_only | 99.83% | 100.00% | +3.29pp lift — 边际 |
+
+**主数据集 trace lift = 24.70pp**（no_trace → exception_only），DebugBench trace lift 不到其 1/7。
+
+**论文定位规则**：
+- DebugBench → 泛化性证据（exception_only 100% = 跨数据集鲁棒性）
+- Trace importance 论证 → 仅依赖主数据集（24.7pp lift）
+- 禁止用 DebugBench 的 3.29pp lift 论证 "trace 的核心价值"——审稿人会攻击天花板效应
+
+## Venue Fit Risks
+
+| Risk | Assessment | Mitigation |
+|------|-----------|------------|
+| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |
+| 单数据集 | HumanEval + MBPP-sanitized 是唯一数据源 (591 problems × 10 solutions) | 定位为 empirical study, 深度优于广度; 两个标准 benchmark 组合覆盖多样编程题型; exception_only 有效训练样本仅 2858 unique 即达 99.83%, 暗示 signal 的 simplicity 降低对数据量的依赖 |
+| "只是 feature engineering" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |
+| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |
+| Seed robustness (Qwen) | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |
+| Seed robustness (DeepSeek) | ✅ 3-seed 完整: 2/3 at 99.33%, 1 at 91.09% | LoRA initialization sensitivity — median robust, worst still > all alternatives; 转化为 training stability finding (D9/D10) |
+| Calibration | ✅ 完整数据: Tier 1 ECE≤0.003, no_trace ECE=0.171 (~63x gap) | Brier ~150x gap 进一步确认 |
+| 只用 2 个模型 | 有限但有意义的 diversity | Architecture + pretraining data (5.5T vs 2T) + CRUXEval gap (17.5pp) 构成充分差异 |
+| 数据重复率 | exception_only 训练集 39.45% 重复 | 非数据泄漏（train-test overlap = 0）；是 representation compactness 的自然结果；有效样本仍足够学习 |
+
+## Anticipated Reviewer Concerns
+
+| Concern | Planned Response |
+|---------|-----------------|
+| "exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？" | full_trace 也包含 [ERROR] 但仅 81.76%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.13%. |
+| "为什么 exception_only > VOTA? adding info 反而降?" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.0027 vs VOTA ECE=0.0054. 部分样本 loop 正常但有 exception, 引入矛盾信号. |
+| "CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |
+| "只有 2 个模型，universality claim 太强" | 同意是 limitation. 两模型在 architecture (RoPE vs ALiBi), pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. Exception signal 的 structural simplicity 提供 inductive argument for broader generalization. |
+| "99.83% 可能 saturated, 看不出 exception 到底学了什么" | Calibration 双指标: exception_only ECE=0.0027, Brier=0.0013 (近完美校准). 对比 no_trace ECE=0.1715, Brier=0.1972 (~63x/~150x gap). **Irreducible error 根因已明确**: 2/1190 errors 均因 Python `all()` 短路触发 `GeneratorExit`（`BaseException` 子类，非真正错误），tracer 将其标记为 `[ERROR]`。模型看到 7 行 `[ERROR] GeneratorExit` 合理预测 fail，但代码实际正确。整个测试集仅这 2 条含 `GeneratorExit`，无训练信号可学习其良性本质。99.83% 是 representation 的理论上限，非 saturation artifact。 |
+| "只用了 1 个 seed" | Qwen ✅: 3 seeds 99.83% ± 0.00. DeepSeek ✅: 3 seeds 完整 — seed42/456=99.33%, seed123=91.09%。2/3 鲁棒，1 离群。median=99.33%, worst=91.09% (仍 > VOTA 84.45%)。论文透明报告所有 seeds，将 seed sensitivity 转化为 LoRA training stability 的 finding（D9）。 |
+| "eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?" | Discussion D1: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |
+| "DeepSeek full_trace 坍塌是 bug 不是 finding" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |
+| "calibration 数据只有 1 个 seed" | Seed robustness 已证明 accuracy variance=0 (3 seeds), calibration 在 accuracy 完全一致的前提下 expected 也一致. ECE/Brier 的极小值 (0.0027/0.0013) 留有极小 variance 空间. |
+| "DeepSeek epoch1 > epoch3, 为什么用 epoch3 报告?" | 正文报告所有 seeds 的 final + best checkpoint。seed42: epoch1=99.83%, epoch3=99.33%。seed123: epoch1=91.43%, epoch3=91.09%。D7 讨论 early stopping + D9 讨论 LoRA initialization sensitivity。不 cherry-pick best seed。 |
+| "DeepSeek seed sensitivity 说明 exception signal 不 robust" | Exception_only 在所有 seeds 上仍优于其他条件（worst seed 91.09% > VOTA 84.45%）。Seed sensitivity 是 LoRA training 问题而非 signal 问题——Qwen 3 seeds 完美证明 signal 本身 robust。D9 讨论 training stabilization 作为 practical recommendation。 |
+| "exception_only 数据集 ~40-49% 重复，有效训练样本不足？" | 重复源自 representation compactness：同题多个 passing 解均无异常 → 相同 trace。**非数据泄漏**（train-test input overlap = 0）。raw_traces 仅 1.81% 重复，确认重复是 exception_only 表征特性而非数据收集问题。模型在有效样本仅 2858 unique 的条件下仍达 99.83%，反而说明 exception signal 的高 learnability — 少量 unique 样本即可充分学习 fault detection pattern。 |
+
+## Discussion 要点
+
+### D1: eval_loss vs verdict accuracy 解耦
+DeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.
+
+### D2: CRUXEval gap 假说 (revised — D030 confound)
+VOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model "execution reasoning readiness" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim. **注意**: 我们的训练/测试数据来自 HumanEval + MBPP-sanitized（非 CRUXEval），CRUXEval-I 分数仅作为衡量两个模型 execution reasoning 能力差异的外部参照。论文中必须明确区分数据来源与外部基准引用。**D030/D034 truncation evidence**: 14.96pp gap 中截断效应有因果证据: group_analysis 显示 train-truncated 83.04% vs train-intact 100% (Fisher p≈0, 推理时无截断)。截断因果方向可 claim，模型能力差异是 residual confound。CRUXEval gap 数值吻合可能部分巧合。论文中截断效应应作为 established factor 讨论（有 group_analysis 因果证据），模型能力假说标注为 residual confound hypothesis。
+
+### D3: Simplicity as robustness (revised)
+Exception signal 在两模型上均为最优组件，其结构简单性确保了相对优势的跨模型 robustness。但 DeepSeek seed sensitivity 揭示：simplicity 确保 signal 本身 robust，但 LoRA 训练过程是否稳定收敛到正确映射取决于模型。**trace design 应匹配 deployment model 的能力下界**，且需关注 training stability（建议：多 seed 验证 + 考虑 training stabilization 技巧如 warmup、learning rate schedule）。
+
+### D4: Checkpoint selection 与 gap 报告 (revised)
+正文报告所有 seeds 的 final checkpoint 结果 + best checkpoint 结果，不 cherry-pick。DeepSeek seed42: epoch1=99.83%, epoch3=99.33%（退化 0.50pp）。DeepSeek seed123: epoch1=91.43%, epoch3=91.09%（退化 0.34pp）。两个 seed 均显示轻微 epoch 退化，但核心差异在 epoch1 起点（8.40pp gap），不是训练过程。
+
+### D5: Irreducible samples — GeneratorExit 根因分析
+3 seeds 的 2/1190 errors 完全相同（id=901, 905, 均来自 HumanEval/95 `check_dict_case`），方向一致（pass→fail false negatives）。
+
+**根因**: Python `all()` 对 generator expression 短路时丢弃未耗尽的 generator，触发 `GeneratorExit`。`GeneratorExit` 继承自 `BaseException`（非 `Exception`），是 Python 内部控制流机制而非真正错误。但 tracer 对所有 caught exceptions 统一标记 `[ERROR]`，导致 exception_only 模型看到 7 行 `[ERROR] GeneratorExit`，合理但错误地预测 fail。
+
+**为何不可约**:
+1. **表征局限**: exception_only 条件下模型仅见异常数据，无法访问控制流、返回值或 assertion 结果。`GeneratorExit` 在此表征中与真正错误不可区分。
+2. **跨 seed 确定性**: 3 个 random seeds 产生完全相同的 errors，确认这是 data/representation 属性而非模型初始化随机性。
+3. **训练集无信号**: 整个 1190 条测试集仅这 2 条含 `GeneratorExit`，训练集中也缺乏足够的 `GeneratorExit` 良性样本供模型学习。
+4. **人类也会犯错**: 仅看 exception trace（7 行 `[ERROR]`），人类审查者在不了解 Python generator protocol 的情况下也会预测 fail。
+
+**对论文的意义**: (1) 99.83% 是 exception_only representation 在此数据集上的理论 ceiling，非 saturation artifact；(2) 揭示 tracer 设计的改进方向——区分 `BaseException` 子类（如 `GeneratorExit`, `KeyboardInterrupt`）与 `Exception` 子类（真正的程序错误）可消除此类 irreducible error；(3) 提供 concrete evidence 说明 exception_only 模型"理解"的是 `[ERROR]` tag 的 fault indicator 语义，而非 exception type 的 fine-grained 含义。
+
+### D6: Calibration as secondary evidence
+Calibration 数据提供独立于 accuracy 的 evidence dimension。no_trace Brier=0.1972 说明模型无 trace 时不仅预测错，且对错误预测过度自信。exception_only Brier=0.0013 说明模型在有 exception signal 时几乎完美区分确定性和不确定性。这支持 Claim 1 的 "sufficient signal" 论点——exception 不仅让模型预测对，还让模型 "知道自己对"。
+
+### D7: Early stopping for exception signal (revised — D030 epoch1 data complete)
+3-seed epoch1 完整数据：seed42 epoch1=99.83% → epoch3=99.33%（-0.50pp）；**seed456 epoch1=99.33% → epoch3=99.33%（0.00pp）**；seed123 epoch1=91.43% → epoch3=91.09%（-0.34pp）。**seed42 的 epoch1=99.83%（匹配 Qwen）是该 seed 独有的 LoRA 初始化运气，不是 DeepSeek epoch1 的通用属性。** seed456 epoch1=epoch3 说明 epoch 退化非普遍现象。核心差异仍是 LoRA 初始化（epoch1 起点差 8.40pp），不是 overfitting。Early stopping 无法挽救差的初始化（seed123）。**Implication**: (1) 报告 DeepSeek 结果时应使用 median/2-of-3 (99.33%)，不应以 seed42 epoch1=99.83% 作为 headline；(2) epoch1 peak 是 LoRA 初始化运气的副产物，不具推广性。对比: VOTA 在 DeepSeek 上 84.45% **已确认正确**（D030 关闭: confirmatory re-eval max_length=16384 → 84.45%，与原始训练评估精确一致；D030 根因是 evaluate.py v2 的 max_length=2048 eval-time 截断 bug 导致 82.6% 预测为 garbage tokens）。
+
+### D9: LoRA initialization sensitivity as secondary bottleneck [NEW — D028]
+DeepSeek exception_only seed42=99.83% vs seed123=91.43% (epoch1), 8.40pp gap。Qwen 3 seeds 完全一致。假说：exception signal 的 learnability 取决于 (1) signal 本身的结构简单性（cross-model robust）+ (2) LoRA 初始化是否落入能正确映射 exception→verdict 的 basin。Qwen-7B 可能因模型更强/LoRA landscape 更平滑而对初始化不敏感。DeepSeek-6.7B（CRUXEval-I 39% vs Qwen 56.5%）的 loss landscape 可能更 rugged，LoRA 初始化更易陷入 suboptimal basin（seed123 的 fail_recall 仅 70-72% 说明模型未学到 exception→fail 映射的关键部分）。**论文角度**: 这不是 negative result——它揭示了 trace SFT 的 practical consideration（training stability），可作为 contribution 的一部分。建议 Discussion 讨论 training stabilization 策略（warmup, lr schedule, LoRA rank 调整, multi-seed selection）。
+
+### D10: Train loss ≈ but accuracy ≠ across seeds [NEW — D029]
+DeepSeek exception_only seed456 (train_loss=0.1225) 与 seed123 (train_loss=0.122) 训练损失几乎相同，但 accuracy 差 8.2pp（99.33% vs 91.09%）。关键差异集中在 fail_recall（1.0 vs 0.705）——token-level loss 在所有 tokens 上平均，掩盖了 fail 类少数样本的 sample-level 分类能力差异。**Implication**: (1) 扩展 D1 (eval_loss vs accuracy decoupling) 到训练阶段：train_loss 同样不是 verdict task accuracy 的可靠代理指标；(2) 对 checkpoint selection 的实际建议更强：必须用 task-specific metric (accuracy/F1)，甚至 train_loss 收敛也不保证 task performance；(3) fail 类作为少数类（28.5%），其学习质量被平均 loss 稀释——这在 class-imbalanced 设置下是 general pattern，可推广到其他 verdict/detection 任务。
+
+### D11: VOTA cross-model gap: training-time trace truncation as causal factor [NEW — D030 token analysis + group_analysis]
+D030 token analysis 确认: `to_chat_text()` 保留 labels（verdict label 在训练时未被截断），但 91.7% 的 DeepSeek VOTA 训练样本的 **trace content** 从 mean 2626 tokens 被截断到 ~2048 tokens。
+
+**Group analysis 提供因果证据**: 将测试集按训练截断状态分组（推理时无截断, max_length=16384），train-truncated 组 accuracy=83.04% vs train-intact 组 accuracy=100%, Fisher exact p≈0。**截断的因果方向可以 claim**: 训练时 trace 被截断导致模型学到的信息不完整 → 推理时即使看到完整 trace 也无法正确判断。模型能力差异是残余 confound（无法完全分离）。
+
+**Implications**: (1) 论文中所有 "right-truncation corrupts/removes the verdict label" 措辞对 VOTA 不成立——label 完整保留，被截断的是 trace INPUT content；(2) 14.96pp gap 中截断效应有因果证据（group_analysis），模型能力差异是 residual confound；(3) exception_only 因 token 长度短（远低于 2048）不受截断影响，其跨模型对比更 clean——进一步强化 Claim 1 "most robust component" 叙事；(4) 论文应讨论 max_length 的影响作为 limitation/future work；(5) group_analysis 数据可作为 Table/Figure 纳入论文——展示截断的因果效应。
+
+### D8: Data duplication as representation signature
+exception_only 训练集 39.45% 重复（4720→2858 unique），测试集 48.99%（1190→607 unique），而 raw_traces 仅 1.81%（5910→5803 unique）。重复源自 exception_only 表征的 design-by-intent compactness：同一编程题的多个 passing 解执行时均无异常，exception_only 表征退化为相同的空标记。这一数据特征本身就是 Claim 3 two-tier hierarchy 的佐证——Tier 1 信号仅编码 fault presence/absence，不编码 solution-level details，因此天然高重复。Train-test input overlap = 0 排除数据泄漏。
+
+## Contingency Framing (已解决, 留存档)
+
+### Claim 1 — RESOLVED (D029: seed456=99.33% confirms "consistently best component")
+seed456 与 seed42 完全一致（均 99.33%），seed123 为孤立离群值。Claim 1 定稿为 "exception events consistently best component across models; absolute performance seed-dependent on DeepSeek (2/3 seeds robust, 1 outlier from LoRA init sensitivity); relative dominance over all alternatives robust across all seeds"。"0pp universal gap" 叙事已放弃，转为数据驱动的 nuanced framing。
+
+### Claim 2 — RESOLVED (D006 + D009)
+v5 full_trace 81.76%. plan_002 label-only 86.22%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.
+
+## 与 v1 Framing 的关键差异
+
+| 维度 | v1 | v2.9 |
+|------|----|----|
+| Headline | VOTA compression 优于 full trace | Exception events are the most effective diagnostic signal |
+| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal consistently best across models; absolute performance seed-dependent on DeepSeek |
+| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |
+| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |
+| VOTA 定位 | 核心方法 — trace compression | **Fault indicator isolation** — 价值在于提取 exception, 非 generic compression |
+| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |
+| DeepSeek full_trace | N/A | v1 collapsed (label truncation), v3 pending |
+| Seed robustness | 未验证 | Qwen ✅ 99.83% ± 0.00 (3 seeds); DeepSeek ⚠️ seed-dependent (91-99%, D028) |
+| Irreducible error | 未分析 | ✅ GeneratorExit 根因明确，99.83% = representation ceiling |
+| Calibration | 未验证 | ✅ 完整 ECE+Brier, ~63x/~150x gap vs no_trace |
+| Data duplication | 未分析 | ✅ exception_only ~40% 重复（representation compactness），train-test overlap = 0 |
+| Early stopping | 未讨论 | DeepSeek epoch1→epoch3 轻微退化 (0.3-0.5pp); 核心问题是 LoRA 初始化 (seed123 epoch1=91.43%), 非 overfitting |
+| Narrative arc | "VOTA helps" | "Exception events are consistently best; VOTA's value is isolating them; training stability matters" |
+
+
+## experiment_plan (with registry status)
+
+- id: plan_001
+  claim: 1
+  description: 'Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception
+    info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。'
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: vota_no_ae_seed42
+  notes: 如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定
+    Claim 1 强度和论文 framing。
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.994
+    majority_baseline: 0.7151
+    lift: 0.279
+    n: 1190
+    pass_f1: 0.996
+    fail_f1: 0.989
+    accuracy_ci_lower: 0.989
+    accuracy_ci_upper: 0.998
+    lift_vs_notrace: 0.243
+    lift_vs_notrace_ci_lower: 0.218
+    lift_vs_notrace_ci_upper: 0.268
+    train_loss: 0.0908
+    eval_loss: 0.2215
+    wall_clock_seconds: 6397.88
+- id: plan_002
+  claim: 2
+  description: 'Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace
+    tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。'
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: full_trace_label_only_seed42
+  notes: 如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是
+    trace noise/length 本身就有害。
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8622
+    accuracy_ci_lower: 0.8437
+    accuracy_ci_upper: 0.8807
+    majority_baseline: 0.7151
+    lift: 0.1471
+    n: 1190
+    pass_precision: 0.8821
+    pass_recall: 0.9318
+    pass_f1: 0.9063
+    fail_precision: 0.8007
+    fail_recall: 0.6873
+    fail_f1: 0.7397
+    train_loss: 0.2505
+    eval_loss: 0.3205
+    lift_vs_notrace: 0.1109
+    lift_vs_notrace_ci_lower: 0.0849
+    lift_vs_notrace_ci_upper: 0.137
+    lift_vs_standard_fulltrace: 0.0445
+    lift_vs_standard_fulltrace_ci_lower: 0.0235
+    lift_vs_standard_fulltrace_ci_upper: 0.0655
+    lift_vs_standard_fulltrace_pvalue: 0
+- id: plan_003
+  claim: 3
+  description: 'VOTA component ablation: 分别测试 (a) 只有 actual/expected, (b) 只有 exception
+    summary, (c) 只有 loop compression, (d) 全量 VOTA。量化每个组件的贡献。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - plan_001
+  registry_id: vota_loop_only_seed42
+  notes: '4 个 sub-conditions。registry IDs: vota_loop_only_seed42 (loop_only 85.6%),
+    vota_exception_only_seed42_v2 (exception_only 99.83%), vota_ae_only_seed42 (ae_only
+    99.92%)。plan_001 vota_no_ae_seed42 (99.4%) 覆盖 ae 冗余确认。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8563
+    majority_baseline: 0.7151
+    lift: 0.1412
+    n: 1190
+    pass_precision: 0.9239
+    pass_recall: 0.8707
+    pass_f1: 0.8966
+    fail_precision: 0.7165
+    fail_recall: 0.8201
+    fail_f1: 0.7648
+    accuracy_ci:
+    - 0.8353
+    - 0.8756
+    bootstrap_vs_no_trace:
+      diff: 0.105
+      ci:
+      - 0.0824
+      - 0.1286
+      significant: true
+    bootstrap_vs_vota:
+      diff: -0.1378
+      ci:
+      - -0.1571
+      - -0.1185
+      significant: true
+    bootstrap_vs_full_trace:
+      diff: 0.0387
+      ci:
+      - 0.0185
+      - 0.0597
+      significant: true
+    train_loss: 0.0718
+    wall_clock_seconds: 7425.65
+- id: plan_004
+  claim: 1
+  description: '第二模型验证: DeepSeek-Coder-6.7B 上复现 4 条件（VOTA/no_trace/full_trace/exception_only），与
+    DCSH 同模型直接对比。exception_only 跨模型验证 exception dominance。'
+  priority: P1
+  gpu_budget_hours: 8
+  deps:
+  - plan_001
+  registry_id: deepseek_exception_only_seed42
+  notes: '4 条件: deepseek_vota_seed42 (84.45% ✅), deepseek_no_trace_seed42 (73.36%
+    ✅), deepseek_exception_only_seed42 (99.33% ✅), deepseek_full_trace_seed42_v3 (RUNNING,
+    label truncation fix). 3/4 完成, full_trace v3 待完成。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9933
+    majority_baseline: 0.7151
+    lift: 0.2782
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9906
+    pass_f1: 0.9953
+    fail_precision: 0.9769
+    fail_recall: 1
+    fail_f1: 0.9883
+    epoch1_checkpoint_eval:
+      accuracy: 0.9983
+      fail_recall: 1
+      fail_precision: 0.9941
+      pass_recall: 0.9976
+      conclusion: epoch1_better_by_0.50pp
+- id: plan_005
+  claim: 1
+  description: '第二任务验证: 在 DebugBench subset 上测试 exception_only/VOTA/no_trace。验证 verdict
+    task 跨任务泛化性。'
+  priority: P1
+  gpu_budget_hours: 6
+  deps:
+  - plan_001
+  registry_id: debugbench_exception_only_seed42
+  notes: 3/3 完成。debugbench_exception_only_seed42=100.0% (426/426, Wilson CI [99.14%,100%]),
+    debugbench_vota_seed42=99.77% (1 error), debugbench_no_trace_seed42=96.71%。定位为
+    generalization validation（非 trace importance evidence，因 no_trace baseline 96.71%
+    已很高，marginal contribution 仅 3.29pp）。
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 1
+    majority_baseline: 0.5141
+    lift: 0.4859
+    n: 426
+    pass_precision: 1
+    pass_recall: 1
+    pass_f1: 1
+    fail_precision: 1
+    fail_recall: 1
+    fail_f1: 1
+    accuracy_ci_wilson:
+    - 0.9914
+    - 1
+    accuracy_ci_bootstrap:
+    - 1
+    - 1
+    train_loss: 0.2435
+    eval_loss: 0.4157
+    train_runtime_sec: 837
+- id: plan_006
+  claim: 2
+  description: 'Trace length ablation: 测试不同截断长度 (256/512/1024/no_limit) 对 full_trace
+    准确率的影响。2048tok 取消（train_sft.py 硬编码 max_length=2048，与 no_limit 等价）。'
+  priority: P1
+  gpu_budget_hours: 8
+  deps:
+  - plan_002
+  registry_id: full_trace_256tok_seed42
+  notes: '4 点设计: 256tok=78.82% (DONE), 512tok=80.42% (DONE), 1024tok (RUNNING), no_limit=81.76%
+    (full_trace_seed42_v5)。2048tok killed（max_length=2048 硬编码使其与 no_limit 等价）。Registry
+    IDs: full_trace_256tok_seed42, full_trace_512tok_seed42, full_trace_1024tok_seed42,
+    full_trace_seed42_v5。趋势: 更多 trace 略有帮助但收益递减，且全部远低于 exception_only (99.83%)。'
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.7882
+    majority_baseline: 0.7151
+    lift: 0.0731
+    n: 1190
+    pass_precision: 0.903
+    pass_recall: 0.788
+    pass_f1: 0.842
+    fail_precision: 0.597
+    fail_recall: 0.788
+    fail_f1: 0.679
+    accuracy_ci:
+    - 0.764
+    - 0.81
+    train_loss: 0.1094
+    train_runtime_sec: 3047
+    epochs: 3
+- id: plan_007
+  claim: 3
+  description: 'Calibration analysis: ECE + reliability diagrams 对比 VOTA/no_trace/full_trace
+    的 calibration 质量。验证 trace SFT 对 verdict task 改善 calibration 的假说。'
+  priority: P2
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: calibration_analysis_seed42
+  notes: 纯 eval，不需要额外训练。用已有 checkpoint 的 logits 计算。
+  status: DONE
+  conclusion: success
+  metrics:
+    no_trace:
+      ece: 0.171476
+      mce: 0.475643
+      brier_score: 0.197152
+      accuracy: 0.751261
+      n_samples: 1190
+    full_trace:
+      ece: 0.095817
+      mce: 0.249061
+      brier_score: 0.143924
+      accuracy: 0.817647
+      n_samples: 1190
+    label_only:
+      ece: 0.110686
+      mce: 0.417124
+      brier_score: 0.120144
+      accuracy: 0.862185
+      n_samples: 1190
+    loop_only:
+      ece: 0.083085
+      mce: 0.183406
+      brier_score: 0.118335
+      accuracy: 0.856303
+      n_samples: 1190
+    ae_only:
+      ece: 0.000415
+      mce: 0.000415
+      brier_score: 0.000847
+      accuracy: 0.99916
+      n_samples: 1190
+    exception_only:
+      ece: 0.002717
+      mce: 0.835484
+      brier_score: 0.001311
+      accuracy: 0.998319
+      n_samples: 1190
+    vota:
+      ece: 0.00541
+      mce: 0.622459
+      brier_score: 0.005234
+      accuracy: 0.994118
+      n_samples: 1190
+- id: plan_008
+  claim: 1
+  description: 'Seed robustness: 3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar
+    test + bootstrap CI。'
+  priority: P2
+  gpu_budget_hours: 6
+  deps:
+  - plan_001
+  registry_id: exception_only_seed456
+  notes: 'Seed robustness 完成。Qwen exception_only: 99.83% ± 0.00 (seeds 42/123/456,
+    irreducible 2/1190). Qwen VOTA: seed42=99.41%, seed456=99.08% (Δ<0.4pp). DeepSeek
+    exception_only: seed42/456=99.33%, seed123=91.09% (LoRA outlier). Registry IDs:
+    exception_only_seed123, exception_only_seed456, vota_seed456_v2, deepseek_exception_only_seed42/123/456.'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci:
+    - 0.9958
+    - 1
+    majority_baseline: 0.7151
+    lift: 0.2832
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+    vs_seed42:
+      seed42_accuracy: 0.9983
+      seed456_accuracy: 0.9983
+      diff: 0
+      note: identical accuracy to 4 decimal places; no predictions.jsonl for paired
+        bootstrap
+    train_loss: 0.1087
+    eval_loss: 0.4629
+    train_runtime_sec: 4541
+    epochs: 3
+- id: plan_mvp_vota
+  claim: 1
+  description: 'MVP: VOTA trace SFT for test verdict prediction'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: vota_seed42_v4
+  notes: 完成。95.63% accuracy, +20.5pp over baseline.
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9563
+    majority_baseline: 0.7151
+    lift: 0.2412
+    n: 1190
+    pass_precision: 0.944
+    pass_recall: 0.998
+    pass_f1: 0.97
+    fail_precision: 0.993
+    fail_recall: 0.853
+    fail_f1: 0.917
+    lift_vs_notrace: 0.205
+    lift_vs_notrace_ci_lower: 0.177
+    lift_vs_notrace_ci_upper: 0.234
+    train_loss: 0.046
+    eval_loss: 0.0842
+- id: plan_mvp_notrace
+  claim: 1
+  description: 'MVP: No-trace baseline for test verdict prediction'
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: no_trace_seed42_v4
+  notes: 完成。75.13% accuracy (majority baseline 71.51%).
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7513
+    majority_baseline: 0.7151
+    lift: 0.0361
+    pass_precision: 0.8776
+    pass_recall: 0.7579
+    pass_f1: 0.8134
+    fail_precision: 0.5473
+    fail_recall: 0.7345
+    fail_f1: 0.6272
+    train_loss: 0.18
+    eval_loss: 0.6454
+    eval_mean_token_accuracy: 0.8897
+- id: plan_mvp_fulltrace
+  claim: 2
+  description: 'MVP: Full execution trace SFT for test verdict prediction'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: full_trace_seed42_v2
+  notes: 完成。28.49% accuracy, model collapse (100% predict fail).
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.284
+    majority_baseline: 0.7151
+    lift: -0.4311
+    n: 1190
+    pass_precision: 0.923
+    pass_recall: 0.085
+    pass_f1: 0.155
+    fail_precision: 0.445
+    fail_recall: 0.785
+    fail_f1: 0.568
+    train_loss: 0.0373
+    eval_loss: 0.082
+    eval_mean_token_accuracy: 0.984
+- id: plan_012
+  claim: 1
+  description: 'Cross-scale validation: Qwen-2.5-Coder-1.5B 上复现 4 条件 (exception_only/vota/no_trace/full_trace)。
+    验证 exception signal 的 scale invariance 假说。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - plan_003
+  registry_id: qwen15b_exception_only_seed42
+  notes: '4 条件: exception_only=99.83% (=7B, DONE), vota=99.58% (DONE), no_trace=67.31%
+    (DONE), full_trace=RUNNING。关键发现: 1.5B=7B on exception → signal-limited not capacity-limited。
+    Registry IDs: qwen15b_exception_only_seed42, qwen15b_vota_seed42, qwen15b_no_trace_seed42,
+    qwen15b_full_trace_seed42。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1
+    majority_baseline: 0.7151
+    lift: 0.283
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+    train_loss: 0.1347
+    eval_loss: 0.5761
+    wall_clock_seconds: 1762
+- id: plan_013
+  claim: 1
+  description: 'Cross-family validation: CodeLlama-13B-Instruct 上测试 3 条件 (exception_only/no_trace/vota)。
+    验证 exception dominance 跨 LLaMA 家族 + 更大 scale 的泛化性。'
+  priority: P0
+  gpu_budget_hours: 12
+  deps: []
+  registry_id: codellama13b_exception_only_seed42
+  notes: 'Model downloaded. 0/3 done, queued. Registry IDs: codellama13b_exception_only_seed42,
+    codellama13b_no_trace_seed42, codellama13b_vota_seed42。回应 R2-N2 scope concern:
+    4 models × 3 families × 2 scales。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1
+    pass_f1: 0.9988
+    fail_f1: 0.9971
+    n_test: 1190
+- id: plan_014
+  claim: 3
+  description: 'Multi-seed expansion: loop_only + ae_only + label_only 各 3 seeds。
+    回应 R2-N3 single-seed concern，验证 Tier 层级划分稳定性。'
+  priority: P0
+  gpu_budget_hours: 12
+  deps:
+  - plan_003
+  registry_id: ae_only_seed123
+  notes: 'ae_only 3-seed done (mean 99.64%). label_only 3-seed done (mean 86.39%).
+    loop_only: seed42 done, seed123 RUNNING, seed456 queued。Registry IDs: ae_only_seed123/456,
+    label_only_seed123/456, loop_only_seed123/456。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9908
+    n: 1190
+    pass_recall: 0.987
+    fail_recall: 1
+    majority_baseline: 0.7151
+    lift: 0.2757
+- id: plan_015
+  claim: 1
+  description: 'Format marker removal control: 移除 [No exception data in trace] 格式标记后重训
+    exception_only × 3 seeds。回应 R1-N1 format shortcut concern。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exception_only_nomarker_seed42
+  notes: '计划中。如果移除标记后 SFT 仍 ≥99%，证明模型学到的是异常语义而非格式 shortcut。 Registry IDs: exception_only_nomarker_seed42/123/456。'
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9655
+    n: 1190
+    accuracy_ci:
+    - 0.955
+    - 0.976
+- id: plan_016
+  claim: 1
+  description: 'Fine-grained phase transition: tail-384 × 4 模型，精确定位 256→512 phase
+    transition 是 sharp 还是 gradual。'
+  priority: P1
+  gpu_budget_hours: 16
+  deps:
+  - plan_006
+  notes: 4 模型各 1 个实验。如果 tail-384 仍在 ~77% (≈tail-256)，证明 transition 是 sharp；如果 ~85%，证明是
+    gradual。对 phase transition claim 的强度有决定性影响。
+  status: planned
+- id: plan_017
+  claim: 1
+  description: 'Cross-seed budget curve: tail-512 × 4 模型 × 3 seeds，验证 phase transition
+    后 convergence band 的 robustness。'
+  priority: P1
+  gpu_budget_hours: 24
+  deps:
+  - plan_016
+  notes: tail-512 是 phase transition 后第一个点，验证 93-97% convergence 是否 seed-robust。审稿人必问
+    single-seed robustness。
+  status: planned
+- id: plan_018
+  claim: 1
+  description: 'Error analysis: 用已有 predictions.jsonl 分析 failure modes（哪类程序/错误容易被误判）。不需
+    GPU。'
+  priority: P1
+  gpu_budget_hours: 0
+  deps: []
+  notes: 分析 exception_only/vota/full_trace/no_trace 的错误模式差异。重点关注 Tier 1 vs Tier 2
+    的 failure mode 是否不同。
+  status: planned
+- id: plan_019
+  claim: 1
+  description: 'Cross-model calibration: 4 模型 × exception_only 的 ECE/Brier 对比。验证 calibration
+    quality 跨模型 universal。'
+  priority: P1
+  gpu_budget_hours: 1
+  deps: []
+  notes: 纯 eval，用已有 checkpoint。当前只有 Qwen-7B 的 calibration 数据，需要扩展到 4 模型。
+  status: planned
+- id: plan_020
+  claim: 2
+  description: 'Few-shot prompting baseline: GPT-4o/Claude 直接判断 pass/fail（0-shot +
+    3-shot），作为 non-SFT upper bound 对比。'
+  priority: P2
+  gpu_budget_hours: 0
+  deps: []
+  notes: 不需 GPU，用 API 调用。如果 few-shot < exception_only SFT，说明 SFT 在 verdict task 上超越
+    frontier model 的 few-shot 能力，claim 更强。
+  status: planned
+- id: plan_021
+  claim: 1
+  description: 'OOD generalization: 在不同编程语言/项目的 trace 上测试 exception_only 泛化性。'
+  priority: P2
+  gpu_budget_hours: 12
+  deps: []
+  notes: 需要构建 OOD 测试集（不同语言的 trace）。如果 exception_only 在 OOD 上仍强，大幅强化 generalization
+    claim。
+  status: planned
+- id: plan_022
+  claim: 2
+  description: 'Training dynamics: 记录 exception_only vs full_trace 的 learning curve（每
+    50 steps eval），分析收敛速度差异。'
+  priority: P2
+  gpu_budget_hours: 8
+  deps: []
+  notes: 如果 exception_only 收敛更快，支持 information density 假说。需要修改训练脚本加 intermediate eval。
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: no_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: vota_seed42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: no_trace_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: vota_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: no_trace_seed42_v3
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    train_loss: 0.18
+    eval_loss: 0.645
+    eval_mean_token_accuracy: 0.89
+    accuracy: 0.7513
+    majority_baseline: 0.7151
+    lift: 0.0361
+    pass_precision: 0.8776
+    pass_recall: 0.7579
+    pass_f1: 0.8134
+    fail_precision: 0.5473
+    fail_recall: 0.7345
+    fail_f1: 0.6272
+- exp_id: vota_seed42_v3
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    train_loss: 0.046
+    eval_loss: 0.085
+    eval_mean_token_accuracy: 0.983
+    accuracy: 0.992
+    majority_baseline: 0.7151
+    lift: 0.276
+    pass_precision: 0.99
+    pass_recall: 0.99
+    pass_f1: 0.99
+    fail_precision: 0.99
+    fail_recall: 0.99
+    fail_f1: 0.99
+- exp_id: full_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    train_loss: 0.037
+    eval_loss: 0.084
+    eval_mean_token_accuracy: 0.984
+    accuracy: 0.284
+    majority_baseline: 0.7151
+    lift: -0.431
+    pass_precision: 0.88
+    pass_recall: 0.08
+    pass_f1: 0.16
+    fail_precision: 0.31
+    fail_recall: 0.97
+    fail_f1: 0.57
+- exp_id: no_trace_seed42_v4
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7513
+    majority_baseline: 0.7151
+    lift: 0.0361
+    pass_precision: 0.8776
+    pass_recall: 0.7579
+    pass_f1: 0.8134
+    fail_precision: 0.5473
+    fail_recall: 0.7345
+    fail_f1: 0.6272
+    train_loss: 0.18
+    eval_loss: 0.6454
+    eval_mean_token_accuracy: 0.8897
+- exp_id: vota_seed42_v4
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9563
+    majority_baseline: 0.7151
+    lift: 0.2412
+    n: 1190
+    pass_precision: 0.944
+    pass_recall: 0.998
+    pass_f1: 0.97
+    fail_precision: 0.993
+    fail_recall: 0.853
+    fail_f1: 0.917
+    lift_vs_notrace: 0.205
+    lift_vs_notrace_ci_lower: 0.177
+    lift_vs_notrace_ci_upper: 0.234
+    train_loss: 0.046
+    eval_loss: 0.0842
+- exp_id: full_trace_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.284
+    majority_baseline: 0.7151
+    lift: -0.4311
+    n: 1190
+    pass_precision: 0.923
+    pass_recall: 0.085
+    pass_f1: 0.155
+    fail_precision: 0.445
+    fail_recall: 0.785
+    fail_f1: 0.568
+    train_loss: 0.0373
+    eval_loss: 0.082
+    eval_mean_token_accuracy: 0.984
+- exp_id: full_trace_seed42_v5
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8176
+    majority_baseline: 0.7151
+    lift: 0.1025
+    n: 1190
+    pass_precision: 0.8774
+    pass_recall: 0.866
+    pass_f1: 0.8717
+    fail_precision: 0.6743
+    fail_recall: 0.6962
+    fail_f1: 0.6851
+    accuracy_ci_lower: 0.797
+    accuracy_ci_upper: 0.839
+    lift_vs_notrace: 0.0664
+    lift_vs_notrace_ci_lower: 0.0437
+    lift_vs_notrace_ci_upper: 0.0899
+    train_loss: 0.05
+    eval_loss: 0.0867
+    wall_clock_seconds: 7852
+    epoch_level:
+      epoch1_accuracy: 0.8303
+      epoch2_accuracy: 0.763
+      final_accuracy: 0.8176
+      trend: non_monotonic_epoch1_best_epoch2_collapse
+- exp_id: vota_seed42_v5
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9941
+    majority_baseline: 0.7151
+    lift: 0.279
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9882
+    pass_f1: 0.9941
+    fail_precision: 0.9714
+    fail_recall: 1
+    fail_f1: 0.9855
+    lift_vs_notrace: 0.2428
+    lift_vs_notrace_ci_lower: 0.2185
+    lift_vs_notrace_ci_upper: 0.2681
+    accuracy_ci_lower: 0.9882
+    accuracy_ci_upper: 0.9983
+    train_loss: 0.05
+    eval_loss: 0.0867
+    eval_mean_token_accuracy: 0.9828
+    wall_clock_seconds: 8443
+    epoch_level:
+      epoch1_accuracy: 0.9933
+      epoch2_accuracy: 0.9941
+      final_accuracy: 0.9941
+      trend: monotonic_increasing_then_stable
+- exp_id: no_trace_seed42_v5
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7513
+    accuracy_ci_lower: 0.7277
+    accuracy_ci_upper: 0.7748
+    majority_baseline: 0.7151
+    lift: 0.0361
+    lift_ci_lower: 0.0042
+    lift_ci_upper: 0.0706
+    n: 1190
+    pass_precision: 0.8776
+    pass_recall: 0.7579
+    pass_f1: 0.8134
+    fail_precision: 0.5473
+    fail_recall: 0.7345
+    fail_f1: 0.6272
+    epoch_level:
+      epoch1_accuracy: 0.7429
+      epoch2_accuracy: 0.763
+      final_accuracy: 0.7513
+      trend: non_monotonic_epoch2_best
+- exp_id: full_trace_label_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8622
+    accuracy_ci_lower: 0.8437
+    accuracy_ci_upper: 0.8807
+    majority_baseline: 0.7151
+    lift: 0.1471
+    n: 1190
+    pass_precision: 0.8821
+    pass_recall: 0.9318
+    pass_f1: 0.9063
+    fail_precision: 0.8007
+    fail_recall: 0.6873
+    fail_f1: 0.7397
+    train_loss: 0.2505
+    eval_loss: 0.3205
+    lift_vs_notrace: 0.1109
+    lift_vs_notrace_ci_lower: 0.0849
+    lift_vs_notrace_ci_upper: 0.137
+    lift_vs_standard_fulltrace: 0.0445
+    lift_vs_standard_fulltrace_ci_lower: 0.0235
+    lift_vs_standard_fulltrace_ci_upper: 0.0655
+    lift_vs_standard_fulltrace_pvalue: 0
+- exp_id: vota_no_ae_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.994
+    majority_baseline: 0.7151
+    lift: 0.279
+    n: 1190
+    pass_f1: 0.996
+    fail_f1: 0.989
+    accuracy_ci_lower: 0.989
+    accuracy_ci_upper: 0.998
+    lift_vs_notrace: 0.243
+    lift_vs_notrace_ci_lower: 0.218
+    lift_vs_notrace_ci_upper: 0.268
+    train_loss: 0.0908
+    eval_loss: 0.2215
+    wall_clock_seconds: 6397.88
+- exp_id: vota_ae_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9992
+    accuracy_ci:
+    - 0.9975
+    - 1
+    bootstrap_pairwise:
+      ae_only_vs_no_trace:
+        diff: 0.2479
+        ci:
+        - 0.2235
+        - 0.2731
+        p_value: 0
+        significant: true
+      ae_only_vs_exception_only:
+        diff: 0.0008
+        ci:
+        - -0.0017
+        - 0.0034
+        p_value: 0.8002
+        significant: false
+      ae_only_vs_vota:
+        diff: 0.005
+        ci:
+        - 0.0017
+        - 0.0092
+        p_value: 0.0046
+        significant: true
+    config:
+      n_bootstrap: 10000
+      seed: 42
+      method: paired_bootstrap
+- exp_id: vota_exception_only_seed42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: vota_loop_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8563
+    majority_baseline: 0.7151
+    lift: 0.1412
+    n: 1190
+    pass_precision: 0.9239
+    pass_recall: 0.8707
+    pass_f1: 0.8966
+    fail_precision: 0.7165
+    fail_recall: 0.8201
+    fail_f1: 0.7648
+    accuracy_ci:
+    - 0.8353
+    - 0.8756
+    bootstrap_vs_no_trace:
+      diff: 0.105
+      ci:
+      - 0.0824
+      - 0.1286
+      significant: true
+    bootstrap_vs_vota:
+      diff: -0.1378
+      ci:
+      - -0.1571
+      - -0.1185
+      significant: true
+    bootstrap_vs_full_trace:
+      diff: 0.0387
+      ci:
+      - 0.0185
+      - 0.0597
+      significant: true
+    train_loss: 0.0718
+    wall_clock_seconds: 7425.65
+- exp_id: vota_exception_only_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    majority_baseline: 0.7151
+    lift: 0.2832
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.998
+    pass_f1: 0.999
+    fail_precision: 0.994
+    fail_recall: 1
+    fail_f1: 0.997
+    lift_vs_notrace: 0.2471
+    lift_vs_notrace_ci_lower: 0.2227
+    lift_vs_notrace_ci_upper: 0.2714
+    lift_vs_fulltrace: 0.1807
+    lift_vs_fulltrace_ci_lower: 0.1588
+    lift_vs_fulltrace_ci_upper: 0.2034
+    lift_vs_vota: 0.0067
+    lift_vs_vota_ci_lower: 0.0017
+    lift_vs_vota_ci_upper: 0.0126
+    lift_vs_vota_pvalue: 0.01
+- exp_id: deepseek_vota_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8445
+    majority_baseline: 0.7151
+    lift: 0.1294
+    accuracy_ci:
+    - 0.826
+    - 0.864
+    pass_precision: 0.821
+    pass_recall: 1
+    pass_f1: 0.902
+    fail_precision: 1
+    fail_recall: 0.454
+    fail_f1: 0.625
+    eval_loss_epoch1: 0.0679
+    eval_loss_epoch2: 0.095
+    eval_loss_epoch3: 0.1121
+    final_train_loss: 0.0522
+    epoch1_checkpoint_eval:
+      accuracy: 0.7815
+      accuracy_ci:
+      - 0.76
+      - 0.803
+      fail_recall: 0.233
+      fail_precision: 1
+      pass_recall: 1
+      pass_precision: 0.766
+      fail_f1: 0.378
+      pass_f1: 0.867
+      conclusion: epoch3_final_is_better
+    reeval_with_fixed_script:
+      accuracy: 0.16
+      accuracy_ci:
+      - 0.139
+      - 0.18
+      fail_f1: 0.61
+      fail_precision: 0.9
+      fail_recall: 0.47
+      pass_f1: 0.07
+      pass_precision: 1
+      pass_recall: 0.04
+      note: 'CATASTROPHIC: re-eval with corrected evaluate.py shows 16% (vs original
+        84.45%). Model predicts fail for almost everything. Previous 84.45% may have
+        been from buggy eval. NEEDS INVESTIGATION.'
+    group_analysis:
+      train_truncated:
+        n: 1091
+        accuracy: 0.8304
+        ci_95:
+        - 0.8075
+        - 0.8524
+        correct: 906
+        incorrect: 185
+        pass_accuracy: 1
+        pass_n: 822
+        fail_accuracy: 0.3123
+        fail_n: 269
+      train_intact:
+        n: 99
+        accuracy: 1
+        ci_95:
+        - 1
+        - 1
+        correct: 99
+        incorrect: 0
+        pass_accuracy: 1
+        pass_n: 29
+        fail_accuracy: 1
+        fail_n: 70
+      fisher_exact:
+        odds_ratio: 0
+        p_value: 0
+      overall_accuracy: 0.8445
+      max_length: 2048
+      note: 'Grouped by whether training sample content exceeded token budget (DeepSeek
+        tokenizer, max_length=2048). Inference used full-length input (no truncation).
+        All 185 errors from truncated group''s fail class (fail_recall=31.2%). Intact
+        group: 100% accuracy.'
+- exp_id: deepseek_no_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.7336
+    majority_baseline: 0.7151
+    lift: 0.0185
+    n: 1190
+    pass_precision: 0.817
+    pass_recall: 0.808
+    pass_f1: 0.813
+    fail_precision: 0.532
+    fail_recall: 0.546
+    fail_f1: 0.539
+    accuracy_ci:
+    - 0.708
+    - 0.757
+    lift_ci:
+    - -0.009
+    - 0.046
+- exp_id: deepseek_full_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy_no_truncation: 0.2849
+    accuracy_with_truncation_fix: 0.1059
+    accuracy_with_truncation_fix_ci:
+    - 0.089
+    - 0.123
+    majority_baseline: 0.7151
+    n: 1190
+    note: 'Both evals show model failure. No-truncation: all predict fail. With-truncation:
+      garbage tokens. LoRA training itself failed due to label truncation during training.'
+- exp_id: deepseek_exception_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9933
+    majority_baseline: 0.7151
+    lift: 0.2782
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9906
+    pass_f1: 0.9953
+    fail_precision: 0.9769
+    fail_recall: 1
+    fail_f1: 0.9883
+    epoch1_checkpoint_eval:
+      accuracy: 0.9983
+      fail_recall: 1
+      fail_precision: 0.9941
+      pass_recall: 0.9976
+      conclusion: epoch1_better_by_0.50pp
+- exp_id: calibration_analysis_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    no_trace:
+      ece: 0.171476
+      mce: 0.475643
+      brier_score: 0.197152
+      accuracy: 0.751261
+      n_samples: 1190
+    full_trace:
+      ece: 0.095817
+      mce: 0.249061
+      brier_score: 0.143924
+      accuracy: 0.817647
+      n_samples: 1190
+    label_only:
+      ece: 0.110686
+      mce: 0.417124
+      brier_score: 0.120144
+      accuracy: 0.862185
+      n_samples: 1190
+    loop_only:
+      ece: 0.083085
+      mce: 0.183406
+      brier_score: 0.118335
+      accuracy: 0.856303
+      n_samples: 1190
+    ae_only:
+      ece: 0.000415
+      mce: 0.000415
+      brier_score: 0.000847
+      accuracy: 0.99916
+      n_samples: 1190
+    exception_only:
+      ece: 0.002717
+      mce: 0.835484
+      brier_score: 0.001311
+      accuracy: 0.998319
+      n_samples: 1190
+    vota:
+      ece: 0.00541
+      mce: 0.622459
+      brier_score: 0.005234
+      accuracy: 0.994118
+      n_samples: 1190
+- exp_id: vota_seed123
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: vota_seed456
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exception_only_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci:
+    - 0.9958
+    - 1
+    majority_baseline: 0.7151
+    lift: 0.2832
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+    train_loss: 0.1096
+    train_runtime_sec: 7507
+    epochs: 3
+    seed_comparison:
+      seed42_accuracy: 0.9983
+      seed456_accuracy: 0.9983
+      seed123_accuracy: 0.9983
+      max_diff: 0
+      note: identical accuracy to 4 decimal places across all 3 seeds (42/456/123);
+        each has exactly 2/1190 errors; exception_only fully seed-robust
+- exp_id: exception_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci:
+    - 0.9958
+    - 1
+    majority_baseline: 0.7151
+    lift: 0.2832
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+    vs_seed42:
+      seed42_accuracy: 0.9983
+      seed456_accuracy: 0.9983
+      diff: 0
+      note: identical accuracy to 4 decimal places; no predictions.jsonl for paired
+        bootstrap
+    train_loss: 0.1087
+    eval_loss: 0.4629
+    train_runtime_sec: 4541
+    epochs: 3
+- exp_id: deepseek_exception_only_seed123
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.9109
+    pass_precision: 1
+    pass_recall: 0.993
+    pass_f1: 0.996
+    fail_precision: 0.976
+    fail_recall: 0.705
+    fail_f1: 0.818
+    ci_95:
+    - 0.894
+    - 0.926
+    train_loss: 0.122
+    train_runtime_sec: 6384
+- exp_id: deepseek_full_trace_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: vota_seed456_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9908
+    pass_precision: 1
+    pass_recall: 0.987
+    pass_f1: 0.993
+    fail_precision: 0.969
+    fail_recall: 1
+    fail_f1: 0.984
+    ci_95:
+    - 0.985
+    - 0.996
+- exp_id: deepseek_full_trace_seed42_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7916
+    majority_baseline: 0.7151
+    lift: 0.0765
+    n: 1190
+    pass_precision: 0.857
+    pass_recall: 0.851
+    pass_f1: 0.854
+    fail_precision: 0.632
+    fail_recall: 0.643
+    fail_f1: 0.637
+    accuracy_ci:
+    - 0.768
+    - 0.813
+    train_loss: 0.0547
+    train_runtime_seconds: 8891
+    epochs: 3
+    reeval_discrepancy:
+      reeval_accuracy: 0.285
+      reeval_note: 'RESOLVED: 28.5% was caused by eval max_length=16384 (OOD). Re-eval
+        with max_length=2048 reproduces 79.16%. predictions.jsonl updated to maxlen2048
+        results.'
+      status: RESOLVED
+- exp_id: deepseek_exception_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9933
+    majority_baseline: 0.7151
+    lift: 0.2782
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9906
+    pass_f1: 0.9953
+    fail_precision: 0.9769
+    fail_recall: 1
+    fail_f1: 0.9883
+    accuracy_ci:
+    - 0.9882
+    - 0.9975
+    train_loss: 0.1225
+    eval_loss: 0.4824
+    train_runtime_sec: 6246
+    seed_comparison:
+      seed42_accuracy: 0.9933
+      seed456_accuracy: 0.9933
+      seed123_accuracy: 0.9109
+      note: seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds
+        robust.
+    epoch1_checkpoint_eval:
+      accuracy: 0.993
+      accuracy_ci:
+      - 0.988
+      - 0.997
+      fail_f1: 0.99
+      fail_precision: 0.98
+      fail_recall: 1
+      pass_f1: 1
+      pass_precision: 1
+      pass_recall: 0.99
+      conclusion: epoch1 (99.3%) ≈ epoch3 (99.33%), 1 epoch convergence confirmed
+- exp_id: full_trace_256tok_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.7882
+    majority_baseline: 0.7151
+    lift: 0.0731
+    n: 1190
+    pass_precision: 0.903
+    pass_recall: 0.788
+    pass_f1: 0.842
+    fail_precision: 0.597
+    fail_recall: 0.788
+    fail_f1: 0.679
+    accuracy_ci:
+    - 0.764
+    - 0.81
+    train_loss: 0.1094
+    train_runtime_sec: 3047
+    epochs: 3
+- exp_id: full_trace_512tok_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.8042
+    majority_baseline: 0.7151
+    lift: 0.0891
+    pass_precision: 0.8705
+    pass_recall: 0.8531
+    pass_f1: 0.8617
+    fail_precision: 0.6489
+    fail_recall: 0.6814
+    fail_f1: 0.6647
+    n: 1190
+    accuracy_ci:
+    - 0.7815
+    - 0.8261
+- exp_id: full_trace_1024tok_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.7723
+    majority_baseline: 0.7151
+    lift: 0.0571
+    n: 1190
+    accuracy_ci:
+    - 0.7487
+    - 0.7958
+    pass_precision: 0.9006
+    pass_recall: 0.7662
+    pass_f1: 0.8279
+    fail_precision: 0.573
+    fail_recall: 0.7876
+    fail_f1: 0.6634
+    train_loss: 0.0634
+    train_runtime_sec: 5553
+    epochs: 3
+- exp_id: full_trace_2048tok_seed42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: debugbench_exception_bug_fix
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: debugbench_exception_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 1
+    majority_baseline: 0.5141
+    lift: 0.4859
+    n: 426
+    pass_precision: 1
+    pass_recall: 1
+    pass_f1: 1
+    fail_precision: 1
+    fail_recall: 1
+    fail_f1: 1
+    accuracy_ci_wilson:
+    - 0.9914
+    - 1
+    accuracy_ci_bootstrap:
+    - 1
+    - 1
+    train_loss: 0.2435
+    eval_loss: 0.4157
+    train_runtime_sec: 837
+- exp_id: debugbench_no_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9671
+    majority_baseline: 0.5141
+    lift: 0.4531
+    pass_precision: 1
+    pass_recall: 0.936
+    pass_f1: 0.967
+    fail_precision: 0.937
+    fail_recall: 1
+    fail_f1: 0.967
+    accuracy_ci:
+    - 0.948
+    - 0.984
+    train_loss: 0.249
+    eval_loss: 0.532
+- exp_id: debugbench_vota_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9977
+    majority_baseline: 0.5141
+    lift: 0.4836
+    n: 426
+    pass_precision: 1
+    pass_recall: 1
+    pass_f1: 1
+    fail_precision: 1
+    fail_recall: 1
+    fail_f1: 1
+    accuracy_ci:
+    - 0.993
+    - 1
+    train_loss: 0.098
+    eval_loss: 0.1179
+    eval_mean_token_accuracy: 0.9737
+    errors: 1
+- exp_id: eval_missing_predictions_batch
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: eval_missing_predictions_batch_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: ae_only_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9908
+    n: 1190
+    pass_recall: 0.987
+    fail_recall: 1
+    majority_baseline: 0.7151
+    lift: 0.2757
+- exp_id: ae_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9992
+    n: 1190
+    majority_baseline: 0.7151
+    lift: 0.2841
+    seed_comparison:
+      seed42_accuracy: 0.9992
+      seed123_accuracy: 0.9908
+      seed456_accuracy: 0.9992
+      mean_accuracy: 0.9964
+      std: 0.0049
+      note: 2/3 seeds = 99.92%, seed123 = 99.08%. Mean = 99.64% ± 0.49
+- exp_id: regex_baseline_analysis
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    regex_B1_ERROR_presence: 0.9345
+    regex_B2_Traceback: 0.7151
+    regex_B3_any_keyword: 0.9345
+    regex_B4_exception_type: 0.9361
+    regex_B5_format_marker: 0.9933
+    regex_B6_error_count_ge2: 0.9202
+    sft_exception_only: 0.9983
+    best_regex_gap_vs_sft: -0.0622
+    B5_mcnemar_p: 0.041
+    n: 1190
+- exp_id: label_only_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8706
+    n: 1190
+    pass_recall: 0.974
+    fail_recall: 0.611
+    pass_f1: 0.915
+    fail_f1: 0.729
+- exp_id: label_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.859
+    n: 1190
+    pass_recall: 0.938
+    fail_recall: 0.661
+    pass_f1: 0.905
+    fail_f1: 0.727
+- exp_id: exception_only_nomarker_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9655
+    n: 1190
+    accuracy_ci:
+    - 0.955
+    - 0.976
+- exp_id: loop_only_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8588
+    majority_baseline: 0.7151
+    lift: 0.1437
+    n: 1190
+    pass_precision: 0.9129
+    pass_recall: 0.8872
+    pass_f1: 0.8999
+    fail_precision: 0.7355
+    fail_recall: 0.7876
+    fail_f1: 0.7607
+    accuracy_ci:
+    - 0.8403
+    - 0.8773
+- exp_id: loop_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8664
+    n: 1190
+    pass_precision: 0.9179
+    pass_recall: 0.8931
+    pass_f1: 0.9053
+    fail_precision: 0.7486
+    fail_recall: 0.7994
+    fail_f1: 0.7732
+    accuracy_ci:
+    - 0.847
+    - 0.884
+    seed_comparison:
+      seed42_accuracy: 0.8563
+      seed123_accuracy: 0.8588
+      seed456_accuracy: 0.8664
+      mean_accuracy: 0.8605
+      std: 0.0053
+      note: 3-seed mean = 86.05% ± 0.53%. Moderate variance, seed456 best. loop_only
+        is weakest trace condition (vs exception_only 99.83%, ae_only 99.64%, vota
+        99.41%).
+- exp_id: exception_only_nomarker_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9832
+    n: 1190
+    ci_95:
+    - 0.9756
+    - 0.9899
+    pass_f1: 0.9882
+    fail_f1: 0.9705
+    pass_precision: 0.9882
+    pass_recall: 0.9882
+    fail_precision: 0.9705
+    fail_recall: 0.9705
+    lift_over_majority: 0.2681
+- exp_id: exception_only_nomarker_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9807
+    n: 1190
+    errors: 23
+    ci_95:
+    - 0.9712
+    - 0.9871
+    pass_f1: 0.9865
+    fail_f1: 0.9658
+    pass_precision: 0.9836
+    pass_recall: 0.9894
+    fail_precision: 0.9731
+    fail_recall: 0.9587
+    lift_over_majority: 0.266
+- exp_id: qwen1.5b_exception_only_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen1.5b_no_trace_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen1.5b_vota_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen1.5b_full_trace_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: codellama_exception_only_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: codellama_no_trace_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: codellama_vota_seed42
+  name: ''
+  status: QUEUED
+  conclusion: killed
+  metrics: {}
+- exp_id: codellama13b_exception_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1
+    pass_f1: 0.9988
+    fail_f1: 0.9971
+    n_test: 1190
+- exp_id: codellama13b_no_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.765
+    n: 1190
+    majority_baseline: 0.7151
+    lift: 0.05
+    pass_precision: 0.84
+    pass_recall: 0.83
+    pass_f1: 0.84
+    fail_precision: 0.59
+    fail_recall: 0.59
+    fail_f1: 0.59
+    accuracy_ci:
+    - 0.738
+    - 0.787
+- exp_id: codellama13b_vota_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9857
+    accuracy_ci_lower: 0.979
+    accuracy_ci_upper: 0.9916
+    pass_f1: 0.99
+    fail_f1: 0.9748
+    n_test: 1190
+- exp_id: qwen15b_no_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.6731
+    n: 1190
+    pass_f1: 0.7527
+    fail_f1: 0.518
+    lift_over_majority: -0.042
+    training_time_sec: 851
+- exp_id: qwen15b_vota_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9958
+    n: 1190
+    pass_recall: 0.9976
+    fail_recall: 0.9912
+    pass_f1: 0.9971
+    fail_f1: 0.9926
+    training_time_sec: 2922
+- exp_id: qwen15b_full_trace_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7706
+    n: 1190
+- exp_id: qwen15b_exception_only_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1
+    majority_baseline: 0.7151
+    lift: 0.283
+    n: 1190
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+    train_loss: 0.1347
+    eval_loss: 0.5761
+    wall_clock_seconds: 1762
+- exp_id: qwen15b_nomarker_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.978
+    n: 1190
+    accuracy_ci:
+    - 0.97
+    - 0.986
+    majority_baseline: 0.715
+    lift: 0.263
+    pass_precision: 0.97
+    pass_recall: 1
+    pass_f1: 0.98
+    fail_precision: 1
+    fail_recall: 0.92
+    fail_f1: 0.96
+- exp_id: codellama13b_exception_only_seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 1
+    n: 1190
+    errors: 0
+    pass_precision: 1
+    pass_recall: 1
+    pass_f1: 1
+    fail_precision: 1
+    fail_recall: 1
+    fail_f1: 1
+    lift_over_majority: 0.2849
+- exp_id: codellama13b_exception_only_seed456
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9983
+    n: 1190
+    errors: 2
+    pass_precision: 1
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1
+    fail_f1: 0.9971
+- exp_id: codellama13b_nomarker_seed42
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: full_trace_tail_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.973
+    accuracy_ci:
+    - 0.964
+    - 0.982
+    majority_baseline: 0.7151
+    lift: 0.258
+    n: 1190
+    pass_precision: 0.98
+    pass_recall: 0.99
+    pass_f1: 0.98
+    fail_precision: 0.97
+    fail_recall: 0.94
+    fail_f1: 0.95
+- exp_id: full_trace_tail_512_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.936
+    accuracy_ci:
+    - 0.922
+    - 0.95
+    majority_baseline: 0.7151
+    lift: 0.221
+    n: 1190
+    pass_precision: 0.98
+    pass_recall: 0.93
+    pass_f1: 0.95
+    fail_precision: 0.85
+    fail_recall: 0.94
+    fail_f1: 0.89
+- exp_id: full_trace_tail_256_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.7748
+    accuracy_ci:
+    - 0.7496
+    - 0.7975
+    majority_baseline: 0.7151
+    lift: 0.0597
+    n: 1190
+    pass_f1: 0.8333
+    fail_f1: 0.6528
+- exp_id: full_trace_tail_1024_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9647
+    accuracy_ci:
+    - 0.9546
+    - 0.9748
+    majority_baseline: 0.7151
+    lift: 0.2496
+    n: 1190
+    pass_f1: 0.9753
+    fail_f1: 0.9381
+- exp_id: zeroshot_qwen7b_exception_only
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.8908
+    accuracy_ci_lower: 0.8731
+    accuracy_ci_upper: 0.9076
+    pass_precision: 0.8815
+    pass_recall: 0.9788
+    pass_f1: 0.9276
+    fail_precision: 0.9265
+    fail_recall: 0.6696
+    fail_f1: 0.7774
+    n_test: 1190
+    n_unknown: 0
+- exp_id: zeroshot_deepseek7b_exception_only
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9059
+    accuracy_ci_lower: 0.8899
+    accuracy_ci_upper: 0.9218
+    pass_precision: 0.9743
+    pass_recall: 0.8919
+    pass_f1: 0.9313
+    fail_precision: 0.7762
+    fail_recall: 0.941
+    fail_f1: 0.8507
+    n_test: 1190
+    n_unknown: 0
+- exp_id: zeroshot_codellama13b_exception_only
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.5101
+    accuracy_ci_lower: 0.4824
+    accuracy_ci_upper: 0.5395
+    pass_precision: 1
+    pass_recall: 0.3502
+    pass_f1: 0.5187
+    fail_precision: 0.3585
+    fail_recall: 0.9115
+    fail_f1: 0.5146
+    n_test: 1190
+    n_unknown: 30
+- exp_id: fewshot_qwen7b_exception_only
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9084
+    accuracy_ci_lower: 0.8908
+    accuracy_ci_upper: 0.9244
+    pass_precision: 0.9245
+    pass_recall: 0.9495
+    pass_f1: 0.9368
+    fail_precision: 0.8639
+    fail_recall: 0.8053
+    fail_f1: 0.8336
+    n_test: 1190
+    n_unknown: 0
+- exp_id: zeroshot_qwen15b_exception_only
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9345
+    accuracy_ci_lower: 0.9202
+    accuracy_ci_upper: 0.9479
+    pass_f1: 0.969
+    fail_f1: 0.873
+    pass_recall: 0.9906
+    fail_recall: 0.7935
+    n_test: 1190
+    n_unknown: 24
+- exp_id: deepseek_full_trace_tail2048_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9496
+    accuracy_ci_lower: 0.937
+    accuracy_ci_upper: 0.9622
+    pass_precision: 0.9692
+    pass_recall: 0.96
+    pass_f1: 0.9646
+    fail_precision: 0.902
+    fail_recall: 0.9233
+    fail_f1: 0.9125
+    n_test: 1190
+- exp_id: qwen15b_full_trace_tail2048_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.979
+    accuracy_ci_lower: 0.9706
+    accuracy_ci_upper: 0.9874
+    pass_precision: 0.9758
+    pass_recall: 0.9953
+    pass_f1: 0.9855
+    fail_precision: 0.9876
+    fail_recall: 0.9381
+    fail_f1: 0.9622
+    n_test: 1190
+- exp_id: deepseek_full_trace_head2048_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.787
+    accuracy_ci_lower: 0.765
+    accuracy_ci_upper: 0.81
+    majority_baseline: 0.715
+    lift_pp: 7.2
+    pass_precision: 0.84
+    pass_recall: 0.86
+    pass_f1: 0.85
+    fail_precision: 0.63
+    fail_recall: 0.6
+    fail_f1: 0.62
+- exp_id: qwen15b_full_trace_head2048_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7529
+    accuracy_ci_lower: 0.7286
+    accuracy_ci_upper: 0.7782
+    pass_precision: 0.799
+    pass_recall: 0.874
+    pass_f1: 0.835
+    fail_precision: 0.587
+    fail_recall: 0.448
+    fail_f1: 0.508
+    n_test: 1190
+- exp_id: full_trace_tail256_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.789
+    accuracy_ci_lower: 0.765
+    accuracy_ci_upper: 0.813
+    pass_f1: 0.845
+    fail_f1: 0.671
+    n_test: 1190
+- exp_id: qwen15b_full_trace_tail256_seed42
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.726
+    accuracy_ci_lower: 0.7
+    accuracy_ci_upper: 0.753
+    majority_baseline: 0.715
+    lift_over_majority: 0.011
+    lift_ci_lower: -0.021
+    lift_ci_upper: 0.044
+    pass_precision: 0.82
+    pass_recall: 0.79
+    pass_f1: 0.8
+    fail_precision: 0.52
+    fail_recall: 0.57
+    fail_f1: 0.54
+    eval_loss: 0.5936
+    train_loss: 0.2687
+- exp_id: deepseek_full_trace_tail256_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7639
+    accuracy_ci_lower: 0.7403
+    accuracy_ci_upper: 0.7874
+    pass_precision: 0.8058
+    pass_recall: 0.8825
+    pass_f1: 0.8424
+    fail_precision: 0.6124
+    fail_recall: 0.4661
+    fail_f1: 0.5293
+    majority_baseline: 0.7151
+    lift: 0.0487
+    eval_loss: 0.5117
+    train_loss: 0.2367
+- exp_id: qwen15b_full_trace_tail512_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.956
+    accuracy_ci_lower: 0.945
+    accuracy_ci_upper: 0.968
+    majority_baseline: 0.715
+    lift_over_majority: 0.241
+    eval_loss: 0.263
+    train_loss: 0.154
+    pass_precision: 0.98
+    pass_recall: 0.96
+    pass_f1: 0.97
+    fail_precision: 0.91
+    fail_recall: 0.94
+    fail_f1: 0.92
+    eval_mean_token_accuracy: 0.949
+- exp_id: deepseek_full_trace_tail512_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.939
+    accuracy_ci_lower: 0.926
+    accuracy_ci_upper: 0.953
+    majority_baseline: 0.715
+    lift_over_majority: 0.224
+    pass_precision: 0.97
+    pass_recall: 0.94
+    pass_f1: 0.96
+    fail_precision: 0.86
+    fail_recall: 0.94
+    fail_f1: 0.9
+    n_test: 1190
+- exp_id: deepseek_full_trace_tail1024_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.9647
+    accuracy_ci_lower: 0.9538
+    accuracy_ci_upper: 0.9748
+    pass_precision: 0.964
+    pass_recall: 0.987
+    pass_f1: 0.976
+    fail_precision: 0.966
+    fail_recall: 0.909
+    fail_f1: 0.936
+    majority_baseline: 0.7151
+    n_test: 1190
+- exp_id: qwen15b_full_trace_tail1024_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.966
+    accuracy_ci_low: 0.955
+    accuracy_ci_high: 0.976
+    pass_precision: 0.96
+    pass_recall: 0.99
+    pass_f1: 0.98
+    fail_precision: 0.97
+    fail_recall: 0.91
+    fail_f1: 0.94
+    eval_loss: 0.1983
+    train_loss: 0.1187
+    majority_baseline: 0.715
+    lift_over_majority_pp: 25
+- exp_id: codellama13b_full_trace_tail512_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 97.5
+    accuracy_ci_low: 96.6
+    accuracy_ci_high: 98.4
+    majority_baseline: 71.5
+    lift_over_majority: 26
+    pass_precision: 0.98
+    pass_recall: 0.99
+    pass_f1: 0.98
+    fail_precision: 0.97
+    fail_recall: 0.94
+    fail_f1: 0.95
+    train_loss: 0.124
+    eval_loss: 0.249
+- exp_id: codellama13b_full_trace_head2048_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.7992
+    majority_baseline: 0.7151
+    lift: 0.084
+    n_test: 1190
+    pass_precision: 0.8566
+    pass_recall: 0.8637
+    pass_f1: 0.8602
+    fail_precision: 0.6506
+    fail_recall: 0.6372
+    fail_f1: 0.6438
+    train_loss: 0.0452
+    eval_loss: 0.111
+    accuracy_ci_lower: 0.7765
+    accuracy_ci_upper: 0.8227
+- exp_id: codellama13b_full_trace_tail1024_seed42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: codellama13b_full_trace_tail256_seed42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy: 0.779
+    accuracy_ci_lower: 0.757
+    accuracy_ci_upper: 0.803
+    pass_f1: 0.843
+    fail_f1: 0.626
+    pass_precision: 0.856
+    pass_recall: 0.831
+    fail_precision: 0.604
+    fail_recall: 0.649
+    majority_baseline: 0.715
+    lift: 0.064
+    train_loss: 0.245
+    eval_loss: 0.615
+- exp_id: codellama13b_full_trace_tail1024_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy: 0.876
+    accuracy_ci_lower: 0.856
+    accuracy_ci_upper: 0.893
+    majority_baseline: 0.715
+    lift_pp: 16.1
+    pass_precision: 0.85
+    pass_recall: 1
+    pass_f1: 0.92
+    fail_precision: 1
+    fail_recall: 0.56
+    fail_f1: 0.72
+    n_test: 1190
+    train_loss: 0.0937
+    eval_loss: 0.1859
+- exp_id: codellama13b_full_trace_tail2048_seed42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: codellama13b_full_trace_tail2048_seed42_v2
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    accuracy_epoch1: 0.2849
+    accuracy_epoch3: 0.2958
+    pass_recall_epoch3: 0.016
+    fail_recall_epoch3: 0.997
+    majority_baseline: 0.715
+    n_test: 1190
+    note: 'Catastrophic failure: model predicts fail for almost everything. Full-sequence
+      loss dilution with CodeLlama tokenizer at 2048 tokens.'
+- exp_id: codellama13b_full_trace_tail1024_seed42_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    accuracy_epoch1: 0.9824
+    accuracy_epoch3: 0.9756
+    pass_f1_epoch1: 0.988
+    fail_f1_epoch1: 0.968
+    pass_f1_epoch3: 0.983
+    fail_f1_epoch3: 0.955
+    best_accuracy: 0.9824
+    best_epoch: 1
+    overfitting: true
+- exp_id: codellama13b_full_trace_tail2048_seed42_v3
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: qwen7b_full_trace_head2048_seed42
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+
+
+## what_if (hypothetical experiments — additive)
+
+- name: fine_grained_phase_transition
+  claim: Phase transition claim
+  description: tail-384 × 4 models 精确定位 phase transition 拐点
+  estimated_gpu_hours: 16.0
+- name: cross_seed_budget_curve
+  claim: Robustness
+  description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+  estimated_gpu_hours: 24.0
+- name: few_shot_baseline
+  claim: Claim 1 强化
+  description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+  estimated_gpu_hours: 0.0
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5536c797-19d2-49c6-bced-0528bc7102ae",
+  "type": "user",
+  "uuid": "feb0f010-d466-45f1-bb8b-8815b8ddf9ca",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T11:40:47.607Z_
+
+```json
+{
+  "parentUuid": "feb0f010-d466-45f1-bb8b-8815b8ddf9ca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "21021017-4b83-44f4-ae5a-63d05718247d",
+  "timestamp": "2026-05-18T11:40:47.607Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T11:40:47.607Z_
+
+```json
+{
+  "parentUuid": "21021017-4b83-44f4-ae5a-63d05718247d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "934dfc50-4e2b-4619-92f4-cdd015cc45dc",
+  "timestamp": "2026-05-18T11:40:47.607Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强竞争力 核心假设：['tail-384 全 4 模型 ≤81%（与 tail-256 统计等价），phase transition 在 384-512 之间是…",
+  "leafUuid": "934dfc50-4e2b-4619-92f4-cdd015cc45dc",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Phase transition validation and budget curve analysis across 4 models",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T11:45:43.909Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed predicted results for each **planned** experiment in the experiment_plan, under the **best** tier scenario. I need to look at the planned experiments (status: planned) and generate expected results with rationales.
+
+Let me identify the planned experiments:
+
+1. **plan_016** - Fine-grained phase transition: tail-384 × 4 models
+2. **plan_017** - Cross-seed budget curve: tail-512 × 4 models × 3 seeds
+3. **plan_018** - Error analysis using existing predictions.jsonl
+4. **plan_019** - Cross-model calibration: 4 models × exception_only ECE/Brier
+
+
+5. **plan_020** - Few-shot prompting baseline: GPT-4o/Claude
+6. **plan_021** - OOD generalization: different programming languages
+7. **plan_022** - Training dynamics: learning curve comparison
+
+I'm also pulling in the what_if experiments (fine_grained_phase_transition, cross_seed_budget_curve, few_shot_baseline) to inform my predictions. Now I'll construct detailed predictions for each under the "best" tier, where the best tier assumes tail-384 across all 4 models achieves ≤81% accuracy (statistically equivalent to tail-256) and shows clear phase transition behavior.
+
+Looking at the existing budget curve data for Qwen-7B, I'm checking the tail-256 baseline at 77.48% and cross-referencing with the registry to ground my predictions in actual measurements. Looking at the head experiments more carefully, I see the pattern now: as I increase the context window from 256 to 512 tokens, accuracy jumps from 78.82% to 80.42%, but then drops to 77.23% at 1024 tokens before recovering to 81.76% with the full 2048-token context. For the tail experiments, there's some inconsistency in the naming conventions between "tail_256" and "tail256", but both seem to hover around 77-79% accuracy, which is notably lower than the full-context baseline. Continuing to map out the tail budget curves for the smaller models—Qwen-1.5B shows a similar pattern with accuracy jumping from 72.6% at tail-256 to 95.6% at tail-512, then plateauing around 96-97% for larger budgets. DeepSeek-6.7B appears to follow a comparable trajectory, though the data cuts off mid-entry. Looking at the performance curves, there's a clear phase transition happening between tail-256 and tail-512 across all models—the jump ranges from 16 to 23 percentage points. Now I'm examining what tail-384 might achieve under the best tier conditions, expecting it should fall around 81% or lower for all four models, which would put it statistically in line with the tail-256 baseline.
+
+My prediction is that tail-384 lands in the 76-80% range across the models—still below the critical threshold where exception traces become dense enough to meaningfully improve accuracy. The diagnostic information in error traces seems concentrated in roughly the last 400-500 tokens, so at 384 we're just shy of capturing that density. Then for tail-512 with multiple seeds, I'm checking whether the cross-seed variance stays tight at 2 percentage points or less.
+
+Looking at the existing single-seed tail-512 results, they're quite strong—ranging from 93.6% to 97.5%—and when I run three seeds, the standard deviations appear to stay well-controlled, mostly under 1.5 percentage points. Now I'm moving into error analysis to understand what's actually failing at this configuration.
+
+For cross-model calibration, I'm checking ECE and Brier scores across the four models under the best tier setup, and they're showing excellent calibration across the board. I'm also comparing few-shot prompting from frontier models against the exception_only SFT approach—the few-shot baselines substantially underperform, which validates the SFT direction. I already have some zero-shot and few-shot data points for the models, so I can use those to fill in the comparison rather than running everything from scratch.
+
+For OOD generalization, I'm testing how well exception_only transfers across different programming languages, and it's generalizing well. The training dynamics experiments show that exception_only converges much faster than full_trace when looking at learning curves.
+
+Now I need to carefully identify which experiments are marked as planned and expand the detailed data for those—specifically plan_016 through plan_018 and beyond.
+
+I'm constructing the full YAML output with detailed predictions for each planned experiment. The best-case scenario shows a sharp phase transition between tail-384 and tail-512 across all four models, universal calibration excellence for exception_only, few-shot baselines from frontier models still underperforming compared to SFT exception_only, clean interpretable error patterns, and fast convergence dynamics. I'm also tracking that CodeLlama with tail-2048 is currently running and should complete successfully under the best tier.
+
+Looking at the experimental structure more carefully, plan_016 focuses on the fine-grained phase transition across four models at tail-384, while plan_017 validates this pattern across three seeds at tail-512. For the best tier metrics, I'm setting tail_384_accuracy_4model_mean between 76-81%, tail_384_vs_tail256_max_diff_pp between 0-3 percentage points, and cross_seed_tail512_std_pp_max between 0-2 percentage points.
+
+Now I'm working through the detailed predictions for each model's tail-384 accuracy under the best tier scenario, starting with the incremental improvements from tail-256 baselines while respecting the maximum difference constraints. I'm seeing the cross-seed variance for tail-512 is holding steady across models with standard deviations under 1pp, and CodeLlama's tail-2048 is running and looking good so far. I need to clarify that "head" refers to the first 2048 tokens while "tail" means the last 2048 tokens, and I've got both the Qwen-7B head-2048 result and another head-2048 run in progress.
+
+Now I'm thinking through what the error analysis would show across different tracing strategies—exception-only errors cluster around GeneratorExit edge cases, VOTA errors vary by model with DeepSeek showing recall issues, full-trace errors scatter without clear patterns, and no-trace errors are dominated by recall failures with minimal diagnostic value. For the cross-model calibration work, I have Qwen-7B's baseline calibration metrics and need to extrapolate the accuracy and ECE patterns for the other three models based on what I'm seeing.
+
+Looking at the few-shot performance from GPT-4o and Claude on exception-only traces, both fall short of the fine-tuned baseline around 99.83%, with GPT-4o reaching 92-94% and Claude 93-95%. The OOD generalization test should show exception-only maintaining strong performance above 95% across different languages since the exception format itself is language-agnostic. Training dynamics reveal exception-only converges quickly within 50-100 steps to over 98%, while full-trace requires the full 3 epochs and plateaus much lower around 82%.
+
+I'm ready to compile this into the complete YAML structure now, making sure each plan includes the right level of detail the user is looking for.
+
+Writing YAML configuration... Looking at the performance metrics, tail-384 achieves 79.5% accuracy with an 8 percentage point lift over majority baseline, but the McNemar test shows no significant difference from tail-256 (p=0.15). The core issue is that 384 tokens still doesn't capture the dense exception diagnostic signals—the error type, message, and traceback frames that typically appear later in the full trace. 现在看到完整的性能曲线数据——256 到 384 tokens 基本持平在 78% 左右，但从 384 跳到 512 tokens 时精度陡升到 93.6%，这个 14 个百分点的跳跃相比之前的 2 个百分点增长形成了约 7:1 的梯度比，清晰地证实了这是一个离散的相变而不是连续的渐进过程。
+
+现在检查 Qwen-1.5B 在 tail-384 配置下的预期结果，精度预计在 74.8% 左右，相比 tail-256 的 72.6% 提升约 2.2 个百分点。
+
+关键观察是较小的模型在信息不足时表现更差——1.5B 需要更清晰的异常信号才能学到有效的映射关系，而 384 tokens 仍然不足以完整捕获异常信息，这进一步证实了性能跃迁是由信号驱动而非模型容量驱动的。
+
+现在看 DeepSeek-6.7B 在相同 tail-384 设置下的表现，预期准确率约 78.1%，相比多数基线提升 6.6 个百分点。
+
+与 Qwen-7B 的情况类似，384 tokens 仍未能突破异常信号的阈值，而 DeepSeek 的 tokenizer 效率稍低，导致相同 token 数对应的实际文本覆盖更少，进一步限制了信息增益。相比 tail-256 的 1.7 个百分点提升在置信区间上重叠，统计上无法区分。
+
+DeepSeek 的 VOTA 截断问题（91.7% 的训练样本被截断）不影响这个实验，因为 tail-384 采用的是独立的固定长度截断策略。
+
+两个模型在信号不足的区间内的绝对性能接近（DeepSeek 78.1% vs Qwen-7B 79.5%），表明它们的"猜测能力"相似，真正的差异源于 post-transition 区间中 LoRA 初始化稳定性的影响。现在看到 CodeLlama-13B 在 tail-384 tokens 上的预期结果，准确率约 79.8%，置信区间在 77.5% 到 82.1% 之间。
+
+CodeLlama 虽然是四个模型中最大的（13B），但其 tail-384 性能仍受限于相同的信号可用性瓶颈，只有在 tail-512 时才跳跃到 97.5%（四个模型中最高的 post-transition 值），这说明它具有最强的信号利用能力，但前提是信号必须先存在——384 tokens 下信号仍然不足，性能停留在 pre-transition 平台期。
+
+这验证了核心论点：相位转变由信号驱动而非容量驱动，即使是 13B 模型在诊断信号不足时也无法突破 80%。现在我在查看四个模型在 tail-384 下的对比数据。 Looking at the performance metrics across these models, I'm seeing a striking pattern: all four models show almost flat performance from 256 to 384 tokens (staying in the 76-80% range), then a dramatic jump between 384 and 512 tokens (jumping 15.8-20.8 percentage points), followed by a plateau beyond 512 tokens. The key insight is that this phase transition appears universal across different model families and scales—the 384-512 jump is roughly 8-10 times larger than the 256-384 increment, suggesting this is a fundamental architectural boundary rather than a model-specific quirk.
+
+Now I'm examining the cross-seed consistency for Qwen-7B at the 512-token point across three different random seeds, and the results show almost perfect alignment—the three runs cluster within just 0.6 percentage points of each other, with a maximum spread of only 1.2 percentage points around the 93.5% mean. This tight consistency indicates that once we reach the 512-token threshold where the signal becomes sufficiently strong, seed variance essentially disappears. 于 "刚过阈值" 状态。此处 seed variance 应该非零但很小——信号的主要部分已被捕获，但边界样本对 LoRA 初始化略有敏感。Qwen 在 exception_only 上展现了极强的训练稳定性，因此 tail-512 的 variance 也应该是 4 模型中最小的，std ≈ 0.6pp 远低于 2pp 阈值。Convergence band 紧密，与 exception_only ceiling 的 gap 来自 tail-512 truncation 导致的 partial signal loss，而非训练随机性。现在我在规划 Qwen-1.5B 的 tail-512 跨 seed 实验，预期三个 seed 的准确率都在 95% 以上，均值约 95.5%，标准差仅 0.4pp，因为 1.5B 的训练稳定性与 7B 一致。
+
+有趣的是，1.5B 在 tail-512 上的表现（95.5%）竟然超过了 7B（93.5%），这看似违反直觉，但与 "信号限制而非容量限制" 的论点一致——参数更少意味着对齐需求更低，在 post-transition 区间反而更稳定。
+
+现在看 DeepSeek-6.7B 的跨种子实验，它在 exception_only 上表现出了种子敏感性，但在 tail-512 上应该会更鲁棒，因为信号更充分。
+
+虽然 tail-512 混合了异常和末尾追踪信息，噪声更大，但 DeepSeek 的 LoRA 景观粗糙度不太可能产生像 seed123 那样的极端离群值，标准差应该控制在 0.9pp 以内。tail-512 的收敛带会比 exception_only 窄得多，反映出更稳定的性能。
+
+这是因为 tail-512 的有效信号强度处于中间地带——足以学到核心模式，但不足以达到性能天花板，所以 seed 初始化的差异被信号限制了。现在我在看 CodeLlama-13B 在 tail-512 上的三个 seed 的预期结果，准确率应该在 96.9% 到 97.5% 之间，标准差约 0.3pp。
+
+CodeLlama-13B 在这个任务上表现最稳定，三个 seed 的准确率都在 99.8% 以上，训练非常稳定。tail-512 达到 97.5% 是四个模型中最高的，说明 CodeLlama 的 13B 规模在处理混合信号时有优势。即使准确率这么高，seed 间的方差仍然很小，因为模型已经接近性能天花板。
+
+Generating comparison table... Looking at the standard deviations across all four models—they're all well under 0.9pp, which is far below the 2pp threshold—the tight convergence band really demonstrates that the phase transition location is robust to seed variation. Once the token budget crosses that ~400 token threshold, every seed converges to the same accuracy regime, so seed sensitivity mainly affects the absolute post-transition values rather than the stability of the signal itself. The differences between CodeLlama at 97.2% and DeepSeek at 93.5% reflect model capacity gaps, not noise in the measurements.
+
+Now I'm looking at the CodeLlama-13B tail-2048 completion metrics. The tail-1024 variant achieved 98.24% in the first epoch, and tail-512 got 97.5%, so the jump to tail-2048 should show minimal improvement since tail-1024 already captures most of the diagnostic signal. Though there's a possibility that CodeLlama's tokenizer behavior at 2048 tokens could introduce some full-sequence effects that might shift the results slightly.
+
+The v3 label-only loss approach should prevent the catastrophic failure we saw in v2 (that 29.6% drop), but there could still be some mild attention dilution that keeps accuracy slightly below tail-1024's performance. I'm predicting around 96.5%, which sits comfortably in the expected range. The key difference from v2 is that the label-preserving truncation fix should address the root cause of that earlier failure, though if v3 still underperforms, we'd need to lean more heavily on the label-only loss strategy.
+
+Generating performance table... Looking at the error analysis across different conditions and models, I'm seeing distinct failure patterns: the exception-only approach catches very few errors concentrated in one test case, while the voting approach identifies more diverse issues like loop confusion and edge cases, and the full trace method reveals widespread information overload problems with recall being the dominant failure mode. Looking at the error distribution patterns, the full_trace errors scatter across different program and error types due to information overload preventing the model from focusing on specific signals, while no_trace errors show a systematic bias toward predicting pass despite the 73.45% fail recall rate. The key distinction is that Tier 1 has deterministic, interpretable failure modes centered on GeneratorExit, whereas Tier 2 and the other trace variants show more diffuse failure patterns.
+
+Generating failure mode summary table... Tier 2 and lower-tier errors depend on the model's underlying capabilities, so improving them requires stronger execution reasoning rather than just fixing the tracer design. This reinforces my principle of extracting the highest-specificity signal and discarding noise. Now I'm setting up a cross-model calibration comparison across four models using exception-only traces, looking at their ECE, Brier scores, and accuracy metrics. Looking at the calibration patterns across all four models, CodeLlama-13B and the larger models show comparable or better calibration than Qwen-7B due to their size, while DeepSeek's slightly lower accuracy (99.33%) suggests a marginally higher ECE around 0.008 given its error distribution. The crucial insight is that calibration quality remains universally strong across all architectures—the Tier 1 signal doesn't just make models predict correctly, it makes them genuinely confident when right, and this property holds regardless of model type or size, maintaining roughly a 20-60x improvement over the baseline.
+
+Generating calibration metrics table... Now I'm setting up a few-shot prompting baseline with GPT-4o and Claude to predict verdicts on exception-only traces, expecting them to reach 93-96% accuracy with in-context learning, compared to the fine-tuned model's 99.83% performance which would demonstrate a meaningful advantage of specialized training over general-purpose prompting approaches. 模型 zero-shot（~93-94%），因为它们有更强的 instruction following 和 reasoning 能力。3-shot 提供 examples 应进一步提升 2-3pp，但 few-shot 受限于 context window 和 in-context learning 效率，无法匹配 SFT 的 parameter-level adaptation。SFT exception_only (99.83%) 仍 > best few-shot (~96%) 约 3.8pp，虽然看起来差距不大，但在 irreducible error 仅 0.17% 的背景下，few-shot 的 4% error rate 是 SFT 的 ~24x，说明即使 frontier model 也无法通过 few-shot 匹配 7B SFT 在 verdict task 上的表现。现在看一下具体的性能对比数据。
+
+Generating markdown table... The few-shot results validate that the exception signal itself is informative—frontier models already hit 93-94% zero-shot accuracy—and that SFT bridges the remaining gap to 99.83% through parameter-level adaptation rather than prompt engineering alone. Now I'm planning to test how well the exception-only approach generalizes across different programming languages like Java, JavaScript, and C++, expecting to maintain around 95-97% accuracy across the board. 983
+      ood_gap_pp: 3.8
+    result_rationale: |
+      exception_only 的 signal 结构（[ERROR] type: ... message: ...）在不同语言中有类似映射：
+      Java → Exception class name + message，JavaScript → Error type + message，C++ → exception/segfault。
+      SFT 模型学到的核心 pattern 是 "[ERROR] 存在 → fail" 的映射，这个 pattern 跨语言保持。
+      但 OOD 数据的 exception 格式可能与训练时略有不同（不同 tracer 的格式差异），
+      导致 accuracy 从 99.83% 降到 ~95-97%。
+      关键: 如果 OOD accuracy 仍 > 95%，说明 exception signal 的 linguistic structure 具有跨语言普适性，大幅强化 generalization claim。注意: 构建 OOD 测试集本身是 non-trivial 工作，需要不同语言的 tracer 和 benchmark。如果时间不足，可缩减为 1 个语言（Java，因为 exception 体系与 Python 最相似）。这个 OOD 实验是最高层级的验证方式。
+
+即使不做，现有的 4 模型 × 3 families × 2 scales 已经构成充分的 universality 证据。但如果 OOD 结果好（>95%），这将是最强的反驳 reviewer 关于 exception signal 跨语言 robustness 的疑虑。不过构建 OOD 数据集的时间成本可能超过价值，建议作为 camera-ready 补充而非 submission 必需。
+
+接下来看 training dynamics 这个实验，对比 exception_only 和 full_trace 在不同训练步数下的学习曲线。
+
+结果显示 exception_only 收敛速度快 3.75 倍，只需 150 步达到 99% 准确率，而 full_trace 需要 300 步才能达到 80%，且损失函数轨迹完全不同——exception_only 在 100 步内快速降至 0.1 后平稳，full_trace 则缓慢下降且非单调。这是因为 exception_only 的训练数据中 effective signal 高度一致，模型只需学习简单的 pattern mapping，而有效的独特样本仅 2858 条。
+
+相比之下，full_trace 包含大量无关的 tokens（变量值、内存地址、循环迭代），模型需要更多步骤才能从噪声中提取有用信号，最终受到信息过载的限制。这个 3-4 倍的收敛速度差异直接支持了信息密度的论点——高密度信号不仅提升了性能上限，还加速了学习过程。关键发现是 exception_only 可能在仅 50 步（约占一个 epoch 的 10%）时就已经超过了 full_trace 的最终准确率 81.76%，说明 SFT 效率差异是数量级的差异而非百分比差异。
+
+现在看一下具体的收敛里程碑数据：exception_only 在约 30 步达到 80%，60 步达到 90%，80 步达到 98%，最终在 150 步时达到 99.83%；而 full_trace 在 300 步才达到 80%，之后就再也没有达到过 90% 或更高。学习曲线图显示 exception_only 的曲线陡峭上升后平稳在 99.83%，而 full_trace 的曲线缓慢上升并在约 82% 处平台化，两条曲线在 50 步处交叉后再也不会相交。
+
+这些训练动态为信息密度假说提供了动态证据，补充了之前关于梯度稀释只贡献 26% 差距的静态分解。关键观察是高密度信号的学习速度比低密度信号快 3-4 倍，如果 exception_only 能在十分之一个 epoch 内就超过 full_trace 的最终性能，这会是论文中非常有说服力的补充图表。
+
+现在看 CodeLlama tail-2048 的结果，v2 版本出现了灾难性失败（29.6%），这是由于全序列损失稀释导致的。v3 版本正在运行中。相比之下，其他模型在 tail-2048 上的表现都在 95% 以上——Qwen-7B 达到 97.3%，Qwen-1.5B 达到 97.9%，DeepSeek 达到 94.96%。由于 CodeLlama 是最大的模型（13B），在最优配置下应该也能达到 95-98% 的范围，所以 v3 应该能解决 v2 遇到的长序列问题。
+
+再看 CodeLlama tail-1024 v3 的结果，第一个 epoch 达到 98.24%，第三个 epoch 是 97.56%，这说明 tail-1024 已经很稳定了。tail-2048 应该会略低一些，但在最优配置下应该在 96-97% 左右。我还注意到 Qwen-7B 的 full_trace_tail_seed42 结果是 97.3%，这和无限制版本的尾部结果一致。现在我需要整理最终的 YAML 输出，并确保包含所有计划中的实验以及任何与 plan_016/017 不同的 what_if 实验。
+
+检查一下关键指标的预测值是否合理，特别是最优配置下的几个数值，然后完成最终的输出。 All the metrics check out within their expected ranges, so I'm ready to generate the final YAML output. I want to make sure the rationales I include actually explain the mechanistic reasons behind these results rather than just stating they're optimal—things like how model architecture or training data distribution would naturally lead to these specific performance characteristics in the best-case scenario.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "934dfc50-4e2b-4619-92f4-cdd015cc45dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb9yK7Zgi1drtwmNdziJ2",
+  "type": "assistant",
+  "uuid": "f2c26b18-267c-4e59-b0ea-c1f17f91245d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xTkeLz9tniRTUSvELx5Uz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41355,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 29078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 29078,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 41355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T11:49:50.431Z_
+
+```yaml
+tier: best
+narrative_guidance: |
+  P1 实验全面确认 budget curve universal phase transition。tail-384 × 4 模型均 ≤81%（与 tail-256 统计等价, McNemar p>0.1），
+  phase transition 在 384-512 之间是 sharp cliff（gradient ratio 8-10:1）。cross-seed tail-512 全 4 模型 std ≤ 0.9pp，
+  convergence band 紧密。CodeLlama tail-2048 正常完成（~96.5%），4 模型 budget curve 完整。
+  论文 5 contributions 清晰闭环: (1) exception dominance universal across 4 models/3 families/2 scales,
+  (2) 26%/74% causal decomposition, (3) two-tier diagnostic hierarchy,
+  (4) universal sharp phase transition at ~400 tokens confirming diagnostic signal locality,
+  (5) LoRA training stability as practical bottleneck。
+  Budget curve 作为核心 Figure 展示 'why exception works'——exception 等价于 trace 末尾 ~400-500 token 的 diagnostic moment，
+  phase transition 证明这个 moment 的信息高度局部化。'Feature engineering' 批评被 4-model universality + phase transition structure 有效反驳：
+  若只是 feature engineering，不会在 3 个 model family × 2 个 scale 上产生完全一致的 S-curve phase transition pattern。
+  EMNLP main 强竞争力（accept prob 0.55-0.75）。
+
+imagined_experiments:
+  # ============================================================
+  # plan_016: Fine-grained phase transition — tail-384 × 4 models
+  # ============================================================
+  - name: "tail-384 × Qwen-7B"
+    plan_id: "plan_016"
+    description: "Qwen-2.5-Coder-7B full_trace tail-384 tokens SFT，精确定位 256→512 phase transition 左边界"
+    expected_results:
+      accuracy: 0.795
+      accuracy_ci_lower: 0.772
+      accuracy_ci_upper: 0.818
+      majority_baseline: 0.7151
+      lift_over_majority_pp: 8.0
+      pass_f1: 0.849
+      fail_f1: 0.682
+      diff_vs_tail256_pp: 2.0
+      mcnemar_vs_tail256_p: 0.15
+      diff_vs_tail512_pp: -14.1
+    result_rationale: |
+      Qwen-7B tail-256 = 77.48%。384 tokens 仅多 128 tokens（约 6-8 行代码）。trace 末尾的 diagnostic 信号分布呈高度右偏：
+      exception trace 的核心内容（[ERROR] type + message + traceback 最后几帧）集中在 trace 的最后 400-500 tokens。
+      在 384 token 窗口下，仅有少数 "短 exception"（如单行 AssertionError）的样本能被完整捕获，
+      大多数样本的 exception 信息仍被截断或完全缺失。因此 accuracy 仅小幅提升 ~2pp。
+      McNemar p>0.1 说明提升在统计上不显著——384 和 256 处于同一个 "insufficient signal" regime。
+      这与 information density 假说一致：trace 末尾的 marginal information 在 384 之前主要是 loop 尾部和 assertion 结构的碎片，
+      尚未到达 exception 信号的密集区，因此 accuracy 曲线保持 flat。
+    tables:
+      - name: "Qwen-7B tail budget curve (complete)"
+        rows:
+          - {tokens: 256, accuracy: "77.5%", regime: "pre-transition plateau"}
+          - {tokens: 384, accuracy: "79.5% (pred)", regime: "pre-transition plateau"}
+          - {tokens: 512, accuracy: "93.6%", regime: "post-transition rise"}
+          - {tokens: 1024, accuracy: "96.5%", regime: "ceiling plateau"}
+          - {tokens: 2048, accuracy: "97.3%", regime: "ceiling plateau"}
+    figures_description:
+      - "Budget curve: x=token budget (log scale), y=accuracy。256-384 flat (~78%), 384→512 sharp cliff (+14pp), 512→2048 diminishing returns。"
+    analysis: |
+      256→384 Δ=2.0pp vs 384→512 Δ=14.1pp，gradient ratio ~7:1。
+      384 是 "sharp cliff 的左脚"——phase transition 的数学定义要求存在一个 token budget t*
+      使得 accuracy(t*-ε) ≈ accuracy(t*-2ε) 但 accuracy(t*+ε) >> accuracy(t*)。
+      384 的数据精确刻画了这个 t* ≈ 400-450 的位置。
+
+  - name: "tail-384 × Qwen-1.5B"
+    plan_id: "plan_016"
+    description: "Qwen-2.5-Coder-1.5B full_trace tail-384 tokens SFT"
+    expected_results:
+      accuracy: 0.748
+      accuracy_ci_lower: 0.722
+      accuracy_ci_upper: 0.773
+      majority_baseline: 0.7151
+      lift_over_majority_pp: 3.3
+      diff_vs_tail256_pp: 2.2
+      mcnemar_vs_tail256_p: 0.12
+      diff_vs_tail512_pp: -20.8
+    result_rationale: |
+      Qwen-1.5B tail-256 = 72.6%，甚至低于 majority baseline（71.5%），lift CI 跨 0。
+      更小模型在 insufficient signal 条件下表现更差——1.5B 的 attention capacity 有限，
+      在信号被 noise 淹没时无法有效 extract 任何 useful pattern。384 tokens 同样 signal-insufficient，
+      accuracy 仅提升到 ~74.8%。然而 1.5B 在 tail-512 时跳到 95.6%（高于 7B 的 93.6%！），
+      说明一旦 exception signal 充足，1.5B 因 LoRA 参数占比更高而更 efficient。
+      这是 "signal-limited not capacity-limited" 论点的最强佐证：pre-transition 区间模型越大越好（noise tolerance），
+      post-transition 区间模型大小几乎无关（signal dominates）。
+    tables: []
+    figures_description: []
+    analysis: |
+      1.5B 的 pre-transition→post-transition jump 是 4 模型中最大的（72.6%→95.6% = 23.0pp），
+      因为它在 pre-transition 区间最差（最小模型最不耐 noise），但在 post-transition 区间并不落后。
+      这放大了 phase transition 的 visual contrast，使 S-curve 最为陡峭。
+
+  - name: "tail-384 × DeepSeek-6.7B"
+    plan_id: "plan_016"
+    description: "DeepSeek-Coder-6.7B full_trace tail-384 tokens SFT"
+    expected_results:
+      accuracy: 0.781
+      accuracy_ci_lower: 0.757
+      accuracy_ci_upper: 0.805
+      majority_baseline: 0.7151
+      lift_over_majority_pp: 6.6
+      diff_vs_tail256_pp: 1.7
+      mcnemar_vs_tail256_p: 0.18
+      diff_vs_tail512_pp: -15.8
+    result_rationale: |
+      DeepSeek tail-256 = 76.39%。DeepSeek tokenizer 效率与 Qwen 不同（DeepSeek 使用 32K vocab 的 BPE），
+      同一段 Python trace 在 DeepSeek tokenizer 下可能需要更多 tokens。384 tokens 对应的实际文本覆盖
+      比 Qwen 略少，信息增量更受限。1.7pp 的提升在 bootstrap CI 上与 tail-256 完全重叠。
+      tail-384 不受 VOTA 截断问题影响（独立的固定长度 tail 截断策略），结果 clean。
+      DeepSeek 的 pre-transition plateau（76-78%）与 Qwen-7B（77-80%）接近，
+      说明两个模型在 "猜测能力"（insufficient signal 下的 baseline performance）上几乎一致，
+      真正的差异由 post-transition 的 model-specific factors（LoRA stability、execution reasoning）决定。
+    tables: []
+    figures_description: []
+    analysis: |
+      DeepSeek 384→512 jump = 15.8pp，虽然是 4 模型中最小的（因 DeepSeek tail-512 = 93.9%，post-transition 值最低），
+      但仍远大于 256→384 的 1.7pp（ratio 9.3:1），sharp cliff 结论成立。
+
+  - name: "tail-384 × CodeLlama-13B"
+    plan_id: "plan_016"
+    description: "CodeLlama-13B-Instruct full_trace tail-384 tokens SFT"
+    expected_results:
+      accuracy: 0.798
+      accuracy_ci_lower: 0.775
+      accuracy_ci_upper: 0.821
+      majority_baseline: 0.7151
+      lift_over_majority_pp: 8.3
+      diff_vs_tail256_pp: 1.9
+      mcnemar_vs_tail256_p: 0.14
+      diff_vs_tail512_pp: -17.7
+    result_rationale: |
+      CodeLlama-13B tail-256 = 77.9%。尽管是 4 模型中最大的（13B vs 7B/6.7B/1.5B），
+      其 tail-384 仍受限于相同的 signal availability bottleneck——模型 capacity 无法弥补 data 中 signal 的缺失。
+      CodeLlama 在 tail-512 时达到 97.5%（4 模型最高 post-transition 值），
+      说明更大 capacity 在 signal 充足后的 utilization efficiency 更高。
+      但 384 tokens 下 signal 仍不足，accuracy 停留在 pre-transition plateau。
+      这是 "phase transition is signal-driven, not capacity-driven" 的关键证据：
+      13B 模型在 diagnostic signal 不足时也无法突破 80%。
+    tables:
+      - name: "4-model tail-384 universal summary"
+        rows:
+          - {model: "Qwen-7B", tail256: "77.5%", tail384: "79.5%", tail512: "93.6%", Δ_256_384: "+2.0pp", Δ_384_512: "+14.1pp", ratio: "7.1x"}
+          - {model: "Qwen-1.5B", tail256: "72.6%", tail384: "74.8%", tail512: "95.6%", Δ_256_384: "+2.2pp", Δ_384_512: "+20.8pp", ratio: "9.5x"}
+          - {model: "DeepSeek-6.7B", tail256: "76.4%", tail384: "78.1%", tail512: "93.9%", Δ_256_384: "+1.7pp", Δ_384_512: "+15.8pp", ratio: "9.3x"}
+          - {model: "CodeLlama-13B", tail256: "77.9%", tail384: "79.8%", tail512: "97.5%", Δ_256_384: "+1.9pp", Δ_384_512: "+17.7pp", ratio: "9.3x"}
+          - {model: "4-model mean", tail256: "76.1%", tail384: "78.1%", tail512: "95.2%", Δ_256_384: "+1.95pp", Δ_384_512: "+17.10pp", ratio: "8.8x"}
+    figures_description:
+      - "核心 Figure: 4-model overlaid S-curve budget plot。4 条曲线在 256-384 flat（72-80%），384-512 synchronized sharp jump，512+ ceiling plateau（93-98%）。visual impact: universal phase transition pattern。"
+      - "Gradient ratio bar chart: 每个模型显示 Δ(256→384) vs Δ(384→512) 的对比柱。所有模型的 384→512 柱高 7-10x 于 256→384 柱。"
+    analysis: |
+      4-model mean tail-384 = 78.1%，在关键指标 [76, 81] 范围内。max diff vs tail-256 = 2.2pp（Qwen-1.5B），在 [0, 3] 内。
+      所有 4 模型 gradient ratio ≥ 7:1，minimum 256→512 jump = 16.1pp（Qwen-7B），在 [15, 23] 内。
+      Phase transition 在 384-512 之间是 universal sharp cliff，构成独立 contribution（Contribution #4）。
+      Cliff 的位置与 exception trace 的典型 token 长度吻合（Python exception traceback + error message 通常 150-400 tokens），
+      说明 phase transition 的 physical cause 就是 exception 信号的 inclusion/exclusion threshold。
+
+  # ============================================================
+  # plan_017: Cross-seed budget curve — tail-512 × 4 models × 3 seeds
+  # ============================================================
+  - name: "cross-seed tail-512 × Qwen-7B"
+    plan_id: "plan_017"
+    description: "Qwen-7B tail-512 × 3 seeds (42/123/456)，验证 post-transition convergence band robustness"
+    expected_results:
+      seed42_accuracy: 0.936
+      seed123_accuracy: 0.929
+      seed456_accuracy: 0.941
+      mean_accuracy: 0.935
+      std_pp: 0.6
+      max_min_range_pp: 1.2
+      all_seeds_above_tail384_max: true
+    result_rationale: |
+      Qwen-7B exception_only 3-seed variance = 0（99.83% 完全一致），说明 signal 充足时该模型对 LoRA 初始化完全不敏感。
+      tail-512 是 post-transition 第一个点（93.6%），signal 已充分但处于 "刚过阈值" 状态——
+      部分样本的 exception 信息在 tail-384→512 窗口的边界上，这些 "边界样本" 的 prediction 对 LoRA 初始化略有敏感。
+      但由于 Qwen 在 exception_only 上展现了极强的训练稳定性，tail-512 的 variance 也应该是 4 模型中最小的。
+      std ≈ 0.6pp 远低于 2pp 阈值。关键: 即使最差 seed (92.9%) 也远高于 tail-384 最好情况 (~80%)，
+      证明 phase transition 的位置是 seed-robust 的——不存在某个 seed 下 phase transition 右移到 >512 的情况。
+    tables: []
+    figures_description: []
+    analysis: |
+      Convergence band [92.9%, 94.1%] 窄且完全位于 post-transition regime。
+      与 exception_only ceiling (99.83%) 的 ~6pp gap 来自 tail-512 truncation 导致的 partial signal loss，
+      而非训练随机性——这 6pp 是 deterministic information gap，不是 stochastic training gap。
+
+  - name: "cross-seed tail-512 × Qwen-1.5B"
+    plan_id: "plan_017"
+    description: "Qwen-1.5B tail-512 × 3 seeds"
+    expected_results:
+      seed42_accuracy: 0.956
+      seed123_accuracy: 0.951
+      seed456_accuracy: 0.958
+      mean_accuracy: 0.955
+      std_pp: 0.4
+    result_rationale: |
+      Qwen-1.5B exception_only = 99.83%（与 7B 一致，3 seeds 完美），训练稳定性同样极好。
+      tail-512 single-seed 95.6% 高于 7B 的 93.6%——更小模型在 "near-threshold signal" 条件下
+      可能因 LoRA 参数占总参数比例更高而更 efficient（LoRA rank 相同时，1.5B 的 LoRA 适配能力相对于模型规模更大）。
+      3-seed std ≈ 0.4pp，比 7B 还小，因为 1.5B 的 LoRA landscape 在这个 signal regime 下可能更 smooth。
+    tables: []
+    figures_description: []
+    analysis: |
+      1.5B tail-512 mean (95.5%) > 7B tail-512 mean (93.5%) 看似反直觉，
+      但与 exception_only 的 "signal-limited not capacity-limited" 完全一致：
+      tail-512 的 signal 已足够简单（接近 exception_only 的 signal quality），
+      1.5B 的参数效率优势在此显现。
+
+  - name: "cross-seed tail-512 × DeepSeek-6.7B"
+    plan_id: "plan_017"
+    description: "DeepSeek-6.7B tail-512 × 3 seeds"
+    expected_results:
+      seed42_accuracy: 0.939
+      seed123_accuracy: 0.925
+      seed456_accuracy: 0.942
+      mean_accuracy: 0.935
+      std_pp: 0.9
+    result_rationale: |
+      DeepSeek exception_only 显示 seed 敏感性（seed123=91.09% 离群，σ≈4.8pp），
+      但 2/3 seeds 鲁棒（99.33%）。tail-512 的 signal 比 exception_only 更 noisy（包含 exception + trace 尾部混合），
+      但 signal 主体仍来自 exception 事件。tail-512 的 "effective signal strength" 处于中间地带——
+      足以学到核心 fault detection pattern 但不足以达 ceiling——
+      这反而限制了 seed-dependent LoRA 初始化差异的影响范围。
+      不会出现 exception_only seed123 那样的极端离群值（91.09%），
+      因为 tail-512 的 mixed signal 降低了模型对单一 mapping (exception→fail) 的依赖。
+      std ≈ 0.9pp，是 4 模型中最高的，但仍 ≤ 2pp 阈值。
+    tables: []
+    figures_description: []
+    analysis: |
+      DeepSeek tail-512 convergence band [92.5%, 94.2%] 比 exception_only [91.09%, 99.33%] 窄得多。
+      Paradox: mixed signal 降低了 ceiling 但也降低了 variance。这暗示极端 seed sensitivity 
+      主要是 "pure signal" 条件下的现象——signal 越纯，对 LoRA→signal mapping 的初始化越敏感。
+
+  - name: "cross-seed tail-512 × CodeLlama-13B"
+    plan_id: "plan_017"
+    description: "CodeLlama-13B tail-512 × 3 seeds"
+    expected_results:
+      seed42_accuracy: 0.975
+      seed123_accuracy: 0.969
+      seed456_accuracy: 0.973
+      mean_accuracy: 0.972
+      std_pp: 0.3
+    result_rationale: |
+      CodeLlama-13B exception_only 3-seed 高度一致（seed42/456=99.83%, seed123=100.0%），
+      训练稳定性极佳——13B 模型的 LoRA landscape 最 smooth。
+      tail-512 single-seed = 97.5%（4 模型最高 post-transition 值），
+      说明 CodeLlama 的 13B capacity 在 signal utilization 上有优势。
+      在如此接近 ceiling 的 accuracy 下，seed variance 极小（≤0.3pp）。
+      几乎所有样本都被正确分类，variance 仅来自极少数边界样本的 stochastic prediction。
+    tables:
+      - name: "4-model cross-seed tail-512 summary"
+        rows:
+          - {model: "Qwen-7B (7B)", mean: "93.5%", std: "0.6pp", range: "[92.9, 94.1]", n_seeds: 3}
+          - {model: "Qwen-1.5B (1.5B)", mean: "95.5%", std: "0.4pp", range: "[95.1, 95.8]", n_seeds: 3}
+          - {model: "DeepSeek (6.7B)", mean: "93.5%", std: "0.9pp", range: "[92.5, 94.2]", n_seeds: 3}
+          - {model: "CodeLlama (13B)", mean: "97.2%", std: "0.3pp", range: "[96.9, 97.5]", n_seeds: 3}
+          - {model: "All models", mean: "94.9%", max_std: "0.9pp", note: "all < 2pp threshold"}
+    figures_description:
+      - "4-model convergence band error-bar plot at tail-512: 每模型 mean ± std。4 条 bar 均窄（≤0.9pp），清晰展示 post-transition convergence 的 seed-robustness。"
+      - "Overlay on budget curve: 在 4-model S-curve 图的 x=512 点处添加 3-seed error bar，直观显示 convergence band 远离 pre-transition plateau。"
+    analysis: |
+      max std = 0.9pp (DeepSeek)，远低于 2pp 阈值。所有模型的 worst seed 都远高于 tail-384 best case (~80%)，
+      确认 phase transition 位置 seed-robust。cross-seed 验证消除了 "single-seed lucky draw" 的审稿人疑虑。
+      结合 plan_016 的 tail-384 数据，可以 claim: phase transition 在 384-512 之间是 universal + sharp + seed-robust。
+
+  # ============================================================
+  # plan_016 补充: CodeLlama tail-2048 completion
+  # ============================================================
+  - name: "CodeLlama-13B tail-2048 (v3 completion)"
+    plan_id: "plan_016"
+    description: "CodeLlama-13B tail-2048 v3 完成，闭合 4-model budget curve 的最后一个缺失点"
+    expected_results:
+      accuracy: 0.965
+      accuracy_ci_lower: 0.954
+      accuracy_ci_upper: 0.975
+      pass_f1: 0.976
+      fail_f1: 0.938
+      diff_vs_tail1024_pp: -1.7
+    result_rationale: |
+      CodeLlama tail-1024 v3 = 98.24%（epoch1 best）。tail-2048 与 tail-1024 的信息增量极小
+      （1024-2048 区间主要是 loop iterations 和 variable dumps，与 diagnostic signal 无关）。
+      v2 曾 catastrophic failure（29.6%）因 full-sequence loss dilution + CodeLlama tokenizer 在 2048 tokens 时
+      生成大量 non-diagnostic tokens，loss 被稀释到 label token 无法获得足够梯度。
+      v3 采用 label-preserving truncation fix 应避免 catastrophic failure。
+      但 2048 tokens 的 attention dilution 可能导致 accuracy 略低于 tail-1024（98.24%→96.5%），
+      类似 Qwen-7B tail-1024 (96.47%) → tail-2048 (97.3%) 的 pattern，但 CodeLlama 因 tokenizer 效率差异可能退化。
+      其他模型 tail-2048 参照: Qwen-7B 97.3%, Qwen-1.5B 97.9%, DeepSeek 94.96%。
+      CodeLlama 96.5% 处于合理范围，在 [95, 98] 关键指标内。
+    tables:
+      - name: "4-model complete tail-2048 comparison"
+        rows:
+          - {model: "Qwen-7B", tail2048: "97.3%", tail1024: "96.5%", delta: "+0.8pp"}
+          - {model: "Qwen-1.5B", tail2048: "97.9%", tail1024: "96.6%", delta: "+1.3pp"}
+          - {model: "DeepSeek-6.7B", tail2048: "95.0%", tail1024: "96.5%", delta: "-1.5pp"}
+          - {model: "CodeLlama-13B", tail2048: "96.5% (pred)", tail1024: "98.2%", delta: "-1.7pp (pred)"}
+    figures_description: []
+    analysis: |
+      CodeLlama tail-2048 完成后 4 模型 budget curve 矩阵完整（4 models × 6 token budgets）。
+      所有模型的 tail-1024→tail-2048 delta 均 ≤ 2pp（正或负），confirming ceiling plateau。
+      DeepSeek 和 CodeLlama 在 tail-2048 略低于 tail-1024 可能反映 attention dilution at longer sequences。
+
+  # ============================================================
+  # plan_018: Error analysis
+  # ============================================================
+  - name: "Failure mode analysis (no GPU)"
+    plan_id: "plan_018"
+    description: "用已有 predictions.jsonl 系统分析 exception_only/VOTA/full_trace/no_trace 的 failure modes"
+    expected_results:
+      exception_only_errors:
+        total: 2
+        generator_exit_false_positive: 2
+        error_concentration: "100% from HumanEval/95 check_dict_case"
+        interpretability: "fully deterministic, representation-inherent"
+      vota_errors:
+        total: 7
+        exception_overlap_with_exc_only: 2
+        loop_noise_confusion: 3
+        ae_edge_case: 2
+        interpretability: "partially interpretable"
+      full_trace_errors:
+        total: 217
+        fail_recall_dominated: true
+        scattered_distribution: true
+        top_error_category: "information overload — no dominant pattern"
+        interpretability: "low — diffuse across problem types"
+      no_trace_errors:
+        total: 296
+        majority_class_bias: true
+        fail_recall: 0.7345
+        systematic_pattern: "under-predicts fail (minority class)"
+        interpretability: "high — systematic bias, single root cause"
+      tier1_vs_tier2_failure_modes_qualitatively_distinct: true
+      error_overlap_hierarchy: "exc_only(2) ⊂ vota(7) ⊂ full_trace(217)"
+    result_rationale: |
+      exception_only 的 2 个错误已被彻底分析（GeneratorExit, id=901/905），error analysis 将确认无新发现。
+      VOTA 在 exception_only 基础上增加了 loop + ae 信号，VOTA 的 7 个错误中 2 个与 exception_only 重叠（GeneratorExit），
+      剩余 5 个是 loop compression 引入的噪声：部分样本的 loop 行为 "看似正常" 但实际有 subtle fault，
+      或者正常 loop 信息稀释了 exception signal 的 attention weight。
+      full_trace 的 ~217 个错误（81.76% accuracy, 1190 × (1-0.8176) ≈ 217）呈散射分布——
+      information overload 使模型无法对任何 single signal source 形成 stable attention pattern，
+      错误跨越多种程序类型和错误类型，无清晰聚类。fail_recall 尤其差（69.6%），因为 fail 样本的 diagnostic signal 
+      被 irrelevant trace tokens 淹没。
+      no_trace 的 ~296 个错误主要来自 fail class under-prediction（majority class bias）。
+      关键发现: error interpretability 与 tier level 正相关——Tier 1 error 100% interpretable，
+      Tier 2/full_trace error 呈 stochastic noise pattern。
+    tables:
+      - name: "Error mode summary by condition"
+        rows:
+          - {condition: "exception_only", n_errors: 2, dominant_mode: "GeneratorExit false positive", interpretable: "100%", actionable: "tracer fix"}
+          - {condition: "VOTA", n_errors: 7, dominant_mode: "loop noise + edge assertion", interpretable: "~60%", actionable: "component pruning"}
+          - {condition: "full_trace", n_errors: "~217", dominant_mode: "scattered / information overload", interpretable: "<20%", actionable: "unclear"}
+          - {condition: "no_trace", n_errors: "~296", dominant_mode: "majority-class bias", interpretable: "100%", actionable: "add any signal"}
+    figures_description:
+      - "Error heatmap: x=problem_id (sorted), y=condition。Tier 1 errors 高度集中在 2 个 problem，full_trace errors 均匀分散。"
+      - "Error overlap Venn diagram: exception_only(2) ⊂ VOTA(7) ⊂ full_trace(217) ⊂ no_trace(296)。strict subset 关系可视化 tier hierarchy。"
+    analysis: |
+      Error analysis 为 two-tier hierarchy 增加第三个 evidence dimension（accuracy / calibration / error interpretability）。
+      Tier 1 的 failure mode 是 deterministic + representation-inherent（可通过 tracer 改进消除），
+      lower-tier 的 failure mode 是 stochastic + capability-dependent（改进路径不明确）。
+      这强化 design principle: 最高 specificity 的 signal 不仅 accuracy 最高、calibration 最好，
+      其 failure mode 也最可解释和最可修复。
+
+  # ============================================================
+  # plan_019: Cross-model calibration
+  # ============================================================
+  - name: "Cross-model calibration (4 models × exception_only)"
+    plan_id: "plan_019"
+    description: "4 models exception_only 的 ECE/Brier Score 对比，验证 calibration quality 跨模型 universal"
+    expected_results:
+      qwen7b:
+        ece: 0.0027
+        brier: 0.0013
+        accuracy: 0.9983
+        note: "existing data"
+      qwen15b:
+        ece: 0.0031
+        brier: 0.0015
+        accuracy: 0.9983
+      deepseek:
+        ece: 0.0082
+        brier: 0.0055
+        accuracy: 0.9933
+      codellama13b:
+        ece: 0.0024
+        brier: 0.0011
+        accuracy: 0.9983
+      max_ece: 0.0082
+      min_ece_ratio_vs_notrace: "21x (DeepSeek)"
+      max_ece_ratio_vs_notrace: "71x (CodeLlama)"
+      calibration_universally_excellent: true
+    result_rationale: |
+      Qwen-7B 已有数据（ECE=0.0027, Brier=0.0013），作为参照。
+      Qwen-1.5B 与 7B 的 exception_only 结果完全一致（99.83%, 相同 2 个 irreducible errors），
+      其 softmax 分布应高度相似。1.5B 模型的 logit scale 可能略大（更少参数→更少 regularization→logits 更尖锐），
+      但由于 accuracy 完全一致，ECE 应同样极低。预测 ECE≈0.003, Brier≈0.0015。
+      CodeLlama-13B exception_only 同为 99.83%（seed42/456）且 seed123=100%，
+      更大模型通常 logit 更 smooth → calibration 可能更好。预测 ECE≈0.0024, Brier≈0.0011。
+      DeepSeek exception_only = 99.33%（seed42），8/1190 errors 比 Qwen 多 6 个，
+      这些额外错误样本的 confidence 分布可能不那么极端（错误样本可能 confidence 居中而非极高），
+      导致 ECE 略高（~0.008）。但仍远低于 no_trace baseline（0.171），ratio ≈ 21x。
+      关键: 所有 4 模型 ECE < 0.01，跨 3 families/2 scales calibration 一致优秀，
+      确认 Tier 1 signal 的 calibration benefit 是 model-agnostic 的。
+    tables:
+      - name: "4-model exception_only calibration comparison"
+        rows:
+          - {model: "Qwen-7B", accuracy: "99.83%", ece: 0.0027, brier: 0.0013, "ece/notrace_ece": "63x"}
+          - {model: "Qwen-1.5B", accuracy: "99.83%", ece: 0.0031, brier: 0.0015, "ece/notrace_ece": "55x"}
+          - {model: "DeepSeek-6.7B", accuracy: "99.33%", ece: 0.0082, brier: 0.0055, "ece/notrace_ece": "21x"}
+          - {model: "CodeLlama-13B", accuracy: "99.83%", ece: 0.0024, brier: 0.0011, "ece/notrace_ece": "71x"}
+    figures_description:
+      - "4-panel reliability diagram: 每个模型一个 panel，exception_only 点紧贴 perfect calibration 对角线。"
+      - "ECE bar chart: 4 models side-by-side，所有 bars 极低（<0.01），baseline no_trace bar 高出 20-70x。"
+    analysis: |
+      4-model calibration universality 是论文的 supplementary evidence。与 accuracy universality 互补：
+      exception signal 不仅让所有模型 "预测对"，更让所有模型 "知道自己对"。
+      DeepSeek ECE 略高 (0.008 vs 0.002-0.003) 反映其 LoRA seed sensitivity 的残余效应，
+      但在 practical 意义上仍属 "近完美校准"。
+
+  # ============================================================
+  # plan_020: Few-shot prompting baseline
+  # ============================================================
+  - name: "Few-shot prompting baseline (GPT-4o / Claude)"
+    plan_id: "plan_020"
+    description: "GPT-4o 和 Claude 在 exception_only traces 上的 0-shot + 3-shot verdict prediction，作为 non-SFT upper bound"
+    expected_results:
+      gpt4o_0shot:
+        accuracy: 0.932
+        fail_recall: 0.83
+        pass_recall: 0.97
+      gpt4o_3shot:
+        accuracy: 0.951
+        fail_recall: 0.88
+        pass_recall: 0.98
+      claude_0shot:
+        accuracy: 0.942
+        fail_recall: 0.86
+        pass_recall: 0.98
+      claude_3shot:
+        accuracy: 0.961
+        fail_recall: 0.91
+        pass_recall: 0.98
+      sft_exception_only_best: 0.9983
+      sft_advantage_over_best_fewshot_pp: 3.7
+      sft_error_rate_ratio: "11.5x fewer errors"
+    result_rationale: |
+      已有 base model zero-shot 数据: Qwen-7B 89.08%, DeepSeek-7B 90.59%, Qwen-1.5B 93.45%, CodeLlama-13B 51.01%。
+      Frontier 模型（GPT-4o, Claude）有更强的 instruction following、更大 context window、更好的 reasoning，
+      zero-shot 应 > 所有 base model zero-shot。GPT-4o zero-shot 预测 ~93%（类似 Qwen-1.5B zero-shot 93.45%，
+      但 GPT-4o 对 structured error data 的理解更好）。Claude 可能略高（~94%）因其 instruction following 更精准。
+      3-shot 提供 exemplars 帮助模型理解 output format 和 decision boundary，预计提升 2-3pp：
+      GPT-4o 3-shot ~95%, Claude 3-shot ~96%。
+      然而 few-shot 受限于 in-context learning 的 fundamental limitation: (1) 仅 3 个 examples 无法覆盖所有 edge cases，
+      (2) attention 需同时处理 instructions + examples + query，(3) 无 parameter-level adaptation。
+      SFT exception_only (99.83%) 仍 > best few-shot (~96%) 约 3.7pp。
+      虽然 3.7pp 看似小，但在 error rate 上是 11.5x 差异（0.17% vs 3.9%）——
+      SFT 达到 representation 理论上限，few-shot 仍有 ~39 个额外错误。
+      关键: fail_recall 差距更大（SFT 100% vs few-shot ~91%），说明 few-shot 在 minority class 上更差。
+    tables:
+      - name: "SFT vs Few-shot vs Zero-shot comparison"
+        rows:
+          - {method: "SFT exception_only (Qwen-7B, 3 seeds mean)", accuracy: "99.83%", errors: 2, type: "parameter adaptation"}
+          - {method: "SFT exception_only (Qwen-1.5B)", accuracy: "99.83%", errors: 2, type: "parameter adaptation"}
+          - {method: "Claude 3-shot", accuracy: "~96.1%", errors: "~46", type: "in-context learning"}
+          - {method: "GPT-4o 3-shot", accuracy: "~95.1%", errors: "~58", type: "in-context learning"}
+          - {method: "Claude 0-shot", accuracy: "~94.2%", errors: "~69", type: "instruction following"}
+          - {method: "GPT-4o 0-shot", accuracy: "~93.2%", errors: "~81", type: "instruction following"}
+          - {method: "Qwen-1.5B 0-shot (base)", accuracy: "93.45%", errors: 78, type: "base model"}
+          - {method: "Qwen-7B few-shot (base)", accuracy: "90.84%", errors: 109, type: "base model"}
+          - {method: "Qwen-7B 0-shot (base)", accuracy: "89.08%", errors: 130, type: "base model"}
+    figures_description:
+      - "Accuracy comparison bar chart: SFT bars (green, ~99.8%) vs frontier few-shot bars (blue, ~95-96%) vs base model bars (gray, ~89-93%)。SFT 1.5B = SFT 7B 是 visual highlight。"
+    analysis: |
+      Few-shot baseline 回答两个潜在审稿人问题:
+      (1) "为什么需要 SFT? Frontier model 不能直接做?" → No, 即使 GPT-4o/Claude 3-shot 也比 SFT 7B 差 3.7pp (11.5x more errors)。
+      (2) "SFT 的 value 是什么?" → parameter-level adaptation 将 error rate 从 ~4% 压到 representation-inherent floor 0.17%。
+      更深层: SFT exception_only (1.5B, ~$0.5 GPU-hr) > Claude 3-shot (~$50 API)，
+      说明 "right signal + cheap SFT" 优于 "frontier model + expensive inference"，
+      这是论文 practical impact 的核心论点。
+
+  # ============================================================
+  # plan_021: OOD generalization
+  # ============================================================
+  - name: "OOD generalization (cross-language traces)"
+    plan_id: "plan_021"
+    description: "在 Python 外的编程语言 (Java/JavaScript) trace 上测试 exception_only 泛化性"
+    expected_results:
+      java_exception_only_accuracy: 0.972
+      javascript_exception_only_accuracy: 0.963
+      python_in_domain_accuracy: 0.9983
+      ood_mean_accuracy: 0.968
+      ood_gap_vs_in_domain_pp: 3.1
+      ood_vs_python_no_trace_pp: "+21.6"
+    result_rationale: |
+      exception_only 学到的核心 pattern 是 "[ERROR] 标记存在 → fault detected → predict fail" 的映射。
+      这个 pattern 的语言依赖性极低: Java (try/catch → Exception class + message)、
+      JavaScript (try/catch → Error type + message) 的 exception 结构与 Python 高度同构。
+      tracer 生成的 [ERROR] tag 格式跨语言一致（由 tracer 标准化），因此 SFT 模型学到的 pattern 可迁移。
+      accuracy 从 99.83% 降到 ~97% 的 gap 来源: (1) OOD exception message 的 lexical distribution 与 Python 不同
+      （Java 的 NullPointerException、JavaScript 的 TypeError 在训练集中缺失），
+      (2) 少数语言特有 edge case（如 Java checked exception 是正常控制流，非 fault indicator）。
+      关键: 如果 OOD > 96%，说明 exception signal 的 fault detection 语义跨语言 universal，
+      SFT 学到的不是 Python-specific pattern 而是 general fault indicator recognition。
+      风险: 构建高质量 OOD 测试集需要 non-trivial 工程（不同语言的 tracer + benchmark），
+      如果时间不足应优先确保 plan_016/017 的 core experiments。
+    tables:
+      - name: "Cross-language exception_only accuracy"
+        rows:
+          - {language: "Python (in-domain)", accuracy: "99.83%", n: 1190, note: "training language"}
+          - {language: "Java (OOD)", accuracy: "~97.2%", n: "~500", note: "NullPointerException 等 novel types"}
+          - {language: "JavaScript (OOD)", accuracy: "~96.3%", n: "~500", note: "TypeError/ReferenceError novel"}
+    figures_description:
+      - "Cross-language accuracy grouped bar: Python >> Java ≈ JavaScript，gap 小（<4pp），证明 exception signal 跨语言 robust。"
+    analysis: |
+      OOD 是 "nice-to-have" 而非 "must-have"。4 models × 3 families × 2 scales 的 in-domain universality
+      已构成充分证据。OOD 数据若好（>96%）则是 reviewer concern 的 decisive counter-argument，
+      但构建成本高。建议: 如果 plan_016/017 结果确认 best tier，OOD 可留为 camera-ready supplement；
+      如果 plan_016/017 结果弱于预期，OOD 的必要性上升。
+
+  # ============================================================
+  # plan_022: Training dynamics
+  # ============================================================
+  - name: "Training dynamics (step-level learning curve)"
+    plan_id: "plan_022"
+    description: "exception_only vs full_trace 的 step-level eval learning curve，量化 convergence speed 差异"
+    expected_results:
+      exception_only:
+        steps_to_90pct: 60
+        steps_to_95pct: 80
+        steps_to_99pct: 150
+        steps_to_final: 200
+        final_accuracy: 0.9983
+        loss_at_step50: 0.15
+      full_trace:
+        steps_to_80pct: 250
+        steps_to_final: "900 (3 epochs)"
+        final_accuracy: 0.8176
+        never_reaches_90: true
+        loss_at_step50: 0.35
+      convergence_speed_ratio: "4.2x (steps to reach full_trace ceiling)"
+      crossover_step: 45
+    result_rationale: |
+      exception_only 的有效训练信号高度集中: pass 样本对应 "无 [ERROR]"，fail 样本对应 "有 [ERROR] + type + message"。
+      这是一个 near-binary feature，模型只需学习 "[ERROR] presence → fail" 的 mapping，
+      所需训练步数极少。训练集 effective unique 样本仅 2858 条，batch_size=4 时 ~715 steps/epoch。
+      50-100 steps（约 7-14% epoch）内模型应已捕获核心 pattern，accuracy > 95%。
+      full_trace 包含大量 irrelevant tokens（variable values, memory addresses, loop iterations），
+      模型需要 (1) 先学到忽略 irrelevant tokens 的 attention pattern，
+      (2) 再从 relevant tokens 中 extract fault signal。这是两阶段 learning，天然更慢。
+      且 information overload 导致 attention 无法稳定聚焦，收敛到 ~82% 后 plateau（受 noise ceiling 限制）。
+      crossover 预测在 ~45 steps: exception_only 在不到 50 steps 时就超过 full_trace 的最终 accuracy (81.76%)。
+      这意味着 SFT exception_only 10 分钟的训练 > SFT full_trace 3 个 epoch 的训练，
+      是论文中极具冲击力的 figure。
+    tables:
+      - name: "Convergence milestone comparison"
+        rows:
+          - {milestone: "80% accuracy", exception_only: "~30 steps (~4 min)", full_trace: "~250 steps (~35 min)"}
+          - {milestone: "90% accuracy", exception_only: "~60 steps (~8 min)", full_trace: "never reached"}
+          - {milestone: "95% accuracy", exception_only: "~80 steps (~11 min)", full_trace: "never reached"}
+          - {milestone: "99% accuracy", exception_only: "~150 steps (~21 min)", full_trace: "never reached"}
+          - {milestone: "final", exception_only: "99.83% @ ~200 steps", full_trace: "81.76% @ ~900 steps"}
+    figures_description:
+      - "核心 Figure: dual-panel learning curve。Left panel: x=training steps, y=accuracy。exception_only steep S-curve 快速 saturate at 99.83%，full_trace slow rise plateau at 81.76%。vertical dashed line at crossover step ~45。Right panel: same x-axis, y=train loss。exception_only loss drops fast and stays low，full_trace loss drops slowly and converges to higher floor。"
+      - "Supplementary: convergence speed as function of signal density (scatter plot with exception_only, VOTA, full_trace as data points)。"
+    analysis: |
+      Training dynamics 提供 information density 假说的 dynamic evidence，与 label_only ablation 的 static evidence 互补:
+      - Static evidence (plan_002): gradient dilution 贡献 26%，information overload 贡献 74%
+      - Dynamic evidence (plan_022): exception_only converge 4.2x faster + reaches higher ceiling
+      两者共同证明: 高信息密度信号不仅提升 accuracy ceiling，更 dramatically 加速 learning。
+      Crossover at ~45 steps 是论文中最直观的 "why exception works" evidence —— 
+      "一个极简信号在 50 步内超越完整 trace 训练 3 个 epoch 的结果"。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2c26b18-267c-4e59-b0ea-c1f17f91245d",
+  "isSidechain": false,
+  "requestId": "req_011Cb9yK7Zgi1drtwmNdziJ2",
+  "type": "assistant",
+  "uuid": "5446c454-f066-4b01-a42b-78d9b6e612c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xTkeLz9tniRTUSvELx5Uz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41355,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 29078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 29078,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 41355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强竞争力 核心假设：['tail-384 全 4 模型 ≤81%（与 tail-256 统计等价），phase transition 在 384-512 之间是…",
+  "leafUuid": "5446c454-f066-4b01-a42b-78d9b6e612c7",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Phase transition validation and budget curve analysis across 4 models",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：P1 实验全面确认 budget curve universal phase transition，论文有 4-5 个清晰贡献，EMNLP main 强竞争力 核心假设：['tail-384 全 4 模型 ≤81%（与 tail-256 统计等价），phase transition 在 384-512 之间是…",
+  "leafUuid": "5446c454-f066-4b01-a42b-78d9b6e612c7",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Phase transition validation and budget curve analysis across 4 models",
+  "sessionId": "ade1eae3-df3a-4ca2-93e1-df33217e5c08"
+}
+```
+
+---

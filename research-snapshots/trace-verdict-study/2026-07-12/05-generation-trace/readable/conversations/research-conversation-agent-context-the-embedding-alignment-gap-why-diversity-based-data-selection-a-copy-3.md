@@ -1,0 +1,3545 @@
+# Research conversation: <agent_context> 论文标题：The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Itera
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-1/ebef9f62-55a7-4761-8cef-d8a15603607e.jsonl`
+- **Structured JSON:** [`9f96c3cc46f83cfadffb.json`](../../sessions/9f/9f96c3cc46f83cfadffb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T08:19:11.023Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T08:19:11.023Z",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "content": "&lt;agent_context>\n论文标题：The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\n目标：EMNLP 2026 ARR Findings (8 pages)\n&lt;/agent_context>\n\n&lt;project_context>\n# 项目: div_cal_verify\n\n## 运行环境\n- 服务器名: westd-11235\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/div_cal_verify\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：打磨 Ablation/Analysis section\n\n### 背景\n论文投 EMNLP 2026 ARR。random_50 作为 controlled ablation 是 C3 最干净的证据，需要确保逻辑链清晰。\n\n### C3 的核心逻辑链\n1. **控制变量**：RGDS 和 Random 都使用 50% 数据预算。唯一区别是选择机制（diversity-based vs random）。\n2. **结果**：RGDS gen7 PPL=75.07 vs Random gen7 PPL=43.20（+74%），rare n-gram 0.0051 vs 0.0096（-47%）\n3. **推论**：性能差异完全归因于选择机制。内部嵌入 diversity selection 不仅没帮助，反而灾难性地加速了 collapse。\n4. **对照组层级**：\n   - RGDS vs Uncurated = selection + budget 效应混淆\n   - RGDS vs Random_50 = 纯选择效应（cleanest ablation）\n   - Random_50 vs Uncurated = 纯 budget 效应（D017 降级为 directional observation，p≈0.10）\n\n### 355M 跨 scale 验证\n- 355M seed=42: RGDS(82.84) vs Random(70.25) = +18%（C3 成立但幅度缩小）\n- 125M 3-seed: 全部一致\n\n### S3 降级说明（D017）\nrandom_50 vs uncurated（50% vs 100%）p≈0.10，未达显著性。论文中不做因果推断，仅作 directional observation。表述限定为\"conflates any selection benefit with a data quantity effect\"。\n\n### 写作要求\n1. 先用 `read_project_file` 读取当前 Ablation/Analysis 内容\n2. 确保 random_50 controlled ablation 的逻辑链清晰：\n   - 为什么 random_50 是最干净的对照组\n   - 变量控制说明（same budget, same training protocol, only selection differs）\n   - 结果 + 效应量\n3. 区分清楚 within-budget 对比（无混淆）和 cross-budget 对比（混淆，降级）\n4. 语言精炼，避免冗长\n5. 用 `edit_paper_section` 更新\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T08:19:11.027Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T08:19:11.027Z",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+## Round 1
+
+55 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T08:19:11.061Z_
+
+&lt;agent_context>
+论文标题：The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training
+目标：EMNLP 2026 ARR Findings (8 pages)
+&lt;/agent_context>
+
+&lt;project_context>
+# 项目: div_cal_verify
+
+## 运行环境
+- 服务器名: westd-11235
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/div_cal_verify
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：打磨 Ablation/Analysis section
+
+### 背景
+论文投 EMNLP 2026 ARR。random_50 作为 controlled ablation 是 C3 最干净的证据，需要确保逻辑链清晰。
+
+### C3 的核心逻辑链
+1. **控制变量**：RGDS 和 Random 都使用 50% 数据预算。唯一区别是选择机制（diversity-based vs random）。
+2. **结果**：RGDS gen7 PPL=75.07 vs Random gen7 PPL=43.20（+74%），rare n-gram 0.0051 vs 0.0096（-47%）
+3. **推论**：性能差异完全归因于选择机制。内部嵌入 diversity selection 不仅没帮助，反而灾难性地加速了 collapse。
+4. **对照组层级**：
+   - RGDS vs Uncurated = selection + budget 效应混淆
+   - RGDS vs Random_50 = 纯选择效应（cleanest ablation）
+   - Random_50 vs Uncurated = 纯 budget 效应（D017 降级为 directional observation，p≈0.10）
+
+### 355M 跨 scale 验证
+- 355M seed=42: RGDS(82.84) vs Random(70.25) = +18%（C3 成立但幅度缩小）
+- 125M 3-seed: 全部一致
+
+### S3 降级说明（D017）
+random_50 vs uncurated（50% vs 100%）p≈0.10，未达显著性。论文中不做因果推断，仅作 directional observation。表述限定为"conflates any selection benefit with a data quantity effect"。
+
+### 写作要求
+1. 先用 `read_project_file` 读取当前 Ablation/Analysis 内容
+2. 确保 random_50 controlled ablation 的逻辑链清晰：
+   - 为什么 random_50 是最干净的对照组
+   - 变量控制说明（same budget, same training protocol, only selection differs）
+   - 结果 + 效应量
+3. 区分清楚 within-budget 对比（无混淆）和 cross-budget 对比（混淆，降级）
+4. 语言精炼，避免冗长
+5. 用 `edit_paper_section` 更新
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "50fad663-56b3-41b1-b416-01c79b264f06",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T08:19:11.060Z_
+
+```json
+{
+  "parentUuid": "50fad663-56b3-41b1-b416-01c79b264f06",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "83da5d9e-1f79-4cc5-8cf9-2206dbc50f5e",
+  "timestamp": "2026-05-14T08:19:11.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T08:19:11.060Z_
+
+```json
+{
+  "parentUuid": "83da5d9e-1f79-4cc5-8cf9-2206dbc50f5e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "278615a4-4329-4bc0-b613-6afb050bd547",
+  "timestamp": "2026-05-14T08:19:11.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T08:19:11.060Z_
+
+```json
+{
+  "parentUuid": "278615a4-4329-4bc0-b613-6afb050bd547",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "09655c72-b136-42d2-aca9-93bbb859cb4e",
+  "timestamp": "2026-05-14T08:19:11.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Polish Ablation/Analysis for EMNLP ARR",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T08:19:15.712Z_
+
+Let me start by reading the current Ablation/Analysis section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09655c72-b136-42d2-aca9-93bbb859cb4e",
+  "isSidechain": false,
+  "requestId": "req_011Cb28hmBFSN3vKDdHbhYvu",
+  "type": "assistant",
+  "uuid": "e7bda150-55d2-4592-8f4b-07a4c7df60a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3vCgjQGaPqAp9SXBSwAD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11510,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T08:19:16.309Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013xKfq1q9vHs64wVhxXD48v`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7bda150-55d2-4592-8f4b-07a4c7df60a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb28hmBFSN3vKDdHbhYvu",
+  "type": "assistant",
+  "uuid": "08ee5196-8fda-4d93-8048-2304b512277a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3vCgjQGaPqAp9SXBSwAD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11510,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T08:19:16.315Z_
+
+<details><summary>↩ Tool result · `toolu_013xKfq1q9vHs64wVhxXD48v`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__edit_paper_section"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08ee5196-8fda-4d93-8048-2304b512277a",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "31acb8af-d92e-4efc-b43a-fba55eead2e3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__edit_paper_section"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+    "total_deferred_tools": 24
+  },
+  "sourceToolAssistantUUID": "08ee5196-8fda-4d93-8048-2304b512277a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-14T08:19:20.722Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current Ablation/Analysis section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31acb8af-d92e-4efc-b43a-fba55eead2e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb28i9XuYjBTsPajkphQ2",
+  "type": "assistant",
+  "uuid": "a95d9ca7-2659-49ec-9b2c-d58d8db43b02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184wMgN2PDnTL7g9pbStc6K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 23351,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 23351,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T08:19:21.376Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KCLkxhahmwpQvGm4qUarJg`</summary>
+
+```json
+{
+  "project": "div_cal_verify",
+  "file": "paper_sections/ablation_analysis.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a95d9ca7-2659-49ec-9b2c-d58d8db43b02",
+  "isSidechain": false,
+  "requestId": "req_011Cb28i9XuYjBTsPajkphQ2",
+  "type": "assistant",
+  "uuid": "4e7c6edd-5d59-4875-91c1-9e1b8a0fe37a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184wMgN2PDnTL7g9pbStc6K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 23351,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 23351,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T08:19:21.391Z_
+
+<details><summary>↩ Tool result · `toolu_01KCLkxhahmwpQvGm4qUarJg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'paper_sections/ablation_analysis.md'\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e7c6edd-5d59-4875-91c1-9e1b8a0fe37a",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "2a532e63-4c05-49aa-a341-e6fd3822393a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'paper_sections/ablation_analysis.md'\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'paper_sections/ablation_analysis.md'\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4e7c6edd-5d59-4875-91c1-9e1b8a0fe37a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T08:19:30.971Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PYLu4xvJnd7vjY3rAL2AkV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__write_paper_section",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a532e63-4c05-49aa-a341-e6fd3822393a",
+  "isSidechain": false,
+  "requestId": "req_011Cb28iXR3mQt2ftfYaUngX",
+  "type": "assistant",
+  "uuid": "70256a0c-901c-4950-9494-4db7a186d0cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKrpJszyime9xYBAoDz2t6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 24203,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 24203,
+          "cache_creation_input_tokens": 308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T08:19:30.975Z_
+
+<details><summary>↩ Tool result · `toolu_01PYLu4xvJnd7vjY3rAL2AkV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__write_paper_section"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70256a0c-901c-4950-9494-4db7a186d0cb",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "6cc757de-42b3-46c6-9691-6e593f4949cd",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "query": "select:mcp__agent-ml-research__write_paper_section",
+    "total_deferred_tools": 24
+  },
+  "sourceToolAssistantUUID": "70256a0c-901c-4950-9494-4db7a186d0cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-14T08:19:35.124Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me find the ablation/analysis section. I need to look at the paper sections directory to find the right section name.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cc757de-42b3-46c6-9691-6e593f4949cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb28jEWpxw1qhi8vgEPFC",
+  "type": "assistant",
+  "uuid": "7746023e-11ea-4b0e-a473-a3391c67cd46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRaKbTihgkogQ2AccuieBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 24511,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 24511,
+          "cache_creation_input_tokens": 511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-14T08:19:35.610Z_
+
+Let me find the existing paper sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7746023e-11ea-4b0e-a473-a3391c67cd46",
+  "isSidechain": false,
+  "requestId": "req_011Cb28jEWpxw1qhi8vgEPFC",
+  "type": "assistant",
+  "uuid": "d4997fcd-71eb-47ce-a8e7-4a5a612374e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRaKbTihgkogQ2AccuieBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 24511,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 24511,
+          "cache_creation_input_tokens": 511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T08:19:36.988Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01JdyzCpztB5aeyWjXHfVcFi`</summary>
+
+```json
+{
+  "pattern": "**/paper_sections/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4997fcd-71eb-47ce-a8e7-4a5a612374e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb28jEWpxw1qhi8vgEPFC",
+  "type": "assistant",
+  "uuid": "494dde15-934f-4982-9b93-897e500a422a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRaKbTihgkogQ2AccuieBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 24511,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 24511,
+          "cache_creation_input_tokens": 511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T08:19:37.068Z_
+
+<details><summary>↩ Tool result · `toolu_01JdyzCpztB5aeyWjXHfVcFi`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "494dde15-934f-4982-9b93-897e500a422a",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "29383800-dcc2-4b19-ab43-826d2c1d046e",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 35,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "494dde15-934f-4982-9b93-897e500a422a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T08:19:39.594Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01ThL9oFAfYQ8fV38nydzXsW`</summary>
+
+```json
+{
+  "pattern": "**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29383800-dcc2-4b19-ab43-826d2c1d046e",
+  "isSidechain": false,
+  "requestId": "req_011Cb28jgeSyTs3VxUinBtPf",
+  "type": "assistant",
+  "uuid": "54cadee1-4aa4-4b87-8795-f98574ce3184",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGCqUFU7Re3Ps4EfqLn6LG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 167,
+      "cache_read_input_tokens": 25022,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 25022,
+          "cache_creation_input_tokens": 167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T08:19:39.603Z_
+
+<details><summary>↩ Tool result · `toolu_01ThL9oFAfYQ8fV38nydzXsW`</summary>
+
+```text
+artifacts/dream_reports/dream_20260513T081019/best/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/median/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/worst/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/best/review_report.md
+artifacts/dream_reports/dream_20260513T081019/median/review_report.md
+artifacts/dream_reports/dream_20260513T081019/worst/review_report.md
+artifacts/_project/report/related_work_references.md
+artifacts/related_work_references.md
+artifacts/status_check_seed123.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54cadee1-4aa4-4b87-8795-f98574ce3184",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "da3c5679-a5ee-4200-a00f-47bbf177bf27",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260513T081019/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/best/review_report.md",
+      "artifacts/dream_reports/dream_20260513T081019/median/review_report.md",
+      "artifacts/dream_reports/dream_20260513T081019/worst/review_report.md",
+      "artifacts/_project/report/related_work_references.md",
+      "artifacts/related_work_references.md",
+      "artifacts/status_check_seed123.md"
+    ],
+    "durationMs": 6,
+    "numFiles": 9,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "54cadee1-4aa4-4b87-8795-f98574ce3184",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T08:19:40.065Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01SUbgoE1Jqe7MV3j1yc6hLq`</summary>
+
+```json
+{
+  "pattern": "**/paper*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da3c5679-a5ee-4200-a00f-47bbf177bf27",
+  "isSidechain": false,
+  "requestId": "req_011Cb28jgeSyTs3VxUinBtPf",
+  "type": "assistant",
+  "uuid": "ef90eaba-fc3b-4d35-a391-7279c99acb00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGCqUFU7Re3Ps4EfqLn6LG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 167,
+      "cache_read_input_tokens": 25022,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 25022,
+          "cache_creation_input_tokens": 167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T08:19:40.075Z_
+
+<details><summary>↩ Tool result · `toolu_01SUbgoE1Jqe7MV3j1yc6hLq`</summary>
+
+```text
+artifacts/dream_reports/dream_20260513T081019/best/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/best/paper.tex
+artifacts/dream_reports/dream_20260513T081019/best/paper.bbl
+artifacts/dream_reports/dream_20260513T081019/best/paper.blg
+artifacts/dream_reports/dream_20260513T081019/best/paper.aux
+artifacts/dream_reports/dream_20260513T081019/best/paper.out
+artifacts/dream_reports/dream_20260513T081019/best/paper.pdf
+artifacts/dream_reports/dream_20260513T081019/best/paper.log
+artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260513T081019/median/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/median/paper.tex
+artifacts/dream_reports/dream_20260513T081019/median/paper.aux
+artifacts/dream_reports/dream_20260513T081019/median/paper.out
+artifacts/dream_reports/dream_20260513T081019/median/paper.pdf
+artifacts/dream_reports/dream_20260513T081019/median/paper.log
+artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260513T081019/worst/paper_framing.md
+artifacts/dream_reports/dream_20260513T081019/worst/paper.tex
+artifacts/dream_reports/dream_20260513T081019/worst/paper.aux
+artifacts/dream_reports/dream_20260513T081019/worst/paper.out
+artifacts/dream_reports/dream_20260513T081019/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T081019/worst/paper.log
+artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_worst.log
+paper_provenance.lock
+paper_framing.md
+paper_provenance.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef90eaba-fc3b-4d35-a391-7279c99acb00",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "c4737fa8-ab42-449e-8cc5-4c1ee1a98903",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260513T081019/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.bbl",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.blg",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.aux",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.out",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.log",
+      "artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.aux",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.out",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.log",
+      "artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.out",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.log",
+      "artifacts/dream_reports/dream_20260513T081019/logs/paper_agent_worst.log",
+      "paper_provenance.lock",
+      "paper_framing.md",
+      "paper_provenance.yaml"
+    ],
+    "durationMs": 7,
+    "numFiles": 26,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "ef90eaba-fc3b-4d35-a391-7279c99acb00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c4737fa8-ab42-449e-8cc5-4c1ee1a98903",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Polish Ablation/Analysis for EMNLP ARR",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T08:19:45.766Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AF1QLH7VFL3mR1YKmPAheb`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/paper_sections/ 2>/dev/null || echo \"NO_DIR\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4737fa8-ab42-449e-8cc5-4c1ee1a98903",
+  "isSidechain": false,
+  "requestId": "req_011Cb28juKwoHGXpsGbJrP2R",
+  "type": "assistant",
+  "uuid": "30380e7c-2d47-4a1f-96bf-38667d9b341a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UTGmqA5hp6yx7PkGxCooB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 25189,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 25189,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T08:19:46.050Z_
+
+<details><summary>↩ Tool result · `toolu_01AF1QLH7VFL3mR1YKmPAheb`</summary>
+
+```text
+NO_DIR
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30380e7c-2d47-4a1f-96bf-38667d9b341a",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "24e3282f-139f-4ac6-b6f9-9f348641c75d",
+  "toolUseResult": {
+    "stdout": "NO_DIR",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "30380e7c-2d47-4a1f-96bf-38667d9b341a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T08:19:49.680Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01S8RKqUaa2VeiyFbQmfTP6Q`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24e3282f-139f-4ac6-b6f9-9f348641c75d",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kLfwXUtkeuAHDcUxK",
+  "type": "assistant",
+  "uuid": "5ab7427a-39d3-4511-84b5-ef5d9a82be65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QpqT5vb3oY9SBswtb3gXTJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 112,
+      "cache_read_input_tokens": 26131,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 26131,
+          "cache_creation_input_tokens": 112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T08:19:49.696Z_
+
+<details><summary>↩ Tool result · `toolu_01S8RKqUaa2VeiyFbQmfTP6Q`</summary>
+
+```text
+artifacts/dream_reports/dream_20260513T081019/best/paper.tex
+artifacts/dream_reports/dream_20260513T081019/median/paper.tex
+artifacts/dream_reports/dream_20260513T081019/worst/paper.tex
+artifacts/_project/paper/methodology.tex
+artifacts/tables/table1_gen7_summary_latex.tex
+artifacts/_project/paper/experiments_112f46.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/methodology.tex
+docs/paper/main.tex
+docs/paper/conclusion.tex
+docs/paper/experiments.tex
+docs/paper/introduction.tex
+docs/paper/related_work.tex
+docs/paper/discussion.tex
+docs/paper/results.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ab7427a-39d3-4511-84b5-ef5d9a82be65",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "0ef10b54-4ce9-4105-8817-0b78aef138c6",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260513T081019/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T081019/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T081019/worst/paper.tex",
+      "artifacts/_project/paper/methodology.tex",
+      "artifacts/tables/table1_gen7_summary_latex.tex",
+      "artifacts/_project/paper/experiments_112f46.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "docs/paper/methodology.tex",
+      "docs/paper/main.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/experiments.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/discussion.tex",
+      "docs/paper/results.tex"
+    ],
+    "durationMs": 13,
+    "numFiles": 15,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "5ab7427a-39d3-4511-84b5-ef5d9a82be65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-14T08:19:49.740Z_
+
+```json
+{
+  "parentUuid": "0ef10b54-4ce9-4105-8817-0b78aef138c6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2af2c12d-c80d-47e8-959e-4893f2859cf6",
+  "timestamp": "2026-05-14T08:19:49.740Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-14T08:19:52.847Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the main paper structure and particularly the ablation/analysis section in the docs/paper directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2af2c12d-c80d-47e8-959e-4893f2859cf6",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "678b08fc-5318-46ba-83af-b305e7f597f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-14T08:19:53.884Z_
+
+Let me read the current paper structure to find the ablation/analysis content.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "678b08fc-5318-46ba-83af-b305e7f597f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "a994aed9-3eaa-4fc9-ac34-e48737d82eda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T08:19:54.393Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QGxzfhuu2XkVvGRJ34qNJq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a994aed9-3eaa-4fc9-ac34-e48737d82eda",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "72d66bc8-1d9d-4b4f-a6f4-1c60d3b748e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T08:19:55.636Z_
+
+<details><summary>↩ Tool result · `toolu_01Ct5qn9KYJmXqDM83KjudrA`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Configuration}
+5	
+6	Our primary experiments use GPT2-125M (124M parameters) trained on WikiText-103 (232K training samples). We run 8 self-training generations (Generation~0 through~7). At each generation, the current model generates 500K tokens via nucleus sampling (temperature~$0.8$, top-$p$~$0.95$) conditioned on WikiText-103 prefix prompts, a data selection method curates a subset, and the model is fine-tuned on the result.
+7	
+8	We compare four data selection methods spanning a factorial ablation design:
+9	\begin{itemize}
+10	    \item \textbf{RGDS} (50\%): diversity selection using the training model's own last-hidden-layer embeddings.
+11	    \item \textbf{External-only} (50\%): the same selection algorithm and budget, using frozen Contriever \citep{izacard2022unsupervised} embeddings that are never updated during training.
+12	    \item \textbf{Random 50\%}: uniform random selection with the same data budget.
+13	    \item \textbf{Uncurated} (100\%): all generated data retained without selection.
+14	\end{itemize}
+15	
+16	All experiments use 3 random seeds (42, 123, 456). Within each seed, all methods start from the same pretrained checkpoint and share the same Generation~0 data pool.
+17	
+18	\subsection{Training Details}
+19	
+20	Each generation fine-tunes from the previous generation's checkpoint using AdamW with learning rate $5 \times 10^{-5}$ and linear warmup, batch size~4 with gradient accumulation over 8~steps (effective batch size~32), maximum sequence length~512, and 3~epochs per generation. Generation~0 starts from the HuggingFace pretrained GPT2-125M checkpoint.
+21	
+22	\subsection{Selection Algorithm}
+23	
+24	Both RGDS and External-only apply the same greedy selection procedure. Embeddings (768-dimensional for both GPT2 and Contriever) are projected to 32 dimensions via PCA fitted on the WikiText-103 training set. The algorithm iteratively selects the candidate whose inclusion most reduces the normalized eigenvalue variance of the selected subset's covariance matrix:
+25	\begin{equation}
+26	    \mathcal{L}(S) = \frac{\lVert \mathbf{C}(S) \rVert_F}{\operatorname{tr}(\mathbf{C}(S))^2}
+27	\label{eq:selection_objective}
+28	\end{equation}
+29	where $\mathbf{C}(S)$ is the covariance of the selected set. This objective favors subsets with uniform eigenvalues, selecting for maximal dimensional coverage in the projected embedding space. Unlike facility location objectives that maximize minimum pairwise distance between selected points, eigenvalue variance minimization operates on the spectral properties of the entire subset, promoting distributional coverage rather than point-wise separation.
+30	
+31	The two methods differ only in embedding source: RGDS uses the current-generation model's last-hidden-layer representations, which co-evolve with training; External-only uses a frozen Contriever encoder.
+32	
+33	\subsection{Evaluation Metrics}
+34	
+35	We evaluate each method at every generation along six dimensions:
+36	\begin{itemize}
+37	    \item \textbf{Perplexity (PPL)}: language modeling quality on the WikiText-103 validation set.
+38	    \item \textbf{Selection ratio} ($\text{SR}_g$): ratio of mean rare trigram density in the selected subset to that in the full generated pool, quantifying alignment between the selection criterion and content diversity.
+39	    \item \textbf{Rare token ratio}: proportion of generated trigrams at or below the 10th percentile of the WikiText-103 trigram frequency distribution, measuring lexical tail preservation.
+40	    \item \textbf{RankMe}: effective embedding rank via singular value entropy \citep{garrido2023rankme}, tracking representation dimensionality.
+41	    \item \textbf{$k$-NN probe accuracy}: $k$-nearest-neighbor classification accuracy over embeddings, tracking discriminative structure preservation.
+42	    \item \textbf{Rank correlation}: Spearman correlation between per-sample embedding diversity scores and rare token content, measuring sample-level alignment between the selection criterion and content diversity.
+43	\end{itemize}
+44	
+45	Generation~7 summary statistics appear in Table~\ref{tab:gen7_summary}; per-generation perplexity trajectories are plotted in Figure~\ref{fig:ppl_trends}.
+46	
+47	\subsection{Scaling Experiment: GPT2-Medium}
+48	\label{sec:scaling}
+49	
+50	To assess whether the embedding alignment gap generalizes beyond 125M parameters, we replicate the full experimental protocol with GPT2-Medium (355M parameters), using identical training configuration, data selection methods, and evaluation metrics. Table~\ref{tab:medium_uncurated} reports the Uncurated baseline trajectory (seed=42, $n{=}1$).
+51	
+52	\begin{table}[t]
+53	\centering
+54	\small
+55	\begin{tabular}{lccccc}
+56	\toprule
+57	Gen & PPL & RankMe & kNN & Rare & Corr \\
+58	\midrule
+59	0 & 26.55 & 371.57 & 0.988 & 0.0346 & $+$0.022 \\
+60	1 & 35.12 & 403.80 & 0.988 & 0.0281 & $+$0.023 \\
+61	2 & 46.90 & 420.83 & 0.988 & 0.0216 & $+$0.018 \\
+62	3 & 57.40 & 425.35 & 0.988 & 0.0185 & $+$0.001 \\
+63	4 & 67.45 & 430.68 & 0.988 & 0.0172 & $-$0.005 \\
+64	5 & 78.55 & 438.62 & 0.987 & 0.0159 & $-$0.018 \\
+65	6 & 84.59 & 442.85 & 0.987 & 0.0144 & $-$0.046 \\
+66	7 & 91.66 & 443.98 & 0.988 & 0.0139 & $-$0.038 \\
+67	\bottomrule
+68	\end{tabular}
+69	\caption{GPT2-Medium (355M) Uncurated baseline per-generation metrics (seed=42). PPL: perplexity on WikiText-103 validation set. RankMe: effective embedding rank. kNN: $k$-nearest-neighbor probe accuracy. Rare: rare trigram ratio. Corr: Spearman correlation between embedding diversity scores and rare token content.}
+70	\label{tab:medium_uncurated}
+71	\end{table}
+72	
+73	The Uncurated baseline shows substantially more severe degradation at the larger scale: GPT2-Medium perplexity increases from 26.55 to 91.66 over 8 generations (3.45$\times$), compared to 1.28$\times$ for GPT2-125M under the same protocol (36.7 to 47.04, $n{=}3$). RankMe inflation is also amplified, rising by $+$72.4 points (371.57 to 443.98) versus $+$11.1 for the smaller model. The rank correlation between embedding diversity and rare token content turns negative at Generation~4 ($-$0.005) and reaches $-$0.038 by Generation~7, exhibiting the same alignment inversion pattern observed in GPT2-125M.
+74	
+75	All four methods on GPT2-Medium are complete for seed=42. Full 355M results appear in \S\ref{sec:result_scaling}. Seed=123 experiments for all 355M methods are queued.%
+76	%TODO(355M-seeds): update when seed=123 completes
+77	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "438535ed-a07c-46ed-bd73-44e2ef17339e",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "4a3d6321-0cde-4ac4-bbfa-54ab7b54aded",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Configuration}\n\nOur primary experiments use GPT2-125M (124M parameters) trained on WikiText-103 (232K training samples). We run 8 self-training generations (Generation~0 through~7). At each generation, the current model generates 500K tokens via nucleus sampling (temperature~$0.8$, top-$p$~$0.95$) conditioned on WikiText-103 prefix prompts, a data selection method curates a subset, and the model is fine-tuned on the result.\n\nWe compare four data selection methods spanning a factorial ablation design:\n\\begin{itemize}\n    \\item \\textbf{RGDS} (50\\%): diversity selection using the training model's own last-hidden-layer embeddings.\n    \\item \\textbf{External-only} (50\\%): the same selection algorithm and budget, using frozen Contriever \\citep{izacard2022unsupervised} embeddings that are never updated during training.\n    \\item \\textbf{Random 50\\%}: uniform random selection with the same data budget.\n    \\item \\textbf{Uncurated} (100\\%): all generated data retained without selection.\n\\end{itemize}\n\nAll experiments use 3 random seeds (42, 123, 456). Within each seed, all methods start from the same pretrained checkpoint and share the same Generation~0 data pool.\n\n\\subsection{Training Details}\n\nEach generation fine-tunes from the previous generation's checkpoint using AdamW with learning rate $5 \\times 10^{-5}$ and linear warmup, batch size~4 with gradient accumulation over 8~steps (effective batch size~32), maximum sequence length~512, and 3~epochs per generation. Generation~0 starts from the HuggingFace pretrained GPT2-125M checkpoint.\n\n\\subsection{Selection Algorithm}\n\nBoth RGDS and External-only apply the same greedy selection procedure. Embeddings (768-dimensional for both GPT2 and Contriever) are projected to 32 dimensions via PCA fitted on the WikiText-103 training set. The algorithm iteratively selects the candidate whose inclusion most reduces the normalized eigenvalue variance of the selected subset's covariance matrix:\n\\begin{equation}\n    \\mathcal{L}(S) = \\frac{\\lVert \\mathbf{C}(S) \\rVert_F}{\\operatorname{tr}(\\mathbf{C}(S))^2}\n\\label{eq:selection_objective}\n\\end{equation}\nwhere $\\mathbf{C}(S)$ is the covariance of the selected set. This objective favors subsets with uniform eigenvalues, selecting for maximal dimensional coverage in the projected embedding space. Unlike facility location objectives that maximize minimum pairwise distance between selected points, eigenvalue variance minimization operates on the spectral properties of the entire subset, promoting distributional coverage rather than point-wise separation.\n\nThe two methods differ only in embedding source: RGDS uses the current-generation model's last-hidden-layer representations, which co-evolve with training; External-only uses a frozen Contriever encoder.\n\n\\subsection{Evaluation Metrics}\n\nWe evaluate each method at every generation along six dimensions:\n\\begin{itemize}\n    \\item \\textbf{Perplexity (PPL)}: language modeling quality on the WikiText-103 validation set.\n    \\item \\textbf{Selection ratio} ($\\text{SR}_g$): ratio of mean rare trigram density in the selected subset to that in the full generated pool, quantifying alignment between the selection criterion and content diversity.\n    \\item \\textbf{Rare token ratio}: proportion of generated trigrams at or below the 10th percentile of the WikiText-103 trigram frequency distribution, measuring lexical tail preservation.\n    \\item \\textbf{RankMe}: effective embedding rank via singular value entropy \\citep{garrido2023rankme}, tracking representation dimensionality.\n    \\item \\textbf{$k$-NN probe accuracy}: $k$-nearest-neighbor classification accuracy over embeddings, tracking discriminative structure preservation.\n    \\item \\textbf{Rank correlation}: Spearman correlation between per-sample embedding diversity scores and rare token content, measuring sample-level alignment between the selection criterion and content diversity.\n\\end{itemize}\n\nGeneration~7 summary statistics appear in Table~\\ref{tab:gen7_summary}; per-generation perplexity trajectories are plotted in Figure~\\ref{fig:ppl_trends}.\n\n\\subsection{Scaling Experiment: GPT2-Medium}\n\\label{sec:scaling}\n\nTo assess whether the embedding alignment gap generalizes beyond 125M parameters, we replicate the full experimental protocol with GPT2-Medium (355M parameters), using identical training configuration, data selection methods, and evaluation metrics. Table~\\ref{tab:medium_uncurated} reports the Uncurated baseline trajectory (seed=42, $n{=}1$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nGen & PPL & RankMe & kNN & Rare & Corr \\\\\n\\midrule\n0 & 26.55 & 371.57 & 0.988 & 0.0346 & $+$0.022 \\\\\n1 & 35.12 & 403.80 & 0.988 & 0.0281 & $+$0.023 \\\\\n2 & 46.90 & 420.83 & 0.988 & 0.0216 & $+$0.018 \\\\\n3 & 57.40 & 425.35 & 0.988 & 0.0185 & $+$0.001 \\\\\n4 & 67.45 & 430.68 & 0.988 & 0.0172 & $-$0.005 \\\\\n5 & 78.55 & 438.62 & 0.987 & 0.0159 & $-$0.018 \\\\\n6 & 84.59 & 442.85 & 0.987 & 0.0144 & $-$0.046 \\\\\n7 & 91.66 & 443.98 & 0.988 & 0.0139 & $-$0.038 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{GPT2-Medium (355M) Uncurated baseline per-generation metrics (seed=42). PPL: perplexity on WikiText-103 validation set. RankMe: effective embedding rank. kNN: $k$-nearest-neighbor probe accuracy. Rare: rare trigram ratio. Corr: Spearman correlation between embedding diversity scores and rare token content.}\n\\label{tab:medium_uncurated}\n\\end{table}\n\nThe Uncurated baseline shows substantially more severe degradation at the larger scale: GPT2-Medium perplexity increases from 26.55 to 91.66 over 8 generations (3.45$\\times$), compared to 1.28$\\times$ for GPT2-125M under the same protocol (36.7 to 47.04, $n{=}3$). RankMe inflation is also amplified, rising by $+$72.4 points (371.57 to 443.98) versus $+$11.1 for the smaller model. The rank correlation between embedding diversity and rare token content turns negative at Generation~4 ($-$0.005) and reaches $-$0.038 by Generation~7, exhibiting the same alignment inversion pattern observed in GPT2-125M.\n\nAll four methods on GPT2-Medium are complete for seed=42. Full 355M results appear in \\S\\ref{sec:result_scaling}. Seed=123 experiments for all 355M methods are queued.%\n%TODO(355M-seeds): update when seed=123 completes\n",
+      "numLines": 77,
+      "startLine": 1,
+      "totalLines": 77
+    }
+  },
+  "sourceToolAssistantUUID": "438535ed-a07c-46ed-bd73-44e2ef17339e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T08:19:54.405Z_
+
+<details><summary>↩ Tool result · `toolu_01QGxzfhuu2XkVvGRJ34qNJq`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{xcolor}
+15	
+16	\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+17	
+18	\title{The Embedding Alignment Gap: Why Diversity-Based Data Selection\\Accelerates Model Collapse in Iterative Self-Training}
+19	
+20	\author{Anonymous}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\begin{abstract}
+26	Iterative self-training on model-generated data risks \emph{model collapse}---a progressive degradation of output quality across generations. A natural mitigation is diversity-based data curation: selecting training subsets that maximize coverage in the model's own embedding space. We show that this intuitive strategy backfires. In controlled iterative self-training experiments with GPT2 (125M and 355M parameters) on WikiText-103, Representation-Guided Diversity Selection (RGDS)---which uses the training model's embeddings to greedily maximize diversity---\emph{accelerates} collapse rather than preventing it, producing over 70\% higher perplexity than a random selection baseline operating under the same 50\% data budget ($74.29 \pm 7.71$ vs.\ $43.18 \pm 1.43$, $n{=}3$). We identify the mechanism behind this failure as the \emph{Embedding Alignment Gap}: the model's internal notion of ``diversity'' progressively diverges from actual content diversity as its representations co-degrade with the generated data, causing the mean selection ratio to decline from approximately 1.0 to $0.64 \pm 0.20$ over eight generations. Critically, all selection strategies that bypass the model's own embeddings---random sampling (PPL 43.18$\pm$1.43), external frozen embeddings (PPL 46.36$\pm$2.97), and uncurated full-corpus training (PPL 47.04$\pm$2.90)---cluster within a narrow perplexity range with no catastrophic failure. Meanwhile, standard representation quality diagnostics such as RankMe effective dimensionality and $k$-NN accuracy remain stable throughout training, rendering the alignment gap invisible to conventional monitoring. Our results demonstrate that coupling data selection to co-degrading internal representations creates a feedback loop that amplifies rather than mitigates collapse, and that zero-cost random sampling is a more robust alternative for iterative self-training pipelines.
+27	\end{abstract}
+28	
+29	\input{introduction}
+30	
+31	\input{related_work}
+32	
+33	\input{methodology}
+34	
+35	\input{experiments}
+36	
+37	\input{results}
+38	
+39	\input{discussion}
+40	
+41	\input{conclusion}
+42	
+43	\bibliography{references}
+44	
+45	\end{document}
+46	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72d66bc8-1d9d-4b4f-a6f4-1c60d3b748e9",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "34bc1f5b-fec1-4528-ba03-a8c50a9c1750",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{xcolor}\n\n\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n\n\\title{The Embedding Alignment Gap: Why Diversity-Based Data Selection\\\\Accelerates Model Collapse in Iterative Self-Training}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nIterative self-training on model-generated data risks \\emph{model collapse}---a progressive degradation of output quality across generations. A natural mitigation is diversity-based data curation: selecting training subsets that maximize coverage in the model's own embedding space. We show that this intuitive strategy backfires. In controlled iterative self-training experiments with GPT2 (125M and 355M parameters) on WikiText-103, Representation-Guided Diversity Selection (RGDS)---which uses the training model's embeddings to greedily maximize diversity---\\emph{accelerates} collapse rather than preventing it, producing over 70\\% higher perplexity than a random selection baseline operating under the same 50\\% data budget ($74.29 \\pm 7.71$ vs.\\ $43.18 \\pm 1.43$, $n{=}3$). We identify the mechanism behind this failure as the \\emph{Embedding Alignment Gap}: the model's internal notion of ``diversity'' progressively diverges from actual content diversity as its representations co-degrade with the generated data, causing the mean selection ratio to decline from approximately 1.0 to $0.64 \\pm 0.20$ over eight generations. Critically, all selection strategies that bypass the model's own embeddings---random sampling (PPL 43.18$\\pm$1.43), external frozen embeddings (PPL 46.36$\\pm$2.97), and uncurated full-corpus training (PPL 47.04$\\pm$2.90)---cluster within a narrow perplexity range with no catastrophic failure. Meanwhile, standard representation quality diagnostics such as RankMe effective dimensionality and $k$-NN accuracy remain stable throughout training, rendering the alignment gap invisible to conventional monitoring. Our results demonstrate that coupling data selection to co-degrading internal representations creates a feedback loop that amplifies rather than mitigates collapse, and that zero-cost random sampling is a more robust alternative for iterative self-training pipelines.\n\\end{abstract}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{methodology}\n\n\\input{experiments}\n\n\\input{results}\n\n\\input{discussion}\n\n\\input{conclusion}\n\n\\bibliography{references}\n\n\\end{document}\n",
+      "numLines": 46,
+      "startLine": 1,
+      "totalLines": 46
+    }
+  },
+  "sourceToolAssistantUUID": "72d66bc8-1d9d-4b4f-a6f4-1c60d3b748e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T08:19:54.867Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LB1hJ9JmwgAmNaU8243VD2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34bc1f5b-fec1-4528-ba03-a8c50a9c1750",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "7c35cff0-2d75-4d27-b8f3-3137e63220c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T08:19:54.879Z_
+
+<details><summary>↩ Tool result · `toolu_01LB1hJ9JmwgAmNaU8243VD2`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	Table~\ref{tab:gen7_summary} summarizes Generation~7 metrics across all methods and seeds; Table~\ref{tab:stat_tests} reports complete pairwise statistical comparisons. Figure~\ref{fig:ppl_trends} shows per-generation perplexity trajectories; Figure~\ref{fig:ratio_trajectory} shows selection ratio trajectories for RGDS and External-only. We organize findings around three primary claims and one directional observation.
+5	
+6	\begin{table*}[t]
+7	\centering
+8	\small
+9	\begin{tabular}{lcccccccc}
+10	\toprule
+11	Method & Budget & Gen\,0 PPL & Gen\,7 PPL & $\Delta$\% & Sel.\ Ratio & Rare n-gram & RankMe & $n$ \\
+12	\midrule
+13	Random 50\% & 50\% & 36.87 & 43.18$\pm$1.43 & +17 & $\approx$1.00 & .0098$\pm$.0003 & 290.98$\pm$0.98 & 3 \\
+14	External-only & 50\% & 36.74 & 46.36$\pm$2.97 & +26 & 1.16$\pm$0.08 & .0103$\pm$.0004 & 291.45$\pm$1.08 & 3 \\
+15	Uncurated & 100\% & 36.81 & 47.04$\pm$2.90 & +28 & --- & .0090$\pm$.0004 & 289.83$\pm$1.77 & 3 \\
+16	RGDS & 50\% & 36.83 & 74.29$\pm$7.71 & +102 & 0.64$\pm$0.20 & .0061$\pm$.0009 & 292.54$\pm$5.91 & 3 \\
+17	\bottomrule
+18	\end{tabular}
+19	\caption{Generation~7 summary across methods (GPT2-125M on WikiText-103). PPL: perplexity on WikiText-103 validation set (lower is better). Sel.\ Ratio: mean rare trigram density of the selected subset divided by the full generated pool ($>$1 = preferential retention of content-diverse samples). Rare n-gram: proportion of generated trigrams at or below the 10th percentile of the WikiText-103 frequency distribution. RankMe: effective embedding rank via singular value entropy. $\Delta$\%: relative perplexity increase from Generation~0 to Generation~7. All methods report $n{=}3$ seeds.}
+20	\label{tab:gen7_summary}
+21	\end{table*}
+22	
+23	\begin{figure}[t]
+24	\centering
+25	\includegraphics[width=\columnwidth]{figures/fig_ppl_trends.pdf}
+26	\caption{Per-generation perplexity trajectories across four data selection methods (GPT2-125M on WikiText-103). Lines show means over $n{=}3$ seeds; shaded bands show $\pm$1 standard deviation. RGDS diverges from the non-RGDS cluster after Generation~4 and reaches catastrophic perplexity by Generation~7 ($74.29 \pm 7.71$), while the other three methods converge to a narrow band (43--47).}
+27	\label{fig:ppl_trends}
+28	\end{figure}
+29	
+30	\begin{figure}[t]
+31	\centering
+32	\includegraphics[width=\columnwidth]{figures/fig_ratio_trajectory.pdf}
+33	\caption{Selection ratio trajectories for RGDS and External-only across eight generations. The dashed line marks the alignment threshold ($\text{SR}=1.0$): above it, the method preferentially retains content-diverse samples; below it, content-poor samples are preferentially selected. RGDS's mean ratio declines from ${\sim}1.0$ to $0.64 \pm 0.20$, while External-only remains above~1.0 throughout. The large variance at Generation~7 reflects seed=456's late rebound (0.65$\to$0.87) without perplexity recovery.}
+34	\label{fig:ratio_trajectory}
+35	\end{figure}
+36	
+37	\subsection{RGDS Produces Catastrophic Perplexity Degradation}
+38	\label{sec:result_c1}
+39	
+40	RGDS is the only method that exhibits catastrophic performance degradation across generations. At Generation~7, RGDS reaches a perplexity of $74.29 \pm 7.71$ ($n{=}3$), compared to $47.04 \pm 2.90$ for Uncurated ($n{=}3$; +58\%) and $43.18 \pm 1.43$ for Random~50\% ($n{=}3$; +72\%). All three seeds show consistent catastrophic degradation---75.07 (seed=42), 81.57 (seed=123), and 66.22 (seed=456)---with all values far exceeding the 43--47 range of the non-RGDS methods. The inter-seed variance of RGDS ($\sigma = 7.71$) substantially exceeds that of any other method ($\sigma \leq 2.97$), reflecting the stochastic dynamics of the co-degradation feedback loop.
+41	
+42	The selection ratio traces the mechanism behind this degradation (Figure~\ref{fig:ratio_trajectory}). RGDS's mean selection ratio follows an overall declining trend from ${\sim}1.0$ at Generation~0 to $0.64 \pm 0.20$ at Generation~7 ($n{=}3$). Seeds 42 and 123 reach deeply inverted ratios (0.52 and 0.52 respectively), while seed=456 exhibits a late-generation rebound from 0.65 at Generation~6 to 0.87 at Generation~7---without any corresponding improvement in perplexity (66.22 vs.\ 43--47 for non-RGDS methods). This dissociation between ratio recovery and perplexity indicates that once the embedding space has been sufficiently corrupted, even a partial restoration of selection alignment cannot reverse the accumulated damage to model quality. Across all seeds, RGDS preferentially retains vocabulary-poor samples relative to the full generated pool.
+43	
+44	\subsection{External Embeddings Avoid the Alignment Gap}
+45	\label{sec:result_c2}
+46	
+47	External-only selection applies the identical selection algorithm and 50\% data budget but uses frozen Contriever embeddings. It avoids catastrophic degradation entirely: its Generation~7 perplexity of $46.36 \pm 2.97$ ($n{=}3$) falls within the range of Uncurated ($47.04 \pm 2.90$) and Random~50\% ($43.18 \pm 1.43$).
+48	
+49	External-only maintains a selection ratio above~1.0 throughout all generations ($1.16 \pm 0.08$ at Generation~7), indicating continued preferential retention of content-diverse samples.
+50	
+51	Since RGDS and External-only differ in exactly one variable---the embedding source---the 27.9-point perplexity gap at Generation~7 ($74.29$ vs.\ $46.36$) is directly attributable to the use of co-degrading internal representations. The selection algorithm is not at fault; the failure is specific to coupling data selection to embeddings that co-evolve with the collapsing model.
+52	
+53	Notably, External-only does not significantly outperform Random~50\% in perplexity ($46.36 \pm 2.97$ vs.\ $43.18 \pm 1.43$; $p = 0.198$, Welch's $t$-test, $n{=}3$). Despite maintaining a selection ratio above~1.0, the ``intelligent'' diversity signal from frozen external embeddings provides no measurable advantage over uninformed random subsampling. This null result reinforces the practical implication discussed in \S\ref{sec:discussion}: random sampling is a zero-cost alternative that matches the performance of embedding-guided selection when embeddings are stable and avoids the catastrophic failure when they are not.
+54	
+55	\subsection{Internal Selection Underperforms Random Baseline}
+56	\label{sec:result_c3}
+57	
+58	The comparison between RGDS and Random~50\% provides the cleanest controlled ablation: both use the same 50\% data budget, isolating the effect of the selection mechanism itself. RGDS's Generation~7 perplexity ($74.29 \pm 7.71$, $n{=}3$) exceeds Random~50\% ($43.18 \pm 1.43$, $n{=}3$) by 72\%. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality relative to uninformed selection.
+59	
+60	Rare token ratio confirms this finding: RGDS retains $0.0061 \pm 0.0009$ at Generation~7, compared to $0.0098 \pm 0.0003$ for Random~50\%---a 38\% reduction in lexical tail content.
+61	
+62	\subsection{Random Pruning: A Directional Observation}
+63	\label{sec:result_s3}
+64	
+65	Random~50\% ($43.18 \pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \pm 2.90$, $n{=}3$), a reduction of 8.2\%. The direction is consistent across all three seeds. However, this difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test), and we report it as a directional observation rather than a confirmed finding.
+66	
+67	If confirmed with additional statistical power, this result would suggest that training on a random 50\% subset provides mild regularization compared to using all generated data in the iterative self-training setting, consistent with observations that data pruning can improve generalization even without informed selection \citep{sorscher2022beyond}.
+68	
+69	While the perplexity difference remains directional, Random~50\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \pm 0.0003$) exceeds Uncurated ($0.0090 \pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that the diversity benefit of curation does not require intelligent selection---merely reducing the volume of self-generated training data slows lexical tail erosion.
+70	
+71	\subsection{Lexical Diversity Collapse Across Methods}
+72	\label{sec:result_diversity}
+73	
+74	RGDS exhibits the sharpest decline in rare token ratio, dropping from approximately 0.010 at Generation~0 to $0.0061 \pm 0.0009$ at Generation~7 (Table~\ref{tab:gen7_summary}). The remaining methods converge to a narrower band: Random~50\% ($0.0098 \pm 0.0003$), Uncurated ($0.0090 \pm 0.0004$), and External-only ($0.0102 \pm 0.0004$). Relative to the WikiText-103 baseline rare token ratio of approximately 0.029, all non-RGDS methods exhibit roughly 65\% lexical tail erosion by Generation~7; RGDS reaches approximately 80\%.
+75	
+76	Unlike the perplexity-level normal cluster (ANOVA $p = 0.219$; \S\ref{sec:result_c1}), the rare n-gram differences among non-RGDS methods are statistically significant (ANOVA $p = 0.007$, $n{=}3$ per method). In particular, Uncurated retains significantly fewer rare n-grams than Random~50\% ($p = 0.025$, two-sided $t$-test). Lexical diversity collapse is primarily driven by the iterative self-training loop itself \citep{shumailov2024ai}, but the degree of erosion is modulated by data selection: even uninformed curation (random subsampling) provides measurable protection relative to using all generated data. RGDS is distinctive in accelerating this inherent degradation far beyond all other methods.
+77	
+78	\begin{table*}[t]
+79	\centering
+80	\small
+81	\begin{tabular}{llrrrrl}
+82	\toprule
+83	Comparison & Metric & $\Delta$ & Welch $t$ & df & $p$ & Cohen's $d$ \\
+84	\midrule
+85	\multicolumn{7}{l}{\textit{RGDS vs.\ non-RGDS methods}} \\
+86	RGDS vs.\ Random 50\% & PPL & $+$31.10 & 6.88 & 2.1 & .017 & 5.61 \\
+87	RGDS vs.\ External-only & PPL & $+$27.93 & 5.86 & 2.6 & .015 & 4.78 \\
+88	RGDS vs.\ Uncurated & PPL & $+$27.25 & 5.73 & 2.6 & .016 & 4.68 \\
+89	RGDS vs.\ Random 50\% & Rare & $-$.0038 & $-$6.93 & 2.3 & .014 & $-$5.66 \\
+90	RGDS vs.\ External-only & Rare & $-$.0042 & $-$7.51 & 2.6 & .008 & $-$6.13 \\
+91	RGDS vs.\ Uncurated & Rare & $-$.0029 & $-$5.16 & 2.6 & .020 & $-$4.22 \\
+92	\midrule
+93	\multicolumn{7}{l}{\textit{Within-cluster comparisons}} \\
+94	External vs.\ Random 50\% & PPL & $+$3.17 & 1.67 & 2.9 & .198 & 1.36 \\
+95	Random 50\% vs.\ Uncurated & PPL & $-$3.86 & $-$2.07 & 2.9 & .133 & $-$1.69 \\
+96	Random 50\% vs.\ Uncurated & Rare & $+$.0009 & 3.47 & 3.6 & .030 & 2.84 \\
+97	\midrule
+98	\multicolumn{7}{l}{\textit{ANOVA (one-way)}} \\
+99	Non-RGDS (3 methods) & PPL & --- & $F{=}1.98$ & 2,\,6 & .219 & --- \\
+100	Non-RGDS (3 methods) & Rare & --- & $F{=}13.01$ & 2,\,6 & .007 & --- \\
+101	\midrule
+102	\multicolumn{7}{l}{\textit{GPT2-Medium (355M)---statistical tests pending $\geq$3 seeds}} \\
+103	RGDS vs.\ Random 50\% & PPL & $+$12.59$^\dagger$ & \multicolumn{3}{c}{---} & --- \\
+104	Random 50\% vs.\ Uncurated & PPL & $-$21.41$^\dagger$ & \multicolumn{3}{c}{---} & --- \\
+105	RGDS vs.\ Uncurated & PPL & $-$8.82 / $+$3.20$^\ddagger$ & \multicolumn{3}{c}{---} & --- \\
+106	\bottomrule
+107	\end{tabular}
+108	\caption{Pairwise statistical comparisons at Generation~7. GPT2-125M rows: $n{=}3$ seeds per method; GPT2-Medium rows: seed=42 only ($n{=}1$), statistical tests pending seed=123. All pairwise tests use Welch's $t$-test (two-sided, unequal variance). PPL: perplexity on WikiText-103 validation set. Rare: rare trigram ratio. $\Delta$: difference (row method $-$ column method for pairwise; not applicable for ANOVA). Cohen's $d$: standardized effect size. RGDS differs significantly from all non-RGDS methods on both metrics ($p < .05$, $|d| > 4$). Within the non-RGDS cluster, PPL differences are not significant (ANOVA $p = .219$), but rare n-gram differences are (ANOVA $p = .007$). $^\dagger$seed=42 only (Random~50\% seed=123 pending). $^\ddagger$RGDS vs.\ Uncurated ordering flips across seeds: $-$8.82 at seed=42, $+$3.20 at seed=123.}
+109	\label{tab:stat_tests}
+110	\end{table*}
+111	
+112	\subsection{Representation Metrics Do Not Track Content Collapse}
+113	\label{sec:result_rankme}
+114	
+115	RankMe values at Generation~7 are comparable across all methods (289--293; Table~\ref{tab:gen7_summary}), with no method showing a meaningfully different value ($292.54 \pm 5.91$ for RGDS vs.\ ${\sim}290$ for non-RGDS methods). The metric designed to track effective embedding dimensionality does not distinguish between catastrophically degraded RGDS and the normally performing alternatives, indicating that embedding structural properties can persist even as the space loses content-discriminative fidelity.
+116	
+117	\subsection{Scaling to GPT2-Medium (355M)}
+118	\label{sec:result_scaling}
+119	
+120	Results from GPT2-Medium (355M) confirm that model collapse generalizes to larger models and is substantially amplified. Table~\ref{tab:medium_comparison} reports Generation~7 perplexity for all four methods (seed=42 complete for all; seed=123 complete for External-only, RGDS, and Uncurated; Random~50\% seed=123 pending).%
+121	%TODO(355M-seeds): update when Random seed=123 and all seed=456 complete
+122	
+123	\begin{table}[t]
+124	\centering
+125	\small
+126	\begin{tabular}{lcccc}
+127	\toprule
+128	Method & Budget & PPL$_{42}$ & PPL$_{123}$ & $n$ \\
+129	\midrule
+130	Random 50\% & 50\% & 70.25 & --- & 1 \\
+131	External-only & 50\% & 77.74 & 79.56 & 2 \\
+132	RGDS & 50\% & 82.84 & 90.25 & 2 \\
+133	Uncurated & 100\% & 91.66 & 87.05 & 2 \\
+134	\bottomrule
+135	\end{tabular}
+136	\caption{GPT2-Medium (355M) Generation~7 perplexity by seed. PPL$_{42}$ and PPL$_{123}$: WikiText-103 validation perplexity for each seed. RGDS and Uncurated ordering flips across seeds (82.84 vs.\ 91.66 at seed=42; 90.25 vs.\ 87.05 at seed=123). Random~50\% seed=123 and all seed=456 experiments are pending.}
+137	\label{tab:medium_comparison}
+138	\end{table}
+139	
+140	\paragraph{C3 holds across scale.} RGDS (82.84) underperforms Random~50\% (70.25) by +18\% at 355M, confirming that internal-embedding diversity selection degrades performance relative to uninformed random sampling regardless of model size. The gap is narrower than at 125M (+72\%, $n{=}3$), but the direction is consistent: co-degrading embeddings produce systematically worse selection than random chance.%
+141	%TODO(355M-seeds): confirm with seed=123 and report significance
+142	
+143	\paragraph{Relative severity shifts at 355M.} At 355M, model collapse is substantially more severe than at 125M across all methods. RGDS and Uncurated converge into a narrow, overlapping band (PPL 83--92) with unstable ordering across seeds: RGDS outperforms Uncurated at seed=42 (82.84 vs.\ 91.66) but underperforms at seed=123 (90.25 vs.\ 87.05). This ordering instability contrasts sharply with the 125M setting, where RGDS consistently exceeded Uncurated by 58\% ($74.29$ vs.\ $47.04$, $n{=}3$). The compression of method differences at high absolute collapse severity is consistent with both the representational redundancy and floor-compression hypotheses discussed in \S\ref{sec:discuss_scaling}. The cross-budget comparison (50\% vs.\ 100\%) remains confounded by data volume differences and should not be interpreted causally. Only the within-budget comparison (RGDS vs.\ Random~50\%, both at 50\%) isolates the effect of the selection mechanism.%
+144	%TODO(355M-seeds): update with seed=456 data
+145	
+146	\paragraph{Alignment gap narrows but persists.} The RGDS selection ratio at Generation~7 is 0.83 at 355M, compared to $0.64 \pm 0.20$ at 125M ($n{=}3$). The ratio remains below~1.0---RGDS still preferentially retains content-poor samples---but the inversion is less severe. The +18\% perplexity penalty relative to Random (vs.\ +72\% at 125M) is consistent with this narrower gap.%
+147	%TODO(355M-seeds): confirm ratio trajectory with seed=123 完成后补充完整 4-method 对比和统计检验
+148	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c35cff0-2d75-4d27-b8f3-3137e63220c9",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "2a6b0d3f-4365-473b-9325-75cd2acb42f4",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nTable~\\ref{tab:gen7_summary} summarizes Generation~7 metrics across all methods and seeds; Table~\\ref{tab:stat_tests} reports complete pairwise statistical comparisons. Figure~\\ref{fig:ppl_trends} shows per-generation perplexity trajectories; Figure~\\ref{fig:ratio_trajectory} shows selection ratio trajectories for RGDS and External-only. We organize findings around three primary claims and one directional observation.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccccccc}\n\\toprule\nMethod & Budget & Gen\\,0 PPL & Gen\\,7 PPL & $\\Delta$\\% & Sel.\\ Ratio & Rare n-gram & RankMe & $n$ \\\\\n\\midrule\nRandom 50\\% & 50\\% & 36.87 & 43.18$\\pm$1.43 & +17 & $\\approx$1.00 & .0098$\\pm$.0003 & 290.98$\\pm$0.98 & 3 \\\\\nExternal-only & 50\\% & 36.74 & 46.36$\\pm$2.97 & +26 & 1.16$\\pm$0.08 & .0103$\\pm$.0004 & 291.45$\\pm$1.08 & 3 \\\\\nUncurated & 100\\% & 36.81 & 47.04$\\pm$2.90 & +28 & --- & .0090$\\pm$.0004 & 289.83$\\pm$1.77 & 3 \\\\\nRGDS & 50\\% & 36.83 & 74.29$\\pm$7.71 & +102 & 0.64$\\pm$0.20 & .0061$\\pm$.0009 & 292.54$\\pm$5.91 & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Generation~7 summary across methods (GPT2-125M on WikiText-103). PPL: perplexity on WikiText-103 validation set (lower is better). Sel.\\ Ratio: mean rare trigram density of the selected subset divided by the full generated pool ($>$1 = preferential retention of content-diverse samples). Rare n-gram: proportion of generated trigrams at or below the 10th percentile of the WikiText-103 frequency distribution. RankMe: effective embedding rank via singular value entropy. $\\Delta$\\%: relative perplexity increase from Generation~0 to Generation~7. All methods report $n{=}3$ seeds.}\n\\label{tab:gen7_summary}\n\\end{table*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_ppl_trends.pdf}\n\\caption{Per-generation perplexity trajectories across four data selection methods (GPT2-125M on WikiText-103). Lines show means over $n{=}3$ seeds; shaded bands show $\\pm$1 standard deviation. RGDS diverges from the non-RGDS cluster after Generation~4 and reaches catastrophic perplexity by Generation~7 ($74.29 \\pm 7.71$), while the other three methods converge to a narrow band (43--47).}\n\\label{fig:ppl_trends}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_ratio_trajectory.pdf}\n\\caption{Selection ratio trajectories for RGDS and External-only across eight generations. The dashed line marks the alignment threshold ($\\text{SR}=1.0$): above it, the method preferentially retains content-diverse samples; below it, content-poor samples are preferentially selected. RGDS's mean ratio declines from ${\\sim}1.0$ to $0.64 \\pm 0.20$, while External-only remains above~1.0 throughout. The large variance at Generation~7 reflects seed=456's late rebound (0.65$\\to$0.87) without perplexity recovery.}\n\\label{fig:ratio_trajectory}\n\\end{figure}\n\n\\subsection{RGDS Produces Catastrophic Perplexity Degradation}\n\\label{sec:result_c1}\n\nRGDS is the only method that exhibits catastrophic performance degradation across generations. At Generation~7, RGDS reaches a perplexity of $74.29 \\pm 7.71$ ($n{=}3$), compared to $47.04 \\pm 2.90$ for Uncurated ($n{=}3$; +58\\%) and $43.18 \\pm 1.43$ for Random~50\\% ($n{=}3$; +72\\%). All three seeds show consistent catastrophic degradation---75.07 (seed=42), 81.57 (seed=123), and 66.22 (seed=456)---with all values far exceeding the 43--47 range of the non-RGDS methods. The inter-seed variance of RGDS ($\\sigma = 7.71$) substantially exceeds that of any other method ($\\sigma \\leq 2.97$), reflecting the stochastic dynamics of the co-degradation feedback loop.\n\nThe selection ratio traces the mechanism behind this degradation (Figure~\\ref{fig:ratio_trajectory}). RGDS's mean selection ratio follows an overall declining trend from ${\\sim}1.0$ at Generation~0 to $0.64 \\pm 0.20$ at Generation~7 ($n{=}3$). Seeds 42 and 123 reach deeply inverted ratios (0.52 and 0.52 respectively), while seed=456 exhibits a late-generation rebound from 0.65 at Generation~6 to 0.87 at Generation~7---without any corresponding improvement in perplexity (66.22 vs.\\ 43--47 for non-RGDS methods). This dissociation between ratio recovery and perplexity indicates that once the embedding space has been sufficiently corrupted, even a partial restoration of selection alignment cannot reverse the accumulated damage to model quality. Across all seeds, RGDS preferentially retains vocabulary-poor samples relative to the full generated pool.\n\n\\subsection{External Embeddings Avoid the Alignment Gap}\n\\label{sec:result_c2}\n\nExternal-only selection applies the identical selection algorithm and 50\\% data budget but uses frozen Contriever embeddings. It avoids catastrophic degradation entirely: its Generation~7 perplexity of $46.36 \\pm 2.97$ ($n{=}3$) falls within the range of Uncurated ($47.04 \\pm 2.90$) and Random~50\\% ($43.18 \\pm 1.43$).\n\nExternal-only maintains a selection ratio above~1.0 throughout all generations ($1.16 \\pm 0.08$ at Generation~7), indicating continued preferential retention of content-diverse samples.\n\nSince RGDS and External-only differ in exactly one variable---the embedding source---the 27.9-point perplexity gap at Generation~7 ($74.29$ vs.\\ $46.36$) is directly attributable to the use of co-degrading internal representations. The selection algorithm is not at fault; the failure is specific to coupling data selection to embeddings that co-evolve with the collapsing model.\n\nNotably, External-only does not significantly outperform Random~50\\% in perplexity ($46.36 \\pm 2.97$ vs.\\ $43.18 \\pm 1.43$; $p = 0.198$, Welch's $t$-test, $n{=}3$). Despite maintaining a selection ratio above~1.0, the ``intelligent'' diversity signal from frozen external embeddings provides no measurable advantage over uninformed random subsampling. This null result reinforces the practical implication discussed in \\S\\ref{sec:discussion}: random sampling is a zero-cost alternative that matches the performance of embedding-guided selection when embeddings are stable and avoids the catastrophic failure when they are not.\n\n\\subsection{Internal Selection Underperforms Random Baseline}\n\\label{sec:result_c3}\n\nThe comparison between RGDS and Random~50\\% provides the cleanest controlled ablation: both use the same 50\\% data budget, isolating the effect of the selection mechanism itself. RGDS's Generation~7 perplexity ($74.29 \\pm 7.71$, $n{=}3$) exceeds Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) by 72\\%. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality relative to uninformed selection.\n\nRare token ratio confirms this finding: RGDS retains $0.0061 \\pm 0.0009$ at Generation~7, compared to $0.0098 \\pm 0.0003$ for Random~50\\%---a 38\\% reduction in lexical tail content.\n\n\\subsection{Random Pruning: A Directional Observation}\n\\label{sec:result_s3}\n\nRandom~50\\% ($43.18 \\pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \\pm 2.90$, $n{=}3$), a reduction of 8.2\\%. The direction is consistent across all three seeds. However, this difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test), and we report it as a directional observation rather than a confirmed finding.\n\nIf confirmed with additional statistical power, this result would suggest that training on a random 50\\% subset provides mild regularization compared to using all generated data in the iterative self-training setting, consistent with observations that data pruning can improve generalization even without informed selection \\citep{sorscher2022beyond}.\n\nWhile the perplexity difference remains directional, Random~50\\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \\pm 0.0003$) exceeds Uncurated ($0.0090 \\pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that the diversity benefit of curation does not require intelligent selection---merely reducing the volume of self-generated training data slows lexical tail erosion.\n\n\\subsection{Lexical Diversity Collapse Across Methods}\n\\label{sec:result_diversity}\n\nRGDS exhibits the sharpest decline in rare token ratio, dropping from approximately 0.010 at Generation~0 to $0.0061 \\pm 0.0009$ at Generation~7 (Table~\\ref{tab:gen7_summary}). The remaining methods converge to a narrower band: Random~50\\% ($0.0098 \\pm 0.0003$), Uncurated ($0.0090 \\pm 0.0004$), and External-only ($0.0102 \\pm 0.0004$). Relative to the WikiText-103 baseline rare token ratio of approximately 0.029, all non-RGDS methods exhibit roughly 65\\% lexical tail erosion by Generation~7; RGDS reaches approximately 80\\%.\n\nUnlike the perplexity-level normal cluster (ANOVA $p = 0.219$; \\S\\ref{sec:result_c1}), the rare n-gram differences among non-RGDS methods are statistically significant (ANOVA $p = 0.007$, $n{=}3$ per method). In particular, Uncurated retains significantly fewer rare n-grams than Random~50\\% ($p = 0.025$, two-sided $t$-test). Lexical diversity collapse is primarily driven by the iterative self-training loop itself \\citep{shumailov2024ai}, but the degree of erosion is modulated by data selection: even uninformed curation (random subsampling) provides measurable protection relative to using all generated data. RGDS is distinctive in accelerating this inherent degradation far beyond all other methods.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\begin{tabular}{llrrrrl}\n\\toprule\nComparison & Metric & $\\Delta$ & Welch $t$ & df & $p$ & Cohen's $d$ \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{RGDS vs.\\ non-RGDS methods}} \\\\\nRGDS vs.\\ Random 50\\% & PPL & $+$31.10 & 6.88 & 2.1 & .017 & 5.61 \\\\\nRGDS vs.\\ External-only & PPL & $+$27.93 & 5.86 & 2.6 & .015 & 4.78 \\\\\nRGDS vs.\\ Uncurated & PPL & $+$27.25 & 5.73 & 2.6 & .016 & 4.68 \\\\\nRGDS vs.\\ Random 50\\% & Rare & $-$.0038 & $-$6.93 & 2.3 & .014 & $-$5.66 \\\\\nRGDS vs.\\ External-only & Rare & $-$.0042 & $-$7.51 & 2.6 & .008 & $-$6.13 \\\\\nRGDS vs.\\ Uncurated & Rare & $-$.0029 & $-$5.16 & 2.6 & .020 & $-$4.22 \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Within-cluster comparisons}} \\\\\nExternal vs.\\ Random 50\\% & PPL & $+$3.17 & 1.67 & 2.9 & .198 & 1.36 \\\\\nRandom 50\\% vs.\\ Uncurated & PPL & $-$3.86 & $-$2.07 & 2.9 & .133 & $-$1.69 \\\\\nRandom 50\\% vs.\\ Uncurated & Rare & $+$.0009 & 3.47 & 3.6 & .030 & 2.84 \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{ANOVA (one-way)}} \\\\\nNon-RGDS (3 methods) & PPL & --- & $F{=}1.98$ & 2,\\,6 & .219 & --- \\\\\nNon-RGDS (3 methods) & Rare & --- & $F{=}13.01$ & 2,\\,6 & .007 & --- \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{GPT2-Medium (355M)---statistical tests pending $\\geq$3 seeds}} \\\\\nRGDS vs.\\ Random 50\\% & PPL & $+$12.59$^\\dagger$ & \\multicolumn{3}{c}{---} & --- \\\\\nRandom 50\\% vs.\\ Uncurated & PPL & $-$21.41$^\\dagger$ & \\multicolumn{3}{c}{---} & --- \\\\\nRGDS vs.\\ Uncurated & PPL & $-$8.82 / $+$3.20$^\\ddagger$ & \\multicolumn{3}{c}{---} & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pairwise statistical comparisons at Generation~7. GPT2-125M rows: $n{=}3$ seeds per method; GPT2-Medium rows: seed=42 only ($n{=}1$), statistical tests pending seed=123. All pairwise tests use Welch's $t$-test (two-sided, unequal variance). PPL: perplexity on WikiText-103 validation set. Rare: rare trigram ratio. $\\Delta$: difference (row method $-$ column method for pairwise; not applicable for ANOVA). Cohen's $d$: standardized effect size. RGDS differs significantly from all non-RGDS methods on both metrics ($p < .05$, $|d| > 4$). Within the non-RGDS cluster, PPL differences are not significant (ANOVA $p = .219$), but rare n-gram differences are (ANOVA $p = .007$). $^\\dagger$seed=42 only (Random~50\\% seed=123 pending). $^\\ddagger$RGDS vs.\\ Uncurated ordering flips across seeds: $-$8.82 at seed=42, $+$3.20 at seed=123.}\n\\label{tab:stat_tests}\n\\end{table*}\n\n\\subsection{Representation Metrics Do Not Track Content Collapse}\n\\label{sec:result_rankme}\n\nRankMe values at Generation~7 are comparable across all methods (289--293; Table~\\ref{tab:gen7_summary}), with no method showing a meaningfully different value ($292.54 \\pm 5.91$ for RGDS vs.\\ ${\\sim}290$ for non-RGDS methods). The metric designed to track effective embedding dimensionality does not distinguish between catastrophically degraded RGDS and the normally performing alternatives, indicating that embedding structural properties can persist even as the space loses content-discriminative fidelity.\n\n\\subsection{Scaling to GPT2-Medium (355M)}\n\\label{sec:result_scaling}\n\nResults from GPT2-Medium (355M) confirm that model collapse generalizes to larger models and is substantially amplified. Table~\\ref{tab:medium_comparison} reports Generation~7 perplexity for all four methods (seed=42 complete for all; seed=123 complete for External-only, RGDS, and Uncurated; Random~50\\% seed=123 pending).%\n%TODO(355M-seeds): update when Random seed=123 and all seed=456 complete\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Budget & PPL$_{42}$ & PPL$_{123}$ & $n$ \\\\\n\\midrule\nRandom 50\\% & 50\\% & 70.25 & --- & 1 \\\\\nExternal-only & 50\\% & 77.74 & 79.56 & 2 \\\\\nRGDS & 50\\% & 82.84 & 90.25 & 2 \\\\\nUncurated & 100\\% & 91.66 & 87.05 & 2 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{GPT2-Medium (355M) Generation~7 perplexity by seed. PPL$_{42}$ and PPL$_{123}$: WikiText-103 validation perplexity for each seed. RGDS and Uncurated ordering flips across seeds (82.84 vs.\\ 91.66 at seed=42; 90.25 vs.\\ 87.05 at seed=123). Random~50\\% seed=123 and all seed=456 experiments are pending.}\n\\label{tab:medium_comparison}\n\\end{table}\n\n\\paragraph{C3 holds across scale.} RGDS (82.84) underperforms Random~50\\% (70.25) by +18\\% at 355M, confirming that internal-embedding diversity selection degrades performance relative to uninformed random sampling regardless of model size. The gap is narrower than at 125M (+72\\%, $n{=}3$), but the direction is consistent: co-degrading embeddings produce systematically worse selection than random chance.%\n%TODO(355M-seeds): confirm with seed=123 and report significance\n\n\\paragraph{Relative severity shifts at 355M.} At 355M, model collapse is substantially more severe than at 125M across all methods. RGDS and Uncurated converge into a narrow, overlapping band (PPL 83--92) with unstable ordering across seeds: RGDS outperforms Uncurated at seed=42 (82.84 vs.\\ 91.66) but underperforms at seed=123 (90.25 vs.\\ 87.05). This ordering instability contrasts sharply with the 125M setting, where RGDS consistently exceeded Uncurated by 58\\% ($74.29$ vs.\\ $47.04$, $n{=}3$). The compression of method differences at high absolute collapse severity is consistent with both the representational redundancy and floor-compression hypotheses discussed in \\S\\ref{sec:discuss_scaling}. The cross-budget comparison (50\\% vs.\\ 100\\%) remains confounded by data volume differences and should not be interpreted causally. Only the within-budget comparison (RGDS vs.\\ Random~50\\%, both at 50\\%) isolates the effect of the selection mechanism.%\n%TODO(355M-seeds): update with seed=456 data\n\n\\paragraph{Alignment gap narrows but persists.} The RGDS selection ratio at Generation~7 is 0.83 at 355M, compared to $0.64 \\pm 0.20$ at 125M ($n{=}3$). The ratio remains below~1.0---RGDS still preferentially retains content-poor samples---but the inversion is less severe. The +18\\% perplexity penalty relative to Random (vs.\\ +72\\% at 125M) is consistent with this narrower gap.%\n%TODO(355M-seeds): confirm ratio trajectory with seed=123 完成后补充完整 4-method 对比和统计检验\n",
+      "numLines": 148,
+      "startLine": 1,
+      "totalLines": 148
+    }
+  },
+  "sourceToolAssistantUUID": "7c35cff0-2d75-4d27-b8f3-3137e63220c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T08:19:55.344Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014BVNvH6WKuP51nQBZjdxqA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a6b0d3f-4365-473b-9325-75cd2acb42f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "3d4ca0b6-daa4-4e53-8d0c-e3aff693c6e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T08:19:55.349Z_
+
+<details><summary>↩ Tool result · `toolu_014BVNvH6WKuP51nQBZjdxqA`</summary>
+
+```text
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\subsection{The Embedding Alignment Gap as Goodhart's Law}
+5	
+6	The selection ratio trajectory of RGDS---declining from ${\sim}1.0$ at Generation~0 to $0.64 \pm 0.20$ at Generation~7 ($n{=}3$)---instantiates a specific form of Goodhart's law in representation space \citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.
+7	
+8	The selection ratio declining below~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. With 3-seed data, RGDS's mean ratio begins near~1.0 ($0.98 \pm 0.06$) and falls below~1.0 by Generation~1, never recovering. This degradation is self-reinforcing within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.
+9	
+10	\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's mean selection ratio rises slightly in early generations before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.
+11	
+12	The inter-seed variance of the Generation~7 selection ratio ($0.64 \pm 0.20$) reveals an additional nuance. Seeds~42 and~123 reach deeply inverted ratios (${\sim}0.52$), while seed=456 exhibits a late-generation rebound from 0.65 at Generation~6 to 0.87 at Generation~7. Critically, this ratio recovery does not translate into perplexity recovery: seed=456's Generation~7 perplexity (66.22) remains catastrophically elevated relative to the non-RGDS cluster (43--47). This dissociation suggests that the alignment gap operates as a ratchet: once several generations of content-depleted training have degraded model quality, restoring selection alignment at a late stage cannot undo the accumulated distributional damage. The practical implication is that monitoring the selection ratio alone is insufficient---corrective action must be taken \emph{before} the proxy has inverted, not after.
+13	
+14	\subsection{The Normal Cluster and the Floor of Self-Training}
+15	
+16	Three of our four methods---Random~50\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \citep{shumailov2024ai}, not by the data selection strategy.
+17	
+18	Critically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \pm 0.0004$) than both Random~50\% ($0.0098 \pm 0.0003$) and External-only ($0.0102 \pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.
+19	
+20	This convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.
+21	
+22	\subsection{Why the Alignment Gap Narrows with Scale}
+23	\label{sec:discuss_scaling}
+24	
+25	The within-budget comparison (RGDS vs.\ Random~50\%, both at 50\%) reveals that scaling reduces the alignment gap penalty: the absolute PPL gap contracts from 31.10 at 125M ($n{=}3$) to 12.59 at 355M (seed=42), and the relative gap narrows from $+$72\% to $+$18\%.%
+26	%TODO(355M-seeds): confirm with 3-seed data
+27	Two mechanisms---not mutually exclusive---may underlie this attenuation.
+28	
+29	\emph{Representational redundancy.} Larger models begin self-training with higher effective embedding dimensionality: GPT2-Medium's Generation~0 RankMe (${\sim}365$) exceeds GPT2-125M's (${\sim}276$) by 33\%. This additional representational capacity buffers the geometric distortion that drives proxy inversion \citep{jing2022understanding}---more dimensions carry meaningful signal, so the eigenvalue-based selection objective tracks genuine content distinctions for longer. Consistent with this mechanism, the RGDS selection ratio at Generation~7 improves from $0.64 \pm 0.20$ (125M) to 0.83 (355M), indicating that proxy-target alignment degrades more slowly at larger scale.
+30	
+31	\emph{Compression under severe collapse.} The 355M Uncurated baseline degrades far more severely than at 125M (PPL~91.66 vs.\ $47.04 \pm 2.90$). When absolute collapse is severe, method differences may compress toward a common degradation trajectory, shrinking the relative gap between RGDS and Random~50\% independently of representational improvement. The absolute gap contracts from 31.10 to 12.59, consistent with---but not diagnostic of---either explanation.
+32	
+33	Moreover, the gap compression is specific to RGDS. External-only's penalty relative to Random~50\% increases from $+$7.4\% at 125M ($n{=}3$) to $+$10.7\% at 355M (seed=42), and Uncurated's penalty increases from $+$8.9\% to $+$30.5\%.%
+34	%TODO(355M-seeds): confirm with 3-seed data
+35	A uniform compression effect would shrink all method differences symmetrically; the observed asymmetry---where only the alignment-gap-driven penalty contracts while other penalties widen---favors genuine representational buffering as a contributing factor.
+36	
+37	These two effects likely co-exist, and the observed attenuation reflects their joint action. The absolute penalty persists---RGDS remains 18\% worse than Random~50\% at 355M---but the alignment gap is attenuated, not eliminated. Distinguishing between representational redundancy and floor effects requires experiments at three or more model sizes, which we leave to future work.%
+38	%TODO(355M-seeds): confirm with seed=123 data
+39	
+40	\subsection{Practical Implications}
+41	
+42	The results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.
+43	
+44	Random sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \S\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.
+45	
+46	\subsection{Connection to Concept Drift}
+47	
+48	The embedding alignment gap can be understood as a special case of concept drift \citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.
+49	
+50	This endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.
+51	
+52	\subsection{Limitations}
+53	
+54	Several limitations scope our conclusions:
+55	\begin{enumerate}
+56	    \item Our experiments use GPT2-125M ($n{=}3$) and GPT2-Medium (355M, seed=42 complete, seed=123 in progress); the embedding alignment gap may manifest differently in larger models with richer representational capacity.
+57	    \item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.
+58	    \item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.
+59	    \item Our analysis of dimensional collapse is empirical and analogical \citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.
+60	    \item GPT2-Medium results are based on a single seed at time of writing; multi-seed confirmation is pending.
+61	    \item We fix the selection budget at 50\%. Lower budgets (e.g., 30\%) would amplify any selection bias---including the alignment gap---by concentrating training on a smaller, more aggressively filtered subset. Higher budgets (e.g., 70\%) would dilute the selection signal and approach the Uncurated baseline. Our 50\% budget represents a moderate operating point; the alignment gap's sensitivity to budget fraction is an open question.
+62	    \item We extract embeddings from the last hidden layer. Intermediate layers or pooled representations may exhibit different alignment dynamics; exploring this design choice is left to future work.
+63	\end{enumerate}
+64	
+65	\subsection{Future Work}
+66	
+67	Three directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.
+68	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d4ca0b6-daa4-4e53-8d0c-e3aff693c6e5",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "b9a8739f-0d0c-4c83-ac05-ce8cca234078",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{The Embedding Alignment Gap as Goodhart's Law}\n\nThe selection ratio trajectory of RGDS---declining from ${\\sim}1.0$ at Generation~0 to $0.64 \\pm 0.20$ at Generation~7 ($n{=}3$)---instantiates a specific form of Goodhart's law in representation space \\citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.\n\nThe selection ratio declining below~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. With 3-seed data, RGDS's mean ratio begins near~1.0 ($0.98 \\pm 0.06$) and falls below~1.0 by Generation~1, never recovering. This degradation is self-reinforcing within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.\n\n\\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's mean selection ratio rises slightly in early generations before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.\n\nThe inter-seed variance of the Generation~7 selection ratio ($0.64 \\pm 0.20$) reveals an additional nuance. Seeds~42 and~123 reach deeply inverted ratios (${\\sim}0.52$), while seed=456 exhibits a late-generation rebound from 0.65 at Generation~6 to 0.87 at Generation~7. Critically, this ratio recovery does not translate into perplexity recovery: seed=456's Generation~7 perplexity (66.22) remains catastrophically elevated relative to the non-RGDS cluster (43--47). This dissociation suggests that the alignment gap operates as a ratchet: once several generations of content-depleted training have degraded model quality, restoring selection alignment at a late stage cannot undo the accumulated distributional damage. The practical implication is that monitoring the selection ratio alone is insufficient---corrective action must be taken \\emph{before} the proxy has inverted, not after.\n\n\\subsection{The Normal Cluster and the Floor of Self-Training}\n\nThree of our four methods---Random~50\\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \\citep{shumailov2024ai}, not by the data selection strategy.\n\nCritically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \\pm 0.0004$) than both Random~50\\% ($0.0098 \\pm 0.0003$) and External-only ($0.0102 \\pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.\n\nThis convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \\citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.\n\n\\subsection{Why the Alignment Gap Narrows with Scale}\n\\label{sec:discuss_scaling}\n\nThe within-budget comparison (RGDS vs.\\ Random~50\\%, both at 50\\%) reveals that scaling reduces the alignment gap penalty: the absolute PPL gap contracts from 31.10 at 125M ($n{=}3$) to 12.59 at 355M (seed=42), and the relative gap narrows from $+$72\\% to $+$18\\%.%\n%TODO(355M-seeds): confirm with 3-seed data\nTwo mechanisms---not mutually exclusive---may underlie this attenuation.\n\n\\emph{Representational redundancy.} Larger models begin self-training with higher effective embedding dimensionality: GPT2-Medium's Generation~0 RankMe (${\\sim}365$) exceeds GPT2-125M's (${\\sim}276$) by 33\\%. This additional representational capacity buffers the geometric distortion that drives proxy inversion \\citep{jing2022understanding}---more dimensions carry meaningful signal, so the eigenvalue-based selection objective tracks genuine content distinctions for longer. Consistent with this mechanism, the RGDS selection ratio at Generation~7 improves from $0.64 \\pm 0.20$ (125M) to 0.83 (355M), indicating that proxy-target alignment degrades more slowly at larger scale.\n\n\\emph{Compression under severe collapse.} The 355M Uncurated baseline degrades far more severely than at 125M (PPL~91.66 vs.\\ $47.04 \\pm 2.90$). When absolute collapse is severe, method differences may compress toward a common degradation trajectory, shrinking the relative gap between RGDS and Random~50\\% independently of representational improvement. The absolute gap contracts from 31.10 to 12.59, consistent with---but not diagnostic of---either explanation.\n\nMoreover, the gap compression is specific to RGDS. External-only's penalty relative to Random~50\\% increases from $+$7.4\\% at 125M ($n{=}3$) to $+$10.7\\% at 355M (seed=42), and Uncurated's penalty increases from $+$8.9\\% to $+$30.5\\%.%\n%TODO(355M-seeds): confirm with 3-seed data\nA uniform compression effect would shrink all method differences symmetrically; the observed asymmetry---where only the alignment-gap-driven penalty contracts while other penalties widen---favors genuine representational buffering as a contributing factor.\n\nThese two effects likely co-exist, and the observed attenuation reflects their joint action. The absolute penalty persists---RGDS remains 18\\% worse than Random~50\\% at 355M---but the alignment gap is attenuated, not eliminated. Distinguishing between representational redundancy and floor effects requires experiments at three or more model sizes, which we leave to future work.%\n%TODO(355M-seeds): confirm with seed=123 data\n\n\\subsection{Practical Implications}\n\nThe results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.\n\nRandom sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \\S\\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.\n\n\\subsection{Connection to Concept Drift}\n\nThe embedding alignment gap can be understood as a special case of concept drift \\citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \\emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.\n\nThis endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.\n\n\\subsection{Limitations}\n\nSeveral limitations scope our conclusions:\n\\begin{enumerate}\n    \\item Our experiments use GPT2-125M ($n{=}3$) and GPT2-Medium (355M, seed=42 complete, seed=123 in progress); the embedding alignment gap may manifest differently in larger models with richer representational capacity.\n    \\item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.\n    \\item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.\n    \\item Our analysis of dimensional collapse is empirical and analogical \\citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.\n    \\item GPT2-Medium results are based on a single seed at time of writing; multi-seed confirmation is pending.\n    \\item We fix the selection budget at 50\\%. Lower budgets (e.g., 30\\%) would amplify any selection bias---including the alignment gap---by concentrating training on a smaller, more aggressively filtered subset. Higher budgets (e.g., 70\\%) would dilute the selection signal and approach the Uncurated baseline. Our 50\\% budget represents a moderate operating point; the alignment gap's sensitivity to budget fraction is an open question.\n    \\item We extract embeddings from the last hidden layer. Intermediate layers or pooled representations may exhibit different alignment dynamics; exploring this design choice is left to future work.\n\\end{enumerate}\n\n\\subsection{Future Work}\n\nThree directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \\emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.\n",
+      "numLines": 68,
+      "startLine": 1,
+      "totalLines": 68
+    }
+  },
+  "sourceToolAssistantUUID": "3d4ca0b6-daa4-4e53-8d0c-e3aff693c6e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T08:19:55.632Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ct5qn9KYJmXqDM83KjudrA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9a8739f-0d0c-4c83-ac05-ce8cca234078",
+  "isSidechain": false,
+  "requestId": "req_011Cb28kcj66dYAmq1Rnc2gN",
+  "type": "assistant",
+  "uuid": "438535ed-a07c-46ed-bd73-44e2ef17339e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URHV7tX12HpQiwy7pVeWt3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 26243,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 26243,
+          "cache_creation_input_tokens": 390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "4a3d6321-0cde-4ac4-bbfa-54ab7b54aded",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Polish Ablation/Analysis for EMNLP ARR",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-14T08:21:35.259Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the current paper structure. The ablation/analysis content is primarily in Section 5 (Results), specifically:
+
+- §5.3 "Internal Selection Underperforms Random Baseline" (sec:result_c3) - This is the C3 claim about RGDS vs Random_50
+- §5.4 "Random Pruning: A Directional Observation" (sec:result_s3) - This is the S3/D017 directional observation
+
+The user wants me to polish these sections to make the controlled ablation logic chain clearer. Let me analyze the current text and identify what needs improvement.
+ 
+Looking at §5.3, I notice the section is underdeveloped—it doesn't adequately justify why random_50 serves as the cleanest control, and the variable control explanation is too brief. There's also a minor inconsistency: the task description references seed=42 values (PPL=75.07 vs 43.20), but the paper correctly reports 3-seed means (74.29±7.71 vs 43.18±1.43) with a +72% difference, whereas the task mentions +74%. I need to clarify the control design and ensure the reported numbers align properly. for seed=42 and rare n-gram "0.0051 vs 0.0096 (-47%)" for seed=42. The paper uses mean values. Let me recalculate: (74.29-43.18)/43.18 = 72%, which is consistent with the paper.
+   - Actually wait, the task description says specific seed=42 numbers: RGDS gen7 PPL=75.07 vs Random gen7 PPL=43.20 (+74%), rare n-gram 0.0051 vs 0.0096 (-47%). But the paper uses 3-seed means. The paper is correct to use means. The task is giving seed=42 specific values as context but the paper should use means.
+   - The section doesn't explicitly lay out the contrast hierarchy: RGDS vs Uncurated (confounded), RGDS vs Random_50 (clean), Random_50 vs Uncurated (directional).
+
+Now looking at §5.4, it's already framed as a directional observation with p=0.133 reported. I should be more explicit about why this comparison gets downgraded in the hierarchy.
+
+For §5.3, the main gaps are: I need to clearly state this is the cleanest controlled ablation, spell out what's held constant across conditions (budget, training protocol, seed infrastructure), present the effect sizes more clearly, and distinguish it from the confounded RGDS vs Uncurated comparison. The contrast hierarchy itself appears in §5.7, so I should reference how these comparisons fit into that framework.
+
+Drafting the revised §5.3 now...
+
+The controlled comparison reveals that RGDS performs dramatically worse than random selection—Generation 7 perplexity of 74.29 versus 43.18 for Random 50%, a 72% degradation that's statistically significant and consistent across all three seeds. This isn't a marginal difference; internal embedding-based diversity selection actively harms model quality far more severely than any other method variation in the study.
+
+The rare n-gram ratio tells the same story: RGDS produces outputs with 38% fewer rare tokens than random subsampling, meaning the mechanism designed to maximize diversity actually produces less diverse text. This controlled budget comparison isolates the selection effect itself, unlike the earlier RGDS versus Uncurated comparison which conflates selection with the data quantity difference, and the Random 50% versus Uncurated comparison which similarly involves confounding factors and doesn't reach significance.
+
+Now I'm double-checking the individual seed values for Random 50%—the paper reports the mean as 43.18 ± 1.43, but I don't have the breakdown by seed in the text, so I shouldn't speculate about those specific values. Looking at the actual reported numbers, the seed=42 specific values show RGDS at 75.07 versus Random at 43.20 for perplexity, with the rare n-gram ratio showing a similar divergence, and these appear to be distinct from the 3-seed averaged results the paper emphasizes. The perplexity gap is massive—RGDS's 74.29 is 72% worse than Random's 43.18, and this pattern holds consistently across all three seeds with no overlap. The rare n-gram ratio tells the same story: RGDS actually reduces lexical diversity to 0.0061 compared to Random's 0.0098, which is the opposite of what the diversity-based selection should accomplish. So the core finding is that embedding-based diversity selection actively harms model quality compared to naive uniform sampling.
+
+The key distinction here is that comparing RGDS to Random within the same 50% budget isolates the selection mechanism itself, whereas the RGDS versus Uncurated comparison conflates selection effects with data quantity differences. The Random versus Uncurated comparison also suffers from this budget confound and doesn't reach significance, so the within-budget ablation is really the cleanest evidence for what's driving the alignment gap.
+
+Looking at the Random 50% results more closely, it does show lower perplexity than Uncurated across all seeds, though the difference falls short of statistical significance. If this held up with more power, it would suggest that even random pruning provides some regularization benefit in iterative self-training. But what's interesting is that despite the marginal perplexity difference, Random 50% does achieve a statistically significant edge in lexical diversity, with a notably higher rare n-gram ratio.
+
+This points to something important: you don't need intelligent curation to preserve diversity—just reducing the volume of self-generated data itself slows the erosion of rare tokens. The challenge is that this comparison conflates any selection benefit with a data quantity effect, so we can't cleanly separate whether diversity gains come from the curation strategy or simply from using less data overall. While the perplexity gap remains directional, Random 50% shows a statistically significant edge in lexical diversity—the rare n-gram ratio is notably higher than Uncurated with p = 0.025—suggesting that even random subsampling better preserves content variety than using all generated data. Now I'm checking the paper structure to identify the correct section name for the edit command. I'm looking at the results for the internal selection mechanism—comparing RGDS against random sampling with the same data budget to isolate the selection effect. The data shows RGDS actually performs worse, with perplexity 72% higher than random selection, and it also reduces the retention of rare tokens by 38%, suggesting the embedding diversity approach is counterproductive. The RGDS method performs dramatically worse than random selection when both operate under identical conditions—same data budget, training protocol, and initialization. At Generation 7, RGDS achieves 74.29 perplexity versus 43.18 for random sampling, a 72% degradation that's statistically significant and consistent across all three seeds. The rare n-gram ratio tells the same story: RGDS produces 38% fewer diverse tokens than random selection, suggesting the diversity-based selection mechanism is actually suppressing lexical variety rather than enhancing it.
+
+This within-budget comparison isolates the selection method's effect cleanly, unlike the RGDS-versus-Uncurated contrast which conflates selection with data quantity differences. The Random-50%-versus-Uncurated comparison shows a directional trend toward random sampling being slightly better, but it doesn't reach statistical significance, so I'm treating it as suggestive rather than conclusive evidence.
+
+However, when I look at lexical diversity metrics, random subsampling actually does show a statistically significant advantage—the rare n-gram ratio is meaningfully higher than the uncurated baseline. This suggests that even uninformed pruning helps preserve vocabulary diversity better than keeping all self-generated data, which points to a simpler mechanism: reducing data volume itself slows the erosion of rare tokens, independent of whether the selection is intelligent or random. The rare n-gram diversity metric shows a clearer picture—Random 50% actually outperforms the full dataset with a statistically significant difference, suggesting that even random subsampling helps preserve lexical diversity better than using all the generated data. I'm now considering how to apply these edits to the paper sections, though I need to check whether the MCP system has access to the paper structure first. and then fall back to direct file editing if needed. But the task specifically requires using `edit_paper_section`, so let me try that approach with the results section first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a3d6321-0cde-4ac4-bbfa-54ab7b54aded",
+  "isSidechain": false,
+  "requestId": "req_011Cb28m3yNtpvtQ3mdyfifu",
+  "type": "assistant",
+  "uuid": "3440a0a3-682d-4c43-83d4-dffcd49d4a94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDXyFtkhNHwz6m1YupBPnQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12083,
+      "cache_read_input_tokens": 26633,
+      "output_tokens": 6744,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6744,
+          "cache_read_input_tokens": 26633,
+          "cache_creation_input_tokens": 12083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-14T08:21:36.996Z_
+
+Now I have a clear picture. The C3 section (§5.3) needs strengthening: it doesn't explicitly lay out the variable control logic or the contrast hierarchy. The S3 section (§5.4) needs the "conflates" language and a clearer causal-inference disclaimer. Let me apply both edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3440a0a3-682d-4c43-83d4-dffcd49d4a94",
+  "isSidechain": false,
+  "requestId": "req_011Cb28m3yNtpvtQ3mdyfifu",
+  "type": "assistant",
+  "uuid": "5f6244c2-8f53-43ce-b196-8be754a334e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDXyFtkhNHwz6m1YupBPnQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12083,
+      "cache_read_input_tokens": 26633,
+      "output_tokens": 6744,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6744,
+          "cache_read_input_tokens": 26633,
+          "cache_creation_input_tokens": 12083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T08:21:47.597Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_016WoRabcAvMJK9Dic7EzC38`</summary>
+
+```json
+{
+  "project": "div_cal_verify",
+  "section": "results",
+  "old_text": "\\subsection{Internal Selection Underperforms Random Baseline}\n\\label{sec:result_c3}\n\nThe comparison between RGDS and Random~50\\% provides the cleanest controlled ablation: both use the same 50\\% data budget, isolating the effect of the selection mechanism itself. RGDS's Generation~7 perplexity ($74.29 \\pm 7.71$, $n{=}3$) exceeds Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) by 72\\%. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality relative to uninformed selection.\n\nRare token ratio confirms this finding: RGDS retains $0.0061 \\pm 0.0009$ at Generation~7, compared to $0.0098 \\pm 0.0003$ for Random~50\\%---a 38\\% reduction in lexical tail content.",
+  "new_text": "\\subsection{Internal Selection Underperforms Random Baseline}\n\\label{sec:result_c3}\n\nThe comparison between RGDS and Random~50\\% constitutes the cleanest controlled ablation in our design. Both methods operate under identical conditions---same 50\\% data budget, same training protocol, same seed infrastructure, same Generation~0 checkpoint---differing only in the selection mechanism: diversity-based curation via the model's own embeddings (RGDS) versus uninformed uniform sampling (Random~50\\%). Any performance difference is therefore attributable solely to the selection mechanism, free from the data-volume confound present in comparisons against Uncurated (50\\% vs.\\ 100\\%).\n\nUnder this controlled comparison, RGDS exhibits catastrophically worse performance. Its Generation~7 perplexity ($74.29 \\pm 7.71$, $n{=}3$) exceeds Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) by $+$72\\% ($p = .017$, Welch's $t$, $d = 5.61$). The effect is consistent across all three seeds, with each RGDS run (75.07, 81.57, 66.22) far exceeding the non-RGDS cluster ceiling of ${\\sim}47$. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality by a margin that dwarfs all other method differences in this study.\n\nRare n-gram ratio corroborates the perplexity finding: RGDS retains $0.0061 \\pm 0.0009$ at Generation~7, compared to $0.0098 \\pm 0.0003$ for Random~50\\%---a 38\\% reduction in lexical tail content ($p = .014$, $d = -5.66$). The mechanism designed to maximize diversity produces outputs that are measurably \\emph{less} diverse than those from uninformed subsampling.\n\nThis within-budget contrast should be distinguished from the RGDS vs.\\ Uncurated comparison ($+$58\\%), which conflates any selection effect with a data quantity difference (50\\% vs.\\ 100\\%). The Random~50\\% vs.\\ Uncurated comparison (\\S\\ref{sec:result_s3}) similarly involves a budget confound and does not reach significance ($p = .133$), reinforcing that the within-budget RGDS-vs.-Random ablation provides the most interpretable causal evidence for the alignment gap.",
+  "claims": [
+    {
+      "text": "RGDS Generation 7 perplexity exceeds Random 50% by +72% under identical budget conditions (74.29±7.71 vs 43.18±1.43, p=.017, d=5.61)",
+      "type": "statistical",
+      "evidence": [
+        "exp_125m_3seed_gen7"
+      ],
+      "decisions": [
+        "D003"
+      ]
+    },
+    {
+      "text": "RGDS rare n-gram ratio is 38% lower than Random 50% (0.0061±0.0009 vs 0.0098±0.0003, p=.014, d=-5.66)",
+      "type": "statistical",
+      "evidence": [
+        "exp_125m_3seed_gen7"
+      ],
+      "decisions": [
+        "D003"
+      ]
+    },
+    {
+      "text": "Within-budget comparison (same 50% budget) isolates selection mechanism effect, free from data-volume confound",
+      "type": "methodological",
+      "evidence": [
+        "experimental_design"
+      ],
+      "decisions": [
+        "D003"
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f6244c2-8f53-43ce-b196-8be754a334e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb28m3yNtpvtQ3mdyfifu",
+  "type": "assistant",
+  "uuid": "e37269e0-c027-4689-a7f2-49acba52b8d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDXyFtkhNHwz6m1YupBPnQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12083,
+      "cache_read_input_tokens": 26633,
+      "output_tokens": 6744,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6744,
+          "cache_read_input_tokens": 26633,
+          "cache_creation_input_tokens": 12083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T08:21:47.669Z_
+
+<details><summary>↩ Tool result · `toolu_016WoRabcAvMJK9Dic7EzC38`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\", \"version\": 49, \"coverage\": \"25/26\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e37269e0-c027-4689-a7f2-49acba52b8d1",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "955d8ce7-3282-4fc4-9b53-d8f9d07e0aab",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\\\", \\\"version\\\": 49, \\\"coverage\\\": \\\"25/26\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\", \"version\": 49, \"coverage\": \"25/26\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e37269e0-c027-4689-a7f2-49acba52b8d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "955d8ce7-3282-4fc4-9b53-d8f9d07e0aab",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Polish Ablation/Analysis for EMNLP ARR",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T08:22:03.519Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_013mVU1H6LMPSKbFx8nsUtD3`</summary>
+
+```json
+{
+  "project": "div_cal_verify",
+  "section": "results",
+  "old_text": "Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \\pm 2.90$, $n{=}3$), a reduction of 8.2\\%. The direction is consistent across all three seeds. However, this difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test), and we report it as a directional observation rather than a confirmed finding.\n\nIf confirmed with additional statistical power, this result would suggest that training on a random 50\\% subset provides mild regularization compared to using all generated data in the iterative self-training setting, consistent with observations that data pruning can improve generalization even without informed selection \\citep{sorscher2022beyond}.\n\nWhile the perplexity difference remains directional, Random~50\\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \\pm 0.0003$) exceeds Uncurated ($0.0090 \\pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that the diversity benefit of curation does not require intelligent selection---merely reducing the volume of self-generated training data slows lexical tail erosion.",
+  "new_text": "Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \\pm 2.90$, $n{=}3$), a reduction of 8.2\\% consistent across all three seeds. However, this cross-budget comparison conflates any selection benefit with a data quantity effect (50\\% vs.\\ 100\\%), and the difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test). We report it as a directional observation rather than a confirmed finding, and draw no causal inference about budget effects from this comparison alone.\n\nIf confirmed with additional statistical power, this result would suggest that training on a random 50\\% subset provides mild regularization compared to using all generated data, consistent with observations that data pruning can improve generalization even without informed selection \\citep{sorscher2022beyond}.\n\nWhile the perplexity difference remains directional, Random~50\\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \\pm 0.0003$) exceeds Uncurated ($0.0090 \\pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that merely reducing the volume of self-generated training data slows lexical tail erosion.",
+  "claims": [
+    {
+      "text": "Random 50% vs Uncurated comparison conflates selection benefit with data quantity effect; p=0.133, reported as directional observation only",
+      "type": "methodological",
+      "evidence": [
+        "exp_125m_3seed_gen7"
+      ],
+      "decisions": [
+        "D017"
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "955d8ce7-3282-4fc4-9b53-d8f9d07e0aab",
+  "isSidechain": false,
+  "requestId": "req_011Cb28uJg8orBcA247akSfp",
+  "type": "assistant",
+  "uuid": "50be586f-db3e-4007-8a3d-0a9f73bcd730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uim7B5xknkMEBmo2TfCM9U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 38716,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 38716,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T08:22:03.595Z_
+
+<details><summary>↩ Tool result · `toolu_013mVU1H6LMPSKbFx8nsUtD3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\", \"version\": 50, \"coverage\": \"26/27\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50be586f-db3e-4007-8a3d-0a9f73bcd730",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "71d11a62-b118-4888-b2cc-66a444867677",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\\\", \\\"version\\\": 50, \\\"coverage\\\": \\\"26/27\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex\", \"version\": 50, \"coverage\": \"26/27\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50be586f-db3e-4007-8a3d-0a9f73bcd730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T08:22:07.605Z_
+
+Let me verify the edits landed correctly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71d11a62-b118-4888-b2cc-66a444867677",
+  "isSidechain": false,
+  "requestId": "req_011Cb28vUk9LvPf5NPwYk4JH",
+  "type": "assistant",
+  "uuid": "833973cd-1b86-48a0-bdd0-8ab49b82deea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3UtcrRrNsAk89BFX3Bf2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 45566,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 45566,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T08:22:08.118Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017aW7czkSKM1XJbK7JyiU25`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex",
+  "offset": 54,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "833973cd-1b86-48a0-bdd0-8ab49b82deea",
+  "isSidechain": false,
+  "requestId": "req_011Cb28vUk9LvPf5NPwYk4JH",
+  "type": "assistant",
+  "uuid": "8e2b1ffc-53a5-4bed-853a-acf7d28ad1a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3UtcrRrNsAk89BFX3Bf2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 45566,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 45566,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T08:22:08.132Z_
+
+<details><summary>↩ Tool result · `toolu_017aW7czkSKM1XJbK7JyiU25`</summary>
+
+```text
+54	
+55	\subsection{Internal Selection Underperforms Random Baseline}
+56	\label{sec:result_c3}
+57	
+58	The comparison between RGDS and Random~50\% constitutes the cleanest controlled ablation in our design. Both methods operate under identical conditions---same 50\% data budget, same training protocol, same seed infrastructure, same Generation~0 checkpoint---differing only in the selection mechanism: diversity-based curation via the model's own embeddings (RGDS) versus uninformed uniform sampling (Random~50\%). Any performance difference is therefore attributable solely to the selection mechanism, free from the data-volume confound present in comparisons against Uncurated (50\% vs.\ 100\%).
+59	
+60	Under this controlled comparison, RGDS exhibits catastrophically worse performance. Its Generation~7 perplexity ($74.29 \pm 7.71$, $n{=}3$) exceeds Random~50\% ($43.18 \pm 1.43$, $n{=}3$) by $+$72\% ($p = .017$, Welch's $t$, $d = 5.61$). The effect is consistent across all three seeds, with each RGDS run (75.07, 81.57, 66.22) far exceeding the non-RGDS cluster ceiling of ${\sim}47$. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality by a margin that dwarfs all other method differences in this study.
+61	
+62	Rare n-gram ratio corroborates the perplexity finding: RGDS retains $0.0061 \pm 0.0009$ at Generation~7, compared to $0.0098 \pm 0.0003$ for Random~50\%---a 38\% reduction in lexical tail content ($p = .014$, $d = -5.66$). The mechanism designed to maximize diversity produces outputs that are measurably \emph{less} diverse than those from uninformed subsampling.
+63	
+64	This within-budget contrast should be distinguished from the RGDS vs.\ Uncurated comparison ($+$58\%), which conflates any selection effect with a data quantity difference (50\% vs.\ 100\%). The Random~50\% vs.\ Uncurated comparison (\S\ref{sec:result_s3}) similarly involves a budget confound and does not reach significance ($p = .133$), reinforcing that the within-budget RGDS-vs.-Random ablation provides the most interpretable causal evidence for the alignment gap.
+65	
+66	\subsection{Random Pruning: A Directional Observation}
+67	\label{sec:result_s3}
+68	
+69	Random~50\% ($43.18 \pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \pm 2.90$, $n{=}3$), a reduction of 8.2\% consistent across all three seeds. However, this cross-budget comparison conflates any selection benefit with a data quantity effect (50\% vs.\ 100\%), and the difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test). We report it as a directional observation rather than a confirmed finding, and draw no causal inference about budget effects from this comparison alone.
+70	
+71	If confirmed with additional statistical power, this result would suggest that training on a random 50\% subset provides mild regularization compared to using all generated data, consistent with observations that data pruning can improve generalization even without informed selection \citep{sorscher2022beyond}.
+72	
+73	While the perplexity difference remains directional, Random~50\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \pm 0.0003$) exceeds Uncurated ($0.0090 \pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that merely reducing the volume of self-generated training data slows lexical tail erosion.
+74	
+75	\subsection{Lexical Diversity Collapse Across Methods}
+76	\label{sec:result_diversity}
+77	
+78	RGDS exhibits the sharpest decline in rare token ratio, dropping from approximately 0.010 at Generation~0 to $0.0061 \pm 0.0009$ at Generation~7 (Table~\ref{tab:gen7_summary}). The remaining methods converge to a narrower band: Random~50\% ($0.0098 \pm 0.0003$), Uncurated ($0.0090 \pm 0.0004$), and External-only ($0.0102 \pm 0.0004$). Relative to the WikiText-103 baseline rare token ratio of approximately 0.029, all non-RGDS methods exhibit roughly 65\% lexical tail erosion by Generation~7; RGDS reaches approximately 80\%.
+79	
+80	Unlike the perplexity-level normal cluster (ANOVA $p = 0.219$; \S\ref{sec:result_c1}), the rare n-gram differences among non-RGDS methods are statistically significant (ANOVA $p = 0.007$, $n{=}3$ per method). In particular, Uncurated retains significantly fewer rare n-grams than Random~50\% ($p = 0.025$, two-sided $t$-test). Lexical diversity collapse is primarily driven by the iterative self-training loop itself \citep{shumailov2024ai}, but the degree of erosion is modulated by data selection: even uninformed curation (random subsampling) provides measurable protection relative to using all generated data. RGDS is distinctive in accelerating this inherent degradation far beyond all other methods.
+81	
+82	\begin{table*}[t]
+83	\centering
+84	\small
+85	\begin{tabular}{llrrrrl}
+86	\toprule
+87	Comparison & Metric & $\Delta$ & Welch $t$ & df & $p$ & Cohen's $d$ \\
+88	\midrule
+89	\multicolumn{7}{l}{\textit{RGDS vs.\ non-RGDS methods}} \\
+90	RGDS vs.\ Random 50\% & PPL & $+$31.10 & 6.88 & 2.1 & .017 & 5.61 \\
+91	RGDS vs.\ External-only & PPL & $+$27.93 & 5.86 & 2.6 & .015 & 4.78 \\
+92	RGDS vs.\ Uncurated & PPL & $+$27.25 & 5.73 & 2.6 & .016 & 4.68 \\
+93	RGDS vs.\ Random 50\% & Rare & $-$.0038 & $-$6.93 & 2.3 & .014 & $-$5.66 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e2b1ffc-53a5-4bed-853a-acf7d28ad1a6",
+  "isSidechain": false,
+  "promptId": "1ed77972-ec2e-4a49-9e4c-fa4a312f087c",
+  "type": "user",
+  "uuid": "1eb23031-96f0-4f07-b2ce-fa72228e3005",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex",
+      "content": "\n\\subsection{Internal Selection Underperforms Random Baseline}\n\\label{sec:result_c3}\n\nThe comparison between RGDS and Random~50\\% constitutes the cleanest controlled ablation in our design. Both methods operate under identical conditions---same 50\\% data budget, same training protocol, same seed infrastructure, same Generation~0 checkpoint---differing only in the selection mechanism: diversity-based curation via the model's own embeddings (RGDS) versus uninformed uniform sampling (Random~50\\%). Any performance difference is therefore attributable solely to the selection mechanism, free from the data-volume confound present in comparisons against Uncurated (50\\% vs.\\ 100\\%).\n\nUnder this controlled comparison, RGDS exhibits catastrophically worse performance. Its Generation~7 perplexity ($74.29 \\pm 7.71$, $n{=}3$) exceeds Random~50\\% ($43.18 \\pm 1.43$, $n{=}3$) by $+$72\\% ($p = .017$, Welch's $t$, $d = 5.61$). The effect is consistent across all three seeds, with each RGDS run (75.07, 81.57, 66.22) far exceeding the non-RGDS cluster ceiling of ${\\sim}47$. Internal embedding diversity selection does not merely fail to improve upon random sampling---it actively degrades model quality by a margin that dwarfs all other method differences in this study.\n\nRare n-gram ratio corroborates the perplexity finding: RGDS retains $0.0061 \\pm 0.0009$ at Generation~7, compared to $0.0098 \\pm 0.0003$ for Random~50\\%---a 38\\% reduction in lexical tail content ($p = .014$, $d = -5.66$). The mechanism designed to maximize diversity produces outputs that are measurably \\emph{less} diverse than those from uninformed subsampling.\n\nThis within-budget contrast should be distinguished from the RGDS vs.\\ Uncurated comparison ($+$58\\%), which conflates any selection effect with a data quantity difference (50\\% vs.\\ 100\\%). The Random~50\\% vs.\\ Uncurated comparison (\\S\\ref{sec:result_s3}) similarly involves a budget confound and does not reach significance ($p = .133$), reinforcing that the within-budget RGDS-vs.-Random ablation provides the most interpretable causal evidence for the alignment gap.\n\n\\subsection{Random Pruning: A Directional Observation}\n\\label{sec:result_s3}\n\nRandom~50\\% ($43.18 \\pm 1.43$, $n{=}3$) achieves lower Generation~7 perplexity than Uncurated ($47.04 \\pm 2.90$, $n{=}3$), a reduction of 8.2\\% consistent across all three seeds. However, this cross-budget comparison conflates any selection benefit with a data quantity effect (50\\% vs.\\ 100\\%), and the difference does not reach conventional significance ($p = 0.133$, Welch's $t$-test). We report it as a directional observation rather than a confirmed finding, and draw no causal inference about budget effects from this comparison alone.\n\nIf confirmed with additional statistical power, this result would suggest that training on a random 50\\% subset provides mild regularization compared to using all generated data, consistent with observations that data pruning can improve generalization even without informed selection \\citep{sorscher2022beyond}.\n\nWhile the perplexity difference remains directional, Random~50\\% shows a statistically significant advantage in lexical diversity: its Generation~7 rare n-gram ratio ($0.0098 \\pm 0.0003$) exceeds Uncurated ($0.0090 \\pm 0.0004$) with $p = 0.025$ (two-sided $t$-test, $n{=}3$). Even uninformed subsampling preserves content diversity better than retaining all generated data, suggesting that merely reducing the volume of self-generated training data slows lexical tail erosion.\n\n\\subsection{Lexical Diversity Collapse Across Methods}\n\\label{sec:result_diversity}\n\nRGDS exhibits the sharpest decline in rare token ratio, dropping from approximately 0.010 at Generation~0 to $0.0061 \\pm 0.0009$ at Generation~7 (Table~\\ref{tab:gen7_summary}). The remaining methods converge to a narrower band: Random~50\\% ($0.0098 \\pm 0.0003$), Uncurated ($0.0090 \\pm 0.0004$), and External-only ($0.0102 \\pm 0.0004$). Relative to the WikiText-103 baseline rare token ratio of approximately 0.029, all non-RGDS methods exhibit roughly 65\\% lexical tail erosion by Generation~7; RGDS reaches approximately 80\\%.\n\nUnlike the perplexity-level normal cluster (ANOVA $p = 0.219$; \\S\\ref{sec:result_c1}), the rare n-gram differences among non-RGDS methods are statistically significant (ANOVA $p = 0.007$, $n{=}3$ per method). In particular, Uncurated retains significantly fewer rare n-grams than Random~50\\% ($p = 0.025$, two-sided $t$-test). Lexical diversity collapse is primarily driven by the iterative self-training loop itself \\citep{shumailov2024ai}, but the degree of erosion is modulated by data selection: even uninformed curation (random subsampling) provides measurable protection relative to using all generated data. RGDS is distinctive in accelerating this inherent degradation far beyond all other methods.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\begin{tabular}{llrrrrl}\n\\toprule\nComparison & Metric & $\\Delta$ & Welch $t$ & df & $p$ & Cohen's $d$ \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{RGDS vs.\\ non-RGDS methods}} \\\\\nRGDS vs.\\ Random 50\\% & PPL & $+$31.10 & 6.88 & 2.1 & .017 & 5.61 \\\\\nRGDS vs.\\ External-only & PPL & $+$27.93 & 5.86 & 2.6 & .015 & 4.78 \\\\\nRGDS vs.\\ Uncurated & PPL & $+$27.25 & 5.73 & 2.6 & .016 & 4.68 \\\\\nRGDS vs.\\ Random 50\\% & Rare & $-$.0038 & $-$6.93 & 2.3 & .014 & $-$5.66 \\\\",
+      "numLines": 40,
+      "startLine": 54,
+      "totalLines": 152
+    }
+  },
+  "sourceToolAssistantUUID": "8e2b1ffc-53a5-4bed-853a-acf7d28ad1a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-14T08:22:08.285Z_
+
+```json
+{
+  "parentUuid": "1eb23031-96f0-4f07-b2ce-fa72228e3005",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e3bfb593-cffb-436e-96c2-329acaee3b5f",
+  "timestamp": "2026-05-14T08:22:08.285Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-14T08:22:17.569Z_
+
+两处编辑已生效。改动总结：
+
+**§5.3 (C3 — RGDS vs Random 50%)**：
+- 展开了变量控制说明：明确列出 same budget / protocol / seed / checkpoint，只有 selection mechanism 不同
+- 补充了 p 值和 Cohen's d（p=.017, d=5.61），以及三个 seed 的逐一数值
+- 新增最后一段，构建对照组层级：within-budget（无混淆）vs cross-budget（有混淆），指向 §5.4 的降级处理
+
+**§5.4 (S3/D017 — Random vs Uncurated)**：
+- 加入 "cross-budget comparison conflates any selection benefit with a data quantity effect" 定性
+- 加入 "draw no causal inference about budget effects from this comparison alone" 明确不做因果推断
+- 删除了一处冗余的 "in the iterative self-training setting"
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3bfb593-cffb-436e-96c2-329acaee3b5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb28vpoQ3LuoXujQfVDpW",
+  "type": "assistant",
+  "uuid": "afb182d7-397c-4ee3-ab77-3ad7887e96ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qgs6HT7kN3kpYTLwX6VXgc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2014,
+      "cache_read_input_tokens": 46570,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 46570,
+          "cache_creation_input_tokens": 2014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "afb182d7-397c-4ee3-ab77-3ad7887e96ca",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Polish Ablation/Analysis for EMNLP ARR",
+  "sessionId": "ebef9f62-55a7-4761-8cef-d8a15603607e"
+}
+```
+
+---

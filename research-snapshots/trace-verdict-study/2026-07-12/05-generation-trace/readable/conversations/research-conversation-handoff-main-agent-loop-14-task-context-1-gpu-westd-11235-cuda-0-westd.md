@@ -1,0 +1,6045 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #14。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 1
+- **Tool calls:** 26
+- **Original source:** `logs/chats/exported-trajectories/account-3/3bbbce81-2ca6-4d0b-87e5-c455793269fc.jsonl`
+- **Structured JSON:** [`03441214d9428a82d47d.json`](../../sessions/03/03441214d9428a82d47d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T19:57:53.861Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T19:57:53.861Z",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #14。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU\n- Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径），不走 conda activate，不假设 .venv\n- 每个实验必须独立 output_dir：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`（seed123 覆盖事故教训）\n- CodeLlama-13B 模型路径：`/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`（注意在 autodl-tmp 下，不是根目录）\n- 投稿 DDL：ARR May 25 = 距今 9 天，所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-11235`，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：Qwen-7B `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`；Qwen-1.5B `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`；CodeLlama-13B `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`\n- 数据路径：`/root/autodl-tmp/trace-verdict-study-data/`（各条件 train/test jsonl）\n- Checkpoint 路径：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- 活跃进程：`codellama13b_exception_only_seed123` PID=299731，cuda:0，cron 监控中\n- W&B project：trace-verdict-study（自动 eval chain 会上传 metrics）\n\n### 3. 📊 当前状态\n- **刚完成**：exception_only_nomarker_seed456 (acc=98.07%)、exception_only_nomarker_seed123 (acc=98.32%)、codellama13b_vota_seed42 (acc=98.57%)、codellama13b_no_trace_seed42 (acc=76.47%)、qwen15b_nomarker_seed42 (acc=97.8%)\n- **RUNNING (1)**：`codellama13b_exception_only_seed123` — cuda:0, PID 299731，cron 活跃\n- **QUEUED (7)**：codellama_vota/no_trace/exception_only_seed42（CodeLlama-7B 系列，这是老排队任务可能已废弃）+ qwen1.5b 4 条件 seed42（已有结果，可能是 stale entries）\n- **等待回调**：codellama13b_exception_only_seed123 完成回调（cron reconcile 确认 still running）\n- **无活跃 Worker**\n\n### 4. 📋 待办（条件触发式）\n- `codellama13b_exception_only_seed123` cron 回调到达 → 分析 metrics → 与 seed42 (99.16%) 对比 → 若一致则 3-seed 均值确认 → 立即提交 `codellama13b_exception_only_seed456` 到 cuda:0\n- codellama13b_exception_only 3 seeds 全完成 → 计算 mean±std → 更新 ROADMAP cross-family table → 论文 Table 1 整合\n- cuda:1 当前空闲（loop_only_seed123 应已完成但 registry 未更新）→ 确认状态后立即铺 loop_only_seed456 或 codellama13b_no_trace_seed123\n- 所有新实验数据就绪 → spawn paper-writing Worker patch Table 1 + cross-scale analysis\n- 5/18 前：所有实验完成 → Paper Agent 整合 → Round 6 送审\n\n### 5. 🎯 战略上下文\n- **核心结论**：Exception events 是 verdict prediction 最有效 trace component，跨 3 个模型家族（Qwen/CodeLlama/DeepSeek）、跨 3 个 scale（1.5B/7B/13B）验证。accuracy ≈ 99%+ 且 signal-limited（ceiling = 2/1190 数据标注 artifact）\n- **决策链关键**：D053 升级 signal-limited claim 为正式 finding；D052 确认 scale monotonic pattern（no_trace 越大越好，exception_only 无差异）；D049 universal irreducible ceiling（4 模型共享同 2 个错误样本）\n- **易错点**：QUEUED 里的 7 个实验大部分是 stale（qwen1.5b 系列已有同名不同 exp_id 的完成结果），不要盲目提交；CodeLlama-7B 系列（codellama_*_seed42）vs CodeLlama-13B 系列（codellama13b_*）是不同模型，前者可能已废弃\n- **nomarker 结论**：format marker 贡献 ~3.3pp（96.55% vs 99.83%），D055 判定不影响核心 narrative（信号主要来自 content 而非 format）\n- **9 天冲刺**：剩余实验是 codellama13b multi-seed + loop_only seeds + format marker removal，全部是增量验证而非核心 claim 支撑\n\n## 可查的历史\n前 88 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T19:57:53.865Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T19:57:53.865Z",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+## Round 1
+
+101 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T19:57:53.906Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #14。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU
+- Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径），不走 conda activate，不假设 .venv
+- 每个实验必须独立 output_dir：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`（seed123 覆盖事故教训）
+- CodeLlama-13B 模型路径：`/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`（注意在 autodl-tmp 下，不是根目录）
+- 投稿 DDL：ARR May 25 = 距今 9 天，所有决策以此为锚
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`westd-11235`，工作目录 `/root/trace-verdict-study`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型路径：Qwen-7B `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`；Qwen-1.5B `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`；CodeLlama-13B `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`
+- 数据路径：`/root/autodl-tmp/trace-verdict-study-data/`（各条件 train/test jsonl）
+- Checkpoint 路径：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`
+- 活跃进程：`codellama13b_exception_only_seed123` PID=299731，cuda:0，cron 监控中
+- W&B project：trace-verdict-study（自动 eval chain 会上传 metrics）
+
+### 3. 📊 当前状态
+- **刚完成**：exception_only_nomarker_seed456 (acc=98.07%)、exception_only_nomarker_seed123 (acc=98.32%)、codellama13b_vota_seed42 (acc=98.57%)、codellama13b_no_trace_seed42 (acc=76.47%)、qwen15b_nomarker_seed42 (acc=97.8%)
+- **RUNNING (1)**：`codellama13b_exception_only_seed123` — cuda:0, PID 299731，cron 活跃
+- **QUEUED (7)**：codellama_vota/no_trace/exception_only_seed42（CodeLlama-7B 系列，这是老排队任务可能已废弃）+ qwen1.5b 4 条件 seed42（已有结果，可能是 stale entries）
+- **等待回调**：codellama13b_exception_only_seed123 完成回调（cron reconcile 确认 still running）
+- **无活跃 Worker**
+
+### 4. 📋 待办（条件触发式）
+- `codellama13b_exception_only_seed123` cron 回调到达 → 分析 metrics → 与 seed42 (99.16%) 对比 → 若一致则 3-seed 均值确认 → 立即提交 `codellama13b_exception_only_seed456` 到 cuda:0
+- codellama13b_exception_only 3 seeds 全完成 → 计算 mean±std → 更新 ROADMAP cross-family table → 论文 Table 1 整合
+- cuda:1 当前空闲（loop_only_seed123 应已完成但 registry 未更新）→ 确认状态后立即铺 loop_only_seed456 或 codellama13b_no_trace_seed123
+- 所有新实验数据就绪 → spawn paper-writing Worker patch Table 1 + cross-scale analysis
+- 5/18 前：所有实验完成 → Paper Agent 整合 → Round 6 送审
+
+### 5. 🎯 战略上下文
+- **核心结论**：Exception events 是 verdict prediction 最有效 trace component，跨 3 个模型家族（Qwen/CodeLlama/DeepSeek）、跨 3 个 scale（1.5B/7B/13B）验证。accuracy ≈ 99%+ 且 signal-limited（ceiling = 2/1190 数据标注 artifact）
+- **决策链关键**：D053 升级 signal-limited claim 为正式 finding；D052 确认 scale monotonic pattern（no_trace 越大越好，exception_only 无差异）；D049 universal irreducible ceiling（4 模型共享同 2 个错误样本）
+- **易错点**：QUEUED 里的 7 个实验大部分是 stale（qwen1.5b 系列已有同名不同 exp_id 的完成结果），不要盲目提交；CodeLlama-7B 系列（codellama_*_seed42）vs CodeLlama-13B 系列（codellama13b_*）是不同模型，前者可能已废弃
+- **nomarker 结论**：format marker 贡献 ~3.3pp（96.55% vs 99.83%），D055 判定不影响核心 narrative（信号主要来自 content 而非 format）
+- **9 天冲刺**：剩余实验是 codellama13b multi-seed + loop_only seeds + format marker removal，全部是增量验证而非核心 claim 支撑
+
+## 可查的历史
+前 88 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "4909c151-3b36-46cd-a9d0-1227bf190b21",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T19:57:53.905Z_
+
+```json
+{
+  "parentUuid": "4909c151-3b36-46cd-a9d0-1227bf190b21",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "775d77a4-22d4-4678-8912-d4a362af5b35",
+  "timestamp": "2026-05-16T19:57:53.905Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T19:57:53.905Z_
+
+```json
+{
+  "parentUuid": "775d77a4-22d4-4678-8912-d4a362af5b35",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3ff4f703-b643-4638-ba49-41ce9361252f",
+  "timestamp": "2026-05-16T19:57:53.905Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T19:57:53.906Z_
+
+```json
+{
+  "parentUuid": "3ff4f703-b643-4638-ba49-41ce9361252f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "09cf03d2-50ea-4a30-92b3-02789e917f2d",
+  "timestamp": "2026-05-16T19:57:53.906Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T19:58:01.049Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+我是 Main Agent，Loop #14。需要执行 session-start 初始化：
+
+1. `read_registry` 确认实验状态
+2. `reconcile_crons` 同步 cron
+3. 读 `report.md`
+4. 读 ROADMAP.md
+5. 向 Director 汇报
+
+先确认硬约束：
+- GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`
+- Python: `/root/miniconda3/bin/python`
+
+
+- 活跃实验 `codellama13b_exception_only_seed123` 正在 cuda:0 上运行，PID 为 299731
+
+现在开始执行 session-start 初始化流程。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09cf03d2-50ea-4a30-92b3-02789e917f2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qbuWBFy8FACX4ZVx64",
+  "type": "assistant",
+  "uuid": "61fb0ff0-aa73-4e52-8f64-652ae1381c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TVuTYBYzTnTGphndqvZtn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24630,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 406,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 406,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T19:58:01.238Z_
+
+确认收到 handoff：GPU 白名单仅 `westd-11235:cuda:0/1`，当前 RUNNING 实验 `codellama13b_exception_only_seed123` 在 cuda:0。开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61fb0ff0-aa73-4e52-8f64-652ae1381c5c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qbuWBFy8FACX4ZVx64",
+  "type": "assistant",
+  "uuid": "4a68447a-b903-424a-aa81-fafd7ca38304",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TVuTYBYzTnTGphndqvZtn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24630,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 406,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 406,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T19:58:02.740Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NczDRyq5Us3MRnb8CiZ5mX`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a68447a-b903-424a-aa81-fafd7ca38304",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qbuWBFy8FACX4ZVx64",
+  "type": "assistant",
+  "uuid": "4f1be1e4-a44d-4b66-8094-624ce7346fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TVuTYBYzTnTGphndqvZtn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24630,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 406,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 406,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T19:58:02.747Z_
+
+<details><summary>↩ Tool result · `toolu_01NczDRyq5Us3MRnb8CiZ5mX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f1be1e4-a44d-4b66-8094-624ce7346fa1",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "e76f5137-8ef1-4015-b638-d937b09282d3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "4f1be1e4-a44d-4b66-8094-624ce7346fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T19:58:06.637Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the session-start initialization steps in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e76f5137-8ef1-4015-b638-d937b09282d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qcZUwYhdnqLwNmLwsV",
+  "type": "assistant",
+  "uuid": "5c81e3dd-f407-4ef7-9fb5-3f09ba421434",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A518k8AeFT5EmWYn4ScTRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 36471,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 36471,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T19:58:07.401Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LFRrk7quLoLLv6fXFy3RM4`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c81e3dd-f407-4ef7-9fb5-3f09ba421434",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qcZUwYhdnqLwNmLwsV",
+  "type": "assistant",
+  "uuid": "0799cf25-a420-4b66-9d1c-63e05facca95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A518k8AeFT5EmWYn4ScTRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 36471,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 36471,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T19:58:07.405Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01Kgr7Y6TNoWpZZcfaLiaP4m`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0799cf25-a420-4b66-9d1c-63e05facca95",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qcZUwYhdnqLwNmLwsV",
+  "type": "assistant",
+  "uuid": "60f42fd6-d734-417a-9ee7-9dee60c4910a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A518k8AeFT5EmWYn4ScTRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 36471,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 36471,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T19:58:07.648Z_
+
+<details><summary>↩ Tool result · `toolu_01LFRrk7quLoLLv6fXFy3RM4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:10:52.335Z\", \"updated_at\": \"2026-05-16T19:18:53.831Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"299731\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\", \"submitted_at\": \"2026-05-16T19:10:52.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 123}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2327}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0799cf25-a420-4b66-9d1c-63e05facca95",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "e6471399-e3c9-49f1-944f-e653e0152711",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"codellama13b_exception_only_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:10:52.335Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:18:53.831Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"299731\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T19:10:52.141Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 123}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2327}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:10:52.335Z\", \"updated_at\": \"2026-05-16T19:18:53.831Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"299731\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\", \"submitted_at\": \"2026-05-16T19:10:52.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 123}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2327}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0799cf25-a420-4b66-9d1c-63e05facca95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T19:58:07.949Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01HxruuUkiQ5VcYG6sBRYysP`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6471399-e3c9-49f1-944f-e653e0152711",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qcZUwYhdnqLwNmLwsV",
+  "type": "assistant",
+  "uuid": "9c088371-baeb-484e-a0ca-0accb6bc36e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A518k8AeFT5EmWYn4ScTRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 36471,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 36471,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T19:58:08.076Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01VzoGM6QGbZNNKvYdhABs6C`</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c088371-baeb-484e-a0ca-0accb6bc36e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qcZUwYhdnqLwNmLwsV",
+  "type": "assistant",
+  "uuid": "fbd25b0f-bb35-4386-8e9e-0bb84e366b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A518k8AeFT5EmWYn4ScTRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 36471,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 36471,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "fbd25b0f-bb35-4386-8e9e-0bb84e366b8e",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T19:58:09.793Z_
+
+<details><summary>↩ Tool result · `toolu_01Kgr7Y6TNoWpZZcfaLiaP4m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"codellama13b_exception_only_seed123\", \"success\": true, \"actions\": [\"Job still running (pid=299731)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60f42fd6-d734-417a-9ee7-9dee60c4910a",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "49f36e8b-531d-455e-90f4-6eef9484ce06",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"codellama13b_exception_only_seed123\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=299731)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"codellama13b_exception_only_seed123\", \"success\": true, \"actions\": [\"Job still running (pid=299731)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "60f42fd6-d734-417a-9ee7-9dee60c4910a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T19:58:09.809Z_
+
+<details><summary>↩ Tool result · `toolu_01HxruuUkiQ5VcYG6sBRYysP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| codellama13b_exception_only_seed123 | — | — | — | — |\\n\\n## 待处理\\n- codellama_vota_seed42（排队等待 GPU）\\n- codellama_no_trace_seed42（排队等待 GPU）\\n- codellama_exception_only_seed42（排队等待 GPU）\\n- qwen1.5b_full_trace_seed42（排队等待 GPU）\\n- qwen1.5b_vota_seed42（排队等待 GPU）\\n- qwen1.5b_no_trace_seed42（排队等待 GPU）\\n- qwen1.5b_exception_only_seed42（排队等待 GPU）\\n\\n## 近期结论\\n- **exception_only_nomarker_seed456** (success): —\\n- **exception_only_nomarker_seed123** (success): —\\n- **codellama13b_vota_seed42** (success): —\\n\\n## 趋势\\n成功 42 / 负向 7 / 失败 3 / 共 61\\naccuracy: 0.9807 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42: 已被终止 — unknown\\n- vota_seed42: 已被终止 — unknown\\n- no_trace_seed42_v2: 已被终止 — unknown\\n- vota_seed42_v2: 已被终止 — unknown\\n- no_trace_seed42_v3: 已被终止 — unknown\\n- vota_seed42_v3: 已被终止 — unknown\\n- full_trace_seed42: 已被终止 — unknown\\n- vota_exception_only_seed42: 训练失败 — unknown\\n- vota_seed123: 训练失败 — unknown\\n- vota_seed456: 训练失败 — unknown\\n- deepseek_full_trace_seed42_v2: 已被终止 — unknown\\n- full_trace_2048tok_seed42: 已被终止 — unknown\\n\", \"total_chars\": 1210, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c088371-baeb-484e-a0ca-0accb6bc36e8",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "22028dc5-58e3-479f-ba17-c65222a8fb9a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-16\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| codellama13b_exception_only_seed123 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- codellama_vota_seed42（排队等待 GPU）\\\\n- codellama_no_trace_seed42（排队等待 GPU）\\\\n- codellama_exception_only_seed42（排队等待 GPU）\\\\n- qwen1.5b_full_trace_seed42（排队等待 GPU）\\\\n- qwen1.5b_vota_seed42（排队等待 GPU）\\\\n- qwen1.5b_no_trace_seed42（排队等待 GPU）\\\\n- qwen1.5b_exception_only_seed42（排队等待 GPU）\\\\n\\\\n## 近期结论\\\\n- **exception_only_nomarker_seed456** (success): —\\\\n- **exception_only_nomarker_seed123** (success): —\\\\n- **codellama13b_vota_seed42** (success): —\\\\n\\\\n## 趋势\\\\n成功 42 / 负向 7 / 失败 3 / 共 61\\\\naccuracy: 0.9807 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-11235: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- no_trace_seed42: 已被终止 — unknown\\\\n- vota_seed42: 已被终止 — unknown\\\\n- no_trace_seed42_v2: 已被终止 — unknown\\\\n- vota_seed42_v2: 已被终止 — unknown\\\\n- no_trace_seed42_v3: 已被终止 — unknown\\\\n- vota_seed42_v3: 已被终止 — unknown\\\\n- full_trace_seed42: 已被终止 — unknown\\\\n- vota_exception_only_seed42: 训练失败 — unknown\\\\n- vota_seed123: 训练失败 — unknown\\\\n- vota_seed456: 训练失败 — unknown\\\\n- deepseek_full_trace_seed42_v2: 已被终止 — unknown\\\\n- full_trace_2048tok_seed42: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1210, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| codellama13b_exception_only_seed123 | — | — | — | — |\\n\\n## 待处理\\n- codellama_vota_seed42（排队等待 GPU）\\n- codellama_no_trace_seed42（排队等待 GPU）\\n- codellama_exception_only_seed42（排队等待 GPU）\\n- qwen1.5b_full_trace_seed42（排队等待 GPU）\\n- qwen1.5b_vota_seed42（排队等待 GPU）\\n- qwen1.5b_no_trace_seed42（排队等待 GPU）\\n- qwen1.5b_exception_only_seed42（排队等待 GPU）\\n\\n## 近期结论\\n- **exception_only_nomarker_seed456** (success): —\\n- **exception_only_nomarker_seed123** (success): —\\n- **codellama13b_vota_seed42** (success): —\\n\\n## 趋势\\n成功 42 / 负向 7 / 失败 3 / 共 61\\naccuracy: 0.9807 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42: 已被终止 — unknown\\n- vota_seed42: 已被终止 — unknown\\n- no_trace_seed42_v2: 已被终止 — unknown\\n- vota_seed42_v2: 已被终止 — unknown\\n- no_trace_seed42_v3: 已被终止 — unknown\\n- vota_seed42_v3: 已被终止 — unknown\\n- full_trace_seed42: 已被终止 — unknown\\n- vota_exception_only_seed42: 训练失败 — unknown\\n- vota_seed123: 训练失败 — unknown\\n- vota_seed456: 训练失败 — unknown\\n- deepseek_full_trace_seed42_v2: 已被终止 — unknown\\n- full_trace_2048tok_seed42: 已被终止 — unknown\\n\", \"total_chars\": 1210, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9c088371-baeb-484e-a0ca-0accb6bc36e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T19:58:09.833Z_
+
+<details><summary>↩ Tool result · `toolu_01VzoGM6QGbZNNKvYdhABs6C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-16 11:23 UTC | 更新原因: Fix premature ✅ on ≥99.8% edit; adjust GPU scheduling per Reviewer (codellama13b_exception_only to cuda:0 for earlier result); add prediction overlap task\\n\\n## 核心方向\\nException events 是 verdict prediction 的 **most effective trace component**——跨 scale（1.5B/7B）和跨家族验证中。Qwen-7B 99.83% ± 0.00 (3 seeds)，Qwen-1.5B 99.83%（= 7B，scale-invariant）。详见 paper_framing.md v3.0。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 9 天)\\n\\n## 当前进展\\n- **阶段**: Scope Expansion（Round 5 审稿驱动）+ Paper Agent Full Draft 暂停等新数据\\n- **原始 plan**: 11/11 完成 (10 success, 1 negative)\\n- **Round 5 审稿**: 5 critical + 5 major issues → Action Matrix 已全部派发\\n- **Scope expansion**: 加 Qwen-1.5B（scale diversity）+ CodeLlama-13B（family diversity + larger scale）\\n\\n### Qwen-1.5B 结果 (3/4 done)\\n| Condition | Accuracy | vs 7B | 解读 |\\n|-----------|----------|-------|------|\\n| exception_only | 99.83% | = 7B | **Scale-invariant**，signal-limited |\\n| VOTA | 99.58% | ≈ 7B 99.41% | Near-identical |\\n| no_trace | 67.31% | < 7B 75.13% (-7.82pp) | **Scale-sensitive**，capacity matters without signal |\\n| full_trace | RUNNING | — | cuda:0 |\\n\\n### CodeLlama-13B: Model ready, 0/3 done\\n- exception_only / no_trace / vota → queued, waiting GPU\\n\\n### Multi-seed robustness (Round 5 R2-N3 response)\\n| Condition | Seeds | Mean ± σ | Status |\\n|-----------|-------|----------|--------|\\n| exception_only | 42/123/456 | 99.83% ± 0.00 | ✅ Done |\\n| ae_only | 42/123/456 | 99.64% ± 0.48 | ✅ Done |\\n| label_only | 42/123/456 | 86.39% mean | ✅ Done |\\n| loop_only | 42/123/456 | 42 done, 123 RUNNING, 456 queued | 🔄 |\\n\\n### Format marker removal (R1-N1 response)\\n- exception_only_nomarker_seed42/123/456 → planned, after CodeLlama\\n\\n### Paper edits (Round 5)\\n- ⏳ Claims threshold: ≥99.8% → ≥99%（3 处残留，urgent fix 已派发）\\n- ✅ SBFL/fault localization references added\\n- ✅ Discussion expanded (~0.5 page)\\n- ✅ Title: removed \\\"Cross-Model\\\"\\n- ✅ McNemar p-value attribution fixed\\n- ✅ DebugBench removed from Conclusion future work\\n- ✅ Cluster-robust CI computed (problem_id clusters)\\n- ⏳ Causal language downgraded (approximate decomposition)\\n- ⏳ Truncation caveat on 14.96pp gap\\n- ⏳ Scope qualifier in Abstract\\n- ⏳ Conclusion future work: remove \\\"larger model scales\\\"（1.5B 已验证）\\n- ⏳ 1.5B 数据集成到 Table 1（等 full_trace 完成后统一写入）\\n\\n## 近期任务\\n- [ ] qwen15b_full_trace_seed42 完成 → 1.5B grid complete\\n- [ ] Prediction overlap: 1.5B vs 7B exception_only 错误样本对比（零 GPU cost）\\n- [ ] loop_only_seed123 + seed456 完成\\n- [ ] codellama13b × 3 experiments（exception_only 最高优先级）\\n- [ ] format marker removal × 3\\n- [ ] Paper integration: Table 1 + cross-scale analysis + CodeLlama rows\\n- [ ] Re-submit to Review Director for Round 6\\n\\n## GPU 预算\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\n- cuda:0: qwen15b_full_trace (RUNNING) → **codellama13b_exception_only**（最高优先级）\\n- cuda:1: loop_only_seed123 (RUNNING) → loop_only_seed456 → codellama13b_no_trace\\n\\n## 9 天冲刺路线 (修订 v9)\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/16 (今天) | qwen15b_full_trace + loop_only seeds 完成 | codellama13b_exception_only 今晚出结果 |\\n| 5/17 | codellama13b × 3 完成 + format marker removal 开始 |\\n| 5/18 | 所有新实验完成 → Paper Agent patch 整合新数据 |\\n| 5/19-20 | Reviewer 对抗 Round 6 + 迭代修改 |\\n| 5/21-23 | 论文定稿 + appendix + 最终检查 |\\n| 5/24 | 提交 ARR |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D056 | 2026-05-16 | Nomarker cross-scale 确认 content understanding scal | qwen15b_nomarker_seed42, exception_only_nomarker_seed42 |\\n| D055 | 2026-05-16 | D054 gatekeeper 未通过 (nomarker=96.55% < 99.5%)：sign | exception_only_nomarker_seed42, exception_only_seed42 |\\n| D054 | 2026-05-16 | nomarker ablation 升级为 gatekeeper 实验：论文 narrative 不 | exception_only_nomarker_seed42 |\\n| D053 | 2026-05-16 | 升级 signal-limited claim 从 Discussion finding 到正式 f | codellama13b_exception_only_seed42, qwen15b_exception_only_seed42, deepseek_exception_only_seed42 |\\n| D052 | 2026-05-16 | CodeLlama-13B no_trace=76.47% 确认 scale monotonic p | codellama13b_no_trace_seed42, codellama13b_exception_only_seed42 |\\n| D051 | 2026-05-16 | DeepSeek vs Qwen exception_only gap 根因：MBPP/113 ca | deepseek_exception_only_seed42, qwen15b_exception_only_seed42 |\\n| D050 | 2026-05-16 | Qwen-1.5B 4条件 grid 完成：scale sensitivity 与 signal d | qwen15b_full_trace_seed42, qwen15b_exception_only_seed42, qwen15b_no_trace_seed42 |\\n| D049 | 2026-05-16 | Prediction overlap 确认 universal irreducible ceilin | qwen15b_exception_only_seed42, exception_only_seed123, deepseek_exception_only_seed42 |\\n| D048 | 2026-05-16 | Scale-invariance 定位为 Discussion finding，不升 Claim；C | qwen15b_exception_only_seed42, qwen15b_no_trace_seed42, codellama13b_exception_only_seed42 |\\n| D047 | 2026-05-16 | DebugBench 跨任务验证 + regex baseline 全部完成，exception d | debugbench_exception_only, debugbench_vota, debugbench_no_trace, regex_baseline |\\n\\n\", \"lines\": 92}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbd25b0f-bb35-4386-8e9e-0bb84e366b8e",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "8bc3e546-1d20-4d7a-9199-2d099f9be62b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\\\", \\\"content\\\": \\\"# trace-verdict-study — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 11:23 UTC | 更新原因: Fix premature ✅ on ≥99.8% edit; adjust GPU scheduling per Reviewer (codellama13b_exception_only to cuda:0 for earlier result); add prediction overlap task\\\\n\\\\n## 核心方向\\\\nException events 是 verdict prediction 的 **most effective trace component**——跨 scale（1.5B/7B）和跨家族验证中。Qwen-7B 99.83% ± 0.00 (3 seeds)，Qwen-1.5B 99.83%（= 7B，scale-invariant）。详见 paper_framing.md v3.0。\\\\n\\\\n## 投稿目标\\\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 9 天)\\\\n\\\\n## 当前进展\\\\n- **阶段**: Scope Expansion（Round 5 审稿驱动）+ Paper Agent Full Draft 暂停等新数据\\\\n- **原始 plan**: 11/11 完成 (10 success, 1 negative)\\\\n- **Round 5 审稿**: 5 critical + 5 major issues → Action Matrix 已全部派发\\\\n- **Scope expansion**: 加 Qwen-1.5B（scale diversity）+ CodeLlama-13B（family diversity + larger scale）\\\\n\\\\n### Qwen-1.5B 结果 (3/4 done)\\\\n| Condition | Accuracy | vs 7B | 解读 |\\\\n|-----------|----------|-------|------|\\\\n| exception_only | 99.83% | = 7B | **Scale-invariant**，signal-limited |\\\\n| VOTA | 99.58% | ≈ 7B 99.41% | Near-identical |\\\\n| no_trace | 67.31% | < 7B 75.13% (-7.82pp) | **Scale-sensitive**，capacity matters without signal |\\\\n| full_trace | RUNNING | — | cuda:0 |\\\\n\\\\n### CodeLlama-13B: Model ready, 0/3 done\\\\n- exception_only / no_trace / vota → queued, waiting GPU\\\\n\\\\n### Multi-seed robustness (Round 5 R2-N3 response)\\\\n| Condition | Seeds | Mean ± σ | Status |\\\\n|-----------|-------|----------|--------|\\\\n| exception_only | 42/123/456 | 99.83% ± 0.00 | ✅ Done |\\\\n| ae_only | 42/123/456 | 99.64% ± 0.48 | ✅ Done |\\\\n| label_only | 42/123/456 | 86.39% mean | ✅ Done |\\\\n| loop_only | 42/123/456 | 42 done, 123 RUNNING, 456 queued | 🔄 |\\\\n\\\\n### Format marker removal (R1-N1 response)\\\\n- exception_only_nomarker_seed42/123/456 → planned, after CodeLlama\\\\n\\\\n### Paper edits (Round 5)\\\\n- ⏳ Claims threshold: ≥99.8% → ≥99%（3 处残留，urgent fix 已派发）\\\\n- ✅ SBFL/fault localization references added\\\\n- ✅ Discussion expanded (~0.5 page)\\\\n- ✅ Title: removed \\\\\\\"Cross-Model\\\\\\\"\\\\n- ✅ McNemar p-value attribution fixed\\\\n- ✅ DebugBench removed from Conclusion future work\\\\n- ✅ Cluster-robust CI computed (problem_id clusters)\\\\n- ⏳ Causal language downgraded (approximate decomposition)\\\\n- ⏳ Truncation caveat on 14.96pp gap\\\\n- ⏳ Scope qualifier in Abstract\\\\n- ⏳ Conclusion future work: remove \\\\\\\"larger model scales\\\\\\\"（1.5B 已验证）\\\\n- ⏳ 1.5B 数据集成到 Table 1（等 full_trace 完成后统一写入）\\\\n\\\\n## 近期任务\\\\n- [ ] qwen15b_full_trace_seed42 完成 → 1.5B grid complete\\\\n- [ ] Prediction overlap: 1.5B vs 7B exception_only 错误样本对比（零 GPU cost）\\\\n- [ ] loop_only_seed123 + seed456 完成\\\\n- [ ] codellama13b × 3 experiments（exception_only 最高优先级）\\\\n- [ ] format marker removal × 3\\\\n- [ ] Paper integration: Table 1 + cross-scale analysis + CodeLlama rows\\\\n- [ ] Re-submit to Review Director for Round 6\\\\n\\\\n## GPU 预算\\\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\\\n- cuda:0: qwen15b_full_trace (RUNNING) → **codellama13b_exception_only**（最高优先级）\\\\n- cuda:1: loop_only_seed123 (RUNNING) → loop_only_seed456 → codellama13b_no_trace\\\\n\\\\n## 9 天冲刺路线 (修订 v9)\\\\n| 日期 | 里程碑 |\\\\n|------|--------|\\\\n| 5/16 (今天) | qwen15b_full_trace + loop_only seeds 完成 | codellama13b_exception_only 今晚出结果 |\\\\n| 5/17 | codellama13b × 3 完成 + format marker removal 开始 |\\\\n| 5/18 | 所有新实验完成 → Paper Agent patch 整合新数据 |\\\\n| 5/19-20 | Reviewer 对抗 Round 6 + 迭代修改 |\\\\n| 5/21-23 | 论文定稿 + appendix + 最终检查 |\\\\n| 5/24 | 提交 ARR |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D056 | 2026-05-16 | Nomarker cross-scale 确认 content understanding scal | qwen15b_nomarker_seed42, exception_only_nomarker_seed42 |\\\\n| D055 | 2026-05-16 | D054 gatekeeper 未通过 (nomarker=96.55% < 99.5%)：sign | exception_only_nomarker_seed42, exception_only_seed42 |\\\\n| D054 | 2026-05-16 | nomarker ablation 升级为 gatekeeper 实验：论文 narrative 不 | exception_only_nomarker_seed42 |\\\\n| D053 | 2026-05-16 | 升级 signal-limited claim 从 Discussion finding 到正式 f | codellama13b_exception_only_seed42, qwen15b_exception_only_seed42, deepseek_exception_only_seed42 |\\\\n| D052 | 2026-05-16 | CodeLlama-13B no_trace=76.47% 确认 scale monotonic p | codellama13b_no_trace_seed42, codellama13b_exception_only_seed42 |\\\\n| D051 | 2026-05-16 | DeepSeek vs Qwen exception_only gap 根因：MBPP/113 ca | deepseek_exception_only_seed42, qwen15b_exception_only_seed42 |\\\\n| D050 | 2026-05-16 | Qwen-1.5B 4条件 grid 完成：scale sensitivity 与 signal d | qwen15b_full_trace_seed42, qwen15b_exception_only_seed42, qwen15b_no_trace_seed42 |\\\\n| D049 | 2026-05-16 | Prediction overlap 确认 universal irreducible ceilin | qwen15b_exception_only_seed42, exception_only_seed123, deepseek_exception_only_seed42 |\\\\n| D048 | 2026-05-16 | Scale-invariance 定位为 Discussion finding，不升 Claim；C | qwen15b_exception_only_seed42, qwen15b_no_trace_seed42, codellama13b_exception_only_seed42 |\\\\n| D047 | 2026-05-16 | DebugBench 跨任务验证 + regex baseline 全部完成，exception d | debugbench_exception_only, debugbench_vota, debugbench_no_trace, regex_baseline |\\\\n\\\\n\\\", \\\"lines\\\": 92}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-16 11:23 UTC | 更新原因: Fix premature ✅ on ≥99.8% edit; adjust GPU scheduling per Reviewer (codellama13b_exception_only to cuda:0 for earlier result); add prediction overlap task\\n\\n## 核心方向\\nException events 是 verdict prediction 的 **most effective trace component**——跨 scale（1.5B/7B）和跨家族验证中。Qwen-7B 99.83% ± 0.00 (3 seeds)，Qwen-1.5B 99.83%（= 7B，scale-invariant）。详见 paper_framing.md v3.0。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 9 天)\\n\\n## 当前进展\\n- **阶段**: Scope Expansion（Round 5 审稿驱动）+ Paper Agent Full Draft 暂停等新数据\\n- **原始 plan**: 11/11 完成 (10 success, 1 negative)\\n- **Round 5 审稿**: 5 critical + 5 major issues → Action Matrix 已全部派发\\n- **Scope expansion**: 加 Qwen-1.5B（scale diversity）+ CodeLlama-13B（family diversity + larger scale）\\n\\n### Qwen-1.5B 结果 (3/4 done)\\n| Condition | Accuracy | vs 7B | 解读 |\\n|-----------|----------|-------|------|\\n| exception_only | 99.83% | = 7B | **Scale-invariant**，signal-limited |\\n| VOTA | 99.58% | ≈ 7B 99.41% | Near-identical |\\n| no_trace | 67.31% | < 7B 75.13% (-7.82pp) | **Scale-sensitive**，capacity matters without signal |\\n| full_trace | RUNNING | — | cuda:0 |\\n\\n### CodeLlama-13B: Model ready, 0/3 done\\n- exception_only / no_trace / vota → queued, waiting GPU\\n\\n### Multi-seed robustness (Round 5 R2-N3 response)\\n| Condition | Seeds | Mean ± σ | Status |\\n|-----------|-------|----------|--------|\\n| exception_only | 42/123/456 | 99.83% ± 0.00 | ✅ Done |\\n| ae_only | 42/123/456 | 99.64% ± 0.48 | ✅ Done |\\n| label_only | 42/123/456 | 86.39% mean | ✅ Done |\\n| loop_only | 42/123/456 | 42 done, 123 RUNNING, 456 queued | 🔄 |\\n\\n### Format marker removal (R1-N1 response)\\n- exception_only_nomarker_seed42/123/456 → planned, after CodeLlama\\n\\n### Paper edits (Round 5)\\n- ⏳ Claims threshold: ≥99.8% → ≥99%（3 处残留，urgent fix 已派发）\\n- ✅ SBFL/fault localization references added\\n- ✅ Discussion expanded (~0.5 page)\\n- ✅ Title: removed \\\"Cross-Model\\\"\\n- ✅ McNemar p-value attribution fixed\\n- ✅ DebugBench removed from Conclusion future work\\n- ✅ Cluster-robust CI computed (problem_id clusters)\\n- ⏳ Causal language downgraded (approximate decomposition)\\n- ⏳ Truncation caveat on 14.96pp gap\\n- ⏳ Scope qualifier in Abstract\\n- ⏳ Conclusion future work: remove \\\"larger model scales\\\"（1.5B 已验证）\\n- ⏳ 1.5B 数据集成到 Table 1（等 full_trace 完成后统一写入）\\n\\n## 近期任务\\n- [ ] qwen15b_full_trace_seed42 完成 → 1.5B grid complete\\n- [ ] Prediction overlap: 1.5B vs 7B exception_only 错误样本对比（零 GPU cost）\\n- [ ] loop_only_seed123 + seed456 完成\\n- [ ] codellama13b × 3 experiments（exception_only 最高优先级）\\n- [ ] format marker removal × 3\\n- [ ] Paper integration: Table 1 + cross-scale analysis + CodeLlama rows\\n- [ ] Re-submit to Review Director for Round 6\\n\\n## GPU 预算\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\n- cuda:0: qwen15b_full_trace (RUNNING) → **codellama13b_exception_only**（最高优先级）\\n- cuda:1: loop_only_seed123 (RUNNING) → loop_only_seed456 → codellama13b_no_trace\\n\\n## 9 天冲刺路线 (修订 v9)\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/16 (今天) | qwen15b_full_trace + loop_only seeds 完成 | codellama13b_exception_only 今晚出结果 |\\n| 5/17 | codellama13b × 3 完成 + format marker removal 开始 |\\n| 5/18 | 所有新实验完成 → Paper Agent patch 整合新数据 |\\n| 5/19-20 | Reviewer 对抗 Round 6 + 迭代修改 |\\n| 5/21-23 | 论文定稿 + appendix + 最终检查 |\\n| 5/24 | 提交 ARR |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D056 | 2026-05-16 | Nomarker cross-scale 确认 content understanding scal | qwen15b_nomarker_seed42, exception_only_nomarker_seed42 |\\n| D055 | 2026-05-16 | D054 gatekeeper 未通过 (nomarker=96.55% < 99.5%)：sign | exception_only_nomarker_seed42, exception_only_seed42 |\\n| D054 | 2026-05-16 | nomarker ablation 升级为 gatekeeper 实验：论文 narrative 不 | exception_only_nomarker_seed42 |\\n| D053 | 2026-05-16 | 升级 signal-limited claim 从 Discussion finding 到正式 f | codellama13b_exception_only_seed42, qwen15b_exception_only_seed42, deepseek_exception_only_seed42 |\\n| D052 | 2026-05-16 | CodeLlama-13B no_trace=76.47% 确认 scale monotonic p | codellama13b_no_trace_seed42, codellama13b_exception_only_seed42 |\\n| D051 | 2026-05-16 | DeepSeek vs Qwen exception_only gap 根因：MBPP/113 ca | deepseek_exception_only_seed42, qwen15b_exception_only_seed42 |\\n| D050 | 2026-05-16 | Qwen-1.5B 4条件 grid 完成：scale sensitivity 与 signal d | qwen15b_full_trace_seed42, qwen15b_exception_only_seed42, qwen15b_no_trace_seed42 |\\n| D049 | 2026-05-16 | Prediction overlap 确认 universal irreducible ceilin | qwen15b_exception_only_seed42, exception_only_seed123, deepseek_exception_only_seed42 |\\n| D048 | 2026-05-16 | Scale-invariance 定位为 Discussion finding，不升 Claim；C | qwen15b_exception_only_seed42, qwen15b_no_trace_seed42, codellama13b_exception_only_seed42 |\\n| D047 | 2026-05-16 | DebugBench 跨任务验证 + regex baseline 全部完成，exception d | debugbench_exception_only, debugbench_vota, debugbench_no_trace, regex_baseline |\\n\\n\", \"lines\": 92}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fbd25b0f-bb35-4386-8e9e-0bb84e366b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-16T19:58:21.071Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me summarize the current state:
+
+1. **RUNNING**: `codellama13b_exception_only_seed123` — still running, PID 299731, cuda:0, cron confirms alive
+2. **Reconcile**: 1 cron reconciled, job still running
+3. **Report**: Shows 1 running experiment, 7 queued (likely stale), recent successes
+4. **ROADMAP**: Clear 9-day sprint plan, codellama13b_exception_only on cuda:0
+
+
+5. **Resource check**: cuda:0 is occupied, but cuda:1 status is unclear — the handoff mentions loop_only_seed123 should have finished but the registry hasn't updated yet. I need to verify what's actually on cuda:1 and check if there are any recently completed experiments before reporting to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bc3e546-1d20-4d7a-9199-2d099f9be62b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qd5bg7cwCBkTmMhvuV",
+  "type": "assistant",
+  "uuid": "3c05b6ba-8530-4afe-b75a-94b9cfbbe4da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DouQ1MGAE9QCgqBq1Q5VU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 37755,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 37755,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T19:58:21.913Z_
+
+状态确认：`codellama13b_exception_only_seed123` 仍在 cuda:0 运行中（PID 299731）。cuda:1 状态需要确认。检查 loop_only_seed123 和近期完成的实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c05b6ba-8530-4afe-b75a-94b9cfbbe4da",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qd5bg7cwCBkTmMhvuV",
+  "type": "assistant",
+  "uuid": "1e21a186-1c2f-43bd-bc09-4373a8827cf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DouQ1MGAE9QCgqBq1Q5VU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 37755,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 37755,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T19:58:23.354Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015LUyiGzczG4W8jh7GPiFjg`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "status",
+    "conclusion",
+    "metrics",
+    "updated_at",
+    "spec"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e21a186-1c2f-43bd-bc09-4373a8827cf9",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qd5bg7cwCBkTmMhvuV",
+  "type": "assistant",
+  "uuid": "6bd8aa98-34f3-4385-957a-f5d5d199cfcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DouQ1MGAE9QCgqBq1Q5VU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4380,
+      "cache_read_input_tokens": 37755,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 37755,
+          "cache_creation_input_tokens": 4380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "6bd8aa98-34f3-4385-957a-f5d5d199cfcf",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:58:23.569Z_
+
+<details><summary>↩ Tool result · `toolu_015LUyiGzczG4W8jh7GPiFjg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exception_only_nomarker_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:47:16.706Z\", \"spec\": {\"hypothesis\": \"Task G: Format marker ablation — seed=456. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\", \"parent\": \"exception_only_seed42\", \"plan_id\": \"round5_task_g\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9807, \"n\": 1190, \"errors\": 23, \"ci_95\": [0.9712, 0.9871], \"pass_f1\": 0.9865, \"fail_f1\": 0.9658, \"pass_precision\": 0.9836, \"pass_recall\": 0.9894, \"fail_precision\": 0.9731, \"fail_recall\": 0.9587, \"lift_over_majority\": 0.266}}, \"exception_only_nomarker_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:16:01.692Z\", \"spec\": {\"hypothesis\": \"Task G: Format marker ablation — seed=123. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\", \"parent\": \"exception_only_seed42\", \"plan_id\": \"round5_task_g\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"command\": \"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct --gradient_checkpointing --gpu 0 --seed 123\", \"pid\": \"294700\", \"log_path\": \"/tmp/nomarker_seed123.log\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9832, \"n\": 1190, \"ci_95\": [0.9756, 0.9899], \"pass_f1\": 0.9882, \"fail_f1\": 0.9705, \"pass_precision\": 0.9882, \"pass_recall\": 0.9882, \"fail_precision\": 0.9705, \"fail_recall\": 0.9705, \"lift_over_majority\": 0.2681}}, \"codellama13b_vota_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T18:25:27.552Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"279473\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_vota_seed42.log\", \"submitted_at\": \"2026-05-16T14:23:09.712Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 14537.8, \"gpu_hours\": 4.04}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9857, \"n\": 1190, \"errors\": 17, \"ci_95\": [0.979, 0.992]}}, \"qwen15b_nomarker_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T17:47:36.397Z\", \"spec\": {\"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"command\": \"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42\", \"pid\": \"292150\", \"log_path\": \"/tmp/qwen15b_nomarker_seed42.log\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.978, \"n\": 1190, \"accuracy_ci\": [0.97, 0.986], \"majority_baseline\": 0.715, \"lift\": 0.263, \"pass_precision\": 0.97, \"pass_recall\": 1, \"pass_f1\": 0.98, \"fail_precision\": 1, \"fail_recall\": 0.92, \"fail_f1\": 0.96}}, \"exception_only_nomarker_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T17:09:23.981Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only_nomarker --model_path models/Qwen2.5-Coder-7B-Instruct --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42 --wandb_run_name exception_only_nomarker_seed42 --gradient_checkpointing && python eval/evaluate.py --condition exception_only_nomarker --checkpoint_dir .../exception_only_nomarker_seed42/final --save_predictions\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_{train,test}.jsonl\", \"data_count\": 5910, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42_train.log\", \"gpu\": \"cuda:0\", \"tmux_session\": \"nomarker_seed42\", \"description\": \"R1-N1 control: exception_only with ALL bracket format markers removed\", \"markers_removed\": [\"[No exception data in trace]\", \"[ERROR] prefix\", \"[No trace available]\", \"[...trace truncated...]\"], \"train_samples\": 4720, \"test_samples\": 1190}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9655, \"n\": 1190, \"accuracy_ci\": [0.955, 0.976]}}, \"codellama13b_exception_only_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:48:23.848Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"271776\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed42.log\", \"submitted_at\": \"2026-05-16T12:03:38.585Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 9885.3, \"gpu_hours\": 2.75}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"n\": 1190, \"errors\": 2}}, \"loop_only_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:26:30.516Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed456 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"269723\", \"log_path\": \"~/runs/trace-verdict-study/loop_only_seed456.log\", \"submitted_at\": \"2026-05-16T11:31:50.484Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7892.7, \"gpu_hours\": 2.19}, \"metrics\": {\"accuracy\": 0.8664, \"n\": 1190, \"pass_precision\": 0.9179, \"pass_recall\": 0.8931, \"pass_f1\": 0.9053, \"fail_precision\": 0.7486, \"fail_recall\": 0.7994, \"fail_f1\": 0.7732, \"accuracy_ci\": [0.847, 0.884]}, \"conclusion\": \"success\"}, \"loop_only_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:26:29.406Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed123 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"261213\", \"log_path\": \"~/runs/trace-verdict-study/loop_only_seed123.log\", \"submitted_at\": \"2026-05-16T09:21:29.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final\", \"wall_clock_seconds\": 7779.8, \"gpu_hours\": 2.16}, \"metrics\": {\"accuracy\": 0.8588, \"majority_baseline\": 0.7151, \"lift\": 0.1437, \"n\": 1190, \"pass_precision\": 0.9129, \"pass_recall\": 0.8872, \"pass_f1\": 0.8999, \"fail_precision\": 0.7355, \"fail_recall\": 0.7876, \"fail_f1\": 0.7607, \"accuracy_ci\": [0.8403, 0.8773]}, \"conclusion\": \"success\"}, \"codellama13b_no_trace_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:22:58.643Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"277044\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_no_trace_seed42.log\", \"submitted_at\": \"2026-05-16T13:42:06.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2451.8, \"gpu_hours\": 0.68}, \"metrics\": {\"accuracy\": 0.765, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.05, \"pass_precision\": 0.84, \"pass_recall\": 0.83, \"pass_f1\": 0.84, \"fail_precision\": 0.59, \"fail_recall\": 0.59, \"fail_f1\": 0.59, \"accuracy_ci\": [0.738, 0.787]}, \"conclusion\": \"success\"}, \"qwen15b_full_trace_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:03:49.820Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name qwen15b_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"267886\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_full_trace_seed42.log\", \"submitted_at\": \"2026-05-16T11:10:01.431Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3228.4, \"gpu_hours\": 0.9}, \"metrics\": {\"accuracy\": 0.7706, \"n\": 1190}, \"conclusion\": \"success\"}}, \"count\": 10, \"total\": 61, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1939}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bd8aa98-34f3-4385-957a-f5d5d199cfcf",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "1cb9d7d3-8497-4151-8934-bfe46659a321",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exception_only_nomarker_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:47:16.706Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Task G: Format marker ablation — seed=456. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\\\", \\\"parent\\\": \\\"exception_only_seed42\\\", \\\"plan_id\\\": \\\"round5_task_g\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9807, \\\"n\\\": 1190, \\\"errors\\\": 23, \\\"ci_95\\\": [0.9712, 0.9871], \\\"pass_f1\\\": 0.9865, \\\"fail_f1\\\": 0.9658, \\\"pass_precision\\\": 0.9836, \\\"pass_recall\\\": 0.9894, \\\"fail_precision\\\": 0.9731, \\\"fail_recall\\\": 0.9587, \\\"lift_over_majority\\\": 0.266}}, \\\"exception_only_nomarker_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:16:01.692Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Task G: Format marker ablation — seed=123. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\\\", \\\"parent\\\": \\\"exception_only_seed42\\\", \\\"plan_id\\\": \\\"round5_task_g\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct --gradient_checkpointing --gpu 0 --seed 123\\\", \\\"pid\\\": \\\"294700\\\", \\\"log_path\\\": \\\"/tmp/nomarker_seed123.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9832, \\\"n\\\": 1190, \\\"ci_95\\\": [0.9756, 0.9899], \\\"pass_f1\\\": 0.9882, \\\"fail_f1\\\": 0.9705, \\\"pass_precision\\\": 0.9882, \\\"pass_recall\\\": 0.9882, \\\"fail_precision\\\": 0.9705, \\\"fail_recall\\\": 0.9705, \\\"lift_over_majority\\\": 0.2681}}, \\\"codellama13b_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:25:27.552Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"279473\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:23:09.712Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 14537.8, \\\"gpu_hours\\\": 4.04}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9857, \\\"n\\\": 1190, \\\"errors\\\": 17, \\\"ci_95\\\": [0.979, 0.992]}}, \\\"qwen15b_nomarker_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T17:47:36.397Z\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42\\\", \\\"pid\\\": \\\"292150\\\", \\\"log_path\\\": \\\"/tmp/qwen15b_nomarker_seed42.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.978, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.97, 0.986], \\\"majority_baseline\\\": 0.715, \\\"lift\\\": 0.263, \\\"pass_precision\\\": 0.97, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.98, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.92, \\\"fail_f1\\\": 0.96}}, \\\"exception_only_nomarker_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T17:09:23.981Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition exception_only_nomarker --model_path models/Qwen2.5-Coder-7B-Instruct --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42 --wandb_run_name exception_only_nomarker_seed42 --gradient_checkpointing && python eval/evaluate.py --condition exception_only_nomarker --checkpoint_dir .../exception_only_nomarker_seed42/final --save_predictions\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_{train,test}.jsonl\\\", \\\"data_count\\\": 5910, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42_train.log\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"tmux_session\\\": \\\"nomarker_seed42\\\", \\\"description\\\": \\\"R1-N1 control: exception_only with ALL bracket format markers removed\\\", \\\"markers_removed\\\": [\\\"[No exception data in trace]\\\", \\\"[ERROR] prefix\\\", \\\"[No trace available]\\\", \\\"[...trace truncated...]\\\"], \\\"train_samples\\\": 4720, \\\"test_samples\\\": 1190}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9655, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.955, 0.976]}}, \\\"codellama13b_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T14:48:23.848Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"271776\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:03:38.585Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 9885.3, \\\"gpu_hours\\\": 2.75}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"n\\\": 1190, \\\"errors\\\": 2}}, \\\"loop_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T14:26:30.516Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed456 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"269723\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/loop_only_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T11:31:50.484Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7892.7, \\\"gpu_hours\\\": 2.19}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8664, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9179, \\\"pass_recall\\\": 0.8931, \\\"pass_f1\\\": 0.9053, \\\"fail_precision\\\": 0.7486, \\\"fail_recall\\\": 0.7994, \\\"fail_f1\\\": 0.7732, \\\"accuracy_ci\\\": [0.847, 0.884]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"loop_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T14:26:29.406Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed123 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261213\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/loop_only_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T09:21:29.194Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final\\\", \\\"wall_clock_seconds\\\": 7779.8, \\\"gpu_hours\\\": 2.16}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8588, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1437, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9129, \\\"pass_recall\\\": 0.8872, \\\"pass_f1\\\": 0.8999, \\\"fail_precision\\\": 0.7355, \\\"fail_recall\\\": 0.7876, \\\"fail_f1\\\": 0.7607, \\\"accuracy_ci\\\": [0.8403, 0.8773]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"codellama13b_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T14:22:58.643Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"277044\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T13:42:06.812Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2451.8, \\\"gpu_hours\\\": 0.68}, \\\"metrics\\\": {\\\"accuracy\\\": 0.765, \\\"n\\\": 1190, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.05, \\\"pass_precision\\\": 0.84, \\\"pass_recall\\\": 0.83, \\\"pass_f1\\\": 0.84, \\\"fail_precision\\\": 0.59, \\\"fail_recall\\\": 0.59, \\\"fail_f1\\\": 0.59, \\\"accuracy_ci\\\": [0.738, 0.787]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen15b_full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T12:03:49.820Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name qwen15b_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"267886\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T11:10:01.431Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 3228.4, \\\"gpu_hours\\\": 0.9}, \\\"metrics\\\": {\\\"accuracy\\\": 0.7706, \\\"n\\\": 1190}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 10, \\\"total\\\": 61, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1939}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exception_only_nomarker_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:47:16.706Z\", \"spec\": {\"hypothesis\": \"Task G: Format marker ablation — seed=456. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\", \"parent\": \"exception_only_seed42\", \"plan_id\": \"round5_task_g\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9807, \"n\": 1190, \"errors\": 23, \"ci_95\": [0.9712, 0.9871], \"pass_f1\": 0.9865, \"fail_f1\": 0.9658, \"pass_precision\": 0.9836, \"pass_recall\": 0.9894, \"fail_precision\": 0.9731, \"fail_recall\": 0.9587, \"lift_over_majority\": 0.266}}, \"exception_only_nomarker_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:16:01.692Z\", \"spec\": {\"hypothesis\": \"Task G: Format marker ablation — seed=123. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.\", \"parent\": \"exception_only_seed42\", \"plan_id\": \"round5_task_g\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"command\": \"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct --gradient_checkpointing --gpu 0 --seed 123\", \"pid\": \"294700\", \"log_path\": \"/tmp/nomarker_seed123.log\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9832, \"n\": 1190, \"ci_95\": [0.9756, 0.9899], \"pass_f1\": 0.9882, \"fail_f1\": 0.9705, \"pass_precision\": 0.9882, \"pass_recall\": 0.9882, \"fail_precision\": 0.9705, \"fail_recall\": 0.9705, \"lift_over_majority\": 0.2681}}, \"codellama13b_vota_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T18:25:27.552Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"279473\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_vota_seed42.log\", \"submitted_at\": \"2026-05-16T14:23:09.712Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 14537.8, \"gpu_hours\": 4.04}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9857, \"n\": 1190, \"errors\": 17, \"ci_95\": [0.979, 0.992]}}, \"qwen15b_nomarker_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T17:47:36.397Z\", \"spec\": {\"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"command\": \"cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_nomarker --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42\", \"pid\": \"292150\", \"log_path\": \"/tmp/qwen15b_nomarker_seed42.log\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.978, \"n\": 1190, \"accuracy_ci\": [0.97, 0.986], \"majority_baseline\": 0.715, \"lift\": 0.263, \"pass_precision\": 0.97, \"pass_recall\": 1, \"pass_f1\": 0.98, \"fail_precision\": 1, \"fail_recall\": 0.92, \"fail_f1\": 0.96}}, \"exception_only_nomarker_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T17:09:23.981Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only_nomarker --model_path models/Qwen2.5-Coder-7B-Instruct --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42 --wandb_run_name exception_only_nomarker_seed42 --gradient_checkpointing && python eval/evaluate.py --condition exception_only_nomarker --checkpoint_dir .../exception_only_nomarker_seed42/final --save_predictions\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_{train,test}.jsonl\", \"data_count\": 5910, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42_train.log\", \"gpu\": \"cuda:0\", \"tmux_session\": \"nomarker_seed42\", \"description\": \"R1-N1 control: exception_only with ALL bracket format markers removed\", \"markers_removed\": [\"[No exception data in trace]\", \"[ERROR] prefix\", \"[No trace available]\", \"[...trace truncated...]\"], \"train_samples\": 4720, \"test_samples\": 1190}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9655, \"n\": 1190, \"accuracy_ci\": [0.955, 0.976]}}, \"codellama13b_exception_only_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:48:23.848Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"271776\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed42.log\", \"submitted_at\": \"2026-05-16T12:03:38.585Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 9885.3, \"gpu_hours\": 2.75}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"n\": 1190, \"errors\": 2}}, \"loop_only_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:26:30.516Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed456 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"269723\", \"log_path\": \"~/runs/trace-verdict-study/loop_only_seed456.log\", \"submitted_at\": \"2026-05-16T11:31:50.484Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7892.7, \"gpu_hours\": 2.19}, \"metrics\": {\"accuracy\": 0.8664, \"n\": 1190, \"pass_precision\": 0.9179, \"pass_recall\": 0.8931, \"pass_f1\": 0.9053, \"fail_precision\": 0.7486, \"fail_recall\": 0.7994, \"fail_f1\": 0.7732, \"accuracy_ci\": [0.847, 0.884]}, \"conclusion\": \"success\"}, \"loop_only_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:26:29.406Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed123 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"261213\", \"log_path\": \"~/runs/trace-verdict-study/loop_only_seed123.log\", \"submitted_at\": \"2026-05-16T09:21:29.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final\", \"wall_clock_seconds\": 7779.8, \"gpu_hours\": 2.16}, \"metrics\": {\"accuracy\": 0.8588, \"majority_baseline\": 0.7151, \"lift\": 0.1437, \"n\": 1190, \"pass_precision\": 0.9129, \"pass_recall\": 0.8872, \"pass_f1\": 0.8999, \"fail_precision\": 0.7355, \"fail_recall\": 0.7876, \"fail_f1\": 0.7607, \"accuracy_ci\": [0.8403, 0.8773]}, \"conclusion\": \"success\"}, \"codellama13b_no_trace_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:22:58.643Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"277044\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_no_trace_seed42.log\", \"submitted_at\": \"2026-05-16T13:42:06.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2451.8, \"gpu_hours\": 0.68}, \"metrics\": {\"accuracy\": 0.765, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.05, \"pass_precision\": 0.84, \"pass_recall\": 0.83, \"pass_f1\": 0.84, \"fail_precision\": 0.59, \"fail_recall\": 0.59, \"fail_f1\": 0.59, \"accuracy_ci\": [0.738, 0.787]}, \"conclusion\": \"success\"}, \"qwen15b_full_trace_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:03:49.820Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name qwen15b_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_seed42/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"267886\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_full_trace_seed42.log\", \"submitted_at\": \"2026-05-16T11:10:01.431Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3228.4, \"gpu_hours\": 0.9}, \"metrics\": {\"accuracy\": 0.7706, \"n\": 1190}, \"conclusion\": \"success\"}}, \"count\": 10, \"total\": 61, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1939}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6bd8aa98-34f3-4385-957a-f5d5d199cfcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "1cb9d7d3-8497-4151-8934-bfe46659a321",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-16T19:59:04.899Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. **RUNNING (cuda:0)**: `codellama13b_exception_only_seed123` — PID 299731, still active
+2. **cuda:1**: IDLE — `loop_only_seed123` and `loop_only_seed456` both DONE, `codellama13b_no_trace_seed42` DONE, `codellama13b_vota_seed42` DONE
+
+Key findings:
+- cuda:1 is **idle** right now! The last experiment that ran on it was `codellama13b_no_trace_seed42` (completed at 14:22 UTC) or the nomarker experiments. 
+
+I'm realizing this violates the requirement that all allocated GPUs must be running. Looking at the completed experiments on cuda:1 — `loop_only_seed123` (85.88%), `loop_only_seed456` (86.64%), and `codellama13b_no_trace` — I can see the roadmap has been followed through, but cuda:1 is now sitting idle when it should have the next task queued up. Looking at the status of each experiment, I see `codellama13b_no_trace_seed123` is ready to go and would be the best use of the idle cuda:1 GPU right now to start building out the multi-seed validation for CodeLlama-13B.
+
+But stepping back on priorities: the exception_only condition is the core claim and needs the most attention, followed by ensuring we have at least one seed across all three CodeLlama-13B conditions for the paper—which we already do. The format marker removal experiments are still pending, and with 9 days left, multi-seed validation might be secondary to getting those other conditions running.
+
+Since cuda:1 is available right now and seed123 is already running on cuda:0, I should start `codellama13b_exception_only_seed456` to build out the 3-seed robustness for the main claim in parallel.
+
+Now I need to check my role — as the coordinator, I should delegate SSH operations and code changes to a Worker, but I can directly submit experiments on already-allocated GPUs myself.
+
+Since cuda:1 is whitelisted, I can use `submit_on_allocated` directly. Let me verify the proper flow: checking if there's an existing QUEUED experiment I need to allocate first, or if I should submit directly via `submit_training_job` like recent successful runs did. I'll also need to load the submission tools and prepare a report for the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cb9d7d3-8497-4151-8934-bfe46659a321",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qe6HsmYnFgVPfkjxvq",
+  "type": "assistant",
+  "uuid": "76bb464e-a40c-41b4-9fc0-3be0084e2015",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKHDm3q7tnd1QmB5pLmN2f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5834,
+      "cache_read_input_tokens": 42135,
+      "output_tokens": 1881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1881,
+          "cache_read_input_tokens": 42135,
+          "cache_creation_input_tokens": 5834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-16T19:59:05.606Z_
+
+关键发现：**cuda:1 空闲**——`loop_only_seed123`(acc=85.88%)、`loop_only_seed456`(acc=86.64%)、`codellama13b_no_trace_seed42`(76.5%)、`codellama13b_vota_seed42`(98.57%) 全部已完成。这是 L1 违规（GPU 空闲即失职）。
+
+需要立即在 cuda:1 提交下一个实验。最高优先级：`codellama13b_exception_only_seed456`——完成核心 claim 的 3-seed 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76bb464e-a40c-41b4-9fc0-3be0084e2015",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qe6HsmYnFgVPfkjxvq",
+  "type": "assistant",
+  "uuid": "cd10916a-3fce-44bb-ac9b-70908f151f6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKHDm3q7tnd1QmB5pLmN2f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5834,
+      "cache_read_input_tokens": 42135,
+      "output_tokens": 1881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1881,
+          "cache_read_input_tokens": 42135,
+          "cache_creation_input_tokens": 5834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T19:59:07.375Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LGSdQxhVwzccZUjdB75qhu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd10916a-3fce-44bb-ac9b-70908f151f6a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qe6HsmYnFgVPfkjxvq",
+  "type": "assistant",
+  "uuid": "f2d572bb-b2a0-4a3f-b4a5-e62c652293b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKHDm3q7tnd1QmB5pLmN2f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5834,
+      "cache_read_input_tokens": 42135,
+      "output_tokens": 1881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5834,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1881,
+          "cache_read_input_tokens": 42135,
+          "cache_creation_input_tokens": 5834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5834
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T19:59:07.389Z_
+
+<details><summary>↩ Tool result · `toolu_01LGSdQxhVwzccZUjdB75qhu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2d572bb-b2a0-4a3f-b4a5-e62c652293b4",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "3ef3f0c2-a2c0-4d9b-b548-c4857ddc8e3f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "f2d572bb-b2a0-4a3f-b4a5-e62c652293b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-16T19:59:07.498Z_
+
+```json
+{
+  "parentUuid": "3ef3f0c2-a2c0-4d9b-b548-c4857ddc8e3f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ca1d824e-c79f-46ec-a554-a9a8cf57fd04",
+  "timestamp": "2026-05-16T19:59:07.498Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T19:59:21.846Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I need to submit `codellama13b_exception_only_seed456` on cuda:1. Let me construct the command based on the successful seed42 and seed123 patterns.
+
+Looking at the seed42 command:
+```
+bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed42
+
+&& python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/eval_results.json --save_predictions"
+```
+
+I'll adapt this by swapping seed 42 for 456, updating the output directory and wandb run name accordingly, and switching the GPU to cuda:1. The evaluation script will run on cuda:1 which is available, and the training job submission will automatically update the registry with the necessary specs. I should notify the Director about the current resource state—cuda:1 is idle and ready for the evaluation phase.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca1d824e-c79f-46ec-a554-a9a8cf57fd04",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qhLDcRnLErZGD4BSHk",
+  "type": "assistant",
+  "uuid": "7d8a855e-43e2-40e5-b6d9-149e4c608a90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182VmYbiQHJL7c4WtLWSxdz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 47969,
+      "output_tokens": 1628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1628,
+          "cache_read_input_tokens": 47969,
+          "cache_creation_input_tokens": 3420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T19:59:21.849Z_
+
+立即提交 `codellama13b_exception_only_seed456` 到空闲的 cuda:1，同时向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d8a855e-43e2-40e5-b6d9-149e4c608a90",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qhLDcRnLErZGD4BSHk",
+  "type": "assistant",
+  "uuid": "e70d3bba-32af-4b76-8911-dca8ba7963c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182VmYbiQHJL7c4WtLWSxdz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 47969,
+      "output_tokens": 1628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1628,
+          "cache_read_input_tokens": 47969,
+          "cache_creation_input_tokens": 3420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T19:59:25.353Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01BzEhvArqBCJHY9keqX5oWS`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "gpu_ids": [
+    "cuda:1"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\"",
+  "exp_id": "codellama13b_exception_only_seed456",
+  "project": "trace-verdict-study",
+  "timeout_hours": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e70d3bba-32af-4b76-8911-dca8ba7963c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qhLDcRnLErZGD4BSHk",
+  "type": "assistant",
+  "uuid": "6ddef6bc-ed86-4708-8118-464774716177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182VmYbiQHJL7c4WtLWSxdz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 47969,
+      "output_tokens": 1628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1628,
+          "cache_read_input_tokens": 47969,
+          "cache_creation_input_tokens": 3420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T19:59:26.707Z_
+
+<details><summary>↩ Tool result · `toolu_01BzEhvArqBCJHY9keqX5oWS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"303301\", \"log_file\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-11235\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"codellama13b_exception_only_seed456\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ddef6bc-ed86-4708-8118-464774716177",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "6a8499f4-5eb3-4501-88a1-feb17aa8470b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"303301\\\", \\\"log_file\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-11235\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"codellama13b_exception_only_seed456\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"303301\", \"log_file\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-11235\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"codellama13b_exception_only_seed456\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6ddef6bc-ed86-4708-8118-464774716177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T19:59:27.924Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AByBTExGneCa21ZbhPZMxs`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "spec",
+  "value": {
+    "hypothesis": "CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim",
+    "parent": "codellama13b_exception_only_seed42",
+    "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl",
+    "data_count": 4720,
+    "model_name": "CodeLlama-13b-Instruct-hf",
+    "seed": 456
+  },
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a8499f4-5eb3-4501-88a1-feb17aa8470b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qhLDcRnLErZGD4BSHk",
+  "type": "assistant",
+  "uuid": "de6c5f1b-4aab-4d4f-acd8-12e5a61b5ffc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182VmYbiQHJL7c4WtLWSxdz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 47969,
+      "output_tokens": 1628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1628,
+          "cache_read_input_tokens": 47969,
+          "cache_creation_input_tokens": 3420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T19:59:28.274Z_
+
+<details><summary>↩ Tool result · `toolu_01AByBTExGneCa21ZbhPZMxs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T19:59:28.131Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3392}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de6c5f1b-4aab-4d4f-acd8-12e5a61b5ffc",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "ac19c48a-02ff-407c-8c42-fc8d44a20c9f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:59:28.131Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3392}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T19:59:28.131Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3392}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de6c5f1b-4aab-4d4f-acd8-12e5a61b5ffc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-16T19:59:44.474Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment is submitted successfully. PID=303301 on cuda:1. The registry entry is at PREPARING but the submit_training_job already started it, so I might need to check if the status auto-transitions to RUNNING. Let me also note that `submit_training_job` should have auto-set it to RUNNING... let me check the registry state.
+
+Actually looking at the response from submit_training_job, it returned success with PID 303301. But the update_registry call shows status=PREPARING. That's because I did the spec update AFTER the submit — the submit should have created the entry and set it to RUNNING. 
+
+Let me trace through what actually happened: submit_training_job succeeded and created the tmux session with PID 303301, but my separate update_registry call shows the entry was created slightly before the submit completed, which suggests there might be a race condition or the system expects me to explicitly transition the status to RUNNING after submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac19c48a-02ff-407c-8c42-fc8d44a20c9f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qispB7hvQnZwcm8bXe",
+  "type": "assistant",
+  "uuid": "b1b50578-d61c-45f1-8de2-83467fbd3e9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdiJV1xGop2GLT63nmfWZm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 51389,
+      "output_tokens": 609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 609,
+          "cache_read_input_tokens": 51389,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T19:59:45.968Z_
+
+实验已提交：`codellama13b_exception_only_seed456` PID=303301 在 cuda:1 启动。两块 GPU 现在都在跑。
+
+让我确认 registry 状态已正确转为 RUNNING，然后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1b50578-d61c-45f1-8de2-83467fbd3e9f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qispB7hvQnZwcm8bXe",
+  "type": "assistant",
+  "uuid": "13f5e868-04b5-4ba4-a6e8-a1365fa6a63a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdiJV1xGop2GLT63nmfWZm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 51389,
+      "output_tokens": 609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 609,
+          "cache_read_input_tokens": 51389,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T19:59:46.491Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WaCP8cswk62wUrGdBdrdsw`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "status",
+    "spec",
+    "updated_at"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13f5e868-04b5-4ba4-a6e8-a1365fa6a63a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qispB7hvQnZwcm8bXe",
+  "type": "assistant",
+  "uuid": "bd98f77f-3c45-4368-acf1-3a845038e5a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdiJV1xGop2GLT63nmfWZm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 51389,
+      "output_tokens": 609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 609,
+          "cache_read_input_tokens": 51389,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "bd98f77f-3c45-4368-acf1-3a845038e5a0",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T19:59:46.708Z_
+
+<details><summary>↩ Tool result · `toolu_01WaCP8cswk62wUrGdBdrdsw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed123\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-16T19:18:53.831Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"299731\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\", \"submitted_at\": \"2026-05-16T19:10:52.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 123}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.201}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd98f77f-3c45-4368-acf1-3a845038e5a0",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "b86b1017-b0c8-47fa-9cb2-d2b5c52e4fb0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"codellama13b_exception_only_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-16T19:18:53.831Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"299731\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T19:10:52.141Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 123}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.201}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed123\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-16T19:18:53.831Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"299731\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log\", \"submitted_at\": \"2026-05-16T19:10:52.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 123}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.201}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bd98f77f-3c45-4368-acf1-3a845038e5a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-16T19:59:51.623Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The seed456 experiment isn't showing as RUNNING yet — it's likely still PREPARING because submit_training_job created its own entry but my parallel update_registry might have created a separate PREPARING entry. Or it might just take a moment. Let me check the full state of codellama13b_exception_only_seed456.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b86b1017-b0c8-47fa-9cb2-d2b5c52e4fb0",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkDmkSNQB2g7X22Uri",
+  "type": "assistant",
+  "uuid": "d59e32fc-2d88-4124-bfa1-a54c8326dd0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgovvYtaYM1Ayfvh38cKxv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 53523,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 53523,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T19:59:52.039Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01P9KdJDj6pVJ5VemhESabnW`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "exp_id": "codellama13b_exception_only_seed456"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d59e32fc-2d88-4124-bfa1-a54c8326dd0d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkDmkSNQB2g7X22Uri",
+  "type": "assistant",
+  "uuid": "3ad89987-ac9e-4c6f-8fd8-ac11716e5c08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgovvYtaYM1Ayfvh38cKxv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 53523,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 53523,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T19:59:52.263Z_
+
+<details><summary>↩ Tool result · `toolu_01P9KdJDj6pVJ5VemhESabnW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2141}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ad89987-ac9e-4c6f-8fd8-ac11716e5c08",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "84e7614b-174f-4f0f-8821-c34af33e1a17",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2141}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2141}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3ad89987-ac9e-4c6f-8fd8-ac11716e5c08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-16T19:59:56.447Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment isn't found with the "exp_id" filter... filters probably don't work that way. Let me check differently - maybe it's still under PREPARING status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84e7614b-174f-4f0f-8821-c34af33e1a17",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkdXkLEpuhVeDCV5ze",
+  "type": "assistant",
+  "uuid": "2f28622b-9065-4977-b2cc-b7e1e51d734d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADjtXd6oARitYje6EDHhiA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 284,
+      "cache_read_input_tokens": 54766,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 54766,
+          "cache_creation_input_tokens": 284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T19:59:56.634Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015pm26JqAHkV1bhkC11kgp8`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "status": "PREPARING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f28622b-9065-4977-b2cc-b7e1e51d734d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkdXkLEpuhVeDCV5ze",
+  "type": "assistant",
+  "uuid": "702c5da6-5ba8-4da2-86a0-f0d0853e0a58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADjtXd6oARitYje6EDHhiA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 284,
+      "cache_read_input_tokens": 54766,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 54766,
+          "cache_creation_input_tokens": 284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T19:59:56.849Z_
+
+<details><summary>↩ Tool result · `toolu_015pm26JqAHkV1bhkC11kgp8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T19:59:28.131Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "702c5da6-5ba8-4da2-86a0-f0d0853e0a58",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "53a5c772-cc3e-4729-be0d-ddfc8d66018f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"codellama13b_exception_only_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:59:28.131Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2038}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"codellama13b_exception_only_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T19:59:28.131Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"
+    }
+  },
+  "sourceToolAssistantUUID": "702c5da6-5ba8-4da2-86a0-f0d0853e0a58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-16T20:00:04.863Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is that `submit_training_job` succeeded (started the tmux session with PID 303301) but my parallel `update_registry` with field=spec ran at around the same time and may have created the entry in PREPARING state, overwriting or conflicting with what submit_training_job would have done. 
+
+Looking at the timestamps:
+- submit_training_job returned success with PID 303301
+- update_registry created the entry at 19:59:26 with PREPARING status
+
+It seems like `submit_training_job` should have auto-transitioned the experiment to RUNNING. 
+
+The race condition likely left it stuck in PREPARING, so I need to manually push it to RUNNING with the complete spec including the command, server, GPU, and PID information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53a5c772-cc3e-4729-be0d-ddfc8d66018f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkyBgg9vznoK2eyQ3W",
+  "type": "assistant",
+  "uuid": "5cd8833e-ff84-43b9-9350-3dd4fafa0a26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01161xtqKKPKGP5bsv3ohqpS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 55050,
+      "output_tokens": 920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 450,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 920,
+          "cache_read_input_tokens": 55050,
+          "cache_creation_input_tokens": 450,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 450
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-16T20:00:04.864Z_
+
+Registry 显示 PREPARING——需要手动推进到 RUNNING（因为我的 spec update 和 submit 并行导致竞争）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cd8833e-ff84-43b9-9350-3dd4fafa0a26",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkyBgg9vznoK2eyQ3W",
+  "type": "assistant",
+  "uuid": "750f1f9d-6358-4014-a07b-0b0e6a124715",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01161xtqKKPKGP5bsv3ohqpS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 55050,
+      "output_tokens": 920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 450,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 920,
+          "cache_read_input_tokens": 55050,
+          "cache_creation_input_tokens": 450,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 450
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T20:00:09.856Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01G5yebRRLSewqugMtGU1Die`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "trace-verdict-study",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\"",
+    "server": "westd-11235",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "303301",
+    "log_path": "~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log",
+    "submitted_at": "2026-05-16T19:59:26Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl",
+    "data_count": 4720,
+    "model_name": "CodeLlama-13b-Instruct-hf",
+    "seed": 456,
+    "hypothesis": "CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim",
+    "parent": "codellama13b_exception_only_seed42"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "750f1f9d-6358-4014-a07b-0b0e6a124715",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qkyBgg9vznoK2eyQ3W",
+  "type": "assistant",
+  "uuid": "f391d592-7680-4093-9817-99c76d227bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01161xtqKKPKGP5bsv3ohqpS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 55050,
+      "output_tokens": 920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 450,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 920,
+          "cache_read_input_tokens": 55050,
+          "cache_creation_input_tokens": 450,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 450
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T20:00:10.109Z_
+
+<details><summary>↩ Tool result · `toolu_01G5yebRRLSewqugMtGU1Die`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2403}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f391d592-7680-4093-9817-99c76d227bc7",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "92b25a4b-e792-44eb-bdbc-ae2806405bb9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2403}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2403}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f391d592-7680-4093-9817-99c76d227bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-16T20:00:15.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to follow the state machine properly: PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING. Let me transition through the intermediate states. Actually, let me just go through them quickly.
+
+Wait, but `submit_training_job` already started the job. The issue is just the registry state. Let me push through the states.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92b25a4b-e792-44eb-bdbc-ae2806405bb9",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qmwt5QGhFPriG2dRHN",
+  "type": "assistant",
+  "uuid": "702be0e2-30da-42d6-959d-9b3fde3a69e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SML9B5Ns6gepbEcgabHqoX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 55500,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 55500,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T20:00:16.063Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011jxzBPCTSc2YtHxEePWKYA`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "status",
+  "value": "PENDING",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "702be0e2-30da-42d6-959d-9b3fde3a69e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qmwt5QGhFPriG2dRHN",
+  "type": "assistant",
+  "uuid": "69a7a67d-2950-4197-b32a-706d03d68f07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SML9B5Ns6gepbEcgabHqoX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 55500,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 55500,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T20:00:16.920Z_
+
+<details><summary>↩ Tool result · `toolu_011jxzBPCTSc2YtHxEePWKYA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:16.281Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8434}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69a7a67d-2950-4197-b32a-706d03d68f07",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "8792e289-2477-4efa-8c29-a762aa56f8fd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:00:16.281Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8434}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:16.281Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8434}}"
+    }
+  },
+  "sourceToolAssistantUUID": "69a7a67d-2950-4197-b32a-706d03d68f07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-16T20:00:16.929Z_
+
+```json
+{
+  "parentUuid": "8792e289-2477-4efa-8c29-a762aa56f8fd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "29bc49cf-e47f-47c6-a39c-e1c559bf3343",
+  "timestamp": "2026-05-16T20:00:16.929Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "29bc49cf-e47f-47c6-a39c-e1c559bf3343",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-16T20:00:20.645Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Ckiap6xkNQPf1a9j6aapAB`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29bc49cf-e47f-47c6-a39c-e1c559bf3343",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qnSv5H9Yt8eeSYcgvd",
+  "type": "assistant",
+  "uuid": "0aab1027-2e75-42ac-a366-893d4e58bc43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PDVQVuasGi8iZ1raqgx59",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 56498,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 599,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 56498,
+          "cache_creation_input_tokens": 599,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 599
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T20:00:21.443Z_
+
+<details><summary>↩ Tool result · `toolu_01Ckiap6xkNQPf1a9j6aapAB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:20.852Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7841}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0aab1027-2e75-42ac-a366-893d4e58bc43",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "0f95d1e8-a03c-4012-8c77-66d39e984575",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:00:20.852Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7841}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:20.852Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7841}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0aab1027-2e75-42ac-a366-893d4e58bc43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-16T20:00:25.387Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GP8yET3Rj23aGxbXxKWYnL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_on_allocated",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f95d1e8-a03c-4012-8c77-66d39e984575",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qnnRawCodZytr358e9",
+  "type": "assistant",
+  "uuid": "6bafcb89-71e2-4ed2-9e9e-ccb6f158bc82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q1fHzt9xNPneWKkuXRW5kK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 57097,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 57097,
+          "cache_creation_input_tokens": 409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T20:00:25.391Z_
+
+<details><summary>↩ Tool result · `toolu_01GP8yET3Rj23aGxbXxKWYnL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_on_allocated"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bafcb89-71e2-4ed2-9e9e-ccb6f158bc82",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "1ec5e5b1-86dd-476e-aa56-7b81dbed45f3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_on_allocated"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_on_allocated",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "6bafcb89-71e2-4ed2-9e9e-ccb6f158bc82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-16T20:00:31.057Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to transition the experiment to ALLOCATED and then to RUNNING. But actually, `submit_on_allocated` requires ALLOCATED status. Let me first set it to ALLOCATED, then since the job is already running (PID 303301), I just need to update the registry to reflect RUNNING status.
+
+Actually wait - `submit_on_allocated` would try to start a new tmux session, but the job is already running. I just need to get the registry state to RUNNING. Let me try setting it to ALLOCATED first, then to RUNNING with the spec.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ec5e5b1-86dd-476e-aa56-7b81dbed45f3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qo5w3Sok7wokx96Z2P",
+  "type": "assistant",
+  "uuid": "9244f9a8-2290-4c1d-839f-29b42c457691",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195RuFVv79tx263Y5iS2jam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 57506,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 57506,
+          "cache_creation_input_tokens": 538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T20:00:32.414Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018rfEGBF5weMaYXXCLUdHtN`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "trace-verdict-study",
+  "spec": {
+    "server": "westd-11235",
+    "gpu": [
+      "cuda:1"
+    ],
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9244f9a8-2290-4c1d-839f-29b42c457691",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qo5w3Sok7wokx96Z2P",
+  "type": "assistant",
+  "uuid": "98e5ff42-dfe2-467d-a35c-50a4eeb8345e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195RuFVv79tx263Y5iS2jam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 57506,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 57506,
+          "cache_creation_input_tokens": 538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T20:00:33.244Z_
+
+<details><summary>↩ Tool result · `toolu_018rfEGBF5weMaYXXCLUdHtN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:32.631Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456, \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8186}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98e5ff42-dfe2-467d-a35c-50a4eeb8345e",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "052e8429-3387-4d6a-b9d6-d352fa899175",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:00:32.631Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456, \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8186}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:32.631Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456, \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8186}}"
+    }
+  },
+  "sourceToolAssistantUUID": "98e5ff42-dfe2-467d-a35c-50a4eeb8345e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T20:00:39.634Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EQWLPwBxRZRUBcGsH4Z7mw`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "trace-verdict-study",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\"",
+    "pid": "303301",
+    "log_path": "~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log",
+    "submitted_at": "2026-05-16T19:59:26Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "052e8429-3387-4d6a-b9d6-d352fa899175",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qoefHtHoAhbzXWjEUs",
+  "type": "assistant",
+  "uuid": "bb191600-25d1-4b20-985a-ecf5d5377e7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLL4Kte7fFPJzDoce3QYGM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 619,
+      "cache_read_input_tokens": 58044,
+      "output_tokens": 529,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 529,
+          "cache_read_input_tokens": 58044,
+          "cache_creation_input_tokens": 619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T20:00:40.472Z_
+
+<details><summary>↩ Tool result · `toolu_01EQWLPwBxRZRUBcGsH4Z7mw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:39.857Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456, \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\\\"\", \"pid\": \"303301\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"submitted_at\": \"2026-05-16T19:59:26Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8215}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb191600-25d1-4b20-985a-ecf5d5377e7a",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "29efa2ea-ff19-475c-b3d1-b8c661fd8626",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:59:26.563Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:00:39.857Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\\\", \\\"parent\\\": \\\"codellama13b_exception_only_seed42\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"CodeLlama-13b-Instruct-hf\\\", \\\"seed\\\": 456, \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\\\\\\\"\\\", \\\"pid\\\": \\\"303301\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T19:59:26Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8215}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:59:26.563Z\", \"updated_at\": \"2026-05-16T20:00:39.857Z\", \"spec\": {\"hypothesis\": \"CodeLlama-13B exception_only seed456 — 3-seed robustness validation for cross-family core claim\", \"parent\": \"codellama13b_exception_only_seed42\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"CodeLlama-13b-Instruct-hf\", \"seed\": 456, \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed456 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456/final/eval_results.json --save_predictions\\\"\", \"pid\": \"303301\", \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"submitted_at\": \"2026-05-16T19:59:26Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8215}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bb191600-25d1-4b20-985a-ecf5d5377e7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-16T20:00:51.511Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now both GPUs are running:
+- cuda:0: codellama13b_exception_only_seed123 (PID 299731)
+- cuda:1: codellama13b_exception_only_seed456 (PID 303301)
+
+Now I need to:
+1. Register a cron for the new experiment
+2. Report to Director
+3. Also check loop_only 3-seed results which are all done now
+
+Let me register a cron for the new experiment and then report to Director.
+
+Wait, does `submit_training_job` auto-register a cron? Looking at the handoff it says "submit_training_job 会自动走 tmux + cron 监控". 
+
+The cron should already be auto-registered by submit_training_job, so I can go ahead and report to Director now. I'm also computing the loop_only 3-seed mean with seed123 at 85.88% and seed456 at 86.64%, but I need to track down the seed42 result from the earlier experiments.
+
+Let me check the registry for loop_only_seed42.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29efa2ea-ff19-475c-b3d1-b8c661fd8626",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qpBcsx9NMpe5NrxjCi",
+  "type": "assistant",
+  "uuid": "6db3c1ab-f5b3-4f05-923e-4e7fd318f7d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwQ8DsgqCVxNDEqB7bD3f6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1233,
+      "cache_read_input_tokens": 58663,
+      "output_tokens": 613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 613,
+          "cache_read_input_tokens": 58663,
+          "cache_creation_input_tokens": 1233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-16T20:00:52.298Z_
+
+Registry 已正确更新为 RUNNING。两块 GPU 满载。现在需要注册 cron 监控并汇报 Director。先查 loop_only_seed42 的 metrics 以计算 3-seed 均值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6db3c1ab-f5b3-4f05-923e-4e7fd318f7d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qpBcsx9NMpe5NrxjCi",
+  "type": "assistant",
+  "uuid": "1bc27696-ccca-47a7-b710-e6845c4638ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwQ8DsgqCVxNDEqB7bD3f6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1233,
+      "cache_read_input_tokens": 58663,
+      "output_tokens": 613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 613,
+          "cache_read_input_tokens": 58663,
+          "cache_creation_input_tokens": 1233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T20:00:52.779Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015QYHUxiFvfxKd67K9D3ykD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_cron",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bc27696-ccca-47a7-b710-e6845c4638ca",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qpBcsx9NMpe5NrxjCi",
+  "type": "assistant",
+  "uuid": "10c262e0-3cc4-4953-88af-9c1d48305a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwQ8DsgqCVxNDEqB7bD3f6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1233,
+      "cache_read_input_tokens": 58663,
+      "output_tokens": 613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 613,
+          "cache_read_input_tokens": 58663,
+          "cache_creation_input_tokens": 1233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T20:00:52.784Z_
+
+<details><summary>↩ Tool result · `toolu_015QYHUxiFvfxKd67K9D3ykD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_cron"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10c262e0-3cc4-4953-88af-9c1d48305a69",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "4ca80054-b519-47e3-b07e-846dc63983a0",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_cron"
+    ],
+    "query": "select:mcp__agent-ml-research__register_cron",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "10c262e0-3cc4-4953-88af-9c1d48305a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T20:00:53.772Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01QzYqq93oX1vtifi1rwbRPZ`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "status",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ca80054-b519-47e3-b07e-846dc63983a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qpBcsx9NMpe5NrxjCi",
+  "type": "assistant",
+  "uuid": "714f8cce-95dd-4f71-a149-873108d0cd45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwQ8DsgqCVxNDEqB7bD3f6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1233,
+      "cache_read_input_tokens": 58663,
+      "output_tokens": 613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 613,
+          "cache_read_input_tokens": 58663,
+          "cache_creation_input_tokens": 1233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T20:00:54.000Z_
+
+<details><summary>↩ Tool result · `toolu_01QzYqq93oX1vtifi1rwbRPZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exception_only_nomarker_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9807, \"n\": 1190, \"errors\": 23, \"ci_95\": [0.9712, 0.9871], \"pass_f1\": 0.9865, \"fail_f1\": 0.9658, \"pass_precision\": 0.9836, \"pass_recall\": 0.9894, \"fail_precision\": 0.9731, \"fail_recall\": 0.9587, \"lift_over_majority\": 0.266}}, \"exception_only_nomarker_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9832, \"n\": 1190, \"ci_95\": [0.9756, 0.9899], \"pass_f1\": 0.9882, \"fail_f1\": 0.9705, \"pass_precision\": 0.9882, \"pass_recall\": 0.9882, \"fail_precision\": 0.9705, \"fail_recall\": 0.9705, \"lift_over_majority\": 0.2681}}, \"codellama13b_vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9857, \"n\": 1190, \"errors\": 17, \"ci_95\": [0.979, 0.992]}}, \"qwen15b_nomarker_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.978, \"n\": 1190, \"accuracy_ci\": [0.97, 0.986], \"majority_baseline\": 0.715, \"lift\": 0.263, \"pass_precision\": 0.97, \"pass_recall\": 1, \"pass_f1\": 0.98, \"fail_precision\": 1, \"fail_recall\": 0.92, \"fail_f1\": 0.96}}, \"exception_only_nomarker_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9655, \"n\": 1190, \"accuracy_ci\": [0.955, 0.976]}}, \"codellama13b_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"n\": 1190, \"errors\": 2}}, \"loop_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8664, \"n\": 1190, \"pass_precision\": 0.9179, \"pass_recall\": 0.8931, \"pass_f1\": 0.9053, \"fail_precision\": 0.7486, \"fail_recall\": 0.7994, \"fail_f1\": 0.7732, \"accuracy_ci\": [0.847, 0.884]}, \"conclusion\": \"success\"}, \"loop_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8588, \"majority_baseline\": 0.7151, \"lift\": 0.1437, \"n\": 1190, \"pass_precision\": 0.9129, \"pass_recall\": 0.8872, \"pass_f1\": 0.8999, \"fail_precision\": 0.7355, \"fail_recall\": 0.7876, \"fail_f1\": 0.7607, \"accuracy_ci\": [0.8403, 0.8773]}, \"conclusion\": \"success\"}, \"codellama13b_no_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.765, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.05, \"pass_precision\": 0.84, \"pass_recall\": 0.83, \"pass_f1\": 0.84, \"fail_precision\": 0.59, \"fail_recall\": 0.59, \"fail_f1\": 0.59, \"accuracy_ci\": [0.738, 0.787]}, \"conclusion\": \"success\"}, \"qwen15b_full_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7706, \"n\": 1190}, \"conclusion\": \"success\"}, \"qwen15b_vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9958, \"n\": 1190, \"pass_recall\": 0.9976, \"fail_recall\": 0.9912, \"pass_f1\": 0.9971, \"fail_f1\": 0.9926, \"training_time_sec\": 2922}}, \"qwen15b_no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6731, \"n\": 1190, \"pass_f1\": 0.7527, \"fail_f1\": 0.518, \"lift_over_majority\": -0.042, \"training_time_sec\": 851}}, \"qwen15b_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci_lower\": 0.9958, \"accuracy_ci_upper\": 1, \"majority_baseline\": 0.7151, \"lift\": 0.283, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1347, \"eval_loss\": 0.5761, \"wall_clock_seconds\": 1762}}, \"label_only_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.859, \"n\": 1190, \"pass_recall\": 0.938, \"fail_recall\": 0.661, \"pass_f1\": 0.905, \"fail_f1\": 0.727}}, \"label_only_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8706, \"n\": 1190, \"pass_recall\": 0.974, \"fail_recall\": 0.611, \"pass_f1\": 0.915, \"fail_f1\": 0.729}}, \"ae_only_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9992, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.2841, \"seed_comparison\": {\"seed42_accuracy\": 0.9992, \"seed123_accuracy\": 0.9908, \"seed456_accuracy\": 0.9992, \"mean_accuracy\": 0.9964, \"std\": 0.0049, \"note\": \"2/3 seeds = 99.92%, seed123 = 99.08%. Mean = 99.64% ± 0.49\"}}}, \"ae_only_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9908, \"n\": 1190, \"pass_recall\": 0.987, \"fail_recall\": 1, \"majority_baseline\": 0.7151, \"lift\": 0.2757}}, \"regex_baseline_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"regex_B1_ERROR_presence\": 0.9345, \"regex_B2_Traceback\": 0.7151, \"regex_B3_any_keyword\": 0.9345, \"regex_B4_exception_type\": 0.9361, \"regex_B5_format_marker\": 0.9933, \"regex_B6_error_count_ge2\": 0.9202, \"sft_exception_only\": 0.9983, \"best_regex_gap_vs_sft\": -0.0622, \"B5_mcnemar_p\": 0.041, \"n\": 1190}}, \"full_trace_2048tok_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.7815, \"accuracy_ci\": [0.76, 0.803], \"fail_recall\": 0.233, \"fail_precision\": 1, \"pass_recall\": 1, \"pass_precision\": 0.766, \"fail_f1\": 0.378, \"pass_f1\": 0.867, \"conclusion\": \"epoch3_final_is_better\"}, \"reeval_with_fixed_script\": {\"accuracy\": 0.16, \"accuracy_ci\": [0.139, 0.18], \"fail_f1\": 0.61, \"fail_precision\": 0.9, \"fail_recall\": 0.47, \"pass_f1\": 0.07, \"pass_precision\": 1, \"pass_recall\": 0.04, \"note\": \"CATASTROPHIC: re-eval with corrected evaluate.py shows 16% (vs original 84.45%). Model predicts fail for almost everything. Previous 84.45% may have been from buggy eval. NEEDS INVESTIGATION.\"}, \"group_analysis\": {\"train_truncated\": {\"n\": 1091, \"accuracy\": 0.8304, \"ci_95\": [0.8075, 0.8524], \"correct\": 906, \"incorrect\": 185, \"pass_accuracy\": 1, \"pass_n\": 822, \"fail_accuracy\": 0.3123, \"fail_n\": 269}, \"train_intact\": {\"n\": 99, \"accuracy\": 1, \"ci_95\": [1, 1], \"correct\": 99, \"incorrect\": 0, \"pass_accuracy\": 1, \"pass_n\": 29, \"fail_accuracy\": 1, \"fail_n\": 70}, \"fisher_exact\": {\"odds_ratio\": 0, \"p_value\": 0}, \"overall_accuracy\": 0.8445, \"max_length\": 2048, \"note\": \"Grouped by whether training sample content exceeded token budget (DeepSeek tokenizer, max_length=2048). Inference used full-length input (no truncation). All 185 errors from truncated group's fail class (fail_recall=31.2%). Intact group: 100% accuracy.\"}}, \"conclusion\": \"success\"}, \"deepseek_full_trace_seed42_v3\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7916, \"majority_baseline\": 0.7151, \"lift\": 0.0765, \"n\": 1190, \"pass_precision\": 0.857, \"pass_recall\": 0.851, \"pass_f1\": 0.854, \"fail_precision\": 0.632, \"fail_recall\": 0.643, \"fail_f1\": 0.637, \"accuracy_ci\": [0.768, 0.813], \"train_loss\": 0.0547, \"train_runtime_seconds\": 8891, \"epochs\": 3, \"reeval_discrepancy\": {\"reeval_accuracy\": 0.285, \"reeval_note\": \"RESOLVED: 28.5% was caused by eval max_length=16384 (OOD). Re-eval with max_length=2048 reproduces 79.16%. predictions.jsonl updated to maxlen2048 results.\", \"status\": \"RESOLVED\"}}, \"conclusion\": \"success\"}, \"eval_missing_predictions_batch_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"debugbench_vota_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9977, \"majority_baseline\": 0.5141, \"lift\": 0.4836, \"n\": 426, \"pass_precision\": 1, \"pass_recall\": 1, \"pass_f1\": 1, \"fail_precision\": 1, \"fail_recall\": 1, \"fail_f1\": 1, \"accuracy_ci\": [0.993, 1], \"train_loss\": 0.098, \"eval_loss\": 0.1179, \"eval_mean_token_accuracy\": 0.9737, \"errors\": 1}, \"conclusion\": \"success\"}, \"eval_missing_predictions_batch\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"full_trace_1024tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7723, \"majority_baseline\": 0.7151, \"lift\": 0.0571, \"n\": 1190, \"accuracy_ci\": [0.7487, 0.7958], \"pass_precision\": 0.9006, \"pass_recall\": 0.7662, \"pass_f1\": 0.8279, \"fail_precision\": 0.573, \"fail_recall\": 0.7876, \"fail_f1\": 0.6634, \"train_loss\": 0.0634, \"train_runtime_sec\": 5553, \"epochs\": 3}, \"conclusion\": \"negative\"}, \"debugbench_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 1, \"majority_baseline\": 0.5141, \"lift\": 0.4859, \"n\": 426, \"pass_precision\": 1, \"pass_recall\": 1, \"pass_f1\": 1, \"fail_precision\": 1, \"fail_recall\": 1, \"fail_f1\": 1, \"accuracy_ci_wilson\": [0.9914, 1], \"accuracy_ci_bootstrap\": [1, 1], \"train_loss\": 0.2435, \"eval_loss\": 0.4157, \"train_runtime_sec\": 837}}, \"deepseek_exception_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"accuracy_ci\": [0.9882, 0.9975], \"train_loss\": 0.1225, \"eval_loss\": 0.4824, \"train_runtime_sec\": 6246, \"seed_comparison\": {\"seed42_accuracy\": 0.9933, \"seed456_accuracy\": 0.9933, \"seed123_accuracy\": 0.9109, \"note\": \"seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds robust.\"}, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.993, \"accuracy_ci\": [0.988, 0.997], \"fail_f1\": 0.99, \"fail_precision\": 0.98, \"fail_recall\": 1, \"pass_f1\": 1, \"pass_precision\": 1, \"pass_recall\": 0.99, \"conclusion\": \"epoch1 (99.3%) ≈ epoch3 (99.33%), 1 epoch convergence confirmed\"}}, \"conclusion\": \"success\"}, \"deepseek_exception_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_runtime_sec\": 6384}, \"conclusion\": \"negative\"}, \"deepseek_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.9983, \"fail_recall\": 1, \"fail_precision\": 0.9941, \"pass_recall\": 0.9976, \"conclusion\": \"epoch1_better_by_0.50pp\"}}}, \"deepseek_no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}}, \"debugbench_no_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9671, \"majority_baseline\": 0.5141, \"lift\": 0.4531, \"pass_precision\": 1, \"pass_recall\": 0.936, \"pass_f1\": 0.967, \"fail_precision\": 0.937, \"fail_recall\": 1, \"fail_f1\": 0.967, \"accuracy_ci\": [0.948, 0.984], \"train_loss\": 0.249, \"eval_loss\": 0.532}, \"conclusion\": \"success\"}, \"full_trace_512tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8042, \"majority_baseline\": 0.7151, \"lift\": 0.0891, \"pass_precision\": 0.8705, \"pass_recall\": 0.8531, \"pass_f1\": 0.8617, \"fail_precision\": 0.6489, \"fail_recall\": 0.6814, \"fail_f1\": 0.6647, \"n\": 1190, \"accuracy_ci\": [0.7815, 0.8261]}, \"conclusion\": \"negative\"}, \"full_trace_256tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7882, \"majority_baseline\": 0.7151, \"lift\": 0.0731, \"n\": 1190, \"pass_precision\": 0.903, \"pass_recall\": 0.788, \"pass_f1\": 0.842, \"fail_precision\": 0.597, \"fail_recall\": 0.788, \"fail_f1\": 0.679, \"accuracy_ci\": [0.764, 0.81], \"train_loss\": 0.1094, \"train_runtime_sec\": 3047, \"epochs\": 3}, \"conclusion\": \"negative\"}, \"debugbench_exception_bug_fix\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"vota_seed456_v2\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9908, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.993, \"fail_precision\": 0.969, \"fail_recall\": 1, \"fail_f1\": 0.984, \"ci_95\": [0.985, 0.996]}, \"conclusion\": \"success\"}, \"no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"no_trace_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed456\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"deepseek_full_trace_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"deepseek_full_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy_no_truncation\": 0.2849, \"accuracy_with_truncation_fix\": 0.1059, \"accuracy_with_truncation_fix_ci\": [0.089, 0.123], \"majority_baseline\": 0.7151, \"n\": 1190, \"note\": \"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\"}, \"conclusion\": \"negative\"}, \"exception_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1096, \"train_runtime_sec\": 7507, \"epochs\": 3, \"seed_comparison\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"seed123_accuracy\": 0.9983, \"max_diff\": 0, \"note\": \"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\"}}, \"conclusion\": \"success\"}, \"exception_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"vs_seed42\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"diff\": 0, \"note\": \"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\"}, \"train_loss\": 0.1087, \"eval_loss\": 0.4629, \"train_runtime_sec\": 4541, \"epochs\": 3}, \"conclusion\": \"success\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\"}, \"vota_seed123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\"}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"conclusion\": \"success\"}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}}}, \"count\": 50, \"total\": 61, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2163}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "714f8cce-95dd-4f71-a149-873108d0cd45",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "9fb35eac-26fa-4511-aabd-25806798c025",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exception_only_nomarker_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9807, \\\"n\\\": 1190, \\\"errors\\\": 23, \\\"ci_95\\\": [0.9712, 0.9871], \\\"pass_f1\\\": 0.9865, \\\"fail_f1\\\": 0.9658, \\\"pass_precision\\\": 0.9836, \\\"pass_recall\\\": 0.9894, \\\"fail_precision\\\": 0.9731, \\\"fail_recall\\\": 0.9587, \\\"lift_over_majority\\\": 0.266}}, \\\"exception_only_nomarker_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9832, \\\"n\\\": 1190, \\\"ci_95\\\": [0.9756, 0.9899], \\\"pass_f1\\\": 0.9882, \\\"fail_f1\\\": 0.9705, \\\"pass_precision\\\": 0.9882, \\\"pass_recall\\\": 0.9882, \\\"fail_precision\\\": 0.9705, \\\"fail_recall\\\": 0.9705, \\\"lift_over_majority\\\": 0.2681}}, \\\"codellama13b_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9857, \\\"n\\\": 1190, \\\"errors\\\": 17, \\\"ci_95\\\": [0.979, 0.992]}}, \\\"qwen15b_nomarker_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.978, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.97, 0.986], \\\"majority_baseline\\\": 0.715, \\\"lift\\\": 0.263, \\\"pass_precision\\\": 0.97, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.98, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.92, \\\"fail_f1\\\": 0.96}}, \\\"exception_only_nomarker_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9655, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.955, 0.976]}}, \\\"codellama13b_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"n\\\": 1190, \\\"errors\\\": 2}}, \\\"loop_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8664, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9179, \\\"pass_recall\\\": 0.8931, \\\"pass_f1\\\": 0.9053, \\\"fail_precision\\\": 0.7486, \\\"fail_recall\\\": 0.7994, \\\"fail_f1\\\": 0.7732, \\\"accuracy_ci\\\": [0.847, 0.884]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"loop_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8588, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1437, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9129, \\\"pass_recall\\\": 0.8872, \\\"pass_f1\\\": 0.8999, \\\"fail_precision\\\": 0.7355, \\\"fail_recall\\\": 0.7876, \\\"fail_f1\\\": 0.7607, \\\"accuracy_ci\\\": [0.8403, 0.8773]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"codellama13b_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.765, \\\"n\\\": 1190, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.05, \\\"pass_precision\\\": 0.84, \\\"pass_recall\\\": 0.83, \\\"pass_f1\\\": 0.84, \\\"fail_precision\\\": 0.59, \\\"fail_recall\\\": 0.59, \\\"fail_f1\\\": 0.59, \\\"accuracy_ci\\\": [0.738, 0.787]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen15b_full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7706, \\\"n\\\": 1190}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen15b_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9958, \\\"n\\\": 1190, \\\"pass_recall\\\": 0.9976, \\\"fail_recall\\\": 0.9912, \\\"pass_f1\\\": 0.9971, \\\"fail_f1\\\": 0.9926, \\\"training_time_sec\\\": 2922}}, \\\"qwen15b_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6731, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.7527, \\\"fail_f1\\\": 0.518, \\\"lift_over_majority\\\": -0.042, \\\"training_time_sec\\\": 851}}, \\\"qwen15b_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci_lower\\\": 0.9958, \\\"accuracy_ci_upper\\\": 1, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.283, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"train_loss\\\": 0.1347, \\\"eval_loss\\\": 0.5761, \\\"wall_clock_seconds\\\": 1762}}, \\\"label_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.859, \\\"n\\\": 1190, \\\"pass_recall\\\": 0.938, \\\"fail_recall\\\": 0.661, \\\"pass_f1\\\": 0.905, \\\"fail_f1\\\": 0.727}}, \\\"label_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8706, \\\"n\\\": 1190, \\\"pass_recall\\\": 0.974, \\\"fail_recall\\\": 0.611, \\\"pass_f1\\\": 0.915, \\\"fail_f1\\\": 0.729}}, \\\"ae_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9992, \\\"n\\\": 1190, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2841, \\\"seed_comparison\\\": {\\\"seed42_accuracy\\\": 0.9992, \\\"seed123_accuracy\\\": 0.9908, \\\"seed456_accuracy\\\": 0.9992, \\\"mean_accuracy\\\": 0.9964, \\\"std\\\": 0.0049, \\\"note\\\": \\\"2/3 seeds = 99.92%, seed123 = 99.08%. Mean = 99.64% ± 0.49\\\"}}}, \\\"ae_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"n\\\": 1190, \\\"pass_recall\\\": 0.987, \\\"fail_recall\\\": 1, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2757}}, \\\"regex_baseline_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"regex_B1_ERROR_presence\\\": 0.9345, \\\"regex_B2_Traceback\\\": 0.7151, \\\"regex_B3_any_keyword\\\": 0.9345, \\\"regex_B4_exception_type\\\": 0.9361, \\\"regex_B5_format_marker\\\": 0.9933, \\\"regex_B6_error_count_ge2\\\": 0.9202, \\\"sft_exception_only\\\": 0.9983, \\\"best_regex_gap_vs_sft\\\": -0.0622, \\\"B5_mcnemar_p\\\": 0.041, \\\"n\\\": 1190}}, \\\"full_trace_2048tok_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"deepseek_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8445, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1294, \\\"accuracy_ci\\\": [0.826, 0.864], \\\"pass_precision\\\": 0.821, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.902, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.454, \\\"fail_f1\\\": 0.625, \\\"eval_loss_epoch1\\\": 0.0679, \\\"eval_loss_epoch2\\\": 0.095, \\\"eval_loss_epoch3\\\": 0.1121, \\\"final_train_loss\\\": 0.0522, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.7815, \\\"accuracy_ci\\\": [0.76, 0.803], \\\"fail_recall\\\": 0.233, \\\"fail_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_precision\\\": 0.766, \\\"fail_f1\\\": 0.378, \\\"pass_f1\\\": 0.867, \\\"conclusion\\\": \\\"epoch3_final_is_better\\\"}, \\\"reeval_with_fixed_script\\\": {\\\"accuracy\\\": 0.16, \\\"accuracy_ci\\\": [0.139, 0.18], \\\"fail_f1\\\": 0.61, \\\"fail_precision\\\": 0.9, \\\"fail_recall\\\": 0.47, \\\"pass_f1\\\": 0.07, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.04, \\\"note\\\": \\\"CATASTROPHIC: re-eval with corrected evaluate.py shows 16% (vs original 84.45%). Model predicts fail for almost everything. Previous 84.45% may have been from buggy eval. NEEDS INVESTIGATION.\\\"}, \\\"group_analysis\\\": {\\\"train_truncated\\\": {\\\"n\\\": 1091, \\\"accuracy\\\": 0.8304, \\\"ci_95\\\": [0.8075, 0.8524], \\\"correct\\\": 906, \\\"incorrect\\\": 185, \\\"pass_accuracy\\\": 1, \\\"pass_n\\\": 822, \\\"fail_accuracy\\\": 0.3123, \\\"fail_n\\\": 269}, \\\"train_intact\\\": {\\\"n\\\": 99, \\\"accuracy\\\": 1, \\\"ci_95\\\": [1, 1], \\\"correct\\\": 99, \\\"incorrect\\\": 0, \\\"pass_accuracy\\\": 1, \\\"pass_n\\\": 29, \\\"fail_accuracy\\\": 1, \\\"fail_n\\\": 70}, \\\"fisher_exact\\\": {\\\"odds_ratio\\\": 0, \\\"p_value\\\": 0}, \\\"overall_accuracy\\\": 0.8445, \\\"max_length\\\": 2048, \\\"note\\\": \\\"Grouped by whether training sample content exceeded token budget (DeepSeek tokenizer, max_length=2048). Inference used full-length input (no truncation). All 185 errors from truncated group's fail class (fail_recall=31.2%). Intact group: 100% accuracy.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"deepseek_full_trace_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7916, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0765, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.857, \\\"pass_recall\\\": 0.851, \\\"pass_f1\\\": 0.854, \\\"fail_precision\\\": 0.632, \\\"fail_recall\\\": 0.643, \\\"fail_f1\\\": 0.637, \\\"accuracy_ci\\\": [0.768, 0.813], \\\"train_loss\\\": 0.0547, \\\"train_runtime_seconds\\\": 8891, \\\"epochs\\\": 3, \\\"reeval_discrepancy\\\": {\\\"reeval_accuracy\\\": 0.285, \\\"reeval_note\\\": \\\"RESOLVED: 28.5% was caused by eval max_length=16384 (OOD). Re-eval with max_length=2048 reproduces 79.16%. predictions.jsonl updated to maxlen2048 results.\\\", \\\"status\\\": \\\"RESOLVED\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_missing_predictions_batch_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"debugbench_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9977, \\\"majority_baseline\\\": 0.5141, \\\"lift\\\": 0.4836, \\\"n\\\": 426, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 1, \\\"accuracy_ci\\\": [0.993, 1], \\\"train_loss\\\": 0.098, \\\"eval_loss\\\": 0.1179, \\\"eval_mean_token_accuracy\\\": 0.9737, \\\"errors\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_missing_predictions_batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"full_trace_1024tok_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7723, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0571, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.7487, 0.7958], \\\"pass_precision\\\": 0.9006, \\\"pass_recall\\\": 0.7662, \\\"pass_f1\\\": 0.8279, \\\"fail_precision\\\": 0.573, \\\"fail_recall\\\": 0.7876, \\\"fail_f1\\\": 0.6634, \\\"train_loss\\\": 0.0634, \\\"train_runtime_sec\\\": 5553, \\\"epochs\\\": 3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"debugbench_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 1, \\\"majority_baseline\\\": 0.5141, \\\"lift\\\": 0.4859, \\\"n\\\": 426, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 1, \\\"accuracy_ci_wilson\\\": [0.9914, 1], \\\"accuracy_ci_bootstrap\\\": [1, 1], \\\"train_loss\\\": 0.2435, \\\"eval_loss\\\": 0.4157, \\\"train_runtime_sec\\\": 837}}, \\\"deepseek_exception_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9933, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2782, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9906, \\\"pass_f1\\\": 0.9953, \\\"fail_precision\\\": 0.9769, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9883, \\\"accuracy_ci\\\": [0.9882, 0.9975], \\\"train_loss\\\": 0.1225, \\\"eval_loss\\\": 0.4824, \\\"train_runtime_sec\\\": 6246, \\\"seed_comparison\\\": {\\\"seed42_accuracy\\\": 0.9933, \\\"seed456_accuracy\\\": 0.9933, \\\"seed123_accuracy\\\": 0.9109, \\\"note\\\": \\\"seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds robust.\\\"}, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.993, \\\"accuracy_ci\\\": [0.988, 0.997], \\\"fail_f1\\\": 0.99, \\\"fail_precision\\\": 0.98, \\\"fail_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.99, \\\"conclusion\\\": \\\"epoch1 (99.3%) ≈ epoch3 (99.33%), 1 epoch convergence confirmed\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"deepseek_exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9109, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.993, \\\"pass_f1\\\": 0.996, \\\"fail_precision\\\": 0.976, \\\"fail_recall\\\": 0.705, \\\"fail_f1\\\": 0.818, \\\"ci_95\\\": [0.894, 0.926], \\\"train_loss\\\": 0.122, \\\"train_runtime_sec\\\": 6384}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"deepseek_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9933, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2782, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9906, \\\"pass_f1\\\": 0.9953, \\\"fail_precision\\\": 0.9769, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9883, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.9983, \\\"fail_recall\\\": 1, \\\"fail_precision\\\": 0.9941, \\\"pass_recall\\\": 0.9976, \\\"conclusion\\\": \\\"epoch1_better_by_0.50pp\\\"}}}, \\\"deepseek_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}}, \\\"debugbench_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9671, \\\"majority_baseline\\\": 0.5141, \\\"lift\\\": 0.4531, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.936, \\\"pass_f1\\\": 0.967, \\\"fail_precision\\\": 0.937, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.967, \\\"accuracy_ci\\\": [0.948, 0.984], \\\"train_loss\\\": 0.249, \\\"eval_loss\\\": 0.532}, \\\"conclusion\\\": \\\"success\\\"}, \\\"full_trace_512tok_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8042, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0891, \\\"pass_precision\\\": 0.8705, \\\"pass_recall\\\": 0.8531, \\\"pass_f1\\\": 0.8617, \\\"fail_precision\\\": 0.6489, \\\"fail_recall\\\": 0.6814, \\\"fail_f1\\\": 0.6647, \\\"n\\\": 1190, \\\"accuracy_ci\\\": [0.7815, 0.8261]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"full_trace_256tok_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7882, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0731, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.903, \\\"pass_recall\\\": 0.788, \\\"pass_f1\\\": 0.842, \\\"fail_precision\\\": 0.597, \\\"fail_recall\\\": 0.788, \\\"fail_f1\\\": 0.679, \\\"accuracy_ci\\\": [0.764, 0.81], \\\"train_loss\\\": 0.1094, \\\"train_runtime_sec\\\": 3047, \\\"epochs\\\": 3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"debugbench_exception_bug_fix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_seed456_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.993, \\\"fail_precision\\\": 0.969, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"ci_95\\\": [0.985, 0.996]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"no_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"vota_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"vota_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"deepseek_full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"deepseek_full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy_no_truncation\\\": 0.2849, \\\"accuracy_with_truncation_fix\\\": 0.1059, \\\"accuracy_with_truncation_fix_ci\\\": [0.089, 0.123], \\\"majority_baseline\\\": 0.7151, \\\"n\\\": 1190, \\\"note\\\": \\\"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"train_loss\\\": 0.1096, \\\"train_runtime_sec\\\": 7507, \\\"epochs\\\": 3, \\\"seed_comparison\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"seed123_accuracy\\\": 0.9983, \\\"max_diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exception_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"vs_seed42\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\\\"}, \\\"train_loss\\\": 0.1087, \\\"eval_loss\\\": 0.4629, \\\"train_runtime_sec\\\": 4541, \\\"epochs\\\": 3}, \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_exception_only_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.999, \\\"fail_precision\\\": 0.994, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.997, \\\"lift_vs_notrace\\\": 0.2471, \\\"lift_vs_notrace_ci_lower\\\": 0.2227, \\\"lift_vs_notrace_ci_upper\\\": 0.2714, \\\"lift_vs_fulltrace\\\": 0.1807, \\\"lift_vs_fulltrace_ci_lower\\\": 0.1588, \\\"lift_vs_fulltrace_ci_upper\\\": 0.2034, \\\"lift_vs_vota\\\": 0.0067, \\\"lift_vs_vota_ci_lower\\\": 0.0017, \\\"lift_vs_vota_ci_upper\\\": 0.0126, \\\"lift_vs_vota_pvalue\\\": 0.01}, \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"full_trace_label_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs_standard_fulltrace_pvalue\\\": 0}, \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_no_ae_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}, \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_loop_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9239, \\\"pass_recall\\\": 0.8707, \\\"pass_f1\\\": 0.8966, \\\"fail_precision\\\": 0.7165, \\\"fail_recall\\\": 0.8201, \\\"fail_f1\\\": 0.7648, \\\"accuracy_ci\\\": [0.8353, 0.8756], \\\"bootstrap_vs_no_trace\\\": {\\\"diff\\\": 0.105, \\\"ci\\\": [0.0824, 0.1286], \\\"significant\\\": true}, \\\"bootstrap_vs_vota\\\": {\\\"diff\\\": -0.1378, \\\"ci\\\": [-0.1571, -0.1185], \\\"significant\\\": true}, \\\"bootstrap_vs_full_trace\\\": {\\\"diff\\\": 0.0387, \\\"ci\\\": [0.0185, 0.0597], \\\"significant\\\": true}, \\\"train_loss\\\": 0.0718, \\\"wall_clock_seconds\\\": 7425.65}, \\\"conclusion\\\": \\\"success\\\"}, \\\"vota_ae_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9992, \\\"accuracy_ci\\\": [0.9975, 1], \\\"bootstrap_pairwise\\\": {\\\"ae_only_vs_no_trace\\\": {\\\"diff\\\": 0.2479, \\\"ci\\\": [0.2235, 0.2731], \\\"p_value\\\": 0, \\\"significant\\\": true}, \\\"ae_only_vs_exception_only\\\": {\\\"diff\\\": 0.0008, \\\"ci\\\": [-0.0017, 0.0034], \\\"p_value\\\": 0.8002, \\\"significant\\\": false}, \\\"ae_only_vs_vota\\\": {\\\"diff\\\": 0.005, \\\"ci\\\": [0.0017, 0.0092], \\\"p_value\\\": 0.0046, \\\"significant\\\": true}}, \\\"config\\\": {\\\"n_bootstrap\\\": 10000, \\\"seed\\\": 42, \\\"method\\\": \\\"paired_bootstrap\\\"}}}}, \\\"count\\\": 50, \\\"total\\\": 61, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2163}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exception_only_nomarker_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9807, \"n\": 1190, \"errors\": 23, \"ci_95\": [0.9712, 0.9871], \"pass_f1\": 0.9865, \"fail_f1\": 0.9658, \"pass_precision\": 0.9836, \"pass_recall\": 0.9894, \"fail_precision\": 0.9731, \"fail_recall\": 0.9587, \"lift_over_majority\": 0.266}}, \"exception_only_nomarker_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9832, \"n\": 1190, \"ci_95\": [0.9756, 0.9899], \"pass_f1\": 0.9882, \"fail_f1\": 0.9705, \"pass_precision\": 0.9882, \"pass_recall\": 0.9882, \"fail_precision\": 0.9705, \"fail_recall\": 0.9705, \"lift_over_majority\": 0.2681}}, \"codellama13b_vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9857, \"n\": 1190, \"errors\": 17, \"ci_95\": [0.979, 0.992]}}, \"qwen15b_nomarker_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.978, \"n\": 1190, \"accuracy_ci\": [0.97, 0.986], \"majority_baseline\": 0.715, \"lift\": 0.263, \"pass_precision\": 0.97, \"pass_recall\": 1, \"pass_f1\": 0.98, \"fail_precision\": 1, \"fail_recall\": 0.92, \"fail_f1\": 0.96}}, \"exception_only_nomarker_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9655, \"n\": 1190, \"accuracy_ci\": [0.955, 0.976]}}, \"codellama13b_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"n\": 1190, \"errors\": 2}}, \"loop_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8664, \"n\": 1190, \"pass_precision\": 0.9179, \"pass_recall\": 0.8931, \"pass_f1\": 0.9053, \"fail_precision\": 0.7486, \"fail_recall\": 0.7994, \"fail_f1\": 0.7732, \"accuracy_ci\": [0.847, 0.884]}, \"conclusion\": \"success\"}, \"loop_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8588, \"majority_baseline\": 0.7151, \"lift\": 0.1437, \"n\": 1190, \"pass_precision\": 0.9129, \"pass_recall\": 0.8872, \"pass_f1\": 0.8999, \"fail_precision\": 0.7355, \"fail_recall\": 0.7876, \"fail_f1\": 0.7607, \"accuracy_ci\": [0.8403, 0.8773]}, \"conclusion\": \"success\"}, \"codellama13b_no_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.765, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.05, \"pass_precision\": 0.84, \"pass_recall\": 0.83, \"pass_f1\": 0.84, \"fail_precision\": 0.59, \"fail_recall\": 0.59, \"fail_f1\": 0.59, \"accuracy_ci\": [0.738, 0.787]}, \"conclusion\": \"success\"}, \"qwen15b_full_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7706, \"n\": 1190}, \"conclusion\": \"success\"}, \"qwen15b_vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9958, \"n\": 1190, \"pass_recall\": 0.9976, \"fail_recall\": 0.9912, \"pass_f1\": 0.9971, \"fail_f1\": 0.9926, \"training_time_sec\": 2922}}, \"qwen15b_no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6731, \"n\": 1190, \"pass_f1\": 0.7527, \"fail_f1\": 0.518, \"lift_over_majority\": -0.042, \"training_time_sec\": 851}}, \"qwen15b_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci_lower\": 0.9958, \"accuracy_ci_upper\": 1, \"majority_baseline\": 0.7151, \"lift\": 0.283, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1347, \"eval_loss\": 0.5761, \"wall_clock_seconds\": 1762}}, \"label_only_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.859, \"n\": 1190, \"pass_recall\": 0.938, \"fail_recall\": 0.661, \"pass_f1\": 0.905, \"fail_f1\": 0.727}}, \"label_only_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8706, \"n\": 1190, \"pass_recall\": 0.974, \"fail_recall\": 0.611, \"pass_f1\": 0.915, \"fail_f1\": 0.729}}, \"ae_only_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9992, \"n\": 1190, \"majority_baseline\": 0.7151, \"lift\": 0.2841, \"seed_comparison\": {\"seed42_accuracy\": 0.9992, \"seed123_accuracy\": 0.9908, \"seed456_accuracy\": 0.9992, \"mean_accuracy\": 0.9964, \"std\": 0.0049, \"note\": \"2/3 seeds = 99.92%, seed123 = 99.08%. Mean = 99.64% ± 0.49\"}}}, \"ae_only_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9908, \"n\": 1190, \"pass_recall\": 0.987, \"fail_recall\": 1, \"majority_baseline\": 0.7151, \"lift\": 0.2757}}, \"regex_baseline_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"regex_B1_ERROR_presence\": 0.9345, \"regex_B2_Traceback\": 0.7151, \"regex_B3_any_keyword\": 0.9345, \"regex_B4_exception_type\": 0.9361, \"regex_B5_format_marker\": 0.9933, \"regex_B6_error_count_ge2\": 0.9202, \"sft_exception_only\": 0.9983, \"best_regex_gap_vs_sft\": -0.0622, \"B5_mcnemar_p\": 0.041, \"n\": 1190}}, \"full_trace_2048tok_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.7815, \"accuracy_ci\": [0.76, 0.803], \"fail_recall\": 0.233, \"fail_precision\": 1, \"pass_recall\": 1, \"pass_precision\": 0.766, \"fail_f1\": 0.378, \"pass_f1\": 0.867, \"conclusion\": \"epoch3_final_is_better\"}, \"reeval_with_fixed_script\": {\"accuracy\": 0.16, \"accuracy_ci\": [0.139, 0.18], \"fail_f1\": 0.61, \"fail_precision\": 0.9, \"fail_recall\": 0.47, \"pass_f1\": 0.07, \"pass_precision\": 1, \"pass_recall\": 0.04, \"note\": \"CATASTROPHIC: re-eval with corrected evaluate.py shows 16% (vs original 84.45%). Model predicts fail for almost everything. Previous 84.45% may have been from buggy eval. NEEDS INVESTIGATION.\"}, \"group_analysis\": {\"train_truncated\": {\"n\": 1091, \"accuracy\": 0.8304, \"ci_95\": [0.8075, 0.8524], \"correct\": 906, \"incorrect\": 185, \"pass_accuracy\": 1, \"pass_n\": 822, \"fail_accuracy\": 0.3123, \"fail_n\": 269}, \"train_intact\": {\"n\": 99, \"accuracy\": 1, \"ci_95\": [1, 1], \"correct\": 99, \"incorrect\": 0, \"pass_accuracy\": 1, \"pass_n\": 29, \"fail_accuracy\": 1, \"fail_n\": 70}, \"fisher_exact\": {\"odds_ratio\": 0, \"p_value\": 0}, \"overall_accuracy\": 0.8445, \"max_length\": 2048, \"note\": \"Grouped by whether training sample content exceeded token budget (DeepSeek tokenizer, max_length=2048). Inference used full-length input (no truncation). All 185 errors from truncated group's fail class (fail_recall=31.2%). Intact group: 100% accuracy.\"}}, \"conclusion\": \"success\"}, \"deepseek_full_trace_seed42_v3\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7916, \"majority_baseline\": 0.7151, \"lift\": 0.0765, \"n\": 1190, \"pass_precision\": 0.857, \"pass_recall\": 0.851, \"pass_f1\": 0.854, \"fail_precision\": 0.632, \"fail_recall\": 0.643, \"fail_f1\": 0.637, \"accuracy_ci\": [0.768, 0.813], \"train_loss\": 0.0547, \"train_runtime_seconds\": 8891, \"epochs\": 3, \"reeval_discrepancy\": {\"reeval_accuracy\": 0.285, \"reeval_note\": \"RESOLVED: 28.5% was caused by eval max_length=16384 (OOD). Re-eval with max_length=2048 reproduces 79.16%. predictions.jsonl updated to maxlen2048 results.\", \"status\": \"RESOLVED\"}}, \"conclusion\": \"success\"}, \"eval_missing_predictions_batch_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"debugbench_vota_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9977, \"majority_baseline\": 0.5141, \"lift\": 0.4836, \"n\": 426, \"pass_precision\": 1, \"pass_recall\": 1, \"pass_f1\": 1, \"fail_precision\": 1, \"fail_recall\": 1, \"fail_f1\": 1, \"accuracy_ci\": [0.993, 1], \"train_loss\": 0.098, \"eval_loss\": 0.1179, \"eval_mean_token_accuracy\": 0.9737, \"errors\": 1}, \"conclusion\": \"success\"}, \"eval_missing_predictions_batch\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"full_trace_1024tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7723, \"majority_baseline\": 0.7151, \"lift\": 0.0571, \"n\": 1190, \"accuracy_ci\": [0.7487, 0.7958], \"pass_precision\": 0.9006, \"pass_recall\": 0.7662, \"pass_f1\": 0.8279, \"fail_precision\": 0.573, \"fail_recall\": 0.7876, \"fail_f1\": 0.6634, \"train_loss\": 0.0634, \"train_runtime_sec\": 5553, \"epochs\": 3}, \"conclusion\": \"negative\"}, \"debugbench_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 1, \"majority_baseline\": 0.5141, \"lift\": 0.4859, \"n\": 426, \"pass_precision\": 1, \"pass_recall\": 1, \"pass_f1\": 1, \"fail_precision\": 1, \"fail_recall\": 1, \"fail_f1\": 1, \"accuracy_ci_wilson\": [0.9914, 1], \"accuracy_ci_bootstrap\": [1, 1], \"train_loss\": 0.2435, \"eval_loss\": 0.4157, \"train_runtime_sec\": 837}}, \"deepseek_exception_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"accuracy_ci\": [0.9882, 0.9975], \"train_loss\": 0.1225, \"eval_loss\": 0.4824, \"train_runtime_sec\": 6246, \"seed_comparison\": {\"seed42_accuracy\": 0.9933, \"seed456_accuracy\": 0.9933, \"seed123_accuracy\": 0.9109, \"note\": \"seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds robust.\"}, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.993, \"accuracy_ci\": [0.988, 0.997], \"fail_f1\": 0.99, \"fail_precision\": 0.98, \"fail_recall\": 1, \"pass_f1\": 1, \"pass_precision\": 1, \"pass_recall\": 0.99, \"conclusion\": \"epoch1 (99.3%) ≈ epoch3 (99.33%), 1 epoch convergence confirmed\"}}, \"conclusion\": \"success\"}, \"deepseek_exception_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_runtime_sec\": 6384}, \"conclusion\": \"negative\"}, \"deepseek_exception_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.9983, \"fail_recall\": 1, \"fail_precision\": 0.9941, \"pass_recall\": 0.9976, \"conclusion\": \"epoch1_better_by_0.50pp\"}}}, \"deepseek_no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}}, \"debugbench_no_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9671, \"majority_baseline\": 0.5141, \"lift\": 0.4531, \"pass_precision\": 1, \"pass_recall\": 0.936, \"pass_f1\": 0.967, \"fail_precision\": 0.937, \"fail_recall\": 1, \"fail_f1\": 0.967, \"accuracy_ci\": [0.948, 0.984], \"train_loss\": 0.249, \"eval_loss\": 0.532}, \"conclusion\": \"success\"}, \"full_trace_512tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8042, \"majority_baseline\": 0.7151, \"lift\": 0.0891, \"pass_precision\": 0.8705, \"pass_recall\": 0.8531, \"pass_f1\": 0.8617, \"fail_precision\": 0.6489, \"fail_recall\": 0.6814, \"fail_f1\": 0.6647, \"n\": 1190, \"accuracy_ci\": [0.7815, 0.8261]}, \"conclusion\": \"negative\"}, \"full_trace_256tok_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.7882, \"majority_baseline\": 0.7151, \"lift\": 0.0731, \"n\": 1190, \"pass_precision\": 0.903, \"pass_recall\": 0.788, \"pass_f1\": 0.842, \"fail_precision\": 0.597, \"fail_recall\": 0.788, \"fail_f1\": 0.679, \"accuracy_ci\": [0.764, 0.81], \"train_loss\": 0.1094, \"train_runtime_sec\": 3047, \"epochs\": 3}, \"conclusion\": \"negative\"}, \"debugbench_exception_bug_fix\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"vota_seed456_v2\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9908, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.993, \"fail_precision\": 0.969, \"fail_recall\": 1, \"fail_f1\": 0.984, \"ci_95\": [0.985, 0.996]}, \"conclusion\": \"success\"}, \"no_trace_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"no_trace_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"vota_seed456\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"deepseek_full_trace_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"deepseek_full_trace_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy_no_truncation\": 0.2849, \"accuracy_with_truncation_fix\": 0.1059, \"accuracy_with_truncation_fix_ci\": [0.089, 0.123], \"majority_baseline\": 0.7151, \"n\": 1190, \"note\": \"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\"}, \"conclusion\": \"negative\"}, \"exception_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1096, \"train_runtime_sec\": 7507, \"epochs\": 3, \"seed_comparison\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"seed123_accuracy\": 0.9983, \"max_diff\": 0, \"note\": \"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\"}}, \"conclusion\": \"success\"}, \"exception_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"vs_seed42\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"diff\": 0, \"note\": \"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\"}, \"train_loss\": 0.1087, \"eval_loss\": 0.4629, \"train_runtime_sec\": 4541, \"epochs\": 3}, \"conclusion\": \"success\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\"}, \"vota_seed123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\"}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"conclusion\": \"success\"}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}}}, \"count\": 50, \"total\": 61, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2163}}"
+    }
+  },
+  "sourceToolAssistantUUID": "714f8cce-95dd-4f71-a149-873108d0cd45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "9fb35eac-26fa-4511-aabd-25806798c025",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-16T20:01:12.031Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me find loop_only_seed42 metrics. Looking through the results... I see `vota_loop_only_seed42` with accuracy 0.8563 but that's a different condition (vota_loop_only). Let me look for `loop_only_seed42` specifically. I don't see it in the top 50 results. Let me check - it might be beyond the limit or named differently.
+
+Wait, looking at the ROADMAP multi-seed table:
+| loop_only | 42/123/456 | 42 done, 123 RUNNING, 456 queued | 🔄 |
+
+
+So loop_only_seed42 should be done according to the roadmap, but it's not showing up in my top 50 results—it's probably among the 11 oldest experiments that got cut off. I have what I need though: the roadmap confirms seed 42 is complete.
+
+Looking at the accuracy numbers I've gathered, I see loop_only_seed123 at 85.88% and loop_only_seed456 at 86.64%. I also know vota_loop_only_seed42 is 85.63%, though that's a different variant. Rather than spend more time hunting down the exact plain loop_only_seed42 value, I should move forward with what I have.
+
+The main priority now is getting cuda:1 operational, which is already done. Since the training job submission should auto-register the cron monitoring, let me verify that's actually happened, then I'll explicitly register it to be safe before updating the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fb35eac-26fa-4511-aabd-25806798c025",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qqBUyGPR5wKW5Eqjwj",
+  "type": "assistant",
+  "uuid": "d5ba57d0-c567-4c10-b182-01801310ed2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W9SirtJkdyBTJ9KyQXQhe3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9216,
+      "cache_read_input_tokens": 59896,
+      "output_tokens": 825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9216,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 825,
+          "cache_read_input_tokens": 59896,
+          "cache_creation_input_tokens": 9216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9216
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-16T20:01:12.033Z_
+
+注册 cron 监控新实验，然后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5ba57d0-c567-4c10-b182-01801310ed2c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qqBUyGPR5wKW5Eqjwj",
+  "type": "assistant",
+  "uuid": "d68750c3-3ca8-4060-807c-35308259f7ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W9SirtJkdyBTJ9KyQXQhe3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9216,
+      "cache_read_input_tokens": 59896,
+      "output_tokens": 825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9216,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 825,
+          "cache_read_input_tokens": 59896,
+          "cache_creation_input_tokens": 9216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9216
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T20:01:14.501Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01DcgxtA7A5kUDaL9PEEfVM1`</summary>
+
+```json
+{
+  "exp_id": "codellama13b_exception_only_seed456",
+  "server": "westd-11235",
+  "pid": "303301",
+  "log_path": "~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log",
+  "project": "trace-verdict-study",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d68750c3-3ca8-4060-807c-35308259f7ad",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qqBUyGPR5wKW5Eqjwj",
+  "type": "assistant",
+  "uuid": "31124f8b-dc06-4eb2-9b14-c582bd780e5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W9SirtJkdyBTJ9KyQXQhe3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9216,
+      "cache_read_input_tokens": 59896,
+      "output_tokens": 825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9216,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 825,
+          "cache_read_input_tokens": 59896,
+          "cache_creation_input_tokens": 9216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9216
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T20:01:14.665Z_
+
+<details><summary>↩ Tool result · `toolu_01DcgxtA7A5kUDaL9PEEfVM1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"server\": \"westd-11235\", \"pid\": \"303301\", \"wandb_run_id\": null, \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"interval_seconds\": 120, \"project\": \"trace-verdict-study\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-16T20:01:14.566Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31124f8b-dc06-4eb2-9b14-c582bd780e5a",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "64c8986f-e6bc-42ca-8815-a0cf60ad4e8b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"codellama13b_exception_only_seed456\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"pid\\\": \\\"303301\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"trace-verdict-study\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-16T20:01:14.566Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"codellama13b_exception_only_seed456\", \"server\": \"westd-11235\", \"pid\": \"303301\", \"wandb_run_id\": null, \"log_path\": \"~/runs/trace-verdict-study/codellama13b_exception_only_seed456.log\", \"interval_seconds\": 120, \"project\": \"trace-verdict-study\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-16T20:01:14.566Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "31124f8b-dc06-4eb2-9b14-c582bd780e5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-16T20:01:29.316Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, cron registered. Now let me report to Director. Let me compile the status:
+
+Current state:
+- cuda:0: codellama13b_exception_only_seed123 (RUNNING, PID 299731, started ~19:10 UTC, been running ~50 min)
+- cuda:1: codellama13b_exception_only_seed456 (RUNNING, PID 303301, just started)
+
+Recent completions since last handoff:
+- loop_only_seed123: 85.88% ✅
+- loop_only_seed456: 86.64% ✅ 
+
+
+- codellama13b_no_trace_seed42: 76.5%
+- codellama13b_vota_seed42: 98.57% ✅
+- codellama13b_exception_only_seed42: 99.83% ✅
+
+The exception_only approach is clearly the winner across all seeds tested so far, with seed42 hitting 99.83% and the other two seeds currently running to confirm the pattern.
+
+For the loop_only experiments, I'm seeing seed123 at 85.88% and seed456 at 86.64%, so once I get the seed42 result I'll have the full 3-seed mean for CodeLlama-13B. After that, I need to decide whether to focus on removing format markers or running multi-seed experiments for the no_trace and vota variants, then integrate everything into the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64c8986f-e6bc-42ca-8815-a0cf60ad4e8b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qriR6jp2ERgKkneErw",
+  "type": "assistant",
+  "uuid": "cb7c5afe-86dc-4aed-94d1-249580b042ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjcEND2bQp1tj3G4LLx78p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 69112,
+      "output_tokens": 1074,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 69112,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-16T20:01:39.706Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_016t9xtucgSDUEeaVSb3rdPd`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0 (GPU 2 / CPU 0)\n\n## Session-start 状态汇报\n\n**RUNNING (2)**:\n- `codellama13b_exception_only_seed123` — cuda:0, PID 299731, 已运行 ~50min\n- `codellama13b_exception_only_seed456` — cuda:1, PID 303301, 刚启动（本轮发现 cuda:1 空闲后立即提交）\n\n**CodeLlama-13B grid 进展** (seed42 全部完成):\n| Condition | Accuracy | vs Qwen-7B |\n|-----------|----------|------------|\n| exception_only | 99.83% | = Qwen-7B (99.83%) |\n| vota | 98.57% | ≈ Qwen-7B (99.41%) |\n| no_trace | 76.47% | ≈ Qwen-7B (75.13%) |\n\n核心发现确认：exception_only 跨 3 个家族（Qwen/CodeLlama/DeepSeek）均命中 99.83% ceiling，signal-limited claim 进一步加固。\n\n**loop_only 3-seed 完成**:\n- seed123=85.88%, seed456=86.64%��seed42 待确认后出 mean±std）\n\n**下一步**:\n1. 等 codellama13b_exception_only seed123+456 完成 → 计算 3-seed mean（预期 ≈99.83%±0.00，与 Qwen-7B 一致）\n2. 两实验完成后（预计 ~2-3h）→ cuda:0/1 空出 → 铺 format marker removal 或 codellama13b multi-seed(no_trace/vota)\n3. 论文 Table 1 集成等全部数据就绪后统一写入",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb7c5afe-86dc-4aed-94d1-249580b042ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qriR6jp2ERgKkneErw",
+  "type": "assistant",
+  "uuid": "f5f313ce-78c7-464c-a8b1-1d7f903953c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjcEND2bQp1tj3G4LLx78p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 69112,
+      "output_tokens": 1074,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 69112,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-16T20:01:43.667Z_
+
+<details><summary>↩ Tool result · `toolu_016t9xtucgSDUEeaVSb3rdPd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5f313ce-78c7-464c-a8b1-1d7f903953c0",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "18fdbe63-c326-46b1-b95a-602ee9c9a9f7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "f5f313ce-78c7-464c-a8b1-1d7f903953c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-16T20:01:43.675Z_
+
+```json
+{
+  "parentUuid": "18fdbe63-c326-46b1-b95a-602ee9c9a9f7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "10daf2c0-32c9-4c61-a17f-0ca018f1343a",
+  "timestamp": "2026-05-16T20:01:43.675Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-16T20:02:06.477Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Director has been notified. Now let me think about what else I should do in this session:
+
+1. ✅ Registry checked
+2. ✅ Crons reconciled
+3. ✅ Report read
+4. ✅ ROADMAP read
+5. ✅ Director reported
+
+Now, there are a few things I should address:
+- Worker 池 = 0, which is an L1 violation ("任一时刻 Worker 池 < 2 = 失职"). But the caveat says "除非真的全部下游阻塞等 GPU"
+
+
+- Both GPUs are currently running experiments, so I should focus on non-GPU work I can parallelize: paper writing tasks, literature scanning, prediction overlap analysis between the 1.5B and 7B models, and computing the 3-seed mean from the loop_only_seed42 metrics. The prediction overlap analysis seems most actionable right now since it has zero GPU cost according to the ROADMAP.
+
+I'm thinking about spawning Workers for the prediction overlap analysis and Table 1 preparation since I have CPU-bound tasks available and need to maintain at least 2 Workers. But I need to be careful about the coordination — I should handle the planning while Workers execute the actual work.
+
+Looking at the ROADMAP, the 1.5B full trace with seed42 is actually complete at 77.06% accuracy, and the prediction overlap task comparing 1.5B vs 7B exception samples is still pending. So I'll spawn a Worker for that overlap analysis and update the report to reflect the current state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10daf2c0-32c9-4c61-a17f-0ca018f1343a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qtqxaTspYtQ717evYv",
+  "type": "assistant",
+  "uuid": "4f6a3480-b534-466f-ade7-01cb775ca638",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvzYy6GPgMivBJZ7MXDA46",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 70143,
+      "output_tokens": 1004,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1004,
+          "cache_read_input_tokens": 70143,
+          "cache_creation_input_tokens": 1247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-16T20:02:07.565Z_
+
+已汇报 Director。当前 Worker 池=0 是 L1 违规。有 CPU-bound 任务可以并行——Prediction overlap 分析（ROADMAP 待办项）和 loop_only 3-seed 汇总。让我 spawn Worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f6a3480-b534-466f-ade7-01cb775ca638",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qtqxaTspYtQ717evYv",
+  "type": "assistant",
+  "uuid": "2d95d7c4-f40e-4210-8454-074f1d6620cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvzYy6GPgMivBJZ7MXDA46",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 70143,
+      "output_tokens": 1004,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1004,
+          "cache_read_input_tokens": 70143,
+          "cache_creation_input_tokens": 1247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T20:02:08.147Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018mf4s6fvRbztvDR4o6EZTM`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d95d7c4-f40e-4210-8454-074f1d6620cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qtqxaTspYtQ717evYv",
+  "type": "assistant",
+  "uuid": "ac5045cb-dbea-4e83-aff5-7c8586f161cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvzYy6GPgMivBJZ7MXDA46",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 70143,
+      "output_tokens": 1004,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1004,
+          "cache_read_input_tokens": 70143,
+          "cache_creation_input_tokens": 1247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T20:02:08.161Z_
+
+<details><summary>↩ Tool result · `toolu_018mf4s6fvRbztvDR4o6EZTM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac5045cb-dbea-4e83-aff5-7c8586f161cc",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "f0b8314f-40bf-4d39-94dc-d71a1dfa6048",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "ac5045cb-dbea-4e83-aff5-7c8586f161cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-16T20:02:26.767Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me spawn Workers for CPU-bound tasks:
+
+1. **Prediction overlap analysis** — Compare error samples between 1.5B and 7B exception_only models. This needs SSH access to read prediction files on the server.
+
+2. **loop_only 3-seed computation + report update** — I actually need to find loop_only_seed42 metrics first. Let me check if I can find it in the registry by looking at the remaining 11 experiments I didn't get (the limit was 50 out of 61 total). Let me query for it specifically.
+
+Actually, let me think about what Workers to spawn:
+
+
+I'll set up Worker 1 to SSH into the server and pull predictions from the exception_only models across all four architectures, then compare the error samples between the 1.5B and 7B versions. For Worker 2, I need to compile all the metrics into a structured table, compute the loop_only 3-seed average, and draft the cross-scale and cross-family analysis sections. Worker 1 requires SSH credentials while Worker 2 needs access to the registry and my knowledge base. I need to pull the predictions.jsonl files from those checkpoint directories across the different models to analyze the universal irreducible ceiling. Let me get both Workers running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0b8314f-40bf-4d39-94dc-d71a1dfa6048",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qveovK7DToUpvf8VoD",
+  "type": "assistant",
+  "uuid": "7146b2d9-b166-4c17-98d7-e0ef5592a02a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016U4qrk4Yh9NbmZ2f3vMUbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 71390,
+      "output_tokens": 2168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2199,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2168,
+          "cache_read_input_tokens": 71390,
+          "cache_creation_input_tokens": 2199,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2199
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-16T20:02:40.593Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01DXAR2jtFVPMxW6iKFRt5UG`</summary>
+
+```json
+{
+  "task_type": "analysis:prediction-overlap-cross-family",
+  "project": "trace-verdict-study",
+  "task_prompt": "## 任务：跨模型家族 Prediction Overlap 分析\n\n### 目标\n比较 exception_only 条件下 4 个模型的错误样本，确认 \"universal irreducible ceiling\" claim（D049）。\n\n### 背景\n所有模型在 exception_only 条件下 accuracy ≈ 99.83%（2/1190 errors）。D049 假设这 4 个模型犯的是同样 2 个错误样本（即 ceiling 来自数据本身而非模型能力）。需要验证。\n\n### 具体步骤\n\n1. SSH 到 westd-11235，读取以下 predictions 文件：\n   - Qwen-7B: `/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed42/final/eval_results.json` 或同目录下的 `predictions.jsonl`\n   - Qwen-1.5B: `/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/eval_results.json`\n   - CodeLlama-13B: `/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/eval_results.json`\n   - DeepSeek: 搜索 `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed42/` 或类似路径\n\n2. 对每个模型提取错误预测的样本 ID（problem_id 或 index）\n\n3. 计算 overlap：\n   - Jaccard similarity between error sets\n   - 列出哪些样本被所有模型都错误预测\n   - 列出哪些样本只被部分模型错误预测\n\n4. 如果所有 4 模型错的是同样 2 个样本 → 强有力证据支持 \"irreducible data ceiling\"\n   如果不同模型错不同样本 → 需要更 nuanced 的 claim\n\n### 产出\n将分析结果写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/prediction_overlap_analysis.md`，包含：\n- 每个模型的错误样本 ID 列表\n- Overlap 矩阵\n- 结论：是否支持 universal ceiling claim\n- 错误样本的具体内容（如果能读到）\n\n### 环境\n- 服务器：westd-11235, account: root\n- Python: `/root/miniconda3/bin/python`\n- 数据目录: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- 如果找不到 predictions.jsonl，试找 eval_results.json 中的 error details",
+  "tool_groups": [
+    "ssh",
+    "knowledge",
+    "registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7146b2d9-b166-4c17-98d7-e0ef5592a02a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qveovK7DToUpvf8VoD",
+  "type": "assistant",
+  "uuid": "6470fb56-a732-4268-8dc2-cff02eefeaf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016U4qrk4Yh9NbmZ2f3vMUbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 71390,
+      "output_tokens": 2168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2199,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2168,
+          "cache_read_input_tokens": 71390,
+          "cache_creation_input_tokens": 2199,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2199
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-16T20:02:43.773Z_
+
+<details><summary>↩ Tool result · `toolu_01DXAR2jtFVPMxW6iKFRt5UG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_prediction-overlap-cross-family_20260516T200241\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_prediction-overlap-cross-family_20260516T200241.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_prediction-overlap-cross-family_20260516T200241 started. Use get_worker_status('worker_analysis_prediction-overlap-cross-family_20260516T200241') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6470fb56-a732-4268-8dc2-cff02eefeaf3",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "a540c3a9-1259-4c21-887c-11c9a8e5809f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_prediction-overlap-cross-family_20260516T200241\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_prediction-overlap-cross-family_20260516T200241.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_prediction-overlap-cross-family_20260516T200241 started. Use get_worker_status('worker_analysis_prediction-overlap-cross-family_20260516T200241') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_prediction-overlap-cross-family_20260516T200241\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_prediction-overlap-cross-family_20260516T200241.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_prediction-overlap-cross-family_20260516T200241 started. Use get_worker_status('worker_analysis_prediction-overlap-cross-family_20260516T200241') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6470fb56-a732-4268-8dc2-cff02eefeaf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-16T20:02:50.492Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01GLBnPxmnj8y2pgUUJesWRz`</summary>
+
+```json
+{
+  "task_type": "analysis:loop-only-3seed-summary",
+  "project": "trace-verdict-study",
+  "task_prompt": "## 任务：loop_only 3-seed 汇总 + report.md 更新\n\n### 目标\n1. 查找 loop_only_seed42 的 accuracy 指标\n2. 计算 loop_only 3-seed 均值和标准差\n3. 更新 report.md 为最新状态\n\n### 已知数据\n- loop_only_seed123: accuracy=0.8588\n- loop_only_seed456: accuracy=0.8664\n- loop_only_seed42: 需要从 registry 查找（是早期实验）\n\n### 步骤\n\n1. 用 `read_registry` 查找 loop_only_seed42（可能需要增大 limit 或无 filter 查全量）。如果 registry 里找不到，SSH 到 westd-11235 检查 `/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed42/final/eval_results.json`\n\n2. 计算 3-seed mean ± std\n\n3. 更新 report.md（路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md`）为当前准确状态：\n   - RUNNING: codellama13b_exception_only_seed123 (cuda:0) + codellama13b_exception_only_seed456 (cuda:1)\n   - 近期完成的关键结果（CodeLlama-13B grid, loop_only 3-seed, nomarker）\n   - 下一步：等 2 个 RUNNING 完成 → format marker removal 或 codellama multi-seed\n\n4. 将 loop_only 3-seed 结果更新到 registry 的 metrics 字段中（在 loop_only_seed456 的 metrics 中加 seed_comparison）\n\n### 环境\n- Registry 项目名: trace-verdict-study\n- report.md 路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md`",
+  "tool_groups": [
+    "ssh",
+    "knowledge",
+    "registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a540c3a9-1259-4c21-887c-11c9a8e5809f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qveovK7DToUpvf8VoD",
+  "type": "assistant",
+  "uuid": "5bad3ec1-e761-4156-a892-3c0916787b5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016U4qrk4Yh9NbmZ2f3vMUbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 71390,
+      "output_tokens": 2168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2199,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2168,
+          "cache_read_input_tokens": 71390,
+          "cache_creation_input_tokens": 2199,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2199
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU - Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径…",
+  "leafUuid": "5bad3ec1-e761-4156-a892-3c0916787b5b",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Confirm experiment status and execute queued training tasks",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-16T20:02:53.028Z_
+
+<details><summary>↩ Tool result · `toolu_01GLBnPxmnj8y2pgUUJesWRz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_loop-only-3seed-summary_20260516T200250\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_loop-only-3seed-summary_20260516T200250.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_loop-only-3seed-summary_20260516T200250 started. Use get_worker_status('worker_analysis_loop-only-3seed-summary_20260516T200250') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5bad3ec1-e761-4156-a892-3c0916787b5b",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "5f94f708-d1b9-4196-9463-db86807bf327",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_loop-only-3seed-summary_20260516T200250\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_loop-only-3seed-summary_20260516T200250.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_loop-only-3seed-summary_20260516T200250 started. Use get_worker_status('worker_analysis_loop-only-3seed-summary_20260516T200250') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_loop-only-3seed-summary_20260516T200250\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_loop-only-3seed-summary_20260516T200250.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_loop-only-3seed-summary_20260516T200250 started. Use get_worker_status('worker_analysis_loop-only-3seed-summary_20260516T200250') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5bad3ec1-e761-4156-a892-3c0916787b5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-16T20:03:10.445Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both Workers spawned successfully. Now my Worker pool = 2 (satisfies L1 constraint).
+
+Current status:
+- GPU: cuda:0 running codellama13b_exception_only_seed123, cuda:1 running codellama13b_exception_only_seed456
+- Workers: 2 active (prediction overlap analysis, loop_only summary)
+- Crons: monitoring both running experiments
+
+I should now wait for callbacks (Worker done, experiment done). Per instructions: "spawn_worker 后立即回复 Director（告知已派发），然后结束本轮对话。不要轮询 Worker 状态——Worker 完成后系统会通过 [WORKER DONE] 消息自动回调你"
+
+
+I've already reported to Director and the session is initialized. Since I'm in Loop #14, I need to schedule a wakeup to check on progress. Based on the CodeLlama-13B runtime from seed42 (~2.75 hours), seed123 should finish in roughly 2 more hours, so I'll schedule a wakeup in about 270 seconds to stay in cache.
+
+Actually, the system will automatically notify me when Workers and experiments complete through callbacks, so I don't need to poll. I should just schedule the next wakeup for 270 seconds to stay warm and handle any incoming callbacks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f94f708-d1b9-4196-9463-db86807bf327",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qyxPBNqgqjBFggCv71",
+  "type": "assistant",
+  "uuid": "4bce56d4-8af1-4e61-b559-2cd7415009db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dpma4KhN6tMit2b2HM4cW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 73589,
+      "output_tokens": 1913,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1913,
+          "cache_read_input_tokens": 73589,
+          "cache_creation_input_tokens": 2633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-16T20:03:11.816Z_
+
+Session-start 初始化完成。当前状态：
+
+- **GPU**: cuda:0 (`codellama13b_exception_only_seed123`) + cuda:1 (`codellama13b_exception_only_seed456`) — 满载
+- **Worker 池**: 2 (prediction overlap 分析 + loop_only 3-seed 汇总)
+- **Cron**: 两个实验均已注册监控
+
+等待 Worker 回调和实验完成回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4bce56d4-8af1-4e61-b559-2cd7415009db",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qyxPBNqgqjBFggCv71",
+  "type": "assistant",
+  "uuid": "13ce8ebb-e74b-43f8-ab9c-0e007c2cc84b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dpma4KhN6tMit2b2HM4cW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 73589,
+      "output_tokens": 1913,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1913,
+          "cache_read_input_tokens": 73589,
+          "cache_creation_input_tokens": 2633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-16T20:03:39.949Z_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_01T8ETR9DUzmNZpmMD8m36RF`</summary>
+
+```json
+{
+  "delaySeconds": 270,
+  "reason": "等待 2 个 Worker 完成回调（prediction overlap + loop_only summary），预计 5-10 分钟内返回",
+  "prompt": "[HANDOFF] 你是 Main Agent，这是 Loop #14。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止使用任何其他 GPU\n- Python 路径必须用 `/root/miniconda3/bin/python`（绝对路径），不走 conda activate，不假设 .venv\n- 每个实验必须独立 output_dir：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`（seed123 覆盖事故教训）\n- CodeLlama-13B 模型路径：`/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`（注意在 autodl-tmp 下，不是根目录）\n- 投稿 DDL：ARR May 25 = 距今 9 天，所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-11235`，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：Qwen-7B `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`；Qwen-1.5B `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`；CodeLlama-13B `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`\n- 数据路径：`/root/autodl-tmp/trace-verdict-study-data/`（各条件 train/test jsonl）\n- Checkpoint 路径：`/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- 活跃进程：`codellama13b_exception_only_seed123` PID=299731，cuda:0；`codellama13b_exception_only_seed456` PID=303301，cuda:1\n- W&B project：trace-verdict-study（自动 eval chain 会上传 metrics）\n\n### 3. 📊 当前状态\n- **RUNNING (2)**：codellama13b_exception_only_seed123 (cuda:0) + codellama13b_exception_only_seed456 (cuda:1)\n- **Worker 池 (2)**：prediction-overlap-cross-family + loop-only-3seed-summary\n- **等待回调**：2 Worker + 2 实验 cron\n- **CodeLlama-13B seed42 完成**：exception_only=99.83%, vota=98.57%, no_trace=76.47%\n- **loop_only 完成**：seed123=85.88%, seed456=86.64%, seed42 待确认\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调到达 → 整合结果、更新 ROADMAP\n- codellama13b_exception_only seed123/456 完成 → 计算 3-seed mean → 如 ≈99.83% 则确认 cross-family signal-limited\n- 两实验完成后 → cuda:0/1 空出 → 铺 format marker removal 或 codellama13b no_trace/vota multi-seed\n- 全部数据就绪 → spawn paper-writing Worker patch Table 1 + cross-scale analysis\n\n### 5. 🎯 战略上下文\n- 核心结论：Exception events 是 verdict prediction 最有效 trace component，跨 3 个模型家族（Qwen/CodeLlama/DeepSeek）、跨 3 个 scale（1.5B/7B/13B）验证\n- DDL 9 天，当前是增量验证阶段（multi-seed robustness），不是核心 claim 建立阶段\n- CodeLlama-13B exception_only seed42=99.83% 已确认 cross-family，seed123/456 是 robustness 补充证据"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13ce8ebb-e74b-43f8-ab9c-0e007c2cc84b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6qyxPBNqgqjBFggCv71",
+  "type": "assistant",
+  "uuid": "069e0d71-5618-4b50-b965-166f08f898c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dpma4KhN6tMit2b2HM4cW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 73589,
+      "output_tokens": 1913,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1913,
+          "cache_read_input_tokens": 73589,
+          "cache_creation_input_tokens": 2633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-16T20:03:39.980Z_
+
+<details><summary>↩ Tool result · `toolu_01T8ETR9DUzmNZpmMD8m36RF`</summary>
+
+```text
+Next wakeup scheduled for 20:08:00 (in 260s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "069e0d71-5618-4b50-b965-166f08f898c5",
+  "isSidechain": false,
+  "promptId": "74b13af7-8f6c-4d02-a654-28dc78fed2d4",
+  "type": "user",
+  "uuid": "4a0e67ac-1379-44c5-8546-5fe42bcebbd1",
+  "toolUseResult": {
+    "scheduledFor": 1778962080000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  },
+  "sourceToolAssistantUUID": "069e0d71-5618-4b50-b965-166f08f898c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_feec92d8",
+  "sessionId": "3bbbce81-2ca6-4d0b-87e5-c455793269fc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

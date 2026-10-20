@@ -1,0 +1,2617 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-1/a34b0d88-b4d0-4137-a08c-1acc1ad924ed.jsonl`
+- **Structured JSON:** [`9631a8b700b385fb7974.json`](../../sessions/96/9631a8b700b385fb7974.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T01:43:47.101Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T01:43:47.101Z",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：原始 framing 完全成立。plan_001 ablation 直接证明 VOTA 效果源于 execution state reasoning 而非 actual==expected 字符串比对——去除 actual/expected 后模型仍保持 89% accuracy（+14pp over no_trace）， 说明 assertion structure、exception pattern、loop behavior 本身携带充足的 verdict-relevant signal。 plan_002 label-only loss 将 full_trace 从 28.49% 修复至 76%，gradient dilution 假说闭环确认。 plan_003 组件 ablation 证明三类信号各有独立贡献（最弱组件仍 +4pp），且组合呈超加性——模型在 jointly reasoning over multiple execution dimensions, not relying on a single cue。DeepSeek-Coder 复现 +20pp lift， DebugBench 复现 +17pp lift，排除模型特异性和任务特异性。Seed variance <0.2pp，结果高度稳定。 论文 Claim 1 升级为 \"VOTA teaches execution-grounded verdict reasoning, not mere string comparison\"， Claim 2 机制解释闭环（gradient dilution confirmed + trace length monotonic decline）， Claim 3 提供完整 trace design principle taxonomy（每个组件贡献量化 + 交互效应分析）。 直接冲 EMNLP Main，所有 anticipated reviewer concerns 均有数据回应。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T01:43:47.105Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T01:43:47.105Z",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T01:43:47.129Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/experiment_data.json`（先 Read 此文件）
+- Venue：默认
+- Narrative guidance：原始 framing 完全成立。plan_001 ablation 直接证明 VOTA 效果源于 execution state reasoning 而非 actual==expected 字符串比对——去除 actual/expected 后模型仍保持 89% accuracy（+14pp over no_trace）， 说明 assertion structure、exception pattern、loop behavior 本身携带充足的 verdict-relevant signal。 plan_002 label-only loss 将 full_trace 从 28.49% 修复至 76%，gradient dilution 假说闭环确认。 plan_003 组件 ablation 证明三类信号各有独立贡献（最弱组件仍 +4pp），且组合呈超加性——模型在 jointly reasoning over multiple execution dimensions, not relying on a single cue。DeepSeek-Coder 复现 +20pp lift， DebugBench 复现 +17pp lift，排除模型特异性和任务特异性。Seed variance <0.2pp，结果高度稳定。 论文 Claim 1 升级为 "VOTA teaches execution-grounded verdict reasoning, not mere string comparison"， Claim 2 机制解释闭环（gradient dilution confirmed + trace length monotonic decline）， Claim 3 提供完整 trace design principle taxonomy（每个组件贡献量化 + 交互效应分析）。 直接冲 EMNLP Main，所有 anticipated reviewer concerns 均有数据回应。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "78e90b0d-0a43-4918-8583-6b95e499920a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T01:43:47.128Z_
+
+```json
+{
+  "parentUuid": "78e90b0d-0a43-4918-8583-6b95e499920a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6a8db27a-8278-4095-a73e-3a5f5d0871f2",
+  "timestamp": "2026-05-15T01:43:47.128Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T01:43:47.128Z_
+
+```json
+{
+  "parentUuid": "6a8db27a-8278-4095-a73e-3a5f5d0871f2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cfe3cee4-555c-400f-9819-674eb0b6d7a0",
+  "timestamp": "2026-05-15T01:43:47.128Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate paper for dream_20260515T013018",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-15T01:43:52.672Z_
+
+I'll start by reading the input files to understand the experiment data and paper framing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfe3cee4-555c-400f-9819-674eb0b6d7a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WMtH9NuHdHCLxkpeM9",
+  "type": "assistant",
+  "uuid": "860a05b6-9f4d-40f7-a4ca-c32ac5ddb53b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PiQpWHRQL1UUN41FzK6SQD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11420,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T01:43:53.164Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RZArhGcC84b95NGzXhZGHL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "860a05b6-9f4d-40f7-a4ca-c32ac5ddb53b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WMtH9NuHdHCLxkpeM9",
+  "type": "assistant",
+  "uuid": "9a1f6326-2007-45f0-be8c-35a51ddd5402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PiQpWHRQL1UUN41FzK6SQD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11420,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T01:43:53.420Z_
+
+<details><summary>↩ Tool result · `toolu_01RZArhGcC84b95NGzXhZGHL`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "VOTA without actual/expected ablation",
+4	    "description": "从 VOTA trace 中移除所有 actual value 和 expected value 字段，只保留 assertion structure (assertion name, line number, assertion type)、exception summary、loop compression info。 使用与 vota_seed42_v4 相同的训练配置（CodeLlama-7B, 3 epochs, lr=2e-5）。\n",
+5	    "results": {
+6	      "accuracy": 0.891,
+7	      "majority_baseline": 0.7151,
+8	      "lift_over_notrace": 0.1397,
+9	      "lift_over_notrace_pp": 13.97,
+10	      "drop_from_full_vota_pp": 10.06,
+11	      "pass_precision": 0.932,
+12	      "pass_recall": 0.879,
+13	      "pass_f1": 0.905,
+14	      "fail_precision": 0.821,
+15	      "fail_recall": 0.919,
+16	      "fail_f1": 0.867,
+17	      "accuracy_ci_lower": 0.871,
+18	      "accuracy_ci_upper": 0.909,
+19	      "train_loss": 0.072,
+20	      "eval_loss": 0.298,
+21	      "mcnemar_vs_notrace_p": 1e-05
+22	    },
+23	    "tables": [
+24	      {
+25	        "name": "Table 3: Actual/Expected Ablation Results",
+26	        "columns": [
+27	          "Condition",
+28	          "Accuracy",
+29	          "Δ vs No-Trace",
+30	          "95% CI",
+31	          "Pass F1",
+32	          "Fail F1"
+33	        ],
+34	        "rows": [
+35	          [
+36	            "Full VOTA",
+37	            "99.16%",
+38	            "+24.03pp",
+39	            "[98.57, 99.66]",
+40	            "0.994",
+41	            "0.985"
+42	          ],
+43	          [
+44	            "VOTA w/o actual/expected",
+45	            "89.1%",
+46	            "+13.97pp",
+47	            "[87.1, 90.9]",
+48	            "0.905",
+49	            "0.867"
+50	          ],
+51	          [
+52	            "No-trace baseline",
+53	            "75.13%",
+54	            "—",
+55	            "[72.5, 77.6]",
+56	            "0.813",
+57	            "0.627"
+58	          ],
+59	          [
+60	            "Full trace",
+61	            "28.49%",
+62	            "−46.64pp",
+63	            "[25.9, 31.1]",
+64	            "0.155",
+65	            "0.568"
+66	          ]
+67	        ]
+68	      }
+69	    ],
+70	    "figures": [],
+71	    "analysis": "89.1% accuracy without actual/expected is the single most important result for paper framing. 它将 VOTA 的 24pp lift 分解为两部分：~10pp 来自 actual/expected 值的 direct comparison signal， ~14pp 来自 execution state reasoning（assertion structure + exception + loop patterns）。 后者才是 VOTA 的 core contribution——它证明 trace SFT 不是在教模型做字符串比对，而是在教模型 理解 execution behavior 的 anomaly patterns。这直接回应了 Reviewer Concern #1。 论文 Claim 1 可以升级为强表述。\n\n\n去除 actual/expected 后 accuracy 从 99.16% 降至 ~89%，说明 actual/expected 值确实提供了 直接的 verdict signal（约贡献 10pp）。但关键发现是：剩余 89% accuracy 仍大幅超越 no_trace 的 75.13% （+14pp, p<0.001），证明模型从 assertion structure + exception info + loop patterns 中 学到了 genuine execution state reasoning。具体机制：(1) exception summary 提供了 \"哪个 assertion 点抛出了什么类型的异常\" 的信息，这本身就是强 verdict signal——在测试中， exception 几乎必然意味着 fail，且 exception type/message 携带 root cause 信息； (2) loop compression 中的迭代次数异常（early termination, infinite loop detection） 是 behavioral anomaly 的直接证据；(3) assertion structure 本身（哪些 assertion 被执行、 执行顺序）编码了 control flow path 信息。模型 jointly reason over 这些 signals， 而非简单的 string matching。train_loss 从 0.046 升至 0.072 反映了 task 难度增加 （没有 actual/expected 的 \"shortcut\"），eval_loss 从 0.084 升至 0.298 说明 uncertainty 增大但仍在 reasonable range。\n"
+72	  },
+73	  {
+74	    "name": "Full trace with label-only loss",
+75	    "description": "使用完整 execution trace 但修改 loss computation：只对最终 verdict token（pass/fail）计算 cross-entropy loss，mask 掉所有 trace token 的 loss。验证 collapse 根因是 gradient dilution （trace tokens 占 >95% loss weight 导致 classification gradient 被淹没）而非 trace content 本身有害。\n",
+76	    "results": {
+77	      "accuracy": 0.762,
+78	      "majority_baseline": 0.7151,
+79	      "lift_over_notrace": 0.0107,
+80	      "lift_over_standard_fulltrace": 0.478,
+81	      "pass_precision": 0.847,
+82	      "pass_recall": 0.738,
+83	      "pass_f1": 0.789,
+84	      "fail_precision": 0.621,
+85	      "fail_recall": 0.823,
+86	      "fail_f1": 0.708,
+87	      "train_loss": 0.34,
+88	      "eval_loss": 0.52,
+89	      "collapse_fixed": true,
+90	      "predict_fail_ratio": 0.437
+91	    },
+92	    "tables": [
+93	      {
+94	        "name": "Table 4: Loss Strategy Ablation on Full Trace",
+95	        "columns": [
+96	          "Condition",
+97	          "Loss Type",
+98	          "Accuracy",
+99	          "% Predict Fail",
+100	          "Collapse?"
+101	        ],
+102	        "rows": [
+103	          [
+104	            "Full trace",
+105	            "Standard SFT",
+106	            "28.49%",
+107	            "100%",
+108	            "Yes"
+109	          ],
+110	          [
+111	            "Full trace",
+112	            "Label-only",
+113	            "76.2%",
+114	            "43.7%",
+115	            "No"
+116	          ],
+117	          [
+118	            "No trace",
+119	            "Standard SFT",
+120	            "75.13%",
+121	            "42.1%",
+122	            "No"
+123	          ],
+124	          [
+125	            "VOTA",
+126	            "Standard SFT",
+127	            "99.16%",
+128	            "29.8%",
+129	            "No"
+130	          ]
+131	        ]
+132	      }
+133	    ],
+134	    "figures": [],
+135	    "analysis": "76.2% 完美支撑 gradient dilution 叙事：(1) label-only 修复 collapse → 确认 collapse 原因是 loss distribution mismatch 而非 trace data corruption；(2) 修复后仅达 no_trace 水平 → full trace 作为 context 无信息增益，因为 attention 在 2000+ tokens 中无法聚焦 verdict-relevant states；(3) VOTA 在标准 loss 下就达 99.16% → 紧凑的 trace abstraction 同时解决了 gradient dilution 和 attention dilution。这为 Claim 2 提供了完整的机制解释闭环。\n\n\nlabel-only loss 将 accuracy 从 28.49%（全 collapse）修复至 76.2%，接近 no_trace baseline（75.13%）。 这直接确认了 gradient dilution 假说：在标准 SFT loss 下，full trace 的 ~2000+ trace tokens 贡献了 >97% 的 total loss，classification token（1 token）的 gradient 被 overwhelm。 模型被迫优化 \"next token prediction on trace text\" 而非 \"verdict classification\"， 最终 collapse 到 majority class prediction。label-only loss 消除了 trace token 的 gradient 干扰后，模型至少能正常分类。但 76.2% 仅略高于 no_trace，说明 full execution trace 即使作为 pure context（不参与 loss）也几乎没有帮助——trace 太长太密，模型的 attention 无法从中提取 decision-relevant signal。这解释了为什么 VOTA（compact, decision-relevant abstraction） 远优于 full_trace + label-only（verbose, attention-diluting context）。predict_fail_ratio 从 100%（collapse）恢复到 43.7%（接近真实 28.49% fail rate），说明 class balance 恢复正常。\n"
+136	  },
+137	  {
+138	    "name": "VOTA component ablation",
+139	    "description": "4 个训练条件：(a) 只有 actual/expected 值对（无 assertion structure/exception/loop info）， (b) 只有 exception summary，(c) 只有 loop compression info，(d) 全量 VOTA（已有结果）。 量化每个 VOTA 组件的独立贡献和交互效应。\n",
+140	    "results": {
+141	      "actexp_only_accuracy": 0.912,
+142	      "actexp_only_lift": 0.1607,
+143	      "exception_only_accuracy": 0.827,
+144	      "exception_only_lift": 0.0757,
+145	      "loop_only_accuracy": 0.791,
+146	      "loop_only_lift": 0.0397,
+147	      "full_vota_accuracy": 0.9916,
+148	      "full_vota_lift": 0.2403,
+149	      "sum_individual_lifts": 0.2761,
+150	      "superadditivity_ratio": 1.15,
+151	      "min_individual_lift": 0.0397,
+152	      "max_individual_lift": 0.1607
+153	    },
+154	    "tables": [
+155	      {
+156	        "name": "Table 5: VOTA Component Ablation",
+157	        "columns": [
+158	          "Component(s)",
+159	          "Accuracy",
+160	          "Δ vs No-Trace",
+161	          "95% CI",
+162	          "Pass F1",
+163	          "Fail F1"
+164	        ],
+165	        "rows": [
+166	          [
+167	            "No trace (baseline)",
+168	            "75.13%",
+169	            "—",
+170	            "[72.5, 77.6]",
+171	            "0.813",
+172	            "0.627"
+173	          ],
+174	          [
+175	            "Loop compression only",
+176	            "79.1%",
+177	            "+3.97pp",
+178	            "[76.7, 81.3]",
+179	            "0.838",
+180	            "0.698"
+181	          ],
+182	          [
+183	            "Exception summary only",
+184	            "82.7%",
+185	            "+7.57pp",
+186	            "[80.5, 84.8]",
+187	            "0.869",
+188	            "0.742"
+189	          ],
+190	          [
+191	            "Actual/expected only",
+192	            "91.2%",
+193	            "+16.07pp",
+194	            "[89.5, 92.7]",
+195	            "0.938",
+196	            "0.862"
+197	          ],
+198	          [
+199	            "Full VOTA (all three)",
+200	            "99.16%",
+201	            "+24.03pp",
+202	            "[98.6, 99.7]",
+203	            "0.994",
+204	            "0.985"
+205	          ]
+206	        ]
+207	      },
+208	      {
+209	        "name": "Table 6: Component Interaction Analysis",
+210	        "columns": [
+211	          "Metric",
+212	          "Value"
+213	        ],
+214	        "rows": [
+215	          [
+216	            "Sum of individual lifts",
+217	            "27.61pp"
+218	          ],
+219	          [
+220	            "Combined lift (full VOTA)",
+221	            "24.03pp"
+222	          ],
+223	          [
+224	            "Superadditivity ratio",
+225	            "1.15×"
+226	          ],
+227	          [
+228	            "Min individual contribution",
+229	            "3.97pp (loop)"
+230	          ],
+231	          [
+232	            "Max individual contribution",
+233	            "16.07pp (actual/expected)"
+234	          ]
+235	        ]
+236	      }
+237	    ],
+238	    "figures": [],
+239	    "analysis": "plan_001 已证明 actual/expected 不是唯一贡献者；plan_003 进一步量化了完整 contribution landscape。 关键 takeaway：(1) 所有三个组件都 independently significant（最弱的 loop compression 仍 +4pp, p<0.01）， 驳斥 \"VOTA 效果被单一组件驱动\" 的担忧；(2) superadditivity 说明 trace design 不是简单的 feature selection 而是 complementary signal composition；(3) 为 trace design principles 提供了 quantitative guidance：verdict-relevant state snapshots > exception diagnostics > behavioral pattern summaries, 按此优先级配置 trace budget。\n\n\n三个组件均有显著独立贡献： (a) actual/expected only (91.2%): 最强单组件。actual/expected 值直接编码了 \"程序实际输出 vs 预期输出\" 的比较信息，对 verdict prediction 最直接相关。但缺少 exception 和 loop 信息时， 模型无法处理 exception-driven failures（exception 时 actual 可能为空）和 loop-related bugs （如 infinite loop timeout），导致部分样本错误。 (b) exception summary only (82.7%): exception type + message + stack trace summary 是 fail 的强信号（几乎所有 exception 都对应 fail），但 exception 只覆盖 ~40% 的 fail cases （其他是 assertion failure without exception），对 pass cases 几乎无信号，导致 precision/recall 不对称。 (c) loop compression only (79.1%): 最弱但仍显著（+4pp over no_trace, p<0.01）。 loop iteration counts 和 early termination patterns 编码了 behavioral anomaly 信号， 但信号较弱且只与 loop-related bugs 相关。 三组件组合的 VOTA (99.16%) 显著超过个体之和（superadditivity ratio 1.15），说明组件间 存在 complementary reasoning：exception summary 覆盖 actual/expected 缺失的 crash cases， loop info 捕捉 actual/expected 和 exception 都无法检测的 behavioral anomalies。 模型在联合训练时学到了 cross-component reasoning patterns。\n"
+240	  },
+241	  {
+242	    "name": "DeepSeek-Coder-6.7B replication",
+243	    "description": "在 DeepSeek-Coder-6.7B-Instruct 上复现三条件实验（VOTA / no_trace / full_trace）， 使用与 DCSH 相同的 base model 进行直接对比。同训练配置但调整 batch size 以适应模型大小。\n",
+244	    "results": {
+245	      "deepseek_vota_accuracy": 0.934,
+246	      "deepseek_notrace_accuracy": 0.731,
+247	      "deepseek_fulltrace_accuracy": 0.307,
+248	      "deepseek_vota_lift": 0.203,
+249	      "deepseek_fulltrace_collapse": true,
+250	      "deepseek_vota_pass_f1": 0.954,
+251	      "deepseek_vota_fail_f1": 0.896,
+252	      "deepseek_notrace_pass_f1": 0.801,
+253	      "deepseek_notrace_fail_f1": 0.598,
+254	      "codellama_vs_deepseek_vota_diff_pp": 5.76,
+255	      "pattern_preserved": true
+256	    },
+257	    "tables": [
+258	      {
+259	        "name": "Table 7: Cross-Model Replication",
+260	        "columns": [
+261	          "Model",
+262	          "Condition",
+263	          "Accuracy",
+264	          "Δ vs No-Trace",
+265	          "Collapse?"
+266	        ],
+267	        "rows": [
+268	          [
+269	            "CodeLlama-7B",
+270	            "VOTA",
+271	            "99.16%",
+272	            "+24.03pp",
+273	            "No"
+274	          ],
+275	          [
+276	            "CodeLlama-7B",
+277	            "No trace",
+278	            "75.13%",
+279	            "—",
+280	            "No"
+281	          ],
+282	          [
+283	            "CodeLlama-7B",
+284	            "Full trace",
+285	            "28.49%",
+286	            "−46.64pp",
+287	            "Yes"
+288	          ],
+289	          [
+290	            "DeepSeek-Coder-6.7B",
+291	            "VOTA",
+292	            "93.4%",
+293	            "+20.3pp",
+294	            "No"
+295	          ],
+296	          [
+297	            "DeepSeek-Coder-6.7B",
+298	            "No trace",
+299	            "73.1%",
+300	            "—",
+301	            "No"
+302	          ],
+303	          [
+304	            "DeepSeek-Coder-6.7B",
+305	            "Full trace",
+306	            "30.7%",
+307	            "−42.4pp",
+308	            "Yes"
+309	          ]
+310	        ]
+311	      }
+312	    ],
+313	    "figures": [],
+314	    "analysis": "DeepSeek 复现是 reviewer concern #3 的直接回应。+20.3pp lift 消除了 \"CodeLlama-specific artifact\" 的可能。与 DCSH 在同模型上的 generation task 对比（+2-5pp vs +20pp）提供了 强有力的 \"trace-task matching\" 叙事支撑。CodeLlama vs DeepSeek 的 ~6pp 绝对差异 属于 model capability difference，不影响 relative pattern 和 core findings。\n\n\nDeepSeek-Coder-6.7B 复现 VOTA lift +20.3pp（vs CodeLlama 的 +24.0pp），三条件间的 相对 pattern（VOTA >> no_trace >> full_trace collapse）完全保持。 DeepSeek VOTA 绝对 accuracy (93.4%) 略低于 CodeLlama (99.16%)，原因：(1) DeepSeek-Coder 的 tokenizer 和 pre-training corpus 不同，对 Python test code 的 prior 略弱； (2) 6.7B vs 7B 参数量差异微小但 architecture 差异（DeepSeek 使用 MHA 而非 GQA） 可能影响 fine-grained state reasoning capacity。 DeepSeek no_trace (73.1%) 略低于 CodeLlama (75.13%)，反映 base model 差异。 DeepSeek full_trace (30.7%) 同样 collapse，确认 gradient dilution 不是 CodeLlama-specific artifact。 +20.3pp lift 落在 [15pp, 25pp] target range 中心，强力支撑 model-generality claim。 与 DCSH 论文的直接对比：DCSH 在 DeepSeek-Coder 上 generation tasks 的 trace SFT lift 为 +2-5pp，而 verdict task + VOTA 获得 +20pp，quantitative 证明了 \"trace-task granularity matching\" 效应。\n"
+315	  },
+316	  {
+317	    "name": "Second task: DebugBench bug detection",
+318	    "description": "在 DebugBench (Python subset) 上构建 bug detection verdict task：给定含 bug 的代码 + test， 预测 test 是否会暴露 bug（pass = bug not triggered, fail = bug triggered）。 使用 VOTA 格式生成 trace，同配置训练 CodeLlama-7B。\n",
+319	    "results": {
+320	      "debugbench_vota_accuracy": 0.849,
+321	      "debugbench_notrace_accuracy": 0.672,
+322	      "debugbench_fulltrace_accuracy": 0.341,
+323	      "debugbench_vota_lift": 0.177,
+324	      "debugbench_fulltrace_collapse": true,
+325	      "debugbench_vota_pass_f1": 0.881,
+326	      "debugbench_vota_fail_f1": 0.803,
+327	      "debugbench_n": 850,
+328	      "pattern_preserved": true
+329	    },
+330	    "tables": [
+331	      {
+332	        "name": "Table 8: Cross-Task Generalization",
+333	        "columns": [
+334	          "Task",
+335	          "Condition",
+336	          "Accuracy",
+337	          "Δ vs No-Trace",
+338	          "N"
+339	        ],
+340	        "rows": [
+341	          [
+342	            "Test verdict (main)",
+343	            "VOTA",
+344	            "99.16%",
+345	            "+24.03pp",
+346	            "1190"
+347	          ],
+348	          [
+349	            "Test verdict (main)",
+350	            "No trace",
+351	            "75.13%",
+352	            "—",
+353	            "1190"
+354	          ],
+355	          [
+356	            "Test verdict (main)",
+357	            "Full trace",
+358	            "28.49%",
+359	            "−46.64pp",
+360	            "1190"
+361	          ],
+362	          [
+363	            "Bug detection (DebugBench)",
+364	            "VOTA",
+365	            "84.9%",
+366	            "+17.7pp",
+367	            "850"
+368	          ],
+369	          [
+370	            "Bug detection (DebugBench)",
+371	            "No trace",
+372	            "67.2%",
+373	            "—",
+374	            "850"
+375	          ],
+376	          [
+377	            "Bug detection (DebugBench)",
+378	            "Full trace",
+379	            "34.1%",
+380	            "−33.1pp",
+381	            "850"
+382	          ]
+383	        ]
+384	      }
+385	    ],
+386	    "figures": [],
+387	    "analysis": "DebugBench 复现回应 reviewer concern #2（单任务风险）。两个 verdict tasks 上一致的 \"VOTA helps, full_trace collapses\" pattern 支撑了 task-class level generalization： 这不是 test verdict prediction 的 artifact，而是 verdict task class 的 systematic 现象。 Absolute accuracy 差异（99% vs 85%）可解释为 task difficulty difference，不影响 core claim。\n\n\nDebugBench bug detection 复现了 VOTA lift pattern (+17.7pp)，但绝对 accuracy 低于 test verdict task（84.9% vs 99.16%）。差异来源： (1) Bug detection 在语义上更难——test verdict prediction 中模型可以推断 \"这段代码的 execution flow 是否会到达 assertion point 并满足 assertion\"，而 bug detection 需要 理解 \"这个 bug 是否会被这个 test case 触发\"，涉及 bug-test interaction reasoning。 (2) DebugBench 的 bug 类型多样（value bugs, logic bugs, reference bugs）， VOTA trace 对 value bugs 最有效（actual/expected 直接暴露），对 logic bugs 效果次之 （需要 loop/control flow patterns），对 reference bugs 最弱。 (3) 数据量较小（~850 vs ~1190）也贡献了部分 accuracy 差异。 no_trace baseline 67.2% 低于 test verdict 的 75.13%，反映 bug detection 的 intrinsic difficulty 更高。full_trace 仍 collapse (34.1%)，确认 gradient dilution 在不同 verdict tasks 上一致发生。+17.7pp lift 落在 [12pp, 22pp] target range 内，支撑 task-class generalization claim。\n"
+388	  },
+389	  {
+390	    "name": "Trace length ablation",
+391	    "description": "在 full execution trace 上测试 4 个截断长度 (256/512/1024/2048 tokens)，使用标准 SFT loss。 绘制 accuracy vs trace length 曲线，验证 gradient dilution 与 trace length 的关系。\n",
+392	    "results": {
+393	      "length_256_accuracy": 0.683,
+394	      "length_512_accuracy": 0.548,
+395	      "length_1024_accuracy": 0.389,
+396	      "length_2048_accuracy": 0.301,
+397	      "full_trace_accuracy": 0.2849,
+398	      "notrace_accuracy": 0.7513,
+399	      "monotonic_decline": true,
+400	      "pearson_r_acc_vs_length": -0.97,
+401	      "all_below_notrace": true
+402	    },
+403	    "tables": [
+404	      {
+405	        "name": "Table 9: Trace Length vs. Accuracy",
+406	        "columns": [
+407	          "Trace Length (tokens)",
+408	          "Accuracy",
+409	          "Δ vs No-Trace",
+410	          "% Predict Fail"
+411	        ],
+412	        "rows": [
+413	          [
+414	            "0 (no trace)",
+415	            "75.13%",
+416	            "—",
+417	            "42.1%"
+418	          ],
+419	          [
+420	            "256",
+421	            "68.3%",
+422	            "−6.8pp",
+423	            "48.2%"
+424	          ],
+425	          [
+426	            "512",
+427	            "54.8%",
+428	            "−20.3pp",
+429	            "61.7%"
+430	          ],
+431	          [
+432	            "1024",
+433	            "38.9%",
+434	            "−36.2pp",
+435	            "78.4%"
+436	          ],
+437	          [
+438	            "2048",
+439	            "30.1%",
+440	            "−45.0pp",
+441	            "93.8%"
+442	          ],
+443	          [
+444	            "Full (~3200)",
+445	            "28.49%",
+446	            "−46.6pp",
+447	            "100%"
+448	          ]
+449	        ]
+450	      }
+451	    ],
+452	    "figures": [],
+453	    "analysis": "trace length curve 是 gradient dilution 叙事的 \"smoking gun\" figure。单调下降 + 所有点低于 no_trace baseline + predict_fail 单调上升至 100% = 完整的 dilution progression。 Combined with plan_002 (label-only fix)，形成闭环：trace length 决定 dilution 程度， label-only loss 完全消除 dilution，VOTA 通过 compress trace 从另一个方向解决问题。 建议将此 figure 作为 paper Figure 2 或 Figure 3，visual impact 强。\n\n\nAccuracy 随 trace length 单调下降，且所有截断长度都低于 no_trace baseline。 机制解释：标准 SFT loss 下，trace tokens 数量 N_trace 与 classification token 数量 (1) 的比例决定了 gradient 中 classification signal 的占比 ≈ 1/(N_trace+1)。 - 256 tokens: classification gradient 占比 ~0.4% → 仍有少量 classification learning，\n  accuracy 68.3%，但已低于 no_trace (75.13%)，因为即使微弱的 trace loss 也 distort\n  了模型的 representation space。\n- 512 tokens: gradient 占比 ~0.2% → 54.8%，classification learning 进一步受抑。 - 1024 tokens: gradient 占比 ~0.1% → 38.9%，接近 random-like behavior。 - 2048 tokens: gradient 占比 ~0.05% → 30.1%，接近 full collapse。 - Full trace (~3000+ tokens): 28.49%，complete collapse。 关键发现是 ALL truncated conditions 都 worse than no_trace——即使 256 tokens 的 short trace 在标准 loss 下也有害。这 eliminates \"trace content is harmful\" 假说（如果 trace content 本身有害，label-only loss 也不应该 fix it），definitively 指向 gradient dilution。 Pearson r = -0.97 表明近乎完美的线性 log-length vs accuracy 关系。\n"
+454	  },
+455	  {
+456	    "name": "Calibration analysis",
+457	    "description": "对 VOTA / no_trace / full_trace 三个已有 checkpoint 的 eval set logits 计算 ECE (Expected Calibration Error)，绘制 reliability diagrams。纯 evaluation，无额外训练。\n",
+458	    "results": {
+459	      "vota_ece": 0.018,
+460	      "notrace_ece": 0.187,
+461	      "fulltrace_ece": 0.438,
+462	      "vota_brier_score": 0.009,
+463	      "notrace_brier_score": 0.221,
+464	      "fulltrace_brier_score": 0.687,
+465	      "vota_calibration_quality": "well-calibrated",
+466	      "notrace_calibration_quality": "overconfident-on-pass",
+467	      "fulltrace_calibration_quality": "degenerate"
+468	    },
+469	    "tables": [
+470	      {
+471	        "name": "Table 10: Calibration Metrics",
+472	        "columns": [
+473	          "Condition",
+474	          "ECE ↓",
+475	          "Brier Score ↓",
+476	          "Accuracy",
+477	          "Quality"
+478	        ],
+479	        "rows": [
+480	          [
+481	            "VOTA",
+482	            "0.018",
+483	            "0.009",
+484	            "99.16%",
+485	            "Well-calibrated"
+486	          ],
+487	          [
+488	            "No trace",
+489	            "0.187",
+490	            "0.221",
+491	            "75.13%",
+492	            "Overconfident"
+493	          ],
+494	          [
+495	            "Full trace",
+496	            "0.438",
+497	            "0.687",
+498	            "28.49%",
+499	            "Degenerate"
+500	          ]
+501	        ]
+502	      }
+503	    ],
+504	    "figures": [],
+505	    "analysis": "Calibration 是 paper 的 supporting analysis，不构成独立 claim 但加强 VOTA 叙事的深度。 ECE 数据可放在 appendix 或 Section 5 (Analysis) 中。reliability diagram 是 visually compelling 的补充 figure。VOTA 的近完美 calibration 支撑 \"genuine behavioral understanding\" claim——如果模型只是 string matching，calibration 不会这么好（会对 边界 cases 过度自信）。\n\n\nVOTA ECE 0.018（近乎完美 calibration）：99.16% accuracy 意味着 predicted probabilities 与 actual outcomes 高度一致。模型对 pass/fail 的 confidence 与真实频率几乎完全匹配， 说明 VOTA trace 让模型形成了 well-grounded decision boundary。 No_trace ECE 0.187（moderate miscalibration）：模型倾向于对 pass 过度自信 （predicted P(pass) > actual pass rate），因为训练集中 pass 占多数 (71.5%)， 模型学到了 base rate bias 但 discrimination 不足。 Full_trace ECE 0.438（严重 miscalibration）：model collapse 导致几乎所有样本被 high-confidence predict 为 fail，但实际 fail rate 仅 28.5%，producing extreme calibration error。reliability diagram 呈现 degenerate pattern——所有 predictions 集中在 P(fail)>0.95 区间。 Calibration 分析为 VOTA 的 quality 提供了超越 accuracy 的维度：不仅判断对，而且 confidence 可信——这对 downstream automation（如自动 test triage）有实际应用价值。\n"
+506	  },
+507	  {
+508	    "name": "Seed robustness",
+509	    "description": "使用 3 random seeds (42/123/456) 训练 VOTA 模型，验证结果稳定性。 报告 mean ± std accuracy，McNemar test for pairwise comparisons， bootstrap 95% CI for VOTA vs no_trace lift。\n",
+510	    "results": {
+511	      "seed_42_accuracy": 0.9916,
+512	      "seed_123_accuracy": 0.9891,
+513	      "seed_456_accuracy": 0.9908,
+514	      "mean_accuracy": 0.9905,
+515	      "std_accuracy": 0.0013,
+516	      "max_diff_pp": 0.25,
+517	      "mcnemar_42_vs_notrace_p": 1e-05,
+518	      "mcnemar_123_vs_notrace_p": 1e-05,
+519	      "mcnemar_456_vs_notrace_p": 1e-05,
+520	      "bootstrap_lift_ci_lower": 0.219,
+521	      "bootstrap_lift_ci_upper": 0.261,
+522	      "bootstrap_lift_excludes_zero": true
+523	    },
+524	    "tables": [
+525	      {
+526	        "name": "Table 11: Seed Robustness",
+527	        "columns": [
+528	          "Seed",
+529	          "Accuracy",
+530	          "Δ vs No-Trace",
+531	          "McNemar p"
+532	        ],
+533	        "rows": [
+534	          [
+535	            "42",
+536	            "99.16%",
+537	            "+24.03pp",
+538	            "<0.001"
+539	          ],
+540	          [
+541	            "123",
+542	            "98.91%",
+543	            "+23.78pp",
+544	            "<0.001"
+545	          ],
+546	          [
+547	            "456",
+548	            "99.08%",
+549	            "+23.95pp",
+550	            "<0.001"
+551	          ],
+552	          [
+553	            "Mean ± Std",
+554	            "99.05 ± 0.13%",
+555	            "+23.92 ± 0.13pp",
+556	            "—"
+557	          ]
+558	        ]
+559	      },
+560	      {
+561	        "name": "Bootstrap 95% CI for VOTA Lift",
+562	        "columns": [
+563	          "Metric",
+564	          "Value"
+565	        ],
+566	        "rows": [
+567	          [
+568	            "Bootstrap lift mean",
+569	            "23.92pp"
+570	          ],
+571	          [
+572	            "95% CI lower",
+573	            "21.9pp"
+574	          ],
+575	          [
+576	            "95% CI upper",
+577	            "26.1pp"
+578	          ],
+579	          [
+580	            "Contains zero?",
+581	            "No"
+582	          ]
+583	        ]
+584	      }
+585	    ],
+586	    "figures": [],
+587	    "analysis": "Seed robustness 是 standard due diligence，放在 appendix 即可。0.13pp std 和 [21.9, 26.1]pp CI 为所有 VOTA claims 提供了 statistical foundation。建议在 main text 中简述 \"results stable across seeds (std < 0.2pp, details in Appendix X)\"。\n\n三个 seed 的 VOTA accuracy 为 99.16% / 98.91% / 99.08%（mean 99.05%, std 0.13pp）， max pairwise difference 仅 0.25pp。极低 variance 原因：(1) VOTA trace 提供了 nearly sufficient statistics for verdict prediction，模型在任何 reasonable initialization 下 都能 converge 到相同的 decision boundary；(2) 数据量 (n=1190) 足够大，单样本翻转对 accuracy 的影响仅 ~0.08pp；(3) 训练已充分 converge（3 epochs, train loss ~0.046）。 McNemar test 所有 seed 都 p<0.001 vs no_trace，bootstrap 95% CI for lift [21.9pp, 26.1pp] 不含零。这排除了 \"VOTA 99% 是 lucky seed\" 的可能，结果高度 robust。 0.13pp std 远低于 1.5pp threshold，属于 publication-quality stability。\n"
+588	  }
+589	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a1f6326-2007-45f0-be8c-35a51ddd5402",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "1a22a75f-c92e-4b1c-b842-a434fa5d4cd7",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"VOTA without actual/expected ablation\",\n    \"description\": \"从 VOTA trace 中移除所有 actual value 和 expected value 字段，只保留 assertion structure (assertion name, line number, assertion type)、exception summary、loop compression info。 使用与 vota_seed42_v4 相同的训练配置（CodeLlama-7B, 3 epochs, lr=2e-5）。\\n\",\n    \"results\": {\n      \"accuracy\": 0.891,\n      \"majority_baseline\": 0.7151,\n      \"lift_over_notrace\": 0.1397,\n      \"lift_over_notrace_pp\": 13.97,\n      \"drop_from_full_vota_pp\": 10.06,\n      \"pass_precision\": 0.932,\n      \"pass_recall\": 0.879,\n      \"pass_f1\": 0.905,\n      \"fail_precision\": 0.821,\n      \"fail_recall\": 0.919,\n      \"fail_f1\": 0.867,\n      \"accuracy_ci_lower\": 0.871,\n      \"accuracy_ci_upper\": 0.909,\n      \"train_loss\": 0.072,\n      \"eval_loss\": 0.298,\n      \"mcnemar_vs_notrace_p\": 1e-05\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 3: Actual/Expected Ablation Results\",\n        \"columns\": [\n          \"Condition\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"95% CI\",\n          \"Pass F1\",\n          \"Fail F1\"\n        ],\n        \"rows\": [\n          [\n            \"Full VOTA\",\n            \"99.16%\",\n            \"+24.03pp\",\n            \"[98.57, 99.66]\",\n            \"0.994\",\n            \"0.985\"\n          ],\n          [\n            \"VOTA w/o actual/expected\",\n            \"89.1%\",\n            \"+13.97pp\",\n            \"[87.1, 90.9]\",\n            \"0.905\",\n            \"0.867\"\n          ],\n          [\n            \"No-trace baseline\",\n            \"75.13%\",\n            \"—\",\n            \"[72.5, 77.6]\",\n            \"0.813\",\n            \"0.627\"\n          ],\n          [\n            \"Full trace\",\n            \"28.49%\",\n            \"−46.64pp\",\n            \"[25.9, 31.1]\",\n            \"0.155\",\n            \"0.568\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"89.1% accuracy without actual/expected is the single most important result for paper framing. 它将 VOTA 的 24pp lift 分解为两部分：~10pp 来自 actual/expected 值的 direct comparison signal， ~14pp 来自 execution state reasoning（assertion structure + exception + loop patterns）。 后者才是 VOTA 的 core contribution——它证明 trace SFT 不是在教模型做字符串比对，而是在教模型 理解 execution behavior 的 anomaly patterns。这直接回应了 Reviewer Concern #1。 论文 Claim 1 可以升级为强表述。\\n\\n\\n去除 actual/expected 后 accuracy 从 99.16% 降至 ~89%，说明 actual/expected 值确实提供了 直接的 verdict signal（约贡献 10pp）。但关键发现是：剩余 89% accuracy 仍大幅超越 no_trace 的 75.13% （+14pp, p<0.001），证明模型从 assertion structure + exception info + loop patterns 中 学到了 genuine execution state reasoning。具体机制：(1) exception summary 提供了 \\\"哪个 assertion 点抛出了什么类型的异常\\\" 的信息，这本身就是强 verdict signal——在测试中， exception 几乎必然意味着 fail，且 exception type/message 携带 root cause 信息； (2) loop compression 中的迭代次数异常（early termination, infinite loop detection） 是 behavioral anomaly 的直接证据；(3) assertion structure 本身（哪些 assertion 被执行、 执行顺序）编码了 control flow path 信息。模型 jointly reason over 这些 signals， 而非简单的 string matching。train_loss 从 0.046 升至 0.072 反映了 task 难度增加 （没有 actual/expected 的 \\\"shortcut\\\"），eval_loss 从 0.084 升至 0.298 说明 uncertainty 增大但仍在 reasonable range。\\n\"\n  },\n  {\n    \"name\": \"Full trace with label-only loss\",\n    \"description\": \"使用完整 execution trace 但修改 loss computation：只对最终 verdict token（pass/fail）计算 cross-entropy loss，mask 掉所有 trace token 的 loss。验证 collapse 根因是 gradient dilution （trace tokens 占 >95% loss weight 导致 classification gradient 被淹没）而非 trace content 本身有害。\\n\",\n    \"results\": {\n      \"accuracy\": 0.762,\n      \"majority_baseline\": 0.7151,\n      \"lift_over_notrace\": 0.0107,\n      \"lift_over_standard_fulltrace\": 0.478,\n      \"pass_precision\": 0.847,\n      \"pass_recall\": 0.738,\n      \"pass_f1\": 0.789,\n      \"fail_precision\": 0.621,\n      \"fail_recall\": 0.823,\n      \"fail_f1\": 0.708,\n      \"train_loss\": 0.34,\n      \"eval_loss\": 0.52,\n      \"collapse_fixed\": true,\n      \"predict_fail_ratio\": 0.437\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 4: Loss Strategy Ablation on Full Trace\",\n        \"columns\": [\n          \"Condition\",\n          \"Loss Type\",\n          \"Accuracy\",\n          \"% Predict Fail\",\n          \"Collapse?\"\n        ],\n        \"rows\": [\n          [\n            \"Full trace\",\n            \"Standard SFT\",\n            \"28.49%\",\n            \"100%\",\n            \"Yes\"\n          ],\n          [\n            \"Full trace\",\n            \"Label-only\",\n            \"76.2%\",\n            \"43.7%\",\n            \"No\"\n          ],\n          [\n            \"No trace\",\n            \"Standard SFT\",\n            \"75.13%\",\n            \"42.1%\",\n            \"No\"\n          ],\n          [\n            \"VOTA\",\n            \"Standard SFT\",\n            \"99.16%\",\n            \"29.8%\",\n            \"No\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"76.2% 完美支撑 gradient dilution 叙事：(1) label-only 修复 collapse → 确认 collapse 原因是 loss distribution mismatch 而非 trace data corruption；(2) 修复后仅达 no_trace 水平 → full trace 作为 context 无信息增益，因为 attention 在 2000+ tokens 中无法聚焦 verdict-relevant states；(3) VOTA 在标准 loss 下就达 99.16% → 紧凑的 trace abstraction 同时解决了 gradient dilution 和 attention dilution。这为 Claim 2 提供了完整的机制解释闭环。\\n\\n\\nlabel-only loss 将 accuracy 从 28.49%（全 collapse）修复至 76.2%，接近 no_trace baseline（75.13%）。 这直接确认了 gradient dilution 假说：在标准 SFT loss 下，full trace 的 ~2000+ trace tokens 贡献了 >97% 的 total loss，classification token（1 token）的 gradient 被 overwhelm。 模型被迫优化 \\\"next token prediction on trace text\\\" 而非 \\\"verdict classification\\\"， 最终 collapse 到 majority class prediction。label-only loss 消除了 trace token 的 gradient 干扰后，模型至少能正常分类。但 76.2% 仅略高于 no_trace，说明 full execution trace 即使作为 pure context（不参与 loss）也几乎没有帮助——trace 太长太密，模型的 attention 无法从中提取 decision-relevant signal。这解释了为什么 VOTA（compact, decision-relevant abstraction） 远优于 full_trace + label-only（verbose, attention-diluting context）。predict_fail_ratio 从 100%（collapse）恢复到 43.7%（接近真实 28.49% fail rate），说明 class balance 恢复正常。\\n\"\n  },\n  {\n    \"name\": \"VOTA component ablation\",\n    \"description\": \"4 个训练条件：(a) 只有 actual/expected 值对（无 assertion structure/exception/loop info）， (b) 只有 exception summary，(c) 只有 loop compression info，(d) 全量 VOTA（已有结果）。 量化每个 VOTA 组件的独立贡献和交互效应。\\n\",\n    \"results\": {\n      \"actexp_only_accuracy\": 0.912,\n      \"actexp_only_lift\": 0.1607,\n      \"exception_only_accuracy\": 0.827,\n      \"exception_only_lift\": 0.0757,\n      \"loop_only_accuracy\": 0.791,\n      \"loop_only_lift\": 0.0397,\n      \"full_vota_accuracy\": 0.9916,\n      \"full_vota_lift\": 0.2403,\n      \"sum_individual_lifts\": 0.2761,\n      \"superadditivity_ratio\": 1.15,\n      \"min_individual_lift\": 0.0397,\n      \"max_individual_lift\": 0.1607\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 5: VOTA Component Ablation\",\n        \"columns\": [\n          \"Component(s)\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"95% CI\",\n          \"Pass F1\",\n          \"Fail F1\"\n        ],\n        \"rows\": [\n          [\n            \"No trace (baseline)\",\n            \"75.13%\",\n            \"—\",\n            \"[72.5, 77.6]\",\n            \"0.813\",\n            \"0.627\"\n          ],\n          [\n            \"Loop compression only\",\n            \"79.1%\",\n            \"+3.97pp\",\n            \"[76.7, 81.3]\",\n            \"0.838\",\n            \"0.698\"\n          ],\n          [\n            \"Exception summary only\",\n            \"82.7%\",\n            \"+7.57pp\",\n            \"[80.5, 84.8]\",\n            \"0.869\",\n            \"0.742\"\n          ],\n          [\n            \"Actual/expected only\",\n            \"91.2%\",\n            \"+16.07pp\",\n            \"[89.5, 92.7]\",\n            \"0.938\",\n            \"0.862\"\n          ],\n          [\n            \"Full VOTA (all three)\",\n            \"99.16%\",\n            \"+24.03pp\",\n            \"[98.6, 99.7]\",\n            \"0.994\",\n            \"0.985\"\n          ]\n        ]\n      },\n      {\n        \"name\": \"Table 6: Component Interaction Analysis\",\n        \"columns\": [\n          \"Metric\",\n          \"Value\"\n        ],\n        \"rows\": [\n          [\n            \"Sum of individual lifts\",\n            \"27.61pp\"\n          ],\n          [\n            \"Combined lift (full VOTA)\",\n            \"24.03pp\"\n          ],\n          [\n            \"Superadditivity ratio\",\n            \"1.15×\"\n          ],\n          [\n            \"Min individual contribution\",\n            \"3.97pp (loop)\"\n          ],\n          [\n            \"Max individual contribution\",\n            \"16.07pp (actual/expected)\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"plan_001 已证明 actual/expected 不是唯一贡献者；plan_003 进一步量化了完整 contribution landscape。 关键 takeaway：(1) 所有三个组件都 independently significant（最弱的 loop compression 仍 +4pp, p<0.01）， 驳斥 \\\"VOTA 效果被单一组件驱动\\\" 的担忧；(2) superadditivity 说明 trace design 不是简单的 feature selection 而是 complementary signal composition；(3) 为 trace design principles 提供了 quantitative guidance：verdict-relevant state snapshots > exception diagnostics > behavioral pattern summaries, 按此优先级配置 trace budget。\\n\\n\\n三个组件均有显著独立贡献： (a) actual/expected only (91.2%): 最强单组件。actual/expected 值直接编码了 \\\"程序实际输出 vs 预期输出\\\" 的比较信息，对 verdict prediction 最直接相关。但缺少 exception 和 loop 信息时， 模型无法处理 exception-driven failures（exception 时 actual 可能为空）和 loop-related bugs （如 infinite loop timeout），导致部分样本错误。 (b) exception summary only (82.7%): exception type + message + stack trace summary 是 fail 的强信号（几乎所有 exception 都对应 fail），但 exception 只覆盖 ~40% 的 fail cases （其他是 assertion failure without exception），对 pass cases 几乎无信号，导致 precision/recall 不对称。 (c) loop compression only (79.1%): 最弱但仍显著（+4pp over no_trace, p<0.01）。 loop iteration counts 和 early termination patterns 编码了 behavioral anomaly 信号， 但信号较弱且只与 loop-related bugs 相关。 三组件组合的 VOTA (99.16%) 显著超过个体之和（superadditivity ratio 1.15），说明组件间 存在 complementary reasoning：exception summary 覆盖 actual/expected 缺失的 crash cases， loop info 捕捉 actual/expected 和 exception 都无法检测的 behavioral anomalies。 模型在联合训练时学到了 cross-component reasoning patterns。\\n\"\n  },\n  {\n    \"name\": \"DeepSeek-Coder-6.7B replication\",\n    \"description\": \"在 DeepSeek-Coder-6.7B-Instruct 上复现三条件实验（VOTA / no_trace / full_trace）， 使用与 DCSH 相同的 base model 进行直接对比。同训练配置但调整 batch size 以适应模型大小。\\n\",\n    \"results\": {\n      \"deepseek_vota_accuracy\": 0.934,\n      \"deepseek_notrace_accuracy\": 0.731,\n      \"deepseek_fulltrace_accuracy\": 0.307,\n      \"deepseek_vota_lift\": 0.203,\n      \"deepseek_fulltrace_collapse\": true,\n      \"deepseek_vota_pass_f1\": 0.954,\n      \"deepseek_vota_fail_f1\": 0.896,\n      \"deepseek_notrace_pass_f1\": 0.801,\n      \"deepseek_notrace_fail_f1\": 0.598,\n      \"codellama_vs_deepseek_vota_diff_pp\": 5.76,\n      \"pattern_preserved\": true\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 7: Cross-Model Replication\",\n        \"columns\": [\n          \"Model\",\n          \"Condition\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"Collapse?\"\n        ],\n        \"rows\": [\n          [\n            \"CodeLlama-7B\",\n            \"VOTA\",\n            \"99.16%\",\n            \"+24.03pp\",\n            \"No\"\n          ],\n          [\n            \"CodeLlama-7B\",\n            \"No trace\",\n            \"75.13%\",\n            \"—\",\n            \"No\"\n          ],\n          [\n            \"CodeLlama-7B\",\n            \"Full trace\",\n            \"28.49%\",\n            \"−46.64pp\",\n            \"Yes\"\n          ],\n          [\n            \"DeepSeek-Coder-6.7B\",\n            \"VOTA\",\n            \"93.4%\",\n            \"+20.3pp\",\n            \"No\"\n          ],\n          [\n            \"DeepSeek-Coder-6.7B\",\n            \"No trace\",\n            \"73.1%\",\n            \"—\",\n            \"No\"\n          ],\n          [\n            \"DeepSeek-Coder-6.7B\",\n            \"Full trace\",\n            \"30.7%\",\n            \"−42.4pp\",\n            \"Yes\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"DeepSeek 复现是 reviewer concern #3 的直接回应。+20.3pp lift 消除了 \\\"CodeLlama-specific artifact\\\" 的可能。与 DCSH 在同模型上的 generation task 对比（+2-5pp vs +20pp）提供了 强有力的 \\\"trace-task matching\\\" 叙事支撑。CodeLlama vs DeepSeek 的 ~6pp 绝对差异 属于 model capability difference，不影响 relative pattern 和 core findings。\\n\\n\\nDeepSeek-Coder-6.7B 复现 VOTA lift +20.3pp（vs CodeLlama 的 +24.0pp），三条件间的 相对 pattern（VOTA >> no_trace >> full_trace collapse）完全保持。 DeepSeek VOTA 绝对 accuracy (93.4%) 略低于 CodeLlama (99.16%)，原因：(1) DeepSeek-Coder 的 tokenizer 和 pre-training corpus 不同，对 Python test code 的 prior 略弱； (2) 6.7B vs 7B 参数量差异微小但 architecture 差异（DeepSeek 使用 MHA 而非 GQA） 可能影响 fine-grained state reasoning capacity。 DeepSeek no_trace (73.1%) 略低于 CodeLlama (75.13%)，反映 base model 差异。 DeepSeek full_trace (30.7%) 同样 collapse，确认 gradient dilution 不是 CodeLlama-specific artifact。 +20.3pp lift 落在 [15pp, 25pp] target range 中心，强力支撑 model-generality claim。 与 DCSH 论文的直接对比：DCSH 在 DeepSeek-Coder 上 generation tasks 的 trace SFT lift 为 +2-5pp，而 verdict task + VOTA 获得 +20pp，quantitative 证明了 \\\"trace-task granularity matching\\\" 效应。\\n\"\n  },\n  {\n    \"name\": \"Second task: DebugBench bug detection\",\n    \"description\": \"在 DebugBench (Python subset) 上构建 bug detection verdict task：给定含 bug 的代码 + test， 预测 test 是否会暴露 bug（pass = bug not triggered, fail = bug triggered）。 使用 VOTA 格式生成 trace，同配置训练 CodeLlama-7B。\\n\",\n    \"results\": {\n      \"debugbench_vota_accuracy\": 0.849,\n      \"debugbench_notrace_accuracy\": 0.672,\n      \"debugbench_fulltrace_accuracy\": 0.341,\n      \"debugbench_vota_lift\": 0.177,\n      \"debugbench_fulltrace_collapse\": true,\n      \"debugbench_vota_pass_f1\": 0.881,\n      \"debugbench_vota_fail_f1\": 0.803,\n      \"debugbench_n\": 850,\n      \"pattern_preserved\": true\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 8: Cross-Task Generalization\",\n        \"columns\": [\n          \"Task\",\n          \"Condition\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"N\"\n        ],\n        \"rows\": [\n          [\n            \"Test verdict (main)\",\n            \"VOTA\",\n            \"99.16%\",\n            \"+24.03pp\",\n            \"1190\"\n          ],\n          [\n            \"Test verdict (main)\",\n            \"No trace\",\n            \"75.13%\",\n            \"—\",\n            \"1190\"\n          ],\n          [\n            \"Test verdict (main)\",\n            \"Full trace\",\n            \"28.49%\",\n            \"−46.64pp\",\n            \"1190\"\n          ],\n          [\n            \"Bug detection (DebugBench)\",\n            \"VOTA\",\n            \"84.9%\",\n            \"+17.7pp\",\n            \"850\"\n          ],\n          [\n            \"Bug detection (DebugBench)\",\n            \"No trace\",\n            \"67.2%\",\n            \"—\",\n            \"850\"\n          ],\n          [\n            \"Bug detection (DebugBench)\",\n            \"Full trace\",\n            \"34.1%\",\n            \"−33.1pp\",\n            \"850\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"DebugBench 复现回应 reviewer concern #2（单任务风险）。两个 verdict tasks 上一致的 \\\"VOTA helps, full_trace collapses\\\" pattern 支撑了 task-class level generalization： 这不是 test verdict prediction 的 artifact，而是 verdict task class 的 systematic 现象。 Absolute accuracy 差异（99% vs 85%）可解释为 task difficulty difference，不影响 core claim。\\n\\n\\nDebugBench bug detection 复现了 VOTA lift pattern (+17.7pp)，但绝对 accuracy 低于 test verdict task（84.9% vs 99.16%）。差异来源： (1) Bug detection 在语义上更难——test verdict prediction 中模型可以推断 \\\"这段代码的 execution flow 是否会到达 assertion point 并满足 assertion\\\"，而 bug detection 需要 理解 \\\"这个 bug 是否会被这个 test case 触发\\\"，涉及 bug-test interaction reasoning。 (2) DebugBench 的 bug 类型多样（value bugs, logic bugs, reference bugs）， VOTA trace 对 value bugs 最有效（actual/expected 直接暴露），对 logic bugs 效果次之 （需要 loop/control flow patterns），对 reference bugs 最弱。 (3) 数据量较小（~850 vs ~1190）也贡献了部分 accuracy 差异。 no_trace baseline 67.2% 低于 test verdict 的 75.13%，反映 bug detection 的 intrinsic difficulty 更高。full_trace 仍 collapse (34.1%)，确认 gradient dilution 在不同 verdict tasks 上一致发生。+17.7pp lift 落在 [12pp, 22pp] target range 内，支撑 task-class generalization claim。\\n\"\n  },\n  {\n    \"name\": \"Trace length ablation\",\n    \"description\": \"在 full execution trace 上测试 4 个截断长度 (256/512/1024/2048 tokens)，使用标准 SFT loss。 绘制 accuracy vs trace length 曲线，验证 gradient dilution 与 trace length 的关系。\\n\",\n    \"results\": {\n      \"length_256_accuracy\": 0.683,\n      \"length_512_accuracy\": 0.548,\n      \"length_1024_accuracy\": 0.389,\n      \"length_2048_accuracy\": 0.301,\n      \"full_trace_accuracy\": 0.2849,\n      \"notrace_accuracy\": 0.7513,\n      \"monotonic_decline\": true,\n      \"pearson_r_acc_vs_length\": -0.97,\n      \"all_below_notrace\": true\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 9: Trace Length vs. Accuracy\",\n        \"columns\": [\n          \"Trace Length (tokens)\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"% Predict Fail\"\n        ],\n        \"rows\": [\n          [\n            \"0 (no trace)\",\n            \"75.13%\",\n            \"—\",\n            \"42.1%\"\n          ],\n          [\n            \"256\",\n            \"68.3%\",\n            \"−6.8pp\",\n            \"48.2%\"\n          ],\n          [\n            \"512\",\n            \"54.8%\",\n            \"−20.3pp\",\n            \"61.7%\"\n          ],\n          [\n            \"1024\",\n            \"38.9%\",\n            \"−36.2pp\",\n            \"78.4%\"\n          ],\n          [\n            \"2048\",\n            \"30.1%\",\n            \"−45.0pp\",\n            \"93.8%\"\n          ],\n          [\n            \"Full (~3200)\",\n            \"28.49%\",\n            \"−46.6pp\",\n            \"100%\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"trace length curve 是 gradient dilution 叙事的 \\\"smoking gun\\\" figure。单调下降 + 所有点低于 no_trace baseline + predict_fail 单调上升至 100% = 完整的 dilution progression。 Combined with plan_002 (label-only fix)，形成闭环：trace length 决定 dilution 程度， label-only loss 完全消除 dilution，VOTA 通过 compress trace 从另一个方向解决问题。 建议将此 figure 作为 paper Figure 2 或 Figure 3，visual impact 强。\\n\\n\\nAccuracy 随 trace length 单调下降，且所有截断长度都低于 no_trace baseline。 机制解释：标准 SFT loss 下，trace tokens 数量 N_trace 与 classification token 数量 (1) 的比例决定了 gradient 中 classification signal 的占比 ≈ 1/(N_trace+1)。 - 256 tokens: classification gradient 占比 ~0.4% → 仍有少量 classification learning，\\n  accuracy 68.3%，但已低于 no_trace (75.13%)，因为即使微弱的 trace loss 也 distort\\n  了模型的 representation space。\\n- 512 tokens: gradient 占比 ~0.2% → 54.8%，classification learning 进一步受抑。 - 1024 tokens: gradient 占比 ~0.1% → 38.9%，接近 random-like behavior。 - 2048 tokens: gradient 占比 ~0.05% → 30.1%，接近 full collapse。 - Full trace (~3000+ tokens): 28.49%，complete collapse。 关键发现是 ALL truncated conditions 都 worse than no_trace——即使 256 tokens 的 short trace 在标准 loss 下也有害。这 eliminates \\\"trace content is harmful\\\" 假说（如果 trace content 本身有害，label-only loss 也不应该 fix it），definitively 指向 gradient dilution。 Pearson r = -0.97 表明近乎完美的线性 log-length vs accuracy 关系。\\n\"\n  },\n  {\n    \"name\": \"Calibration analysis\",\n    \"description\": \"对 VOTA / no_trace / full_trace 三个已有 checkpoint 的 eval set logits 计算 ECE (Expected Calibration Error)，绘制 reliability diagrams。纯 evaluation，无额外训练。\\n\",\n    \"results\": {\n      \"vota_ece\": 0.018,\n      \"notrace_ece\": 0.187,\n      \"fulltrace_ece\": 0.438,\n      \"vota_brier_score\": 0.009,\n      \"notrace_brier_score\": 0.221,\n      \"fulltrace_brier_score\": 0.687,\n      \"vota_calibration_quality\": \"well-calibrated\",\n      \"notrace_calibration_quality\": \"overconfident-on-pass\",\n      \"fulltrace_calibration_quality\": \"degenerate\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 10: Calibration Metrics\",\n        \"columns\": [\n          \"Condition\",\n          \"ECE ↓\",\n          \"Brier Score ↓\",\n          \"Accuracy\",\n          \"Quality\"\n        ],\n        \"rows\": [\n          [\n            \"VOTA\",\n            \"0.018\",\n            \"0.009\",\n            \"99.16%\",\n            \"Well-calibrated\"\n          ],\n          [\n            \"No trace\",\n            \"0.187\",\n            \"0.221\",\n            \"75.13%\",\n            \"Overconfident\"\n          ],\n          [\n            \"Full trace\",\n            \"0.438\",\n            \"0.687\",\n            \"28.49%\",\n            \"Degenerate\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Calibration 是 paper 的 supporting analysis，不构成独立 claim 但加强 VOTA 叙事的深度。 ECE 数据可放在 appendix 或 Section 5 (Analysis) 中。reliability diagram 是 visually compelling 的补充 figure。VOTA 的近完美 calibration 支撑 \\\"genuine behavioral understanding\\\" claim——如果模型只是 string matching，calibration 不会这么好（会对 边界 cases 过度自信）。\\n\\n\\nVOTA ECE 0.018（近乎完美 calibration）：99.16% accuracy 意味着 predicted probabilities 与 actual outcomes 高度一致。模型对 pass/fail 的 confidence 与真实频率几乎完全匹配， 说明 VOTA trace 让模型形成了 well-grounded decision boundary。 No_trace ECE 0.187（moderate miscalibration）：模型倾向于对 pass 过度自信 （predicted P(pass) > actual pass rate），因为训练集中 pass 占多数 (71.5%)， 模型学到了 base rate bias 但 discrimination 不足。 Full_trace ECE 0.438（严重 miscalibration）：model collapse 导致几乎所有样本被 high-confidence predict 为 fail，但实际 fail rate 仅 28.5%，producing extreme calibration error。reliability diagram 呈现 degenerate pattern——所有 predictions 集中在 P(fail)>0.95 区间。 Calibration 分析为 VOTA 的 quality 提供了超越 accuracy 的维度：不仅判断对，而且 confidence 可信——这对 downstream automation（如自动 test triage）有实际应用价值。\\n\"\n  },\n  {\n    \"name\": \"Seed robustness\",\n    \"description\": \"使用 3 random seeds (42/123/456) 训练 VOTA 模型，验证结果稳定性。 报告 mean ± std accuracy，McNemar test for pairwise comparisons， bootstrap 95% CI for VOTA vs no_trace lift。\\n\",\n    \"results\": {\n      \"seed_42_accuracy\": 0.9916,\n      \"seed_123_accuracy\": 0.9891,\n      \"seed_456_accuracy\": 0.9908,\n      \"mean_accuracy\": 0.9905,\n      \"std_accuracy\": 0.0013,\n      \"max_diff_pp\": 0.25,\n      \"mcnemar_42_vs_notrace_p\": 1e-05,\n      \"mcnemar_123_vs_notrace_p\": 1e-05,\n      \"mcnemar_456_vs_notrace_p\": 1e-05,\n      \"bootstrap_lift_ci_lower\": 0.219,\n      \"bootstrap_lift_ci_upper\": 0.261,\n      \"bootstrap_lift_excludes_zero\": true\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 11: Seed Robustness\",\n        \"columns\": [\n          \"Seed\",\n          \"Accuracy\",\n          \"Δ vs No-Trace\",\n          \"McNemar p\"\n        ],\n        \"rows\": [\n          [\n            \"42\",\n            \"99.16%\",\n            \"+24.03pp\",\n            \"<0.001\"\n          ],\n          [\n            \"123\",\n            \"98.91%\",\n            \"+23.78pp\",\n            \"<0.001\"\n          ],\n          [\n            \"456\",\n            \"99.08%\",\n            \"+23.95pp\",\n            \"<0.001\"\n          ],\n          [\n            \"Mean ± Std\",\n            \"99.05 ± 0.13%\",\n            \"+23.92 ± 0.13pp\",\n            \"—\"\n          ]\n        ]\n      },\n      {\n        \"name\": \"Bootstrap 95% CI for VOTA Lift\",\n        \"columns\": [\n          \"Metric\",\n          \"Value\"\n        ],\n        \"rows\": [\n          [\n            \"Bootstrap lift mean\",\n            \"23.92pp\"\n          ],\n          [\n            \"95% CI lower\",\n            \"21.9pp\"\n          ],\n          [\n            \"95% CI upper\",\n            \"26.1pp\"\n          ],\n          [\n            \"Contains zero?\",\n            \"No\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Seed robustness 是 standard due diligence，放在 appendix 即可。0.13pp std 和 [21.9, 26.1]pp CI 为所有 VOTA claims 提供了 statistical foundation。建议在 main text 中简述 \\\"results stable across seeds (std < 0.2pp, details in Appendix X)\\\"。\\n\\n三个 seed 的 VOTA accuracy 为 99.16% / 98.91% / 99.08%（mean 99.05%, std 0.13pp）， max pairwise difference 仅 0.25pp。极低 variance 原因：(1) VOTA trace 提供了 nearly sufficient statistics for verdict prediction，模型在任何 reasonable initialization 下 都能 converge 到相同的 decision boundary；(2) 数据量 (n=1190) 足够大，单样本翻转对 accuracy 的影响仅 ~0.08pp；(3) 训练已充分 converge（3 epochs, train loss ~0.046）。 McNemar test 所有 seed 都 p<0.001 vs no_trace，bootstrap 95% CI for lift [21.9pp, 26.1pp] 不含零。这排除了 \\\"VOTA 99% 是 lucky seed\\\" 的可能，结果高度 robust。 0.13pp std 远低于 1.5pp threshold，属于 publication-quality stability。\\n\"\n  }\n]",
+      "numLines": 589,
+      "startLine": 1,
+      "totalLines": 589
+    }
+  },
+  "sourceToolAssistantUUID": "9a1f6326-2007-45f0-be8c-35a51ddd5402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T01:43:53.617Z_
+
+<details><summary>↩ Tool result · `toolu_01KRy1jWrxCA99T1AUceHJeb`</summary>
+
+```text
+1	# Paper Framing — trace-verdict-study
+2	
+3	## Target Venue
+4	- Primary: EMNLP 2026 Main (ARR submission)
+5	- Fallback: EMNLP 2026 Findings
+6	- Deadline: ARR May 25, 2026 (10 days from today)
+7	
+8	## Core Insight
+9	
+10	Trace SFT effectiveness depends critically on **trace granularity matching task output entropy**: verdict tasks (1-bit output) benefit massively from compact, decision-relevant trace abstractions (VOTA: +20.5pp), while full execution traces cause model collapse (-46.6pp) due to gradient dilution. The "right" trace is not "more trace" — it's the minimal information sufficient to determine the verdict.
+11	
+12	## Core Claims (≤3)
+13	
+14	1. **VOTA dramatically improves verdict prediction**: Verdict-Optimized Trace Abstraction (assertion-point state snapshots) provides +20.5pp accuracy improvement over no-trace baseline for test outcome prediction, with 95% CI [+17.7, +23.4] excluding zero.
+15	
+16	2. **Full execution traces hurt verdict tasks**: Dense, uncompressed execution traces cause model collapse (28.49% accuracy, 100% predicting "fail") due to classification gradient dilution by trace token prediction — a task-representation mismatch that worsens with trace length.
+17	
+18	3. **Information granularity, not information presence, determines trace SFT value**: Through systematic ablation of VOTA components (actual/expected values, exception summaries, loop compression), we identify which trace elements carry verdict-relevant signal vs. noise, providing design principles for task-optimized trace representations.
+19	
+20	## Story Spine
+21	
+22	- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited benefit. No prior work has tested trace SFT on code behavior verdict tasks (binary pass/fail), nor designed trace representations specifically for classification.
+23	
+24	- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding limited benefit. TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification, but nobody has tested decoder SFT. All existing trace formats are designed for full execution simulation, not classification.
+25	
+26	- **Our framing**: We ask "does trace granularity need to match task complexity?" and demonstrate that verdict tasks — with O(1) output entropy — benefit from a fundamentally different trace design principle than generation tasks. VOTA captures only decision-relevant execution states (assertion snapshots, exception summaries) rather than full simulation.
+27	
+28	- **Headline result template**: "On test verdict prediction, VOTA-SFT achieves 95.6% accuracy (+20.5pp over no-trace baseline), while full execution trace SFT collapses to 28.5% — demonstrating that trace design granularity, not presence, determines SFT effectiveness for classification."
+29	
+30	## Venue Fit Risks
+31	
+32	- EMNLP主会 vs SE: 论文核心贡献是对 trace SFT 的 task-dependent 效果的系统性实证发现 + 新 trace representation，属于 NLP for code 方向。投 EMNLP Code track 合适。
+33	- 单任务风险: 目前只在 test verdict prediction 一个任务上验证。需要至少加一个 verdict task（patch correctness 或 bug detection）才够 EMNLP Main。Findings 可能只需当前结果 + ablation。
+34	- Leakage concern: 如果 ablation 证明 VOTA 效果主要来自 actual==expected 字符串比对，claim 需要调整为 "verdict tasks 需要的不是 trace reasoning 而是 decision-relevant data points"——仍然 publishable 但 framing 不同。
+35	
+36	## Contingency Framing (based on ablation outcome)
+37	
+38	**If ablation shows genuine behavioral understanding** (去 actual/expected 后仍有显著提升):
+39	→ Full positive framing: "VOTA teaches execution-grounded verdict reasoning"
+40	
+41	**If ablation shows primarily string matching** (去 actual/expected 后 accuracy 大幅下降):
+42	→ Adjusted framing: "For verdict tasks, the critical trace element is the assertion-point state — not behavioral reasoning but targeted state comparison. This is still a novel finding because: (a) no one knew this before testing, (b) it explains WHY full traces fail (too much irrelevant state), (c) it provides practical design principles."
+43	
+44	## Key Open Questions (Post-MVP)
+45	
+46	1. actual/expected ablation 结果如何？→ 决定 Claim 1 的强度
+47	2. full_trace + label-only loss 能否修复 collapse？→ 加强 Claim 2 的解释
+48	3. 能否在第二个 verdict task 上复现？→ 决定 generalization claim
+49	4. 需要多模型验证吗？→ 时间允许就加 DeepSeek-Coder
+50	
+51	## Anticipated Reviewer Concerns
+52	
+53	| Concern | Planned Response |
+54	|---------|-----------------|
+55	| "VOTA 95.63% 可能是 trivial actual==expected 比对" | ablation 实验直接回应（P0 优先级） |
+56	| "只在一个任务/数据集上测试" | 加 patch correctness task 或 CRUXEval verdict variant |
+57	| "只用一个模型" | 加 DeepSeek-Coder-6.7B 复现（DCSH 同模型） |
+58	| "full_trace collapse 可能是实现 bug" | label-only loss ablation 验证是 gradient dilution 而非 bug |
+59	| "VOTA 只是 feature engineering 不是方法创新" | 定位为 empirical contribution: 系统性发现 + design principles + task-spectrum analysis |
+60	| "与 DCSH 的关系不清" | 明确：我们 complement DCSH（他们做 generation，我们做 classification） |
+61	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea7ad1ee-1cbd-4dce-bfbf-e2e0cb34f307",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "b71c7f9f-90fa-4e5b-9ed4-a35370d5875f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper_framing.md",
+      "content": "# Paper Framing — trace-verdict-study\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR submission)\n- Fallback: EMNLP 2026 Findings\n- Deadline: ARR May 25, 2026 (10 days from today)\n\n## Core Insight\n\nTrace SFT effectiveness depends critically on **trace granularity matching task output entropy**: verdict tasks (1-bit output) benefit massively from compact, decision-relevant trace abstractions (VOTA: +20.5pp), while full execution traces cause model collapse (-46.6pp) due to gradient dilution. The \"right\" trace is not \"more trace\" — it's the minimal information sufficient to determine the verdict.\n\n## Core Claims (≤3)\n\n1. **VOTA dramatically improves verdict prediction**: Verdict-Optimized Trace Abstraction (assertion-point state snapshots) provides +20.5pp accuracy improvement over no-trace baseline for test outcome prediction, with 95% CI [+17.7, +23.4] excluding zero.\n\n2. **Full execution traces hurt verdict tasks**: Dense, uncompressed execution traces cause model collapse (28.49% accuracy, 100% predicting \"fail\") due to classification gradient dilution by trace token prediction — a task-representation mismatch that worsens with trace length.\n\n3. **Information granularity, not information presence, determines trace SFT value**: Through systematic ablation of VOTA components (actual/expected values, exception summaries, loop compression), we identify which trace elements carry verdict-relevant signal vs. noise, providing design principles for task-optimized trace representations.\n\n## Story Spine\n\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited benefit. No prior work has tested trace SFT on code behavior verdict tasks (binary pass/fail), nor designed trace representations specifically for classification.\n\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding limited benefit. TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification, but nobody has tested decoder SFT. All existing trace formats are designed for full execution simulation, not classification.\n\n- **Our framing**: We ask \"does trace granularity need to match task complexity?\" and demonstrate that verdict tasks — with O(1) output entropy — benefit from a fundamentally different trace design principle than generation tasks. VOTA captures only decision-relevant execution states (assertion snapshots, exception summaries) rather than full simulation.\n\n- **Headline result template**: \"On test verdict prediction, VOTA-SFT achieves 95.6% accuracy (+20.5pp over no-trace baseline), while full execution trace SFT collapses to 28.5% — demonstrating that trace design granularity, not presence, determines SFT effectiveness for classification.\"\n\n## Venue Fit Risks\n\n- EMNLP主会 vs SE: 论文核心贡献是对 trace SFT 的 task-dependent 效果的系统性实证发现 + 新 trace representation，属于 NLP for code 方向。投 EMNLP Code track 合适。\n- 单任务风险: 目前只在 test verdict prediction 一个任务上验证。需要至少加一个 verdict task（patch correctness 或 bug detection）才够 EMNLP Main。Findings 可能只需当前结果 + ablation。\n- Leakage concern: 如果 ablation 证明 VOTA 效果主要来自 actual==expected 字符串比对，claim 需要调整为 \"verdict tasks 需要的不是 trace reasoning 而是 decision-relevant data points\"——仍然 publishable 但 framing 不同。\n\n## Contingency Framing (based on ablation outcome)\n\n**If ablation shows genuine behavioral understanding** (去 actual/expected 后仍有显著提升):\n→ Full positive framing: \"VOTA teaches execution-grounded verdict reasoning\"\n\n**If ablation shows primarily string matching** (去 actual/expected 后 accuracy 大幅下降):\n→ Adjusted framing: \"For verdict tasks, the critical trace element is the assertion-point state — not behavioral reasoning but targeted state comparison. This is still a novel finding because: (a) no one knew this before testing, (b) it explains WHY full traces fail (too much irrelevant state), (c) it provides practical design principles.\"\n\n## Key Open Questions (Post-MVP)\n\n1. actual/expected ablation 结果如何？→ 决定 Claim 1 的强度\n2. full_trace + label-only loss 能否修复 collapse？→ 加强 Claim 2 的解释\n3. 能否在第二个 verdict task 上复现？→ 决定 generalization claim\n4. 需要多模型验证吗？→ 时间允许就加 DeepSeek-Coder\n\n## Anticipated Reviewer Concerns\n\n| Concern | Planned Response |\n|---------|-----------------|\n| \"VOTA 95.63% 可能是 trivial actual==expected 比对\" | ablation 实验直接回应（P0 优先级） |\n| \"只在一个任务/数据集上测试\" | 加 patch correctness task 或 CRUXEval verdict variant |\n| \"只用一个模型\" | 加 DeepSeek-Coder-6.7B 复现（DCSH 同模型） |\n| \"full_trace collapse 可能是实现 bug\" | label-only loss ablation 验证是 gradient dilution 而非 bug |\n| \"VOTA 只是 feature engineering 不是方法创新\" | 定位为 empirical contribution: 系统性发现 + design principles + task-spectrum analysis |\n| \"与 DCSH 的关系不清\" | 明确：我们 complement DCSH（他们做 generation，我们做 classification） |\n",
+      "numLines": 61,
+      "startLine": 1,
+      "totalLines": 61
+    }
+  },
+  "sourceToolAssistantUUID": "ea7ad1ee-1cbd-4dce-bfbf-e2e0cb34f307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T01:43:53.612Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KRy1jWrxCA99T1AUceHJeb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a22a75f-c92e-4b1c-b842-a434fa5d4cd7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WMtH9NuHdHCLxkpeM9",
+  "type": "assistant",
+  "uuid": "ea7ad1ee-1cbd-4dce-bfbf-e2e0cb34f307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PiQpWHRQL1UUN41FzK6SQD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11420,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-stud…",
+  "leafUuid": "b71c7f9f-90fa-4e5b-9ed4-a35370d5875f",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate paper for dream_20260515T013018",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-15T01:43:57.373Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the experiment data and paper framing. Let me write the full LaTeX paper. Let me first check that the output directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b71c7f9f-90fa-4e5b-9ed4-a35370d5875f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WNNCBATGyicrCBABEL",
+  "type": "assistant",
+  "uuid": "0bfea02a-e9f4-41db-bedb-5cf9b65533f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbutgeLrAh1tAzHRJQNQxk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12476,
+      "cache_read_input_tokens": 23261,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 23261,
+          "cache_creation_input_tokens": 12476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T01:43:58.358Z_
+
+Now I have all the data. Let me write the full LaTeX paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bfea02a-e9f4-41db-bedb-5cf9b65533f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WNNCBATGyicrCBABEL",
+  "type": "assistant",
+  "uuid": "c2fb7d1e-862d-442d-a886-3ef8cd5e3534",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbutgeLrAh1tAzHRJQNQxk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12476,
+      "cache_read_input_tokens": 23261,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 23261,
+          "cache_creation_input_tokens": 12476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T01:44:00.396Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XNNgiCJ2yzoTPcUSPy2RzH`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/",
+  "description": "List output directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2fb7d1e-862d-442d-a886-3ef8cd5e3534",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WNNCBATGyicrCBABEL",
+  "type": "assistant",
+  "uuid": "f9aa6aeb-4cba-47b3-8d6d-0623f7625b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbutgeLrAh1tAzHRJQNQxk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12476,
+      "cache_read_input_tokens": 23261,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 23261,
+          "cache_creation_input_tokens": 12476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T01:44:00.606Z_
+
+<details><summary>↩ Tool result · `toolu_01XNNgiCJ2yzoTPcUSPy2RzH`</summary>
+
+```text
+experiment_data.json
+imagined_experiments.yaml
+paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9aa6aeb-4cba-47b3-8d6d-0623f7625b80",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "c001ffb0-bddd-4ccc-95c4-780b13e6cd8a",
+  "toolUseResult": {
+    "stdout": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "f9aa6aeb-4cba-47b3-8d6d-0623f7625b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T01:46:42.544Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_017MzeYrQpu38YiSAdTAH4hn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex",
+  "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}\n\n\\title{VOTA: Verdict-Optimized Trace Abstraction for\\\\Execution-Grounded Test Outcome Prediction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n% ABSTRACT\n% ============================================================\n\\begin{abstract}\nTrace-augmented supervised fine-tuning (SFT) has shown promise for code understanding, yet prior work evaluates exclusively on generative tasks (code completion, repair) with modest gains. We investigate trace SFT for \\emph{verdict tasks}---binary pass/fail prediction of test outcomes---and find a striking task--representation mismatch: full execution traces \\emph{collapse} model accuracy to 28.5\\% (below majority baseline), while a compact, decision-relevant abstraction we call \\textbf{Verdict-Optimized Trace Abstraction (VOTA)} achieves 99.2\\% (+24.0pp over no-trace). Through systematic ablation, we show that (1)~VOTA teaches execution-grounded verdict reasoning beyond string comparison---removing actual/expected values still yields 89.1\\% (+14.0pp); (2)~full-trace collapse is caused by gradient dilution, confirmed by label-only loss repair and a monotonic accuracy--length decline ($r{=}{-}0.97$); and (3)~all three VOTA components (assertion snapshots, exception summaries, loop compression) contribute independently with super-additive interaction. Results replicate on DeepSeek-Coder-6.7B (+20.3pp) and a second verdict task (DebugBench bug detection, +17.7pp), with seed variance below 0.2pp. Our findings establish that trace information granularity, not presence, determines SFT value for classification, and provide quantitative design principles for task-optimized trace representations.\n\\end{abstract}\n\n% ============================================================\n% 1. INTRODUCTION\n% ============================================================\n\\section{Introduction}\n\nExecution traces---step-by-step records of program runtime behavior---encode rich information about code semantics. Recent work on trace-augmented supervised fine-tuning (trace SFT) has explored whether exposing language models to execution traces during training improves code understanding. DCSH~\\cite{dcsh2025} tested five trace formats across generative tasks and found limited benefit (+2--5pp). TracePile~\\cite{tracepile2025} scaled to 2.6M trace-augmented samples but again evaluated only generation tasks. TRACED~\\cite{traced2024} demonstrated that traces help encoder-based classification, but decoder-based trace SFT for classification remains unexplored.\n\nA critical gap in this literature is the absence of \\emph{verdict tasks}: binary pass/fail classification of code behavior. Verdict tasks have fundamentally different output entropy ($O(1)$ bits) compared to generation tasks ($O(n)$ bits), yet all existing trace formats are designed for full execution simulation. We hypothesize that this mismatch matters: trace granularity must match task output complexity.\n\nWe introduce \\textbf{Verdict-Optimized Trace Abstraction (VOTA)}, a compact trace representation that captures only decision-relevant execution states: assertion-point value snapshots, exception summaries, and loop compression patterns. On test verdict prediction with CodeLlama-7B, VOTA-SFT achieves 99.16\\% accuracy (+24.03pp over no-trace), while full execution trace SFT \\emph{collapses} to 28.49\\%---a 46.64pp \\emph{decrease} that produces degenerate all-fail predictions.\n\nOur contributions are:\n\\begin{enumerate}\n\\item \\textbf{VOTA teaches execution-grounded reasoning, not string comparison.} Removing actual/expected values from VOTA traces still yields 89.1\\% accuracy (+14.0pp over no-trace, $p < 0.001$), demonstrating that assertion structure, exception patterns, and loop behavior carry sufficient verdict-relevant signal.\n\\item \\textbf{Full-trace collapse is gradient dilution, not data corruption.} Label-only loss repairs collapse (28.5\\%$\\to$76.2\\%), and accuracy declines monotonically with trace length ($r = -0.97$). Trace content is not harmful; the loss distribution mismatch is.\n\\item \\textbf{All VOTA components contribute independently with super-additive interaction.} Component ablation quantifies each element's contribution (loop: +4.0pp, exception: +7.6pp, actual/expected: +16.1pp) and reveals a super-additivity ratio of 1.15$\\times$, providing design principles for task-optimized traces.\n\\end{enumerate}\n\nResults generalize across models (DeepSeek-Coder-6.7B: +20.3pp), tasks (DebugBench bug detection: +17.7pp), and seeds (std $< 0.2$pp).\n\n% ============================================================\n% 2. RELATED WORK\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Trace-Augmented SFT for Code.}\nDCSH~\\cite{dcsh2025} systematically evaluated five execution trace formats (variable snapshots, assertion states, full traces, compressed traces, and natural language summaries) for code generation tasks via decoder SFT, finding modest improvements of +2--5pp. TracePile~\\cite{tracepile2025} constructed a large-scale dataset of 2.6M trace-augmented code samples and demonstrated that continued pre-training on traces improves code generation, though gains plateau with scale. Both works focus exclusively on generative tasks and do not consider classification-specific trace design.\n\n\\paragraph{Traces for Code Classification.}\nTRACED~\\cite{traced2024} showed that execution traces improve encoder-based models (CodeBERT, GraphCodeBERT) on bug detection and vulnerability classification. However, encoder-based approaches process traces as input features rather than through SFT, leaving the decoder SFT paradigm unexplored for classification tasks.\n\n\\paragraph{Test Outcome Prediction.}\nPrior work on test outcome prediction relies on static features (code changes, test history, flakiness signals) without execution trace information~\\cite{testpred2023}. Our work is the first to apply trace SFT to verdict tasks and to design trace representations specifically for classification.\n\n% ============================================================\n% 3. METHOD\n% ============================================================\n\\section{Method}\n\n\\subsection{Task Definition}\n\nGiven source code $c$ and a test case $t$, the \\emph{test verdict prediction} task requires predicting the binary outcome $y \\in \\{\\texttt{pass}, \\texttt{fail}\\}$ of executing $t$ on $c$. The model receives $(c, t)$ as input and generates the verdict token.\n\n\\subsection{Trace Representations}\n\nWe compare three trace conditions:\n\n\\paragraph{No Trace.} The model receives only $(c, t)$ without any execution information. This serves as the baseline.\n\n\\paragraph{Full Execution Trace.} The model receives $(c, t, \\tau_{\\text{full}})$ where $\\tau_{\\text{full}}$ is the complete step-by-step execution trace including all variable assignments, control flow decisions, and function calls. Typical length: ${\\sim}3{,}200$ tokens.\n\n\\paragraph{VOTA (Verdict-Optimized Trace Abstraction).} The model receives $(c, t, \\tau_{\\text{VOTA}})$ where $\\tau_{\\text{VOTA}}$ is a compact abstraction containing three components:\n\n\\begin{itemize}\n\\item \\textbf{Assertion snapshots}: For each assertion point, the assertion name, line number, type, actual value, and expected value.\n\\item \\textbf{Exception summary}: Exception type, message, and compressed stack trace (if any exception occurred during execution).\n\\item \\textbf{Loop compression}: Iteration counts, early termination flags, and behavioral pattern summaries for loops encountered during execution.\n\\end{itemize}\n\nVOTA captures only \\emph{decision-relevant} execution states---information that directly bears on whether the test passes or fails---rather than complete execution simulation.\n\n\\subsection{Training}\n\nAll models are fine-tuned from pre-trained code LLMs using standard causal language modeling (SFT). The training sequence is formatted as:\n\n\\vspace{0.3em}\n\\noindent\\texttt{[code] &lt;SEP> [test] &lt;SEP> [trace] &lt;SEP> [verdict]}\n\\vspace{0.3em}\n\n\\noindent For the no-trace condition, the trace segment is omitted. The loss is computed over all tokens in the sequence (standard SFT loss), unless otherwise noted. We use learning rate $2 \\times 10^{-5}$, 3 epochs, and standard AdamW optimization.\n\n% ============================================================\n% 4. EXPERIMENTS\n% ============================================================\n\\section{Experiments}\n\n\\subsection{Setup}\n\n\\paragraph{Dataset.} We construct a test verdict prediction dataset from open-source Python repositories. Each sample consists of a function implementation, an associated unit test, and the ground-truth verdict obtained by execution. The dataset contains $n = 1{,}190$ samples with a 71.5\\% pass / 28.5\\% fail class distribution.\n\n\\paragraph{Models.} Our primary model is CodeLlama-7B~\\cite{codellama}. We additionally replicate on DeepSeek-Coder-6.7B-Instruct~\\cite{deepseek-coder} for cross-model validation.\n\n\\paragraph{Evaluation.} We report accuracy, per-class F1 (pass/fail), Expected Calibration Error (ECE), and Brier score. Statistical significance is assessed via McNemar's test. Confidence intervals are computed via bootstrap ($B=10{,}000$). All experiments use three random seeds (42, 123, 456) unless otherwise noted.\n\n\\subsection{Main Results}\n\nTable~\\ref{tab:main} presents the core comparison across trace conditions on CodeLlama-7B.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{Pass F1} & \\textbf{Fail F1} \\\\\n\\midrule\nNo trace & 75.13 & --- & 0.813 & 0.627 \\\\\nFull trace & 28.49 & $-$46.6 & 0.155 & 0.568 \\\\\n\\textbf{VOTA} & \\textbf{99.16} & \\textbf{+24.0} & \\textbf{0.994} & \\textbf{0.985} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Main results on test verdict prediction (CodeLlama-7B). $\\Delta$: accuracy change vs.\\ no-trace baseline in percentage points. VOTA achieves near-perfect accuracy while full trace collapses below majority baseline (71.5\\%).}\n\\label{tab:main}\n\\end{table}\n\nVOTA achieves 99.16\\% accuracy with balanced precision and recall across both classes (Pass F1: 0.994, Fail F1: 0.985). Full execution trace SFT catastrophically collapses to 28.49\\%---\\emph{below} the majority baseline of 71.5\\%---predicting ``fail'' for 100\\% of samples. The no-trace baseline achieves 75.13\\%, slightly above majority class prediction.\n\n\\subsection{Ablation 1: Actual/Expected Removal}\n\\label{sec:actexp}\n\nA natural concern is that VOTA's effectiveness stems from trivial string comparison of actual vs.\\ expected values rather than genuine execution reasoning. To test this, we remove all actual/expected value fields from VOTA traces, retaining only assertion structure, exception summaries, and loop compression.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nFull VOTA & 99.16 & +24.0 & [98.6, 99.7] \\\\\nVOTA w/o act/exp & 89.10 & +14.0 & [87.1, 90.9] \\\\\nNo trace & 75.13 & --- & [72.5, 77.6] \\\\\nFull trace & 28.49 & $-$46.6 & [25.9, 31.1] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Actual/expected value ablation. Removing direct comparison values drops accuracy by 10.1pp but retains a 14.0pp lift over no-trace ($p < 0.001$), demonstrating execution-state reasoning beyond string matching.}\n\\label{tab:actexp}\n\\end{table}\n\nTable~\\ref{tab:actexp} shows that removing actual/expected values reduces accuracy from 99.16\\% to 89.10\\%---a 10.1pp drop. Crucially, the model still achieves a 14.0pp lift over the no-trace baseline ($p < 0.001$ by McNemar's test). This demonstrates that assertion structure, exception patterns, and loop behavior carry substantial verdict-relevant signal independent of direct value comparison. The 14.0pp lift from execution-state reasoning exceeds the 10.1pp contribution from actual/expected values, supporting our claim that VOTA teaches genuine execution-grounded reasoning.\n\n\\subsection{Ablation 2: Gradient Dilution Analysis}\n\\label{sec:dilution}\n\nWe investigate why full execution traces cause model collapse through two complementary experiments.\n\n\\paragraph{Label-Only Loss.} We train with full execution traces but compute loss only on the final verdict token, masking all trace tokens.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Loss} & \\textbf{Acc.} & \\textbf{\\% Fail} & \\textbf{Collapse?} \\\\\n\\midrule\nFull trace & Standard & 28.49 & 100\\% & Yes \\\\\nFull trace & Label-only & 76.20 & 43.7\\% & No \\\\\nNo trace & Standard & 75.13 & 42.1\\% & No \\\\\nVOTA & Standard & 99.16 & 29.8\\% & No \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Label-only loss repairs full-trace collapse (28.5\\%$\\to$76.2\\%), confirming gradient dilution as root cause. However, the repaired model only matches no-trace performance, indicating that full traces provide no information gain even as pure context.}\n\\label{tab:labelonly}\n\\end{table}\n\nTable~\\ref{tab:labelonly} shows that label-only loss repairs collapse from 28.49\\% to 76.20\\%, confirming that collapse is caused by gradient dilution---trace tokens ($>$97\\% of sequence) dominate the loss, overwhelming the classification gradient. However, the repaired accuracy merely matches the no-trace baseline (75.13\\%), indicating that full execution traces, even as pure context without gradient interference, provide negligible information gain. The model's attention cannot extract decision-relevant signal from ${\\sim}3{,}200$ verbose trace tokens.\n\n\\paragraph{Trace Length Ablation.} We truncate full traces to 256, 512, 1024, and 2048 tokens with standard SFT loss.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{rccc}\n\\toprule\n\\textbf{Length (tok)} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{\\% Fail} \\\\\n\\midrule\n0 (no trace) & 75.13 & --- & 42.1\\% \\\\\n256 & 68.30 & $-$6.8 & 48.2\\% \\\\\n512 & 54.80 & $-$20.3 & 61.7\\% \\\\\n1024 & 38.90 & $-$36.2 & 78.4\\% \\\\\n2048 & 30.10 & $-$45.0 & 93.8\\% \\\\\n${\\sim}$3200 (full) & 28.49 & $-$46.6 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Accuracy declines monotonically with trace length ($r = -0.97$). All truncated conditions fall below the no-trace baseline, and fail-prediction ratio increases steadily toward complete collapse.}\n\\label{tab:length}\n\\end{table}\n\nTable~\\ref{tab:length} reveals a near-perfect monotonic decline in accuracy with trace length (Pearson $r = -0.97$). Every truncated condition falls \\emph{below} the no-trace baseline---even 256 tokens of execution trace degrades performance under standard SFT loss. The fail-prediction ratio increases steadily from 42.1\\% (no trace) to 100\\% (full trace), tracing the progression of gradient dilution as trace tokens increasingly dominate the loss. This eliminates the hypothesis that trace content is inherently harmful: if content were the problem, label-only loss would not fix it (Section~\\ref{sec:dilution}). The mechanism is purely loss-distributional.\n\nTogether, these experiments provide a closed-loop explanation: (1) trace length determines dilution severity (Table~\\ref{tab:length}); (2) removing trace loss eliminates dilution (Table~\\ref{tab:labelonly}); (3) VOTA resolves the problem by compressing traces to a decision-relevant minimum, avoiding dilution while preserving signal.\n\n\\subsection{Ablation 3: VOTA Component Analysis}\n\nWe isolate each VOTA component by training with only that component's trace information.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Component(s)} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nNo trace & 75.13 & --- & [72.5, 77.6] \\\\\nLoop only & 79.10 & +3.97 & [76.7, 81.3] \\\\\nException only & 82.70 & +7.57 & [80.5, 84.8] \\\\\nAct/exp only & 91.20 & +16.07 & [89.5, 92.7] \\\\\nFull VOTA & 99.16 & +24.03 & [98.6, 99.7] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{VOTA component ablation. All three components contribute independently ($p < 0.01$ for each). The combined lift (24.0pp) relative to the sum of individual lifts (27.6pp) yields a super-additivity ratio of 1.15$\\times$.}\n\\label{tab:component}\n\\end{table}\n\nTable~\\ref{tab:component} shows that all three VOTA components make independently significant contributions. Loop compression provides the smallest but still significant lift (+3.97pp, $p < 0.01$), capturing behavioral anomalies such as early termination and infinite loop patterns. Exception summaries contribute +7.57pp by providing strong fail signals---exceptions almost always indicate failure, and exception type/message encode root cause information. Actual/expected value pairs contribute the most (+16.07pp) by directly encoding the comparison between program output and expected output.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lc}\n\\toprule\n\\textbf{Metric} & \\textbf{Value} \\\\\n\\midrule\nSum of individual lifts & 27.61pp \\\\\nCombined lift (full VOTA) & 24.03pp \\\\\nSuper-additivity ratio & 1.15$\\times$ \\\\\nMin individual contribution & 3.97pp (loop) \\\\\nMax individual contribution & 16.07pp (act/exp) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Component interaction analysis. The super-additivity ratio indicates complementary reasoning across components rather than redundant signal.}\n\\label{tab:interaction}\n\\end{table}\n\nTable~\\ref{tab:interaction} reveals that the combined VOTA lift (24.03pp) exceeds what individual components would predict in isolation, with a super-additivity ratio of 1.15$\\times$. This indicates complementary rather than redundant signal composition: exception summaries cover crash-driven failures that actual/expected values miss (actual may be null during exceptions), while loop compression captures behavioral anomalies invisible to both other components. The model learns cross-component reasoning patterns during joint training.\n\n\\subsection{Cross-Model Replication}\n\nTo verify that results are not specific to CodeLlama, we replicate the three-condition experiment on DeepSeek-Coder-6.7B-Instruct.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Model} & \\textbf{Cond.} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{Col.?} \\\\\n\\midrule\nCodeLlama-7B & VOTA & 99.16 & +24.0 & No \\\\\nCodeLlama-7B & No trace & 75.13 & --- & No \\\\\nCodeLlama-7B & Full trace & 28.49 & $-$46.6 & Yes \\\\\n\\midrule\nDeepSeek-6.7B & VOTA & 93.40 & +20.3 & No \\\\\nDeepSeek-6.7B & No trace & 73.10 & --- & No \\\\\nDeepSeek-6.7B & Full trace & 30.70 & $-$42.4 & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model replication. DeepSeek-Coder-6.7B preserves the VOTA $\\gg$ no-trace $\\gg$ full-trace pattern with +20.3pp VOTA lift.}\n\\label{tab:crossmodel}\n\\end{table}\n\nTable~\\ref{tab:crossmodel} confirms that the relative pattern is fully preserved: VOTA provides a substantial lift (+20.3pp), full trace collapses (30.7\\%), and the ordering VOTA $\\gg$ no-trace $\\gg$ full-trace holds. The 5.76pp absolute difference between models (99.16\\% vs.\\ 93.40\\%) reflects base model capability differences rather than method-specific artifacts. Notably, the VOTA lift on DeepSeek (+20.3pp) far exceeds the trace SFT gains reported by DCSH on the same model family for generation tasks (+2--5pp), quantitatively demonstrating the trace--task matching effect.\n\n\\subsection{Cross-Task Generalization}\n\nWe evaluate VOTA on a second verdict task: bug detection using the DebugBench dataset (Python subset, $n = 850$). The task is to predict whether a given test will expose a bug in buggy code.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Task} & \\textbf{Cond.} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{$n$} \\\\\n\\midrule\nTest verdict & VOTA & 99.16 & +24.0 & 1190 \\\\\nTest verdict & No trace & 75.13 & --- & 1190 \\\\\nTest verdict & Full trace & 28.49 & $-$46.6 & 1190 \\\\\n\\midrule\nBug detection & VOTA & 84.90 & +17.7 & 850 \\\\\nBug detection & No trace & 67.20 & --- & 850 \\\\\nBug detection & Full trace & 34.10 & $-$33.1 & 850 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-task generalization on DebugBench bug detection. The VOTA-helps / full-trace-collapses pattern replicates across verdict tasks.}\n\\label{tab:crosstask}\n\\end{table}\n\nTable~\\ref{tab:crosstask} shows that the pattern replicates: VOTA provides +17.7pp lift on bug detection while full trace collapses to 34.1\\%. The lower absolute accuracy (84.9\\% vs.\\ 99.16\\%) reflects the greater intrinsic difficulty of bug detection---reasoning about bug--test interaction requires understanding whether a specific bug is triggered by a specific test, rather than simply predicting test outcome. The consistent pattern across both verdict tasks supports a task-class-level generalization: VOTA is effective for verdict tasks broadly, not just test outcome prediction.\n\n% ============================================================\n% 5. ANALYSIS\n% ============================================================\n\\section{Analysis}\n\n\\subsection{Calibration}\n\nBeyond accuracy, well-calibrated confidence is important for downstream automation (e.g., test triage). We compute Expected Calibration Error (ECE) and Brier scores for the three main conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{ECE}$\\downarrow$ & \\textbf{Brier}$\\downarrow$ & \\textbf{Acc.} & \\textbf{Quality} \\\\\n\\midrule\nVOTA & 0.018 & 0.009 & 99.16 & Well-calibrated \\\\\nNo trace & 0.187 & 0.221 & 75.13 & Overconfident \\\\\nFull trace & 0.438 & 0.687 & 28.49 & Degenerate \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Calibration analysis. VOTA produces well-calibrated predictions (ECE = 0.018), while no-trace is overconfident on pass predictions and full-trace exhibits degenerate calibration.}\n\\label{tab:calibration}\n\\end{table}\n\nTable~\\ref{tab:calibration} shows that VOTA achieves near-perfect calibration (ECE = 0.018, Brier = 0.009): predicted confidence closely tracks true outcome frequency. The no-trace model is overconfident on pass predictions (ECE = 0.187), reflecting learned base-rate bias without sufficient discriminative signal. The full-trace model has degenerate calibration (ECE = 0.438) due to high-confidence fail predictions on all samples. VOTA's strong calibration supports the interpretation that VOTA enables genuine behavioral understanding with well-grounded decision boundaries, rather than superficial pattern matching that would produce overconfident edge-case predictions.\n\n\\subsection{Seed Robustness}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Seed} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{McNemar $p$} \\\\\n\\midrule\n42 & 99.16 & +24.03 & $<$0.001 \\\\\n123 & 98.91 & +23.78 & $<$0.001 \\\\\n456 & 99.08 & +23.95 & $<$0.001 \\\\\n\\midrule\nMean $\\pm$ Std & 99.05 $\\pm$ 0.13 & +23.92 $\\pm$ 0.13 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Seed robustness across three random seeds. Standard deviation is 0.13pp with bootstrap 95\\% CI for lift: [21.9pp, 26.1pp].}\n\\label{tab:seed}\n\\end{table}\n\nTable~\\ref{tab:seed} confirms high stability: standard deviation across seeds is 0.13pp, with maximum pairwise difference of 0.25pp. The bootstrap 95\\% CI for VOTA lift is [21.9pp, 26.1pp], excluding zero. The extremely low variance reflects that VOTA traces provide nearly sufficient statistics for verdict prediction---the model converges to the same decision boundary regardless of initialization.\n\n% ============================================================\n% 6. DISCUSSION\n% ============================================================\n\\section{Discussion}\n\n\\paragraph{Trace Design Principles.} Our component ablation provides quantitative guidance for trace design in verdict tasks: (1)~\\emph{verdict-relevant state snapshots} (actual/expected values) contribute most (+16.1pp); (2)~\\emph{exception diagnostics} provide strong fail signals (+7.6pp); (3)~\\emph{behavioral pattern summaries} (loop compression) contribute the least individually (+4.0pp) but are essential for covering behavioral anomalies missed by the other components. The super-additive interaction (1.15$\\times$) suggests these components are complementary rather than redundant. Practitioners designing trace representations for new verdict tasks should prioritize in this order, allocating trace budget accordingly.\n\n\\paragraph{Gradient Dilution as a General Risk.} The gradient dilution mechanism we identify---where verbose auxiliary tokens dominate SFT loss, overwhelming the task-relevant gradient---is not specific to execution traces. Any SFT setup where the target output is short relative to a long input-side generation (chain-of-thought, retrieval-augmented generation with long contexts) may face similar dilution. Our findings suggest that for classification tasks, either (a)~compressing the auxiliary content or (b)~restricting loss computation to the target tokens is necessary.\n\n\\paragraph{Relationship to DCSH.} Our work complements rather than contradicts DCSH. DCSH evaluated trace SFT on generation tasks and found modest gains; we evaluate on verdict tasks and find large gains. The contrast supports a \\emph{trace--task matching} principle: trace format should match task granularity. Generation tasks benefit from detailed execution simulation; verdict tasks benefit from compact decision-relevant abstractions.\n\n\\paragraph{Limitations.} Our evaluation is limited to Python code and two verdict tasks. While the consistent pattern across tasks and models supports generality, evaluation on more languages and additional classification tasks (vulnerability detection, code clone detection) would strengthen the claims. The dataset size ($n = 1{,}190$ for the main task) is modest; scaling experiments would clarify whether VOTA's advantage persists with more training data. Finally, we evaluate only 7B-parameter models; behavior at larger scales remains unknown.\n\n% ============================================================\n% 7. CONCLUSION\n% ============================================================\n\\section{Conclusion}\n\nWe demonstrate that trace SFT effectiveness for verdict tasks depends critically on trace information granularity. VOTA, a compact abstraction capturing assertion snapshots, exception summaries, and loop compression, achieves 99.2\\% accuracy on test verdict prediction (+24.0pp over no-trace), while full execution traces cause model collapse due to gradient dilution. Through systematic ablation, we show that VOTA teaches execution-grounded reasoning beyond string comparison, identify gradient dilution as the mechanism of full-trace collapse, and provide quantitative design principles for task-optimized trace representations. Results replicate across models, tasks, and seeds, establishing information granularity matching as a key principle for trace SFT.\n\n% ============================================================\n% REFERENCES\n% ============================================================\n\\bibliography{custom}\n\n\\begin{thebibliography}{9}\n\n\\bibitem{dcsh2025}\nAnonymous.\n\\newblock Execution trace augmented code SFT: A systematic study.\n\\newblock In \\emph{Findings of EMNLP}, 2025.\n\n\\bibitem{tracepile2025}\nAnonymous.\n\\newblock TracePile: Scaling trace-augmented pre-training for code understanding.\n\\newblock In \\emph{NeurIPS}, 2025.\n\n\\bibitem{traced2024}\nAnonymous.\n\\newblock TRACED: Execution-aware pre-training for code classification.\n\\newblock In \\emph{ICSE}, 2024.\n\n\\bibitem{testpred2023}\nAnonymous.\n\\newblock Predictive test selection using code change features.\n\\newblock In \\emph{ICSE}, 2023.\n\n\\bibitem{codellama}\nRozi\\`{e}re, B., et al.\n\\newblock Code Llama: Open foundation models for code.\n\\newblock \\emph{arXiv:2308.12950}, 2023.\n\n\\bibitem{deepseek-coder}\nGuo, D., et al.\n\\newblock DeepSeek-Coder: When the large language model meets programming.\n\\newblock \\emph{arXiv:2401.14196}, 2024.\n\n\\end{thebibliography}\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c001ffb0-bddd-4ccc-95c4-780b13e6cd8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WNsoeJYgPG8nxHh6pz",
+  "type": "assistant",
+  "uuid": "697c1eb9-fb66-42c3-b291-36c2f89851a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NaVs2uLgzJgThTQaeZ5U5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 35737,
+      "output_tokens": 8376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8376,
+          "cache_read_input_tokens": 35737,
+          "cache_creation_input_tokens": 214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T01:46:42.572Z_
+
+<details><summary>↩ Tool result · `toolu_017MzeYrQpu38YiSAdTAH4hn`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "697c1eb9-fb66-42c3-b291-36c2f89851a6",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "039b6718-be00-4ff8-8ca7-7c4b6045add7",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex",
+    "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}\n\n\\title{VOTA: Verdict-Optimized Trace Abstraction for\\\\Execution-Grounded Test Outcome Prediction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n% ABSTRACT\n% ============================================================\n\\begin{abstract}\nTrace-augmented supervised fine-tuning (SFT) has shown promise for code understanding, yet prior work evaluates exclusively on generative tasks (code completion, repair) with modest gains. We investigate trace SFT for \\emph{verdict tasks}---binary pass/fail prediction of test outcomes---and find a striking task--representation mismatch: full execution traces \\emph{collapse} model accuracy to 28.5\\% (below majority baseline), while a compact, decision-relevant abstraction we call \\textbf{Verdict-Optimized Trace Abstraction (VOTA)} achieves 99.2\\% (+24.0pp over no-trace). Through systematic ablation, we show that (1)~VOTA teaches execution-grounded verdict reasoning beyond string comparison---removing actual/expected values still yields 89.1\\% (+14.0pp); (2)~full-trace collapse is caused by gradient dilution, confirmed by label-only loss repair and a monotonic accuracy--length decline ($r{=}{-}0.97$); and (3)~all three VOTA components (assertion snapshots, exception summaries, loop compression) contribute independently with super-additive interaction. Results replicate on DeepSeek-Coder-6.7B (+20.3pp) and a second verdict task (DebugBench bug detection, +17.7pp), with seed variance below 0.2pp. Our findings establish that trace information granularity, not presence, determines SFT value for classification, and provide quantitative design principles for task-optimized trace representations.\n\\end{abstract}\n\n% ============================================================\n% 1. INTRODUCTION\n% ============================================================\n\\section{Introduction}\n\nExecution traces---step-by-step records of program runtime behavior---encode rich information about code semantics. Recent work on trace-augmented supervised fine-tuning (trace SFT) has explored whether exposing language models to execution traces during training improves code understanding. DCSH~\\cite{dcsh2025} tested five trace formats across generative tasks and found limited benefit (+2--5pp). TracePile~\\cite{tracepile2025} scaled to 2.6M trace-augmented samples but again evaluated only generation tasks. TRACED~\\cite{traced2024} demonstrated that traces help encoder-based classification, but decoder-based trace SFT for classification remains unexplored.\n\nA critical gap in this literature is the absence of \\emph{verdict tasks}: binary pass/fail classification of code behavior. Verdict tasks have fundamentally different output entropy ($O(1)$ bits) compared to generation tasks ($O(n)$ bits), yet all existing trace formats are designed for full execution simulation. We hypothesize that this mismatch matters: trace granularity must match task output complexity.\n\nWe introduce \\textbf{Verdict-Optimized Trace Abstraction (VOTA)}, a compact trace representation that captures only decision-relevant execution states: assertion-point value snapshots, exception summaries, and loop compression patterns. On test verdict prediction with CodeLlama-7B, VOTA-SFT achieves 99.16\\% accuracy (+24.03pp over no-trace), while full execution trace SFT \\emph{collapses} to 28.49\\%---a 46.64pp \\emph{decrease} that produces degenerate all-fail predictions.\n\nOur contributions are:\n\\begin{enumerate}\n\\item \\textbf{VOTA teaches execution-grounded reasoning, not string comparison.} Removing actual/expected values from VOTA traces still yields 89.1\\% accuracy (+14.0pp over no-trace, $p < 0.001$), demonstrating that assertion structure, exception patterns, and loop behavior carry sufficient verdict-relevant signal.\n\\item \\textbf{Full-trace collapse is gradient dilution, not data corruption.} Label-only loss repairs collapse (28.5\\%$\\to$76.2\\%), and accuracy declines monotonically with trace length ($r = -0.97$). Trace content is not harmful; the loss distribution mismatch is.\n\\item \\textbf{All VOTA components contribute independently with super-additive interaction.} Component ablation quantifies each element's contribution (loop: +4.0pp, exception: +7.6pp, actual/expected: +16.1pp) and reveals a super-additivity ratio of 1.15$\\times$, providing design principles for task-optimized traces.\n\\end{enumerate}\n\nResults generalize across models (DeepSeek-Coder-6.7B: +20.3pp), tasks (DebugBench bug detection: +17.7pp), and seeds (std $< 0.2$pp).\n\n% ============================================================\n% 2. RELATED WORK\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Trace-Augmented SFT for Code.}\nDCSH~\\cite{dcsh2025} systematically evaluated five execution trace formats (variable snapshots, assertion states, full traces, compressed traces, and natural language summaries) for code generation tasks via decoder SFT, finding modest improvements of +2--5pp. TracePile~\\cite{tracepile2025} constructed a large-scale dataset of 2.6M trace-augmented code samples and demonstrated that continued pre-training on traces improves code generation, though gains plateau with scale. Both works focus exclusively on generative tasks and do not consider classification-specific trace design.\n\n\\paragraph{Traces for Code Classification.}\nTRACED~\\cite{traced2024} showed that execution traces improve encoder-based models (CodeBERT, GraphCodeBERT) on bug detection and vulnerability classification. However, encoder-based approaches process traces as input features rather than through SFT, leaving the decoder SFT paradigm unexplored for classification tasks.\n\n\\paragraph{Test Outcome Prediction.}\nPrior work on test outcome prediction relies on static features (code changes, test history, flakiness signals) without execution trace information~\\cite{testpred2023}. Our work is the first to apply trace SFT to verdict tasks and to design trace representations specifically for classification.\n\n% ============================================================\n% 3. METHOD\n% ============================================================\n\\section{Method}\n\n\\subsection{Task Definition}\n\nGiven source code $c$ and a test case $t$, the \\emph{test verdict prediction} task requires predicting the binary outcome $y \\in \\{\\texttt{pass}, \\texttt{fail}\\}$ of executing $t$ on $c$. The model receives $(c, t)$ as input and generates the verdict token.\n\n\\subsection{Trace Representations}\n\nWe compare three trace conditions:\n\n\\paragraph{No Trace.} The model receives only $(c, t)$ without any execution information. This serves as the baseline.\n\n\\paragraph{Full Execution Trace.} The model receives $(c, t, \\tau_{\\text{full}})$ where $\\tau_{\\text{full}}$ is the complete step-by-step execution trace including all variable assignments, control flow decisions, and function calls. Typical length: ${\\sim}3{,}200$ tokens.\n\n\\paragraph{VOTA (Verdict-Optimized Trace Abstraction).} The model receives $(c, t, \\tau_{\\text{VOTA}})$ where $\\tau_{\\text{VOTA}}$ is a compact abstraction containing three components:\n\n\\begin{itemize}\n\\item \\textbf{Assertion snapshots}: For each assertion point, the assertion name, line number, type, actual value, and expected value.\n\\item \\textbf{Exception summary}: Exception type, message, and compressed stack trace (if any exception occurred during execution).\n\\item \\textbf{Loop compression}: Iteration counts, early termination flags, and behavioral pattern summaries for loops encountered during execution.\n\\end{itemize}\n\nVOTA captures only \\emph{decision-relevant} execution states---information that directly bears on whether the test passes or fails---rather than complete execution simulation.\n\n\\subsection{Training}\n\nAll models are fine-tuned from pre-trained code LLMs using standard causal language modeling (SFT). The training sequence is formatted as:\n\n\\vspace{0.3em}\n\\noindent\\texttt{[code] &lt;SEP> [test] &lt;SEP> [trace] &lt;SEP> [verdict]}\n\\vspace{0.3em}\n\n\\noindent For the no-trace condition, the trace segment is omitted. The loss is computed over all tokens in the sequence (standard SFT loss), unless otherwise noted. We use learning rate $2 \\times 10^{-5}$, 3 epochs, and standard AdamW optimization.\n\n% ============================================================\n% 4. EXPERIMENTS\n% ============================================================\n\\section{Experiments}\n\n\\subsection{Setup}\n\n\\paragraph{Dataset.} We construct a test verdict prediction dataset from open-source Python repositories. Each sample consists of a function implementation, an associated unit test, and the ground-truth verdict obtained by execution. The dataset contains $n = 1{,}190$ samples with a 71.5\\% pass / 28.5\\% fail class distribution.\n\n\\paragraph{Models.} Our primary model is CodeLlama-7B~\\cite{codellama}. We additionally replicate on DeepSeek-Coder-6.7B-Instruct~\\cite{deepseek-coder} for cross-model validation.\n\n\\paragraph{Evaluation.} We report accuracy, per-class F1 (pass/fail), Expected Calibration Error (ECE), and Brier score. Statistical significance is assessed via McNemar's test. Confidence intervals are computed via bootstrap ($B=10{,}000$). All experiments use three random seeds (42, 123, 456) unless otherwise noted.\n\n\\subsection{Main Results}\n\nTable~\\ref{tab:main} presents the core comparison across trace conditions on CodeLlama-7B.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{Pass F1} & \\textbf{Fail F1} \\\\\n\\midrule\nNo trace & 75.13 & --- & 0.813 & 0.627 \\\\\nFull trace & 28.49 & $-$46.6 & 0.155 & 0.568 \\\\\n\\textbf{VOTA} & \\textbf{99.16} & \\textbf{+24.0} & \\textbf{0.994} & \\textbf{0.985} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Main results on test verdict prediction (CodeLlama-7B). $\\Delta$: accuracy change vs.\\ no-trace baseline in percentage points. VOTA achieves near-perfect accuracy while full trace collapses below majority baseline (71.5\\%).}\n\\label{tab:main}\n\\end{table}\n\nVOTA achieves 99.16\\% accuracy with balanced precision and recall across both classes (Pass F1: 0.994, Fail F1: 0.985). Full execution trace SFT catastrophically collapses to 28.49\\%---\\emph{below} the majority baseline of 71.5\\%---predicting ``fail'' for 100\\% of samples. The no-trace baseline achieves 75.13\\%, slightly above majority class prediction.\n\n\\subsection{Ablation 1: Actual/Expected Removal}\n\\label{sec:actexp}\n\nA natural concern is that VOTA's effectiveness stems from trivial string comparison of actual vs.\\ expected values rather than genuine execution reasoning. To test this, we remove all actual/expected value fields from VOTA traces, retaining only assertion structure, exception summaries, and loop compression.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nFull VOTA & 99.16 & +24.0 & [98.6, 99.7] \\\\\nVOTA w/o act/exp & 89.10 & +14.0 & [87.1, 90.9] \\\\\nNo trace & 75.13 & --- & [72.5, 77.6] \\\\\nFull trace & 28.49 & $-$46.6 & [25.9, 31.1] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Actual/expected value ablation. Removing direct comparison values drops accuracy by 10.1pp but retains a 14.0pp lift over no-trace ($p < 0.001$), demonstrating execution-state reasoning beyond string matching.}\n\\label{tab:actexp}\n\\end{table}\n\nTable~\\ref{tab:actexp} shows that removing actual/expected values reduces accuracy from 99.16\\% to 89.10\\%---a 10.1pp drop. Crucially, the model still achieves a 14.0pp lift over the no-trace baseline ($p < 0.001$ by McNemar's test). This demonstrates that assertion structure, exception patterns, and loop behavior carry substantial verdict-relevant signal independent of direct value comparison. The 14.0pp lift from execution-state reasoning exceeds the 10.1pp contribution from actual/expected values, supporting our claim that VOTA teaches genuine execution-grounded reasoning.\n\n\\subsection{Ablation 2: Gradient Dilution Analysis}\n\\label{sec:dilution}\n\nWe investigate why full execution traces cause model collapse through two complementary experiments.\n\n\\paragraph{Label-Only Loss.} We train with full execution traces but compute loss only on the final verdict token, masking all trace tokens.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Loss} & \\textbf{Acc.} & \\textbf{\\% Fail} & \\textbf{Collapse?} \\\\\n\\midrule\nFull trace & Standard & 28.49 & 100\\% & Yes \\\\\nFull trace & Label-only & 76.20 & 43.7\\% & No \\\\\nNo trace & Standard & 75.13 & 42.1\\% & No \\\\\nVOTA & Standard & 99.16 & 29.8\\% & No \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Label-only loss repairs full-trace collapse (28.5\\%$\\to$76.2\\%), confirming gradient dilution as root cause. However, the repaired model only matches no-trace performance, indicating that full traces provide no information gain even as pure context.}\n\\label{tab:labelonly}\n\\end{table}\n\nTable~\\ref{tab:labelonly} shows that label-only loss repairs collapse from 28.49\\% to 76.20\\%, confirming that collapse is caused by gradient dilution---trace tokens ($>$97\\% of sequence) dominate the loss, overwhelming the classification gradient. However, the repaired accuracy merely matches the no-trace baseline (75.13\\%), indicating that full execution traces, even as pure context without gradient interference, provide negligible information gain. The model's attention cannot extract decision-relevant signal from ${\\sim}3{,}200$ verbose trace tokens.\n\n\\paragraph{Trace Length Ablation.} We truncate full traces to 256, 512, 1024, and 2048 tokens with standard SFT loss.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{rccc}\n\\toprule\n\\textbf{Length (tok)} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{\\% Fail} \\\\\n\\midrule\n0 (no trace) & 75.13 & --- & 42.1\\% \\\\\n256 & 68.30 & $-$6.8 & 48.2\\% \\\\\n512 & 54.80 & $-$20.3 & 61.7\\% \\\\\n1024 & 38.90 & $-$36.2 & 78.4\\% \\\\\n2048 & 30.10 & $-$45.0 & 93.8\\% \\\\\n${\\sim}$3200 (full) & 28.49 & $-$46.6 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Accuracy declines monotonically with trace length ($r = -0.97$). All truncated conditions fall below the no-trace baseline, and fail-prediction ratio increases steadily toward complete collapse.}\n\\label{tab:length}\n\\end{table}\n\nTable~\\ref{tab:length} reveals a near-perfect monotonic decline in accuracy with trace length (Pearson $r = -0.97$). Every truncated condition falls \\emph{below} the no-trace baseline---even 256 tokens of execution trace degrades performance under standard SFT loss. The fail-prediction ratio increases steadily from 42.1\\% (no trace) to 100\\% (full trace), tracing the progression of gradient dilution as trace tokens increasingly dominate the loss. This eliminates the hypothesis that trace content is inherently harmful: if content were the problem, label-only loss would not fix it (Section~\\ref{sec:dilution}). The mechanism is purely loss-distributional.\n\nTogether, these experiments provide a closed-loop explanation: (1) trace length determines dilution severity (Table~\\ref{tab:length}); (2) removing trace loss eliminates dilution (Table~\\ref{tab:labelonly}); (3) VOTA resolves the problem by compressing traces to a decision-relevant minimum, avoiding dilution while preserving signal.\n\n\\subsection{Ablation 3: VOTA Component Analysis}\n\nWe isolate each VOTA component by training with only that component's trace information.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Component(s)} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nNo trace & 75.13 & --- & [72.5, 77.6] \\\\\nLoop only & 79.10 & +3.97 & [76.7, 81.3] \\\\\nException only & 82.70 & +7.57 & [80.5, 84.8] \\\\\nAct/exp only & 91.20 & +16.07 & [89.5, 92.7] \\\\\nFull VOTA & 99.16 & +24.03 & [98.6, 99.7] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{VOTA component ablation. All three components contribute independently ($p < 0.01$ for each). The combined lift (24.0pp) relative to the sum of individual lifts (27.6pp) yields a super-additivity ratio of 1.15$\\times$.}\n\\label{tab:component}\n\\end{table}\n\nTable~\\ref{tab:component} shows that all three VOTA components make independently significant contributions. Loop compression provides the smallest but still significant lift (+3.97pp, $p < 0.01$), capturing behavioral anomalies such as early termination and infinite loop patterns. Exception summaries contribute +7.57pp by providing strong fail signals---exceptions almost always indicate failure, and exception type/message encode root cause information. Actual/expected value pairs contribute the most (+16.07pp) by directly encoding the comparison between program output and expected output.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lc}\n\\toprule\n\\textbf{Metric} & \\textbf{Value} \\\\\n\\midrule\nSum of individual lifts & 27.61pp \\\\\nCombined lift (full VOTA) & 24.03pp \\\\\nSuper-additivity ratio & 1.15$\\times$ \\\\\nMin individual contribution & 3.97pp (loop) \\\\\nMax individual contribution & 16.07pp (act/exp) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Component interaction analysis. The super-additivity ratio indicates complementary reasoning across components rather than redundant signal.}\n\\label{tab:interaction}\n\\end{table}\n\nTable~\\ref{tab:interaction} reveals that the combined VOTA lift (24.03pp) exceeds what individual components would predict in isolation, with a super-additivity ratio of 1.15$\\times$. This indicates complementary rather than redundant signal composition: exception summaries cover crash-driven failures that actual/expected values miss (actual may be null during exceptions), while loop compression captures behavioral anomalies invisible to both other components. The model learns cross-component reasoning patterns during joint training.\n\n\\subsection{Cross-Model Replication}\n\nTo verify that results are not specific to CodeLlama, we replicate the three-condition experiment on DeepSeek-Coder-6.7B-Instruct.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Model} & \\textbf{Cond.} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{Col.?} \\\\\n\\midrule\nCodeLlama-7B & VOTA & 99.16 & +24.0 & No \\\\\nCodeLlama-7B & No trace & 75.13 & --- & No \\\\\nCodeLlama-7B & Full trace & 28.49 & $-$46.6 & Yes \\\\\n\\midrule\nDeepSeek-6.7B & VOTA & 93.40 & +20.3 & No \\\\\nDeepSeek-6.7B & No trace & 73.10 & --- & No \\\\\nDeepSeek-6.7B & Full trace & 30.70 & $-$42.4 & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model replication. DeepSeek-Coder-6.7B preserves the VOTA $\\gg$ no-trace $\\gg$ full-trace pattern with +20.3pp VOTA lift.}\n\\label{tab:crossmodel}\n\\end{table}\n\nTable~\\ref{tab:crossmodel} confirms that the relative pattern is fully preserved: VOTA provides a substantial lift (+20.3pp), full trace collapses (30.7\\%), and the ordering VOTA $\\gg$ no-trace $\\gg$ full-trace holds. The 5.76pp absolute difference between models (99.16\\% vs.\\ 93.40\\%) reflects base model capability differences rather than method-specific artifacts. Notably, the VOTA lift on DeepSeek (+20.3pp) far exceeds the trace SFT gains reported by DCSH on the same model family for generation tasks (+2--5pp), quantitatively demonstrating the trace--task matching effect.\n\n\\subsection{Cross-Task Generalization}\n\nWe evaluate VOTA on a second verdict task: bug detection using the DebugBench dataset (Python subset, $n = 850$). The task is to predict whether a given test will expose a bug in buggy code.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Task} & \\textbf{Cond.} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{$n$} \\\\\n\\midrule\nTest verdict & VOTA & 99.16 & +24.0 & 1190 \\\\\nTest verdict & No trace & 75.13 & --- & 1190 \\\\\nTest verdict & Full trace & 28.49 & $-$46.6 & 1190 \\\\\n\\midrule\nBug detection & VOTA & 84.90 & +17.7 & 850 \\\\\nBug detection & No trace & 67.20 & --- & 850 \\\\\nBug detection & Full trace & 34.10 & $-$33.1 & 850 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-task generalization on DebugBench bug detection. The VOTA-helps / full-trace-collapses pattern replicates across verdict tasks.}\n\\label{tab:crosstask}\n\\end{table}\n\nTable~\\ref{tab:crosstask} shows that the pattern replicates: VOTA provides +17.7pp lift on bug detection while full trace collapses to 34.1\\%. The lower absolute accuracy (84.9\\% vs.\\ 99.16\\%) reflects the greater intrinsic difficulty of bug detection---reasoning about bug--test interaction requires understanding whether a specific bug is triggered by a specific test, rather than simply predicting test outcome. The consistent pattern across both verdict tasks supports a task-class-level generalization: VOTA is effective for verdict tasks broadly, not just test outcome prediction.\n\n% ============================================================\n% 5. ANALYSIS\n% ============================================================\n\\section{Analysis}\n\n\\subsection{Calibration}\n\nBeyond accuracy, well-calibrated confidence is important for downstream automation (e.g., test triage). We compute Expected Calibration Error (ECE) and Brier scores for the three main conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{ECE}$\\downarrow$ & \\textbf{Brier}$\\downarrow$ & \\textbf{Acc.} & \\textbf{Quality} \\\\\n\\midrule\nVOTA & 0.018 & 0.009 & 99.16 & Well-calibrated \\\\\nNo trace & 0.187 & 0.221 & 75.13 & Overconfident \\\\\nFull trace & 0.438 & 0.687 & 28.49 & Degenerate \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Calibration analysis. VOTA produces well-calibrated predictions (ECE = 0.018), while no-trace is overconfident on pass predictions and full-trace exhibits degenerate calibration.}\n\\label{tab:calibration}\n\\end{table}\n\nTable~\\ref{tab:calibration} shows that VOTA achieves near-perfect calibration (ECE = 0.018, Brier = 0.009): predicted confidence closely tracks true outcome frequency. The no-trace model is overconfident on pass predictions (ECE = 0.187), reflecting learned base-rate bias without sufficient discriminative signal. The full-trace model has degenerate calibration (ECE = 0.438) due to high-confidence fail predictions on all samples. VOTA's strong calibration supports the interpretation that VOTA enables genuine behavioral understanding with well-grounded decision boundaries, rather than superficial pattern matching that would produce overconfident edge-case predictions.\n\n\\subsection{Seed Robustness}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Seed} & \\textbf{Acc.} & \\textbf{$\\Delta$} & \\textbf{McNemar $p$} \\\\\n\\midrule\n42 & 99.16 & +24.03 & $<$0.001 \\\\\n123 & 98.91 & +23.78 & $<$0.001 \\\\\n456 & 99.08 & +23.95 & $<$0.001 \\\\\n\\midrule\nMean $\\pm$ Std & 99.05 $\\pm$ 0.13 & +23.92 $\\pm$ 0.13 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Seed robustness across three random seeds. Standard deviation is 0.13pp with bootstrap 95\\% CI for lift: [21.9pp, 26.1pp].}\n\\label{tab:seed}\n\\end{table}\n\nTable~\\ref{tab:seed} confirms high stability: standard deviation across seeds is 0.13pp, with maximum pairwise difference of 0.25pp. The bootstrap 95\\% CI for VOTA lift is [21.9pp, 26.1pp], excluding zero. The extremely low variance reflects that VOTA traces provide nearly sufficient statistics for verdict prediction---the model converges to the same decision boundary regardless of initialization.\n\n% ============================================================\n% 6. DISCUSSION\n% ============================================================\n\\section{Discussion}\n\n\\paragraph{Trace Design Principles.} Our component ablation provides quantitative guidance for trace design in verdict tasks: (1)~\\emph{verdict-relevant state snapshots} (actual/expected values) contribute most (+16.1pp); (2)~\\emph{exception diagnostics} provide strong fail signals (+7.6pp); (3)~\\emph{behavioral pattern summaries} (loop compression) contribute the least individually (+4.0pp) but are essential for covering behavioral anomalies missed by the other components. The super-additive interaction (1.15$\\times$) suggests these components are complementary rather than redundant. Practitioners designing trace representations for new verdict tasks should prioritize in this order, allocating trace budget accordingly.\n\n\\paragraph{Gradient Dilution as a General Risk.} The gradient dilution mechanism we identify---where verbose auxiliary tokens dominate SFT loss, overwhelming the task-relevant gradient---is not specific to execution traces. Any SFT setup where the target output is short relative to a long input-side generation (chain-of-thought, retrieval-augmented generation with long contexts) may face similar dilution. Our findings suggest that for classification tasks, either (a)~compressing the auxiliary content or (b)~restricting loss computation to the target tokens is necessary.\n\n\\paragraph{Relationship to DCSH.} Our work complements rather than contradicts DCSH. DCSH evaluated trace SFT on generation tasks and found modest gains; we evaluate on verdict tasks and find large gains. The contrast supports a \\emph{trace--task matching} principle: trace format should match task granularity. Generation tasks benefit from detailed execution simulation; verdict tasks benefit from compact decision-relevant abstractions.\n\n\\paragraph{Limitations.} Our evaluation is limited to Python code and two verdict tasks. While the consistent pattern across tasks and models supports generality, evaluation on more languages and additional classification tasks (vulnerability detection, code clone detection) would strengthen the claims. The dataset size ($n = 1{,}190$ for the main task) is modest; scaling experiments would clarify whether VOTA's advantage persists with more training data. Finally, we evaluate only 7B-parameter models; behavior at larger scales remains unknown.\n\n% ============================================================\n% 7. CONCLUSION\n% ============================================================\n\\section{Conclusion}\n\nWe demonstrate that trace SFT effectiveness for verdict tasks depends critically on trace information granularity. VOTA, a compact abstraction capturing assertion snapshots, exception summaries, and loop compression, achieves 99.2\\% accuracy on test verdict prediction (+24.0pp over no-trace), while full execution traces cause model collapse due to gradient dilution. Through systematic ablation, we show that VOTA teaches execution-grounded reasoning beyond string comparison, identify gradient dilution as the mechanism of full-trace collapse, and provide quantitative design principles for task-optimized trace representations. Results replicate across models, tasks, and seeds, establishing information granularity matching as a key principle for trace SFT.\n\n% ============================================================\n% REFERENCES\n% ============================================================\n\\bibliography{custom}\n\n\\begin{thebibliography}{9}\n\n\\bibitem{dcsh2025}\nAnonymous.\n\\newblock Execution trace augmented code SFT: A systematic study.\n\\newblock In \\emph{Findings of EMNLP}, 2025.\n\n\\bibitem{tracepile2025}\nAnonymous.\n\\newblock TracePile: Scaling trace-augmented pre-training for code understanding.\n\\newblock In \\emph{NeurIPS}, 2025.\n\n\\bibitem{traced2024}\nAnonymous.\n\\newblock TRACED: Execution-aware pre-training for code classification.\n\\newblock In \\emph{ICSE}, 2024.\n\n\\bibitem{testpred2023}\nAnonymous.\n\\newblock Predictive test selection using code change features.\n\\newblock In \\emph{ICSE}, 2023.\n\n\\bibitem{codellama}\nRozi\\`{e}re, B., et al.\n\\newblock Code Llama: Open foundation models for code.\n\\newblock \\emph{arXiv:2308.12950}, 2023.\n\n\\bibitem{deepseek-coder}\nGuo, D., et al.\n\\newblock DeepSeek-Coder: When the large language model meets programming.\n\\newblock \\emph{arXiv:2401.14196}, 2024.\n\n\\end{thebibliography}\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "697c1eb9-fb66-42c3-b291-36c2f89851a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-stud…",
+  "leafUuid": "039b6718-be00-4ff8-8ca7-7c4b6045add7",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate paper for dream_20260515T013018",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T01:46:45.393Z_
+
+Now let me compile the LaTeX file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "039b6718-be00-4ff8-8ca7-7c4b6045add7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WapLNqKeH8FgFBNKZo",
+  "type": "assistant",
+  "uuid": "996ff59c-a553-4773-ad6b-0f1bd6ed4369",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9LvZMzaANEp9vGAoj1Zxn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8441,
+      "cache_read_input_tokens": 35951,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 35951,
+          "cache_creation_input_tokens": 8441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T01:46:46.967Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013k9Q3kvab9RRo7iY5k5964`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -30",
+  "description": "Compile LaTeX paper twice for references",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "996ff59c-a553-4773-ad6b-0f1bd6ed4369",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WapLNqKeH8FgFBNKZo",
+  "type": "assistant",
+  "uuid": "eab3efc1-48fc-43a1-98fe-26fff8073fc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9LvZMzaANEp9vGAoj1Zxn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8441,
+      "cache_read_input_tokens": 35951,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 35951,
+          "cache_creation_input_tokens": 8441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T01:46:47.129Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013k9Q3kvab9RRo7iY5k5964`</summary>
+
+```text
+Exit code 1
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+
+! LaTeX Error: File `acl.sty' not found.
+
+Type X to quit or &lt;RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *> 
+         
+l.3 \usepackage
+               {times}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eab3efc1-48fc-43a1-98fe-26fff8073fc1",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "18a67389-2a2b-465f-885e-b5f276ca3b1c",
+  "toolUseResult": "Error: Exit code 1\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n\n! LaTeX Error: File `acl.sty' not found.\n\nType X to quit or &lt;RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n&lt;read *> \n         \nl.3 \\usepackage\n               {times}^^M\n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on paper.log.",
+  "sourceToolAssistantUUID": "eab3efc1-48fc-43a1-98fe-26fff8073fc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-15T01:46:49.688Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ACL style file is not available. Let me switch to a simpler document class that doesn't require external style files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18a67389-2a2b-465f-885e-b5f276ca3b1c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Wb9mAtrpw15scU4bpn",
+  "type": "assistant",
+  "uuid": "4268ec10-1bdf-4c83-b56c-3de27c8175b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrpLCBEJ3jBSyKCPkgKdXA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 44392,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 44392,
+          "cache_creation_input_tokens": 481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-15T01:46:50.189Z_
+
+ACL style not available. I'll switch to a standard article class.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4268ec10-1bdf-4c83-b56c-3de27c8175b5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Wb9mAtrpw15scU4bpn",
+  "type": "assistant",
+  "uuid": "f16b73e7-fe53-4be0-81f1-c366feaaf320",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrpLCBEJ3jBSyKCPkgKdXA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 44392,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 44392,
+          "cache_creation_input_tokens": 481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T01:46:53.642Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GCJuDSpG8pfeDm2QEzFMbr`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex",
+  "old_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}",
+  "new_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}\n\\usepackage{hyperref}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f16b73e7-fe53-4be0-81f1-c366feaaf320",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Wb9mAtrpw15scU4bpn",
+  "type": "assistant",
+  "uuid": "f78e69e0-eb1d-49b8-afff-fd1153dfd899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrpLCBEJ3jBSyKCPkgKdXA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 44392,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 44392,
+          "cache_creation_input_tokens": 481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T01:46:53.660Z_
+
+<details><summary>↩ Tool result · `toolu_01GCJuDSpG8pfeDm2QEzFMbr`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f78e69e0-eb1d-49b8-afff-fd1153dfd899",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "31d940b0-afdc-4452-9207-51f61176df39",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex",
+    "oldString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}",
+    "newString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{url}\n\\usepackage{hyperref}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 5,
+        "newStart": 1,
+        "newLines": 5,
+        "lines": [
+          " \\documentclass[11pt,a4paper]{article}",
+          "-\\usepackage[hyperref]{acl}",
+          "+\\usepackage[margin=1in]{geometry}",
+          " \\usepackage{times}",
+          " \\usepackage{latexsym}",
+          " \\usepackage{graphicx}"
+        ]
+      },
+      {
+        "oldStart": 9,
+        "oldLines": 6,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " \\usepackage{multirow}",
+          " \\usepackage{xcolor}",
+          " \\usepackage{url}",
+          "+\\usepackage{hyperref}",
+          " ",
+          " \\title{VOTA: Verdict-Optimized Trace Abstraction for\\\\Execution-Grounded Test Outcome Prediction}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "f78e69e0-eb1d-49b8-afff-fd1153dfd899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-15T01:46:53.695Z_
+
+```json
+{
+  "parentUuid": "31d940b0-afdc-4452-9207-51f61176df39",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b367bb21-ce4a-47d5-9ec8-cb9f95523619",
+  "timestamp": "2026-05-15T01:46:53.695Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T01:47:00.843Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0127KJhwpjb7efq6iyGHWe6m`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX paper twice",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b367bb21-ce4a-47d5-9ec8-cb9f95523619",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WbdpswEuHd1jF5e1ZL",
+  "type": "assistant",
+  "uuid": "1dd2b2e0-b687-4113-8626-f0c7c1c1c001",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WmhPUzXUcnWvbWWsRfmnX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 44873,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 612,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 44873,
+          "cache_creation_input_tokens": 612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 612
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T01:47:02.210Z_
+
+<details><summary>↩ Tool result · `toolu_0127KJhwpjb7efq6iyGHWe6m`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Overfull \hbox (8.17786pt too wide) in paragraph at lines 25--26
+\OT1/ptm/m/n/10 com-pres-sion) con-tribute in-de-pen-dently with super-additive
+ in-ter-ac-tion. Re-sults repli-cate on DeepSeek-
+
+LaTeX Warning: Citation `dcsh2025' on page 1 undefined on input line 33.
+
+
+LaTeX Warning: Citation `tracepile2025' on page 1 undefined on input line 33.
+
+
+LaTeX Warning: Citation `traced2024' on page 1 undefined on input line 33.
+
+
+Overfull \hbox (9.6419pt too wide) in paragraph at lines 33--34
+\OT1/ptm/m/n/10.95 cePile [[]] scaled to 2.6M trace-augmented sam-ples but agai
+n eval-u-ated only gen-er-a-tion tasks. TRACED [[]]
+
+Overfull \hbox (10.57335pt too wide) in paragraph at lines 41--42
+[]\OT1/ptm/b/n/10.95 VOTA teaches execution-grounded rea-son-ing, not string co
+m-par-i-son. \OT1/ptm/m/n/10.95 Re-mov-ing ac-tual/expected
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+LaTeX Warning: Citation `dcsh2025' on page 2 undefined on input line 54.
+
+
+LaTeX Warning: Citation `tracepile2025' on page 2 undefined on input line 54.
+
+
+LaTeX Warning: Citation `traced2024' on page 2 undefined on input line 57.
+
+
+LaTeX Warning: Citation `testpred2023' on page 2 undefined on input line 60.
+
+
+Overfull \hbox (5.19662pt too wide) in paragraph at lines 60--61
+ []\OT1/ptm/b/n/10.95 Test Out-come Pre-dic-tion.[] \OT1/ptm/m/n/10.95 Prior wo
+rk on test out-come pre-dic-tion re-lies on static fea-tures (code changes,
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2]
+
+LaTeX Warning: Citation `codellama' on page 3 undefined on input line 108.
+
+
+LaTeX Warning: Citation `deepseek-coder' on page 3 undefined on input line 108.
+
+
+
+LaTeX Warning: Reference `tab:main' on page 3 undefined on input line 114.
+
+
+LaTeX Warning: Reference `tab:actexp' on page 3 undefined on input line 156.
+
+[3]
+
+LaTeX Warning: Reference `tab:labelonly' on page 4 undefined on input line 182.
+
+
+
+LaTeX Warning: Reference `tab:length' on page 4 undefined on input line 205.
+
+
+LaTeX Warning: Reference `sec:dilution' on page 4 undefined on input line 205.
+
+[4]
+
+LaTeX Warning: Reference `tab:length' on page 5 undefined on input line 207.
+
+
+LaTeX Warning: Reference `tab:labelonly' on page 5 undefined on input line 207.
+
+
+
+LaTeX Warning: Reference `tab:component' on page 5 undefined on input line 231.
+
+
+
+LaTeX Warning: Reference `tab:interaction' on page 5 undefined on input line 25
+1.
+
+
+LaTeX Warning: Reference `tab:crossmodel' on page 5 undefined on input line 277
+.
+
+[5]
+
+LaTeX Warning: Reference `tab:crosstask' on page 6 undefined on input line 303.
+
+
+
+LaTeX Warning: Reference `tab:calibration' on page 6 undefined on input line 33
+0.
+
+
+LaTeX Warning: Reference `tab:seed' on page 6 undefined on input line 352.
+
+[6] [7]
+No file paper.bbl.
+
+Underfull \hbox (badness 1205) in paragraph at lines 407--410
+[]\OT1/ptm/m/n/10.95 Guo, D., et al.  DeepSeek-Coder: When the large lan-guage 
+model meets pro-gram-ming.
+[8] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf
+-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 134256 bytes).
+Transcript written on paper.log.
+[]\OT1/ptm/m/n/10.95 Table []7[] con-firms that the rel-a-tive pat-tern is full
+y pre-served: VOTA pro-vides a sub-stan-tial lift (+20.3pp),
+[5] [6] [7]
+No file paper.bbl.
+
+Underfull \hbox (badness 1205) in paragraph at lines 407--410
+[]\OT1/ptm/m/n/10.95 Guo, D., et al.  DeepSeek-Coder: When the large lan-guage 
+model meets pro-gram-ming.
+[8] (./paper.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf
+-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 136380 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dd2b2e0-b687-4113-8626-f0c7c1c1c001",
+  "isSidechain": false,
+  "promptId": "68ac4acc-0cdb-4e68-ab4d-f68a972a42b2",
+  "type": "user",
+  "uuid": "f6b568d7-8fe4-41ee-88ce-54b57ee8aedf",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\nOverfull \\hbox (8.17786pt too wide) in paragraph at lines 25--26\n\\OT1/ptm/m/n/10 com-pres-sion) con-tribute in-de-pen-dently with super-additive\n in-ter-ac-tion. Re-sults repli-cate on DeepSeek-\n\nLaTeX Warning: Citation `dcsh2025' on page 1 undefined on input line 33.\n\n\nLaTeX Warning: Citation `tracepile2025' on page 1 undefined on input line 33.\n\n\nLaTeX Warning: Citation `traced2024' on page 1 undefined on input line 33.\n\n\nOverfull \\hbox (9.6419pt too wide) in paragraph at lines 33--34\n\\OT1/ptm/m/n/10.95 cePile [[]] scaled to 2.6M trace-augmented sam-ples but agai\nn eval-u-ated only gen-er-a-tion tasks. TRACED [[]]\n\nOverfull \\hbox (10.57335pt too wide) in paragraph at lines 41--42\n[]\\OT1/ptm/b/n/10.95 VOTA teaches execution-grounded rea-son-ing, not string co\nm-par-i-son. \\OT1/ptm/m/n/10.95 Re-mov-ing ac-tual/expected\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\n\nLaTeX Warning: Citation `dcsh2025' on page 2 undefined on input line 54.\n\n\nLaTeX Warning: Citation `tracepile2025' on page 2 undefined on input line 54.\n\n\nLaTeX Warning: Citation `traced2024' on page 2 undefined on input line 57.\n\n\nLaTeX Warning: Citation `testpred2023' on page 2 undefined on input line 60.\n\n\nOverfull \\hbox (5.19662pt too wide) in paragraph at lines 60--61\n []\\OT1/ptm/b/n/10.95 Test Out-come Pre-dic-tion.[] \\OT1/ptm/m/n/10.95 Prior wo\nrk on test out-come pre-dic-tion re-lies on static fea-tures (code changes,\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2]\n\nLaTeX Warning: Citation `codellama' on page 3 undefined on input line 108.\n\n\nLaTeX Warning: Citation `deepseek-coder' on page 3 undefined on input line 108.\n\n\n\nLaTeX Warning: Reference `tab:main' on page 3 undefined on input line 114.\n\n\nLaTeX Warning: Reference `tab:actexp' on page 3 undefined on input line 156.\n\n[3]\n\nLaTeX Warning: Reference `tab:labelonly' on page 4 undefined on input line 182.\n\n\n\nLaTeX Warning: Reference `tab:length' on page 4 undefined on input line 205.\n\n\nLaTeX Warning: Reference `sec:dilution' on page 4 undefined on input line 205.\n\n[4]\n\nLaTeX Warning: Reference `tab:length' on page 5 undefined on input line 207.\n\n\nLaTeX Warning: Reference `tab:labelonly' on page 5 undefined on input line 207.\n\n\n\nLaTeX Warning: Reference `tab:component' on page 5 undefined on input line 231.\n\n\n\nLaTeX Warning: Reference `tab:interaction' on page 5 undefined on input line 25\n1.\n\n\nLaTeX Warning: Reference `tab:crossmodel' on page 5 undefined on input line 277\n.\n\n[5]\n\nLaTeX Warning: Reference `tab:crosstask' on page 6 undefined on input line 303.\n\n\n\nLaTeX Warning: Reference `tab:calibration' on page 6 undefined on input line 33\n0.\n\n\nLaTeX Warning: Reference `tab:seed' on page 6 undefined on input line 352.\n\n[6] [7]\nNo file paper.bbl.\n\nUnderfull \\hbox (badness 1205) in paragraph at lines 407--410\n[]\\OT1/ptm/m/n/10.95 Guo, D., et al.  DeepSeek-Coder: When the large lan-guage \nmodel meets pro-gram-ming.\n[8] (./paper.aux)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf\n-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 134256 bytes).\nTranscript written on paper.log.\n[]\\OT1/ptm/m/n/10.95 Table []7[] con-firms that the rel-a-tive pat-tern is full\ny pre-served: VOTA pro-vides a sub-stan-tial lift (+20.3pp),\n[5] [6] [7]\nNo file paper.bbl.\n\nUnderfull \\hbox (badness 1205) in paragraph at lines 407--410\n[]\\OT1/ptm/m/n/10.95 Guo, D., et al.  DeepSeek-Coder: When the large lan-guage \nmodel meets pro-gram-ming.\n[8] (./paper.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf\n-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 136380 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "1dd2b2e0-b687-4113-8626-f0c7c1c1c001",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-stud…",
+  "leafUuid": "f6b568d7-8fe4-41ee-88ce-54b57ee8aedf",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate paper for dream_20260515T013018",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-15T01:47:15.306Z_
+
+编译成功，PDF 已生成（8 页，136KB）。所有交叉引用在第二次编译后已解析。
+
+输出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.pdf`
+
+论文结构：
+- **Abstract** — 含所有核心数字（99.2%, +24.0pp, 89.1%, gradient dilution, 跨模型/跨任务复现）
+- **Introduction** — 3 个 claims 对应 3 个 contributions
+- **Related Work** — DCSH/TracePile/TRACED 定位 + 区分
+- **Method** — VOTA 三组件定义 + 训练设置
+- **Experiments** — 8 个实验各有对应 table：主结果(Table 1)、actual/expected 消融(Table 2)、label-only loss(Table 3)、trace length(Table 4)、组件消融(Table 5-6)、跨模型(Table 7)、跨任务(Table 8)
+- **Analysis** — calibration(Table 9) + seed robustness(Table 10)
+- **Discussion** — trace 设计原则、gradient dilution 通用风险、与 DCSH 关系、limitations
+- **Conclusion**
+
+所有定量数据均来自 `experiment_data.json`，未编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6b568d7-8fe4-41ee-88ce-54b57ee8aedf",
+  "isSidechain": false,
+  "requestId": "req_011Cb3WcGFdFjpReENjUgmEb",
+  "type": "assistant",
+  "uuid": "d62beb12-7b2f-4e2e-bcc8-1334719d0d61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QU5N3EkBKTL3yz3aCnzhg2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4184,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 393,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4184,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 393,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4184,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4184
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260515T013018 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-stud…",
+  "leafUuid": "d62beb12-7b2f-4e2e-bcc8-1334719d0d61",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate paper for dream_20260515T013018",
+  "sessionId": "a34b0d88-b4d0-4137-a08c-1acc1ad924ed"
+}
+```
+
+---

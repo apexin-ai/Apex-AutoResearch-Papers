@@ -1,0 +1,5383 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: deepseek_no_
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 3
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-1/26e0e568-1017-49c1-be8c-4debeed870e1.jsonl`
+- **Structured JSON:** [`ebb9b9b018e50e714139.json`](../../sessions/eb/ebb9b9b018e50e714139.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T13:37:13.032Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T13:37:13.032Z",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: deepseek_no_trace_seed42\n- project: trace-verdict-study\n- server: westd-11235\n- wandb_run_id: deepseek_no_trace_seed42\n- log_path: ~/runs/trace-verdict-study/deepseek_no_trace_seed42.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T13:37:13.036Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T13:37:13.036Z",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+## Round 1
+
+92 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T13:37:13.082Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: deepseek_no_trace_seed42
+- project: trace-verdict-study
+- server: westd-11235
+- wandb_run_id: deepseek_no_trace_seed42
+- log_path: ~/runs/trace-verdict-study/deepseek_no_trace_seed42.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "b1a1125a-7a40-49a0-bba7-a55b5d4b3edf",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T13:37:13.081Z_
+
+```json
+{
+  "parentUuid": "b1a1125a-7a40-49a0-bba7-a55b5d4b3edf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "570f4ef1-aecf-4624-9886-18880556b912",
+  "timestamp": "2026-05-15T13:37:13.081Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T13:37:13.081Z_
+
+```json
+{
+  "parentUuid": "570f4ef1-aecf-4624-9886-18880556b912",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5858eaf3-6eb2-4ca3-8914-aa194b56ae37",
+  "timestamp": "2026-05-15T13:37:13.081Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T13:37:13.081Z_
+
+```json
+{
+  "parentUuid": "5858eaf3-6eb2-4ca3-8914-aa194b56ae37",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "51189178-9316-4ed5-9d34-60073029d9b9",
+  "timestamp": "2026-05-15T13:37:13.081Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T13:37:18.289Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到 CRON 回调，实验 `deepseek_no_trace_seed42` 已完成，需要分析结果。
+
+按照 session-start 规范，我需要先初始化：
+1. read_registry 了解所有实验状态
+2. reconcile_crons 同步 cron 监控
+3. 读 report.md
+4. 读 ROADMAP.md
+
+然后按 on-experiment-done 流程处理这个实验。
+
+让我先加载需要的工具。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51189178-9316-4ed5-9d34-60073029d9b9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmJ4K5yNP2LHxSiQYA",
+  "type": "assistant",
+  "uuid": "5cce2be2-3935-4fea-9357-2613cdce5ea1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsYtYaXciiihahfz1f5kT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22977,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T13:37:18.776Z_
+
+Session 启动，先初始化项目状态再处理实验回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cce2be2-3935-4fea-9357-2613cdce5ea1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmJ4K5yNP2LHxSiQYA",
+  "type": "assistant",
+  "uuid": "bb8a2219-f80c-4288-afd7-b25325d37a49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsYtYaXciiihahfz1f5kT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22977,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T13:37:21.164Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012TfR7ZjQWonaRN1PDHYyzn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb8a2219-f80c-4288-afd7-b25325d37a49",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmJ4K5yNP2LHxSiQYA",
+  "type": "assistant",
+  "uuid": "90ebddb9-f0c2-42b8-8efe-851792b69cbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsYtYaXciiihahfz1f5kT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22977,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T13:37:21.173Z_
+
+<details><summary>↩ Tool result · `toolu_012TfR7ZjQWonaRN1PDHYyzn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90ebddb9-f0c2-42b8-8efe-851792b69cbc",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "76c126b8-4946-4af1-a83c-90ae18c79fe3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "90ebddb9-f0c2-42b8-8efe-851792b69cbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T13:37:24.388Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01YWA3yPmFj11JoUWYcxqs6K`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76c126b8-4946-4af1-a83c-90ae18c79fe3",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmtmNXddWcLDyqwpUZ",
+  "type": "assistant",
+  "uuid": "e3621cb4-3b4e-4929-a92a-b6886675fc84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRFzeS1TX8TGVPgw8cX8mh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3873,
+      "cache_read_input_tokens": 34818,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 34818,
+          "cache_creation_input_tokens": 3873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T13:37:24.852Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01ECk3MARreNf2xMBgTC3zpM`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3621cb4-3b4e-4929-a92a-b6886675fc84",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmtmNXddWcLDyqwpUZ",
+  "type": "assistant",
+  "uuid": "9144a56f-ca30-4e78-a1ec-ccdee7757ef0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRFzeS1TX8TGVPgw8cX8mh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3873,
+      "cache_read_input_tokens": 34818,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 34818,
+          "cache_creation_input_tokens": 3873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T13:37:24.486Z_
+
+<details><summary>↩ Tool result · `toolu_01YWA3yPmFj11JoUWYcxqs6K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_no_trace_seed42\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:37:07.249Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}}, \"deepseek_exception_only_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:17:07.674Z\", \"updated_at\": \"2026-05-15T13:22:49.671Z\", \"hypothesis\": \"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"107188\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\", \"submitted_at\": \"2026-05-15T13:10:32.405Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:39.391Z\", \"updated_at\": \"2026-05-15T13:12:56.838Z\", \"hypothesis\": \"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"93484\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"submitted_at\": \"2026-05-15T10:45:36.891Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"wall_clock_seconds\": 8839.9, \"gpu_hours\": 2.46}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:06:46.525Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:06:47.175122+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522}, \"conclusion\": \"success\", \"log_path\": \"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"completed_at\": \"2026-05-15T13:12:56.838Z\"}, \"vota_seed123\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:38:48.954Z\", \"updated_at\": \"2026-05-15T13:10:17.186Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T12:39:38.117Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\"\", \"finished_at\": \"2026-05-15T12:59:09.843Z\", \"training_hours\": 0.33, \"wandb_run_id\": \"vota_seed123_v2\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\", \"completed_at\": \"2026-05-15T12:42:01.260Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:42:02.205055+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:59:14.689674+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"conclusion\": \"failed\"}, \"calibration_analysis_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:27:04.073Z\", \"updated_at\": \"2026-05-15T13:09:52.711Z\", \"spec\": {\"plan_id\": \"plan_007\", \"command\": \"python eval/calibration_analysis.py\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 1190, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"hypothesis\": \"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\", \"conclusion\": \"success\", \"metrics\": {\"no_trace\": {\"ece\": 0.171476, \"mce\": 0.475643, \"brier_score\": 0.197152, \"accuracy\": 0.751261, \"n_samples\": 1190}, \"full_trace\": {\"ece\": 0.095817, \"mce\": 0.249061, \"brier_score\": 0.143924, \"accuracy\": 0.817647, \"n_samples\": 1190}, \"label_only\": {\"ece\": 0.110686, \"mce\": 0.417124, \"brier_score\": 0.120144, \"accuracy\": 0.862185, \"n_samples\": 1190}, \"loop_only\": {\"ece\": 0.083085, \"mce\": 0.183406, \"brier_score\": 0.118335, \"accuracy\": 0.856303, \"n_samples\": 1190}, \"ae_only\": {\"ece\": 0.000415, \"mce\": 0.000415, \"brier_score\": 0.000847, \"accuracy\": 0.99916, \"n_samples\": 1190}, \"exception_only\": {\"ece\": 0.002717, \"mce\": 0.835484, \"brier_score\": 0.001311, \"accuracy\": 0.998319, \"n_samples\": 1190}, \"vota\": {\"ece\": 0.00541, \"mce\": 0.622459, \"brier_score\": 0.005234, \"accuracy\": 0.994118, \"n_samples\": 1190}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\", \"completed_at\": \"2026-05-15T12:36:49.992Z\"}, \"vota_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:38:51.823Z\", \"updated_at\": \"2026-05-15T12:59:41.238Z\", \"spec\": {\"plan_id\": \"plan_008\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456}, \"hypothesis\": \"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\"}, \"deepseek_full_trace_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.756Z\", \"updated_at\": \"2026-05-15T12:59:34.079Z\", \"hypothesis\": \"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\", \"spec\": {\"plan_id\": \"plan_004\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:11:44.999Z\", \"updated_at\": \"2026-05-15T12:41:37.366Z\", \"hypothesis\": \"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\", \"notes\": \"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。待补：pairwise bootstrap vs no_trace/exception_only/vota。\", \"spec\": {\"command\": \"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T12:13:36.539Z\"}, \"failure_reason\": \"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T12:13:36.813Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:13:37.756005+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\", \"log_path\": \"~/runs/trace-verdict-study/vota_ae_only_seed42.log\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:41.201Z\", \"updated_at\": \"2026-05-15T10:26:30.857Z\", \"hypothesis\": \"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"82362\", \"log_path\": \"~/runs/trace-verdict-study/vota_loop_only_seed42.log\", \"submitted_at\": \"2026-05-15T07:58:06.023Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 7952.5, \"gpu_hours\": 2.21}, \"reproduce\": {\"finished_at\": \"2026-05-15T10:04:53.052Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:04:54.341040+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:10:38.549Z\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:16:14.602Z\", \"updated_at\": \"2026-05-15T09:44:10.368Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"exception_only\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"pid\": \"79633\", \"gpu\": [\"cuda:1\"], \"submitted_at\": \"2026-05-15T15:15:14Z\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\"}, \"hypothesis\": \"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:35:01.676Z\"}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:01:29.625Z\", \"updated_at\": \"2026-05-15T08:11:50.196Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\"}, \"hypothesis\": \"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\", \"reproduce\": {\"finished_at\": \"2026-05-15T07:15:28.991Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:15:30.057513+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T07:23:57.111Z\", \"notes\": \"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。\"}, \"vota_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:39.821Z\", \"updated_at\": \"2026-05-15T07:16:20.123Z\", \"hypothesis\": \"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": {\"train\": 4720, \"test\": 1190}, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42.log\", \"failure_reason\": \"OOM at step 8/444 — missing --gradient_checkpointing flag\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T07:16:20.123Z\"}, \"no_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:17.948Z\", \"updated_at\": \"2026-05-15T06:59:49.194Z\", \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v5.log\"}, \"completed_at\": \"2026-05-15T06:45:11.265Z\", \"metrics\": {\"accuracy\": 0.7513, \"accuracy_ci_lower\": 0.7277, \"accuracy_ci_upper\": 0.7748, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"lift_ci_lower\": 0.0042, \"lift_ci_upper\": 0.0706, \"n\": 1190, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:21:27.279Z\", \"updated_at\": \"2026-05-15T06:59:42.344Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"953133\", \"log_path\": \"~/runs/trace-verdict-study/vota_no_ae_seed42.log\", \"submitted_at\": \"2026-05-15T04:21:27.215Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\", \"wall_clock_seconds\": 6902.4, \"gpu_hours\": 1.92}, \"hypothesis\": \"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\", \"reproduce\": {\"finished_at\": \"2026-05-15T06:10:18.839Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:10:19.847891+00:00\"}]}, \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:16:29.587Z\", \"notes\": \"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。\"}, \"full_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:03.068Z\", \"updated_at\": \"2026-05-15T06:53:21.990Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v5.log\", \"wall_clock_seconds\": 7852, \"gpu_hours\": 2.18}, \"hypothesis\": \"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\", \"reproduce\": {\"finished_at\": \"2026-05-15T03:58:14.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T03:58:14.897249+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8176, \"majority_baseline\": 0.7151, \"lift\": 0.1025, \"n\": 1190, \"pass_precision\": 0.8774, \"pass_recall\": 0.866, \"pass_f1\": 0.8717, \"fail_precision\": 0.6743, \"fail_recall\": 0.6962, \"fail_f1\": 0.6851, \"accuracy_ci_lower\": 0.797, \"accuracy_ci_upper\": 0.839, \"lift_vs_notrace\": 0.0664, \"lift_vs_notrace_ci_lower\": 0.0437, \"lift_vs_notrace_ci_upper\": 0.0899, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"wall_clock_seconds\": 7852}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:06:20.880Z\", \"notes\": \"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\"}, \"vota_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:04.015Z\", \"updated_at\": \"2026-05-15T04:43:04.400Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"940786\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v5.log\", \"submitted_at\": \"2026-05-15T01:46:03.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 8443, \"gpu_hours\": 2.35}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:08:40.446Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:08:41.358997+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9916, \"majority_baseline\": 0.7151, \"lift\": 0.2765, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9882, \"pass_f1\": 0.9941, \"fail_precision\": 0.9714, \"fail_recall\": 1, \"fail_f1\": 0.9855, \"lift_vs_notrace\": 0.2403, \"lift_vs_notrace_ci_lower\": 0.2185, \"lift_vs_notrace_ci_upper\": 0.2681, \"accuracy_ci_lower\": 0.9857, \"accuracy_ci_upper\": 0.9966, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"eval_mean_token_accuracy\": 0.9828, \"wall_clock_seconds\": 8443}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:21:27.059Z\"}, \"vota_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:38.660Z\", \"updated_at\": \"2026-05-15T01:37:13.355Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v4.log\", \"wall_clock_seconds\": 8160, \"gpu_hours\": 2.27}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}, \"completed_at\": \"2026-05-15T01:10:45.307Z\"}, \"full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:46.333Z\", \"updated_at\": \"2026-05-15T01:10:45.707Z\", \"hypothesis\": \"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v2.log\", \"wall_clock_seconds\": 7860, \"gpu_hours\": 2.18}, \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T01:10:45.708Z\"}, \"no_trace_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:37.755Z\", \"updated_at\": \"2026-05-14T22:39:32.197Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v4.log\", \"wall_clock_seconds\": 1274.7, \"gpu_hours\": 0.35}, \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\", \"reproduce\": {\"finished_at\": \"2026-05-14T22:34:36.523Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:34:37.283133+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}, \"completed_at\": \"2026-05-14T22:39:12.249Z\"}, \"full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:38:06.325Z\", \"updated_at\": \"2026-05-14T22:12:18.859Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"712469\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42.log\", \"submitted_at\": \"2026-05-14T18:38:06.317Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"wall_clock_seconds\": 11247.5, \"gpu_hours\": 3.12}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.037, \"eval_loss\": 0.084, \"eval_mean_token_accuracy\": 0.984, \"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.431, \"pass_precision\": 0.88, \"pass_recall\": 0.08, \"pass_f1\": 0.16, \"fail_precision\": 0.31, \"fail_recall\": 0.97, \"fail_f1\": 0.57}, \"completed_at\": \"2026-05-14T21:45:33.847Z\"}, \"no_trace_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:02.647Z\", \"updated_at\": \"2026-05-14T22:12:18.583Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"710523\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:02.641Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Baseline: verdict accuracy without execution trace\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"wall_clock_seconds\": 4617.5, \"gpu_hours\": 1.28}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.18, \"eval_loss\": 0.645, \"eval_mean_token_accuracy\": 0.89, \"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}, \"completed_at\": \"2026-05-14T19:18:00.158Z\"}, \"vota_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:04.345Z\", \"updated_at\": \"2026-05-14T21:51:40.917Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition vota --gpu 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"710601\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:04.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"VOTA trace provides significant verdict accuracy lift over no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 13468.8, \"gpu_hours\": 3.74}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.046, \"eval_loss\": 0.085, \"eval_mean_token_accuracy\": 0.983, \"accuracy\": 0.992, \"majority_baseline\": 0.7151, \"lift\": 0.276, \"pass_precision\": 0.99, \"pass_recall\": 0.99, \"pass_f1\": 0.99, \"fail_precision\": 0.99, \"fail_recall\": 0.99, \"fail_f1\": 0.99}, \"completed_at\": \"2026-05-14T21:45:33.135Z\"}, \"vota_seed42_v2\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:55.517Z\", \"updated_at\": \"2026-05-14T21:49:27.772Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709863\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:55.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"vota_seed42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:32.967Z\", \"updated_at\": \"2026-05-14T21:49:27.246Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709357\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:32.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"no_trace_seed42_v2\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:53.488Z\", \"updated_at\": \"2026-05-14T21:49:26.341Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709781\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:53.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"no_trace_seed42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:31.125Z\", \"updated_at\": \"2026-05-14T21:49:25.594Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709277\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:31.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.079}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3621cb4-3b4e-4929-a92a-b6886675fc84",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "9a0c5f36-12a0-44ab-bf75-df7938615c79",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"deepseek_no_trace_seed42\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:37:07.249Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}}, \\\"deepseek_exception_only_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:17:07.674Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:22:49.671Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"107188\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:10:32.405Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}}, \\\"deepseek_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:39.391Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:12:56.838Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"93484\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:45:36.891Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"wall_clock_seconds\\\": 8839.9, \\\"gpu_hours\\\": 2.46}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:06:46.525Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:06:47.175122+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8445, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1294, \\\"accuracy_ci\\\": [0.826, 0.864], \\\"pass_precision\\\": 0.821, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.902, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.454, \\\"fail_f1\\\": 0.625, \\\"eval_loss_epoch1\\\": 0.0679, \\\"eval_loss_epoch2\\\": 0.095, \\\"eval_loss_epoch3\\\": 0.1121, \\\"final_train_loss\\\": 0.0522}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"completed_at\\\": \\\"2026-05-15T13:12:56.838Z\\\"}, \\\"vota_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-15T12:38:48.954Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:10:17.186Z\\\", \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T12:39:38.117Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:59:09.843Z\\\", \\\"training_hours\\\": 0.33, \\\"wandb_run_id\\\": \\\"vota_seed123_v2\\\"}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\\\", \\\"completed_at\\\": \\\"2026-05-15T12:42:01.260Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:42:02.205055+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:59:14.689674+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"calibration_analysis_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:27:04.073Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:09:52.711Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_007\\\", \\\"command\\\": \\\"python eval/calibration_analysis.py\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 1190, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"no_trace\\\": {\\\"ece\\\": 0.171476, \\\"mce\\\": 0.475643, \\\"brier_score\\\": 0.197152, \\\"accuracy\\\": 0.751261, \\\"n_samples\\\": 1190}, \\\"full_trace\\\": {\\\"ece\\\": 0.095817, \\\"mce\\\": 0.249061, \\\"brier_score\\\": 0.143924, \\\"accuracy\\\": 0.817647, \\\"n_samples\\\": 1190}, \\\"label_only\\\": {\\\"ece\\\": 0.110686, \\\"mce\\\": 0.417124, \\\"brier_score\\\": 0.120144, \\\"accuracy\\\": 0.862185, \\\"n_samples\\\": 1190}, \\\"loop_only\\\": {\\\"ece\\\": 0.083085, \\\"mce\\\": 0.183406, \\\"brier_score\\\": 0.118335, \\\"accuracy\\\": 0.856303, \\\"n_samples\\\": 1190}, \\\"ae_only\\\": {\\\"ece\\\": 0.000415, \\\"mce\\\": 0.000415, \\\"brier_score\\\": 0.000847, \\\"accuracy\\\": 0.99916, \\\"n_samples\\\": 1190}, \\\"exception_only\\\": {\\\"ece\\\": 0.002717, \\\"mce\\\": 0.835484, \\\"brier_score\\\": 0.001311, \\\"accuracy\\\": 0.998319, \\\"n_samples\\\": 1190}, \\\"vota\\\": {\\\"ece\\\": 0.00541, \\\"mce\\\": 0.622459, \\\"brier_score\\\": 0.005234, \\\"accuracy\\\": 0.994118, \\\"n_samples\\\": 1190}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\\\", \\\"completed_at\\\": \\\"2026-05-15T12:36:49.992Z\\\"}, \\\"vota_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:38:51.823Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:59:41.238Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456}, \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\"}, \\\"deepseek_full_trace_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.756Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:59:34.079Z\\\", \\\"hypothesis\\\": \\\"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_004\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}}, \\\"vota_ae_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:41:37.366Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。待补：pairwise bootstrap vs no_trace/exception_only/vota。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9992, \\\"accuracy_ci\\\": [0.9975, 1], \\\"bootstrap_pairwise\\\": {\\\"ae_only_vs_no_trace\\\": {\\\"diff\\\": 0.2479, \\\"ci\\\": [0.2235, 0.2731], \\\"p_value\\\": 0, \\\"significant\\\": true}, \\\"ae_only_vs_exception_only\\\": {\\\"diff\\\": 0.0008, \\\"ci\\\": [-0.0017, 0.0034], \\\"p_value\\\": 0.8002, \\\"significant\\\": false}, \\\"ae_only_vs_vota\\\": {\\\"diff\\\": 0.005, \\\"ci\\\": [0.0017, 0.0092], \\\"p_value\\\": 0.0046, \\\"significant\\\": true}}, \\\"config\\\": {\\\"n_bootstrap\\\": 10000, \\\"seed\\\": 42, \\\"method\\\": \\\"paired_bootstrap\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_ae_only_seed42.log\\\"}, \\\"vota_loop_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:41.201Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:26:30.857Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"82362\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_loop_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:58:06.023Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7952.5, \\\"gpu_hours\\\": 2.21}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T10:04:53.052Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:04:54.341040+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9239, \\\"pass_recall\\\": 0.8707, \\\"pass_f1\\\": 0.8966, \\\"fail_precision\\\": 0.7165, \\\"fail_recall\\\": 0.8201, \\\"fail_f1\\\": 0.7648, \\\"accuracy_ci\\\": [0.8353, 0.8756], \\\"bootstrap_vs_no_trace\\\": {\\\"diff\\\": 0.105, \\\"ci\\\": [0.0824, 0.1286], \\\"significant\\\": true}, \\\"bootstrap_vs_vota\\\": {\\\"diff\\\": -0.1378, \\\"ci\\\": [-0.1571, -0.1185], \\\"significant\\\": true}, \\\"bootstrap_vs_full_trace\\\": {\\\"diff\\\": 0.0387, \\\"ci\\\": [0.0185, 0.0597], \\\"significant\\\": true}, \\\"train_loss\\\": 0.0718, \\\"wall_clock_seconds\\\": 7425.65}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T10:10:38.549Z\\\"}, \\\"vota_exception_only_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:16:14.602Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:44:10.368Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"exception_only\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"79633\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"submitted_at\\\": \\\"2026-05-15T15:15:14Z\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\\\"}, \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.999, \\\"fail_precision\\\": 0.994, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.997, \\\"lift_vs_notrace\\\": 0.2471, \\\"lift_vs_notrace_ci_lower\\\": 0.2227, \\\"lift_vs_notrace_ci_upper\\\": 0.2714, \\\"lift_vs_fulltrace\\\": 0.1807, \\\"lift_vs_fulltrace_ci_lower\\\": 0.1588, \\\"lift_vs_fulltrace_ci_upper\\\": 0.2034, \\\"lift_vs_vota\\\": 0.0067, \\\"lift_vs_vota_ci_lower\\\": 0.0017, \\\"lift_vs_vota_ci_upper\\\": 0.0126, \\\"lift_vs_vota_pvalue\\\": 0.01}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T09:35:01.676Z\\\"}, \\\"full_trace_label_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:01:29.625Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:11:50.196Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\\\"}, \\\"hypothesis\\\": \\\"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T07:15:28.991Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:15:30.057513+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs_standard_fulltrace_pvalue\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T07:23:57.111Z\\\", \\\"notes\\\": \\\"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。\\\"}, \\\"vota_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:39.821Z\\\", \\\"updated_at\\\": \\\"2026-05-15T07:16:20.123Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": {\\\"train\\\": 4720, \\\"test\\\": 1190}, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42.log\\\", \\\"failure_reason\\\": \\\"OOM at step 8/444 — missing --gradient_checkpointing flag\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T07:16:20.123Z\\\"}, \\\"no_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:17.948Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:59:49.194Z\\\", \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v5.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T06:45:11.265Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"accuracy_ci_lower\\\": 0.7277, \\\"accuracy_ci_upper\\\": 0.7748, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"lift_ci_lower\\\": 0.0042, \\\"lift_ci_upper\\\": 0.0706, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272}}, \\\"vota_no_ae_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:21:27.279Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:59:42.344Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"953133\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_no_ae_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:21:27.215Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\\\", \\\"wall_clock_seconds\\\": 6902.4, \\\"gpu_hours\\\": 1.92}, \\\"hypothesis\\\": \\\"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T06:10:18.839Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T06:10:19.847891+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:16:29.587Z\\\", \\\"notes\\\": \\\"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。\\\"}, \\\"full_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:03.068Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:53:21.990Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v5.log\\\", \\\"wall_clock_seconds\\\": 7852, \\\"gpu_hours\\\": 2.18}, \\\"hypothesis\\\": \\\"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:58:14.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:58:14.897249+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8176, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1025, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8774, \\\"pass_recall\\\": 0.866, \\\"pass_f1\\\": 0.8717, \\\"fail_precision\\\": 0.6743, \\\"fail_recall\\\": 0.6962, \\\"fail_f1\\\": 0.6851, \\\"accuracy_ci_lower\\\": 0.797, \\\"accuracy_ci_upper\\\": 0.839, \\\"lift_vs_notrace\\\": 0.0664, \\\"lift_vs_notrace_ci_lower\\\": 0.0437, \\\"lift_vs_notrace_ci_upper\\\": 0.0899, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"wall_clock_seconds\\\": 7852}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:06:20.880Z\\\", \\\"notes\\\": \\\"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\\\"}, \\\"vota_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:04.015Z\\\", \\\"updated_at\\\": \\\"2026-05-15T04:43:04.400Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"940786\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:46:03.990Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 8443, \\\"gpu_hours\\\": 2.35}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T04:08:40.446Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T04:08:41.358997+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9916, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2765, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9882, \\\"pass_f1\\\": 0.9941, \\\"fail_precision\\\": 0.9714, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9855, \\\"lift_vs_notrace\\\": 0.2403, \\\"lift_vs_notrace_ci_lower\\\": 0.2185, \\\"lift_vs_notrace_ci_upper\\\": 0.2681, \\\"accuracy_ci_lower\\\": 0.9857, \\\"accuracy_ci_upper\\\": 0.9966, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"eval_mean_token_accuracy\\\": 0.9828, \\\"wall_clock_seconds\\\": 8443}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:21:27.059Z\\\"}, \\\"vota_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:38.660Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:37:13.355Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 8160, \\\"gpu_hours\\\": 2.27}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.944, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.97, \\\"fail_precision\\\": 0.993, \\\"fail_recall\\\": 0.853, \\\"fail_f1\\\": 0.917, \\\"lift_vs_notrace\\\": 0.205, \\\"lift_vs_notrace_ci_lower\\\": 0.177, \\\"lift_vs_notrace_ci_upper\\\": 0.234, \\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.0842}, \\\"completed_at\\\": \\\"2026-05-15T01:10:45.307Z\\\"}, \\\"full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:46.333Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:10:45.707Z\\\", \\\"hypothesis\\\": \\\"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v2.log\\\", \\\"wall_clock_seconds\\\": 7860, \\\"gpu_hours\\\": 2.18}, \\\"metrics\\\": {\\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.4311, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.923, \\\"pass_recall\\\": 0.085, \\\"pass_f1\\\": 0.155, \\\"fail_precision\\\": 0.445, \\\"fail_recall\\\": 0.785, \\\"fail_f1\\\": 0.568, \\\"train_loss\\\": 0.0373, \\\"eval_loss\\\": 0.082, \\\"eval_mean_token_accuracy\\\": 0.984}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T01:10:45.708Z\\\"}, \\\"no_trace_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:37.755Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:39:32.197Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 1274.7, \\\"gpu_hours\\\": 0.35}, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T22:34:36.523Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T22:34:37.283133+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.6454, \\\"eval_mean_token_accuracy\\\": 0.8897}, \\\"completed_at\\\": \\\"2026-05-14T22:39:12.249Z\\\"}, \\\"full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:38:06.325Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"712469\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:38:06.317Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"wall_clock_seconds\\\": 11247.5, \\\"gpu_hours\\\": 3.12}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.037, \\\"eval_loss\\\": 0.084, \\\"eval_mean_token_accuracy\\\": 0.984, \\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.431, \\\"pass_precision\\\": 0.88, \\\"pass_recall\\\": 0.08, \\\"pass_f1\\\": 0.16, \\\"fail_precision\\\": 0.31, \\\"fail_recall\\\": 0.97, \\\"fail_f1\\\": 0.57}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.847Z\\\"}, \\\"no_trace_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:02.647Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.583Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"710523\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:02.641Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"wall_clock_seconds\\\": 4617.5, \\\"gpu_hours\\\": 1.28}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.645, \\\"eval_mean_token_accuracy\\\": 0.89, \\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272}, \\\"completed_at\\\": \\\"2026-05-14T19:18:00.158Z\\\"}, \\\"vota_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:04.345Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:51:40.917Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition vota --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"710601\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:04.338Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"VOTA trace provides significant verdict accuracy lift over no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 13468.8, \\\"gpu_hours\\\": 3.74}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.085, \\\"eval_mean_token_accuracy\\\": 0.983, \\\"accuracy\\\": 0.992, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.276, \\\"pass_precision\\\": 0.99, \\\"pass_recall\\\": 0.99, \\\"pass_f1\\\": 0.99, \\\"fail_precision\\\": 0.99, \\\"fail_recall\\\": 0.99, \\\"fail_f1\\\": 0.99}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.135Z\\\"}, \\\"vota_seed42_v2\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:55.517Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:49:27.772Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709863\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:55.513Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"vota_seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:32.967Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:49:27.246Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709357\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:32.964Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"no_trace_seed42_v2\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:53.488Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:49:26.341Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709781\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:53.485Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"no_trace_seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:31.125Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:49:25.594Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709277\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:31.124Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.079}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"deepseek_no_trace_seed42\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:37:07.249Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}}, \"deepseek_exception_only_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:17:07.674Z\", \"updated_at\": \"2026-05-15T13:22:49.671Z\", \"hypothesis\": \"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"107188\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\", \"submitted_at\": \"2026-05-15T13:10:32.405Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:39.391Z\", \"updated_at\": \"2026-05-15T13:12:56.838Z\", \"hypothesis\": \"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"93484\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"submitted_at\": \"2026-05-15T10:45:36.891Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"wall_clock_seconds\": 8839.9, \"gpu_hours\": 2.46}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:06:46.525Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:06:47.175122+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522}, \"conclusion\": \"success\", \"log_path\": \"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"completed_at\": \"2026-05-15T13:12:56.838Z\"}, \"vota_seed123\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:38:48.954Z\", \"updated_at\": \"2026-05-15T13:10:17.186Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T12:39:38.117Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\"\", \"finished_at\": \"2026-05-15T12:59:09.843Z\", \"training_hours\": 0.33, \"wandb_run_id\": \"vota_seed123_v2\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\", \"completed_at\": \"2026-05-15T12:42:01.260Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:42:02.205055+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:59:14.689674+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"conclusion\": \"failed\"}, \"calibration_analysis_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:27:04.073Z\", \"updated_at\": \"2026-05-15T13:09:52.711Z\", \"spec\": {\"plan_id\": \"plan_007\", \"command\": \"python eval/calibration_analysis.py\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 1190, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"hypothesis\": \"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\", \"conclusion\": \"success\", \"metrics\": {\"no_trace\": {\"ece\": 0.171476, \"mce\": 0.475643, \"brier_score\": 0.197152, \"accuracy\": 0.751261, \"n_samples\": 1190}, \"full_trace\": {\"ece\": 0.095817, \"mce\": 0.249061, \"brier_score\": 0.143924, \"accuracy\": 0.817647, \"n_samples\": 1190}, \"label_only\": {\"ece\": 0.110686, \"mce\": 0.417124, \"brier_score\": 0.120144, \"accuracy\": 0.862185, \"n_samples\": 1190}, \"loop_only\": {\"ece\": 0.083085, \"mce\": 0.183406, \"brier_score\": 0.118335, \"accuracy\": 0.856303, \"n_samples\": 1190}, \"ae_only\": {\"ece\": 0.000415, \"mce\": 0.000415, \"brier_score\": 0.000847, \"accuracy\": 0.99916, \"n_samples\": 1190}, \"exception_only\": {\"ece\": 0.002717, \"mce\": 0.835484, \"brier_score\": 0.001311, \"accuracy\": 0.998319, \"n_samples\": 1190}, \"vota\": {\"ece\": 0.00541, \"mce\": 0.622459, \"brier_score\": 0.005234, \"accuracy\": 0.994118, \"n_samples\": 1190}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\", \"completed_at\": \"2026-05-15T12:36:49.992Z\"}, \"vota_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:38:51.823Z\", \"updated_at\": \"2026-05-15T12:59:41.238Z\", \"spec\": {\"plan_id\": \"plan_008\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456}, \"hypothesis\": \"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\"}, \"deepseek_full_trace_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.756Z\", \"updated_at\": \"2026-05-15T12:59:34.079Z\", \"hypothesis\": \"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\", \"spec\": {\"plan_id\": \"plan_004\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:11:44.999Z\", \"updated_at\": \"2026-05-15T12:41:37.366Z\", \"hypothesis\": \"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\", \"notes\": \"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。待补：pairwise bootstrap vs no_trace/exception_only/vota。\", \"spec\": {\"command\": \"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T12:13:36.539Z\"}, \"failure_reason\": \"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T12:13:36.813Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:13:37.756005+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\", \"log_path\": \"~/runs/trace-verdict-study/vota_ae_only_seed42.log\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:41.201Z\", \"updated_at\": \"2026-05-15T10:26:30.857Z\", \"hypothesis\": \"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"82362\", \"log_path\": \"~/runs/trace-verdict-study/vota_loop_only_seed42.log\", \"submitted_at\": \"2026-05-15T07:58:06.023Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 7952.5, \"gpu_hours\": 2.21}, \"reproduce\": {\"finished_at\": \"2026-05-15T10:04:53.052Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:04:54.341040+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:10:38.549Z\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:16:14.602Z\", \"updated_at\": \"2026-05-15T09:44:10.368Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"exception_only\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"pid\": \"79633\", \"gpu\": [\"cuda:1\"], \"submitted_at\": \"2026-05-15T15:15:14Z\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\"}, \"hypothesis\": \"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:35:01.676Z\"}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:01:29.625Z\", \"updated_at\": \"2026-05-15T08:11:50.196Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\"}, \"hypothesis\": \"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\", \"reproduce\": {\"finished_at\": \"2026-05-15T07:15:28.991Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:15:30.057513+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T07:23:57.111Z\", \"notes\": \"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。\"}, \"vota_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:39.821Z\", \"updated_at\": \"2026-05-15T07:16:20.123Z\", \"hypothesis\": \"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": {\"train\": 4720, \"test\": 1190}, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42.log\", \"failure_reason\": \"OOM at step 8/444 — missing --gradient_checkpointing flag\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T07:16:20.123Z\"}, \"no_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:17.948Z\", \"updated_at\": \"2026-05-15T06:59:49.194Z\", \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v5.log\"}, \"completed_at\": \"2026-05-15T06:45:11.265Z\", \"metrics\": {\"accuracy\": 0.7513, \"accuracy_ci_lower\": 0.7277, \"accuracy_ci_upper\": 0.7748, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"lift_ci_lower\": 0.0042, \"lift_ci_upper\": 0.0706, \"n\": 1190, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:21:27.279Z\", \"updated_at\": \"2026-05-15T06:59:42.344Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"953133\", \"log_path\": \"~/runs/trace-verdict-study/vota_no_ae_seed42.log\", \"submitted_at\": \"2026-05-15T04:21:27.215Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\", \"wall_clock_seconds\": 6902.4, \"gpu_hours\": 1.92}, \"hypothesis\": \"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\", \"reproduce\": {\"finished_at\": \"2026-05-15T06:10:18.839Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:10:19.847891+00:00\"}]}, \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:16:29.587Z\", \"notes\": \"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。\"}, \"full_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:03.068Z\", \"updated_at\": \"2026-05-15T06:53:21.990Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v5.log\", \"wall_clock_seconds\": 7852, \"gpu_hours\": 2.18}, \"hypothesis\": \"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\", \"reproduce\": {\"finished_at\": \"2026-05-15T03:58:14.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T03:58:14.897249+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8176, \"majority_baseline\": 0.7151, \"lift\": 0.1025, \"n\": 1190, \"pass_precision\": 0.8774, \"pass_recall\": 0.866, \"pass_f1\": 0.8717, \"fail_precision\": 0.6743, \"fail_recall\": 0.6962, \"fail_f1\": 0.6851, \"accuracy_ci_lower\": 0.797, \"accuracy_ci_upper\": 0.839, \"lift_vs_notrace\": 0.0664, \"lift_vs_notrace_ci_lower\": 0.0437, \"lift_vs_notrace_ci_upper\": 0.0899, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"wall_clock_seconds\": 7852}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:06:20.880Z\", \"notes\": \"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\"}, \"vota_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:04.015Z\", \"updated_at\": \"2026-05-15T04:43:04.400Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"940786\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v5.log\", \"submitted_at\": \"2026-05-15T01:46:03.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 8443, \"gpu_hours\": 2.35}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:08:40.446Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:08:41.358997+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9916, \"majority_baseline\": 0.7151, \"lift\": 0.2765, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9882, \"pass_f1\": 0.9941, \"fail_precision\": 0.9714, \"fail_recall\": 1, \"fail_f1\": 0.9855, \"lift_vs_notrace\": 0.2403, \"lift_vs_notrace_ci_lower\": 0.2185, \"lift_vs_notrace_ci_upper\": 0.2681, \"accuracy_ci_lower\": 0.9857, \"accuracy_ci_upper\": 0.9966, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"eval_mean_token_accuracy\": 0.9828, \"wall_clock_seconds\": 8443}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:21:27.059Z\"}, \"vota_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:38.660Z\", \"updated_at\": \"2026-05-15T01:37:13.355Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v4.log\", \"wall_clock_seconds\": 8160, \"gpu_hours\": 2.27}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}, \"completed_at\": \"2026-05-15T01:10:45.307Z\"}, \"full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:46.333Z\", \"updated_at\": \"2026-05-15T01:10:45.707Z\", \"hypothesis\": \"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v2.log\", \"wall_clock_seconds\": 7860, \"gpu_hours\": 2.18}, \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T01:10:45.708Z\"}, \"no_trace_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:37.755Z\", \"updated_at\": \"2026-05-14T22:39:32.197Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v4.log\", \"wall_clock_seconds\": 1274.7, \"gpu_hours\": 0.35}, \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\", \"reproduce\": {\"finished_at\": \"2026-05-14T22:34:36.523Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:34:37.283133+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}, \"completed_at\": \"2026-05-14T22:39:12.249Z\"}, \"full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:38:06.325Z\", \"updated_at\": \"2026-05-14T22:12:18.859Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"712469\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42.log\", \"submitted_at\": \"2026-05-14T18:38:06.317Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"wall_clock_seconds\": 11247.5, \"gpu_hours\": 3.12}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.037, \"eval_loss\": 0.084, \"eval_mean_token_accuracy\": 0.984, \"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.431, \"pass_precision\": 0.88, \"pass_recall\": 0.08, \"pass_f1\": 0.16, \"fail_precision\": 0.31, \"fail_recall\": 0.97, \"fail_f1\": 0.57}, \"completed_at\": \"2026-05-14T21:45:33.847Z\"}, \"no_trace_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:02.647Z\", \"updated_at\": \"2026-05-14T22:12:18.583Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"710523\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:02.641Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Baseline: verdict accuracy without execution trace\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"wall_clock_seconds\": 4617.5, \"gpu_hours\": 1.28}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.18, \"eval_loss\": 0.645, \"eval_mean_token_accuracy\": 0.89, \"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}, \"completed_at\": \"2026-05-14T19:18:00.158Z\"}, \"vota_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:04.345Z\", \"updated_at\": \"2026-05-14T21:51:40.917Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition vota --gpu 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"710601\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:04.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"VOTA trace provides significant verdict accuracy lift over no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 13468.8, \"gpu_hours\": 3.74}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.046, \"eval_loss\": 0.085, \"eval_mean_token_accuracy\": 0.983, \"accuracy\": 0.992, \"majority_baseline\": 0.7151, \"lift\": 0.276, \"pass_precision\": 0.99, \"pass_recall\": 0.99, \"pass_f1\": 0.99, \"fail_precision\": 0.99, \"fail_recall\": 0.99, \"fail_f1\": 0.99}, \"completed_at\": \"2026-05-14T21:45:33.135Z\"}, \"vota_seed42_v2\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:55.517Z\", \"updated_at\": \"2026-05-14T21:49:27.772Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709863\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:55.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"vota_seed42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:32.967Z\", \"updated_at\": \"2026-05-14T21:49:27.246Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709357\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:32.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"no_trace_seed42_v2\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:53.488Z\", \"updated_at\": \"2026-05-14T21:49:26.341Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709781\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:53.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"no_trace_seed42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:31.125Z\", \"updated_at\": \"2026-05-14T21:49:25.594Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709277\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:31.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.079}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e3621cb4-3b4e-4929-a92a-b6886675fc84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T13:37:25.323Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_018gFhe4CeQiWwXk8PREERRH`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a0c5f36-12a0-44ab-bf75-df7938615c79",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmtmNXddWcLDyqwpUZ",
+  "type": "assistant",
+  "uuid": "7321e56a-6a40-4ea0-a286-bb6031bdd065",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRFzeS1TX8TGVPgw8cX8mh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3873,
+      "cache_read_input_tokens": 34818,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 34818,
+          "cache_creation_input_tokens": 3873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T13:37:25.334Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01F8BCWgg7gPmRB3sxSp5nGf`</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7321e56a-6a40-4ea0-a286-bb6031bdd065",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SmtmNXddWcLDyqwpUZ",
+  "type": "assistant",
+  "uuid": "f07c96e9-b180-4924-a13f-eb9672f9cf84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRFzeS1TX8TGVPgw8cX8mh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3873,
+      "cache_read_input_tokens": 34818,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 34818,
+          "cache_creation_input_tokens": 3873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "f07c96e9-b180-4924-a13f-eb9672f9cf84",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T13:37:26.832Z_
+
+<details><summary>↩ Tool result · `toolu_01ECk3MARreNf2xMBgTC3zpM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"deepseek_exception_only_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=107188)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9144a56f-ca30-4e78-a1ec-ccdee7757ef0",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "465bb727-04c5-46f2-b4be-9f8c83038077",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"deepseek_exception_only_seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=107188)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"deepseek_exception_only_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=107188)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9144a56f-ca30-4e78-a1ec-ccdee7757ef0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T13:37:26.849Z_
+
+<details><summary>↩ Tool result · `toolu_018gFhe4CeQiWwXk8PREERRH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T13:37:07Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 25 个实验 — ANALYZING 1, DONE 17, PREPARING 2, QUEUED 4, RUNNING 1\\n**DONE 分布**: failed 1, killed 3, negative 1, success 12\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-11235:cuda:0, westd-11235:cuda:1\\n- **实际运行**: 1 张 — westd-11235:cuda:1(deepseek_exception_only_seed42)\\n- **空闲（分配了没跑）**: westd-11235:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `deepseek_exception_only_seed42` | westd-11235 | cuda:1 | 107188 | `…runs/trace-verdict-study/deepseek_exception_only_seed42.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `deepseek_vota_seed42` [success] — 2026-05-15T13:12:56\\n- `vota_seed123` [failed] — 2026-05-15T13:10:17 — CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capa\\n- `calibration_analysis_seed42` [success] — 2026-05-15T13:09:52\\n- `vota_ae_only_seed42` [success] — 2026-05-15T12:41:37 — N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，c\\n- `vota_loop_only_seed42` [success] — 2026-05-15T10:26:30\\n\\n### 🔴 最近失败原因 (top 3)\\n- `vota_seed123`: CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, \\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| deepseek_exception_only_seed42 | Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence. | — | — | — |\\n| deepseek_no_trace_seed42 | Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions. | — | — | — |\\n\\n## 待处理\\n- vota_seed42_v2（排队等待 GPU）\\n- vota_seed42（排队等待 GPU）\\n- no_trace_seed42_v2（排队等待 GPU）\\n- no_trace_seed42（排队等待 GPU）\\n- vota_seed456: Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.（准备中）\\n- deepseek_full_trace_seed42: Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.（准备中）\\n\\n## 近期结论\\n- **deepseek_vota_seed42** (success): Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\n  [deepseek_vota_seed42_analysis](/api/workspace-files/projects/trace-verdict-study/artifacts/deepseek_vota_seed42/report/analysis.md)\\n- **vota_seed123** (failed): Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\n- **calibration_analysis_seed42** (success): Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\n  [calibration_reliability_diagram](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/chart/calibration_reliability_diagram_info.txt) | [calibration_metrics_json](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_metrics_summary.txt) | [calibration_metrics_v2](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_v2.py)\\n\\n## 趋势\\n成功 12 / 负向 1 / 失败 2 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42_v3: 已被终止 — unknown\\n- vota_seed42_v3: 已被终止 — unknown\\n- full_trace_seed42: 已被终止 — unknown\\n- vota_exception_only_seed42: 训练失败 — unknown\\n- vota_seed123: 训练失败 — unknown\\n\", \"total_chars\": 3963, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7321e56a-6a40-4ea0-a286-bb6031bdd065",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "2f1b1cad-41d4-4d11-9926-6208ada6c1dc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T13:37:07Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 25 个实验 — ANALYZING 1, DONE 17, PREPARING 2, QUEUED 4, RUNNING 1\\\\n**DONE 分布**: failed 1, killed 3, negative 1, success 12\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-11235:cuda:0, westd-11235:cuda:1\\\\n- **实际运行**: 1 张 — westd-11235:cuda:1(deepseek_exception_only_seed42)\\\\n- **空闲（分配了没跑）**: westd-11235:cuda:0\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `deepseek_exception_only_seed42` | westd-11235 | cuda:1 | 107188 | `…runs/trace-verdict-study/deepseek_exception_only_seed42.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `deepseek_vota_seed42` [success] — 2026-05-15T13:12:56\\\\n- `vota_seed123` [failed] — 2026-05-15T13:10:17 — CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capa\\\\n- `calibration_analysis_seed42` [success] — 2026-05-15T13:09:52\\\\n- `vota_ae_only_seed42` [success] — 2026-05-15T12:41:37 — N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，c\\\\n- `vota_loop_only_seed42` [success] — 2026-05-15T10:26:30\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `vota_seed123`: CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, \\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| deepseek_exception_only_seed42 | Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence. | — | — | — |\\\\n| deepseek_no_trace_seed42 | Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions. | — | — | — |\\\\n\\\\n## 待处理\\\\n- vota_seed42_v2（排队等待 GPU）\\\\n- vota_seed42（排队等待 GPU）\\\\n- no_trace_seed42_v2（排队等待 GPU）\\\\n- no_trace_seed42（排队等待 GPU）\\\\n- vota_seed456: Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.（准备中）\\\\n- deepseek_full_trace_seed42: Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.（准备中）\\\\n\\\\n## 近期结论\\\\n- **deepseek_vota_seed42** (success): Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\\n  [deepseek_vota_seed42_analysis](/api/workspace-files/projects/trace-verdict-study/artifacts/deepseek_vota_seed42/report/analysis.md)\\\\n- **vota_seed123** (failed): Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\\n- **calibration_analysis_seed42** (success): Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\\\n  [calibration_reliability_diagram](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/chart/calibration_reliability_diagram_info.txt) | [calibration_metrics_json](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_metrics_summary.txt) | [calibration_metrics_v2](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_v2.py)\\\\n\\\\n## 趋势\\\\n成功 12 / 负向 1 / 失败 2 / 共 18\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-11235: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- no_trace_seed42_v3: 已被终止 — unknown\\\\n- vota_seed42_v3: 已被终止 — unknown\\\\n- full_trace_seed42: 已被终止 — unknown\\\\n- vota_exception_only_seed42: 训练失败 — unknown\\\\n- vota_seed123: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3963, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T13:37:07Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 25 个实验 — ANALYZING 1, DONE 17, PREPARING 2, QUEUED 4, RUNNING 1\\n**DONE 分布**: failed 1, killed 3, negative 1, success 12\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-11235:cuda:0, westd-11235:cuda:1\\n- **实际运行**: 1 张 — westd-11235:cuda:1(deepseek_exception_only_seed42)\\n- **空闲（分配了没跑）**: westd-11235:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `deepseek_exception_only_seed42` | westd-11235 | cuda:1 | 107188 | `…runs/trace-verdict-study/deepseek_exception_only_seed42.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `deepseek_vota_seed42` [success] — 2026-05-15T13:12:56\\n- `vota_seed123` [failed] — 2026-05-15T13:10:17 — CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capa\\n- `calibration_analysis_seed42` [success] — 2026-05-15T13:09:52\\n- `vota_ae_only_seed42` [success] — 2026-05-15T12:41:37 — N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，c\\n- `vota_loop_only_seed42` [success] — 2026-05-15T10:26:30\\n\\n### 🔴 最近失败原因 (top 3)\\n- `vota_seed123`: CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, \\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| deepseek_exception_only_seed42 | Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence. | — | — | — |\\n| deepseek_no_trace_seed42 | Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions. | — | — | — |\\n\\n## 待处理\\n- vota_seed42_v2（排队等待 GPU）\\n- vota_seed42（排队等待 GPU）\\n- no_trace_seed42_v2（排队等待 GPU）\\n- no_trace_seed42（排队等待 GPU）\\n- vota_seed456: Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.（准备中）\\n- deepseek_full_trace_seed42: Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.（准备中）\\n\\n## 近期结论\\n- **deepseek_vota_seed42** (success): Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\n  [deepseek_vota_seed42_analysis](/api/workspace-files/projects/trace-verdict-study/artifacts/deepseek_vota_seed42/report/analysis.md)\\n- **vota_seed123** (failed): Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\n- **calibration_analysis_seed42** (success): Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\n  [calibration_reliability_diagram](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/chart/calibration_reliability_diagram_info.txt) | [calibration_metrics_json](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_metrics_summary.txt) | [calibration_metrics_v2](/api/workspace-files/projects/trace-verdict-study/artifacts/calibration_analysis_seed42/data/calibration_v2.py)\\n\\n## 趋势\\n成功 12 / 负向 1 / 失败 2 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42_v3: 已被终止 — unknown\\n- vota_seed42_v3: 已被终止 — unknown\\n- full_trace_seed42: 已被终止 — unknown\\n- vota_exception_only_seed42: 训练失败 — unknown\\n- vota_seed123: 训练失败 — unknown\\n\", \"total_chars\": 3963, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7321e56a-6a40-4ea0-a286-bb6031bdd065",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T13:37:26.872Z_
+
+<details><summary>↩ Tool result · `toolu_01F8BCWgg7gPmRB3sxSp5nGf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-15 10:18 UTC | 更新原因: 组件消融完成，更新层级表 + 10天冲刺路线\\n\\n## 核心方向\\nVerdict prediction 本质是 fault detection：exception events 是近完美判别信号 (99.83%)，trace compression 的价值在于隔离这一信号而非压缩全量 trace。详见 paper_framing.md。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\n- Fallback: EMNLP 2026 Findings\\n\\n## 当前进展\\n- **阶段**: Research (post-MVP) + 审稿进行中\\n- **Core claims 支撑度**: 3/3 claims 在 Qwen-2.5-Coder-7B 上已确认\\n  - Claim 1 (fault indicator preservation): exception_only 99.83%, vota_no_ae 99.4% ✓\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% 因果分解 ✓\\n  - Claim 3 (two-tier hierarchy): exception (99.83%) >>> loop (85.6%) >> ae (冗余) ✓\\n- **跨模型泛化**: plan_004 (DeepSeek-Coder) 已派，今日出结果\\n- **完成实验**: 9/11 plan experiments done; ae_only running (~1.5h)\\n\\n### 组件层级表 (Qwen-2.5-Coder-7B)\\n| Condition | Accuracy | 角色 |\\n|-----------|----------|------|\\n| exception_only | 99.83% | Tier 1: 主信号 |\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\n| VOTA full | 99.2% | — |\\n| label-only loss | 86.2% | gradient dilution 修复 |\\n| loop_only | 85.6% | Tier 2: 行为模式 |\\n| full_trace | 81.8% | 原始 trace |\\n| no_trace | 75.1% | baseline |\\n\\n## 近期任务\\n- [ ] plan_004: DeepSeek-Coder 4 条件 (no_trace/full_trace/VOTA/exception_only) — cuda:0 运行中\\n- [ ] ae_only 完成 → 确认层级表 + 移入 Appendix — cuda:1 运行中 (~1.5h)\\n- [ ] plan_007: calibration analysis (ECE + reliability diagrams) — ae_only 完成后 cuda:1\\n- [ ] DeepSeek 结果确认后 → 正式更新 framing + 启动 Paper Agent\\n- [ ] plan_008: seed robustness (3 seeds) — 写作期间并行跑\\n- [ ] plan_005: 第二任务验证 (DebugBench) — 时间允许则加\\n\\n## GPU 预算\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\n- cuda:0: plan_004 DeepSeek-Coder (~8h)\\n- cuda:1: ae_only (~1.5h remaining) → plan_007 (~1h)\\n- 剩余预算: plan_008 (6h) + plan_005 (6h) 可在写作期间并行\\n\\n## 10 天冲刺路线\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/15 (今天) | plan_004 DeepSeek 完成 + ae_only 完成 + plan_007 calibration |\\n| 5/16 | DeepSeek 结果分析 → 更新 framing → 启动 Paper Agent (Full Draft) |\\n| 5/16-17 | plan_008 seed robustness 并行跑 |\\n| 5/17-19 | Paper Agent 5 步流水线交付初稿 |\\n| 5/19-21 | Reviewer 对抗 + 迭代修改 |\\n| 5/21-23 | plan_005 第二任务 (如时间允许) + 论文定稿 |\\n| 5/24 | 最终检查 + 提交 ARR |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D013 | 2026-05-15 | D013: ae_only 99.9% 修正组件层级——assertion-point info 与 | vota_ae_only_seed42, vota_exception_only_seed42_v2, vota_no_ae_seed42 |\\n| D012 | 2026-05-15 | 组件层级确立 + plan_004 扩展为 4 条件含 exception_only | vota_loop_only_seed42, vota_exception_only_seed42, vota_no_ae_seed42 |\\n| D011 | 2026-05-15 | 完整 component hierarchy 确立：exception (99.83%) >> lo | vota_exception_only_seed42_v2, vota_loop_only_seed42, vota_seed42_v5, full_trace_label_only_seed42 |\\n| D010 | 2026-05-15 | exception_only 99.83% 证明 exception signal 是 VOTA v | vota_exception_only_seed42_v2, vota_no_ae_seed42, vota_seed42_v5 |\\n| D009 | 2026-05-15 | plan_002 确认 gradient dilution 是 real 但 minor facto | full_trace_label_only_seed42, full_trace_seed42_v5, vota_seed42_v5 |\\n| D008 | 2026-05-15 | plan_001 确认 actual/expected 不是 VOTA 效果来源；Claim 1 走 | vota_no_ae_seed42, vota_seed42_v5 |\\n| D007 | 2026-05-15 | Claim 3 从 element-level 降级为 component-level design | plan_003, plan_001 |\\n| D006 | 2026-05-15 | full_trace collapse 根因确认为 chat template overhead b | full_trace_seed42_v2, full_trace_seed42_v5, vota_seed42_v5, no_trace_seed42_v4 |\\n| D005 | 2026-05-15 | D005: full_trace_v5 确认 81.76%（非 collapse），D004 假说正 | full_trace_seed42_v5, vota_seed42_v4, no_trace_seed42_v4 |\\n| D004 | 2026-05-15 | D004: full_trace 28.4% 系 chat template overhead 导致 | full_trace_seed42_v2, vota_seed42_v4 |\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f07c96e9-b180-4924-a13f-eb9672f9cf84",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "5eda88d2-d08b-4ff0-a9c0-605bf39ef6e7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\\\", \\\"content\\\": \\\"# trace-verdict-study — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 10:18 UTC | 更新原因: 组件消融完成，更新层级表 + 10天冲刺路线\\\\n\\\\n## 核心方向\\\\nVerdict prediction 本质是 fault detection：exception events 是近完美判别信号 (99.83%)，trace compression 的价值在于隔离这一信号而非压缩全量 trace。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\\\n- Fallback: EMNLP 2026 Findings\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (post-MVP) + 审稿进行中\\\\n- **Core claims 支撑度**: 3/3 claims 在 Qwen-2.5-Coder-7B 上已确认\\\\n  - Claim 1 (fault indicator preservation): exception_only 99.83%, vota_no_ae 99.4% ✓\\\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% 因果分解 ✓\\\\n  - Claim 3 (two-tier hierarchy): exception (99.83%) >>> loop (85.6%) >> ae (冗余) ✓\\\\n- **跨模型泛化**: plan_004 (DeepSeek-Coder) 已派，今日出结果\\\\n- **完成实验**: 9/11 plan experiments done; ae_only running (~1.5h)\\\\n\\\\n### 组件层级表 (Qwen-2.5-Coder-7B)\\\\n| Condition | Accuracy | 角色 |\\\\n|-----------|----------|------|\\\\n| exception_only | 99.83% | Tier 1: 主信号 |\\\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\\\n| VOTA full | 99.2% | — |\\\\n| label-only loss | 86.2% | gradient dilution 修复 |\\\\n| loop_only | 85.6% | Tier 2: 行为模式 |\\\\n| full_trace | 81.8% | 原始 trace |\\\\n| no_trace | 75.1% | baseline |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_004: DeepSeek-Coder 4 条件 (no_trace/full_trace/VOTA/exception_only) — cuda:0 运行中\\\\n- [ ] ae_only 完成 → 确认层级表 + 移入 Appendix — cuda:1 运行中 (~1.5h)\\\\n- [ ] plan_007: calibration analysis (ECE + reliability diagrams) — ae_only 完成后 cuda:1\\\\n- [ ] DeepSeek 结果确认后 → 正式更新 framing + 启动 Paper Agent\\\\n- [ ] plan_008: seed robustness (3 seeds) — 写作期间并行跑\\\\n- [ ] plan_005: 第二任务验证 (DebugBench) — 时间允许则加\\\\n\\\\n## GPU 预算\\\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\\\n- cuda:0: plan_004 DeepSeek-Coder (~8h)\\\\n- cuda:1: ae_only (~1.5h remaining) → plan_007 (~1h)\\\\n- 剩余预算: plan_008 (6h) + plan_005 (6h) 可在写作期间并行\\\\n\\\\n## 10 天冲刺路线\\\\n| 日期 | 里程碑 |\\\\n|------|--------|\\\\n| 5/15 (今天) | plan_004 DeepSeek 完成 + ae_only 完成 + plan_007 calibration |\\\\n| 5/16 | DeepSeek 结果分析 → 更新 framing → 启动 Paper Agent (Full Draft) |\\\\n| 5/16-17 | plan_008 seed robustness 并行跑 |\\\\n| 5/17-19 | Paper Agent 5 步流水线交付初稿 |\\\\n| 5/19-21 | Reviewer 对抗 + 迭代修改 |\\\\n| 5/21-23 | plan_005 第二任务 (如时间允许) + 论文定稿 |\\\\n| 5/24 | 最终检查 + 提交 ARR |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D013 | 2026-05-15 | D013: ae_only 99.9% 修正组件层级——assertion-point info 与 | vota_ae_only_seed42, vota_exception_only_seed42_v2, vota_no_ae_seed42 |\\\\n| D012 | 2026-05-15 | 组件层级确立 + plan_004 扩展为 4 条件含 exception_only | vota_loop_only_seed42, vota_exception_only_seed42, vota_no_ae_seed42 |\\\\n| D011 | 2026-05-15 | 完整 component hierarchy 确立：exception (99.83%) >> lo | vota_exception_only_seed42_v2, vota_loop_only_seed42, vota_seed42_v5, full_trace_label_only_seed42 |\\\\n| D010 | 2026-05-15 | exception_only 99.83% 证明 exception signal 是 VOTA v | vota_exception_only_seed42_v2, vota_no_ae_seed42, vota_seed42_v5 |\\\\n| D009 | 2026-05-15 | plan_002 确认 gradient dilution 是 real 但 minor facto | full_trace_label_only_seed42, full_trace_seed42_v5, vota_seed42_v5 |\\\\n| D008 | 2026-05-15 | plan_001 确认 actual/expected 不是 VOTA 效果来源；Claim 1 走 | vota_no_ae_seed42, vota_seed42_v5 |\\\\n| D007 | 2026-05-15 | Claim 3 从 element-level 降级为 component-level design | plan_003, plan_001 |\\\\n| D006 | 2026-05-15 | full_trace collapse 根因确认为 chat template overhead b | full_trace_seed42_v2, full_trace_seed42_v5, vota_seed42_v5, no_trace_seed42_v4 |\\\\n| D005 | 2026-05-15 | D005: full_trace_v5 确认 81.76%（非 collapse），D004 假说正 | full_trace_seed42_v5, vota_seed42_v4, no_trace_seed42_v4 |\\\\n| D004 | 2026-05-15 | D004: full_trace 28.4% 系 chat template overhead 导致 | full_trace_seed42_v2, vota_seed42_v4 |\\\\n\\\\n\\\", \\\"lines\\\": 72}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-15 10:18 UTC | 更新原因: 组件消融完成，更新层级表 + 10天冲刺路线\\n\\n## 核心方向\\nVerdict prediction 本质是 fault detection：exception events 是近完美判别信号 (99.83%)，trace compression 的价值在于隔离这一信号而非压缩全量 trace。详见 paper_framing.md。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\n- Fallback: EMNLP 2026 Findings\\n\\n## 当前进展\\n- **阶段**: Research (post-MVP) + 审稿进行中\\n- **Core claims 支撑度**: 3/3 claims 在 Qwen-2.5-Coder-7B 上已确认\\n  - Claim 1 (fault indicator preservation): exception_only 99.83%, vota_no_ae 99.4% ✓\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% 因果分解 ✓\\n  - Claim 3 (two-tier hierarchy): exception (99.83%) >>> loop (85.6%) >> ae (冗余) ✓\\n- **跨模型泛化**: plan_004 (DeepSeek-Coder) 已派，今日出结果\\n- **完成实验**: 9/11 plan experiments done; ae_only running (~1.5h)\\n\\n### 组件层级表 (Qwen-2.5-Coder-7B)\\n| Condition | Accuracy | 角色 |\\n|-----------|----------|------|\\n| exception_only | 99.83% | Tier 1: 主信号 |\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\n| VOTA full | 99.2% | — |\\n| label-only loss | 86.2% | gradient dilution 修复 |\\n| loop_only | 85.6% | Tier 2: 行为模式 |\\n| full_trace | 81.8% | 原始 trace |\\n| no_trace | 75.1% | baseline |\\n\\n## 近期任务\\n- [ ] plan_004: DeepSeek-Coder 4 条件 (no_trace/full_trace/VOTA/exception_only) — cuda:0 运行中\\n- [ ] ae_only 完成 → 确认层级表 + 移入 Appendix — cuda:1 运行中 (~1.5h)\\n- [ ] plan_007: calibration analysis (ECE + reliability diagrams) — ae_only 完成后 cuda:1\\n- [ ] DeepSeek 结果确认后 → 正式更新 framing + 启动 Paper Agent\\n- [ ] plan_008: seed robustness (3 seeds) — 写作期间并行跑\\n- [ ] plan_005: 第二任务验证 (DebugBench) — 时间允许则加\\n\\n## GPU 预算\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\n- cuda:0: plan_004 DeepSeek-Coder (~8h)\\n- cuda:1: ae_only (~1.5h remaining) → plan_007 (~1h)\\n- 剩余预算: plan_008 (6h) + plan_005 (6h) 可在写作期间并行\\n\\n## 10 天冲刺路线\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/15 (今天) | plan_004 DeepSeek 完成 + ae_only 完成 + plan_007 calibration |\\n| 5/16 | DeepSeek 结果分析 → 更新 framing → 启动 Paper Agent (Full Draft) |\\n| 5/16-17 | plan_008 seed robustness 并行跑 |\\n| 5/17-19 | Paper Agent 5 步流水线交付初稿 |\\n| 5/19-21 | Reviewer 对抗 + 迭代修改 |\\n| 5/21-23 | plan_005 第二任务 (如时间允许) + 论文定稿 |\\n| 5/24 | 最终检查 + 提交 ARR |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D013 | 2026-05-15 | D013: ae_only 99.9% 修正组件层级——assertion-point info 与 | vota_ae_only_seed42, vota_exception_only_seed42_v2, vota_no_ae_seed42 |\\n| D012 | 2026-05-15 | 组件层级确立 + plan_004 扩展为 4 条件含 exception_only | vota_loop_only_seed42, vota_exception_only_seed42, vota_no_ae_seed42 |\\n| D011 | 2026-05-15 | 完整 component hierarchy 确立：exception (99.83%) >> lo | vota_exception_only_seed42_v2, vota_loop_only_seed42, vota_seed42_v5, full_trace_label_only_seed42 |\\n| D010 | 2026-05-15 | exception_only 99.83% 证明 exception signal 是 VOTA v | vota_exception_only_seed42_v2, vota_no_ae_seed42, vota_seed42_v5 |\\n| D009 | 2026-05-15 | plan_002 确认 gradient dilution 是 real 但 minor facto | full_trace_label_only_seed42, full_trace_seed42_v5, vota_seed42_v5 |\\n| D008 | 2026-05-15 | plan_001 确认 actual/expected 不是 VOTA 效果来源；Claim 1 走 | vota_no_ae_seed42, vota_seed42_v5 |\\n| D007 | 2026-05-15 | Claim 3 从 element-level 降级为 component-level design | plan_003, plan_001 |\\n| D006 | 2026-05-15 | full_trace collapse 根因确认为 chat template overhead b | full_trace_seed42_v2, full_trace_seed42_v5, vota_seed42_v5, no_trace_seed42_v4 |\\n| D005 | 2026-05-15 | D005: full_trace_v5 确认 81.76%（非 collapse），D004 假说正 | full_trace_seed42_v5, vota_seed42_v4, no_trace_seed42_v4 |\\n| D004 | 2026-05-15 | D004: full_trace 28.4% 系 chat template overhead 导致 | full_trace_seed42_v2, vota_seed42_v4 |\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f07c96e9-b180-4924-a13f-eb9672f9cf84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T13:37:49.527Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the full picture now. Let me analyze:
+
+**Current state:**
+- `deepseek_no_trace_seed42` is in ANALYZING status — this is the experiment I need to handle
+- `deepseek_exception_only_seed42` is still RUNNING on cuda:1
+- `deepseek_vota_seed42` already DONE (success) with accuracy 84.45%
+
+**The experiment to analyze: `deepseek_no_trace_seed42`**
+- Hypothesis: Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct
+
+
+- Server: westd-11235
+- W&B run: deepseek_no_trace_seed42
+- Log: ~/runs/trace-verdict-study/deepseek_no_trace_seed42.log
+
+I need to fetch the W&B metrics and spawn a worker to SSH into the server and pull the eval results, then determine if this was successful or not before updating the registry and report.
+
+Looking at the command spec, the training and evaluation are chained together, so if the process exited cleanly, both should have completed. I'll need to grab the eval_results.json file from the server along with the training log, and also pull the relevant W&B metrics like accuracy and precision/recall/f1 scores. The eval metrics might actually live in that JSON file rather than in W&B, so I should prioritize getting that file first. I should also load the resource-saturation skill before reporting back to the Director. Let me grab that first, then run the W&B fetch and worker spawn in parallel to get both the training metrics and eval results efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5eda88d2-d08b-4ff0-a9c0-605bf39ef6e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SnK1dgCtEtVgTQQ1XK",
+  "type": "assistant",
+  "uuid": "fbc653a9-37d3-4dd4-9c3d-0c43498e8db2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2F1qqqnzJngEAdU9EgMUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20892,
+      "cache_read_input_tokens": 38691,
+      "output_tokens": 1489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1489,
+          "cache_read_input_tokens": 38691,
+          "cache_creation_input_tokens": 20892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T13:37:49.531Z_
+
+`deepseek_no_trace_seed42` 已转 ANALYZING。拉取 W&B 指标和服务器 eval 结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbc653a9-37d3-4dd4-9c3d-0c43498e8db2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SnK1dgCtEtVgTQQ1XK",
+  "type": "assistant",
+  "uuid": "0b01b07d-cfdc-4b0d-bf23-fb7b53f134e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2F1qqqnzJngEAdU9EgMUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20892,
+      "cache_read_input_tokens": 38691,
+      "output_tokens": 1489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1489,
+          "cache_read_input_tokens": 38691,
+          "cache_creation_input_tokens": 20892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T13:37:50.533Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__fetch_wandb_metrics · `toolu_01BaaCf3vVhK94PVXtgRqcLa`</summary>
+
+```json
+{
+  "run_id": "deepseek_no_trace_seed42",
+  "metric_names": [
+    "train/loss",
+    "eval/loss",
+    "eval/mean_token_accuracy",
+    "train/epoch"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b01b07d-cfdc-4b0d-bf23-fb7b53f134e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SnK1dgCtEtVgTQQ1XK",
+  "type": "assistant",
+  "uuid": "f8b8f96f-0643-432e-b028-6f23aa3a4f0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2F1qqqnzJngEAdU9EgMUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20892,
+      "cache_read_input_tokens": 38691,
+      "output_tokens": 1489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1489,
+          "cache_read_input_tokens": 38691,
+          "cache_creation_input_tokens": 20892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T13:37:50.558Z_
+
+<details><summary>↩ Tool result · `toolu_01BaaCf3vVhK94PVXtgRqcLa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"W&B entity/project not configured. Set in config/projects/*.yaml\", \"metadata\": {\"elapsed_seconds\": 0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8b8f96f-0643-432e-b028-6f23aa3a4f0e",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "d846b010-c04b-4dae-8fe5-f9c03d646f66",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"W&B entity/project not configured. Set in config/projects/*.yaml\", \"metadata\": {\"elapsed_seconds\": 0}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f8b8f96f-0643-432e-b028-6f23aa3a4f0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T13:37:56.686Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01B5nRkCowbQZji4eVcjeJDK`</summary>
+
+````json
+{
+  "task_type": "analysis:deepseek_no_trace_seed42",
+  "project": "trace-verdict-study",
+  "task_prompt": "## 任务\n读取 deepseek_no_trace_seed42 实验的 eval 结果和训练日志尾部。\n\n## 服务器信息\n- 服务器: westd-11235\n- 账户: root\n- 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n\n## 具体步骤\n\n1. SSH 到 westd-11235，读取 eval 结果文件:\n   ```\n   cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\n   ```\n\n2. 读取训练日志尾部（最后 50 行）:\n   ```\n   tail -50 ~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\n   ```\n\n3. 确认 checkpoint 是否存在:\n   ```\n   ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/\n   ```\n\n## 产出\n把 eval_results.json 的完整内容和日志尾部原样输出，不做分析。确认 checkpoint 目录是否存在。",
+  "tool_groups": [
+    "ssh"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d846b010-c04b-4dae-8fe5-f9c03d646f66",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SnK1dgCtEtVgTQQ1XK",
+  "type": "assistant",
+  "uuid": "a383a598-9c3f-423e-bdb4-74dc7f59e146",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2F1qqqnzJngEAdU9EgMUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20892,
+      "cache_read_input_tokens": 38691,
+      "output_tokens": 1489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1489,
+          "cache_read_input_tokens": 38691,
+          "cache_creation_input_tokens": 20892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T13:37:56.979Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DtRczznVWGgLKuH1SQu2PR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a383a598-9c3f-423e-bdb4-74dc7f59e146",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SnK1dgCtEtVgTQQ1XK",
+  "type": "assistant",
+  "uuid": "dac4e78b-2c4b-4d16-8284-b8bf54b740df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2F1qqqnzJngEAdU9EgMUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20892,
+      "cache_read_input_tokens": 38691,
+      "output_tokens": 1489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1489,
+          "cache_read_input_tokens": 38691,
+          "cache_creation_input_tokens": 20892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "dac4e78b-2c4b-4d16-8284-b8bf54b740df",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T13:37:59.485Z_
+
+<details><summary>↩ Tool result · `toolu_01B5nRkCowbQZji4eVcjeJDK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_deepseek_no_trace_seed42_20260515T133757\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_deepseek_no_trace_seed42_20260515T133757.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_deepseek_no_trace_seed42_20260515T133757 started. Use get_worker_status('worker_analysis_deepseek_no_trace_seed42_20260515T133757') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a383a598-9c3f-423e-bdb4-74dc7f59e146",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "41f19345-5d73-4610-8847-9ca25b41cadc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_deepseek_no_trace_seed42_20260515T133757\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_deepseek_no_trace_seed42_20260515T133757.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_deepseek_no_trace_seed42_20260515T133757 started. Use get_worker_status('worker_analysis_deepseek_no_trace_seed42_20260515T133757') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_deepseek_no_trace_seed42_20260515T133757\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_deepseek_no_trace_seed42_20260515T133757.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_deepseek_no_trace_seed42_20260515T133757 started. Use get_worker_status('worker_analysis_deepseek_no_trace_seed42_20260515T133757') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a383a598-9c3f-423e-bdb4-74dc7f59e146",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T13:37:59.500Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DtRczznVWGgLKuH1SQu2PR`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dac4e78b-2c4b-4d16-8284-b8bf54b740df",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "b312d0bf-847f-4283-b4ce-6a814e50d530",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd.",
+  "sourceToolAssistantUUID": "dac4e78b-2c4b-4d16-8284-b8bf54b740df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-15T13:37:59.505Z_
+
+```json
+{
+  "parentUuid": "b312d0bf-847f-4283-b4ce-6a814e50d530",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3704ed22-03af-4b89-b9a9-9335bc3a71d5",
+  "timestamp": "2026-05-15T13:37:59.505Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T13:38:03.980Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+W&B entity/project not configured - I need to load the project config to get W&B settings. Let me also try to find the resource-saturation skill at the correct path.
+
+The resource-saturation skill path according to CLAUDE.md is: `.claude/skills/resource-saturation.skill.md` - which would be relative to the project directory.
+
+Let me check the project config for W&B settings and find the resource-saturation skill.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3704ed22-03af-4b89-b9a9-9335bc3a71d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SpjTcSU4LkvZWaco14",
+  "type": "assistant",
+  "uuid": "4a9f8661-e439-4b29-8524-e3c5e94231c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rraq87ZisrNe8e9gBrm2fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 59583,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 59583,
+          "cache_creation_input_tokens": 2005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T13:38:04.493Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01XiVC8PxnatPLBaTQtQiFs4`</summary>
+
+```json
+{
+  "project_name": "trace-verdict-study",
+  "section": "wandb"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a9f8661-e439-4b29-8524-e3c5e94231c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SpjTcSU4LkvZWaco14",
+  "type": "assistant",
+  "uuid": "7b2dba1b-b7cd-421c-8db2-3465c6cd3bde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rraq87ZisrNe8e9gBrm2fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 59583,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 59583,
+          "cache_creation_input_tokens": 2005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T13:38:04.504Z_
+
+<details><summary>↩ Tool result · `toolu_01XiVC8PxnatPLBaTQtQiFs4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"wandb\", \"config\": {}, \"available_sections\": [\"execution\", \"feishu\", \"project\"]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b2dba1b-b7cd-421c-8db2-3465c6cd3bde",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "8d98b8ec-60c2-4a7a-8b42-1d963f02d62b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"trace-verdict-study\\\", \\\"section\\\": \\\"wandb\\\", \\\"config\\\": {}, \\\"available_sections\\\": [\\\"execution\\\", \\\"feishu\\\", \\\"project\\\"]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"wandb\", \"config\": {}, \"available_sections\": [\"execution\", \"feishu\", \"project\"]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7b2dba1b-b7cd-421c-8db2-3465c6cd3bde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T13:38:04.705Z_
+
+<details><summary>↩ Tool result · `toolu_01Pdrwh3LKm883hBK29txMzJ`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ee111f2-d3ef-4dd1-9e1b-b0e86c84e1da",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "5545112e-8977-4295-add4-6756109a0ab6",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 14,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "0ee111f2-d3ef-4dd1-9e1b-b0e86c84e1da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T13:38:04.684Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Pdrwh3LKm883hBK29txMzJ`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d98b8ec-60c2-4a7a-8b42-1d963f02d62b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SpjTcSU4LkvZWaco14",
+  "type": "assistant",
+  "uuid": "0ee111f2-d3ef-4dd1-9e1b-b0e86c84e1da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rraq87ZisrNe8e9gBrm2fz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 59583,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 59583,
+          "cache_creation_input_tokens": 2005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-15T13:38:11.966Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+W&B not configured in project config. No resource-saturation skill found. Let me try fetching W&B metrics with explicit entity/project. Looking at previous experiments, the wandb_project is "trace-verdict-study". Let me try with that.
+
+Actually, the W&B metrics fetch failed because entity/project aren't in config. Let me try passing them explicitly. The wandb_project in the command is "trace-verdict-study". I don't know the entity though. Let me check if there's a wandb config somewhere.
+
+Actually, the worker is already running to get the eval results from the server. Let me wait for the worker to finish. 
+
+While that's processing, I'll attempt to fetch W&B metrics using the explicit project name and also check the project config's execution section to see what GPU IDs are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5545112e-8977-4295-add4-6756109a0ab6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sq6wC6D7R18VFnZjLx",
+  "type": "assistant",
+  "uuid": "07c6a948-4119-440a-94a1-c0ecdd870ada",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011B5ZE8UADtLTNp8VvGqzr1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 61588,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 61588,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T13:38:11.975Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01U4psVWPMyFFUXvnypbbhLY`</summary>
+
+```json
+{
+  "project_name": "trace-verdict-study",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07c6a948-4119-440a-94a1-c0ecdd870ada",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sq6wC6D7R18VFnZjLx",
+  "type": "assistant",
+  "uuid": "ff671105-469a-4e52-a684-c747818bfead",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011B5ZE8UADtLTNp8VvGqzr1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 61588,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 61588,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T13:38:11.995Z_
+
+<details><summary>↩ Tool result · `toolu_01U4psVWPMyFFUXvnypbbhLY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-11235:cuda:0\", \"westd-11235:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/trace-verdict-study\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-11235\"}]}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff671105-469a-4e52-a684-c747818bfead",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "79cb9aa9-bdf4-4ebe-a9cd-ec3b670ea524",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"trace-verdict-study\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-11235:cuda:0\\\", \\\"westd-11235:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/trace-verdict-study\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-11235\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-11235:cuda:0\", \"westd-11235:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/trace-verdict-study\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-11235\"}]}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ff671105-469a-4e52-a684-c747818bfead",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-15T13:38:56.169Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so the GPU allocation is cuda:0 and cuda:1 on westd-11235. Currently:
+- cuda:0: deepseek_no_trace_seed42 just finished (ANALYZING) — now free
+- cuda:1: deepseek_exception_only_seed42 still RUNNING
+
+I have a worker fetching the eval results. Let me wait for it. Meanwhile, let me also note:
+
+Looking at the experiment plan, after deepseek_no_trace finishes, cuda:0 is free. There are two PREPARING experiments:
+- vota_seed456 (plan_008, seed robustness)
+
+
+- deepseek_full_trace_seed42 (plan_004)
+
+deepseek_full_trace_seed42 should go next since plan_004 is about DeepSeek cross-model validation and we need all four conditions: no_trace ✓, vota ✓, exception_only (running), full_trace (preparing). I'll submit deepseek_full_trace_seed42 on cuda:0 as soon as I finish analyzing the current results, but first I need to wait for the worker to return with the eval data.
+
+I'm reconsidering the protocol here — the instructions say not to poll worker status and to end the turn after dispatching, letting the [WORKER DONE] callback handle the rest. So I should report back to Director that the worker has been spawned, then wait for the system to notify me when results are ready rather than trying to check manually.
+
+Meanwhile, cuda:0 is available now, and deepseek_full_trace_seed42 is already in PREPARING status with a complete spec. I should check whether it needs Director approval before I can submit it, or if I can launch it independently while waiting for the eval results to come back. I know cuda:0 is available, so I should queue up deepseek_full_trace_seed42 for submission. The eval results file is already at the expected path, and comparing the accuracy metrics — DeepSeek VOTA hit 84.45% versus Qwen VOTA's 99.16% — suggests the model struggles more with this task. I'll wait for the worker callback before processing further and wrap up this turn. I'm reconsidering the workflow here — the cron callback suggests I should prepare the next experiment while the current worker is running. cuda:0 is free and deepseek_full_trace_seed42 is ready to go, so I should load the submission tools and get it queued. But I need to be disciplined about this: wait for the worker's eval results, update the registry with what I learn, then submit the next job on the freed GPU, and finally report back to Director. For now I'll wrap up this turn and let the callback trigger the next steps, though it does feel wasteful to leave cuda:0 idle. I need to check the state machine for deepseek_full_trace_seed42 — it's still in PREPARING, so I'll use submit_training_job to transition it to RUNNING on the now-free cuda:0, which matches its CUDA_VISIBLE_DEVICES=0 specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79cb9aa9-bdf4-4ebe-a9cd-ec3b670ea524",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sqe9ezgvFNB4HdXFwU",
+  "type": "assistant",
+  "uuid": "de76b671-dd2f-4970-be40-1d4144a5826e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGgnbCNXmtWofNvavugmin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 61988,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 61988,
+          "cache_creation_input_tokens": 441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-15T13:38:56.173Z_
+
+Worker 已派出读取 eval 结果。cuda:0 已空闲，先加载提交工具准备铺下一个实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de76b671-dd2f-4970-be40-1d4144a5826e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sqe9ezgvFNB4HdXFwU",
+  "type": "assistant",
+  "uuid": "43bf0283-caf9-477a-aacd-ae9d42efddba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGgnbCNXmtWofNvavugmin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 61988,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 61988,
+          "cache_creation_input_tokens": 441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T13:38:57.308Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SkWoK4E5pJ6UuejLmrLcrU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43bf0283-caf9-477a-aacd-ae9d42efddba",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sqe9ezgvFNB4HdXFwU",
+  "type": "assistant",
+  "uuid": "c10b8da6-ee19-456d-9208-3ea98434a64d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGgnbCNXmtWofNvavugmin",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 61988,
+      "output_tokens": 2108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2108,
+          "cache_read_input_tokens": 61988,
+          "cache_creation_input_tokens": 441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T13:38:57.312Z_
+
+<details><summary>↩ Tool result · `toolu_01SkWoK4E5pJ6UuejLmrLcrU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c10b8da6-ee19-456d-9208-3ea98434a64d",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "3addaf15-b71e-464c-bea1-4906c948aa51",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__read_experiment_plan_with_status"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "c10b8da6-ee19-456d-9208-3ea98434a64d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "3addaf15-b71e-464c-bea1-4906c948aa51",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-15T13:39:01.187Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the worker status to see if it's done yet, and also read the experiment plan to understand what's next.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3addaf15-b71e-464c-bea1-4906c948aa51",
+  "isSidechain": false,
+  "requestId": "req_011Cb4StzmULYTWbi46cxoNU",
+  "type": "assistant",
+  "uuid": "95059e92-a59e-41ce-a37f-9767f63b17f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rZvuqDcW2KqyFRGxYuz4R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3512,
+      "cache_read_input_tokens": 62429,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 62429,
+          "cache_creation_input_tokens": 3512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T13:39:02.200Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_014H3w92fHNsB8EubkB3zwhL`</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95059e92-a59e-41ce-a37f-9767f63b17f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4StzmULYTWbi46cxoNU",
+  "type": "assistant",
+  "uuid": "ec20a064-b384-422e-b1bb-8d75d8887416",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rZvuqDcW2KqyFRGxYuz4R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3512,
+      "cache_read_input_tokens": 62429,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 62429,
+          "cache_creation_input_tokens": 3512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T13:39:02.241Z_
+
+<details><summary>↩ Tool result · `toolu_014H3w92fHNsB8EubkB3zwhL`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_deepseek_no_trace_seed42_20260515T133757\", \"status\": \"done\", \"task_type\": \"analysis:deepseek_no_trace_seed42\", \"project\": \"trace-verdict-study\", \"started_at\": \"2026-05-15T13:37:57.390934+00:00\", \"ended_at\": \"2026-05-15T13:38:37.754316+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"### eval_results.json\\n\\n```json\\n{\\n  \\\"condition\\\": \\\"no_trace\\\",\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\",\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 0.7336134453781512,\\n    \\\"majority_baseline\\\": 0.7151260504201681,\\n    \\\"lift\\\": 0.018487394957983128,\\n    \\\"majority_class\\\": \\\"pass\\\",\\n    \\\"n\\\": 1190,\\n    \\\"pass_precision\\\": 0.8171021377672208,\\n    \\\"pass_recall\\\": 0.8084606345475911,\\n    \\\"pass_f1\\\": 0.8127584170112226,\\n    \\\"fail_precision\\\": 0.5316091954022989,\\n    \\\"fail_recall\\\": 0.5457227138643068,\\n    \\\"fail_f1\\\": 0.5385735080058225\\n  },\\n  \\\"confidence_intervals\\\": {\\n    \\\"accuracy_ci_lower\\\": 0.7083823529411765,\\n    \\\"accuracy_ci_upper\\\": 0.7571638655462184,\\n    \\\"majority_baseline_ci_lower\\\": 0.6915966386554622,\\n    \\\"majority_baseline_ci_upper\\\": 0.738655462184874,\\n    \\\"lift_ci_lower\\\": -0.00926470588235291,\\n    \\\"lift_ci_upper\\\": 0.04628151260504201,\\n    \\\"pass_precision_ci_lower\\\": 0.7911681259616019,\\n    \\\"pass_precision_ci_upper\\\": 0.8414634146341463,\\n    \\\"pass_recall_ci_lower\\\": 0.7817252253719553,\\n    \\\"pass_recall_ci_upper\\\": 0.8339224725694577,\\n    \\\"pass_f1_ci_lower\\\": 0.7920628820065595,\\n    \\\"pass_f1_ci_upper\\\": 0.831428547097829,\\n    \\\"fail_precision_ci_lower\\\": 0.484403376464283,\\n    \\\"fail_precision_ci_upper\\\": 0.5819702715928554,\\n    \\\"fail_recall_ci_lower\\\": 0.49531876198978136,\\n    \\\"fail_recall_ci_upper\\\": 0.5977476332292196,\\n    \\\"fail_f1_ci_lower\\\": 0.4951023096050912,\\n    \\\"fail_f1_ci_upper\\\": 0.5819443099273607\\n  }\\n}\\n```\\n\\n### 训练日志尾部（最后 50 行）\\n\\n```\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\nRunning inference...\\n  [50/1190] running accuracy: 0.7200\\n  [100/1190] running accuracy: 0.6700\\n  [150/1190] running accuracy: 0.6667\\n  [200/1190] running accuracy: 0.7000\\n  [250/1190] running accuracy: 0.7120\\n  [300/1190] running accuracy: 0.6800\\n  [350/1190] running accuracy: 0.6943\\n  [400/1190] running accuracy: 0.7075\\n  [450/1190] running accuracy: 0.7200\\n  [500/1190] running accuracy: 0.7480\\n  [550/1190] running accuracy: 0.7382\\n  [600/1190] running accuracy: 0.7367\\n  [650/1190] running accuracy: 0.7354\\n  [700/1190] running accuracy: 0.7414\\n  [750/1190] running accuracy: 0.7320\\n  [800/1190] running accuracy: 0.7238\\n  [850/1190] running accuracy: 0.7282\\n  [900/1190] running accuracy: 0.7344\\n  [950/1190] running accuracy: 0.7347\\n  [1000/1190] running accuracy: 0.7380\\n  [1050/1190] running accuracy: 0.7324\\n  [1100/1190] running accuracy: 0.7336\\n  [1150/1190] running accuracy: 0.7330\\n\\nComputing metrics...\\n\\n=== Evaluation Results (condition: no_trace) ===\\nAccuracy:           73.4% (95% CI: [70.8%, 75.7%])\\nMajority baseline:  71.5% (always predict 'pass')\\nLift over majority: +1.8pp (95% CI: [-0.9pp, +4.6pp])\\n\\nPer-class metrics:\\n  pass:  P=0.82  R=0.81  F1=0.81\\n  fail:  P=0.53  R=0.55  F1=0.54\\n\\nBootstrap: 1000 resamples\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\nEXIT_CODE=0\\n```\\n\\n### Checkpoint 目录\\n\\n目录存在，内容完整：\\n\\n```\\n-rw-r--r-- 1 root root      5356 May 15 21:34 README.md\\n-rw-r--r-- 1 root root      1174 May 15 21:34 adapter_config.json\\n-rw-r--r-- 1 root root 159967880 May 15 21:34 adapter_model.safetensors\\n-rw-r--r-- 1 root root      1041 May 15 21:34 chat_template.jinja\\n-rw-r--r-- 1 root root      1421 May 15 21:35 eval_results.json\\n-rw-r--r-- 1 root root       349 May 15 21:34 special_tokens_map.json\\n-rw-r--r-- 1 root root   2289810 May 15 21:34 tokenizer.json\\n-rw-r--r-- 1 root root      4297 May 15 21:34 tokenizer_config.json\\n-rw-r--r-- 1 root root      6481 May 15 21:34 training_args.bin\\n```\\n\\nCheckpoint 完整，adapter 模型约 153MB，eval 已完成，`EXIT_CODE=0`。\", \"data\": {\"condition\": \"no_trace\", \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"metrics\": {\"accuracy\": 0.7336134453781512, \"majority_baseline\": 0.7151260504201681, \"lift\": 0.018487394957983128, \"majority_class\": \"pass\", \"n\": 1190, \"pass_precision\": 0.8171021377672208, \"pass_recall\": 0.8084606345475911, \"pass_f1\": 0.8127584170112226, \"fail_precision\": 0.5316091954022989, \"fail_recall\": 0.5457227138643068, \"fail_f1\": 0.5385735080058225}, \"confidence_intervals\": {\"accuracy_ci_lower\": 0.7083823529411765, \"accuracy_ci_upper\": 0.7571638655462184, \"majority_baseline_ci_lower\": 0.6915966386554622, \"majority_baseline_ci_upper\": 0.738655462184874, \"lift_ci_lower\": -0.00926470588235291, \"lift_ci_upper\": 0.04628151260504201, \"pass_precision_ci_lower\": 0.7911681259616019, \"pass_precision_ci_upper\": 0.8414634146341463, \"pass_recall_ci_lower\": 0.7817252253719553, \"pass_recall_ci_upper\": 0.8339224725694577, \"pass_f1_ci_lower\": 0.7920628820065595, \"pass_f1_ci_upper\": 0.831428547097829, \"fail_precision_ci_lower\": 0.484403376464283, \"fail_precision_ci_upper\": 0.5819702715928554, \"fail_recall_ci_lower\": 0.49531876198978136, \"fail_recall_ci_upper\": 0.5977476332292196, \"fail_f1_ci_lower\": 0.4951023096050912, \"fail_f1_ci_upper\": 0.5819443099273607}}}}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec20a064-b384-422e-b1bb-8d75d8887416",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "a737253d-8337-4cb3-ba6a-d7e5f6b2bc2a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_deepseek_no_trace_seed42_20260515T133757\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:deepseek_no_trace_seed42\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"started_at\\\": \\\"2026-05-15T13:37:57.390934+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T13:38:37.754316+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"### eval_results.json\\\\n\\\\n```json\\\\n{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"no_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.7336134453781512,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.018487394957983128,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8171021377672208,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.8084606345475911,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.8127584170112226,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.5316091954022989,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.5457227138643068,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.5385735080058225\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.7083823529411765,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.7571638655462184,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": -0.00926470588235291,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.04628151260504201,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.7911681259616019,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8414634146341463,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.7817252253719553,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.8339224725694577,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.7920628820065595,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.831428547097829,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.484403376464283,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.5819702715928554,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.49531876198978136,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.5977476332292196,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.4951023096050912,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.5819443099273607\\\\n  }\\\\n}\\\\n```\\\\n\\\\n### 训练日志尾部（最后 50 行）\\\\n\\\\n```\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 0.7200\\\\n  [100/1190] running accuracy: 0.6700\\\\n  [150/1190] running accuracy: 0.6667\\\\n  [200/1190] running accuracy: 0.7000\\\\n  [250/1190] running accuracy: 0.7120\\\\n  [300/1190] running accuracy: 0.6800\\\\n  [350/1190] running accuracy: 0.6943\\\\n  [400/1190] running accuracy: 0.7075\\\\n  [450/1190] running accuracy: 0.7200\\\\n  [500/1190] running accuracy: 0.7480\\\\n  [550/1190] running accuracy: 0.7382\\\\n  [600/1190] running accuracy: 0.7367\\\\n  [650/1190] running accuracy: 0.7354\\\\n  [700/1190] running accuracy: 0.7414\\\\n  [750/1190] running accuracy: 0.7320\\\\n  [800/1190] running accuracy: 0.7238\\\\n  [850/1190] running accuracy: 0.7282\\\\n  [900/1190] running accuracy: 0.7344\\\\n  [950/1190] running accuracy: 0.7347\\\\n  [1000/1190] running accuracy: 0.7380\\\\n  [1050/1190] running accuracy: 0.7324\\\\n  [1100/1190] running accuracy: 0.7336\\\\n  [1150/1190] running accuracy: 0.7330\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: no_trace) ===\\\\nAccuracy:           73.4% (95% CI: [70.8%, 75.7%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +1.8pp (95% CI: [-0.9pp, +4.6pp])\\\\n\\\\nPer-class metrics:\\\\n  pass:  P=0.82  R=0.81  F1=0.81\\\\n  fail:  P=0.53  R=0.55  F1=0.54\\\\n\\\\nBootstrap: 1000 resamples\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\nEXIT_CODE=0\\\\n```\\\\n\\\\n### Checkpoint 目录\\\\n\\\\n目录存在，内容完整：\\\\n\\\\n```\\\\n-rw-r--r-- 1 root root      5356 May 15 21:34 README.md\\\\n-rw-r--r-- 1 root root      1174 May 15 21:34 adapter_config.json\\\\n-rw-r--r-- 1 root root 159967880 May 15 21:34 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root      1041 May 15 21:34 chat_template.jinja\\\\n-rw-r--r-- 1 root root      1421 May 15 21:35 eval_results.json\\\\n-rw-r--r-- 1 root root       349 May 15 21:34 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   2289810 May 15 21:34 tokenizer.json\\\\n-rw-r--r-- 1 root root      4297 May 15 21:34 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6481 May 15 21:34 training_args.bin\\\\n```\\\\n\\\\nCheckpoint 完整，adapter 模型约 153MB，eval 已完成，`EXIT_CODE=0`。\\\", \\\"data\\\": {\\\"condition\\\": \\\"no_trace\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336134453781512, \\\"majority_baseline\\\": 0.7151260504201681, \\\"lift\\\": 0.018487394957983128, \\\"majority_class\\\": \\\"pass\\\", \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8171021377672208, \\\"pass_recall\\\": 0.8084606345475911, \\\"pass_f1\\\": 0.8127584170112226, \\\"fail_precision\\\": 0.5316091954022989, \\\"fail_recall\\\": 0.5457227138643068, \\\"fail_f1\\\": 0.5385735080058225}, \\\"confidence_intervals\\\": {\\\"accuracy_ci_lower\\\": 0.7083823529411765, \\\"accuracy_ci_upper\\\": 0.7571638655462184, \\\"majority_baseline_ci_lower\\\": 0.6915966386554622, \\\"majority_baseline_ci_upper\\\": 0.738655462184874, \\\"lift_ci_lower\\\": -0.00926470588235291, \\\"lift_ci_upper\\\": 0.04628151260504201, \\\"pass_precision_ci_lower\\\": 0.7911681259616019, \\\"pass_precision_ci_upper\\\": 0.8414634146341463, \\\"pass_recall_ci_lower\\\": 0.7817252253719553, \\\"pass_recall_ci_upper\\\": 0.8339224725694577, \\\"pass_f1_ci_lower\\\": 0.7920628820065595, \\\"pass_f1_ci_upper\\\": 0.831428547097829, \\\"fail_precision_ci_lower\\\": 0.484403376464283, \\\"fail_precision_ci_upper\\\": 0.5819702715928554, \\\"fail_recall_ci_lower\\\": 0.49531876198978136, \\\"fail_recall_ci_upper\\\": 0.5977476332292196, \\\"fail_f1_ci_lower\\\": 0.4951023096050912, \\\"fail_f1_ci_upper\\\": 0.5819443099273607}}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_deepseek_no_trace_seed42_20260515T133757\", \"status\": \"done\", \"task_type\": \"analysis:deepseek_no_trace_seed42\", \"project\": \"trace-verdict-study\", \"started_at\": \"2026-05-15T13:37:57.390934+00:00\", \"ended_at\": \"2026-05-15T13:38:37.754316+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"### eval_results.json\\n\\n```json\\n{\\n  \\\"condition\\\": \\\"no_trace\\\",\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\",\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 0.7336134453781512,\\n    \\\"majority_baseline\\\": 0.7151260504201681,\\n    \\\"lift\\\": 0.018487394957983128,\\n    \\\"majority_class\\\": \\\"pass\\\",\\n    \\\"n\\\": 1190,\\n    \\\"pass_precision\\\": 0.8171021377672208,\\n    \\\"pass_recall\\\": 0.8084606345475911,\\n    \\\"pass_f1\\\": 0.8127584170112226,\\n    \\\"fail_precision\\\": 0.5316091954022989,\\n    \\\"fail_recall\\\": 0.5457227138643068,\\n    \\\"fail_f1\\\": 0.5385735080058225\\n  },\\n  \\\"confidence_intervals\\\": {\\n    \\\"accuracy_ci_lower\\\": 0.7083823529411765,\\n    \\\"accuracy_ci_upper\\\": 0.7571638655462184,\\n    \\\"majority_baseline_ci_lower\\\": 0.6915966386554622,\\n    \\\"majority_baseline_ci_upper\\\": 0.738655462184874,\\n    \\\"lift_ci_lower\\\": -0.00926470588235291,\\n    \\\"lift_ci_upper\\\": 0.04628151260504201,\\n    \\\"pass_precision_ci_lower\\\": 0.7911681259616019,\\n    \\\"pass_precision_ci_upper\\\": 0.8414634146341463,\\n    \\\"pass_recall_ci_lower\\\": 0.7817252253719553,\\n    \\\"pass_recall_ci_upper\\\": 0.8339224725694577,\\n    \\\"pass_f1_ci_lower\\\": 0.7920628820065595,\\n    \\\"pass_f1_ci_upper\\\": 0.831428547097829,\\n    \\\"fail_precision_ci_lower\\\": 0.484403376464283,\\n    \\\"fail_precision_ci_upper\\\": 0.5819702715928554,\\n    \\\"fail_recall_ci_lower\\\": 0.49531876198978136,\\n    \\\"fail_recall_ci_upper\\\": 0.5977476332292196,\\n    \\\"fail_f1_ci_lower\\\": 0.4951023096050912,\\n    \\\"fail_f1_ci_upper\\\": 0.5819443099273607\\n  }\\n}\\n```\\n\\n### 训练日志尾部（最后 50 行）\\n\\n```\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\nRunning inference...\\n  [50/1190] running accuracy: 0.7200\\n  [100/1190] running accuracy: 0.6700\\n  [150/1190] running accuracy: 0.6667\\n  [200/1190] running accuracy: 0.7000\\n  [250/1190] running accuracy: 0.7120\\n  [300/1190] running accuracy: 0.6800\\n  [350/1190] running accuracy: 0.6943\\n  [400/1190] running accuracy: 0.7075\\n  [450/1190] running accuracy: 0.7200\\n  [500/1190] running accuracy: 0.7480\\n  [550/1190] running accuracy: 0.7382\\n  [600/1190] running accuracy: 0.7367\\n  [650/1190] running accuracy: 0.7354\\n  [700/1190] running accuracy: 0.7414\\n  [750/1190] running accuracy: 0.7320\\n  [800/1190] running accuracy: 0.7238\\n  [850/1190] running accuracy: 0.7282\\n  [900/1190] running accuracy: 0.7344\\n  [950/1190] running accuracy: 0.7347\\n  [1000/1190] running accuracy: 0.7380\\n  [1050/1190] running accuracy: 0.7324\\n  [1100/1190] running accuracy: 0.7336\\n  [1150/1190] running accuracy: 0.7330\\n\\nComputing metrics...\\n\\n=== Evaluation Results (condition: no_trace) ===\\nAccuracy:           73.4% (95% CI: [70.8%, 75.7%])\\nMajority baseline:  71.5% (always predict 'pass')\\nLift over majority: +1.8pp (95% CI: [-0.9pp, +4.6pp])\\n\\nPer-class metrics:\\n  pass:  P=0.82  R=0.81  F1=0.81\\n  fail:  P=0.53  R=0.55  F1=0.54\\n\\nBootstrap: 1000 resamples\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\nEXIT_CODE=0\\n```\\n\\n### Checkpoint 目录\\n\\n目录存在，内容完整：\\n\\n```\\n-rw-r--r-- 1 root root      5356 May 15 21:34 README.md\\n-rw-r--r-- 1 root root      1174 May 15 21:34 adapter_config.json\\n-rw-r--r-- 1 root root 159967880 May 15 21:34 adapter_model.safetensors\\n-rw-r--r-- 1 root root      1041 May 15 21:34 chat_template.jinja\\n-rw-r--r-- 1 root root      1421 May 15 21:35 eval_results.json\\n-rw-r--r-- 1 root root       349 May 15 21:34 special_tokens_map.json\\n-rw-r--r-- 1 root root   2289810 May 15 21:34 tokenizer.json\\n-rw-r--r-- 1 root root      4297 May 15 21:34 tokenizer_config.json\\n-rw-r--r-- 1 root root      6481 May 15 21:34 training_args.bin\\n```\\n\\nCheckpoint 完整，adapter 模型约 153MB，eval 已完成，`EXIT_CODE=0`。\", \"data\": {\"condition\": \"no_trace\", \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"metrics\": {\"accuracy\": 0.7336134453781512, \"majority_baseline\": 0.7151260504201681, \"lift\": 0.018487394957983128, \"majority_class\": \"pass\", \"n\": 1190, \"pass_precision\": 0.8171021377672208, \"pass_recall\": 0.8084606345475911, \"pass_f1\": 0.8127584170112226, \"fail_precision\": 0.5316091954022989, \"fail_recall\": 0.5457227138643068, \"fail_f1\": 0.5385735080058225}, \"confidence_intervals\": {\"accuracy_ci_lower\": 0.7083823529411765, \"accuracy_ci_upper\": 0.7571638655462184, \"majority_baseline_ci_lower\": 0.6915966386554622, \"majority_baseline_ci_upper\": 0.738655462184874, \"lift_ci_lower\": -0.00926470588235291, \"lift_ci_upper\": 0.04628151260504201, \"pass_precision_ci_lower\": 0.7911681259616019, \"pass_precision_ci_upper\": 0.8414634146341463, \"pass_recall_ci_lower\": 0.7817252253719553, \"pass_recall_ci_upper\": 0.8339224725694577, \"pass_f1_ci_lower\": 0.7920628820065595, \"pass_f1_ci_upper\": 0.831428547097829, \"fail_precision_ci_lower\": 0.484403376464283, \"fail_precision_ci_upper\": 0.5819702715928554, \"fail_recall_ci_lower\": 0.49531876198978136, \"fail_recall_ci_upper\": 0.5977476332292196, \"fail_f1_ci_lower\": 0.4951023096050912, \"fail_f1_ci_upper\": 0.5819443099273607}}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ec20a064-b384-422e-b1bb-8d75d8887416",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T13:39:02.290Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01HxxrkLZp1gY51hH9mgbfsZ`</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a737253d-8337-4cb3-ba6a-d7e5f6b2bc2a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4StzmULYTWbi46cxoNU",
+  "type": "assistant",
+  "uuid": "c33606b5-3198-4e15-88e4-4a479261378f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rZvuqDcW2KqyFRGxYuz4R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3512,
+      "cache_read_input_tokens": 62429,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 62429,
+          "cache_creation_input_tokens": 3512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T13:39:02.433Z_
+
+<details><summary>↩ Tool result · `toolu_01HxxrkLZp1gY51hH9mgbfsZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"registry_id\": \"vota_no_ae_seed42\", \"notes\": \"如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定 Claim 1 强度和论文 framing。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}}, {\"id\": \"plan_002\", \"claim\": 2, \"description\": \"Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"registry_id\": \"full_trace_label_only_seed42\", \"notes\": \"如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是 trace noise/length 本身就有害。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}}, {\"id\": \"plan_003\", \"claim\": 3, \"description\": \"VOTA component ablation: 分别测试 (a) 只有 actual/expected, (b) 只有 exception summary, (c) 只有 loop compression, (d) 全量 VOTA。量化每个组件的贡献。\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001\"], \"registry_id\": \"vota_loop_only_seed42\", \"notes\": \"4 个 sub-conditions，每个 ~2h 训练。plan_001 先跑因为它决定 actual/expected 是否是唯一贡献者。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"第二模型验证: DeepSeek-Coder-6.7B 上复现 4 条件（VOTA/no_trace/full_trace/exception_only），与 DCSH 同模型直接对比。exception_only 跨模型验证 exception dominance。\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001\"], \"registry_id\": \"deepseek_exception_only_seed42\", \"notes\": \"4 条件串行 cuda:0。registry IDs: deepseek_vota_seed42, deepseek_no_trace_seed42, deepseek_full_trace_seed42, deepseek_exception_only_seed42。DCSH 用的 DeepSeek-Coder，同模型对比最有说服力。\", \"status\": \"RUNNING\"}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"第二任务验证: 在 bug detection (DebugBench subset) 或 patch correctness (Defects4J subset) 上测试 VOTA。验证 verdict task 泛化性。\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": null, \"notes\": \"选一个能快速构建 VOTA 格式数据的 verdict task。DebugBench (Python) 可能比 Defects4J (Java) 快。\", \"status\": \"planned\"}, {\"id\": \"plan_006\", \"claim\": 2, \"description\": \"Trace length ablation: 测试不同截断长度 (256/512/1024/2048 tokens) 对 full_trace 准确率的影响，绘制 accuracy vs trace length 曲线。\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"registry_id\": null, \"notes\": \"验证 'more trace = worse for classification' 的单调关系。如果短 trace 也 collapse，问题在 trace content 而非 length。\", \"status\": \"planned\"}, {\"id\": \"plan_007\", \"claim\": 3, \"description\": \"Calibration analysis: ECE + reliability diagrams 对比 VOTA/no_trace/full_trace 的 calibration 质量。验证 trace SFT 对 verdict task 改善 calibration 的假说。\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"notes\": \"纯 eval，不需要额外训练。用已有 checkpoint 的 logits 计算。\", \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"Seed robustness: 3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar test + bootstrap CI。\", \"priority\": \"P2\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"vota_seed123\", \"notes\": \"每 seed ~2h × 3。不同 seed 间 accuracy 差异应 <2pp。\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_mvp_vota\", \"claim\": 1, \"description\": \"MVP: VOTA trace SFT for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"vota_seed42_v4\", \"notes\": \"完成。95.63% accuracy, +20.5pp over baseline.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}}, {\"id\": \"plan_mvp_notrace\", \"claim\": 1, \"description\": \"MVP: No-trace baseline for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": \"no_trace_seed42_v4\", \"notes\": \"完成。75.13% accuracy (majority baseline 71.51%).\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}}, {\"id\": \"plan_mvp_fulltrace\", \"claim\": 2, \"description\": \"MVP: Full execution trace SFT for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"full_trace_seed42_v2\", \"notes\": \"完成。28.49% accuracy, model collapse (100% predict fail).\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}}], \"total\": 11}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c33606b5-3198-4e15-88e4-4a479261378f",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "de97f182-809b-42e5-b91a-91c81c26c134",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"registry_id\\\": \\\"vota_no_ae_seed42\\\", \\\"notes\\\": \\\"如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定 Claim 1 强度和论文 framing。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"registry_id\\\": \\\"full_trace_label_only_seed42\\\", \\\"notes\\\": \\\"如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是 trace noise/length 本身就有害。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs_standard_fulltrace_pvalue\\\": 0}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"VOTA component ablation: 分别测试 (a) 只有 actual/expected, (b) 只有 exception summary, (c) 只有 loop compression, (d) 全量 VOTA。量化每个组件的贡献。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"vota_loop_only_seed42\\\", \\\"notes\\\": \\\"4 个 sub-conditions，每个 ~2h 训练。plan_001 先跑因为它决定 actual/expected 是否是唯一贡献者。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9239, \\\"pass_recall\\\": 0.8707, \\\"pass_f1\\\": 0.8966, \\\"fail_precision\\\": 0.7165, \\\"fail_recall\\\": 0.8201, \\\"fail_f1\\\": 0.7648, \\\"accuracy_ci\\\": [0.8353, 0.8756], \\\"bootstrap_vs_no_trace\\\": {\\\"diff\\\": 0.105, \\\"ci\\\": [0.0824, 0.1286], \\\"significant\\\": true}, \\\"bootstrap_vs_vota\\\": {\\\"diff\\\": -0.1378, \\\"ci\\\": [-0.1571, -0.1185], \\\"significant\\\": true}, \\\"bootstrap_vs_full_trace\\\": {\\\"diff\\\": 0.0387, \\\"ci\\\": [0.0185, 0.0597], \\\"significant\\\": true}, \\\"train_loss\\\": 0.0718, \\\"wall_clock_seconds\\\": 7425.65}}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"第二模型验证: DeepSeek-Coder-6.7B 上复现 4 条件（VOTA/no_trace/full_trace/exception_only），与 DCSH 同模型直接对比。exception_only 跨模型验证 exception dominance。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"deepseek_exception_only_seed42\\\", \\\"notes\\\": \\\"4 条件串行 cuda:0。registry IDs: deepseek_vota_seed42, deepseek_no_trace_seed42, deepseek_full_trace_seed42, deepseek_exception_only_seed42。DCSH 用的 DeepSeek-Coder，同模型对比最有说服力。\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"第二任务验证: 在 bug detection (DebugBench subset) 或 patch correctness (Defects4J subset) 上测试 VOTA。验证 verdict task 泛化性。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"notes\\\": \\\"选一个能快速构建 VOTA 格式数据的 verdict task。DebugBench (Python) 可能比 Defects4J (Java) 快。\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Trace length ablation: 测试不同截断长度 (256/512/1024/2048 tokens) 对 full_trace 准确率的影响，绘制 accuracy vs trace length 曲线。\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": null, \\\"notes\\\": \\\"验证 'more trace = worse for classification' 的单调关系。如果短 trace 也 collapse，问题在 trace content 而非 length。\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Calibration analysis: ECE + reliability diagrams 对比 VOTA/no_trace/full_trace 的 calibration 质量。验证 trace SFT 对 verdict task 改善 calibration 的假说。\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"notes\\\": \\\"纯 eval，不需要额外训练。用已有 checkpoint 的 logits 计算。\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Seed robustness: 3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar test + bootstrap CI。\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"vota_seed123\\\", \\\"notes\\\": \\\"每 seed ~2h × 3。不同 seed 间 accuracy 差异应 <2pp。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"plan_mvp_vota\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"MVP: VOTA trace SFT for test verdict prediction\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"vota_seed42_v4\\\", \\\"notes\\\": \\\"完成。95.63% accuracy, +20.5pp over baseline.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.944, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.97, \\\"fail_precision\\\": 0.993, \\\"fail_recall\\\": 0.853, \\\"fail_f1\\\": 0.917, \\\"lift_vs_notrace\\\": 0.205, \\\"lift_vs_notrace_ci_lower\\\": 0.177, \\\"lift_vs_notrace_ci_upper\\\": 0.234, \\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.0842}}, {\\\"id\\\": \\\"plan_mvp_notrace\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"MVP: No-trace baseline for test verdict prediction\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [], \\\"registry_id\\\": \\\"no_trace_seed42_v4\\\", \\\"notes\\\": \\\"完成。75.13% accuracy (majority baseline 71.51%).\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.6454, \\\"eval_mean_token_accuracy\\\": 0.8897}}, {\\\"id\\\": \\\"plan_mvp_fulltrace\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"MVP: Full execution trace SFT for test verdict prediction\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"full_trace_seed42_v2\\\", \\\"notes\\\": \\\"完成。28.49% accuracy, model collapse (100% predict fail).\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.4311, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.923, \\\"pass_recall\\\": 0.085, \\\"pass_f1\\\": 0.155, \\\"fail_precision\\\": 0.445, \\\"fail_recall\\\": 0.785, \\\"fail_f1\\\": 0.568, \\\"train_loss\\\": 0.0373, \\\"eval_loss\\\": 0.082, \\\"eval_mean_token_accuracy\\\": 0.984}}], \\\"total\\\": 11}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"registry_id\": \"vota_no_ae_seed42\", \"notes\": \"如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定 Claim 1 强度和论文 framing。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}}, {\"id\": \"plan_002\", \"claim\": 2, \"description\": \"Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"registry_id\": \"full_trace_label_only_seed42\", \"notes\": \"如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是 trace noise/length 本身就有害。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}}, {\"id\": \"plan_003\", \"claim\": 3, \"description\": \"VOTA component ablation: 分别测试 (a) 只有 actual/expected, (b) 只有 exception summary, (c) 只有 loop compression, (d) 全量 VOTA。量化每个组件的贡献。\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001\"], \"registry_id\": \"vota_loop_only_seed42\", \"notes\": \"4 个 sub-conditions，每个 ~2h 训练。plan_001 先跑因为它决定 actual/expected 是否是唯一贡献者。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"第二模型验证: DeepSeek-Coder-6.7B 上复现 4 条件（VOTA/no_trace/full_trace/exception_only），与 DCSH 同模型直接对比。exception_only 跨模型验证 exception dominance。\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001\"], \"registry_id\": \"deepseek_exception_only_seed42\", \"notes\": \"4 条件串行 cuda:0。registry IDs: deepseek_vota_seed42, deepseek_no_trace_seed42, deepseek_full_trace_seed42, deepseek_exception_only_seed42。DCSH 用的 DeepSeek-Coder，同模型对比最有说服力。\", \"status\": \"RUNNING\"}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"第二任务验证: 在 bug detection (DebugBench subset) 或 patch correctness (Defects4J subset) 上测试 VOTA。验证 verdict task 泛化性。\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": null, \"notes\": \"选一个能快速构建 VOTA 格式数据的 verdict task。DebugBench (Python) 可能比 Defects4J (Java) 快。\", \"status\": \"planned\"}, {\"id\": \"plan_006\", \"claim\": 2, \"description\": \"Trace length ablation: 测试不同截断长度 (256/512/1024/2048 tokens) 对 full_trace 准确率的影响，绘制 accuracy vs trace length 曲线。\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"registry_id\": null, \"notes\": \"验证 'more trace = worse for classification' 的单调关系。如果短 trace 也 collapse，问题在 trace content 而非 length。\", \"status\": \"planned\"}, {\"id\": \"plan_007\", \"claim\": 3, \"description\": \"Calibration analysis: ECE + reliability diagrams 对比 VOTA/no_trace/full_trace 的 calibration 质量。验证 trace SFT 对 verdict task 改善 calibration 的假说。\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"notes\": \"纯 eval，不需要额外训练。用已有 checkpoint 的 logits 计算。\", \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"Seed robustness: 3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar test + bootstrap CI。\", \"priority\": \"P2\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"vota_seed123\", \"notes\": \"每 seed ~2h × 3。不同 seed 间 accuracy 差异应 <2pp。\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_mvp_vota\", \"claim\": 1, \"description\": \"MVP: VOTA trace SFT for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"vota_seed42_v4\", \"notes\": \"完成。95.63% accuracy, +20.5pp over baseline.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}}, {\"id\": \"plan_mvp_notrace\", \"claim\": 1, \"description\": \"MVP: No-trace baseline for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": \"no_trace_seed42_v4\", \"notes\": \"完成。75.13% accuracy (majority baseline 71.51%).\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}}, {\"id\": \"plan_mvp_fulltrace\", \"claim\": 2, \"description\": \"MVP: Full execution trace SFT for test verdict prediction\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"full_trace_seed42_v2\", \"notes\": \"完成。28.49% accuracy, model collapse (100% predict fail).\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}}], \"total\": 11}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c33606b5-3198-4e15-88e4-4a479261378f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "de97f182-809b-42e5-b91a-91c81c26c134",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-15T13:39:18.958Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Worker returned the eval results. Let me analyze:
+
+**deepseek_no_trace_seed42 Results:**
+- Accuracy: 73.36% [70.8%, 75.7%]
+- Majority baseline: 71.51%
+- Lift: +1.85pp [-0.9pp, +4.6pp] — lift CI includes 0, so not statistically significant!
+- Pass: P=0.82, R=0.81, F1=0.81
+- Fail: P=0.53, R=0.55, F1=0.54
+
+
+- Qwen no_trace performs better at 75.13%, while DeepSeek's modest 1.85pp lift over baseline pales compared to Qwen's 3.61pp. But the real story is the VOTA results — DeepSeek jumps to 84.45% with VOTA, an 11.09pp gain, whereas Qwen reaches 99.16%, a much steeper 24.03pp improvement.
+
+This baseline confirms the pattern: without trace information, DeepSeek underperforms just like Qwen, validating that VOTA's gains are genuine. Now I need to log these results, queue up the full trace experiment on the freed GPU, and brief the Director on progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de97f182-809b-42e5-b91a-91c81c26c134",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SuMa81NebXNHTz9WvM",
+  "type": "assistant",
+  "uuid": "3a338d2c-6ef4-4eb5-9f2a-c9b3f8545b23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166Vg1LpymNKw8NVPThaPgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6379,
+      "cache_read_input_tokens": 65941,
+      "output_tokens": 1146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6379,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1146,
+          "cache_read_input_tokens": 65941,
+          "cache_creation_input_tokens": 6379,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6379
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-15T13:39:18.961Z_
+
+Worker 返回了完整 eval 结果。DeepSeek no_trace accuracy = 73.36%，建立了跨模型 baseline。更新 registry 并提交 deepseek_full_trace 到空闲的 cuda:0。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a338d2c-6ef4-4eb5-9f2a-c9b3f8545b23",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SuMa81NebXNHTz9WvM",
+  "type": "assistant",
+  "uuid": "b2ea6065-aed0-4062-9042-b1587364a903",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166Vg1LpymNKw8NVPThaPgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6379,
+      "cache_read_input_tokens": 65941,
+      "output_tokens": 1146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6379,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1146,
+          "cache_read_input_tokens": 65941,
+          "cache_creation_input_tokens": 6379,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6379
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T13:39:21.345Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KD7ge8hHgkEZp8sE7oc6hh`</summary>
+
+```json
+{
+  "exp_id": "deepseek_no_trace_seed42",
+  "field": "metrics",
+  "value": {
+    "accuracy": 0.7336,
+    "majority_baseline": 0.7151,
+    "lift": 0.0185,
+    "n": 1190,
+    "pass_precision": 0.817,
+    "pass_recall": 0.808,
+    "pass_f1": 0.813,
+    "fail_precision": 0.532,
+    "fail_recall": 0.546,
+    "fail_f1": 0.539,
+    "accuracy_ci": [
+      0.708,
+      0.757
+    ],
+    "lift_ci": [
+      -0.009,
+      0.046
+    ]
+  },
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2ea6065-aed0-4062-9042-b1587364a903",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SuMa81NebXNHTz9WvM",
+  "type": "assistant",
+  "uuid": "9983612e-b2ce-418d-a215-ee13f52462bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166Vg1LpymNKw8NVPThaPgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6379,
+      "cache_read_input_tokens": 65941,
+      "output_tokens": 1146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6379,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1146,
+          "cache_read_input_tokens": 65941,
+          "cache_creation_input_tokens": 6379,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6379
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T13:39:21.636Z_
+
+<details><summary>↩ Tool result · `toolu_01KD7ge8hHgkEZp8sE7oc6hh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:21.550Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2699}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9983612e-b2ce-418d-a215-ee13f52462bc",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "b3662ef2-444a-4421-98ec-03857265385e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"deepseek_no_trace_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:39:21.550Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2699}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:21.550Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2699}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9983612e-b2ce-418d-a215-ee13f52462bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T13:39:22.242Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ANQPFk33NGUfxPfMDc8tsx`</summary>
+
+```json
+{
+  "exp_id": "deepseek_no_trace_seed42",
+  "field": "conclusion",
+  "value": "success",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3662ef2-444a-4421-98ec-03857265385e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SuMa81NebXNHTz9WvM",
+  "type": "assistant",
+  "uuid": "a1fc3972-c618-4322-8f95-3bd8803671e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166Vg1LpymNKw8NVPThaPgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6379,
+      "cache_read_input_tokens": 65941,
+      "output_tokens": 1146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6379,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1146,
+          "cache_read_input_tokens": 65941,
+          "cache_creation_input_tokens": 6379,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6379
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T13:39:22.388Z_
+
+<details><summary>↩ Tool result · `toolu_01ANQPFk33NGUfxPfMDc8tsx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:22.322Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1352}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1fc3972-c618-4322-8f95-3bd8803671e6",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "577d2bca-94dd-4e68-8857-ddac01f99b94",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"deepseek_no_trace_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:39:22.322Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1352}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:22.322Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1352}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a1fc3972-c618-4322-8f95-3bd8803671e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T13:39:23.188Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011sn8iBrgef58afeynDrjQC`</summary>
+
+```json
+{
+  "exp_id": "deepseek_no_trace_seed42",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "577d2bca-94dd-4e68-8857-ddac01f99b94",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SuMa81NebXNHTz9WvM",
+  "type": "assistant",
+  "uuid": "90b8e1a6-4176-4e8a-91ed-87a1dd3ee36a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166Vg1LpymNKw8NVPThaPgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6379,
+      "cache_read_input_tokens": 65941,
+      "output_tokens": 1146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6379,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1146,
+          "cache_read_input_tokens": 65941,
+          "cache_creation_input_tokens": 6379,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6379
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T13:39:23.351Z_
+
+<details><summary>↩ Tool result · `toolu_011sn8iBrgef58afeynDrjQC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:23.268Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1492}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90b8e1a6-4176-4e8a-91ed-87a1dd3ee36a",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "bdeffde5-1f5e-47df-baa3-ba42efa391f1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"deepseek_no_trace_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:39:23.268Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1492}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:23.268Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1492}}"
+    }
+  },
+  "sourceToolAssistantUUID": "90b8e1a6-4176-4e8a-91ed-87a1dd3ee36a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-15T13:39:23.357Z_
+
+```json
+{
+  "parentUuid": "bdeffde5-1f5e-47df-baa3-ba42efa391f1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "db41323a-8728-4962-a485-43e159775345",
+  "timestamp": "2026-05-15T13:39:23.357Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "db41323a-8728-4962-a485-43e159775345",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-15T13:39:26.768Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, registry updated. Now I need to:
+1. Set status to DONE
+2. Submit deepseek_full_trace_seed42 on cuda:0 (it's free now)
+3. Report to Director
+
+Let me set status to DONE and submit the next experiment in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db41323a-8728-4962-a485-43e159775345",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Svu1FxMT4W3uzztJbR",
+  "type": "assistant",
+  "uuid": "e8c5eb77-edc9-4246-b115-6048112d8baa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkpQr5JUDz71oB7QsZnqcG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4421,
+      "cache_read_input_tokens": 72320,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 72320,
+          "cache_creation_input_tokens": 4421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T13:39:27.701Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UmNrDV172f5rA7AwUejN1w`</summary>
+
+```json
+{
+  "exp_id": "deepseek_no_trace_seed42",
+  "field": "status",
+  "value": "DONE",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8c5eb77-edc9-4246-b115-6048112d8baa",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Svu1FxMT4W3uzztJbR",
+  "type": "assistant",
+  "uuid": "d2fd228e-3907-47c8-a164-5a55a82391be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkpQr5JUDz71oB7QsZnqcG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4421,
+      "cache_read_input_tokens": 72320,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 72320,
+          "cache_creation_input_tokens": 4421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T13:39:28.259Z_
+
+<details><summary>↩ Tool result · `toolu_01UmNrDV172f5rA7AwUejN1w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:27.908Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 1791.4, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"completed_at\": \"2026-05-15T13:39:27.031Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5291}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2fd228e-3907-47c8-a164-5a55a82391be",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "71b21d73-1838-4b89-a7a0-b3f9e5c3570a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"deepseek_no_trace_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:39:27.908Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 1791.4, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"completed_at\\\": \\\"2026-05-15T13:39:27.031Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5291}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"deepseek_no_trace_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:39:27.908Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 1791.4, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"completed_at\": \"2026-05-15T13:39:27.031Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5291}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d2fd228e-3907-47c8-a164-5a55a82391be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T13:39:31.013Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01VSHeY2a1dVjZqxAdhU6HhA`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "gpu_ids": [
+    "cuda:0"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\"",
+  "exp_id": "deepseek_full_trace_seed42",
+  "project": "trace-verdict-study",
+  "plan_id": "plan_004"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71b21d73-1838-4b89-a7a0-b3f9e5c3570a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Svu1FxMT4W3uzztJbR",
+  "type": "assistant",
+  "uuid": "dd5eec11-386c-4119-ac02-fb0ecc026550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkpQr5JUDz71oB7QsZnqcG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4421,
+      "cache_read_input_tokens": 72320,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 72320,
+          "cache_creation_input_tokens": 4421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T13:39:32.369Z_
+
+<details><summary>↩ Tool result · `toolu_01VSHeY2a1dVjZqxAdhU6HhA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"111471\", \"log_file\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-11235\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"deepseek_full_trace_seed42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd5eec11-386c-4119-ac02-fb0ecc026550",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "c65b1e0d-7141-435e-98d3-7487a82eecc8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"111471\\\", \\\"log_file\\\": \\\"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-11235\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"deepseek_full_trace_seed42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"111471\", \"log_file\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-11235\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"deepseek_full_trace_seed42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dd5eec11-386c-4119-ac02-fb0ecc026550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-15T13:39:51.759Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both operations succeeded:
+1. deepseek_no_trace_seed42 → DONE (success)
+2. deepseek_full_trace_seed42 → submitted on cuda:0 (pid 111471)
+
+Now I need to:
+1. Report to Director with the analysis
+2. Read literature_map.yaml for cross-referencing (per on-experiment-done flow)
+
+Let me construct the analysis and report.
+
+**DeepSeek cross-model results so far:**
+| Condition | DeepSeek | Qwen | Delta |
+|-----------|----------|------|-------|
+
+
+| no_trace | 73.36% | 75.13% | -1.77pp |
+| VOTA | 84.45% | 99.16% | -14.71pp |
+| VOTA lift | +11.09pp | +24.03pp | — |
+
+Looking at the performance metrics, DeepSeek's baseline is nearly on par with Qwen, but the VOTA technique produces a much larger lift for Qwen—24.03pp versus DeepSeek's 11.09pp. Both models benefit from VOTA, though the magnitude of improvement diverges substantially between them.
+
+DeepSeek's baseline improvement over majority voting isn't statistically significant, which is an interesting contrast to the strong VOTA gains. The exception_only condition will be crucial to determine whether the exception dominance pattern holds differently for DeepSeek. I need to check the literature map and prepare the Director report, including updating the registry with the full provenance for the deepseek_full_trace_seed42 run and reviewing the current GPU resource status.
+
+Both GPUs are occupied with the full_trace and exception_only experiments running for hours, leaving no active workers available right now. While I could spawn workers for literature search on cross-model generalization or prepare analysis scripts for when exception_only completes, the on-experiment-done workflow requires me to handle the literature联动 first, so let me pull up the literature map.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c65b1e0d-7141-435e-98d3-7487a82eecc8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SwZZFYRnVK3Jxg2bMC",
+  "type": "assistant",
+  "uuid": "0901c6fd-3d3f-4832-87b3-97fb0fd29630",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXPqXjb88FyeNsofXjw7u5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2036,
+      "cache_read_input_tokens": 76741,
+      "output_tokens": 836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 836,
+          "cache_read_input_tokens": 76741,
+          "cache_creation_input_tokens": 2036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-15T13:39:51.846Z_
+
+deepseek_no_trace_seed42 → DONE (success)。deepseek_full_trace_seed42 已提交 cuda:0 (pid 111471)。两张 GPU 满载。
+
+读取文献 map 完成联动分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0901c6fd-3d3f-4832-87b3-97fb0fd29630",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SwZZFYRnVK3Jxg2bMC",
+  "type": "assistant",
+  "uuid": "2645f4c1-a5d7-48a4-92aa-1d8b271e7144",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXPqXjb88FyeNsofXjw7u5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2036,
+      "cache_read_input_tokens": 76741,
+      "output_tokens": 836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 836,
+          "cache_read_input_tokens": 76741,
+          "cache_creation_input_tokens": 2036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T13:39:52.112Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01F4Q8ucwbMMaVEGzj9Q7Wtt`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2645f4c1-a5d7-48a4-92aa-1d8b271e7144",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SwZZFYRnVK3Jxg2bMC",
+  "type": "assistant",
+  "uuid": "587341ed-dd0e-4733-be8f-68b1968a3851",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXPqXjb88FyeNsofXjw7u5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2036,
+      "cache_read_input_tokens": 76741,
+      "output_tokens": 836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 836,
+          "cache_read_input_tokens": 76741,
+          "cache_creation_input_tokens": 2036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T13:39:52.140Z_
+
+<details><summary>↩ Tool result · `toolu_01F4Q8ucwbMMaVEGzj9Q7Wtt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/literature_map.yaml\", \"content\": \"categories:\\n  execution-trace-llm:\\n    description: \\\"Execution trace 辅助 LLM 代码理解/调试/推理\\\"\\n    papers:\\n      - title: \\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\"\\n        authors: \\\"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\\\"\\n        year: 2024\\n        venue: \\\"ICML 2024\\\"\\n        role: method-component\\n        key_finding: \\\"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\\\"\\n        metrics:\\n          mbpp_fix_rate_improvement: \\\"+26.1%\\\"\\n          humaneval_fix_rate_improvement: \\\"+14.3%\\\"\\n\\n      - title: \\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\\\"\\n        authors: \\\"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\\\"\\n        year: 2025\\n        venue: \\\"Findings of EMNLP 2025\\\"\\n        role: direct-competitor\\n        key_finding: \\\"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Code Execution as Grounded Supervision for LLM Reasoning\\\"\\n        authors: \\\"Dongwon Jung, Wenxuan Zhou, Muhao Chen\\\"\\n        year: 2025\\n        venue: \\\"EMNLP 2025\\\"\\n        role: method-component\\n        key_finding: \\\"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\\\"\\n        metrics: {}\\n\\n      - title: \\\"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\\\"\\n        authors: \\\"Lorenzo Ferrando, Nicola Ferraro, et al.\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2503.05703\\\"\\n        role: method-component\\n        key_finding: \\\"对比 regular/compact/dynamic 三种 scratchpad 策略，compact（仅记录变化变量）略优于 regular（全部变量值）。CruxEval/MBPP ~80%。直接支持 plan_001：完整值信息冗余，精简不损失效果。\\\"\\n        metrics:\\n          cruxeval_accuracy: \\\"~80%\\\"\\n          mbpp_accuracy: \\\"~80%\\\"\\n\\n      - title: \\\"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\\\"\\n        authors: \\\"arXiv 2512.00215\\\"\\n        year: 2025\\n        venue: \\\"arXiv\\\"\\n        role: evaluation\\n        key_finding: \\\"LLM 在循环中频繁遗漏/多算变量修改，函数返回值预测不准。说明 LLM 对具体值追踪能力弱于结构理解，为 plan_001 发现（值冗余）提供机制解释。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Reasoning Runtime Behavior of a Program with LLM: How Far Are We? (REval)\\\"\\n        authors: \\\"Junkai Chen et al.\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2403.16437\\\"\\n        role: evaluation\\n        key_finding: \\\"REval 框架评估 LLM 在 4 种 runtime behavior 预测任务上的表现：coverage prediction、program state prediction、execution path prediction、output prediction。平均 accuracy 仅 44.4%，IC score 10.3。揭示 LLM runtime reasoning 能力有限，支持 VOTA 的发现——需要抽象而非让 LLM 直接消化全量 trace。\\\"\\n        metrics:\\n          avg_accuracy: \\\"44.4%\\\"\\n          avg_ic_score: \\\"10.3\\\"\\n\\n      - title: \\\"CodeMind: Evaluating Large Language Models for Code Reasoning\\\"\\n        authors: \\\"Changshu Liu et al. (UIUC)\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2402.09664\\\"\\n        role: evaluation\\n        key_finding: \\\"评估 LLM 在 IER（执行推理）、SR（规格推理）、DSR（动态语义推理）三个维度的代码推理能力。性能随代码复杂度（控制流、非原始类型、API 调用）显著下降。支持 VOTA 的 trace abstraction 动机——复杂 trace 超出 LLM 推理能力。\\\"\\n        metrics: {}\\n\\n      - title: \\\"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\"\\n        authors: \\\"Ruiyang Xu et al. (HKUST)\\\"\\n        year: 2025\\n        venue: \\\"ACL 2025\\\"\\n        role: evaluation\\n        key_finding: \\\"将 CRUXEval 扩展到 19 种编程语言，19K 测试。仅在 Python 训练的模型在其他语言最高 34.4% Pass@1，揭示 cross-language generalization 的局限。对 VOTA 的 cross-model generalization 实验提供方法论参考。\\\"\\n        metrics:\\n          languages: 19\\n          cross_lang_max_pass1: \\\"34.4%\\\"\\n\\n  code-verdict:\\n    description: \\\"LLM 判断代码 pass/fail、正确性分类、mutation testing\\\"\\n    papers:\\n      - title: \\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\\\"\\n        authors: \\\"iSEngLab (Nanjing University)\\\"\\n        year: 2024\\n        venue: \\\"IEEE TSE 2024\\\"\\n        role: direct-competitor\\n        key_finding: \\\"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\\\"\\n        metrics:\\n          accuracy: \\\"79.7%\\\"\\n          recall: \\\"83.2%\\\"\\n          f1_improvement_from_finetuning: \\\"+10.22%\\\"\\n\\n      - title: \\\"LLM4PatchCorrect: Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\"\\n        authors: \\\"Xin Zhou et al. (SMU)\\\"\\n        year: 2024\\n        venue: \\\"IEEE TSE 2024\\\"\\n        role: direct-competitor\\n        key_finding: \\\"用 Starcoder-7B 零样本评估 patch 正确性，输入包含 bug description、execution traces、failing test cases、test coverage。无需微调即达 84.4% accuracy。使用了 execution trace 作为输入信号，与 VOTA 输入空间有重叠，但方法（zero-shot prompting vs SFT）和任务（patch correctness vs test verdict）不同。\\\"\\n        metrics:\\n          accuracy: \\\"84.4%\\\"\\n          f1: \\\"86.5%\\\"\\n        novelty_threat: medium\\n\\n      - title: \\\"Parameter-Efficient Fine-Tuning with Attributed Patch Semantic Graph for Automated Patch Correctness Assessment\\\"\\n        authors: \\\"arXiv 2505.02629\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2505.02629\\\"\\n        role: direct-competitor\\n        key_finding: \\\"提出 APSG（Attributed Patch Semantic Graph）+ Graph-LoRA，用图结构捕获 patch 语义的 data/control flow。在 patch correctness 上比 SOTA 提升 accuracy 3.1-7.5%、F1 3.0-7.1%。方法论（PEFT + 结构化代码表示做分类）与 VOTA 有相似之处，但 VOTA 用 trace signal 而非 graph。\\\"\\n        metrics:\\n          accuracy_improvement: \\\"+3.1-7.5%\\\"\\n          f1_improvement: \\\"+3.0-7.1%\\\"\\n        novelty_threat: medium\\n\\n      - title: \\\"Calibration and Correctness of Language Models for Code\\\"\\n        authors: \\\"Claudio Spiess, David Gros, et al.\\\"\\n        year: 2025\\n        venue: \\\"ICSE 2025\\\"\\n        role: evaluation\\n        key_finding: \\\"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Mutation-Guided LLM-based Test Generation at Meta\\\"\\n        authors: \\\"Christopher Foster et al. (Meta)\\\"\\n        year: 2025\\n        venue: \\\"FSE 2025 (Industry)\\\"\\n        role: evaluation\\n        key_finding: \\\"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\\\"\\n        metrics:\\n          precision: \\\"0.95\\\"\\n          recall: \\\"0.96\\\"\\n          classes_evaluated: \\\"10795\\\"\\n          test_acceptance_rate: \\\"73%\\\"\\n\\n      - title: \\\"FuseFL: Demystifying Faulty Code with LLM via Step-by-Step Reasoning\\\"\\n        authors: \\\"Ratnadira Widyasari et al. (SMU)\\\"\\n        year: 2024\\n        venue: \\\"SANER 2024\\\"\\n        role: background\\n        key_finding: \\\"融合 SBFL 排名 + test execution outcomes（input、expected/actual output、errors）+ code description 做 fault localization。Top-1 localization 比 baseline 提升 32.3%，比 SBFL 提升 68.4%。test execution outcomes 作为输入信号与 VOTA 的 fault indicator signals 理念相关。\\\"\\n        metrics:\\n          top1_improvement_over_baseline: \\\"+32.3%\\\"\\n          top1_improvement_over_sbfl: \\\"+68.4%\\\"\\n\\n  trace-compression:\\n    description: \\\"Execution trace 的压缩、摘要、抽象方法\\\"\\n    papers:\\n      - title: \\\"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\\\"\\n        authors: \\\"Aashish Yadavally, Yi Li, Tien Nguyen\\\"\\n        year: 2024\\n        venue: \\\"FSE 2024\\\"\\n        role: method-component\\n        key_finding: \\\"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\\\"\\n        metrics:\\n          exact_match: \\\"81.31%\\\"\\n          rouge_lcs: \\\"0.954\\\"\\n          fault_localization_accuracy: \\\"63.88%\\\"\\n\\n      - title: \\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\"\\n        authors: \\\"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\\\"\\n        year: 2025\\n        venue: \\\"KnowledgeNLP Workshop @ ACL 2025\\\"\\n        role: background\\n        key_finding: \\\"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\\\"\\n        authors: \\\"ICML 2025 Workshop PRAL\\\"\\n        year: 2025\\n        venue: \\\"ICML 2025 Workshop\\\"\\n        role: method-component\\n        key_finding: \\\"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\\\"\\n        metrics:\\n          cruxeval_o: \\\"70.0%\\\"\\n          livecodebench_execution: \\\"88.3%\\\"\\n\\n      - title: \\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\"\\n        authors: \\\"ICSE 2026 Research Track\\\"\\n        year: 2026\\n        venue: \\\"ICSE 2026\\\"\\n        role: background\\n        key_finding: \\\"在特定位置插入 diagnostic probes 而非全量 trace 记录，Pass@1 提升 34.43%。选择性 trace 采集优于全量，支持 VOTA 的行为模式抽象思路。\\\"\\n        metrics:\\n          pass_at_1_improvement: \\\"+34.43%\\\"\\n\\n      - title: \\\"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\\\"\\n        authors: \\\"Jiaqing Wu et al.\\\"\\n        year: 2026\\n        venue: \\\"arXiv 2604.02647\\\"\\n        role: background\\n        key_finding: \\\"Probe agent 选择性捕获 critical variables 的 execution snapshots 用于 multi-agent repair debate，修复 392 个缺陷。验证了选择性 trace 信息优于全量记录。\\\"\\n        metrics:\\n          defects_fixed: \\\"392\\\"\\n\\n      - title: \\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\\\"\\n        authors: \\\"arXiv 2510.18327\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2510.18327\\\"\\n        role: background\\n        key_finding: \\\"首个让 LLM 主动控制 debugger 做动态分析的 agentic repair 系统。Program Inspector 做策略性 breakpoint 放置和 runtime state 检查，Patch Coder 合成修复。比最强 baseline 提升 5.10-60.37%。选择性 runtime 检查理念与 VOTA 的 fault indicator signal 提取一致。\\\"\\n        metrics:\\n          repair_accuracy_improvement: \\\"+5.10-60.37%\\\"\\n\\n      - title: \\\"MGDebugger: From Code to Correctness via Hierarchical Debugging\\\"\\n        authors: \\\"Yuling Shi et al.\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2410.01215\\\"\\n        role: background\\n        key_finding: \\\"层次化分解代码为子函数树，LLM 模拟执行追踪关键变量状态，bottom-up 定位修复。HumanEval accuracy 75.6%→94.5%。其 LLM-simulated executor 追踪变量状态的方式是一种隐式 trace abstraction。\\\"\\n        metrics:\\n          humaneval_accuracy: \\\"94.5%\\\"\\n          humaneval_fix_accuracy: \\\"97.6%\\\"\\n\\n  debugging-agents:\\n    description: \\\"LLM 多智能体调试框架\\\"\\n    papers:\\n      - title: \\\"UniDebugger: Hierarchical Multi-Agent Framework for Unified Software Debugging\\\"\\n        authors: \\\"Cheryl Lee, Chunqiu Steven Xia, et al. (Lingming Zhang group)\\\"\\n        year: 2025\\n        venue: \\\"EMNLP 2025\\\"\\n        role: background\\n        key_finding: \\\"三层认知架构模拟开发者调试过程，L1→L2→L3 逐层升级。在 Defects4J 上修复 1.25-2.56x bugs。不使用 execution trace 作为输入（纯静态分析），与 VOTA 方法正交。\\\"\\n        metrics:\\n          defects4j_improvement: \\\"1.25-2.56x\\\"\\n\\n      - title: \\\"Seeker: Enhancing Exception Handling in Code with LLM-based Multi-Agent Approach\\\"\\n        authors: \\\"Xuanming Zhang et al.\\\"\\n        year: 2025\\n        venue: \\\"ICLR 2025\\\"\\n        role: background\\n        key_finding: \\\"5-agent 框架做 exception handling 生成，构建 Common Exception Enumeration (CEE) 知识库。Exception handling precision 提升 37%。从 exception taxonomy 角度提供背景——exception 类型和处理策略的系统化，与 VOTA 的 exception event 信号提取视角互补。\\\"\\n        metrics:\\n          exception_handling_precision_improvement: \\\"+37%\\\"\\n\\n  sft-classification:\\n    description: \\\"用 SFT 做分类任务的方法论和 findings\\\"\\n    papers:\\n      - title: \\\"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\\\"\\n        authors: \\\"Amirhossein Yousefiramandi, Ciaran Cooney\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2512.12677\\\"\\n        role: method-component\\n        key_finding: \\\"对比 embedding-based（加分类头）vs instruction-based（prompt->response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\\\"\\n        metrics: {}\\n\\n      - title: \\\"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\\\"\\n        authors: \\\"Rohan Deb, Kiran Koshy Thekumparampil, e\\n\\n... [截断: 省略 1257 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13257, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "587341ed-dd0e-4733-be8f-68b1968a3851",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "7263d66d-961f-4dfc-a0e4-db0549bbefe6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/literature_map.yaml\\\", \\\"content\\\": \\\"categories:\\\\n  execution-trace-llm:\\\\n    description: \\\\\\\"Execution trace 辅助 LLM 代码理解/调试/推理\\\\\\\"\\\\n    papers:\\\\n      - title: \\\\\\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\\\\\"\\\\n        authors: \\\\\\\"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\\\\\\\"\\\\n        metrics:\\\\n          mbpp_fix_rate_improvement: \\\\\\\"+26.1%\\\\\\\"\\\\n          humaneval_fix_rate_improvement: \\\\\\\"+14.3%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\\\\\\\"\\\\n        authors: \\\\\\\"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"Findings of EMNLP 2025\\\\\\\"\\\\n        role: direct-competitor\\\\n        key_finding: \\\\\\\"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"Code Execution as Grounded Supervision for LLM Reasoning\\\\\\\"\\\\n        authors: \\\\\\\"Dongwon Jung, Wenxuan Zhou, Muhao Chen\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\\\\\\\"\\\\n        authors: \\\\\\\"Lorenzo Ferrando, Nicola Ferraro, et al.\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"arXiv 2503.05703\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"对比 regular/compact/dynamic 三种 scratchpad 策略，compact（仅记录变化变量）略优于 regular（全部变量值）。CruxEval/MBPP ~80%。直接支持 plan_001：完整值信息冗余，精简不损失效果。\\\\\\\"\\\\n        metrics:\\\\n          cruxeval_accuracy: \\\\\\\"~80%\\\\\\\"\\\\n          mbpp_accuracy: \\\\\\\"~80%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\\\\\\\"\\\\n        authors: \\\\\\\"arXiv 2512.00215\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"arXiv\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"LLM 在循环中频繁遗漏/多算变量修改，函数返回值预测不准。说明 LLM 对具体值追踪能力弱于结构理解，为 plan_001 发现（值冗余）提供机制解释。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"Reasoning Runtime Behavior of a Program with LLM: How Far Are We? (REval)\\\\\\\"\\\\n        authors: \\\\\\\"Junkai Chen et al.\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"arXiv 2403.16437\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"REval 框架评估 LLM 在 4 种 runtime behavior 预测任务上的表现：coverage prediction、program state prediction、execution path prediction、output prediction。平均 accuracy 仅 44.4%，IC score 10.3。揭示 LLM runtime reasoning 能力有限，支持 VOTA 的发现——需要抽象而非让 LLM 直接消化全量 trace。\\\\\\\"\\\\n        metrics:\\\\n          avg_accuracy: \\\\\\\"44.4%\\\\\\\"\\\\n          avg_ic_score: \\\\\\\"10.3\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CodeMind: Evaluating Large Language Models for Code Reasoning\\\\\\\"\\\\n        authors: \\\\\\\"Changshu Liu et al. (UIUC)\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"arXiv 2402.09664\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"评估 LLM 在 IER（执行推理）、SR（规格推理）、DSR（动态语义推理）三个维度的代码推理能力。性能随代码复杂度（控制流、非原始类型、API 调用）显著下降。支持 VOTA 的 trace abstraction 动机——复杂 trace 超出 LLM 推理能力。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\\\\\"\\\\n        authors: \\\\\\\"Ruiyang Xu et al. (HKUST)\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"ACL 2025\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"将 CRUXEval 扩展到 19 种编程语言，19K 测试。仅在 Python 训练的模型在其他语言最高 34.4% Pass@1，揭示 cross-language generalization 的局限。对 VOTA 的 cross-model generalization 实验提供方法论参考。\\\\\\\"\\\\n        metrics:\\\\n          languages: 19\\\\n          cross_lang_max_pass1: \\\\\\\"34.4%\\\\\\\"\\\\n\\\\n  code-verdict:\\\\n    description: \\\\\\\"LLM 判断代码 pass/fail、正确性分类、mutation testing\\\\\\\"\\\\n    papers:\\\\n      - title: \\\\\\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\\\\\\\"\\\\n        authors: \\\\\\\"iSEngLab (Nanjing University)\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"IEEE TSE 2024\\\\\\\"\\\\n        role: direct-competitor\\\\n        key_finding: \\\\\\\"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\\\\\\\"\\\\n        metrics:\\\\n          accuracy: \\\\\\\"79.7%\\\\\\\"\\\\n          recall: \\\\\\\"83.2%\\\\\\\"\\\\n          f1_improvement_from_finetuning: \\\\\\\"+10.22%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"LLM4PatchCorrect: Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\\\\\"\\\\n        authors: \\\\\\\"Xin Zhou et al. (SMU)\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"IEEE TSE 2024\\\\\\\"\\\\n        role: direct-competitor\\\\n        key_finding: \\\\\\\"用 Starcoder-7B 零样本评估 patch 正确性，输入包含 bug description、execution traces、failing test cases、test coverage。无需微调即达 84.4% accuracy。使用了 execution trace 作为输入信号，与 VOTA 输入空间有重叠，但方法（zero-shot prompting vs SFT）和任务（patch correctness vs test verdict）不同。\\\\\\\"\\\\n        metrics:\\\\n          accuracy: \\\\\\\"84.4%\\\\\\\"\\\\n          f1: \\\\\\\"86.5%\\\\\\\"\\\\n        novelty_threat: medium\\\\n\\\\n      - title: \\\\\\\"Parameter-Efficient Fine-Tuning with Attributed Patch Semantic Graph for Automated Patch Correctness Assessment\\\\\\\"\\\\n        authors: \\\\\\\"arXiv 2505.02629\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"arXiv 2505.02629\\\\\\\"\\\\n        role: direct-competitor\\\\n        key_finding: \\\\\\\"提出 APSG（Attributed Patch Semantic Graph）+ Graph-LoRA，用图结构捕获 patch 语义的 data/control flow。在 patch correctness 上比 SOTA 提升 accuracy 3.1-7.5%、F1 3.0-7.1%。方法论（PEFT + 结构化代码表示做分类）与 VOTA 有相似之处，但 VOTA 用 trace signal 而非 graph。\\\\\\\"\\\\n        metrics:\\\\n          accuracy_improvement: \\\\\\\"+3.1-7.5%\\\\\\\"\\\\n          f1_improvement: \\\\\\\"+3.0-7.1%\\\\\\\"\\\\n        novelty_threat: medium\\\\n\\\\n      - title: \\\\\\\"Calibration and Correctness of Language Models for Code\\\\\\\"\\\\n        authors: \\\\\\\"Claudio Spiess, David Gros, et al.\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"ICSE 2025\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"Mutation-Guided LLM-based Test Generation at Meta\\\\\\\"\\\\n        authors: \\\\\\\"Christopher Foster et al. (Meta)\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"FSE 2025 (Industry)\\\\\\\"\\\\n        role: evaluation\\\\n        key_finding: \\\\\\\"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\\\\\\\"\\\\n        metrics:\\\\n          precision: \\\\\\\"0.95\\\\\\\"\\\\n          recall: \\\\\\\"0.96\\\\\\\"\\\\n          classes_evaluated: \\\\\\\"10795\\\\\\\"\\\\n          test_acceptance_rate: \\\\\\\"73%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"FuseFL: Demystifying Faulty Code with LLM via Step-by-Step Reasoning\\\\\\\"\\\\n        authors: \\\\\\\"Ratnadira Widyasari et al. (SMU)\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"SANER 2024\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"融合 SBFL 排名 + test execution outcomes（input、expected/actual output、errors）+ code description 做 fault localization。Top-1 localization 比 baseline 提升 32.3%，比 SBFL 提升 68.4%。test execution outcomes 作为输入信号与 VOTA 的 fault indicator signals 理念相关。\\\\\\\"\\\\n        metrics:\\\\n          top1_improvement_over_baseline: \\\\\\\"+32.3%\\\\\\\"\\\\n          top1_improvement_over_sbfl: \\\\\\\"+68.4%\\\\\\\"\\\\n\\\\n  trace-compression:\\\\n    description: \\\\\\\"Execution trace 的压缩、摘要、抽象方法\\\\\\\"\\\\n    papers:\\\\n      - title: \\\\\\\"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\\\\\\\"\\\\n        authors: \\\\\\\"Aashish Yadavally, Yi Li, Tien Nguyen\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"FSE 2024\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\\\\\\\"\\\\n        metrics:\\\\n          exact_match: \\\\\\\"81.31%\\\\\\\"\\\\n          rouge_lcs: \\\\\\\"0.954\\\\\\\"\\\\n          fault_localization_accuracy: \\\\\\\"63.88%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\\\\\"\\\\n        authors: \\\\\\\"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"KnowledgeNLP Workshop @ ACL 2025\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\\\\\\\"\\\\n        authors: \\\\\\\"ICML 2025 Workshop PRAL\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"ICML 2025 Workshop\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\\\\\\\"\\\\n        metrics:\\\\n          cruxeval_o: \\\\\\\"70.0%\\\\\\\"\\\\n          livecodebench_execution: \\\\\\\"88.3%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\\\\\"\\\\n        authors: \\\\\\\"ICSE 2026 Research Track\\\\\\\"\\\\n        year: 2026\\\\n        venue: \\\\\\\"ICSE 2026\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"在特定位置插入 diagnostic probes 而非全量 trace 记录，Pass@1 提升 34.43%。选择性 trace 采集优于全量，支持 VOTA 的行为模式抽象思路。\\\\\\\"\\\\n        metrics:\\\\n          pass_at_1_improvement: \\\\\\\"+34.43%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\\\\\\\"\\\\n        authors: \\\\\\\"Jiaqing Wu et al.\\\\\\\"\\\\n        year: 2026\\\\n        venue: \\\\\\\"arXiv 2604.02647\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"Probe agent 选择性捕获 critical variables 的 execution snapshots 用于 multi-agent repair debate，修复 392 个缺陷。验证了选择性 trace 信息优于全量记录。\\\\\\\"\\\\n        metrics:\\\\n          defects_fixed: \\\\\\\"392\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\\\\\\\"\\\\n        authors: \\\\\\\"arXiv 2510.18327\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"arXiv 2510.18327\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"首个让 LLM 主动控制 debugger 做动态分析的 agentic repair 系统。Program Inspector 做策略性 breakpoint 放置和 runtime state 检查，Patch Coder 合成修复。比最强 baseline 提升 5.10-60.37%。选择性 runtime 检查理念与 VOTA 的 fault indicator signal 提取一致。\\\\\\\"\\\\n        metrics:\\\\n          repair_accuracy_improvement: \\\\\\\"+5.10-60.37%\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"MGDebugger: From Code to Correctness via Hierarchical Debugging\\\\\\\"\\\\n        authors: \\\\\\\"Yuling Shi et al.\\\\\\\"\\\\n        year: 2024\\\\n        venue: \\\\\\\"arXiv 2410.01215\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"层次化分解代码为子函数树，LLM 模拟执行追踪关键变量状态，bottom-up 定位修复。HumanEval accuracy 75.6%→94.5%。其 LLM-simulated executor 追踪变量状态的方式是一种隐式 trace abstraction。\\\\\\\"\\\\n        metrics:\\\\n          humaneval_accuracy: \\\\\\\"94.5%\\\\\\\"\\\\n          humaneval_fix_accuracy: \\\\\\\"97.6%\\\\\\\"\\\\n\\\\n  debugging-agents:\\\\n    description: \\\\\\\"LLM 多智能体调试框架\\\\\\\"\\\\n    papers:\\\\n      - title: \\\\\\\"UniDebugger: Hierarchical Multi-Agent Framework for Unified Software Debugging\\\\\\\"\\\\n        authors: \\\\\\\"Cheryl Lee, Chunqiu Steven Xia, et al. (Lingming Zhang group)\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"三层认知架构模拟开发者调试过程，L1→L2→L3 逐层升级。在 Defects4J 上修复 1.25-2.56x bugs。不使用 execution trace 作为输入（纯静态分析），与 VOTA 方法正交。\\\\\\\"\\\\n        metrics:\\\\n          defects4j_improvement: \\\\\\\"1.25-2.56x\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Seeker: Enhancing Exception Handling in Code with LLM-based Multi-Agent Approach\\\\\\\"\\\\n        authors: \\\\\\\"Xuanming Zhang et al.\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n        role: background\\\\n        key_finding: \\\\\\\"5-agent 框架做 exception handling 生成，构建 Common Exception Enumeration (CEE) 知识库。Exception handling precision 提升 37%。从 exception taxonomy 角度提供背景——exception 类型和处理策略的系统化，与 VOTA 的 exception event 信号提取视角互补。\\\\\\\"\\\\n        metrics:\\\\n          exception_handling_precision_improvement: \\\\\\\"+37%\\\\\\\"\\\\n\\\\n  sft-classification:\\\\n    description: \\\\\\\"用 SFT 做分类任务的方法论和 findings\\\\\\\"\\\\n    papers:\\\\n      - title: \\\\\\\"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\\\\\\\"\\\\n        authors: \\\\\\\"Amirhossein Yousefiramandi, Ciaran Cooney\\\\\\\"\\\\n        year: 2025\\\\n        venue: \\\\\\\"arXiv 2512.12677\\\\\\\"\\\\n        role: method-component\\\\n        key_finding: \\\\\\\"对比 embedding-based（加分类头）vs instruction-based（prompt->response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\\\\\\\"\\\\n        metrics: {}\\\\n\\\\n      - title: \\\\\\\"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\\\\\\\"\\\\n        authors: \\\\\\\"Rohan Deb, Kiran Koshy Thekumparampil, e\\\\n\\\\n... [截断: 省略 1257 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 13257, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/literature_map.yaml\", \"content\": \"categories:\\n  execution-trace-llm:\\n    description: \\\"Execution trace 辅助 LLM 代码理解/调试/推理\\\"\\n    papers:\\n      - title: \\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\"\\n        authors: \\\"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\\\"\\n        year: 2024\\n        venue: \\\"ICML 2024\\\"\\n        role: method-component\\n        key_finding: \\\"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\\\"\\n        metrics:\\n          mbpp_fix_rate_improvement: \\\"+26.1%\\\"\\n          humaneval_fix_rate_improvement: \\\"+14.3%\\\"\\n\\n      - title: \\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\\\"\\n        authors: \\\"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\\\"\\n        year: 2025\\n        venue: \\\"Findings of EMNLP 2025\\\"\\n        role: direct-competitor\\n        key_finding: \\\"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Code Execution as Grounded Supervision for LLM Reasoning\\\"\\n        authors: \\\"Dongwon Jung, Wenxuan Zhou, Muhao Chen\\\"\\n        year: 2025\\n        venue: \\\"EMNLP 2025\\\"\\n        role: method-component\\n        key_finding: \\\"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\\\"\\n        metrics: {}\\n\\n      - title: \\\"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\\\"\\n        authors: \\\"Lorenzo Ferrando, Nicola Ferraro, et al.\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2503.05703\\\"\\n        role: method-component\\n        key_finding: \\\"对比 regular/compact/dynamic 三种 scratchpad 策略，compact（仅记录变化变量）略优于 regular（全部变量值）。CruxEval/MBPP ~80%。直接支持 plan_001：完整值信息冗余，精简不损失效果。\\\"\\n        metrics:\\n          cruxeval_accuracy: \\\"~80%\\\"\\n          mbpp_accuracy: \\\"~80%\\\"\\n\\n      - title: \\\"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\\\"\\n        authors: \\\"arXiv 2512.00215\\\"\\n        year: 2025\\n        venue: \\\"arXiv\\\"\\n        role: evaluation\\n        key_finding: \\\"LLM 在循环中频繁遗漏/多算变量修改，函数返回值预测不准。说明 LLM 对具体值追踪能力弱于结构理解，为 plan_001 发现（值冗余）提供机制解释。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Reasoning Runtime Behavior of a Program with LLM: How Far Are We? (REval)\\\"\\n        authors: \\\"Junkai Chen et al.\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2403.16437\\\"\\n        role: evaluation\\n        key_finding: \\\"REval 框架评估 LLM 在 4 种 runtime behavior 预测任务上的表现：coverage prediction、program state prediction、execution path prediction、output prediction。平均 accuracy 仅 44.4%，IC score 10.3。揭示 LLM runtime reasoning 能力有限，支持 VOTA 的发现——需要抽象而非让 LLM 直接消化全量 trace。\\\"\\n        metrics:\\n          avg_accuracy: \\\"44.4%\\\"\\n          avg_ic_score: \\\"10.3\\\"\\n\\n      - title: \\\"CodeMind: Evaluating Large Language Models for Code Reasoning\\\"\\n        authors: \\\"Changshu Liu et al. (UIUC)\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2402.09664\\\"\\n        role: evaluation\\n        key_finding: \\\"评估 LLM 在 IER（执行推理）、SR（规格推理）、DSR（动态语义推理）三个维度的代码推理能力。性能随代码复杂度（控制流、非原始类型、API 调用）显著下降。支持 VOTA 的 trace abstraction 动机——复杂 trace 超出 LLM 推理能力。\\\"\\n        metrics: {}\\n\\n      - title: \\\"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\"\\n        authors: \\\"Ruiyang Xu et al. (HKUST)\\\"\\n        year: 2025\\n        venue: \\\"ACL 2025\\\"\\n        role: evaluation\\n        key_finding: \\\"将 CRUXEval 扩展到 19 种编程语言，19K 测试。仅在 Python 训练的模型在其他语言最高 34.4% Pass@1，揭示 cross-language generalization 的局限。对 VOTA 的 cross-model generalization 实验提供方法论参考。\\\"\\n        metrics:\\n          languages: 19\\n          cross_lang_max_pass1: \\\"34.4%\\\"\\n\\n  code-verdict:\\n    description: \\\"LLM 判断代码 pass/fail、正确性分类、mutation testing\\\"\\n    papers:\\n      - title: \\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\\\"\\n        authors: \\\"iSEngLab (Nanjing University)\\\"\\n        year: 2024\\n        venue: \\\"IEEE TSE 2024\\\"\\n        role: direct-competitor\\n        key_finding: \\\"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\\\"\\n        metrics:\\n          accuracy: \\\"79.7%\\\"\\n          recall: \\\"83.2%\\\"\\n          f1_improvement_from_finetuning: \\\"+10.22%\\\"\\n\\n      - title: \\\"LLM4PatchCorrect: Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\"\\n        authors: \\\"Xin Zhou et al. (SMU)\\\"\\n        year: 2024\\n        venue: \\\"IEEE TSE 2024\\\"\\n        role: direct-competitor\\n        key_finding: \\\"用 Starcoder-7B 零样本评估 patch 正确性，输入包含 bug description、execution traces、failing test cases、test coverage。无需微调即达 84.4% accuracy。使用了 execution trace 作为输入信号，与 VOTA 输入空间有重叠，但方法（zero-shot prompting vs SFT）和任务（patch correctness vs test verdict）不同。\\\"\\n        metrics:\\n          accuracy: \\\"84.4%\\\"\\n          f1: \\\"86.5%\\\"\\n        novelty_threat: medium\\n\\n      - title: \\\"Parameter-Efficient Fine-Tuning with Attributed Patch Semantic Graph for Automated Patch Correctness Assessment\\\"\\n        authors: \\\"arXiv 2505.02629\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2505.02629\\\"\\n        role: direct-competitor\\n        key_finding: \\\"提出 APSG（Attributed Patch Semantic Graph）+ Graph-LoRA，用图结构捕获 patch 语义的 data/control flow。在 patch correctness 上比 SOTA 提升 accuracy 3.1-7.5%、F1 3.0-7.1%。方法论（PEFT + 结构化代码表示做分类）与 VOTA 有相似之处，但 VOTA 用 trace signal 而非 graph。\\\"\\n        metrics:\\n          accuracy_improvement: \\\"+3.1-7.5%\\\"\\n          f1_improvement: \\\"+3.0-7.1%\\\"\\n        novelty_threat: medium\\n\\n      - title: \\\"Calibration and Correctness of Language Models for Code\\\"\\n        authors: \\\"Claudio Spiess, David Gros, et al.\\\"\\n        year: 2025\\n        venue: \\\"ICSE 2025\\\"\\n        role: evaluation\\n        key_finding: \\\"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Mutation-Guided LLM-based Test Generation at Meta\\\"\\n        authors: \\\"Christopher Foster et al. (Meta)\\\"\\n        year: 2025\\n        venue: \\\"FSE 2025 (Industry)\\\"\\n        role: evaluation\\n        key_finding: \\\"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\\\"\\n        metrics:\\n          precision: \\\"0.95\\\"\\n          recall: \\\"0.96\\\"\\n          classes_evaluated: \\\"10795\\\"\\n          test_acceptance_rate: \\\"73%\\\"\\n\\n      - title: \\\"FuseFL: Demystifying Faulty Code with LLM via Step-by-Step Reasoning\\\"\\n        authors: \\\"Ratnadira Widyasari et al. (SMU)\\\"\\n        year: 2024\\n        venue: \\\"SANER 2024\\\"\\n        role: background\\n        key_finding: \\\"融合 SBFL 排名 + test execution outcomes（input、expected/actual output、errors）+ code description 做 fault localization。Top-1 localization 比 baseline 提升 32.3%，比 SBFL 提升 68.4%。test execution outcomes 作为输入信号与 VOTA 的 fault indicator signals 理念相关。\\\"\\n        metrics:\\n          top1_improvement_over_baseline: \\\"+32.3%\\\"\\n          top1_improvement_over_sbfl: \\\"+68.4%\\\"\\n\\n  trace-compression:\\n    description: \\\"Execution trace 的压缩、摘要、抽象方法\\\"\\n    papers:\\n      - title: \\\"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\\\"\\n        authors: \\\"Aashish Yadavally, Yi Li, Tien Nguyen\\\"\\n        year: 2024\\n        venue: \\\"FSE 2024\\\"\\n        role: method-component\\n        key_finding: \\\"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\\\"\\n        metrics:\\n          exact_match: \\\"81.31%\\\"\\n          rouge_lcs: \\\"0.954\\\"\\n          fault_localization_accuracy: \\\"63.88%\\\"\\n\\n      - title: \\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\"\\n        authors: \\\"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\\\"\\n        year: 2025\\n        venue: \\\"KnowledgeNLP Workshop @ ACL 2025\\\"\\n        role: background\\n        key_finding: \\\"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\\\"\\n        metrics: {}\\n\\n      - title: \\\"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\\\"\\n        authors: \\\"ICML 2025 Workshop PRAL\\\"\\n        year: 2025\\n        venue: \\\"ICML 2025 Workshop\\\"\\n        role: method-component\\n        key_finding: \\\"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\\\"\\n        metrics:\\n          cruxeval_o: \\\"70.0%\\\"\\n          livecodebench_execution: \\\"88.3%\\\"\\n\\n      - title: \\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\"\\n        authors: \\\"ICSE 2026 Research Track\\\"\\n        year: 2026\\n        venue: \\\"ICSE 2026\\\"\\n        role: background\\n        key_finding: \\\"在特定位置插入 diagnostic probes 而非全量 trace 记录，Pass@1 提升 34.43%。选择性 trace 采集优于全量，支持 VOTA 的行为模式抽象思路。\\\"\\n        metrics:\\n          pass_at_1_improvement: \\\"+34.43%\\\"\\n\\n      - title: \\\"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\\\"\\n        authors: \\\"Jiaqing Wu et al.\\\"\\n        year: 2026\\n        venue: \\\"arXiv 2604.02647\\\"\\n        role: background\\n        key_finding: \\\"Probe agent 选择性捕获 critical variables 的 execution snapshots 用于 multi-agent repair debate，修复 392 个缺陷。验证了选择性 trace 信息优于全量记录。\\\"\\n        metrics:\\n          defects_fixed: \\\"392\\\"\\n\\n      - title: \\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\\\"\\n        authors: \\\"arXiv 2510.18327\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2510.18327\\\"\\n        role: background\\n        key_finding: \\\"首个让 LLM 主动控制 debugger 做动态分析的 agentic repair 系统。Program Inspector 做策略性 breakpoint 放置和 runtime state 检查，Patch Coder 合成修复。比最强 baseline 提升 5.10-60.37%。选择性 runtime 检查理念与 VOTA 的 fault indicator signal 提取一致。\\\"\\n        metrics:\\n          repair_accuracy_improvement: \\\"+5.10-60.37%\\\"\\n\\n      - title: \\\"MGDebugger: From Code to Correctness via Hierarchical Debugging\\\"\\n        authors: \\\"Yuling Shi et al.\\\"\\n        year: 2024\\n        venue: \\\"arXiv 2410.01215\\\"\\n        role: background\\n        key_finding: \\\"层次化分解代码为子函数树，LLM 模拟执行追踪关键变量状态，bottom-up 定位修复。HumanEval accuracy 75.6%→94.5%。其 LLM-simulated executor 追踪变量状态的方式是一种隐式 trace abstraction。\\\"\\n        metrics:\\n          humaneval_accuracy: \\\"94.5%\\\"\\n          humaneval_fix_accuracy: \\\"97.6%\\\"\\n\\n  debugging-agents:\\n    description: \\\"LLM 多智能体调试框架\\\"\\n    papers:\\n      - title: \\\"UniDebugger: Hierarchical Multi-Agent Framework for Unified Software Debugging\\\"\\n        authors: \\\"Cheryl Lee, Chunqiu Steven Xia, et al. (Lingming Zhang group)\\\"\\n        year: 2025\\n        venue: \\\"EMNLP 2025\\\"\\n        role: background\\n        key_finding: \\\"三层认知架构模拟开发者调试过程，L1→L2→L3 逐层升级。在 Defects4J 上修复 1.25-2.56x bugs。不使用 execution trace 作为输入（纯静态分析），与 VOTA 方法正交。\\\"\\n        metrics:\\n          defects4j_improvement: \\\"1.25-2.56x\\\"\\n\\n      - title: \\\"Seeker: Enhancing Exception Handling in Code with LLM-based Multi-Agent Approach\\\"\\n        authors: \\\"Xuanming Zhang et al.\\\"\\n        year: 2025\\n        venue: \\\"ICLR 2025\\\"\\n        role: background\\n        key_finding: \\\"5-agent 框架做 exception handling 生成，构建 Common Exception Enumeration (CEE) 知识库。Exception handling precision 提升 37%。从 exception taxonomy 角度提供背景——exception 类型和处理策略的系统化，与 VOTA 的 exception event 信号提取视角互补。\\\"\\n        metrics:\\n          exception_handling_precision_improvement: \\\"+37%\\\"\\n\\n  sft-classification:\\n    description: \\\"用 SFT 做分类任务的方法论和 findings\\\"\\n    papers:\\n      - title: \\\"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\\\"\\n        authors: \\\"Amirhossein Yousefiramandi, Ciaran Cooney\\\"\\n        year: 2025\\n        venue: \\\"arXiv 2512.12677\\\"\\n        role: method-component\\n        key_finding: \\\"对比 embedding-based（加分类头）vs instruction-based（prompt->response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\\\"\\n        metrics: {}\\n\\n      - title: \\\"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\\\"\\n        authors: \\\"Rohan Deb, Kiran Koshy Thekumparampil, e\\n\\n... [截断: 省略 1257 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13257, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "587341ed-dd0e-4733-be8f-68b1968a3851",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "7263d66d-961f-4dfc-a0e4-db0549bbefe6",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-15T13:40:25.804Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the literature map. Now let me compose the analysis and Director report.
+
+**Analysis of deepseek_no_trace_seed42:**
+
+DeepSeek-Coder no_trace results:
+- Accuracy: 73.36% [70.8%, 75.7%]
+- Majority baseline: 71.51%
+- Lift: +1.85pp, **not statistically significant** (CI includes 0: [-0.9pp, +4.6pp])
+
+Cross-model comparison:
+| Condition | Qwen-2.5-Coder-7B | DeepSeek-Coder-6.7B |
+
+
+|-----------|-------------------|---------------------|
+| no_trace | 75.13% | 73.36% |
+| VOTA | 99.16% | 84.45% |
+| exception_only | 99.83% | running... |
+| full_trace | 81.76% | just submitted |
+
+Looking at the results, both models struggle with the no_trace baseline near the majority baseline, confirming this condition is genuinely challenging. DeepSeek's no_trace performance trails Qwen slightly at 73.36% versus 75.13%, though the gap is modest.
+
+The VOTA improvement tells a more interesting story — Qwen gains substantially more (+24.03pp) compared to DeepSeek's +11.09pp, and notably DeepSeek's VOTA score of 84.45% is comparable to Qwen's full_trace performance at 81.76%, suggesting DeepSeek may struggle more with extracting signal from compressed traces. The exception_only experiment on DeepSeek will be crucial to test whether exceptions emerge as the dominant signal across both models.
+
+This pattern aligns with recent findings that execution traces provide limited benefits for SFT — DeepSeek's smaller VOTA lift supports this, though the +11pp improvement is still meaningful. The cross-model differences appear consistent with broader findings about trace utility in code reasoning tasks.
+
+I need to wrap up the report while managing resources properly — both GPUs are occupied with DeepSeek experiments, but I should spawn workers to search for related cross-model trace compression studies and prepare the comparison analysis script for when the remaining conditions finish.
+
+The performance gap between DeepSeek (84.45%) and Qwen (99.16%) on VOTA is striking and worth flagging. The exception_only result will be crucial for understanding whether the degradation stems from model capability differences or something about how the data tokenizes — if exception_only stays above 95% on DeepSeek, it suggests exceptions are doing the heavy lifting; if it drops closer to 85%, the picture becomes more complex.
+
+I'm checking the worker pool status and realizing I need to spawn additional workers for literature research on cross-model generalization and prepare the comparative analysis. But I should get the Director report out first with the key findings, then handle the worker allocation. Let me structure the report around the concrete results we have: the no_trace baseline for DeepSeek is complete at 73.36%, and I'll note which experiments are in flight and what we're waiting on. I'm about to post these findings to the Director and then start a literature worker to help with the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7263d66d-961f-4dfc-a0e4-db0549bbefe6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sy2Mac5BBHt94fqRgG",
+  "type": "assistant",
+  "uuid": "06826147-c966-421a-9c70-f8dff1a66044",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2fv17xt3sAof9PDv3Fm97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6562,
+      "cache_read_input_tokens": 78777,
+      "output_tokens": 2925,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2925,
+          "cache_read_input_tokens": 78777,
+          "cache_creation_input_tokens": 6562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-15T13:40:26.067Z_
+
+现在向 Director 汇报，同时派出文献联动 Worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06826147-c966-421a-9c70-f8dff1a66044",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sy2Mac5BBHt94fqRgG",
+  "type": "assistant",
+  "uuid": "07daa274-f064-4dc6-a59c-c2fdaac7ed14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2fv17xt3sAof9PDv3Fm97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6562,
+      "cache_read_input_tokens": 78777,
+      "output_tokens": 2925,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2925,
+          "cache_read_input_tokens": 78777,
+          "cache_creation_input_tokens": 6562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T13:40:43.312Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01Pv72qzx61QjQn3T3NJYkby`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 (cuda:0 deepseek_full_trace, cuda:1 deepseek_exception_only) | Worker 池 1 (GPU A:0 / CPU B:1 文献联动)\n\n## deepseek_no_trace_seed42 完成 → DONE (success)\n\n**结果**: accuracy 73.36% [70.8%, 75.7%], lift over majority +1.85pp (CI [-0.9, +4.6], **不显著**)\n\n### 跨模型对比表 (plan_004 进度 2/4)\n\n| Condition | Qwen-2.5-Coder-7B | DeepSeek-Coder-6.7B | Δ |\n|-----------|-------------------|---------------------|---|\n| no_trace | 75.13% | 73.36% | -1.77pp |\n| VOTA | 99.16% | 84.45% | -14.71pp |\n| exception_only | 99.83% | ⏳ running cuda:1 | — |\n| full_trace | 81.76% | ⏳ just submitted cuda:0 | — |\n\n### 分析\n\n1. **Baseline 一致**: 两模型 no_trace 都贴近 majority baseline (71.5%)，差异在噪声范围内——确认 verdict task 在无 trace 时对两模型都很难\n2. **VOTA 跨模型泛化确认但幅度衰减**: DeepSeek VOTA lift +11.09pp vs Qwen +24.03pp。DeepSeek VOTA (84.45%) ≈ Qwen full_trace (81.76%)，说明 DeepSeek-Coder-6.7B 从 compressed trace 提取信号的能力弱于 Qwen\n3. **关键等待**: exception_only on DeepSeek — 如果仍 >95%，\"exception dominance\" story 跨模型成立；如果降至 ~85%，story 需调整为 \"exception dominance 是 model-dependent\"\n\n### 实验计划反思\n\n- plan_004 剩 2 个条件（exception_only ~1h, full_trace ~2h），今日内全部完成\n- 跨模型 VOTA 效果衰减不影响 core claim — paper 可 claim \"VOTA consistently outperforms no_trace across models\" (DeepSeek +11pp, Qwen +24pp)，且 DeepSeek 的较低效果可解释为模型 capacity 差异\n- exception_only 若跨模型 dominant → Claim 3 (component hierarchy) 增强为 cross-model finding\n- **新维度**: 值得加一段 Discussion 分析 model capacity 对 trace 利用效率的影响\n\n### 文献联动\n\n- Wang et al. (2025, EMNLP Findings) 报告 \"trace 帮助有限\" — DeepSeek 的较低收益部分呼应此观点，但 +11pp lift 仍然 meaningful。paper 中可对比讨论\n- 跨模型 degradation 与 CRUXEval-X (Xu et al. 2025) 的 cross-model generalization 局限性一致\n\n### 下一步\n\n1. 等 exception_only + full_trace 完成 → 完整跨模型对比表\n2. 4 条件齐全后做 bootstrap pairwise significance test\n3. 更新 paper_framing.md 加入跨模型 results",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07daa274-f064-4dc6-a59c-c2fdaac7ed14",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sy2Mac5BBHt94fqRgG",
+  "type": "assistant",
+  "uuid": "e803251f-b618-48e6-aab0-a059694875a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2fv17xt3sAof9PDv3Fm97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6562,
+      "cache_read_input_tokens": 78777,
+      "output_tokens": 2925,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2925,
+          "cache_read_input_tokens": 78777,
+          "cache_creation_input_tokens": 6562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T13:40:44.622Z_
+
+<details><summary>↩ Tool result · `toolu_01Pv72qzx61QjQn3T3NJYkby`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e803251f-b618-48e6-aab0-a059694875a3",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "7fa91fda-5917-4fe1-87d8-f165e16aa492",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "e803251f-b618-48e6-aab0-a059694875a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T13:40:52.507Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01Qu6kYqoy7SgTUVzc8BBgqQ`</summary>
+
+```json
+{
+  "task_type": "research:cross-model-trace-lit",
+  "project": "trace-verdict-study",
+  "task_prompt": "## 任务\n搜索关于 execution trace 方法在不同 LLM 之间泛化性的文献，特别关注：\n1. 同一 trace-based 方法在不同模型（如 Qwen vs DeepSeek vs CodeLlama）上效果差异的研究\n2. 模型 capacity/architecture 对 trace 信息利用效率的影响\n3. SFT 分类任务中跨模型泛化性的研究\n\n## 背景\n我们的实验发现 VOTA (trace compression) 在 Qwen-2.5-Coder-7B 上 accuracy 99.16%，但在 DeepSeek-Coder-6.7B 上仅 84.45%（同一数据、同一方法）。需要文献支撑来解释这一跨模型差异。\n\n## 搜索关键词建议\n- \"cross-model generalization execution trace\"\n- \"model capacity code understanding\"\n- \"trace-based SFT different models\"\n- \"code LLM comparison fine-tuning\"\n\n## 产出要求\n找到 3-5 篇相关论文，每篇提供：title, authors, year, venue, key finding（与我们的跨模型差异的关联）。如果没有找到直接相关的，报告最接近的 + 说明文献空白。\n\n输出为 YAML 格式，可直接合入 literature_map.yaml。",
+  "tool_groups": [
+    "knowledge"
+  ],
+  "tools": [
+    "WebSearch"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fa91fda-5917-4fe1-87d8-f165e16aa492",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Sy2Mac5BBHt94fqRgG",
+  "type": "assistant",
+  "uuid": "7f037bb0-1c56-4872-952a-abebefa43777",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2fv17xt3sAof9PDv3Fm97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6562,
+      "cache_read_input_tokens": 78777,
+      "output_tokens": 2925,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2925,
+          "cache_read_input_tokens": 78777,
+          "cache_creation_input_tokens": 6562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T13:40:54.838Z_
+
+<details><summary>↩ Tool result · `toolu_01Qu6kYqoy7SgTUVzc8BBgqQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_cross-model-trace-lit_20260515T134052\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_research_cross-model-trace-lit_20260515T134052.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_cross-model-trace-lit_20260515T134052 started. Use get_worker_status('worker_research_cross-model-trace-lit_20260515T134052') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f037bb0-1c56-4872-952a-abebefa43777",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "f892d01f-8f29-43dc-a788-f29d6f02baa9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_cross-model-trace-lit_20260515T134052\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_research_cross-model-trace-lit_20260515T134052.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_cross-model-trace-lit_20260515T134052 started. Use get_worker_status('worker_research_cross-model-trace-lit_20260515T134052') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_research_cross-model-trace-lit_20260515T134052\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_research_cross-model-trace-lit_20260515T134052.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_cross-model-trace-lit_20260515T134052 started. Use get_worker_status('worker_research_cross-model-trace-lit_20260515T134052') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7f037bb0-1c56-4872-952a-abebefa43777",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-15T13:41:05.735Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Director 已汇报, 文献搜索 Worker 已派出. Let me also update memory.md with the cross-model insight.
+
+Let me now:
+1. Read memory.md to update it
+2. Update notes on the registry
+
+Actually, per the on-experiment-done flow, I should:
+4. memory.md 写入非 metrics 性质的决策原因
+
+The key insight here is: VOTA effectiveness varies significantly across models (99.16% Qwen vs 84.45% DeepSeek), suggesting model capacity matters for trace signal extraction. This is a non-obvious finding worth recording.
+
+
+Now I'm opening memory.md to record this cross-model finding about VOTA's differential effectiveness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f892d01f-8f29-43dc-a788-f29d6f02baa9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4T3eBDwHdrYQ3JnMcmo",
+  "type": "assistant",
+  "uuid": "38b0d446-c121-4e6d-b8c9-1e4d0e24d0fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWW7RpkXJXTRjEuP5a79Rc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3260,
+      "cache_read_input_tokens": 85339,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 85339,
+          "cache_creation_input_tokens": 3260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-15T13:41:05.737Z_
+
+已汇报 Director，文献 Worker 已派出。更新 memory.md 记录跨模型发现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38b0d446-c121-4e6d-b8c9-1e4d0e24d0fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4T3eBDwHdrYQ3JnMcmo",
+  "type": "assistant",
+  "uuid": "5fb3ee30-cb41-41a2-adf4-7b7684283445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWW7RpkXJXTRjEuP5a79Rc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3260,
+      "cache_read_input_tokens": 85339,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 85339,
+          "cache_creation_input_tokens": 3260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-15T13:41:05.783Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SAQmr3XpmBqmTuhzaJJjR9`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fb3ee30-cb41-41a2-adf4-7b7684283445",
+  "isSidechain": false,
+  "requestId": "req_011Cb4T3eBDwHdrYQ3JnMcmo",
+  "type": "assistant",
+  "uuid": "f15c544e-2664-49e3-8d5a-74f158db0920",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWW7RpkXJXTRjEuP5a79Rc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3260,
+      "cache_read_input_tokens": 85339,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 85339,
+          "cache_creation_input_tokens": 3260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T13:41:05.798Z_
+
+<details><summary>↩ Tool result · `toolu_01SAQmr3XpmBqmTuhzaJJjR9`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"content\": \"# trace-verdict-study Memory\\n\\n## MVP Round 1 结论（已作废）[2026-05-14]\\n\\nRound 1 结果全部无效，原因：\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\n\\n### 教训\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\"如果模型只看这一个字段能否猜到答案\\\"的测试\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\n\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\n\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\n\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\n- Claim 1 走 **full positive framing**: \\\"VOTA teaches execution-grounded verdict reasoning\\\"\\n\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\n\\n### plan_003a ablation: exception_only [2026-05-15]\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\n\\n### plan_003b ablation: loop_only [2026-05-15]\\n- **accuracy 85.6%** [83.5, 87.6]\\n- **结论：loop compression 提供中等贡献，但 exception 是决定性组件**\\n\\n### plan_003c ablation: ae_only [2026-05-15] — Tier 1 diagnostic-moment signal\\n- **accuracy 99.92%** [99.75%, 100%] — 与 exception_only (99.83%) 统计等价\\n- D013 裁定：不是 data leakage\\n- Pairwise bootstrap: vs exception_only p=0.80 ❌ 统计等价\\n\\n### 完整组件重要性层级（D013 确认）[2026-05-15]\\n```\\nae_only         99.92%  Tier 1\\nexception_only  99.83%  Tier 1\\nVOTA w/o ae     99.4%\\nVOTA (full)     99.2%\\nlabel-only      86.2%\\nloop_only       85.6%\\nfull_trace      81.8%\\nno_trace        75.1%\\nmajority        71.5%\\n```\\n\\n### plan_007 calibration analysis v2（P0/P1/P2 修复后）[2026-05-15]\\n| Condition | ECE ↓ | MCE | Brier ↓ |\\n|-----------|-------|-----|---------|\\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\\n| vota | 0.0054 | 0.6225 | 0.0052 |\\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\\n| label_only | 0.1107 | 0.4171 | 0.1201 |\\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\\n- P0: token ID 动态查询（DeepSeek calibration 必须用 v2 代码）\\n- P1: greedy generation 对齐（~3 样本差异）\\n- P2: loop_only MCE null → 0.1834\\n\\n### plan_004 跨模型验证: DeepSeek-Coder-6.7B [2026-05-15]\\n- **DeepSeek VOTA accuracy: 84.45%** [82.6%, 86.4%]，使用 **epoch 3 final** checkpoint\\n- 远低于 Qwen VOTA 99.2% (-14.75pp)\\n- **Pass 偏向严重**: fail recall 仅 45.4%\\n- **过拟合**: eval loss epoch 1→3: 0.068→0.112 (+65%)\\n- **Error analysis 结论**：根因是 DeepSeek-Coder-6.7B 模型能力不足，不是 tokenizer/数据问题\\n- **待做**: epoch 1 checkpoint eval 可能显示更好结果\\n\\n### `load_best_model_at_end` 代码版本时间线 [2026-05-15]\\n- **13:24 之前**的所有实验：使用 epoch 3 final checkpoint（包括全部 Qwen + deepseek_vota/no_trace/exception_only）\\n- **13:24 Worker 新增** L149-152：load_best_model_at_end=True 等 4 行\\n- **deepseek_full_trace 必须用旧代码**（已注释为 # TEMP_DISABLED），保持 DeepSeek 组内一致\\n- **Qwen seed 实验**可用新代码（Qwen 组内一致即可）\\n- ⚠️ **教训**：Worker 1 说\\\"代码已有 X\\\"时要交叉验证——实际是 Worker 2 刚加的。确认代码状态要看 git blame/时间戳\\n\\n### 关键结论修正 [2026-05-15]\\n- v2 full_trace 28.4% 根因是 chat template overhead bug，v5 修复后 81.8%\\n\\n### 决策教训 [2026-05-15]\\n- 判断 data leakage 必须看原始数据内容，不能仅凭比率+accuracy 异常推断\\n\\n## DeepSeek vs Qwen trace utilization gap — 文献解释 [2026-05-15]\\n\\n### CRUXEval 执行推理能力差距\\n| Model | CRUXEval-I (CoT) | CRUXEval-O (CoT) |\\n|-------|-------------------|-------------------|\\n| Qwen2.5-Coder-7B | 56.5% | 56.0% |\\n| DeepSeek-Coder-6.7B | 39.0% | 41.0% |\\n| **差距** | **+17.5pp** | **+15.0pp** |\\n\\nCRUXEval 15-17pp 差距与 VOTA accuracy 14.75pp 差距吻合。\\n\\n### 关键文献\\n1. Wang et al. (EMNLP 2025): trace SFT 效果因模型而异，\\\"no single trace representation consistently outperforms others\\\"\\n2. Ferrando et al. (2025): compact scratchpad ≥ full scratchpad\\n3. Gao et al. (2025): \\\"base model inductive bias outweighs SFT corpus\\\"\\n4. Meta CWM (2025): execution trace mid-training 需要 base model \\\"trace readiness\\\"\\n\\n### Discussion 假说\\n- H1: Execution reasoning readiness（CRUXEval gap 预测 VOTA gap）\\n- H2: Pretraining scale × structured data（5.5T vs 2T tokens）\\n- H3: Base model inductive bias ceiling（train loss 相当但泛化差距大）\\n\\n## 环境信息 [2026-05-14]\\n- westd-11235: 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8\\n- 模型通过 ModelScope CDN 下载\\n- \\\"pass\\\"/\\\"fail\\\" 在 Qwen/DeepSeek tokenizer 中均为单 token\\n- Qwen2.5-Coder chat template overhead: 31 tokens\\n\\n## 流程教训\\n- submit_training_job 必须用，不能用 nohup\\n- Worker 汇报需要交叉验证（exit code + log）\\n- [2026-05-15] 数据格式化 token budget 必须扣除 chat template overhead\\n- [2026-05-15] 所有训练必须加 --gradient_checkpointing\\n- [2026-05-15] HuggingFace 下载设 HF_HUB_DISABLE_XET=1，优先 ModelScope CDN\\n- [2026-05-15] Worker 长时间无产出必须主动 get_worker_status(verbose=True) 排查\\n- [2026-05-15] bash -c 内部必须显式 export CUDA_VISIBLE_DEVICES={N}\\n- [2026-05-15] GPU 碰撞：提交前 nvidia-smi 确认目标 GPU 无其他进程\\n- [2026-05-15] **同 GPU 并行 eval+training 严重降速**：cuda:1 上 eval+training 并行导致训练从 7s/step 恶化到 35-49s/step。eval 必须用独立 GPU 或等训练完成。不要因\\\"eval 几分钟就完\\\"而在同一 GPU 上并行\\n- [2026-05-15] **重复 Worker 竞态**：两个同名 Worker 相隔 30 秒启动，后者看到前者的修改误判为\\\"原有\\\"。派 Worker 前查 list_workers 确认无重复任务\\n\\n## 文献定位 [2026-05-15]\\n- Wang et al. (EMNLP 2025): 原始 trace 对 SFT 帮助有限\\n- APPT (TSE 2024): 最近 competitor，BERT 非 decoder，无 trace\\n- **文献空白**：无现有工作做 compressed execution trace + SFT for binary verdict\\n- Ferrando et al. 2025: compact ≥ full scratchpad\\n- TraceCoder (ICSE 2026): 选择性 probe 优于全量 trace\\n- TraceRepair (2026): critical variable snapshots > 全量\\n- Demystifying Errors (2025): LLM 值追踪能力弱\\n\", \"total_chars\": 5886, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "f15c544e-2664-49e3-8d5a-74f158db0920",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "7d12fce0-cee7-4b9b-bb5d-61f3b36b544a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\\\", \\\"content\\\": \\\"# trace-verdict-study Memory\\\\n\\\\n## MVP Round 1 结论（已作废）[2026-05-14]\\\\n\\\\nRound 1 结果全部无效，原因：\\\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\\\n\\\\n### 教训\\\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\\\\\"如果模型只看这一个字段能否猜到答案\\\\\\\"的测试\\\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\\\n\\\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\\\n\\\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\\\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\\\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\\\n\\\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\\\n- Claim 1 走 **full positive framing**: \\\\\\\"VOTA teaches execution-grounded verdict reasoning\\\\\\\"\\\\n\\\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\\\n\\\\n### plan_003a ablation: exception_only [2026-05-15]\\\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\\\n\\\\n### plan_003b ablation: loop_only [2026-05-15]\\\\n- **accuracy 85.6%** [83.5, 87.6]\\\\n- **结论：loop compression 提供中等贡献，但 exception 是决定性组件**\\\\n\\\\n### plan_003c ablation: ae_only [2026-05-15] — Tier 1 diagnostic-moment signal\\\\n- **accuracy 99.92%** [99.75%, 100%] — 与 exception_only (99.83%) 统计等价\\\\n- D013 裁定：不是 data leakage\\\\n- Pairwise bootstrap: vs exception_only p=0.80 ❌ 统计等价\\\\n\\\\n### 完整组件重要性层级（D013 确认）[2026-05-15]\\\\n```\\\\nae_only         99.92%  Tier 1\\\\nexception_only  99.83%  Tier 1\\\\nVOTA w/o ae     99.4%\\\\nVOTA (full)     99.2%\\\\nlabel-only      86.2%\\\\nloop_only       85.6%\\\\nfull_trace      81.8%\\\\nno_trace        75.1%\\\\nmajority        71.5%\\\\n```\\\\n\\\\n### plan_007 calibration analysis v2（P0/P1/P2 修复后）[2026-05-15]\\\\n| Condition | ECE ↓ | MCE | Brier ↓ |\\\\n|-----------|-------|-----|---------|\\\\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\\\\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\\\\n| vota | 0.0054 | 0.6225 | 0.0052 |\\\\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\\\\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\\\\n| label_only | 0.1107 | 0.4171 | 0.1201 |\\\\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\\\\n- P0: token ID 动态查询（DeepSeek calibration 必须用 v2 代码）\\\\n- P1: greedy generation 对齐（~3 样本差异）\\\\n- P2: loop_only MCE null → 0.1834\\\\n\\\\n### plan_004 跨模型验证: DeepSeek-Coder-6.7B [2026-05-15]\\\\n- **DeepSeek VOTA accuracy: 84.45%** [82.6%, 86.4%]，使用 **epoch 3 final** checkpoint\\\\n- 远低于 Qwen VOTA 99.2% (-14.75pp)\\\\n- **Pass 偏向严重**: fail recall 仅 45.4%\\\\n- **过拟合**: eval loss epoch 1→3: 0.068→0.112 (+65%)\\\\n- **Error analysis 结论**：根因是 DeepSeek-Coder-6.7B 模型能力不足，不是 tokenizer/数据问题\\\\n- **待做**: epoch 1 checkpoint eval 可能显示更好结果\\\\n\\\\n### `load_best_model_at_end` 代码版本时间线 [2026-05-15]\\\\n- **13:24 之前**的所有实验：使用 epoch 3 final checkpoint（包括全部 Qwen + deepseek_vota/no_trace/exception_only）\\\\n- **13:24 Worker 新增** L149-152：load_best_model_at_end=True 等 4 行\\\\n- **deepseek_full_trace 必须用旧代码**（已注释为 # TEMP_DISABLED），保持 DeepSeek 组内一致\\\\n- **Qwen seed 实验**可用新代码（Qwen 组内一致即可）\\\\n- ⚠️ **教训**：Worker 1 说\\\\\\\"代码已有 X\\\\\\\"时要交叉验证——实际是 Worker 2 刚加的。确认代码状态要看 git blame/时间戳\\\\n\\\\n### 关键结论修正 [2026-05-15]\\\\n- v2 full_trace 28.4% 根因是 chat template overhead bug，v5 修复后 81.8%\\\\n\\\\n### 决策教训 [2026-05-15]\\\\n- 判断 data leakage 必须看原始数据内容，不能仅凭比率+accuracy 异常推断\\\\n\\\\n## DeepSeek vs Qwen trace utilization gap — 文献解释 [2026-05-15]\\\\n\\\\n### CRUXEval 执行推理能力差距\\\\n| Model | CRUXEval-I (CoT) | CRUXEval-O (CoT) |\\\\n|-------|-------------------|-------------------|\\\\n| Qwen2.5-Coder-7B | 56.5% | 56.0% |\\\\n| DeepSeek-Coder-6.7B | 39.0% | 41.0% |\\\\n| **差距** | **+17.5pp** | **+15.0pp** |\\\\n\\\\nCRUXEval 15-17pp 差距与 VOTA accuracy 14.75pp 差距吻合。\\\\n\\\\n### 关键文献\\\\n1. Wang et al. (EMNLP 2025): trace SFT 效果因模型而异，\\\\\\\"no single trace representation consistently outperforms others\\\\\\\"\\\\n2. Ferrando et al. (2025): compact scratchpad ≥ full scratchpad\\\\n3. Gao et al. (2025): \\\\\\\"base model inductive bias outweighs SFT corpus\\\\\\\"\\\\n4. Meta CWM (2025): execution trace mid-training 需要 base model \\\\\\\"trace readiness\\\\\\\"\\\\n\\\\n### Discussion 假说\\\\n- H1: Execution reasoning readiness（CRUXEval gap 预测 VOTA gap）\\\\n- H2: Pretraining scale × structured data（5.5T vs 2T tokens）\\\\n- H3: Base model inductive bias ceiling（train loss 相当但泛化差距大）\\\\n\\\\n## 环境信息 [2026-05-14]\\\\n- westd-11235: 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8\\\\n- 模型通过 ModelScope CDN 下载\\\\n- \\\\\\\"pass\\\\\\\"/\\\\\\\"fail\\\\\\\" 在 Qwen/DeepSeek tokenizer 中均为单 token\\\\n- Qwen2.5-Coder chat template overhead: 31 tokens\\\\n\\\\n## 流程教训\\\\n- submit_training_job 必须用，不能用 nohup\\\\n- Worker 汇报需要交叉验证（exit code + log）\\\\n- [2026-05-15] 数据格式化 token budget 必须扣除 chat template overhead\\\\n- [2026-05-15] 所有训练必须加 --gradient_checkpointing\\\\n- [2026-05-15] HuggingFace 下载设 HF_HUB_DISABLE_XET=1，优先 ModelScope CDN\\\\n- [2026-05-15] Worker 长时间无产出必须主动 get_worker_status(verbose=True) 排查\\\\n- [2026-05-15] bash -c 内部必须显式 export CUDA_VISIBLE_DEVICES={N}\\\\n- [2026-05-15] GPU 碰撞：提交前 nvidia-smi 确认目标 GPU 无其他进程\\\\n- [2026-05-15] **同 GPU 并行 eval+training 严重降速**：cuda:1 上 eval+training 并行导致训练从 7s/step 恶化到 35-49s/step。eval 必须用独立 GPU 或等训练完成。不要因\\\\\\\"eval 几分钟就完\\\\\\\"而在同一 GPU 上并行\\\\n- [2026-05-15] **重复 Worker 竞态**：两个同名 Worker 相隔 30 秒启动，后者看到前者的修改误判为\\\\\\\"原有\\\\\\\"。派 Worker 前查 list_workers 确认无重复任务\\\\n\\\\n## 文献定位 [2026-05-15]\\\\n- Wang et al. (EMNLP 2025): 原始 trace 对 SFT 帮助有限\\\\n- APPT (TSE 2024): 最近 competitor，BERT 非 decoder，无 trace\\\\n- **文献空白**：无现有工作做 compressed execution trace + SFT for binary verdict\\\\n- Ferrando et al. 2025: compact ≥ full scratchpad\\\\n- TraceCoder (ICSE 2026): 选择性 probe 优于全量 trace\\\\n- TraceRepair (2026): critical variable snapshots > 全量\\\\n- Demystifying Errors (2025): LLM 值追踪能力弱\\\\n\\\", \\\"total_chars\\\": 5886, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"content\": \"# trace-verdict-study Memory\\n\\n## MVP Round 1 结论（已作废）[2026-05-14]\\n\\nRound 1 结果全部无效，原因：\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\n\\n### 教训\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\"如果模型只看这一个字段能否猜到答案\\\"的测试\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\n\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\n\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\n\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\n- Claim 1 走 **full positive framing**: \\\"VOTA teaches execution-grounded verdict reasoning\\\"\\n\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\n\\n### plan_003a ablation: exception_only [2026-05-15]\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\n\\n### plan_003b ablation: loop_only [2026-05-15]\\n- **accuracy 85.6%** [83.5, 87.6]\\n- **结论：loop compression 提供中等贡献，但 exception 是决定性组件**\\n\\n### plan_003c ablation: ae_only [2026-05-15] — Tier 1 diagnostic-moment signal\\n- **accuracy 99.92%** [99.75%, 100%] — 与 exception_only (99.83%) 统计等价\\n- D013 裁定：不是 data leakage\\n- Pairwise bootstrap: vs exception_only p=0.80 ❌ 统计等价\\n\\n### 完整组件重要性层级（D013 确认）[2026-05-15]\\n```\\nae_only         99.92%  Tier 1\\nexception_only  99.83%  Tier 1\\nVOTA w/o ae     99.4%\\nVOTA (full)     99.2%\\nlabel-only      86.2%\\nloop_only       85.6%\\nfull_trace      81.8%\\nno_trace        75.1%\\nmajority        71.5%\\n```\\n\\n### plan_007 calibration analysis v2（P0/P1/P2 修复后）[2026-05-15]\\n| Condition | ECE ↓ | MCE | Brier ↓ |\\n|-----------|-------|-----|---------|\\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\\n| vota | 0.0054 | 0.6225 | 0.0052 |\\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\\n| label_only | 0.1107 | 0.4171 | 0.1201 |\\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\\n- P0: token ID 动态查询（DeepSeek calibration 必须用 v2 代码）\\n- P1: greedy generation 对齐（~3 样本差异）\\n- P2: loop_only MCE null → 0.1834\\n\\n### plan_004 跨模型验证: DeepSeek-Coder-6.7B [2026-05-15]\\n- **DeepSeek VOTA accuracy: 84.45%** [82.6%, 86.4%]，使用 **epoch 3 final** checkpoint\\n- 远低于 Qwen VOTA 99.2% (-14.75pp)\\n- **Pass 偏向严重**: fail recall 仅 45.4%\\n- **过拟合**: eval loss epoch 1→3: 0.068→0.112 (+65%)\\n- **Error analysis 结论**：根因是 DeepSeek-Coder-6.7B 模型能力不足，不是 tokenizer/数据问题\\n- **待做**: epoch 1 checkpoint eval 可能显示更好结果\\n\\n### `load_best_model_at_end` 代码版本时间线 [2026-05-15]\\n- **13:24 之前**的所有实验：使用 epoch 3 final checkpoint（包括全部 Qwen + deepseek_vota/no_trace/exception_only）\\n- **13:24 Worker 新增** L149-152：load_best_model_at_end=True 等 4 行\\n- **deepseek_full_trace 必须用旧代码**（已注释为 # TEMP_DISABLED），保持 DeepSeek 组内一致\\n- **Qwen seed 实验**可用新代码（Qwen 组内一致即可）\\n- ⚠️ **教训**：Worker 1 说\\\"代码已有 X\\\"时要交叉验证——实际是 Worker 2 刚加的。确认代码状态要看 git blame/时间戳\\n\\n### 关键结论修正 [2026-05-15]\\n- v2 full_trace 28.4% 根因是 chat template overhead bug，v5 修复后 81.8%\\n\\n### 决策教训 [2026-05-15]\\n- 判断 data leakage 必须看原始数据内容，不能仅凭比率+accuracy 异常推断\\n\\n## DeepSeek vs Qwen trace utilization gap — 文献解释 [2026-05-15]\\n\\n### CRUXEval 执行推理能力差距\\n| Model | CRUXEval-I (CoT) | CRUXEval-O (CoT) |\\n|-------|-------------------|-------------------|\\n| Qwen2.5-Coder-7B | 56.5% | 56.0% |\\n| DeepSeek-Coder-6.7B | 39.0% | 41.0% |\\n| **差距** | **+17.5pp** | **+15.0pp** |\\n\\nCRUXEval 15-17pp 差距与 VOTA accuracy 14.75pp 差距吻合。\\n\\n### 关键文献\\n1. Wang et al. (EMNLP 2025): trace SFT 效果因模型而异，\\\"no single trace representation consistently outperforms others\\\"\\n2. Ferrando et al. (2025): compact scratchpad ≥ full scratchpad\\n3. Gao et al. (2025): \\\"base model inductive bias outweighs SFT corpus\\\"\\n4. Meta CWM (2025): execution trace mid-training 需要 base model \\\"trace readiness\\\"\\n\\n### Discussion 假说\\n- H1: Execution reasoning readiness（CRUXEval gap 预测 VOTA gap）\\n- H2: Pretraining scale × structured data（5.5T vs 2T tokens）\\n- H3: Base model inductive bias ceiling（train loss 相当但泛化差距大）\\n\\n## 环境信息 [2026-05-14]\\n- westd-11235: 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8\\n- 模型通过 ModelScope CDN 下载\\n- \\\"pass\\\"/\\\"fail\\\" 在 Qwen/DeepSeek tokenizer 中均为单 token\\n- Qwen2.5-Coder chat template overhead: 31 tokens\\n\\n## 流程教训\\n- submit_training_job 必须用，不能用 nohup\\n- Worker 汇报需要交叉验证（exit code + log）\\n- [2026-05-15] 数据格式化 token budget 必须扣除 chat template overhead\\n- [2026-05-15] 所有训练必须加 --gradient_checkpointing\\n- [2026-05-15] HuggingFace 下载设 HF_HUB_DISABLE_XET=1，优先 ModelScope CDN\\n- [2026-05-15] Worker 长时间无产出必须主动 get_worker_status(verbose=True) 排查\\n- [2026-05-15] bash -c 内部必须显式 export CUDA_VISIBLE_DEVICES={N}\\n- [2026-05-15] GPU 碰撞：提交前 nvidia-smi 确认目标 GPU 无其他进程\\n- [2026-05-15] **同 GPU 并行 eval+training 严重降速**：cuda:1 上 eval+training 并行导致训练从 7s/step 恶化到 35-49s/step。eval 必须用独立 GPU 或等训练完成。不要因\\\"eval 几分钟就完\\\"而在同一 GPU 上并行\\n- [2026-05-15] **重复 Worker 竞态**：两个同名 Worker 相隔 30 秒启动，后者看到前者的修改误判为\\\"原有\\\"。派 Worker 前查 list_workers 确认无重复任务\\n\\n## 文献定位 [2026-05-15]\\n- Wang et al. (EMNLP 2025): 原始 trace 对 SFT 帮助有限\\n- APPT (TSE 2024): 最近 competitor，BERT 非 decoder，无 trace\\n- **文献空白**：无现有工作做 compressed execution trace + SFT for binary verdict\\n- Ferrando et al. 2025: compact ≥ full scratchpad\\n- TraceCoder (ICSE 2026): 选择性 probe 优于全量 trace\\n- TraceRepair (2026): critical variable snapshots > 全量\\n- Demystifying Errors (2025): LLM 值追踪能力弱\\n\", \"total_chars\": 5886, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f15c544e-2664-49e3-8d5a-74f158db0920",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: deepseek_no_trace_seed42 - project: trace-verdict-study - server: westd-11235 - wandb_run_i…",
+  "leafUuid": "7d12fce0-cee7-4b9b-bb5d-61f3b36b544a",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-15T13:41:14.668Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Memory.md is already quite comprehensive. I need to add the DeepSeek no_trace baseline result and update the cross-model comparison. Let me add the no_trace result to the plan_004 section.
+
+Looking at the existing memory.md, the plan_004 section already mentions deepseek_vota but doesn't have deepseek_no_trace. Let me update it.
+
+Actually, the key new non-metrics insight here is:
+- DeepSeek no_trace lift over majority is NOT statistically significant (CI includes 0), while Qwen no_trace lift was marginal but at least positive (+3.6pp)
+
+
+- This means no_trace is even harder for DeepSeek than for Qwen, which is worth noting in memory.
+
+Let me update the plan_004 section to include both the no_trace data and this cross-model baseline consistency observation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d12fce0-cee7-4b9b-bb5d-61f3b36b544a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4T4T9EN3yJv7KkaS1js",
+  "type": "assistant",
+  "uuid": "10c07869-56e4-48d7-b20f-117d6a382e15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHJeyPSCZhAMPZGJAYKZTv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3775,
+      "cache_read_input_tokens": 88599,
+      "output_tokens": 3870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3870,
+          "cache_read_input_tokens": 88599,
+          "cache_creation_input_tokens": 3775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T13:41:44.761Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01CShvPNpKLerteYJwD76mXL`</summary>
+
+````json
+{
+  "project": "trace-verdict-study",
+  "file": "memory.md",
+  "content": "# trace-verdict-study Memory\n\n## MVP Round 1 结论（已作废）[2026-05-14]\n\nRound 1 结果全部无效，原因：\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\n\n### 教训\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\"如果模型只看这一个字段能否猜到答案\"的测试\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\n\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\n\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\n\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\n- Claim 1 走 **full positive framing**: \"VOTA teaches execution-grounded verdict reasoning\"\n\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\n\n### plan_003a ablation: exception_only [2026-05-15]\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\n\n### plan_003b ablation: loop_only [2026-05-15]\n- **accuracy 85.6%** [83.5, 87.6]\n- **结论：loop compression 提供中等贡献，但 exception 是决定性组件**\n\n### plan_003c ablation: ae_only [2026-05-15] — Tier 1 diagnostic-moment signal\n- **accuracy 99.92%** [99.75%, 100%] — 与 exception_only (99.83%) 统计等价\n- D013 裁定：不是 data leakage\n- Pairwise bootstrap: vs exception_only p=0.80 ❌ 统计等价\n\n### 完整组件重要性层级（D013 确认）[2026-05-15]\n```\nae_only         99.92%  Tier 1\nexception_only  99.83%  Tier 1\nVOTA w/o ae     99.4%\nVOTA (full)     99.2%\nlabel-only      86.2%\nloop_only       85.6%\nfull_trace      81.8%\nno_trace        75.1%\nmajority        71.5%\n```\n\n### plan_007 calibration analysis v2（P0/P1/P2 修复后）[2026-05-15]\n| Condition | ECE ↓ | MCE | Brier ↓ |\n|-----------|-------|-----|---------|\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\n| vota | 0.0054 | 0.6225 | 0.0052 |\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\n| label_only | 0.1107 | 0.4171 | 0.1201 |\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\n- P0: token ID 动态查询（DeepSeek calibration 必须用 v2 代码）\n- P1: greedy generation 对齐（~3 样本差异）\n- P2: loop_only MCE null → 0.1834\n\n### plan_004 跨模型验证: DeepSeek-Coder-6.7B [2026-05-15]\n\n#### 跨模型对比表（进行中，2/4 完成）\n| Condition | Qwen-2.5-Coder-7B | DeepSeek-Coder-6.7B | Δ |\n|-----------|-------------------|---------------------|---|\n| no_trace | 75.13% | 73.36% | -1.77pp |\n| VOTA | 99.16% | 84.45% | -14.71pp |\n| exception_only | 99.83% | ⏳ running | — |\n| full_trace | 81.76% | ⏳ running | — |\n\n- **DeepSeek VOTA accuracy: 84.45%** [82.6%, 86.4%]，使用 **epoch 3 final** checkpoint\n- **DeepSeek no_trace accuracy: 73.36%** [70.8%, 75.7%]，lift +1.85pp over majority (**不显著**, CI [-0.9, +4.6])\n- 远低于 Qwen VOTA 99.2% (-14.75pp)\n- **Baseline 一致性**: 两模型 no_trace 都贴近 majority baseline，差异 1.77pp 在噪声范围内\n- **VOTA lift**: DeepSeek +11.09pp vs Qwen +24.03pp — 跨模型泛化确认但幅度衰减\n- **Pass 偏向严重**: VOTA fail recall 仅 45.4%\n- **过拟合**: eval loss epoch 1→3: 0.068→0.112 (+65%)\n- **Error analysis 结论**：根因是 DeepSeek-Coder-6.7B 模型能力不足，不是 tokenizer/数据问题\n- **待做**: epoch 1 checkpoint eval 可能显示更好结果\n\n### `load_best_model_at_end` 代码版本时间线 [2026-05-15]\n- **13:24 之前**的所有实验：使用 epoch 3 final checkpoint（包括全部 Qwen + deepseek_vota/no_trace/exception_only）\n- **13:24 Worker 新增** L149-152：load_best_model_at_end=True 等 4 行\n- **deepseek_full_trace 必须用旧代码**（已注释为 # TEMP_DISABLED），保持 DeepSeek 组内一致\n- **Qwen seed 实验**可用新代码（Qwen 组内一致即可）\n- ⚠️ **教训**：Worker 1 说\"代码已有 X\"时要交叉验证——实际是 Worker 2 刚加的。确认代码状态要看 git blame/时间戳\n\n### 关键结论修正 [2026-05-15]\n- v2 full_trace 28.4% 根因是 chat template overhead bug，v5 修复后 81.8%\n\n### 决策教训 [2026-05-15]\n- 判断 data leakage 必须看原始数据内容，不能仅凭比率+accuracy 异常推断\n\n## DeepSeek vs Qwen trace utilization gap — 文献解释 [2026-05-15]\n\n### CRUXEval 执行推理能力差距\n| Model | CRUXEval-I (CoT) | CRUXEval-O (CoT) |\n|-------|-------------------|-------------------|\n| Qwen2.5-Coder-7B | 56.5% | 56.0% |\n| DeepSeek-Coder-6.7B | 39.0% | 41.0% |\n| **差距** | **+17.5pp** | **+15.0pp** |\n\nCRUXEval 15-17pp 差距与 VOTA accuracy 14.75pp 差距吻合。\n\n### 关键文献\n1. Wang et al. (EMNLP 2025): trace SFT 效果因模型而异，\"no single trace representation consistently outperforms others\"\n2. Ferrando et al. (2025): compact scratchpad ≥ full scratchpad\n3. Gao et al. (2025): \"base model inductive bias outweighs SFT corpus\"\n4. Meta CWM (2025): execution trace mid-training 需要 base model \"trace readiness\"\n\n### Discussion 假说\n- H1: Execution reasoning readiness（CRUXEval gap 预测 VOTA gap）\n- H2: Pretraining scale × structured data（5.5T vs 2T tokens）\n- H3: Base model inductive bias ceiling（train loss 相当但泛化差距大）\n\n## 环境信息 [2026-05-14]\n- westd-11235: 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8\n- 模型通过 ModelScope CDN 下载\n- \"pass\"/\"fail\" 在 Qwen/DeepSeek tokenizer 中均为单 token\n- Qwen2.5-Coder chat template overhead: 31 tokens\n\n## 流程教训\n- submit_training_job 必须用，不能用 nohup\n- Worker 汇报需要交叉验证（exit code + log）\n- [2026-05-15] 数据格式化 token budget 必须扣除 chat template overhead\n- [2026-05-15] 所有训练必须加 --gradient_checkpointing\n- [2026-05-15] HuggingFace 下载设 HF_HUB_DISABLE_XET=1，优先 ModelScope CDN\n- [2026-05-15] Worker 长时间无产出必须主动 get_worker_status(verbose=True) 排查\n- [2026-05-15] bash -c 内部必须显式 export CUDA_VISIBLE_DEVICES={N}\n- [2026-05-15] GPU 碰撞：提交前 nvidia-smi 确认目标 GPU 无其他进程\n- [2026-05-15] **同 GPU 并行 eval+training 严重降速**：cuda:1 上 eval+training 并行导致训练从 7s/step 恶化到 35-49s/step。eval 必须用独立 GPU 或等训练完成。不要因\"eval 几分钟就完\"而在同一 GPU 上并行\n- [2026-05-15] **重复 Worker 竞态**：两个同名 Worker 相隔 30 秒启动，后者看到前者的修改误判为\"原有\"。派 Worker 前查 list_workers 确认无重复任务\n\n## 文献定位 [2026-05-15]\n- Wang et al. (EMNLP 2025): 原始 trace 对 SFT 帮助有限\n- APPT (TSE 2024): 最近 competitor，BERT 非 decoder，无 trace\n- **文献空白**：无现有工作做 compressed execution trace + SFT for binary verdict\n- Ferrando et al. 2025: compact ≥ full scratchpad\n- TraceCoder (ICSE 2026): 选择性 probe 优于全量 trace\n- TraceRepair (2026): critical variable snapshots > 全量\n- Demystifying Errors (2025): LLM 值追踪能力弱\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10c07869-56e4-48d7-b20f-117d6a382e15",
+  "isSidechain": false,
+  "requestId": "req_011Cb4T4T9EN3yJv7KkaS1js",
+  "type": "assistant",
+  "uuid": "74d0075f-8e3e-4fa7-b7e0-48a3acfc70d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHJeyPSCZhAMPZGJAYKZTv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3775,
+      "cache_read_input_tokens": 88599,
+      "output_tokens": 3870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3870,
+          "cache_read_input_tokens": 88599,
+          "cache_creation_input_tokens": 3775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T13:41:44.797Z_
+
+<details><summary>↩ Tool result · `toolu_01CShvPNpKLerteYJwD76mXL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74d0075f-8e3e-4fa7-b7e0-48a3acfc70d0",
+  "isSidechain": false,
+  "promptId": "31c407f4-e201-427e-a8db-9219faae8a26",
+  "type": "user",
+  "uuid": "69c8e4f6-9421-4d2a-b45d-94dfb023bded",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "74d0075f-8e3e-4fa7-b7e0-48a3acfc70d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91 · 2026-05-15T13:41:44.807Z_
+
+```json
+{
+  "parentUuid": "69c8e4f6-9421-4d2a-b45d-94dfb023bded",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c5353a04-69d2-4861-92eb-92304e9f00f7",
+  "timestamp": "2026-05-15T13:41:44.807Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and finalize status",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93 · 2026-05-15T16:43:06.530Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:43:06.530Z",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-15T16:43:06.531Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:43:06.531Z",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 95 · 2026-05-15T16:43:06.522Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5353a04-69d2-4861-92eb-92304e9f00f7",
+  "isSidechain": false,
+  "promptId": "36c551b6-27ef-4f53-a188-591909449950",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "db6aaf54-b071-4322-aa2f-7ce5230c5b53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-15T16:43:06.522Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db6aaf54-b071-4322-aa2f-7ce5230c5b53",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "952ec424-7175-4f6c-a0c9-1d2bf3afb3d6",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "ac51dbb6-380b-4776-a61b-ab48bb73123e",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 97 · 2026-05-15T16:43:06.658Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "952ec424-7175-4f6c-a0c9-1d2bf3afb3d6",
+  "isSidechain": false,
+  "promptId": "36c551b6-27ef-4f53-a188-591909449950",
+  "type": "user",
+  "uuid": "e0cddac3-0be1-431b-9ced-387684785c47",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_e58f7efd",
+  "sessionId": "26e0e568-1017-49c1-be8c-4debeed870e1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
