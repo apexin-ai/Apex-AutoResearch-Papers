@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC04_lexical",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "This action must occur while the user's enrollment is still active and current.",
+  "action": "update_policy",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I can help, but I need your full driver\u2019s license details to log you in first.\n\nPlease provide:\n- Driver\u2019s license ID: `sdfojngsmnlvx`\n- Driver\u2019s license state\n\nAlso, to confirm, should I use the user...]",
+    "[says: I still need one required detail before I can proceed: the **state** for your driver\u2019s license.\n\nTo update a policy, I must first log you in, and for driver\u2019s-license identification the required field...]"
+  ],
+  "timestamp": "2026-05-22T22:48:48.871907"
+}

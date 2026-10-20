@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6ef24f5814e15639ee",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code c3 layer effect test",
+  "task_key": "worker_code_c3_layer_effect_test_20260520T162759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c3_layer_effect_test_20260520T162759_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "2d672b228d47f5e45388f75986ca97f79bf87098581e0559495dc514bfb1c560"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果符合预期：\n\n| 指标 | 值 |\n|---|---|\n| spec_rate | 47.33% |\n| ling_rate | 34.33% |\n| delta_pp | +13.0 pp |\n| chi2 | 10.49, p = 0.0012 |\n| Cramér's V | 0.132 |\n| OR | 1.72 [1.24, 2.39] |\n| Bootstrap 95% CI | [5.33, 20.67] |\n\nSpecification-layer ambiguity 的违规率显著高于 linguistic-layer（p < 0.01），效应中等偏小。所有其他 analysis 文件均正常重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c3-layer-effect-test.md"
+}

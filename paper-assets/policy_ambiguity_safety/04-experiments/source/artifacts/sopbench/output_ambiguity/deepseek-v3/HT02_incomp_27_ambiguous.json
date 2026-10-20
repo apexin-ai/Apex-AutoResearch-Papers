@@ -1,0 +1,39 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The booking must be made within an acceptable advance booking window.",
+  "action": "book_room",
+  "task_idx": 27,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 5,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "internal_get_interaction_time",
+    "[says: \n]",
+    "internal_is_loyalty_member",
+    "[says: \n]",
+    "book_room",
+    "[says: Based on the information provided and the checks performed:\n\n1. The room type \"single\" is valid.\n2. There are available single rooms (Room 101) for the dates December 4th to December 6th, 2024.\n3. The...]",
+    "[says: The single room has been successfully booked for Alice Carter from December 4th, 2024, to December 6th, 2024. The total cost was $160, and the remaining amount of $80 will be refunded or credited as p...]"
+  ],
+  "timestamp": "2026-05-22T22:57:18.828925"
+}

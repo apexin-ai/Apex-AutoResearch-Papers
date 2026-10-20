@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC03_incomp",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The requested coverage amount \"{coverage_amount}\" **MUST NOT EXCEED** {max_coverage_percentage} percent of the annual income \"{annual_income}\" provided by the user.",
+  "action": "update_policy",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: To proceed with updating your healthcare policy, I need to verify a few things:\n\n1. **Login**: I will first log you in using your provided username and identification.\n2. **Policy Type Validation**: T...]",
+    "[says: You have been successfully logged in. However, the policy type you provided (\"Invalid\") is not valid. Please provide one of the following policy types:\n\n- Health\n- Dental\n- Pharmacy\n- Vision\n\nOnce you...]",
+    "[says: Since the policy type you provided (\"Invalid\") is not one of the valid options (Health, Dental, Pharmacy, or Vision), I cannot proceed with updating your policy. \n\nIf you'd like to update your policy ...]"
+  ],
+  "timestamp": "2026-05-22T22:30:59.328882"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "384762d0d6bae2a349d1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code openrouter adaptation",
+  "task_key": "worker_code_openrouter_adaptation_20260520T074600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openrouter_adaptation_20260520T074600_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "294b0acd2dbf794ecde9fa4940d505ddd423b52474698a8ee9f403c103076faf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改摘要：\n\n| 文件 | 改动 |\n|---|---|\n| **config.py** | 新增 `OPENROUTER_BASE_URL`、`API_KEY_ENV`；移除 `provider` 字段；模型 ID 改为 OpenRouter 格式 |\n| **harness.py** | 删除 `_get_anthropic_client()`、`_call_anthropic()`；合并为单一 `_get_client()` + `call_agent()` 走 OpenAI SDK；`run_episode` 中移除 Anthropic tool result 格式分支 |\n| **judge.py** | 同理删除 Anthropic 代码，`call_judge()` 统一走 OpenAI SDK |\n| **requirements.txt** | 移除 `anthropic` |\n\n三个 CLI 的参数接口保持不变，`analyze.py` 未修改。模型端点不可达，模型 ID 使用了 OpenRouter 常见格式并加了注释提示确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-openrouter-adaptation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c66ed21bfe26130f3a2b",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis convergence deep analysis",
+  "task_key": "worker_analysis_convergence_deep_analysis_20260523T053348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_convergence_deep_analysis_20260523T053348_result.json",
+    "occurrence": 1,
+    "bytes": 1800,
+    "sha256": "89eeae58313bfc673549606c86cd75e46fcf73c508a81f7786f3c29e13adf3eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All deliverables generated. Here's the summary:\n\n---\n\n## Results\n\n### Analysis 1: Attractor Pattern (Strong Finding)\n- **77.0% of convergent violations are PERMISSIVE** (371/482), 17.6% restrictive, 5.4% literal\n- Binomial test p < 0.001 — highly significant departure from uniform\n- Per-type: permissive dominance holds in 5/6 types (>75%), but **cond_prec is the exception** — nearly 50/50 split between permissive (51.5%) and restrictive (47.1%)\n- auth_scope is near-universal permissive (98.8%)\n- coreferential has highest LITERAL rate (16.1%)\n\n### Analysis 2: Type × Convergence Rate\n- Incompleteness has highest convergent rate (0.62) and unanimous rate (0.24)\n- Fisher's exact: incompleteness significantly higher unanimous rate than cond_prec (p=0.023) and coreferential (p=0.023)\n- Mechanism group comparison: gap-filling (0.50) > boundary (0.44) > structural (0.35), χ²(2) = 5.993, p = 0.05\n\n### Analysis 3: Non-Convergent Characteristics\n- 92 divergent clauses, evenly distributed across types (χ² p=0.37)\n- Clause length not significantly different (p=0.16)\n- Model participation is **non-uniform** (χ² p=0.0017): deepseek-v3 (43) and qwen3-235b (28) are overrepresented in solo violations; gpt-4.1 (18) and claude-sonnet-4-6 (16) are most robust\n\n### Output Files\n- `artifacts/convergence_analysis/attractor_pattern.md` — Analysis 1 full breakdown\n- `artifacts/convergence_analysis/type_convergence_matrix.csv` — Analysis 2 matrix\n- `artifacts/convergence_analysis/non_convergent_analysis.md` — Analysis 3 results\n- `artifacts/convergence_analysis/summary_report.md` — Integrated summary with paper integration suggestions\n- `artifacts/convergence_analysis/attractor_raw_classifications.jsonl` — 482 GPT-4.1 classifications"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-convergence-deep-analysis.md"
+}

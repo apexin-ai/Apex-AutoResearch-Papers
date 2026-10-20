@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC04_incomp",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The action must be performed within the user's enrollment period.",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated! Here's a summary of the changes:\n\n**Policy Details:**\n- **Policy Type:** Health\n- **Coverage Amount:** $5,000\n- **Annual Income:** $60,000 (record...]"
+  ],
+  "timestamp": "2026-05-22T16:57:35.866848"
+}

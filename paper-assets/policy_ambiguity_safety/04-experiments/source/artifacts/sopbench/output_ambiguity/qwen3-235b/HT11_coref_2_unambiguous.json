@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "If the \"{payment_method}\" is not \"loyalty_points\", then the \"{amount}\" must be **greater than or equal to** the cost of \"{order_items}\" in the \"{order_type}\" category. Otherwise, the guest \"{guest_name}\" must have enough loyalty points to cover the total room service cost (10 points per dollar).",
+  "action": "place_room_service_order",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "[says: The guest Jane Smith is not listed in the room check-in records for room 108. Therefore, I cannot process the room service order as the guest must be currently checked into the specified room. Please ...]"
+  ],
+  "timestamp": "2026-05-22T19:53:34.850763"
+}

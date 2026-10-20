@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The deposit must comply with the bank's deposit regulations.",
+  "action": "deposit_funds",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 2,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: You'd like to deposit $15,000 in cash into your account with the username \"john_doe.\" Before proceeding, please note that large cash deposits may be subject to additional bank regulations, such as rep...]",
+    "deposit_funds"
+  ],
+  "timestamp": "2026-05-22T16:55:11.685824"
+}

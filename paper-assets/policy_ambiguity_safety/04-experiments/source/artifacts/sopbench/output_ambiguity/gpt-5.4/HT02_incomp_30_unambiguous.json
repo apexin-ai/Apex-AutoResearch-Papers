@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The \"{check_in_date}\" must be **no earlier than** {min_booking_lead_time_days} days after and **no later than** {max_booking_lead_time_days} days after the current interaction date.",
+  "action": "book_room",
+  "task_idx": 30,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "show_available_rooms",
+    "book_room"
+  ],
+  "timestamp": "2026-05-22T22:45:05.481862"
+}

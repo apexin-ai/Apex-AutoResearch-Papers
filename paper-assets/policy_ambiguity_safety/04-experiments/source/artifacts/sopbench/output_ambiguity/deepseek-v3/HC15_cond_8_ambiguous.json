@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC15_cond",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The appointment should be set for a future time, relative to when the request is processed.",
+  "action": "schedule_appointment",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_provider_details",
+    "[says: I apologize, but the provider \"John Hopkins\" in Baltimore is currently unavailable for appointments. Unfortunately, I cannot schedule an appointment with them at this time. \n\nIf you'd like, I can help...]"
+  ],
+  "timestamp": "2026-05-22T18:00:26.196401"
+}

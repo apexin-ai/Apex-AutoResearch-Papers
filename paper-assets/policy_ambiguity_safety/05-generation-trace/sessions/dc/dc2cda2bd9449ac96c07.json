@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc2cda2bd9449ac96c07",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code diag 001 clause generation",
+  "task_key": "worker_code_diag_001_clause_generation_20260520T102528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diag_001_clause_generation_20260520T102528_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "3fb23448333ac8dae3fd0c76a4e29c192f49a7fd1bac76e0825d97824a14c125"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`clause_templates_diag001.json` 已生成并注册。\n\n**验证结果汇总**：\n- 100 条，两种类型：`conditional_precedence` (50) + `scopal` (50)\n- 所有条目含必需字段（ambiguous_clause, unambiguous_clause, user_scenario, tools, tool_responses, stripped_tool_desc）\n- 所有 CP 条目 ambiguous_clause 含 ≥2 条冲突规则，unambiguous_clause 明确解决优先级\n- 所有新生成条目 tool_responses ≥3（现有 scopal 001-030 保持原样，部分为 2）\n- CP 子类型覆盖：lex specialis (~16), temporal priority (~10), authority-level (~12), exception vs exception (~12)\n- 领域分布：retail/airline 大致均衡"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diag-001-clause-generation.md"
+}

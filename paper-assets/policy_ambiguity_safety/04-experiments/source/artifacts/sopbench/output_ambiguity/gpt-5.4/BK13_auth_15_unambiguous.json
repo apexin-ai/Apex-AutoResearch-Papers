@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK13_auth",
+  "domain": "bank",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} is logged in previously with the correct credentials to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "get_account_balance",
+    "[says: Everything is not in order for the transfer.\n\nYour login was successful, and both accounts exist, but your available balance is 500.0, which is less than the requested 600.0 dollars. Because of that, ...]"
+  ],
+  "timestamp": "2026-05-22T23:10:37.284842"
+}

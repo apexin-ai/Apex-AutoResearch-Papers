@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8baf50d1a8e4ec9744b4",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper fig1 paperbanana fix",
+  "task_key": "worker_paper_fig1_paperbanana_fix_20260524T171419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_paperbanana_fix_20260524T171419_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "65c5401bd29dfea39e4f0f229add637c70c4ddcf29fa99707727343372db633c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 编译通过（28页，无错误）。\n\n**产出报告：**\n\n- **迭代轮数**：1（PaperBanana 内置 critic 首轮即通过）\n- **\"Conditional Precedence\" 拼写**：正确 ✅\n- **Panel (c) 模型数量**：5 个（M1–M5）✅\n- **最终 PNG 路径**：`/tmp/fig1_pb_v5.png`，1.83 MB，2752×1536px\n- **PDF 输出**：`docs/paper/figures/fig1_overview.pdf`\n- **LaTeX 编译**：通过，28页，883 KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-paperbanana-fix.md"
+}

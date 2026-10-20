@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "123ee146b1eee3d524a2",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment cross judge validation",
+  "task_key": "worker_experiment_cross_judge_validation_20260522T221725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_cross_judge_validation_20260522T221725_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "a5329693378fcfa41178ce4bf2e265fde9e1ca9bb6505968701660b9ca369e87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OpenRouter 余额不足（402 Insufficient balance）。所有调用都失败了。\n\n需要充值 OpenRouter 账户后重新运行。脚本支持 resume，重跑时会跳过已判的 episode（但当前所有判定都是错误占位，需要先清理）。\n\n清理错误数据并重跑的命令：\n\n```bash\n# 清理错误判定\nrm -f artifacts/cross_judge_validation/judgments_claude/judgments.jsonl\n\n# 充值后重跑\ncd artifacts && source .venv/bin/activate\npython cross_judge_validation/run_cross_judge.py --judge both --concurrency 5\n```\n\n需要你充值 OpenRouter 后我再继续？还是有其他 API key 可用？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-cross-judge-validation.md"
+}

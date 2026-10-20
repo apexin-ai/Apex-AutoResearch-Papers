@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f55d4cc34ccd3a050e36",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "research sopbench phase2a clause pairs",
+  "task_key": "worker_research_sopbench_phase2a_clause_pairs_20260522T115932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sopbench_phase2a_clause_pairs_20260522T115932.log",
+    "occurrence": 1,
+    "bytes": 773428,
+    "sha256": "f9b15461393b192d14720667b246ddb04c586bb34b1c9bcd0ac1bdde2fa7513d"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 16,
+      "tool_result": 16,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "f55d4cc34ccd3a050e36-part-0001.json",
+          "message_count": 26
+        },
+        {
+          "path": "f55d4cc34ccd3a050e36-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-sopbench-phase2a-clause-pairs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f1d6230b8913b7f30af",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper research agent safety",
+  "task_key": "worker_paper_research_agent_safety_20260520T192901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_agent_safety_20260520T192901_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "fd419e033fd3a782440b72637ef1750f3ae5b42b25589f73b6f46fd0a56ae887"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "agent_safety cluster: 6 entries, all verified=true. Target met.\n\nSummary of changes:\n- **Verified existing**: `phantompolicy_2026` (added authors Jie Wu, Ming Gong; S2 ID), `shieldagent_2025` (full author names Zhaorun Chen, Mintong Kang, Bo Li; added arXiv URL)\n- **Added new**:\n  - `rjudge_2024` — Yuan et al., Findings of EMNLP 2024, 569 agent safety risk scenarios\n  - `toolemu_2024` — Ruan et al., ICLR 2024, LM-emulated sandbox for agent risk identification\n  - `injecagent_2024` — Zhan et al., Findings of ACL 2024, indirect prompt injection benchmark\n  - `tau_bench_2024` — Yao et al., TMLR (not NeurIPS 2024 as initially stated), τ²-bench predecessor"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-agent-safety.md"
+}

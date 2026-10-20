@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC03_incomp",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The requested coverage amount \"{coverage_amount}\" **MUST NOT EXCEED** {max_coverage_percentage} percent of the annual income \"{annual_income}\" provided by the user.",
+  "action": "update_policy",
+  "task_idx": 26,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but I can\u2019t complete the policy update.\n\nReason: the requested coverage amount of 120,000 exceeds the allowed limit of 10% of the annual income provided. With an annual income of 1,000,000,...]"
+  ],
+  "timestamp": "2026-05-22T22:30:56.964562"
+}

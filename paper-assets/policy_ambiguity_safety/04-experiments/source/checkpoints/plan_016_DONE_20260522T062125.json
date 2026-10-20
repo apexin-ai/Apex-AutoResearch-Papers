@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_016",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:04:52.233Z",
+    "updated_at": "2026-05-22T06:21:25.837Z",
+    "hypothesis": "Type-specific mitigation prompts reduce violations more effectively than generic awareness prompts for their targeted ambiguity types, supporting the practical contribution that type-aware triage is necessary for policy-governed deployments",
+    "spec": {
+      "command": "python run_mitigation_v2.py --condition all",
+      "server": "local",
+      "data_path": "artifacts/_project/data/clause_templates_full_28b249.json",
+      "data_count": 300,
+      "model_name": "gpt-5.4",
+      "seed": "N/A (API sampling)",
+      "checkpoint_path": "artifacts/mitigation_experiment_v2/episodes/episodes.jsonl",
+      "log_path": "artifacts/mitigation_experiment_v2/analysis/mitigation_v2_results.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T06:21:25.837Z"
+  },
+  "timestamp": "2026-05-22T06:21:25.868989+00:00",
+  "trigger": "update_registry"
+}

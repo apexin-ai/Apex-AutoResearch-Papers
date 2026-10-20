@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The guest \"{guest_name}\" must have placed **fewer than** {max_room_service_orders_per_day} room service orders for room \"{room_id}\" on the current interaction date.",
+  "action": "place_room_service_order",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 4,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_service_order_type",
+    "internal_get_interaction_time",
+    "internal_get_loyalty_member_info",
+    "place_room_service_order",
+    "internal_valid_room_id",
+    "[says: The room ID \"101\" is not valid according to the hotel's system. Please verify the room number and ensure it exists in the hotel's room availability records before attempting to place the order again. ...]"
+  ],
+  "timestamp": "2026-05-22T17:33:15.756332"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b02ee61327324bbe2b25",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis prevalence audit dual judge",
+  "task_key": "worker_analysis_prevalence_audit_dual_judge_20260523T061440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prevalence_audit_dual_judge_20260523T061440_result.json",
+    "occurrence": 1,
+    "bytes": 1413,
+    "sha256": "2caa69ba7a58ac9677d4104f93440f3c6edc9b47491de7040cc0a58ef0b4c66c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All phases complete. Here's the summary:\n\n## Delivered Files (`artifacts/prevalence_audit/`)\n\n| File | Phase | Description |\n|------|-------|-------------|\n| `clauses.jsonl` | 2 | **407 clauses** extracted from 24 docs (250 airline, 157 retail, 9 companies) |\n| `extract_clauses.py` | 2 | Extraction script (already run) |\n| `annotate_dual_judge.py` | 3 | Dual-judge annotation pipeline (Claude Sonnet 4.6 + GPT-4.1) |\n| `compute_stats.py` | 4 | Cohen's κ, prevalence (raw + doc-weighted), company-level bootstrap CI (N=9, B=10k), type distribution |\n| `sample_validation.py` | 5 | Stratified sampling of 50 clauses (balanced by ambig/non-ambig and type) |\n| `codebook.md` | 5 | Human annotation instructions with type definitions and decision rules |\n| `appendix_draft.tex` | 6 | LaTeX appendix with placeholder tables for all results, selection bias disclosure, LLM caveat |\n\n## To run the pipeline:\n\n```bash\n# 1. Set API keys\nexport ANTHROPIC_API_KEY=[REDACTED] OPENAI_API_KEY=[REDACTED] 2. Install dependencies\npip install anthropic openai numpy\n\n# 3. Run annotations (~407 calls per judge)\npython annotate_dual_judge.py\n\n# 4. Compute stats\npython compute_stats.py\n\n# 5. Generate human validation sample\npython sample_validation.py\n```\n\nThe annotation script supports `--resume` to continue after interruption and `--judge claude|gpt` to run judges individually."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prevalence-audit-dual-judge.md"
+}

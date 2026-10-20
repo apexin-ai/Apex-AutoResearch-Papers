@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The user's balance must be sufficient to cover their outstanding obligation.",
+  "action": "pay_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "[says: I'm unable to log you in with the provided driver's license information. To proceed with paying your loan, you'll need to either:\n1. Provide the correct driver's license state associated with the ID \"...]"
+  ],
+  "timestamp": "2026-05-22T19:42:28.346335"
+}

@@ -1,0 +1,33 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have a 'membership' field that is a date on or after the interaction_time. ",
+  "action": "borrow_book",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "borrow_book",
+    "[says: The book \"Beloved\" has been successfully borrowed by user \"mario\". \n\nYour return date for this book is **April 15th, 2024** (based on standard 3-week borrowing period). \n\nWould you like to check any o...]"
+  ],
+  "timestamp": "2026-05-22T18:04:50.983203"
+}

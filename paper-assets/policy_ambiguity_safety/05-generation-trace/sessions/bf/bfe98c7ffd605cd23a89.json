@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "bfe98c7ffd605cd23a89",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "exp diag 001 run",
+  "task_key": "worker_exp_diag_001_run_20260520T104959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_diag_001_run_20260520T104959.log",
+    "occurrence": 1,
+    "bytes": 762771,
+    "sha256": "50e1d80ba0933d51feeaa7bc1fd9f8fed4a5eccf71ea86e94c6b6a5a59781ff0"
+  },
+  "statistics": {
+    "messages": 806,
+    "user_turns": 0,
+    "tool_calls": 379,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 379,
+      "tool_result": 379,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 806,
+      "chunks": [
+        {
+          "path": "bfe98c7ffd605cd23a89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe98c7ffd605cd23a89-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe98c7ffd605cd23a89-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe98c7ffd605cd23a89-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe98c7ffd605cd23a89-part-0005.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-diag-001-run.md"
+}

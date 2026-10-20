@@ -1,0 +1,38 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_room_change_options",
+    "[says: I'd be happy to help you with a room change request, John! Before I proceed, I need to know which room type you'd like to upgrade to. Could you please specify the room type you're interested in?\n\nAlso...]",
+    "[says: \"Upgrade\" is a valid reason for a room change. Now, could you please let me know which room type you'd like to upgrade to? For example, a suite or a deluxe room? Once you provide that, I'll proceed wi...]",
+    "[says: I notice you've specified \"double\" as the room type, but you mentioned you're already in a double room and want to upgrade. A room change to the same room type wouldn't be an upgrade. \n\nCould you plea...]",
+    "internal_valid_room_change_reason",
+    "[says: Understood. Let me proceed with verifying the conditions for your room change request. Let me check the necessary details.]",
+    "internal_get_room_checkin_details",
+    "[says: I'm sorry, but I'm unable to process your room change request. **John Doe** does not appear to be listed in the current room check-in records, which means you must be checked in to request a room chan...]"
+  ],
+  "timestamp": "2026-05-22T17:02:46.931921"
+}

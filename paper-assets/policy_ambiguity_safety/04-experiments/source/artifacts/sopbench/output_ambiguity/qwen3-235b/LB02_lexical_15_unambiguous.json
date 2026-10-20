@@ -1,0 +1,35 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have a 'membership' field that is a date on or after the interaction_time. ",
+  "action": "borrow_book",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_convert_book_title_to_id",
+    "internal_get_user_borrowed",
+    "[says: It looks like you've already borrowed \"Pride and Prejudice\" (ID: 81G3WP0). Would you like me to check the return date for this book instead?]"
+  ],
+  "timestamp": "2026-05-22T18:05:33.406973"
+}

@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC13_lexical",
+  "domain": "healthcare",
+  "constraint": "claim_status_denied",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The claim must have been previously unsuccessful in order to be appealed.",
+  "action": "appeal_claim",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_claim_exists",
+    "get_policy_details",
+    "get_claim_details",
+    "[says: The claim with ID \"CLM-003\" is currently marked as **\"pending\"** rather than denied. To appeal a claim, it must have been **previously denied** (status: \"denied\"). Since this claim is still under revi...]"
+  ],
+  "timestamp": "2026-05-22T17:52:43.036184"
+}

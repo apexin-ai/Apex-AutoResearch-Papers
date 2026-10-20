@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ece75c35f83e00e3377d",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research ambiguity taxonomy",
+  "task_key": "worker_research_ambiguity_taxonomy_20260520T071428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ambiguity_taxonomy_20260520T071428_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "db6af58008cf12987b90a453ea61ae48a2697be0c18fdc4622d09ddd7feeb6be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/ambiguity_taxonomy.md` 并注册。核心内容概览：\n\n**理论基础** — 综合了三套分类体系：\n- Massey et al. (2014) 的 6 类监管文本歧义分类\n- DRIP-R (Borkakoty et al., 2025) 的 5 类零售策略歧义分类\n- Li et al. (2024) 的 11 类 NLP 歧义分类\n- 以 Chantree et al. (2006) 的 nocuous/innocuous 区分框架约束范围\n\n**三类操作定义**：\n\n| 类型 | 核心机制 | 预期违规率 | 预期频率 |\n|---|---|---|---|\n| Scopal | 量词/修饰语作用域交互，结构性歧义 | 最高 — LLM 默认 surface scope，无法自纠 | 最低 |\n| Lexical | 策略术语多义，语义层面 | 最低 — LLM WSD 能力强，上下文可补偿 | 中等 |\n| Incompleteness | 缺失条件/异常/定义，语用层面 | 中等 — LLM 填充合理但不一定符合作者意图 | 最高 |\n\n**9 个 matched pairs**（每类 3 个）覆盖电商退货、航空改签、内容审核、金融服务、医疗数据、客服升级等真实策略场景。每个 pair 只在歧义点处不同，标注了具体歧义词/短语、可能解读、预期 agent 行为差异。\n\n**标注指南** — 包含决策流程图（结构检查→词汇检查→完整性检查）和 IAA 协议（Cohen's kappa ≥ 0.7）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ambiguity-taxonomy.md"
+}

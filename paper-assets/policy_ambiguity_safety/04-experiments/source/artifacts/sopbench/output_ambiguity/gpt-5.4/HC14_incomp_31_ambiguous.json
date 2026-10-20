@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The policy type must be a recognized insurance category.",
+  "action": "update_policy",
+  "task_idx": 31,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "[says: I can\u2019t update the policy because the requested policy type, **\u201cInvalid,\u201d** is not a recognized insurance category.\n\nAlso, the requested coverage amount of **10000** is within the allowed limit for an...]"
+  ],
+  "timestamp": "2026-05-22T22:40:40.731531"
+}

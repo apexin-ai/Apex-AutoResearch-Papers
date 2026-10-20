@@ -1,0 +1,31 @@
+{
+  "pair_id": "HC16_auth",
+  "domain": "healthcare",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The user is logged in previously with the correct credentials to perform this action.",
+  "action": "update_policy",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: The update cannot proceed because \"Life\" is not a valid insurance policy type. Valid policy types are: Health, Dental, Pharmacy, or Vision. Please choose one of these options and ensure you're logged ...]"
+  ],
+  "timestamp": "2026-05-22T18:38:44.055116"
+}

@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK02_lexical",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+  "action": "get_loan",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "get_loan",
+    "[says: Your loan application has been approved! Based on the successful application, you now owe the bank **$5,000.00**. This amount will need to be repaid according to the bank's loan terms. Let me know if ...]"
+  ],
+  "timestamp": "2026-05-22T17:55:52.520431"
+}

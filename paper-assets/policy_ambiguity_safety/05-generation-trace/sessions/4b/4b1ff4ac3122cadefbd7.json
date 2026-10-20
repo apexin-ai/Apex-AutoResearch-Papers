@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1ff4ac3122cadefbd7",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research prevalence retail collect",
+  "task_key": "worker_research_prevalence_retail_collect_20260523T052507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prevalence_retail_collect_20260523T052507_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "79b27f8a47db8fe4484a78cafbcd7c1495ff8a6bb7b262d4080cab987be7d53c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集完成。\n\n**结果：**\n- 成功收集 **11 份策略文档**，覆盖 **5 家公司**（Target, IKEA, Nordstrom, Zappos, Apple）\n- 策略类型覆盖：return/refund (5), shipping/delivery (2), terms of use (2), loyalty program (1), media services/subscriptions (1)\n- 文件保存在 `artifacts/prevalence_audit/raw_docs/retail_*.txt`\n- 收集日志在 `artifacts/prevalence_audit/retail_collection_log.md`\n\n**10 家公司被跳过**：Amazon (503), Walmart (CAPTCHA), Costco/Best Buy/REI (timeout), Home Depot/Macy's/Sephora/Nike/Lowe's (403)。这些公司的网站均使用了严格的 bot 检测机制，无法通过 WebFetch 访问。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prevalence-retail-collect.md"
+}

@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+  "action": "update_policy",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The requested coverage amount of $13,000 exceeds the maximum allowed limit of 20% of your annual income ($60,000 \u00d7 0.20 = $12,000). To proceed with updating your policy, you'll need to adjust the cove...]",
+    "[says: The requested coverage amount of $13,000 still exceeds the maximum allowed limit of $12,000 (20% of $60,000). To proceed with updating your policy, you'll need to reduce the coverage amount to $12,000...]"
+  ],
+  "timestamp": "2026-05-22T17:46:40.301412"
+}

@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "get_loan",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It seems there was an issue logging into your account with the provided credentials. Could you please double-check your username and identification (password) and try again? If you've forgotten your p...]"
+  ],
+  "timestamp": "2026-05-22T23:38:31.964097"
+}

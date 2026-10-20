@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" has an account balance \"balance\" that is **equal to or greater than >=** their owed balance \"owed_balance\".",
+  "action": "pay_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: The login attempt for user \"jane_doe\" failed. This could be due to incorrect driver's license information. Please verify the driver's license ID and state, then try again. Without successful authentic...]"
+  ],
+  "timestamp": "2026-05-22T19:40:16.414756"
+}

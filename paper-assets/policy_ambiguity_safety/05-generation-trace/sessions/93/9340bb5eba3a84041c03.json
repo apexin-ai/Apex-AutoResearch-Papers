@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9340bb5eba3a84041c03",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit r10 cleanup recompile",
+  "task_key": "worker_edit_r10_cleanup_recompile_20260521T195056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_r10_cleanup_recompile_20260521T195056_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "fa8c61edd51a502e7aabb8952a074ed1103f07c06b00e2fd6f3e739893370776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n| 项目 | 结果 |\n|------|------|\n| 总页数 | 16 |\n| 主文页数 ≤ 8 | 是（pp.1-8，Limitations 在 p.9 不计入） |\n| Undefined references | 0 |\n| Undefined citations | 0 |\n| Overfull hbox > 10pt | 0 |\n\n清理内容：\n1. **Appendix 一致性** — 无重复。所有 5 个 required labels 存在且唯一，无重复 subsection/段落/内容。\n2. **Overfull hbox 修复** — 用 `\\resizebox{\\columnwidth}{!}` 修复了两个表格：\n   - `tab:logistic_regression`（10.16pt → 消除）\n   - `tab:token_delta`（58.19pt → 消除）\n3. 剩余唯一 overfull：3.28pt（TOST sensitivity table，低于 10pt 阈值，忽略）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-r10-cleanup-recompile.md"
+}

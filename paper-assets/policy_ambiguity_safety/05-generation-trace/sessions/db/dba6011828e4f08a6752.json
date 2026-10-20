@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dba6011828e4f08a6752",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code systematic nocuity 5model",
+  "task_key": "worker_code_systematic_nocuity_5model_20260520T192833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_systematic_nocuity_5model_20260520T192833_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "7a90af40fdc161e48ebd3ccdff092f654005b1b1c81aa51df0b25d9053c64131"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本执行完成，结果已输出到 `systematic_nocuity_5model.json`。\n\n关键发现：\n- **Ambiguous**: 124/300 (41.3%) clauses 有 majority+ convergent violation（≥3/5 模型）。其中 universal (5/5) 39 个，strong (4/5) 32 个，majority (3/5) 53 个。\n- **Unambiguous control**: 仅 5/300 (1.7%) majority+ convergent violation，对照效果显著。\n- **Ambiguity type 最高**: incompleteness (universal=12) 远超其他类型。\n- **Severity agreement**: Fleiss' κ = 0.141 (slight)，模型在\"是否违规\"上趋同，但对违规严重程度的判定不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-systematic-nocuity-5model.md"
+}

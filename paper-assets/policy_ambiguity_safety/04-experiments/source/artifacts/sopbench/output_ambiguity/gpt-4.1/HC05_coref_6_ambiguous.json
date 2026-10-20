@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC05_coref",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The filing must occur within the allowed window following its initial determination.",
+  "action": "appeal_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_claim_exists",
+    "get_claim_details",
+    "[says: Your claim with ID CLM-002 currently has a status of \"pending,\" not \"denied.\" Only claims that have been denied are eligible for appeal.\n\nIf you have another claim that was denied, please provide the ...]"
+  ],
+  "timestamp": "2026-05-22T17:17:58.049877"
+}

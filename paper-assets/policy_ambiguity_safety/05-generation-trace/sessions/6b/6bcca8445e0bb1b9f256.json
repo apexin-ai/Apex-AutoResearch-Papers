@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bcca8445e0bb1b9f256",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 014 perturbation extended",
+  "task_key": "worker_code_plan_014_perturbation_extended_20260521T105804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_014_perturbation_extended_20260521T105804_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "38a69264fef1c5180f029f3172e7d6fa709d3fb204de0c7f953b393993ec9e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 014 完成。结果：\n\n| 指标 | plan_010 (n=120) | plan_014 (n=300) |\n|------|-----------------|-----------------|\n| Δ_perturb | 3.33pp | **-0.67pp** |\n| 95% CI | [-5.0, 13.33] | **[-8.0, 6.67]** |\n| CI width | 18.33pp | **14.67pp** |\n| McNemar p | — | **1.00** |\n| Verdict | PASS | **PASS** |\n\nCI 宽度从 18.33pp 收窄到 14.67pp（减少 3.66pp），Δ_perturb 接近零（-0.67pp），McNemar p=1.0 表明 perturbed 与 original 条件间无显著差异。这强化了 C1 因果推断：主研究观察到的 34pp ambiguity delta 不可归因于表面措辞变化。\n\n输出文件：\n- `perturbation_extended/results.json` — 完整统计结果\n- `perturbation_extended/clauses_perturbation_extended.json` — 150 pairs\n- `perturbation_extended/episodes.jsonl` — 300 episodes\n- `perturbation_extended/judgments/judgments.jsonl` — 300 judgments"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-014-perturbation-extended.md"
+}

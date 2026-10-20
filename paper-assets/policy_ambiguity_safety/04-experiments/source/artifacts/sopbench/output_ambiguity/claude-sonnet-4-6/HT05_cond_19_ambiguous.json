@@ -1,0 +1,39 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "[says: I'll help you modify Jane Smith's reservation. Let me verify all the required conditions step by step.\n\nFirst, let me get the current interaction time and booking details simultaneously.]",
+    "find_booking_info",
+    "show_available_rooms",
+    "[says: The booking is confirmed. Now let me check if the \"double\" room type is valid and has availability for the new dates.]",
+    "modify_reservation",
+    "[says: The \"double\" room type is available for the new dates (2024-12-03 to 2024-12-06). Now let me verify the modification is requested sufficiently in advance and calculate the cost difference.\n\n- **Curren...]",
+    "[says: Jane Smith's reservation has been successfully modified! Here's a summary of the changes:\n\n| Detail | Original | Updated |\n|---|---|---|\n| **Room Type** | Single | Double |\n| **Check-in Date** | 2024-...]",
+    "[says: It looks like your reservation modification for Jane Smith has already been completed successfully in our previous interaction! There's nothing more to do.\n\nTo recap, here's what was updated:\n\n| Detai...]"
+  ],
+  "timestamp": "2026-05-22T17:51:43.312629"
+}

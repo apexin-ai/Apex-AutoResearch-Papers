@@ -1,0 +1,33 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must hold a current library membership.",
+  "action": "borrow_book",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "borrow_book",
+    "[says: The book \"Beloved\" has been successfully borrowed by your account. \n\n<exit_conversation/>]"
+  ],
+  "timestamp": "2026-05-22T18:05:11.693546"
+}

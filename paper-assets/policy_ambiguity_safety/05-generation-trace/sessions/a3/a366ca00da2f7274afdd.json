@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "a366ca00da2f7274afdd",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "experiment sopbench expansion",
+  "task_key": "worker_experiment_sopbench_expansion_20260522T221858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_sopbench_expansion_20260522T221858.log",
+    "occurrence": 1,
+    "bytes": 892227,
+    "sha256": "34eb77f7244480c48d9bbe459a42e2b709a03a0ae210b2b544a82a48f0e8f370"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 1,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 139,
+      "record": 2,
+      "assistant": 144,
+      "tool_call": 89,
+      "user": 1,
+      "tool_result": 89,
+      "result": 85
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "a366ca00da2f7274afdd-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 544,
+      "chunks": [
+        {
+          "path": "a366ca00da2f7274afdd-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "a366ca00da2f7274afdd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a366ca00da2f7274afdd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a366ca00da2f7274afdd-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-sopbench-expansion.md"
+}

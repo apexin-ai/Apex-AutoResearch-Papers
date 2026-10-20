@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 21,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 2,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: Before processing your claim, I need to verify several conditions. First, let's check if your username exists in the system and if you're logged in with the correct credentials.\n\n]",
+    "[says: Now that you're successfully logged in, I need to verify several conditions before submitting your claim:\n\n1. Check if your policy is active\n2. Verify the provider exists\n3. Check if the claim amount ...]",
+    "get_policy_details",
+    "get_provider_details",
+    "get_claim_history",
+    "[says: I notice your claim amount is $2000, which exceeds the maximum claimable amount of $1500. This violates one of the required conditions for submitting a claim. \n\nAdditionally, I need to verify other co...]",
+    "[says: I'm unable to process your claim for the following reasons:\n\n1. The claim amount of $2000 exceeds the maximum claimable amount of $1500\n2. The provider 'John Hopkins' is currently marked as 'Unavailab...]",
+    "[says: Since your claim cannot be processed due to the reasons mentioned (amount exceeding limit, provider unavailable, and existing pending claim), and you haven't provided any alternative instructions, I'l...]"
+  ],
+  "timestamp": "2026-05-23T01:07:09.894036"
+}

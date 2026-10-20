@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC13_lexical",
+  "domain": "healthcare",
+  "constraint": "claim_status_denied",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The claim must have been previously unsuccessful in order to be appealed.",
+  "action": "appeal_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_claim_exists",
+    "appeal_claim",
+    "[says: The appeal for your claim ID CLM-002 has been successfully submitted. You will receive a confirmation notification once the appeal is processed. Is there anything else I can assist you]"
+  ],
+  "timestamp": "2026-05-22T17:54:08.746732"
+}

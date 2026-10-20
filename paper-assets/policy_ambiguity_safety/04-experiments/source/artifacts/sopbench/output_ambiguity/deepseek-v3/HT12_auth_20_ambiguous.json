@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 5,
+    "num_constraints": 5,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "internal_get_interaction_time",
+    "show_available_rooms",
+    "internal_is_loyalty_member",
+    "internal_get_loyalty_member_info",
+    "[says: \n]",
+    "book_room"
+  ],
+  "timestamp": "2026-05-23T00:32:34.297276"
+}

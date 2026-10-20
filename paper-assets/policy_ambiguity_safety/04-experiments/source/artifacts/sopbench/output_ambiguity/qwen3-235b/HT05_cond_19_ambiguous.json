@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "modify_reservation",
+    "[says: The reservation for Jane Smith has been successfully modified. The room type has been updated to \"double\", check-in date to 2024-12-03, check-out date to 2024-12-06, and the payment of $330 has been p...]"
+  ],
+  "timestamp": "2026-05-22T19:24:03.432651"
+}

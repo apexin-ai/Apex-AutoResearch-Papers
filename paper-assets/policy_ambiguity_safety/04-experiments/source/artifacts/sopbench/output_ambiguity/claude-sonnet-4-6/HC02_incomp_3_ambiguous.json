@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim amount must be within the policy's claimable limits.",
+  "action": "submit_claim",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you submit a claim! Let me start by logging you in first.]",
+    "get_policy_details",
+    "[says: You're logged in successfully! Now let me retrieve your policy details to verify eligibility.]",
+    "[says: I'm sorry, but I'm unable to submit your claim for the following reason:\n\n- **Claim Amount Exceeds Coverage Limit**: Your requested claim amount is **$6,000**, but your policy's coverage amount is onl...]",
+    "[says: I understand you've provided the same details, but unfortunately I'm still unable to process your claim.\n\nAs mentioned, your claim amount of **$6,000** exceeds your policy's coverage limit of **$5,000...]"
+  ],
+  "timestamp": "2026-05-22T16:46:44.020847"
+}

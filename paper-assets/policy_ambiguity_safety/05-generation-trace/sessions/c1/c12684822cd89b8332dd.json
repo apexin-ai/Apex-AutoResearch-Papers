@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c12684822cd89b8332dd",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis systematic nocuity",
+  "task_key": "worker_analysis_systematic_nocuity_20260522T155014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_systematic_nocuity_20260522T155014_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "a1075e25e263d9148b8c40f7aeca5382e4c1ffdd389d88cbf76b034640881cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个产出文件已生成：\n\n**`analysis_systematic_nocuity.json`** — 完整结构化数据\n**`analysis_systematic_nocuity_summary.md`** — 可读报告\n\n关键发现：\n\n1. **Convergence distribution** 验证论文数据：13.0% universal (39), 41.3% majority+ (124/300)\n\n2. **Per-type**: incompleteness universal rate 最高 (24%), Fisher exact test vs 其他类型 OR=2.61, p=0.019，显著。排名：incompleteness > lexical=scopal (16%) > auth_scope (10%) > conditional_precedence=coreferential (6%)\n\n3. **Linguistic comparison** (39 universal vs 84 safe):\n   - **compression_ratio** 最显著 (p=0.001): universal clauses 更压缩 (0.40 vs 0.53)，即 ambiguous 版本相对 unambiguous 丢失了更多信息\n   - **token_delta** 显著 (p=0.011): universal clauses 的 unambiguous-ambiguous 差值更大 (26.5 vs 20.2 tokens)\n   - conditional/negation 词数无显著差异\n\n4. **Mechanism convergence**: 124 个 majority-convergent clauses 中，41.9% (52) 的 failure mode 完全一致，83.9% (104) 至少 partial 一致（≥60% 同一 failure mode）。支持 \"systematic nocuity = same incorrect interpretation\" 论点。\n\n5. **Per-model**: 所有模型在 universal clauses 上 violation rate = 100%；在 majority clauses 上 deepseek-v3 最高 (78.8%)，claude-sonnet-4-6 最低 (42.4%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-systematic-nocuity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fd421c5cc55ebbd16f1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis plan g dn awareness",
+  "task_key": "worker_analysis_plan_g_dn_awareness_20260523T053039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_g_dn_awareness_20260523T053039_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "99318d06854c29c00375eb06f55730b4d4c1e0ab2fe7db977698ea422eb5a9b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated in `artifacts/plan_g/`:\n\n| File | Content |\n|---|---|\n| `awareness_matrix.csv` | 5×6 matrix + margins (42 rows) |\n| `analysis_report.md` | Full matrix table, cluster test, pairwise Fisher's, per-type rates, key findings |\n| `appendix_draft.tex` | LaTeX table + 1-paragraph narrative |\n| `maintext_sentence.txt` | Drop-in sentence for §6.2 |\n| `analysis_full.json` | Machine-readable full analysis |\n| `build_awareness_matrix.py` | Reproducible script |\n\n**Key findings:**\n\n1. **Two-cluster pattern confirmed**: {GPT-4.1, Claude} at 10–11% vs {Qwen3, DeepSeek} at 0% ($p = 2.2 \\times 10^{-9}$). GPT-5.4 intermediate at 4.1%.\n2. **Per-type**: Conditional precedence has the highest awareness (14.1%), driven by Claude's 8/18 (44.4%). Scopal has 0% across all models. Other types range 1.9–6.3%.\n3. **Pairwise**: After Holm correction, only the 4 comparisons between {GPT-4.1, Claude} and {Qwen3, DeepSeek} are significant. GPT-5.4 comparisons are not significant after correction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-g-dn-awareness.md"
+}

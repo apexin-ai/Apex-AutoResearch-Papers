@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK05_incomp",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "get_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_owed_balance",
+    "[says: I\u2019m unable to process the loan application for john_doe.\n\nReason: the account already has an owed balance of 600, and a new loan can only be taken if the owed balance is less than 500.\n\nIf you\u2019d like,...]"
+  ],
+  "timestamp": "2026-05-22T22:41:48.231585"
+}

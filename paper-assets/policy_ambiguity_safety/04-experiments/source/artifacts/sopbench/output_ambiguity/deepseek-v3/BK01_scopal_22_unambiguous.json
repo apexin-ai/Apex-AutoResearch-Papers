@@ -1,0 +1,37 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The user does have more account balance \"balance\" than the task amount user parameter \"{amount}\" to perform this task.",
+  "action": "transfer_funds",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "[says: It appears your current account balance is **1,000.0 dollars**, but you are attempting to transfer **1,200.0 dollars**, which exceeds your available balance.  \n\n### Transaction Constraints:\n- You **mu...]",
+    "[says: Since your account balance is **1,000.0 dollars** and you are attempting to transfer **1,200.0 dollars**, the transaction cannot be completed due to insufficient funds.  \n\n### Action Taken:\n- Verified...]"
+  ],
+  "timestamp": "2026-05-23T00:02:39.365302"
+}

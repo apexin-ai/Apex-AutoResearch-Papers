@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "688902ccff060c417fe6",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code tost sensitivity analysis",
+  "task_key": "worker_code_tost_sensitivity_analysis_20260520T185204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost_sensitivity_analysis_20260520T185204_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "5f75e502be6001506d53ca50d682fde9188d669c6c2d3ce4a343a82a418f39e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15pp results cross-validated against existing file — all match.\n\nResults written to `tost_sensitivity.json`:\n\n- **±5pp**: 0/15 pairs equivalent\n- **±10pp**: 0/15 pairs equivalent  \n- **±15pp**: 3/15 pairs equivalent (auth_scope↔incompleteness, cond_prec↔lexical, lexical↔scopal)\n- **±20pp**: 4/15 pairs equivalent (+cond_prec↔scopal)\n- **11/15 pairs** remain non-equivalent even at ±20pp, reflecting substantive violation-rate heterogeneity across ambiguity types"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-sensitivity-analysis.md"
+}

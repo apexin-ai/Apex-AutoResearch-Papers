@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The user's balance must be sufficient to cover their outstanding obligation.",
+  "action": "pay_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It appears that the driver's license information you provided does not match our records, or there may be an issue with your login credentials. Please double-check your driver's license details (inclu...]"
+  ],
+  "timestamp": "2026-05-22T17:18:26.692740"
+}

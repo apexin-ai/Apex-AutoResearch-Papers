@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f57e9d3a29f72a92f94",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis cross domain mitigation",
+  "task_key": "worker_analysis_cross_domain_mitigation_20260522T160911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_domain_mitigation_20260522T160911_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "a7ecd41da96c2bf2cbacfb6b72e17c97b9585c5b6cb41a6647ff5d0a1c62bffb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个产出文件已生成：\n\n### Part A 关键结论\n- **Domain × Condition 交互不显著** (β=-0.303, p=0.187) → retail 和 airline 行为一致\n- Retail Δ=+30.6pp, Airline Δ=+37.7pp, 两个 domain 都高度显著\n- **模型排序跨域一致性高** (Spearman ρ=0.900, p=0.037)\n- **类型排序跨域一致性低** (ρ=0.257, p=0.623) — conditional_precedence 跨域差异最大 (-22.0pp, Fisher p<0.001)\n\n### Part B 关键结论\n- **Conditional precedence 和 lexical**: 所有 5 模型一致改善，pooled Δ 分别 -8.1pp (p=0.017) 和 -8.9pp (p=0.019)\n- **Auth scope**: 4/5 模型改善（Claude 为 0），pooled -18.0pp (p=0.059)\n- **Incompleteness**: 4/5 改善但效应小 (pooled -3.3pp, p=0.320)\n- **Model × Mitigation 交互不显著** (p=0.302)，Type × Mitigation 交互边际 (p=0.073)\n- Baseline vulnerability 与 mitigation responsiveness 无显著相关 (r=-0.215, p=0.303)\n\n产出文件：\n- `artifacts/analysis_cross_domain.json`\n- `artifacts/analysis_mitigation_5model.json`\n- `artifacts/analysis_cross_domain_mitigation_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-domain-mitigation.md"
+}

@@ -1,0 +1,33 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The book's ID (retrieved using \"{book_title}\" from the \"book_title_to_id\" section) exists in the \"borrowed\" of the user \"{username}\".",
+  "action": "return_book",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "return_book",
+    "[says: The book \"Beloved\" does not appear to be in your borrowed list. You cannot return a book that hasn't been borrowed. Let me know if you need help checking your borrowed books or locating the book in th...]"
+  ],
+  "timestamp": "2026-05-22T19:48:02.585248"
+}

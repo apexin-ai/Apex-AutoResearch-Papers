@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 3,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "find_booking_info",
+    "internal_valid_room_type",
+    "modify_reservation",
+    "[says: Your reservation for Jane Smith has been successfully modified. The check-in date remains December 3, 2024, and the check-out date remains December 6, 2024. The room type has been updated to a double ...]",
+    "internal_valid_room_type",
+    "modify_reservation",
+    "[says: Your reservation for Jane Smith has been successfully modified. The room type has been updated to a suite, and the transaction amount has been set to $480. The check-in and check-out dates remain unch...]"
+  ],
+  "timestamp": "2026-05-22T18:07:34.154838"
+}

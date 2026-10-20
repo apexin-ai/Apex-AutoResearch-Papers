@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "get_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "get_account_owed_balance",
+    "get_loan",
+    "[says: Your loan application has been successfully approved! The amount you will owe to the bank is $5,000. \n\nIf you have any further questions or need assistance with anything else, feel free to ask!]"
+  ],
+  "timestamp": "2026-05-22T23:38:02.180523"
+}

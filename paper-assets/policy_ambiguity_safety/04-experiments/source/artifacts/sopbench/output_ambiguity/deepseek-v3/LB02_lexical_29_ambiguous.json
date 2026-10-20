@@ -1,0 +1,38 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must hold a current library membership.",
+  "action": "borrow_book",
+  "task_idx": 29,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 6,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_exist",
+    "internal_check_book_available",
+    "internal_get_user_num_borrowed",
+    "internal_is_restricted",
+    "internal_get_membership_status",
+    "borrow_book",
+    "[says: The borrowing process for the book \"Beloved\" was successful! You can now enjoy reading it. Let me know if you need any further assistance.]"
+  ],
+  "timestamp": "2026-05-22T23:44:08.807642"
+}

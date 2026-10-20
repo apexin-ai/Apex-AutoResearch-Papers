@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0b0e06c17dfd2e4129f",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper research ambiguity theory",
+  "task_key": "worker_paper_research_ambiguity_theory_20260520T180615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_ambiguity_theory_20260520T180615_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "78df99c1bf3b94fdc898a30dd1bc4a165a111d51306c0aecb0d7adbd042441f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ambiguity_theory` cluster: 6 entries, all `verified: true`.\n\n| Key | Authors | Year | Status |\n|-----|---------|------|--------|\n| `berry_kamsties_2004` | Berry, Kamsties, Krieger | 2003 | verified (title/authors corrected) |\n| `li_ambiguity_taxonomy_2024` | Li, Liu, Wu, Smith | 2024 | verified (full authors added) |\n| `massey_ambiguity_re_2014` | Massey, Rutledge, Antón, Swire | 2014 | verified (DOI + full authors) |\n| `chantree_2006` | Chantree, Nuseibeh, de Roeck, Willis | 2006 | verified (full authors + S2 ID) |\n| `wasow_ambiguity_2005` | Wasow, Perfors, Beaver | 2005 | **new** — CSLI Publications |\n| `kennedy_vagueness_2007` | Kennedy | 2007 | **new** — Linguistics & Philosophy, DOI confirmed |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-ambiguity-theory.md"
+}

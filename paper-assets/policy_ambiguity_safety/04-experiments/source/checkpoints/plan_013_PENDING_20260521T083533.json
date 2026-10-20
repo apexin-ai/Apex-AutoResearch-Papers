@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_013",
+  "project": "policy_ambiguity_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:05:02.918Z",
+    "updated_at": "2026-05-21T08:35:33.379Z",
+    "hypothesis": "Binary ambiguity effect (C1: Δ >= 20pp) and type hierarchy (C2: at least partial rank consistency) replicate on 1-2 new model families (Gemini/LLaMA/Mistral) not in original 5-model study, strengthening cross-architecture generalization"
+  },
+  "timestamp": "2026-05-21T08:35:33.428000+00:00",
+  "trigger": "update_registry"
+}

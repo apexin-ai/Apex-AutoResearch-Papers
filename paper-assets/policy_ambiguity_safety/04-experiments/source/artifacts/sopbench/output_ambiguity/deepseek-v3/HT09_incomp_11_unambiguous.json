@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_change_reason",
+    "show_room_change_options",
+    "[says: It seems that \"personal preference\" is not a valid reason for requesting a room change. Let me check the list of accepted reasons for room changes.]",
+    "[says: The valid reasons for requesting a room change are: upgrade, maintenance, noise, accessibility, temperature, cleanliness, safety, or other. \"Personal preference\" is not listed as a valid reason. \n\nWou...]"
+  ],
+  "timestamp": "2026-05-22T17:10:12.200339"
+}

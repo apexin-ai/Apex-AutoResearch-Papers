@@ -1,0 +1,77 @@
+{
+  "verified_at": "2026-05-20",
+  "drip_r_2026": {
+    "exists": true,
+    "bib_authors": "{DRIP-R Team}",
+    "real_authors": "Borkakoty, Hsuvas and Pohl, Sebastian and Wang, Cheng and Chen, Bei and Hou, Yufang",
+    "venue": "arXiv preprint",
+    "arxiv_id": "2605.07699",
+    "bib_arxiv_correct": true,
+    "notes": "Real paper, submitted 2026-05-08. Authors confirmed via arXiv listing."
+  },
+  "policybank_2026": {
+    "exists": true,
+    "bib_authors": "{PolicyBank Team}",
+    "real_authors": "Choi, Jihye and Yoon, Jinsung and Le, Long T. and Jha, Somesh and Pfister, Tomas",
+    "venue": "arXiv preprint",
+    "arxiv_id": "2604.15505",
+    "bib_arxiv_correct": false,
+    "bib_arxiv_missing": true,
+    "notes": "Real paper, submitted 2026-04-16. Bib was missing arXiv ID entirely."
+  },
+  "mantra_2026": {
+    "exists": true,
+    "bib_authors": "{MANTRA Team}",
+    "real_authors": "Anand, Ashwani and Chatzi, Ivi and Raha, Ritam and Schmuck, Anne-Kathrin",
+    "venue": "arXiv preprint",
+    "arxiv_id": "2605.06334",
+    "bib_arxiv_correct": true,
+    "notes": "Real paper, submitted 2026-05-07. Max Planck Institute for Software Systems."
+  },
+  "agentauditor_2025": {
+    "exists": true,
+    "bib_authors": "{AgentAuditor Team}",
+    "real_authors": "Luo, Hanjun and Dai, Shenyu and Ni, Chiming and Li, Xinfeng and Zhang, Guibin and Wang, Kun and Liu, Tongliang and Salam, Hanan",
+    "venue": "NeurIPS 2025",
+    "arxiv_id": "2506.00641",
+    "bib_arxiv_correct": true,
+    "bib_venue_outdated": true,
+    "notes": "Real paper, accepted NeurIPS 2025. Bib says 'arXiv preprint' but should be updated to NeurIPS 2025."
+  },
+  "phantompolicy_2026": {
+    "exists": true,
+    "bib_authors": "Wu, Jie and Gong, Ming",
+    "real_authors": "Wu, Jie and Gong, Ming",
+    "venue": "arXiv preprint",
+    "arxiv_id": "2604.12177",
+    "bib_arxiv_correct": true,
+    "authors_correct": true,
+    "notes": "Real paper, submitted 2026-04-14. Authors match bib. No fix needed."
+  },
+  "agentpex_2026": {
+    "exists": true,
+    "bib_authors": "Sharma, Akshit and Barke, Shraddha and Zorn, Benjamin",
+    "real_authors": "Sharma, Reshabh K and Barke, Shraddha and Zorn, Benjamin",
+    "venue": "arXiv preprint (Microsoft Research)",
+    "arxiv_id": "2603.23806",
+    "bib_arxiv_correct": true,
+    "authors_error": "First author first name wrong: 'Akshit' should be 'Reshabh K'",
+    "notes": "Real paper, submitted 2026-03. Microsoft Research. First name of first author is WRONG in bib."
+  },
+  "lhaw_2026": {
+    "exists": true,
+    "bib_authors": "{LHAW Team}",
+    "real_authors": "Pu, George and Lee, Michael S. and Sehwag, Udari Madhushani and Lee, David J. and Zhu, Bryan and Maurya, Yash and Raghavendra, Mohit and Xue, Yuan and Denton, Samuel Marc",
+    "venue": "arXiv preprint",
+    "arxiv_id": "2602.10525",
+    "bib_arxiv_correct": true,
+    "notes": "Real paper (bonus check — not in Director's list but also uses {Team}). Submitted 2026-02-11."
+  },
+  "summary": {
+    "fabricated": 0,
+    "real_with_author_fix_needed": 5,
+    "real_with_correct_authors": 1,
+    "real_with_wrong_first_name": 1,
+    "all_arxiv_ids_verified": true
+  }
+}

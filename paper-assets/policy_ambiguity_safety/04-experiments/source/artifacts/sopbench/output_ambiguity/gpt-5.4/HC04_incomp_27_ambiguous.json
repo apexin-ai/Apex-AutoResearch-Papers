@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC04_incomp",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The action must be performed within the user's enrollment period.",
+  "action": "update_policy",
+  "task_idx": 27,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m unable to update your policy right now.\n\nReason:\n- Your account was successfully authenticated.\n- Your policy is active.\n- The requested coverage amount of 5000 does not exceed 10% of your annual ...]"
+  ],
+  "timestamp": "2026-05-22T22:39:13.058684"
+}

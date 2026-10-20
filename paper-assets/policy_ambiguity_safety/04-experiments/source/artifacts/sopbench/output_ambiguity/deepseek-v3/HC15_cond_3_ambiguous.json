@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC15_cond",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The appointment should be set for a future time, relative to when the request is processed.",
+  "action": "schedule_appointment",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "schedule_appointment",
+    "[says: Your appointment with provider \"mayo_clinic_rochester\" has been successfully scheduled for January 14, 2025. \n\nIs there anything else I can assist you with? If not, feel free to ask later or say goodb...]"
+  ],
+  "timestamp": "2026-05-22T18:00:00.565236"
+}

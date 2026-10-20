@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC15_cond",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The appointment_date \"{appointment_date}\" **MUST BE AFTER** the interaction time.",
+  "action": "schedule_appointment",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_provider_exists",
+    "get_provider_details",
+    "get_policy_details",
+    "schedule_appointment",
+    "[says: The appointment for Henry Smith with provider \"mayo_clinic_rochester\" has been successfully scheduled for 2025-01-10. \n\nWould you like me to provide any additional assistance with your healthcare acco...]"
+  ],
+  "timestamp": "2026-05-22T19:11:08.353760"
+}

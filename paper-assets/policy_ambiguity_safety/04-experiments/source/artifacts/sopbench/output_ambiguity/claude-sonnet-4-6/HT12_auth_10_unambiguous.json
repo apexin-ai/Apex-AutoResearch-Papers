@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The guest \"{guest_name}\" must have a loyalty tier of either \"gold\" or \"platinum\".",
+  "action": "book_room",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "[says: I need to verify a few conditions before booking. Let me start by checking the available rooms.]",
+    "internal_is_loyalty_member",
+    "[says: The double room is available for all required dates (Dec 7\u201311, covering 5 nights). Now let me check the stay duration and loyalty status, since the stay is **5 nights** (which exceeds the 4-night limi...]",
+    "[says: Unfortunately, I'm unable to process this booking. Here's why:\n\n1. **Stay Duration**: The stay from 2024-12-07 to 2024-12-12 spans **5 nights**, which exceeds the maximum of **4 nights** allowed for n...]",
+    "[says: I'm sorry, but I'm unable to process this booking for the following reasons:\n\n1. **Stay Duration**: The stay from 2024-12-07 to 2024-12-12 spans **5 nights**, which exceeds the maximum of **4 nights**...]"
+  ],
+  "timestamp": "2026-05-22T17:40:43.338224"
+}

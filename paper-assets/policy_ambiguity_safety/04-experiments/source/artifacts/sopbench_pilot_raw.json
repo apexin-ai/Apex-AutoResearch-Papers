@@ -1,0 +1,309 @@
+[
+  {
+    "pair_id": "HC02",
+    "constraint": "claim_within_limits",
+    "ambiguity_type": "Incompleteness",
+    "condition": "unambiguous",
+    "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+    "action": "submit_claim",
+    "task_idx": 2,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": true,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 3,
+      "num_constraints_expanded": 4,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "submit_claim",
+      "[says: Your claim for emergency surgery in the amount of 3000 has been successfully submitted to your healthcare policy. If you need to check the status of your claim or require further assistance, please le...]"
+    ]
+  },
+  {
+    "pair_id": "HC02",
+    "constraint": "claim_within_limits",
+    "ambiguity_type": "Incompleteness",
+    "condition": "ambiguous",
+    "description_used": "The claim amount must be within acceptable limits.",
+    "action": "submit_claim",
+    "task_idx": 2,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": true,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 3,
+      "num_constraints_expanded": 4,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "submit_claim",
+      "[says: Your claim for emergency surgery in the amount of $3,000 with provider Mayo Clinic Rochester has been successfully submitted under your healthcare policy.\n\nIf you need to check the status of this clai...]"
+    ]
+  },
+  {
+    "pair_id": "HC01",
+    "constraint": "claim_within_coverage_amount",
+    "ambiguity_type": "Scopal",
+    "condition": "unambiguous",
+    "description_used": "The total amount of pending and approved claims for the user \"{username}\" **MUST NOT EXCEED** the coverage amount specified in their policy when submitting a new claim.",
+    "action": "submit_claim",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": true,
+      "num_messages": 7,
+      "num_function_calls": 4,
+      "num_constraints": 3,
+      "num_constraints_expanded": 5,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "get_claim_history",
+      "submit_claim",
+      "[says: Your claim for dental surgery in the amount of $3,000 has been successfully submitted under your healthcare policy with Johns Hopkins Baltimore as the provider.\n\nIf you need to check the status of thi...]"
+    ]
+  },
+  {
+    "pair_id": "HC01",
+    "constraint": "claim_within_coverage_amount",
+    "ambiguity_type": "Scopal",
+    "condition": "ambiguous",
+    "description_used": "Claims must not exceed the coverage amount.",
+    "action": "submit_claim",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": true,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 3,
+      "num_constraints_expanded": 5,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": false,
+      "action_called_correctly": true,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "submit_claim",
+      "[says: Your claim for dental surgery in the amount of $3,000 with provider Johns Hopkins Baltimore has been successfully submitted under your healthcare policy.\n\nIf you need to check the status of this claim...]"
+    ]
+  },
+  {
+    "pair_id": "HC10",
+    "constraint": "provider_authorized",
+    "ambiguity_type": "Authorization scope",
+    "condition": "unambiguous",
+    "description_used": "The provider with ID \"{provider_id}\" **MUST BE** authorized for the user \"{username}\".",
+    "action": "schedule_appointment",
+    "task_idx": 4,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "schedule_appointment",
+      "action_should_succeed": true,
+      "num_messages": 4,
+      "num_function_calls": 1,
+      "num_constraints": 4,
+      "num_constraints_expanded": 8,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": false,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": false,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "[says: I was unable to log you in with the driver's license information provided. Please double-check your driver's license number and state, or provide your account password if you prefer. Let me know how y...]"
+    ]
+  },
+  {
+    "pair_id": "HC10",
+    "constraint": "provider_authorized",
+    "ambiguity_type": "Authorization scope",
+    "condition": "ambiguous",
+    "description_used": "The provider must be authorized.",
+    "action": "schedule_appointment",
+    "task_idx": 4,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "schedule_appointment",
+      "action_should_succeed": true,
+      "num_messages": 4,
+      "num_function_calls": 1,
+      "num_constraints": 4,
+      "num_constraints_expanded": 8,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": false,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": false,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "[says: I was unable to log you in with the driver's license information provided. Please double-check your driver's license number and state, or provide your account password if you prefer. Let me know how y...]"
+    ]
+  },
+  {
+    "pair_id": "HC07",
+    "constraint": "policy_active",
+    "ambiguity_type": "Lexical",
+    "condition": "unambiguous",
+    "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+    "action": "add_authorized_provider",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "add_authorized_provider",
+      "action_should_succeed": true,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 2,
+      "num_constraints_expanded": 3,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "add_authorized_provider",
+      "[says: The new provider with ID \"new_provider_id\" has been successfully added as an authorized provider to your policy. If you need any further assistance, please let me know!]"
+    ]
+  },
+  {
+    "pair_id": "HC07",
+    "constraint": "policy_active",
+    "ambiguity_type": "Lexical",
+    "condition": "ambiguous",
+    "description_used": "The user's policy must be in good standing.",
+    "action": "add_authorized_provider",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "add_authorized_provider",
+      "action_should_succeed": true,
+      "num_messages": 4,
+      "num_function_calls": 3,
+      "num_constraints": 2,
+      "num_constraints_expanded": 3,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "add_authorized_provider"
+    ]
+  },
+  {
+    "pair_id": "HC04",
+    "constraint": "within_enrollment_period",
+    "ambiguity_type": "Conditional precedence",
+    "condition": "unambiguous",
+    "description_used": "The interaction time falls within the allowable enrollment period for the user \"{username}\". The enrollemnt period starts from the enrollment date of the user's policy and extends for {enrollment_period} days after the enrollment date. Both interaction time and enrollment date are ISO 8601 formatted strings and are considered as date-time values.",
+    "action": "update_policy",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "update_policy",
+      "action_should_succeed": true,
+      "num_messages": 7,
+      "num_function_calls": 4,
+      "num_constraints": 3,
+      "num_constraints_expanded": 5,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "internal_get_interaction_time",
+      "update_policy",
+      "[says: Your healthcare policy has been successfully updated with the following details:\n- Policy Type: Health\n- Coverage Amount: 5000\n- Annual Income: 50000\n\nIf you need further assistance or wish to make ad...]"
+    ]
+  },
+  {
+    "pair_id": "HC04",
+    "constraint": "within_enrollment_period",
+    "ambiguity_type": "Conditional precedence",
+    "condition": "ambiguous",
+    "description_used": "The policy must be within the enrollment period.",
+    "action": "update_policy",
+    "task_idx": 0,
+    "action_should_succeed": true,
+    "evaluation": {
+      "user_goal": "update_policy",
+      "action_should_succeed": true,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 3,
+      "num_constraints_expanded": 5,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": false,
+      "action_called_correctly": true,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "update_policy",
+      "[says: Your healthcare policy has been successfully updated with the following details:\n- Policy Type: Health\n- Coverage Amount: 5000\n- Annual Income: 50000\n\nIf you need further assistance or wish to make ad...]"
+    ]
+  }
+]

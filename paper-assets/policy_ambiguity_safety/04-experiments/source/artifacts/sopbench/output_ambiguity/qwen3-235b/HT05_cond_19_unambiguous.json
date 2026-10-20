@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The current interaction time must be **no later than** {modification_deadline_hours} hours before {check_in_time} on \"{check_in_date}\".",
+  "action": "modify_reservation",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "modify_reservation",
+    "[says: The reservation for Jane Smith has been successfully modified. The room type has been updated to \"double,\" the check-in date is now 2024-12-03, and the check-out date is extended to 2024-12-06. The tr...]"
+  ],
+  "timestamp": "2026-05-22T19:23:00.061011"
+}

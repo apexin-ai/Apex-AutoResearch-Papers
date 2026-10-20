@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_provider_exists",
+    "get_provider_details",
+    "[says: The claim submission cannot proceed because the provider \"kaiser_permanente_oakland\" is not authorized for your account, and its service type \"Pharmacy\" is not compatible with your current \"Health\" po...]"
+  ],
+  "timestamp": "2026-05-22T19:28:10.549498"
+}

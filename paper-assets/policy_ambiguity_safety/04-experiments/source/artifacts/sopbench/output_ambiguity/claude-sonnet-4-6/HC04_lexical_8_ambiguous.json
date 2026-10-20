@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC04_lexical",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "This action must occur while the user's enrollment is still active and current.",
+  "action": "update_policy",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you update your healthcare policy! Let me start by logging you in with the provided credentials.]",
+    "get_policy_details",
+    "[says: You're now logged in! Now let me retrieve your current policy details to verify your policy status and enrollment.]",
+    "internal_get_interaction_time",
+    "[says: Let me also check the current interaction time to verify your enrollment is still active.]",
+    "[says: Now let me verify all the conditions before proceeding:\n\n1. \u2705 **Logged in** \u2014 Successfully authenticated.\n2. \u2705 **Active policy** \u2014 Your current policy type is **Health** (not Inactive).\n3. \u2705 **Enrollm...]",
+    "[says: I understand you've resubmitted the same details, but unfortunately the outcome remains the same. As explained previously:\n\n- **Requested Coverage Amount:** $12,000\n- **Maximum Allowable Coverage (20%...]"
+  ],
+  "timestamp": "2026-05-22T17:09:21.341294"
+}

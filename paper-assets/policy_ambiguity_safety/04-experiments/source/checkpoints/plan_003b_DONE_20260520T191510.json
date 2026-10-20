@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_003b",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:13:39.530Z",
+    "updated_at": "2026-05-20T19:15:10.723Z",
+    "hypothesis": "DeepSeek V3 (open-source dense) exhibits the same binary ambiguity effect and type hierarchy. As a third architecture family (dense vs MoE vs proprietary), consistent results complete the 5-model cross-architecture generalizability evidence for C4.",
+    "parent": "plan_002",
+    "spec": {
+      "command": "python run_full_study.py --phase 1 --models deepseek-v3 --concurrency 10 && python run_full_study.py --phase 2 --models deepseek-v3 --concurrency 5",
+      "server": "local (API-only via OpenRouter)",
+      "data_path": "artifacts/clause_templates_full.json",
+      "data_count": 600,
+      "model_name": "deepseek/deepseek-chat-v3-0324",
+      "seed": "N/A (API sampling)",
+      "checkpoint_source": "plan_002 clause templates",
+      "eval_data": "300 clauses × 2 conditions, cross-judge by gpt-4.1",
+      "checkpoint_path": "artifacts/full_study/judgments/deepseek-v3/judgments.jsonl",
+      "log_path": "artifacts/full_study/episodes/deepseek-v3/episodes.jsonl",
+      "metrics": {
+        "episodes": 600,
+        "judgments": 600,
+        "errors": 0,
+        "ambiguous_violation_rate": 0.497,
+        "unambiguous_violation_rate": 0.107,
+        "delta_pp": 39
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T19:15:10.723Z"
+  },
+  "timestamp": "2026-05-20T19:15:10.739691+00:00",
+  "trigger": "update_registry"
+}

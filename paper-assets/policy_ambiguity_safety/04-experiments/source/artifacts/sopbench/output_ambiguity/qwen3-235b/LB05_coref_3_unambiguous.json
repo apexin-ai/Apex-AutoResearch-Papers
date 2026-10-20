@@ -1,0 +1,36 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The book's ID (retrieved using \"{book_title}\" from the \"book_title_to_id\" section) exists in the \"borrowed\" of the user \"{username}\".",
+  "action": "return_book",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "return_book",
+    "internal_check_book_exist",
+    "internal_get_user_borrowed",
+    "internal_convert_book_title_to_id",
+    "[says: The book \"One Hundred Years of Solitude\" (ID: 02Y6GFA) is not in your borrowed list. Your currently borrowed book is \"The Alchemist\" (ID: 81G3WP0). Would you like to return that book instead, or check...]"
+  ],
+  "timestamp": "2026-05-22T19:51:06.751255"
+}

@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The deposit amount \"{amount}\" must be less than or equal to the {maximum_deposit} to be accepted.",
+  "action": "deposit_funds",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The login attempt for user **john_doe** failed. Please verify that you are providing the correct password or valid driver's license information (including both the license ID and state). If you need f...]"
+  ],
+  "timestamp": "2026-05-22T17:21:50.720400"
+}

@@ -1,0 +1,42 @@
+{
+  "pair_id": "HC15_scopal",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The appointment must be scheduled for an upcoming date.",
+  "action": "schedule_appointment",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: Sure! Let me start by verifying your credentials and checking the necessary conditions before scheduling your appointment.\n\n**Step 1: Verify that the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in with your credentials.**]",
+    "get_policy_details",
+    "[says: You're logged in! Now let me check your policy details.\n\n**Step 3: Verify that you have an active policy.**]",
+    "get_provider_details",
+    "[says: Your policy is active (type: **Health**). Now let me check the provider's details.\n\n**Step 4: Verify the provider's availability.**]",
+    "internal_get_interaction_time",
+    "[says: The provider **Mayo Clinic (Rochester)** is **Available**! Now let me verify that the appointment date is upcoming.\n\n**Step 5: Check the current interaction time.**]",
+    "[says: Unfortunately, the requested appointment date of **2025-01-10** has already passed (today's date is **2025-01-15**). Therefore, I am unable to schedule an appointment on that date.\n\nCould you please p...]",
+    "[says: I understand you've provided the same information, but unfortunately I am still unable to schedule the appointment. The requested appointment date of **2025-01-10** has already passed, as today's date...]"
+  ],
+  "timestamp": "2026-05-22T17:28:47.691831"
+}

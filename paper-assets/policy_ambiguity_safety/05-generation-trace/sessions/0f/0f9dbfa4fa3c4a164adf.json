@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9dbfa4fa3c4a164adf",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan001 supplement clauses",
+  "task_key": "worker_code_plan001_supplement_clauses_20260520T115014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001_supplement_clauses_20260520T115014_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "95d097605ac248a4823e6c64542fc0954efea6f7bd1ae53f956ff4a10e7b33ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validations pass:\n\n- **40 clauses total**: 20 lexical (`lexical_031`~`050`) + 20 incompleteness (`incompleteness_031`~`050`)\n- **Domain balance**: 10 retail + 10 airline per type\n- **All required fields present** including `ambiguous_clause`, `unambiguous_clause`, `user_scenario`, `tools`, `stripped_tool_desc`, `tool_responses`, `ambiguity_point`, `possible_interpretations`, `expected_agent_behavior_diff`\n- **All clauses have >= 3 tool_responses**\n\nOutput written to `/tmp/clauses_supplement.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-supplement-clauses.md"
+}

@@ -1,0 +1,68 @@
+{
+  "experiment": "temperature_robustness_extension",
+  "description": "Extends GPT-4.1 temperature pilot to claude-sonnet-4-6 and deepseek-v3",
+  "parameters": {
+    "n_clause_pairs": 50,
+    "temperature": 0.7,
+    "num_runs": 3,
+    "models": [
+      "claude-sonnet-4-6",
+      "deepseek-v3"
+    ],
+    "judge_map": {
+      "claude-sonnet-4-6": "gpt-5.4",
+      "deepseek-v3": "gpt-4.1"
+    }
+  },
+  "timestamp": "2026-05-24 10:27:26 UTC",
+  "results": {
+    "claude-sonnet-4-6": {
+      "model": "claude-sonnet-4-6",
+      "n_clause_pairs": 50,
+      "num_runs": 3,
+      "temperature": 0.7,
+      "threshold": "moderate+critical (consistent with main experiment)",
+      "violation_rates": {
+        "t0_ambiguous": "18/50 (36.0%)",
+        "t0_unambiguous": "2/50 (4.0%)",
+        "t07_ambiguous_majority": "19/50 (38.0%)",
+        "t07_unambiguous_majority": "3/50 (6.0%)"
+      },
+      "treatment_effect_t0": 32.0,
+      "treatment_effect_t07_mean": 32.7,
+      "treatment_effect_t07_sd": 5.2,
+      "treatment_effect_t07_runs": [
+        28.0,
+        30.0,
+        40.0
+      ],
+      "treatment_effect_t07_majority": 32.0,
+      "t0_vs_t07_majority_agree": "94/100 (94.0%)",
+      "cross_run_unanimous_pct": 91.0
+    },
+    "deepseek-v3": {
+      "model": "deepseek-v3",
+      "n_clause_pairs": 50,
+      "num_runs": 3,
+      "temperature": 0.7,
+      "threshold": "moderate+critical (consistent with main experiment)",
+      "violation_rates": {
+        "t0_ambiguous": "26/50 (52.0%)",
+        "t0_unambiguous": "6/50 (12.0%)",
+        "t07_ambiguous_majority": "24/50 (48.0%)",
+        "t07_unambiguous_majority": "3/50 (6.0%)"
+      },
+      "treatment_effect_t0": 40.0,
+      "treatment_effect_t07_mean": 36.0,
+      "treatment_effect_t07_sd": 2.8,
+      "treatment_effect_t07_runs": [
+        38.0,
+        32.0,
+        38.0
+      ],
+      "treatment_effect_t07_majority": 42.0,
+      "t0_vs_t07_majority_agree": "85/100 (85.0%)",
+      "cross_run_unanimous_pct": 79.0
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you apply for a credit card! Before proceeding, I need to verify a few conditions. Let me start by checking if your username exists in our database.]",
+    "login_user",
+    "[says: Your username exists in our database. Now let me verify that you are logged in. It appears you haven't logged in yet. Let me log you in first using your credentials.]",
+    "internal_get_credit_score",
+    "[says: You're now logged in! Now let me check your credit score to verify your eligibility.]",
+    "[says: Unfortunately, I'm unable to process your credit card application. Here's why:\n\n- \u2705 Your account exists in our database.\n- \u2705 You are successfully logged in.\n- \u274c **Your credit score is 750**, which is ...]",
+    "[says: I understand you'd like to apply for a credit card, but unfortunately I am unable to process your application. As mentioned, your credit score is **750**, which is below the required minimum of **800*...]"
+  ],
+  "timestamp": "2026-05-22T17:17:51.999972"
+}

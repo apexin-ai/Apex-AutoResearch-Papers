@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c23b49ab8454fba23ce",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan001 authscope clauses",
+  "task_key": "worker_code_plan001_authscope_clauses_20260520T113056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001_authscope_clauses_20260520T113056_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "1c5124dbfe10684033ea2c2e895ce99bed5d85e3ccfe7248ecc20e36a6685b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Validation passed. 50 `authorization_scope` clauses written to `/tmp/clauses_authscope.json`.\n\n**Distribution:**\n- 26 retail / 24 airline\n- 15 role permission boundary (auth_001–015)\n- 10 tool/action authorization (auth_016–025)\n- 15 conditional permission (auth_026–040)\n- 10 delegation/inheritance (auth_041–050)\n\nEach entry has the full schema: matched ambiguous/unambiguous clauses, user scenario, tool definitions (stripped + full), 3+ tool responses with args patterns, ambiguity point, 2+ interpretations (broad vs narrow), expected behavior diff, and annotation rationale."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-authscope-clauses.md"
+}

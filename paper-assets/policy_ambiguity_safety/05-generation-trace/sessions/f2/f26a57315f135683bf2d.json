@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f26a57315f135683bf2d",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code phase3 stats supplement",
+  "task_key": "worker_code_phase3_stats_supplement_20260520T134401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase3_stats_supplement_20260520T134401_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "ca955b7f02df816f36c572d25c38f2011ff5edc1ae48f86271ca84f5162009c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和 CLI 均正常。\n\n新增 6 个分析函数已追加到 `run_full_study.py` Phase 3 section：\n\n| # | 函数 | 输出文件 | 对应 Dream |\n|---|------|---------|-----------|\n| 1 | `run_power_analysis` | `power_analysis.json` | A3 — C2/C3 MDE via non-central chi-square, underpowered 警告 |\n| 2 | `run_tost_equivalence` | `tost_equivalence.json` | A4 — 双 margin (±15pp / ±10pp) two one-sided z-tests |\n| 3 | `run_bootstrap_ci` | `bootstrap_ci.json` | BCa bootstrap 10k resamples, 全量 pairwise (condition/type/model) |\n| 4 | `run_mcnemar_matched` | `mcnemar_matched.json` | C1 主检验 — matched-pair McNemar + MH OR + per-model 分层 |\n| 5 | `run_information_delta` | `information_delta.json` | A10 — per-type token delta + logistic regression 控制变量 |\n| 6 | `run_fleiss_kappa` | `fleiss_kappa.json` | Inter-model agreement, 支持 2-4 models 动态检测 |\n\n现有函数和 `run_phase3` 签名未修改，6 个新函数在 `run_phase3()` 末尾依次调用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase3-stats-supplement.md"
+}

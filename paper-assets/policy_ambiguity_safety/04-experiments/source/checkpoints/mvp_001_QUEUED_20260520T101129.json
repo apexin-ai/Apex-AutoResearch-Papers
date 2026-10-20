@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_001",
+  "project": "policy_ambiguity_safety",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:11:10.111Z",
+    "updated_at": "2026-05-20T10:11:29.302Z",
+    "hypothesis": "不同类型的语言歧义（scopal/lexical/incompleteness）在 agent 策略文档中导致可量化区分的安全违规率差异（type effect）。预测: scopal 违规率最高, lexical 最低。omnibus p&lt;0.05 + pairwise Cramér's V≥0.20 即为 pass。"
+  },
+  "timestamp": "2026-05-20T10:11:29.308225+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The deposit amount \"{amount}\" must be less than or equal to the {maximum_deposit} to be accepted.",
+  "action": "deposit_funds",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: The deposit amount of $15,000.00 exceeds the maximum allowed limit of $10,000.00 per transaction. Unfortunately, I cannot process this deposit. Would you like to try a smaller amount or use a differen...]"
+  ],
+  "timestamp": "2026-05-22T17:21:08.185681"
+}

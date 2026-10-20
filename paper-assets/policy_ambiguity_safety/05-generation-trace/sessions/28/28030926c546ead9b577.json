@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28030926c546ead9b577",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper figure fig2 forest plot",
+  "task_key": "worker_paper_figure_fig2_forest_plot_20260520T174246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_forest_plot_20260520T174246_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "b89c3df73e413d32d42cd3ece0d8069d4df63417e8b0b8a2633a5eeefb3f0879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 生成完毕。\n\n**输出文件**：\n- PDF: `artifacts/figures/paper/fig2_forest_plot.pdf` (38KB)\n- PNG: `artifacts/figures/paper/fig2_forest_plot.png` (162KB)\n- 脚本: `artifacts/figures/paper/gen_fig2_forest_plot.py`\n\n**验证通过**：\n- 7 行（6 type + 1 overall pooled）\n- 两层背景色带（vermillion=#FADBD8 / blue=#D6E4F0）+ legend 标注\n- Newcombe CI bars + Δpp path-effect 标签\n- 星号标注：5 个 \\*\\*\\*（p<0.001），Coreferential \\*\\*（p<0.01）\n- 颜色与 fig1 一致（Spec=#C44E52, Ling=#4C72B0, Overall=#2D2D2D）\n- Diamond marker 用于 overall，圆点用于 per-type\n- Δ=0 虚线 + overall mean 点线参考线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-forest-plot.md"
+}

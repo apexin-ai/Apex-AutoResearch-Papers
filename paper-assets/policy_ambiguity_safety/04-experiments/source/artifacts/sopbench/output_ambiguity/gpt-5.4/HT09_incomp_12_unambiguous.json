@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_change_reason",
+    "request_room_change",
+    "[says: Your room change request has been processed successfully, John Doe.]"
+  ],
+  "timestamp": "2026-05-22T16:57:36.576460"
+}

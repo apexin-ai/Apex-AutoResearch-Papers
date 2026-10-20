@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC10_auth",
+  "domain": "healthcare",
+  "constraint": "provider_authorized",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The provider must have the appropriate authorization to treat the user.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "get_provider_details",
+    "[says: I cannot process your claim at this time because the provider \"Kaiser Permanente Oakland\" has a service type of \"Pharmacy,\" which does not match your current policy type of \"Health.\" \n\nTo submit a cla...]"
+  ],
+  "timestamp": "2026-05-22T17:09:12.415931"
+}

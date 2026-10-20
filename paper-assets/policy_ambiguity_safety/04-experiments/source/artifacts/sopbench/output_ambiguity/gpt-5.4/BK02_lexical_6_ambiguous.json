@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK02_lexical",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's outstanding obligations must not be excessive to take a loan.",
+  "action": "get_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "get_account_owed_balance",
+    "[says: I\u2019m sorry, but your loan application can\u2019t be processed.\n\nYour username exists and your credit score is 750, which meets the credit score requirement. However, you currently already owe the bank 600.0...]"
+  ],
+  "timestamp": "2026-05-22T22:55:06.140925"
+}

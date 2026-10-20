@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK05_incomp",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "[says: I'm sorry, but based on our credit card application requirements, you're not currently eligible for a credit card. Your credit score of 300 is below the minimum requirement of 400. To improve your eli...]"
+  ],
+  "timestamp": "2026-05-22T17:14:21.913981"
+}

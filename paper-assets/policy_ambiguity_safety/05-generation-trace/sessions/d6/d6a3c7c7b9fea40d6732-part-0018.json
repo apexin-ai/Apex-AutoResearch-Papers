@@ -1,0 +1,1066 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d6a3c7c7b9fea40d6732",
+  "rounds": [
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 3061,
+          "timestamp": "2026-05-25T21:17:18.722667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-003061"
+        },
+        {
+          "source_line": 3062,
+          "timestamp": "2026-05-25T21:17:19.075114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-003062"
+        },
+        {
+          "source_line": 3063,
+          "timestamp": "2026-05-25T21:17:19.579329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-003063"
+        },
+        {
+          "source_line": 3064,
+          "timestamp": "2026-05-25T21:17:19.579774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-003064"
+        },
+        {
+          "source_line": 3065,
+          "timestamp": "2026-05-25T21:17:20.491657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1416
+          },
+          "id": "event-003065"
+        },
+        {
+          "source_line": 3066,
+          "timestamp": "2026-05-25T21:17:20.645632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-003066"
+        },
+        {
+          "source_line": 3067,
+          "timestamp": "2026-05-25T21:17:21.300342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1720
+          },
+          "id": "event-003067"
+        },
+        {
+          "source_line": 3068,
+          "timestamp": "2026-05-25T21:17:21.300757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-003068"
+        },
+        {
+          "source_line": 3069,
+          "timestamp": "2026-05-25T21:17:21.956837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-003069"
+        },
+        {
+          "source_line": 3070,
+          "timestamp": "2026-05-25T21:17:23.266247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2620
+          },
+          "id": "event-003070"
+        },
+        {
+          "source_line": 3071,
+          "timestamp": "2026-05-25T21:17:23.269683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1968
+          },
+          "id": "event-003071"
+        },
+        {
+          "source_line": 3072,
+          "timestamp": "2026-05-25T21:17:23.273711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1316
+          },
+          "id": "event-003072"
+        },
+        {
+          "source_line": 3073,
+          "timestamp": "2026-05-25T21:17:23.275557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the COMPLETE review form with ALL scoring dimensions, their exact scales (1-5 or other), and the description for each score level. Include soundness, excitement, overall assessment, confidence, and any other dimensions. I need the exact rubric text for each score value."
+            }
+          },
+          "id": "event-003073"
+        },
+        {
+          "source_line": 3074,
+          "timestamp": "2026-05-25T21:17:29.901393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Rubric\n\n## Reviewer Confidence\n**Scale: 1-5**\n- 5: \"Positive that my evaluation is correct. I read the paper very carefully\"\n- 4: \"Quite sure. I tried to check the important points carefully\"\n- 3: \"Pretty sure, but there's a chance I missed something\"\n- 2: \"Willing to defend my evaluation, but it is fairly likely that I missed some details\"\n- 1: \"Not my area, or paper is very hard to understand\"\n\n## Soundness\n**Scale: 1-5 (with .5 increments)**\n- 5: \"Excellent: This study is one of the most thorough I have seen\"\n- 4: \"Strong: This study provides sufficient support for all of its claims\"\n- 3: \"Acceptable: This study provides sufficient support for its main claims\"\n- 2: \"Poor: Some of the main claims are not sufficiently supported\"\n- 1: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n## Excitement\n**Scale: 1-5 (with .5 increments)**\n- 5: \"Highly Exciting: I would recommend this paper to others\"\n- 4: \"Exciting: I would mention this paper to others\"\n- 3: \"Interesting: I might mention some points of this paper to others\"\n- 2: \"Potentially Interesting: this paper does not resonate with me\"\n- 1: \"Not Exciting: this paper does not resonate with me\"\n\n## Overall Assessment\n**Scale: 1-5 (with .5 increments)**\n- 5: \"Consider for Award: could be considered for outstanding paper award\"\n- 4: \"Conference: could be accepted to an *ACL conference\"\n- 3: \"Findings: could be accepted to the Findings of the ACL\"\n- 2: \"Resubmit next cycle: needs substantial revisions\"\n- 1: \"Do not resubmit: has to be fully redone\"\n\n## Reproducibility\n**Scale: 1-5**\n- 5: \"They could easily reproduce the results\"\n- 4: \"They could mostly reproduce the results\"\n- 3: \"They could reproduce the results with some difficulty\"\n- 2: \"They would be hard pressed to reproduce the results\"\n- 1: \"They would not be able to reproduce the results\"\n\n## Datasets & Software\n**Scale: 1-5 (identical for both)**\n- 5: \"Enabling: should affect other people's c\n…[truncated 243 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 6625
+          },
+          "id": "event-003074"
+        },
+        {
+          "source_line": 3075,
+          "timestamp": "2026-05-25T21:20:10.526435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ToolEmu agent safety benchmark Ruan 2024 NeurIPS"
+            }
+          },
+          "id": "event-003075"
+        },
+        {
+          "source_line": 3076,
+          "timestamp": "2026-05-25T21:20:11.028294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "PhantomPolicy LLM agent policy safety 2025 2026"
+            }
+          },
+          "id": "event-003076"
+        },
+        {
+          "source_line": 3077,
+          "timestamp": "2026-05-25T21:20:11.731097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"ambiguity\" \"LLM agent\" \"policy\" causal matched-pair 2025 2026"
+            }
+          },
+          "id": "event-003077"
+        },
+        {
+          "source_line": 3078,
+          "timestamp": "2026-05-25T21:20:16.902457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ToolEmu agent safety benchmark Ruan 2024 NeurIPS\"\n\nLinks: [{\"title\":\"OS-HARM: A Benchmark for Measuring Safety of Computer Use Agents\",\"url\":\"https://arxiv.org/pdf/2506.14866\"},{\"title\":\"GitHub - ryoungj/ToolEmu: [ICLR'24 Spotlight] A language model (LM)-based emulation framework for identifying the risks of LM agents with tool use · GitHub\",\"url\":\"https://github.com/ryoungj/toolemu\"},{\"title\":\"10 AI agent benchmarks\",\"url\":\"https://www.evidentlyai.com/blog/ai-agent-benchmarks\"},{\"title\":\"Published as a conference paper at ICLR 2025 AGENTHARM: A BENCHMARK\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c493d23af93118975cdbc32cbe7323f5-Paper-Conference.pdf\"},{\"title\":\"AGENT-SAFETYBENCH: Evaluating the Safety of LLM Agents\",\"url\":\"https://www.arxiv.org/pdf/2412.14470v1\"},{\"title\":\"SafeToolBench: Pioneering a Prospective Benchmark to Evaluating Tool Utilization Safety in LLMs\",\"url\":\"https://arxiv.org/html/2509.07315v1\"},{\"title\":\"Evaluation and Benchmarking of LLM Agents: A Survey\",\"url\":\"https://arxiv.org/html/2507.21504v1\"},{\"title\":\"Published as a conference paper at ICLR 2024 R-JUDGE: BENCHMARKING SAFETY RISK\",\"url\":\"https://openreview.net/pdf?id=g6Yy46YXrU\"},{\"title\":\"R-Judge: Benchmarking Safety Risk Awareness for LLM Agents\",\"url\":\"https://arxiv.org/html/2401.10019v1\"}]\n\nBased on the search results, here's what I found about ToolEmu:\n\n## ToolEmu Agent Safety Benchmark\n\nToolEmu was published at The Twelfth International Conference on Learning Representations (ICLR) in 2024 as a paper titled \"Identifying the Risks of LM Agents with an LM-Emulated Sandbox\" by Ruan et al.\n\n**Key Features:**\n\nToolEmu uses an LLM-based sandbox to emulate tool execution, enabling scalable testing of LLM agents against diverse scenarios. The framework focuses on identifying risky behaviors of LLM agents when using tools, containing 36 high-stakes tools and 144 test cases covering scenarios where agent misuse could lead to serious consequen\n…[truncated 686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6376
+          },
+          "id": "event-003078"
+        },
+        {
+          "source_line": 3079,
+          "timestamp": "2026-05-25T21:20:17.153755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"PhantomPolicy LLM agent policy safety 2025 2026\"\n\nLinks: [{\"title\":\"Policy-Invisible Violations in LLM-Based Agents\",\"url\":\"https://arxiv.org/html/2604.12177v1\"},{\"title\":\"Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\",\"url\":\"https://arxiv.org/pdf/2510.16492\"},{\"title\":\"AI Security Trends 2026: Deepfakes, Agents & LLM Red Teaming\",\"url\":\"https://www.practical-devsecops.com/ai-security-trends-2026/\"},{\"title\":\"Agent Safety Alignment via Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2507.08270\"},{\"title\":\"PolicyBank: Evolving Policy Understanding for LLM Agents\",\"url\":\"https://arxiv.org/html/2604.15505\"},{\"title\":\"VeriGuard: Enhancing LLM Agent Safety via Verified Code Generation\",\"url\":\"https://arxiv.org/pdf/2510.05156\"},{\"title\":\"Enhancing LLM Agent Safety via Causal Influence Prompting\",\"url\":\"https://arxiv.org/pdf/2507.00979\"}]\n\nBased on the search results, I found relevant information about PhantomPolicy in the context of LLM agent policy safety:\n\nPhantomPolicy focuses on cooperative, non-adversarial cases in which the decisive policy facts are intentionally absent from the model-visible context. This represents a research contribution addressing a specific gap in LLM agent safety: situations where policy-critical information is not visible to the model but should influence its behavior.\n\nThe search revealed that recent agent benchmarks and security studies evaluate harmful actions, prompt attacks, privacy leakage, and policy preservation in LLM systems, with PhantomPolicy being part of this broader research landscape published in April 2026.\n\nThe research appears in a paper titled \"Policy-Invisible Violations in LLM-Based Agents\" from arXiv (dated April 14, 2026), which addresses the problem of how LLM agents handle decisions when important policy constraints exist but are not explicitly provided to the model—a distinct challenge from adversarial attacks or prompt injection vulnerab\n…[truncated 155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6125
+          },
+          "id": "event-003079"
+        },
+        {
+          "source_line": 3080,
+          "timestamp": "2026-05-25T21:20:19.763790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"ambiguity\" \"LLM agent\" \"policy\" causal matched-pair 2025 2026\"\n\nLinks: [{\"title\":\"ASPI: Seeking Ambiguity Clarification Amplifies Prompt Injection Vulnerability in LLM Agents\",\"url\":\"https://arxiv.org/html/2605.17324v1\"},{\"title\":\"Aligning Language Models to Explicitly Handle Ambiguity\",\"url\":\"https://arxiv.org/pdf/2404.11972\"},{\"title\":\"PolicyBank: Evolving Policy Understanding for LLM Agents\",\"url\":\"https://arxiv.org/html/2604.15505\"},{\"title\":\"LLMs as Deceptive Agents: How Role-Based Prompting Induces Semantic   Ambiguity in Puzzle Tasks\",\"url\":\"https://arxiv.org/pdf/2504.02254\"},{\"title\":\"GitHub - AGI-Edgerunners/LLM-Agents-Papers: A repo lists papers related to LLM based agent · GitHub\",\"url\":\"https://github.com/AGI-Edgerunners/LLM-Agents-Papers\"},{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"},{\"title\":\"Augmenting large language models with psychologically grounded models of causal reasoning for planning under uncertainty\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12901353/\"}]\n\nI found several relevant results for your search. Here are the key findings:\n\n## Main Results\n\nThe ASPI (Ambiguous-State Prompt Injection) benchmark contains 728 task-attack scenarios spanning four application domains—workspace, messaging, travel, and banking—that evaluates whether LLM agents exhibit increased vulnerability when operating under ambiguity.\n\nMany approaches to policy compliance assume that written policies are complete, unambiguous proxies for actual requirements, but in practice this assumption rarely holds. PolicyBank is a memory mechanism that refines policy insights by translating ambiguous natural language specifications into precise tool-calling preconditions, without manual rule rewriting.\n\nResearch demonstrates that explicit adversarial agent behaviors significantly heighten semantic ambiguity—thereby increa\n…[truncated 565 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 8032
+          },
+          "id": "event-003080"
+        },
+        {
+          "source_line": 3081,
+          "timestamp": "2026-05-25T21:20:50.172188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-003081"
+        },
+        {
+          "source_line": 3082,
+          "timestamp": "2026-05-25T21:20:51.076080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLLM-based agents increasingly operate under natural-language policy specifications that inevitably contain ambiguity, yet no prior work causally links ambiguity to safety violations. Using a matched-pair design on $\\tau^2$-bench with 300 clause pairs spanning a six-type taxonomy evaluated across five models, we show that ambiguous clauses increase violations by $+$34.0 percentage points overall and $+$31.0\\,pp for the five types whose manipulation is strictly disambiguating (incompleteness conflates ambiguity with information addition); cross-benchmark evaluation on SOPBench shows directional consistency ($+$12.7\\,pp unweighted mean; all five $\\Delta > 0$), and a healthcare pilot extends the effect beyond customer service ($+$58.8\\,pp). Error analysis reveals that agents almost never recognize ambiguity and converge on identical violations with strong permissive bias. Agreement-based safety monitoring is therefore blind to systematic policy misinterpretation. These findings motivate clause-level policy auditing over type-level risk screening\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/policy_ambiguity_safety-5DFE/}.}.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 903
+          },
+          "id": "event-003082"
+        },
+        {
+          "source_line": 3083,
+          "timestamp": "2026-05-25T21:20:51.829580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\author|anonymize|self-cite|our previous|our prior|we previously",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-003083"
+        },
+        {
+          "source_line": 3084,
+          "timestamp": "2026-05-25T21:20:51.880339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/acl.sty:15:\\newif\\ifacl@anonymize\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/acl.sty:18:\\DeclareOption{final}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumbersfalse}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/acl.sty:19:\\DeclareOption{review}{\\acl@finalcopyfalse\\acl@anonymizetrue\\acl@linenumberstrue\\acl@pagenumberstrue}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/acl.sty:20:\\DeclareOption{preprint}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumberstrue}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/acl.sty:131:    \\ifacl@anonymize\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/main.tex:29:\\author{Anonymous}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003084"
+        },
+        {
+          "source_line": 3085,
+          "timestamp": "2026-05-25T21:23:13.112886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 审稿报告：新颖性与完整性\n\n**论文**: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n**Venue**: EMNLP 2026 via ARR May cycle\n**审查维度**: 新颖性与完整性\n\n---\n\n## 总体评分\n**Overall**: 3.5/5 (Borderline Conference)\n**一句话总结**: 研究问题有实际价值且 matched-pair 因果设计严谨，convergent nocuity 概念具有原创性，但合成基准的生态效度和 Discussion 的薄弱限制了整体影响力。\n\n## 官方维度打分（来自 ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4/5 | Matched-pair 设计控制精良，统计分析全面（TOST 等价检验、方差分解、bootstrap），但合成 clause pairs 使效果量为上界 |\n| Excitement | 3.5/5 | Convergent nocuity 对 agreement-based monitoring 的挑战是重要发现；type-mechanism dissociation 新颖度较低 |\n| Reproducibility | 4/5 | 提供匿名代码/数据仓库，模型、prompt template（Appendix AM）、超参数均有说明 |\n| Confidence | 4/5 | 本人熟悉 agent safety 评估和 NLP 歧义研究，仔细阅读了正文和全部 26 页附录 |\n\n---\n\n## Summary\n\n本文研究 LLM agent 在自然语言政策规范中遇到歧义时是否会产生更多安全违规。作者在 τ²-bench 上构建 300 对 matched clause pairs（涵盖六类歧义分类），在五个模型上运行 2,997 episodes，发现歧义 clause 使违规率整体提升 +34.0 pp（排除 incompleteness 后 +31.0 pp）。主要发现包括：(1) clause-level wording 解释 22.4% 的违规方差而 type 仅解释 0.4%（type-mechanism dissociation）；(2) 41.3% 的歧义 clause 触发 majority-convergent violations，其中 77% 偏向 permissive interpretation（convergent nocuity）；(3) cross-benchmark（SOPBench）和 cross-domain（healthcare）评估提供初步泛化证据。\n\n---\n\n## 主要优势\n\n**S1. 研究问题精准且有实际价值。** Policy ambiguity 是 LLM agent 部署中不可回避的现实问题（Appendix AH 审计显示 87% 的真实 policy clause 含歧义），但此前没有工作从因果角度隔离歧义对安全违规的贡献。本文填补了这一空白。\n\n**S2. 实验设计严谨。** Matched-pair 设计在 same-context 条件下只改变 clause 的歧义性（Section 4.2），配合 perturbation control（Section 4.5, 语义扰动残差仅 ≤27.3 pp vs. 歧义效应 34.0 pp）和 within-family replicability（ICC(1) = 0.892-0.940, Section 4.2），有效控制了混淆因素。Cross-judge 设计（Section 4.4）缓解了单一评判偏差。\n\n**S3. Convergent nocuity 是原创且重要的概念。** 将 Berry & Kamsties (2004) 的 nocuous/innocuous 框架反转应用于 LLM agent——模型不是发散（divergent nocuity）而是收敛到同一个错误解读（Section 6.3）——这对依赖多模型 agreement 做安全监控的实践有直接警示意义。Permissive attractor（77% 偏向宽松解读, Figure 6）和 within-family Jaccard 分析（Appendix AK, 0.54 within vs. 0.46 cross）的证据链完整。\n\n**S4. 分析全面、附录扎实。** 26 页附录覆盖方差分解（Appendix AG）、token-length 控制（Appendix K）、Mantel-Haenszel 分层（Appendix J）、bootstrap clustering（Section 5.2）、temperature robustness（Appendix AN）、healthcare domain pilot（Appendix AE-AF）、real-world prevalence audit（Appendix AH-AI）等。这种彻底性在同类工作中少见。\n\n**S5. 跨学科文献衔接良好。** 将 NLP 歧义（Li et al., 2024b）、RE 歧义（Berry & Kamsties, 2004; Massey, 2014）、心理语言学（Ferreira et al., 2002; Gur-Arieh et al., 2026）和 agent safety（R-Judge, SafeAgentBench, DRIP-R）有机整合，定位清晰。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 合成 clause pairs 的生态效度未充分论证，\"first causal study\" framing 存在过度声明风险\n- 具体位置：Section 1 (page 1-2), Section 4.2, Limitations (page 9)\n- 问题：全部 300 对 clause pairs 为人工构建，歧义信号被最大化（每对仅改变歧义性，语义意图不变）。这使得 +34.0 pp 效应量是一个上界（upper bound），论文在 Limitations 中承认这一点，但正文多处使用 \"the first causal study establishing that policy ambiguity increases violations\"（Section 1, para. \"Our contributions are\"）的措辞，暗示了比合成实验所能支撑的更强的外部效度。Healthcare pilot（Appendix AE, n=50）太小且也使用合成 pairs；real-world audit（Appendix AH）仅证明歧义普遍存在（87%），并未证明自然发生的歧义产生同等效应量。自然发生的歧义可能比精心构造的 minimal-pair 歧义更微妙、更不系统。\n- 为什么影响接收：因果声明是本文的核心定位，如果读者/AC 认为 \"causal\" 仅限于合成基准内部有效性而缺乏外部有效性，论文的贡献会被大幅折扣。\n- 建议修改方向：(1) 在 Introduction 和 Conclusion 中明确区分 \"internal causal validity\"（matched-pair 设计保证的）和 \"ecological validity\"（尚未充分建立的）；(2) 将 healthcare pilot 扩大到至少 n≥200 或增加一个 naturally-occurring ambiguity 的验证实验（如从 Appendix AH 的 407 真实 clauses 中抽样评估）；(3) 将 \"first causal study\" 改为 \"first controlled matched-pair study\" 以更准确反映设计性质。\n\n**N2** [critical] Type-mechanism dissociation 的新颖度需更好论证\n- 具体位置：Section 5.1 (page 6), Figure 2, Appendix AG\n- 问题：论文声称 \"clause wording explains 22.4% of violation variance while type membership explains only 0.4%\"（Section 1）是核心贡献之一。但该发现在一定程度上是分类体系设计的直接后果：六种 type 是粗粒度类别（每类 50 对 clauses），同一 type 内不同 clause 的具体措辞自然差异巨大（如 authorization scope 下既有 \"vague permission\" 也有 \"boundary violation\" 的 clause）。Type 级别方差低并不令人意外——这更像是验证了分类体系的粒度选择，而非揭示了一个 surprising dissociation。NMI = 0.23 vs. 0.01 的对比有力，但需要更多 discussion 解释为什么这不是 trivially expected。\n- 为什么影响接收：如果 reviewer 认为这个贡献是 trivial，论文的 \"三贡献\" 架构会受到质疑。\n- 建议修改方向：(1) 增加一个 null model comparison——如果将 300 clauses 随机分成 6 组，NMI 是多少？如果同样低，说明 type 分组本身就无法捕捉 clause-level 方差；(2) 更明确地论述 practical implication：因为 type 不能预测 mechanism，所以 type-level risk screening（如\"优先审查 scopal ambiguity\"）是无效的，必须做 clause-level 审计。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Introduction 数字密度过高，叙事弧线被压缩\n- 具体位置：Section 1 (pages 1-2)\n- 问题：Introduction 在约 1.5 页内堆叠了大量具体数字：+34.0 pp, +31.0 pp, 22.4%, 0.4%, NMI=0.23 vs. 0.01, Cramer's V = 0.45 vs. 0.14, 41.3%, 77%, 4.6%, +58.8 pp 等。对初次阅读的读者，这些数字在缺乏实验设计上下文的情况下难以消化。Introduction 读起来更像是 Results 摘要而非问题导向的叙事。\n- 建议：将 Introduction 的数字精简到 3-4 个最关键的（如 overall effect size, convergent nocuity 率, cross-benchmark consistency），其余移入 Results preview。参考 DRIP-R 或 SOPBench 的 Introduction 风格，先建立 research gap，再用 1-2 个 headline number 预览发现。\n\n**W2** [warning] Discussion 过短，未充分展开 implications\n- 具体位置：Section 7 (page 8)\n- 问题：Discussion and Conclusion 合并在约 1 页内，对以下重要话题讨论不足：(1) convergent nocuity 对 RLHF/constitutional AI 等 alignment 方法的含义——如果 reward model 也受 permissive attractor 影响怎么办？(2) 与 prompt injection/jailbreak 文献的关系——policy ambiguity 是否构成一种 \"natural\" attack surface？(3) clause-level auditing 的 scalability——300 clause pairs 需人工构建，如何 scale 到数千条 policy？\n- 建议：拆分 Discussion 和 Conclusion 为两个 subsection，Discussion 至少展开 2-3 个 implication 段落。\n\n**W3** [warning] Incompleteness 类型的 confound 处理需更醒目\n- 具体位置：Section 4.2 (page 4), Section 5.1 (page 6), Appendix I\n- 问题：Incompleteness 是唯一一种歧义消解（disambiguation）必然伴随 information addition 的类型（Section 1 明确承认）。论文正确地报告了 excluding incompleteness 后的效应量（+31.0 pp），并在 Appendix I 做了 confound 分析，但这个 fundamental confound 在正文中的处理位置不够醒目。读者可能在 Section 5.1 看到 \"all six types individually produce significant increases\" 时误以为所有类型都是等质量的证据。\n- 建议：在 Section 5.1 首次报告六类型结果时立即加注 incompleteness 的 caveat（不仅是括号内的 \"+31.0 pp excluding incompleteness\"），用 1-2 句话解释为什么 incompleteness 的效应量解读不同于其他五类。\n\n**W4** [warning] 模型选择偏向大规模 frontier models\n- 具体位置：Section 4.3, Table 2 (page 4)\n- 问题：五个模型（GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3）均为 frontier 或接近 frontier 级别。论文缺少较小模型（如 Qwen3-7B, Llama-3.3-8B）或非 instruction-tuned 模型的数据。Appendix F 的 replication（Gemini 2.5 Flash, LLaMA-4-Scout）提供了部分多样性，但正文五模型的选择可能高估了效应量（更强的模型可能更善于处理歧义）或低估了（更强的模型可能更善于遵循 policy 导致 ambiguity 影响更显著）。方向未知，但模型多样性不足是一个 generalizability 限制。\n- 建议：至少在 Limitations 中讨论模型规模作为 moderator 的可能影响；如果可行，增加 1-2 个 ≤30B 参数的模型。\n\n**W5** [warning] Real-world prevalence audit 使用 LLM judge 可能存在循环性\n- 具体位置：Appendix AH (page 22)\n- 问题：87% 的真实 policy 歧义率基于 Claude Sonnet 4.6 和 GPT-5.4 的标注。但本文的核心发现正是 LLM agent 对歧义有系统性偏差（convergent nocuity）。用可能有同样偏差的 LLM 来判断什么是\"歧义的\"，可能导致 prevalence 估计与主实验的 violation 率相关——不是因为歧义真的普遍存在，而是因为 LLM 对 \"歧义\" 的定义本身就偏向触发它们违规的 patterns。\n- 建议：报告 LLM judge 与 human annotator 在 real-world clauses 上的 agreement（目前仅有 synthetic clauses 上的 human validation），或讨论这一潜在循环性。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Figure 2 caption 不够自包含——\"Variance decomposition of violation rates\" 需要读者先理解 \"clause identity\" vs. \"model\" vs. \"type\" 的分解逻辑，建议在 caption 中加一句解释。\n- **M2**: \"Nocuous\" 一词在标题中对 NLP 社区可能不够直觉——大多数 NLP 读者不熟悉 RE 文献中的 nocuous/innocuous 区分。建议在 abstract 或 introduction 首次使用时加括注（\"nocuous, i.e., harmful\"）。\n- **M3**: Table 4 (page 7) 的 footnote 1 关于 incompleteness 的说明字体极小，容易被忽略。\n- **M4**: Section 3 (page 3) 提到 \"six types organized into two layers (Table 1), selected from Li et al. (2024b)'s NLP taxonomy (11 types)\"，但 Appendix P 的 mapping 表（Table 14, page 15）应在正文中被更明确地引用，方便读者查看排除理由。\n- **M5**: Appendix AO 披露使用 Claude (Anthropic) 作为 AI assistant——这本身没问题，但考虑到 Claude Sonnet 4.6 也是实验中的评估模型之一，值得注意潜在的利益关联（非 anonymity violation，但可供 AC 参考）。\n\n---\n\n## Questions to Authors\n\n**Q1**: 如果在 Appendix AH 的 407 个真实 policy clauses 中随机抽取歧义 clause 并与原文配对运行 τ²-bench，您预期效应量是否仍在 +34 pp 附近？还是会因为自然歧义更微妙而显著降低？\n\n**Q2**: Convergent nocuity 中 77% 的 permissive bias 是否可能由 τ²-bench 的 ground-truth 评判标准（assertion checking）驱动？如果评判标准对 \"permissive\" 行为更敏感（因为 assertion 更容易被宽松解读违反），效果可能被高估。\n\n**Q3**: 论文提到 \"disambiguation neglect\"（4.6% awareness rate, Section 6.2），但未讨论是否可以通过 prompting 策略（如 \"If the policy is ambiguous, ask for clarification before acting\"）来缓解。是否有初步实验？\n\n**Q4**: Type-mechanism dissociation 的 NMI=0.23 在信息论中是什么水平？能否提供 interpretive benchmark（如 NMI 在什么范围内算 \"weak\" vs. \"moderate\" association）？\n\n---\n\n## Missing References\n\n1. **ToolEmu (Ruan et al., ICLR 2024)**: \"Identifying the Risks of LM Agents with an LM-Emulated Sandbox\"——agent safety benchmark 领域的基础工作，论文似乎引用了 \"Ruan et al., 2025\" 但 ToolEmu 的原始版本是 ICLR 2024，请确认引用是否指向正确的工作。\n2. **ASPI (2025/2026)**: \"Seeking Ambiguity Clarification Amplifies Prompt Injection Vulnerability in LLM Agents\"——直接研究歧义如何放大 LLM agent 的 prompt injection 脆弱性，与本文的 \"policy ambiguity as natural attack surface\" 角度高度互补。如果提交时已可获取，应在 Related Work 中讨论。\n3. **AgentHarm (Andriushchenko et al., ICLR 2025)**: Agent safety benchmark with harmful action evaluation——扩大 agent safety 基准的覆盖。\n\n---\n\n## Overall Assessment\n\n**Overall**: 3.5/5 (Borderline Conference)\n\n本文提出了一个重要且及时的研究问题（policy ambiguity 是否因果导致 LLM agent 安全违规），实验设计严谨（matched-pair + extensive controls），convergent nocuity 概念有原创性和实践意义。主要不足在于：(1) 合成基准限制了因果声明的外部效度，而 \"first causal study\" 的 framing 未充分 qualify 这一局限；(2) type-mechanism dissociation 的新颖度需更好论证；(3) Discussion 过短，未充分展开对 alignment 和 monitoring 实践的 implications。\n\n如果作者能在 rebuttal 中 (a) 承诺用自然歧义 clauses 做验证实验或扩大 healthcare pilot，(b) 调整因果声明的措辞精确度，(c) 对 Q1-Q4 给出令人信服的回答，本文有潜力达到 Conference 水平（4.0）。目前是强 Findings 候选。\n",
+              "reviewer_id": "2",
+              "project": "policy_ambiguity_safety"
+            }
+          },
+          "id": "event-003085"
+        },
+        {
+          "source_line": 3086,
+          "timestamp": "2026-05-25T21:23:16.879600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_967344d166ba485ad606d14379e69d85:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3766
+          },
+          "id": "event-003086"
+        },
+        {
+          "source_line": 3087,
+          "timestamp": "2026-05-25T21:23:21.361699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003087"
+        },
+        {
+          "source_line": 3088,
+          "timestamp": "2026-05-25T21:23:21.412395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-003088"
+        },
+        {
+          "source_line": 3089,
+          "timestamp": "2026-05-25T21:23:25.679296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images"
+            }
+          },
+          "id": "event-003089"
+        },
+        {
+          "source_line": 3090,
+          "timestamp": "2026-05-25T21:23:25.729944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-003090"
+        },
+        {
+          "source_line": 3091,
+          "timestamp": "2026-05-25T21:23:35.089635+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿完成。报告已通过 `review_reviewer_post_to_director` 提交至 Group C。\n\n核心结论：**Overall 3.5/5 (Borderline Conference)**。\n\n- **2 个 Must-Fix**：(1) \"first causal study\" framing 与合成基准的生态效度之间存在张力，需区分 internal vs. ecological validity；(2) type-mechanism dissociation 的新颖度需更好论证（可能是 taxonomy 粒度的直接后果而非 surprising finding）。\n- **5 个 Should-Fix**：Introduction 数字密度过高、Discussion 过短、incompleteness confound 正文处理不够醒目、模型选择偏向 frontier、real-world audit 的 LLM judge 循环性。\n- **主要优势**：matched-pair 设计严谨、convergent nocuity 概念原创且有安全实践意义、附录极为扎实（26 页）、跨学科文献衔接好。\n\n如果作者 rebuttal 能 (a) 补自然歧义验证实验或扩大 healthcare pilot，(b) 调整因果声明精度，有潜力升至 4.0 (Conference)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2"
+          },
+          "id": "event-003091"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 3092,
+          "timestamp": "2026-05-25T21:24:22.721672+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每个 Must-Fix、Should-Fix 和 Minor 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 1 审稿报告：方法严谨性\n\n**Overall**: 3.5/5 (Borderline Conference), Soundness 4/5, Excitement 4/5\n\n## Must-Fix 问题\n\n**N1** [critical] Pooled McNemar 检验违反独立性假设\n- 核心统计量 pooled McNemar OR=15.1 将 5 个模型 × 300 clause pair = 1,497 对视为独立配对。但同一 clause pair 在 5 个模型上的 5 次观测存在 clause 层面的聚类相关性——ICC=0.919 恰好证实了这一点。MH 分层按 model×type 分层（MH OR=9.57）只能解决 model 层面的混淆，无法处理 clause 层面的随机效应。\n- 建议：(1) 以 per-model McNemar 检验作为主要报告；(2) 补充 mixed-effects logistic regression with clause as random intercept；(3) 将 pooled McNemar OR 降格为辅助参考。\n\n**N2** [critical] 残差方差中 ~46% 系统方差来源未充分讨论\n- 方差分解显示 60.8% 为残差。ICC(1)=0.749 表明其中约 45.5% 为系统性方差。这削弱了 \"clause-level auditing outperforms type-level screening\" 的核心实践建议——clause 措辞只解释 22.4% 而未知系统因素贡献约 46%。\n- 建议：(1) 正文增加一段讨论残差方差组成；(2) 承认 clause 措辞是最大可操作因素但非主要驱动力；(3) 尝试加入 policy-document 或 scenario 层面随机效应。\n\n## Should-Fix 问题\n\n**W1** TOST equivalence SESOI ±15pp 缺乏充分的领域锚定。建议正式从成本模型推导 SESOI。\n\n**W2** Cross-judge 设计不对称性：GPT-4.1 \"systematically harder (mean ≈ +8 pp)\"，影响 GPT-5.4 和 DeepSeek 的绝对违规率比较。\n\n**W3** Incompleteness 信息添加混淆不可完全分离。建议在正文中更明确讨论此不可分离性。\n\n**W4** Healthcare 跨域验证样本量过小（n=50 clause pairs）。建议明确标注 pilot 并降低措辞确定性。\n\n**W5** Per-type judge agreement 差异大（κ=0.385-0.904），低 κ 类型结论可信度存疑。\n\n## Minor\n- M1: Taxonomy 示例不够直观\n- M2: Figure 2 可视化不够直观\n- M3: Disambiguation neglect 统计分母不清\n- M4: \"first causal study\" 措辞需界定因果识别假设\n- M5: Table 5 TOST 注释不清\n\n---\n\n请逐条回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-003092"
+        },
+        {
+          "source_line": 3093,
+          "timestamp": "2026-05-25T21:25:23.276613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/submitted.pdf",
+              "project": "policy_ambiguity_safety",
+              "pages": "5,6,7,10,13,14"
+            }
+          },
+          "id": "event-003093"
+        },
+        {
+          "source_line": 3094,
+          "timestamp": "2026-05-25T21:25:24.179764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 490.5}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 491.7}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 452.5}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 524.4}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.5}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 502.6}], \\\"total_pages\\\": 26, \\\"rendered_pages\\\": 6, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 903
+          },
+          "id": "event-003094"
+        },
+        {
+          "source_line": 3095,
+          "timestamp": "2026-05-25T21:25:27.344290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-003095"
+        },
+        {
+          "source_line": 3096,
+          "timestamp": "2026-05-25T21:25:27.846288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-003096"
+        },
+        {
+          "source_line": 3097,
+          "timestamp": "2026-05-25T21:25:28.800995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1456
+          },
+          "id": "event-003097"
+        },
+        {
+          "source_line": 3098,
+          "timestamp": "2026-05-25T21:25:28.802151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-003098"
+        },
+        {
+          "source_line": 3099,
+          "timestamp": "2026-05-25T21:25:28.802649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-003099"
+        },
+        {
+          "source_line": 3100,
+          "timestamp": "2026-05-25T21:25:29.254068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-003100"
+        },
+        {
+          "source_line": 3101,
+          "timestamp": "2026-05-25T21:25:29.807712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1005
+          },
+          "id": "event-003101"
+        },
+        {
+          "source_line": 3102,
+          "timestamp": "2026-05-25T21:25:29.808117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-003102"
+        },
+        {
+          "source_line": 3103,
+          "timestamp": "2026-05-25T21:25:30.362832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1108
+          },
+          "id": "event-003103"
+        },
+        {
+          "source_line": 3104,
+          "timestamp": "2026-05-25T21:25:30.363313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-003104"
+        },
+        {
+          "source_line": 3105,
+          "timestamp": "2026-05-25T21:25:30.516593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 708
+          },
+          "id": "event-003105"
+        },
+        {
+          "source_line": 3106,
+          "timestamp": "2026-05-25T21:25:31.069394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 706
+          },
+          "id": "event-003106"
+        },
+        {
+          "source_line": 3107,
+          "timestamp": "2026-05-25T21:27:42.802398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n## Must-Fix 问题\n\n### [AGREE] R1-N1: Pooled McNemar 检验违反独立性假设\n\nR1 的统计学批评是准确的。Pooled McNemar 将 5 models × 300 pairs = 1,497 对视为独立配对，但 ICC(1) = 0.892–0.940（Section 4.2, page 5）证实同一 clause pair 在不同模型上的违规行为高度相关，有效样本量远小于 1,497。MH 分层（Appendix J, MH OR = 9.57）按 model 分层解决了部分问题，但确实未处理 clause-level 的随机效应。\n\n**但我补充一点**：论文已在 Section 5.1 报告了 per-model McNemar 结果（\"all five models show large effects (+25.7 to +39.0 pp, all p < 10⁻⁵)\"），且 Appendix J 的 MH 分析和 Appendix G（logistic regression, Table 15）也在逐步控制聚类。结论的方向性不会因此改变——五个模型各自独立都显著。R1 的建议（per-model 为主、补 mixed-effects logistic with clause random intercept、pooled 降为辅助）是合理的优化方案，但这属于 reporting emphasis 的调整而非 finding 的推翻。\n\n**我的判断**：Should-Fix 级别而非 Must-Fix，因为 per-model 结果已经存在且全部显著。但同意 mixed-effects model 应作为首选统计框架。\n\n---\n\n### [AGREE] R1-N2: ~46% 系统方差来源未充分讨论\n\n这个问题我同意。Figure 2（page 5）的方差分解显示 residual 60.8%，结合 ICC(1) = 0.749（Section 5.1, page 6），确实有大量系统性方差未被 clause identity (22.4%)、model (15.8%)、type (0.4%) 解释。\n\n**但我对 R1 的结论做一个限定**：R1 说这\"削弱了 clause-level auditing outperforms type-level screening 的实践建议\"。我认为这个削弱是相对温和的，原因是：\n1. **实践建议是 comparative 而非 absolute**：论文的核心 claim 不是 \"clause wording 是违规的主要驱动力\"，而是 \"clause-level auditing 优于 type-level screening\"（22.4% vs. 0.4%）。即使存在未解释的系统方差，这个 relative comparison 仍然成立。\n2. **未解释方差的可能来源**：clause × model 交互效应（Section 5.2 中已部分探索，Figure 3 heatmap）、scenario/conversation trajectory effects、clause 的具体 surface features（token count 仅解释 0.4%，但更复杂的 features 如嵌套深度、从句结构可能贡献更多）。这些因素值得讨论但不一定是 actionable 的。\n3. **论文实际上也在 Appendix K 和 I（pages 14, 13）做了 token-length 和 logistic regression 分析**，试图识别残差中的系统成分。\n\n**建议**：同意 R1，正文应增加 1 段讨论残差方差组成（目前只在 Appendix 有零散分析），并将 \"clause-level auditing outperforms type-level screening\" 改为更审慎的 \"clause-level features are the strongest identified actionable predictor\"。\n\n---\n\n## Should-Fix 问题\n\n### [REBUT] R1-W1: TOST SESOI ±15pp 缺乏领域锚定\n\nR1 可能遗漏了 Appendix B（page 10）。论文已提供成本模型锚定：\n\n> \"Under a per-incident cost assumption c per violation, a 15 pp threshold over N deployment episodes implies a cost differential of 0.15 × N × c. For moderate-scale adopters (N = 10,000 episodes) with per-violation costs ranging from $10 (minor policy deviation) to $500 (regulatory exposure), the threshold maps to $15,000–$750,000 in differential risk—well above typical audit and remediation costs.\"\n\n这就是 R1 要求的 \"从成本模型推导 SESOI\"。不过我同意这个锚定应该在正文 Section 4.6 中至少用一句话引用（目前正文只说 \"pragmatic\"），而不是完全放在 Appendix。\n\n**我的判断**：Minor 级别——锚定已存在，只需提升 visibility。\n\n---\n\n### [REBUT] R1-W2: Cross-judge 设计不对称性\n\n论文在 Section 4.4（page 5）已明确说明：\n\n> \"Because our matched-pair design compares conditions within the same model, systematic judge asymmetry cancels in the treatment effect (Δpp): cross-model judge asymmetry affects only absolute rates, not C1 or C2 (§7).\"\n\nGPT-4.1 judge 的 \"+8 pp systematically harder\" 只影响绝对违规率的跨模型比较（如 Table 4 的绝对数字），但**不影响**论文的核心发现——治疗效应 Δpp（ambiguous - unambiguous）。因为同一模型的两个条件（ambiguous vs. unambiguous）由同一 judge 评判，judge 偏差在做差时消除。\n\nR1 担心 \"影响 GPT-5.4 和 DeepSeek 的绝对违规率比较\" 是正确的，但论文并未把绝对违规率的跨模型排名作为核心 claim——核心 claim 是 Δpp（treatment effect），对此 cross-judge 设计是 sound 的。\n\n**我的判断**：Minor 级别。建议在 Table 4 caption 或 footnote 中注明绝对率受 judge 影响、跨模型比较应关注 Δpp 而非绝对率。\n\n---\n\n### [AGREE] R1-W3: Incompleteness 信息添加混淆不可完全分离\n\n同意。这与我自己的 W3 一致。论文在 Section 1 和 Appendix I 承认了此 confound，但正文 Section 5.1 的呈现方式确实容易让读者误以为六种类型是等质量的证据。需要在正文首次报告六类型结果时立即加 caveat。\n\n---\n\n### [AGREE] R1-W4: Healthcare 跨域验证样本量过小\n\n同意。n=50 clause pairs（Appendix AE）是一个 pilot，论文应在正文提及时明确标注 \"pilot\" 并降低措辞确定性。目前 Introduction（page 2）写 \"a healthcare pilot extends the effect beyond customer service (+58.8 pp)\" 的语气过于确定。这也与我的 N1 一致。\n\n---\n\n### [AGREE] R1-W5: Per-type judge agreement 差异大\n\n同意。Appendix H（page 13, Table 12）显示 conferential κ = 0.479、authorization scope cross-judge κ = 0.385（页面文本中提到）。论文解释了原因（prevalence paradox for conferential; permission-boundary inherent difficulty for authorization scope），但结论上应承认低 κ 类型的 per-type 效应估计需谨慎解读。\n\n**补充**：论文在 Section 5.2（page 6-7）已注意到 authorization scope 有 \"widest cross-model range (12%–64%)\" 和 \"conclusions about this type carry wider uncertainty\"，但 conferential 的可靠性问题在正文中讨论不够。Figure 3 的 conferential 列显示各模型间差异较大，与低 κ 一致。建议在 Table 4 或 Section 5.1 中标注哪些类型的估计受低 judge agreement 影响。\n\n---\n\n## Minor 问题\n\n### [AGREE] R1-M1: Taxonomy 示例不够直观\n\nTable 3（page 4）确实提供了示例，但每类只有一对 ambiguous/disambiguated 的简短描述。对不熟悉 RE 文献的 NLP 读者，更详细的场景化示例（如展示一个完整的 agent episode snippet）会大幅提升可理解性。Appendix X（page 17）有更多示例但读者不一定会翻到。\n\n---\n\n### [AGREE] R1-M2: Figure 2 可视化不够直观\n\n与我的 M1 一致。条形图的 caption 缺乏自包含说明——\"Proportion of variance (%)\" 的分解逻辑需在 caption 中解释，否则读者不理解为何 \"clause identity\" 可以独立于 \"type\" 解释方差。\n\n---\n\n### [AGREE] R1-M3: Disambiguation neglect 统计分母不清\n\nSection 6.2（page 7）报告 \"overall awareness rate is 4.6% (258/614)\"，但 614 的来源不够清晰——是所有 ambiguous-condition 违规 episodes 还是所有 ambiguous-condition episodes？从上下文推断应该是 ambiguous-condition violations（agent violated + ambiguous clause），但应明确标注。另外脚注 1 提到 \"computed on a 6 × 5 table vs. 6 × 2 for security\"，需要更清楚的说明。\n\n---\n\n### [AGREE] R1-M4: \"first causal study\" 措辞需界定因果识别假设\n\n与我的 N1 一致。论文应明确列出因果识别假设：(1) SUTVA (Stable Unit Treatment Value Assumption) — 一个 clause pair 的歧义处理不影响其他 pairs；(2) no unmeasured confounders in the matched-pair design；(3) 合成构造保证 exclusive manipulation of ambiguity。目前 \"first causal study\" 的 framing 暗示了比 controlled experiment 更强的因果推断。\n\n---\n\n### [AGREE] R1-M5: Table 5 TOST 注释不清\n\nTable 5（page 7）的列名（Margin, Equiv., Mid-tier, Inc., and Gc columns）对不熟悉 TOST 的读者不够直观。建议在 caption 中完整说明每列含义，或将 TOST 表移至 Appendix 并在正文用文字总结关键结论。\n\n---\n\n## 总结\n\nR1 的审稿质量很高，统计方面的批评（N1 pooled McNemar、N2 方差分解）尤其有价值。我同意绝大部分问题，但对以下两点有不同判断：\n\n1. **N1 的严重程度**：我认为是 Should-Fix 而非 Must-Fix，因为 per-model 结果已存在且全部显著（p < 10⁻⁵），结论方向不变。\n2. **W1 和 W2**：R1 可能遗漏了 Appendix B 的成本锚定和 Section 4.4 对 cross-judge 设计的说明，这两点的实际问题比 R1 评估的更轻。\n\nR1 和我都给了 3.5 Overall、4 Soundness。我的 Excitement 比 R1 低 0.5（3.5 vs 4），因为我认为 type-mechanism dissociation 的新颖度不如 R1 评估的高（见我的 N2）。两人的核心共识是：**强 Findings 候选，如果解决合成基准的外部效度问题和统计报告优化，有潜力达到 Conference。**\n",
+              "reviewer_id": "2",
+              "project": "policy_ambiguity_safety"
+            }
+          },
+          "id": "event-003107"
+        },
+        {
+          "source_line": 3108,
+          "timestamp": "2026-05-25T21:27:46.293047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_967344d166ba485ad606d14379e69d85:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3490
+          },
+          "id": "event-003108"
+        },
+        {
+          "source_line": 3109,
+          "timestamp": "2026-05-25T21:27:55.779127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images"
+            }
+          },
+          "id": "event-003109"
+        },
+        {
+          "source_line": 3110,
+          "timestamp": "2026-05-25T21:27:55.829893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_round_34/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-003110"
+        },
+        {
+          "source_line": 3111,
+          "timestamp": "2026-05-25T21:28:05.600324+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。核心判断：\n\n- R1 的 N1（pooled McNemar）和 N2（残差方差）我都同意其技术正确性，但认为 N1 的严重程度应降至 Should-Fix（per-model 结果已存在且全部显著）\n- R1 的 W1（SESOI 锚定）和 W2（cross-judge 不对称）我给出 REBUT——Appendix B 已有成本模型、Section 4.4 已说明 treatment effect 不受 judge 偏差影响\n- 其余 W3-W5 和全部 Minor 问题我都 AGREE\n- 两位 reviewer 共识：3.5 Overall，强 Findings 候选，核心短板在合成基准的外部效度"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2"
+          },
+          "id": "event-003111"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "messages": [
+        {
+          "source_line": 3112,
+          "timestamp": "2026-05-25T21:29:28.741028+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉回应任务（Cross-Response）\n\nReviewer 1 已完成对你审稿意见的逐条回应。请阅读 R1 的回应，并对 R1 的**原始审稿发现和立场**逐条给出 `[AGREE]` 或 `[REBUT]` 回应。\n\n---\n\n### R1 对你审稿意见的回应摘要\n\n**Must-Fix:**\n\n1. **R2-N1（合成 clause pairs 生态效度 + \"first causal study\" framing）**→ R1 [AGREE]，但建议保留因果声明，改为 \"first controlled matched-pair causal study on synthetic clause pairs\"，区分 internal causal validity（强）vs ecological validity（待验证）。R1 认为 matched-pair design + perturbation control 确实构成因果推断设计。R1 也指出 SOPBench 效应量仅为主实验的 37%（+12.7pp vs +34.0pp），正文 Section 7 对此差距讨论不足。\n\n2. **R2-N2（Type-mechanism dissociation 新颖度）**→ R1 [REBUT]，认为不应视为 \"trivially expected\"。论文挑战的是 RE 文献中按类型分级风险的假设——如果 type 仅解释 0.4% 方差，则按类型审计策略无效。R1 建议降级为 Should-Fix，补充 permutation null model comparison（随机分6组的 NMI baseline）即可。\n\n**Should-Fix:**\n\n3. **R2-W1（Introduction 数字密度）**→ R1 [AGREE]，建议聚焦 3-4 个核心数字。\n\n4. **R2-W2（Discussion 过短）**→ R1 部分 [REBUT]，认为 8 页限制下不现实，但建议附录 Extended Discussion 提及 convergent nocuity 与 RLHF 的关系。\n\n5. **R2-W3（Incompleteness confound 位置）**→ R1 强烈 [AGREE]，与自己的 W3 一致。\n\n6. **R2-W4（模型选择偏向 frontier）**→ R1 [REBUT]，认为论文部署导向（customer-service agent），frontier 模型选择合理，小模型有 floor effect 风险。\n\n7. **R2-W5（LLM judge 循环性）**→ R1 [AGREE]，但指出 Appendix AI 有 human validation（κ=0.295），虽偏低但存在。\n\n**Minor:**\n\n8. **R2-M1（Figure 2 caption）**→ R1 [AGREE]\n9. **R2-M2（\"Nocuous\" 术语）**→ R1 [REBUT]，认为服务于与 RE 文献对话\n10. **R2-M3（Table 4 footnote 字体）**→ R1 [AGREE]\n11. **R2-M4（Appendix P mapping 引用）**→ R1 [AGREE]\n12. **R2-M5（Claude 双重角色）**→ R1 [REBUT]，不构成利益冲突\n\n**Missing References:**\n\n13. **ToolEmu** → R1 [AGREE]\n14. **ASPI** → R1 [REBUT]（未提供完整引用）\n15. **AgentHarm** → R1 [AGREE]\n\n---\n\n### R1 原始审稿中的独立发现（供你回应）\n\n根据 R1 的交叉回应，R1 自己的初审中包含以下独立发现：\n\n- **R1-W3**: Incompleteness 的 information-addition confound 应在正文更早位置（Section 5.1）讨论\n- **R1-W4**: Healthcare pilot n=50 太小，250 episodes 不足以支撑 per-type 子分析\n- **R1-M2**: Figure 2 的 \"At random\" 标签和红色标记线需要在 caption 中解释\n- **R1 立场**: Type-mechanism dissociation（NMI=0.23 vs 0.01, Cramér's V=0.45 vs 0.14）是对 RE 文献的实证挑战，不是 trivially expected\n\n请对以上 R1 发现逐条给出 `[AGREE]` 或 `[REBUT]` 回应，附理由。\n\n**格式要求**：对每个 R1 发现标注 `[AGREE]` 或 `[REBUT]`，说明理由。最后给出综合评估（2-3 句话）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-003112"
+        },
+        {
+          "source_line": 3113,
+          "timestamp": "2026-05-25T21:31:05.421975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 对 R1 交叉回应的第二轮回应\n\n---\n\n## 一、对 R1 回应我审稿意见的再评估\n\n### R2-N1（生态效度 + \"first causal study\"）→ R1 [AGREE] with nuance\n\n**[AGREE] R1 的修正方案合理。** R1 建议保留因果声明但精确化为 \"first controlled matched-pair causal study on synthetic clause pairs\"，并在正文区分 internal causal validity（强）vs. ecological validity（待验证）。这恰好是我 N1 建议修改方向 (3) 的内容。R1 额外指出 SOPBench 效应量仅为主实验的 37%（+12.7 pp vs. +34.0 pp），正文 Section 7 对此差距讨论不足——这是一个有价值的补充观察。SOPBench 的任务格式不同（negative-task pairs vs. matched clause pairs），效应量衰减可能反映合成 pairs 对歧义信号的放大，也可能反映跨 benchmark 的任务差异。无论如何，正文应讨论这一差距。\n\n**结论**：维持 Must-Fix，R1 的修正方案可作为作者 revision 的参考方向。\n\n---\n\n### R2-N2（Type-mechanism dissociation 新颖度）→ R1 [REBUT]\n\n**[AGREE] R1 的反驳改变了我的判断，降级为 Should-Fix。** R1 指出这一发现挑战的是 RE 文献中隐含的 type-based risk prioritization 假设——Berry & Kamsties (2004) 按类型区分 nocuous/innocuous，DRIP-R 按 RE type 分析风险——如果 type 仅解释 0.4% 方差，则这类按类型分级审计的策略在 LLM agent 语境下失效。这确实不是 trivially expected，因为 RE 社区会合理预期某些类型（如 scopal ambiguity）系统性地比其他类型更危险。\n\n**但我保留一个条件**：论文必须补充 permutation null model——将 300 clauses 随机分成 6 组后计算 NMI baseline。如果随机分组的 NMI 同样在 0.01 量级，说明 type-level 信号确实不存在（不仅仅是分组粒度太粗）。如果随机分组的 NMI 显著高于 0.01，则当前的六类分类甚至不如随机，这本身就是一个值得报告的 negative result。\n\n**修正后判断**：从 Must-Fix 降为 Should-Fix，条件是补充 permutation baseline。\n\n---\n\n### R2-W1（Introduction 数字密度）→ R1 [AGREE]\n\n**[AGREE]** 无分歧。\n\n---\n\n### R2-W2（Discussion 过短）→ R1 部分 [REBUT]\n\n**[AGREE] R1 关于 8 页限制的现实约束是合理的。** 论文正文已到 8 页上限，强行扩展 Discussion 可能需要压缩其他部分。R1 建议在附录增加 Extended Discussion（特别是 convergent nocuity 与 RLHF 的关系）是可行的折中方案。\n\n**降级为 Minor**：建议在正文 Section 7 用 1-2 句话指向附录的 Extended Discussion，确保读者知道更深入的 implications 讨论存在。\n\n---\n\n### R2-W3（Incompleteness confound 位置）→ R1 强烈 [AGREE]\n\n**[AGREE]** R1 和我在此完全一致。维持 Should-Fix。\n\n---\n\n### R2-W4（模型选择偏向 frontier）→ R1 [REBUT]\n\n**[AGREE] R1 的反驳有说服力，我接受降级。** R1 指出：(1) customer-service agent 的部署场景确实以 frontier 模型为主；(2) 小模型可能因能力不足导致 floor effect（基线违规率就很高，歧义的增量效应被压缩）；(3) Appendix F 的 replication 模型（Gemini 2.5 Flash, LLaMA-4-Scout）提供了部分多样性。\n\n**降级为 Minor**：建议在 Limitations 中增加一句说明模型规模可能是 moderator，较小模型的行为模式可能不同。\n\n---\n\n### R2-W5（LLM judge 循环性）→ R1 [AGREE] with caveat\n\n**[AGREE]** R1 指出 Appendix AI 有 human validation（κ = 0.295）。但 κ = 0.295 仅属于 fair agreement（Landis & Koch, 1977），这实际上**加强而非缓解**了循环性担忧——human annotator 与 LLM judge 在真实 policy clauses 上的一致性偏低，说明 LLM 对\"什么是歧义的\"的判断与人类有系统偏差。维持 Should-Fix。\n\n---\n\n### Minor 问题\n\n**R2-M1（Figure 2 caption）→ R1 [AGREE]**：无分歧。\n\n**R2-M2（\"Nocuous\" 术语）→ R1 [REBUT]**：R1 认为术语服务于 RE 文献对话。**[AGREE] R1 的理由成立**，但我仍建议在 abstract 或 introduction 首次使用时加 parenthetical gloss（\"nocuous, i.e., harmful\"）。这不矛盾——保留术语以连接 RE 文献，同时降低 NLP 读者的认知障碍。降为建议而非问题。\n\n**R2-M3（Table 4 footnote 字体）→ R1 [AGREE]**：无分歧。\n\n**R2-M4（Appendix P mapping 引用）→ R1 [AGREE]**：无分歧。\n\n**R2-M5（Claude 双重角色）→ R1 [REBUT]**：**[AGREE] R1 判断正确**，这不构成利益冲突。Claude 是广泛使用的商业 API，作为实验模型和写作工具同时出现不构成 COI。撤回此条。\n\n**Missing References — ToolEmu → R1 [AGREE]**：无分歧。\n\n**Missing References — ASPI → R1 [REBUT]**：**[AGREE] R1 有理**。ASPI（arXiv 2605.17324）发表于 2026 年 5 月，可能在论文提交截止日期之后。撤回此条。\n\n**Missing References — AgentHarm → R1 [AGREE]**：无分歧。\n\n---\n\n## 二、对 R1 原始审稿独立发现的回应\n\n### [AGREE] R1-W3: Incompleteness 的 information-addition confound 应在 Section 5.1 更早讨论\n\n完全同意。论文在 Section 5.1（page 6）首次报告 \"All six types individually produce significant increases\" 时，应立即注明 incompleteness 的 disambiguation 必然伴随 information addition，使读者不会误将六种类型视为等质量的证据。这与我的 W3 和 R1 的 W3 形成三方共识。\n\n---\n\n### [AGREE] R1-W4: Healthcare pilot n=50 / 250 episodes 不足以支撑 per-type 子分析\n\n同意。50 clause pairs × 5 models = 250 episodes，每种 type 不到 42 episodes（如果均匀分布），远不足以支撑可靠的 per-type 效应估计。Appendix AE 的 Table 24 按 type 报告 healthcare domain 结果，这些 per-type 数字的 CI 应该很宽（论文未报告 per-type CI）。建议：(1) 明确标注 pilot；(2) 不报告 healthcare 的 per-type 效应或至少标注 wide CIs。\n\n---\n\n### [AGREE] R1-M2: Figure 2 的 \"At random\" 标签和红色标记线需 caption 解释\n\n这与我的 M1（Figure 2 caption 不够自包含）一致。Figure 2（page 5）的方差分解图如果有 \"At random\" 参考线，应在 caption 中解释其含义——例如 \"the expected variance proportion if clause-type assignments were random\"。否则读者无法判断 22.4% 的 clause identity 方差是大是小。\n\n---\n\n### [部分 AGREE] R1 立场: Type-mechanism dissociation 不是 trivially expected\n\n如上文 R2-N2 的再评估所述，R1 说服了我这一发现挑战了 RE 文献的 type-based risk assumption，具有实质贡献。但我保留条件：**没有 permutation null model，无法确认 NMI=0.01 是因为 type 确实不预测 mechanism，还是因为六类分组的粒度太粗导致任何分组都无法捕捉方差。** 这个区分至关重要——前者是对 RE 文献的实证挑战，后者只是分类粒度的 artifact。\n\n---\n\n## 三、综合评估\n\n经过两轮交叉讨论，R1 和 R2 在以下核心问题上达成共识：\n\n1. **因果声明需精确化**（区分 internal vs. ecological validity，调整 \"first causal study\" 措辞）\n2. **Incompleteness confound 需在正文更早、更醒目地讨论**（三方共识）\n3. **Healthcare pilot 应标注为 pilot 并降低确定性**\n4. **统计报告可优化**（per-model 为主、补 mixed-effects model）\n\n主要分歧集中在 type-mechanism dissociation 的新颖度评估上，R1 说服我从 Must-Fix 降为 Should-Fix（条件是补 permutation baseline）。\n\n**我维持 Overall 3.5/5（Borderline Conference）**。如果作者在 rebuttal 中承诺：(a) 精确化因果措辞、(b) 补 permutation null model、(c) 扩展 healthcare pilot 或增加 naturally-occurring ambiguity 验证、(d) 调整 incompleteness 在正文中的讨论位置，本文可达 4.0（Conference）。\n",
+              "reviewer_id": "2",
+              "project": "policy_ambiguity_safety"
+            }
+          },
+          "id": "event-003113"
+        },
+        {
+          "source_line": 3114,
+          "timestamp": "2026-05-25T21:31:09.087008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_967344d166ba485ad606d14379e69d85:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3665
+          },
+          "id": "event-003114"
+        },
+        {
+          "source_line": 3115,
+          "timestamp": "2026-05-25T21:31:15.798486+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "第二轮交叉回应已提交。核心立场：\n\n- 接受 R1 对 type-mechanism dissociation 的反驳，从 Must-Fix 降为 Should-Fix（条件是补 permutation null model）\n- 接受 R1 对模型选择、Discussion 篇幅、\"nocuous\" 术语的反驳，相应降级\n- 维持对生态效度（N1）、LLM judge 循环性（W5）、incompleteness confound（W3）的立场\n- Overall 维持 3.5/5，与 R1 一致"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2"
+          },
+          "id": "event-003115"
+        }
+      ]
+    }
+  ]
+}

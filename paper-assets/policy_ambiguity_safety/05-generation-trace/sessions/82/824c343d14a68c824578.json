@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "824c343d14a68c824578",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 012 detection tool",
+  "task_key": "worker_code_plan_012_detection_tool_20260521T080544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_012_detection_tool_20260521T080544_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "657fbb54082d593568caad6317a02ff3c856fc6d525deb0161783d9155a5b315"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts registered. Summary of results:\n\n**Macro F1: 0.6322** (vs random 0.17, majority 0.11)\n\n| Type | Precision | Recall | F1 |\n|------|-----------|--------|-----|\n| none (unambiguous) | 0.764 | 0.956 | 0.849 |\n| conditional_precedence | 0.958 | 0.920 | **0.939** |\n| scopal | 0.914 | 0.640 | 0.753 |\n| authorization_scope | 1.000 | 0.360 | 0.529 |\n| lexical | 0.356 | 0.420 | 0.385 |\n| incompleteness | 0.481 | 0.260 | 0.338 |\n\n**Binary detection**: F1=0.81, accuracy=0.83, FPR=0.044\n\nOutputs:\n- `detection_tool/detection_results.json` — full metrics\n- `detection_tool/confusion_matrix.json` — 6×6 confusion matrix\n- `detection_tool/predictions.jsonl` — 500 per-sample predictions\n- `detection_tool/paper_paragraph.tex` — LaTeX paragraph (generated since F1 ≥ 0.60)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-012-detection-tool.md"
+}

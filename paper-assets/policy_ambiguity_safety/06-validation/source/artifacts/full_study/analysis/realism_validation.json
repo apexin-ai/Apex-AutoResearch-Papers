@@ -1,0 +1,363 @@
+{
+  "analysis_name": "Clause Realism Validation",
+  "motivation": "Methodological validity (C1) \u2014 synthetic clauses should be linguistically consistent with natural policy text",
+  "n_clause_pairs": 250,
+  "n_original_policy_sentences": 250,
+  "features_computed": [
+    "sentence_length",
+    "flesch_kincaid",
+    "ttr",
+    "avg_word_length"
+  ],
+  "skipped_features": [
+    "dependency_parse_depth"
+  ],
+  "skipped_reason": "spacy not installed; dependency parse depth skipped.",
+  "feature_summary": {
+    "sentence_length": {
+      "ambiguous": {
+        "mean": 20.168,
+        "sd": 11.9003
+      },
+      "unambiguous": {
+        "mean": 47.464,
+        "sd": 13.1525
+      },
+      "original_policy": {
+        "mean": 13.412,
+        "sd": 4.8157
+      }
+    },
+    "flesch_kincaid": {
+      "ambiguous": {
+        "mean": 12.4774,
+        "sd": 3.0356
+      },
+      "unambiguous": {
+        "mean": 12.9647,
+        "sd": 3.0405
+      },
+      "original_policy": {
+        "mean": 11.5576,
+        "sd": 3.3132
+      }
+    },
+    "ttr": {
+      "ambiguous": {
+        "mean": 0.9493,
+        "sd": 0.0652
+      },
+      "unambiguous": {
+        "mean": 0.7795,
+        "sd": 0.0845
+      },
+      "original_policy": {
+        "mean": 0.9531,
+        "sd": 0.066
+      }
+    },
+    "avg_word_length": {
+      "ambiguous": {
+        "mean": 5.4956,
+        "sd": 0.7047
+      },
+      "unambiguous": {
+        "mean": 5.1941,
+        "sd": 0.4737
+      },
+      "original_policy": {
+        "mean": 5.4502,
+        "sd": 0.8801
+      }
+    }
+  },
+  "amb_vs_unamb_comparison": {
+    "sentence_length": {
+      "test": "wilcoxon_signed_rank",
+      "statistic": 1.5,
+      "p": 0.0,
+      "cohens_d": -2.3481,
+      "mean_diff": -27.296
+    },
+    "flesch_kincaid": {
+      "test": "wilcoxon_signed_rank",
+      "statistic": 13691.0,
+      "p": 0.099962,
+      "cohens_d": -0.1423,
+      "mean_diff": -0.4873
+    },
+    "ttr": {
+      "test": "wilcoxon_signed_rank",
+      "statistic": 22.0,
+      "p": 0.0,
+      "cohens_d": 1.9892,
+      "mean_diff": 0.1697
+    },
+    "avg_word_length": {
+      "test": "wilcoxon_signed_rank",
+      "statistic": 8755.0,
+      "p": 0.0,
+      "cohens_d": 0.4444,
+      "mean_diff": 0.3015
+    }
+  },
+  "synthetic_vs_original_comparison": {
+    "sentence_length": {
+      "test": "ks_2samp",
+      "statistic": 0.572,
+      "p": 0.0,
+      "cohens_d": 1.3255,
+      "synthetic_n": 500,
+      "original_n": 250
+    },
+    "flesch_kincaid": {
+      "test": "ks_2samp",
+      "statistic": 0.196,
+      "p": 5e-06,
+      "cohens_d": 0.3709,
+      "synthetic_n": 500,
+      "original_n": 250
+    },
+    "ttr": {
+      "test": "ks_2samp",
+      "statistic": 0.402,
+      "p": 0.0,
+      "cohens_d": -0.8846,
+      "synthetic_n": 500,
+      "original_n": 250
+    },
+    "avg_word_length": {
+      "test": "ks_2samp",
+      "statistic": 0.136,
+      "p": 0.004033,
+      "cohens_d": -0.1471,
+      "synthetic_n": 500,
+      "original_n": 250
+    }
+  },
+  "amb_only_vs_original_comparison": {
+    "sentence_length": {
+      "test": "ks_2samp",
+      "statistic": 0.28,
+      "p": 0.0,
+      "cohens_d": 0.7442
+    },
+    "flesch_kincaid": {
+      "test": "ks_2samp",
+      "statistic": 0.152,
+      "p": 0.006136,
+      "cohens_d": 0.2895
+    },
+    "ttr": {
+      "test": "ks_2samp",
+      "statistic": 0.052,
+      "p": 0.888878,
+      "cohens_d": -0.0589
+    },
+    "avg_word_length": {
+      "test": "ks_2samp",
+      "statistic": 0.112,
+      "p": 0.086881,
+      "cohens_d": 0.0569
+    }
+  },
+  "unamb_only_vs_original_comparison": {
+    "sentence_length": {
+      "test": "ks_2samp",
+      "statistic": 0.948,
+      "p": 0.0,
+      "cohens_d": 3.4382
+    },
+    "flesch_kincaid": {
+      "test": "ks_2samp",
+      "statistic": 0.252,
+      "p": 0.0,
+      "cohens_d": 0.4425
+    },
+    "ttr": {
+      "test": "ks_2samp",
+      "statistic": 0.752,
+      "p": 0.0,
+      "cohens_d": -2.2888
+    },
+    "avg_word_length": {
+      "test": "ks_2samp",
+      "statistic": 0.236,
+      "p": 2e-06,
+      "cohens_d": -0.3623
+    }
+  },
+  "per_type_features": {
+    "authorization_scope": {
+      "sentence_length": {
+        "amb_mean": 19.32,
+        "amb_sd": 3.5424,
+        "unamb_mean": 58.0,
+        "unamb_sd": 6.8333,
+        "orig_mean": 11.1,
+        "orig_sd": 2.0329
+      },
+      "flesch_kincaid": {
+        "amb_mean": 15.5688,
+        "amb_sd": 2.4058,
+        "unamb_mean": 14.2674,
+        "unamb_sd": 2.7142,
+        "orig_mean": 12.2596,
+        "orig_sd": 3.0625
+      },
+      "ttr": {
+        "amb_mean": 0.971,
+        "amb_sd": 0.0381,
+        "unamb_mean": 0.7803,
+        "unamb_sd": 0.0742,
+        "orig_mean": 0.9866,
+        "orig_sd": 0.0315
+      },
+      "avg_word_length": {
+        "amb_mean": 6.0168,
+        "amb_sd": 0.6648,
+        "unamb_mean": 5.3484,
+        "unamb_sd": 0.3773,
+        "orig_mean": 5.9898,
+        "orig_sd": 0.7544
+      }
+    },
+    "conditional_precedence": {
+      "sentence_length": {
+        "amb_mean": 41.84,
+        "amb_sd": 7.0548,
+        "unamb_mean": 60.14,
+        "unamb_sd": 8.5117,
+        "orig_mean": 12.18,
+        "orig_sd": 3.1343
+      },
+      "flesch_kincaid": {
+        "amb_mean": 13.3084,
+        "amb_sd": 2.5246,
+        "unamb_mean": 12.5042,
+        "unamb_sd": 2.3694,
+        "orig_mean": 12.7948,
+        "orig_sd": 3.9036
+      },
+      "ttr": {
+        "amb_mean": 0.8565,
+        "amb_sd": 0.056,
+        "unamb_mean": 0.7241,
+        "unamb_sd": 0.0563,
+        "orig_mean": 0.9465,
+        "orig_sd": 0.0693
+      },
+      "avg_word_length": {
+        "amb_mean": 5.1574,
+        "amb_sd": 0.4338,
+        "unamb_mean": 5.2544,
+        "unamb_sd": 0.4424,
+        "orig_mean": 5.8414,
+        "orig_sd": 0.8216
+      }
+    },
+    "incompleteness": {
+      "sentence_length": {
+        "amb_mean": 12.32,
+        "amb_sd": 2.4027,
+        "unamb_mean": 47.64,
+        "unamb_sd": 9.4107,
+        "orig_mean": 13.16,
+        "orig_sd": 4.6307
+      },
+      "flesch_kincaid": {
+        "amb_mean": 10.8702,
+        "amb_sd": 2.5285,
+        "unamb_mean": 12.22,
+        "unamb_sd": 2.6405,
+        "orig_mean": 10.3922,
+        "orig_sd": 2.6599
+      },
+      "ttr": {
+        "amb_mean": 0.9788,
+        "amb_sd": 0.0382,
+        "unamb_mean": 0.7609,
+        "unamb_sd": 0.0791,
+        "orig_mean": 0.9551,
+        "orig_sd": 0.0569
+      },
+      "avg_word_length": {
+        "amb_mean": 5.4668,
+        "amb_sd": 0.6924,
+        "unamb_mean": 5.0994,
+        "unamb_sd": 0.3978,
+        "orig_mean": 5.173,
+        "orig_sd": 0.6729
+      }
+    },
+    "lexical": {
+      "sentence_length": {
+        "amb_mean": 11.58,
+        "amb_sd": 2.214,
+        "unamb_mean": 37.84,
+        "unamb_sd": 5.8879,
+        "orig_mean": 14.2,
+        "orig_sd": 5.6061
+      },
+      "flesch_kincaid": {
+        "amb_mean": 11.3324,
+        "amb_sd": 2.6523,
+        "unamb_mean": 12.7672,
+        "unamb_sd": 3.8045,
+        "orig_mean": 11.2118,
+        "orig_sd": 3.4853
+      },
+      "ttr": {
+        "amb_mean": 0.9704,
+        "amb_sd": 0.0474,
+        "unamb_mean": 0.8069,
+        "unamb_sd": 0.0801,
+        "orig_mean": 0.928,
+        "orig_sd": 0.087
+      },
+      "avg_word_length": {
+        "amb_mean": 5.6092,
+        "amb_sd": 0.7773,
+        "unamb_mean": 5.1082,
+        "unamb_sd": 0.4854,
+        "orig_mean": 5.1754,
+        "orig_sd": 0.9433
+      }
+    },
+    "scopal": {
+      "sentence_length": {
+        "amb_mean": 15.78,
+        "amb_sd": 2.9849,
+        "unamb_mean": 33.7,
+        "unamb_sd": 8.4618,
+        "orig_mean": 16.42,
+        "orig_sd": 5.8383
+      },
+      "flesch_kincaid": {
+        "amb_mean": 11.3074,
+        "amb_sd": 2.3262,
+        "unamb_mean": 13.0648,
+        "unamb_sd": 3.1599,
+        "orig_mean": 11.1298,
+        "orig_sd": 2.8605
+      },
+      "ttr": {
+        "amb_mean": 0.9696,
+        "amb_sd": 0.048,
+        "unamb_mean": 0.8256,
+        "unamb_sd": 0.0924,
+        "orig_mean": 0.9496,
+        "orig_sd": 0.061
+      },
+      "avg_word_length": {
+        "amb_mean": 5.2278,
+        "amb_sd": 0.5733,
+        "unamb_mean": 5.1602,
+        "unamb_sd": 0.6021,
+        "orig_mean": 5.0714,
+        "orig_sd": 0.7709
+      }
+    }
+  },
+  "conclusion": "Ambiguous clauses show some divergence from original policy on sentence_length, flesch_kincaid. Unambiguous clauses intentionally diverge (mean length 47.5 vs original 13.4 words) \u2014 consistent with disambiguation adding explicit detail. Readability grade (Flesch-Kincaid) is preserved across amb/unamb pairs (d=0.14, p=0.100), meaning disambiguation changes content specificity without altering linguistic register."
+}

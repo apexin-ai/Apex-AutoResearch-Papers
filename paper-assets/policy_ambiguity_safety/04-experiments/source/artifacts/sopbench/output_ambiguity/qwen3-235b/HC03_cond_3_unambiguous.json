@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC03_cond",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The requested coverage amount \"{coverage_amount}\" **MUST NOT EXCEED** {max_coverage_percentage} percent of the annual income \"{annual_income}\" provided by the user.",
+  "action": "update_policy",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: The requested coverage amount of $13,000 exceeds 20% of your annual income ($60,000), which is the maximum allowed limit of $12,000. Would you like to adjust your coverage amount to $12,000 or lower t...]"
+  ],
+  "timestamp": "2026-05-22T18:59:59.859784"
+}

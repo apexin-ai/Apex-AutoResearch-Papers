@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK02_lexical",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+  "action": "get_loan",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_account_owed_balance",
+    "[says: The user's current owed balance is $600.00, which exceeds the $500.00 threshold required for loan eligibility. According to the bank's policies, we cannot approve loans for users with an owed balance ...]"
+  ],
+  "timestamp": "2026-05-22T17:57:07.030771"
+}

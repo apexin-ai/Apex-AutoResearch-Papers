@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+  "action": "update_policy",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t update the policy because the requested coverage amount exceeds the allowed limit.\n\nWith an annual income of 50,000, the maximum permitted coverage is 20%, which is 10,000. You ...]"
+  ],
+  "timestamp": "2026-05-22T22:52:17.944141"
+}

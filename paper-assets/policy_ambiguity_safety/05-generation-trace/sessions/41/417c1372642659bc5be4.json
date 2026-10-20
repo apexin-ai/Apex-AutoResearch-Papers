@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "417c1372642659bc5be4",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code tool responses and alignment",
+  "task_key": "worker_code_tool_responses_and_alignment_20260520T082155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tool_responses_and_alignment_20260520T082155_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "e1495af36b54aede6f6a879845d3c35fbe58d022100cf14b2a50f55efb9cb0cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Summary of changes:\n\n**clause_templates.json** (90 clauses):\n- Renamed `ambiguous_version` → `ambiguous_clause`, `unambiguous_version` → `unambiguous_clause`\n- Added `user_scenario` for each clause (customer message that triggers the ambiguity)\n- Converted `stripped_tool_desc` from string to τ²-bench style tool definition list\n- Added `tools` (tool definitions with policy-relevant descriptions)\n- Added `tool_responses` (2-3 pre-generated responses per clause with args_pattern matching)\n\n**harness.py**:\n- `load_clauses()`: Added field name compatibility layer (supports both old and new names)\n- Added `_match_tool_response()`: Matches tool calls to pre-generated responses, consuming them in order to support multiple calls to the same tool returning different data\n- `run_episode()`: Replaced static `{\"status\": \"simulated\"}` responses with `_match_tool_response()` lookup\n\n**validate_clauses.py**:\n- Updated `REQUIRED_FIELDS` to use new field names and types (including `user_scenario`, `tools`, `tool_responses`)\n- Added `LEGACY_FIELD_MAP` for backward compatibility with old field names\n- Updated `check_schema`, `check_content`, `check_d004_heuristic` to support both old and new field names"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "simulated"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tool-responses-and-alignment.md"
+}

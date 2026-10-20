@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "23de939a5e1e581b192d",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "code sopbench phase2c build",
+  "task_key": "worker_code_sopbench_phase2c_build_20260522T144319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sopbench_phase2c_build_20260522T144319.log",
+    "occurrence": 1,
+    "bytes": 757473,
+    "sha256": "ed31556a99362082a8d7af94491f3b8cbb5f50cc23bb4206c3803dc5f1b6a097"
+  },
+  "statistics": {
+    "messages": 117,
+    "user_turns": 2,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 38,
+      "tool_result": 38,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "23de939a5e1e581b192d-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "23de939a5e1e581b192d-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "23de939a5e1e581b192d-part-0001.json",
+          "message_count": 59
+        },
+        {
+          "path": "23de939a5e1e581b192d-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sopbench-phase2c-build.md"
+}

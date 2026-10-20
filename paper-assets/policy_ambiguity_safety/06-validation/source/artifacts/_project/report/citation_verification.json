@@ -1,0 +1,296 @@
+{
+  "verification_date": "2026-05-20",
+  "citations": [
+    {
+      "key": "tau2bench",
+      "claimed": {
+        "authors": "Yao et al.",
+        "year": 2024,
+        "title": "τ²-bench: Benchmarking Agents in Real-World Customer Service (bib1) / A benchmark for tool-augmented agent policies (bib2)",
+        "venue": "NeurIPS 2024 (bib1) / arXiv preprint (bib2)"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Shunyu Yao, Noah Shinn, Pedram Razavi, Karthik Narasimhan",
+        "year": 2024,
+        "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+        "venue": "NeurIPS 2024",
+        "arxiv_id": "2406.12045"
+      },
+      "search_evidence": "arXiv 2406.12045 confirms the paper by Yao et al. from Sierra Research. OpenReview link (roNSXZpUDN) confirms NeurIPS 2024 venue. Note: the paper is τ-bench (tau-bench), NOT τ²-bench. τ²-bench is a separate 2025 paper by Barres et al. (arXiv 2506.07982) extending τ-bench to dual-control settings. Both bib files have incorrect titles.",
+      "status": "corrected",
+      "issues": [
+        "Title wrong in both bib files — correct title is 'τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains'",
+        "τ²-bench is a DIFFERENT paper (Barres et al., 2025) — if the paper actually uses τ²-bench, the citation must be updated to the correct paper",
+        "bib2 lists 'Anonymous' as author — should be Yao, Shinn, Razavi, Narasimhan"
+      ]
+    },
+    {
+      "key": "drip_r",
+      "claimed": {
+        "authors": "Murthy, Rudra et al. (bib1) / Li, Xiang et al. (bib2)",
+        "year": 2024,
+        "title": "DRIP-R: Benchmarking LLM Agents on Retail Policy Decision Quality Under Ambiguity (bib1) / Divergent Readings of Imprecise Policies in Retail (bib2)",
+        "venue": "NeurIPS 2024 (bib1) / EMNLP 2024 (bib2)"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Hsuvas Borkakoty, Sebastian Pohl, Cheng Wang, Bei Chen, Yufang Hou",
+        "year": 2026,
+        "title": "DRIP-R: A Benchmark for Decision-Making and Reasoning Under Real-World Policy Ambiguity in the Retail Domain",
+        "venue": "arXiv preprint",
+        "arxiv_id": "2605.07699"
+      },
+      "search_evidence": "arXiv 2605.07699 posted May 8, 2026. Authors are from IT:U Austria and Amazon Berlin. No 2024 version of this paper exists. The claimed authors (Murthy/Li), year (2024), venues (NeurIPS/EMNLP), and titles are all fabricated.",
+      "status": "suspicious",
+      "issues": [
+        "CRITICAL: Paper was posted May 2026, NOT 2024 — citing it as 2024 is anachronistic",
+        "Authors completely wrong in both bib files — actual authors are Borkakoty, Pohl, Wang, Chen, Hou",
+        "Title wrong in both bib files",
+        "Venue wrong — not published at any conference, only arXiv preprint as of May 2026",
+        "HIGH RISK: This citation appears to be hallucinated/fabricated with invented author names and venues"
+      ]
+    },
+    {
+      "key": "toolformer",
+      "claimed": {
+        "authors": "Timo Schick et al.",
+        "year": 2024,
+        "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+        "venue": "NeurIPS 2024 (as claimed by reviewer)"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Timo Schick, Jane Dwivedi-Yu, Roberto Dessi, Roberta Raileanu, Maria Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, Thomas Scialom",
+        "year": 2023,
+        "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+        "venue": "NeurIPS 2023",
+        "arxiv_id": "2302.04761"
+      },
+      "search_evidence": "NeurIPS proceedings page and OpenReview confirm NeurIPS 2023 (poster + oral). The paper was an arXiv preprint in Feb 2023 and presented at NeurIPS 2023. Reviewer correctly identified the year error.",
+      "status": "corrected",
+      "issues": [
+        "Year wrong: NeurIPS 2023, not 2024",
+        "Note: Toolformer not found in the bib files examined — may be in a different version of the paper"
+      ]
+    },
+    {
+      "key": "massey2014",
+      "claimed": {
+        "authors": "Massey, Aaron K. and Rutledge, Robert L. and others",
+        "year": 2014,
+        "title": "Evaluating Existing Security and Privacy Requirements for Legal Compliance",
+        "venue": "Requirements Engineering Journal"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Aaron K. Massey, Richard L. Rutledge, Annie I. Antón, Peter P. Swire",
+        "year": 2014,
+        "title": "Identifying and Classifying Ambiguity for Regulatory Requirements",
+        "venue": "IEEE 22nd International Requirements Engineering Conference (RE 2014)",
+        "arxiv_id": null
+      },
+      "search_evidence": "Confirmed via Semantic Scholar, ResearchGate, and Georgia Tech repository. Paper presented at RE 2014 in Karlskrona, Sweden. Pages 83-92. The bib title 'Evaluating Existing Security and Privacy Requirements for Legal Compliance' is a DIFFERENT Massey paper.",
+      "status": "corrected",
+      "issues": [
+        "Title wrong — 'Evaluating Existing Security and Privacy Requirements for Legal Compliance' is a different paper by Massey",
+        "Venue wrong — it's a conference (IEEE RE 2014), not 'Requirements Engineering Journal'",
+        "Co-author first name wrong: Richard (not Robert) L. Rutledge",
+        "Missing co-authors: Annie I. Antón and Peter P. Swire should be listed"
+      ]
+    },
+    {
+      "key": "berry2003",
+      "claimed": {
+        "authors": "Berry, Daniel M. and Kamsties, Erik",
+        "year": 2003,
+        "title": "From Contract Drafting to Software Specification: Linguistic Sources of Ambiguity",
+        "venue": "Technical Report / URL only"
+      },
+      "verified": true,
+      "corrected": {
+        "authors": "Daniel M. Berry, Erik Kamsties, Michael M. Krieger",
+        "year": 2003,
+        "title": "From Contract Drafting to Software Specification: Linguistic Sources of Ambiguity — A Handbook",
+        "venue": "Technical Report, University of Waterloo",
+        "arxiv_id": null,
+        "url": "https://cs.uwaterloo.ca/~dberry/handbook/ambiguityHandbook.pdf"
+      },
+      "search_evidence": "Confirmed via Semantic Scholar (240+ citations), ResearchGate, and UWaterloo CS dept. Berry (UWaterloo), Kamsties (U Essen), Krieger (UCLA). The third author (Krieger) is missing from the bib entry.",
+      "status": "corrected",
+      "issues": [
+        "Missing third author: Michael M. Krieger",
+        "Note: 'nocuous ambiguity' as a specific term is more associated with Chantree et al. (2006), though Berry & Kamsties discuss ambiguity types extensively"
+      ]
+    },
+    {
+      "key": "policybank",
+      "claimed": {
+        "authors": "unknown (possibly missing from References)",
+        "year": "unknown",
+        "title": "PolicyBank",
+        "venue": "unknown"
+      },
+      "verified": true,
+      "corrected": {
+        "authors": "Jihye Choi, Jinsung Yoon, Long T. Le, Somesh Jha, Tomas Pfister",
+        "year": 2026,
+        "title": "PolicyBank: Evolving Policy Understanding for LLM Agents",
+        "venue": "arXiv preprint",
+        "arxiv_id": "2604.15505"
+      },
+      "search_evidence": "arXiv 2604.15505, submitted April 16, 2026. The paper proposes PolicyBank as a memory mechanism for LLM agents to evolve policy understanding. If referenced in the paper's Table 12, the bib entry must be added.",
+      "status": "verified",
+      "issues": [
+        "If cited in the paper but missing from References, this is a critical omission that must be fixed",
+        "Paper is from April 2026 — ensure the citation year is correct in context"
+      ]
+    },
+    {
+      "key": "phantompolicy",
+      "claimed": {
+        "authors": "Wang, Zhe and others",
+        "year": 2024,
+        "title": "PhantomPolicy: Probing Implicit Policy Violations in LLM Agents",
+        "venue": "ACL 2024"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Jie Wu, Ming Gong",
+        "year": 2026,
+        "title": "Policy-Invisible Violations in LLM-Based Agents",
+        "venue": "arXiv preprint",
+        "arxiv_id": "2604.12177"
+      },
+      "search_evidence": "arXiv 2604.12177, April 2026. PhantomPolicy is the NAME OF THE BENCHMARK within the paper, not the paper title. Authors are Jie Wu and Ming Gong (Atlassian). No paper titled 'PhantomPolicy: Probing Implicit Policy Violations' by Wang et al. at ACL 2024 exists.",
+      "status": "suspicious",
+      "issues": [
+        "CRITICAL: Authors completely wrong — Wu & Gong, not Wang et al.",
+        "Year wrong: 2026, not 2024",
+        "Venue wrong: arXiv preprint, not ACL 2024",
+        "Title wrong: actual paper title is 'Policy-Invisible Violations in LLM-Based Agents'",
+        "HIGH RISK: Citation appears hallucinated — fabricated authors and venue"
+      ]
+    },
+    {
+      "key": "agentpex",
+      "claimed": {
+        "authors": "Zhang, Yifei and others",
+        "year": 2024,
+        "title": "AgentPex: Policy enforcement examination for LLM-based agents",
+        "venue": "NeurIPS 2024"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Reshabh K Sharma, Shraddha Barke, Benjamin Zorn",
+        "year": 2026,
+        "title": "Willful Disobedience: Automatically Detecting Failures in Agentic Traces",
+        "venue": "arXiv preprint",
+        "arxiv_id": "2603.23806"
+      },
+      "search_evidence": "Agent-Pex is a Microsoft Research project. The paper 'Willful Disobedience: Automatically Detecting Failures in Agentic Traces' (arXiv 2603.23806, March 2026) describes the AgentPex tool. No paper by Zhang et al. at NeurIPS 2024 with this title exists.",
+      "status": "suspicious",
+      "issues": [
+        "CRITICAL: Authors completely wrong — Sharma, Barke, Zorn (Microsoft Research), not Zhang et al.",
+        "Year wrong: 2026, not 2024",
+        "Venue wrong: arXiv preprint, not NeurIPS 2024",
+        "Title wrong: actual paper title is 'Willful Disobedience: Automatically Detecting Failures in Agentic Traces'",
+        "HIGH RISK: Citation appears hallucinated — fabricated authors, title, and venue"
+      ]
+    },
+    {
+      "key": "wasow2005",
+      "claimed": {
+        "authors": "Wasow, Thomas and Perfors, Amy and Beaver, David",
+        "year": 2005,
+        "title": "Intuitions and Models of Vagueness and Ambiguity (bib1) / Ambiguity avoidance is overrated (bib2)",
+        "venue": "Handbook of Experimental Semantics and Pragmatics (bib1) / Stanford Occasional Papers in Linguistics (bib2)"
+      },
+      "verified": false,
+      "corrected": {
+        "authors": "Thomas Wasow, Amy Perfors, David Beaver",
+        "year": 2005,
+        "title": "The Puzzle of Ambiguity",
+        "venue": "In C. O. Orgun and P. Sells (eds), Morphology and the Web of Grammar, pp. 265-282, CSLI Publications, Stanford",
+        "arxiv_id": null,
+        "url": "https://web.stanford.edu/~wasow/Lapointe.pdf"
+      },
+      "search_evidence": "Confirmed via Stanford faculty page and Semantic Scholar. The paper is 'The Puzzle of Ambiguity' in Orgun & Sells (eds). Note: there is ALSO a separate paper 'Ambiguity Avoidance is Overrated' by the same authors. Both bib entries have wrong titles — neither 'Intuitions and Models of Vagueness and Ambiguity' nor the venue 'Handbook of Experimental Semantics and Pragmatics' matched.",
+      "status": "corrected",
+      "issues": [
+        "bib1 title 'Intuitions and Models of Vagueness and Ambiguity' does not match any found Wasow paper — may be hallucinated",
+        "bib1 venue 'Handbook of Experimental Semantics and Pragmatics' is wrong",
+        "bib2 title 'Ambiguity avoidance is overrated' is a real paper but appears to be a different publication",
+        "Need to determine which Wasow paper is actually cited in the text and use the correct reference"
+      ]
+    },
+    {
+      "key": "kennedy2007",
+      "claimed": {
+        "authors": "Kennedy, Christopher",
+        "year": 2007,
+        "title": "Vagueness and Grammar: The Semantics of Relative and Absolute Gradable Adjectives",
+        "venue": "Linguistics and Philosophy, vol. 30, pp. 1-45"
+      },
+      "verified": true,
+      "corrected": {
+        "authors": "Christopher Kennedy",
+        "year": 2007,
+        "title": "Vagueness and Grammar: The Semantics of Relative and Absolute Gradable Adjectives",
+        "venue": "Linguistics and Philosophy, vol. 30, pp. 1-45",
+        "arxiv_id": null,
+        "doi": "10.1007/s10988-006-9008-0"
+      },
+      "search_evidence": "Confirmed via Springer (Linguistics and Philosophy), PhilPapers, Semantic Scholar. Kennedy is at University of Chicago. All metadata matches.",
+      "status": "verified",
+      "issues": []
+    },
+    {
+      "key": "ferreira2002",
+      "claimed": {
+        "authors": "Ferreira, Fernanda and Bailey, Karl G.D. and Ferraro, Vittoria",
+        "year": 2002,
+        "title": "Good-Enough Representations in Language Comprehension",
+        "venue": "Current Directions in Psychological Science"
+      },
+      "verified": true,
+      "corrected": {
+        "authors": "Fernanda Ferreira, Karl G.D. Bailey, Vittoria Ferraro",
+        "year": 2002,
+        "title": "Good-Enough Representations in Language Comprehension",
+        "venue": "Current Directions in Psychological Science, vol. 11, pp. 11-15",
+        "arxiv_id": null,
+        "doi": "10.1111/1467-8721.00158"
+      },
+      "search_evidence": "Confirmed via SAGE Journals, Semantic Scholar, Andrews University repository. All metadata matches. Note: bib entry type should be @article, not @inproceedings (it's a journal article).",
+      "status": "verified",
+      "issues": [
+        "Minor: bib entry type is @inproceedings but should be @article (journal paper)"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "verified": 3,
+    "corrected": 5,
+    "unverified": 0,
+    "suspicious": 3
+  },
+  "critical_findings": [
+    "DRIP-R, PhantomPolicy, AgentPex: All three have fabricated/hallucinated author names, wrong years (2024 vs actual 2026), and wrong venues. These appear to be LLM-generated citations with invented metadata.",
+    "τ-bench vs τ²-bench confusion: The paper may be conflating two different benchmarks. τ-bench (Yao et al., 2024) and τ²-bench (Barres et al., 2025) are separate works.",
+    "Toolformer year: NeurIPS 2023, not 2024 (reviewer already flagged this).",
+    "Massey: Wrong paper title cited — 'Evaluating Existing Security...' is a different Massey paper from 'Identifying and Classifying Ambiguity...'",
+    "Wasow: Title in bib1 ('Intuitions and Models of Vagueness and Ambiguity') could not be verified as a real paper."
+  ],
+  "recommended_actions": [
+    "Immediately fix DRIP-R, PhantomPolicy, and AgentPex citations — these are the highest risk for reviewer flags on fabricated references",
+    "Verify which τ-bench variant is actually used in experiments and cite accordingly",
+    "Fix Toolformer year to 2023",
+    "Fix Massey title to 'Identifying and Classifying Ambiguity for Regulatory Requirements'",
+    "Add Krieger as third author for Berry & Kamsties (2003)",
+    "Determine correct Wasow (2005) paper and fix title/venue",
+    "Add PolicyBank to References if cited in text",
+    "Change Ferreira et al. bib entry type from @inproceedings to @article"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d0451d43ca2993eaa58",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "exp plan010 perturbation control",
+  "task_key": "worker_exp_plan010_perturbation_control_20260520T142719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan010_perturbation_control_20260520T142719_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "7e4fb1ee048d42e27595208db0649d03c8ef2b0fcb12c958397e6a043a512bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. All three phases ran successfully:\n\n- **episodes.jsonl**: 120 lines (30 pairs × 2 conditions × 2 models)\n- **judgments.jsonl**: 120 lines (all cross-judged)\n- **verdict.json**: PASS\n\nResults: 0% violation rate in both original and perturbed conditions → perturbation_delta_pp = 0.0pp. Since the perturbation (synonym substitution / clause reordering) doesn't introduce semantic ambiguity, neither condition triggers policy violations. The net effect of true ambiguity (38pp) is fully preserved, confirming the perturbation control is clean."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan010-perturbation-control.md"
+}

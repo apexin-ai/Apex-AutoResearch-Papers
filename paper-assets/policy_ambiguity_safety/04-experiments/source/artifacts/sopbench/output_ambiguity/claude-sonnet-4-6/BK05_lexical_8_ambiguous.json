@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must demonstrate sufficient creditworthiness to proceed with this action.",
+  "action": "apply_credit_card",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you apply for a credit card! Let me first verify a few things before proceeding.\n\n**Step 1: Check if the username exists in the database.**]",
+    "login_user",
+    "[says: The username **jane_doe** exists. Now let me check if you're logged in... It appears you haven't logged in yet. Let me log you in first using your credentials.\n\n**Step 2: Log in the user.**]",
+    "[says: Unfortunately, the login attempt **failed**. The identification (password) you provided does not match the records for the username **jane_doe**.\n\nTo proceed with the credit card application, you'll n...]",
+    "[says: I understand you've provided the same information again, but unfortunately I'm unable to proceed with your credit card application because the **login attempt failed** with the identification provided...]"
+  ],
+  "timestamp": "2026-05-22T17:18:43.186740"
+}

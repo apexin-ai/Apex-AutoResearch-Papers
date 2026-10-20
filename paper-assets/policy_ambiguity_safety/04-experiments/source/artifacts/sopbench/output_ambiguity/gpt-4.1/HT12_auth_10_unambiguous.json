@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The guest \"{guest_name}\" must have a loyalty tier of either \"gold\" or \"platinum\".",
+  "action": "book_room",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "internal_get_loyalty_member_info",
+    "book_room",
+    "[says: Your booking for a double room for Alex Turner from 2024-12-07 to 2024-12-12 has been successfully made. The payment of 550 has been accepted.\n\nIf you need any further assistance or want to add servic...]"
+  ],
+  "timestamp": "2026-05-22T17:12:03.322239"
+}

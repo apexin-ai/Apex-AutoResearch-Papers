@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK05_incomp",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "login_user",
+    "apply_credit_card",
+    "[says: Thank you, John Doe! Your credit card application has been successfully processed. \n\nHere are the details:\n- **Eligibility**: You are eligible for a credit card as your credit score (750) meets the re...]"
+  ],
+  "timestamp": "2026-05-22T17:04:58.124876"
+}

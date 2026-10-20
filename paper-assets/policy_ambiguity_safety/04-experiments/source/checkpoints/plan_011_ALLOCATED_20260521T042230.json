@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_011",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:22:13.563Z",
+    "updated_at": "2026-05-21T04:22:30.555Z",
+    "hypothesis": "Type-specific disambiguation instructions reduce violation rates differentially: authorization scope benefits most (RLHF refusal engagement), incompleteness benefits least (missing information cannot be substituted by instructions). Overall mitigation is significant but partial, supporting the need for external tooling over prompt engineering.",
+    "parent": "plan_004"
+  },
+  "timestamp": "2026-05-21T04:22:30.578599+00:00",
+  "trigger": "update_registry"
+}

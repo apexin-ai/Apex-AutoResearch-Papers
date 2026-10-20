@@ -1,0 +1,31 @@
+{
+  "pair_id": "HT07_auth",
+  "domain": "hotel",
+  "constraint": "valid_identification",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The \"{identification}\" must include a \"type\" that matches one of {valid_document_types} and a valid \"birthday\" indicating the guest is at least {min_age} years old.",
+  "action": "process_guest_checkin",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "process_guest_checkin",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I\u2019m unable to process this check-in for the following reasons:\n\n1. The identification type provided (\"library_card\") is not accepted. Only the following types are valid: driver_license, passport, stat...]"
+  ],
+  "timestamp": "2026-05-22T17:11:25.463430"
+}

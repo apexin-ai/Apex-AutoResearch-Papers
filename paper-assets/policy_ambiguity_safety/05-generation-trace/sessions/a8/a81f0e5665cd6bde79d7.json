@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a81f0e5665cd6bde79d7",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment residual v2",
+  "task_key": "worker_experiment_residual_v2_20260522T232336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_residual_v2_20260522T232336_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "89fdfaf157dc8b97f6364956a6a07b33a6ef6ee68435346cf3585385efb0b56f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Key findings:\n\n**Overall**: ICC(1) = 0.749 — 75% of variance is systematic (clause-driven), only 25% is stochastic (run-to-run noise). 86.5% of cells are unanimous across 5 reps.\n\n**By condition**:\n- **Ambiguous**: ICC = 0.78, violation rate 27.6%, stochastic share 21.8%\n- **Unambiguous**: ICC = 0.40, violation rate 4.0%, stochastic share 59.6% (floor effect — low base rate means most variance is noise)\n\n**By ambiguity type** (ICC, violation rate):\n- **Incompleteness**: 0.90, 22.5% — most deterministic\n- **Conditional precedence**: 0.86, 21.9%\n- **Scopal**: 0.73, 23.9%\n- **Lexical**: 0.70, 17.5%\n- **Coreferential**: 0.34, 8.8% — noisier\n- **Authorization scope**: −0.01, 1.1% — near-zero violations, essentially floor\n\n**Residual decomposition**: Of the original 60.8% residual variance, ~15.2pp is genuine stochasticity and ~45.6pp is systematic-but-unmeasured factors (likely prompt phrasing, scenario details, model-specific sensitivities)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-residual-v2.md"
+}

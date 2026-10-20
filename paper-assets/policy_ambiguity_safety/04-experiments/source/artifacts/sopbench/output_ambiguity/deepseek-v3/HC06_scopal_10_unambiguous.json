@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **MUST NOT HAVE** any claims with a status of 'pending' in order to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: To proceed with updating your healthcare policy, I will first need to verify your identity by logging you in using your driver's license. After successful authentication, I can then proceed with the p...]",
+    "[says: It seems the login attempt was unsuccessful. This could be due to incorrect credentials or missing information, such as the state where your driver's license is registered. \n\nCould you please confirm ...]",
+    "[says: Since the login attempt failed and you are unable to provide further details for authentication, I cannot proceed with updating your healthcare policy. \n\nIf you'd like to try again later with the corr...]"
+  ],
+  "timestamp": "2026-05-22T17:34:33.090820"
+}

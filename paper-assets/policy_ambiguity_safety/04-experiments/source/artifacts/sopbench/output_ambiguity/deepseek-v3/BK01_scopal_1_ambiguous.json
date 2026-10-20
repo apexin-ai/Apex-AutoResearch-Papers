@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user must have sufficient funds available for this transaction.",
+  "action": "pay_bill",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "pay_bill",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "pay_bill",
+    "[says: The payment for your \"Electricity Bill\" of 300.0 dollars has been successfully processed from your account. If you need any further assistance, feel free to ask!]"
+  ],
+  "timestamp": "2026-05-23T00:03:10.010609"
+}

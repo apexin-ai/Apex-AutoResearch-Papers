@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} has authenticated the admin password previously to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: To complete a transfer, you must first be logged in and have authenticated your admin password for this session. I can handle that for you.\n\nFirst, I\u2019ll log you in with the credentials you provided.]",
+    "authenticate_admin_password",
+    "[says: Login successful. Next, I\u2019ll authenticate the admin password, which is required before transferring funds.]",
+    "[says: Yes \u2014 a transfer requires admin-password authentication, and I checked that for you.\n\nResults:\n- Login for `john_doe`: successful\n- Admin password authentication: failed\n\nSo I can\u2019t complete the trans...]",
+    "[says: I still can\u2019t complete the transfer because the admin password authentication failed with the password provided, and that authentication is required before transferring funds.\n\nI\u2019m ending the conversa...]"
+  ],
+  "timestamp": "2026-05-22T23:22:32.014120"
+}

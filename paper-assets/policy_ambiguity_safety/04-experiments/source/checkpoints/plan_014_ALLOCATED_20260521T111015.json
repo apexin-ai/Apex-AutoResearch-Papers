@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_014",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:57:21.805Z",
+    "updated_at": "2026-05-21T11:10:15.438Z",
+    "hypothesis": "Expanding perturbation control from n=120 to n=300 will maintain non-significant Δ_perturb (CI containing zero) while narrowing CI upper bound from 13.3pp to ~8pp, strengthening SESOI justification for C1 causal inference",
+    "parent": "plan_010"
+  },
+  "timestamp": "2026-05-21T11:10:15.470503+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's policy must be in good standing to perform this action.",
+  "action": "update_policy",
+  "task_idx": 13,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before updating your policy, I need to verify your login credentials and ensure your policy is eligible for updates. Let me proceed with logging you in first.]",
+    "get_policy_details",
+    "[says: Great! You've been successfully logged in. Now, I'll check your policy details to ensure it's in good standing and within the allowable enrollment period for updates.]",
+    "internal_get_interaction_time",
+    "[says: Your current policy is a Health policy with a coverage amount of $5000, enrolled on January 1, 2023. To proceed with updating your policy to Dental, I need to verify if the current interaction time fa...]",
+    "[says: The current interaction time is January 15, 2025, which is more than 365 days after your enrollment date (January 1, 2023). Unfortunately, this means you are outside the allowable enrollment period fo...]",
+    "[says: Since the enrollment period for updating your policy has expired (as it has been more than 365 days since your enrollment date), I cannot proceed with updating your policy at this time. \n\nIf you have ...]"
+  ],
+  "timestamp": "2026-05-22T23:31:43.152027"
+}

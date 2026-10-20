@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC10_auth",
+  "domain": "healthcare",
+  "constraint": "provider_authorized",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST BE** authorized for the user \"{username}\".",
+  "action": "submit_claim",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before I can proceed with submitting your claim, I need to verify a few things:\n\n1. **Login Verification**: I need to confirm your identity by logging you in using your username and identification.\n2....]",
+    "get_provider_details",
+    "[says: Great, you've been successfully logged in. Now, I'll check if the provider \"johns_hopkins_baltimore\" exists in the system and if they are authorized for your policy or match your policy type.]",
+    "[says: The provider \"John Hopkins\" exists in the system, but their service type is \"Pharmacy,\" and they are currently unavailable. Additionally, your claim amount of 6000 exceeds the maximum claimable amount...]",
+    "[says: Based on the information you've provided and the constraints of the system, I cannot proceed with your request for the following reasons:\n\n1. **Claim Amount Exceeds Limit**: The amount of 6000 exceeds...]"
+  ],
+  "timestamp": "2026-05-23T00:04:01.161679"
+}

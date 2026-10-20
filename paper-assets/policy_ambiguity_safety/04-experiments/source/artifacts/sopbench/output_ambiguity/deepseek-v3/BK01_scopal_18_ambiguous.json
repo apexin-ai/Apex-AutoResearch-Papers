@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user must have sufficient funds available for this transaction.",
+  "action": "transfer_funds",
+  "task_idx": 18,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "transfer_funds",
+    "[says: The transfer of $100.00 from your account (\"john_doe\") to \"jane_doe\" has been successfully completed. If you need any further assistance, feel free to ask!]",
+    "[says: The transfer of $100.00 from your account (\"john_doe\") to \"jane_doe\" has already been successfully completed. If you have no further requests, I will now conclude our conversation.]"
+  ],
+  "timestamp": "2026-05-22T22:33:55.319798"
+}

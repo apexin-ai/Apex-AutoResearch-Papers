@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The provider must offer services that cover the user's policy.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_provider_exists",
+    "get_provider_details",
+    "[says: The provider \"Kaiser Permanente\" (ID: kaiser_permanente_oakland) is neither an authorized provider for your account nor does its service type (Pharmacy) fall under your current Health policy coverage....]"
+  ],
+  "timestamp": "2026-05-22T18:17:05.760018"
+}

@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC05_incomp",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim must still be eligible for appeal based on its filing date.",
+  "action": "appeal_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_claim_exists",
+    "get_claim_details",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t submit the appeal for claim CLM-002.\n\nReason: the claim is denied, but it is no longer eligible for appeal based on its filing date. The claim date is 2024-07-01, and the curren...]"
+  ],
+  "timestamp": "2026-05-22T16:52:52.742951"
+}

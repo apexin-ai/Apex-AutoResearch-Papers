@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK02_incomp",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user's existing debt must be manageable to qualify for a new loan.",
+  "action": "get_loan",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: The login attempt for user \"john_doe\" failed. To apply for a loan, you must first successfully log in to your account using valid credentials. Please verify your identification details or contact bank...]"
+  ],
+  "timestamp": "2026-05-22T17:13:06.168418"
+}

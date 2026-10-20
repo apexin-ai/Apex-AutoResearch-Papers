@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "[says: Let me start by verifying all the required conditions before proceeding with the booking.]",
+    "internal_is_loyalty_member",
+    "[says: The single room is available for all required dates (2024-12-07 to 2024-12-12). Now let me check the stay duration and cost:\n\n- **Stay duration:** 6 nights (2024-12-07 to 2024-12-13) \u2014 this exceeds 5 ...]",
+    "internal_get_loyalty_member_info",
+    "[says: Unfortunately, Alex Silverman is a **silver-tier** loyalty member, not a **premium-tier** member. Since the stay spans **6 nights** (which exceeds the 5-night limit), and Alex does not qualify as a pr...]",
+    "[says: I understand you'd like to proceed with the same details, but unfortunately I'm unable to complete this booking for the following reasons:\n\n1. **Stay duration:** The booking spans **6 nights** (2024-1...]"
+  ],
+  "timestamp": "2026-05-22T17:41:25.641483"
+}

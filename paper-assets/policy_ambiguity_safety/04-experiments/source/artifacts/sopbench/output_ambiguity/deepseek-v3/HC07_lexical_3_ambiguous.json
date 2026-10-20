@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's policy must be in good standing to perform this action.",
+  "action": "update_policy",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before proceeding with updating your healthcare policy, I need to verify your login credentials and ensure that your policy is in good standing. Additionally, I will confirm that the requested coverag...]",
+    "get_policy_details",
+    "[says: Great! You have been successfully logged in. Now, I will verify if your policy is in good standing and check the coverage amount constraint.]",
+    "[says: Your current policy is in good standing, and your annual income is confirmed as $60,000. \n\nNext, I will verify if the requested coverage amount of $13,000 does not exceed 20% of your annual income. \n\n...]",
+    "[says: Since the requested coverage amount of $13,000 exceeds the allowable limit of 20% of your annual income ($12,000), I cannot proceed with updating your policy to this amount. \n\nIf you'd like to adjust ...]"
+  ],
+  "timestamp": "2026-05-22T17:20:13.961833"
+}

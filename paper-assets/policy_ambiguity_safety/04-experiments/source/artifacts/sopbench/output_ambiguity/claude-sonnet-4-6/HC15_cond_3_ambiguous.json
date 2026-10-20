@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC15_cond",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The appointment should be set for a future time, relative to when the request is processed.",
+  "action": "schedule_appointment",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll help you schedule an appointment! Let me work through the required steps to verify everything before proceeding.\n\n**Step 1: Check if the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "get_policy_details",
+    "[says: You're logged in! Now let me check your policy details.\n\n**Step 3: Check policy details to ensure an active policy.**]",
+    "internal_get_interaction_time",
+    "[says: Your policy is active (type: **Health**). Now let me check the current interaction time to ensure the appointment date is in the future.\n\n**Step 4: Get the current interaction time.**]",
+    "[says: Unfortunately, I'm unable to schedule the appointment. Here's why:\n\n- **Requested appointment date:** 2025-01-14\n- **Current date:** 2025-01-15\n\nThe appointment date of **January 14, 2025** is in the ...]",
+    "[says: I understand you've provided the same information, but unfortunately I'm still unable to schedule the appointment.\n\nThe requested appointment date of **2025-01-14** is in the **past** relative to the ...]"
+  ],
+  "timestamp": "2026-05-22T17:46:17.374846"
+}

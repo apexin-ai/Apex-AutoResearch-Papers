@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC15_cond",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The appointment_date \"{appointment_date}\" **MUST BE AFTER** the interaction time.",
+  "action": "schedule_appointment",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Sure! Let me start by logging you in. I'll verify your credentials first.]",
+    "get_provider_details",
+    "[says: You're logged in successfully! Now let me check the provider's details to verify availability.]",
+    "get_policy_details",
+    "[says: The provider is available! Now let me check your policy details to ensure it's active.]",
+    "internal_get_interaction_time",
+    "[says: Your policy is active! Now let me verify the current interaction time to ensure the appointment date is in the future.]",
+    "[says: Unfortunately, I'm unable to schedule the appointment. Here's why:\n\n- **Requested Appointment Date:** 2025-01-10\n- **Current Date:** 2025-01-15\n\nThe appointment date **must be after** the current inte...]",
+    "[says: I understand you'd like to proceed with the same information, but unfortunately I'm unable to schedule the appointment for **January 10, 2025** because that date has already passed. The current date i...]"
+  ],
+  "timestamp": "2026-05-22T17:47:03.604132"
+}

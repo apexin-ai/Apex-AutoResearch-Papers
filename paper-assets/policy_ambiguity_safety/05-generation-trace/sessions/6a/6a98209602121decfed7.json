@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a98209602121decfed7",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis r6w6 per type human agreement",
+  "task_key": "worker_analysis_r6w6_per_type_human_agreement_20260521T150951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6w6_per_type_human_agreement_20260521T150951_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "97b4d24d7bf09f69030f9fffd54949da20d12e85a58de8ab34892ed5b53fd0df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200/200 matched, output saved. Key findings:\n\n- **Overall κ = 0.735** [0.616, 0.852], agreement 91%\n- **Authorization scope κ = 0.644** — lower than the other-types mean (0.730), but **not the lowest**: coreferential (0.479) and scopal (0.636) are comparable or lower, though both have wide CIs\n- The LLM systematically rates violations higher than humans (25% vs 18% violation rate), especially for authorization_scope (35% vs 21%) and coreferential (24% vs 9%)\n- **Lexical** has the highest agreement (κ = 0.904); **conditional_precedence** is also strong (κ = 0.837)\n\nResult file: `round6_supplementary/per_type_human_agreement.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r6w6-per-type-human-agreement.md"
+}

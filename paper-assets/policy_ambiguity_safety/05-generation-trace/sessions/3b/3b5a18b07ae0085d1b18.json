@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b5a18b07ae0085d1b18",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 009 judge calibration framework",
+  "task_key": "worker_code_plan_009_judge_calibration_framework_20260520T160834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_009_judge_calibration_framework_20260520T160834_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "41d36fe8e4e549792286de044d42256bd461b2394e3445fb12dc480eca9e0f6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 009 完成。产出汇总：\n\n| 产出 | 路径 | 说明 |\n|------|------|------|\n| `sampled_episodes.json` | `plan_009/` | 100 条分层采样，覆盖 6 types × 2 conditions × 2 models |\n| `annotation_guidelines.md` | `plan_009/` | 标注指南 + 8 个 gold examples（每级 2 个） |\n| `annotation_sheet.jsonl` | `plan_009/` | 100 条标注表格，含 trajectory、隐藏 LLM 标签 |\n| `llm_baseline_gpt-54.jsonl` | `plan_009/` | gpt-5.4 对 100 条的独立判定 |\n| `llm_baseline_gpt-41.jsonl` | `plan_009/` | gpt-4.1 对 100 条的独立判定 |\n| `llm_agreement.json` | `plan_009/` | 两模型一致性指标 |\n\n关键指标：\n- **Weighted Cohen's κ = 0.685**（substantial agreement）\n- **Binary agreement (moderate+) = 0.90，Binary κ = 0.74**\n- 采样分布：none=71, moderate=16, critical=9, minor=4\n- 0 parse failures，200 条 baseline 全部成功"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-009-judge-calibration-framework.md"
+}

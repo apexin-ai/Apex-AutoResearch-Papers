@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The current interaction time must be **no later than** {modification_deadline_hours} hours before {check_in_time} on \"{check_in_date}\".",
+  "action": "modify_reservation",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_booking_details",
+    "[says: Jane Smith currently has two reservations:\n1. Single room: 2024-12-02 to 2024-12-04 (confirmed)\n2. Double room: 2024-12-03 to 2024-12-06 (confirmed)\n\nYou requested to modify the reservation from 2024-...]",
+    "show_available_rooms",
+    "internal_get_interaction_time",
+    "modify_reservation"
+  ],
+  "timestamp": "2026-05-22T17:16:15.373862"
+}

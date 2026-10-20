@@ -1,0 +1,2142 @@
+{
+  "schema_version": "1.0",
+  "id": "5f92b37fbde6631c3c34",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "paper redraw variance decomp",
+  "task_key": "worker_paper_redraw_variance_decomp_20260524T184834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_redraw_variance_decomp_20260524T184834.log",
+    "occurrence": 1,
+    "bytes": 138209,
+    "sha256": "12b463045971941a74585a96923929da7448b815dd82b2b1dcbb4284a65d0fd6"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+                "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2ed34547-9139-474e-a57f-d9236697d7f7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-4-projects-policy-ambiguity-safety/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779664800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0078960b-bf1f-43d0-846c-f6acd3bddd2e",
+                "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll write the matplotlib script to create the variance decomposition figure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "bd7d33a8-eeb7-4dc5-bc46-b759b7a0fa0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmQ2LiBUisPdGuBNreGB7z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14118,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14118
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CDZ4TqhCkxSaDWuw1uL92k",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "7f931556-1aa9-4709-a5ba-691ab2c22250",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmQ2LiBUisPdGuBNreGB7z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14118,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14118
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T18:48:45.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CDZ4TqhCkxSaDWuw1uL92k",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术统计图生成（Worker 执行）\n16\t\n17\tWorker 收到统计图画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t**质量底线：每张图必须达到 NeurIPS/ICML/EMNLP best paper 的视觉水准——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感（灰背景、粗网格线、tab10 色板、默认蓝色）。**\n20\t\n21\t**生成图片后必须 Read PNG 做视觉检查，至少迭代 3 轮（Hero Figure 至少 5 轮）。第一版画出来基本不能直接用。**\n22\t\n23\t本 skill 提供：\n24\t- 通用样式（rcParams + 色板）\n25\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n26\t- NeurIPS 经验提炼的 pattern 实现示例\n27\t\n28\t## 输入字段（从 Paper Agent 传入）\n29\t\n30\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n31\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n32\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n33\t\n34\t## 画图工作流\n35\t\n36\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n37\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n38\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n39\t4. 提交前过本 skill §checklist\n40\t\n41\t## 通用样式标准（所有图表必须遵守）\n42\t\n43\t```python\n44\timport matplotlib\n45\tmatplotlib.use('Agg')\n46\timport matplotlib.pyplot as plt\n47\timport matplotlib.patches as mpatches\n48\timport numpy as np\n49\t\n50\t# 字体和全局样式\n51\tplt.rcParams.update({\n52\t    'font.family': 'DejaVu Sans',\n53\t    'font.size': 11,\n54\t    'axes.titlesize': 13,\n55\t    'axes.labelsize': 12,\n56\t    'xtick.labelsize': 10,\n57\t    'ytick.labelsize': 10,\n58\t    'legend.fontsize': 10,\n59\t    'figure.dpi': 300,\n60\t    'savefig.dpi': 300,\n61\t    'savefig.bbox': 'tight',\n62\t    'savefig.pad_inches': 0.05,\n63\t    'axes.spines.top': False,\n64\t    'axes.spines.right': False,\n65\t    'lines.linewidth': 1.8,\n66\t})\n67\t\n68\t# 色盲友好配色：优先从 writing_plan.yaml 的 color_palette 读取\n69\t# 读不到则 fallback 到以下默认值\n70\tCOLORS = {\n71\t    'fp16':   '#E69F00',  # 橙黄\n72\t    'nf4':    '#56B4E9',  # 天蓝\n73\t    'int8':   '#009E73',  # 绿\n74\t    'gptq':   '#F0E442',  # 黄\n75\t    'awq':    '#CC79A7',  # 粉紫\n76\t    'llama':  '#0072B2',  # 深蓝\n77\t    'qwen3':  '#D55E00',  # 橙红\n78\t    'gemma':  '#009E73',  # 绿\n79\t    'mistral':'#CC79A7',  # 粉紫\n80\t    'phi3':   '#F0E442',  # 黄\n81\t}\n82\t\n83\t# 方法标签\n84\tMETHOD_LABELS = {\n85\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n86\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n87\t}\n88\t```\n89\t\n90\t---\n91\t\n92\t## 1. Reliability Diagram（校准图）\n93\t\n94\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n95\t\n96\t```python\n97\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n98\t                              label='', color='#0072B2',\n99\t                              title='Reliability Diagram',\n100\t                              outpath='reliability.pdf'):\n101\t    \"\"\"\n102\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n103\t    \"\"\"\n104\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n105\t    bin_accs, bin_confs, bin_counts = [], [], []\n106\t\n107\t    for i in range(n_bins):\n108\t        lo, hi = bin_edges[i], bin_edges[i+1]\n109\t        mask = (confidences >= lo) & (confidences < hi)\n110\t        if mask.sum() > 0:\n111\t            bin_accs.append(accuracies[mask].mean())\n112\t            bin_confs.append(confidences[mask].mean())\n113\t            bin_counts.append(mask.sum())\n114\t        else:\n115\t            bin_accs.append(float('nan'))\n116\t            bin_confs.append((lo + hi) / 2)\n117\t            bin_counts.append(0)\n118\t\n119\t    bin_accs = np.array(bin_accs)\n120\t    bin_confs = np.array(bin_confs)\n121\t\n122\t    fig, (ax_main, ax_hist) = plt.subplots(\n123\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n124\t        sharex=True\n125\t    )\n126\t\n127\t    # 主图：gaps\n128\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n129\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n130\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n131\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n132\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n133\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n134\t    ax_main.set_ylabel('Accuracy')\n135\t    ax_main.set_title(title)\n136\t    ax_main.legend(loc='upper left', fontsize=9)\n137\t    ax_main.grid(True, alpha=0.3, zorder=1)\n138\t\n139\t    # ECE annotation\n140\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n141\t                    np.abs(bin_accs - bin_confs))\n142\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n143\t                 ha='right', va='bottom', fontsize=9,\n144\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n145\t\n146\t    # 直方图（样本密度）\n147\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n148\t                color=color, alpha=0.5)\n149\t    ax_hist.set_ylabel('Count', fontsize=9)\n150\t    ax_hist.set_xlabel('Confidence')\n151\t\n152\t    plt.tight_layout()\n153\t    plt.savefig(outpath)\n154\t    plt.close()\n155\t    print(f'Saved: {outpath}')\n156\t```\n157\t\n158\t### 批量生成 6 张对比图（EMNLP 论文用）\n159\t\n160\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n161\t\n162\t```python\n163\t# 在 A6000 服务器上执行\n164\tFIGURE_PLAN = [\n165\t    # (dataset, model, quant, regime, title)\n166\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n167\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n168\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n169\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n170\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n171\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n172\t]\n173\t```\n174\t\n175\t---\n176\t\n177\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n178\t\n179\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n180\t\n181\t```python\n182\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n183\t                     title='ΔECE Heatmap (vs FP16)',\n184\t                     outpath='ece_heatmap.pdf'):\n185\t    \"\"\"\n186\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n187\t    \"\"\"\n188\t    import matplotlib.colors as mcolors\n189\t\n190\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n191\t\n192\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n193\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n194\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n195\t    cmap = plt.cm.RdBu_r\n196\t\n197\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n198\t\n199\t    # 数值标注\n200\t    for i in range(len(methods)):\n201\t        for j in range(len(datasets)):\n202\t            val = delta_ece_matrix[i, j]\n203\t            if not np.isnan(val):\n204\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n205\t                sign = '+' if val > 0 else ''\n206\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n207\t                        fontsize=9, color=color, fontweight='bold')\n208\t\n209\t    ax.set_xticks(range(len(datasets)))\n210\t    ax.set_yticks(range(len(methods)))\n211\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n212\t    ax.set_yticklabels(methods)\n213\t    ax.set_title(title)\n214\t\n215\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n216\t    cbar.set_label('ΔECE (quantized − FP16)')\n217\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n218\t\n219\t    plt.tight_layout()\n220\t    plt.savefig(outpath)\n221\t    plt.close()\n222\t    print(f'Saved: {outpath}')\n223\t```\n224\t\n225\t---\n226\t\n227\t## 3. T* Scatter Plot（任务 Regime 可视化）\n228\t\n229\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n230\t\n231\t```python\n232\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n233\t    \"\"\"\n234\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n235\t    \"\"\"\n236\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n237\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n238\t    REGIME_BANDS = [\n239\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n240\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n241\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n242\t    ]\n243\t\n244\t    fig, ax = plt.subplots(figsize=(8, 4))\n245\t\n246\t    # 背景色区\n247\t    for lo, hi, color, label in REGIME_BANDS:\n248\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n249\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n250\t                color='gray', zorder=1)\n251\t\n252\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n253\t\n254\t    x = np.arange(len(DATASETS))\n255\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n256\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n257\t        ax.plot(x, y, 'o-', color=color, label=model,\n258\t                markersize=7, alpha=0.85, zorder=2)\n259\t\n260\t    ax.set_xticks(x)\n261\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n262\t    ax.set_ylabel('T* (FP16)')\n263\t    ax.set_ylim(0, 10.5)\n264\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n265\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n266\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n267\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n268\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n269\t\n270\t    plt.tight_layout()\n271\t    plt.savefig(outpath)\n272\t    plt.close()\n273\t    print(f'Saved: {outpath}')\n274\t```\n275\t\n276\t---\n277\t\n278\t## 4. 生成流程（SSH 执行）\n279\t\n280\t```python\n281\t# Step 1: 写脚本到服务器\n282\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n283\t# ... 粘贴上方代码 + 调用逻辑 ...\n284\tPYEOF\"\"\")\n285\t\n286\t# Step 2: 安装依赖（如有）\n287\tssh_execute(\"pip install matplotlib numpy -q\")\n288\t\n289\t# Step 3: 执行\n290\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n291\t\n292\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n293\tssh_execute(\"\"\"\n294\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n295\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n296\t    python3 -c \"\n297\timport matplotlib.pyplot as plt\n298\timport matplotlib.image as mpimg\n299\timg = mpimg.imread('$f')\n300\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n301\tax = fig.add_axes([0,0,1,1])\n302\tax.imshow(img); ax.axis('off')\n303\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n304\tplt.close()\"\n305\tdone\n306\t\"\"\")\n307\t\n308\t# Step 5: 验证\n309\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n310\t```\n311\t\n312\t---\n313\t\n314\t## 5. Pattern 实现（按 design_notes 选用）\n315\t\n316\t完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n317\t\n318\t### Pattern A：Regime Background Bands\n319\t\n320\t```python\n321\timport matplotlib.patheffects as pe\n322\t# 横向 regime bands\n323\tREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n324\t                (1, 5, '#EAFAF1', 'Regime B'),\n325\t                (5, 10.5, '#FDF2F8', 'Regime C')]\n326\tfor lo, hi, color, label in REGIME_BANDS:\n327\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n328\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n329\t            fontsize=9, color='gray', zorder=1)\n330\t\n331\t# 单一 collapse zone\n332\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n333\tax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n334\t        color='#ccaaaa', fontstyle='italic', va='center')\n335\t```\n336\t\n337\t### Pattern B：发散面积 fill_between\n338\t\n339\t```python\n340\t# alpha 极低（0.06）：不抢眼但有面积\n341\tax.fill_between(x_range, curve_upper, curve_lower,\n342\t                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n343\t```\n344\t\n345\t### Pattern C：参考线锚定真实值\n346\t\n347\t```python\n348\tax.axhline(y=actual_value, color=color, linestyle=':',\n349\t           linewidth=0.8, alpha=0.3, zorder=1)\n350\tt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n351\t            fontsize=7, color=color, alpha=0.5, ha='center')\n352\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n353\t```\n354\t\n355\t### Pattern D：信息层级 marker（hollow vs solid by sample size）\n356\t\n357\t```python\n358\t# 实心 = n >= 50, 空心带 n 标注 = n < 50\n359\tsolid_mask = [n >= 50 for n in n_vals]\n360\tfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n361\t    if solid:\n362\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n363\t                markerfacecolor=color, markeredgewidth=0)\n364\t    else:\n365\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n366\t                markerfacecolor='white', markeredgecolor=color,\n367\t                markeredgewidth=1.2, zorder=4)\n368\t        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n369\t                    xytext=(0, 7), fontsize=5, color=color,\n370\t                    ha='center', fontstyle='italic')\n371\t```\n372\t\n373\t### Pattern E：Wilson Binomial CI\n374\t\n375\t```python\n376\tdef wilson_ci(p, n, z=1.96):\n377\t    if n == 0: return 0, 0\n378\t    denom = 1 + z**2 / n\n379\t    center = (p + z**2 / (2*n)) / denom\n380\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n381\t    return max(0, center - half), min(1, center + half)\n382\t\n383\t# 用法\n384\tlo, hi = wilson_ci(accuracy, n)\n385\tax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n386\t            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n387\t            markeredgecolor='white', markeredgewidth=1.0)\n388\t```\n389\t\n390\t### Pattern F：Per-label offset dict（防标注重叠）\n391\t\n392\t```python\n393\tlabel_offsets = {\n394\t    'Qwen3-8B':  (6, -12),\n395\t    'Qwen3-4B':  (-55, 4),\n396\t    'Llama-8B':  (6, 6),\n397\t}\n398\tfor name, (x, y) in data.items():\n399\t    ox, oy = label_offsets.get(name, (6, 6))\n400\t    ax.annotate(name, (x, y), xytext=(ox, oy),\n401\t                textcoords='offset points', fontsize=7,\n402\t                arrowprops=dict(arrowstyle='-', color='gray',\n403\t                                lw=0.4) if abs(ox) > 20 else None)\n404\t```\n405\t\n406\t### Pattern G：Hatching 加分类维度\n407\t\n408\t```python\n409\tfrom matplotlib.patches import Patch\n410\tfor is_collapse, bar in zip(collapse_flags, bars):\n411\t    if is_collapse:\n412\t        bar.set_hatch('///')\n413\t        bar.set_alpha(0.7)\n414\t# Legend 加 hatching 说明\n415\tlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\n416\tax.legend(handles=[legend_patch], loc='lower right')\n417\t```\n418\t\n419\t### Pattern H：Multi-panel 非对称布局\n420\t\n421\t```python\n422\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n423\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n424\t# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n425\t# 给每个 panel 写 insight subtitle\n426\taxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\n427\taxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n428\t```\n429\t\n430\t### Pattern I：Broken axis（异常值或对数 0）\n431\t\n432\t```python\n433\td = 0.012  # 斜线长度\n434\tkwargs = dict(transform=ax.transAxes, color='black',\n435\t              clip_on=False, linewidth=0.6)\n436\tax.plot((1-d, 1+d), (-d, +d), **kwargs)\n437\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n438\t```\n439\t\n440\t### Pattern J：Path-effect 文字描边\n441\t\n442\t```python\n443\timport matplotlib.patheffects as pe\n444\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n445\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n446\t```\n447\t\n448\t### Pattern K：Concept curve（合成轨迹建立直觉）\n449\t\n450\t```python\n451\t# 完全不基于实验数据的概念曲线\n452\tx = np.linspace(0, 1, 100)\n453\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n454\tax.plot(x, trajectory, color='#0072B2', linewidth=2,\n455\t        solid_capstyle='round', label='Theoretical trajectory')\n456\t\n457\t# 关键节点用 insight 标注\n458\tax.annotate('gap eliminated', xy=(1.0, final_y),\n459\t            xytext=(0.7, final_y - 5), color='#388E3C',\n460\t            fontstyle='italic', fontsize=9,\n461\t            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n462\t```\n463\t\n464\t### Pattern L：Forest Plot（meta-analysis 风格）\n465\t\n466\t```python\n467\t# 3-column GridSpec: label | CI plot | inline stats\n468\tfig = plt.figure(figsize=(7, 3.5))\n469\tgs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\n470\tax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\n471\tax_main = fig.add_subplot(gs[1])\n472\tax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n473\t\n474\t# 等价带（半透明 axvspan）\n475\tax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n476\t\n477\t# 每行：dot + horizontal CI line\n478\tfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n479\t    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n480\t    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n481\t    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n482\t    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n483\t                 fontsize=8, va='center', ha='center', family='monospace')\n484\t\n485\tax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\n486\tax_main.invert_yaxis()\n487\t```\n488\t\n489\t---\n490\t\n491\t## 6. 图表 Checklist（提交前）\n492\t\n493\t### L1 防丑（底线）\n494\t- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n495\t- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n496\t- [ ] 所有轴有 label + 单位\n497\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n498\t- [ ] 无 dual y-axis、无 3D、无 pie\n499\t- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n500\t- [ ] 文字水平不旋转\n501\t\n502\t### L2 叙事（说服力）\n503\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n504\t- [ ] `design_notes` 中的 pattern 都已实现\n505\t- [ ] Subtitle / panel label 是 insight 不是描述\n506\t- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n507\t- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n508\t\n509\t### L3 美观（高级感）\n510\t- [ ] 不像 matplotlib gallery 示例（无默认灰背景、无粗网格、无 tab10 色板）\n511\t- [ ] 配色 muted 和谐，不刺眼（用 Okabe-Ito 或自定义语义色板）\n512\t- [ ] 线宽、字号、间距全图统一\n513\t- [ ] 元素对齐严格（bars 底部对齐、labels 水平对齐、panels 顶部对齐）\n514\t- [ ] 留白充足（元素之间不拥挤，panels 之间有间距）\n515\t- [ ] 与论文其他图的风格一致（配色方案、字号、线宽）\n516\t- [ ] Hero Figure（Figure 1 + 主结果图）投入了 ≥5 轮迭代\n517\t- [ ] 终极判断：这张图放在 NeurIPS best paper 里违和吗？\n518\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "bec7af9b-f967-40f2-be4c-90489ba58208",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 2\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术统计图生成（Worker 执行）\n\nWorker 收到统计图画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n\n**质量底线：每张图必须达到 NeurIPS/ICML/EMNLP best paper 的视觉水准——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感（灰背景、粗网格线、tab10 色板、默认蓝色）。**\n\n**生成图片后必须 Read PNG 做视觉检查，至少迭代 3 轮（Hero Figure 至少 5 轮）。第一版画出来基本不能直接用。**\n\n本 skill 提供：\n- 通用样式（rcParams + 色板）\n- 三个常用图表的起点模板（reliability/heatmap/scatter）\n- NeurIPS 经验提炼的 pattern 实现示例\n\n## 输入字段（从 Paper Agent 传入）\n\n- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n- **`narrative_intent`**：一句话，这张图要让读者相信什么\n- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n\n## 画图工作流\n\n1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n4. 提交前过本 skill §checklist\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色：优先从 writing_plan.yaml 的 color_palette 读取\n# 读不到则 fallback 到以下默认值\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. Pattern 实现（按 design_notes 选用）\n\n完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n\n### Pattern A：Regime Background Bands\n\n```python\nimport matplotlib.patheffects as pe\n# 横向 regime bands\nREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n                (1, 5, '#EAFAF1', 'Regime B'),\n                (5, 10.5, '#FDF2F8', 'Regime C')]\nfor lo, hi, color, label in REGIME_BANDS:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n            fontsize=9, color='gray', zorder=1)\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n        color='#ccaaaa', fontstyle='italic', va='center')\n```\n\n### Pattern B：发散面积 fill_between\n\n```python\n# alpha 极低（0.06）：不抢眼但有面积\nax.fill_between(x_range, curve_upper, curve_lower,\n                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n```\n\n### Pattern C：参考线锚定真实值\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':',\n           linewidth=0.8, alpha=0.3, zorder=1)\nt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n            fontsize=7, color=color, alpha=0.5, ha='center')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern D：信息层级 marker（hollow vs solid by sample size）\n\n```python\n# 实心 = n >= 50, 空心带 n 标注 = n < 50\nsolid_mask = [n >= 50 for n in n_vals]\nfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n    if solid:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor=color, markeredgewidth=0)\n    else:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor='white', markeredgecolor=color,\n                markeredgewidth=1.2, zorder=4)\n        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n                    xytext=(0, 7), fontsize=5, color=color,\n                    ha='center', fontstyle='italic')\n```\n\n### Pattern E：Wilson Binomial CI\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    if n == 0: return 0, 0\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n\n# 用法\nlo, hi = wilson_ci(accuracy, n)\nax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n            markeredgecolor='white', markeredgewidth=1.0)\n```\n\n### Pattern F：Per-label offset dict（防标注重叠）\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),\n    'Qwen3-4B':  (-55, 4),\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy),\n                textcoords='offset points', fontsize=7,\n                arrowprops=dict(arrowstyle='-', color='gray',\n                                lw=0.4) if abs(ox) > 20 else None)\n```\n\n### Pattern G：Hatching 加分类维度\n\n```python\nfrom matplotlib.patches import Patch\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n# Legend 加 hatching 说明\nlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\nax.legend(handles=[legend_patch], loc='lower right')\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n# 给每个 panel 写 insight subtitle\naxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\naxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n```python\nd = 0.012  # 斜线长度\nkwargs = dict(transform=ax.transAxes, color='black',\n              clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n```\n\n### Pattern J：Path-effect 文字描边\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（合成轨迹建立直觉）\n\n```python\n# 完全不基于实验数据的概念曲线\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, color='#0072B2', linewidth=2,\n        solid_capstyle='round', label='Theoretical trajectory')\n\n# 关键节点用 insight 标注\nax.annotate('gap eliminated', xy=(1.0, final_y),\n            xytext=(0.7, final_y - 5), color='#388E3C',\n            fontstyle='italic', fontsize=9,\n            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n```\n\n### Pattern L：Forest Plot（meta-analysis 风格）\n\n```python\n# 3-column GridSpec: label | CI plot | inline stats\nfig = plt.figure(figsize=(7, 3.5))\ngs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\nax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\nax_main = fig.add_subplot(gs[1])\nax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n\n# 等价带（半透明 axvspan）\nax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n\n# 每行：dot + horizontal CI line\nfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n                 fontsize=8, va='center', ha='center', family='monospace')\n\nax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\nax_main.invert_yaxis()\n```\n\n---\n\n## 6. 图表 Checklist（提交前）\n\n### L1 防丑（底线）\n- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n- [ ] 所有轴有 label + 单位\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n- [ ] 文字水平不旋转\n\n### L2 叙事（说服力）\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] `design_notes` 中的 pattern 都已实现\n- [ ] Subtitle / panel label 是 insight 不是描述\n- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n\n### L3 美观（高级感）\n- [ ] 不像 matplotlib gallery 示例（无默认灰背景、无粗网格、无 tab10 色板）\n- [ ] 配色 muted 和谐，不刺眼（用 Okabe-Ito 或自定义语义色板）\n- [ ] 线宽、字号、间距全图统一\n- [ ] 元素对齐严格（bars 底部对齐、labels 水平对齐、panels 顶部对齐）\n- [ ] 留白充足（元素之间不拥挤，panels 之间有间距）\n- [ ] 与论文其他图的风格一致（配色方案、字号、线宽）\n- [ ] Hero Figure（Figure 1 + 主结果图）投入了 ≥5 轮迭代\n- [ ] 终极判断：这张图放在 NeurIPS best paper 里违和吗？\n",
+                "numLines": 518,
+                "startLine": 1,
+                "totalLines": 518
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me write and run the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "32a896da-26e4-4541-aac4-f622bfafd802",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MmjSWjBWeXE9r1ZigVCo4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8571,
+                "cache_read_input_tokens": 25959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8571
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJtUtBB14QXuoywSooaNtj",
+              "name": "Write",
+              "input": {
+                "file_path": "/tmp/draw_variance_decomp.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause\\nidentity', 22.4, '#C44E52'),\n    ('Condition\\n(amb/unamb)', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between types', 0.4, '#E07070'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DeJaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.8))\n\nbar_h = 0.38\nsub_h = 0.22\nmain_y = 0.82\nclause_sub_y = 0.38\nresid_sub_y = 0.06\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.5, zorder=3)\n    # Label inside if wide enough, outside if too narrow\n    cx = left + val / 2\n    if val >= 8:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y + 0.01, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.12, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, linespacing=0.85, zorder=4)\n    elif val >= 3:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6, color=txt_color, fontweight='bold', zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside since segment is tiny\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 1.0 / 2\nax.annotate('Model\\n1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 4, main_y + bar_h/2 + 0.22),\n            fontsize=5.5, color='#555555', ha='center', va='bottom',\n            linespacing=0.85,\n            arrowprops=dict(arrowstyle='-', color='#999999', lw=0.5),\n            zorder=5)\n\n# --- Sub-bars + connector lines ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y):\n    indent = 3\n    bar_left = parent_left + indent\n    bar_width = parent_right - parent_left - indent * 2\n    total = sum(v for _, v, _ in sub_data)\n\n    # Connector bracket\n    mid_parent = (parent_left + parent_right) / 2\n    bracket_top = parent_y - bar_h / 2 - 0.02\n    bracket_bot = sub_y + sub_h / 2 + 0.02\n\n    # Vertical line from parent\n    ax.plot([mid_parent, mid_parent], [bracket_top, (bracket_top + bracket_bot) / 2],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n    # Horizontal spread\n    sub_mid = bar_left + bar_width / 2\n    ax.plot([mid_parent, sub_mid], [(bracket_top + bracket_bot) / 2, bracket_bot],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n\n    # Draw sub-segments scaled to parent width\n    left = bar_left\n    for name, val, color in sub_data:\n        w = (val / total) * bar_width\n        ax.barh(sub_y, w, left=left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = left + w / 2\n        if w > 6:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n{val:.0f}%' if val >= 10 else f'{name} ({val:.1f}%)',\n                    ha='center', va='center', fontsize=5, color=txt_color,\n                    linespacing=0.9, zorder=4)\n        else:\n            # Very small segment\n            ax.annotate(f'{name} ({val:.1f}%)',\n                       xy=(left + w, sub_y),\n                       xytext=(left + w + 3, sub_y),\n                       fontsize=4.5, color='#555555', va='center',\n                       arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4),\n                       zorder=5)\n        left += w\n\n# Clause identity sub-bar (spans 0 to 22.4)\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y)\n\n# Residual sub-bar (spans 39.2 to 100)\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y)\n\n# --- Axes ---\nax.set_xlim(0, 100)\nax.set_ylim(-0.15, main_y + bar_h / 2 + 0.35)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.5)\n\n# x-axis label\nax.set_xlabel('Variance explained', fontsize=7, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "06c5509e-07f2-4cd2-ab7a-5bee0b62c076",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MmjSWjBWeXE9r1ZigVCo4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8571,
+                "cache_read_input_tokens": 25959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8571
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T18:49:19.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJtUtBB14QXuoywSooaNtj",
+              "type": "tool_result",
+              "content": "File created successfully at: /tmp/draw_variance_decomp.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "29ac6a72-bf60-4ba5-b9c7-8f9c6ce7e0eb",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/tmp/draw_variance_decomp.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause\\nidentity', 22.4, '#C44E52'),\n    ('Condition\\n(amb/unamb)', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between types', 0.4, '#E07070'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DeJaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.8))\n\nbar_h = 0.38\nsub_h = 0.22\nmain_y = 0.82\nclause_sub_y = 0.38\nresid_sub_y = 0.06\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.5, zorder=3)\n    # Label inside if wide enough, outside if too narrow\n    cx = left + val / 2\n    if val >= 8:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y + 0.01, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.12, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, linespacing=0.85, zorder=4)\n    elif val >= 3:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6, color=txt_color, fontweight='bold', zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside since segment is tiny\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 1.0 / 2\nax.annotate('Model\\n1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 4, main_y + bar_h/2 + 0.22),\n            fontsize=5.5, color='#555555', ha='center', va='bottom',\n            linespacing=0.85,\n            arrowprops=dict(arrowstyle='-', color='#999999', lw=0.5),\n            zorder=5)\n\n# --- Sub-bars + connector lines ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y):\n    indent = 3\n    bar_left = parent_left + indent\n    bar_width = parent_right - parent_left - indent * 2\n    total = sum(v for _, v, _ in sub_data)\n\n    # Connector bracket\n    mid_parent = (parent_left + parent_right) / 2\n    bracket_top = parent_y - bar_h / 2 - 0.02\n    bracket_bot = sub_y + sub_h / 2 + 0.02\n\n    # Vertical line from parent\n    ax.plot([mid_parent, mid_parent], [bracket_top, (bracket_top + bracket_bot) / 2],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n    # Horizontal spread\n    sub_mid = bar_left + bar_width / 2\n    ax.plot([mid_parent, sub_mid], [(bracket_top + bracket_bot) / 2, bracket_bot],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n\n    # Draw sub-segments scaled to parent width\n    left = bar_left\n    for name, val, color in sub_data:\n        w = (val / total) * bar_width\n        ax.barh(sub_y, w, left=left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = left + w / 2\n        if w > 6:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n{val:.0f}%' if val >= 10 else f'{name} ({val:.1f}%)',\n                    ha='center', va='center', fontsize=5, color=txt_color,\n                    linespacing=0.9, zorder=4)\n        else:\n            # Very small segment\n            ax.annotate(f'{name} ({val:.1f}%)',\n                       xy=(left + w, sub_y),\n                       xytext=(left + w + 3, sub_y),\n                       fontsize=4.5, color='#555555', va='center',\n                       arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4),\n                       zorder=5)\n        left += w\n\n# Clause identity sub-bar (spans 0 to 22.4)\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y)\n\n# Residual sub-bar (spans 39.2 to 100)\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y)\n\n# --- Axes ---\nax.set_xlim(0, 100)\nax.set_ylim(-0.15, main_y + bar_h / 2 + 0.35)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.5)\n\n# x-axis label\nax.set_xlabel('Variance explained', fontsize=7, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L9WCWSLghxAmDDJq45MX2w",
+              "name": "Bash",
+              "input": {
+                "command": "python3 /tmp/draw_variance_decomp.py",
+                "description": "Run variance decomposition figure script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "c0e9f788-46e4-476e-8780-15f7d9081667",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BromYBszPHKnUjxkR559rt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2136,
+                "cache_read_input_tokens": 34530,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2136
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T18:49:23.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L9WCWSLghxAmDDJq45MX2w",
+              "type": "tool_result",
+              "content": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "e77eba87-020c-4830-8b74-c764a90aadc6",
+            "tool_use_result": {
+              "stdout": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013JL9UbM9Cgja1CPB6HB4b8",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/fig_variance_decomp_new.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "0f07600b-7495-473e-a195-eb9e2d8607da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LeNCYt9W98XCdKJVXiUaGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 167,
+                "cache_read_input_tokens": 36666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 167
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T18:49:26.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013JL9UbM9Cgja1CPB6HB4b8",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "618f6981-f134-45cb-9711-643c7591d2fa",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 48301,
+                "dimensions": {
+                  "originalWidth": 846,
+                  "originalHeight": 533,
+                  "displayWidth": 846,
+                  "displayHeight": 533
+                }
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The first version has several issues:\n\n1. The clause sub-bar: \"Between types (0.4%)\" label is overlapping with \"Within types 22%\" — the small segment annotation overlaps\n2. The connector lines are a bit messy — they should be cleaner bracket-style connectors\n3. The sub-bars are not aligned well — they should be more clearly indented and positioned\n4. The \"Clause identity\" label in the main bar should say \"Clause identity\" not just \"Clause\"\n5. The sub-bar labels need work — \"Within types\" text is partially cut off at the left edge\n\n\n6. The vertical spacing feels loose and could be tightened up\n7. The label positioning on the main bar needs refinement so names sit more neatly inside the bars\n\nI'm going to rebuild this with L-shaped bracket connectors, fix the overlapping labels on the sub-bars, improve the sub-bar positioning and indentation, and clean up the overall typography and spacing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "931dcd03-6bc7-42c2-8643-0c2e64d6bb8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KBCdYYuXEKQFgBrV3QJbSi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 711,
+                "cache_read_input_tokens": 36833,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 711
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Several issues: label overlaps on the clause sub-bar, connector lines need refinement, and label placement inside bars needs work. Let me iterate."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "e24d271c-6069-401c-a394-886d7accf8d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KBCdYYuXEKQFgBrV3QJbSi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 711,
+                "cache_read_input_tokens": 36833,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 711
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V5eUZeiLM2fbQVDFwLjEeJ",
+              "name": "Write",
+              "input": {
+                "file_path": "/tmp/draw_variance_decomp.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches, FancyBboxPatch\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between\\ntypes', 0.4, '#E8A0A0'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.65))\n\nbar_h = 0.35\nsub_h = 0.20\nmain_y = 1.0\ngap = 0.15\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.6, zorder=3)\n    cx = left + val / 2\n\n    if val >= 12:\n        txt_color = 'white'\n        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.09, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 0.5\nax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1),\n            zorder=5)\n\n# --- Helper: draw sub-bar with bracket connector ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,\n                 bar_h, sub_h):\n    total_val = sum(v for _, v, _ in sub_data)\n    bar_width = parent_right - parent_left\n\n    # Bracket connector: two diagonal lines meeting at center\n    p_mid = (parent_left + parent_right) / 2\n    p_bot = parent_y - bar_h / 2\n    s_top = sub_y + sub_h / 2\n\n    mid_y = (p_bot + s_top) / 2\n    # Left diagonal\n    ax.plot([parent_left + bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Right diagonal\n    ax.plot([parent_right - bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Vertical down\n    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n\n    # Draw segments\n    seg_left = parent_left\n    for name, val, color in sub_data:\n        w = (val / total_val) * bar_width\n        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = seg_left + w / 2\n\n        if w > 3:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',\n                    ha='center', va='center', fontsize=4.5, color=txt_color,\n                    linespacing=0.9, zorder=4,\n                    fontweight='bold' if val > 5 else 'normal')\n        else:\n            # Tiny segment — label outside\n            ax.annotate(f'{name}\\n({val:.1f}%)',\n                       xy=(seg_left + w, sub_y),\n                       xytext=(seg_left + w + 2.5, sub_y + 0.04),\n                       fontsize=4, color='#666666', va='center', ha='left',\n                       linespacing=0.9,\n                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),\n                       zorder=5)\n        seg_left += w\n\n# Clause identity sub-bar\nclause_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)\n\n# Residual sub-bar\nresid_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)\n\n# --- Axes ---\nax.set_xlim(-0.5, 101)\ny_bottom = resid_sub_y - sub_h/2 - 0.08\ny_top = main_y + bar_h/2 + 0.30\nax.set_ylim(y_bottom, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\n\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "f32b0c70-57c2-46f9-a3b3-c7f3fee1b9cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KBCdYYuXEKQFgBrV3QJbSi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 711,
+                "cache_read_input_tokens": 36833,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 711
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T18:50:06.932Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V5eUZeiLM2fbQVDFwLjEeJ",
+              "type": "tool_result",
+              "content": "The file /tmp/draw_variance_decomp.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "5cf57ce1-bc61-4479-b6d1-7daf9c89022c",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/tmp/draw_variance_decomp.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches, FancyBboxPatch\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between\\ntypes', 0.4, '#E8A0A0'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.65))\n\nbar_h = 0.35\nsub_h = 0.20\nmain_y = 1.0\ngap = 0.15\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.6, zorder=3)\n    cx = left + val / 2\n\n    if val >= 12:\n        txt_color = 'white'\n        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.09, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 0.5\nax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1),\n            zorder=5)\n\n# --- Helper: draw sub-bar with bracket connector ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,\n                 bar_h, sub_h):\n    total_val = sum(v for _, v, _ in sub_data)\n    bar_width = parent_right - parent_left\n\n    # Bracket connector: two diagonal lines meeting at center\n    p_mid = (parent_left + parent_right) / 2\n    p_bot = parent_y - bar_h / 2\n    s_top = sub_y + sub_h / 2\n\n    mid_y = (p_bot + s_top) / 2\n    # Left diagonal\n    ax.plot([parent_left + bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Right diagonal\n    ax.plot([parent_right - bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Vertical down\n    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n\n    # Draw segments\n    seg_left = parent_left\n    for name, val, color in sub_data:\n        w = (val / total_val) * bar_width\n        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = seg_left + w / 2\n\n        if w > 3:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',\n                    ha='center', va='center', fontsize=4.5, color=txt_color,\n                    linespacing=0.9, zorder=4,\n                    fontweight='bold' if val > 5 else 'normal')\n        else:\n            # Tiny segment — label outside\n            ax.annotate(f'{name}\\n({val:.1f}%)',\n                       xy=(seg_left + w, sub_y),\n                       xytext=(seg_left + w + 2.5, sub_y + 0.04),\n                       fontsize=4, color='#666666', va='center', ha='left',\n                       linespacing=0.9,\n                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),\n                       zorder=5)\n        seg_left += w\n\n# Clause identity sub-bar\nclause_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)\n\n# Residual sub-bar\nresid_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)\n\n# --- Axes ---\nax.set_xlim(-0.5, 101)\ny_bottom = resid_sub_y - sub_h/2 - 0.08\ny_top = main_y + bar_h/2 + 0.30\nax.set_ylim(y_bottom, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\n\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 20,
+                  "newStart": 1,
+                  "newLines": 20,
+                  "lines": [
+                    " import matplotlib",
+                    " matplotlib.use('Agg')",
+                    " import matplotlib.pyplot as plt",
+                    "-import matplotlib.patches as mpatches",
+                    "+import matplotlib.patches as mpatches, FancyBboxPatch",
+                    " import matplotlib.patheffects as pe",
+                    " import numpy as np",
+                    " ",
+                    " # --- Data ---",
+                    " main_components = [",
+                    "-    ('Clause\\nidentity', 22.4, '#C44E52'),",
+                    "-    ('Condition\\n(amb/unamb)', 15.8, '#4C72B0'),",
+                    "+    ('Clause identity', 22.4, '#C44E52'),",
+                    "+    ('Condition', 15.8, '#4C72B0'),",
+                    "     ('Model', 1.0, '#CCCCCC'),",
+                    "     ('Residual', 60.8, '#999999'),",
+                    " ]",
+                    " ",
+                    " clause_sub = [",
+                    "-    ('Between types', 0.4, '#E07070'),",
+                    "+    ('Between\\ntypes', 0.4, '#E8A0A0'),",
+                    "     ('Within types', 22.0, '#A03030'),",
+                    " ]",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 26,
+                  "oldLines": 7,
+                  "newStart": 26,
+                  "newLines": 7,
+                  "lines": [
+                    " # --- Style ---",
+                    " plt.rcParams.update({",
+                    "     'font.family': 'serif',",
+                    "-    'font.serif': ['Times New Roman', 'DeJaVu Serif', 'serif'],",
+                    "+    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],",
+                    "     'font.size': 7,",
+                    "     'axes.spines.top': False,",
+                    "     'axes.spines.right': False,"
+                  ]
+                },
+                {
+                  "oldStart": 36,
+                  "oldLines": 102,
+                  "newStart": 36,
+                  "newLines": 108,
+                  "lines": [
+                    "     'savefig.pad_inches': 0.04,",
+                    " })",
+                    " ",
+                    "-fig, ax = plt.subplots(figsize=(3.3, 1.8))",
+                    "+fig, ax = plt.subplots(figsize=(3.3, 1.65))",
+                    " ",
+                    "-bar_h = 0.38",
+                    "-sub_h = 0.22",
+                    "-main_y = 0.82",
+                    "-clause_sub_y = 0.38",
+                    "-resid_sub_y = 0.06",
+                    "+bar_h = 0.35",
+                    "+sub_h = 0.20",
+                    "+main_y = 1.0",
+                    "+gap = 0.15",
+                    " ",
+                    " # --- Main bar ---",
+                    " left = 0",
+                    " for name, val, color in main_components:",
+                    "     ax.barh(main_y, val, left=left, height=bar_h, color=color,",
+                    "-            edgecolor='white', linewidth=0.5, zorder=3)",
+                    "-    # Label inside if wide enough, outside if too narrow",
+                    "+            edgecolor='white', linewidth=0.6, zorder=3)",
+                    "     cx = left + val / 2",
+                    "-    if val >= 8:",
+                    "-        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'",
+                    "-        ax.text(cx, main_y + 0.01, f'{val:.1f}%', ha='center', va='center',",
+                    "+",
+                    "+    if val >= 12:",
+                    "+        txt_color = 'white'",
+                    "+        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',",
+                    "                 fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)",
+                    "-        ax.text(cx, main_y - 0.12, name, ha='center', va='top',",
+                    "-                fontsize=5.5, color=txt_color, linespacing=0.85, zorder=4)",
+                    "-    elif val >= 3:",
+                    "-        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'",
+                    "-        ax.text(cx, main_y, f'{val:.1f}%', ha='center', va='center',",
+                    "-                fontsize=6, color=txt_color, fontweight='bold', zorder=4)",
+                    "+        ax.text(cx, main_y - 0.09, name, ha='center', va='top',",
+                    "+                fontsize=5.5, color=txt_color, zorder=4)",
+                    "     left += val",
+                    " ",
+                    "-# Model label (1.0%) — annotate outside since segment is tiny",
+                    "+# Model label (1.0%) — annotate outside",
+                    " model_left = 22.4 + 15.8",
+                    "-model_cx = model_left + 1.0 / 2",
+                    "-ax.annotate('Model\\n1.0%', xy=(model_cx, main_y + bar_h/2),",
+                    "-            xytext=(model_cx + 4, main_y + bar_h/2 + 0.22),",
+                    "-            fontsize=5.5, color='#555555', ha='center', va='bottom',",
+                    "-            linespacing=0.85,",
+                    "-            arrowprops=dict(arrowstyle='-', color='#999999', lw=0.5),",
+                    "+model_cx = model_left + 0.5",
+                    "+ax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),",
+                    "+            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),",
+                    "+            fontsize=5, color='#666666', ha='center', va='bottom',",
+                    "+            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,",
+                    "+                            shrinkA=0, shrinkB=1),",
+                    "             zorder=5)",
+                    " ",
+                    "-# --- Sub-bars + connector lines ---",
+                    "-def draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y):",
+                    "-    indent = 3",
+                    "-    bar_left = parent_left + indent",
+                    "-    bar_width = parent_right - parent_left - indent * 2",
+                    "-    total = sum(v for _, v, _ in sub_data)",
+                    "+# --- Helper: draw sub-bar with bracket connector ---",
+                    "+def draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,",
+                    "+                 bar_h, sub_h):",
+                    "+    total_val = sum(v for _, v, _ in sub_data)",
+                    "+    bar_width = parent_right - parent_left",
+                    " ",
+                    "-    # Connector bracket",
+                    "-    mid_parent = (parent_left + parent_right) / 2",
+                    "-    bracket_top = parent_y - bar_h / 2 - 0.02",
+                    "-    bracket_bot = sub_y + sub_h / 2 + 0.02",
+                    "+    # Bracket connector: two diagonal lines meeting at center",
+                    "+    p_mid = (parent_left + parent_right) / 2",
+                    "+    p_bot = parent_y - bar_h / 2",
+                    "+    s_top = sub_y + sub_h / 2",
+                    " ",
+                    "-    # Vertical line from parent",
+                    "-    ax.plot([mid_parent, mid_parent], [bracket_top, (bracket_top + bracket_bot) / 2],",
+                    "-            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)",
+                    "-    # Horizontal spread",
+                    "-    sub_mid = bar_left + bar_width / 2",
+                    "-    ax.plot([mid_parent, sub_mid], [(bracket_top + bracket_bot) / 2, bracket_bot],",
+                    "-            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)",
+                    "+    mid_y = (p_bot + s_top) / 2",
+                    "+    # Left diagonal",
+                    "+    ax.plot([parent_left + bar_width * 0.15, p_mid],",
+                    "+            [p_bot - 0.01, mid_y],",
+                    "+            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    "+    # Right diagonal",
+                    "+    ax.plot([parent_right - bar_width * 0.15, p_mid],",
+                    "+            [p_bot - 0.01, mid_y],",
+                    "+            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    "+    # Vertical down",
+                    "+    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],",
+                    "+            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    " ",
+                    "-    # Draw sub-segments scaled to parent width",
+                    "-    left = bar_left",
+                    "+    # Draw segments",
+                    "+    seg_left = parent_left",
+                    "     for name, val, color in sub_data:",
+                    "-        w = (val / total) * bar_width",
+                    "-        ax.barh(sub_y, w, left=left, height=sub_h, color=color,",
+                    "+        w = (val / total_val) * bar_width",
+                    "+        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,",
+                    "                 edgecolor='white', linewidth=0.4, zorder=3)",
+                    "-        cx = left + w / 2",
+                    "-        if w > 6:",
+                    "+        cx = seg_left + w / 2",
+                    "+",
+                    "+        if w > 3:",
+                    "             txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'",
+                    "-            ax.text(cx, sub_y, f'{name}\\n{val:.0f}%' if val >= 10 else f'{name} ({val:.1f}%)',",
+                    "-                    ha='center', va='center', fontsize=5, color=txt_color,",
+                    "-                    linespacing=0.9, zorder=4)",
+                    "+            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',",
+                    "+                    ha='center', va='center', fontsize=4.5, color=txt_color,",
+                    "+                    linespacing=0.9, zorder=4,",
+                    "+                    fontweight='bold' if val > 5 else 'normal')",
+                    "         else:",
+                    "-            # Very small segment",
+                    "-            ax.annotate(f'{name} ({val:.1f}%)',",
+                    "-                       xy=(left + w, sub_y),",
+                    "-                       xytext=(left + w + 3, sub_y),",
+                    "-                       fontsize=4.5, color='#555555', va='center',",
+                    "-                       arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4),",
+                    "+            # Tiny segment — label outside",
+                    "+            ax.annotate(f'{name}\\n({val:.1f}%)',",
+                    "+                       xy=(seg_left + w, sub_y),",
+                    "+                       xytext=(seg_left + w + 2.5, sub_y + 0.04),",
+                    "+                       fontsize=4, color='#666666', va='center', ha='left',",
+                    "+                       linespacing=0.9,",
+                    "+                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),",
+                    "                        zorder=5)",
+                    "-        left += w",
+                    "+        seg_left += w",
+                    " ",
+                    "-# Clause identity sub-bar (spans 0 to 22.4)",
+                    "-draw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y)",
+                    "+# Clause identity sub-bar",
+                    "+clause_sub_y = main_y - bar_h/2 - gap - sub_h/2",
+                    "+draw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)",
+                    " ",
+                    "-# Residual sub-bar (spans 39.2 to 100)",
+                    "-draw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y)",
+                    "+# Residual sub-bar",
+                    "+resid_sub_y = main_y - bar_h/2 - gap - sub_h/2",
+                    "+draw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)",
+                    " ",
+                    " # --- Axes ---",
+                    "-ax.set_xlim(0, 100)",
+                    "-ax.set_ylim(-0.15, main_y + bar_h / 2 + 0.35)",
+                    "+ax.set_xlim(-0.5, 101)",
+                    "+y_bottom = resid_sub_y - sub_h/2 - 0.08",
+                    "+y_top = main_y + bar_h/2 + 0.30",
+                    "+ax.set_ylim(y_bottom, y_top)",
+                    " ax.set_xticks([0, 25, 50, 75, 100])",
+                    "-ax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'], fontsize=6)",
+                    "+ax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)",
+                    " ax.set_yticks([])",
+                    " ax.spines['left'].set_visible(False)",
+                    "-ax.spines['bottom'].set_linewidth(0.5)",
+                    "+ax.spines['bottom'].set_linewidth(0.4)",
+                    "+ax.tick_params(axis='x', length=2, width=0.4, pad=2)",
+                    " ",
+                    "-# x-axis label",
+                    "-ax.set_xlabel('Variance explained', fontsize=7, labelpad=2)",
+                    "+ax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)",
+                    " ",
+                    " # --- Save ---",
+                    " out_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'"
+                  ]
+                }
+              ],
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause\\nidentity', 22.4, '#C44E52'),\n    ('Condition\\n(amb/unamb)', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between types', 0.4, '#E07070'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DeJaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.8))\n\nbar_h = 0.38\nsub_h = 0.22\nmain_y = 0.82\nclause_sub_y = 0.38\nresid_sub_y = 0.06\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.5, zorder=3)\n    # Label inside if wide enough, outside if too narrow\n    cx = left + val / 2\n    if val >= 8:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y + 0.01, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.12, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, linespacing=0.85, zorder=4)\n    elif val >= 3:\n        txt_color = 'white' if color in ['#C44E52', '#4C72B0', '#999999'] else '#333333'\n        ax.text(cx, main_y, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6, color=txt_color, fontweight='bold', zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside since segment is tiny\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 1.0 / 2\nax.annotate('Model\\n1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 4, main_y + bar_h/2 + 0.22),\n            fontsize=5.5, color='#555555', ha='center', va='bottom',\n            linespacing=0.85,\n            arrowprops=dict(arrowstyle='-', color='#999999', lw=0.5),\n            zorder=5)\n\n# --- Sub-bars + connector lines ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y):\n    indent = 3\n    bar_left = parent_left + indent\n    bar_width = parent_right - parent_left - indent * 2\n    total = sum(v for _, v, _ in sub_data)\n\n    # Connector bracket\n    mid_parent = (parent_left + parent_right) / 2\n    bracket_top = parent_y - bar_h / 2 - 0.02\n    bracket_bot = sub_y + sub_h / 2 + 0.02\n\n    # Vertical line from parent\n    ax.plot([mid_parent, mid_parent], [bracket_top, (bracket_top + bracket_bot) / 2],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n    # Horizontal spread\n    sub_mid = bar_left + bar_width / 2\n    ax.plot([mid_parent, sub_mid], [(bracket_top + bracket_bot) / 2, bracket_bot],\n            color='#AAAAAA', linewidth=0.5, zorder=2, clip_on=False)\n\n    # Draw sub-segments scaled to parent width\n    left = bar_left\n    for name, val, color in sub_data:\n        w = (val / total) * bar_width\n        ax.barh(sub_y, w, left=left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = left + w / 2\n        if w > 6:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n{val:.0f}%' if val >= 10 else f'{name} ({val:.1f}%)',\n                    ha='center', va='center', fontsize=5, color=txt_color,\n                    linespacing=0.9, zorder=4)\n        else:\n            # Very small segment\n            ax.annotate(f'{name} ({val:.1f}%)',\n                       xy=(left + w, sub_y),\n                       xytext=(left + w + 3, sub_y),\n                       fontsize=4.5, color='#555555', va='center',\n                       arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4),\n                       zorder=5)\n        left += w\n\n# Clause identity sub-bar (spans 0 to 22.4)\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y)\n\n# Residual sub-bar (spans 39.2 to 100)\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y)\n\n# --- Axes ---\nax.set_xlim(0, 100)\nax.set_ylim(-0.15, main_y + bar_h / 2 + 0.35)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.5)\n\n# x-axis label\nax.set_xlabel('Variance explained', fontsize=7, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RTpJV6bw7ZrZTbgrPnFDDF",
+              "name": "Bash",
+              "input": {
+                "command": "python3 /tmp/draw_variance_decomp.py 2>&1",
+                "description": "Run updated figure script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "dad03b6f-609b-408e-a98f-3f94f3c527f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018jjdMMQoSByuq4Hf2HJ7QU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2422,
+                "cache_read_input_tokens": 37544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2422
+                },
+                "output_tokens": 55,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T18:50:10.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/tmp/draw_variance_decomp.py\", line 4, in <module>\n    import matplotlib.patches as mpatches, FancyBboxPatch\nModuleNotFoundError: No module named 'FancyBboxPatch'",
+              "is_error": true,
+              "tool_use_id": "toolu_01RTpJV6bw7ZrZTbgrPnFDDF"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "29d9ca2d-7df9-4aa3-8b44-824094307e84",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/tmp/draw_variance_decomp.py\", line 4, in <module>\n    import matplotlib.patches as mpatches, FancyBboxPatch\nModuleNotFoundError: No module named 'FancyBboxPatch'"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VpztHTjHuHxrpSmKTKhLqD",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/tmp/draw_variance_decomp.py",
+                "old_string": "import matplotlib.patches as mpatches, FancyBboxPatch",
+                "new_string": "import matplotlib.patches as mpatches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "7b6076c0-26ca-4ca2-9f33-c4dc85321acc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEjYMucdsFoRfMWwHEA2YX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 39966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T18:50:22.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VpztHTjHuHxrpSmKTKhLqD",
+              "type": "tool_result",
+              "content": "The file /tmp/draw_variance_decomp.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "50cb655e-03e6-43d2-97ef-c28e9741849b",
+            "tool_use_result": {
+              "filePath": "/tmp/draw_variance_decomp.py",
+              "oldString": "import matplotlib.patches as mpatches, FancyBboxPatch",
+              "newString": "import matplotlib.patches as mpatches",
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches, FancyBboxPatch\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between\\ntypes', 0.4, '#E8A0A0'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.65))\n\nbar_h = 0.35\nsub_h = 0.20\nmain_y = 1.0\ngap = 0.15\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.6, zorder=3)\n    cx = left + val / 2\n\n    if val >= 12:\n        txt_color = 'white'\n        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.09, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 0.5\nax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1),\n            zorder=5)\n\n# --- Helper: draw sub-bar with bracket connector ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,\n                 bar_h, sub_h):\n    total_val = sum(v for _, v, _ in sub_data)\n    bar_width = parent_right - parent_left\n\n    # Bracket connector: two diagonal lines meeting at center\n    p_mid = (parent_left + parent_right) / 2\n    p_bot = parent_y - bar_h / 2\n    s_top = sub_y + sub_h / 2\n\n    mid_y = (p_bot + s_top) / 2\n    # Left diagonal\n    ax.plot([parent_left + bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Right diagonal\n    ax.plot([parent_right - bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Vertical down\n    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n\n    # Draw segments\n    seg_left = parent_left\n    for name, val, color in sub_data:\n        w = (val / total_val) * bar_width\n        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = seg_left + w / 2\n\n        if w > 3:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',\n                    ha='center', va='center', fontsize=4.5, color=txt_color,\n                    linespacing=0.9, zorder=4,\n                    fontweight='bold' if val > 5 else 'normal')\n        else:\n            # Tiny segment — label outside\n            ax.annotate(f'{name}\\n({val:.1f}%)',\n                       xy=(seg_left + w, sub_y),\n                       xytext=(seg_left + w + 2.5, sub_y + 0.04),\n                       fontsize=4, color='#666666', va='center', ha='left',\n                       linespacing=0.9,\n                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),\n                       zorder=5)\n        seg_left += w\n\n# Clause identity sub-bar\nclause_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)\n\n# Residual sub-bar\nresid_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)\n\n# --- Axes ---\nax.set_xlim(-0.5, 101)\ny_bottom = resid_sub_y - sub_h/2 - 0.08\ny_top = main_y + bar_h/2 + 0.30\nax.set_ylim(y_bottom, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\n\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 7,
+                  "newStart": 1,
+                  "newLines": 7,
+                  "lines": [
+                    " import matplotlib",
+                    " matplotlib.use('Agg')",
+                    " import matplotlib.pyplot as plt",
+                    "-import matplotlib.patches as mpatches, FancyBboxPatch",
+                    "+import matplotlib.patches as mpatches",
+                    " import matplotlib.patheffects as pe",
+                    " import numpy as np",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D1rLbrSjQuYjRW85A8HsCx",
+              "name": "Bash",
+              "input": {
+                "command": "python3 /tmp/draw_variance_decomp.py 2>&1",
+                "description": "Run figure script (fix import)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "8f1d4c8f-1971-45b2-a69a-d8487df3a3a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B7GRC6uq2mpP57MvESWLkz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 275,
+                "cache_read_input_tokens": 40150,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 275
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T18:50:28.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D1rLbrSjQuYjRW85A8HsCx",
+              "type": "tool_result",
+              "content": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "4ae6e5f5-4857-4d21-9d57-7aa70144ed3e",
+            "tool_use_result": {
+              "stdout": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0152KbHCi8qpzDQFTQfCe5w7",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/fig_variance_decomp_new.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "cdf67a6b-559a-4351-a064-e237a3bf9d71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XGZCV99hEVcNVCNryZPED",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 171,
+                "cache_read_input_tokens": 40425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 171
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T18:50:30.757Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0152KbHCi8qpzDQFTQfCe5w7",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "ff1690b4-36a3-4560-91fc-eea1db027633",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 49459,
+                "dimensions": {
+                  "originalWidth": 811,
+                  "originalHeight": 480,
+                  "displayWidth": 811,
+                  "displayHeight": 480
+                }
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Better but still some issues:\n\n1. The \"Between types (0.4%)\" label is overlapping with \"Within types (22%)\" — the tiny segment's outside annotation still overlaps\n2. The bracket connectors look like V-shapes pointing down — they should be cleaner\n3. The clause sub-bar: the tiny \"Between types\" segment is too small and its annotation overlaps with \"Within types\"\n4. The sub-bars should be wider — they should span the same x-range as their parent segments, and they currently do, but the clause sub-bar only spans 0-22.4 which is narrow\n\n\nI need to reconsider how the sub-bars are positioned. Instead of scaling them relative to their parent segments, I should use an absolute scale where both sub-bars span 0-100%, so the clause breakdown shows its full 22.4% width and the residual breakdown shows its 60.8% width. This way the tiny \"Between types\" segment won't be compressed into an unreadable sliver. I think a callout marker would work better for that tiny \"Between types\" segment instead of trying to squeeze it into the proportional bar. I'll also simplify the connector lines to just vertical drops from each parent segment's center, improve the label positioning for \"Between types\", and reduce the vertical spacing to tighten up the overall layout.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "7d90b41e-7921-4bd2-b0f5-e51888affb38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FS3hkQhAj2RtiSXvPgWFD3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 40596,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 613
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The \"Between types\" label overlaps badly and the connector V-shapes are awkward. Let me fix the layout for round 3."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "c0cb3223-333f-4c53-a044-f23fe8b5c200",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FS3hkQhAj2RtiSXvPgWFD3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 40596,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 613
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019BqRn5W2TwWRs69wRMtJZs",
+              "name": "Write",
+              "input": {
+                "file_path": "/tmp/draw_variance_decomp.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.55))\n\nbar_h = 0.32\nsub_h = 0.18\n\n# Y positions\nmain_y = 1.0\nsub_y = main_y - bar_h/2 - 0.13 - sub_h/2  # gap between main and sub\n\n# ===================== MAIN BAR =====================\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.5, zorder=3)\n    cx = left + val / 2\n    if val >= 12:\n        ax.text(cx, main_y + 0.035, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color='white', fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.08, name, ha='center', va='top',\n                fontsize=5.5, color='white', zorder=4)\n    left += val\n\n# \"Model 1.0%\" callout\nmodel_left = 22.4 + 15.8\nax.annotate('Model 1.0%', xy=(model_left + 0.5, main_y + bar_h/2),\n            xytext=(model_left + 5, main_y + bar_h/2 + 0.16),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1), zorder=5)\n\n# ===================== SUB-BARS =====================\n# Clause identity sub-bar: 0 → 22.4 on x-axis\n# Between types = 0.4, Within types = 22.0\nclause_x0, clause_x1 = 0, 22.4\nbt_w = 0.4  # between types width in data coords\nwt_w = 22.0  # within types\n\n# Draw \"Within types\" segment (main bulk)\nax.barh(sub_y, wt_w, left=clause_x0 + bt_w, height=sub_h,\n        color='#A03030', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(clause_x0 + bt_w + wt_w/2, sub_y, 'Within types (22.0%)',\n        ha='center', va='center', fontsize=4.5, color='white',\n        fontweight='bold', zorder=4)\n\n# Draw \"Between types\" segment (tiny sliver)\nax.barh(sub_y, bt_w, left=clause_x0, height=sub_h,\n        color='#E8A0A0', edgecolor='white', linewidth=0.3, zorder=3)\n# Label outside since segment is too narrow\nax.annotate('Betw. (0.4%)', xy=(clause_x0 + bt_w/2, sub_y - sub_h/2),\n            xytext=(clause_x0 + bt_w/2, sub_y - sub_h/2 - 0.10),\n            fontsize=4, color='#888888', ha='center', va='top',\n            arrowprops=dict(arrowstyle='-', color='#CCCCCC', lw=0.3,\n                            shrinkA=0, shrinkB=0), zorder=5)\n\n# Connector: simple vertical dashed line from clause center to sub-bar\nclause_mid = (clause_x0 + clause_x1) / 2\nax.plot([clause_mid, clause_mid],\n        [main_y - bar_h/2, sub_y + sub_h/2],\n        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),\n        zorder=2, clip_on=False)\n\n# Residual sub-bar: 39.2 → 100 on x-axis\n# Stochastic ≈ 15, Systematic ≈ 46\nresid_x0, resid_x1 = 39.2, 100.0\nstoch_w = 15.0 / 60.8 * (resid_x1 - resid_x0)  # proportional\nsyst_w = 46.0 / 60.8 * (resid_x1 - resid_x0)    # ~0.2 rounding absorbed\n\nax.barh(sub_y, stoch_w, left=resid_x0, height=sub_h,\n        color='#BBBBBB', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(resid_x0 + stoch_w/2, sub_y, 'Stoch.\\n(~15%)',\n        ha='center', va='center', fontsize=4, color='#444444',\n        linespacing=0.85, zorder=4)\n\nax.barh(sub_y, syst_w, left=resid_x0 + stoch_w, height=sub_h,\n        color='#666666', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(resid_x0 + stoch_w + syst_w/2, sub_y, 'Systematic (~46%)',\n        ha='center', va='center', fontsize=4.5, color='white',\n        fontweight='bold', zorder=4)\n\n# Connector for residual\nresid_mid = (resid_x0 + resid_x1) / 2\nax.plot([resid_mid, resid_mid],\n        [main_y - bar_h/2, sub_y + sub_h/2],\n        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),\n        zorder=2, clip_on=False)\n\n# ===================== AXES =====================\nax.set_xlim(-0.5, 101)\ny_bot = sub_y - sub_h/2 - 0.18\ny_top = main_y + bar_h/2 + 0.25\nax.set_ylim(y_bot, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# ===================== SAVE =====================\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "67891290-dd16-4931-ac8b-941d7c51b1b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FS3hkQhAj2RtiSXvPgWFD3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 40596,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 613
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T18:51:18.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019BqRn5W2TwWRs69wRMtJZs",
+              "type": "tool_result",
+              "content": "The file /tmp/draw_variance_decomp.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "98799927-dbed-4584-88b0-24a677b057f4",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/tmp/draw_variance_decomp.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.55))\n\nbar_h = 0.32\nsub_h = 0.18\n\n# Y positions\nmain_y = 1.0\nsub_y = main_y - bar_h/2 - 0.13 - sub_h/2  # gap between main and sub\n\n# ===================== MAIN BAR =====================\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.5, zorder=3)\n    cx = left + val / 2\n    if val >= 12:\n        ax.text(cx, main_y + 0.035, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color='white', fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.08, name, ha='center', va='top',\n                fontsize=5.5, color='white', zorder=4)\n    left += val\n\n# \"Model 1.0%\" callout\nmodel_left = 22.4 + 15.8\nax.annotate('Model 1.0%', xy=(model_left + 0.5, main_y + bar_h/2),\n            xytext=(model_left + 5, main_y + bar_h/2 + 0.16),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1), zorder=5)\n\n# ===================== SUB-BARS =====================\n# Clause identity sub-bar: 0 → 22.4 on x-axis\n# Between types = 0.4, Within types = 22.0\nclause_x0, clause_x1 = 0, 22.4\nbt_w = 0.4  # between types width in data coords\nwt_w = 22.0  # within types\n\n# Draw \"Within types\" segment (main bulk)\nax.barh(sub_y, wt_w, left=clause_x0 + bt_w, height=sub_h,\n        color='#A03030', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(clause_x0 + bt_w + wt_w/2, sub_y, 'Within types (22.0%)',\n        ha='center', va='center', fontsize=4.5, color='white',\n        fontweight='bold', zorder=4)\n\n# Draw \"Between types\" segment (tiny sliver)\nax.barh(sub_y, bt_w, left=clause_x0, height=sub_h,\n        color='#E8A0A0', edgecolor='white', linewidth=0.3, zorder=3)\n# Label outside since segment is too narrow\nax.annotate('Betw. (0.4%)', xy=(clause_x0 + bt_w/2, sub_y - sub_h/2),\n            xytext=(clause_x0 + bt_w/2, sub_y - sub_h/2 - 0.10),\n            fontsize=4, color='#888888', ha='center', va='top',\n            arrowprops=dict(arrowstyle='-', color='#CCCCCC', lw=0.3,\n                            shrinkA=0, shrinkB=0), zorder=5)\n\n# Connector: simple vertical dashed line from clause center to sub-bar\nclause_mid = (clause_x0 + clause_x1) / 2\nax.plot([clause_mid, clause_mid],\n        [main_y - bar_h/2, sub_y + sub_h/2],\n        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),\n        zorder=2, clip_on=False)\n\n# Residual sub-bar: 39.2 → 100 on x-axis\n# Stochastic ≈ 15, Systematic ≈ 46\nresid_x0, resid_x1 = 39.2, 100.0\nstoch_w = 15.0 / 60.8 * (resid_x1 - resid_x0)  # proportional\nsyst_w = 46.0 / 60.8 * (resid_x1 - resid_x0)    # ~0.2 rounding absorbed\n\nax.barh(sub_y, stoch_w, left=resid_x0, height=sub_h,\n        color='#BBBBBB', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(resid_x0 + stoch_w/2, sub_y, 'Stoch.\\n(~15%)',\n        ha='center', va='center', fontsize=4, color='#444444',\n        linespacing=0.85, zorder=4)\n\nax.barh(sub_y, syst_w, left=resid_x0 + stoch_w, height=sub_h,\n        color='#666666', edgecolor='white', linewidth=0.3, zorder=3)\nax.text(resid_x0 + stoch_w + syst_w/2, sub_y, 'Systematic (~46%)',\n        ha='center', va='center', fontsize=4.5, color='white',\n        fontweight='bold', zorder=4)\n\n# Connector for residual\nresid_mid = (resid_x0 + resid_x1) / 2\nax.plot([resid_mid, resid_mid],\n        [main_y - bar_h/2, sub_y + sub_h/2],\n        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),\n        zorder=2, clip_on=False)\n\n# ===================== AXES =====================\nax.set_xlim(-0.5, 101)\ny_bot = sub_y - sub_h/2 - 0.18\ny_top = main_y + bar_h/2 + 0.25\nax.set_ylim(y_bot, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# ===================== SAVE =====================\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 2,
+                  "oldLines": 7,
+                  "newStart": 2,
+                  "newLines": 6,
+                  "lines": [
+                    " matplotlib.use('Agg')",
+                    " import matplotlib.pyplot as plt",
+                    " import matplotlib.patches as mpatches",
+                    "-import matplotlib.patheffects as pe",
+                    " import numpy as np",
+                    " ",
+                    " # --- Data ---"
+                  ]
+                },
+                {
+                  "oldStart": 13,
+                  "oldLines": 16,
+                  "newStart": 12,
+                  "newLines": 6,
+                  "lines": [
+                    "     ('Residual', 60.8, '#999999'),",
+                    " ]",
+                    " ",
+                    "-clause_sub = [",
+                    "-    ('Between\\ntypes', 0.4, '#E8A0A0'),",
+                    "-    ('Within types', 22.0, '#A03030'),",
+                    "-]",
+                    "-",
+                    "-residual_sub = [",
+                    "-    ('Stochastic', 15.0, '#BBBBBB'),",
+                    "-    ('Systematic', 46.0, '#666666'),",
+                    "-]",
+                    "-",
+                    " # --- Style ---",
+                    " plt.rcParams.update({",
+                    "     'font.family': 'serif',"
+                  ]
+                },
+                {
+                  "oldStart": 36,
+                  "oldLines": 110,
+                  "newStart": 25,
+                  "newLines": 106,
+                  "lines": [
+                    "     'savefig.pad_inches': 0.04,",
+                    " })",
+                    " ",
+                    "-fig, ax = plt.subplots(figsize=(3.3, 1.65))",
+                    "+fig, ax = plt.subplots(figsize=(3.3, 1.55))",
+                    " ",
+                    "-bar_h = 0.35",
+                    "-sub_h = 0.20",
+                    "+bar_h = 0.32",
+                    "+sub_h = 0.18",
+                    "+",
+                    "+# Y positions",
+                    " main_y = 1.0",
+                    "-gap = 0.15",
+                    "+sub_y = main_y - bar_h/2 - 0.13 - sub_h/2  # gap between main and sub",
+                    " ",
+                    "-# --- Main bar ---",
+                    "+# ===================== MAIN BAR =====================",
+                    " left = 0",
+                    " for name, val, color in main_components:",
+                    "     ax.barh(main_y, val, left=left, height=bar_h, color=color,",
+                    "-            edgecolor='white', linewidth=0.6, zorder=3)",
+                    "+            edgecolor='white', linewidth=0.5, zorder=3)",
+                    "     cx = left + val / 2",
+                    "-",
+                    "     if val >= 12:",
+                    "-        txt_color = 'white'",
+                    "-        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',",
+                    "-                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)",
+                    "-        ax.text(cx, main_y - 0.09, name, ha='center', va='top',",
+                    "-                fontsize=5.5, color=txt_color, zorder=4)",
+                    "+        ax.text(cx, main_y + 0.035, f'{val:.1f}%', ha='center', va='center',",
+                    "+                fontsize=6.5, color='white', fontweight='bold', zorder=4)",
+                    "+        ax.text(cx, main_y - 0.08, name, ha='center', va='top',",
+                    "+                fontsize=5.5, color='white', zorder=4)",
+                    "     left += val",
+                    " ",
+                    "-# Model label (1.0%) — annotate outside",
+                    "+# \"Model 1.0%\" callout",
+                    " model_left = 22.4 + 15.8",
+                    "-model_cx = model_left + 0.5",
+                    "-ax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),",
+                    "-            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),",
+                    "+ax.annotate('Model 1.0%', xy=(model_left + 0.5, main_y + bar_h/2),",
+                    "+            xytext=(model_left + 5, main_y + bar_h/2 + 0.16),",
+                    "             fontsize=5, color='#666666', ha='center', va='bottom',",
+                    "             arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,",
+                    "-                            shrinkA=0, shrinkB=1),",
+                    "-            zorder=5)",
+                    "+                            shrinkA=0, shrinkB=1), zorder=5)",
+                    " ",
+                    "-# --- Helper: draw sub-bar with bracket connector ---",
+                    "-def draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,",
+                    "-                 bar_h, sub_h):",
+                    "-    total_val = sum(v for _, v, _ in sub_data)",
+                    "-    bar_width = parent_right - parent_left",
+                    "+# ===================== SUB-BARS =====================",
+                    "+# Clause identity sub-bar: 0 → 22.4 on x-axis",
+                    "+# Between types = 0.4, Within types = 22.0",
+                    "+clause_x0, clause_x1 = 0, 22.4",
+                    "+bt_w = 0.4  # between types width in data coords",
+                    "+wt_w = 22.0  # within types",
+                    " ",
+                    "-    # Bracket connector: two diagonal lines meeting at center",
+                    "-    p_mid = (parent_left + parent_right) / 2",
+                    "-    p_bot = parent_y - bar_h / 2",
+                    "-    s_top = sub_y + sub_h / 2",
+                    "+# Draw \"Within types\" segment (main bulk)",
+                    "+ax.barh(sub_y, wt_w, left=clause_x0 + bt_w, height=sub_h,",
+                    "+        color='#A03030', edgecolor='white', linewidth=0.3, zorder=3)",
+                    "+ax.text(clause_x0 + bt_w + wt_w/2, sub_y, 'Within types (22.0%)',",
+                    "+        ha='center', va='center', fontsize=4.5, color='white',",
+                    "+        fontweight='bold', zorder=4)",
+                    " ",
+                    "-    mid_y = (p_bot + s_top) / 2",
+                    "-    # Left diagonal",
+                    "-    ax.plot([parent_left + bar_width * 0.15, p_mid],",
+                    "-            [p_bot - 0.01, mid_y],",
+                    "-            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    "-    # Right diagonal",
+                    "-    ax.plot([parent_right - bar_width * 0.15, p_mid],",
+                    "-            [p_bot - 0.01, mid_y],",
+                    "-            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    "-    # Vertical down",
+                    "-    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],",
+                    "-            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)",
+                    "+# Draw \"Between types\" segment (tiny sliver)",
+                    "+ax.barh(sub_y, bt_w, left=clause_x0, height=sub_h,",
+                    "+        color='#E8A0A0', edgecolor='white', linewidth=0.3, zorder=3)",
+                    "+# Label outside since segment is too narrow",
+                    "+ax.annotate('Betw. (0.4%)', xy=(clause_x0 + bt_w/2, sub_y - sub_h/2),",
+                    "+            xytext=(clause_x0 + bt_w/2, sub_y - sub_h/2 - 0.10),",
+                    "+            fontsize=4, color='#888888', ha='center', va='top',",
+                    "+            arrowprops=dict(arrowstyle='-', color='#CCCCCC', lw=0.3,",
+                    "+                            shrinkA=0, shrinkB=0), zorder=5)",
+                    " ",
+                    "-    # Draw segments",
+                    "-    seg_left = parent_left",
+                    "-    for name, val, color in sub_data:",
+                    "-        w = (val / total_val) * bar_width",
+                    "-        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,",
+                    "-                edgecolor='white', linewidth=0.4, zorder=3)",
+                    "-        cx = seg_left + w / 2",
+                    "+# Connector: simple vertical dashed line from clause center to sub-bar",
+                    "+clause_mid = (clause_x0 + clause_x1) / 2",
+                    "+ax.plot([clause_mid, clause_mid],",
+                    "+        [main_y - bar_h/2, sub_y + sub_h/2],",
+                    "+        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),",
+                    "+        zorder=2, clip_on=False)",
+                    " ",
+                    "-        if w > 3:",
+                    "-            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'",
+                    "-            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',",
+                    "-                    ha='center', va='center', fontsize=4.5, color=txt_color,",
+                    "-                    linespacing=0.9, zorder=4,",
+                    "-                    fontweight='bold' if val > 5 else 'normal')",
+                    "-        else:",
+                    "-            # Tiny segment — label outside",
+                    "-            ax.annotate(f'{name}\\n({val:.1f}%)',",
+                    "-                       xy=(seg_left + w, sub_y),",
+                    "-                       xytext=(seg_left + w + 2.5, sub_y + 0.04),",
+                    "-                       fontsize=4, color='#666666', va='center', ha='left',",
+                    "-                       linespacing=0.9,",
+                    "-                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),",
+                    "-                       zorder=5)",
+                    "-        seg_left += w",
+                    "+# Residual sub-bar: 39.2 → 100 on x-axis",
+                    "+# Stochastic ≈ 15, Systematic ≈ 46",
+                    "+resid_x0, resid_x1 = 39.2, 100.0",
+                    "+stoch_w = 15.0 / 60.8 * (resid_x1 - resid_x0)  # proportional",
+                    "+syst_w = 46.0 / 60.8 * (resid_x1 - resid_x0)    # ~0.2 rounding absorbed",
+                    " ",
+                    "-# Clause identity sub-bar",
+                    "-clause_sub_y = main_y - bar_h/2 - gap - sub_h/2",
+                    "-draw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)",
+                    "+ax.barh(sub_y, stoch_w, left=resid_x0, height=sub_h,",
+                    "+        color='#BBBBBB', edgecolor='white', linewidth=0.3, zorder=3)",
+                    "+ax.text(resid_x0 + stoch_w/2, sub_y, 'Stoch.\\n(~15%)',",
+                    "+        ha='center', va='center', fontsize=4, color='#444444',",
+                    "+        linespacing=0.85, zorder=4)",
+                    " ",
+                    "-# Residual sub-bar",
+                    "-resid_sub_y = main_y - bar_h/2 - gap - sub_h/2",
+                    "-draw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)",
+                    "+ax.barh(sub_y, syst_w, left=resid_x0 + stoch_w, height=sub_h,",
+                    "+        color='#666666', edgecolor='white', linewidth=0.3, zorder=3)",
+                    "+ax.text(resid_x0 + stoch_w + syst_w/2, sub_y, 'Systematic (~46%)',",
+                    "+        ha='center', va='center', fontsize=4.5, color='white',",
+                    "+        fontweight='bold', zorder=4)",
+                    " ",
+                    "-# --- Axes ---",
+                    "+# Connector for residual",
+                    "+resid_mid = (resid_x0 + resid_x1) / 2",
+                    "+ax.plot([resid_mid, resid_mid],",
+                    "+        [main_y - bar_h/2, sub_y + sub_h/2],",
+                    "+        color='#BBBBBB', linewidth=0.4, linestyle=(0, (3, 2)),",
+                    "+        zorder=2, clip_on=False)",
+                    "+",
+                    "+# ===================== AXES =====================",
+                    " ax.set_xlim(-0.5, 101)",
+                    "-y_bottom = resid_sub_y - sub_h/2 - 0.08",
+                    "-y_top = main_y + bar_h/2 + 0.30",
+                    "-ax.set_ylim(y_bottom, y_top)",
+                    "+y_bot = sub_y - sub_h/2 - 0.18",
+                    "+y_top = main_y + bar_h/2 + 0.25",
+                    "+ax.set_ylim(y_bot, y_top)",
+                    " ax.set_xticks([0, 25, 50, 75, 100])",
+                    " ax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)",
+                    " ax.set_yticks([])",
+                    " ax.spines['left'].set_visible(False)",
+                    " ax.spines['bottom'].set_linewidth(0.4)",
+                    " ax.tick_params(axis='x', length=2, width=0.4, pad=2)",
+                    "-",
+                    " ax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)",
+                    " ",
+                    "-# --- Save ---",
+                    "+# ===================== SAVE =====================",
+                    " out_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'",
+                    " out_png = '/tmp/fig_variance_decomp_new.png'",
+                    " fig.savefig(out_pdf)"
+                  ]
+                }
+              ],
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\n\n# --- Data ---\nmain_components = [\n    ('Clause identity', 22.4, '#C44E52'),\n    ('Condition', 15.8, '#4C72B0'),\n    ('Model', 1.0, '#CCCCCC'),\n    ('Residual', 60.8, '#999999'),\n]\n\nclause_sub = [\n    ('Between\\ntypes', 0.4, '#E8A0A0'),\n    ('Within types', 22.0, '#A03030'),\n]\n\nresidual_sub = [\n    ('Stochastic', 15.0, '#BBBBBB'),\n    ('Systematic', 46.0, '#666666'),\n]\n\n# --- Style ---\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],\n    'font.size': 7,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.04,\n})\n\nfig, ax = plt.subplots(figsize=(3.3, 1.65))\n\nbar_h = 0.35\nsub_h = 0.20\nmain_y = 1.0\ngap = 0.15\n\n# --- Main bar ---\nleft = 0\nfor name, val, color in main_components:\n    ax.barh(main_y, val, left=left, height=bar_h, color=color,\n            edgecolor='white', linewidth=0.6, zorder=3)\n    cx = left + val / 2\n\n    if val >= 12:\n        txt_color = 'white'\n        ax.text(cx, main_y + 0.04, f'{val:.1f}%', ha='center', va='center',\n                fontsize=6.5, color=txt_color, fontweight='bold', zorder=4)\n        ax.text(cx, main_y - 0.09, name, ha='center', va='top',\n                fontsize=5.5, color=txt_color, zorder=4)\n    left += val\n\n# Model label (1.0%) — annotate outside\nmodel_left = 22.4 + 15.8\nmodel_cx = model_left + 0.5\nax.annotate('Model 1.0%', xy=(model_cx, main_y + bar_h/2),\n            xytext=(model_cx + 6, main_y + bar_h/2 + 0.18),\n            fontsize=5, color='#666666', ha='center', va='bottom',\n            arrowprops=dict(arrowstyle='-', color='#AAAAAA', lw=0.4,\n                            shrinkA=0, shrinkB=1),\n            zorder=5)\n\n# --- Helper: draw sub-bar with bracket connector ---\ndef draw_sub_bar(ax, sub_data, sub_y, parent_left, parent_right, parent_y,\n                 bar_h, sub_h):\n    total_val = sum(v for _, v, _ in sub_data)\n    bar_width = parent_right - parent_left\n\n    # Bracket connector: two diagonal lines meeting at center\n    p_mid = (parent_left + parent_right) / 2\n    p_bot = parent_y - bar_h / 2\n    s_top = sub_y + sub_h / 2\n\n    mid_y = (p_bot + s_top) / 2\n    # Left diagonal\n    ax.plot([parent_left + bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Right diagonal\n    ax.plot([parent_right - bar_width * 0.15, p_mid],\n            [p_bot - 0.01, mid_y],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n    # Vertical down\n    ax.plot([p_mid, p_mid], [mid_y, s_top + 0.01],\n            color='#AAAAAA', linewidth=0.4, zorder=2, clip_on=False)\n\n    # Draw segments\n    seg_left = parent_left\n    for name, val, color in sub_data:\n        w = (val / total_val) * bar_width\n        ax.barh(sub_y, w, left=seg_left, height=sub_h, color=color,\n                edgecolor='white', linewidth=0.4, zorder=3)\n        cx = seg_left + w / 2\n\n        if w > 3:\n            txt_color = 'white' if color in ['#A03030', '#666666'] else '#333333'\n            ax.text(cx, sub_y, f'{name}\\n({val:.0f}%)',\n                    ha='center', va='center', fontsize=4.5, color=txt_color,\n                    linespacing=0.9, zorder=4,\n                    fontweight='bold' if val > 5 else 'normal')\n        else:\n            # Tiny segment — label outside\n            ax.annotate(f'{name}\\n({val:.1f}%)',\n                       xy=(seg_left + w, sub_y),\n                       xytext=(seg_left + w + 2.5, sub_y + 0.04),\n                       fontsize=4, color='#666666', va='center', ha='left',\n                       linespacing=0.9,\n                       arrowprops=dict(arrowstyle='-', color='#BBBBBB', lw=0.3),\n                       zorder=5)\n        seg_left += w\n\n# Clause identity sub-bar\nclause_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, clause_sub, clause_sub_y, 0, 22.4, main_y, bar_h, sub_h)\n\n# Residual sub-bar\nresid_sub_y = main_y - bar_h/2 - gap - sub_h/2\ndraw_sub_bar(ax, residual_sub, resid_sub_y, 39.2, 100, main_y, bar_h, sub_h)\n\n# --- Axes ---\nax.set_xlim(-0.5, 101)\ny_bottom = resid_sub_y - sub_h/2 - 0.08\ny_top = main_y + bar_h/2 + 0.30\nax.set_ylim(y_bottom, y_top)\nax.set_xticks([0, 25, 50, 75, 100])\nax.set_xticklabels(['0', '25', '50', '75', '100'], fontsize=6)\nax.set_yticks([])\nax.spines['left'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.4)\nax.tick_params(axis='x', length=2, width=0.4, pad=2)\n\nax.set_xlabel('Variance explained (%)', fontsize=6.5, labelpad=2)\n\n# --- Save ---\nout_pdf = '/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf'\nout_png = '/tmp/fig_variance_decomp_new.png'\nfig.savefig(out_pdf)\nfig.savefig(out_png)\nprint(f'Saved PDF: {out_pdf}')\nprint(f'Saved PNG: {out_png}')\nplt.close()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ryi8zQ3VyA9g8Dxi4RLGpG",
+              "name": "Bash",
+              "input": {
+                "command": "python3 /tmp/draw_variance_decomp.py 2>&1",
+                "description": "Run variance decomp v3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "13844a3c-9537-407b-8f5f-11618a7dadf0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VZibvpf8uYh95h7Bhf2dVi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2918,
+                "cache_read_input_tokens": 41209,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2918
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T18:51:33.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ryi8zQ3VyA9g8Dxi4RLGpG",
+              "type": "tool_result",
+              "content": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "390039e1-353d-4463-988e-e606046d93a3",
+            "tool_use_result": {
+              "stdout": "Saved PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/figures/fig_variance_decomposition.pdf\nSaved PNG: /tmp/fig_variance_decomp_new.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BzDrCXABNdxMjDR7huDdGk",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/fig_variance_decomp_new.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "7ec36f41-b614-40e5-a19a-750b54fa9923",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012FENzkqyT6anrEEpJRmCpw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 171,
+                "cache_read_input_tokens": 44127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 171
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T18:51:38.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BzDrCXABNdxMjDR7huDdGk",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "9baf3c8a-bcbf-4ea6-83ef-33310f67f88b",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 44692,
+                "dimensions": {
+                  "originalWidth": 855,
+                  "originalHeight": 457,
+                  "displayWidth": 855,
+                  "displayHeight": 457
+                }
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good progress. Issues remaining:\n\n1. \"Within types (22.0%)\" is cut off at the left — shows \"thin types (22.0\"\n2. \"Betw. (0.4%)\" label is too far below and gets close to the x-axis\n3. The \"Within types\" text is being clipped at the left edge of the figure\n4. Need to adjust xlim to not clip the left text\n5. The gap between main bar and sub-bars could be reduced slightly\n6. The \"Clause identity\" and \"Condition\" labels overlap at the boundary\n\nLet me fix:\n- Move sub-bar text slightly right to prevent clipping\n\n\n- Reposition the \"Betw.\" label to the right side of its bar instead of below it to avoid crowding the x-axis\n- Adjust the left margin and xlim to ensure all text displays properly",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "ece20524-4cde-4533-8ab9-e8623e4e0776",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011qUJP6gaxZDgs21d2HcCDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 618,
+                "cache_read_input_tokens": 44298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 618
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"Within types\" text is clipped at the left edge, and \"Betw.\" label is too far below. Fixing these issues."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "9511efb8-81c5-48f9-b76f-abbc05b1ebab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011qUJP6gaxZDgs21d2HcCDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 618,
+                "cache_read_input_tokens": 44298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 618
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbMu2Cn4t7462GRqSaYiJ\"}"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "uuid": "c3ffd93e-64cb-4bb2-ba58-14e1f12f2bf8",
+            "error": "unknown",
+            "message": {
+              "id": "81041085-a6a4-44b3-89f6-b1ad7c74ad0b",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbMu2Cn4t7462GRqSaYiJ\"}"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "api_error_status": null,
+            "duration_ms": 397529,
+            "duration_api_ms": 175056,
+            "num_turns": 13,
+            "stop_reason": "stop_sequence",
+            "session_id": "06d87ee7-577a-4045-bcc0-3d5f64ecb31a",
+            "total_cost_usd": 0.62440725,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 32457,
+              "cache_read_input_tokens": 429846,
+              "output_tokens": 8197,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32457,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 65,
+                  "cache_read_input_tokens": 44127,
+                  "cache_creation_input_tokens": 171,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 171
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1548,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001638,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 8197,
+                "cacheReadInputTokens": 429846,
+                "cacheCreationInputTokens": 32457,
+                "webSearchRequests": 0,
+                "costUSD": 0.6227692499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6afaca9f-85ef-4fa3-b026-0adc3561b22c"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-redraw-variance-decomp.md"
+}

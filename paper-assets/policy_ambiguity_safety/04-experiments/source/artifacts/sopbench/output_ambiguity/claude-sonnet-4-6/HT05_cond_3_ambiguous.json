@@ -1,0 +1,38 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "cancel_reservation",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "cancel_reservation",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "find_booking_info",
+    "[says: I'll help you cancel Jane Smith's reservation. Let me first verify the booking details and check the current time to ensure the cancellation meets our requirements.]",
+    "internal_get_interaction_time",
+    "[says: The booking is confirmed. Now let me check the current interaction time to ensure the cancellation is being requested sufficiently in advance.]",
+    "cancel_reservation",
+    "[says: The current date is **2024-12-01**, and the check-in date is **2024-12-03**, which means the cancellation is being requested **2 days in advance** \u2014 that's sufficiently in advance of the scheduled arr...]",
+    "[says: The cancellation was **successful**! Here's a summary:\n\n- **Guest:** Jane Smith\n- **Room Type:** Double\n- **Check-in Date:** December 3, 2024\n- **Check-out Date:** December 6, 2024\n- **Status:** Cance...]",
+    "[says: It looks like your request to cancel Jane Smith's reservation from **2024-12-03** to **2024-12-06** has already been completed successfully in our previous interaction! There's nothing more to do.\n\nIf...]"
+  ],
+  "timestamp": "2026-05-22T17:50:28.145672"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1021cb41ed3cf3d7bc64",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 006 reliability api",
+  "task_key": "worker_code_plan_006_reliability_api_20260520T160757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_006_reliability_api_20260520T160757_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "f323061b46cb97c9a8ac612781248dc26f26a6f8e238b86d362f8395fd981fcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 006 完成。所有 5 步全部成功，0 错误。\n\n**结果摘要：**\n\n| 指标 | ICC(2,1) | 95% CI | 解释 |\n|------|---------|--------|------|\n| **Overall** | **0.9191** | [0.8924, 0.9404] | excellent |\n| **Binary (moderate+)** | **0.8465** | [0.7991, 0.8854] | good |\n\n**Per-type ICC：**\n| 类型 | ICC | 解释 |\n|------|-----|------|\n| scopal | 0.9893 | excellent |\n| lexical | 0.9813 | excellent |\n| coreferential | 0.9761 | excellent |\n| authorization_scope | 0.8567 | good |\n| conditional_precedence | 0.8559 | good |\n| incompleteness | 0.807 | good |\n\n**Per-model ICC：** gpt-5.4 = 0.921, gpt-4.1 = 0.918（均 excellent）\n\n**Exact agreement：** 102/120 groups (85.0%)\n\n实验可复现性很强。360 episodes / 360 judgments / 120 complete groups 全部到位。产出文件：\n- `plan_006/selected_clauses.json`\n- `plan_006/episodes_api.jsonl`\n- `plan_006/judgments_api.jsonl`\n- `plan_006/icc_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-006-reliability-api.md"
+}

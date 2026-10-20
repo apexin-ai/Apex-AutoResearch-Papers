@@ -1,0 +1,294 @@
+{
+  "schema_version": "1.0",
+  "id": "4143af8872be80527072",
+  "project": "policy_ambiguity_safety",
+  "kind": "conversation",
+  "title": "code c3 layer effect test",
+  "task_key": "worker_code_c3_layer_effect_test_20260520T162759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_c3_layer_effect_test_20260520T162759.jsonl",
+    "occurrence": 1,
+    "bytes": 15232,
+    "sha256": "7ad2f9399175ccc7473f34e29448da86eaac609d9fa9c92822eea867e3f177c8"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:28:55.413970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py",
+              "offset": "1080",
+              "limit": "120"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:28:55.414374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1080\t        interp = \"moderate agreement\"\n1081\t    elif kappa < 0.80:\n1082\t        interp = \"substantial agreement\"\n1083\t    else:\n1084\t        interp = \"almost perfect agreement\"\n1085\t\n1086\t    result = {\n1087\t        \"n_clauses\": N,\n1088\t        \"n_models\": n_models,\n1089\t        \"models\": models,\n1090\t        \"n_raters_per_clause\": {\n1091\t            \"min\": int(n_arr.min()),\n1092\t            \"max\": int(n_arr.max()),\n1093\t            \"mean\": round(float(n_arr.mean()), 1),\n1094\t        },\n1095\t        \"category_proportions\": {\n1096\t            \"violated\": round(float(p_j[0]), 4),\n1097\t            \"not_violated\": round(float(p_j[1]), 4),\n1098\t        },\n1099\t        \"fleiss_kappa\": round(float(kappa), 4),\n1100\t        \"se\": round(float(se), 4) if np.isfinite(se) else None,\n1101\t        \"z\": round(float(z_val), 4) if np.isfinite(z_val) else None,\n1102\t        \"p\": round(float(p_val), 6) if np.isfinite(p_val) else None,\n1103\t        \"interpretation\": interp,\n1104\t    }\n1105\t\n1106\t    out = ANALYSIS_DIR / \"fleiss_kappa.json\"\n1107\t    with open(out, \"w\") as f:\n1108\t        json.dump(result, f, indent=2, default=str)\n1109\t    print(f\"  -> {out.name}\")\n1110\t    return result\n1111\t\n1112\t\n1113\tdef run_phase3(models: list[str]):\n1114\t    \"\"\"Load all judgments and run the full analysis suite.\"\"\"\n1115\t    ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)\n1116\t\n1117\t    df = _load_all_judgments(models)\n1118\t    if df.empty:\n1119\t        print(\"No judgments found. Run Phase 2 first.\")\n1120\t        return\n1121\t\n1122\t    print(f\"Loaded {len(df)} judgments ({df['model'].nunique()} models, \"\n1123\t          f\"{df['ambiguity_type'].nunique()} types)\")\n1124\t\n1125\t    binary = _binary_effect(df)\n1126\t    type_eff = _type_effect(df)\n1127\t    model_eff = _model_effect(df)\n1128\t    interact = _interaction(df)\n1129\t\n1130\t    # JSON report\n1131\t    report = {\n1132\t        \"binary_effect\": binary,\n1133\t        \"type_effect\": type_eff,\n1134\t        \"model_effect\": model_eff,\n1135\t        \"model\n…[truncated 2662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:28:55.414632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py",
+              "old_string": "    print(f\"  -> {out.name}\")\n    return result\n\n\ndef run_phase3(models: list[str]):",
+              "new_string": "    print(f\"  -> {out.name}\")\n    return result\n\n\ndef run_layer_effect_test(df: pd.DataFrame, clauses: list[dict]) -> dict:\n    \"\"\"C3: Formal test of specification-layer vs linguistic-layer violation rates.\"\"\"\n    SPEC_TYPES = {\"incompleteness\", \"conditional_precedence\", \"authorization_scope\"}\n    LING_TYPES = {\"scopal\", \"lexical\", \"coreferential\"}\n\n    dfc = df.copy()\n    dfc[\"violated\"] = analyze.binarize_violations(dfc)\n\n    # Filter to ambiguous condition only\n    amb = dfc[dfc[\"condition\"] == \"ambiguous\"].copy()\n    amb[\"layer\"] = amb[\"ambiguity_type\"].map(\n        lambda t: \"specification\" if t in SPEC_TYPES else \"linguistic\" if t in LING_TYPES else \"unknown\"\n    )\n    amb = amb[amb[\"layer\"] != \"unknown\"]\n\n    spec = amb[amb[\"layer\"] == \"specification\"]\n    ling = amb[amb[\"layer\"] == \"linguistic\"]\n\n    spec_n = len(spec)\n    spec_v = int(spec[\"violated\"].sum())\n    ling_n = len(ling)\n    ling_v = int(ling[\"violated\"].sum())\n\n    spec_rate = spec_v / spec_n if spec_n > 0 else 0\n    ling_rate = ling_v / ling_n if ling_n > 0 else 0\n    delta_pp = (spec_rate - ling_rate) * 100\n\n    from scipy.stats import chi2_contingency\n    table = np.array([\n        [spec_v, spec_n - spec_v],\n        [ling_v, ling_n - ling_v],\n    ])\n    chi2, p_val, dof, expected = chi2_contingency(table, correction=False)\n\n    n_total = spec_n + ling_n\n    cramers_v = np.sqrt(chi2 / n_total) if n_total > 0 else 0\n\n    a, b = spec_v, spec_n - spec_v\n    c, d = ling_v, ling_n - ling_v\n    if b > 0 and c > 0 and d > 0 and a > 0:\n        or_val = (a * d) / (b * c)\n        log_or = np.log(or_val)\n        se_log = np.sqrt(1/a + 1/b + 1/c + 1/d)\n        or_lo = float(np.exp(log_or - 1.96 * se_log))\n        or_hi = float(np.exp(log_or + 1.96 * se_log))\n    else:\n        or_val = or_lo = or_hi = float(\"nan\")\n\n    np.random.seed(42)\n    n_boot = 10000\n    spec_arr = spec[\"violated\"].values.astype(float)\n    ling_arr = ling[\"violated\"].values.astype(float)\n    boot_deltas = []\n    for _ in range(n_boot):\n        s_idx = np.random.randint(0, len(spec_arr), len(spec_arr))\n        l_idx = np.random.randint(0, len(ling_arr), len(ling_arr))\n        boot_deltas.append((spec_arr[s_idx].mean() - ling_arr[l_idx].mean()) * 100)\n    boot_deltas = np.array(boot_deltas)\n    ci_lo = float(np.percentile(boot_deltas, 2.5))\n    ci_hi = float(np.percentile(boot_deltas, 97.5))\n\n    per_type = {}\n    for atype in list(SPEC_TYPES) + list(LING_TYPES):\n        subset = amb[amb[\"ambiguity_type\"] == atype]\n        if len(subset) > 0:\n            rate = float(subset[\"violated\"].mean())\n            per_type[atype] = {\n                \"n\": len(subset),\n                \"violations\": int(subset[\"violated\"].sum()),\n                \"rate\": round(rate * 100, 2),\n                \"layer\": \"specification\" if atype in SPEC_TYPES else \"linguistic\",\n            }\n\n    result = {\n        \"test\": \"layer_effect (C3)\",\n        \"specification_layer\": {\n            \"types\": sorted(SPEC_TYPES),\n            \"n\": spec_n,\n            \"violations\": spec_v,\n            \"rate_pct\": round(spec_rate * 100, 2),\n        },\n        \"linguistic_layer\": {\n            \"types\": sorted(LING_TYPES),\n            \"n\": ling_n,\n            \"violations\": ling_v,\n            \"rate_pct\": round(ling_rate * 100, 2),\n        },\n        \"delta_pp\": round(delta_pp, 2),\n        \"bootstrap_ci_95\": [round(ci_lo, 2), round(ci_hi, 2)],\n        \"chi_squared\": {\n            \"statistic\": round(float(chi2), 4),\n            \"df\": int(dof),\n            \"p\": round(float(p_val), 6),\n        },\n        \"cramers_v\": round(float(cramers_v), 4),\n        \"odds_ratio\": {\n            \"or\": round(float(or_val), 4) if np.isfinite(or_val) else str(or_val),\n            \"ci_95\": [round(or_lo, 4) if np.isfinite(or_lo) else str(or_lo),\n                       round(or_hi, 4) if np.isfinite(or_hi) else str(or_hi)],\n        },\n        \"per_type_detail\": per_type,\n    }\n\n    out = ANALYSIS_DIR / \"layer_effect_test.json\"\n    with open(out, \"w\") as f:\n        json.dump(result, f, indent=2, default=str)\n    print(f\"  -> {out.name}\")\n    return result\n\n\ndef run_phase3(models: list[str]):"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:28:55.415077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:28:55.415291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py",
+              "old_string": "    run_fleiss_kappa(df, clauses_data)\n\n    print(f\"\\nOutputs in {ANALYSIS_DIR}/:\")",
+              "new_string": "    run_fleiss_kappa(df, clauses_data)\n    run_layer_effect_test(df, clauses_data)\n\n    print(f\"\\nOutputs in {ANALYSIS_DIR}/:\")"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:28:55.415669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:28:55.415828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py",
+              "old_string": "    print(\"  - fleiss_kappa.json\")\n\n\n# ---------------------------------------------------------------------------",
+              "new_string": "    print(\"  - fleiss_kappa.json\")\n    print(\"  - layer_effect_test.json\")\n\n\n# ---------------------------------------------------------------------------"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:28:55.416188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/run_full_study.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:28:55.416359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts && source .venv/bin/activate && python run_full_study.py --phase 3 2>&1",
+              "description": "Run Phase 3 analysis with new layer effect test",
+              "timeout": "300000"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T16:28:55.416525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "======================================== Phase 3 ========================================\n\nLoaded 1200 judgments (2 models, 6 types)\n\n========================================================================\nFULL STUDY — STATISTICAL ANALYSIS REPORT\n========================================================================\n\n-- (a) Binary Effect: Ambiguous vs Unambiguous --\n\n  Global: amb=40.8%  unamb=4.3%  D=+36.5%  chi2 p=0.0000\n\n  Type                          Amb   Unamb       D  Fisher p\n  ------------------------- ------- ------- ------- ---------\n  authorization_scope        55.0%   2.0% +53.0%    0.0000\n  conditional_precedence     35.0%   0.0% +35.0%    0.0000\n  coreferential              25.0%   9.0% +16.0%    0.0042\n  incompleteness             52.0%   3.0% +49.0%    0.0000\n  lexical                    38.0%   8.0% +30.0%    0.0000\n  scopal                     40.0%   4.0% +36.0%    0.0000\n\n  Model               Amb   Unamb       D  Fisher p\n  --------------- ------- ------- ------- ---------\n  gpt-4.1          40.7%   6.0% +34.7%    0.0000\n  gpt-5.4          41.0%   2.7% +38.3%    0.0000\n\n-- (b) Type Effect: 6-way chi-square (ambiguous only) --\n\n  Type                            Rate      N\n  ------------------------- ---------- ------\n  authorization_scope           55.0%    100\n  conditional_precedence        35.0%    100\n  coreferential                 25.0%    100\n  incompleteness                52.0%    100\n  lexical                       38.0%    100\n  scopal                        40.0%    100\n\n  chi2=25.614  p=0.0001  dof=5  Cramer's V=0.207\n\n-- (c) Model Effect --\n\n  Model               Rate  N_viol      N\n  --------------- -------- ------- ------\n  gpt-4.1           23.3%     140    600\n  gpt-5.4           21.8%     131    600\n\n  Overall: chi2 p=0.5807  V=0.016\n  Ambiguous-only: chi2 p=1.0000\n\n-- (d) Model x Type Interaction --\n\n  [gpt-4.1] type chi2=9.891  p=0.0784  V=0.182\n  [gpt-5.4] type chi2=23.439  p=0.0003  V=0.280\n\n  gpt-4.1: incompleteness \n…[truncated 864 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T16:28:55.416689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/full_study/analysis/layer_effect_test.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T16:28:55.416838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"test\": \"layer_effect (C3)\",\n3\t  \"specification_layer\": {\n4\t    \"types\": [\n5\t      \"authorization_scope\",\n6\t      \"conditional_precedence\",\n7\t      \"incompleteness\"\n8\t    ],\n9\t    \"n\": 300,\n10\t    \"violations\": 142,\n11\t    \"rate_pct\": 47.33\n12\t  },\n13\t  \"linguistic_layer\": {\n14\t    \"types\": [\n15\t      \"coreferential\",\n16\t      \"lexical\",\n17\t      \"scopal\"\n18\t    ],\n19\t    \"n\": 300,\n20\t    \"violations\": 103,\n21\t    \"rate_pct\": 34.33\n22\t  },\n23\t  \"delta_pp\": 13.0,\n24\t  \"bootstrap_ci_95\": [\n25\t    5.33,\n26\t    20.67\n27\t  ],\n28\t  \"chi_squared\": {\n29\t    \"statistic\": 10.4927,\n30\t    \"df\": 1,\n31\t    \"p\": 0.001198\n32\t  },\n33\t  \"cramers_v\": 0.1322,\n34\t  \"odds_ratio\": {\n35\t    \"or\": 1.7189,\n36\t    \"ci_95\": [\n37\t      1.2372,\n38\t      2.3883\n39\t    ]\n40\t  },\n41\t  \"per_type_detail\": {\n42\t    \"conditional_precedence\": {\n43\t      \"n\": 100,\n44\t      \"violations\": 35,\n45\t      \"rate\": 35.0,\n46\t      \"layer\": \"specification\"\n47\t    },\n48\t    \"incompleteness\": {\n49\t      \"n\": 100,\n50\t      \"violations\": 52,\n51\t      \"rate\": 52.0,\n52\t      \"layer\": \"specification\"\n53\t    },\n54\t    \"authorization_scope\": {\n55\t      \"n\": 100,\n56\t      \"violations\": 55,\n57\t      \"rate\": 55.0,\n58\t      \"layer\": \"specification\"\n59\t    },\n60\t    \"scopal\": {\n61\t      \"n\": 100,\n62\t      \"violations\": 40,\n63\t      \"rate\": 40.0,\n64\t      \"layer\": \"linguistic\"\n65\t    },\n66\t    \"lexical\": {\n67\t      \"n\": 100,\n68\t      \"violations\": 38,\n69\t      \"rate\": 38.0,\n70\t      \"layer\": \"linguistic\"\n71\t    },\n72\t    \"coreferential\": {\n73\t      \"n\": 100,\n74\t      \"violations\": 25,\n75\t      \"rate\": 25.0,\n76\t      \"layer\": \"linguistic\"\n77\t    }\n78\t  }\n79\t}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T16:28:55.417010+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果符合预期：\n\n| 指标 | 值 |\n|---|---|\n| spec_rate | 47.33% |\n| ling_rate | 34.33% |\n| delta_pp | +13.0 pp |\n| chi2 | 10.49, p = 0.0012 |\n| Cramér's V | 0.132 |\n| OR | 1.72 [1.24, 2.39] |\n| Bootstrap 95% CI | [5.33, 20.67] |\n\nSpecification-layer ambiguity 的违规率显著高于 linguistic-layer（p < 0.01），效应中等偏小。所有其他 analysis 文件均正常重新生成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c3_layer_effect_test_20260520T162759"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/code-c3-layer-effect-test.md"
+}

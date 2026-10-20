@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC04_incomp",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The action must be performed within the user's enrollment period.",
+  "action": "update_policy",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "[says: The update cannot be completed.\n\nReason:\n- Your current policy is active, and the request is within the enrollment period.\n- However, the requested coverage amount of 4000 exceeds 15% of the annual in...]",
+    "update_policy"
+  ],
+  "timestamp": "2026-05-22T16:51:55.890107"
+}

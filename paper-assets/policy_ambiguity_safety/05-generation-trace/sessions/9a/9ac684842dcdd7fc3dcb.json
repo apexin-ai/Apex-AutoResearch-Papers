@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9ac684842dcdd7fc3dcb",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "code plan 013 model expansion",
+  "task_key": "worker_code_plan_013_model_expansion_20260521T080609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_013_model_expansion_20260521T080609.log",
+    "occurrence": 1,
+    "bytes": 936504,
+    "sha256": "c1087f9ff9c894c475a11b7db55e8cdbadae16fcf487bcc741657a82c237bc67"
+  },
+  "statistics": {
+    "messages": 783,
+    "user_turns": 0,
+    "tool_calls": 338,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 338,
+      "tool_result": 338,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 783,
+      "chunks": [
+        {
+          "path": "9ac684842dcdd7fc3dcb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9ac684842dcdd7fc3dcb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9ac684842dcdd7fc3dcb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9ac684842dcdd7fc3dcb-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9ac684842dcdd7fc3dcb-part-0005.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-013-model-expansion.md"
+}

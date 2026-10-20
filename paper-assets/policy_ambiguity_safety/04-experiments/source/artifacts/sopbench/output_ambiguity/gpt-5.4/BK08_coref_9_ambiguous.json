@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The specified card must not carry any balance to proceed with cancellation.",
+  "action": "cancel_credit_card",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "internal_check_credit_card_exist",
+    "[says: I can\u2019t cancel that card because card number 2357 1113 1719 2329 is not found under the account john_doe.\n\nYou are successfully logged in, but since the specified card does not exist on the account, t...]"
+  ],
+  "timestamp": "2026-05-22T17:21:59.793411"
+}

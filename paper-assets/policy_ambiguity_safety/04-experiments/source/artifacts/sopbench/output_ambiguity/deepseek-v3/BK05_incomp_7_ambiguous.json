@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK05_incomp",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must have an adequate credit history to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "internal_get_credit_score",
+    "apply_credit_card",
+    "[says: Hello, John Doe! Based on the information provided:\n\n- **Credit Score**: 750 (which is considered good).\n- **Eligibility**: You are eligible for a credit card.\n- **Spending Limit**: Your spending limi...]"
+  ],
+  "timestamp": "2026-05-22T17:05:21.938351"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d59b8a2bcf5d747630a1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper research psycholinguistics",
+  "task_key": "worker_paper_research_psycholinguistics_20260520T183613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_psycholinguistics_20260520T183613_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "64900aaaf779d5e0c2f12b6b90592611f11c28c7be9045a0508b61788a4b80df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Psycholinguistics cluster complete: **6/6 entries, all verified=true**.\n\n| # | Key | Paper | Source |\n|---|-----|-------|--------|\n| 1 | `ferreira_good_enough_2002` | Ferreira, Bailey & Ferraro — Good-enough representations | must_cite, S2 verified |\n| 2 | `li_garden_path_llm_2024` | Li et al. — LLM garden-path comprehension (CogSci 2024) | must_cite, S2+arXiv verified |\n| 3 | `poesio_artstein_2005` | Poesio & Artstein — Anaphoric annotation reliability | must_cite, S2+ACL verified |\n| 4 | `frazier_rayner_1982` | Frazier & Rayner — Garden-path eye movements | supplementary, S2 verified |\n| 5 | `levy_expectation_2008` | Levy — Expectation-based syntactic comprehension | supplementary, S2 verified |\n| 6 | `lassiter_goodman_2017` | Lassiter & Goodman — Adjectival vagueness Bayesian model | supplementary, S2 verified |\n\nAll entries have complete authors, year, venue, DOI, and semantic_scholar_id. Ferreira 2002 uses `@article` bibtex type as specified."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-psycholinguistics.md"
+}

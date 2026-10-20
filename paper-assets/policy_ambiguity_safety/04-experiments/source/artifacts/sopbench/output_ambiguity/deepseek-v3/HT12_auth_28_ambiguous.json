@@ -1,0 +1,38 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 28,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "[says: To proceed with the booking for Emily Carter, I need to verify the following conditions:\n\n1. **Room Availability**: Ensure the \"single\" room type is available for the dates 2024-12-04 to 2024-12-06.\n2...]",
+    "internal_get_interaction_time",
+    "internal_is_loyalty_member",
+    "[says: The \"single\" room type is available for the dates 2024-12-04 to 2024-12-06 (2 nights) at a rate of $80 per night. The total cost for the booking would be $160.00, which matches the amount you provided...]",
+    "book_room",
+    "[says: The check-in date (2024-12-04) is valid as it falls within the required window (no earlier than 7 days and no later than 30 days from today, 2024-12-02). Additionally, Emily Carter is a premium-tier l...]",
+    "[says: The booking for Emily Carter has been successfully confirmed! She is booked for a single room from December 4, 2024, to December 6, 2024. The total cost of $160.00 has been processed.\n\nIf there's anyt...]"
+  ],
+  "timestamp": "2026-05-23T00:40:27.521563"
+}

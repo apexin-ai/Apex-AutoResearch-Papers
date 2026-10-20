@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK14_auth",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} has authenticated the admin password previously to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: The login for user \"john_doe\" failed. Please verify that your identification credentials (password or driver's license) are correct before proceeding.]"
+  ],
+  "timestamp": "2026-05-22T18:47:18.903234"
+}

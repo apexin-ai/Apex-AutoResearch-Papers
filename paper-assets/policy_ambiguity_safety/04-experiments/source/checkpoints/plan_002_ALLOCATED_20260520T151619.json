@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_002",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:16:08.165Z",
+    "updated_at": "2026-05-20T15:16:19.124Z",
+    "hypothesis": "Policy ambiguity causes significantly higher agent safety violation rates (+30-40pp) across all 6 ambiguity types, with uniform effect size across types (no significant type×violation interaction). Binary effect is the primary finding; type uniformity supports that ambiguity per se, not specific linguistic structures, drives violations."
+  },
+  "timestamp": "2026-05-20T15:16:19.136364+00:00",
+  "trigger": "update_registry"
+}

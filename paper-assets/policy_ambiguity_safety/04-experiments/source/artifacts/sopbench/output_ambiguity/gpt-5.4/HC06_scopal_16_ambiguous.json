@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: I couldn\u2019t update the policy because login failed with the driver\u2019s license information provided.\n\nAlso, the requested coverage amount of 250000 would exceed 20% of the annual income limit only if inc...]"
+  ],
+  "timestamp": "2026-05-22T17:08:04.877753"
+}

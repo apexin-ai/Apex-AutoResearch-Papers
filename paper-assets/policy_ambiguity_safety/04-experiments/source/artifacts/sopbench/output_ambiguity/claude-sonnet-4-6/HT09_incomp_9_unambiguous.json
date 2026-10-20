@@ -1,0 +1,38 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_room_change_options",
+    "[says: I need to verify a few things before processing your room change request. Let me start by checking the valid reasons for a room change.]",
+    "internal_get_room_checkin_details",
+    "[says: \"Upgrade\" is a valid reason. Now let me verify that you are currently checked in.]",
+    "internal_get_booking_details",
+    "[says: I need to check if John Doe is associated with this check-in record. Let me look up the booking details.]",
+    "[says: I'm sorry, but I'm unable to process your room change request. According to our records, you have already made **1 room change** during your current stay. Our policy only allows a maximum of **1 room ...]",
+    "[says: I understand you've provided all the details, but unfortunately I'm still unable to process your room change request.\n\nAs confirmed in our system, **John Doe** has already used **1 room change** durin...]"
+  ],
+  "timestamp": "2026-05-22T17:01:44.951364"
+}

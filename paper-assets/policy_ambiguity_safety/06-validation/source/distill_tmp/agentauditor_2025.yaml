@@ -1,0 +1,64 @@
+paper_key: "agentauditor_2025"
+title: "AgentAuditor: Human-Level Safety and Security Evaluation for LLM Agents"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines: [rule-based evaluators, LLM-based evaluators (vanilla)]
+  metrics:
+    - {name: "Evaluation Accuracy (safety/security)", direction: "higher_better"}
+    - {name: "Agreement with human expert judgments", direction: "higher_better"}
+  datasets:
+    - {name: "ASSEBench", size: "2,293 annotated interaction records, 15 risk types, 29 application scenarios, 528 interaction environments"}
+  ablation_dimensions: [risk_type, judgment_standard (Strict/Lenient)]
+  training_recipe: {optimizer: "N/A (training-free)", lr: "N/A", hardware: "LLM API-based"}
+  method_family: "memory-augmented reasoning + RAG for evaluation"
+
+positioning:
+  core_claim: "A training-free, memory-augmented reasoning framework that enables LLM evaluators to achieve human-level accuracy in agent safety/security evaluation, with dual Strict/Lenient standards for ambiguous situations."
+  key_results: "SOTA on LLM-as-a-judge for agent safety/security; human-level accuracy; consistent improvements across all benchmarks"
+  limitations:
+    - "Depends on quality of experiential memory"
+    - "Limited to evaluation (not enforcement)"
+    - "Ambiguous situations require dual-standard judgment"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Existing evaluators miss dangers in step-by-step agent actions and get confused by unclear safety rules"
+  tension: "Rule-based evaluators too rigid; vanilla LLM evaluators miss subtle implications and compounding risks"
+  key_insight: "Experiential memory + structured semantic feature extraction enables human-like evaluation without training"
+  argument_chain: "evaluation crisis → memory-augmented reasoning → structured feature extraction + CoT traces → RAG retrieval → human-level accuracy"
+  contribution_framing: "两项贡献：AgentAuditor framework + ASSEBench benchmark (首个jointly覆盖safety和security的大规模数据集)"
+  intro_structure: "4段：agent safety challenge → existing evaluator failures → AgentAuditor approach → ASSEBench contribution"
+  notable_technique: "Strict/Lenient双标准处理ambiguous risk situations是独特设计；multi-stage context-aware RAG流程"
+
+figures:
+  figure_count: "N/A (full text unavailable)"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: "N/A"
+    content: "N/A"
+    reason: "N/A"

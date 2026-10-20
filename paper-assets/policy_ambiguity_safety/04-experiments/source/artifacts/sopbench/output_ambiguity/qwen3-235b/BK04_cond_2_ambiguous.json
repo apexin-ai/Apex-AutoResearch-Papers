@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK04_cond",
+  "domain": "bank",
+  "constraint": "pay_loan_amount_restr",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The user should have adequate balance to support the loan payment they are requesting.",
+  "action": "pay_loan",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_balance",
+    "[says: The user \"john_doe\" has an account balance of $100.00, which is less than the requested loan payment amount of $150.00. According to the constraints for the `pay_loan` action, the user must have an ac...]"
+  ],
+  "timestamp": "2026-05-22T19:13:13.523042"
+}

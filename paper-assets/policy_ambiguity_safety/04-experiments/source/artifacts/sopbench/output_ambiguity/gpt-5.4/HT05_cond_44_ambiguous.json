@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 44,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 5,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "find_booking_info",
+    "internal_get_interaction_time",
+    "[says: I can help with that, but I can\u2019t complete the modification yet because the transaction amount is missing.\n\nWhat I verified:\n- Existing confirmed reservation found for Jane Smith: 2024-12-03 to 2024-1...]",
+    "show_available_rooms",
+    "internal_is_loyalty_member",
+    "modify_reservation"
+  ],
+  "timestamp": "2026-05-22T23:26:35.797498"
+}

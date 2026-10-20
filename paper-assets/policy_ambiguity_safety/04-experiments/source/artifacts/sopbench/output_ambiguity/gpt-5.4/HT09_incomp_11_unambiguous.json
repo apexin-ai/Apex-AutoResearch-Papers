@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "show_room_change_options",
+    "[says: I\u2019m sorry, but I can\u2019t process this room change request.\n\nReason:\n- John Doe is not currently listed in the active check-in records.\n- Also, \u201cpersonal preference\u201d is not one of the hotel\u2019s accepted ro...]",
+    "internal_valid_room_change_reason"
+  ],
+  "timestamp": "2026-05-22T16:57:20.840958"
+}

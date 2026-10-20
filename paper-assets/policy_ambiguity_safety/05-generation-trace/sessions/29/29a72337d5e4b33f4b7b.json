@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29a72337d5e4b33f4b7b",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit tier1 task3 systematic nocuity",
+  "task_key": "worker_edit_tier1_task3_systematic_nocuity_20260522T040835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_tier1_task3_systematic_nocuity_20260522T040835_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "d234ab998a64cc647d37a4be1549afb13879bd64bcc48da601308ac04255b2a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Main text ends at page 8 (limitations ends on page 8, references start on page 9). The constraint is satisfied.\n\n---\n\n**结果汇总：**\n\n| 位置 | 添加 | 压缩 |\n|------|------|------|\n| **Abstract** | 加入 \"systematic nocuity: 41.3% of ambiguous clauses trigger majority-convergent violations across models, indicating clause-level rather than model-level risk factors\" | 删除 \"at the $\\pm$15\\,pp margin\" 和 authorization scope 句（移至 tier cohesion 简述） |\n| **Introduction** (contribution 3) | 重写为包含 \"systematic nocuity---41.3% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors\" | 删除原 \"a failure mode taxonomy with the empirical phenomenon of\"，精简措辞 |\n| **Conclusion** | 加入 \"The identification of systematic nocuity---where 41.3% of ambiguous clauses reliably trigger violations across architectures---suggests that policy auditing should prioritize clause-level risk assessment over model-specific testing.\" | 无需压缩，conclusion 原本很短，加一句后仍在页面预算内 |\n\n编译通过，主文 = 8 页（limitations 结束于第 8 页，references 从第 9 页开始）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-tier1-task3-systematic-nocuity.md"
+}

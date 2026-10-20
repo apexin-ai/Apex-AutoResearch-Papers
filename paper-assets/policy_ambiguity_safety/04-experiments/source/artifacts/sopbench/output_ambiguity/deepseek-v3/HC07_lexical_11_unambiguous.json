@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+  "action": "update_policy",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: Your request to update your healthcare policy cannot be processed at this time because you have a pending claim (Claim ID: CLM-003) for a dental cleaning. \n\nTo proceed with updating your policy, all p...]"
+  ],
+  "timestamp": "2026-05-22T23:30:32.939469"
+}

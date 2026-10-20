@@ -1,0 +1,37 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have less than {borrow_limit} books in their \"borrowed\".",
+  "action": "borrow_book",
+  "task_idx": 30,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 6,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_convert_book_title_to_id",
+    "internal_get_user_borrowed",
+    "internal_is_restricted",
+    "internal_get_membership_status",
+    "[says: You\u2019re logged in, but I can\u2019t complete the borrow request.\n\nReason: \"One Hundred Years of Solitude\" is a restricted book, and your restricted-access membership expired on November 10th, 2024, so you\u2019r...]"
+  ],
+  "timestamp": "2026-05-22T22:48:27.728272"
+}

@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0",
+  "id": "f75e1185f1e91e8167a3",
+  "project": "policy_ambiguity_safety",
+  "kind": "conversation",
+  "title": "paper r15 sf fixes appendix",
+  "task_key": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_r15_sf_fixes_appendix_20260522T161701.jsonl",
+    "occurrence": 1,
+    "bytes": 9529,
+    "sha256": "f3770a1bdabc6f5964e942ddf89f158c9639de18c4e4d60dfe56bdf41e6976b3"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T16:18:09.187172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T16:18:09.187642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Error Analysis \\emph{[Exploratory]}}\n2\t\\label{sec:analysis}\n3\t\n4\tThe following failure mode taxonomy emerges empirically from LLM-coded traces, distinct from the input ambiguity taxonomy (\\S\\ref{sec:taxonomy}).\n5\t\n6\tWe analyze 614 violation traces across all five models, coded into five failure modes: unauthorized escalation, assumption-based action, scope misapplication, arbitrary rule selection, and conservative refusal. GPT-5.4 and GPT-4.1 serve as detailed annotation anchors because they span the judge boundary. Inter-coder reliability is substantial (Gwet's AC$_1$ $= 0.62$ \\citep{gwet_2014}; Cohen's $\\kappa = 0.52$ \\citep{cohen_1960}; the gap partly reflects the prevalence paradox). Using LLMs to code LLM failure modes introduces a circularity risk that the moderate $\\kappa$ may partly reflect; human-coded validation of at least one failure category would strengthen these findings.\n7\t\n8\t\\subsection{Type-Specific Failure Mechanisms}\n9\t\n10\tThe five-model data reveal three mechanistically distinct failure patterns that crosscut the specification/linguistic layer boundary.\n11\t\n12\t\\emph{Structural misparse} (scope misapplication): the agent constructs an incorrect parse and follows it consistently, paralleling garden-path processing \\citep{frazier_rayner_1982,ferreira_good_enough_2002} at a behavioral (not mechanistic) level. This dominates scopal (all 5 models), conditional precedence (4/5), and coreferential (3/5).\n13\t\n14\t\\emph{Information gap-filling} (assumption-based action): the agent fills missing information with plausible but incorrect defaults. This dominates incompleteness (3/5) and lexical (3/5).\n15\t\n16\t\\emph{Boundary violation} (unauthorized escalation): the agent exceeds permission boundaries when authorization scope is underspecified; 69.2\\% of such violations involve unauthorized escalation with zero conservative refusals ($p < 10^{-4}$, binomial test), revealing systematic permissiveness bias. This dominates authorization scope exclusivel\n…[truncated 1922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T16:18:09.187927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T16:18:09.188109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Differential nocuity.}\n5\tBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n6\t\n7\t\\paragraph{Taxonomy as intervention design.}\n8\tType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording. However, the taxonomy's value lies in predicting failure \\emph{mechanisms}: each type maps to a mechanistically distinct failure pattern with cross-model consistency (\\S\\ref{sec:analysis}). Structural misparse dominates scopal (5/5 models) and conditional precedence (4/5), information gap-filling dominates incompleteness and lexical ($\\geq$3/5), and boundary violation dominates authorization scope exclusively (5/5, with zero conservative refusals). This type$\\to$mechanism mapping enables targeted intervention design even though type membership is a poor predictor of individual clause risk.\n9\t\n10\t\\paragraph{Prompt-based mitigation.}\n11\tA matched-pair mitigation study on GPT-5.4 ($n = 50$ per type; Appendix~\\ref{app:mitigation}) finds generic awareness prompting ineffective ($\\Delta = +1.3$\\,pp), with type-specific results mirroring the mechanism taxonomy: authorization scope improves ($-12$\\,pp, $p = 0.070$) but incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$). Opposite directions under different prompt formulations (incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) reinforce policy-design-level solutions over prompt-level fixes.\n12\t\n13\t\\paragraph{Practical implications.}\n14\tA proof-o\n…[truncated 280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T16:18:09.188341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T16:18:09.188613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{TOST Equivalence Sensitivity}\n2\t\\label{app:tost}\n3\t\n4\tTable~\\ref{tab:tost_sensitivity} reports the TOST equivalence analysis \\citep{lakens_2017} across seven margins. Three pairs involving incompleteness never reach equivalence even at $\\pm 20$ pp: conditional precedence--incompleteness ($\\Delta = 16.8$ pp), coreferential--incompleteness ($\\Delta = 22.0$ pp), and incompleteness--scopal ($\\Delta = 14.2$ pp).\n5\t\n6\t\\begin{table}[!ht]\n7\t\\centering\n8\t\\small\n9\t\\caption{TOST equivalence sensitivity across margins. Mid-tier = fraction of the six within-cluster pairs (lexical, auth.\\ scope, scopal, cond.\\ prec.) that are equivalent. Inc.\\ and Cor.\\ columns indicate separation from the mid-tier cluster.}\n10\t\\label{tab:tost_sensitivity}\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMargin & Equiv.\\ pairs & Mid-tier & Inc.\\ sep. & Cor.\\ sep. \\\\\n14\t\\midrule\n15\t$\\pm 5$ pp & 0/15 & 0/6 & \\checkmark & \\checkmark \\\\\n16\t$\\pm 8$ pp & 0/15 & 0/6 & \\checkmark & \\checkmark \\\\\n17\t$\\pm 10$ pp & 3/15 & 3/6 & \\checkmark & \\checkmark \\\\\n18\t$\\pm 12$ pp & 5/15 & 5/6 & \\checkmark & \\checkmark \\\\\n19\t$\\pm 15$ pp & 8/15 & 6/6 & \\checkmark & -- \\\\\n20\t$\\pm 18$ pp & 9/15 & 6/6 & \\checkmark & -- \\\\\n21\t$\\pm 20$ pp & 12/15 & 6/6 & -- & -- \\\\\n22\t\\bottomrule\n23\t\\end{tabular}\n24\t\\end{table}\n25\t\n26\t\\section{Mitigation Experiment}\n27\t\\label{app:mitigation}\n28\t\n29\tTable~\\ref{tab:mitigation} reports the per-type, per-model $\\Delta$pp from the disambiguation-instruction mitigation experiment (1,256 treatment episodes across five of six types; coreferential was not tested). Coreferential pairs are excluded from both the mitigation and replication experiments. In mitigation, their ambiguous and unambiguous variants differ only in pronoun resolution, making it impossible to craft targeted disambiguation instructions without revealing the experimental manipulation. In replication, the $\\tau^2$-bench episode design for coreferential ambiguity is tightly coupled to the original five-model configuration; extendin\n…[truncated 23595 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T16:18:09.188769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/references.bib",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T16:18:09.188895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T16:18:09.189044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "liu_ambiguity_2023|hu_ambiguity_2025",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/references.bib",
+              "output_mode": "content",
+              "-C": "2"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T16:18:09.189218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "296-}\n297-\n298:@article{hu_ambiguity_2025,\n299-  title={Ambiguity in {LLMs} is a Concept Missing Problem},\n300-  author={Hu, Zhibo and Wang, Chen and Shu, Yanfeng and Paik, Hye-Young and Zhu, Liming},\n--\n342-}\n343-\n344:@inproceedings{liu_ambiguity_2023,\n345-  title={We're Afraid Language Models Aren't Modeling Ambiguity},\n346-  author={Liu, Alisa and Wu, Zhaofeng and Michael, Julian and Suhr, Alane and West, Peter and Koller, Alexander and Swayamdipta, Swabha and Smith, Noah A. and Choi, Yejin},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T16:18:09.189405+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbHudj5Ria74DXeCnijVm\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r15_sf_fixes_appendix_20260522T161701"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-r15-sf-fixes-appendix.md"
+}

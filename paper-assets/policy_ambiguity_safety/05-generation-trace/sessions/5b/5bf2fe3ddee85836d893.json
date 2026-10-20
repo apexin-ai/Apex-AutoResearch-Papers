@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bf2fe3ddee85836d893",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 003b deepseek",
+  "task_key": "worker_code_plan_003b_deepseek_20260520T183156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003b_deepseek_20260520T183156_result.json",
+    "occurrence": 1,
+    "bytes": 99,
+    "sha256": "486f681232a67354e62284f3519306b032816589d6b205306829104fa82b6c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor cleaned up. Both phases already finished successfully — no need to re-arm."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003b-deepseek.md"
+}

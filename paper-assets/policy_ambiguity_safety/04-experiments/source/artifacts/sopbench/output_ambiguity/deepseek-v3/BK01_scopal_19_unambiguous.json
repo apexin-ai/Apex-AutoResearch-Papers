@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The user does have more account balance \"balance\" than the task amount user parameter \"{amount}\" to perform this task.",
+  "action": "transfer_funds",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 10,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "[says: It seems there was an issue logging in with your driver's license. Could you please verify the details of your driver's license, especially the state it was issued in? Alternatively, you can provide y...]",
+    "login_user",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "[says: It appears that your account balance is $1000.0, which is less than the requested transfer amount of $1500.0. Unfortunately, you do not have sufficient funds to complete this transfer. \n\nIf you'd like...]"
+  ],
+  "timestamp": "2026-05-22T22:34:20.349148"
+}

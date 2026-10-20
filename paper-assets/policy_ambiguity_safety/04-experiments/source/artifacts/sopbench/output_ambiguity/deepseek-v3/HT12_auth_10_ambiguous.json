@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "internal_is_loyalty_member",
+    "[says: To proceed with the booking for Alex Turner, I need to verify the following conditions:\n\n1. **Room Availability**: Ensure that a double room is available for the dates from December 7, 2024, to Decemb...]",
+    "[says: Here are the details for your booking request:\n\n1. **Room Availability**: A double room is available for the dates December 7, 2024, to December 12, 2024. The price per night for a double room is $110...]",
+    "[says: Since the stay duration exceeds the allowed limit for non-premium members and Alex Turner is not a premium-tier loyalty program member, I cannot proceed with the booking as requested. \n\nIf you'd like ...]"
+  ],
+  "timestamp": "2026-05-22T17:54:43.932270"
+}

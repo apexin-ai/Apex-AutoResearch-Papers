@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I need a few more details to process your room change request. Specifically, could you please let me know:\n\n1. **What room type would you like to upgrade to?** (e.g., suite, deluxe, etc.)\n\nThis will h...]",
+    "internal_valid_room_change_reason",
+    "[says: I notice you've mentioned wanting to upgrade but provided \"double\" as the room type, which is your current room type. However, let me proceed with verifying the conditions for your room change request...]",
+    "internal_get_room_checkin_details",
+    "[says: \"Upgrade\" is a valid reason. Now let me check your check-in details to confirm you're currently checked in.]",
+    "[says: I don't see John Doe listed in the current room check-in records. This means you are not currently checked in at the hotel, which is a required condition to request a room change.\n\nUnfortunately, I am...]"
+  ],
+  "timestamp": "2026-05-22T17:02:58.957832"
+}

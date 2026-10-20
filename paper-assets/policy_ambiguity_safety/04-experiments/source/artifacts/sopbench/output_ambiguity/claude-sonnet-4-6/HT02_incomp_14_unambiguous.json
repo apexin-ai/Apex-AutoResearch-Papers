@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The \"{check_in_date}\" must be **no earlier than** {min_booking_lead_time_days} days after and **no later than** {max_booking_lead_time_days} days after the current interaction date.",
+  "action": "book_room",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "[says: I'll help you book a room for Alice Williams. Let me verify all the necessary conditions before proceeding. I'll start by checking the current interaction time.]",
+    "[says: The current date is **2024-12-02**. The requested check-in date is **2024-12-05**, which is 3 days from now \u2014 this falls within the valid booking window (7 to 30 days from today).\n\nWait, actually 3 da...]",
+    "[says: I understand you've provided the same details again, but unfortunately I'm still unable to process this booking.\n\nThe check-in date of **2024-12-05** does not meet the required condition:\n- **Current ...]"
+  ],
+  "timestamp": "2026-05-22T17:01:13.625100"
+}

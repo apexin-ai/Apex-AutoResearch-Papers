@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_003b",
+  "project": "policy_ambiguity_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:13:39.530Z",
+    "updated_at": "2026-05-20T19:14:50.859Z",
+    "hypothesis": "DeepSeek V3 (open-source dense) exhibits the same binary ambiguity effect and type hierarchy. As a third architecture family (dense vs MoE vs proprietary), consistent results complete the 5-model cross-architecture generalizability evidence for C4.",
+    "parent": "plan_002"
+  },
+  "timestamp": "2026-05-20T19:14:50.902014+00:00",
+  "trigger": "update_registry"
+}

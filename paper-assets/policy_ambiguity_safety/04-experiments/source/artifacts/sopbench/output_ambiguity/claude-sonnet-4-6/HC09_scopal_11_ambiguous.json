@@ -1,0 +1,42 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The provider must offer services that cover the user's policy.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll help you submit a claim! Let me start by verifying your account and logging you in. I'll work through the required steps systematically.\n\n**Step 1: Check if the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "get_policy_details",
+    "[says: Login successful! Now let me retrieve your policy details to verify eligibility.\n\n**Step 3: Retrieve policy details.**]",
+    "get_claim_history",
+    "[says: Your policy is active (Health). Now let me check your claim history to verify that the total of pending and approved claims doesn't exceed your coverage amount of **$5,000**.\n\n**Step 4: Retrieve claim...]",
+    "get_provider_details",
+    "[says: Total of pending and approved claims: **$2,000**. Adding the new claim of **$1,000** brings the total to **$3,000**, which is within your coverage limit of **$5,000**. \u2705\n\nNow let me verify the provide...]",
+    "[says: The provider **Kaiser Permanente (Oakland)** offers **Pharmacy** services. However, your policy type is **Health**, which does not match the provider's service type. Let me also check if this provider...]",
+    "[says: I understand you'd like to proceed with the same details, but unfortunately I'm still unable to submit this claim for the same reasons explained previously:\n\n- \u274c The provider **Kaiser Permanente (Oakl...]"
+  ],
+  "timestamp": "2026-05-22T17:27:01.545855"
+}

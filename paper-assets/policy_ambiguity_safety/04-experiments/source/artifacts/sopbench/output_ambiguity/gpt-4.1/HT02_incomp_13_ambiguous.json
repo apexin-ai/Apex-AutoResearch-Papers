@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The booking must be made within an acceptable advance booking window.",
+  "action": "book_room",
+  "task_idx": 13,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "find_booking_info",
+    "book_room",
+    "[says: The single room for John Doe has been successfully booked from December 3, 2024, to December 5, 2024. The payment of $160.00 has been accepted.\n\nIf you need any further assistance or details about the...]"
+  ],
+  "timestamp": "2026-05-22T16:56:09.568190"
+}

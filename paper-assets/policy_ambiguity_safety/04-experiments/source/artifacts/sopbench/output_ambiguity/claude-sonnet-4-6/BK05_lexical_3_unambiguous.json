@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have** a credit score higher than the {minimum_credit_score} credit score in order to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you apply for a credit card! Let me first verify that your account exists in our system.]",
+    "internal_get_credit_score",
+    "[says: Your account exists! Now let me check your credit score to ensure you meet the eligibility requirement (a credit score above 400).]",
+    "[says: Unfortunately, I'm unable to process your credit card application. Here's why:\n\n- **Required Credit Score:** Above 400\n- **Your Credit Score:** 300\n\nYour credit score of **300** does not meet the mini...]",
+    "[says: I understand you've provided your information, but unfortunately I'm still unable to process your credit card application.\n\nAs I checked previously, your credit score is **300**, which does not meet t...]"
+  ],
+  "timestamp": "2026-05-22T17:17:22.152737"
+}

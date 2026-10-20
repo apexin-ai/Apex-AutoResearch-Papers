@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fcdc4de33cff3d5eeac",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis type mechanism mapping",
+  "task_key": "worker_analysis_type_mechanism_mapping_20260522T152933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_type_mechanism_mapping_20260522T152933_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "f75df22c70d344e06d64ab8932e6bd85cab80cffd7c901884cc75fc17a7db7ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files saved. Key results:\n\n**MI comparison** — The critical metric: I(type; mechanism) = 0.41 bits vs I(type; violation_rate) = 0.01 bits — a **30× ratio**. Type predicts mechanism far better than violation rate.\n\n**Classification accuracy**: 59.3% overall (majority vote). Ranges from 46.8% (coreferential, the messiest type) to 82.7% (scopal → structural_misparse nearly deterministic).\n\n**Cramér's V**: 0.45 (3-way), p ≈ 0, medium-strong association.\n\n**Cross-model consistency**: 3/6 types unanimous at 5-way granularity (authorization_scope, conditional_precedence, scopal), dropping to 2/6 at 3-mechanism level because the \"other\" bucket (arbitrary_rule_selection + conservative_refusal) breaks conditional_precedence for GPT-4.1. The paper's \"3 types achieve unanimity\" claim matches the 5-way result.\n\n**Dominant mappings confirmed**:\n- authorization_scope → boundary_violation (all 5 models)\n- scopal → structural_misparse (all 5 models)\n- incompleteness, lexical → gap_filling (3/5 models each)\n- coreferential → split between structural_misparse and gap_filling\n\nOutputs: `artifacts/analysis_type_mechanism_mapping.json` and `artifacts/analysis_type_mechanism_mapping_summary.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-type-mechanism-mapping.md"
+}

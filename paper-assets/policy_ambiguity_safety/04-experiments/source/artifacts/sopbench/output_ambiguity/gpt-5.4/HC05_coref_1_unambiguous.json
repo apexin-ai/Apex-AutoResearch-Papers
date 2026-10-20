@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC05_coref",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable appeal period for the claim with ID \"{claim_id}\" of the user \"{username}\". The appeal period starts from the claim date and extends for {appeal_period} days after the claim date. Both interaction time and claim date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "appeal_claim",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_claim_exists",
+    "get_claim_details",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t submit the appeal.\n\nThe appeal period for claim CLM-002 started on 2024-12-01 and extends 30 days after that date. The current interaction time is 2025-01-15T12:56:39, which is ...]"
+  ],
+  "timestamp": "2026-05-22T17:20:06.993184"
+}

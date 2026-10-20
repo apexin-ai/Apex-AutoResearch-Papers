@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_002c",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:13:38.352Z",
+    "updated_at": "2026-05-20T18:53:05.692Z",
+    "hypothesis": "Claude Sonnet 4.6 exhibits the same binary ambiguity effect (+30-40pp) and type hierarchy (spec > ling) observed in GPT models, confirming cross-model generalizability of C1-C3. As a frontier API model from a different provider, consistent results strengthen the claim that ambiguity effects are model-agnostic.",
+    "parent": "plan_002",
+    "spec": {
+      "command": "python run_full_study.py --phase 1 --models claude-sonnet-4-6 --concurrency 10 && python run_full_study.py --phase 2 --models claude-sonnet-4-6 --concurrency 5",
+      "server": "local (API-only)",
+      "data_path": "artifacts/clause_templates_full.json",
+      "data_count": 600,
+      "model_name": "anthropic/claude-sonnet-4-6",
+      "seed": "N/A (API sampling)",
+      "checkpoint_source": "plan_002 clause templates",
+      "eval_data": "300 clauses × 2 conditions, cross-judge by gpt-5.4",
+      "checkpoint_path": "artifacts/full_study/judgments/claude-sonnet-4-6/judgments.jsonl",
+      "log_path": "artifacts/full_study/episodes/claude-sonnet-4-6/episodes.jsonl",
+      "metrics": {
+        "episodes": 600,
+        "judgments": 600,
+        "errors": 0,
+        "ambiguous_violation_rate": 0.303,
+        "unambiguous_violation_rate": 0.047,
+        "delta_pp": 25.7
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T18:53:05.692Z"
+  },
+  "timestamp": "2026-05-20T18:53:05.707144+00:00",
+  "trigger": "update_registry"
+}

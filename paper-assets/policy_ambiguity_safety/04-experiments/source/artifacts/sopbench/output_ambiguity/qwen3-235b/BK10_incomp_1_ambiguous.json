@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The deposit must comply with the bank's deposit regulations.",
+  "action": "deposit_funds",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 2,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "deposit_funds",
+    "[says: The deposit of $15,000.00 has been successfully processed into your account. Your transaction is complete, and the funds will be available according to your bank's standard processing times. Is there ...]"
+  ],
+  "timestamp": "2026-05-22T17:20:46.323040"
+}

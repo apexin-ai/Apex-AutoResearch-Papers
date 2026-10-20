@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC06_lexical",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must not have any outstanding claims to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 27,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but I can\u2019t update your policy.\n\nReason:\n- You are logged in successfully.\n- Your policy is active.\n- The request is within the 60-day enrollment period.\n- The requested coverage amount of ...]"
+  ],
+  "timestamp": "2026-05-22T22:51:38.716945"
+}

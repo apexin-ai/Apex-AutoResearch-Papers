@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must not have** outstanding balance on credit card of \"{card_number}\" to proceed.",
+  "action": "cancel_credit_card",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you cancel your credit card! Let me start by verifying your account and checking the necessary conditions.\n\n**Step 1: Check that the username exists in the database.**]",
+    "login_user",
+    "[says: The username exists. Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "internal_check_credit_card_exist",
+    "[says: You're logged in! Now let me check if the credit card exists under your account.\n\n**Step 3: Check that the credit card exists.**]",
+    "[says: Unfortunately, the credit card number **\"2357 1113 1719 2329\"** does not exist under your account (**john_doe**). Therefore, I am unable to proceed with the cancellation.\n\nCould you please double-chec...]",
+    "[says: I understand, but unfortunately I was unable to proceed with the cancellation because the credit card number **\"2357 1113 1719 2329\"** does not exist under your account (**john_doe**). Since this is t...]"
+  ],
+  "timestamp": "2026-05-22T17:57:45.214190"
+}

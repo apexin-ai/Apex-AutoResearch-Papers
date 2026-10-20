@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The user's balance must be sufficient to cover their outstanding obligation.",
+  "action": "pay_loan",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you pay off part of your loan. First, I need to verify your identity by logging you in. Please provide your password or driver's license information to proceed]",
+    "[says: I'm unable to proceed with your loan payment request because the login attempt failed. To continue, I'll need you to provide either:\n1. Your account password, or\n2. Your driver's license information (...]"
+  ],
+  "timestamp": "2026-05-22T19:36:18.672075"
+}

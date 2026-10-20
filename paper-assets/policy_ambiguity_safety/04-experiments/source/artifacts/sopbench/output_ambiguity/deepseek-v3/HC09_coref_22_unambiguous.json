@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_get_interaction_time",
+    "get_policy_details",
+    "[says: \n]",
+    "internal_check_provider_exists",
+    "[says: \n]",
+    "get_provider_details",
+    "[says: \n]",
+    "[says: I'm sorry, but I cannot submit your claim for the following reasons:\n\n1. The claim amount of $4000 exceeds the maximum claimable amount of $3000.\n2. The provider \"Kaiser Permanente\" is currently unava...]",
+    "[says: I understand you've provided all the information you can. Unfortunately, I cannot process your claim request as it stands due to the issues mentioned earlier (amount too high, provider unavailable, an...]"
+  ],
+  "timestamp": "2026-05-23T01:09:42.405181"
+}

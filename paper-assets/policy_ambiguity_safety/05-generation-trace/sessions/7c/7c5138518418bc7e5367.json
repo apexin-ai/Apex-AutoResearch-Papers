@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c5138518418bc7e5367",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan010 perturbation and merge250",
+  "task_key": "worker_code_plan010_perturbation_and_merge250_20260520T125715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan010_perturbation_and_merge250_20260520T125715_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "43d29a8432bddffd87ede7a9ade61b2d331638fca3d41b0d3d76459e9a212c8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成：\n\n### 子任务 A：`clauses_perturbation_control.json`（30 条）\n- 15 synonym substitution + 15 clause reordering\n- 每种 perturbation 覆盖 6 个 ambiguity type\n\n**Surface-level 变化量对比表：**\n\n| Metric | Ambiguity Pairs | Perturbation Pairs | Ratio |\n|---|---|---|---|\n| Token diff (mean) | 23.3 | 10.0 | **2.33x** |\n| Edit distance (mean) | 163.8 | 155.8 | **1.05x** |\n| Token diff (max) | 50 | 23 | — |\n| Edit distance (max) | 320 | 372 | — |\n| Token diff (min) | 3 | 2 | — |\n| Edit distance (min) | 29 | 36 | — |\n\n两项 ratio 均在 5x 以内。\n\n### 子任务 B：`clause_templates_full.json`（250 条）\n- authorization_scope: 50, conditional_precedence: 50, incompleteness: 50, lexical: 50, scopal: 50\n- 按 ambiguity_type (alphabetical) → clause_id 排序\n- 11 个必填字段全部填充，无 null"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan010-perturbation-and-merge250.md"
+}

@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC16_auth",
+  "domain": "healthcare",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The user is logged in previously with the correct credentials to perform this action.",
+  "action": "update_policy",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It seems there was an issue logging you in with the provided driver's license details. Could you please confirm the following:\n\n1. The username \"Henry Smith\" is correct.\n2. The driver's license ID \"sd...]"
+  ],
+  "timestamp": "2026-05-23T00:09:23.946476"
+}

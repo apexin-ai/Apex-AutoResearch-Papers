@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC05_incomp",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim must still be eligible for appeal based on its filing date.",
+  "action": "appeal_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you appeal your denied claim! Let me start by logging you in first. I'll process this step by step.\n\n**Step 1: Log in the user.**]",
+    "get_policy_details",
+    "[says: You're successfully logged in! Now let me verify your policy details and claim information.\n\n**Step 2: Retrieve policy details to confirm an active policy.**]",
+    "get_claim_details",
+    "[says: Your policy is active (Health). Now let me check the claim details.\n\n**Step 3: Retrieve claim details to verify its status.**]",
+    "[says: Unfortunately, I'm unable to proceed with the appeal for **CLM-002**. Here's why:\n\n- **Claim Status:** The claim currently has a status of **\"Pending\"**, not **\"Denied\"**.\n\nTo be eligible for an appea...]",
+    "[says: I understand you'd like to appeal claim **CLM-002**, but as I mentioned, I'm unable to process this appeal because:\n\n- **Claim CLM-002** currently has a status of **\"Pending\"**, not **\"Denied\"**.\n\nAn ...]"
+  ],
+  "timestamp": "2026-05-22T16:53:19.043456"
+}

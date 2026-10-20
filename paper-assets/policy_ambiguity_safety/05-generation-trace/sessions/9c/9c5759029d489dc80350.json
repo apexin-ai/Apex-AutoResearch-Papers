@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c5759029d489dc80350",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code sopbench phase2c build",
+  "task_key": "worker_code_sopbench_phase2c_build_20260522T144319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sopbench_phase2c_build_20260522T144319_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "f16059ad5479e9caae9d1f81f71a85b53982f1f0ba6265b6e2b4dc236d3abf3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three deliverables complete:\n\n1. **`run_full_experiment.py`** — Full experiment script supporting all 4 domains, 47 pairs, matched-pair design. Supports `--dry-run`, `--resume`, `--pair-filter`, per-episode JSON output, and retry logic.\n\n2. **`analyze_results.py`** — Analysis script computing per-type/per-domain violation rates, Newcombe 95% CIs, and τ²-bench comparison.\n\n3. **`sopbench_phase2c_dryrun.md`** — Dry-run validation confirms:\n   - 47 pairs all loaded successfully (10 excluded as specified)\n   - Every pair found exactly 3 negative tasks\n   - 141 episodes × 2 conditions = **282 total runs**\n   - Domain distribution: healthcare 63, bank 48, hotel 21, library 9\n   - All 6 ambiguity types covered"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sopbench-phase2c-build.md"
+}

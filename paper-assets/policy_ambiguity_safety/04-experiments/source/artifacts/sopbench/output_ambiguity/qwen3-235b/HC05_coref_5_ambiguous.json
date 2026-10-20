@@ -1,0 +1,37 @@
+{
+  "pair_id": "HC05_coref",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The filing must occur within the allowed window following its initial determination.",
+  "action": "appeal_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_claim_exists",
+    "get_policy_details",
+    "get_claim_details",
+    "internal_get_interaction_time",
+    "appeal_claim",
+    "[says: The appeal for your denied claim (ID: CLM-002) has been successfully submitted. The system confirms the claim status was 'denied' and all eligibility requirements were met, including timely filing wit...]"
+  ],
+  "timestamp": "2026-05-22T19:32:22.221099"
+}

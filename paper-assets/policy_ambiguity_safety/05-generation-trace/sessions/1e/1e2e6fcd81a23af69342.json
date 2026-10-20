@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e2e6fcd81a23af69342",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit tier1 task2 results table",
+  "task_key": "worker_edit_tier1_task2_results_table_20260522T034851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_tier1_task2_results_table_20260522T034851_result.json",
+    "occurrence": 1,
+    "bytes": 1408,
+    "sha256": "820ad1348b5530a19a0d010747bcd1e675c786664ba2351c487f9b9bf4b4b223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Decision: ADDED** — enhanced existing Table 1 rather than adding a new table.\n\n**What changed in `experiments.tex`**:\n1. Added **95% CI** column (Newcombe CIs, computed from per-type data with N=250) merged with Δpp as `Δpp [95% CI]`\n2. Added **Tier** column encoding TOST ±15pp equivalence clusters: U (upper/incompleteness), M (mid-tier, 6/6 pairwise equivalent), L (lower/coreferential)\n3. Switched from `\\small` to `\\footnotesize` + `\\setlength{\\tabcolsep}{3.8pt}` to fit 11 columns\n4. Abbreviated model headers (GPT-5.4→5.4, Claude→Cla., etc.) with legend in caption\n5. Per-model rates rounded to integers to save horizontal space\n\n**Space impact**: Net zero vertical lines added (same row count). The `\\footnotesize` switch actually reduced total page count from 16→15. Main text remains exactly 8 pages (Conclusion on p8, Limitations starts p9).\n\n**No overfull hbox** on the table. Two pre-existing overfull warnings from other sections remain unchanged.\n\n**CI values** (Newcombe method, verified against `gen_fig2_forest_plot.py`):\n| Type | Δpp | 95% CI |\n|------|-----|--------|\n| Incompleteness | +49.2 | [42.2, 55.6] |\n| Auth. Scope | +36.0 | [29.1, 42.6] |\n| Lexical | +35.2 | [28.0, 42.0] |\n| Scopal | +34.2 | [27.4, 40.7] |\n| Cond. Prec. | +30.8 | [24.0, 37.4] |\n| Coreferential | +18.7 | [11.5, 25.7] |\n| Overall | +34.0 | [31.3, 36.9] |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-tier1-task2-results-table.md"
+}

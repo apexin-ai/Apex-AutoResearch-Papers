@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f87ec5f9a785dcad0b11",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research prevalence airline collect",
+  "task_key": "worker_research_prevalence_airline_collect_20260523T052514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prevalence_airline_collect_20260523T052514_result.json",
+    "occurrence": 1,
+    "bytes": 2107600,
+    "sha256": "ced67ad47bcf6cd73b21695890989cbbb6d516bdc8d594281ca1e13dbb6002ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2107620,
+                "serialized_sha256": "ebb81cda6893c44793281ffae1f6de3f1a2900af79eda52cf196230c13eb77ca",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prevalence-airline-collect.md"
+}

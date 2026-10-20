@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK02_lexical",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's outstanding obligations must not be excessive to take a loan.",
+  "action": "get_loan",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It seems there was an issue logging into your account with the provided credentials. Could you please verify your username and identification and try again? If you're unsure, you may need to reset you...]"
+  ],
+  "timestamp": "2026-05-22T23:36:42.251344"
+}

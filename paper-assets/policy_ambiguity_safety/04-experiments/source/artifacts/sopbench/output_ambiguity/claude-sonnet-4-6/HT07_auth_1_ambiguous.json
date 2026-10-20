@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT07_auth",
+  "domain": "hotel",
+  "constraint": "valid_identification",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must present valid identification meeting the hotel's requirements.",
+  "action": "process_guest_checkin",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "process_guest_checkin",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "find_booking_info",
+    "[says: Let me start by verifying Jane Smith's reservation details.]",
+    "process_guest_checkin",
+    "[says: Jane Smith has a confirmed reservation. Now let me proceed with the check-in process using the provided identification details.]",
+    "[says: I'm sorry, but I was able to retrieve the result, however I must flag an important concern:\n\nThe check-in for **Jane Smith** cannot be completed for the following reason:\n\n- **Invalid Identification**...]",
+    "[says: I'm sorry, but I'm unable to complete the check-in for **Jane Smith** for the following reasons:\n\n1. **Invalid Identification**: A **library card** is not an accepted form of identification for hotel ...]"
+  ],
+  "timestamp": "2026-05-22T17:39:56.189869"
+}

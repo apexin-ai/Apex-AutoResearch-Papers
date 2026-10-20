@@ -1,0 +1,35 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must hold a current library membership.",
+  "action": "borrow_book",
+  "task_idx": 27,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 6,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_convert_book_title_to_id",
+    "internal_get_user_borrowed",
+    "[says: Sorry \u2014 I can\u2019t borrow **\"Beloved\"** for you because it appears you have already borrowed that book.]"
+  ],
+  "timestamp": "2026-05-22T22:58:12.573600"
+}

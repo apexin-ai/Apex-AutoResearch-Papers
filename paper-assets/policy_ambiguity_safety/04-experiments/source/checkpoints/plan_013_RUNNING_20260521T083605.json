@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan_013",
+  "project": "policy_ambiguity_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:05:02.918Z",
+    "updated_at": "2026-05-21T08:36:05.528Z",
+    "hypothesis": "Binary ambiguity effect (C1: Δ >= 20pp) and type hierarchy (C2: at least partial rank consistency) replicate on 1-2 new model families (Gemini/LLaMA/Mistral) not in original 5-model study, strengthening cross-architecture generalization",
+    "spec": {
+      "command": "python model_expansion.py --models gemini-2.5-flash,llama-4-scout --episodes 500",
+      "server": "local (API-only via OpenRouter proxy)",
+      "data_path": "artifacts/full_study/data/clause_pairs/",
+      "data_count": 1000,
+      "model_name": "gemini-2.5-flash, llama-4-scout",
+      "seed": 42
+    },
+    "metrics": {
+      "gemini_2.5_flash": {
+        "amb_rate": 0.376,
+        "unamb_rate": 0.04,
+        "delta_pp": 33.6,
+        "p_value": 4e-22,
+        "c1_replicates": true,
+        "c2_rank_corr": 0.7,
+        "type_ranking": [
+          "lexical",
+          "incompleteness",
+          "scopal",
+          "cond_prec",
+          "auth_scope"
+        ]
+      },
+      "llama_4_scout": {
+        "amb_rate": 0.376,
+        "unamb_rate": 0.176,
+        "delta_pp": 20,
+        "p_value": 7.7e-07,
+        "c1_replicates": true,
+        "c2_rank_corr": -0.2,
+        "type_ranking": [
+          "incompleteness",
+          "auth_scope",
+          "lexical",
+          "scopal",
+          "cond_prec"
+        ]
+      },
+      "summary": {
+        "c1_replicated": "2/2",
+        "c2_replicated": "1/2 (Gemini ρ=0.7, LLaMA ρ=-0.2)",
+        "total_episodes": 1000
+      }
+    },
+    "checkpoint_path": "artifacts/model_expansion/",
+    "log_path": "artifacts/model_expansion/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T08:36:05.555551+00:00",
+  "trigger": "update_registry"
+}

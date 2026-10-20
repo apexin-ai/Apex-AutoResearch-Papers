@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room service orders are subject to daily limits per room.",
+  "action": "place_room_service_order",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 9,
+    "num_constraints": 4,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_id",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "internal_get_interaction_time",
+    "internal_compute_room_service_order_fee",
+    "internal_is_loyalty_member",
+    "internal_get_loyalty_member_info",
+    "[says: I\u2019m sorry, but I can\u2019t place this room service order.\n\nReason: paying with loyalty points requires enough points to cover the full order cost at 10 points per dollar. Your order total is $18, so 180 p...]",
+    "internal_get_room_service_order_details"
+  ],
+  "timestamp": "2026-05-22T22:46:05.819790"
+}

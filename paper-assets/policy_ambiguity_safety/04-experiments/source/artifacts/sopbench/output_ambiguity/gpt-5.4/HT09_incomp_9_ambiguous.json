@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_change_reason",
+    "show_room_change_options",
+    "[says: I can help, but the reason provided isn\u2019t in the hotel\u2019s valid room-change list.\n\nValid reasons are:\n- upgrade\n- maintenance\n- noise\n- accessibility\n- temperature\n- cleanliness\n- safety\n- other\n\nIf yo...]",
+    "request_room_change"
+  ],
+  "timestamp": "2026-05-22T16:57:11.599752"
+}

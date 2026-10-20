@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC04_cond",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable enrollment period for the user \"{username}\". The enrollemnt period starts from the enrollment date of the user's policy and extends for {enrollment_period} days after the enrollment date. Both interaction time and enrollment date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "update_policy",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I\u2019ll first verify the username exists, then log you in with the driver\u2019s license info you provided, and if that succeeds I\u2019ll check whether your policy is eligible for update before proceeding.]",
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but I can\u2019t update your policy because the enrollment-period requirement is not met.\n\nReason:\n- Your policy enrollment date is 2023-05-10.\n- Policy updates are only allowed within 90 days o...]",
+    "[says: I\u2019m unable to complete the policy update because it falls outside the allowed enrollment period, so I will end the conversation as requested.]"
+  ],
+  "timestamp": "2026-05-22T23:19:01.093252"
+}

@@ -1,0 +1,39 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must not have exceeded their borrowing allowance.",
+  "action": "borrow_book",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 8,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_exist",
+    "internal_check_book_available",
+    "internal_convert_book_title_to_id",
+    "internal_get_user_borrowed",
+    "internal_get_user_num_borrowed",
+    "borrow_book",
+    "check_return_date",
+    "[says: You have successfully borrowed the book \"Beloved.\" The return date for this book is October 24th, 2024. If you need any more assistance or want to borrow another book, just let me know!]"
+  ],
+  "timestamp": "2026-05-22T16:59:08.816804"
+}

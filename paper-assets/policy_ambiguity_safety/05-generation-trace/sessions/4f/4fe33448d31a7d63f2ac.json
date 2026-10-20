@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fe33448d31a7d63f2ac",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment disambiguation prompting",
+  "task_key": "worker_experiment_disambiguation_prompting_20260522T221751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_disambiguation_prompting_20260522T221751_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "d06321231edd8f270ec61175524b3b6044746d2ff41bfce231819829f2d8c30e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both episode and judge API calls failed with `Insufficient balance`. The experiment data is invalid — all 900 episodes are empty error traces, and all 900 judgments defaulted to \"none\" because the judge calls also failed.\n\n**To proceed**, the OpenRouter account needs credits recharged. Once funded:\n\n```bash\n# Clean failed data, then re-run\nrm disambiguation_intervention/episodes/episodes.jsonl\nrm disambiguation_intervention/judgments/judgments.jsonl\nrm disambiguation_intervention/results.json\n\n# Re-run\nsource .venv/bin/activate\npython disambiguation_intervention/run_disambiguation.py --phase episodes\npython disambiguation_intervention/run_disambiguation.py --phase judge\npython disambiguation_intervention/analyze_disambiguation.py\n```\n\nThe scripts themselves are complete and correct — resume logic will skip already-completed episodes, so you can also just delete the bad data and re-run without changes. Want me to do anything else while waiting for credits?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-disambiguation-prompting.md"
+}

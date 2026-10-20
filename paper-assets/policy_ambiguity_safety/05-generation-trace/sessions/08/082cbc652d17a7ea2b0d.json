@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "082cbc652d17a7ea2b0d",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper r14 citations appendix",
+  "task_key": "worker_paper_r14_citations_appendix_20260522T141330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r14_citations_appendix_20260522T141330_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "56effe103ebb19f5b91cb16850a99e8b1cfb4451cdbd1f679f1006c1746e46e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Summary of changes:\n\n**Part 1 — 4 citations added to `references.bib` and `related_work.tex`:**\n\n| # | Bib key | Actual authors | Venue | Insertion in related_work.tex |\n|---|---------|---------------|-------|-------------------------------|\n| 1 | `kamath_scope_2024` | Kamath, Schuster, Vajjala, Reddy | TACL 2024 | Para 1, after Li taxonomy sentence |\n| 2 | `sedova_to_know_2024` | Sedova, Litschko, Frassinelli, Roth, Plank | Findings of EMNLP 2024 | Para 2, after Liu ambiguity sentence |\n| 3 | `hu_pragmatic_2023` | Hu, Floyd, Jouravlev, Fedorenko, Gibson | ACL 2023 | Para 2, after garden-path sentence |\n| 4 | `ruis_goldilocks_2023` | Ruis, Khan, Biderman, Hooker, Rocktäschel, Grefenstette | NeurIPS 2023 | Para 2, after garden-path sentence (with Hu) |\n\n**Part 2 — Clause pair table added** to `appendix.tex` as the final section (`\\section{Clause Pair Examples}`, `\\label{app:clause_examples}`).\n\n**Author discrepancy note:** The TACL 2024 scope ambiguity paper is by **Kamath et al.**, not Stengel-Eskin. No Stengel-Eskin TACL 2024 paper was found. Hu et al. published at ACL 2023 (not 2022), Ruis et al. at NeurIPS 2023 (not 2024). All bib entries use correct years."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r14-citations-appendix.md"
+}

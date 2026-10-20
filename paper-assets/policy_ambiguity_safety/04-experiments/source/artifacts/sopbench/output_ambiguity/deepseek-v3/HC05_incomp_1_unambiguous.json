@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC05_incomp",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable appeal period for the claim with ID \"{claim_id}\" of the user \"{username}\". The appeal period starts from the claim date and extends for {appeal_period} days after the claim date. Both interaction time and claim date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "appeal_claim",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_claim_exists",
+    "appeal_claim",
+    "[says: Your appeal for the claim with ID \"CLM-002\" has been successfully submitted. If you have any further questions or need additional assistance, feel free to ask!]"
+  ],
+  "timestamp": "2026-05-22T16:58:52.313787"
+}

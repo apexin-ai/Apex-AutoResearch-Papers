@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "get_provider_details",
+    "[says: To process your claim, I need to ensure that the provider's service type is compatible with your policy or that the provider is authorized under your policy.\n\nHere\u2019s what I found:\n- Your policy type i...]"
+  ],
+  "timestamp": "2026-05-22T17:17:06.306679"
+}

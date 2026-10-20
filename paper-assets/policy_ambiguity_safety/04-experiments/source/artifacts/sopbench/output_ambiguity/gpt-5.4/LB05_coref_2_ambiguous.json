@@ -1,0 +1,34 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The book in question must be currently checked out to the requesting user.",
+  "action": "return_book",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_get_user_borrowed",
+    "internal_convert_book_title_to_id",
+    "[says: I can\u2019t return \"Beloved\" for you because that title doesn\u2019t appear to exist in the library system, so it isn\u2019t a book I can verify as currently checked out to your account.\n\nYou are logged in as mario...]"
+  ],
+  "timestamp": "2026-05-22T17:22:27.073436"
+}

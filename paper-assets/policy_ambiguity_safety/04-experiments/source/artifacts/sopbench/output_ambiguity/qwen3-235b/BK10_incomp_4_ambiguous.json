@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The deposit must comply with the bank's deposit regulations.",
+  "action": "deposit_funds",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The login attempt for user **john_doe** failed. Please verify that your identification (e.g., password or driver's license details) is correct and matches the account. If the issue persists, contact c...]"
+  ],
+  "timestamp": "2026-05-22T17:22:11.235664"
+}

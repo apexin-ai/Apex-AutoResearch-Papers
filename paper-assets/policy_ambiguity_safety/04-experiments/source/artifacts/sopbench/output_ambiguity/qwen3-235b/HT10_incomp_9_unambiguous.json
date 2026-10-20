@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The guest \"{guest_name}\" must have placed **fewer than** {max_room_service_orders_per_day} room service orders for room \"{room_id}\" on the current interaction date.",
+  "action": "place_room_service_order",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "place_room_service_order",
+    "[says: The room service order for John Doe in room 101 has been successfully placed. The order for 1 cheesecake and 1 coffee under the dining category has been processed using loyalty points. The total amoun...]"
+  ],
+  "timestamp": "2026-05-22T17:29:33.161573"
+}

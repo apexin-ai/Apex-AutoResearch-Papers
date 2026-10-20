@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT07_auth",
+  "domain": "hotel",
+  "constraint": "valid_identification",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must present valid identification meeting the hotel's requirements.",
+  "action": "process_guest_checkin",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "process_guest_checkin",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "find_booking_info",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t check Jane Smith in.\n\nHer reservation is confirmed, and the current time is after 15:00, but the identification provided does not meet the hotel\u2019s check-in requirements. A stude...]"
+  ],
+  "timestamp": "2026-05-22T17:14:20.842804"
+}

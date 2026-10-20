@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC10_auth",
+  "domain": "healthcare",
+  "constraint": "provider_authorized",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The provider must have the appropriate authorization to treat the user.",
+  "action": "submit_claim",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before I can proceed with submitting your claim, I need to verify a few things:\n\n1. **Login Verification**: I'll check if your username and identification are correct.\n2. **Policy Status**: Ensure you...]",
+    "get_policy_details",
+    "[says: Great, you're successfully logged in! Now, I'll check if your policy is active and retrieve its details to ensure everything is in order.]",
+    "get_provider_details",
+    "[says: Your policy is active with a coverage amount of $10,000 and an annual income of $1,000,000. Next, I'll verify the provider details to ensure they match your policy type (Pharmacy).]",
+    "[says: The provider \"Kaiser Permanente\" matches your policy type (Pharmacy). However, the provider is currently unavailable for appointments, but this doesn't affect claim submissions.\n\nNow, let's check if t...]",
+    "[says: Since the claim amount of $4,000 exceeds the maximum allowable limit of $3,000, I cannot proceed with submitting the claim as it stands. \n\nIf you'd like to adjust the amount to $3,000 or less, I can a...]"
+  ],
+  "timestamp": "2026-05-23T00:08:30.457917"
+}

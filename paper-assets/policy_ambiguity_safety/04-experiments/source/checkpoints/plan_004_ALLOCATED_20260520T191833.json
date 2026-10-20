@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_004",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:18:16.262Z",
+    "updated_at": "2026-05-20T19:18:33.104Z",
+    "hypothesis": "5-model unified analysis confirms C1-C4: binary ambiguity effect is model-agnostic (all 5 models p<0.0001), type hierarchy exists (V=0.137), specification-layer more dangerous than linguistic-layer (Δ=6.1pp), and significant model×type interaction reveals that different architectures are differentially vulnerable to specific ambiguity types.",
+    "parent": "plan_002"
+  },
+  "timestamp": "2026-05-20T19:18:33.123626+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC04_lexical",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "This action must occur while the user's enrollment is still active and current.",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll process your policy update request step by step. Let me start by logging you in first!]",
+    "get_policy_details",
+    "[says: You're now logged in! Let me now retrieve your policy details to verify your current policy status.]",
+    "internal_get_interaction_time",
+    "[says: Let me also verify that your enrollment is still active and current by checking the current interaction time.]",
+    "update_policy",
+    "[says: All conditions have been verified! Here's a summary before proceeding:\n\n- \u2705 **Logged in** successfully.\n- \u2705 **Active policy** confirmed (current type: Health).\n- \u2705 **Enrollment is active** (enrolled s...]",
+    "[says: Your healthcare policy has been successfully updated! Here's a summary of your updated policy:\n\n| Field | Details |\n|---|---|\n| **Policy Type** | Health |\n| **Coverage Amount** | $5,000 |\n| **Annual I...]",
+    "[says: It looks like your policy has already been successfully updated with exactly the information you've provided! There's nothing more to do here.\n\nThank you for using our healthcare assistant, and have a...]"
+  ],
+  "timestamp": "2026-05-22T17:08:02.160964"
+}

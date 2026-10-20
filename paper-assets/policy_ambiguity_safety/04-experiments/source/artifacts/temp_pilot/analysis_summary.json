@@ -1,0 +1,32 @@
+{
+  "model": "gpt-4.1",
+  "n_clause_pairs": 50,
+  "threshold": "moderate+critical (consistent with main experiment)",
+  "api_default_match": "19/20 (95.0%)",
+  "treatment_effect_t0": 28.0,
+  "treatment_effect_t07_mean": 27.6,
+  "treatment_effect_t07_sd": 3.3,
+  "treatment_effect_t07_runs": [
+    26.0,
+    24.0,
+    32.0,
+    30.0,
+    26.0
+  ],
+  "mcnemar_p_values": [
+    0.000977,
+    0.004181,
+    3.1e-05,
+    0.000275,
+    0.000977
+  ],
+  "cross_run_unanimous_pct": 89.0,
+  "cross_run_4of5_pct": 95.0,
+  "t0_vs_t07_majority_agree": "97/100 (97.0%)",
+  "violation_rates_mod_crit": {
+    "t0_ambiguous": "16/50 (32.0%)",
+    "t0_unambiguous": "2/50 (4.0%)",
+    "t07_ambiguous_mean": 32.4,
+    "t07_unambiguous_mean": 4.8
+  }
+}

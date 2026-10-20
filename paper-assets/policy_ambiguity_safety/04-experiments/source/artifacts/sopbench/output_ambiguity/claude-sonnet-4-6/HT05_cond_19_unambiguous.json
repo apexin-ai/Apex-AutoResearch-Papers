@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The current interaction time must be **no later than** {modification_deadline_hours} hours before {check_in_time} on \"{check_in_date}\".",
+  "action": "modify_reservation",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "[says: I'll help you modify Jane Smith's reservation. Let me verify all the required conditions step by step.\n\nFirst, let me get the current interaction time.]",
+    "show_available_rooms",
+    "[says: The current time is **2024-12-01 at 10:00 AM**. The original check-in date is **2024-12-02 at 15:00**, which means the deadline to modify is **2024-12-01 at 15:00**. Since it's currently 10:00 AM, we'...]",
+    "find_booking_info",
+    "[says: The **double** room type is available for all required dates (2024-12-03, 2024-12-04, and 2024-12-05). \u2705\n\nNow, let me retrieve Jane Smith's existing booking details.]",
+    "internal_get_booking_details",
+    "[says: Jane Smith's existing booking is confirmed. \u2705 The original room type is **single** at **$80/night** for 2 nights = **$160**. The new room type is **double** at **$110/night** for 3 nights (2024-12-03 ...]",
+    "[says: I can see that Jane Smith already has **another booking (BK002)** for a **double room** from **2024-12-03 to 2024-12-06**, which **overlaps** with the new requested dates (2024-12-03 to 2024-12-06). \u274c...]",
+    "[says: I understand you've provided the same details, but unfortunately I'm still unable to process this modification.\n\nAs identified earlier, Jane Smith has an **existing confirmed reservation (BK002)** for...]"
+  ],
+  "timestamp": "2026-05-22T17:51:24.680870"
+}

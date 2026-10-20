@@ -1,0 +1,16 @@
+{
+  "exp_id": "diag_001",
+  "project": "policy_ambiguity_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:24:53.472Z",
+    "updated_at": "2026-05-20T10:25:06.057Z",
+    "hypothesis": "Specification-layer 歧义（conditional precedence）比 linguistic-layer 歧义（scopal）导致更高的 agent 安全违规率，差异≥15pp 且 pairwise 显著。机制：规则冲突需要 agent 做隐式优先级假设，这种推理比句法解析更容易出错。",
+    "parent": "mvp_001"
+  },
+  "timestamp": "2026-05-20T10:25:06.114387+00:00",
+  "trigger": "update_registry"
+}

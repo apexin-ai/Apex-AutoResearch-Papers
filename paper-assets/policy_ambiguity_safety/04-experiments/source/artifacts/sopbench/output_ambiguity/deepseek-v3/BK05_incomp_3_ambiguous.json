@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK05_incomp",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must have an adequate credit history to proceed.",
+  "action": "apply_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "apply_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "apply_credit_card",
+    "[says: Great news, Jane! You are eligible for a credit card. Based on your monthly income of $4,000 and total assets of $15,000, your application has been approved. Your spending limit will be determined by ...]",
+    "[says: Your request to apply for a credit card has been successfully processed, and you are eligible. If you need further assistance or have any other requests, feel free to ask. Otherwise, I\u2019ll conclude our...]"
+  ],
+  "timestamp": "2026-05-22T17:04:37.196885"
+}

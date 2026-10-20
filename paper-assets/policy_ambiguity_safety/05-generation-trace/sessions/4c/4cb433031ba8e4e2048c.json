@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb433031ba8e4e2048c",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code gwet ac1 calculation",
+  "task_key": "worker_code_gwet_ac1_calculation_20260520T175611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gwet_ac1_calculation_20260520T175611_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "c64a858078c9de911600c8e9606756ccaa295a7bf1bfb22c8535e24623d47f67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**AC1 = 0.782 (95% CI: [0.670, 0.891])** — target met.\n\nKey findings:\n- **AC1 0.782 vs κ 0.594**: the 0.189 gap confirms prevalence paradox. `inappropriate_action` dominates at π=0.67, inflating κ's chance agreement estimate and artificially depressing κ.\n- AC1's P_e = 0.081 (low), vs κ's implicitly higher P_e — AC1 correctly recognizes that with such skewed marginals, chance agreement should be low, not high.\n- Interpretation upgrades from \"moderate\" (κ) to \"substantial\" (AC1).\n- Per-type AC1 couldn't be computed — the input only has aggregate n/agreement per ambiguity type, not the full category×category sub-matrices. Percent agreement is reported instead.\n\nResults saved to `artifacts/plan_005/gwet_ac1_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gwet-ac1-calculation.md"
+}

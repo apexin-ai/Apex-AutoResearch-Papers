@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC03_incomp",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The requested coverage amount \"{coverage_amount}\" **MUST NOT EXCEED** {max_coverage_percentage} percent of the annual income \"{annual_income}\" provided by the user.",
+  "action": "update_policy",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated! Here are the details of your new policy:\n\n- **Username**: Zhang Jia Ming  \n- **Policy Type**: Health  \n- **Coverage Amount**: $13,000  \n- **Annual...]"
+  ],
+  "timestamp": "2026-05-22T16:51:51.614402"
+}

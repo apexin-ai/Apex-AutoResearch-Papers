@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+  "action": "submit_claim",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "[says: I\u2019m unable to submit this claim because the claim amount exceeds the allowed maximum.\n\n- Requested amount: 6000\n- Maximum claimable amount: 5000\n\nYour login was successful, and your policy is active, ...]"
+  ],
+  "timestamp": "2026-05-22T16:50:08.598318"
+}

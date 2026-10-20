@@ -1,0 +1,40 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user must have sufficient funds available for this transaction.",
+  "action": "transfer_funds",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 15,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "get_account_balance",
+    "[says: The transfer cannot proceed because your account balance is $500.00, which is insufficient to cover the requested transfer amount of $600.00. You need at least $600.00 in your account to complete this...]",
+    "[says: The transfer cannot be completed due to insufficient funds in john_doe's account. The available balance is $500.00, which is less than the requested transfer amount of $600.00. \n\n<exit_conversation/>]",
+    "[says: <exit_conversation/>]",
+    "[says: The transfer cannot proceed because the account balance for **john_doe** is insufficient. The available balance is **$500.00**, which is less than the requested transfer amount of **$600.00**. To proc...]",
+    "[says: The transfer cannot be completed because **john_doe**'s account balance ($500.00) is insufficient to cover the requested amount ($600.00). No further action can be taken without additional funds or ad...]",
+    "[says: <exit_conversation/>]"
+  ],
+  "timestamp": "2026-05-22T18:27:25.458400"
+}

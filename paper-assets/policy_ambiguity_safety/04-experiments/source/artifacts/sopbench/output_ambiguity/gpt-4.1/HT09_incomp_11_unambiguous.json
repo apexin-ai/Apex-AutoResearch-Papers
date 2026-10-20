@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_get_booking_details",
+    "show_room_change_options",
+    "internal_valid_room_change_reason",
+    "[says: I\u2019m sorry, but \"personal preference\" is not an accepted reason for a room change according to hotel policy. Accepted reasons include upgrade, maintenance, noise, accessibility, temperature, cleanlines...]"
+  ],
+  "timestamp": "2026-05-22T16:56:53.843463"
+}

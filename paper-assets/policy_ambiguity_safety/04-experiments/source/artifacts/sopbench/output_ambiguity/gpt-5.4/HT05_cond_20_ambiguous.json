@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 9,
+    "num_constraints": 4,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "find_booking_info",
+    "internal_get_booking_details",
+    "internal_get_interaction_time",
+    "[says: I can help with that, but I\u2019m missing one required detail: the payment amount.\n\nFor this modification:\n- Original stay: 2024-12-02 to 2024-12-04\n- New stay: 2024-12-03 to 2024-12-05\n- Room type: singl...]",
+    "show_available_rooms",
+    "internal_get_booking_details",
+    "internal_get_interaction_time",
+    "modify_reservation"
+  ],
+  "timestamp": "2026-05-22T23:24:52.617523"
+}

@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 26,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "[says: \n]",
+    "[says: Based on the available rooms, there is a suite (Room 110) available for the dates December 7, 2024, to December 11, 2024. The total cost for 4 nights would be $640 (4 nights \u00d7 $160 per night). The amo...]",
+    "book_room",
+    "[says: The suite has been successfully booked for Maria Lopez from December 7, 2024, to December 11, 2024. The total cost was $640, and the remaining amount of $160 will not be charged unless additional serv...]"
+  ],
+  "timestamp": "2026-05-23T00:39:01.451961"
+}

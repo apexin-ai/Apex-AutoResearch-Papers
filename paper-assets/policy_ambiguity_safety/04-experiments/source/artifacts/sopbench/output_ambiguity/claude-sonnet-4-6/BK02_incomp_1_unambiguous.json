@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK02_incomp",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+  "action": "get_loan",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you apply for a loan! Before proceeding, I need to verify a few conditions. Let me start by checking if your username exists in our database.]",
+    "get_account_owed_balance",
+    "[says: Your username exists! Now let me check your current owed balance to ensure you're eligible for a loan (owed balance must be less than $500).]",
+    "[says: Unfortunately, I'm unable to process your loan application. Here's why:\n\n- **Condition Not Met:** Your current owed balance is **$600.00**, which exceeds the maximum allowable owed balance of **$500.0...]",
+    "[says: I understand you'd like to proceed, but unfortunately I'm still unable to process your loan application.\n\nAs checked previously, your current owed balance is **$600.00**, which exceeds the maximum all...]"
+  ],
+  "timestamp": "2026-05-22T16:54:56.140000"
+}

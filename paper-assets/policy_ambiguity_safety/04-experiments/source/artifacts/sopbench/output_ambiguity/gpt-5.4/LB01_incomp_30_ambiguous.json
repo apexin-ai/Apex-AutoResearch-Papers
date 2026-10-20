@@ -1,0 +1,40 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must not have exceeded their borrowing allowance.",
+  "action": "borrow_book",
+  "task_idx": 30,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 10,
+    "num_function_calls": 9,
+    "num_constraints": 6,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_convert_book_title_to_id",
+    "internal_get_user_borrowed",
+    "internal_is_restricted",
+    "internal_get_membership_status",
+    "internal_convert_human_date_to_iso",
+    "internal_get_user_num_borrowed",
+    "borrow_book",
+    "[says: You\u2019re logged in, and I\u2019ve borrowed \"One Hundred Years of Solitude\" for your account successfully.]"
+  ],
+  "timestamp": "2026-05-22T22:48:40.889527"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "052561bff617b8661178",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code d008 inference fixes",
+  "task_key": "worker_code_d008_inference_fixes_20260520T094846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d008_inference_fixes_20260520T094846_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "c3ad3f34845bb68bf8a11fb88ddb1906b0a7aa5908caf6ff395595c3d1652a31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正完成，验证通过。\n\n**config_local.py:**\n- 移除了 DeepSeek-V3 和 DeepSeek-V3.1\n- Qwen3-32B 改为 AWQ int4 量化版（`Qwen/Qwen3-32B-AWQ`，~18GB VRAM），`vllm_extra_args` 含 `quantization: \"awq\"`\n- 新增 Llama-4-Scout AWQ int4 备选（`meta-llama/Llama-4-Scout-17B-16E-Instruct-AWQ`）\n- 新增 `DEFAULT_EXPERIMENT_MODELS = [\"Qwen/Qwen3-8B\", \"Qwen/Qwen3-32B-AWQ\"]`\n\n**harness_local.py:**\n- `_get_vllm_client` 新增 `_vllm_client_base_url` 跟踪变量，base_url 变化时重新创建 client\n- `call_agent_transformers` 从 `async def` 改为 `def`，调用处移除 `await`\n\n**clause_templates.json:**\n- `scopal_001`：3→7 条 tool_responses，每个 order 有独立的 `get_order_details` 和 `cancel_pending_order`，按 order_id 精确匹配\n- `scopal_025`：3→4 条，补充 ORD-21290 的 `get_order_details`，`args_pattern` 按 order_id 精确匹配\n- `scopal_027`：3→4 条，补充 ORD-50280 的 `get_order_details`，同样精确匹配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d008-inference-fixes.md"
+}

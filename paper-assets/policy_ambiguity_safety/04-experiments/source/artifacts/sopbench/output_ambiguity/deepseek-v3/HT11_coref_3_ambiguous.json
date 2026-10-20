@@ -1,0 +1,39 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The guest must provide sufficient payment to cover the order, either through direct payment or their rewards account.",
+  "action": "place_room_service_order",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 10,
+    "num_function_calls": 7,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_id",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "internal_valid_room_service_payment_method",
+    "internal_compute_room_service_order_fee",
+    "place_room_service_order",
+    "[says: Your room service order for Alex Turner in room 102 has been successfully placed! The order includes 2 cheesecakes and 1 coffee, totaling $18.00, paid with a credit card. Enjoy your meal!]",
+    "[says: Your room service order for Alex Turner in room 102 has already been successfully placed! The order includes 2 cheesecakes and 1 coffee, totaling $18.00, paid with a credit card. If there's anything e...]"
+  ],
+  "timestamp": "2026-05-22T18:17:42.575082"
+}

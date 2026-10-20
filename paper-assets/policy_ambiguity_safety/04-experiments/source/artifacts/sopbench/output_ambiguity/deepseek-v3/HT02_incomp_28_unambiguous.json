@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The \"{check_in_date}\" must be **no earlier than** {min_booking_lead_time_days} days after and **no later than** {max_booking_lead_time_days} days after the current interaction date.",
+  "action": "book_room",
+  "task_idx": 28,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "internal_get_interaction_time",
+    "book_room",
+    "[says: The single room for Emily Carter has been successfully booked from December 4, 2024, to December 6, 2024. The payment of $160.00 has been processed. \n\nIs there anything else I can assist you with? \n\n]"
+  ],
+  "timestamp": "2026-05-22T22:57:04.055924"
+}

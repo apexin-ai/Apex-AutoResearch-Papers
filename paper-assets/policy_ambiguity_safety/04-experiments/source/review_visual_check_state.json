@@ -1,0 +1,52 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:27.807923+00:00",
+  "completed_at": "2026-05-25T21:19:39.477539+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 26",
+      "message": "末页仅约 15% 内容（6 行 AI Assistants 声明），余下 85% 空白。可将此段并入前一页或合并到上一个 appendix section 末尾"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 18",
+      "message": "六张表格（Tables 16–21）挤在单页，视觉极度密集。部分表格间距过窄，审稿人快速浏览附录时可能跳过关键数据。建议至少将 Tables 16–17（示例表）与 Tables 18–21（数据表）分到两页"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 流程图节点内文字偏小（\"Specification Layer\"、\"Linguistic Layer\" 等标签），打印后可能接近可读性下限。建议将节点文字放大至 ≥8pt"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "页面非常密集：Figure 5 + Figure 6（双面板）+ Discussion & Conclusion 段落全部挤在一页。虽未溢出，但视觉上略显拥挤"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3 热力图使用单色调渐变（红/橙），色盲用户可能难以区分中间梯度。但每个单元格已标注数值，实际可读性影响有限"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 森林图的 marker 标签较小，在打印版可能需要放大才能清晰辨认模型名称"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 列头高度缩写（\"5\" = GPT-5, \"4.1\" = GPT-4.1, \"Cla\" = Claude, \"Qu3\" = Qwen3, \"DS\" = DeepSeek），首次阅读需要对照脚注。Caption 中有说明，但缩写较多"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "四张表格（Tables 6–9）在单页，密度较高但仍可读"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 2,
+    "info": 6
+  }
+}

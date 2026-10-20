@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} has authenticated the admin password previously to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "authenticate_admin_password",
+    "[says: I\u2019m sorry, but I can\u2019t complete the transfer because the admin password authentication for `john_doe` failed.]",
+    "[says: I verified the account usernames and logged in successfully, but the admin password authentication for john_doe failed, so I cannot perform the transfer. I will end the conversation as requested.]"
+  ],
+  "timestamp": "2026-05-22T23:22:48.744375"
+}

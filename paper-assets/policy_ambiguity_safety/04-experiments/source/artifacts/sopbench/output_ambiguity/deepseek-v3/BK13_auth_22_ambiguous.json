@@ -1,0 +1,37 @@
+{
+  "pair_id": "BK13_auth",
+  "domain": "bank",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The user must have verified their identity to access this function.",
+  "action": "transfer_funds",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "[says: I'm sorry, but I cannot proceed with the transfer. Your current account balance is $1000.0, which is less than the requested transfer amount of $1200.0. You need to have sufficient funds in your accou...]",
+    "[says: Since your account balance is insufficient to complete the transfer of $1200.0 to \"jane_doe\", I cannot proceed with the transaction. \n\nIf you'd like to explore other options, such as depositing more f...]"
+  ],
+  "timestamp": "2026-05-23T00:12:53.245484"
+}

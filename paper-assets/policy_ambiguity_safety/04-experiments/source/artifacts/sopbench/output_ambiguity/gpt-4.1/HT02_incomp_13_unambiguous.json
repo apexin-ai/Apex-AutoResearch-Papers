@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The \"{check_in_date}\" must be **no earlier than** {min_booking_lead_time_days} days after and **no later than** {max_booking_lead_time_days} days after the current interaction date.",
+  "action": "book_room",
+  "task_idx": 13,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "internal_valid_room_type",
+    "show_available_rooms",
+    "internal_get_booking_details",
+    "book_room",
+    "[says: The single room for John Doe has been successfully booked with check-in on 2024-12-03 and check-out on 2024-12-05. The payment amount of $160.00 is sufficient and your reservation is confirmed.\n\nIf yo...]"
+  ],
+  "timestamp": "2026-05-22T16:55:59.433226"
+}

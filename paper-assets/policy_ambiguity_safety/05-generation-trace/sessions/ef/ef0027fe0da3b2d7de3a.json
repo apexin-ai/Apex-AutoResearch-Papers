@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef0027fe0da3b2d7de3a",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis cross domain and mitigation",
+  "task_key": "worker_analysis_cross_domain_and_mitigation_20260522T161021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_domain_and_mitigation_20260522T161021_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "fe1ac5a0e98667f0f1430b355ece2bce24190e10dab2b4d494c5eec8982ca3ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four files produced:\n\n**Part A: Cross-Domain**\n- `analysis_cross_domain.json` — full statistics\n- `analysis_cross_domain_summary.md` — narrative report\n\nKey findings:\n- C1 effect replicates in both domains (airline Δ=44pp, retail Δ=34pp, both p < 10⁻⁴⁹)\n- But domain **significantly moderates** the effect (interaction p = 0.007) — airline amplifies the ambiguity effect\n- Type ranking correlation ρ = 0.49, not significant — type ordering diverges across domains\n- Conditional_precedence (+19pp, p=0.003) and lexical (+15pp, p=0.016) drive the domain difference\n\n**Part B: 5-Model Mitigation**\n- `analysis_mitigation_5model.json` — full statistics\n- `analysis_mitigation_5model_summary.md` — narrative report\n\nKey findings:\n- Auth_scope has largest mean Δ (−18pp) but high cross-model variance; Claude shows no change (floor effect from safety training)\n- Lexical and conditional_precedence are the most reliably mitigated (all 5 models improve, binomial p = 0.031)\n- Incompleteness is least responsive (mean −3.3pp, CI crosses zero, DeepSeek worsens)\n- Vulnerability-responsiveness correlation is not significant (r = −0.21, p = 0.30)\n- DeepSeek-V3 is the only model with degradation cells (incompleteness +4pp, scopal +2pp)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-domain-and-mitigation.md"
+}

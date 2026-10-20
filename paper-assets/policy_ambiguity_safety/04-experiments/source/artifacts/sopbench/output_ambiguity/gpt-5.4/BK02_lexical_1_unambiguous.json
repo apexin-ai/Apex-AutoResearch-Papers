@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK02_lexical",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+  "action": "get_loan",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_owed_balance",
+    "[says: I'm sorry, but your loan application can't proceed.\n\nYour account already has an owed balance of 600.0, and to take a new loan your owed balance must be less than 500.\n\nSo the application for 5000.0 i...]"
+  ],
+  "timestamp": "2026-05-22T17:04:05.711430"
+}

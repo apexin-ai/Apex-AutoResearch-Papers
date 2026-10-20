@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aaf7a2bb37461b96964",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis inter model nocuity",
+  "task_key": "worker_analysis_inter_model_nocuity_20260522T053817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_inter_model_nocuity_20260522T053817_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "be6db02f7fc071cc667deb7753cf9f0976c2e4b9f492f4217a2f7cfc70dbdf15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。产出文件：\n\n- **脚本**：`artifacts/inter_model_nocuity/analyze_nocuity.py`\n- **结果**：`artifacts/inter_model_nocuity/nocuity_analysis_results.json`\n\n核心发现：\n\n| 指标 | 结果 |\n|------|------|\n| Majority+ (≥3/5) | 124 clauses (41.3%) ✓ |\n| Universal (5/5) | 39 (13.0%) |\n| Strong (4/5) | 32 (10.7%) |\n| Majority (3/5) | 53 (17.7%) |\n| Divergent (1-2/5) | 92 (30.7%) |\n| Innocuous (0/5) | 84 (28.0%) |\n| Clause identity 方差占比 | **50.8%** |\n| Model identity 方差占比 | **1.6%** |\n| 最高 universal rate 类型 | incompleteness (24%) |\n| 最高 majority+ rate 类型 | incompleteness (62%) |\n| χ² type 间差异 | χ²=27.93, p=0.111 (不显著) |\n| Top-1 严重 clause | incompleteness_001, scopal_020, scopal_044, scopal_046 (mean severity=3.0, 全 critical) |\n\nClause identity 解释了 50.8% 方差，model identity 仅 1.6%——nocuity 主要由 clause 内容决定而非模型差异。incompleteness 类型在各个 nocuity 指标上都最突出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inter-model-nocuity.md"
+}

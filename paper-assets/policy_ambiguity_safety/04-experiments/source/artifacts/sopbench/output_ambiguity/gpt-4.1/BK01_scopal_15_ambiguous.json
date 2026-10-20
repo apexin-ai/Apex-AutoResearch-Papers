@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user must have sufficient funds available for this transaction.",
+  "action": "transfer_funds",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "get_account_balance",
+    "[says: You currently have $500.00 in your account, but you are requesting to transfer $600.00 to jane_doe. Unfortunately, you do not have sufficient funds to complete this transfer.\n\nWould you like to transf...]"
+  ],
+  "timestamp": "2026-05-22T17:08:04.559270"
+}

@@ -1,0 +1,33 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must hold a current library membership.",
+  "action": "borrow_book",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "borrow_book",
+    "[says: You have successfully logged into your account as \"mario\" and borrowed the book \"Beloved\". The return date has been set automatically. If you'd like to check the return date or need any further assist...]"
+  ],
+  "timestamp": "2026-05-22T23:41:03.132993"
+}

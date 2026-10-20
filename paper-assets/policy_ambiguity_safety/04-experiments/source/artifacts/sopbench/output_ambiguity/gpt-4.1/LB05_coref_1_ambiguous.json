@@ -1,0 +1,33 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The book in question must be currently checked out to the requesting user.",
+  "action": "return_book",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It appears that the login attempt with the provided username and password was unsuccessful. Please double-check your credentials and try again. If you need help resetting your password or have any oth...]",
+    "login_user"
+  ],
+  "timestamp": "2026-05-22T17:19:02.494635"
+}

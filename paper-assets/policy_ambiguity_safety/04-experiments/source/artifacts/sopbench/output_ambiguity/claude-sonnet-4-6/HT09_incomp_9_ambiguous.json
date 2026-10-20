@@ -1,0 +1,43 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 2,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "[says: Let me start by verifying the necessary conditions for your room change request. I'll check a few things simultaneously.]",
+    "internal_get_booking_details",
+    "[says: Let me check if John Doe is listed in the check-in records and verify the room change reason.]",
+    "internal_valid_room_change_reason",
+    "[says: I'm sorry, but I'm unable to process your room change request. Here's why:\n\n**Invalid Reason:** The reason you provided \u2014 *\"upgrade my room\"* \u2014 is not a valid reason for a room change request in our s...]",
+    "internal_valid_room_change_reason",
+    "[says: Let me verify if \"upgrade\" is a valid room change reason.]",
+    "internal_get_interaction_time",
+    "[says: The reason is valid. Now let me verify the remaining conditions \u2014 specifically the current interaction time and the additional fee for the room change.]",
+    "show_available_rooms",
+    "[says: The current date is 2024-12-02, and John Doe's check-out date is 2024-12-04, meaning there are 2 remaining nights. Let me now check the available rooms and compute the fee difference.]",
+    "[says: Now let me check the room change limit for John Doe. From the booking details, I can see that `room_change: 1`, which indicates a room change has already been made. Let me also verify the fee:\n\n- **Re...]"
+  ],
+  "timestamp": "2026-05-22T17:02:08.434117"
+}

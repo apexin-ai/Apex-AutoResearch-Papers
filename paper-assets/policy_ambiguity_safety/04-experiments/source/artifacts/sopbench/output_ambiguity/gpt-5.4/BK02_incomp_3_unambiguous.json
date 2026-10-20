@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK02_incomp",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+  "action": "get_loan",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: I\u2019m unable to process the loan request because the login credentials provided for username `john_doe` could not be verified.\n\nTo determine whether your `500.0` loan would be approved, I first need you...]"
+  ],
+  "timestamp": "2026-05-22T16:53:58.965339"
+}

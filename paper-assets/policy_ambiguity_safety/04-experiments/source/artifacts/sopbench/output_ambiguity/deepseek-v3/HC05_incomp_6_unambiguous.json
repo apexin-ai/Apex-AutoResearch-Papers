@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC05_incomp",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable appeal period for the claim with ID \"{claim_id}\" of the user \"{username}\". The appeal period starts from the claim date and extends for {appeal_period} days after the claim date. Both interaction time and claim date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "appeal_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_claim_exists",
+    "get_claim_details",
+    "[says: The claim with ID \"CLM-002\" for user \"Henry Smith\" is currently in a \"pending\" status. Unfortunately, you cannot appeal a claim that is still pending. Only claims with a status of \"denied\" are eligibl...]"
+  ],
+  "timestamp": "2026-05-22T17:00:07.486907"
+}

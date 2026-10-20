@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user must have sufficient funds available for this transaction.",
+  "action": "transfer_funds",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll help you transfer $1500.0 to jane_doe's account! Let me first verify that both usernames exist in our database.\n\nLet me check if your username exists first:]",
+    "internal_check_username_exist",
+    "[says: Great, your account exists! Now let me check if jane_doe's account exists:]",
+    "get_account_balance",
+    "[says: Both accounts exist! Now let me verify that you have sufficient funds by checking your account balance:]",
+    "[says: Unfortunately, I'm unable to proceed with the transfer. Here's why:\n\n- **Your current balance:** $1,000.00\n- **Transfer amount requested:** $1,500.00\n\nYou have **insufficient funds** to complete this ...]",
+    "[says: I understand you'd like to proceed with the transfer, but unfortunately I am **unable to complete this request**.\n\nAs verified earlier, your account balance is **$1,000.00**, which is insufficient to ...]"
+  ],
+  "timestamp": "2026-05-22T17:29:20.399232"
+}

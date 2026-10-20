@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The specified card must not carry any balance to proceed with cancellation.",
+  "action": "cancel_credit_card",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "authenticate_admin_password",
+    "[says: I can help, but I\u2019m not able to complete that cancellation because there isn\u2019t a credit-card cancellation action available in the system I can use.\n\nI did verify your access:\n- Logged in as `john_doe`...]"
+  ],
+  "timestamp": "2026-05-22T23:29:59.797424"
+}

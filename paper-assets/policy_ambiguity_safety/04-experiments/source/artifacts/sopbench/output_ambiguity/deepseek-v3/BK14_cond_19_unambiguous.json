@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} has authenticated the admin password previously to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "[says: It seems there was an issue with your driver's license verification, as the login attempt failed. However, your admin password was successfully authenticated.\n\nAdditionally, your current account balan...]"
+  ],
+  "timestamp": "2026-05-23T00:54:26.444632"
+}

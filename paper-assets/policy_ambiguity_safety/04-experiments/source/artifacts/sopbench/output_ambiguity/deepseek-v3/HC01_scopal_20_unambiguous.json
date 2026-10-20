@@ -1,0 +1,43 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The total amount of pending and approved claims for the user \"{username}\" **MUST NOT EXCEED** the coverage amount specified in their policy when submitting a new claim.",
+  "action": "submit_claim",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 6,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before I can assist you with submitting your claim, I need to verify your login credentials and ensure all conditions for submitting a claim are met. Let me proceed step by step.\n\n1. **Login Verificat...]",
+    "internal_check_provider_exists",
+    "[says: Great! You have been successfully logged in. Now, I will check if the provider with ID \"new_provider\" exists in the system.]",
+    "get_policy_details",
+    "[says: The provider \"new_provider\" exists in the system. Next, I will retrieve your policy details to ensure your policy is active and meets the necessary conditions for submitting a claim.]",
+    "get_provider_details",
+    "[says: Your policy details indicate that you have an active **Dental** policy with a coverage amount of **$1500** and an annual income of **$50,000**. \n\n### Conditions Check:\n1. **Active Policy**: Your polic...]",
+    "get_claim_history",
+    "[says: The provider \"new_provider\" offers **Dental** services, which matches your policy type. \n\n### Final Conditions Check:\n1. **Provider Service Match**: The provider's service type (Dental) matches your p...]",
+    "submit_claim",
+    "[says: You have no pending claims; your only claim is already approved. \n\n### All Conditions Are Met:\n- You are logged in.\n- Your policy is active.\n- The provider's service type matches your policy.\n- The cl...]",
+    "[says: Your claim for the routine dental checkup has been successfully submitted! Here are the details:\n\n- **Username**: Zhang Jia Ming  \n- **Provider**: New Health Provider (San Francisco)  \n- **Amount**: $...]"
+  ],
+  "timestamp": "2026-05-22T23:47:03.700607"
+}

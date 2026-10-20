@@ -1,0 +1,36 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must not have exceeded their borrowing allowance.",
+  "action": "borrow_book",
+  "task_idx": 24,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_is_restricted",
+    "internal_get_user_num_borrowed",
+    "[says: Yes \u2014 you're able to borrow \"Beloved.\"]",
+    "borrow_book"
+  ],
+  "timestamp": "2026-05-22T22:47:20.548829"
+}

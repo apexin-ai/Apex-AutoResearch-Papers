@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The guest must provide sufficient payment to cover the order, either through direct payment or their rewards account.",
+  "action": "place_room_service_order",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 15,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I'll help you process the room service order for John Doe. First, I need to verify all the required conditions before placing the order. Let me check the necessary prerequisites.\n\n]",
+    "internal_get_room_checkin_details",
+    "internal_is_loyalty_member",
+    "internal_compute_room_service_order_fee",
+    "internal_get_loyalty_member_info",
+    "[says: \n]"
+  ],
+  "timestamp": "2026-05-23T01:18:16.355931"
+}

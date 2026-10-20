@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d11fa1bd7aed4d34b83b",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research r10 reference verification",
+  "task_key": "worker_research_r10_reference_verification_20260521T192322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r10_reference_verification_20260521T192322_result.json",
+    "occurrence": 1,
+    "bytes": 1633,
+    "sha256": "d62f0ff007444d75c25b2ef963e33bb5134d8cb9dec88fb85128727ef30616a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: 引用验证\n\n| 论文 | 状态 | 详情 |\n|------|------|------|\n| **Yu, Carroll, & Bentley (2026)** arXiv:2603.20320 | **存在** ✓ | 作者: Shasha Yu, Fiona Carroll, Barry L. Bentley. Accepted at ICECET 2026. 标题匹配。 |\n| **Lin et al. (2025)** \"Ask-to-Clarify\" | **存在** ✓ | arXiv:2509.15061. Xingyao Lin et al. 关于具身智能体通过多轮对话解决指令歧义。 |\n| **Mu et al. (2023)** \"Can LLMs Follow Simple Rules?\" | **存在** ✓ | arXiv:2311.04235. Norman Mu et al. 提出 RuLES 框架评估 LLM 规则遵循能力。 |\n\n三篇均真实存在。\n\n### Part 2: Bib 条目添加\n\n- `dalpiaz_pinpointing_2018` — **已添加**\n- `van_deemter_not_exactly_2010` — **已添加**\n- `lassiter_goodman_2017` — **已添加**\n- `willis_nocuous_2008` — **已存在**（references.bib 第49行）\n\n### Part 3: Orphan 检查\n\n| 条目 | 被 \\cite 引用？ |\n|------|----------------|\n| `tamkin_evaluating_2023` | **ORPHAN** — 未在任何 .tex 文件中被引用 |\n| `yin_safeagentbench_2025` | **ORPHAN** — 未在任何 .tex 文件中被引用 |\n\n未删除，仅报告。\n\n### Part 4: Navigli 年份\n\n`navigli_wsd_2009` 年份 **2009 正确**。ACM Computing Surveys, Vol 41, No 2, February 2009. bib 中已有的记录无误。\n\nSources:\n- [Yu et al. - arXiv:2603.20320](https://arxiv.org/pdf/2603.20320)\n- [Lin et al. - arXiv:2509.15061](https://arxiv.org/abs/2509.15061)\n- [Mu et al. - arXiv:2311.04235](https://arxiv.org/abs/2311.04235)\n- [Navigli 2009 - ACM DL](https://dl.acm.org/doi/10.1145/1459352.1459355)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r10-reference-verification.md"
+}

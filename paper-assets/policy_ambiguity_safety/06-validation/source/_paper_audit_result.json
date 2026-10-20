@@ -1,0 +1,312 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+          "location": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/_audit_compile_vkobav0i",
+        "main_tex": "main.tex",
+        "log_tail": "[24]\nUnderfull \\hbox (badness 5563) in paragraph at lines 883--884\n[]\\T1/ptm/m/n/9 (+20) Evaluate the agent's be-hav-ior against the\n []\n\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 8\n98.\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n)\nUnderfull \\hbox (badness 10000) in paragraph at lines 903--904\n\\T1/ptm/m/n/9 (+20) Respond in JSON for-mat with\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 903--904\n\\T1/ptm/m/n/9 (+20) fields: \\T1/pcr/m/n/9 violation_level\\T1/ptm/m/n/9 (+20) ,\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 903--904\n\\T1/pcr/m/n/9 violation_description\\T1/ptm/m/n/9 (+20) ,\n []\n\n\nUnderfull \\hbox (badness 1484) in paragraph at lines 917--918\n\\T1/ptm/m/n/10.95 (+20) tem-per-a-ture $\\OT1/cmr/m/n/10.95 = 0\\OML/cmm/m/it/10.\n95 :\\OT1/cmr/m/n/10.95 7$ \\T1/ptm/m/n/10.95 (+20) ma-jor-ity vote, 97.0% of\n []\n\n\nOverfull \\hbox (64.87955pt too wide) in paragraph at lines 926--935\n [][] \n []\n\n[25]) [26\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 340BD2D90F5B579F1DA9A67B85182896;11927.\n ) \nHere is how much of TeX's memory you used:\n 16632 strings out of 469438\n 260394 string characters out of 5468411\n 739479 words of memory out of 5000000\n 44197 multiletter control sequences out of 15000+600000\n 714689 words of font info for 518 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,2143b,650s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/\nhelvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (26 pages, 813321 bytes).\nPDF statistics:\n 1147 PDF objects out of 1200 (max. 8388607)\n 1002 compressed objects within 11 object streams\n 234 named destinations out of 1000 (max. 500000)\n 72735 words of extra memory for PDF output out of 74296 (max. 10000000)\n",
+        "error": "",
+        "pages": 26,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 26,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Overfull \\hbox (1.86812pt too wide) in paragraph at lines 10--21",
+        "Underfull \\hbox (badness 5475) in paragraph at lines 45--45",
+        "Overfull \\hbox (3.46407pt too wide) in paragraph at lines 37--48",
+        "Overfull \\hbox (3.28299pt too wide) in paragraph at lines 68--81",
+        "Underfull \\hbox (badness 1122) in paragraph at lines 85--86",
+        "Underfull \\vbox (badness 2875) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1735) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 2564) in paragraph at lines 9--10",
+        "Underfull \\hbox (badness 5832) in paragraph at lines 9--10",
+        "Underfull \\hbox (badness 2065) in paragraph at lines 9--10",
+        "Overfull \\hbox (18.776pt too wide) in paragraph at lines 49--66",
+        "Underfull \\hbox (badness 4752) in paragraph at lines 176--177",
+        "Underfull \\hbox (badness 1728) in paragraph at lines 176--177",
+        "Underfull \\hbox (badness 3635) in paragraph at lines 263--264",
+        "Underfull \\hbox (badness 2781) in paragraph at lines 267--268",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 277--278",
+        "Underfull \\vbox (badness 2158) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 394--394",
+        "Underfull \\hbox (badness 7888) in paragraph at lines 418--419",
+        "Overfull \\hbox (4.08315pt too wide) in paragraph at lines 414--425",
+        "Underfull \\hbox (badness 1460) in paragraph at lines 459--459",
+        "Overfull \\hbox (1.4101pt too wide) in paragraph at lines 487--502",
+        "Underfull \\vbox (badness 1377) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 4205) in paragraph at lines 541--542",
+        "Overfull \\hbox (0.65869pt too wide) in paragraph at lines 621--634",
+        "Underfull \\hbox (badness 2310) in paragraph at lines 651--652",
+        "Underfull \\hbox (badness 5475) in paragraph at lines 690--691",
+        "Underfull \\hbox (badness 1968) in paragraph at lines 690--691",
+        "Underfull \\hbox (badness 5490) in paragraph at lines 690--691",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 803--804",
+        "Underfull \\hbox (badness 2318) in paragraph at lines 803--804",
+        "Overfull \\hbox (0.76634pt too wide) in paragraph at lines 806--807",
+        "Underfull \\hbox (badness 2351) in paragraph at lines 815--816",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 865--866",
+        "Underfull \\hbox (badness 5563) in paragraph at lines 883--884",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 903--904",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 903--904",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 903--904",
+        "Underfull \\hbox (badness 1484) in paragraph at lines 917--918",
+        "Overfull \\hbox (64.87955pt too wide) in paragraph at lines 926--935"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:6 解释性 em-dash（---）3处：\"ambiguity---a pilot audit\"、\"prevalence})---a property\"、第二处同行内。全文主体（非表格单元格）共约14处 em-dash，分布于 introduction(~6)、experiments(~3)、analysis(3)、discussion(2)、method(1)、taxonomy(2)。这是最显著的 AI 写作标志，审稿人高度敏感。建议全部改为逗号、括号或拆分句子。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "abstract.tex:2 trailing -ing 分词短语：\"showing that agreement-based safety monitoring is blind to systematic policy misinterpretation\"。应改为独立句如 \"...with strong permissive bias. Agreement-based safety monitoring is thus blind to...\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:6 trailing -ing：\"making ambiguity harmful through systematic, undetectable error\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:13 figure caption 同时含 em-dash 和 trailing -ing：\"producing unanimous agreement that passes consensus-based safety monitors---a systematic blind spot\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:21 trailing -ing：\"rendering agreement-based monitoring blind to systematic failures\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "analysis.tex:22 trailing -ing：\"producing irreversible safety violations rather than mere accuracy degradation\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "analysis.tex:27 trailing -ing：\"indicating shared architectural biases rather than training-data overlap\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "analysis.tex:32 figure caption trailing -ing：\"indicating convergence reflects shared architectural biases\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "discussion.tex:8 trailing -ing：\"defeating agreement-based monitoring\"。Conclusion 段只有两句话，其中一句用了 trailing -ing 结尾，非常显眼。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix.tex 多处 \"Notably,...\"（约4处，如 line 176, 336），属 filler word。建议删除直接陈述。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "discussion.tex Discussion and Conclusion 合计仅2段（约120 words discussion + 40 words conclusion），对于一篇有6种歧义类型、convergent nocuity、type-mechanism dissociation、跨基准验证等多层发现的论文，讨论深度不足。审稿人可能期望更多对实际部署影响、与 alignment 研究的联系、taxonomy 局限性的更深入分析。建议至少扩展至3-4段或分离 Discussion 和 Conclusion 为两个独立部分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "整体叙事一致性优秀。Abstract 的问题 == Intro 的问题（因果链接 ambiguity → safety violations）；Intro 贡献列表(2条) == Method/Results/Analysis 实际内容（C1 causal effect + convergent nocuity）；Method 设计 matched-pair 回应 Intro 指出的 gap；Experiments 验证 Intro 声称的两项贡献；Discussion/Conclusion 总结 == Experiments 的核心发现。未检测到叙事漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "Taxonomy section（§3）篇幅较大但未在 Intro 贡献列表中单独列出。该 taxonomy 被框架为方法论工具而非独立贡献，与 Intro 说法一致（\"Using a six-type taxonomy\"），但审稿人可能认为一个完整的 section 值得在贡献列表中提及。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "存在孤立文件 conclusion.tex（含 \\section{Conclusion}），但 main.tex 未 \\input 该文件。不影响编译输出，但属于项目清洁度问题。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "experiments.tex / abstract.tex SOPBench 结果声称 \"all five Δ > 0\"（方向性声称），但 GPT-5.4 p=0.052 和 DeepSeek p=0.163 个体不显著。论文措辞\"directional consistency\"是合理 hedging，且 Fisher's combined p < 10^{-6}，但审稿人可能追问个体显著性。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致性",
+      "message": "taxonomy.tex:38 前向引用 \"C3, inconclusive\" 出现在 C3 正式定义（experiments.tex:4）之前。虽有括号说明 \"inconclusive\"，但首次出现的标签未定义。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "论文为 API-based 研究，未报告 API 调用总 token 数或费用。对复现性无严重影响但补充此信息有利。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 约 130-140 words（含 LaTeX 标记 143 tokens），远低于 200 words 上限。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 覆盖3个点（合成构造上界、模型范围、标注可靠性），约120 words，符合用户规则\"一小段，3个点左右\"。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "正文仅一个 \\section*{Limitations}，appendix 无 limitations section。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "ARR Responsible NLP Checklist 不在论文 PDF 中（符合用户规则，由 OpenReview 表单提交）。✓"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "critical",
+      "dimension": "page 8-9",
+      "message": "[审稿规则] 主正文溢出：Discussion/Conclusion 最后一句 \"(22.4% vs. 0.4% variance).\" 溢出到第 9 页顶部，Limitations 才紧随其后。EMNLP 2026 严格要求主正文 ≤8 页（Limitations 不计入），当前主正文超出约 1 行。需缩减正文内容或调整排版使 Conclusion 完整收于第 8 页内。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "纯文本页：第 5 页（§4.3 Models 至 §5.1 Results）无任何 display item（无 figure/table/display equation），夹在第 4 页（Table 2-3）和第 6 页（Figure 2-4）之间，形成阅读密度断层。建议将 Table 4（当前在第 7 页）或 Figure 2（当前在第 6 页）的位置前移，使 text-figure 节奏更均匀。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "Display item 拥挤：三个 figure（Fig 2 方差分解、Fig 3 热力图、Fig 4 跨基准泛化）堆叠在同一页，视觉密度过高。与第 5 页纯文本形成强烈对比。建议将其中一个 figure 移至第 5 页或第 7 页以平衡布局节奏。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 26",
+      "message": "末页空白过大：最后一页仅有 ~15% 内容（Appendix AN 结尾 + AO 全文约 6 行），其余 ~85% 为空白。建议将 Appendix AO 合并到前页，或将其他 appendix 内容适当松排以填充空间。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 1-8",
+      "message": "Float 间距极度压缩：main.tex 中 \\textfloatsep/\\intextsep 等均设为 4pt，远低于默认值（~12pt）。虽然帮助正文勉强压入 8 页，但 figure/table 与正文之间几乎无间距，视觉上拥挤。这也是第 8 页 Conclusion 溢出的根因——已经用尽了所有排版压缩空间。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item：第一个视觉锚点 Figure 1 出现在第 2 页。Title-Abstract-Intro 全文字。对于因果实证论文，Figure 1（实验 overview）在第 2 页顶部仍可接受，审稿人翻页即可看到。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3 热力图色彩方案：使用纯红色渐变（白→深红），色盲友好性尚可（单色渐变），但浅色端区分度有限。Figure 5（第 8 页）同样使用红色渐变。建议考虑蓝色或 viridis 渐变以提高可区分性。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 字号偏小：全宽表格包含 5 模型 × 6 类型 + 汇总行，字号较小。建议确认打印后可读性（≥8pt）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5 热力图单元格标签：百分比数字嵌在小格子内，150 dpi 下已显紧凑，打印时可能更难辨认。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Appendix 表格拥挤：6 个表格（Table 6-11）挤在一页内，字号极小。虽为 appendix 但审稿人仍需查阅。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 caption 质量良好：三个面板（Taxonomy/Matched-Pair/Convergent Nocuity）均有清晰说明，自包含程度高，能帮助审稿人快速理解实验设计。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "Display item 密度合理：主正文 8 页内含 6 figures + 5 tables = 11 个 display items（~1.4/页），对于实证为主的论文属于健康密度。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "表格风格规范：全文使用 booktabs（\\toprule/\\midrule/\\bottomrule），无竖线，最优值有加粗标注。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "公式渲染正常：未发现 LaTeX 错误残留、未解析引用 [?] 或 overfull hbox 溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "参考文献格式统一：引用编号连续，author 格式一致，无截断。"
+    }
+  ],
+  "counts": {
+    "critical": 2,
+    "warning": 63,
+    "info": 20
+  },
+  "error": "",
+  "timestamp": "2026-05-25T09:40:28.394987+00:00"
+}

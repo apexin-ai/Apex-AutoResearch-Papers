@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e37aac6c50f8c72bbeff",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code ambiguity injection pipeline",
+  "task_key": "worker_code_ambiguity_injection_pipeline_20260520T073711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ambiguity_injection_pipeline_20260520T073711_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "b35dcc57e7d6caf9f116520bad3ba1d5c6985a050ce12fc742dae24bf3620478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部完成并注册：\n\n| 文件 | 说明 |\n|------|------|\n| `clause_templates.json` | 90 matched pairs (30 scopal + 30 lexical + 30 incompleteness)，零售 46 条 / 航空 44 条 |\n| `injection_pipeline.py` | 主流水线，支持模板直出和 LLM 精炼两种模式 |\n| `validate_clauses.py` | 验证脚本，检查 schema、数量、D004 最小增量等 |\n\n验证结果：0 errors，33 D004 ratio warnings（均为 incompleteness 类型的预期特征——不完整条款本身就短，补全后 word ratio 偏高，但内容均只添加了解决当前缺失点的最小信息）。\n\nLLM 精炼模式用法：`python injection_pipeline.py --output clauses.json --refine --api-key sk-... --provider anthropic`（或 `--provider openai --model gpt-5.4`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ambiguity-injection-pipeline.md"
+}

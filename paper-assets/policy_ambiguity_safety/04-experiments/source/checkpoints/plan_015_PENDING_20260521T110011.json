@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_015",
+  "project": "policy_ambiguity_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:57:22.179Z",
+    "updated_at": "2026-05-21T11:00:11.476Z",
+    "hypothesis": "Authorization scope violations are predominantly unauthorized escalation (granting excess permissions) rather than restriction, consistent across all 5 models, revealing systematic permissiveness bias under boundary ambiguity"
+  },
+  "timestamp": "2026-05-21T11:00:11.527809+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d61ffab42c0a451b8ceb",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 003a qwen3",
+  "task_key": "worker_code_plan_003a_qwen3_20260520T183147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003a_qwen3_20260520T183147_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "b16072e4bb3d5e2d2dad17a6b235374813536c0218651b98d45538be80bce954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3-235B 全量实验完成。\n\n**结果汇总：**\n- Episodes: 597/600（3 个 JSON 解析错误）\n- Judgments: 597/597（0 errors，cross-judge by gpt-5.4）\n- **Ambiguous violation rate: 43.1%** (129/299)\n- **Unambiguous violation rate: 10.7%** (32/298)\n- **Delta: 32.4pp** — 模糊条款下违规率显著高于明确条款"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003a-qwen3.md"
+}

@@ -1,0 +1,37 @@
+{
+  "pair_id": "BK12_scopal",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The charge must not exceed the card's available capacity.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: To proceed with paying the bill by adding the specified amount to your credit card balance, we need to verify the following:\n\n1. **Check if your username exists in the database.**\n2. **Verify your log...]",
+    "internal_check_credit_card_exist",
+    "[says: Great! Your username exists, and your login was successful. Now, let's verify if the credit card exists under your username and check its available capacity.]",
+    "[says: It seems the credit card number **2357 1113 1719 2329** does not exist under your username. \n\nCould you please double-check the card number and provide the correct one? Alternatively, if you'd like to...]",
+    "[says: Since the credit card number **2357 1113 1719 2329** does not exist under your username, I cannot proceed with the transaction as requested. \n\nIf you'd like to explore other payment options or verify ...]"
+  ],
+  "timestamp": "2026-05-22T17:41:39.433716"
+}

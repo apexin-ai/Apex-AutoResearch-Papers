@@ -1,0 +1,34 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The book's ID (retrieved using \"{book_title}\" from the \"book_title_to_id\" section) exists in the \"borrowed\" of the user \"{username}\".",
+  "action": "return_book",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'd be happy to help you return \"Beloved\"! Let me start by logging you in first.]",
+    "[says: Unfortunately, it seems that the login attempt has **failed**. The username or password you provided may be incorrect. Could you please double-check your credentials and try again? Here's what was pro...]",
+    "[says: I understand you'd like to return \"Beloved,\" but unfortunately I'm unable to proceed because the login attempt with the provided credentials has **failed**. Without successful authentication, I cannot...]"
+  ],
+  "timestamp": "2026-05-22T17:58:10.063493"
+}

@@ -1,0 +1,39 @@
+{
+  "pair_id": "HC04_cond",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Policy updates can only be performed during the applicable enrollment window.",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before I can proceed with updating your healthcare policy, I need to verify your login credentials to ensure you are authorized to make changes. Let me log you in first.]",
+    "get_policy_details",
+    "[says: Great, you've been successfully logged in. Now, I'll proceed to update your healthcare policy with the details you provided. Let me check if your current policy is active and if the enrollment window ...]",
+    "update_policy",
+    "[says: Your current policy is active (Health type), and the enrollment window is open. I will now proceed to update your policy with the new details.]",
+    "logout_user",
+    "[says: Your healthcare policy has been successfully updated! Here are the new details:\n\n- **Policy Type:** Health  \n- **Coverage Amount:** $5000  \n- **Annual Income:** $60000  \n\nIf you need any further assis...]",
+    "[says: You have been successfully logged out. If you need any further assistance in the future, don't hesitate to reach out. Have a great day!]"
+  ],
+  "timestamp": "2026-05-22T17:57:21.972512"
+}

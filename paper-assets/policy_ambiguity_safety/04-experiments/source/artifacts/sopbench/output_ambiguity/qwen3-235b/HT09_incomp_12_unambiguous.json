@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_room_change_options",
+    "[says: I need to verify a few details before processing your room change request. First, could you please specify which room type you'd like to upgrade to? Additionally, I'll check if \"upgrade\" is a valid re...]",
+    "[says: I see that \"upgrade\" is a valid reason for room changes. To proceed, I'll need to know which specific room type you'd like to upgrade to (e.g., deluxe, suite, executive). Could you please specify the ...]",
+    "internal_valid_room_type",
+    "[says: I need to verify if the target room type for your upgrade is valid and available. Could you please specify which room type you'd like to upgrade to (e.g., deluxe, suite, executive)? This will allow me...]"
+  ],
+  "timestamp": "2026-05-22T17:27:46.667398"
+}

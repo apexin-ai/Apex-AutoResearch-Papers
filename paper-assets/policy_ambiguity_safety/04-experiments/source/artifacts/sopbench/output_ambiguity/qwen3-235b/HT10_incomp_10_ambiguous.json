@@ -1,0 +1,37 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room service orders are subject to daily limits per room.",
+  "action": "place_room_service_order",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 9,
+    "num_function_calls": 6,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_service_payment_method",
+    "internal_get_loyalty_member_info",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "place_room_service_order",
+    "[says: The room service order for John Doe in room 101 has been successfully placed. The order includes 1 cheesecake and 2 coffees, and the payment of $15.00 has been processed using loyalty points. John Doe...]"
+  ],
+  "timestamp": "2026-05-22T17:31:58.054436"
+}

@@ -1,0 +1,42 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The provider must offer services that cover the user's policy.",
+  "action": "submit_claim",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll help you submit a claim! Let me start by verifying your account and logging you in. I'll work through this step by step.\n\n**Step 1: Check if the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "get_policy_details",
+    "[says: You're logged in! Now let me retrieve your policy details to verify eligibility.\n\n**Step 3: Retrieve policy details.**]",
+    "get_claim_history",
+    "[says: Your policy is active (Health). Now let me check your claim history to ensure the total of pending and approved claims doesn't exceed your coverage amount of **$10,000**.\n\n**Step 4: Retrieve claim his...]",
+    "get_provider_details",
+    "[says: The total of pending and approved claims is **$1,700** ($500 approved + $1,200 pending). Adding the new claim of **$9,000** would bring the total to **$10,700**, which **exceeds** your coverage amount...]",
+    "[says: I'm sorry, but I'm unable to submit your claim due to the following issue:\n\n- **Coverage Limit Exceeded:** Your current coverage amount is **$10,000**. The total of your existing pending and approved ...]",
+    "[says: I'm sorry, but I'm unable to submit your claim for the following reason:\n\n- **Coverage Limit Exceeded:** Your current coverage amount is **$10,000**. The total of your existing pending and approved cl...]"
+  ],
+  "timestamp": "2026-05-22T17:26:16.634006"
+}

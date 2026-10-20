@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 33,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m unable to update your policy because the enrollment-period requirement is not met.\n\nReason:\n- Your policy is active, and there are no unresolved claims.\n- However, your enrollment date is 2023-05-...]"
+  ],
+  "timestamp": "2026-05-22T23:02:17.959255"
+}

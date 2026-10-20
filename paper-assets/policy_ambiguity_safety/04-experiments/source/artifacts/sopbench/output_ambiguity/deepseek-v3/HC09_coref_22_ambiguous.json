@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+  "action": "submit_claim",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "internal_check_provider_exists",
+    "get_policy_details",
+    "[says: \n]",
+    "[says: I'm sorry, but I cannot proceed with submitting your claim for the following reasons:\n\n1. The claim amount of $4000 exceeds the maximum claimable amount of $3000.\n2. The provider \"kaiser_permanente_oa...]"
+  ],
+  "timestamp": "2026-05-23T01:09:28.268086"
+}

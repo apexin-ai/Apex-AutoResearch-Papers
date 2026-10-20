@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan_010",
+  "project": "policy_ambiguity_safety",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:22:11.087Z",
+    "updated_at": "2026-05-21T05:13:30.217Z",
+    "hypothesis": "Extending failure mode classification from 2 models to all 5 models reveals model-specific failure signatures: each ambiguity type produces a distinctive failure profile consistent across model families, with specification-layer dominated by guess-and-act and linguistic-layer by misparse-and-apply.",
+    "parent": "plan_005",
+    "spec": {
+      "command": "python run_error_analysis_5model.py",
+      "server": "local (API experiment)",
+      "data_path": "artifacts/_project/intermediate/full_study/",
+      "data_count": "~2214 API calls",
+      "model_name": "gpt-4.1 (primary) + gpt-5.4 (secondary coder)",
+      "seed": "N/A",
+      "checkpoint_source": "plan_005 (2-model error analysis results)",
+      "eval_data": "full_study episode trajectories for all 5 models",
+      "checkpoint_path": "artifacts/_project/report/error_analysis_5model.json",
+      "log_path": "/tmp/plan_010_error_analysis.log",
+      "metrics": {
+        "total_violations_coded": 614,
+        "types_unanimous_dominant_fm": "3/6 (scopal, cond_prec, auth_scope)",
+        "types_majority_dominant_fm": "6/6",
+        "inter_coder_kappa": 0.5173,
+        "percent_agreement": 0.656,
+        "disambiguation_awareness_overall": 0.046,
+        "disambiguation_awareness_claude": 0.11,
+        "disambiguation_awareness_qwen3": 0,
+        "disambiguation_awareness_deepseek": 0,
+        "elapsed_seconds": 98.5
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T05:13:30.240103+00:00",
+  "trigger": "update_registry"
+}

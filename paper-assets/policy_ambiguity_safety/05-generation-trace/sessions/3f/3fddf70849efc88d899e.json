@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fddf70849efc88d899e",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis human annotation prep",
+  "task_key": "worker_analysis_human_annotation_prep_20260522T221839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_human_annotation_prep_20260522T221839_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "313fe252f10d1ed9de4107f17d38b937930b2bd797fd822578459c142ccbef36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are validated. Here's what was produced in `artifacts/human_annotation/`:\n\n| File | Description |\n|------|-------------|\n| `prepare_annotation.py` | Stratified sampling script (reproducible, seed=42) |\n| `annotation_sheet.csv` | 100 traces with all context + empty columns for annotation |\n| `annotation_sheet.json` | Same data in JSON format |\n| `sample_summary.json` | Distribution stats |\n| `codebook.md` | Full annotation guide with definitions, real examples, decision tree, tie-breaking rules, and inter-annotator procedure |\n\n**Sampling distribution**: 16-17 per ambiguity type, 18-24 per model (balanced within each type). Total violations pool = 614, sampled = 100. The script filters `condition==\"ambiguous\"` AND `violation_level in (moderate, critical)`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-human-annotation-prep.md"
+}

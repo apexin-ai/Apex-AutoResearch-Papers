@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC06_lexical",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must not have any outstanding claims to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: The update to your healthcare policy has been successfully processed! Here are the details of your updated policy:\n\n- **Policy Type:** Health  \n- **Coverage Amount:** $250,000  \n- **Annual Income:** $...]"
+  ],
+  "timestamp": "2026-05-22T17:45:03.431299"
+}

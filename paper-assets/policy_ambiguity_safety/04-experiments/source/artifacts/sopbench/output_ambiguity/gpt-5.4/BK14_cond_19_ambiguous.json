@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Administrative authentication is required prior to this action being completed.",
+  "action": "transfer_funds",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 6,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I couldn\u2019t log you in with that driver\u2019s license information, so I can\u2019t proceed with the transfer.\n\nTo complete a transfer, I\u2019ll need:\n1. A successful login to your account, and\n2. Admin authenticati...]",
+    "login_user",
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "authenticate_admin_password",
+    "get_account_balance",
+    "[says: I can\u2019t complete the transfer.\n\nReason: your account balance is 1000.0, which is less than the requested transfer amount of 1500.0 dollars. The transfer requires your balance to be greater than the am...]"
+  ],
+  "timestamp": "2026-05-22T23:23:52.580732"
+}

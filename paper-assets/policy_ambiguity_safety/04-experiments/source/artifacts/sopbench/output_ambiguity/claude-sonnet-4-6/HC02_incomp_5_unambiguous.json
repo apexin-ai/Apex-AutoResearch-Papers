@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+  "action": "submit_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'd be happy to help you submit a claim! Let me start by logging you in first.]",
+    "get_policy_details",
+    "[says: You're now logged in! Let me retrieve your policy details to verify eligibility for submitting a claim.]",
+    "get_claim_history",
+    "[says: Your policy is active (Health). Now let me check your claim history to ensure the total of pending and approved claims won't exceed your coverage amount.]",
+    "[says: Let me verify all the conditions before proceeding:\n\n1. \u2705 **Logged in** successfully.\n2. \u2705 **Active policy** \u2014 Your policy type is \"Health\" (not Inactive).\n3. \u2705 **Coverage check** \u2014 Your total pending...]",
+    "[says: I understand you'd like to proceed, but unfortunately I'm still unable to submit this claim for the same reason:\n\n- **Total pending + approved claims:** $1,700 ($500 approved + $1,200 pending)\n- **New...]"
+  ],
+  "timestamp": "2026-05-22T16:46:59.674807"
+}

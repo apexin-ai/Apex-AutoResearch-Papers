@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC12_lexical",
+  "domain": "healthcare",
+  "constraint": "provider_available",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The provider should be able to accept new patients for scheduling.",
+  "action": "schedule_appointment",
+  "task_idx": 12,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_provider_details",
+    "[says: The provider \"Kaiser Permanente\" in Oakland is currently unavailable for scheduling appointments. Unfortunately, I cannot proceed with scheduling your appointment for \"2025-03-01\" at this time. \n\nWoul...]"
+  ],
+  "timestamp": "2026-05-22T23:32:45.222937"
+}

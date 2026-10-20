@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must not have** outstanding balance on credit card of \"{card_number}\" to proceed.",
+  "action": "cancel_credit_card",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_credit_card_exist",
+    "[says: The credit card number \"2357 1113 1719 2329\" does not exist in the database for user \"john_doe\". This means the cancellation cannot proceed as the specified card is not associated with your account. P...]"
+  ],
+  "timestamp": "2026-05-22T19:43:07.131168"
+}

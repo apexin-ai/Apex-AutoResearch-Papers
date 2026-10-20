@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+  "action": "submit_claim",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "get_policy_details",
+    "internal_check_provider_exists",
+    "[says: I'm sorry, but I cannot process your claim because the amount ($6000) exceeds the maximum claimable amount of $5000. Please adjust the claim amount to be within the limit and try again. Let me know if...]"
+  ],
+  "timestamp": "2026-05-22T16:47:28.239527"
+}

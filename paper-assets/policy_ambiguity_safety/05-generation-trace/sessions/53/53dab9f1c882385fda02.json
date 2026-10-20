@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53dab9f1c882385fda02",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code mf6 cross coding",
+  "task_key": "worker_code_mf6_cross_coding_20260520T171218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf6_cross_coding_20260520T171218_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "f2486a6efa3e9387c9bfcff3d9aface24dd4e52f4da1b3e02ebd91899a6c98c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF-6 完成。结果：\n\n- **Cohen's κ = 0.5352**（moderate agreement），66.7% overall agreement\n- 60 条样本（每种 ambiguity_type ≥ 5 条），0 个 parse error\n- **Per-category**：`scope_misapplication` 一致性最高（94.4%），`assumption_based_action` 最低（47.4%）——gpt-4.1 倾向将部分 assumption_based_action 重标为 scope_misapplication\n- **Cross-model dominant mode**：5/6 types 一致，唯一不一致的是 coreferential（gpt-5.4: scope_misapplication, gpt-4.1: assumption_based_action）\n\n输出文件：\n- `plan_005/cross_coding_agreement.json`\n- `plan_005/cross_coding_recoded.jsonl`（60 条 gpt-4.1 重编码原始结果）\n- `plan_005/run_cross_coding.py`（可复现脚本）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf6-cross-coding.md"
+}

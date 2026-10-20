@@ -1,0 +1,35 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have less than {borrow_limit} books in their \"borrowed\".",
+  "action": "borrow_book",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "borrow_book",
+    "check_return_date",
+    "[says: The return date for the book \"Beloved\" has been set to **October 24th, 2024**. Please ensure you return the book by this date to avoid late fees. Let me know if you need further assistance! \n\n]"
+  ],
+  "timestamp": "2026-05-22T17:36:04.776504"
+}

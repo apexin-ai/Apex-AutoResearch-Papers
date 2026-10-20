@@ -1,0 +1,42 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Modifications must be requested sufficiently in advance of the scheduled arrival.",
+  "action": "modify_reservation",
+  "task_idx": 44,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 12,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_valid_room_type",
+    "find_booking_info",
+    "internal_get_loyalty_member_info",
+    "[says: To proceed with modifying Jane Smith's reservation, I need to verify the following:\n\n1. **Room Availability**: Ensure that a double room is available for the new dates (2024-12-03 to 2024-12-05).\n2. *...]",
+    "[says: Here's what I found:\n\n1. **Room Type**: The \"double\" room type is valid.\n2. **Existing Reservation**: Jane Smith has a confirmed reservation from 2024-12-03 to 2024-12-06.\n3. **Loyalty Status**: Jane ...]",
+    "internal_valid_room_type",
+    "find_booking_info",
+    "internal_get_loyalty_member_info",
+    "[says: To proceed with modifying Jane Smith's reservation, I need to verify the following:\n\n1. **Room Availability**: Ensure that a \"suite\" room is available for the new dates (2024-12-03 to 2024-12-05).\n2. ...]",
+    "modify_reservation",
+    "[says: Here's what I found:\n\n1. **Room Type**: The \"suite\" room type is valid.\n2. **Existing Reservation**: Jane Smith has a confirmed reservation for a \"double\" room from 2024-12-03 to 2024-12-06.\n3. **Loya...]",
+    "[says: Jane Smith's reservation has been successfully modified! Here are the updated details:\n\n- **Room Type**: Changed from \"double\" to \"suite\".\n- **Check-out Date**: Updated from 2024-12-06 to 2024-12-05.\n...]"
+  ],
+  "timestamp": "2026-05-23T01:01:31.095544"
+}

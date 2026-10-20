@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_003a",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:13:38.879Z",
+    "updated_at": "2026-05-20T19:13:41.754Z",
+    "hypothesis": "Qwen3-235B (open-source MoE) exhibits the same binary ambiguity effect and type hierarchy, extending generalizability beyond closed-source API models. Cross-architecture consistency (GPT vs Claude vs Qwen MoE) strengthens C4 model-agnosticity claim.",
+    "parent": "plan_002"
+  },
+  "timestamp": "2026-05-20T19:13:41.770135+00:00",
+  "trigger": "update_registry"
+}

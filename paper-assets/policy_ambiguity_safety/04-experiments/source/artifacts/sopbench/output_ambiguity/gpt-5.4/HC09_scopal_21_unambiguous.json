@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 21,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but I can\u2019t submit this claim.\n\nReason: the claim amount of 2000 exceeds the maximum allowed claim amount of 1500.\n\nThere is also enough policy coverage remaining, and the provider appears ...]"
+  ],
+  "timestamp": "2026-05-22T23:03:23.608218"
+}

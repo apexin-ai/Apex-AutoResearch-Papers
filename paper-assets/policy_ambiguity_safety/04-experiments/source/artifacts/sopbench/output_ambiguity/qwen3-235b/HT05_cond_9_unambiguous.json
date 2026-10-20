@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT05_cond",
+  "domain": "hotel",
+  "constraint": "before_modification_deadline",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The current interaction time must be **no later than** {modification_deadline_hours} hours before {check_in_time} on \"{check_in_date}\".",
+  "action": "modify_reservation",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "modify_reservation",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "find_booking_info",
+    "modify_reservation",
+    "[says: Your reservation for Jane Smith has been successfully modified. Here are the details:\n\n- **Check-in date**: December 3, 2024 (unchanged)  \n- **Check-out date**: December 6, 2024 (unchanged)  \n- **Room...]"
+  ],
+  "timestamp": "2026-05-22T19:22:13.340228"
+}

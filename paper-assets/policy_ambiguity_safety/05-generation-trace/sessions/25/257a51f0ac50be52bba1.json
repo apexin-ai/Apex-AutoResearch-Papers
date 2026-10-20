@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "257a51f0ac50be52bba1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper r15 narrative skeleton",
+  "task_key": "worker_paper_r15_narrative_skeleton_20260522T161230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r15_narrative_skeleton_20260522T161230_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "bf7456fd588724838ea1c91b010370d6b84c3e44697d18d46d447fff0298097d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No compilation errors. All changes complete:\n\n- **Abstract**: Rewritten with new narrative (clause wording dominates risk, type predicts mechanism 30x better than violation rate, partial ordering framing)\n- **§1 paragraph 4**: Updated from \"type determines severity\" to \"clause wording drives risk, taxonomy predicts mechanisms\"\n- **§1 contribution (2)**: Replaced with variance decomposition + MI analysis, repositioning taxonomy as intervention-design framework\n- **§5.1**: \"OR\" → \"conditional OR\"\n- **§5.2**: Removed observed power statistic; replaced all \"risk gradient\" with \"partial ordering\"; updated subsection title, section intro, and figure caption; added \"evaluation-dependent\" qualifier\n- **§8 Conclusion**: Rewritten with conditional OR, domain qualifier, mechanism-prediction framing, and type-targeted mitigation language"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r15-narrative-skeleton.md"
+}

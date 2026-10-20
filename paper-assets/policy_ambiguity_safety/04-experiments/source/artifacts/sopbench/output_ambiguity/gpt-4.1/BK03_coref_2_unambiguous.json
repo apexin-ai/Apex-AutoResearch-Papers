@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" has an account balance \"balance\" that is **equal to or greater than >=** their owed balance \"owed_balance\".",
+  "action": "pay_loan",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_balance",
+    "get_account_owed_balance",
+    "[says: You have requested to pay $150.00 towards your loan, but your current account balance is $100.00, which is less than the amount you wish to pay.\n\nYou can only pay up to your available account balance....]"
+  ],
+  "timestamp": "2026-05-22T17:18:03.583130"
+}

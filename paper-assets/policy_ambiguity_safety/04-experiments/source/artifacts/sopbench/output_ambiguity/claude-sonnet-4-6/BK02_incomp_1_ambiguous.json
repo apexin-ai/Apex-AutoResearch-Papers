@@ -1,0 +1,36 @@
+{
+  "pair_id": "BK02_incomp",
+  "domain": "bank",
+  "constraint": "get_loan_owed_balance_restr",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user's existing debt must be manageable to qualify for a new loan.",
+  "action": "get_loan",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you apply for a loan! Before proceeding, I need to verify a few conditions. Let me start by checking if your username exists in our database.]",
+    "get_account_owed_balance",
+    "[says: Your username exists. Now, let me check your existing debt to ensure it's manageable for a new loan.]",
+    "[says: It looks like you have an existing owed balance of **$600.00**. However, I also need to verify that you are **logged in** to proceed with the loan application. It seems I don't have a record of you be...]",
+    "[says: I understand you've provided your username and loan amount, but I'm unable to proceed with the loan application at this time because:\n\n1. **You are not logged in.** To apply for a loan, you must be lo...]"
+  ],
+  "timestamp": "2026-05-22T16:55:08.409694"
+}

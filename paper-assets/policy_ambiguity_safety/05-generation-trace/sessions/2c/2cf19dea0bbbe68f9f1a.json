@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf19dea0bbbe68f9f1a",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment residual decomp v2",
+  "task_key": "worker_experiment_residual_decomp_v2_20260522T230313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_residual_decomp_v2_20260522T230313_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "1e1bf904b817fe12042aeaefb4f84981b6c3cf343ed44b1c7ca9e9002929e5be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**Overall**: ICC(1) = 0.749, 1000 episodes, 1000 judgments, 0 errors\n- **Stochastic variance** (run-to-run): 25.1% → 原始 60.8% residual 中约 **15.2pp** 来自随机性\n- **Systematic unmeasured**: **45.6pp** 来自未测量的系统性因素\n\n**By condition**:\n- Ambiguous: ICC=0.78, violation rate=27.6%, stochastic=21.8%\n- Unambiguous: ICC=0.40, violation rate=4.0%, stochastic=59.6%\n\n**By ambiguity type** (ICC 排序):\n- incompleteness: ICC=0.90 (最一致)\n- conditional_precedence: ICC=0.86\n- scopal: ICC=0.73\n- lexical: ICC=0.70\n- coreferential: ICC=0.34\n- authorization_scope: ICC≈0 (几乎纯随机噪声，violation rate 仅 1.1%)\n\n**Cell consistency**: 86.5% cells 是 unanimous（173/200），其中 151 全无违规、22 全违规，仅 27 个 mixed cells。\n\n产出文件均已生成在 `artifacts/residual_decomposition/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-residual-decomp-v2.md"
+}

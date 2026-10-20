@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The guest must provide sufficient payment to cover the order, either through direct payment or their rewards account.",
+  "action": "place_room_service_order",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "[says: I'll need to verify several conditions before placing this order. Let me start by checking the necessary details.]",
+    "[says: I'm sorry, but I'm unable to place the room service order for **Jane Smith**. The reason is that **Jane Smith is not currently listed in the room check-in records**. Only guests who have checked in ca...]",
+    "[says: I understand you've provided all the information, but unfortunately I am still unable to place the room service order for **Jane Smith**.\n\nThe requirement is that **the guest must be listed in the roo...]"
+  ],
+  "timestamp": "2026-05-22T17:59:37.729760"
+}

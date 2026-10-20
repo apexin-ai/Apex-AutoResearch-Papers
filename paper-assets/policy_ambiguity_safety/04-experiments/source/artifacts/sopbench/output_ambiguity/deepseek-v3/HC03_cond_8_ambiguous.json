@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC03_cond",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The user's income should support the requested coverage amount, verified against the income-based coverage ratio.",
+  "action": "update_policy",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated with the following details:\n\n- **Policy Type:** Health  \n- **Coverage Amount:** 12000  \n- **Annual Income:** 50000  \n\nIf you need any further assis...]",
+    "[says: Your request has already been completed successfully. Your healthcare policy has been updated with the provided details.  \n\nIf you need any further assistance in the future, don't hesitate to reach ou...]"
+  ],
+  "timestamp": "2026-05-22T17:56:48.185034"
+}

@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC13_lexical",
+  "domain": "healthcare",
+  "constraint": "claim_status_denied",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The claim with ID \"{claim_id}\" for user \"{username}\" **MUST HAVE** a status of 'denied' in order to be appealed.",
+  "action": "appeal_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you appeal your denied claim! Let me start by logging you in first.]",
+    "get_policy_details",
+    "[says: You're successfully logged in! Now let me verify your policy details to ensure it's active.]",
+    "get_claim_details",
+    "[says: Your policy is active (Health). Now let me retrieve the details of claim **CLM-002** to verify its status and eligibility for appeal.]",
+    "internal_get_interaction_time",
+    "[says: The claim is **denied** \u2014 great, it's eligible for appeal in terms of status. Now let me check the current interaction time to ensure we're within the 180-day appeal window from the claim date of **20...]",
+    "[says: Let me verify the appeal window:\n- **Claim date:** 2024-07-01\n- **Appeal deadline (180 days later):** 2024-12-28\n- **Current interaction time:** 2025-01-15\n\nUnfortunately, the current date (**January ...]",
+    "[says: I understand you've provided the same information, but unfortunately I'm unable to process the appeal for claim **CLM-002**. As verified:\n\n- **Claim date:** 2024-07-01\n- **Appeal deadline (180 days la...]"
+  ],
+  "timestamp": "2026-05-22T17:14:47.520130"
+}

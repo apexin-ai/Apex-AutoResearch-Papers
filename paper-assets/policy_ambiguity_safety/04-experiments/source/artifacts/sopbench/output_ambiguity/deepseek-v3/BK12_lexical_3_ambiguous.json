@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK12_lexical",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The transaction amount must be within the card's remaining credit allowance.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_credit_card_exist",
+    "[says: It seems that the credit card number you provided (2357 1113 1719 2329) does not exist in your account. Could you please verify the card number and provide the correct one? Alternatively, if you'd lik...]"
+  ],
+  "timestamp": "2026-05-22T17:27:54.894325"
+}

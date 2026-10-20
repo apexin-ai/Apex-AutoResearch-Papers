@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 18,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 5,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "book_room",
+    "[says: The booking for Sakana Inoue has been successfully processed! \ud83c\udf89  \n- **Room Type:** Double  \n- **Dates:** 2024-12-08 (check-in) to 2024-12-12 (check-out)  \n- **Payment:** $440.00 confirmed  \n\nYour rese...]"
+  ],
+  "timestamp": "2026-05-22T18:59:31.031253"
+}

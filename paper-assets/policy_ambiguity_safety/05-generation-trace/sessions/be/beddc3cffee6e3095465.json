@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "beddc3cffee6e3095465",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "analysis convergence deep analysis",
+  "task_key": "worker_analysis_convergence_deep_analysis_20260523T053348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_convergence_deep_analysis_20260523T053348.log",
+    "occurrence": 1,
+    "bytes": 690112,
+    "sha256": "386a2d498de0b0a52f491421258b224bf02ebb688a8e2c4dbfac139ce6a431a8"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 3,
+      "assistant": 54,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "beddc3cffee6e3095465-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "beddc3cffee6e3095465-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-convergence-deep-analysis.md"
+}

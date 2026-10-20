@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The total amount of pending and approved claims for the user \"{username}\" **MUST NOT EXCEED** the coverage amount specified in their policy when submitting a new claim.",
+  "action": "submit_claim",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "[says: The total amount of pending and approved claims ($1,200 + $500 = $1,700) plus your new claim of $8,301 would exceed your policy's coverage limit of $10,000. The combined total would be $10,001, which ...]"
+  ],
+  "timestamp": "2026-05-22T18:06:43.671899"
+}

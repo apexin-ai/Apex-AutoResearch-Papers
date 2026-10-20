@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC05_incomp",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim must still be eligible for appeal based on its filing date.",
+  "action": "appeal_claim",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "internal_check_claim_exists",
+    "get_policy_details",
+    "appeal_claim",
+    "[says: The appeal for your claim CLM-002 has been successfully submitted. Your Health policy remains active with $10,000 coverage. Would you like me to check the status of this appeal or assist with anything...]"
+  ],
+  "timestamp": "2026-05-22T17:04:25.277101"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62843b0ba6e5ffb15b77",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260520T194337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260520T194337_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "33e26d19ec94b24e296116189f946ecf7c03e67a6db60c3682e1281984993a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All constraints verified:\n\n- No em-dash/en-dash: 0 occurrences\n- No -ing phrase sentence endings: 0\n- No `\\hline`: 0 (uses booktabs)\n- No \"state-of-the-art\": 0\n- \"significantly\" only with statistical tests: confirmed\n- Qwen3 scopal fixed: 37.0 (was 36.7)\n- Caption above table: confirmed\n- Decimal precision: 1 decimal place throughout\n- Raw word count: 1176 (body text ~1050 after stripping LaTeX)\n\nChanges from the previous draft:\n1. Fixed all four `-ing` participial phrase endings (rewrote as declarative sentences)\n2. Fixed Qwen3 scopal from 36.7 to 37.0 to match source data\n3. Added standalone `\\subsection{Reproducibility and Controls}` (was scattered in C3)\n4. Removed ICC discussion from C3 to keep that section focused on the layer effect\n5. Added OR [1.05, 1.58] to C3 per source data\n6. Tightened the perturbation control paragraph in C1 to avoid trailing gerund"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

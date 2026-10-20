@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The deposit amount \"{amount}\" must be less than or equal to the {maximum_deposit} to be accepted.",
+  "action": "deposit_funds",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 2,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "deposit_funds",
+    "[says: The deposit of $15,000.00 in cash into your account (username: john_doe) has been successfully processed. If you need any further assistance, feel free to ask!]"
+  ],
+  "timestamp": "2026-05-22T17:07:17.837731"
+}

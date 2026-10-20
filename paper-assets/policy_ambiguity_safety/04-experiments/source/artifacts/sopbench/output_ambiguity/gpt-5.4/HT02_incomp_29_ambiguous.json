@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The booking must be made within an acceptable advance booking window.",
+  "action": "book_room",
+  "task_idx": 29,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "internal_get_interaction_time",
+    "book_room",
+    "[says: Your booking is confirmed for Alex Martinez.\n\nDetails:\n- Room type: Double\n- Check-in: 2024-12-05\n- Check-out: 2024-12-09\n- Amount paid: $440.00\n\nHave a great stay!]"
+  ],
+  "timestamp": "2026-05-22T22:45:00.379226"
+}

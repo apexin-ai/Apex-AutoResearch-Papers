@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abb55ac32db6a6e8260e",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit r10 checklist fixes",
+  "task_key": "worker_edit_r10_checklist_fixes_20260521T210253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_r10_checklist_fixes_20260521T210253_result.json",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "6877382afa4fb853fcab4247160c5eae9bc4ed7df210a84462f7b13a3b5258da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 edits complete. Summary:\n\n| # | Location | Old | New |\n|---|----------|-----|-----|\n| 1 | D2 | `Per-type κ ranges from 0.479 (conditional_precedence) to 0.904 (incompleteness)` | `Per-type κ ranges from 0.479 (coreferential) to 0.904 (lexical)` |\n| 2 | E2 | `Δ_perturb = 3.33pp` | `Δ_perturb = −0.67pp (n=300)` |\n| 3a | A2 | `§Ethical Considerations notes that the study` | `As discussed in §Limitations and in this checklist response, the study` |\n| 3b | B2 | `§Ethical Considerations discusses: (1)` | `As discussed in §Limitations and in this checklist response: (1)` |\n| 4 | A1 | `(4) temperature=0 deterministic setting does not reflect stochastic deployment conditions; (5) API-accessed models are opaque — we cannot attribute behavioral differences to specific architectural choices vs. safety training differences.` | Same text with `(discussed in §Method)` appended to each point |\n| 5 | D3 | `Annotators were trained on 20 pilot episodes with discussion of disagreements` | `Pilot testing was conducted to calibrate the annotation schema, with discussion of disagreements` |\n| 6 | C1 | `Qwen3-235B-A22B (open-weight MoE, 235B total / 22B active)` | `Qwen3-235B (open-weight MoE, 235B total)` |\n\n**Note on #3**: B3 does not contain a `§Ethical Considerations` reference — only A2 and B2 had one (2 occurrences, not 3). B3's text already stands without a section reference."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-r10-checklist-fixes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48a6047e604ca70ccb4b",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code sopbench phase2c routing",
+  "task_key": "worker_code_sopbench_phase2c_routing_20260522T163058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sopbench_phase2c_routing_20260522T163058_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "6cdaf1a1aebf6f87327c1919010d4d3c2c9aab809391e0be3fc923eaa86d6348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes applied and verified:\n\n1. **`swarm/constants.py`** — Added `\"gpt-5.4\"` to `OPENAI_MODELS`, `AVAILABLE_MODELS[\"openai\"]`, and `FUNCTION_CALLING_MODELS[\"openai\"]`.\n\n2. **`run_full_experiment.py`**:\n   - Added `MODEL_ROUTING` dict with 5 entries (gpt-5.4, gpt-4.1 via OpenAI direct; claude-sonnet-4-6, qwen3-235b, deepseek-v3 via OpenRouter)\n   - Added `--api-key` and `--base-url` CLI args as overrides\n   - Routing logic in `main()`: looks up model in `MODEL_ROUTING`, sets env vars, dynamically registers OpenRouter model IDs in `OPENAI_MODELS`/`FUNCTION_CALLING_MODELS` so the handler uses the OpenAI backend\n   - Output directory uses the short `--model` name, handler gets the full `model_id`\n   - Timeout: 600s → 300s\n   - Retry: max 3 → 2, delay 30s → 10s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sopbench-phase2c-routing.md"
+}

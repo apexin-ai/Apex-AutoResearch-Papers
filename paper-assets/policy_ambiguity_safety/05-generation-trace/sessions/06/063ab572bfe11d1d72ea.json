@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "063ab572bfe11d1d72ea",
+  "project": "policy_ambiguity_safety",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3671,
+    "sha256": "0c756a468c24b33510b4e7afc52748643a327f95c639b00cfc4f6aef6a77251e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-21T17:32:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 实验，纯 API 调用 + 论文写作项目\n- 论文主文严格 8 页限制（EMNLP 2026 via ARR May cycle），Limitations/refs/appendix 不算\n- Authorization scope 相关 claim 必须用 \"suggestive\" 而非 \"definitive\"——κ=0.385 是 Reviewer 反复盯的点\n- Incompleteness 排名必须带 confound caveat——不能单独说 \"consistently high\" 不提 information-addition confound\n- \"robust two-tier\" 已全文替换为 \"two-tier\"，不要再引入 \"robust\" 修饰\n\n### 2. 🖥️ 基础设施快照\n- 纯本地项目，无远程服务器\n- 论文源码：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/`\n- 主文件：`main.tex`，用 `\\input{sections/X}` 引入各章节\n- 根目录有 stale copies（`experiments.tex` 等），实际用的是 `sections/` 下的\n- 编译：`cd docs/paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex`\n- 补充分析数据：`artifacts/round8_supplementary/round8_supplementary_analyses.json`（bootstrap cluster + ranking CI + clause variance）\n- 回归表数据：`artifacts/full_study/analysis/information_delta.json`\n- 审稿 issue tracker：`artifacts/review_issues.yaml`\n\n### 3. 📊 当前状态\n**刚完成**：Round 8 Action Matrix 全部 15 条修复（3 Critical + 9 Warning + 3 Minor/补充）。具体：\n- N1: SESOI external anchor + Anvari & Lakens 2021 + margin dependence 承认 + Ward's bootstrap cluster (Appendix H)\n- N2: C4 auth scope 全文降级 \"suggestive\" + within-judge bootstrap ranking 99.5% stability\n- N3: 完整回归表 Appendix G + Abstract confound caveat 强化\n- W1-W9: API 超参数、condition blinding、C3 expansion、testable predictions P1/P2、bib 清理、数据可用性声明、clause-level variance (Appendix I)、per-type reliability limitation\n\n**已编译验证**：14 页总计，主文 8 页（Conclusion 在 p8 结束），无 LaTeX warnings。\n\n**等待中**：Reviewer 验证回复（已 `post_to_reviewer` 提交完整验证请求）。Reviewer 回复后需要：\n1. 如全部 PASS → 提交 Round 9 审稿（`submit_paper_to_review`）\n2. 如有 FAIL → 按 Reviewer 指出的问题修复后再提交\n\n### 4. 📋 待办\n- Reviewer 验证回复 PASS → `submit_paper_to_review` 提交 Round 9（推荐 `fresh` mode，因为本轮改动大）\n- Reviewer 验证回复有 FAIL → 逐条修复，重新编译验证页数，再次提交 Reviewer\n- Round 9 审稿完成 → 处理审稿报告（`review-report-action` skill），目标 3.5→4.0\n- M1 (ferrari_defects_2018 bib key) 和 M2 (Ethics Statement) 是 camera-ready 级修正，不影响评分，可后续处理\n\n### 5. 🎯 战略上下文\n- 项目处于 **审稿迭代阶段**：Round 8 得分 3.5 (Borderline Conference)，目标 4.0 (Conference)\n- 核心论文 story：policy ambiguity 对 LLM agent 的因果影响 (+34pp)，six-type taxonomy，Differential Nocuity framework\n- **最大提分杠杆**：N1 (SESOI anchor) 和 N3 (confound transparency) 是两个 Reviewer 共识的 Critical，修好了对评分影响最大\n- **易判断错的事**：\n  - 不要把 root-level `experiments.tex` 当真源——`main.tex` 用的是 `sections/experiments.tex`\n  - 页面预算极紧（恰好 8 页），任何新增文字都需要等量删减\n  - bootstrap cluster stability 34.3% 不算高——不要过度声称 cluster 结果 \"confirms\" tier structure，用 \"corroborates\" / \"consistent with\"\n  - Round 8 是 fresh review（非 continue），Round 9 建议也用 fresh mode 因为改动量大\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

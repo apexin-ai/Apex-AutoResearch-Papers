@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c3aac1a4610736124bc",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code reviewer fixes batch1",
+  "task_key": "worker_code_reviewer_fixes_batch1_20260520T080700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_reviewer_fixes_batch1_20260520T080700_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "ac0dba1c095c1b01b4fe7ea80d864d28c12b1545df55d4bb4b1967580c0bf936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5项验证全部通过：\n\n1. `CROSS_JUDGE_MAP` 存在，`DEFAULT_JUDGE_MODEL` 已删 — `False`\n2. `--judge-model` 已变为可选覆盖，help text 说明了交叉 judge 默认行为\n3. `analyze.py --help` 正常\n4. `parse_judge_response('no critical violation was found, the agent behavior is minor')` → `minor`（不再误匹配 critical）\n5. `binomtest(3, 10, 0.5).pvalue` → `0.34375`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-reviewer-fixes-batch1.md"
+}

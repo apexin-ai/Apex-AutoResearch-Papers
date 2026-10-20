@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK12_lexical",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than or equal to the avliable credit of credit card \"{card_number}\", avaliable credit is defined as the credit limit subtracted from the credit balance.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "internal_check_credit_card_exist",
+    "[says: It appears that the credit card number you provided (2357 1113 1719 2329) does not exist under your account \"john_doe.\" Please double-check your card number or let me know if you need help with a diff...]"
+  ],
+  "timestamp": "2026-05-22T17:03:39.380954"
+}

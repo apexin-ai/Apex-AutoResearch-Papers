@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84d7e127c1279bb3012e",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 013 model expansion",
+  "task_key": "worker_code_plan_013_model_expansion_20260521T080609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_013_model_expansion_20260521T080609_result.json",
+    "occurrence": 1,
+    "bytes": 1447,
+    "sha256": "214809484cfca7126d84919ed66a5cd575dc59e5b038b60f6e3f5b9e88332442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n**模型探测结果**：\n\n| Model | Status | Tool Calling |\n|---|---|---|\n| google/gemini-2.5-flash | OK | OK |\n| google/gemini-2.5-pro | OK | No (text only) |\n| meta-llama/llama-4-maverick | OK | No (proxy不支持) |\n| meta-llama/llama-4-scout | OK | OK |\n| mistralai/mistral-large-2411 | OK | 未测 |\n| 其余候选 | 不可用 | - |\n\n**选定模型**：Gemini-2.5-Flash (Google) + LLaMA-4-Scout (Meta)\n\n**实验结果**（各 500 episodes = 250 clauses × 2 conditions，judge = GPT-5.4）：\n\n| | Gemini-2.5-Flash | LLaMA-4-Scout |\n|---|---|---|\n| Amb violation rate | 37.6% | 37.6% |\n| Unamb violation rate | 4.0% | 17.6% |\n| Delta (pp) | **+33.6** | **+20.0** |\n| p-value | <0.0001 | <0.0001 |\n| **C1 replicates** | **YES** | **YES** |\n| **C2 rank correlation** | **0.700** | -0.200 |\n| Top types | lexical > incompleteness > scopal | incompleteness > auth_scope > lexical |\n\n**结论**：\n- **C1（二元歧义效应）在两个新模型家族上均成功复现**，效应显著（p<0.0001），Gemini 效应更强（+33.6pp vs +20.0pp）\n- **C2（类型层级）**：Gemini 与参考排序有较强正相关（ρ=0.700），LLaMA 的类型排序与参考排序不一致（ρ=-0.200），表明类型层级的泛化性有限\n\n输出文件位于 `artifacts/model_expansion/{gemini-2.5-flash,llama-4-scout}/` 下，含 `episodes.jsonl`、`judgments.jsonl`、`analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-013-model-expansion.md"
+}

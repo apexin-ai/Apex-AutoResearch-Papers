@@ -1,0 +1,35 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The book's ID (retrieved using \"{book_title}\" from the \"book_title_to_id\" section) exists in the \"borrowed\" of the user \"{username}\".",
+  "action": "return_book",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The login attempt for user \"mario\" failed. Please verify your username and password are correct, then try logging in again. I cannot assist with returning books or checking overdue status until you're...]",
+    "internal_check_username_exist",
+    "login_user",
+    "[says: The username \"mario\" exists in our system, but the password provided (\"HHyicGJCEmPosy\") does not match our records. This is likely why the login failed. \n\nTo proceed with returning \"Beloved\" and check...]"
+  ],
+  "timestamp": "2026-05-22T19:46:39.306693"
+}

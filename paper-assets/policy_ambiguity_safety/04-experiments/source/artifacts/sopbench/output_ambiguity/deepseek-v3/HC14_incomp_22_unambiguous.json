@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The policy type \"{policy_type}\" **MUST BE** one of the valid insurance policy types: Health, Dental, Pharmacy, or Vision.",
+  "action": "update_policy",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before proceeding with updating your healthcare policy, I need to verify your login credentials and ensure all conditions for updating the policy are met. Let me check your login first.]",
+    "get_policy_details",
+    "[says: Great! You are now logged in. Next, I will verify if you have an active policy and ensure there are no pending claims before proceeding with the update.]",
+    "get_claim_history",
+    "[says: I can see that you currently have an active Health policy. Before updating it to a Dental policy, I need to check if you have any pending claims.]",
+    "[says: It appears you have a pending claim (Claim ID: CLM-003) for a dental cleaning. Unfortunately, one of the conditions for updating your policy is that you must not have any pending claims. \n\nTo proceed ...]",
+    "[says: Since you have a pending claim (Claim ID: CLM-003), I cannot proceed with updating your policy at this time. The system requires that all pending claims be resolved before any policy updates can be ma...]"
+  ],
+  "timestamp": "2026-05-22T22:42:37.470366"
+}

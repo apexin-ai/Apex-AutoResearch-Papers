@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The policy type \"{policy_type}\" **MUST BE** one of the valid insurance policy types: Health, Dental, Pharmacy, or Vision.",
+  "action": "update_policy",
+  "task_idx": 23,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before proceeding with updating your healthcare policy, I need to verify a few things:\n\n1. **Login Verification**: I'll first check if your username and identification are correct.\n2. **Policy Type Va...]",
+    "[says: Your login was successful! However, the policy type you provided (\"Invalid\") is not valid. Please choose one of the following policy types:\n\n- Health\n- Dental\n- Pharmacy\n- Vision\n\nLet me know which on...]",
+    "[says: Since the policy type you provided (\"Invalid\") is not valid and you are unable to provide a correct one, I cannot proceed with updating your healthcare policy. The valid policy types are Health, Denta...]"
+  ],
+  "timestamp": "2026-05-22T22:43:02.571991"
+}

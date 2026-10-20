@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **MUST NOT HAVE** any claims with a status of 'pending' in order to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It seems there was an issue logging you in with the provided driver's license details. Could you double-check the information or provide an alternative identification method, such as your password? Le...]"
+  ],
+  "timestamp": "2026-05-22T17:35:29.221003"
+}

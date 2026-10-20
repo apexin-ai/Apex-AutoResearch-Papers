@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC04_lexical",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "This action must occur while the user's enrollment is still active and current.",
+  "action": "update_policy",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: Before proceeding with your request, I need to verify a few things:\n\n1. **Login Validation**: I will check if your username exists in the system and if your identification is valid.\n2. **Policy Type V...]",
+    "login_user",
+    "[says: Your username exists in the system. Now, I will attempt to log you in using the provided identification.]",
+    "[says: It seems the login attempt failed with the provided identification. Could you please double-check your identification details (password or driver's license information) and provide the correct one? \n\n...]",
+    "[says: Since the login attempt failed with the provided identification and the policy type \"Invalid\" is not valid, I cannot proceed with your request. \n\nIf you'd like to try again with the correct identifica...]"
+  ],
+  "timestamp": "2026-05-22T23:23:29.317834"
+}

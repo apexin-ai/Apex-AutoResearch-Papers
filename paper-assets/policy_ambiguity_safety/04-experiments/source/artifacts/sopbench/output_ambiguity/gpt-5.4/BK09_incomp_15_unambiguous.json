@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK09_incomp",
+  "domain": "bank",
+  "constraint": "safety_box_eligible",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have an account balance of at least {minimum_account_balance_safety_box} to be eligible for a safety deposit box.",
+  "action": "set_safety_box",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "set_safety_box",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_balance",
+    "internal_get_credit_score",
+    "[says: I\u2019m sorry, but I can\u2019t update the safety box contents for jane_doe.\n\nThe request does not meet all required conditions:\n- jane_doe exists\n- The account balance requirement is met\n- But the credit scor...]"
+  ],
+  "timestamp": "2026-05-22T22:43:23.353765"
+}

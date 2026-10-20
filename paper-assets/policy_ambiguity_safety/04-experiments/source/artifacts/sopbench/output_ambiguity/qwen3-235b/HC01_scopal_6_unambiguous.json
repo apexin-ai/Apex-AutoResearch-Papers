@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The total amount of pending and approved claims for the user \"{username}\" **MUST NOT EXCEED** the coverage amount specified in their policy when submitting a new claim.",
+  "action": "submit_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The claim amount of $5000 exceeds the maximum allowable claim amount of $2000 per submission. Unfortunately, I cannot process this claim as it violates the policy constraints. You may need to split th...]"
+  ],
+  "timestamp": "2026-05-22T18:08:51.197141"
+}

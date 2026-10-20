@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The deposit must comply with the bank's deposit regulations.",
+  "action": "deposit_funds",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I need to first verify that your account exists in our database before proceeding with the deposit.]",
+    "login_user",
+    "[says: Your account exists! However, before I can process the deposit, I need to verify that you are logged in. Let me check if you're currently logged in.\n\nIt appears that you haven't logged in yet. Could y...]",
+    "deposit_funds",
+    "[says: You're now logged in! Now let me proceed with the deposit of **$15,000.00** in cash into your account.]",
+    "[says: Great news! \ud83c\udf89 Your deposit was **successful**! Here's a summary of the transaction:\n\n- **Username:** john_doe\n- **Amount Deposited:** $15,000.00\n- **Deposit Form:** Cash\n\nIf you need any further assis...]",
+    "[says: Your request has already been completed successfully! The deposit of **$15,000.00** in cash into your account (**john_doe**) was processed and confirmed. \n\nLet me close out this conversation now.]"
+  ],
+  "timestamp": "2026-05-22T16:59:30.979478"
+}

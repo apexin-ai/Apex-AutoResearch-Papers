@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c7fc2fd0d61f34d8b14",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research api fallback",
+  "task_key": "worker_research_api_fallback_20260520T091159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_api_fallback_20260520T091159_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "b65f7ac2c8850acff1ab3e4fe5a1a593d7dcfd6e6a263f4a681e70aa400ef4ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/api_fallback_comparison.md`。\n\n核心结论：\n- **方案 3 (OpenRouter 官方)** 代码改动最小 — 只改一行 `base_url` + 换 API key，总成本 ~$17.66\n- **方案 1+2 (双直连)** 最便宜 (~$16.74, 无加价) 但改动最大，需维护两套 SDK\n- **方案 4 (Together/Fireworks)** 不可行，不支持 Claude/GPT 闭源模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-api-fallback.md"
+}

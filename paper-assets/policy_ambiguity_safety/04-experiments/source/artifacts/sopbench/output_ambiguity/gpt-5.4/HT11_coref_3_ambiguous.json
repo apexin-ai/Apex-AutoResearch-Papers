@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The guest must provide sufficient payment to cover the order, either through direct payment or their rewards account.",
+  "action": "place_room_service_order",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "[says: I\u2019m sorry, but I can\u2019t place that room service order because Alex Turner is not currently listed in the hotel\u2019s check-in records.\n\nI only found an active check-in for room 101, so the request does not...]"
+  ],
+  "timestamp": "2026-05-22T17:22:57.528586"
+}

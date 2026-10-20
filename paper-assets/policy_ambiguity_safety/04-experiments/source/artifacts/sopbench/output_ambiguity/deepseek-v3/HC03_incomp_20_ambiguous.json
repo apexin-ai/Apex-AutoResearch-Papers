@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC03_incomp",
+  "domain": "healthcare",
+  "constraint": "income_proof_enough",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The coverage amount must be proportional to the user's reported income.",
+  "action": "update_policy",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: The policy type you provided (\"Invalid\") is not one of the valid insurance policy types. Valid policy types are: Health, Dental, Pharmacy, or Vision. \n\nPlease provide a valid policy type from the list...]",
+    "[says: Since the policy type \"Invalid\" is not valid, I cannot proceed with updating your healthcare policy. The valid policy types are: Health, Dental, Pharmacy, or Vision. \n\nIf you'd like to update your pol...]"
+  ],
+  "timestamp": "2026-05-22T22:36:06.821294"
+}

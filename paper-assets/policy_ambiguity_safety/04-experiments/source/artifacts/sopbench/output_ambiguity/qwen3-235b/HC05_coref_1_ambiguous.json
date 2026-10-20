@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC05_coref",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The filing must occur within the allowed window following its initial determination.",
+  "action": "appeal_claim",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_details",
+    "internal_get_interaction_time",
+    "appeal_claim",
+    "[says: The appeal for your claim (CLM-002) has been successfully submitted. The claim was denied on 2024-12-01 for a specialist consultation, and your appeal was filed within the allowable window. The review...]"
+  ],
+  "timestamp": "2026-05-22T19:30:04.506277"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_016",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:04:52.233Z",
+    "updated_at": "2026-05-22T06:05:01.010Z",
+    "hypothesis": "Type-specific mitigation prompts reduce violations more effectively than generic awareness prompts for their targeted ambiguity types, supporting the practical contribution that type-aware triage is necessary for policy-governed deployments"
+  },
+  "timestamp": "2026-05-22T06:05:01.043360+00:00",
+  "trigger": "update_registry"
+}

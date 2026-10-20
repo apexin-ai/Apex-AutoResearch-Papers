@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "696f29fad420b21b04a3",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit submission final check",
+  "task_key": "worker_edit_submission_final_check_20260521T223910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_submission_final_check_20260521T223910_result.json",
+    "occurrence": 1,
+    "bytes": 5936,
+    "sha256": "8e5515963f2fd526fdf618d3f711ed2882c1626d7d34e366f283d4bd110d4965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report.\n\n---\n\n## Task 1: Compilation + Consistency Check\n\n### 1a. Compilation\n\n| Check | Result |\n|-------|--------|\n| Undefined references/citations | **PASS** — 0 found in log |\n| Rerun warnings | **PASS** — 0 rerun requests |\n| Overfull hbox > 10pt | **PASS** — 1 overfull hbox total: 3.28pt in appendix.tex lines 11–24 (below 10pt threshold) |\n| Total pages | 15 (main text pp.1–8, limitations pp.8–9, references p.10, appendix pp.11–15) |\n| Conclusion within page 8 | **PASS** — conclusion ends on p.8; limitations (unnumbered, exempt) starts on p.8 |\n\n### 1b. Numerical Consistency\n\n| Value | Expected | Locations Found | Verdict |\n|-------|----------|-----------------|---------|\n| +34.0pp | C1 binary effect | abstract, introduction, experiments, conclusion, appendix severity table — all \"34.0\" | **PASS** |\n| OR=15.1 | C1 odds ratio | abstract, introduction, experiments, conclusion — all \"15.1\" | **PASS** |\n| 2,997 episodes | main study size | abstract, introduction, method, experiments heatmap caption, appendix logistic regression — all \"2,997\" / \"2{,}997\" | **PASS** |\n| 300 clause pairs | clause pair count | abstract, introduction, method, controls, limitations — all \"300\" | **PASS** |\n| 46–62% | incompleteness range | abstract, introduction, experiments C4, appendix replication — all \"46--62\\%\" | **PASS** |\n| 52pp | auth scope range | abstract, introduction, experiments C4, heatmap caption, limitations — all \"52\" | **PASS** |\n| κ=0.385 | auth scope agreement | abstract, introduction, method, experiments C4, limitations — all \"0.385\" | **PASS** |\n| <11% | disambiguation awareness | abstract \"fewer than 11%\", introduction \"<11%\", conclusion \"over 89%\"; analysis reports overall 4.6%, Claude max 11.0% | **WARNING** — Claude is exactly 11.0%, so \"<11%\" is borderline. Consistent if \"<11%\" refers to the overall 4.6%, but the \"over 89%\" framing (=100−11) anchors to the max model. Technically not a factual error but a precision edge case. |\n| 614 | violation traces | analysis, limitations — both \"614\" | **PASS** |\n| −8.5pp | mitigation effect | analysis, appendix mitigation table pooled — both \"8.5\" | **PASS** |\n\n### 1c. References\n\n| Check | Result |\n|-------|--------|\n| \"Citation ... undefined\" in log | **PASS** — 0 found |\n| \"??\" residuals in .tex files | **PASS** — 0 found |\n\n---\n\n## Task 2: Format Compliance\n\n### 2a. EMNLP 2026 Format\n\n**8-page limit**: **PASS** — Main text (§1 Introduction through §8 Conclusion) fits within pages 1–8. Limitations is `\\section*` (unnumbered, exempt from limit). References are unlimited.\n\n**Limitations section**: **PASS**\n- Section exists (`\\section*{Limitations}`)\n- 8 paragraphs covering: model coverage, domain scope, synthetic ambiguity, cross-judge asymmetry, failure mode analysis, incompleteness confound, severity threshold, per-type reliability\n- **WARNING** — With 8 detailed paragraphs, this is somewhat longer than the \"~3 points\" guideline in the project rules. However, this is a judgment call — the coverage is substantive and well-organized.\n\n**Anonymization**: **PASS**\n- Author field: `\\author{Anonymous}`\n- `\\usepackage[review]{acl}` (review mode enabled)\n- No author names, university names, institute names, lab names, department names found\n- No acknowledgments section\n- GitHub URL anonymized: `github.com/anonymous/policy-ambiguity-safety`\n- No \"our previous work\" / \"our earlier\" self-citation leaks\n- No personal websites or identifiable URLs\n\n### 2b. Figure/Table Check\n\n**Figures (3 total)**:\n\n| Figure | File | Caption | Label | Referenced | Status |\n|--------|------|---------|-------|------------|--------|\n| Fig 1 | `figures/fig1_overview.pdf` | ✓ (substantive, describes experimental overview) | `fig:overview` | `\\ref{fig:overview}` in experiments.tex | **PASS** |\n| Fig 2 | `figures/fig2_forest_plot.pdf` | ✓ (describes per-type effect sizes with CIs) | `fig:forest_plot` | `\\ref{fig:forest_plot}` in experiments.tex | **PASS** |\n| Fig 3 | `figures/fig3_heatmap.pdf` | ✓ (describes violation rates by model × type) | `fig:heatmap` | `\\ref{fig:heatmap}` in experiments.tex | **PASS** |\n\n**Tables (9 total in appendix + 1 in main body)**:\n\n| Table | Label | Caption | Referenced | Status |\n|-------|-------|---------|------------|--------|\n| Main results | `tab:main_results` | ✓ | ✓ | **PASS** |\n| TOST sensitivity | `tab:tost_sensitivity` | ✓ | ✓ | **PASS** |\n| Mitigation | `tab:mitigation` | ✓ | ✓ | **PASS** |\n| Severity comparison | `tab:severity_comparison` | ✓ | ✓ | **PASS** |\n| Detection | `tab:detection` | ✓ | ✓ | **PASS** |\n| Expansion overall | `tab:expansion_overall` | ✓ | ✓ | **PASS** |\n| Expansion per-type | `tab:expansion_pertype` | ✓ | ✓ | **PASS** |\n| Per-type agreement | `tab:per_type_agreement` | ✓ | ✓ | **PASS** |\n| Logistic regression | `tab:logistic_regression` | ✓ | ✓ | **PASS** |\n| Token delta | `tab:token_delta` | ✓ | ✓ | **PASS** |\n\nAll figures/tables have captions, labels, and are referenced in text. No orphaned labels or dangling references.\n\n---\n\n## Overall Assessment\n\n**Submission-ready: YES**, with two minor notes:\n\n1. **WARNING (cosmetic)**: \"<11% disambiguation awareness\" in abstract/intro — Claude shows exactly 11.0%. Not a factual error (overall rate is 4.6%), but a reviewer could nitpick.\n2. **WARNING (style)**: Limitations section has 8 paragraphs, exceeding the project guideline of ~3 points. Content is substantive and well-organized, so this is a judgment call.\n\nNo blocking issues. The paper compiles cleanly, all numbers are internally consistent across all sections, references resolve, anonymization is complete, and format conforms to EMNLP 2026 requirements."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-submission-final-check.md"
+}

@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC04_lexical",
+  "domain": "healthcare",
+  "constraint": "within_enrollment_period",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable enrollment period for the user \"{username}\". The enrollemnt period starts from the enrollment date of the user's policy and extends for {enrollment_period} days after the enrollment date. Both interaction time and enrollment date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "[says: The interaction time (2025-01-15) falls outside the allowable enrollment period for your policy. Your enrollment period ended on 2024-12-31 (365 days after enrollment date 2024-01-01). Policy updates ...]"
+  ],
+  "timestamp": "2026-05-22T17:37:23.511657"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "015767d3225f5df2bb09",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper research re ambiguity detection",
+  "task_key": "worker_paper_research_re_ambiguity_detection_20260520T180957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_re_ambiguity_detection_20260520T180957_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "0f04ae4cb21ecce02ea7866317e3249b9985413990af51b4462a5feb643daa8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML is valid. **7 verified entries** for `re_ambiguity_detection` (6 new + `chantree_2006` dual-count).\n\nSummary of added entries:\n\n| Key | Paper | Venue | Role |\n|-----|-------|-------|------|\n| `willis_nocuous_2008` | Automatic Identification of Nocuous Ambiguity | Research on Language & Computation | foundation (Chantree 2006 journal extension) |\n| `ferrari_ambiguity_2019` | NLP Approach for Cross-Domain Ambiguity Detection in RE | Automated Software Engineering | related |\n| `ezzini_taphsir_2022` | TAPHSIR: Anaphoric Ambiguity Detection & Resolution | ESEC/FSE 2022 | related |\n| `ezzini_anaphoric_2022` | Automated Handling of Anaphoric Ambiguity (Multi-solution) | ICSE 2022 | related |\n| `zhao_nlp4re_2021` | NLP for RE: Systematic Mapping Study (404 studies) | ACM Computing Surveys | related |\n| `ferrari_defects_2018` | Detecting RE Defects with NLP Patterns (railway) | Empirical Software Engineering | related |\n\nAll must_cite items covered: Chantree 2006 ✓, Chantree/Willis 2008 ✓, Ferrari 2018+2019 ✓, Ezzini/TAPHSIR 2022 ✓. NLP4RE survey included."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-re-ambiguity-detection.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43a09c535a24d9f810c5",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit round9 fixes group a",
+  "task_key": "worker_edit_round9_fixes_group_a_20260521T183433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_round9_fixes_group_a_20260521T183433_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "e674640d12c62e8eb5def68634db959ea2c23a3a9a421c826204aeb17e6f3d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Summary:\n\n| # | Item | File | Status |\n|---|------|------|--------|\n| Global | \"Ambiguity Blindness\" → \"Default Single-Parse Adoption\" | introduction.tex (line 21), related_work.tex (line 8) | ✅ |\n| 1 | N1: \"Scope of Ambiguity\" paragraph | taxonomy.tex (new lines 24-25) | ✅ |\n| 2 | W3: Layer hypothesis theoretical annotation | taxonomy.tex (line 22, appended) | ✅ |\n| 3 | N2(a): Contribution (2) DN → two-tier hierarchy + 22× variance | introduction.tex (line 21) | ✅ |\n| 4 | N2(c): DN removed from abstract | abstract.tex (W2 rewrite) | ✅ |\n| 5 | N4: Auth scope 52pp + κ=0.385 caveat | abstract.tex (W2 rewrite) | ✅ |\n| 6 | W2: Abstract rewrite — reduced number density, 3-finding structure | abstract.tex (full rewrite) | ✅ |\n| 7 | D1: \"replicated across seven models\" → 5+2 distinction | introduction.tex (line 21) | ✅ |\n| 8 | N4 intro: auth scope suggestive modifier | introduction.tex — auth scope removed from contribution (2) entirely in N2(a) reword; no modifier needed | ✅ (n/a) |\n| 9 | W8: DRIP-R type mapping | related_work.tex (line 14, appended) | ✅ |\n| 10 | N3: SESOI \"all six mid-tier pairs\" + pragmatic threshold caveat | method.tex (line 34) | ✅ |\n| 11 | W5: Per-type κ CI parenthetical | method.tex (line 24) | ✅ |\n| 12 | W7: Test families specification | method.tex (line 34) | ✅ |\n\nNo items failed. No \"Blindness\" standalone occurrences found; no other DN mentions in contribution items."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-round9-fixes-group-a.md"
+}

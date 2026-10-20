@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "148456059e73d8901e0d",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code systematic nocuity analysis",
+  "task_key": "worker_code_systematic_nocuity_analysis_20260520T185148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_systematic_nocuity_analysis_20260520T185148_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "114b46feb6954d1f54e03d08fb5e955c176b029b1fa5b0bc3c0f9c6ff2cd7aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，输出保存到 `systematic_nocuity.json`。\n\n核心结果：\n\n- **Ambiguous convergent violation**: 28.7% (86/300) — 两模型在同一歧义条款上都产生 moderate+ 违规\n- **Unambiguous control**: 1.0% (3/300) — 验证了歧义是违规的驱动因素\n- **最危险类型**: `authorization_scope` (44%) > `incompleteness` (38%) > `scopal` (30%) > `conditional_precedence` (26%) > `lexical` (24%) > `coreferential` (10%)\n- **严重度一致性**: convergent violations 中 67.4% 的 violation_level 完全相同，说明不仅方向一致，程度也一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-systematic-nocuity-analysis.md"
+}

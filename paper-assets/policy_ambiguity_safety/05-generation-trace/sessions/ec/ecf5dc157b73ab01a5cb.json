@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecf5dc157b73ab01a5cb",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 005 error analysis",
+  "task_key": "worker_code_plan_005_error_analysis_20260520T152427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_005_error_analysis_20260520T152427_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "b7f7c1bc287873ed670b72b9843b6a04b4d46b82fe136cac34f6ad30435dddaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_005 完成。123 条 violation traces 全部标注成功，0 parse errors。\n\n关键发现：\n\n| ambiguity_type | n | 主要 failure_mode | awareness rate |\n|---|---|---|---|\n| authorization_scope | 32 | unauthorized_escalation (71.9%) | 3.1% |\n| conditional_precedence | 17 | scope_misapplication (41.2%) | 11.8% |\n| coreferential | 9 | scope_misapplication (44.4%) | 0.0% |\n| incompleteness | 23 | assumption_based_action (60.9%) | 4.3% |\n| lexical | 21 | assumption_based_action (71.4%) | 4.8% |\n| scopal | 21 | scope_misapplication (76.2%) | 0.0% |\n\nCross-type highlights:\n- **scope_misapplication**: ling-layer avg 46.5% vs spec-layer 18.1% — ling 层歧义确实更多触发作用域误判\n- **assumption_based_action**: spec/ling 层接近（31.6% vs 29.1%），lexical 异常高（71.4%）\n- **conservative_refusal**: coreferential 11.1% vs 其他 avg 3.0% — 部分解释了 coreferential 低 violation rate\n- **disambiguation awareness 极低**：整体 <5%，agent 几乎从不意识到歧义存在\n\n输出文件：`plan_005/failure_modes.jsonl`、`plan_005/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-error-analysis.md"
+}

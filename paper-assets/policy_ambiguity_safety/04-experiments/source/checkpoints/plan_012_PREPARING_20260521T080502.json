@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_012",
+  "project": "policy_ambiguity_safety",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:05:02.576Z",
+    "updated_at": "2026-05-21T08:05:02.576Z"
+  },
+  "timestamp": "2026-05-21T08:05:02.601133+00:00",
+  "trigger": "update_registry"
+}

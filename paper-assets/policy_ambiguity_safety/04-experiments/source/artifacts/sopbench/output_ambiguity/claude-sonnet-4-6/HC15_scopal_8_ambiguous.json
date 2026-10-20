@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC15_scopal",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The appointment must be scheduled for an upcoming date.",
+  "action": "schedule_appointment",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you schedule an appointment! Let me start by verifying your account and logging you in.]",
+    "login_user",
+    "[says: Your username exists! Now let me log you in with the provided credentials.]",
+    "get_policy_details",
+    "[says: You're logged in successfully! Now let me verify your policy details and the provider's information.]",
+    "get_provider_details",
+    "[says: Your policy is active (Health). Now let me check the provider's details.]",
+    "[says: Unfortunately, I'm unable to schedule the appointment with **Johns Hopkins Baltimore** for the following reason:\n\n- \u274c **Provider Unavailable**: The provider `johns_hopkins_baltimore` currently has an ...]",
+    "[says: I understand you'd like to proceed with the same information, but unfortunately I'm still unable to schedule the appointment. As confirmed earlier, the provider **Johns Hopkins Baltimore** (`johns_hop...]"
+  ],
+  "timestamp": "2026-05-22T17:28:14.371780"
+}

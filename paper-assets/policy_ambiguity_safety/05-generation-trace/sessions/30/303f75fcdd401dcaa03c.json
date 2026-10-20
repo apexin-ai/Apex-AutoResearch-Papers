@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "303f75fcdd401dcaa03c",
+  "project": "policy_ambiguity_safety",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3228,
+    "sha256": "677fb691c786ea6de7895552c9c6abd98e08cfbbed7e9d99ea7441badd83a1c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-22T00:22:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU、无训练——全部是 API 实验（5+2 模型），不存在 GPU 越界风险\n- Judge assignment 已修正：GPT-5.4 judges {Claude, GPT-4.1, Qwen3}; GPT-4.1 judges {GPT-5.4, DeepSeek}。如有人改回旧版（GPT-5.4 judges DeepSeek）立即 CRITICAL\n- 论文主文严格 8 页，当前余量极小（Conclusion 在 page 8 底部）。任何主文增字必同时验证不超页\n- tamkin_evaluating_2023 和 yin_safeagentbench_2025 是 related_work.tex 有效引用，不是 orphan——之前 ROADMAP 标错过，别再删\n\n### 2. 🖥️ 基础设施快照\n- 服务器：localhost(ubuntu)，无远程 GPU 服务器\n- 工作目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/`\n- 论文目录：`docs/paper/sections/*.tex`，PDF 在 `docs/paper/main.pdf`\n- Artifacts：`artifacts/round10_supplementary/` 含 A1-A5 JSON 分析结果\n- Checklist 草稿：`artifacts/emnlp_arr_checklist_draft.md`（已校对）\n- 无活跃进程、无 tmux、无 cron、无 wandb\n\n### 3. 📊 当前状态\nRound 10 全部修复已验证通过（我发了 7 份审查报告，最终全 PASS）。论文提交就绪：\n- 15 页 PDF，编译干净（3 个 hyperref bookmark 警告，无实质问题）\n- A1-A5 robustness 分析已集成到 Appendix\n- Method judge assignment 已修正\n- Orphan bib 已清理（van_deemter, lassiter_goodman 删除）\n- Checklist 草稿已校对（D2 κ归属、E2 Δ_perturb、Ethics section 引用 三处错误已修）\n\nRegistry: 16 experiments 全 DONE（12 success / 3 negative / 1 replaced）。无 RUNNING。\n等待：Round 11 审稿结果（已提交 continue 模式），无 pending worker。\n\n### 4. 📋 待办\n- Round 11 审稿结果返回 → 按 severity 分级：info 级忽略，warning 级评估是否值得改，critical 级立即派 worker\n- 如 Round 11 给 4.0 → 提交就绪，提醒用户填 OpenReview ARR checklist（参考 artifacts/emnlp_arr_checklist_draft.md）\n- 如 Round 11 仍 3.5 且有新 critical → 评估是否在 DDL (2026-05-25) 前可修，注意页数余量\n- 如有新 worker 改 tex → 必查：(1) judge assignment 未被回滚 (2) 主文未超 8 页 (3) 数值与 artifacts JSON 一致\n\n### 5. 🎯 战略上下文\n- 核心结论：policy ambiguity 对 LLM agent 是 universally nocuous (+34.0pp)，incompleteness 是 consistent upper-bound risk type (46-62% across 7 models)，type identity 解释 22× more variance than model identity\n- 评分轨迹：3.5 (Round 9) → 3.5 (Round 10, 审稿人说\"有 4.0 潜力\")。关键瓶颈是 claims-evidence calibration\n- 易错点 1：auth scope 52pp range 是 \"upper bound with substantial measurement uncertainty\"（κ=0.385），不要当成精确估计\n- 易错点 2：C3 layer effect 是 inconclusive（p=0.017 但 Holm-Bonferroni 不过），不要说 \"significant\"\n- 易错点 3：Kendall's W 5-model 是 non-significant (p=0.072)，7-model 才 significant (p=0.038)——不要混用\n- 易错点 4：A3 judge-group ranking ρ=-0.03 反映 agent composition effect（Group 1 含 DeepSeek+GPT-5.4 高 auth scope 模型），不是 judge bias\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

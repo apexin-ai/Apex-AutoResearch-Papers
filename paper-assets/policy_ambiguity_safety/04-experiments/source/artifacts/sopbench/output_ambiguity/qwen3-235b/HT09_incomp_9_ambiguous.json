@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "request_room_change",
+    "[says: Your room change request has been successfully processed! John Doe, you have been upgraded to a double room, and the payment of $60 for this upgrade has been accepted. Your new room assignment is conf...]"
+  ],
+  "timestamp": "2026-05-22T17:25:39.961677"
+}

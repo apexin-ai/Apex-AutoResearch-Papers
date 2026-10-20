@@ -1,0 +1,41 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim amount must be within the policy's claimable limits.",
+  "action": "submit_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 6,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "get_policy_details",
+    "[says: \n]",
+    "internal_get_interaction_time",
+    "[says: \n]",
+    "get_claim_history",
+    "[says: \n]",
+    "submit_claim",
+    "[says: \n]",
+    "[says: Your claim for the emergency dental procedure has been successfully submitted with the following details:\n- Username: Zhang Jia Ming  \n- Provider: johns_hopkins_baltimore  \n- Claim Amount: $5000  \n- D...]"
+  ],
+  "timestamp": "2026-05-22T16:53:01.805505"
+}

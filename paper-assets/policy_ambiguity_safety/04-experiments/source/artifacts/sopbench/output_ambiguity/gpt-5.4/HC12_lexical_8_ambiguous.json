@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC12_lexical",
+  "domain": "healthcare",
+  "constraint": "provider_available",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The provider should be able to accept new patients for scheduling.",
+  "action": "schedule_appointment",
+  "task_idx": 8,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_provider_details",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t schedule that appointment.\n\nReasons:\n- Your policy is active, and you are logged in.\n- However, the provider `johns_hopkins_baltimore` is currently unavailable and cannot accept...]"
+  ],
+  "timestamp": "2026-05-22T17:02:54.774909"
+}

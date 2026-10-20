@@ -1,0 +1,196 @@
+[
+  {
+    "pair_id": "HC02_incomp",
+    "constraint": "claim_within_limits",
+    "ambiguity_type": "incompleteness",
+    "condition": "unambiguous",
+    "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+    "domain": "healthcare",
+    "action": "submit_claim",
+    "task_idx": 3,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": false,
+      "num_messages": 3,
+      "num_function_calls": 0,
+      "num_constraints": 3,
+      "num_constraints_expanded": 4,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": false,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "[says: Thank you for providing the details. Before proceeding, I need to inform you that the claim amount must be less than the maximum claimable amount of 5000. Your requested amount of 6000 exceeds this li...]"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core ..."
+  },
+  {
+    "pair_id": "HC02_incomp",
+    "constraint": "claim_within_limits",
+    "ambiguity_type": "incompleteness",
+    "condition": "ambiguous",
+    "description_used": "The claim amount must be within the policy's claimable limits.",
+    "domain": "healthcare",
+    "action": "submit_claim",
+    "task_idx": 3,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "submit_claim",
+      "action_should_succeed": false,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 3,
+      "num_constraints_expanded": 4,
+      "no_tool_call_error": true,
+      "constraint_not_violated": false,
+      "database_match": false,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": false,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "submit_claim",
+      "[says: Your claim for dental surgery in the amount of $6,000 with provider Johns Hopkins Baltimore has been successfully submitted under your healthcare policy.\n\nIf you need to check the status of your claim...]"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core ..."
+  },
+  {
+    "pair_id": "BK02_lexical",
+    "constraint": "get_loan_owed_balance_restr",
+    "ambiguity_type": "lexical",
+    "condition": "unambiguous",
+    "description_used": "The user with the parameter \"{username}\" does have owed balance less than {maximum_owed_balance} to take a loan.",
+    "domain": "bank",
+    "action": "get_loan",
+    "task_idx": 1,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "get_loan",
+      "action_should_succeed": false,
+      "num_messages": 5,
+      "num_function_calls": 2,
+      "num_constraints": 2,
+      "num_constraints_expanded": 3,
+      "no_tool_call_error": true,
+      "constraint_not_violated": false,
+      "database_match": true,
+      "action_successfully_called": false,
+      "dirgraph_satisfied": false,
+      "action_called_correctly": true,
+      "success": false
+    },
+    "agent_actions": [
+      "internal_check_username_exist",
+      "get_account_owed_balance",
+      "[says: You are not eligible to apply for a loan at this time because your current owed balance is $600. To qualify for a new loan, your owed balance must be less than $500.\n\nIf you need assistance with payin...]"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a bank assistant that helps with processing various bank actions, as illustrated in the descriptions of functions. You perform the duties that any bank clerk would.\n\n\n### Core Operating Principles:\n\n    1. Action ..."
+  },
+  {
+    "pair_id": "BK02_lexical",
+    "constraint": "get_loan_owed_balance_restr",
+    "ambiguity_type": "lexical",
+    "condition": "ambiguous",
+    "description_used": "The user's outstanding obligations must not be excessive to take a loan.",
+    "domain": "bank",
+    "action": "get_loan",
+    "task_idx": 1,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "get_loan",
+      "action_should_succeed": false,
+      "num_messages": 5,
+      "num_function_calls": 2,
+      "num_constraints": 2,
+      "num_constraints_expanded": 3,
+      "no_tool_call_error": true,
+      "constraint_not_violated": false,
+      "database_match": false,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": false,
+      "action_called_correctly": false,
+      "success": false
+    },
+    "agent_actions": [
+      "internal_check_username_exist",
+      "get_loan",
+      "[says: Your loan application for $5,000 has been approved. You now owe this amount to the bank. If you need details about your loan or want to make a payment, please let me know!]"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a bank assistant that helps with processing various bank actions, as illustrated in the descriptions of functions. You perform the duties that any bank clerk would.\n\n\n### Core Operating Principles:\n\n    1. Action ..."
+  },
+  {
+    "pair_id": "HC09_coref",
+    "constraint": "provider_covers_policy",
+    "ambiguity_type": "coreferential",
+    "condition": "unambiguous",
+    "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+    "domain": "healthcare",
+    "action": "schedule_appointment",
+    "task_idx": 6,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "schedule_appointment",
+      "action_should_succeed": false,
+      "num_messages": 6,
+      "num_function_calls": 5,
+      "num_constraints": 4,
+      "num_constraints_expanded": 8,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": true,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": false,
+      "success": false
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "get_provider_details",
+      "add_authorized_provider",
+      "schedule_appointment"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core ..."
+  },
+  {
+    "pair_id": "HC09_coref",
+    "constraint": "provider_covers_policy",
+    "ambiguity_type": "coreferential",
+    "condition": "ambiguous",
+    "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+    "domain": "healthcare",
+    "action": "schedule_appointment",
+    "task_idx": 6,
+    "action_should_succeed": false,
+    "evaluation": {
+      "user_goal": "schedule_appointment",
+      "action_should_succeed": false,
+      "num_messages": 6,
+      "num_function_calls": 3,
+      "num_constraints": 4,
+      "num_constraints_expanded": 8,
+      "no_tool_call_error": true,
+      "constraint_not_violated": true,
+      "database_match": true,
+      "action_successfully_called": false,
+      "dirgraph_satisfied": true,
+      "action_called_correctly": true,
+      "success": true
+    },
+    "agent_actions": [
+      "login_user",
+      "get_policy_details",
+      "get_provider_details",
+      "[says: I see that you would like to schedule an appointment with the provider \"John Hopkins\" in Baltimore on 2025-02-20. However, this provider's service type is \"Dental,\" while your current active policy is...]"
+    ],
+    "prompt_snippet": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core ..."
+  }
+]

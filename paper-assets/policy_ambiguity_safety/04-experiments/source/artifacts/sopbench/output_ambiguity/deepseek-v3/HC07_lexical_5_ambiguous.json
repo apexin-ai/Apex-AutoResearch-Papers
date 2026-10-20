@@ -1,0 +1,32 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's policy must be in good standing to perform this action.",
+  "action": "update_policy",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: The desired policy type \"Life\" is not one of the valid insurance policy types (Health, Dental, Pharmacy, or Vision). Therefore, I cannot proceed with updating your policy to \"Life.\"\n\nIf you'd like to ...]",
+    "[says: Since the policy type \"Life\" is not valid (it must be one of Health, Dental, Pharmacy, or Vision), I cannot proceed with updating your policy. \n\nIf you'd like to choose a valid policy type, feel free ...]"
+  ],
+  "timestamp": "2026-05-22T17:20:35.750268"
+}

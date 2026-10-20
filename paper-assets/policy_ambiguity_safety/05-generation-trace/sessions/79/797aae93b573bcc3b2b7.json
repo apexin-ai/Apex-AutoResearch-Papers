@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "797aae93b573bcc3b2b7",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit r10 partc group2",
+  "task_key": "worker_edit_r10_partc_group2_20260521T192624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_r10_partc_group2_20260521T192624_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "e3c28b78df056ad21f716d422ceecf52db5e9e231962b78cd1d2ca1a5a947688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 edits completed. Summary:\n\n| Task | File | Change |\n|------|------|--------|\n| C1 MF1 | experiments.tex §5.4 | Added \"upper bound with substantial measurement uncertainty\" sentence after \"suggestive rather than definitive\" |\n| C5 SF4 | analysis.tex §6.2 | Inserted \"---a default behavioral pattern in uninstructed settings, not an inherent inability\" after Disambiguation Deficit term |\n| C6 SF5 | method.tex §4.4 | Added per-type $n=32$--$34$ sample size caveat after pooled κ=0.733 sentence |\n| C7 SF7 | experiments.tex §5.2 | Replaced parenthetical cross-ref with inline \"---conditional on the confound controls in Appendix~\\ref{app:confound}---\" |\n| C8 M1 | method.tex §4.2 | Changed \"96% pass rate; disagreements were resolved by discussion\" → \"96% initial agreement (287/300); the 13 disagreements were resolved by discussion, yielding 100% final consensus\" |\n| C10 M4 | analysis.tex §6.1 | Added mechanistic caveat after garden-path citation: LLMs lack incremental parsing, parallel is behavioral not mechanistic |\n\n**Bib status**: `frazier_rayner_1982` already exists in `references.bib` — no new entry needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-r10-partc-group2.md"
+}

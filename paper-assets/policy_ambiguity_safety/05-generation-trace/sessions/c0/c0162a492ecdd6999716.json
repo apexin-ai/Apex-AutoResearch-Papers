@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0162a492ecdd6999716",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis kendall w concordance",
+  "task_key": "worker_analysis_kendall_w_concordance_20260521T184124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kendall_w_concordance_20260521T184124_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "95f25513337060768e3fe9e590088287f53a4d2c221a1c4035e49147d3ee53d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `round9_supplementary/kendall_w_results.json`。\n\n## 结果\n\n### 5-model × 6 types (main study)\n- **W = 0.3977**, χ²(5) = 9.94, **p = 0.072** (边缘显著)\n- 模型间对 type 难度排序有中等一致性，但未达 p < 0.05\n\n### 7-model × 5 types (含 Gemini + LLaMA，去掉 coreferential)\n- **W = 0.3531**, χ²(4) = 9.89, **p = 0.038** (显著)\n- 加入 replication models 后达到统计显著，7 个模型对 5 种 type 的相对难度排序存在显著一致性\n\n### Type mean ranks (7-model, 高 = 更高 violation rate)\n\n| Type | Mean Rank |\n|------|-----------|\n| incompleteness | **4.50** (最难) |\n| lexical | 3.07 |\n| authorization_scope | 3.00 |\n| scopal | 2.36 |\n| conditional_precedence | **2.07** (最易) |\n\nincompleteness 在所有模型中一致排名最高；conditional_precedence 一致最低。coreferential 在 5-model 分析中 mean rank = 2.0（最低）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kendall-w-concordance.md"
+}

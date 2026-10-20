@@ -1,0 +1,31 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 3,
+    "num_function_calls": 0,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I need the state where your driver's license is registered to complete the login process. Could you please provide the state information for your driver's license?]"
+  ],
+  "timestamp": "2026-05-22T18:10:21.707612"
+}

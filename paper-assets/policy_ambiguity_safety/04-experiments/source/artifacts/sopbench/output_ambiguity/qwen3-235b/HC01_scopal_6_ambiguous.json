@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user's claims must not exceed their policy coverage amount.",
+  "action": "submit_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 10,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I cannot process your claim because the amount of $5000 exceeds the maximum claimable amount of $2000. Please adjust the claim amount to be under $2000 before resubmitting. \n\nWould you like to try sub...]",
+    "[says: I cannot process your claim because the amount of $5000 exceeds the maximum allowed claim amount of $2000. This limit applies regardless of policy type or income. \n\nWould you like to:\n1. Submit a revi...]",
+    "login_user",
+    "[says: I've successfully logged you in to verify your policy details. I can see that your claim amount of $5000 still exceeds the maximum allowed limit of $2000. This limit applies regardless of your specifi...]",
+    "[says: I cannot process this claim because the amount of $5000 exceeds the maximum allowed claim amount of $2000. This is a hard limit set by the system, regardless of your policy coverage.\n\nWould you like t...]"
+  ],
+  "timestamp": "2026-05-22T18:09:37.406462"
+}

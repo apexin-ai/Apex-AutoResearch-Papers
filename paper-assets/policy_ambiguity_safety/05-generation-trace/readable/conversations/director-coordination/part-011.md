@@ -1,0 +1,2367 @@
+# Director coordination — Part 11 of 11
+
+**Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety** · Conversation logs
+
+[← Part 10](part-010.md) · [Transcript overview](../director-coordination.md) · [Structured JSON](../../../sessions/0e/0e806c5d99edfa05e2ae.json)
+
+## Round 276
+
+### Tool result
+
+_source line 3062 · 2026-05-25T21:14:28.940747+00:00_
+
+{"result":"# 项目 policy_ambiguity_safety 概况\n\n## 实验状态 (17 个)\n\n- **plan_014**: DONE (success) — \n- **plan_015**: DONE (success) — \n- **plan_013**: DONE (success) — \n- **plan_012**: DONE (success) — \n- **plan_011**: DONE (success) — \n- **plan_010**: DONE (success) — \n- **plan_004**: DONE (success) — \n- **plan_003b**: DONE (success) — \n- **plan_003a**: DONE (success) — \n- **plan_002c**: DONE (success) — \n- **plan_006**: DONE (success) — \n- **plan_005**: DONE (success) — \n- **plan_002**: DONE (negative) — \n- **diag_001**: DONE (negative) — \n- **mvp_001**: DONE (negative) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **plan_016** (negative): Type-specific mitigation prompts reduce violations more effectively than generic awareness prompts for their targeted ambiguity types, supporting the practical contribution that type-aware triage is necessary for policy-governed deployments\n- **plan_009** (success): Cross-judge LLM agreement (gpt-5.4 vs gpt-4.1) achieves substantial agreement (weighted κ ≥ 0.60) on violation level classification. LLM-human agreement should be comparable, validating the cross-judge evaluation design.\n  [plan_009_annotation_guidelines](/api/workspace-files/projects/policy_ambiguity_safety/artifacts/plan_009/report/annotation_guidelines.md) | [plan_009_annotation_sheet](/api/workspace-files/projects/policy_ambiguity_safety/artifacts/plan_009/data/annotation_sheet.jsonl) | [plan_009_llm_agreement](/api/workspace-files/projects/policy_ambiguity_safety/artifacts/plan_009/report/llm_agreement.json) | [plan_009_annotation_sheet_clean](/api/workspace-files/projects/policy_ambiguity_safety/artifacts/plan_009/data/annotation_sheet_clean.jsonl)\n- **plan_014** (success): Expanding perturbation control from n=120 to n=300 will maintain non-significant Δ_perturb (CI containing zero) while narrowing CI upper bound from 13.3pp to ~8pp, strengthening SESOI justification for C
+…[truncated 563 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_get_project_overview",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3063 · 2026-05-25T21:14:34.716699+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/policy_ambiguity_safety/**/config*.yaml",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/policy_ambiguity_safety/**/config*.yaml",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3064 · 2026-05-25T21:14:34.817508+00:00_
+
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/.venv/lib/python3.14/site-packages/configs/config.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3065 · 2026-05-25T21:14:37.929626+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "external_review|paperreview",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "external_review|paperreview",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3066 · 2026-05-25T21:14:38.432482+00:00_
+
+&lt;persisted-output>
+Output too large (102.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-4-projects-policy-ambiguity-safety--claude-sessions-review-director-0e80b40a/9c496be9-4688-430b-9185-d6777b9fef62/tool-results/toolu_01EdnQypSu4MbwU2sURJcExm.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260522T002209_609865.jsonl:71:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260522T002209_609865.jsonl:318:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_c58486bc9afb8c730ded5e31c0e7d639_reviewer_20260522T002212_109822.jsonl:315:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260525T032118_921993.jsonl:412:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260525T032118_921993.jsonl:1193:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260521T173238_183350.jsonl:275:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/logs/chats/archive/feishu_group_oc_10fa2e89afc5e9b8a13613245e008dd9_director_20260521T173238_183350.jsonl:1107:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/re
+…[truncated 324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3067 · 2026-05-25T21:14:43.174459+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "external_review|paperreview_ai\"",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/agent",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "external_review|paperreview_ai\"",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/agent",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3068 · 2026-05-25T21:14:43.275370+00:00_
+
+&lt;tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/agent. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/.claude/sessions/review_director_0e80b40a.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3069 · 2026-05-25T21:14:49.499754+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "external_review\"",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+  "glob": "*.yaml",
+  "output_mode": "content",
+  "head_limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "external_review\"",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+    "glob": "*.yaml",
+    "output_mode": "content",
+    "head_limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3070 · 2026-05-25T21:14:49.550329+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3071 · 2026-05-25T21:15:03.903960+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/appendix.tex",
+  "offset": "299",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/appendix.tex",
+    "offset": "299",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3072 · 2026-05-25T21:15:03.955078+00:00_
+
+299	\midrule
+300	Syntactic & --- & Subsumed by scopal in policy clauses \\
+301	Elliptical & --- & Fails criterion 2 (construction difficulty) \\
+302	Implicative & --- & Fails criterion 2 (construction difficulty) \\
+303	Collective/Distrib. & --- & Overlaps scopal (criterion 3) \\
+304	Presuppositional & --- & Not attested in RE (criterion 1) \\
+305	Idiomatic & --- & Not attested in RE (criterion 1) \\
+306	Generic/Non-gen. & --- & Subsumed by auth.\ scope \\
+307	Type/Token & --- & Subsumed by auth.\ scope \\
+308	\midrule
+309	\multicolumn{3}{l}{\textit{Specification-layer types (new, from RE literature):}} \\
+310	--- & Auth.\ Scope & Introduced from RE \\
+311	--- & Incompleteness & Introduced from RE \\
+312	--- & Cond.\ Prec. & Introduced from RE \\
+313	\bottomrule
+314	\end{tabular}}
+315	\end{table}
+316	
+317	\section{Cross-Model Type Ranking Concordance}
+318	\label{app:kendall_w}
+319	
+320	To quantify agreement among models on the relative difficulty of ambiguity types, we compute Kendall's coefficient of concordance $W$. For the five main-study models across all six types, $W = 0.398$ ($\chi^2(5) = 9.94$, $p = 0.072$), indicating moderate but non-significant concordance. Including the two replication models (Gemini 2.5 Flash and LLaMA 4 Scout) over five shared types (excluding coreferential, which was not included in replication), concordance reaches significance: $W = 0.353$ ($\chi^2(4) = 9.89$, $p = 0.038$). In both analyses, incompleteness consistently ranks highest (mean rank 5.5 / 4.5), while coreferential (2.0, five-model only) and conditional precedence (2.8 / 2.1) rank lowest, supporting the partial ordering identified in \S\ref{sec:results}.
+321	
+322	\section{C4 Interaction Without Authorization Scope}
+323	\label{app:c4_sans_auth}
+324	
+325	Figure~\ref{fig:heatmap} (main text) shows violation rates by model and type. Excluding authorization scope, the residual model$\times$type interaction vanishes ($\chi^2(16) = 7.13$, $p = 0.97$; logistic regression LR test: 
+…[truncated 13835 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3073 · 2026-05-25T21:15:24.332955+00:00_
+
+called mcp__agent-ml-research__dispatch_visual_check
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__dispatch_visual_check</summary>
+
+```json
+{
+  "project": "policy_ambiguity_safety",
+  "review_chat_id": "oc_967344d166ba485ad606d14379e69d85"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__dispatch_visual_check",
+  "tool_args": {
+    "project": "policy_ambiguity_safety",
+    "review_chat_id": "oc_967344d166ba485ad606d14379e69d85"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3074 · 2026-05-25T21:15:49.729588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__dispatch_visual_check",
+  "elapsed_ms": 25396
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3075 · 2026-05-25T21:15:50.081432+00:00_
+
+called mcp__agent-ml-research__director_post_to_reviewer
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer</summary>
+
+```json
+{
+  "reviewer_id": "1",
+  "round_number": "1",
+  "project": "policy_ambiguity_safety",
+  "text": "你是 Reviewer 1，负责**方法严谨性**审查。\n\n## 论文信息\n- 标题: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n- 论文源文件: `projects/policy_ambiguity_safety/docs/paper/main.tex`（含 sections/*.tex）\n- PDF: `projects/policy_ambiguity_safety/artifacts/review_round_34/submitted.pdf`\n\n## Venue 要求（EMNLP 2026 via ARR May cycle）\n- Long paper: 正文严格 8 页，参考文献无限制\n- Limitations section 不计入页数（但不能塞过多额外内容）\n- 模板: ACL style (`\\usepackage[review]{acl}`)\n- 匿名: double-blind（不能出现作者身份信息）\n- 附录: 允许，参与审稿但不强制阅读\n- Overall Assessment 评分: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit\n\n## 你的审查重点\n\n**方法严谨性**——以下维度逐一评估：\n\n1. **因果推断设计**: matched-pair design 能否支撑因果声明？perturbation control ($\\Delta_{\\text{perturb}} = -0.67$ pp) 是否充分排除 surface-level confound？incompleteness 的 information-addition confound 处理是否合理？\n2. **统计分析**: McNemar OR=15.1 的 pooled 分析是否违反独立性？Mantel-Haenszel 分层是否充分？TOST equivalence testing 的 SESOI ±15pp 选择是否有领域锚定？Holm-Bonferroni 多重比较校正是否恰当？\n3. **评估方法论**: Cross-judge design（GPT-5.4 judges Claude/GPT-4.1/Qwen3; GPT-4.1 judges GPT-5.4/DeepSeek）的 judge 分配不对称性是否影响结论？Human validation ($\\kappa=0.733$) 的 100-episode sample 是否足够？Per-type judge agreement ($\\kappa=0.385$--$0.904$) 差异大，对 authorization scope 和 coreferential 类型的结论有何影响？\n4. **控制变量**: perturbation control (n=300), within-family replication (ICC=0.919), temperature pilot (0.7, 85-97% agreement)。是否存在未控制的重要 confound？\n5. **Variance decomposition**: clause 22.4% vs type 0.4% vs model 1.0% vs condition 15.8% vs residual 60.8%。residual 中 ~46% 系统方差的来源是否需要讨论？\n6. **Convergent nocuity**: observed 41.3% vs independence baseline 32.4% 的差异是否足以支撑论文的核心声明？ambient baseline 1.7% 的对照是否充分？\n7. **外部效度**: τ²-bench → SOPBench (12.7pp) → Healthcare (58.8pp) 的泛化路径是否令人信服？合成 vs 自然效应的 2.7× 差距如何解读？\n\n请按 ARR 标准出具完整审稿报告，包含 Summary、Strengths、Weaknesses（按 Must-Fix / Should-Fix / Minor 分级）、Questions、Overall Assessment（含评分和置信度）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "tool_args": {
+    "reviewer_id": "1",
+    "round_number": "1",
+    "project": "policy_ambiguity_safety",
+    "text": "你是 Reviewer 1，负责**方法严谨性**审查。\n\n## 论文信息\n- 标题: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n- 论文源文件: `projects/policy_ambiguity_safety/docs/paper/main.tex`（含 sections/*.tex）\n- PDF: `projects/policy_ambiguity_safety/artifacts/review_round_34/submitted.pdf`\n\n## Venue 要求（EMNLP 2026 via ARR May cycle）\n- Long paper: 正文严格 8 页，参考文献无限制\n- Limitations section 不计入页数（但不能塞过多额外内容）\n- 模板: ACL style (`\\usepackage[review]{acl}`)\n- 匿名: double-blind（不能出现作者身份信息）\n- 附录: 允许，参与审稿但不强制阅读\n- Overall Assessment 评分: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit\n\n## 你的审查重点\n\n**方法严谨性**——以下维度逐一评估：\n\n1. **因果推断设计**: matched-pair design 能否支撑因果声明？perturbation control ($\\Delta_{\\text{perturb}} = -0.67$ pp) 是否充分排除 surface-level confound？incompleteness 的 information-addition confound 处理是否合理？\n2. **统计分析**: McNemar OR=15.1 的 pooled 分析是否违反独立性？Mantel-Haenszel 分层是否充分？TOST equivalence testing 的 SESOI ±15pp 选择是否有领域锚定？Holm-Bonferroni 多重比较校正是否恰当？\n3. **评估方法论**: Cross-judge design（GPT-5.4 judges Claude/GPT-4.1/Qwen3; GPT-4.1 judges GPT-5.4/DeepSeek）的 judge 分配不对称性是否影响结论？Human validation ($\\kappa=0.733$) 的 100-episode sample 是否足够？Per-type judge agreement ($\\kappa=0.385$--$0.904$) 差异大，对 authorization scope 和 coreferential 类型的结论有何影响？\n4. **控制变量**: perturbation control (n=300), within-family replication (ICC=0.919), temperature pilot (0.7, 85-97% agreement)。是否存在未控制的重要 confound？\n5. **Variance decomposition**: clause 22.4% vs type 0.4% vs model 1.0% vs condition 15.8% vs residual 60.8%。residual 中 ~46% 系统方差的来源是否需要讨论？\n6. **Convergent nocuity**: observed 41.3% vs independence baseline 32.4% 的差异是否足以支撑论文的核心声明？ambient baseline 1.7% 的对照是否充分？\n7. **外部效度**: τ²-bench → SOPBench (12.7pp) → Healthcare (58.8pp) 的泛化路径是否令人信服？合成 vs 自然效应的 2.7× 差距如何解读？\n\n请按 ARR 标准出具完整审稿报告，包含 Summary、Strengths、Weaknesses（按 Must-Fix / Should-Fix / Minor 分级）、Questions、Overall Assessment（含评分和置信度）。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3076 · 2026-05-25T21:16:09.866356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_1\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "elapsed_ms": 19784
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3077 · 2026-05-25T21:16:09.917632+00:00_
+
+called mcp__agent-ml-research__director_post_to_reviewer
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer</summary>
+
+```json
+{
+  "reviewer_id": "2",
+  "round_number": "1",
+  "project": "policy_ambiguity_safety",
+  "text": "你是 Reviewer 2，负责**新颖性与完整性**审查。\n\n## 论文信息\n- 标题: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n- 论文源文件: `projects/policy_ambiguity_safety/docs/paper/main.tex`（含 sections/*.tex）\n- PDF: `projects/policy_ambiguity_safety/artifacts/review_round_34/submitted.pdf`\n\n## Venue 要求（EMNLP 2026 via ARR May cycle）\n- Long paper: 正文严格 8 页，参考文献无限制\n- Limitations section 不计入页数（但不能塞过多额外内容）\n- 模板: ACL style (`\\usepackage[review]{acl}`)\n- 匿名: double-blind（不能出现作者身份信息）\n- 附录: 允许，参与审稿但不强制阅读\n- Overall Assessment 评分: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit\n\n## 你的审查重点\n\n**新颖性与完整性**——以下维度逐一评估：\n\n1. **贡献新颖性**: 论文声称三个贡献——(1) 首个 matched-pair 因果研究 policy ambiguity → safety violations, (2) type-mechanism dissociation (clause 22.4% vs type 0.4% variance, NMI=0.23 vs 0.01), (3) convergent nocuity (41.3% majority-convergent, 77% permissive bias)。这些贡献相对于现有工作（DRIP-R, SOPBench, PolicyBank, τ²-bench）是否有足够增量？\n2. **Related Work 覆盖**: 检查 NLP ambiguity (Li et al. 2024, Wasow 2005)、RE ambiguity (Berry & Kamsties 2004, Massey 2014)、agent safety (R-Judge, ToolEmu, SafeAgentBench, PhantomPolicy)、psycholinguistics (Ferreira 2002, Liu 2023, Gur-Arieh 2026) 的引用是否完整。是否遗漏了重要相关工作？\n3. **Framing 与定位**: \"convergent nocuity\" 这个新术语的引入是否有足够理论基础？与 Berry & Kamsties 的 nocuous/innocuous 分类的关系是否阐述清楚？\"disambiguation neglect\" 作为 ambiguity collapse 的行为级扩展是否准确？\n4. **Taxonomy 设计**: 六类两层分类是否合理？从 Li et al. 11-type 到 6-type 的筛选标准（RE attestation, minimal-pair constructibility, mutual exclusivity）是否充分论证？incompleteness 在 ambiguity umbrella 下的 epistemological status 讨论是否充分？\n5. **写作质量**: 叙事结构、信息密度、术语使用一致性、Figure/Table 质量。Abstract 是否超 200 words？Introduction 数字密度是否过高？Discussion 是否过短？Limitations 是否覆盖关键不足？\n6. **格式合规**: 8 页限制、匿名性（检查 \\author{Anonymous}、self-citation 处理、anonymous repo link）、ACL template 使用、Limitations section 位置（应在正文内，不在 appendix）\n\n请按 ARR 标准出具完整审稿报告，包含 Summary、Strengths、Weaknesses（按 Must-Fix / Should-Fix / Minor 分级）、Questions、Missing References、Overall Assessment（含评分和置信度）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "tool_args": {
+    "reviewer_id": "2",
+    "round_number": "1",
+    "project": "policy_ambiguity_safety",
+    "text": "你是 Reviewer 2，负责**新颖性与完整性**审查。\n\n## 论文信息\n- 标题: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n- 论文源文件: `projects/policy_ambiguity_safety/docs/paper/main.tex`（含 sections/*.tex）\n- PDF: `projects/policy_ambiguity_safety/artifacts/review_round_34/submitted.pdf`\n\n## Venue 要求（EMNLP 2026 via ARR May cycle）\n- Long paper: 正文严格 8 页，参考文献无限制\n- Limitations section 不计入页数（但不能塞过多额外内容）\n- 模板: ACL style (`\\usepackage[review]{acl}`)\n- 匿名: double-blind（不能出现作者身份信息）\n- 附录: 允许，参与审稿但不强制阅读\n- Overall Assessment 评分: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit\n\n## 你的审查重点\n\n**新颖性与完整性**——以下维度逐一评估：\n\n1. **贡献新颖性**: 论文声称三个贡献——(1) 首个 matched-pair 因果研究 policy ambiguity → safety violations, (2) type-mechanism dissociation (clause 22.4% vs type 0.4% variance, NMI=0.23 vs 0.01), (3) convergent nocuity (41.3% majority-convergent, 77% permissive bias)。这些贡献相对于现有工作（DRIP-R, SOPBench, PolicyBank, τ²-bench）是否有足够增量？\n2. **Related Work 覆盖**: 检查 NLP ambiguity (Li et al. 2024, Wasow 2005)、RE ambiguity (Berry & Kamsties 2004, Massey 2014)、agent safety (R-Judge, ToolEmu, SafeAgentBench, PhantomPolicy)、psycholinguistics (Ferreira 2002, Liu 2023, Gur-Arieh 2026) 的引用是否完整。是否遗漏了重要相关工作？\n3. **Framing 与定位**: \"convergent nocuity\" 这个新术语的引入是否有足够理论基础？与 Berry & Kamsties 的 nocuous/innocuous 分类的关系是否阐述清楚？\"disambiguation neglect\" 作为 ambiguity collapse 的行为级扩展是否准确？\n4. **Taxonomy 设计**: 六类两层分类是否合理？从 Li et al. 11-type 到 6-type 的筛选标准（RE attestation, minimal-pair constructibility, mutual exclusivity）是否充分论证？incompleteness 在 ambiguity umbrella 下的 epistemological status 讨论是否充分？\n5. **写作质量**: 叙事结构、信息密度、术语使用一致性、Figure/Table 质量。Abstract 是否超 200 words？Introduction 数字密度是否过高？Discussion 是否过短？Limitations 是否覆盖关键不足？\n6. **格式合规**: 8 页限制、匿名性（检查 \\author{Anonymous}、self-citation 处理、anonymous repo link）、ACL template 使用、Limitations section 位置（应在正文内，不在 appendix）\n\n请按 ARR 标准出具完整审稿报告，包含 Summary、Strengths、Weaknesses（按 Must-Fix / Should-Fix / Minor 分级）、Questions、Missing References、Overall Assessment（含评分和置信度）。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3078 · 2026-05-25T21:16:11.425405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "elapsed_ms": 1507
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3079 · 2026-05-25T21:16:22.203344+00:00_
+
+Round 34 审稿已启动：
+
+| 角色 | 状态 | 侧重 |
+|------|------|------|
+| Reviewer 1 | ✅ 已派发 | 方法严谨性（因果设计、统计分析、评估方法论、控制变量） |
+| Reviewer 2 | ✅ 已派发 | 新颖性与完整性（贡献定位、Related Work、写作质量、格式） |
+| 视觉审查 | ✅ 已启动 | PDF 排版质量（与审稿并行，不阻塞报告） |
+| 外部审稿 | ❌ 未启用 | 项目未配置 paperreview.ai |
+
+等待两位 Reviewer 返回独立审稿结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 277
+
+## Round 277
+
+2 recorded events
+
+
+### User
+
+_source line 3080 · 2026-05-25T21:22:44.309383+00:00_
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 审稿报告：方法严谨性
+
+**论文**: "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety"
+**Venue**: EMNLP 2026 via ARR May cycle
+
+---
+
+## Summary
+
+本文研究自然语言策略文档中的歧义是否会导致 LLM 客服代理的安全违规。作者构建了六类歧义分类体系（基于 NLP/RE 文献），在 τ²-bench 上创建 300 个 matched clause pair（每对含一个歧义变体和一个消歧变体），在 5 个模型上评估共 2,997 个 episode。核心发现：歧义条款使违规率增加 +34.0 pp（McNemar OR=15.1），方差分解显示条款措辞解释 22.4% 方差而类型仅解释 0.4%，41.3% 的歧义条款触发跨模型收敛性有害解释（convergent nocuity）。论文还在 SOPBench 和 Healthcare 数据上进行了跨基准验证。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 4/5 (Strong) | 主要 claim 有充分支撑：matched-pair 设计配合扰动控制排除表面混淆，MH 分层分析和多项鲁棒性检验确认效应方向稳健。但 pooled McNemar 的聚类问题和 SESOI 锚定不足略削弱统计精度声明 |
+| Excitement | 4/5 (Exciting) | 研究问题新颖且对 AI 安全有直接实践意义；convergent nocuity 概念贡献显著；matched-pair 因果设计在该领域罕见 |
+| Overall Assessment | 3.5 (Borderline Conference) | 贡献实质性强，但统计方法的聚类问题、残差方差的不充分讨论、以及外部效度的合成-自然差距需要修订 |
+| Confidence | 4/5 | 仔细检查了实验设计、统计分析和附录中的技术细节 |
+| Reproducibility | 4/5 | 数据/代码承诺公开；实验设置（模型、API参数、prompt模板）描述详尽；LLM judge 存在固有不可复现性 |
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] Pooled McNemar 检验违反独立性假设
+
+- 具体位置：Section 5.1（"McNemar OR = 15.1 (based on n = 580 discordant pairs)"）
+- 问题：论文的核心统计量是 pooled McNemar OR=15.1，将 5 个模型 × 300 clause pair = 1,497 对视为独立配对。但同一 clause pair 在 5 个模型上的 5 次观测存在 clause 层面的聚类相关性——ICC=0.919（Section 4.5）恰好证实了这一点：同一 clause 在不同模型上的违规模式高度相似。这种聚类会低估标准误、膨胀 OR 和过窄化置信区间。MH 分层按 model×type 分层（Appendix J, MH OR=9.57）只能解决 model 层面的混淆，无法处理 clause 层面的随机效应。
+- 为什么影响接收：这是论文的 headline statistic，直接影响效应量的可信度。虽然效应方向无疑是稳健的（per-model McNemar 在 Table 4 脚注中均报告 p < 10⁻⁷），但当前的 CI [10.78, 21.17] 可能过窄。
+- 建议修改方向：(1) 以 per-model McNemar 检验作为主要报告（每个模型 n=300 对，独立性更好）；(2) 补充 mixed-effects logistic regression with clause as random intercept + model as fixed effect，这是处理此类嵌套数据的标准方法；(3) 将 pooled McNemar OR 降格为辅助参考，或至少在正文中明确注明聚类假设。Section K 已有 logistic regression，但未包含 clause 随机效应。
+
+**N2** [critical] 残差方差中 ~46% 系统方差来源未充分讨论
+
+- 具体位置：Section 5.1 Figure 2；Appendix AG
+- 问题：方差分解显示 60.8% 为残差。Appendix AG 的 ICC(1)=0.749 表明其中约 45.5% 为系统性方差（非随机噪声），仅约 15.3% 为随机内方差。这意味着近半的总方差来自既非 clause 措辞、也非类型、模型或处理条件的系统性因素。论文将其归因于"conversation trajectories, user-simulator choices, and topic interactions"（Appendix AG），但这仅是定性推测，没有进一步的实证分解。
+- 为什么影响接收：这削弱了 Section 7 中"clause-level auditing outperforms type-level screening"的核心实践建议——如果 clause 措辞只解释 22.4% 而未知系统因素贡献约 46%，则 clause 级审计只能解决问题的一小部分。论文需要更明确地界定其因果声明的边界。
+- 建议修改方向：(1) 在正文中增加一段讨论残差方差的组成（用 ICC 结果量化系统 vs 随机部分）；(2) 明确承认 clause 措辞虽是最大的可操作因素（22.4% > type 0.4% + model 1.0%），但不是违规率的主要驱动力；(3) 可尝试在方差分解中加入 policy-document 或 scenario 层面的随机效应，看是否能解释部分残差。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] TOST equivalence SESOI ±15pp 缺乏充分的领域锚定
+
+- 具体位置：Section 4.6；Appendix B
+- 问题：论文采用 ±15 pp 作为 SESOI 用于 TOST 等价性检验（扰动控制）和 margin-free bootstrap 分析。论文诚实地承认这是"pragmatic default, not a principled domain-anchored threshold"。但 15 pp 作为等价性阈值相当宽松——在安全关键场景中，5 pp 的违规率增加可能已值得关注。Appendix B 的成本锚定讨论了每违规成本，但未从中推导出 15 pp 阈值。
+- 建议：(1) 在 Appendix B 中正式从成本模型推导 SESOI（如：每违规成本 × 可接受风险增量 = 经济意义上的最小重要差异）；(2) 补充 SESOI = 5 pp 和 10 pp 的敏感性分析，展示结论在不同阈值下的稳健性。
+
+**W2** [warning] Cross-judge 设计不对称性对模型间比较的潜在影响
+
+- 具体位置：Section 4.4；Appendix AF
+- 问题：GPT-5.4 评判 3 个模型（Claude, GPT-4.1, Qwen3），GPT-4.1 评判 2 个模型（GPT-5.4, DeepSeek）。Appendix AF 显示 GPT-4.1 "systematically harder (mean ≈ +8 pp across all models)"。这意味着 GPT-5.4 和 DeepSeek 的绝对违规率受到系统性偏高的 judge 的评估，与另外三个模型不直接可比。
+- 虽然 Appendix AF 展示了 judge 间排序一致性（concordant type-level rankings for 5/6 types）和模型排序保持不变，但 +8 pp 的系统偏差影响所有涉及 GPT-5.4/DeepSeek 的绝对值比较，包括 Figure 3 的热力图和 Table 4 的违规率表。
+- 建议：(1) 在正文中注明此限制，强调模型间比较应关注排序而非绝对值；(2) 在 Figure 3 或 Table 4 旁标注各模型的 judge 身份；(3) 考虑用 judge-calibrated 违规率（减去 judge-specific baseline offset）做敏感性分析。
+
+**W3** [warning] Incompleteness 类型的信息添加混淆未充分排除
+
+- 具体位置：Section 4.5；Appendix G
+- 问题：Incompleteness 的消歧变体必须添加原本缺失的信息（如：退货条件、时间限制），因此 disambiguated variant 不仅消除了歧义，还增加了信息量。论文用 token count 作为信息量的代理变量进行 logistic regression 控制（Appendix I），在 Δ_token=0 时效应仍为 +20.5 pp。但 token count 是信息量的粗糙代理——相同长度的文本可以携带截然不同的信息量。
+- 更根本的问题是：这是一个不可完全分离的混淆。在 incompleteness 场景中，"消除歧义"和"添加信息"在概念上是等价的——缺少信息*就是*歧义的来源。论文在 Appendix V（Binary Effect Excluding Incompleteness）中展示排除 incompleteness 后效应仍然显著（+38.4% vs pooled），这是好的做法。
+- 建议：(1) 在正文 Section 4.5 或 Section 7 中更明确地讨论此不可分离性；(2) 强调 excluding incompleteness 的分析作为对因果声明的保守下界估计。
+
+**W4** [warning] Healthcare 跨域验证样本量过小
+
+- 具体位置：Section 7（Limitations）；Appendix AE
+- 问题：Healthcare 验证仅用 50 个 clause pair × 5 模型 = 250 episodes。效应大小 +58.8 pp 虽然惊人，但 n=50 clause pairs 意味着 per-type 和 per-model 的子分析统计功效极低。论文承认这是 "pilot-scale"（Appendix AE），但正文 Section 7 中对 healthcare 结果的讨论措辞较为确定（"cross-domain convergent nocuity generalizes beyond customer service"）。
+- 建议：(1) 在正文中更明确标注 healthcare 为 pilot，降低措辞确定性；(2) 报告 per-type 效应量的置信区间（如果样本量允许）。
+
+**W5** [warning] Per-type judge agreement 差异大，低 κ 类型的结论可信度存疑
+
+- 具体位置：Appendix H Table 12
+- 问题：Per-type human-LLM judge agreement κ 从 0.385（coreferential）到 0.904 不等。Coreferential 和 authorization scope 的 κ 较低（0.479 和低 cross-judge κ=0.385 from Table 12），意味着这些类型的违规判定不够可靠。但 authorization scope 恰恰是论文中效应最大（+36.8 pp, Table 4）且被重点讨论的类型（C4 interaction, Section 5.2, §6.3）。
+- 建议：(1) 在讨论 authorization scope 相关结论时注明 judge reliability 较低，读者应谨慎解读绝对值；(2) 考虑用 judge agreement 作为 moderator 分析类型级效应的可信度。
+
+---
+
+## 小问题（不影响接收）
+
+- **M1**: Section 3 taxonomy 引入了 6 个类型，但正文空间有限，部分类型（如 coreferential）的定义和示例不够直观。Table 1 的 "Disambiguating" 列部分描述过于简短。建议补充更具体的示例或指向 Appendix 的引用。
+
+- **M2**: Figure 2 的方差分解柱状图视觉上不够直观——"At random" 标签和红色标记线的含义需要在 caption 中更清晰地解释。
+
+- **M3**: Section 6.2（Disambiguation Neglect）的 "4.6% awareness rate" 统计来源不够清晰——是 across all models 还是 specific conditions？需在正文中澄清分母。
+
+- **M4**: 论文声称是 "first causal study"（Section 1），但 matched-pair design 是准实验设计而非随机实验。虽然 perturbation control 增强了因果推断的可信度，但建议在 Section 4 中明确讨论因果识别假设（SUTVA、无未测量混淆等）。
+
+- **M5**: Table 5 TOST 分析中 "Mid-tier = fraction of the six within-cluster pairs" 的含义不够清晰，需要更好的注释。
+
+---
+
+## Questions to Authors
+
+1. **聚类效应量化**：是否可以报告 mixed-effects logistic regression（with clause as random intercept）的 OR？这将直接回答 N1 中聚类对效应量估计的影响程度。
+
+2. **残差方差分解**：是否尝试过在方差分解中加入 policy-document 或 scenario-level 随机效应？τ²-bench 的 policy 数量有限（Section 4.1 提到 retail and airline 两个域），来自同一 policy 的 clause pairs 之间可能存在 document-level 相关性。
+
+3. **Convergent nocuity 的模型家族效应**：Appendix AK 显示 within-family Jaccard=0.54 vs cross-family=0.46，差异不大。但 GPT-5.4 和 GPT-4.1 同属 OpenAI 家族——如果排除 OpenAI 内部的 pair，cross-family Jaccard 是否会进一步下降？
+
+4. **Temperature robustness**：Appendix AN 的 temperature pilot 仅在 GPT-5.4 上测试。不同模型对 temperature 的敏感性可能不同——是否有理由相信 DeepSeek-V3 或 Qwen3 在 temperature=0.7 时也有类似的 agreement？
+
+---
+
+## 主要优势
+
+1. **研究问题的新颖性和实践价值**：首次系统性地研究策略歧义与 LLM agent 安全违规的因果关系。convergent nocuity 概念（歧义导致模型收敛到同一错误解释，而非发散）是重要的理论贡献，颠覆了 Berry et al. (2004) 的经典发散假设。
+
+2. **实验设计的严谨性**：matched-pair 设计 + perturbation control（Δ=-0.67pp, 95% CI [-8.0, 6.67]）是该领域罕见的因果推断标准。每个 claim 都有对应的控制分析。
+
+3. **分析的广度和深度**：18 个附录覆盖了方差分解、ICC 复制、混淆变量分析（token count、information addition）、judge 校准、taxonomy mapping、real-world prevalence 等。论文预判并回应了大部分可预见的方法论质疑。
+
+4. **多模型覆盖**：5 个模型来自 4 个提供商（OpenAI, Anthropic, Alibaba, DeepSeek），涵盖 proprietary 和 open-source，增强了结论的泛化性。
+
+5. **Limitations 的诚实性**：明确承认 synthetic pairs 是 upper bound、SESOI 是 pragmatic choice、healthcare 是 pilot-scale。这在同行评审中是加分项。
+
+---
+
+## 总体评分
+
+**Overall**: 3.5 (Borderline Conference)
+
+**一句话总结**: 研究问题新颖、实验设计精良，但核心统计量（pooled McNemar OR）的独立性假设违反和大量未解释系统方差需要在修订中正式处理，以匹配论文对因果推断精度的高标准自我定位。
+
+---
+
+*Reviewer 1 — 方法严谨性审查*
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3081 · 2026-05-25T21:22:50.824662+00:00_
+
+Reviewer 1 报告已收到。等待 Reviewer 2 报告后进入交叉分享阶段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 278
+
+## Round 278
+
+2 recorded events
+
+
+### User
+
+_source line 3082 · 2026-05-25T21:22:56.076769+00:00_
+
+[Reviewer 1 审稿结果]:
+审稿报告已提交给 Review Director。
+
+总结：
+
+- **Overall 3.5（Borderline Conference）**，Soundness 4/5，Excitement 4/5
+- **2 个 Must-Fix**：(1) pooled McNemar OR=15.1 因 clause 层面聚类违反独立性假设，建议补充 mixed-effects logistic regression；(2) 60.8% 残差中约 46% 为未解释的系统方差，需要更充分讨论
+- **5 个 Should-Fix**：SESOI ±15pp 锚定不足、cross-judge 不对称性影响模型间比较、incompleteness 信息添加混淆不可分离、healthcare 验证样本量过小、per-type judge agreement 低的类型结论可信度存疑
+- **5 个 Minor**：taxonomy 示例不足、Figure 2 可视化不够直观、disambiguation neglect 统计分母不清、"first causal study" 措辞需界定因果识别假设、Table 5 注释不清
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3083 · 2026-05-25T21:23:06.357366+00:00_
+
+Reviewer 1 报告已收到。等待 Reviewer 2 报告后进入交叉分享阶段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 279
+
+## Round 279
+
+6 recorded events
+
+
+### User
+
+_source line 3084 · 2026-05-25T21:23:18.367219+00:00_
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 审稿报告：新颖性与完整性
+
+**论文**: "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety"
+**Venue**: EMNLP 2026 via ARR May cycle
+**审查维度**: 新颖性与完整性
+
+---
+
+## 总体评分
+**Overall**: 3.5/5 (Borderline Conference)
+**一句话总结**: 研究问题有实际价值且 matched-pair 因果设计严谨，convergent nocuity 概念具有原创性，但合成基准的生态效度和 Discussion 的薄弱限制了整体影响力。
+
+## 官方维度打分（来自 ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 4/5 | Matched-pair 设计控制精良，统计分析全面（TOST 等价检验、方差分解、bootstrap），但合成 clause pairs 使效果量为上界 |
+| Excitement | 3.5/5 | Convergent nocuity 对 agreement-based monitoring 的挑战是重要发现；type-mechanism dissociation 新颖度较低 |
+| Reproducibility | 4/5 | 提供匿名代码/数据仓库，模型、prompt template（Appendix AM）、超参数均有说明 |
+| Confidence | 4/5 | 本人熟悉 agent safety 评估和 NLP 歧义研究，仔细阅读了正文和全部 26 页附录 |
+
+---
+
+## Summary
+
+本文研究 LLM agent 在自然语言政策规范中遇到歧义时是否会产生更多安全违规。作者在 τ²-bench 上构建 300 对 matched clause pairs（涵盖六类歧义分类），在五个模型上运行 2,997 episodes，发现歧义 clause 使违规率整体提升 +34.0 pp（排除 incompleteness 后 +31.0 pp）。主要发现包括：(1) clause-level wording 解释 22.4% 的违规方差而 type 仅解释 0.4%（type-mechanism dissociation）；(2) 41.3% 的歧义 clause 触发 majority-convergent violations，其中 77% 偏向 permissive interpretation（convergent nocuity）；(3) cross-benchmark（SOPBench）和 cross-domain（healthcare）评估提供初步泛化证据。
+
+---
+
+## 主要优势
+
+**S1. 研究问题精准且有实际价值。** Policy ambiguity 是 LLM agent 部署中不可回避的现实问题（Appendix AH 审计显示 87% 的真实 policy clause 含歧义），但此前没有工作从因果角度隔离歧义对安全违规的贡献。本文填补了这一空白。
+
+**S2. 实验设计严谨。** Matched-pair 设计在 same-context 条件下只改变 clause 的歧义性（Section 4.2），配合 perturbation control（Section 4.5, 语义扰动残差仅 ≤27.3 pp vs. 歧义效应 34.0 pp）和 within-family replicability（ICC(1) = 0.892-0.940, Section 4.2），有效控制了混淆因素。Cross-judge 设计（Section 4.4）缓解了单一评判偏差。
+
+**S3. Convergent nocuity 是原创且重要的概念。** 将 Berry & Kamsties (2004) 的 nocuous/innocuous 框架反转应用于 LLM agent——模型不是发散（divergent nocuity）而是收敛到同一个错误解读（Section 6.3）——这对依赖多模型 agreement 做安全监控的实践有直接警示意义。Permissive attractor（77% 偏向宽松解读, Figure 6）和 within-family Jaccard 分析（Appendix AK, 0.54 within vs. 0.46 cross）的证据链完整。
+
+**S4. 分析全面、附录扎实。** 26 页附录覆盖方差分解（Appendix AG）、token-length 控制（Appendix K）、Mantel-Haenszel 分层（Appendix J）、bootstrap clustering（Section 5.2）、temperature robustness（Appendix AN）、healthcare domain pilot（Appendix AE-AF）、real-world prevalence audit（Appendix AH-AI）等。这种彻底性在同类工作中少见。
+
+**S5. 跨学科文献衔接良好。** 将 NLP 歧义（Li et al., 2024b）、RE 歧义（Berry & Kamsties, 2004; Massey, 2014）、心理语言学（Ferreira et al., 2002; Gur-Arieh et al., 2026）和 agent safety（R-Judge, SafeAgentBench, DRIP-R）有机整合，定位清晰。
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] 合成 clause pairs 的生态效度未充分论证，"first causal study" framing 存在过度声明风险
+- 具体位置：Section 1 (page 1-2), Section 4.2, Limitations (page 9)
+- 问题：全部 300 对 clause pairs 为人工构建，歧义信号被最大化（每对仅改变歧义性，语义意图不变）。这使得 +34.0 pp 效应量是一个上界（upper bound），论文在 Limitations 中承认这一点，但正文多处使用 "the first causal study establishing that policy ambiguity increases violations"（Section 1, para. "Our contributions are"）的措辞，暗示了比合成实验所能支撑的更强的外部效度。Healthcare pilot（Appendix AE, n=50）太小且也使用合成 pairs；real-world audit（Appendix AH）仅证明歧义普遍存在（87%），并未证明自然发生的歧义产生同等效应量。自然发生的歧义可能比精心构造的 minimal-pair 歧义更微妙、更不系统。
+- 为什么影响接收：因果声明是本文的核心定位，如果读者/AC 认为 "causal" 仅限于合成基准内部有效性而缺乏外部有效性，论文的贡献会被大幅折扣。
+- 建议修改方向：(1) 在 Introduction 和 Conclusion 中明确区分 "internal causal validity"（matched-pair 设计保证的）和 "ecological validity"（尚未充分建立的）；(2) 将 healthcare pilot 扩大到至少 n≥200 或增加一个 naturally-occurring ambiguity 的验证实验（如从 Appendix AH 的 407 真实 clauses 中抽样评估）；(3) 将 "first causal study" 改为 "first controlled matched-pair study" 以更准确反映设计性质。
+
+**N2** [critical] Type-mechanism dissociation 的新颖度需更好论证
+- 具体位置：Section 5.1 (page 6), Figure 2, Appendix AG
+- 问题：论文声称 "clause wording explains 22.4% of violation variance while type membership explains only 0.4%"（Section 1）是核心贡献之一。但该发现在一定程度上是分类体系设计的直接后果：六种 type 是粗粒度类别（每类 50 对 clauses），同一 type 内不同 clause 的具体措辞自然差异巨大（如 authorization scope 下既有 "vague permission" 也有 "boundary violation" 的 clause）。Type 级别方差低并不令人意外——这更像是验证了分类体系的粒度选择，而非揭示了一个 surprising dissociation。NMI = 0.23 vs. 0.01 的对比有力，但需要更多 discussion 解释为什么这不是 trivially expected。
+- 为什么影响接收：如果 reviewer 认为这个贡献是 trivial，论文的 "三贡献" 架构会受到质疑。
+- 建议修改方向：(1) 增加一个 null model comparison——如果将 300 clauses 随机分成 6 组，NMI 是多少？如果同样低，说明 type 分组本身就无法捕捉 clause-level 方差；(2) 更明确地论述 practical implication：因为 type 不能预测 mechanism，所以 type-level risk screening（如"优先审查 scopal ambiguity"）是无效的，必须做 clause-level 审计。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] Introduction 数字密度过高，叙事弧线被压缩
+- 具体位置：Section 1 (pages 1-2)
+- 问题：Introduction 在约 1.5 页内堆叠了大量具体数字：+34.0 pp, +31.0 pp, 22.4%, 0.4%, NMI=0.23 vs. 0.01, Cramer's V = 0.45 vs. 0.14, 41.3%, 77%, 4.6%, +58.8 pp 等。对初次阅读的读者，这些数字在缺乏实验设计上下文的情况下难以消化。Introduction 读起来更像是 Results 摘要而非问题导向的叙事。
+- 建议：将 Introduction 的数字精简到 3-4 个最关键的（如 overall effect size, convergent nocuity 率, cross-benchmark consistency），其余移入 Results preview。参考 DRIP-R 或 SOPBench 的 Introduction 风格，先建立 research gap，再用 1-2 个 headline number 预览发现。
+
+**W2** [warning] Discussion 过短，未充分展开 implications
+- 具体位置：Section 7 (page 8)
+- 问题：Discussion and Conclusion 合并在约 1 页内，对以下重要话题讨论不足：(1) convergent nocuity 对 RLHF/constitutional AI 等 alignment 方法的含义——如果 reward model 也受 permissive attractor 影响怎么办？(2) 与 prompt injection/jailbreak 文献的关系——policy ambiguity 是否构成一种 "natural" attack surface？(3) clause-level auditing 的 scalability——300 clause pairs 需人工构建，如何 scale 到数千条 policy？
+- 建议：拆分 Discussion 和 Conclusion 为两个 subsection，Discussion 至少展开 2-3 个 implication 段落。
+
+**W3** [warning] Incompleteness 类型的 confound 处理需更醒目
+- 具体位置：Section 4.2 (page 4), Section 5.1 (page 6), Appendix I
+- 问题：Incompleteness 是唯一一种歧义消解（disambiguation）必然伴随 information addition 的类型（Section 1 明确承认）。论文正确地报告了 excluding incompleteness 后的效应量（+31.0 pp），并在 Appendix I 做了 confound 分析，但这个 fundamental confound 在正文中的处理位置不够醒目。读者可能在 Section 5.1 看到 "all six types individually produce significant increases" 时误以为所有类型都是等质量的证据。
+- 建议：在 Section 5.1 首次报告六类型结果时立即加注 incompleteness 的 caveat（不仅是括号内的 "+31.0 pp excluding incompleteness"），用 1-2 句话解释为什么 incompleteness 的效应量解读不同于其他五类。
+
+**W4** [warning] 模型选择偏向大规模 frontier models
+- 具体位置：Section 4.3, Table 2 (page 4)
+- 问题：五个模型（GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3）均为 frontier 或接近 frontier 级别。论文缺少较小模型（如 Qwen3-7B, Llama-3.3-8B）或非 instruction-tuned 模型的数据。Appendix F 的 replication（Gemini 2.5 Flash, LLaMA-4-Scout）提供了部分多样性，但正文五模型的选择可能高估了效应量（更强的模型可能更善于处理歧义）或低估了（更强的模型可能更善于遵循 policy 导致 ambiguity 影响更显著）。方向未知，但模型多样性不足是一个 generalizability 限制。
+- 建议：至少在 Limitations 中讨论模型规模作为 moderator 的可能影响；如果可行，增加 1-2 个 ≤30B 参数的模型。
+
+**W5** [warning] Real-world prevalence audit 使用 LLM judge 可能存在循环性
+- 具体位置：Appendix AH (page 22)
+- 问题：87% 的真实 policy 歧义率基于 Claude Sonnet 4.6 和 GPT-5.4 的标注。但本文的核心发现正是 LLM agent 对歧义有系统性偏差（convergent nocuity）。用可能有同样偏差的 LLM 来判断什么是"歧义的"，可能导致 prevalence 估计与主实验的 violation 率相关——不是因为歧义真的普遍存在，而是因为 LLM 对 "歧义" 的定义本身就偏向触发它们违规的 patterns。
+- 建议：报告 LLM judge 与 human annotator 在 real-world clauses 上的 agreement（目前仅有 synthetic clauses 上的 human validation），或讨论这一潜在循环性。
+
+---
+
+## 小问题（不影响接收）
+
+- **M1**: Figure 2 caption 不够自包含——"Variance decomposition of violation rates" 需要读者先理解 "clause identity" vs. "model" vs. "type" 的分解逻辑，建议在 caption 中加一句解释。
+- **M2**: "Nocuous" 一词在标题中对 NLP 社区可能不够直觉——大多数 NLP 读者不熟悉 RE 文献中的 nocuous/innocuous 区分。建议在 abstract 或 introduction 首次使用时加括注（"nocuous, i.e., harmful"）。
+- **M3**: Table 4 (page 7) 的 footnote 1 关于 incompleteness 的说明字体极小，容易被忽略。
+- **M4**: Section 3 (page 3) 提到 "six types organized into two layers (Table 1), selected from Li et al. (2024b)'s NLP taxonomy (11 types)"，但 Appendix P 的 mapping 表（Table 14, page 15）应在正文中被更明确地引用，方便读者查看排除理由。
+- **M5**: Appendix AO 披露使用 Claude (Anthropic) 作为 AI assistant——这本身没问题，但考虑到 Claude Sonnet 4.6 也是实验中的评估模型之一，值得注意潜在的利益关联（非 anonymity violation，但可供 AC 参考）。
+
+---
+
+## Questions to Authors
+
+**Q1**: 如果在 Appendix AH 的 407 个真实 policy clauses 中随机抽取歧义 clause 并与原文配对运行 τ²-bench，您预期效应量是否仍在 +34 pp 附近？还是会因为自然歧义更微妙而显著降低？
+
+**Q2**: Convergent nocuity 中 77% 的 permissive bias 是否可能由 τ²-bench 的 ground-truth 评判标准（assertion checking）驱动？如果评判标准对 "permissive" 行为更敏感（因为 assertion 更容易被宽松解读违反），效果可能被高估。
+
+**Q3**: 论文提到 "disambiguation neglect"（4.6% awareness rate, Section 6.2），但未讨论是否可以通过 prompting 策略（如 "If the policy is ambiguous, ask for clarification before acting"）来缓解。是否有初步实验？
+
+**Q4**: Type-mechanism dissociation 的 NMI=0.23 在信息论中是什么水平？能否提供 interpretive benchmark（如 NMI 在什么范围内算 "weak" vs. "moderate" association）？
+
+---
+
+## Missing References
+
+1. **ToolEmu (Ruan et al., ICLR 2024)**: "Identifying the Risks of LM Agents with an LM-Emulated Sandbox"——agent safety benchmark 领域的基础工作，论文似乎引用了 "Ruan et al., 2025" 但 ToolEmu 的原始版本是 ICLR 2024，请确认引用是否指向正确的工作。
+2. **ASPI (2025/2026)**: "Seeking Ambiguity Clarification Amplifies Prompt Injection Vulnerability in LLM Agents"——直接研究歧义如何放大 LLM agent 的 prompt injection 脆弱性，与本文的 "policy ambiguity as natural attack surface" 角度高度互补。如果提交时已可获取，应在 Related Work 中讨论。
+3. **AgentHarm (Andriushchenko et al., ICLR 2025)**: Agent safety benchmark with harmful action evaluation——扩大 agent safety 基准的覆盖。
+
+---
+
+## Overall Assessment
+
+**Overall**: 3.5/5 (Borderline Conference)
+
+本文提出了一个重要且及时的研究问题（policy ambiguity 是否因果导致 LLM agent 安全违规），实验设计严谨（matched-pair + extensive controls），convergent nocuity 概念有原创性和实践意义。主要不足在于：(1) 合成基准限制了因果声明的外部效度，而 "first causal study" 的 framing 未充分 qualify 这一局限；(2) type-mechanism dissociation 的新颖度需更好论证；(3) Discussion 过短，未充分展开对 alignment 和 monitoring 实践的 implications。
+
+如果作者能在 rebuttal 中 (a) 承诺用自然歧义 clauses 做验证实验或扩大 healthcare pilot，(b) 调整因果声明的措辞精确度，(c) 对 Q1-Q4 给出令人信服的回答，本文有潜力达到 Conference 水平（4.0）。目前是强 Findings 候选。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3085 · 2026-05-25T21:23:58.455385+00:00_
+
+called mcp__agent-ml-research__director_post_to_reviewer
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer</summary>
+
+```json
+{
+  "reviewer_id": "1",
+  "round_number": "1",
+  "project": "policy_ambiguity_safety",
+  "text": "以下是 Reviewer 2 的完整审稿意见。请逐条回应：对每个 Must-Fix、Should-Fix 和 Minor 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 2 审稿报告：新颖性与完整性\n\n**Overall**: 3.5/5 (Borderline Conference)\n\n## Must-Fix 问题\n\n**N1** [critical] 合成 clause pairs 的生态效度未充分论证，\"first causal study\" framing 存在过度声明风险\n- 全部 300 对 clause pairs 为人工构建，歧义信号被最大化。+34.0 pp 效应量是上界。正文多处使用 \"the first causal study establishing that policy ambiguity increases violations\" 暗示了比合成实验所能支撑的更强的外部效度。Healthcare pilot（n=50）太小且也使用合成 pairs；real-world audit（Appendix AH）仅证明歧义普遍存在（87%），并未证明自然发生的歧义产生同等效应量。\n- 建议：(1) 区分 internal causal validity 和 ecological validity；(2) 扩大 healthcare pilot 或增加 naturally-occurring ambiguity 验证；(3) 将 \"first causal study\" 改为 \"first controlled matched-pair study\"。\n\n**N2** [critical] Type-mechanism dissociation 的新颖度需更好论证\n- clause wording 22.4% vs type 0.4% 在一定程度上是分类体系粒度的直接后果：六种 type 是粗粒度类别，同一 type 内不同 clause 的具体措辞自然差异巨大。NMI = 0.23 vs. 0.01 的对比有力，但需要更多 discussion 解释为什么这不是 trivially expected。\n- 建议：(1) 增加 null model comparison（随机分组的 NMI）；(2) 更明确论述 practical implication。\n\n## Should-Fix 问题\n\n**W1** Introduction 数字密度过高，叙事弧线被压缩。建议精简到 3-4 个最关键数字。\n\n**W2** Discussion 过短，未充分展开 implications：(1) convergent nocuity 对 RLHF/constitutional AI 的含义；(2) 与 prompt injection 的关系；(3) clause-level auditing 的 scalability。\n\n**W3** Incompleteness 类型的 confound 处理位置不够醒目。建议在 Section 5.1 首次报告六类型结果时立即加注。\n\n**W4** 模型选择偏向大规模 frontier models，缺少 ≤30B 参数模型。\n\n**W5** Real-world prevalence audit 使用 LLM judge 可能存在循环性（用可能有同样偏差的 LLM 来判断歧义）。\n\n## Minor\n- M1: Figure 2 caption 不够自包含\n- M2: \"Nocuous\" 对 NLP 社区不够直觉\n- M3: Table 4 footnote 字体极小\n- M4: Appendix P mapping 表应在正文中更明确引用\n- M5: Claude 既是 AI assistant 又是实验模型，可供 AC 参考\n\n## Missing References\n1. ToolEmu (Ruan et al., ICLR 2024) 引用版本确认\n2. ASPI (2025/2026): 歧义放大 prompt injection 脆弱性\n3. AgentHarm (Andriushchenko et al., ICLR 2025): agent safety benchmark\n\n---\n\n请逐条回应。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "tool_args": {
+    "reviewer_id": "1",
+    "round_number": "1",
+    "project": "policy_ambiguity_safety",
+    "text": "以下是 Reviewer 2 的完整审稿意见。请逐条回应：对每个 Must-Fix、Should-Fix 和 Minor 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 2 审稿报告：新颖性与完整性\n\n**Overall**: 3.5/5 (Borderline Conference)\n\n## Must-Fix 问题\n\n**N1** [critical] 合成 clause pairs 的生态效度未充分论证，\"first causal study\" framing 存在过度声明风险\n- 全部 300 对 clause pairs 为人工构建，歧义信号被最大化。+34.0 pp 效应量是上界。正文多处使用 \"the first causal study establishing that policy ambiguity increases violations\" 暗示了比合成实验所能支撑的更强的外部效度。Healthcare pilot（n=50）太小且也使用合成 pairs；real-world audit（Appendix AH）仅证明歧义普遍存在（87%），并未证明自然发生的歧义产生同等效应量。\n- 建议：(1) 区分 internal causal validity 和 ecological validity；(2) 扩大 healthcare pilot 或增加 naturally-occurring ambiguity 验证；(3) 将 \"first causal study\" 改为 \"first controlled matched-pair study\"。\n\n**N2** [critical] Type-mechanism dissociation 的新颖度需更好论证\n- clause wording 22.4% vs type 0.4% 在一定程度上是分类体系粒度的直接后果：六种 type 是粗粒度类别，同一 type 内不同 clause 的具体措辞自然差异巨大。NMI = 0.23 vs. 0.01 的对比有力，但需要更多 discussion 解释为什么这不是 trivially expected。\n- 建议：(1) 增加 null model comparison（随机分组的 NMI）；(2) 更明确论述 practical implication。\n\n## Should-Fix 问题\n\n**W1** Introduction 数字密度过高，叙事弧线被压缩。建议精简到 3-4 个最关键数字。\n\n**W2** Discussion 过短，未充分展开 implications：(1) convergent nocuity 对 RLHF/constitutional AI 的含义；(2) 与 prompt injection 的关系；(3) clause-level auditing 的 scalability。\n\n**W3** Incompleteness 类型的 confound 处理位置不够醒目。建议在 Section 5.1 首次报告六类型结果时立即加注。\n\n**W4** 模型选择偏向大规模 frontier models，缺少 ≤30B 参数模型。\n\n**W5** Real-world prevalence audit 使用 LLM judge 可能存在循环性（用可能有同样偏差的 LLM 来判断歧义）。\n\n## Minor\n- M1: Figure 2 caption 不够自包含\n- M2: \"Nocuous\" 对 NLP 社区不够直觉\n- M3: Table 4 footnote 字体极小\n- M4: Appendix P mapping 表应在正文中更明确引用\n- M5: Claude 既是 AI assistant 又是实验模型，可供 AC 参考\n\n## Missing References\n1. ToolEmu (Ruan et al., ICLR 2024) 引用版本确认\n2. ASPI (2025/2026): 歧义放大 prompt injection 脆弱性\n3. AgentHarm (Andriushchenko et al., ICLR 2025): agent safety benchmark\n\n---\n\n请逐条回应。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3086 · 2026-05-25T21:24:21.410106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_1\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "elapsed_ms": 22954
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3087 · 2026-05-25T21:24:21.611298+00:00_
+
+called mcp__agent-ml-research__director_post_to_reviewer
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer</summary>
+
+```json
+{
+  "reviewer_id": "2",
+  "round_number": "1",
+  "project": "policy_ambiguity_safety",
+  "text": "以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每个 Must-Fix、Should-Fix 和 Minor 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 1 审稿报告：方法严谨性\n\n**Overall**: 3.5/5 (Borderline Conference), Soundness 4/5, Excitement 4/5\n\n## Must-Fix 问题\n\n**N1** [critical] Pooled McNemar 检验违反独立性假设\n- 核心统计量 pooled McNemar OR=15.1 将 5 个模型 × 300 clause pair = 1,497 对视为独立配对。但同一 clause pair 在 5 个模型上的 5 次观测存在 clause 层面的聚类相关性——ICC=0.919 恰好证实了这一点。MH 分层按 model×type 分层（MH OR=9.57）只能解决 model 层面的混淆，无法处理 clause 层面的随机效应。\n- 建议：(1) 以 per-model McNemar 检验作为主要报告；(2) 补充 mixed-effects logistic regression with clause as random intercept；(3) 将 pooled McNemar OR 降格为辅助参考。\n\n**N2** [critical] 残差方差中 ~46% 系统方差来源未充分讨论\n- 方差分解显示 60.8% 为残差。ICC(1)=0.749 表明其中约 45.5% 为系统性方差。这削弱了 \"clause-level auditing outperforms type-level screening\" 的核心实践建议——clause 措辞只解释 22.4% 而未知系统因素贡献约 46%。\n- 建议：(1) 正文增加一段讨论残差方差组成；(2) 承认 clause 措辞是最大可操作因素但非主要驱动力；(3) 尝试加入 policy-document 或 scenario 层面随机效应。\n\n## Should-Fix 问题\n\n**W1** TOST equivalence SESOI ±15pp 缺乏充分的领域锚定。建议正式从成本模型推导 SESOI。\n\n**W2** Cross-judge 设计不对称性：GPT-4.1 \"systematically harder (mean ≈ +8 pp)\"，影响 GPT-5.4 和 DeepSeek 的绝对违规率比较。\n\n**W3** Incompleteness 信息添加混淆不可完全分离。建议在正文中更明确讨论此不可分离性。\n\n**W4** Healthcare 跨域验证样本量过小（n=50 clause pairs）。建议明确标注 pilot 并降低措辞确定性。\n\n**W5** Per-type judge agreement 差异大（κ=0.385-0.904），低 κ 类型结论可信度存疑。\n\n## Minor\n- M1: Taxonomy 示例不够直观\n- M2: Figure 2 可视化不够直观\n- M3: Disambiguation neglect 统计分母不清\n- M4: \"first causal study\" 措辞需界定因果识别假设\n- M5: Table 5 TOST 注释不清\n\n---\n\n请逐条回应。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "tool_args": {
+    "reviewer_id": "2",
+    "round_number": "1",
+    "project": "policy_ambiguity_safety",
+    "text": "以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每个 Must-Fix、Should-Fix 和 Minor 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 1 审稿报告：方法严谨性\n\n**Overall**: 3.5/5 (Borderline Conference), Soundness 4/5, Excitement 4/5\n\n## Must-Fix 问题\n\n**N1** [critical] Pooled McNemar 检验违反独立性假设\n- 核心统计量 pooled McNemar OR=15.1 将 5 个模型 × 300 clause pair = 1,497 对视为独立配对。但同一 clause pair 在 5 个模型上的 5 次观测存在 clause 层面的聚类相关性——ICC=0.919 恰好证实了这一点。MH 分层按 model×type 分层（MH OR=9.57）只能解决 model 层面的混淆，无法处理 clause 层面的随机效应。\n- 建议：(1) 以 per-model McNemar 检验作为主要报告；(2) 补充 mixed-effects logistic regression with clause as random intercept；(3) 将 pooled McNemar OR 降格为辅助参考。\n\n**N2** [critical] 残差方差中 ~46% 系统方差来源未充分讨论\n- 方差分解显示 60.8% 为残差。ICC(1)=0.749 表明其中约 45.5% 为系统性方差。这削弱了 \"clause-level auditing outperforms type-level screening\" 的核心实践建议——clause 措辞只解释 22.4% 而未知系统因素贡献约 46%。\n- 建议：(1) 正文增加一段讨论残差方差组成；(2) 承认 clause 措辞是最大可操作因素但非主要驱动力；(3) 尝试加入 policy-document 或 scenario 层面随机效应。\n\n## Should-Fix 问题\n\n**W1** TOST equivalence SESOI ±15pp 缺乏充分的领域锚定。建议正式从成本模型推导 SESOI。\n\n**W2** Cross-judge 设计不对称性：GPT-4.1 \"systematically harder (mean ≈ +8 pp)\"，影响 GPT-5.4 和 DeepSeek 的绝对违规率比较。\n\n**W3** Incompleteness 信息添加混淆不可完全分离。建议在正文中更明确讨论此不可分离性。\n\n**W4** Healthcare 跨域验证样本量过小（n=50 clause pairs）。建议明确标注 pilot 并降低措辞确定性。\n\n**W5** Per-type judge agreement 差异大（κ=0.385-0.904），低 κ 类型结论可信度存疑。\n\n## Minor\n- M1: Taxonomy 示例不够直观\n- M2: Figure 2 可视化不够直观\n- M3: Disambiguation neglect 统计分母不清\n- M4: \"first causal study\" 措辞需界定因果识别假设\n- M5: Table 5 TOST 注释不清\n\n---\n\n请逐条回应。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3088 · 2026-05-25T21:24:22.921139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "elapsed_ms": 1309
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3089 · 2026-05-25T21:24:32.297494+00:00_
+
+交叉分享已派发。等待两位 Reviewer 的逐条回应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 280
+
+## Round 280
+
+2 recorded events
+
+
+### User
+
+_source line 3090 · 2026-05-25T21:24:34.790004+00:00_
+
+[Reviewer 2 审稿结果]:
+审稿完成。报告已通过 `review_reviewer_post_to_director` 提交至 Group C。
+
+核心结论：**Overall 3.5/5 (Borderline Conference)**。
+
+- **2 个 Must-Fix**：(1) "first causal study" framing 与合成基准的生态效度之间存在张力，需区分 internal vs. ecological validity；(2) type-mechanism dissociation 的新颖度需更好论证（可能是 taxonomy 粒度的直接后果而非 surprising finding）。
+- **5 个 Should-Fix**：Introduction 数字密度过高、Discussion 过短、incompleteness confound 正文处理不够醒目、模型选择偏向 frontier、real-world audit 的 LLM judge 循环性。
+- **主要优势**：matched-pair 设计严谨、convergent nocuity 概念原创且有安全实践意义、附录极为扎实（26 页）、跨学科文献衔接好。
+
+如果作者 rebuttal 能 (a) 补自然歧义验证实验或扩大 healthcare pilot，(b) 调整因果声明精度，有潜力升至 4.0 (Conference)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3091 · 2026-05-25T21:24:40.252737+00:00_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 281
+
+## Round 281
+
+2 recorded events
+
+
+### User
+
+_source line 3092 · 2026-05-25T21:25:44.067217+00:00_
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
+
+---
+
+## Must-Fix 问题
+
+**[AGREE] R2-N1: 合成 clause pairs 的生态效度与 "first causal study" framing**
+
+同意此问题有实质性，部分同意修改建议。
+
+理由：
+1. 论文在 Limitations（p.9）已承认 "the 34.0 pp effect is an upper bound"，但这一关键限定在正文中出现得太晚、太简短。SOPBench 跨基准验证效应量仅 +12.7 pp（Appendix AD, Table 23），仅为主实验的 37%，这一差距在正文 Section 7 中仅用一句话带过。
+2. Healthcare pilot n=50 确实太小（我在 W4 中也指出了这一点）。250 episodes 的统计功效不足以支撑 per-type 子分析。
+3. 但我不完全同意 R2 对 "first causal study" 措辞的反对。论文使用 matched-pair design + perturbation control（Δ=-0.67pp, Section 4.5），这确实是因果推断设计，不仅仅是相关性分析。关键区分应是 **internal causal validity（强）vs ecological validity（待验证）**，而非否定因果设计本身。
+4. 建议将 "first causal study" 改为 "first controlled matched-pair causal study on synthetic clause pairs" 或类似措辞，在 title/abstract 中加限定词 "controlled" 或 "synthetic"，而非彻底去掉因果声明。
+
+**[REBUT] R2-N2: Type-mechanism dissociation 的新颖度**
+
+不同意将此降为 "trivially expected"。
+
+理由：
+1. R2 的论点是"六种 type 是粗粒度类别，所以 clause 内方差大于 type 间方差是预期结果"。但这忽略了论文的核心对比对象：如果歧义的危害主要由**类型特征**决定（如 RE 文献中普遍假设的 incompleteness > lexical），那么 type 应解释更多方差。论文的实证结果（type 仅解释 0.4%）直接挑战了按类型分级风险的传统做法。
+2. 论文不仅报告了方差比，还报告了 NMI（0.23 vs 0.01, Section 5.1）和 Cramér's V（0.45 vs 0.14, Section 5.2），后者在 type partial ordering 分析中进一步展示了 type 间效应差异虽存在但远小于 clause 内差异。Table 5 的 TOST 分析显示六种 type 的 within-cluster variation 覆盖了相当大的范围。
+3. 但我部分同意 R2 关于 null model comparison 的建议。当前缺少一个"随机将 300 clauses 分成 6 组"的 permutation baseline 来验证 NMI=0.01 是否显著低于随机分组。这虽不改变结论方向，但增加统计严谨性。
+4. Practical implication 已在 Section 7 和 Section 8（Discussion）中论述（"clause-level auditing outperforms type-level risk screening"），但可更显著地展开。
+
+综合：R2-N2 应降级为 Should-Fix，补充 null model comparison 即可。不应要求作者对 type-mechanism dissociation 本身的新颖性做更多论证。
+
+---
+
+## Should-Fix 问题
+
+**[AGREE] R2-W1: Introduction 数字密度过高**
+
+同意。Abstract 和 Introduction 在短空间内压缩了过多数字（+34.0 pp, +31.0 pp, McNemar OR=15.1, NMI=0.23, Cramér's V=0.45, ICC=0.919, 22.4% variance, 41.3% convergent nocuity 等）。这损害了叙事流畅性，也让读者难以区分哪些数字是核心发现、哪些是支撑证据。建议 Introduction 聚焦 3-4 个核心数字（如 +34.0pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity），其余移至 Section 5。
+
+**[REBUT] R2-W2: Discussion 过短**
+
+部分不同意。
+
+理由：
+1. 论文正文严格遵守 EMNLP 8 页限制。Section 7（Discussion and Conclusion）已在约 1 页内覆盖了 disambiguation neglect、prompt-level safety 的局限性、convergent nocuity 的理论含义。在 8 页限制下进一步展开 RLHF/constitutional AI 含义和 prompt injection 关系是不现实的。
+2. 但 R2 提到的三个 implication 方向（RLHF、prompt injection、scalability）确实值得讨论。建议在附录中增加 Extended Discussion 部分，保持正文紧凑。
+3. 特别是 convergent nocuity 与 RLHF 的关系——如果多模型收敛到同一错误解释，那么 RLHF 的 reward model 是否也会被同样的歧义误导？这是一个重要的开放问题，值得至少一句话提及。
+
+**[AGREE] R2-W3: Incompleteness confound 位置不够醒目**
+
+强烈同意。这与我自己的 W3 一致。论文在 Section 4.5 讨论 perturbation control 时才首次提及 incompleteness 的 information-addition confound，但 Table 4（Section 5/p.7）已经报告了包含 incompleteness 的六类型结果。读者在看到 Table 4 时并不知道 incompleteness 的效应量可能部分来自信息添加而非歧义消除。应在 Section 5.1 首次报告六类型结果时立即加注此限制。
+
+**[REBUT] R2-W4: 模型选择偏向 frontier models**
+
+不同意这是一个实质性缺陷。
+
+理由：
+1. 论文的研究场景是**customer-service agent deployment**（Section 4.1, τ²-bench 的设计目标）。在实际部署中，客服代理通常使用 frontier 或 near-frontier 模型。选择 GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3 覆盖了当前主流部署选择。
+2. 包含 ≤30B 参数模型虽然有学术价值，但会偏离论文的实际部署导向研究问题。小模型在多轮客服对话中的基础能力可能不足以完成任务，引入 floor effect 干扰。
+3. 论文已包含 open-source 模型（Qwen3-235B via MoE, DeepSeek-V3 via open-source dense），覆盖了 proprietary/open-source 维度。
+4. 如 R2 强烈认为需要小模型，建议在 Limitations 中加一句即可，不应要求增加实验。
+
+**[AGREE] R2-W5: Real-world prevalence audit 的 LLM judge 循环性**
+
+同意存在循环性风险，但论文有部分缓解措施。
+
+理由：
+1. Appendix AH 的 real-world prevalence audit（87% 歧义率）确实使用 LLM judge 标注。如果 LLM 本身对某些歧义类型过度敏感（或不敏感），prevalence 估计会有偏。
+2. 但论文在 Appendix AI（AH.5, p.23）提供了 human validation：两名独立 annotator 对 100 stratified episodes 的标注 κ=0.295（fair agreement），inter-annotator agreement 为 0.382。这虽不高，但确认了 LLM 判断和人类判断有一定一致性。
+3. 不过 human validation 的 κ=0.295 偏低，意味着 LLM 和人类对"什么算歧义"的判断并不高度一致。这进一步支持 R2 的循环性担忧。
+4. 建议在 Appendix AH 中更醒目地报告 human validation 的低 κ 值，并讨论 LLM 可能的系统性偏差方向。
+
+---
+
+## Minor 问题
+
+**[AGREE] R2-M1: Figure 2 caption 不够自包含**
+同意。我在 M2 中也提出了类似意见——"At random" 标签和红色标记线需要在 caption 中解释。
+
+**[REBUT] R2-M2: "Nocuous" 对 NLP 社区不够直觉**
+不同意。"Nocuous" 是 "innocuous" 的反义词，在英语中虽不常用但含义明确。论文标题 "Policy Ambiguity Is Nocuous" 构成了一个清晰的学术 statement。更重要的是，"convergent nocuity" 作为一个新术语在论文中被清晰定义（Section 6.3, p.8），并与 Berry et al. (2004) 的经典 "nocuous ambiguity" 概念明确关联。术语选择服务于与 RE 文献的对话，是合理的。
+
+**[AGREE] R2-M3: Table 4 footnote 字体极小**
+同意，这是排版问题。
+
+**[AGREE] R2-M4: Appendix P mapping 表应在正文更明确引用**
+同意。Appendix P 的 Li et al. (2024) taxonomy mapping 对理解论文分类体系的理论定位很有价值，但正文中引用不够显著。
+
+**[REBUT] R2-M5: Claude 既是 AI assistant 又是实验模型**
+这不构成方法论问题。论文使用 Claude (Anthropic) 作为 AI coding assistant（Appendix AO, p.26），用 Claude Sonnet 4.6 作为实验模型（Table 2）。写代码的工具和被实验评估的模型是不同的使用场景，不存在利益冲突或数据泄漏。AC 无需特别关注此点。
+
+---
+
+## Missing References
+
+**[AGREE] ToolEmu (Ruan et al., ICLR 2024)**: 应确认引用版本。论文 related work 引用了多个 agent safety benchmark，确认 ToolEmu 版本信息是合理要求。
+
+**[REBUT] ASPI (2025/2026)**: R2 未提供完整引用信息（作者、venue），无法验证是否为已发表工作。如果这是 preprint，作者可在 camera-ready 时酌情加入。审稿不应要求引用尚未验证的未发表工作。
+
+**[AGREE] AgentHarm (Andriushchenko et al., ICLR 2025)**: 作为 agent safety benchmark 的近期重要工作，应在 Section 2 (Related Work) 的 agent safety 部分引用并简要讨论差异。
+
+---
+
+## 综合评估
+
+R2 的审稿意见整体合理，但 N2（type-mechanism dissociation 新颖度）应降级为 Should-Fix——这不是 "trivially expected" 的结果，而是对 RE 文献中按类型分级风险做法的实证挑战。N1 的生态效度问题与我的审稿意见一致，是论文需要修订的核心方向。W4（小模型）不构成实质性缺陷。
+
+*Reviewer 1*
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3093 · 2026-05-25T21:26:19.815113+00:00_
+
+收到 Reviewer 1 的交叉回应。关键分歧点记录如下：
+
+**R1 与 R2 的核心分歧：**
+
+| 问题 | R2 立场 | R1 立场 | 分歧性质 |
+|------|---------|---------|----------|
+| N2: Type-mechanism dissociation 新颖度 | Must-Fix，"trivially expected" | 降级为 Should-Fix，认为是对 RE 文献的实证挑战 | **实质性分歧** |
+| W4: 模型选择偏向 frontier | 需补充小模型实验 | 不构成缺陷，部署导向合理 | 中等分歧 |
+| W2: Discussion 过短 | Should-Fix，需展开 | 受 8 页限制，附录扩展即可 | 可调和 |
+| M2: "Nocuous" 术语 | 不直觉 | 合理，服务于 RE 文献对话 | 低分歧 |
+
+**R1 与 R2 的共识点：** N1 生态效度（核心问题）、W1 数字密度、W3 incompleteness confound 位置、W5 LLM judge 循环性、Figure 2 caption、AgentHarm 引用。
+
+等待 Reviewer 2 对 Reviewer 1 审稿意见的交叉回应，收到后判断收敛并合成最终报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 282
+
+## Round 282
+
+16 recorded events
+
+
+### User
+
+_source line 3094 · 2026-05-25T21:26:22.302962+00:00_
+
+[Reviewer 1 审稿结果]:
+交叉回应已提交给 Review Director。
+
+总结：对 R2 的 13 个问题（含 Must-Fix 2、Should-Fix 5、Minor 5、Missing Refs 3），我给出 7 个 [AGREE]、6 个 [REBUT]。核心分歧在于：(1) R2-N2 的 type-mechanism dissociation 不是 trivially expected，应降为 Should-Fix；(2) R2-W4 的小模型要求偏离了论文的部署导向研究问题；(3) "nocuous" 术语选择服务于与 RE 文献的对话。核心共识在于 N1 的生态效度和 W3 的 incompleteness confound 位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3095 · 2026-05-25T21:27:07.098493+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__dispatch_visual_check",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__dispatch_visual_check",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3096 · 2026-05-25T21:27:07.149347+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3097 · 2026-05-25T21:27:50.437201+00:00_
+
+called mcp__agent-ml-research__get_visual_check_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_visual_check_status</summary>
+
+```json
+{
+  "project": "policy_ambiguity_safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__get_visual_check_status",
+  "tool_args": {
+    "project": "policy_ambiguity_safety"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3098 · 2026-05-25T21:27:50.989750+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-25T21:15:27.807923+00:00\", \"completed_at\": \"2026-05-25T21:19:39.477539+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 26\", \"message\": \"末页仅约 15% 内容（6 行 AI Assistants 声明），余下 85% 空白。可将此段并入前一页或合并到上一个 appendix section 末尾\"}, {\"severity\": \"warning\", \"dimension\": \"page 18\", \"message\": \"六张表格（Tables 16–21）挤在单页，视觉极度密集。部分表格间距过窄，审稿人快速浏览附录时可能跳过关键数据。建议至少将 Tables 16–17（示例表）与 Tables 18–21（数据表）分到两页\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 流程图节点内文字偏小（\\\"Specification Layer\\\"、\\\"Linguistic Layer\\\" 等标签），打印后可能接近可读性下限。建议将节点文字放大至 ≥8pt\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"页面非常密集：Figure 5 + Figure 6（双面板）+ Discussion & Conclusion 段落全部挤在一页。虽未溢出，但视觉上略显拥挤\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Figure 3 热力图使用单色调渐变（红/橙），色盲用户可能难以区分中间梯度。但每个单元格已标注数值，实际可读性影响有限\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Figure 4 森林图的 marker 标签较小，在打印版可能需要放大才能清晰辨认模型名称\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Table 4 列头高度缩写（\\\"5\\\" = GPT-5, \\\"4.1\\\" = GPT-4.1, \\\"Cla\\\" = Claude, \\\"Qu3\\\" = Qwen3, \\\"DS\\\" = DeepSeek），首次阅读需要对照脚注。Caption 中有说明，但缩写较多\"}, {\"severity\": \"info\", \"dimension\": \"page 12\", \"message\": \"四张表格（Tables 6–9）在单页，密度较高但仍可读\"}], \"counts\": {\"critical\": 0, \"warning\": 2, \"info\": 6}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__get_visual_check_status",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3099 · 2026-05-25T21:27:50.990246+00:00_
+
+called mcp__agent-ml-research__get_external_review_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_external_review_status</summary>
+
+```json
+{
+  "project": "policy_ambiguity_safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__get_external_review_status",
+  "tool_args": {
+    "project": "policy_ambiguity_safety"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3100 · 2026-05-25T21:27:51.392097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__get_external_review_status",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3101 · 2026-05-25T21:27:51.392459+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "policy_ambiguity_safety",
+  "file": "review_issues.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "policy_ambiguity_safety",
+    "file": "review_issues.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3102 · 2026-05-25T21:27:51.442882+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'review_issues.yaml'\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3103 · 2026-05-25T21:28:02.237504+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_issues.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_issues.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3104 · 2026-05-25T21:28:02.288415+00:00_
+
+1	## Review Issues Tracker — policy_ambiguity_safety
+2	## Paper: "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety"
+3	## Venue: EMNLP 2026 via ARR May cycle
+4	## Latest Round: 33
+5	## Status: R33 fixes all verified PASS by Reviewer; Paper Banana Figure 1 in progress
+6	
+7	# ====== Resolved Issues (R33) ======
+8	
+9	- id: R30-SF6
+10	  summary: "Incompleteness 在 'ambiguity' 框架下的概念张力——最强效应类型在认识论上最可争议"
+11	  category: framing
+12	  severity: critical
+13	  status: resolved
+14	  first_raised_round: 29
+15	  last_seen_round: 33
+16	  mentions:
+17	    - round: 29
+18	      reviewers: [2]
+19	      note: "RE 文献有先例但概念张力应显式讨论"
+20	    - round: 32
+21	      reviewers: [1, 2]
+22	      note: "升级为 critical"
+23	    - round: 33
+24	      reviewers: [1, 2]
+25	      note: "R33-MF1: §3 epistemological 段不够深入 + information-addition confound"
+26	  action_items:
+27	    - round: 33
+28	      action: "(A) §3 扩写 contested boundary + Berry&Kamsties/Gleich 先例; (B) Logistic regression Δtoken×condition 交互项; (C) 呈现层面标记"
+29	      assigned_to: main_agent
+30	      status: done
+31	  resolution: "§3 扩写 3 句 RE 先例; appendix app:token_sensitivity 报告交互项 p=0.0004 但 Δtoken=0 效应仍 +20.5pp; §5 加 1 句正文引用。Reviewer PASS。"
+32	  resolution_round: 33
+33	
+34	- id: R30-SF5
+35	  summary: "Convergent nocuity framing 过度——observed 41.3% vs independence baseline"
+36	  category: experiment
+37	  severity: critical
+38	  status: resolved
+39	  first_raised_round: 29
+40	  last_seen_round: 33
+41	  mentions:
+42	    - round: 32
+43	      reviewers: [1, 2]
+44	      note: "升级为 critical; 需排除 incompleteness 后分析"
+45	    - round: 33
+46	      reviewers: [1, 2]
+47	      note: "R33-SF4: 需 unambiguous condition ambient baseline + permutation test"
+48	  action_items:
+49	    - round: 33
+50	      action: "§6.3 加 ambient baseline 1.7% (5/300) vs 41.3%"
+51	      assigned_to: main_agent
+52	      status: done
+53	  resolution: "Ambient baseline 1.7% (5/300 unambiguous clauses), +39.6pp excess。两层结构 practical/mechanism 保持。Re
+…[truncated 11847 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3105 · 2026-05-25T21:28:03.041675+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/review_reports/round_*.md",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/review_reports/round_*.md",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3106 · 2026-05-25T21:28:03.192717+00:00_
+
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_0.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_1.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_2.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_3.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_5.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_6.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_7.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_8.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_9.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_10.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_11.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_12.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_13.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_14.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_15.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_reports/round_16.md
+/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambigu
+…[truncated 1983 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3107 · 2026-05-25T21:29:25.233314+00:00_
+
+called mcp__agent-ml-research__director_post_to_reviewer
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer</summary>
+
+```json
+{
+  "reviewer_id": "2",
+  "round_number": "1",
+  "text": "## 交叉回应任务（Cross-Response）\n\nReviewer 1 已完成对你审稿意见的逐条回应。请阅读 R1 的回应，并对 R1 的**原始审稿发现和立场**逐条给出 `[AGREE]` 或 `[REBUT]` 回应。\n\n---\n\n### R1 对你审稿意见的回应摘要\n\n**Must-Fix:**\n\n1. **R2-N1（合成 clause pairs 生态效度 + \"first causal study\" framing）**→ R1 [AGREE]，但建议保留因果声明，改为 \"first controlled matched-pair causal study on synthetic clause pairs\"，区分 internal causal validity（强）vs ecological validity（待验证）。R1 认为 matched-pair design + perturbation control 确实构成因果推断设计。R1 也指出 SOPBench 效应量仅为主实验的 37%（+12.7pp vs +34.0pp），正文 Section 7 对此差距讨论不足。\n\n2. **R2-N2（Type-mechanism dissociation 新颖度）**→ R1 [REBUT]，认为不应视为 \"trivially expected\"。论文挑战的是 RE 文献中按类型分级风险的假设——如果 type 仅解释 0.4% 方差，则按类型审计策略无效。R1 建议降级为 Should-Fix，补充 permutation null model comparison（随机分6组的 NMI baseline）即可。\n\n**Should-Fix:**\n\n3. **R2-W1（Introduction 数字密度）**→ R1 [AGREE]，建议聚焦 3-4 个核心数字。\n\n4. **R2-W2（Discussion 过短）**→ R1 部分 [REBUT]，认为 8 页限制下不现实，但建议附录 Extended Discussion 提及 convergent nocuity 与 RLHF 的关系。\n\n5. **R2-W3（Incompleteness confound 位置）**→ R1 强烈 [AGREE]，与自己的 W3 一致。\n\n6. **R2-W4（模型选择偏向 frontier）**→ R1 [REBUT]，认为论文部署导向（customer-service agent），frontier 模型选择合理，小模型有 floor effect 风险。\n\n7. **R2-W5（LLM judge 循环性）**→ R1 [AGREE]，但指出 Appendix AI 有 human validation（κ=0.295），虽偏低但存在。\n\n**Minor:**\n\n8. **R2-M1（Figure 2 caption）**→ R1 [AGREE]\n9. **R2-M2（\"Nocuous\" 术语）**→ R1 [REBUT]，认为服务于与 RE 文献对话\n10. **R2-M3（Table 4 footnote 字体）**→ R1 [AGREE]\n11. **R2-M4（Appendix P mapping 引用）**→ R1 [AGREE]\n12. **R2-M5（Claude 双重角色）**→ R1 [REBUT]，不构成利益冲突\n\n**Missing References:**\n\n13. **ToolEmu** → R1 [AGREE]\n14. **ASPI** → R1 [REBUT]（未提供完整引用）\n15. **AgentHarm** → R1 [AGREE]\n\n---\n\n### R1 原始审稿中的独立发现（供你回应）\n\n根据 R1 的交叉回应，R1 自己的初审中包含以下独立发现：\n\n- **R1-W3**: Incompleteness 的 information-addition confound 应在正文更早位置（Section 5.1）讨论\n- **R1-W4**: Healthcare pilot n=50 太小，250 episodes 不足以支撑 per-type 子分析\n- **R1-M2**: Figure 2 的 \"At random\" 标签和红色标记线需要在 caption 中解释\n- **R1 立场**: Type-mechanism dissociation（NMI=0.23 vs 0.01, Cramér's V=0.45 vs 0.14）是对 RE 文献的实证挑战，不是 trivially expected\n\n请对以上 R1 发现逐条给出 `[AGREE]` 或 `[REBUT]` 回应，附理由。\n\n**格式要求**：对每个 R1 发现标注 `[AGREE]` 或 `[REBUT]`，说明理由。最后给出综合评估（2-3 句话）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "tool_args": {
+    "reviewer_id": "2",
+    "round_number": "1",
+    "text": "## 交叉回应任务（Cross-Response）\n\nReviewer 1 已完成对你审稿意见的逐条回应。请阅读 R1 的回应，并对 R1 的**原始审稿发现和立场**逐条给出 `[AGREE]` 或 `[REBUT]` 回应。\n\n---\n\n### R1 对你审稿意见的回应摘要\n\n**Must-Fix:**\n\n1. **R2-N1（合成 clause pairs 生态效度 + \"first causal study\" framing）**→ R1 [AGREE]，但建议保留因果声明，改为 \"first controlled matched-pair causal study on synthetic clause pairs\"，区分 internal causal validity（强）vs ecological validity（待验证）。R1 认为 matched-pair design + perturbation control 确实构成因果推断设计。R1 也指出 SOPBench 效应量仅为主实验的 37%（+12.7pp vs +34.0pp），正文 Section 7 对此差距讨论不足。\n\n2. **R2-N2（Type-mechanism dissociation 新颖度）**→ R1 [REBUT]，认为不应视为 \"trivially expected\"。论文挑战的是 RE 文献中按类型分级风险的假设——如果 type 仅解释 0.4% 方差，则按类型审计策略无效。R1 建议降级为 Should-Fix，补充 permutation null model comparison（随机分6组的 NMI baseline）即可。\n\n**Should-Fix:**\n\n3. **R2-W1（Introduction 数字密度）**→ R1 [AGREE]，建议聚焦 3-4 个核心数字。\n\n4. **R2-W2（Discussion 过短）**→ R1 部分 [REBUT]，认为 8 页限制下不现实，但建议附录 Extended Discussion 提及 convergent nocuity 与 RLHF 的关系。\n\n5. **R2-W3（Incompleteness confound 位置）**→ R1 强烈 [AGREE]，与自己的 W3 一致。\n\n6. **R2-W4（模型选择偏向 frontier）**→ R1 [REBUT]，认为论文部署导向（customer-service agent），frontier 模型选择合理，小模型有 floor effect 风险。\n\n7. **R2-W5（LLM judge 循环性）**→ R1 [AGREE]，但指出 Appendix AI 有 human validation（κ=0.295），虽偏低但存在。\n\n**Minor:**\n\n8. **R2-M1（Figure 2 caption）**→ R1 [AGREE]\n9. **R2-M2（\"Nocuous\" 术语）**→ R1 [REBUT]，认为服务于与 RE 文献对话\n10. **R2-M3（Table 4 footnote 字体）**→ R1 [AGREE]\n11. **R2-M4（Appendix P mapping 引用）**→ R1 [AGREE]\n12. **R2-M5（Claude 双重角色）**→ R1 [REBUT]，不构成利益冲突\n\n**Missing References:**\n\n13. **ToolEmu** → R1 [AGREE]\n14. **ASPI** → R1 [REBUT]（未提供完整引用）\n15. **AgentHarm** → R1 [AGREE]\n\n---\n\n### R1 原始审稿中的独立发现（供你回应）\n\n根据 R1 的交叉回应，R1 自己的初审中包含以下独立发现：\n\n- **R1-W3**: Incompleteness 的 information-addition confound 应在正文更早位置（Section 5.1）讨论\n- **R1-W4**: Healthcare pilot n=50 太小，250 episodes 不足以支撑 per-type 子分析\n- **R1-M2**: Figure 2 的 \"At random\" 标签和红色标记线需要在 caption 中解释\n- **R1 立场**: Type-mechanism dissociation（NMI=0.23 vs 0.01, Cramér's V=0.45 vs 0.14）是对 RE 文献的实证挑战，不是 trivially expected\n\n请对以上 R1 发现逐条给出 `[AGREE]` 或 `[REBUT]` 回应，附理由。\n\n**格式要求**：对每个 R1 发现标注 `[AGREE]` 或 `[REBUT]`，说明理由。最后给出综合评估（2-3 句话）。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3108 · 2026-05-25T21:29:28.949533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_967344d166ba485ad606d14379e69d85:reviewer_2\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+  "elapsed_ms": 3716
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3109 · 2026-05-25T21:29:41.385001+00:00_
+
+已向 Reviewer 2 发送交叉回应任务。等待 R2 回复后进行收敛判断并合成最终报告。
+
+当前进度：
+- **R1 交叉回应**：已收到（7 AGREE / 6 REBUT）
+- **R2 交叉回应**：已派发，等待返回
+- **视觉审查**：已完成（0 critical, 2 warning, 6 info）
+- **外部审稿**：未请求
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 283
+
+## Round 283
+
+6 recorded events
+
+
+### User
+
+_source line 3110 · 2026-05-25T21:29:41.388370+00:00_
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应
+
+---
+
+## Must-Fix 问题
+
+### [AGREE] R1-N1: Pooled McNemar 检验违反独立性假设
+
+R1 的统计学批评是准确的。Pooled McNemar 将 5 models × 300 pairs = 1,497 对视为独立配对，但 ICC(1) = 0.892–0.940（Section 4.2, page 5）证实同一 clause pair 在不同模型上的违规行为高度相关，有效样本量远小于 1,497。MH 分层（Appendix J, MH OR = 9.57）按 model 分层解决了部分问题，但确实未处理 clause-level 的随机效应。
+
+**但我补充一点**：论文已在 Section 5.1 报告了 per-model McNemar 结果（"all five models show large effects (+25.7 to +39.0 pp, all p < 10⁻⁵)"），且 Appendix J 的 MH 分析和 Appendix G（logistic regression, Table 15）也在逐步控制聚类。结论的方向性不会因此改变——五个模型各自独立都显著。R1 的建议（per-model 为主、补 mixed-effects logistic with clause random intercept、pooled 降为辅助）是合理的优化方案，但这属于 reporting emphasis 的调整而非 finding 的推翻。
+
+**我的判断**：Should-Fix 级别而非 Must-Fix，因为 per-model 结果已经存在且全部显著。但同意 mixed-effects model 应作为首选统计框架。
+
+---
+
+### [AGREE] R1-N2: ~46% 系统方差来源未充分讨论
+
+这个问题我同意。Figure 2（page 5）的方差分解显示 residual 60.8%，结合 ICC(1) = 0.749（Section 5.1, page 6），确实有大量系统性方差未被 clause identity (22.4%)、model (15.8%)、type (0.4%) 解释。
+
+**但我对 R1 的结论做一个限定**：R1 说这"削弱了 clause-level auditing outperforms type-level screening 的实践建议"。我认为这个削弱是相对温和的，原因是：
+1. **实践建议是 comparative 而非 absolute**：论文的核心 claim 不是 "clause wording 是违规的主要驱动力"，而是 "clause-level auditing 优于 type-level screening"（22.4% vs. 0.4%）。即使存在未解释的系统方差，这个 relative comparison 仍然成立。
+2. **未解释方差的可能来源**：clause × model 交互效应（Section 5.2 中已部分探索，Figure 3 heatmap）、scenario/conversation trajectory effects、clause 的具体 surface features（token count 仅解释 0.4%，但更复杂的 features 如嵌套深度、从句结构可能贡献更多）。这些因素值得讨论但不一定是 actionable 的。
+3. **论文实际上也在 Appendix K 和 I（pages 14, 13）做了 token-length 和 logistic regression 分析**，试图识别残差中的系统成分。
+
+**建议**：同意 R1，正文应增加 1 段讨论残差方差组成（目前只在 Appendix 有零散分析），并将 "clause-level auditing outperforms type-level screening" 改为更审慎的 "clause-level features are the strongest identified actionable predictor"。
+
+---
+
+## Should-Fix 问题
+
+### [REBUT] R1-W1: TOST SESOI ±15pp 缺乏领域锚定
+
+R1 可能遗漏了 Appendix B（page 10）。论文已提供成本模型锚定：
+
+> "Under a per-incident cost assumption c per violation, a 15 pp threshold over N deployment episodes implies a cost differential of 0.15 × N × c. For moderate-scale adopters (N = 10,000 episodes) with per-violation costs ranging from $10 (minor policy deviation) to $500 (regulatory exposure), the threshold maps to $15,000–$750,000 in differential risk—well above typical audit and remediation costs."
+
+这就是 R1 要求的 "从成本模型推导 SESOI"。不过我同意这个锚定应该在正文 Section 4.6 中至少用一句话引用（目前正文只说 "pragmatic"），而不是完全放在 Appendix。
+
+**我的判断**：Minor 级别——锚定已存在，只需提升 visibility。
+
+---
+
+### [REBUT] R1-W2: Cross-judge 设计不对称性
+
+论文在 Section 4.4（page 5）已明确说明：
+
+> "Because our matched-pair design compares conditions within the same model, systematic judge asymmetry cancels in the treatment effect (Δpp): cross-model judge asymmetry affects only absolute rates, not C1 or C2 (§7)."
+
+GPT-4.1 judge 的 "+8 pp systematically harder" 只影响绝对违规率的跨模型比较（如 Table 4 的绝对数字），但**不影响**论文的核心发现——治疗效应 Δpp（ambiguous - unambiguous）。因为同一模型的两个条件（ambiguous vs. unambiguous）由同一 judge 评判，judge 偏差在做差时消除。
+
+R1 担心 "影响 GPT-5.4 和 DeepSeek 的绝对违规率比较" 是正确的，但论文并未把绝对违规率的跨模型排名作为核心 claim——核心 claim 是 Δpp（treatment effect），对此 cross-judge 设计是 sound 的。
+
+**我的判断**：Minor 级别。建议在 Table 4 caption 或 footnote 中注明绝对率受 judge 影响、跨模型比较应关注 Δpp 而非绝对率。
+
+---
+
+### [AGREE] R1-W3: Incompleteness 信息添加混淆不可完全分离
+
+同意。这与我自己的 W3 一致。论文在 Section 1 和 Appendix I 承认了此 confound，但正文 Section 5.1 的呈现方式确实容易让读者误以为六种类型是等质量的证据。需要在正文首次报告六类型结果时立即加 caveat。
+
+---
+
+### [AGREE] R1-W4: Healthcare 跨域验证样本量过小
+
+同意。n=50 clause pairs（Appendix AE）是一个 pilot，论文应在正文提及时明确标注 "pilot" 并降低措辞确定性。目前 Introduction（page 2）写 "a healthcare pilot extends the effect beyond customer service (+58.8 pp)" 的语气过于确定。这也与我的 N1 一致。
+
+---
+
+### [AGREE] R1-W5: Per-type judge agreement 差异大
+
+同意。Appendix H（page 13, Table 12）显示 conferential κ = 0.479、authorization scope cross-judge κ = 0.385（页面文本中提到）。论文解释了原因（prevalence paradox for conferential; permission-boundary inherent difficulty for authorization scope），但结论上应承认低 κ 类型的 per-type 效应估计需谨慎解读。
+
+**补充**：论文在 Section 5.2（page 6-7）已注意到 authorization scope 有 "widest cross-model range (12%–64%)" 和 "conclusions about this type carry wider uncertainty"，但 conferential 的可靠性问题在正文中讨论不够。Figure 3 的 conferential 列显示各模型间差异较大，与低 κ 一致。建议在 Table 4 或 Section 5.1 中标注哪些类型的估计受低 judge agreement 影响。
+
+---
+
+## Minor 问题
+
+### [AGREE] R1-M1: Taxonomy 示例不够直观
+
+Table 3（page 4）确实提供了示例，但每类只有一对 ambiguous/disambiguated 的简短描述。对不熟悉 RE 文献的 NLP 读者，更详细的场景化示例（如展示一个完整的 agent episode snippet）会大幅提升可理解性。Appendix X（page 17）有更多示例但读者不一定会翻到。
+
+---
+
+### [AGREE] R1-M2: Figure 2 可视化不够直观
+
+与我的 M1 一致。条形图的 caption 缺乏自包含说明——"Proportion of variance (%)" 的分解逻辑需在 caption 中解释，否则读者不理解为何 "clause identity" 可以独立于 "type" 解释方差。
+
+---
+
+### [AGREE] R1-M3: Disambiguation neglect 统计分母不清
+
+Section 6.2（page 7）报告 "overall awareness rate is 4.6% (258/614)"，但 614 的来源不够清晰——是所有 ambiguous-condition 违规 episodes 还是所有 ambiguous-condition episodes？从上下文推断应该是 ambiguous-condition violations（agent violated + ambiguous clause），但应明确标注。另外脚注 1 提到 "computed on a 6 × 5 table vs. 6 × 2 for security"，需要更清楚的说明。
+
+---
+
+### [AGREE] R1-M4: "first causal study" 措辞需界定因果识别假设
+
+与我的 N1 一致。论文应明确列出因果识别假设：(1) SUTVA (Stable Unit Treatment Value Assumption) — 一个 clause pair 的歧义处理不影响其他 pairs；(2) no unmeasured confounders in the matched-pair design；(3) 合成构造保证 exclusive manipulation of ambiguity。目前 "first causal study" 的 framing 暗示了比 controlled experiment 更强的因果推断。
+
+---
+
+### [AGREE] R1-M5: Table 5 TOST 注释不清
+
+Table 5（page 7）的列名（Margin, Equiv., Mid-tier, Inc., and Gc columns）对不熟悉 TOST 的读者不够直观。建议在 caption 中完整说明每列含义，或将 TOST 表移至 Appendix 并在正文用文字总结关键结论。
+
+---
+
+## 总结
+
+R1 的审稿质量很高，统计方面的批评（N1 pooled McNemar、N2 方差分解）尤其有价值。我同意绝大部分问题，但对以下两点有不同判断：
+
+1. **N1 的严重程度**：我认为是 Should-Fix 而非 Must-Fix，因为 per-model 结果已存在且全部显著（p < 10⁻⁵），结论方向不变。
+2. **W1 和 W2**：R1 可能遗漏了 Appendix B 的成本锚定和 Section 4.4 对 cross-judge 设计的说明，这两点的实际问题比 R1 评估的更轻。
+
+R1 和我都给了 3.5 Overall、4 Soundness。我的 Excitement 比 R1 低 0.5（3.5 vs 4），因为我认为 type-mechanism dissociation 的新颖度不如 R1 评估的高（见我的 N2）。两人的核心共识是：**强 Findings 候选，如果解决合成基准的外部效度问题和统计报告优化，有潜力达到 Conference。**
+
+
+---
+
+[Reviewer 2 审稿结果]:
+交叉回应已提交。核心判断：
+
+- R1 的 N1（pooled McNemar）和 N2（残差方差）我都同意其技术正确性，但认为 N1 的严重程度应降至 Should-Fix（per-model 结果已存在且全部显著）
+- R1 的 W1（SESOI 锚定）和 W2（cross-judge 不对称）我给出 REBUT——Appendix B 已有成本模型、Section 4.4 已说明 treatment effect 不受 judge 偏差影响
+- 其余 W3-W5 和全部 Minor 问题我都 AGREE
+- 两位 reviewer 共识：3.5 Overall，强 Findings 候选，核心短板在合成基准的外部效度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3111 · 2026-05-25T21:36:28.129345+00:00_
+
+called mcp__agent-ml-research__update_review_issues
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_review_issues</summary>
+
+```json
+{
+  "project": "policy_ambiguity_safety",
+  "issues_yaml": "## Review Issues Tracker — policy_ambiguity_safety\n## Paper: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n## Venue: EMNLP 2026 via ARR May cycle\n## Latest Round: 34\n## Status: R34 fresh review — 1 Must-Fix, 6 Should-Fix, 3 divergent issues recorded\n\n# ====== Resolved Issues (R33, carried forward) ======\n\n- id: R30-SF6\n  summary: \"Incompleteness 在 'ambiguity' 框架下的概念张力——最强效应类型在认识论上最可争议\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 33\n  mentions:\n    - round: 29\n      reviewers: [2]\n      note: \"RE 文献有先例但概念张力应显式讨论\"\n    - round: 32\n      reviewers: [1, 2]\n      note: \"升级为 critical\"\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-MF1: §3 epistemological 段不够深入 + information-addition confound\"\n  action_items:\n    - round: 33\n      action: \"(A) §3 扩写 contested boundary + Berry&Kamsties/Gleich 先例; (B) Logistic regression Δtoken×condition 交互项; (C) 呈现层面标记\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"§3 扩写 3 句 RE 先例; appendix app:token_sensitivity 报告交互项 p=0.0004 但 Δtoken=0 效应仍 +20.5pp; §5 加 1 句正文引用。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-SF5\n  summary: \"Convergent nocuity framing 过度——observed 41.3% vs independence baseline\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 33\n  mentions:\n    - round: 32\n      reviewers: [1, 2]\n      note: \"升级为 critical; 需排除 incompleteness 后分析\"\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF4: 需 unambiguous condition ambient baseline + permutation test\"\n  action_items:\n    - round: 33\n      action: \"§6.3 加 ambient baseline 1.7% (5/300) vs 41.3%\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Ambient baseline 1.7% (5/300 unambiguous clauses), +39.6pp excess。两层结构 practical/mechanism 保持。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-MF1\n  summary: \"Human κ=0.41 不足以支撑 type-mechanism dissociation——缺少 human-coded Cramér's V\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 32\n  resolution: \"§6 报告 human-coded V=0.40/0.42，corroborates LLM V=0.45 as upper bound。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-SF2\n  summary: \"Temperature pilot underpowered（3/5 模型, 50 clause pairs, 无 CI）\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 32\n  resolution: \"Limitations 新增 power analysis：n=50 pairs, detectable effect ≥24.6pp at 80% power。\"\n  resolution_round: 33\n\n- id: R30-SF3\n  summary: \"SESOI ±15 pp 缺乏正文领域成本锚定\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 33\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF1: partial ordering 应标注 exploratory\"\n  action_items:\n    - round: 33\n      action: \"§5.2 标注 partial ordering exploratory + SESOI 敏感性\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"§4 正文引用 Appendix cost anchoring; §5.2 标注 exploratory + ±12pp instability。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R31-SF2\n  summary: \"C3 层级假设不显著但 Table 1/2 颜色编码暗示实验支持的结构\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"Table 2 caption 新增 inconclusive 标注。\"\n  resolution_round: 33\n\n- id: R30-MF2\n  summary: \"\\\\enlargethispage 格式操纵\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 31\n  resolution: \"所有 \\\\enlargethispage 已移除。\"\n  resolution_round: 33\n\n- id: R30-M1\n  summary: \"Abstract 中 V=0.45 和 κ=0.41 呈现不一致\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 32\n  resolution: \"随 R30-MF1 一起解决：V=0.45 统一标注为 upper bound。\"\n  resolution_round: 33\n\n- id: R31-M1\n  summary: \"Per-type κ CI 很宽（n≈17 per type），需要更强 caveat\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 33\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-MF2: per-type κ 差异需正文呈现\"\n  action_items:\n    - round: 33\n      action: \"§5.2 报告 per-type κ range + coreferential caveat + attenuation 论点\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Per-type κ 0.479–0.904 报告在正文; coreferential caveat + attenuation argument; misclassification sensitivity (25% error → +9.2pp, p=0.011)。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R31-M2\n  summary: \"'primary risk factor' 应限定为 'among measured predictors'\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"已修改。\"\n  resolution_round: 33\n\n- id: R31-M3\n  summary: \"C3 hierarchy hypothesis rejection 应更显式标注\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"随 R31-SF2 Table 2 caption 解决。\"\n  resolution_round: 33\n\n- id: R31-M5\n  summary: \"Figure 1 中 panel 信息密度不均\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"Figure 1 重设计为三 panel; Paper Banana 重画进行中。\"\n  resolution_round: 33\n\n- id: R33-MF2\n  summary: \"Per-type judge κ 差异掩盖测量可靠性——coreferential 0.479\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"§5.2 per-type κ range + coreferential caveat + attenuation argument + misclassification sensitivity\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Per-type κ 0.479–0.904 in main text; attenuation argument; bootstrap sensitivity at 25% error still significant。\"\n  resolution_round: 33\n\n- id: R33-SF3\n  summary: \"模型选择偏向 frontier tier（无 7B-70B）\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"Limitations 加 model tier scope 句\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Limitations 新增 frontier-class limitation sentence。\"\n  resolution_round: 33\n\n- id: R33-SF5\n  summary: \"Pooled McNemar 跨模型聚合违反独立性\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"Mantel-Haenszel OR in appendix + §5.1 正文引用\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"MH OR=9.57 [7.63,12.01] in appendix; §5.1 半句引用。Breslow-Day p=0.022 heterogeneity reported。\"\n  resolution_round: 33\n\n# ====== Historical Resolved ======\n\n- id: R29-MF1\n  summary: \"正文疑似超出 EMNLP 2026 严格 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"演化为 R30-MF2\"\n  resolution_round: 30\n\n- id: R29-MF2\n  summary: \"Human κ=0.41 不足以支撑 C3\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 30\n  resolution: \"合并入 R30-MF1\"\n  resolution_round: 30\n\n- id: R29-SF1\n  summary: \"'Ambiguity' umbrella term 概念张力\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF6\"\n  resolution_round: 30\n\n- id: R29-SF2\n  summary: \"SOPBench 效应衰减解释不充分\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF1\"\n  resolution_round: 30\n\n- id: R29-SF3\n  summary: \"Temperature=0 greedy decoding 限制\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF2\"\n  resolution_round: 30\n\n- id: R29-SF5\n  summary: \"Cross-family vs within-family Jaccard 差异仅 0.08\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"Bootstrap CI (p<0.0001) 确认统计显著。\"\n  resolution_round: 30\n\n# ====== Active Issues (Open/In-Progress) — Updated for R34 ======\n\n- id: R30-SF1\n  summary: \"合成效应 vs 自然效应 2.7× 差距（34.0→12.7 pp）——external validity + 'first causal study' framing\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 34\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF2: replication→directional consistency; 需衰减分析\"\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R34-MF1: 两位 Reviewer 共识 Must-Fix。'first causal study' 需限定为 synthetic clause pairs；§7 对 34→12.7pp 衰减讨论不足；healthcare pilot n=50 语言过于确定。R1 建议保留因果声明但加限定词。\"\n  action_items:\n    - round: 33\n      action: \"全文 replication→evaluation/directional consistency + Discussion 1 句 appendix 引用\"\n      assigned_to: main_agent\n      status: done\n    - round: 31\n      action: \"§7 ~120 words 衰减来源分析\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"(A) Abstract/Intro 'first causal study' 加限定词; (B) §7 增加衰减原因讨论; (C) healthcare pilot 标注 'pilot' 降低确定性; (D) 显式列出因果识别假设 (SUTVA, no unmeasured confounders)\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R31-SF1\n  summary: \"Per-type judge agreement 差异大（auth scope κ=0.385, coreferential κ=0.479）——正文讨论不足\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 34\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33 未独立重新提出但 R32 action 部分未完成\"\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2 agreement: 低 κ 类型的 per-type 效应估计需正文 caveat；Figure 3 auth scope 列需视觉区分；coreferential 可靠性在正文讨论不够\"\n  action_items:\n    - round: 31\n      action: \"§5.2 标记 auth scope measurement-unreliable\"\n      assigned_to: main_agent\n      status: done\n    - round: 32\n      action: \"Figure 3 视觉区分 auth scope; sensitivity excl auth scope\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"Table 4 或 §5.1 标注哪些类型受低 judge agreement 影响\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-SF4\n  summary: \"Cross-judge 术语误导 + judge allocation 不对称（3/5 OpenAI）\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W2 再次提出 GPT-4.1 judge +8pp harder。R2 rebut: treatment effect Δpp 不受 judge 偏差影响（同一模型两条件同一 judge）。Director 裁定 Minor——核心 claim 是 Δpp 而非绝对率。\"\n  action_items:\n    - round: 32\n      action: \"'cross-judge' → 'cross-model judge' (partial done); per-judge convergent nocuity rate (not done)\"\n      assigned_to: main_agent\n      status: in_progress\n    - round: 34\n      action: \"Table 4 caption 注明绝对率受 judge 影响、跨模型比较应关注 Δpp\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R31-M4\n  summary: \"Introduction contributions 列表数字密度可精简\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W1 + R1 agree: Abstract 和 Introduction 压缩 10+ 数字损害叙事流畅性。建议聚焦 3-4 核心数字。\"\n  action_items:\n    - round: 32\n      action: \"精简为 2-3 核心数字\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"Introduction 聚焦 +34.0pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity，其余移至 §5\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M1\n  summary: \"Missing references: 相关工作未引用\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"AgentHarm (Andriushchenko et al., ICLR 2025) 应在 §2 引用 [R1+R2 共识]；ToolEmu (Ruan et al., ICLR 2024) 确认版本信息 [R1]\"\n  action_items:\n    - round: 32\n      action: \"检索并引用（验证真实性后）\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"引用 AgentHarm + ToolEmu 版本确认\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M3\n  summary: \"Residual 方差中 ~46% 系统方差来源未讨论\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R34-SF2: R1 提出为 N2 级别，R2 同意。Figure 2 residual 60.8% 含约 46% 系统方差。附录有零散分析但正文缺专门段落。建议将 'clause-level auditing outperforms type-level screening' 改为 'clause-level features are the strongest identified actionable predictor'。\"\n  action_items:\n    - round: 34\n      action: \"正文增加 1 段讨论残差方差组成 + 修改 auditing claim 措辞\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M4\n  summary: \"Discussion 缺少 RLHF/alignment training 讨论\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 30\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W2: Discussion 应展开 RLHF、prompt injection、scalability。R1 rebut: 8 页限制下不现实，建议附录 Extended Discussion。R1 同意至少 1 句提及 convergent nocuity 与 RLHF reward model 的关系。\"\n  action_items:\n    - round: 34\n      action: \"Discussion 加 1 句 RLHF implication；可选附录 Extended Discussion\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R29-SF4\n  summary: \"Prevalence audit 87% 样本选择偏差 + LLM judge 循环性\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W5 + R1 agree: LLM judge 标注的 87% prevalence 存在循环性。Human validation κ=0.295 偏低，意味着 LLM 和人类对歧义判断不一致。需更醒目报告 human validation κ 并讨论 LLM 偏差方向。\"\n  action_items:\n    - round: 34\n      action: \"Appendix AH 醒目报告 human validation κ=0.295 + 讨论 LLM 偏差方向\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M2\n  summary: \"Berry 概念反转的诊断含义变化应更显式\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 30\n  last_seen_round: 30\n  action_items:\n    - round: 30\n      action: \"§6.3 加 1 句 divergent→convergent 含义变化\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M2\n  summary: \"§1 pilot audit 未引用 Appendix 编号\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"§1 添加 Appendix 交叉引用\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M3\n  summary: \"参考文献格式不完全统一（arXiv 日期信息）\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"统一 arXiv preprint 格式\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M4\n  summary: \"AI usage disclosure 位置确认\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"确认 ACL 2026 AI disclosure 位置要求\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ====== New R34 Issues ======\n\n- id: R34-SF1\n  summary: \"Pooled McNemar 独立性违反——ICC=0.892-0.940 下 1497 对非独立\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1 提出为 Must-Fix，R2 同意技术正确性但降为 Should-Fix（per-model 结果全部 p<10⁻⁵）。Director 裁定 Should-Fix (High)。MH OR=9.57 已在 Appendix J。\"\n  action_items:\n    - round: 34\n      action: \"(A) 正文以 per-model McNemar 为主、pooled 降为辅助; (B) 补 mixed-effects logistic regression (clause random intercept + model random slope)\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-SF2\n  summary: \"Incompleteness confound 在 §5.1 六类型结果首次出现时未即时标注\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W3 + R2-W3 强共识：Table 4 (§5/p.7) 已报告含 incompleteness 的结果，但 information-addition confound 直到 §4.5 才提及。读者可能误以为六类型证据等质量。\"\n  action_items:\n    - round: 34\n      action: \"§5.1 首次报告六类型结果时立即加注 incompleteness 的 information-addition caveat\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M1\n  summary: \"Figure 2 caption 不够自包含——方差分解逻辑未说明\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M1 + R1-M2 共识。'At random' 标签和红色标记线需在 caption 解释；clause identity 独立于 type 解释方差的逻辑需说明。\"\n  action_items:\n    - round: 34\n      action: \"Figure 2 caption 增加方差分解逻辑说明 + 标签解释\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M2\n  summary: \"Table 4 footnote 字体极小\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M3 + R1 agree。排版问题。\"\n  action_items:\n    - round: 34\n      action: \"适当放大 Table 4 footnote 字体\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M3\n  summary: \"'First causal study' 需显式列出因果识别假设\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M4 + R2 agree。应列出 SUTVA、no unmeasured confounders、exclusive manipulation 三项假设。\"\n  action_items:\n    - round: 34\n      action: \"正文或附录列出因果识别假设\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M4\n  summary: \"Table 5 TOST 列名不够直观\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M5 + R2 agree。Margin/Equiv./Mid-tier/Inc./Gc 列名对不熟悉 TOST 的读者不直观。建议 caption 完整说明或移至 Appendix。\"\n  action_items:\n    - round: 34\n      action: \"Table 5 caption 完整说明列含义，或移至 Appendix 正文用文字总结\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M5\n  summary: \"§6.2 disambiguation neglect 统计分母 (614) 来源不清\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M3 + R2 agree。4.6% (258/614) 的 614 是 ambiguous-condition violations 还是全部 ambiguous-condition episodes？需明确标注。\"\n  action_items:\n    - round: 34\n      action: \"§6.2 明确标注分母来源\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M6\n  summary: \"Appendix P (Li et al. taxonomy mapping) 正文引用不够显著\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M4 + R1 agree。对理解分类体系理论定位有价值但正文引用不够。\"\n  action_items:\n    - round: 34\n      action: \"正文 §3 更显著引用 Appendix P\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__update_review_issues",
+  "tool_args": {
+    "project": "policy_ambiguity_safety",
+    "issues_yaml": "## Review Issues Tracker — policy_ambiguity_safety\n## Paper: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n## Venue: EMNLP 2026 via ARR May cycle\n## Latest Round: 34\n## Status: R34 fresh review — 1 Must-Fix, 6 Should-Fix, 3 divergent issues recorded\n\n# ====== Resolved Issues (R33, carried forward) ======\n\n- id: R30-SF6\n  summary: \"Incompleteness 在 'ambiguity' 框架下的概念张力——最强效应类型在认识论上最可争议\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 33\n  mentions:\n    - round: 29\n      reviewers: [2]\n      note: \"RE 文献有先例但概念张力应显式讨论\"\n    - round: 32\n      reviewers: [1, 2]\n      note: \"升级为 critical\"\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-MF1: §3 epistemological 段不够深入 + information-addition confound\"\n  action_items:\n    - round: 33\n      action: \"(A) §3 扩写 contested boundary + Berry&Kamsties/Gleich 先例; (B) Logistic regression Δtoken×condition 交互项; (C) 呈现层面标记\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"§3 扩写 3 句 RE 先例; appendix app:token_sensitivity 报告交互项 p=0.0004 但 Δtoken=0 效应仍 +20.5pp; §5 加 1 句正文引用。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-SF5\n  summary: \"Convergent nocuity framing 过度——observed 41.3% vs independence baseline\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 33\n  mentions:\n    - round: 32\n      reviewers: [1, 2]\n      note: \"升级为 critical; 需排除 incompleteness 后分析\"\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF4: 需 unambiguous condition ambient baseline + permutation test\"\n  action_items:\n    - round: 33\n      action: \"§6.3 加 ambient baseline 1.7% (5/300) vs 41.3%\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Ambient baseline 1.7% (5/300 unambiguous clauses), +39.6pp excess。两层结构 practical/mechanism 保持。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-MF1\n  summary: \"Human κ=0.41 不足以支撑 type-mechanism dissociation——缺少 human-coded Cramér's V\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 32\n  resolution: \"§6 报告 human-coded V=0.40/0.42，corroborates LLM V=0.45 as upper bound。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R30-SF2\n  summary: \"Temperature pilot underpowered（3/5 模型, 50 clause pairs, 无 CI）\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 32\n  resolution: \"Limitations 新增 power analysis：n=50 pairs, detectable effect ≥24.6pp at 80% power。\"\n  resolution_round: 33\n\n- id: R30-SF3\n  summary: \"SESOI ±15 pp 缺乏正文领域成本锚定\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 33\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF1: partial ordering 应标注 exploratory\"\n  action_items:\n    - round: 33\n      action: \"§5.2 标注 partial ordering exploratory + SESOI 敏感性\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"§4 正文引用 Appendix cost anchoring; §5.2 标注 exploratory + ±12pp instability。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R31-SF2\n  summary: \"C3 层级假设不显著但 Table 1/2 颜色编码暗示实验支持的结构\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"Table 2 caption 新增 inconclusive 标注。\"\n  resolution_round: 33\n\n- id: R30-MF2\n  summary: \"\\\\enlargethispage 格式操纵\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 31\n  resolution: \"所有 \\\\enlargethispage 已移除。\"\n  resolution_round: 33\n\n- id: R30-M1\n  summary: \"Abstract 中 V=0.45 和 κ=0.41 呈现不一致\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 32\n  resolution: \"随 R30-MF1 一起解决：V=0.45 统一标注为 upper bound。\"\n  resolution_round: 33\n\n- id: R31-M1\n  summary: \"Per-type κ CI 很宽（n≈17 per type），需要更强 caveat\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 33\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-MF2: per-type κ 差异需正文呈现\"\n  action_items:\n    - round: 33\n      action: \"§5.2 报告 per-type κ range + coreferential caveat + attenuation 论点\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Per-type κ 0.479–0.904 报告在正文; coreferential caveat + attenuation argument; misclassification sensitivity (25% error → +9.2pp, p=0.011)。Reviewer PASS。\"\n  resolution_round: 33\n\n- id: R31-M2\n  summary: \"'primary risk factor' 应限定为 'among measured predictors'\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"已修改。\"\n  resolution_round: 33\n\n- id: R31-M3\n  summary: \"C3 hierarchy hypothesis rejection 应更显式标注\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"随 R31-SF2 Table 2 caption 解决。\"\n  resolution_round: 33\n\n- id: R31-M5\n  summary: \"Figure 1 中 panel 信息密度不均\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"Figure 1 重设计为三 panel; Paper Banana 重画进行中。\"\n  resolution_round: 33\n\n- id: R33-MF2\n  summary: \"Per-type judge κ 差异掩盖测量可靠性——coreferential 0.479\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"§5.2 per-type κ range + coreferential caveat + attenuation argument + misclassification sensitivity\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Per-type κ 0.479–0.904 in main text; attenuation argument; bootstrap sensitivity at 25% error still significant。\"\n  resolution_round: 33\n\n- id: R33-SF3\n  summary: \"模型选择偏向 frontier tier（无 7B-70B）\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"Limitations 加 model tier scope 句\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"Limitations 新增 frontier-class limitation sentence。\"\n  resolution_round: 33\n\n- id: R33-SF5\n  summary: \"Pooled McNemar 跨模型聚合违反独立性\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  action_items:\n    - round: 33\n      action: \"Mantel-Haenszel OR in appendix + §5.1 正文引用\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"MH OR=9.57 [7.63,12.01] in appendix; §5.1 半句引用。Breslow-Day p=0.022 heterogeneity reported。\"\n  resolution_round: 33\n\n# ====== Historical Resolved ======\n\n- id: R29-MF1\n  summary: \"正文疑似超出 EMNLP 2026 严格 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"演化为 R30-MF2\"\n  resolution_round: 30\n\n- id: R29-MF2\n  summary: \"Human κ=0.41 不足以支撑 C3\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 30\n  resolution: \"合并入 R30-MF1\"\n  resolution_round: 30\n\n- id: R29-SF1\n  summary: \"'Ambiguity' umbrella term 概念张力\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF6\"\n  resolution_round: 30\n\n- id: R29-SF2\n  summary: \"SOPBench 效应衰减解释不充分\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF1\"\n  resolution_round: 30\n\n- id: R29-SF3\n  summary: \"Temperature=0 greedy decoding 限制\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 30\n  resolution: \"合并入 R30-SF2\"\n  resolution_round: 30\n\n- id: R29-SF5\n  summary: \"Cross-family vs within-family Jaccard 差异仅 0.08\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"Bootstrap CI (p<0.0001) 确认统计显著。\"\n  resolution_round: 30\n\n# ====== Active Issues (Open/In-Progress) — Updated for R34 ======\n\n- id: R30-SF1\n  summary: \"合成效应 vs 自然效应 2.7× 差距（34.0→12.7 pp）——external validity + 'first causal study' framing\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 34\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33-SF2: replication→directional consistency; 需衰减分析\"\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R34-MF1: 两位 Reviewer 共识 Must-Fix。'first causal study' 需限定为 synthetic clause pairs；§7 对 34→12.7pp 衰减讨论不足；healthcare pilot n=50 语言过于确定。R1 建议保留因果声明但加限定词。\"\n  action_items:\n    - round: 33\n      action: \"全文 replication→evaluation/directional consistency + Discussion 1 句 appendix 引用\"\n      assigned_to: main_agent\n      status: done\n    - round: 31\n      action: \"§7 ~120 words 衰减来源分析\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"(A) Abstract/Intro 'first causal study' 加限定词; (B) §7 增加衰减原因讨论; (C) healthcare pilot 标注 'pilot' 降低确定性; (D) 显式列出因果识别假设 (SUTVA, no unmeasured confounders)\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R31-SF1\n  summary: \"Per-type judge agreement 差异大（auth scope κ=0.385, coreferential κ=0.479）——正文讨论不足\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 34\n  mentions:\n    - round: 33\n      reviewers: [1, 2]\n      note: \"R33 未独立重新提出但 R32 action 部分未完成\"\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2 agreement: 低 κ 类型的 per-type 效应估计需正文 caveat；Figure 3 auth scope 列需视觉区分；coreferential 可靠性在正文讨论不够\"\n  action_items:\n    - round: 31\n      action: \"§5.2 标记 auth scope measurement-unreliable\"\n      assigned_to: main_agent\n      status: done\n    - round: 32\n      action: \"Figure 3 视觉区分 auth scope; sensitivity excl auth scope\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"Table 4 或 §5.1 标注哪些类型受低 judge agreement 影响\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-SF4\n  summary: \"Cross-judge 术语误导 + judge allocation 不对称（3/5 OpenAI）\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W2 再次提出 GPT-4.1 judge +8pp harder。R2 rebut: treatment effect Δpp 不受 judge 偏差影响（同一模型两条件同一 judge）。Director 裁定 Minor——核心 claim 是 Δpp 而非绝对率。\"\n  action_items:\n    - round: 32\n      action: \"'cross-judge' → 'cross-model judge' (partial done); per-judge convergent nocuity rate (not done)\"\n      assigned_to: main_agent\n      status: in_progress\n    - round: 34\n      action: \"Table 4 caption 注明绝对率受 judge 影响、跨模型比较应关注 Δpp\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R31-M4\n  summary: \"Introduction contributions 列表数字密度可精简\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W1 + R1 agree: Abstract 和 Introduction 压缩 10+ 数字损害叙事流畅性。建议聚焦 3-4 核心数字。\"\n  action_items:\n    - round: 32\n      action: \"精简为 2-3 核心数字\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"Introduction 聚焦 +34.0pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity，其余移至 §5\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M1\n  summary: \"Missing references: 相关工作未引用\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"AgentHarm (Andriushchenko et al., ICLR 2025) 应在 §2 引用 [R1+R2 共识]；ToolEmu (Ruan et al., ICLR 2024) 确认版本信息 [R1]\"\n  action_items:\n    - round: 32\n      action: \"检索并引用（验证真实性后）\"\n      assigned_to: main_agent\n      status: open\n    - round: 34\n      action: \"引用 AgentHarm + ToolEmu 版本确认\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M3\n  summary: \"Residual 方差中 ~46% 系统方差来源未讨论\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R34-SF2: R1 提出为 N2 级别，R2 同意。Figure 2 residual 60.8% 含约 46% 系统方差。附录有零散分析但正文缺专门段落。建议将 'clause-level auditing outperforms type-level screening' 改为 'clause-level features are the strongest identified actionable predictor'。\"\n  action_items:\n    - round: 34\n      action: \"正文增加 1 段讨论残差方差组成 + 修改 auditing claim 措辞\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M4\n  summary: \"Discussion 缺少 RLHF/alignment training 讨论\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 30\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W2: Discussion 应展开 RLHF、prompt injection、scalability。R1 rebut: 8 页限制下不现实，建议附录 Extended Discussion。R1 同意至少 1 句提及 convergent nocuity 与 RLHF reward model 的关系。\"\n  action_items:\n    - round: 34\n      action: \"Discussion 加 1 句 RLHF implication；可选附录 Extended Discussion\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R29-SF4\n  summary: \"Prevalence audit 87% 样本选择偏差 + LLM judge 循环性\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-W5 + R1 agree: LLM judge 标注的 87% prevalence 存在循环性。Human validation κ=0.295 偏低，意味着 LLM 和人类对歧义判断不一致。需更醒目报告 human validation κ 并讨论 LLM 偏差方向。\"\n  action_items:\n    - round: 34\n      action: \"Appendix AH 醒目报告 human validation κ=0.295 + 讨论 LLM 偏差方向\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R30-M2\n  summary: \"Berry 概念反转的诊断含义变化应更显式\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 30\n  last_seen_round: 30\n  action_items:\n    - round: 30\n      action: \"§6.3 加 1 句 divergent→convergent 含义变化\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M2\n  summary: \"§1 pilot audit 未引用 Appendix 编号\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"§1 添加 Appendix 交叉引用\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M3\n  summary: \"参考文献格式不完全统一（arXiv 日期信息）\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"统一 arXiv preprint 格式\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R32-M4\n  summary: \"AI usage disclosure 位置确认\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  action_items:\n    - round: 32\n      action: \"确认 ACL 2026 AI disclosure 位置要求\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ====== New R34 Issues ======\n\n- id: R34-SF1\n  summary: \"Pooled McNemar 独立性违反——ICC=0.892-0.940 下 1497 对非独立\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1 提出为 Must-Fix，R2 同意技术正确性但降为 Should-Fix（per-model 结果全部 p<10⁻⁵）。Director 裁定 Should-Fix (High)。MH OR=9.57 已在 Appendix J。\"\n  action_items:\n    - round: 34\n      action: \"(A) 正文以 per-model McNemar 为主、pooled 降为辅助; (B) 补 mixed-effects logistic regression (clause random intercept + model random slope)\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-SF2\n  summary: \"Incompleteness confound 在 §5.1 六类型结果首次出现时未即时标注\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-W3 + R2-W3 强共识：Table 4 (§5/p.7) 已报告含 incompleteness 的结果，但 information-addition confound 直到 §4.5 才提及。读者可能误以为六类型证据等质量。\"\n  action_items:\n    - round: 34\n      action: \"§5.1 首次报告六类型结果时立即加注 incompleteness 的 information-addition caveat\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M1\n  summary: \"Figure 2 caption 不够自包含——方差分解逻辑未说明\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M1 + R1-M2 共识。'At random' 标签和红色标记线需在 caption 解释；clause identity 独立于 type 解释方差的逻辑需说明。\"\n  action_items:\n    - round: 34\n      action: \"Figure 2 caption 增加方差分解逻辑说明 + 标签解释\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M2\n  summary: \"Table 4 footnote 字体极小\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M3 + R1 agree。排版问题。\"\n  action_items:\n    - round: 34\n      action: \"适当放大 Table 4 footnote 字体\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M3\n  summary: \"'First causal study' 需显式列出因果识别假设\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M4 + R2 agree。应列出 SUTVA、no unmeasured confounders、exclusive manipulation 三项假设。\"\n  action_items:\n    - round: 34\n      action: \"正文或附录列出因果识别假设\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M4\n  summary: \"Table 5 TOST 列名不够直观\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M5 + R2 agree。Margin/Equiv./Mid-tier/Inc./Gc 列名对不熟悉 TOST 的读者不直观。建议 caption 完整说明或移至 Appendix。\"\n  action_items:\n    - round: 34\n      action: \"Table 5 caption 完整说明列含义，或移至 Appendix 正文用文字总结\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M5\n  summary: \"§6.2 disambiguation neglect 统计分母 (614) 来源不清\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R1-M3 + R2 agree。4.6% (258/614) 的 614 是 ambiguous-condition violations 还是全部 ambiguous-condition episodes？需明确标注。\"\n  action_items:\n    - round: 34\n      action: \"§6.2 明确标注分母来源\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: R34-M6\n  summary: \"Appendix P (Li et al. taxonomy mapping) 正文引用不够显著\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [1, 2]\n      note: \"R2-M4 + R1 agree。对理解分类体系理论定位有价值但正文引用不够。\"\n  action_items:\n    - round: 34\n      action: \"正文 §3 更显著引用 Appendix P\"\n      assigned_to: main_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3112 · 2026-05-25T21:36:28.180367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts/review_issues.yaml\", \"bytes\": 18931}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__update_review_issues",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3113 · 2026-05-25T21:38:40.049976+00:00_
+
+called mcp__agent-ml-research__submit_review_report_to_research_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_review_report_to_research_director</summary>
+
+```json
+{
+  "report": "# Round 34 审稿报告 — Policy Ambiguity Is Nocuous\n\n**论文**: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n**Venue**: EMNLP 2026 via ARR (May cycle)\n**审稿模式**: Fresh (重新审稿)\n**Reviewer 配置**: 2 名 Reviewer（R1: 统计方法 + 实验设计；R2: 新颖性 + 完整性）\n**交叉回应**: R1 完成（7 AGREE / 6 REBUT），R2 完成（9 AGREE / 2 REBUT）\n\n---\n\n## Summary\n\n论文研究政策文本中的语言歧义（policy ambiguity）对客服 AI agent 安全性的因果效应。研究者基于需求工程（RE）文献构建了六类歧义分类体系，在 τ²-bench 上合成 300 对 matched clause pairs（歧义 vs 消歧），并在 5 个 frontier LLM（GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3）上进行受控实验。主要发现：(1) 歧义条件下违规率增加 +34.0 pp（pooled McNemar OR=15.1）；(2) clause wording 解释 22.4% 方差而 ambiguity type 仅 0.4%；(3) 41.3% 的 clause pairs 展示 convergent nocuity（多模型收敛到同一错误解释）。附带 SOPBench 跨基准验证（+12.7 pp）和 healthcare pilot（+58.8 pp, n=50）。\n\n## Strengths\n\n**S1: 严谨的因果推断设计。** Matched-pair design 搭配 perturbation control（Δ=−0.67 pp, Section 4.5）提供了较强的内部因果效度。在 agent safety 文献中，因果推断设计（而非相关性分析）是少见的贡献。\n\n**S2: Clause-level vs type-level 方差分解具有实践价值。** 22.4% vs 0.4% 的方差对比直接挑战了 RE 文献中按歧义类型分级风险的传统做法。NMI（0.23 vs 0.01）和 Cramér's V（0.45 vs 0.14）从不同角度佐证了 clause wording > type 的结论。\n\n**S3: Convergent nocuity 是有理论深度的新概念。** 41.3% 跨 3+ 模型收敛到同一错误解释，超过 ambient baseline 1.7%（+39.6 pp excess），揭示了政策歧义导致系统性而非随机性安全风险。\n\n**S4: 统计方法全面、透明度高。** McNemar、ICC、NMI、Cramér's V、TOST、logistic regression、MH 分层分析等多种方法综合使用。26 页附录提供详尽的方法细节和补充分析。\n\n## Weaknesses\n\n### Must-Fix\n\n**MF1: 合成 clause pairs 的生态效度差距严重且讨论不足。** [R1+R2 共识]\n\n主实验效应 +34.0 pp 基于合成匹配 clause pairs，SOPBench 跨基准验证效应仅 +12.7 pp（主实验的 37%，Appendix AD Table 23）。论文在 Limitations（p.9）承认 \"upper bound\" 但正文 Section 7 仅用一句话带过此差距。Healthcare pilot（+58.8 pp）样本量仅 n=50，Introduction 中 \"+58.8 pp\" 的语气过于确定（未标注 pilot）。\"First causal study\" 的 framing 需要限定。\n\n**要求的修改**：\n- (A) Abstract/Introduction 中 \"first causal study\" 加限定词（如 \"first controlled matched-pair study on synthetic clause pairs\"）\n- (B) Section 7 增加 2-3 句讨论 34.0→12.7 pp 衰减的可能原因（clause 自然度、benchmark 难度差异等）\n- (C) Healthcare pilot 明确标注 \"pilot\"，降低措辞确定性\n- (D) 正文或附录显式列出因果识别假设（SUTVA, no unmeasured confounders, exclusive manipulation of ambiguity）\n\n### Should-Fix\n\n**SF1: Pooled McNemar 检验违反独立性假设。** [R1 Must-Fix → R2 Should-Fix → Director 裁定 Should-Fix High]\n\nPooled McNemar 将 5 models × 300 pairs = 1,497 对视为独立配对，但 ICC(1) = 0.892–0.940 证实同一 clause pair 在不同模型上的违规行为高度相关。论文已在 Appendix J 提供 MH 分层分析（MH OR = 9.57 [7.63, 12.01]）并在 Section 5.1 报告了 per-model 结果（全部 p < 10⁻⁵），结论方向不变。但正文以 pooled 为主的报告框架需调整。\n\n**要求**：正文以 per-model McNemar 为主要证据框架，pooled 降为辅助。补充 mixed-effects logistic regression（clause random intercept + model random slope）作为首选统计模型。\n\n**SF2: ~46% 残差系统方差来源未充分讨论。** [R1+R2 共识]\n\nFigure 2 方差分解显示 residual 60.8%（含约 46% 系统方差），clause identity (22.4%)、model (15.8%)、type (0.4%) 合计仅解释 39.2%。可能来源：clause × model 交互效应、scenario/conversation trajectory effects、clause 的复杂 surface features（嵌套深度、从句结构等）。附录有零散分析（token-length Appendix K, logistic regression Appendix I）但正文缺专门段落。\n\n**要求**：正文增加 1 段讨论残差方差可能组成。将 \"clause-level auditing outperforms type-level screening\" 修改为更审慎的 \"clause-level features are the strongest identified actionable predictor\"。\n\n**SF3: Incompleteness confound 位置过晚。** [R1+R2 强共识]\n\nSection 5.1 首次报告六类型结果时未即时标注 incompleteness 类型的 information-addition confound。读者在 Table 4 时不知道 incompleteness 效应量可能部分来自信息添加而非歧义消除，直到 Section 4.5 perturbation control 才首次提及。\n\n**要求**：Section 5.1 首次报告六类型结果时立即加注 incompleteness 的 information-addition caveat。\n\n**SF4: Per-type judge agreement 差异需正文讨论。** [R1+R2 共识]\n\nCoreferential κ = 0.479、authorization scope cross-judge κ = 0.385，远低于 lexical κ = 0.904。这两个类型的 per-type 效应估计可靠性显著降低。论文在 Section 5.2 已注意到 authorization scope 的不确定性，但 coreferential 的可靠性问题讨论不够。\n\n**要求**：Table 4 或 Section 5.1 标注哪些类型受低 judge agreement 影响。Figure 3 authorization scope 列增加视觉区分。\n\n**SF5: Real-world prevalence audit 的 LLM judge 循环性。** [R2 提出, R1 同意]\n\nAppendix AH 的 87% 歧义率使用 LLM judge 标注。Human validation κ = 0.295 偏低，意味着 LLM 和人类对 \"什么算歧义\" 的判断一致性有限。LLM 可能对某些歧义类型系统性过度/不足敏感，prevalence 估计有偏。\n\n**要求**：Appendix AH 更醒目地报告 human validation κ = 0.295，并讨论 LLM 可能的系统性偏差方向。\n\n**SF6: Introduction 数字密度过高。** [R2 提出, R1 同意]\n\nAbstract 和 Introduction 短空间内压缩 10+ 统计数字（+34.0 pp, +31.0 pp, OR=15.1, NMI=0.23, V=0.45, ICC=0.919, 22.4%, 41.3% 等），损害叙事流畅性，读者难以区分核心发现与支撑证据。\n\n**要求**：Introduction 聚焦 3-4 个核心数字（+34.0 pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity），其余移至 Section 5。\n\n### Divergent Issues（分歧记录）\n\n**[DIV1] Type-mechanism dissociation 新颖度**\n- R1：对 RE 文献按类型分级风险假设的重要实证挑战——如果 type 仅解释 0.4% 方差，则按类型审计策略无效。NMI=0.01 + V=0.14 是非平凡发现。建议补 permutation null model comparison。\n- R2：六种类型是粗粒度分类，clause 内方差 > type 间方差是预期结果，新颖度有限。\n- **Director 倾向**：R1 论证更有说服力。Type-level risk screening 是 RE 领域的隐含实践假设，0.4% 方差挑战了该假设。但补充 permutation baseline 可增强说服力。按 Should-Fix 处理——补 permutation null model（随机分 6 组的 NMI baseline, 10,000 次置换）。\n\n**[DIV2] Cross-judge 设计不对称性**\n- R1：GPT-4.1 judge \"+8 pp harder\" 影响绝对违规率的跨模型比较。\n- R2：Treatment effect Δpp 不受 judge 偏差影响——同一模型的两个条件由同一 judge 评判，偏差在做差时消除。\n- **Director 判断**：R2 反驳有效。核心 claim 是 Δpp 而非绝对率。Minor 级别——Table 4 caption 注明绝对率受 judge 影响即可。\n\n**[DIV3] 模型选择偏向 frontier**\n- R1：部署导向研究（customer-service agent deployment），frontier 模型选择合理。小模型有 floor effect 风险。\n- R2：缺少 7B-70B 模型限制 generalizability。\n- **Director 判断**：R1 论证更有说服力。Limitations 已有 frontier-class scope sentence。无需额外实验。\n\n## Questions for Authors\n\n1. 补 mixed-effects logistic regression（clause random intercept + model random slope）后，效应量估计与 pooled McNemar OR=15.1 相比变化多大？\n2. NMI = 0.01（type → mechanism）是否显著低于随机 6-group permutation distribution？请提供 permutation p-value。\n3. 排除 incompleteness 类型后，convergent nocuity rate 是否仍显著高于 ambient baseline 1.7%？\n4. Human validation κ = 0.295 中，LLM judge 对歧义 prevalence 是系统性高估还是低估？具体数字如何？\n5. 正文报告框架从 pooled McNemar 切换到 per-model Δpp 后，核心叙事是否需要重构？\n\n## Missing References\n\n1. **AgentHarm** (Andriushchenko et al., ICLR 2025) — Agent safety benchmark，应在 Section 2 (Related Work) 的 agent safety 部分引用并讨论差异。[R1+R2 共识]\n2. **ToolEmu** (Ruan et al., ICLR 2024) — 确认引用版本信息。[R1 提出]\n3. R32 遗留的 3 篇参考文献仍 open（见 Issue Tracker R32-M1）。\n\n## External Review\n\n外部审稿：**未请求**。\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成。0 critical / 2 warning / 6 info。\n\n**Warnings:**\n- **Page 18**: 六张表格（Tables 16–21）挤在单页，视觉极度密集。建议将 Tables 16–17（示例表）与 Tables 18–21（数据表）分到两页。\n- **Page 26**: 末页仅约 15% 内容（AI Assistants 声明），余下 85% 空白。可并入前一页或合并到上一个 appendix section 末尾。\n\n**Info:**\n- Page 2: Figure 1 节点文字偏小（建议 ≥8pt）\n- Page 6: Figure 3 热力图单色调渐变（色盲友好性），但已标注数值，影响有限\n- Page 6: Figure 4 森林图 marker 标签较小\n- Page 7: Table 4 列头缩写较多（需对照脚注）\n- Page 8: Figure 5 + Figure 6 + Discussion 挤在一页，密度高\n- Page 12: Tables 6–9 密度较高但可读\n\n## Overall Assessment\n\n**Overall Score: 3.5 (Borderline Conference)**\n\n| 维度 | 评分 | 说明 |\n|------|------|------|\n| Soundness | 4 / 5 | 设计严谨，统计报告框架可优化 |\n| Excitement | 3.5 / 5 | 有价值的新发现，生态效度限制影响力 |\n| Clarity | 3.5 / 5 | 结构清晰，数字密度和术语门槛偏高 |\n| **Overall** | **3.5** | **Borderline Conference** |\n\nR1 Overall 3.5, Soundness 4, Excitement 4。R2 Overall 3.5, Soundness 4, Excitement 3.5。交叉回应后均维持 3.5。\n\n**定位**：强 Findings 候选。论文有清晰的研究贡献（首次系统量化政策歧义对 agent 安全的影响、clause-level vs type-level 方差分解、convergent nocuity 概念）和较强的内部效度。核心短板在合成基准的外部效度差距（34.0 → 12.7 pp）和统计报告框架的优化空间。\n\n**提升至 Conference (4.0) 的路径**：\n1. 解决 MF1（外部效度讨论深化 + \"first causal study\" framing 限定）\n2. 解决 SF1（统计报告框架：per-model 为主 + mixed-effects model）\n3. 解决 SF2（残差方差讨论 + auditing claim 措辞调整）\n4. 补充 permutation null model for NMI（DIV1）\n\n## Detailed Comments\n\n### 统计方法层面\n- Per-model McNemar 应作为主要证据框架，pooled 降为辅助。五个模型各自独立的显著性（all p < 10⁻⁵）比 pooled 更有说服力且无独立性假设问题。\n- Mixed-effects logistic regression（clause random intercept + model random slope）应作为首选统计模型，更准确地处理 clause-level 聚类。\n- MH 分层分析已在 Appendix J（MH OR = 9.57, Breslow-Day p = 0.022 heterogeneity），正文引用应更显著。\n- Permutation null model for NMI = 0.01 可增强 type-mechanism dissociation 的说服力——证明 0.01 不是随机分组的预期值。\n\n### 写作层面\n- Introduction 精简至 3-4 核心数字：+34.0 pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity。\n- Section 5.1 首次报告六类型结果时立即标注 incompleteness confound。\n- Healthcare pilot 明确标注 \"pilot\" 和 n=50。\n- \"Clause-level auditing outperforms type-level screening\" 改为 \"clause-level features are the strongest identified actionable predictor\"。\n- Discussion 加 1 句 RLHF implication（convergent nocuity 是否误导 reward model）。\n- Table 4 caption 注明绝对率受 judge 影响、跨模型比较应关注 Δpp。\n- §6.2 disambiguation neglect 分母 614 明确标注来源。\n\n### 可视化层面\n- Figure 2 caption 增加方差分解逻辑说明 + \"At random\" 标签和红色标记线解释。\n- Figure 3 authorization scope 列视觉区分（低 κ 标注）。\n- Table 4 footnote 字体适当放大。\n- Table 5 TOST 列名在 caption 中完整说明，或移至 Appendix。\n- Appendix P (Li et al. taxonomy mapping) 在正文 §3 更显著引用。",
+  "project": "policy_ambiguity_safety",
+  "reviewer_ids_acknowledged": "[1, 2]",
+  "cross_response_reviewer_ids": "[1, 2]",
+  "overall_score": "3.5 (Borderline Conference)",
+  "review_chat_id": "oc_967344d166ba485ad606d14379e69d85"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+  "tool_args": {
+    "report": "# Round 34 审稿报告 — Policy Ambiguity Is Nocuous\n\n**论文**: \"Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety\"\n**Venue**: EMNLP 2026 via ARR (May cycle)\n**审稿模式**: Fresh (重新审稿)\n**Reviewer 配置**: 2 名 Reviewer（R1: 统计方法 + 实验设计；R2: 新颖性 + 完整性）\n**交叉回应**: R1 完成（7 AGREE / 6 REBUT），R2 完成（9 AGREE / 2 REBUT）\n\n---\n\n## Summary\n\n论文研究政策文本中的语言歧义（policy ambiguity）对客服 AI agent 安全性的因果效应。研究者基于需求工程（RE）文献构建了六类歧义分类体系，在 τ²-bench 上合成 300 对 matched clause pairs（歧义 vs 消歧），并在 5 个 frontier LLM（GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3）上进行受控实验。主要发现：(1) 歧义条件下违规率增加 +34.0 pp（pooled McNemar OR=15.1）；(2) clause wording 解释 22.4% 方差而 ambiguity type 仅 0.4%；(3) 41.3% 的 clause pairs 展示 convergent nocuity（多模型收敛到同一错误解释）。附带 SOPBench 跨基准验证（+12.7 pp）和 healthcare pilot（+58.8 pp, n=50）。\n\n## Strengths\n\n**S1: 严谨的因果推断设计。** Matched-pair design 搭配 perturbation control（Δ=−0.67 pp, Section 4.5）提供了较强的内部因果效度。在 agent safety 文献中，因果推断设计（而非相关性分析）是少见的贡献。\n\n**S2: Clause-level vs type-level 方差分解具有实践价值。** 22.4% vs 0.4% 的方差对比直接挑战了 RE 文献中按歧义类型分级风险的传统做法。NMI（0.23 vs 0.01）和 Cramér's V（0.45 vs 0.14）从不同角度佐证了 clause wording > type 的结论。\n\n**S3: Convergent nocuity 是有理论深度的新概念。** 41.3% 跨 3+ 模型收敛到同一错误解释，超过 ambient baseline 1.7%（+39.6 pp excess），揭示了政策歧义导致系统性而非随机性安全风险。\n\n**S4: 统计方法全面、透明度高。** McNemar、ICC、NMI、Cramér's V、TOST、logistic regression、MH 分层分析等多种方法综合使用。26 页附录提供详尽的方法细节和补充分析。\n\n## Weaknesses\n\n### Must-Fix\n\n**MF1: 合成 clause pairs 的生态效度差距严重且讨论不足。** [R1+R2 共识]\n\n主实验效应 +34.0 pp 基于合成匹配 clause pairs，SOPBench 跨基准验证效应仅 +12.7 pp（主实验的 37%，Appendix AD Table 23）。论文在 Limitations（p.9）承认 \"upper bound\" 但正文 Section 7 仅用一句话带过此差距。Healthcare pilot（+58.8 pp）样本量仅 n=50，Introduction 中 \"+58.8 pp\" 的语气过于确定（未标注 pilot）。\"First causal study\" 的 framing 需要限定。\n\n**要求的修改**：\n- (A) Abstract/Introduction 中 \"first causal study\" 加限定词（如 \"first controlled matched-pair study on synthetic clause pairs\"）\n- (B) Section 7 增加 2-3 句讨论 34.0→12.7 pp 衰减的可能原因（clause 自然度、benchmark 难度差异等）\n- (C) Healthcare pilot 明确标注 \"pilot\"，降低措辞确定性\n- (D) 正文或附录显式列出因果识别假设（SUTVA, no unmeasured confounders, exclusive manipulation of ambiguity）\n\n### Should-Fix\n\n**SF1: Pooled McNemar 检验违反独立性假设。** [R1 Must-Fix → R2 Should-Fix → Director 裁定 Should-Fix High]\n\nPooled McNemar 将 5 models × 300 pairs = 1,497 对视为独立配对，但 ICC(1) = 0.892–0.940 证实同一 clause pair 在不同模型上的违规行为高度相关。论文已在 Appendix J 提供 MH 分层分析（MH OR = 9.57 [7.63, 12.01]）并在 Section 5.1 报告了 per-model 结果（全部 p < 10⁻⁵），结论方向不变。但正文以 pooled 为主的报告框架需调整。\n\n**要求**：正文以 per-model McNemar 为主要证据框架，pooled 降为辅助。补充 mixed-effects logistic regression（clause random intercept + model random slope）作为首选统计模型。\n\n**SF2: ~46% 残差系统方差来源未充分讨论。** [R1+R2 共识]\n\nFigure 2 方差分解显示 residual 60.8%（含约 46% 系统方差），clause identity (22.4%)、model (15.8%)、type (0.4%) 合计仅解释 39.2%。可能来源：clause × model 交互效应、scenario/conversation trajectory effects、clause 的复杂 surface features（嵌套深度、从句结构等）。附录有零散分析（token-length Appendix K, logistic regression Appendix I）但正文缺专门段落。\n\n**要求**：正文增加 1 段讨论残差方差可能组成。将 \"clause-level auditing outperforms type-level screening\" 修改为更审慎的 \"clause-level features are the strongest identified actionable predictor\"。\n\n**SF3: Incompleteness confound 位置过晚。** [R1+R2 强共识]\n\nSection 5.1 首次报告六类型结果时未即时标注 incompleteness 类型的 information-addition confound。读者在 Table 4 时不知道 incompleteness 效应量可能部分来自信息添加而非歧义消除，直到 Section 4.5 perturbation control 才首次提及。\n\n**要求**：Section 5.1 首次报告六类型结果时立即加注 incompleteness 的 information-addition caveat。\n\n**SF4: Per-type judge agreement 差异需正文讨论。** [R1+R2 共识]\n\nCoreferential κ = 0.479、authorization scope cross-judge κ = 0.385，远低于 lexical κ = 0.904。这两个类型的 per-type 效应估计可靠性显著降低。论文在 Section 5.2 已注意到 authorization scope 的不确定性，但 coreferential 的可靠性问题讨论不够。\n\n**要求**：Table 4 或 Section 5.1 标注哪些类型受低 judge agreement 影响。Figure 3 authorization scope 列增加视觉区分。\n\n**SF5: Real-world prevalence audit 的 LLM judge 循环性。** [R2 提出, R1 同意]\n\nAppendix AH 的 87% 歧义率使用 LLM judge 标注。Human validation κ = 0.295 偏低，意味着 LLM 和人类对 \"什么算歧义\" 的判断一致性有限。LLM 可能对某些歧义类型系统性过度/不足敏感，prevalence 估计有偏。\n\n**要求**：Appendix AH 更醒目地报告 human validation κ = 0.295，并讨论 LLM 可能的系统性偏差方向。\n\n**SF6: Introduction 数字密度过高。** [R2 提出, R1 同意]\n\nAbstract 和 Introduction 短空间内压缩 10+ 统计数字（+34.0 pp, +31.0 pp, OR=15.1, NMI=0.23, V=0.45, ICC=0.919, 22.4%, 41.3% 等），损害叙事流畅性，读者难以区分核心发现与支撑证据。\n\n**要求**：Introduction 聚焦 3-4 个核心数字（+34.0 pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity），其余移至 Section 5。\n\n### Divergent Issues（分歧记录）\n\n**[DIV1] Type-mechanism dissociation 新颖度**\n- R1：对 RE 文献按类型分级风险假设的重要实证挑战——如果 type 仅解释 0.4% 方差，则按类型审计策略无效。NMI=0.01 + V=0.14 是非平凡发现。建议补 permutation null model comparison。\n- R2：六种类型是粗粒度分类，clause 内方差 > type 间方差是预期结果，新颖度有限。\n- **Director 倾向**：R1 论证更有说服力。Type-level risk screening 是 RE 领域的隐含实践假设，0.4% 方差挑战了该假设。但补充 permutation baseline 可增强说服力。按 Should-Fix 处理——补 permutation null model（随机分 6 组的 NMI baseline, 10,000 次置换）。\n\n**[DIV2] Cross-judge 设计不对称性**\n- R1：GPT-4.1 judge \"+8 pp harder\" 影响绝对违规率的跨模型比较。\n- R2：Treatment effect Δpp 不受 judge 偏差影响——同一模型的两个条件由同一 judge 评判，偏差在做差时消除。\n- **Director 判断**：R2 反驳有效。核心 claim 是 Δpp 而非绝对率。Minor 级别——Table 4 caption 注明绝对率受 judge 影响即可。\n\n**[DIV3] 模型选择偏向 frontier**\n- R1：部署导向研究（customer-service agent deployment），frontier 模型选择合理。小模型有 floor effect 风险。\n- R2：缺少 7B-70B 模型限制 generalizability。\n- **Director 判断**：R1 论证更有说服力。Limitations 已有 frontier-class scope sentence。无需额外实验。\n\n## Questions for Authors\n\n1. 补 mixed-effects logistic regression（clause random intercept + model random slope）后，效应量估计与 pooled McNemar OR=15.1 相比变化多大？\n2. NMI = 0.01（type → mechanism）是否显著低于随机 6-group permutation distribution？请提供 permutation p-value。\n3. 排除 incompleteness 类型后，convergent nocuity rate 是否仍显著高于 ambient baseline 1.7%？\n4. Human validation κ = 0.295 中，LLM judge 对歧义 prevalence 是系统性高估还是低估？具体数字如何？\n5. 正文报告框架从 pooled McNemar 切换到 per-model Δpp 后，核心叙事是否需要重构？\n\n## Missing References\n\n1. **AgentHarm** (Andriushchenko et al., ICLR 2025) — Agent safety benchmark，应在 Section 2 (Related Work) 的 agent safety 部分引用并讨论差异。[R1+R2 共识]\n2. **ToolEmu** (Ruan et al., ICLR 2024) — 确认引用版本信息。[R1 提出]\n3. R32 遗留的 3 篇参考文献仍 open（见 Issue Tracker R32-M1）。\n\n## External Review\n\n外部审稿：**未请求**。\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成。0 critical / 2 warning / 6 info。\n\n**Warnings:**\n- **Page 18**: 六张表格（Tables 16–21）挤在单页，视觉极度密集。建议将 Tables 16–17（示例表）与 Tables 18–21（数据表）分到两页。\n- **Page 26**: 末页仅约 15% 内容（AI Assistants 声明），余下 85% 空白。可并入前一页或合并到上一个 appendix section 末尾。\n\n**Info:**\n- Page 2: Figure 1 节点文字偏小（建议 ≥8pt）\n- Page 6: Figure 3 热力图单色调渐变（色盲友好性），但已标注数值，影响有限\n- Page 6: Figure 4 森林图 marker 标签较小\n- Page 7: Table 4 列头缩写较多（需对照脚注）\n- Page 8: Figure 5 + Figure 6 + Discussion 挤在一页，密度高\n- Page 12: Tables 6–9 密度较高但可读\n\n## Overall Assessment\n\n**Overall Score: 3.5 (Borderline Conference)**\n\n| 维度 | 评分 | 说明 |\n|------|------|------|\n| Soundness | 4 / 5 | 设计严谨，统计报告框架可优化 |\n| Excitement | 3.5 / 5 | 有价值的新发现，生态效度限制影响力 |\n| Clarity | 3.5 / 5 | 结构清晰，数字密度和术语门槛偏高 |\n| **Overall** | **3.5** | **Borderline Conference** |\n\nR1 Overall 3.5, Soundness 4, Excitement 4。R2 Overall 3.5, Soundness 4, Excitement 3.5。交叉回应后均维持 3.5。\n\n**定位**：强 Findings 候选。论文有清晰的研究贡献（首次系统量化政策歧义对 agent 安全的影响、clause-level vs type-level 方差分解、convergent nocuity 概念）和较强的内部效度。核心短板在合成基准的外部效度差距（34.0 → 12.7 pp）和统计报告框架的优化空间。\n\n**提升至 Conference (4.0) 的路径**：\n1. 解决 MF1（外部效度讨论深化 + \"first causal study\" framing 限定）\n2. 解决 SF1（统计报告框架：per-model 为主 + mixed-effects model）\n3. 解决 SF2（残差方差讨论 + auditing claim 措辞调整）\n4. 补充 permutation null model for NMI（DIV1）\n\n## Detailed Comments\n\n### 统计方法层面\n- Per-model McNemar 应作为主要证据框架，pooled 降为辅助。五个模型各自独立的显著性（all p < 10⁻⁵）比 pooled 更有说服力且无独立性假设问题。\n- Mixed-effects logistic regression（clause random intercept + model random slope）应作为首选统计模型，更准确地处理 clause-level 聚类。\n- MH 分层分析已在 Appendix J（MH OR = 9.57, Breslow-Day p = 0.022 heterogeneity），正文引用应更显著。\n- Permutation null model for NMI = 0.01 可增强 type-mechanism dissociation 的说服力——证明 0.01 不是随机分组的预期值。\n\n### 写作层面\n- Introduction 精简至 3-4 核心数字：+34.0 pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity。\n- Section 5.1 首次报告六类型结果时立即标注 incompleteness confound。\n- Healthcare pilot 明确标注 \"pilot\" 和 n=50。\n- \"Clause-level auditing outperforms type-level screening\" 改为 \"clause-level features are the strongest identified actionable predictor\"。\n- Discussion 加 1 句 RLHF implication（convergent nocuity 是否误导 reward model）。\n- Table 4 caption 注明绝对率受 judge 影响、跨模型比较应关注 Δpp。\n- §6.2 disambiguation neglect 分母 614 明确标注来源。\n\n### 可视化层面\n- Figure 2 caption 增加方差分解逻辑说明 + \"At random\" 标签和红色标记线解释。\n- Figure 3 authorization scope 列视觉区分（低 κ 标注）。\n- Table 4 footnote 字体适当放大。\n- Table 5 TOST 列名在 caption 中完整说明，或移至 Appendix。\n- Appendix P (Li et al. taxonomy mapping) 在正文 §3 更显著引用。",
+    "project": "policy_ambiguity_safety",
+    "reviewer_ids_acknowledged": "[1, 2]",
+    "cross_response_reviewer_ids": "[1, 2]",
+    "overall_score": "3.5 (Borderline Conference)",
+    "review_chat_id": "oc_967344d166ba485ad606d14379e69d85"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3114 · 2026-05-25T21:38:43.966230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_10fa2e89afc5e9b8a13613245e008dd9:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+  "elapsed_ms": 3916
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3115 · 2026-05-25T21:38:54.346211+00:00_
+
+Round 34 审稿完成。
+
+**审稿报告已投递**，核心结论：
+
+- **Overall Score: 3.5 (Borderline Conference)**，强 Findings 候选
+- **1 Must-Fix**：合成 clause pairs 生态效度差距（34.0→12.7 pp）+ "first causal study" framing 需限定
+- **6 Should-Fix**：pooled McNemar 独立性违反、残差方差讨论不足、incompleteness confound 位置过晚、per-type judge agreement 差异、LLM judge 循环性、Introduction 数字密度
+- **3 Divergent Issues**：type-mechanism dissociation 新颖度（Director 倾向 R1）、cross-judge 不对称（R2 反驳有效，Minor）、frontier 模型选择（R1 论证有效，无需额外实验）
+- Issue Tracker 已同步更新至 Round 34
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---
+
+
+## Round 284
+
+## Round 284
+
+2 recorded events
+
+
+### User
+
+_source line 3116 · 2026-05-25T21:38:55.343232+00:00_
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 对 R1 交叉回应的第二轮回应
+
+---
+
+## 一、对 R1 回应我审稿意见的再评估
+
+### R2-N1（生态效度 + "first causal study"）→ R1 [AGREE] with nuance
+
+**[AGREE] R1 的修正方案合理。** R1 建议保留因果声明但精确化为 "first controlled matched-pair causal study on synthetic clause pairs"，并在正文区分 internal causal validity（强）vs. ecological validity（待验证）。这恰好是我 N1 建议修改方向 (3) 的内容。R1 额外指出 SOPBench 效应量仅为主实验的 37%（+12.7 pp vs. +34.0 pp），正文 Section 7 对此差距讨论不足——这是一个有价值的补充观察。SOPBench 的任务格式不同（negative-task pairs vs. matched clause pairs），效应量衰减可能反映合成 pairs 对歧义信号的放大，也可能反映跨 benchmark 的任务差异。无论如何，正文应讨论这一差距。
+
+**结论**：维持 Must-Fix，R1 的修正方案可作为作者 revision 的参考方向。
+
+---
+
+### R2-N2（Type-mechanism dissociation 新颖度）→ R1 [REBUT]
+
+**[AGREE] R1 的反驳改变了我的判断，降级为 Should-Fix。** R1 指出这一发现挑战的是 RE 文献中隐含的 type-based risk prioritization 假设——Berry & Kamsties (2004) 按类型区分 nocuous/innocuous，DRIP-R 按 RE type 分析风险——如果 type 仅解释 0.4% 方差，则这类按类型分级审计的策略在 LLM agent 语境下失效。这确实不是 trivially expected，因为 RE 社区会合理预期某些类型（如 scopal ambiguity）系统性地比其他类型更危险。
+
+**但我保留一个条件**：论文必须补充 permutation null model——将 300 clauses 随机分成 6 组后计算 NMI baseline。如果随机分组的 NMI 同样在 0.01 量级，说明 type-level 信号确实不存在（不仅仅是分组粒度太粗）。如果随机分组的 NMI 显著高于 0.01，则当前的六类分类甚至不如随机，这本身就是一个值得报告的 negative result。
+
+**修正后判断**：从 Must-Fix 降为 Should-Fix，条件是补充 permutation baseline。
+
+---
+
+### R2-W1（Introduction 数字密度）→ R1 [AGREE]
+
+**[AGREE]** 无分歧。
+
+---
+
+### R2-W2（Discussion 过短）→ R1 部分 [REBUT]
+
+**[AGREE] R1 关于 8 页限制的现实约束是合理的。** 论文正文已到 8 页上限，强行扩展 Discussion 可能需要压缩其他部分。R1 建议在附录增加 Extended Discussion（特别是 convergent nocuity 与 RLHF 的关系）是可行的折中方案。
+
+**降级为 Minor**：建议在正文 Section 7 用 1-2 句话指向附录的 Extended Discussion，确保读者知道更深入的 implications 讨论存在。
+
+---
+
+### R2-W3（Incompleteness confound 位置）→ R1 强烈 [AGREE]
+
+**[AGREE]** R1 和我在此完全一致。维持 Should-Fix。
+
+---
+
+### R2-W4（模型选择偏向 frontier）→ R1 [REBUT]
+
+**[AGREE] R1 的反驳有说服力，我接受降级。** R1 指出：(1) customer-service agent 的部署场景确实以 frontier 模型为主；(2) 小模型可能因能力不足导致 floor effect（基线违规率就很高，歧义的增量效应被压缩）；(3) Appendix F 的 replication 模型（Gemini 2.5 Flash, LLaMA-4-Scout）提供了部分多样性。
+
+**降级为 Minor**：建议在 Limitations 中增加一句说明模型规模可能是 moderator，较小模型的行为模式可能不同。
+
+---
+
+### R2-W5（LLM judge 循环性）→ R1 [AGREE] with caveat
+
+**[AGREE]** R1 指出 Appendix AI 有 human validation（κ = 0.295）。但 κ = 0.295 仅属于 fair agreement（Landis & Koch, 1977），这实际上**加强而非缓解**了循环性担忧——human annotator 与 LLM judge 在真实 policy clauses 上的一致性偏低，说明 LLM 对"什么是歧义的"的判断与人类有系统偏差。维持 Should-Fix。
+
+---
+
+### Minor 问题
+
+**R2-M1（Figure 2 caption）→ R1 [AGREE]**：无分歧。
+
+**R2-M2（"Nocuous" 术语）→ R1 [REBUT]**：R1 认为术语服务于 RE 文献对话。**[AGREE] R1 的理由成立**，但我仍建议在 abstract 或 introduction 首次使用时加 parenthetical gloss（"nocuous, i.e., harmful"）。这不矛盾——保留术语以连接 RE 文献，同时降低 NLP 读者的认知障碍。降为建议而非问题。
+
+**R2-M3（Table 4 footnote 字体）→ R1 [AGREE]**：无分歧。
+
+**R2-M4（Appendix P mapping 引用）→ R1 [AGREE]**：无分歧。
+
+**R2-M5（Claude 双重角色）→ R1 [REBUT]**：**[AGREE] R1 判断正确**，这不构成利益冲突。Claude 是广泛使用的商业 API，作为实验模型和写作工具同时出现不构成 COI。撤回此条。
+
+**Missing References — ToolEmu → R1 [AGREE]**：无分歧。
+
+**Missing References — ASPI → R1 [REBUT]**：**[AGREE] R1 有理**。ASPI（arXiv 2605.17324）发表于 2026 年 5 月，可能在论文提交截止日期之后。撤回此条。
+
+**Missing References — AgentHarm → R1 [AGREE]**：无分歧。
+
+---
+
+## 二、对 R1 原始审稿独立发现的回应
+
+### [AGREE] R1-W3: Incompleteness 的 information-addition confound 应在 Section 5.1 更早讨论
+
+完全同意。论文在 Section 5.1（page 6）首次报告 "All six types individually produce significant increases" 时，应立即注明 incompleteness 的 disambiguation 必然伴随 information addition，使读者不会误将六种类型视为等质量的证据。这与我的 W3 和 R1 的 W3 形成三方共识。
+
+---
+
+### [AGREE] R1-W4: Healthcare pilot n=50 / 250 episodes 不足以支撑 per-type 子分析
+
+同意。50 clause pairs × 5 models = 250 episodes，每种 type 不到 42 episodes（如果均匀分布），远不足以支撑可靠的 per-type 效应估计。Appendix AE 的 Table 24 按 type 报告 healthcare domain 结果，这些 per-type 数字的 CI 应该很宽（论文未报告 per-type CI）。建议：(1) 明确标注 pilot；(2) 不报告 healthcare 的 per-type 效应或至少标注 wide CIs。
+
+---
+
+### [AGREE] R1-M2: Figure 2 的 "At random" 标签和红色标记线需 caption 解释
+
+这与我的 M1（Figure 2 caption 不够自包含）一致。Figure 2（page 5）的方差分解图如果有 "At random" 参考线，应在 caption 中解释其含义——例如 "the expected variance proportion if clause-type assignments were random"。否则读者无法判断 22.4% 的 clause identity 方差是大是小。
+
+---
+
+### [部分 AGREE] R1 立场: Type-mechanism dissociation 不是 trivially expected
+
+如上文 R2-N2 的再评估所述，R1 说服了我这一发现挑战了 RE 文献的 type-based risk assumption，具有实质贡献。但我保留条件：**没有 permutation null model，无法确认 NMI=0.01 是因为 type 确实不预测 mechanism，还是因为六类分组的粒度太粗导致任何分组都无法捕捉方差。** 这个区分至关重要——前者是对 RE 文献的实证挑战，后者只是分类粒度的 artifact。
+
+---
+
+## 三、综合评估
+
+经过两轮交叉讨论，R1 和 R2 在以下核心问题上达成共识：
+
+1. **因果声明需精确化**（区分 internal vs. ecological validity，调整 "first causal study" 措辞）
+2. **Incompleteness confound 需在正文更早、更醒目地讨论**（三方共识）
+3. **Healthcare pilot 应标注为 pilot 并降低确定性**
+4. **统计报告可优化**（per-model 为主、补 mixed-effects model）
+
+主要分歧集中在 type-mechanism dissociation 的新颖度评估上，R1 说服我从 Must-Fix 降为 Should-Fix（条件是补 permutation baseline）。
+
+**我维持 Overall 3.5/5（Borderline Conference）**。如果作者在 rebuttal 中承诺：(a) 精确化因果措辞、(b) 补 permutation null model、(c) 扩展 healthcare pilot 或增加 naturally-occurring ambiguity 验证、(d) 调整 incompleteness 在正文中的讨论位置，本文可达 4.0（Conference）。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+第二轮交叉回应已提交。核心立场：
+
+- 接受 R1 对 type-mechanism dissociation 的反驳，从 Must-Fix 降为 Should-Fix（条件是补 permutation null model）
+- 接受 R1 对模型选择、Discussion 篇幅、"nocuous" 术语的反驳，相应降级
+- 维持对生态效度（N1）、LLM judge 循环性（W5）、incompleteness confound（W3）的立场
+- Overall 维持 3.5/5，与 R1 一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 3117 · 2026-05-25T21:39:41.106613+00:00_
+
+R2 第二轮交叉回应收到。审稿圆桌达成完全收敛：
+
+**已解决的分歧（报告中的 DIV1/DIV2/DIV3 全部收敛）：**
+
+| 分歧 | 报告中 Director 裁定 | R2 第二轮立场 | 结果 |
+|------|---------------------|-------------|------|
+| DIV1: Type-mechanism dissociation 新颖度 | 倾向 R1，Should-Fix + permutation baseline | R2 接受 R1 反驳，降为 Should-Fix（条件：permutation null model） | 共识 |
+| DIV2: Cross-judge 不对称 | Minor，R2 反驳有效 | 首轮已解决 | 共识 |
+| DIV3: 模型选择偏向 frontier | R1 论证更有说服力，Limitations 加一句 | R2 接受 R1 反驳，降为 Minor | 共识 |
+
+**R2 额外撤回的条目：** R2-M5（Claude 双重角色）、ASPI 参考文献。
+
+已提交的审稿报告（3.5 Borderline Conference）中 Director 对三个分歧的裁定方向与最终共识完全一致，报告结论有效，无需重提交。圆桌审稿完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_967344d166ba485ad606d14379e69d85:director"
+}
+```
+
+</details>
+
+---

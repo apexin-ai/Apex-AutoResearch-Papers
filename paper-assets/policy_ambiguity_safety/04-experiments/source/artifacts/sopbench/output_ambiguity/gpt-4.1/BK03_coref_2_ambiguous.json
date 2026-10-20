@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK03_coref",
+  "domain": "bank",
+  "constraint": "pay_loan_account_balance_restr",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The user's balance must be sufficient to cover their outstanding obligation.",
+  "action": "pay_loan",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: To assist you with paying off a portion of your loan using your account balance, I need to verify a few things:\n\n1. That your username \"john_doe\" exists in our database.\n2. That your account balance i...]",
+    "[says: Your username \"john_doe\" exists in our database. Next, I need you to log in with your credentials to proceed with the loan payment. Could you please provide your password or driver's license informati...]"
+  ],
+  "timestamp": "2026-05-22T17:18:07.223558"
+}

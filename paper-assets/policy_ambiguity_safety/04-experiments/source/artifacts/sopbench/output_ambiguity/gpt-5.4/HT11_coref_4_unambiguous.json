@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT11_coref",
+  "domain": "hotel",
+  "constraint": "sufficient_payment_for_room_service",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "If the \"{payment_method}\" is not \"loyalty_points\", then the \"{amount}\" must be **greater than or equal to** the cost of \"{order_items}\" in the \"{order_type}\" category. Otherwise, the guest \"{guest_name}\" must have enough loyalty points to cover the total room service cost (10 points per dollar).",
+  "action": "place_room_service_order",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 11,
+    "num_function_calls": 8,
+    "num_constraints": 2,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_valid_room_id",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "[says: I\u2019m sorry, but I can\u2019t place that room service order because one or more items are not available under the dining menu as entered.\n\nPlease check the item names and try again.]",
+    "internal_get_room_checkin_details",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "internal_valid_room_service_payment_method",
+    "[says: I\u2019m sorry, but I can\u2019t place this room service order because the payment method **cash** is not accepted for room service.\n\nPlease provide a supported payment method, and I can help place the order.]"
+  ],
+  "timestamp": "2026-05-22T17:23:12.496935"
+}

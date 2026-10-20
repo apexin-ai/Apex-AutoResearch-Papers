@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_valid_room_change_reason",
+    "[says: I need to verify a few things before processing your room change request. Let me start by checking if \"personal preference\" is a valid reason for a room change.]",
+    "[says: Unfortunately, **\"personal preference\"** is not an accepted reason for a room change request at our hotel. I'm unable to process your room change with this reason.\n\nWould you like to see the list of v...]",
+    "internal_valid_room_change_reason",
+    "[says: Let me check if \"personal_preference\" is a valid reason for a room change.]",
+    "[says: I'm sorry, John, but **\"personal_preference\"** is not an accepted reason for a room change request at our hotel. Therefore, I'm unable to process your room change request.\n\nIf you'd like, I can show y...]"
+  ],
+  "timestamp": "2026-05-22T17:02:26.766191"
+}

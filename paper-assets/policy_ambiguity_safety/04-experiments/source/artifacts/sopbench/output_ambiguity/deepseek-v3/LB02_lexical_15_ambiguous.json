@@ -1,0 +1,34 @@
+{
+  "pair_id": "LB02_lexical",
+  "domain": "library",
+  "constraint": "valid_membership",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must hold a current library membership.",
+  "action": "borrow_book",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "borrow_book",
+    "check_return_date",
+    "[says: You have successfully logged in to your account with the username \"pepperoni.\" \n\nI have also processed your request to borrow the book \"Pride and Prejudice.\" The return date for the book is set to **O...]"
+  ],
+  "timestamp": "2026-05-22T17:29:48.764911"
+}

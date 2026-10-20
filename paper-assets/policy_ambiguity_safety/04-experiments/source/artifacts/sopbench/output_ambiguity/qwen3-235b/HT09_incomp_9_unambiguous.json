@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 16,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_valid_room_change_reason",
+    "internal_get_room_checkin_details",
+    "internal_get_booking_details",
+    "[says: The guest \"John Doe\" has already made 1 room change during their stay, which meets the maximum allowed room changes (less than 1 is required). Therefore, the room change request cannot be processed.\n\n...]",
+    "[says: The guest \"John Doe\" has already utilized 1 room change during their stay, which violates the constraint requiring fewer than 1 prior room changes. The request cannot be processed further.\n\n<exit_conv...]",
+    "[says: The guest \"John Doe\" has already made 1 room change during their stay, which meets the maximum allowed room changes (less than 1 is required). Therefore, the room change request cannot be processed.\n\n...]",
+    "[says: The guest \"John Doe\" has already made 1 room change during their stay, which violates the constraint requiring fewer than 1 prior room changes. The request cannot be processed further.\n\n<exit_conversa...]",
+    "[says: The guest \"John Doe\" has already made 1 room change during their stay, which violates the constraint requiring fewer than 1 prior room changes. The request cannot be processed further.\n\n<exit_conversa...]",
+    "[says: The guest \"John Doe\" has already made 1 room change during their stay, which violates the constraint requiring fewer than 1 prior room changes. The request cannot be processed further.\n\n<exit_conversa...]",
+    "[says: The guest \"John Doe\" has already utilized 1 room change during their stay, which violates the constraint requiring fewer than 1 prior room changes. The request cannot be processed further.\n\n<exit_conv...]"
+  ],
+  "timestamp": "2026-05-22T17:25:28.841396"
+}

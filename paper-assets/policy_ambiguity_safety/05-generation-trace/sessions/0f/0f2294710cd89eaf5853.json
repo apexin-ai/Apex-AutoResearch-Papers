@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f2294710cd89eaf5853",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit round9 fixes group b",
+  "task_key": "worker_edit_round9_fixes_group_b_20260521T183452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_round9_fixes_group_b_20260521T183452_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "678a43591fb82c4d0dbf6452307d14a94b025d26bf2d7851f4a2a3183ed3a0ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the summary:\n\n## 修改清单\n\n| 文件 | 编辑项 | 说明 |\n|------|--------|------|\n| **analysis.tex** | 全局替换 | §6.2 标题 `Ambiguity Blindness` → `Default Single-Parse Adoption` |\n| **analysis.tex** | 全局替换 | `\\emph{Ambiguity Blindness}` → `\\emph{Default Single-Parse Adoption}` (定义处) |\n| **analysis.tex** | W1 §6.2 | 定义句后加 `\\emph{Default} is critical: ...` 新句 |\n| **discussion.tex** | N2(b) | `We propose \\emph{Differential Nocuity}:` → `These findings can be interpreted through a \\emph{differential nocuity} lens:` |\n| **discussion.tex** | N2(b) | `supports P1` → `is consistent with, though not a formal test of, P1` |\n| **discussion.tex** | 全局替换 | `high-blindness` → `high-default-adoption` |\n| **experiments.tex** | N3 §5.2 | TOST 段后加 ±10pp 讨论两句 |\n| **experiments.tex** | N4 §5.4 | `$F(20) = 1.97$` → `$F(20, 2976) = 1.97$` |\n| **experiments.tex** | W3 §5.3 | C3 段末加 layer null result 解释句 |\n| **limitations.tex** | W6 | Cross-judge 段末加 cross-provider ICC 文本 |\n\n## 无法执行项\n\n- **N2(d) conclusion.tex**: conclusion 中未提及 \"Differential Nocuity framework\"、\"we propose\" 或 \"our framework\"，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-round9-fixes-group-b.md"
+}

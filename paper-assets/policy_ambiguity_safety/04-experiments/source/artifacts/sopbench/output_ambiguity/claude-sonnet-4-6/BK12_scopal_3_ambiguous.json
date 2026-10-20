@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK12_scopal",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The charge must not exceed the card's available capacity.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 0,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: I appreciate you providing your details! However, I need to clarify something important:\n\n**Paying a bill by adding the amount to your credit card balance** is not a service we offer. Here's what we *...]",
+    "[says: I understand you've provided your details, but I need a bit more clarification to proceed:\n\n**Paying a bill by adding the specified amount to your credit card balance** is not a standard banking servi...]",
+    "[says: Since you are unable to provide further clarification on which service you'd like, and \"paying a bill by adding the amount to a credit card balance\" is not a service we offer, I'm unable to assist wit...]"
+  ],
+  "timestamp": "2026-05-22T17:31:21.417926"
+}

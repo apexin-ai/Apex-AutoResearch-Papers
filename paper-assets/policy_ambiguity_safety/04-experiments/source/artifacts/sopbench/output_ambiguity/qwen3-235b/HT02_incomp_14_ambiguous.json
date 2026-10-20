@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The booking must be made within an acceptable advance booking window.",
+  "action": "book_room",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "book_room",
+    "[says: The booking for Alice Williams has been successfully processed. A single room is reserved from 2024-12-05 to 2024-12-06. The payment of $160.00 covers the total cost of the reservation. \n\nIs there any...]"
+  ],
+  "timestamp": "2026-05-22T17:24:01.557093"
+}

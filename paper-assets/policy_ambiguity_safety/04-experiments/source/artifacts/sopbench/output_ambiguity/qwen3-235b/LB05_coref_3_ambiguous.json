@@ -1,0 +1,35 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The book in question must be currently checked out to the requesting user.",
+  "action": "return_book",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "return_book",
+    "internal_check_book_exist",
+    "internal_convert_book_title_to_id",
+    "[says: The book \"One Hundred Years of Solitude\" (ID: 02Y6GFA) is not currently checked out to your account \"Grimoire\". This means:\n\n1. The book cannot be returned because it's not in your borrowed list\n2. Th...]"
+  ],
+  "timestamp": "2026-05-22T19:51:54.554675"
+}

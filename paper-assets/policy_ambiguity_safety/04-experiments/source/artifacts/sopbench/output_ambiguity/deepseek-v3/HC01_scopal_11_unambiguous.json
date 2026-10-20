@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The total amount of pending and approved claims for the user \"{username}\" **MUST NOT EXCEED** the coverage amount specified in their policy when submitting a new claim.",
+  "action": "submit_claim",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_provider_details",
+    "[says: The provider \"Kaiser Permanente\" is currently unavailable for appointments, and their service type is \"Pharmacy,\" which does not match your policy type of \"Health.\" Additionally, they are not listed a...]",
+    "[says: Given the constraints and the information provided, I cannot proceed with submitting your claim for the following reasons:\n\n1. The provider \"Kaiser Permanente\" is currently unavailable.\n2. Their servi...]"
+  ],
+  "timestamp": "2026-05-22T23:45:29.063540"
+}

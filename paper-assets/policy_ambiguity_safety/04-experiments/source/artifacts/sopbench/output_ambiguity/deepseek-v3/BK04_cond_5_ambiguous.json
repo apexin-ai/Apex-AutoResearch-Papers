@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK04_cond",
+  "domain": "bank",
+  "constraint": "pay_loan_amount_restr",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The user should have adequate balance to support the loan payment they are requesting.",
+  "action": "pay_loan",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'm sorry, but I couldn't verify your login credentials. Please ensure that your username and driver's license information are correct and try again. If you're still having trouble, you may want to co...]",
+    "login_user",
+    "[says: I'm sorry, but I still couldn't verify your login credentials with the provided information. Since we're unable to authenticate your account, I won't be able to assist with paying off your loan at thi...]"
+  ],
+  "timestamp": "2026-05-22T18:02:58.057627"
+}

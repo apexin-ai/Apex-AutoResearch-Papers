@@ -1,0 +1,4559 @@
+[
+  {
+    "pair_id": "HC02_incomp",
+    "domain": "healthcare",
+    "constraint_name": "claim_within_limits",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "submit_claim"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "submit_claim",
+        3
+      ],
+      [
+        "submit_claim",
+        5
+      ],
+      [
+        "submit_claim",
+        6
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC03_incomp",
+    "domain": "healthcare",
+    "constraint_name": "income_proof_enough",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "update_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        3
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        19
+      ],
+      [
+        "update_policy",
+        20
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC04_incomp",
+    "domain": "healthcare",
+    "constraint_name": "within_enrollment_period",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "update_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        1
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC05_incomp",
+    "domain": "healthcare",
+    "constraint_name": "within_appeal_period",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "appeal_claim"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "appeal_claim",
+        1
+      ],
+      [
+        "appeal_claim",
+        5
+      ],
+      [
+        "appeal_claim",
+        6
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC14_incomp",
+    "domain": "healthcare",
+    "constraint_name": "policy_type_valid",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "update_policy",
+      "reactivate_policy"
+    ],
+    "neg_task_count": 21,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        5
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        19
+      ],
+      [
+        "update_policy",
+        20
+      ],
+      [
+        "update_policy",
+        22
+      ],
+      [
+        "update_policy",
+        23
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ],
+      [
+        "reactivate_policy",
+        5
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK02_incomp",
+    "domain": "bank",
+    "constraint_name": "get_loan_owed_balance_restr",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "get_loan"
+    ],
+    "neg_task_count": 8,
+    "neg_task_indices": [
+      [
+        "get_loan",
+        1
+      ],
+      [
+        "get_loan",
+        3
+      ],
+      [
+        "get_loan",
+        4
+      ],
+      [
+        "get_loan",
+        6
+      ],
+      [
+        "get_loan",
+        7
+      ],
+      [
+        "get_loan",
+        9
+      ],
+      [
+        "get_loan",
+        10
+      ],
+      [
+        "get_loan",
+        11
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK05_incomp",
+    "domain": "bank",
+    "constraint_name": "minimal_elgibile_credit_score",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "apply_credit_card",
+      "get_loan",
+      "set_safety_box"
+    ],
+    "neg_task_count": 25,
+    "neg_task_indices": [
+      [
+        "apply_credit_card",
+        3
+      ],
+      [
+        "apply_credit_card",
+        7
+      ],
+      [
+        "apply_credit_card",
+        8
+      ],
+      [
+        "get_loan",
+        6
+      ],
+      [
+        "get_loan",
+        7
+      ],
+      [
+        "get_loan",
+        9
+      ],
+      [
+        "get_loan",
+        10
+      ],
+      [
+        "get_loan",
+        11
+      ],
+      [
+        "set_safety_box",
+        10
+      ],
+      [
+        "set_safety_box",
+        11
+      ],
+      [
+        "set_safety_box",
+        12
+      ],
+      [
+        "set_safety_box",
+        14
+      ],
+      [
+        "set_safety_box",
+        15
+      ],
+      [
+        "set_safety_box",
+        20
+      ],
+      [
+        "set_safety_box",
+        21
+      ],
+      [
+        "set_safety_box",
+        23
+      ],
+      [
+        "set_safety_box",
+        24
+      ],
+      [
+        "set_safety_box",
+        25
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK09_incomp",
+    "domain": "bank",
+    "constraint_name": "safety_box_eligible",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "set_safety_box"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "set_safety_box",
+        1
+      ],
+      [
+        "set_safety_box",
+        3
+      ],
+      [
+        "set_safety_box",
+        4
+      ],
+      [
+        "set_safety_box",
+        6
+      ],
+      [
+        "set_safety_box",
+        7
+      ],
+      [
+        "set_safety_box",
+        8
+      ],
+      [
+        "set_safety_box",
+        14
+      ],
+      [
+        "set_safety_box",
+        15
+      ],
+      [
+        "set_safety_box",
+        17
+      ],
+      [
+        "set_safety_box",
+        18
+      ],
+      [
+        "set_safety_box",
+        23
+      ],
+      [
+        "set_safety_box",
+        24
+      ],
+      [
+        "set_safety_box",
+        25
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK10_incomp",
+    "domain": "bank",
+    "constraint_name": "maximum_deposit_limit",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "deposit_funds"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "deposit_funds",
+        1
+      ],
+      [
+        "deposit_funds",
+        3
+      ],
+      [
+        "deposit_funds",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK11_incomp",
+    "domain": "bank",
+    "constraint_name": "maximum_exchange_amount",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "exchange_foreign_currency"
+    ],
+    "neg_task_count": 1,
+    "neg_task_indices": [
+      [
+        "exchange_foreign_currency",
+        3
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "HT02_incomp",
+    "domain": "hotel",
+    "constraint_name": "is_booking_date_within_lead_time_range",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "book_room",
+      "modify_reservation"
+    ],
+    "neg_task_count": 56,
+    "neg_task_indices": [
+      [
+        "book_room",
+        6
+      ],
+      [
+        "book_room",
+        13
+      ],
+      [
+        "book_room",
+        14
+      ],
+      [
+        "book_room",
+        26
+      ],
+      [
+        "book_room",
+        27
+      ],
+      [
+        "book_room",
+        28
+      ],
+      [
+        "book_room",
+        29
+      ],
+      [
+        "book_room",
+        30
+      ],
+      [
+        "book_room",
+        34
+      ],
+      [
+        "book_room",
+        35
+      ],
+      [
+        "book_room",
+        36
+      ],
+      [
+        "book_room",
+        37
+      ],
+      [
+        "book_room",
+        38
+      ],
+      [
+        "book_room",
+        39
+      ],
+      [
+        "book_room",
+        40
+      ],
+      [
+        "book_room",
+        41
+      ],
+      [
+        "modify_reservation",
+        7
+      ],
+      [
+        "modify_reservation",
+        16
+      ],
+      [
+        "modify_reservation",
+        17
+      ],
+      [
+        "modify_reservation",
+        30
+      ],
+      [
+        "modify_reservation",
+        31
+      ],
+      [
+        "modify_reservation",
+        35
+      ],
+      [
+        "modify_reservation",
+        36
+      ],
+      [
+        "modify_reservation",
+        37
+      ],
+      [
+        "modify_reservation",
+        38
+      ],
+      [
+        "modify_reservation",
+        39
+      ],
+      [
+        "modify_reservation",
+        49
+      ],
+      [
+        "modify_reservation",
+        50
+      ],
+      [
+        "modify_reservation",
+        51
+      ],
+      [
+        "modify_reservation",
+        55
+      ],
+      [
+        "modify_reservation",
+        56
+      ],
+      [
+        "modify_reservation",
+        57
+      ],
+      [
+        "modify_reservation",
+        58
+      ],
+      [
+        "modify_reservation",
+        59
+      ],
+      [
+        "modify_reservation",
+        60
+      ],
+      [
+        "modify_reservation",
+        61
+      ],
+      [
+        "modify_reservation",
+        62
+      ],
+      [
+        "modify_reservation",
+        77
+      ],
+      [
+        "modify_reservation",
+        78
+      ],
+      [
+        "modify_reservation",
+        79
+      ],
+      [
+        "modify_reservation",
+        80
+      ],
+      [
+        "modify_reservation",
+        81
+      ],
+      [
+        "modify_reservation",
+        82
+      ],
+      [
+        "modify_reservation",
+        83
+      ],
+      [
+        "modify_reservation",
+        84
+      ],
+      [
+        "modify_reservation",
+        88
+      ],
+      [
+        "modify_reservation",
+        89
+      ],
+      [
+        "modify_reservation",
+        90
+      ],
+      [
+        "modify_reservation",
+        91
+      ],
+      [
+        "modify_reservation",
+        92
+      ],
+      [
+        "modify_reservation",
+        93
+      ],
+      [
+        "modify_reservation",
+        94
+      ],
+      [
+        "modify_reservation",
+        95
+      ],
+      [
+        "modify_reservation",
+        96
+      ],
+      [
+        "modify_reservation",
+        97
+      ],
+      [
+        "modify_reservation",
+        98
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HT09_incomp",
+    "domain": "hotel",
+    "constraint_name": "within_max_room_changes",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "request_room_change"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "request_room_change",
+        9
+      ],
+      [
+        "request_room_change",
+        11
+      ],
+      [
+        "request_room_change",
+        12
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HT10_incomp",
+    "domain": "hotel",
+    "constraint_name": "within_room_service_order_daily_limit",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "place_room_service_order"
+    ],
+    "neg_task_count": 5,
+    "neg_task_indices": [
+      [
+        "place_room_service_order",
+        9
+      ],
+      [
+        "place_room_service_order",
+        10
+      ],
+      [
+        "place_room_service_order",
+        14
+      ],
+      [
+        "place_room_service_order",
+        15
+      ],
+      [
+        "place_room_service_order",
+        16
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "LB01_incomp",
+    "domain": "library",
+    "constraint_name": "within_borrow_limit",
+    "ambiguity_type": "incompleteness",
+    "applicable_actions": [
+      "borrow_book"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "borrow_book",
+        11
+      ],
+      [
+        "borrow_book",
+        18
+      ],
+      [
+        "borrow_book",
+        19
+      ],
+      [
+        "borrow_book",
+        22
+      ],
+      [
+        "borrow_book",
+        23
+      ],
+      [
+        "borrow_book",
+        24
+      ],
+      [
+        "borrow_book",
+        27
+      ],
+      [
+        "borrow_book",
+        28
+      ],
+      [
+        "borrow_book",
+        29
+      ],
+      [
+        "borrow_book",
+        30
+      ],
+      [
+        "borrow_book",
+        31
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC04_lexical",
+    "domain": "healthcare",
+    "constraint_name": "within_enrollment_period",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "update_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        1
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC06_lexical",
+    "domain": "healthcare",
+    "constraint_name": "no_pending_claims",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "update_policy",
+      "deactivate_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        22
+      ],
+      [
+        "update_policy",
+        23
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ],
+      [
+        "deactivate_policy",
+        1
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC07_lexical",
+    "domain": "healthcare",
+    "constraint_name": "policy_active",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "update_policy",
+      "submit_claim",
+      "add_authorized_provider",
+      "deactivate_policy",
+      "schedule_appointment",
+      "appeal_claim"
+    ],
+    "neg_task_count": 71,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        1
+      ],
+      [
+        "update_policy",
+        3
+      ],
+      [
+        "update_policy",
+        5
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        19
+      ],
+      [
+        "update_policy",
+        20
+      ],
+      [
+        "update_policy",
+        22
+      ],
+      [
+        "update_policy",
+        23
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ],
+      [
+        "submit_claim",
+        1
+      ],
+      [
+        "submit_claim",
+        3
+      ],
+      [
+        "submit_claim",
+        5
+      ],
+      [
+        "submit_claim",
+        6
+      ],
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ],
+      [
+        "add_authorized_provider",
+        1
+      ],
+      [
+        "add_authorized_provider",
+        2
+      ],
+      [
+        "add_authorized_provider",
+        3
+      ],
+      [
+        "add_authorized_provider",
+        5
+      ],
+      [
+        "deactivate_policy",
+        1
+      ],
+      [
+        "schedule_appointment",
+        1
+      ],
+      [
+        "schedule_appointment",
+        3
+      ],
+      [
+        "schedule_appointment",
+        6
+      ],
+      [
+        "schedule_appointment",
+        8
+      ],
+      [
+        "schedule_appointment",
+        9
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ],
+      [
+        "appeal_claim",
+        1
+      ],
+      [
+        "appeal_claim",
+        3
+      ],
+      [
+        "appeal_claim",
+        5
+      ],
+      [
+        "appeal_claim",
+        6
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC12_lexical",
+    "domain": "healthcare",
+    "constraint_name": "provider_available",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "schedule_appointment"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "schedule_appointment",
+        1
+      ],
+      [
+        "schedule_appointment",
+        8
+      ],
+      [
+        "schedule_appointment",
+        9
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC13_lexical",
+    "domain": "healthcare",
+    "constraint_name": "claim_status_denied",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "appeal_claim"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "appeal_claim",
+        3
+      ],
+      [
+        "appeal_claim",
+        5
+      ],
+      [
+        "appeal_claim",
+        6
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK02_lexical",
+    "domain": "bank",
+    "constraint_name": "get_loan_owed_balance_restr",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "get_loan"
+    ],
+    "neg_task_count": 8,
+    "neg_task_indices": [
+      [
+        "get_loan",
+        1
+      ],
+      [
+        "get_loan",
+        3
+      ],
+      [
+        "get_loan",
+        4
+      ],
+      [
+        "get_loan",
+        6
+      ],
+      [
+        "get_loan",
+        7
+      ],
+      [
+        "get_loan",
+        9
+      ],
+      [
+        "get_loan",
+        10
+      ],
+      [
+        "get_loan",
+        11
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK05_lexical",
+    "domain": "bank",
+    "constraint_name": "minimal_elgibile_credit_score",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "apply_credit_card",
+      "get_loan",
+      "set_safety_box"
+    ],
+    "neg_task_count": 25,
+    "neg_task_indices": [
+      [
+        "apply_credit_card",
+        3
+      ],
+      [
+        "apply_credit_card",
+        7
+      ],
+      [
+        "apply_credit_card",
+        8
+      ],
+      [
+        "get_loan",
+        6
+      ],
+      [
+        "get_loan",
+        7
+      ],
+      [
+        "get_loan",
+        9
+      ],
+      [
+        "get_loan",
+        10
+      ],
+      [
+        "get_loan",
+        11
+      ],
+      [
+        "set_safety_box",
+        10
+      ],
+      [
+        "set_safety_box",
+        11
+      ],
+      [
+        "set_safety_box",
+        12
+      ],
+      [
+        "set_safety_box",
+        14
+      ],
+      [
+        "set_safety_box",
+        15
+      ],
+      [
+        "set_safety_box",
+        20
+      ],
+      [
+        "set_safety_box",
+        21
+      ],
+      [
+        "set_safety_box",
+        23
+      ],
+      [
+        "set_safety_box",
+        24
+      ],
+      [
+        "set_safety_box",
+        25
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK06_lexical",
+    "domain": "bank",
+    "constraint_name": "no_owed_balance",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "open_account"
+    ],
+    "neg_task_count": 2,
+    "neg_task_indices": [
+      [
+        "open_account",
+        2
+      ],
+      [
+        "open_account",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "BK12_lexical",
+    "domain": "bank",
+    "constraint_name": "not_over_credit_limit",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "pay_bill_with_credit_card"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "pay_bill_with_credit_card",
+        1
+      ],
+      [
+        "pay_bill_with_credit_card",
+        3
+      ],
+      [
+        "pay_bill_with_credit_card",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "LB02_lexical",
+    "domain": "library",
+    "constraint_name": "valid_membership",
+    "ambiguity_type": "lexical",
+    "applicable_actions": [
+      "borrow_book",
+      "reserve_room"
+    ],
+    "neg_task_count": 18,
+    "neg_task_indices": [
+      [
+        "borrow_book",
+        9
+      ],
+      [
+        "borrow_book",
+        14
+      ],
+      [
+        "borrow_book",
+        15
+      ],
+      [
+        "borrow_book",
+        16
+      ],
+      [
+        "borrow_book",
+        22
+      ],
+      [
+        "borrow_book",
+        23
+      ],
+      [
+        "borrow_book",
+        24
+      ],
+      [
+        "borrow_book",
+        27
+      ],
+      [
+        "borrow_book",
+        28
+      ],
+      [
+        "borrow_book",
+        29
+      ],
+      [
+        "borrow_book",
+        30
+      ],
+      [
+        "borrow_book",
+        31
+      ],
+      [
+        "reserve_room",
+        5
+      ],
+      [
+        "reserve_room",
+        8
+      ],
+      [
+        "reserve_room",
+        9
+      ],
+      [
+        "reserve_room",
+        10
+      ],
+      [
+        "reserve_room",
+        11
+      ],
+      [
+        "reserve_room",
+        12
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC01_scopal",
+    "domain": "healthcare",
+    "constraint_name": "claim_within_coverage_amount",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "submit_claim"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "submit_claim",
+        1
+      ],
+      [
+        "submit_claim",
+        5
+      ],
+      [
+        "submit_claim",
+        6
+      ],
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC06_scopal",
+    "domain": "healthcare",
+    "constraint_name": "no_pending_claims",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "update_policy",
+      "deactivate_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        22
+      ],
+      [
+        "update_policy",
+        23
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ],
+      [
+        "deactivate_policy",
+        1
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC09_scopal",
+    "domain": "healthcare",
+    "constraint_name": "provider_covers_policy",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "submit_claim",
+      "schedule_appointment"
+    ],
+    "neg_task_count": 23,
+    "neg_task_indices": [
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ],
+      [
+        "schedule_appointment",
+        6
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC11_scopal",
+    "domain": "healthcare",
+    "constraint_name": "provider_not_already_authorized",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "add_authorized_provider"
+    ],
+    "neg_task_count": 1,
+    "neg_task_indices": [
+      [
+        "add_authorized_provider",
+        5
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "HC15_scopal",
+    "domain": "healthcare",
+    "constraint_name": "appointment_date_valid",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "schedule_appointment"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "schedule_appointment",
+        3
+      ],
+      [
+        "schedule_appointment",
+        8
+      ],
+      [
+        "schedule_appointment",
+        9
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC17_scopal",
+    "domain": "healthcare",
+    "constraint_name": "amount_positive_restr",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "submit_claim",
+      "update_policy"
+    ],
+    "neg_task_count": 0,
+    "neg_task_indices": [],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2717"
+  },
+  {
+    "pair_id": "BK01_scopal",
+    "domain": "bank",
+    "constraint_name": "sufficient_account_balance",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "transfer_funds",
+      "pay_bill"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "transfer_funds",
+        10
+      ],
+      [
+        "transfer_funds",
+        14
+      ],
+      [
+        "transfer_funds",
+        15
+      ],
+      [
+        "transfer_funds",
+        17
+      ],
+      [
+        "transfer_funds",
+        18
+      ],
+      [
+        "transfer_funds",
+        19
+      ],
+      [
+        "transfer_funds",
+        21
+      ],
+      [
+        "transfer_funds",
+        22
+      ],
+      [
+        "pay_bill",
+        1
+      ],
+      [
+        "pay_bill",
+        3
+      ],
+      [
+        "pay_bill",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK07_scopal",
+    "domain": "bank",
+    "constraint_name": "no_credit_card_balance",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "open_account"
+    ],
+    "neg_task_count": 2,
+    "neg_task_indices": [
+      [
+        "open_account",
+        3
+      ],
+      [
+        "open_account",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "BK12_scopal",
+    "domain": "bank",
+    "constraint_name": "not_over_credit_limit",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "pay_bill_with_credit_card"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "pay_bill_with_credit_card",
+        1
+      ],
+      [
+        "pay_bill_with_credit_card",
+        3
+      ],
+      [
+        "pay_bill_with_credit_card",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "LB06_scopal",
+    "domain": "library",
+    "constraint_name": "database_book_not_borrowed",
+    "ambiguity_type": "scopal",
+    "applicable_actions": [
+      "remove_book"
+    ],
+    "neg_task_count": 1,
+    "neg_task_indices": [
+      [
+        "remove_book",
+        1
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "HC10_auth",
+    "domain": "healthcare",
+    "constraint_name": "provider_authorized",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "submit_claim",
+      "schedule_appointment"
+    ],
+    "neg_task_count": 23,
+    "neg_task_indices": [
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ],
+      [
+        "schedule_appointment",
+        6
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC16_auth",
+    "domain": "healthcare",
+    "constraint_name": "logged_in_user",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "update_policy",
+      "submit_claim",
+      "add_authorized_provider",
+      "get_claim_details",
+      "get_claim_history",
+      "deactivate_policy",
+      "schedule_appointment",
+      "appeal_claim",
+      "get_policy_details"
+    ],
+    "neg_task_count": 75,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        1
+      ],
+      [
+        "update_policy",
+        3
+      ],
+      [
+        "update_policy",
+        5
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        19
+      ],
+      [
+        "update_policy",
+        20
+      ],
+      [
+        "update_policy",
+        22
+      ],
+      [
+        "update_policy",
+        23
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ],
+      [
+        "submit_claim",
+        1
+      ],
+      [
+        "submit_claim",
+        3
+      ],
+      [
+        "submit_claim",
+        5
+      ],
+      [
+        "submit_claim",
+        6
+      ],
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ],
+      [
+        "add_authorized_provider",
+        1
+      ],
+      [
+        "add_authorized_provider",
+        2
+      ],
+      [
+        "add_authorized_provider",
+        3
+      ],
+      [
+        "add_authorized_provider",
+        5
+      ],
+      [
+        "get_claim_details",
+        1
+      ],
+      [
+        "get_claim_details",
+        2
+      ],
+      [
+        "deactivate_policy",
+        1
+      ],
+      [
+        "schedule_appointment",
+        1
+      ],
+      [
+        "schedule_appointment",
+        3
+      ],
+      [
+        "schedule_appointment",
+        6
+      ],
+      [
+        "schedule_appointment",
+        8
+      ],
+      [
+        "schedule_appointment",
+        9
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ],
+      [
+        "appeal_claim",
+        1
+      ],
+      [
+        "appeal_claim",
+        3
+      ],
+      [
+        "appeal_claim",
+        5
+      ],
+      [
+        "appeal_claim",
+        6
+      ],
+      [
+        "get_policy_details",
+        1
+      ],
+      [
+        "get_policy_details",
+        2
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK13_auth",
+    "domain": "bank",
+    "constraint_name": "logged_in_user",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "get_account_balance",
+      "transfer_funds",
+      "deposit_funds",
+      "pay_bill",
+      "pay_bill_with_credit_card",
+      "apply_credit_card",
+      "get_account_owed_balance",
+      "get_loan",
+      "pay_loan",
+      "get_credit_card_info"
+    ],
+    "neg_task_count": 24,
+    "neg_task_indices": [
+      [
+        "transfer_funds",
+        5
+      ],
+      [
+        "transfer_funds",
+        12
+      ],
+      [
+        "transfer_funds",
+        14
+      ],
+      [
+        "transfer_funds",
+        15
+      ],
+      [
+        "transfer_funds",
+        21
+      ],
+      [
+        "transfer_funds",
+        22
+      ],
+      [
+        "deposit_funds",
+        3
+      ],
+      [
+        "deposit_funds",
+        4
+      ],
+      [
+        "pay_bill",
+        3
+      ],
+      [
+        "pay_bill",
+        4
+      ],
+      [
+        "pay_bill_with_credit_card",
+        3
+      ],
+      [
+        "pay_bill_with_credit_card",
+        4
+      ],
+      [
+        "apply_credit_card",
+        5
+      ],
+      [
+        "apply_credit_card",
+        7
+      ],
+      [
+        "apply_credit_card",
+        8
+      ],
+      [
+        "get_account_owed_balance",
+        1
+      ],
+      [
+        "get_loan",
+        3
+      ],
+      [
+        "get_loan",
+        4
+      ],
+      [
+        "get_loan",
+        9
+      ],
+      [
+        "get_loan",
+        10
+      ],
+      [
+        "get_loan",
+        11
+      ],
+      [
+        "pay_loan",
+        5
+      ],
+      [
+        "pay_loan",
+        6
+      ],
+      [
+        "pay_loan",
+        7
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK14_auth",
+    "domain": "bank",
+    "constraint_name": "authenticated_admin_password",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "set_admin_password",
+      "set_account_information",
+      "close_account",
+      "transfer_funds",
+      "cancel_credit_card",
+      "get_safety_box",
+      "set_safety_box",
+      "get_credit_cards"
+    ],
+    "neg_task_count": 35,
+    "neg_task_indices": [
+      [
+        "set_account_information",
+        1
+      ],
+      [
+        "close_account",
+        1
+      ],
+      [
+        "transfer_funds",
+        7
+      ],
+      [
+        "transfer_funds",
+        8
+      ],
+      [
+        "transfer_funds",
+        12
+      ],
+      [
+        "transfer_funds",
+        17
+      ],
+      [
+        "transfer_funds",
+        18
+      ],
+      [
+        "transfer_funds",
+        19
+      ],
+      [
+        "transfer_funds",
+        21
+      ],
+      [
+        "transfer_funds",
+        22
+      ],
+      [
+        "cancel_credit_card",
+        1
+      ],
+      [
+        "cancel_credit_card",
+        2
+      ],
+      [
+        "cancel_credit_card",
+        6
+      ],
+      [
+        "cancel_credit_card",
+        11
+      ],
+      [
+        "cancel_credit_card",
+        12
+      ],
+      [
+        "cancel_credit_card",
+        13
+      ],
+      [
+        "cancel_credit_card",
+        15
+      ],
+      [
+        "cancel_credit_card",
+        16
+      ],
+      [
+        "set_safety_box",
+        6
+      ],
+      [
+        "set_safety_box",
+        7
+      ],
+      [
+        "set_safety_box",
+        8
+      ],
+      [
+        "set_safety_box",
+        10
+      ],
+      [
+        "set_safety_box",
+        11
+      ],
+      [
+        "set_safety_box",
+        12
+      ],
+      [
+        "set_safety_box",
+        17
+      ],
+      [
+        "set_safety_box",
+        18
+      ],
+      [
+        "set_safety_box",
+        20
+      ],
+      [
+        "set_safety_box",
+        21
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK09_auth",
+    "domain": "bank",
+    "constraint_name": "safety_box_eligible",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "set_safety_box"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "set_safety_box",
+        1
+      ],
+      [
+        "set_safety_box",
+        3
+      ],
+      [
+        "set_safety_box",
+        4
+      ],
+      [
+        "set_safety_box",
+        6
+      ],
+      [
+        "set_safety_box",
+        7
+      ],
+      [
+        "set_safety_box",
+        8
+      ],
+      [
+        "set_safety_box",
+        14
+      ],
+      [
+        "set_safety_box",
+        15
+      ],
+      [
+        "set_safety_box",
+        17
+      ],
+      [
+        "set_safety_box",
+        18
+      ],
+      [
+        "set_safety_box",
+        23
+      ],
+      [
+        "set_safety_box",
+        24
+      ],
+      [
+        "set_safety_box",
+        25
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HT07_auth",
+    "domain": "hotel",
+    "constraint_name": "valid_identification",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "process_guest_checkin"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "process_guest_checkin",
+        1
+      ],
+      [
+        "process_guest_checkin",
+        5
+      ],
+      [
+        "process_guest_checkin",
+        6
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HT12_auth",
+    "domain": "hotel",
+    "constraint_name": "is_gold_or_higher_member",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "book_room",
+      "modify_reservation"
+    ],
+    "neg_task_count": 72,
+    "neg_task_indices": [
+      [
+        "book_room",
+        10
+      ],
+      [
+        "book_room",
+        11
+      ],
+      [
+        "book_room",
+        18
+      ],
+      [
+        "book_room",
+        19
+      ],
+      [
+        "book_room",
+        20
+      ],
+      [
+        "book_room",
+        21
+      ],
+      [
+        "book_room",
+        22
+      ],
+      [
+        "book_room",
+        26
+      ],
+      [
+        "book_room",
+        27
+      ],
+      [
+        "book_room",
+        28
+      ],
+      [
+        "book_room",
+        29
+      ],
+      [
+        "book_room",
+        30
+      ],
+      [
+        "book_room",
+        34
+      ],
+      [
+        "book_room",
+        35
+      ],
+      [
+        "book_room",
+        36
+      ],
+      [
+        "book_room",
+        37
+      ],
+      [
+        "book_room",
+        38
+      ],
+      [
+        "book_room",
+        39
+      ],
+      [
+        "book_room",
+        40
+      ],
+      [
+        "book_room",
+        41
+      ],
+      [
+        "modify_reservation",
+        13
+      ],
+      [
+        "modify_reservation",
+        14
+      ],
+      [
+        "modify_reservation",
+        24
+      ],
+      [
+        "modify_reservation",
+        25
+      ],
+      [
+        "modify_reservation",
+        26
+      ],
+      [
+        "modify_reservation",
+        27
+      ],
+      [
+        "modify_reservation",
+        28
+      ],
+      [
+        "modify_reservation",
+        35
+      ],
+      [
+        "modify_reservation",
+        36
+      ],
+      [
+        "modify_reservation",
+        37
+      ],
+      [
+        "modify_reservation",
+        38
+      ],
+      [
+        "modify_reservation",
+        39
+      ],
+      [
+        "modify_reservation",
+        43
+      ],
+      [
+        "modify_reservation",
+        44
+      ],
+      [
+        "modify_reservation",
+        45
+      ],
+      [
+        "modify_reservation",
+        46
+      ],
+      [
+        "modify_reservation",
+        47
+      ],
+      [
+        "modify_reservation",
+        55
+      ],
+      [
+        "modify_reservation",
+        56
+      ],
+      [
+        "modify_reservation",
+        57
+      ],
+      [
+        "modify_reservation",
+        58
+      ],
+      [
+        "modify_reservation",
+        59
+      ],
+      [
+        "modify_reservation",
+        60
+      ],
+      [
+        "modify_reservation",
+        61
+      ],
+      [
+        "modify_reservation",
+        62
+      ],
+      [
+        "modify_reservation",
+        66
+      ],
+      [
+        "modify_reservation",
+        67
+      ],
+      [
+        "modify_reservation",
+        68
+      ],
+      [
+        "modify_reservation",
+        69
+      ],
+      [
+        "modify_reservation",
+        70
+      ],
+      [
+        "modify_reservation",
+        71
+      ],
+      [
+        "modify_reservation",
+        72
+      ],
+      [
+        "modify_reservation",
+        73
+      ],
+      [
+        "modify_reservation",
+        77
+      ],
+      [
+        "modify_reservation",
+        78
+      ],
+      [
+        "modify_reservation",
+        79
+      ],
+      [
+        "modify_reservation",
+        80
+      ],
+      [
+        "modify_reservation",
+        81
+      ],
+      [
+        "modify_reservation",
+        82
+      ],
+      [
+        "modify_reservation",
+        83
+      ],
+      [
+        "modify_reservation",
+        84
+      ],
+      [
+        "modify_reservation",
+        88
+      ],
+      [
+        "modify_reservation",
+        89
+      ],
+      [
+        "modify_reservation",
+        90
+      ],
+      [
+        "modify_reservation",
+        91
+      ],
+      [
+        "modify_reservation",
+        92
+      ],
+      [
+        "modify_reservation",
+        93
+      ],
+      [
+        "modify_reservation",
+        94
+      ],
+      [
+        "modify_reservation",
+        95
+      ],
+      [
+        "modify_reservation",
+        96
+      ],
+      [
+        "modify_reservation",
+        97
+      ],
+      [
+        "modify_reservation",
+        98
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "LB08_auth",
+    "domain": "library",
+    "constraint_name": "internal_is_restricted",
+    "ambiguity_type": "authorization_scope",
+    "applicable_actions": [
+      "borrow_book"
+    ],
+    "neg_task_count": 0,
+    "neg_task_indices": [],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2717"
+  },
+  {
+    "pair_id": "HC03_cond",
+    "domain": "healthcare",
+    "constraint_name": "income_proof_enough",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "update_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        3
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        16
+      ],
+      [
+        "update_policy",
+        17
+      ],
+      [
+        "update_policy",
+        19
+      ],
+      [
+        "update_policy",
+        20
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        37
+      ],
+      [
+        "update_policy",
+        38
+      ],
+      [
+        "update_policy",
+        39
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC04_cond",
+    "domain": "healthcare",
+    "constraint_name": "within_enrollment_period",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "update_policy"
+    ],
+    "neg_task_count": 20,
+    "neg_task_indices": [
+      [
+        "update_policy",
+        1
+      ],
+      [
+        "update_policy",
+        7
+      ],
+      [
+        "update_policy",
+        8
+      ],
+      [
+        "update_policy",
+        10
+      ],
+      [
+        "update_policy",
+        11
+      ],
+      [
+        "update_policy",
+        13
+      ],
+      [
+        "update_policy",
+        14
+      ],
+      [
+        "update_policy",
+        25
+      ],
+      [
+        "update_policy",
+        26
+      ],
+      [
+        "update_policy",
+        27
+      ],
+      [
+        "update_policy",
+        29
+      ],
+      [
+        "update_policy",
+        30
+      ],
+      [
+        "update_policy",
+        31
+      ],
+      [
+        "update_policy",
+        33
+      ],
+      [
+        "update_policy",
+        34
+      ],
+      [
+        "update_policy",
+        35
+      ],
+      [
+        "update_policy",
+        41
+      ],
+      [
+        "update_policy",
+        42
+      ],
+      [
+        "update_policy",
+        43
+      ],
+      [
+        "update_policy",
+        44
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC15_cond",
+    "domain": "healthcare",
+    "constraint_name": "appointment_date_valid",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "schedule_appointment"
+    ],
+    "neg_task_count": 11,
+    "neg_task_indices": [
+      [
+        "schedule_appointment",
+        3
+      ],
+      [
+        "schedule_appointment",
+        8
+      ],
+      [
+        "schedule_appointment",
+        9
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK04_cond",
+    "domain": "bank",
+    "constraint_name": "pay_loan_amount_restr",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "pay_loan"
+    ],
+    "neg_task_count": 4,
+    "neg_task_indices": [
+      [
+        "pay_loan",
+        2
+      ],
+      [
+        "pay_loan",
+        5
+      ],
+      [
+        "pay_loan",
+        6
+      ],
+      [
+        "pay_loan",
+        7
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK14_cond",
+    "domain": "bank",
+    "constraint_name": "authenticated_admin_password",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "set_admin_password",
+      "set_account_information",
+      "close_account",
+      "transfer_funds",
+      "cancel_credit_card",
+      "get_safety_box",
+      "set_safety_box",
+      "get_credit_cards"
+    ],
+    "neg_task_count": 35,
+    "neg_task_indices": [
+      [
+        "set_account_information",
+        1
+      ],
+      [
+        "close_account",
+        1
+      ],
+      [
+        "transfer_funds",
+        7
+      ],
+      [
+        "transfer_funds",
+        8
+      ],
+      [
+        "transfer_funds",
+        12
+      ],
+      [
+        "transfer_funds",
+        17
+      ],
+      [
+        "transfer_funds",
+        18
+      ],
+      [
+        "transfer_funds",
+        19
+      ],
+      [
+        "transfer_funds",
+        21
+      ],
+      [
+        "transfer_funds",
+        22
+      ],
+      [
+        "cancel_credit_card",
+        1
+      ],
+      [
+        "cancel_credit_card",
+        2
+      ],
+      [
+        "cancel_credit_card",
+        6
+      ],
+      [
+        "cancel_credit_card",
+        11
+      ],
+      [
+        "cancel_credit_card",
+        12
+      ],
+      [
+        "cancel_credit_card",
+        13
+      ],
+      [
+        "cancel_credit_card",
+        15
+      ],
+      [
+        "cancel_credit_card",
+        16
+      ],
+      [
+        "set_safety_box",
+        6
+      ],
+      [
+        "set_safety_box",
+        7
+      ],
+      [
+        "set_safety_box",
+        8
+      ],
+      [
+        "set_safety_box",
+        10
+      ],
+      [
+        "set_safety_box",
+        11
+      ],
+      [
+        "set_safety_box",
+        12
+      ],
+      [
+        "set_safety_box",
+        17
+      ],
+      [
+        "set_safety_box",
+        18
+      ],
+      [
+        "set_safety_box",
+        20
+      ],
+      [
+        "set_safety_box",
+        21
+      ],
+      [
+        "set_safety_box",
+        27
+      ],
+      [
+        "set_safety_box",
+        28
+      ],
+      [
+        "set_safety_box",
+        29
+      ],
+      [
+        "set_safety_box",
+        30
+      ],
+      [
+        "set_safety_box",
+        32
+      ],
+      [
+        "set_safety_box",
+        33
+      ],
+      [
+        "set_safety_box",
+        34
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK16_cond",
+    "domain": "bank",
+    "constraint_name": "call_get_database",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "get_bank_maximum_loan_amount"
+    ],
+    "neg_task_count": 0,
+    "neg_task_indices": [],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2717"
+  },
+  {
+    "pair_id": "HT05_cond",
+    "domain": "hotel",
+    "constraint_name": "before_modification_deadline",
+    "ambiguity_type": "conditional_precedence",
+    "applicable_actions": [
+      "cancel_reservation",
+      "modify_reservation"
+    ],
+    "neg_task_count": 41,
+    "neg_task_indices": [
+      [
+        "cancel_reservation",
+        3
+      ],
+      [
+        "modify_reservation",
+        9
+      ],
+      [
+        "modify_reservation",
+        19
+      ],
+      [
+        "modify_reservation",
+        20
+      ],
+      [
+        "modify_reservation",
+        30
+      ],
+      [
+        "modify_reservation",
+        31
+      ],
+      [
+        "modify_reservation",
+        43
+      ],
+      [
+        "modify_reservation",
+        44
+      ],
+      [
+        "modify_reservation",
+        45
+      ],
+      [
+        "modify_reservation",
+        46
+      ],
+      [
+        "modify_reservation",
+        47
+      ],
+      [
+        "modify_reservation",
+        49
+      ],
+      [
+        "modify_reservation",
+        50
+      ],
+      [
+        "modify_reservation",
+        51
+      ],
+      [
+        "modify_reservation",
+        66
+      ],
+      [
+        "modify_reservation",
+        67
+      ],
+      [
+        "modify_reservation",
+        68
+      ],
+      [
+        "modify_reservation",
+        69
+      ],
+      [
+        "modify_reservation",
+        70
+      ],
+      [
+        "modify_reservation",
+        71
+      ],
+      [
+        "modify_reservation",
+        72
+      ],
+      [
+        "modify_reservation",
+        73
+      ],
+      [
+        "modify_reservation",
+        77
+      ],
+      [
+        "modify_reservation",
+        78
+      ],
+      [
+        "modify_reservation",
+        79
+      ],
+      [
+        "modify_reservation",
+        80
+      ],
+      [
+        "modify_reservation",
+        81
+      ],
+      [
+        "modify_reservation",
+        82
+      ],
+      [
+        "modify_reservation",
+        83
+      ],
+      [
+        "modify_reservation",
+        84
+      ],
+      [
+        "modify_reservation",
+        88
+      ],
+      [
+        "modify_reservation",
+        89
+      ],
+      [
+        "modify_reservation",
+        90
+      ],
+      [
+        "modify_reservation",
+        91
+      ],
+      [
+        "modify_reservation",
+        92
+      ],
+      [
+        "modify_reservation",
+        93
+      ],
+      [
+        "modify_reservation",
+        94
+      ],
+      [
+        "modify_reservation",
+        95
+      ],
+      [
+        "modify_reservation",
+        96
+      ],
+      [
+        "modify_reservation",
+        97
+      ],
+      [
+        "modify_reservation",
+        98
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC09_coref",
+    "domain": "healthcare",
+    "constraint_name": "provider_covers_policy",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "submit_claim",
+      "schedule_appointment"
+    ],
+    "neg_task_count": 23,
+    "neg_task_indices": [
+      [
+        "submit_claim",
+        9
+      ],
+      [
+        "submit_claim",
+        10
+      ],
+      [
+        "submit_claim",
+        11
+      ],
+      [
+        "submit_claim",
+        14
+      ],
+      [
+        "submit_claim",
+        15
+      ],
+      [
+        "submit_claim",
+        16
+      ],
+      [
+        "submit_claim",
+        19
+      ],
+      [
+        "submit_claim",
+        20
+      ],
+      [
+        "submit_claim",
+        21
+      ],
+      [
+        "submit_claim",
+        22
+      ],
+      [
+        "submit_claim",
+        23
+      ],
+      [
+        "schedule_appointment",
+        6
+      ],
+      [
+        "schedule_appointment",
+        12
+      ],
+      [
+        "schedule_appointment",
+        13
+      ],
+      [
+        "schedule_appointment",
+        14
+      ],
+      [
+        "schedule_appointment",
+        17
+      ],
+      [
+        "schedule_appointment",
+        18
+      ],
+      [
+        "schedule_appointment",
+        19
+      ],
+      [
+        "schedule_appointment",
+        22
+      ],
+      [
+        "schedule_appointment",
+        23
+      ],
+      [
+        "schedule_appointment",
+        24
+      ],
+      [
+        "schedule_appointment",
+        25
+      ],
+      [
+        "schedule_appointment",
+        26
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC05_coref",
+    "domain": "healthcare",
+    "constraint_name": "within_appeal_period",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "appeal_claim"
+    ],
+    "neg_task_count": 3,
+    "neg_task_indices": [
+      [
+        "appeal_claim",
+        1
+      ],
+      [
+        "appeal_claim",
+        5
+      ],
+      [
+        "appeal_claim",
+        6
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HC11_coref",
+    "domain": "healthcare",
+    "constraint_name": "provider_not_already_authorized",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "add_authorized_provider"
+    ],
+    "neg_task_count": 1,
+    "neg_task_indices": [
+      [
+        "add_authorized_provider",
+        5
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "BK03_coref",
+    "domain": "bank",
+    "constraint_name": "pay_loan_account_balance_restr",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "pay_loan"
+    ],
+    "neg_task_count": 4,
+    "neg_task_indices": [
+      [
+        "pay_loan",
+        2
+      ],
+      [
+        "pay_loan",
+        5
+      ],
+      [
+        "pay_loan",
+        6
+      ],
+      [
+        "pay_loan",
+        7
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "BK07_coref",
+    "domain": "bank",
+    "constraint_name": "no_credit_card_balance",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "open_account"
+    ],
+    "neg_task_count": 2,
+    "neg_task_indices": [
+      [
+        "open_account",
+        3
+      ],
+      [
+        "open_account",
+        4
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u26a0"
+  },
+  {
+    "pair_id": "BK08_coref",
+    "domain": "bank",
+    "constraint_name": "no_credit_card_balance_on_card",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "cancel_credit_card"
+    ],
+    "neg_task_count": 8,
+    "neg_task_indices": [
+      [
+        "cancel_credit_card",
+        4
+      ],
+      [
+        "cancel_credit_card",
+        8
+      ],
+      [
+        "cancel_credit_card",
+        9
+      ],
+      [
+        "cancel_credit_card",
+        11
+      ],
+      [
+        "cancel_credit_card",
+        12
+      ],
+      [
+        "cancel_credit_card",
+        13
+      ],
+      [
+        "cancel_credit_card",
+        15
+      ],
+      [
+        "cancel_credit_card",
+        16
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "LB05_coref",
+    "domain": "library",
+    "constraint_name": "user_book_borrowed",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "return_book",
+      "check_return_date"
+    ],
+    "neg_task_count": 6,
+    "neg_task_indices": [
+      [
+        "return_book",
+        1
+      ],
+      [
+        "return_book",
+        2
+      ],
+      [
+        "return_book",
+        3
+      ],
+      [
+        "check_return_date",
+        1
+      ],
+      [
+        "check_return_date",
+        2
+      ],
+      [
+        "check_return_date",
+        3
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  },
+  {
+    "pair_id": "HT11_coref",
+    "domain": "hotel",
+    "constraint_name": "sufficient_payment_for_room_service",
+    "ambiguity_type": "coreferential",
+    "applicable_actions": [
+      "place_room_service_order"
+    ],
+    "neg_task_count": 12,
+    "neg_task_indices": [
+      [
+        "place_room_service_order",
+        2
+      ],
+      [
+        "place_room_service_order",
+        3
+      ],
+      [
+        "place_room_service_order",
+        4
+      ],
+      [
+        "place_room_service_order",
+        5
+      ],
+      [
+        "place_room_service_order",
+        6
+      ],
+      [
+        "place_room_service_order",
+        7
+      ],
+      [
+        "place_room_service_order",
+        9
+      ],
+      [
+        "place_room_service_order",
+        10
+      ],
+      [
+        "place_room_service_order",
+        12
+      ],
+      [
+        "place_room_service_order",
+        14
+      ],
+      [
+        "place_room_service_order",
+        15
+      ],
+      [
+        "place_room_service_order",
+        16
+      ]
+    ],
+    "binding_count": 0,
+    "binding_indices": [],
+    "status": "\u2713"
+  }
+]

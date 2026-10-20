@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK12_scopal",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The charge must not exceed the card's available capacity.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: To help you pay a bill using your credit card, I need to verify your login credentials first. Since you provided your driver's license, I'll use that for authentication.\n\nOnce you're logged in, I'll c...]",
+    "[says: It appears that the driver's license information provided is either incomplete or incorrect. To proceed, I need both the driver's license number and the state in which it is registered.\n\nCould you ple...]"
+  ],
+  "timestamp": "2026-05-22T17:08:37.442237"
+}

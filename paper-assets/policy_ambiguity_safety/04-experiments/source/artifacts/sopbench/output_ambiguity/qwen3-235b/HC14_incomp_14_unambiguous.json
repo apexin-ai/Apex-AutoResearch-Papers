@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The policy type \"{policy_type}\" **MUST BE** one of the valid insurance policy types: Health, Dental, Pharmacy, or Vision.",
+  "action": "update_policy",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "[says: I'm unable to assist with updating your policy because your login credentials are incorrect. Please verify your username and identification details (password or driver's license information) and try a...]"
+  ],
+  "timestamp": "2026-05-22T17:10:46.003392"
+}

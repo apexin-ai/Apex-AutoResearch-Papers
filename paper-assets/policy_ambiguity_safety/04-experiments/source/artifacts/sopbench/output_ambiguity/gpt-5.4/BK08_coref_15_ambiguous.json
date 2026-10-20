@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The specified card must not carry any balance to proceed with cancellation.",
+  "action": "cancel_credit_card",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I\u2019ll first log you in and authenticate your admin password, then I can check whether the card can be canceled.]",
+    "authenticate_admin_password",
+    "[says: I couldn\u2019t proceed with canceling the credit card because the admin password authentication failed.\n\nTo cancel a credit card, your account must be:\n- logged in, and\n- successfully authenticated with t...]",
+    "[says: The provided admin password already failed authentication, so I still can\u2019t complete the credit-card cancellation. I\u2019ll end the conversation now as requested.]"
+  ],
+  "timestamp": "2026-05-22T23:29:48.703252"
+}

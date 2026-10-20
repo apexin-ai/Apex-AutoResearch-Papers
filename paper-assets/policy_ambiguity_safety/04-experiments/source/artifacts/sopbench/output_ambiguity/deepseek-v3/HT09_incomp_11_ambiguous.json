@@ -1,0 +1,36 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room change requests are limited per guest stay.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_valid_room_change_reason",
+    "internal_get_room_checkin_details",
+    "[says: To process your room change request, I need to verify the following:\n\n1. **Valid Reason**: Ensure the reason \"personal preference\" is accepted for room changes.\n2. **Room Availability**: Confirm that ...]",
+    "[says: It seems that the reason \"personal preference\" is not a valid reason for requesting a room change. Additionally, I couldn't find your name, \"John Doe,\" in the current check-in records. \n\nCould you con...]",
+    "internal_valid_room_change_reason",
+    "[says: The reason \"personal_preference\" is not a valid reason for requesting a room change. Unfortunately, I cannot process your request without a valid reason. \n\nIf you'd like, I can provide you with a list...]"
+  ],
+  "timestamp": "2026-05-22T17:10:30.443490"
+}

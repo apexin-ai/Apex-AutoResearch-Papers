@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e110b7236f27707d0ab1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "paper r14 edits group2",
+  "task_key": "worker_paper_r14_edits_group2_20260522T141300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r14_edits_group2_20260522T141300_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "0bf1b76207db85e02d9616d2623fdf67cf799f28c06413c2377a4a4d93856e52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 15 edits verified across all four files:\n\n**experiments.tex** (7 edits):\n- MF-1c: Type III sum-of-squares method sentence added before \"Clause identity explains 22.4%\"\n- MF-1b: Taxonomy-as-intervention-design sentence added after variance discussion\n- MF-2a: ρ=−0.03 discordance paragraph added after Kendall's W\n- SF-1: Two-layer organizational convenience sentence added to §5.3\n- SF-2: OpenAI family bias cross-family sentence added in §5.4\n- SF-6: Margin-dependent gradient note added to Figure 2 caption\n- SF-7: C4 auth-scope-specific note added to Figure 3 caption\n\n**analysis.tex** (2 edits):\n- SF-3: LLM-coding circularity risk sentence added after inter-coder reliability\n- SF-4: Agentic consequentiality sentence added after disambiguation neglect\n\n**limitations.tex** (2 edits):\n- MF-2c: ρ=−0.03 as primary measurement limitation added\n- SF-9: ICC scope limitation added at Measurement paragraph end\n\n**appendix.tex** (2 edits):\n- Director 补充修正 1: ρ=0.90 excluding auth scope added to §A.13\n- Director 补充修正 2: 85.3% → 85.0% (both occurrences) in §A.10\n\nLaTeX syntax correct, no duplicate sentences, logical flow preserved."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r14-edits-group2.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_012",
+  "project": "policy_ambiguity_safety",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:05:02.576Z",
+    "updated_at": "2026-05-21T08:28:48.545Z",
+    "hypothesis": "LLM-based classifier using GPT-4.1 can identify policy clause ambiguity type with macro F1 >= 0.70 across 6-type taxonomy, enabling type-aware policy auditing tool that upgrades the paper from analysis-only to analysis+tool contribution",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T08:28:48.568633+00:00",
+  "trigger": "update_registry"
+}

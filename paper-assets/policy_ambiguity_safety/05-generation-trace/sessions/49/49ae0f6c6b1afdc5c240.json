@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49ae0f6c6b1afdc5c240",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research taxonomy extension",
+  "task_key": "worker_research_taxonomy_extension_20260520T091117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_taxonomy_extension_20260520T091117_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "4d7a3ef8cb88313b80153acb229175123f5a8260c153a2070e799ce7e4470f22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件写入 `artifacts/ambiguity_taxonomy_extended.md`，已注册 manifest。\n\n文档结构：\n\n**新增 3 类（Section 5-7）**，每类完整包含：\n- **Definition** — 引用 Yang et al. 2011 / Ezzini et al. 2022 (coreferential), Prakken 1991 / Olson 2024 (conditional precedence), NIST SP 800-162 (authorization scope)\n- **Cross-walk table** — 与 Li/DRIP-R/Massey 的映射\n- **Manifestation** — 各 4-5 个子类型\n- **Adjudication Criteria** — 必要充分条件 + annotator 决策规则\n- **Link to Safety Violations** — 机制分析 + 在 6 类中的相对位置\n- **Matched Pair Examples** — 各 3 个（ambiguous + unambiguous + point + divergence），从 retail/airline 场景构造\n- **τ²-bench injection patterns** — 各 4 个具体条款改造方案\n\n**更新内容（Section 8-9）**：\n- **6×4 comprehensive cross-walk table**，含 Primary Dimension 列\n- **6 类 violation rate 完整排序**：Conditional Precedence (1st) > Scopal (2nd) > Coreferential (3rd) > Incompleteness (4th) > Authorization Scope (5th) > Lexical (6th)\n- **7-step annotation flowchart**，新增 Coreferential Check (Step 4) / Precedence Check (Step 5) / Authorization Check (Step 6)\n- **类型间消歧规则表**，解决边界分类问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-taxonomy-extension.md"
+}

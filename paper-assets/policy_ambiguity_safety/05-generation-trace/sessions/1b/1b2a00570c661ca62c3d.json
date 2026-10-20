@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b2a00570c661ca62c3d",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code tost sensitivity 5model",
+  "task_key": "worker_code_tost_sensitivity_5model_20260520T194838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost_sensitivity_5model_20260520T194838_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "9cc45cd4a81159885f9b89ac50a1415281ee70cf007c9be5090b290e47f608f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已执行完成，从 judgment 文件验证的 per-type rates 与提供的数据完全一致（scopal 的 N=249 是数据本身少一条）。\n\n结果：\n- `tost_sensitivity_5model.json` 已输出到 `artifacts/full_study/analysis/`\n- 15 对 type pair 中，±5pp 等价 0 对，±10pp 3 对，±15pp 8 对，±20pp 12 对\n- 3 对在 ±20pp 仍不等价：conditional_precedence–incompleteness (diff=16.8pp)、coreferential–incompleteness (diff=22.0pp)、incompleteness–scopal (diff=14.2pp)——都涉及 incompleteness（最高 53.6%）与低端 type 的对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-sensitivity-5model.md"
+}

@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The claim amount must be within the policy's claimable limits.",
+  "action": "submit_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "submit_claim",
+    "[says: Your new claim for an emergency dental procedure in the amount of $5,000 with provider Johns Hopkins Baltimore has been successfully submitted under your healthcare policy.\n\nIf you need to check the s...]"
+  ],
+  "timestamp": "2026-05-22T16:50:33.672413"
+}

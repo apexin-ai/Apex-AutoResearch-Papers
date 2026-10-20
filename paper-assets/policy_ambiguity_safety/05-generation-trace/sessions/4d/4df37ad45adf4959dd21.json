@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4df37ad45adf4959dd21",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan001 merge 300 clauses",
+  "task_key": "worker_code_plan001_merge_300_clauses_20260520T125449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001_merge_300_clauses_20260520T125449_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "815b7398cfe1ad9909cfeb7ec3cfc300e16622e01420f6f984f8c6b5cc7b6c5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`artifacts/clause_templates_full.json` 已生成，300 条，6 类各 50 条，无重复 ID。\n\n统计摘要：\n\n| 字段 | 覆盖率 |\n|------|--------|\n| 11 个必需字段 | 300/300 (100%) |\n| `annotation_rationale` | 250/300 (83%) — coreferential 无此字段，设为 null |\n| `source_clause` | 250/300 (83%) — coreferential 无此字段，设为 null |\n| `stripped_tool_desc` | 300/300 (100%) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-merge-300-clauses.md"
+}

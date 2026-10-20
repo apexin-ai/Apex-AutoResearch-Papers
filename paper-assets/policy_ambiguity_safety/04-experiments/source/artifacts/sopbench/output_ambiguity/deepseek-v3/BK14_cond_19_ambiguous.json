@@ -1,0 +1,43 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Administrative authentication is required prior to this action being completed.",
+  "action": "transfer_funds",
+  "task_idx": 19,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: To proceed with the transfer, I will first need to verify your login credentials and ensure all conditions for the transfer are met. Here's the step-by-step process:\n\n1. **Login Verification**: I will...]",
+    "[says: It seems the login attempt failed. Could you please confirm the following:\n\n1. The driver's license state is required. Could you provide the state where your driver's license is registered?\n2. Ensure ...]",
+    "login_user",
+    "[says: Since the login attempt with the driver's license failed and you've now provided a password for identification, I will attempt to log you in using the password instead. If this is successful, I will p...]",
+    "authenticate_admin_password",
+    "[says: Great, you have been successfully logged in. Next, I will verify your admin password to enable the transfer functionality.]",
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "[says: Your admin password has been successfully verified. Now, I will check if both your account and the destination account (jane_doe) exist in the database.]",
+    "get_account_balance",
+    "[says: Both your account and the destination account (jane_doe) exist in the database. Next, I will check your account balance to ensure you have sufficient funds for the transfer.]",
+    "[says: Your current account balance is $1000.00, which is insufficient for the transfer of $1500.00. Unfortunately, I cannot proceed with the transfer as you do not have enough funds in your account.\n\nIf you...]"
+  ],
+  "timestamp": "2026-05-23T00:54:57.725736"
+}

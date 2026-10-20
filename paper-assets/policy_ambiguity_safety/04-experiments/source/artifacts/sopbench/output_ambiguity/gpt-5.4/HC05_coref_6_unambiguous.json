@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC05_coref",
+  "domain": "healthcare",
+  "constraint": "within_appeal_period",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The interaction time falls within the allowable appeal period for the claim with ID \"{claim_id}\" of the user \"{username}\". The appeal period starts from the claim date and extends for {appeal_period} days after the claim date. Both interaction time and claim date are ISO 8601 formatted strings and are considered as date-time values.",
+  "action": "appeal_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "appeal_claim",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_check_claim_exists",
+    "get_claim_details",
+    "internal_get_interaction_time",
+    "[says: I\u2019m sorry, but I can\u2019t submit an appeal for claim CLM-002.\n\nWhy:\n- You were successfully authenticated.\n- Your policy is active.\n- However, claim CLM-002 is currently marked as pending, not denied.\n- ...]"
+  ],
+  "timestamp": "2026-05-22T17:20:42.645503"
+}

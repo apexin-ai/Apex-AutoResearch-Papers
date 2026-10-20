@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must demonstrate sufficient creditworthiness to proceed with this action.",
+  "action": "get_loan",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "get_account_owed_balance",
+    "[says: I'm sorry, but your loan application cannot be processed at this time. \n\nHere's why:\n1. **Outstanding Owed Balance**: You currently have an outstanding owed balance of $750, which exceeds the maximum ...]",
+    "[says: Based on the information provided, your loan application for $5,000 cannot be approved at this time due to the following reasons:\n\n1. **Outstanding Owed Balance**: You currently owe $750, which exceed...]"
+  ],
+  "timestamp": "2026-05-22T23:38:20.159718"
+}

@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK09_incomp",
+  "domain": "bank",
+  "constraint": "safety_box_eligible",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have an account balance of at least {minimum_account_balance_safety_box} to be eligible for a safety deposit box.",
+  "action": "set_safety_box",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "set_safety_box",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Sure! Let me start by verifying your identity. I'll log you in first.]",
+    "[says: Unfortunately, the login attempt failed. The credentials you provided do not match our records. Please double-check your username and identification (password) and try again. If you believe there's an...]",
+    "[says: I understand you've provided the same information again, but unfortunately the login attempt with username **\"john_doe\"** and the provided identification **\"wCGcuSOUbfWTvDnJDRI\"** has already failed.\n...]"
+  ],
+  "timestamp": "2026-05-22T16:58:12.080384"
+}

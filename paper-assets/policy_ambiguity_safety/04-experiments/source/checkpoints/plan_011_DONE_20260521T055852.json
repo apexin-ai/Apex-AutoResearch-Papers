@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_011",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:22:13.563Z",
+    "updated_at": "2026-05-21T05:58:52.631Z",
+    "hypothesis": "Type-specific disambiguation instructions reduce violation rates differentially: authorization scope benefits most (RLHF refusal engagement), incompleteness benefits least (missing information cannot be substituted by instructions). Overall mitigation is significant but partial, supporting the need for external tooling over prompt engineering.",
+    "parent": "plan_004",
+    "spec": {
+      "command": "python run_mitigation_experiment.py",
+      "server": "local (API experiment)",
+      "data_path": "artifacts/_project/intermediate/full_study/ + generated episodes",
+      "data_count": "~1500 episodes + ~1500 judge calls",
+      "model_name": "5 models via OpenRouter",
+      "seed": "N/A",
+      "checkpoint_source": "plan_004 (5-model unified analysis)",
+      "eval_data": "300 ambiguous clauses × 5 models with disambiguation instructions",
+      "checkpoint_path": "artifacts/mitigation_study/analysis/mitigation_results.json",
+      "log_path": "/tmp/plan_011_mitigation.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_delta_pp": -6.6,
+      "overall_baseline": 0.41,
+      "overall_mitigated": 0.343,
+      "auth_scope_delta_pp": -18,
+      "incompleteness_delta_pp": -3.4,
+      "lexical_delta_pp": -8.9,
+      "cond_prec_delta_pp": -8.1,
+      "scopal_delta_pp": -4.3,
+      "best_model_gpt41_delta_pp": -11.1,
+      "worst_model_deepseek_delta_pp": -2.5,
+      "total_mitigated_episodes": 1256,
+      "total_baseline_episodes": 1499,
+      "elapsed_seconds": 2954
+    },
+    "completed_at": "2026-05-21T05:58:52.631Z"
+  },
+  "timestamp": "2026-05-21T05:58:52.659518+00:00",
+  "trigger": "update_registry"
+}

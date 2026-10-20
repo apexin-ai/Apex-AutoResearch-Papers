@@ -1,0 +1,281 @@
+\begin{thebibliography}{40}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Anand et~al.(2026)Anand, Chatzi, Raha, and Schmuck}]{mantra_2026}
+Ashwani Anand, Ivi Chatzi, Ritam Raha, and Anne-Kathrin Schmuck. 2026.
+\newblock {MANTRA}: Synthesizing {SMT}-validated compliance benchmarks for
+  tool-using {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2605.06334}.
+
+\bibitem[{Anvari and Lakens(2021)}]{anvari_lakens_2021}
+Farid Anvari and Dani{\"e}l Lakens. 2021.
+\newblock \href {https://doi.org/10.1016/j.jesp.2021.104159} {Using
+  anchor-based methods to determine the smallest effect size of interest}.
+\newblock \emph{Journal of Experimental Social Psychology}, 96:104159.
+
+\bibitem[{Barres et~al.(2025)Barres, Dong, Ray, Si, and
+  Narasimhan}]{tau2_bench_2025}
+Victor Barres, Honghua Dong, Soham Ray, Xujie Si, and Karthik Narasimhan. 2025.
+\newblock $\tau^2$-bench: Evaluating conversational agents in a dual-control
+  environment.
+\newblock \emph{arXiv preprint arXiv:2506.07982}.
+
+\bibitem[{Berry et~al.(2004)Berry, Kamsties, and Krieger}]{berry_kamsties_2004}
+Daniel~M. Berry, Erik Kamsties, and Michael~M. Krieger. 2004.
+\newblock From contract drafting to software specification: Linguistic sources
+  of ambiguity --- a handbook.
+\newblock Technical report, University of Waterloo.
+
+\bibitem[{Borkakoty et~al.(2026)Borkakoty, Pohl, Wang, Chen, and
+  Hou}]{drip_r_2026}
+Hsuvas Borkakoty, Sebastian Pohl, Cheng Wang, Bei Chen, and Yufang Hou. 2026.
+\newblock {DRIP-R}: A benchmark for decision-making and reasoning under
+  real-world policy ambiguity in the retail domain.
+\newblock \emph{arXiv preprint arXiv:2605.07699}.
+\newblock Submitted 2026-05-08.
+
+\bibitem[{Chantree et~al.(2006)Chantree, Nuseibeh, de~Roeck, and
+  Willis}]{chantree_2006}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis. 2006.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{14th IEEE International Requirements Engineering Conference
+  (RE)}.
+
+\bibitem[{Chen et~al.(2025)Chen, Kang, and Li}]{shieldagent_2025}
+Zhaorun Chen, Mintong Kang, and Bo~Li. 2025.
+\newblock {ShieldAgent}: Shielding agents via verifiable safety policy
+  reasoning.
+\newblock In \emph{Proceedings of ICML 2025}.
+
+\bibitem[{Choi et~al.(2026)Choi, Yoon, Le, Jha, and Pfister}]{policybank_2026}
+Jihye Choi, Jinsung Yoon, Long~T. Le, Somesh Jha, and Tomas Pfister. 2026.
+\newblock {PolicyBank}: Evolving policy understanding for {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2604.15505}.
+\newblock Submitted 2026-04-16.
+
+\bibitem[{Cohen(1960)}]{cohen_1960}
+Jacob Cohen. 1960.
+\newblock A coefficient of agreement for nominal scales.
+\newblock \emph{Educational and Psychological Measurement}, 20(1):37--46.
+
+\bibitem[{Dalpiaz et~al.(2018)Dalpiaz, van~der Schalk, and
+  Lucassen}]{dalpiaz_pinpointing_2018}
+Fabiano Dalpiaz, Ivor van~der Schalk, and Garm Lucassen. 2018.
+\newblock Pinpointing ambiguity and incompleteness in requirements engineering
+  via information visualization and {NLP}.
+\newblock In \emph{Proceedings of REFSQ}.
+
+\bibitem[{Ezzini et~al.(2022{\natexlab{a}})Ezzini, Abualhaija, Arora, and
+  Sabetzadeh}]{ezzini_anaphoric_2022}
+Saad Ezzini, Sallam Abualhaija, Chetan Arora, and Mehrdad Sabetzadeh.
+  2022{\natexlab{a}}.
+\newblock \href {https://doi.org/10.1145/3510003.3510157} {Automated handling
+  of anaphoric ambiguity in requirements: A multi-solution study}.
+\newblock In \emph{Proceedings of ICSE 2022}.
+
+\bibitem[{Ezzini et~al.(2022{\natexlab{b}})Ezzini, Abualhaija, Arora, and
+  Sabetzadeh}]{ezzini_taphsir_2022}
+Saad Ezzini, Sallam Abualhaija, Chetan Arora, and Mehrdad Sabetzadeh.
+  2022{\natexlab{b}}.
+\newblock \href {https://doi.org/10.1145/3540250.3558928} {{TAPHSIR}: Towards
+  {AnaPHoric} ambiguity detection and resolution in requirements}.
+\newblock In \emph{Proceedings of ESEC/FSE 2022}.
+
+\bibitem[{Ferrari and Esuli(2019)}]{ferrari_ambiguity_2019}
+Alessio Ferrari and Andrea Esuli. 2019.
+\newblock \href {https://doi.org/10.1007/s10515-019-00261-7} {An {NLP} approach
+  for cross-domain ambiguity detection in requirements engineering}.
+\newblock \emph{Automated Software Engineering}, 26:559--598.
+
+\bibitem[{Ferreira et~al.(2002)Ferreira, Bailey, and
+  Ferraro}]{ferreira_good_enough_2002}
+Fernanda Ferreira, Karl G.~D. Bailey, and Vittoria Ferraro. 2002.
+\newblock \href {https://doi.org/10.1111/1467-8721.00158} {Good-enough
+  representations in language comprehension}.
+\newblock \emph{Current Directions in Psychological Science}, 11(1):11--15.
+
+\bibitem[{Frazier and Rayner(1982)}]{frazier_rayner_1982}
+Lyn Frazier and Keith Rayner. 1982.
+\newblock \href {https://doi.org/10.1016/0010-0285(82)90008-1} {Making and
+  correcting errors during sentence comprehension: Eye movements in the
+  analysis of structurally ambiguous sentences}.
+\newblock \emph{Cognitive Psychology}, 14(2):178--210.
+
+\bibitem[{Gwet(2014)}]{gwet_2014}
+Kilem~Li Gwet. 2014.
+\newblock \emph{Handbook of Inter-Rater Reliability: The Definitive Guide to
+  Measuring the Extent of Agreement Among Raters}, 4th edition.
+\newblock Advanced Analytics, LLC.
+
+\bibitem[{Hu et~al.(2025)Hu, Wang, Shu, Paik, and Zhu}]{hu_ambiguity_2025}
+Zhibo Hu, Chen Wang, Yanfeng Shu, Hye-Young Paik, and Liming Zhu. 2025.
+\newblock Ambiguity in {LLMs} is a concept missing problem.
+\newblock \emph{arXiv preprint arXiv:2505.11679}.
+
+\bibitem[{Kennedy(2007)}]{kennedy_vagueness_2007}
+Christopher Kennedy. 2007.
+\newblock \href {https://doi.org/10.1007/s10988-006-9008-0} {Vagueness and
+  grammar: The semantics of relative and absolute gradable adjectives}.
+\newblock \emph{Linguistics and Philosophy}, 30(1):1--45.
+
+\bibitem[{Lakens(2017)}]{lakens_2017}
+Daniel Lakens. 2017.
+\newblock \href {https://doi.org/10.1177/1948550617697177} {Equivalence tests:
+  A practical primer for $t$ tests, correlations, and meta-analyses}.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362.
+
+\bibitem[{Li et~al.(2024{\natexlab{a}})Li, Feng, Narang, Peng, Cai, Shah, and
+  Varma}]{li_garden_path_llm_2024}
+Andrew Li, Xianle Feng, Siddhant Narang, Austin Peng, Tianle Cai, Raj~Sanjay
+  Shah, and Sashank Varma. 2024{\natexlab{a}}.
+\newblock Incremental comprehension of garden-path sentences by large language
+  models: Semantic interpretation, syntactic re-analysis, and attention.
+\newblock In \emph{Proceedings of the Annual Meeting of the Cognitive Science
+  Society}, volume~46.
+
+\bibitem[{Li et~al.(2024{\natexlab{b}})Li, Liu, Wu, and
+  Smith}]{li_ambiguity_taxonomy_2024}
+Margaret~Y. Li, Alisa Liu, Zhaofeng Wu, and Noah~A. Smith. 2024{\natexlab{b}}.
+\newblock A taxonomy of ambiguity types for {NLP}.
+\newblock In \emph{Proceedings of EACL 2024}.
+
+\bibitem[{Liu et~al.(2023)Liu, Wu, Michael, Suhr, West, Koller, Swayamdipta,
+  Smith, and Choi}]{liu_ambiguity_2023}
+Alisa Liu, Zhaofeng Wu, Julian Michael, Alane Suhr, Peter West, Alexander
+  Koller, Swabha Swayamdipta, Noah~A. Smith, and Yejin Choi. 2023.
+\newblock We're afraid language models aren't modeling ambiguity.
+\newblock In \emph{Proceedings of EMNLP 2023}.
+
+\bibitem[{Luo et~al.(2025)Luo, Dai, Ni, Li, Zhang, Wang, Liu, and
+  Salam}]{agentauditor_2025}
+Hanjun Luo, Shenyu Dai, Chiming Ni, Xinfeng Li, Guibin Zhang, Kun Wang,
+  Tongliang Liu, and Hanan Salam. 2025.
+\newblock {AgentAuditor}: Human-level safety and security evaluation for {LLM}
+  agents.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+\newblock Accepted at NeurIPS 2025; arXiv:2506.00641.
+
+\bibitem[{Massey et~al.(2014)Massey, Rutledge, Ant{\'o}n, and
+  Swire}]{massey_ambiguity_re_2014}
+Aaron~K. Massey, Richard~L. Rutledge, Annie~I. Ant{\'o}n, and Peter~P. Swire.
+  2014.
+\newblock \href {https://doi.org/10.1109/RE.2014.6912250} {Identifying and
+  classifying ambiguity for regulatory requirements}.
+\newblock In \emph{22nd IEEE International Requirements Engineering Conference
+  (RE)}.
+
+\bibitem[{Navigli(2009)}]{navigli_wsd_2009}
+Roberto Navigli. 2009.
+\newblock \href {https://doi.org/10.1145/1459352.1459355} {Word sense
+  disambiguation: A survey}.
+\newblock \emph{ACM Computing Surveys}, 41(2):1--69.
+
+\bibitem[{Rosadini et~al.(2019)Rosadini, Ferrari, Gori, Fantechi, Gnesi,
+  Trotta, and Bacherini}]{ferrari_defects_2018}
+Benedetta Rosadini, Alessio Ferrari, Gloria Gori, Alessandro Fantechi, Stefania
+  Gnesi, Iacopo Trotta, and Stefano Bacherini. 2019.
+\newblock \href {https://doi.org/10.1007/s10664-018-9596-7} {Detecting
+  requirements defects with {NLP} patterns: An industrial experience in the
+  railway domain}.
+\newblock \emph{Empirical Software Engineering}, 24:594--636.
+
+\bibitem[{Ruan et~al.(2024)Ruan, Dong, Wang, Pitis, Zhou, Ba, Dubois, Maddison,
+  and Hashimoto}]{toolemu_2024}
+Yangjun Ruan, Honghua Dong, Andrew Wang, Silviu Pitis, Yongchao Zhou, Jimmy Ba,
+  Yann Dubois, Chris~J. Maddison, and Tatsunori Hashimoto. 2024.
+\newblock Identifying the risks of {LM} agents with an {LM}-emulated sandbox.
+\newblock In \emph{Proceedings of ICLR 2024}.
+
+\bibitem[{Sehwag et~al.(2026)Sehwag, Shan, Liu, Lakshan, Brandifino, and
+  Fenkell}]{sehwag_aspi_2026}
+Udari~Madhushani Sehwag, Zhengyang Shan, Heming Liu, Dileepa Lakshan, Joseph
+  Brandifino, and Max Fenkell. 2026.
+\newblock {ASPI}: Seeking ambiguity clarification amplifies prompt injection
+  vulnerability in {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2605.17324}.
+
+\bibitem[{Sharma et~al.(2026)Sharma, Barke, and Zorn}]{agentpex_2026}
+Reshabh~K Sharma, Shraddha Barke, and Benjamin Zorn. 2026.
+\newblock Willful disobedience: Automatically detecting failures in agentic
+  traces.
+\newblock \emph{arXiv preprint arXiv:2603.23806}.
+
+\bibitem[{Suri et~al.(2025)Suri, Mathur, Lipka, Dernoncourt, Rossi, and
+  Manocha}]{suri_structured_2025}
+Manan Suri, Puneet Mathur, Nedim Lipka, Franck Dernoncourt, Ryan~A. Rossi, and
+  Dinesh Manocha. 2025.
+\newblock Structured uncertainty guided clarification for {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2511.08798}.
+
+\bibitem[{Tamkin et~al.(2023)Tamkin, Askell, Lovitt, Durmus, Joseph, Kravec,
+  Nguyen, Kaplan, and Ganguli}]{tamkin_evaluating_2023}
+Alex Tamkin, Amanda Askell, Liane Lovitt, Esin Durmus, Nicholas Joseph, Shauna
+  Kravec, Karina Nguyen, Jared Kaplan, and Deep Ganguli. 2023.
+\newblock Evaluating and mitigating discrimination in language model decisions.
+\newblock In \emph{arXiv preprint arXiv:2312.03689}.
+
+\bibitem[{Wasow et~al.(2005)Wasow, Perfors, and Beaver}]{wasow_ambiguity_2005}
+Thomas Wasow, Amy Perfors, and David Beaver. 2005.
+\newblock The puzzle of ambiguity.
+\newblock In \emph{Morphology and the Web of Grammar: Essays in Memory of
+  Steven G. Lapointe}. CSLI Publications.
+
+\bibitem[{Willis et~al.(2008)Willis, Chantree, and
+  De~Roeck}]{willis_nocuous_2008}
+Alistair Willis, Francis Chantree, and Anne De~Roeck. 2008.
+\newblock \href {https://doi.org/10.1007/s11168-008-9058-2} {Automatic
+  identification of nocuous ambiguity}.
+\newblock \emph{Research on Language and Computation}, 6(3-4):355--374.
+
+\bibitem[{Wu and Gong(2026)}]{phantompolicy_2026}
+Jie Wu and Ming Gong. 2026.
+\newblock Policy-invisible violations in {LLM}-based agents.
+\newblock \emph{arXiv preprint arXiv:2604.12177}.
+
+\bibitem[{Yao et~al.(2024)Yao, Shinn, Razavi, and Narasimhan}]{tau_bench_2024}
+Shunyu Yao, Noah Shinn, Pedram Razavi, and Karthik Narasimhan. 2024.
+\newblock $\tau$-bench: A benchmark for tool-agent-user interaction in
+  real-world domains.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Yin et~al.(2025)}]{yin_safeagentbench_2025}
+Shengding Yin and 1 others. 2025.
+\newblock {SafeAgentBench}: A benchmark for safe task planning of embodied
+  {LLM} agents.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Yuan et~al.(2024)Yuan, He, Dong, Wang, Zhao, Xia, Xu, Zhou, Li,
+  Zhang, Wang, and Liu}]{rjudge_2024}
+Tongxin Yuan, Zhiwei He, Lingzhong Dong, Yiming Wang, Ruijie Zhao, Tian Xia,
+  Lizhen Xu, Binglin Zhou, Fangqi Li, Zhuosheng Zhang, Rui Wang, and Gongshen
+  Liu. 2024.
+\newblock R-judge: Benchmarking safety risk awareness for {LLM} agents.
+\newblock In \emph{Findings of EMNLP 2024}.
+
+\bibitem[{Zhan et~al.(2024)Zhan, Liang, Ying, and Kang}]{injecagent_2024}
+Qiusi Zhan, Zhixiang Liang, Zifan Ying, and Daniel Kang. 2024.
+\newblock {InjecAgent}: Benchmarking indirect prompt injections in
+  tool-integrated large language model agents.
+\newblock In \emph{Findings of ACL 2024}.
+
+\bibitem[{Zhao et~al.(2021)Zhao, Alhoshan, Ferrari, Letsholo, Ajagbe, Chioasca,
+  and Batista-Navarro}]{zhao_nlp4re_2021}
+Liping Zhao, Waad Alhoshan, Alessio Ferrari, Keletso~J. Letsholo, Muideen~A.
+  Ajagbe, Erol-Valeriu Chioasca, and Riza~T. Batista-Navarro. 2021.
+\newblock \href {https://doi.org/10.1145/3444689} {Natural language processing
+  for requirements engineering: A systematic mapping study}.
+\newblock \emph{ACM Computing Surveys}, 54(3).
+
+\bibitem[{Zheng et~al.(2024)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, Zhang, Gonzalez, and Stoica}]{zheng_llm_judge_2024}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, Hao Zhang, Joseph~E.
+  Gonzalez, and Ion Stoica. 2024.
+\newblock Judging {LLM}-as-a-judge with {MT}-bench and chatbot arena.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS 2023)}.
+
+\end{thebibliography}

@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 21,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: Before I can process your claim, I need to verify a few things. Let me check if your username exists in the system and then log you in.]",
+    "login_user",
+    "get_provider_details",
+    "get_policy_details",
+    "[says: Now that you're logged in, I'll verify the provider details and check if your policy is active to proceed with the claim submission.]",
+    "[says: It seems there are a few issues with your claim submission:\n\n1. **Provider Availability**: The provider \"John Hopkins\" is currently marked as \"Unavailable,\" so you cannot schedule or submit a claim wi...]",
+    "[says: Given the constraints and the information you've provided, I cannot proceed with your claim submission for the following reasons:\n\n1. **Provider Availability**: The provider \"John Hopkins\" is currentl...]"
+  ],
+  "timestamp": "2026-05-22T23:56:21.276123"
+}

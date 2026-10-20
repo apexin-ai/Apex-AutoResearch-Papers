@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK01_scopal",
+  "domain": "bank",
+  "constraint": "sufficient_account_balance",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The user does have more account balance \"balance\" than the task amount user parameter \"{amount}\" to perform this task.",
+  "action": "transfer_funds",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: It seems there was an issue with your login attempt. The system returned a failure to authenticate your credentials. Before proceeding with the fund transfer, we need to resolve this:\n\n1. Please verif...]"
+  ],
+  "timestamp": "2026-05-22T18:25:32.983206"
+}

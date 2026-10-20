@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d8b2738d26ae32b94f74",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "code plan 003b deepseek",
+  "task_key": "worker_code_plan_003b_deepseek_20260520T183156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003b_deepseek_20260520T183156.log",
+    "occurrence": 1,
+    "bytes": 636413,
+    "sha256": "fe70c0cc797fe6ee42b3778561b6dc5ff1512be5f67e86e48f6ba92d513584c6"
+  },
+  "statistics": {
+    "messages": 452,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 133,
+      "record": 1,
+      "assistant": 140,
+      "tool_call": 31,
+      "tool_result": 31,
+      "result": 115
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 452,
+      "chunks": [
+        {
+          "path": "d8b2738d26ae32b94f74-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8b2738d26ae32b94f74-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8b2738d26ae32b94f74-part-0003.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-003b-deepseek.md"
+}

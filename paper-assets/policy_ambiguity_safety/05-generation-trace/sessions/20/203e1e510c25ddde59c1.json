@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "203e1e510c25ddde59c1",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit r10 orphan bib cleanup",
+  "task_key": "worker_edit_r10_orphan_bib_cleanup_20260521T203806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_r10_orphan_bib_cleanup_20260521T203806_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "8ff4e296f632f8bceb64166934ab4cb893b2ce7d87044c1c251789593913eb1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无 undefined citation 警告。主文（含 Limitations）到第 9 页结束，References 从第 10 页开始 — 符合 EMNLP 8 页限制（Limitations 不计入页数限制）。\n\n**结果汇总**：\n\n| 指标 | 数值 |\n|------|------|\n| tex 中引用的 unique keys | 40 |\n| bib 中 entry 总数 | 43 (删除前 45) |\n| 编译 undefined citations | 0 |\n\n**Orphan 列表 (5个)**：\n| Key | 处理 |\n|-----|------|\n| `van_deemter_not_exactly_2010` | **已删除** |\n| `lassiter_goodman_2017` | **已删除** |\n| `yu_causal_2026` | 保留 (按要求) |\n| `lin_ask_to_clarify_2025` | 保留 (按要求) |\n| `mu_can_llms_2023` | 保留 (按要求) |\n\n`tamkin_evaluating_2023` 和 `yin_safeagentbench_2025` 实际有被引用，不是 orphan，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-r10-orphan-bib-cleanup.md"
+}

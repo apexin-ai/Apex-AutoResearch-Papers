@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK09_incomp",
+  "domain": "bank",
+  "constraint": "safety_box_eligible",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must meet the minimum balance requirement for safety deposit box access.",
+  "action": "set_safety_box",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "set_safety_box",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_get_credit_score",
+    "set_safety_box",
+    "[says: The update to your safety box contents was successful. The new contents \"New safety box contents\" have been set under your username \"john_doe\". \n\n]"
+  ],
+  "timestamp": "2026-05-22T22:52:50.803092"
+}

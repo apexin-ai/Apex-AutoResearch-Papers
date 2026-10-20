@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6f50d1812565c23482e",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment residual decomposition",
+  "task_key": "worker_experiment_residual_decomposition_20260522T221812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_residual_decomposition_20260522T221812_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "ab05acce3cd6c35c31b72923180f9aa647630650d06d2317e264b2cbdd18d095"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态总结：**\n\n两个脚本已完成，逻辑验证通过：\n\n1. **`residual_decomposition/run_replication.py`** — 分层采样 50 clauses → 运行 1000 episodes（50×2 conditions×2 models×5 reps）→ 自动 judge\n   - 支持 `--resume`（按 clause_id|condition|model|rep 去重）\n   - 保存 `manifest.json` 记录采样配置\n   - 错误处理：API 失败不会中断整个 batch\n\n2. **`residual_decomposition/analyze_variance.py`** — 读取 judgments → ICC(1) 方差分解 → 输出 `results.json`\n   - Overall ICC + per-condition + per-ambiguity-type 分解\n   - Cell consistency 统计（unanimous vs mixed cells）\n   - 映射回原始 60.8% 残差的比例\n\n**阻塞项：** OpenRouter API 余额不足（402 Insufficient balance）。充值后运行：\n\n```bash\ncd artifacts\nsource .venv/bin/activate\npython3 residual_decomposition/run_replication.py\n# 完成后分析：\npython3 residual_decomposition/analyze_variance.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-residual-decomposition.md"
+}

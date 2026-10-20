@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b50f9eeca7340894ebf0",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 002 haldane fix",
+  "task_key": "worker_code_plan_002_haldane_fix_20260520T152444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_haldane_fix_20260520T152444_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "4165a0a37f034b16b6a54dd22621aa01fc65a0d249ab27ef0e032ff1ee1b4490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Metric | Before | After |\n|--------|--------|-------|\n| MH OR | 443.0 | 391.9 |\n| Non-stratified OR | 44.8 | 44.8 (unchanged) |\n\nMH OR dropped from 443 to 392, but it's still far above the expected 30-80 range. The reason: 3 strata (authorization_scope, conditional_precedence, scopal) have c=0, and even with Haldane +0.5 correction, their denominator contribution (c*a/n) remains tiny. For example, conditional_precedence has both a=0 and c=0, so its corrected denominator contribution is only 0.5*0.5/102 = 0.00245, while numerator is 35.5*65.5/102 = 22.78.\n\nThe Haldane correction is applied correctly and the MH OR is now finite/calculable without division-by-zero risk. The high value reflects the genuine effect: in half the strata, no clause was flagged as violating *only* in the unambiguous condition (c=0), making the stratified OR inherently extreme. The non-stratified OR of 44.8 remains the primary measure as noted in the output.\n\nAll 9 analysis files regenerated without errors."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-haldane-fix.md"
+}

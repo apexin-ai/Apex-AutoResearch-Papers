@@ -1,0 +1,38 @@
+{
+  "pair_id": "HC02_incomp",
+  "domain": "healthcare",
+  "constraint": "claim_within_limits",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than the maximum claimable amount of {maximum_claimable_amount}.",
+  "action": "submit_claim",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'd be happy to help you submit a claim! Let me first log you in to verify your credentials.]",
+    "get_policy_details",
+    "[says: You've been successfully logged in! Now let me check your policy details to verify eligibility for submitting a claim.]",
+    "get_claim_history",
+    "[says: Your policy is active. Now let me check your claim history to verify that submitting this claim won't exceed your coverage amount.]",
+    "[says: I've gathered all the necessary information. Unfortunately, I **cannot process this claim** for the following reason:\n\n---\n\n### \u274c Claim Amount Exceeds Maximum Claimable Limit\n\nThe requested claim amou...]",
+    "[says: I understand you've provided the same details, but unfortunately I still **cannot process this claim**.\n\nThe requested claim amount of **$5,000** exceeds the **maximum claimable amount of $2,000** per...]"
+  ],
+  "timestamp": "2026-05-22T16:47:31.952954"
+}

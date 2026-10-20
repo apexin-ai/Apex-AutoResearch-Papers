@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "64c6098f0b7e711dff6a",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "code plan001 supplement clauses",
+  "task_key": "worker_code_plan001_supplement_clauses_20260520T115014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001_supplement_clauses_20260520T115014.log",
+    "occurrence": 1,
+    "bytes": 738228,
+    "sha256": "c52105d6f28c26df80a6234c3f83b6a14b3973d7f63a05db6755b176897c2c4e"
+  },
+  "statistics": {
+    "messages": 68,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 23,
+      "tool_result": 23,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "64c6098f0b7e711dff6a-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "64c6098f0b7e711dff6a-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-supplement-clauses.md"
+}

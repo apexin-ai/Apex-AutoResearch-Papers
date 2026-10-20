@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you update your healthcare policy! Let me start by logging you in first. Let me verify your credentials.]",
+    "get_policy_details",
+    "[says: You're now logged in! Let me now retrieve your policy details to verify the necessary conditions.]",
+    "internal_get_interaction_time",
+    "[says: Your policy is active (Health). Now let me check the current interaction time to verify you're within the 60-day enrollment period.]",
+    "get_claim_history",
+    "[says: Let me also check for any unresolved claims on your account.]",
+    "[says: I'm sorry, but I'm unable to proceed with the policy update at this time. Here's why:\n\n- **Unresolved Claims**: There is a **pending claim** on your account (Claim ID: **CLM-003**, Amount: $300, Descr...]",
+    "[says: I understand you've provided the same details, but unfortunately I'm still unable to process your policy update request.\n\nAs mentioned, the condition that is blocking the update is:\n\n- **Unresolved Cl...]"
+  ],
+  "timestamp": "2026-05-22T17:24:30.883138"
+}

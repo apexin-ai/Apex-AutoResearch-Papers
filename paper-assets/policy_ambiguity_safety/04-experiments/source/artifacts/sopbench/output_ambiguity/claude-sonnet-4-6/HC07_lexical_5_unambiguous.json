@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+  "action": "update_policy",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you update your healthcare policy! Let me start by logging you in with the provided credentials.]",
+    "[says: You've been successfully logged in! Now let me check your current policy details before proceeding with the update.\n\nHowever, before even checking, I must let you know that the policy type you've requ...]",
+    "[says: I understand you've provided the same information again, but unfortunately I'm still unable to process your policy update request.\n\nThe policy type **\"Life\"** is **not a valid policy type** in our sys...]"
+  ],
+  "timestamp": "2026-05-22T17:12:08.443136"
+}

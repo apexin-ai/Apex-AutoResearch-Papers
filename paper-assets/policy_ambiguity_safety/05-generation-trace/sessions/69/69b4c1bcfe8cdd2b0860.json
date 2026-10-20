@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69b4c1bcfe8cdd2b0860",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research sopbench negative task audit",
+  "task_key": "worker_research_sopbench_negative_task_audit_20260522T132253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sopbench_negative_task_audit_20260522T132253_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "98cf85424e5a931f98d808d410215c56dd9f65369d1069133f237572237498c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Also a stale background check. Everything is already done — all 5 steps completed, audit report written, pilot results analyzed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sopbench-negative-task-audit.md"
+}

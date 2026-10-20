@@ -1,0 +1,37 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: Before processing your claim, I need to verify several conditions. First, I'll check if your username exists in the database. After that, I'll confirm your login credentials. Then, I'll ensure your po...]",
+    "login_user",
+    "get_policy_details",
+    "internal_check_provider_exists",
+    "[says: It looks like your policy is active, and the provider \"johns_hopkins_baltimore\" exists. However, there are a few issues to address before submitting your claim:\n\n1. **Claim Amount**: The amount you're...]",
+    "[says: Based on the information you've provided, I cannot proceed with submitting your claim for the following reasons:\n\n1. **Claim Amount Exceeds Limit**: The amount of $6000 exceeds the maximum claimable a...]"
+  ],
+  "timestamp": "2026-05-23T01:04:17.347321"
+}

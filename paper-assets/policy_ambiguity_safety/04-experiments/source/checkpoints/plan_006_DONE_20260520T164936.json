@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:08:41.289Z",
+    "updated_at": "2026-05-20T16:49:36.493Z",
+    "hypothesis": "API model violation judgments are highly reproducible across independent replicates (ICC ≥ 0.75), confirming that the observed violation rates and type differences in plan_002 are stable signals, not sampling noise.",
+    "parent": "plan_002",
+    "spec": {
+      "command": "python run_plan006.py",
+      "server": "local (API-only)",
+      "data_path": "artifacts/clause_templates_full.json",
+      "data_count": 360,
+      "model_name": "gpt-5.4 + gpt-4.1",
+      "seed": 42,
+      "checkpoint_source": "plan_002 clause selection",
+      "eval_data": "30 clauses × 3 replicates × 2 models × 2 conditions",
+      "checkpoint_path": "artifacts/plan_006/icc_results.json",
+      "log_path": "artifacts/plan_006/episodes_api.jsonl"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T16:49:36.493Z"
+  },
+  "timestamp": "2026-05-20T16:49:36.508003+00:00",
+  "trigger": "update_registry"
+}

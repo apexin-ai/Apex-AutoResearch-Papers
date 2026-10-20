@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'd be happy to help you update your healthcare policy! Let me start by verifying your account and logging you in. I'll need to check a few things first.\n\n**Step 1: Check if the username exists.**]",
+    "[says: The username exists! Now let me log you in using your driver's license. Could you please also provide the **state** in which your driver's license is registered? That's required for identification pur...]",
+    "[says: I understand you've provided all the information you have, but I'm unable to proceed with logging you in without the **state** in which your driver's license is registered. This is a required field fo...]",
+    "[says: I understand that this is all the information you can provide. However, I am unable to proceed because:\n\n- **Driver's License Login** requires both a driver's license ID **and** the state in which it ...]"
+  ],
+  "timestamp": "2026-05-22T17:24:54.794745"
+}

@@ -1,0 +1,33 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The guest \"{guest_name}\" must have placed **fewer than** {max_room_service_orders_per_day} room service orders for room \"{room_id}\" on the current interaction date.",
+  "action": "place_room_service_order",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_get_booking_details",
+    "[says: John Doe has already placed 3 room service orders for room 101 today, which is the maximum allowed per day for a guest in the same room. Unfortunately, I cannot process another room service order for ...]"
+  ],
+  "timestamp": "2026-05-22T16:57:45.944904"
+}

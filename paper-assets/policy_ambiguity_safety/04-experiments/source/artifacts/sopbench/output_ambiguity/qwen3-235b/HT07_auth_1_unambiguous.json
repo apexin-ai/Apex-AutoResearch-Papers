@@ -1,0 +1,40 @@
+{
+  "pair_id": "HT07_auth",
+  "domain": "hotel",
+  "constraint": "valid_identification",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The \"{identification}\" must include a \"type\" that matches one of {valid_document_types} and a valid \"birthday\" indicating the guest is at least {min_age} years old.",
+  "action": "process_guest_checkin",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "process_guest_checkin",
+    "action_should_succeed": false,
+    "num_messages": 19,
+    "num_function_calls": 0,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]",
+    "[says: The guest's identification type \"library_card\" is not among the accepted types (driver_license, passport, state_id, military_id), and the guest is only 14 years old (needs to be at least 18). These co...]"
+  ],
+  "timestamp": "2026-05-22T18:52:51.265077"
+}

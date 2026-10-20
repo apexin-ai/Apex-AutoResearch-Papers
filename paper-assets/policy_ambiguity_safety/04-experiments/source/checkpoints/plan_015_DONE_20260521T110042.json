@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan_015",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:57:22.179Z",
+    "updated_at": "2026-05-21T11:00:42.716Z",
+    "hypothesis": "Authorization scope violations are predominantly unauthorized escalation (granting excess permissions) rather than restriction, consistent across all 5 models, revealing systematic permissiveness bias under boundary ambiguity",
+    "spec": {
+      "command": "python3 auth_scope_direction_analysis.py",
+      "server": "local",
+      "data_path": "artifacts/plan_010/data/error_analysis_5model.json",
+      "data_count": 104,
+      "model_name": "N/A (analysis only)",
+      "seed": "N/A"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pooled_escalation_rate": 0.692,
+      "pooled_restriction_rate": 0,
+      "binomial_p": 5.5e-05,
+      "models_majority_escalation": "4/5",
+      "n_total": 104,
+      "n_escalation": 72
+    },
+    "checkpoint_path": "artifacts/full_study/analysis/auth_scope_direction.json",
+    "log_path": "logs/workers/worker_analysis_plan_015_auth_scope_direction_20260521T105822.log",
+    "completed_at": "2026-05-21T11:00:42.716Z"
+  },
+  "timestamp": "2026-05-21T11:00:42.745375+00:00",
+  "trigger": "update_registry"
+}

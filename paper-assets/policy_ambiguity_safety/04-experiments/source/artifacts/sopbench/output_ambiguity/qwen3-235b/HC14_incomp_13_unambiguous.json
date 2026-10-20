@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The policy type \"{policy_type}\" **MUST BE** one of the valid insurance policy types: Health, Dental, Pharmacy, or Vision.",
+  "action": "update_policy",
+  "task_idx": 13,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated with the following details:  \n- **Policy Type:** Dental  \n- **Coverage Amount:** $5,000  \n- **Annual Income:** $45,000  \n\nLet me know if you need f...]"
+  ],
+  "timestamp": "2026-05-22T17:09:43.250233"
+}

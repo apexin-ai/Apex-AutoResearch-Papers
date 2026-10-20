@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2bf580aab27b45c7125",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation_verification_20260520T173215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_verification_20260520T173215_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "4ec5c8198eb29573ff5aa33dffba88d1e29b49554a24148eae8dce6113039c24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果写入 `artifacts/citation_verification.json`。\n\n## 核心发现\n\n**3 条高危（疑似虚构）：**\n\n| 引用 | 问题 |\n|------|------|\n| **DRIP-R** | 实际 Borkakoty et al., **2026** (arXiv 2605.07699)。bib 中的 Murthy/Li et al. 2024、NeurIPS/EMNLP venue 全部是编造的 |\n| **PhantomPolicy** | 实际 Jie Wu & Ming Gong, **2026** (arXiv 2604.12177)。bib 中 Wang et al. ACL 2024 是编造的 |\n| **AgentPex** | 实际 Sharma, Barke, Zorn (Microsoft Research), **2026** (arXiv 2603.23806)。bib 中 Zhang et al. NeurIPS 2024 是编造的 |\n\n**5 条需修正：**\n\n| 引用 | 问题 |\n|------|------|\n| **τ-bench / τ²-bench** | 正确标题 \"τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains\"（Yao et al., NeurIPS 2024, arXiv 2406.12045）。τ²-bench 是另一篇论文（Barres et al., 2025） |\n| **Toolformer** | NeurIPS **2023**，不是 2024 |\n| **Massey** | 标题错——bib 中是另一篇 Massey 论文。正确标题 \"Identifying and Classifying Ambiguity for Regulatory Requirements\"，RE 2014 |\n| **Berry & Kamsties** | 缺第三作者 Michael M. Krieger |\n| **Wasow (2005)** | bib1 标题 \"Intuitions and Models of Vagueness and Ambiguity\" 查无此文。实际论文标题 \"The Puzzle of Ambiguity\"（CSLI Publications） |\n\n**3 条已验证：** Kennedy (2007)、Ferreira et al. (2002)、PolicyBank（但需确认是否已加入 References）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification.md"
+}

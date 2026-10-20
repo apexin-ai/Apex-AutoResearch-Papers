@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK14_cond",
+  "domain": "bank",
+  "constraint": "authenticated_admin_password",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "Administrative authentication is required prior to this action being completed.",
+  "action": "transfer_funds",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I cannot proceed with the fund transfer because the login attempt for username \"john_doe\" failed. Please verify your credentials and try logging in again. If you're using a driver's license for identi...]"
+  ],
+  "timestamp": "2026-05-22T19:20:52.615084"
+}

@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC06_lexical",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **MUST NOT HAVE** any claims with a status of 'pending' in order to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 33,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "internal_get_interaction_time",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but I can\u2019t update your policy.\n\nReason: policy updates are only allowed during the enrollment period, which lasts 90 days from your policy\u2019s enrollment date. Your enrollment date is 2023-0...]"
+  ],
+  "timestamp": "2026-05-22T22:51:48.742257"
+}

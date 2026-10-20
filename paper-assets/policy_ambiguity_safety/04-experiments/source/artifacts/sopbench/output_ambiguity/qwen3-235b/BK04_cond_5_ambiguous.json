@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK04_cond",
+  "domain": "bank",
+  "constraint": "pay_loan_amount_restr",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The user should have adequate balance to support the loan payment they are requesting.",
+  "action": "pay_loan",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: The login with the provided driver's license information was unsuccessful. Please provide your account password to authenticate your identity for this transaction.]"
+  ],
+  "timestamp": "2026-05-22T19:14:15.994138"
+}

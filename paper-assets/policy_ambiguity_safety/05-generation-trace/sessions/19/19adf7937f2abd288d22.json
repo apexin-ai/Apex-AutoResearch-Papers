@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19adf7937f2abd288d22",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code opensource inference framework",
+  "task_key": "worker_code_opensource_inference_framework_20260520T091147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_opensource_inference_framework_20260520T091147_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "4468a781210bc08751ba0712789273925c21d32124fd08349da8dee100774b3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件：\n\n| 文件 | 说明 |\n|------|------|\n| `config_local.py` | 模型注册表（5个模型）、generation 参数、vLLM 默认配置 |\n| `harness_local.py` | 主推理模块，`--backend vllm\\|transformers`，复用 harness.py 的 clause loading / system prompt / tool response matching，输出格式完全一致 |\n| `setup_vllm.sh` | vLLM server 启动脚本，自动检测 GPU 数量、推断 tool-call parser、5 分钟健康检查 |\n\n关键设计：\n- **vLLM 后端**：通过 OpenAI SDK 连接本地 server，代码结构与 harness.py 几乎相同，支持并发\n- **Transformers 后端**：直接加载模型，`apply_chat_template(tools=...)` 原生 tool 支持 + fallback prompt injection，顺序执行\n- **Tool call 解析**：`parse_tool_calls()` 支持 Qwen3/Hermes、DeepSeek、通用 JSON 三种格式\n- **断点续跑**：同 harness.py 的 `_load_completed` 机制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-opensource-inference-framework.md"
+}

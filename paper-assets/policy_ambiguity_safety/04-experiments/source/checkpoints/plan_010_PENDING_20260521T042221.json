@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_010",
+  "project": "policy_ambiguity_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:22:11.087Z",
+    "updated_at": "2026-05-21T04:22:21.710Z",
+    "hypothesis": "Extending failure mode classification from 2 models to all 5 models reveals model-specific failure signatures: each ambiguity type produces a distinctive failure profile consistent across model families, with specification-layer dominated by guess-and-act and linguistic-layer by misparse-and-apply.",
+    "parent": "plan_005"
+  },
+  "timestamp": "2026-05-21T04:22:21.755515+00:00",
+  "trigger": "update_registry"
+}

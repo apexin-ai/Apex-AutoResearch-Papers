@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK04_cond",
+  "domain": "bank",
+  "constraint": "pay_loan_amount_restr",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" has an account balance \"balance\" that is **equal to or greater than >=** the requested owed balance payment \"{pay_owed_amount_request}\"",
+  "action": "pay_loan",
+  "task_idx": 2,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "get_account_balance",
+    "[says: The user's account balance is $100.00, which is less than the requested payment amount of $150.00. According to the constraints for paying a loan, the account balance must be equal to or greater than ...]"
+  ],
+  "timestamp": "2026-05-22T19:12:45.305558"
+}

@@ -1,0 +1,35 @@
+{
+  "pair_id": "HT12_auth",
+  "domain": "hotel",
+  "constraint": "is_gold_or_higher_member",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must be a premium-tier loyalty program member.",
+  "action": "book_room",
+  "task_idx": 18,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_available_rooms",
+    "[says: I'll need to verify several conditions before booking. Let me start by checking the necessary details simultaneously.]",
+    "internal_get_booking_details",
+    "[says: I've found a couple of issues that prevent this booking from proceeding:\n\n1. **Overlapping Reservation**: Sakana Inoue already has an existing confirmed booking from **2024-12-08 to 2024-12-10**, whic...]",
+    "[says: I understand you've provided the same details, but unfortunately I'm still unable to process this booking due to the same two conditions that are not met:\n\n1. **Overlapping Reservation**: Sakana Inoue...]"
+  ],
+  "timestamp": "2026-05-22T17:42:01.493292"
+}

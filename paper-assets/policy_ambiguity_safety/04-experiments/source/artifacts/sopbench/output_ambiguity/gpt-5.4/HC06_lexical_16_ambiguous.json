@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC06_lexical",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must not have any outstanding claims to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "[says: I\u2019m sorry, but the policy update cannot be completed.\n\nReason:\n- The requested coverage amount of 250000 exceeds 20% of the annual income of 1000000.\n- 20% of 1000000 is 200000, so the maximum allowed...]"
+  ],
+  "timestamp": "2026-05-22T17:01:45.555638"
+}

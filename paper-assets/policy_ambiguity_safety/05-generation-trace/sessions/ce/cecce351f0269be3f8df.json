@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cecce351f0269be3f8df",
+  "project": "policy_ambiguity_safety",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3187,
+    "sha256": "294c3bd7a17bfad51f102845ea369c8a96ef5552e9a40450da5ee907a1ec06f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-22T00:22:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 无 GPU 项目，全部实验通过 API 调用完成，不涉及 GPU 分配\n- 论文主文严格 8 页限制（EMNLP 2026 ARR），Conclusion 当前恰好在 page 8 底部，任何文本增加都可能溢出\n- ARR Responsible NLP Checklist 在 OpenReview submission form 手动填写，不在论文 PDF 中\n- 3 个保留的 orphan bib entries（yu_causal_2026, lin_ask_to_clarify_2025, mu_can_llms_2023）是审稿建议引用，Round 11 结果出来前不删不引\n- ferrari_defects_2018 bib key 实际是 Rosadini 2019，已决定保持现状避免破坏引用链\n\n### 2. 🖥️ 基础设施快照\n- 服务器：localhost（ubuntu），无远程服务器\n- 论文目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/`\n- 产出目录：`projects/policy_ambiguity_safety/artifacts/`\n- EMNLP checklist 草稿：`artifacts/emnlp_arr_checklist_draft.md`（已校对通过）\n- 编译：pdflatex，15 页总计，主文 8 页，0 undefined refs\n- 无活跃进程 / 无 tmux / 无 cron\n\n### 3. 📊 当前状态\n**刚完成**：Round 10 全部修复 + 验证 + submission-ready 最终检查 + 叙事线审视修复（Conclusion 对齐）\n**Registry**：plan_009 PREPARING（cross-judge agreement 实验，一直未启动，非阻塞）；其余 15 个全 DONE\n**等待中**：\n- Round 11 审稿审批卡待用户确认（A 群 19:58 发出，apr_20260521T195816_4esu）\n- 用户回复 3 项：API cost 实际金额、代码 license（默认 MIT）、GitHub URL\n\n### 4. 📋 待办\n- Round 11 审稿审批通过 → 等审稿结果 → 按报告处理协议逐条处理\n- Round 11 评分 ≥4.0 → 论文基本定稿，清理 3 个保留 orphan bib，准备最终提交\n- Round 11 仍 3.5 → 分析剩余提分点，评估是否需要加实验或仅文本微调（当前判断：Round 10 已执行审稿人全部升分条件，大概率升分）\n- 用户确认 API cost/license/URL → 更新 checklist 草稿，标记 submission-ready\n\n### 5. 🎯 战略上下文\n- **核心 story**：policy ambiguity 因果导致 +34pp 违规（OR=15.1），incompleteness 是一致性最高风险类型（7/7 模型 ≥46%），agents 展现 Disambiguation Deficit（<11% awareness）\n- **关键决策链**：D020 framing pivot（Uniform→Differential Nocuity）→ D022 Round 1 审稿 Action Matrix → Round 9/10 连续 3.5，核心问题是 claims-evidence calibration gap → Round 10 执行全部升分条件（弱化 auth scope/hierarchy claims + 4 项 robustness 分析）\n- **易错点**：\n  1. Conclusion 和 Abstract/Intro 的 claim 措辞必须一致——之前 Conclusion 漏改 \"two-tier type hierarchy\"（已修复）\n  2. Kendall's W 五模型 p=0.072 不显著，不要说 \"confirms\" hierarchy，只能说 \"moderate concordance\"\n  3. Auth scope 52pp 必须始终伴随 κ=0.385 caveat，不能单独呈现\n  4. Limitations 8 段看着长但不计入页限，审稿人评价为 S3 (transparency)，不要删\n  5. consistency check 工具只扫 experiments.tex，报的 orphan 大部分是假阳性，必须全文 grep 验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT07_auth",
+  "domain": "hotel",
+  "constraint": "valid_identification",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The guest must present valid identification meeting the hotel's requirements.",
+  "action": "process_guest_checkin",
+  "task_idx": 6,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "process_guest_checkin",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_interaction_time",
+    "[says: I'll help you check in Jane Smith! Let me first verify a few things before proceeding. I'll start by checking the current interaction time and her reservation details simultaneously.]",
+    "[says: The current time is **14:20**, which is before the check-in time of **15:00**. Unfortunately, I'm unable to process Jane Smith's check-in at this time.\n\n**Reason:** Our hotel's check-in policy require...]",
+    "[says: I understand you've provided all the necessary information, but unfortunately I'm still unable to process Jane Smith's check-in.\n\nAs mentioned, the current time is **14:20**, which is before the requi...]"
+  ],
+  "timestamp": "2026-05-22T17:40:30.224525"
+}

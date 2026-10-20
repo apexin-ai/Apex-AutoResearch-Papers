@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3cf26fd42185547aa47",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code plan 005 gpt41 analysis",
+  "task_key": "worker_code_plan_005_gpt41_analysis_20260520T160729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_005_gpt41_analysis_20260520T160729_result.json",
+    "occurrence": 1,
+    "bytes": 220,
+    "sha256": "ef2f843d23bdadb87bdb395a1cbcb95921342a373f92558000dd1bc20dc30c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 artifact 全部注册完成。任务总结：\n\n**已完成全部 6 步**：122 条 gpt-4.1 标注（0 parse error）、gpt-4.1 summary、模型对比、domain 切分，4 个输出文件已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-gpt41-analysis.md"
+}

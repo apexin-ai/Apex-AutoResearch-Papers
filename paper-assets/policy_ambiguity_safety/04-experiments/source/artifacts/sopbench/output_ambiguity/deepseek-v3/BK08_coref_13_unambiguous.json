@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must not have** outstanding balance on credit card of \"{card_number}\" to proceed.",
+  "action": "cancel_credit_card",
+  "task_idx": 13,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "authenticate_admin_password",
+    "internal_check_credit_card_exist",
+    "[says: \n]",
+    "[says: I'm sorry, but I cannot proceed with canceling your credit card because the card number \"2357 1113 1719 2329\" does not exist in our database under your username \"john_doe\". \n\nSince the card doesn't ex...]"
+  ],
+  "timestamp": "2026-05-23T01:12:23.734340"
+}

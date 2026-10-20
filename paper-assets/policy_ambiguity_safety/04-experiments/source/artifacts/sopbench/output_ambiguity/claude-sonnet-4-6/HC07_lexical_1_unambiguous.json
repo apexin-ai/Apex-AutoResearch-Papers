@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must have an active policy** to perform this action. In the policy section of the user \"{username}\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll process your policy update request step by step. Let me start by verifying your account and logging you in.\n\n**Step 1: Check if the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "get_policy_details",
+    "[says: You're logged in successfully! Now let me retrieve your policy details to verify eligibility.\n\n**Step 3: Retrieve policy details.**]",
+    "internal_get_interaction_time",
+    "[says: Your policy is active (Health). Now let me check the current interaction time to verify the enrollment period.\n\n**Step 4: Check the interaction time.**]",
+    "[says: Now let me verify the enrollment period:\n- **Enrollment Date:** 2024-01-01\n- **Enrollment Period End:** 2024-12-31 (365 days after enrollment)\n- **Current Interaction Time:** 2025-01-15\n\nUnfortunately...]",
+    "[says: I understand you've provided the same information again, but unfortunately the result remains the same. As I verified earlier:\n\n- **Enrollment Date:** 2024-01-01\n- **Enrollment Period End:** 2024-12-3...]"
+  ],
+  "timestamp": "2026-05-22T17:11:13.286997"
+}

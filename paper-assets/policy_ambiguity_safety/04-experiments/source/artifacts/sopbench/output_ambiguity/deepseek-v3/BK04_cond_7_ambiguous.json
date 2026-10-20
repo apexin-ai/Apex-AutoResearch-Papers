@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK04_cond",
+  "domain": "bank",
+  "constraint": "pay_loan_amount_restr",
+  "ambiguity_type": "conditional_precedence",
+  "condition": "ambiguous",
+  "description_used": "The user should have adequate balance to support the loan payment they are requesting.",
+  "action": "pay_loan",
+  "task_idx": 7,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "pay_loan",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_account_owed_balance",
+    "get_account_balance",
+    "pay_loan"
+  ],
+  "timestamp": "2026-05-23T00:51:59.245111"
+}

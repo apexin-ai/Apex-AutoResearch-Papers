@@ -1,0 +1,40 @@
+{
+  "pair_id": "HC06_scopal",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "There should be no unresolved claims on the user's account before proceeding.",
+  "action": "update_policy",
+  "task_idx": 27,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: To assist you with updating your healthcare policy, I will first need to log you into your account using the provided credentials. Let me proceed with that.]",
+    "get_policy_details",
+    "[says: Great! You have been successfully logged in. Now, I will verify if your policy is active and check the enrollment period to ensure you are eligible to update your policy. Let me proceed with these che...]",
+    "internal_get_interaction_time",
+    "[says: Thank you for the information. I will now verify the enrollment period to ensure you are within the allowable timeframe for updating your policy.]",
+    "get_claim_history",
+    "[says: Your enrollment date is November 1, 2023, and the allowable enrollment period extends for 60 days after that, which would be until December 31, 2023. The current interaction time is December 15, 2023,...]",
+    "[says: I see that there is a pending claim (CLM-003) on your account for a dental surgery. Unfortunately, unresolved claims must be resolved before you can update your policy. \n\nPlease resolve the pending cl...]",
+    "[says: Since there is an unresolved pending claim on your account (CLM-003), I cannot proceed with updating your policy at this time. You will need to resolve the pending claim before any policy updates can ...]"
+  ],
+  "timestamp": "2026-05-22T23:52:26.428715"
+}

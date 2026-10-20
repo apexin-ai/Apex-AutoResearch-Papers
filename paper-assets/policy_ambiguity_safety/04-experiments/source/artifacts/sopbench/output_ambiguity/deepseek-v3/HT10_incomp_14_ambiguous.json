@@ -1,0 +1,41 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room service orders are subject to daily limits per room.",
+  "action": "place_room_service_order",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "internal_get_loyalty_member_info",
+    "internal_compute_room_service_order_fee",
+    "internal_valid_room_service_order_type",
+    "internal_valid_room_service_item",
+    "internal_valid_room_service_payment_method",
+    "place_room_service_order",
+    "[says: I'm sorry, but I couldn't process the room service order for John Doe in room 101. Here are the issues:\n\n1. The total cost of the order exceeds the available loyalty points (John Doe has 250 points, b...]",
+    "internal_get_loyalty_member_info",
+    "internal_compute_room_service_order_fee",
+    "internal_valid_room_service_item"
+  ],
+  "timestamp": "2026-05-22T17:14:02.730398"
+}

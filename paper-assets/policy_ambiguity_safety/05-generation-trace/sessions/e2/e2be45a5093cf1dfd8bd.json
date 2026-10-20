@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2be45a5093cf1dfd8bd",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code execution harness",
+  "task_key": "worker_code_execution_harness_20260520T073746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_execution_harness_20260520T073746_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "dcb5a6137a955c38975221ca9f755cb1ee3fe1cce63a53e03b81a3db7e460039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n| 文件 | 功能 |\n|------|------|\n| `config.py` | 模型定义、τ²-bench 格式 prompt 模板、violation 分级、统计阈值 |\n| `harness.py` | Agent 执行框架：加载 clauses → 注入 policy 到 `<policy>` XML → 调 Anthropic/OpenAI API → asyncio 并发 → JSONL 输出 + 断点续跑 |\n| `judge.py` | LLM-as-Judge：用 unambiguous 版作 ground truth 评估 trajectory，输出 4 级 violation，内置 scopal 偏差检查 |\n| `analyze.py` | 双轨统计：主分析 χ²/Fisher/Cramér's V 跨类型比较 + 辅助分析 McNemar/Wilcoxon 配对检验 → 自动 PASS/FAIL |\n| `requirements.txt` | anthropic, openai, scipy, pandas, numpy |\n| `README.md` | 三模块完整用法 |\n\n所有 CLI `--help` 正常，import 链无报错，6 个 artifact 已注册。下一步需要 `clauses.json`（180 条策略条款的 matched pairs）才能实际运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-execution-harness.md"
+}

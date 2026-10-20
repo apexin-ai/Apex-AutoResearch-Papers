@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The provider with ID \"{provider_id}\" **MUST HAVE** the service type that match the policy type of the user \"{username}\" in order to perform this action.",
+  "action": "submit_claim",
+  "task_idx": 16,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_provider_details",
+    "get_policy_details",
+    "submit_claim",
+    "[says: Your claim for prescription medication has been successfully submitted for the amount of $2000. If you have any further questions or need assistance with anything else, feel free to ask!]",
+    "[says: Your claim for prescription medication has already been successfully submitted for the amount of $2000. If there's nothing else you'd like assistance with, I'll conclude our conversation now.  \n\n]"
+  ],
+  "timestamp": "2026-05-22T23:54:27.791489"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_009",
+  "project": "policy_ambiguity_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:28:11.387Z",
+    "updated_at": "2026-05-22T01:01:53.019Z",
+    "hypothesis": "Cross-judge LLM agreement (gpt-5.4 vs gpt-4.1) achieves substantial agreement (weighted κ ≥ 0.60) on violation level classification. LLM-human agreement should be comparable, validating the cross-judge evaluation design."
+  },
+  "timestamp": "2026-05-22T01:01:53.074122+00:00",
+  "trigger": "update_registry"
+}

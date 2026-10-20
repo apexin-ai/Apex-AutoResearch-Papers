@@ -1,0 +1,36 @@
+{
+  "pair_id": "HC15_scopal",
+  "domain": "healthcare",
+  "constraint": "appointment_date_valid",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The appointment must be scheduled for an upcoming date.",
+  "action": "schedule_appointment",
+  "task_idx": 22,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: Before I can assist you with scheduling the appointment, I need to verify your credentials and ensure that all conditions for scheduling are met. Let me proceed step by step.\n\n1. **Login Verification*...]",
+    "get_provider_details",
+    "[says: Great! You have been successfully logged in. Now, I will check if the provider with ID \"johns_hopkins_baltimore\" exists and their details.]",
+    "[says: The provider \"John Hopkins\" in Baltimore exists, but their current availability is marked as \"Unavailable\". Unfortunately, this means I cannot schedule an appointment with them at this time.\n\nWould yo...]",
+    "[says: Since the provider \"John Hopkins\" is currently unavailable, I cannot proceed with scheduling the appointment for the requested date. If you'd like, I can check for other providers or assist you with a...]"
+  ],
+  "timestamp": "2026-05-22T23:59:31.046234"
+}

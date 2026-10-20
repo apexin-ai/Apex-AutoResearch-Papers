@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "36af0abc9a1f0fc2c354",
+  "project": "policy_ambiguity_safety",
+  "kind": "worker",
+  "title": "paper round3 edits",
+  "task_key": "worker_paper_round3_edits_20260521T072827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3_edits_20260521T072827.log",
+    "occurrence": 1,
+    "bytes": 701969,
+    "sha256": "ec3fa5bfe6f5c8422d49111460de10580734317b3a9dd34e09a512597150a823"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "assistant": 58,
+      "tool_call": 84,
+      "tool_result": 84,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "36af0abc9a1f0fc2c354-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "36af0abc9a1f0fc2c354-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-round3-edits.md"
+}

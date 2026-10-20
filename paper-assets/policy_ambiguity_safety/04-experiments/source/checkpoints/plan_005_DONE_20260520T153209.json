@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_005",
+  "project": "policy_ambiguity_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:24:54.491Z",
+    "updated_at": "2026-05-20T15:32:09.597Z",
+    "hypothesis": "Specification-layer ambiguities produce qualitatively different failure modes (more assumption_based_action) than linguistic-layer ambiguities (more scope_misapplication), and coreferential's low violation rate is explained by higher conservative_refusal rate. These distinct failure mode profiles explain the layer hierarchy (spec ~46pp vs ling ~27pp).",
+    "parent": "plan_002",
+    "conclusion": "success",
+    "spec": {
+      "command": "python run_plan005.py",
+      "server": "local (API-only)",
+      "data_path": "artifacts/full_study/episodes.jsonl + judgments.jsonl",
+      "data_count": 123,
+      "model_name": "gpt-5.4 (annotator)",
+      "seed": 42,
+      "checkpoint_source": "plan_002 episodes",
+      "eval_data": "plan_002 violation traces (123 ambiguous+violation episodes)",
+      "checkpoint_path": "artifacts/plan_005/failure_modes.jsonl",
+      "log_path": "artifacts/plan_005/summary.json"
+    },
+    "completed_at": "2026-05-20T15:32:09.597Z"
+  },
+  "timestamp": "2026-05-20T15:32:09.610151+00:00",
+  "trigger": "update_registry"
+}

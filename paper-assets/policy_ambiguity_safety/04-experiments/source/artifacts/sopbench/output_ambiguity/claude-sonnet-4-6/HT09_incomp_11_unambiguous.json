@@ -1,0 +1,34 @@
+{
+  "pair_id": "HT09_incomp",
+  "domain": "hotel",
+  "constraint": "within_max_room_changes",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The number of room changes for the guest \"{guest_name}\" must be **less than** {max_room_changes}.",
+  "action": "request_room_change",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "request_room_change",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "show_room_change_options",
+    "[says: I need to verify a few things before processing your room change request. Let me start by checking the valid reasons for a room change.]",
+    "[says: I'm sorry, but **\"personal preference\"** is not listed as an accepted reason for a room change. The valid reasons for requesting a room change are:\n\n1. **Upgrade**\n2. **Maintenance**\n3. **Noise**\n4. *...]",
+    "[says: I'm sorry, but **\"personal_preference\"** is not a valid reason for a room change request. The accepted reasons are:\n\n1. **Upgrade**\n2. **Maintenance**\n3. **Noise**\n4. **Accessibility**\n5. **Temperatur...]"
+  ],
+  "timestamp": "2026-05-22T17:02:16.886954"
+}

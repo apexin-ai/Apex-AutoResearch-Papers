@@ -1,0 +1,35 @@
+{
+  "pair_id": "BK13_auth",
+  "domain": "bank",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The user must have verified their identity to access this function.",
+  "action": "transfer_funds",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "internal_check_username_exist",
+    "login_user",
+    "get_account_balance",
+    "[says: Everything is not in order for the transfer.\n\nYour identity was verified and both accounts exist, but john_doe\u2019s available balance is 500.0, which is less than the requested 600.0 dollars. Because of ...]"
+  ],
+  "timestamp": "2026-05-22T23:10:45.511239"
+}

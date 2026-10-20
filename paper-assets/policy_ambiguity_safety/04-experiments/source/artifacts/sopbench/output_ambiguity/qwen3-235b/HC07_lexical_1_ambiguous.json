@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC07_lexical",
+  "domain": "healthcare",
+  "constraint": "policy_active",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user's policy must be in good standing to perform this action.",
+  "action": "update_policy",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "update_policy",
+    "[says: Your policy has been successfully updated. However, I notice that your current policy already matches the requested changes (Health policy with $5,000 coverage at $60,000 annual income). Would you lik...]"
+  ],
+  "timestamp": "2026-05-22T17:46:17.349534"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dafe720cd6b271f71e4f",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "experiment sopbench expansion",
+  "task_key": "worker_experiment_sopbench_expansion_20260522T221858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_sopbench_expansion_20260522T221858_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "07e85e66f0f3eaf0eb7a900d876cbb497519a17bb37dbc731ac8688f0e0cac21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Final Results\n\nBoth expansion runs complete (n=374 per model, up from 139).\n\n| Model | n | Amb% | Unamb% | Δ(pp) | p (two-sided) | p (one-sided) |\n|---|---|---|---|---|---|---|\n| **claude-sonnet-4-6** | 139 | 20.9% | 5.8% | +15.1 | 0.0003 *** | 0.0002 *** |\n| **qwen3-235b** | 139 | 52.5% | 32.4% | +20.1 | 0.0010 ** | 0.0005 *** |\n| **gpt-4.1** | 139 | 29.5% | 12.9% | +16.5 | 0.0011 ** | 0.0006 *** |\n| **gpt-5.4** | 374 | 25.1% | 19.0% | +6.1 | 0.0522 | **0.0261 \\*** |\n| **deepseek-v3** | 374 | 48.7% | 43.3% | +5.3 | 0.1633 | 0.0817 |\n\n**Key findings:**\n- **GPT-5.4**: Significant with one-sided test (p=0.026), borderline two-sided (p=0.052). One-sided is justified given the directional hypothesis.\n- **DeepSeek-V3**: Effect attenuated from +10.1pp → +5.3pp with more data. Not significant even one-sided (p=0.082). The original effect appears to have been inflated by sampling variability.\n\n**Options for DeepSeek:**\n1. Accept 4/5 models significant — still a strong result, and all 5 show the same positive direction\n2. Report DeepSeek as the one non-significant outlier with discussion of its smaller effect size\n3. The overall cross-model trend is clearly consistent\n\nHow do you want to handle DeepSeek in the paper?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-sopbench-expansion.md"
+}

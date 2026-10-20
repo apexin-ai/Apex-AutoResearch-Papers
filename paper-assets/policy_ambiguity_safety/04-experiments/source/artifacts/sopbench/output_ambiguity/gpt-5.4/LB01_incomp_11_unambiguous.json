@@ -1,0 +1,34 @@
+{
+  "pair_id": "LB01_incomp",
+  "domain": "library",
+  "constraint": "within_borrow_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have less than {borrow_limit} books in their \"borrowed\".",
+  "action": "borrow_book",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "borrow_book",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 3,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_book_available",
+    "internal_get_user_num_borrowed",
+    "[says: I\u2019m sorry, but I can\u2019t complete the borrowing request for \"Beloved\".\n\nYou\u2019re successfully logged in as \"Grimoire\", and the book is available, but your account already has 3 borrowed books. The borrowi...]"
+  ],
+  "timestamp": "2026-05-22T16:59:14.841149"
+}

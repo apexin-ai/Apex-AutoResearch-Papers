@@ -1,0 +1,34 @@
+{
+  "pair_id": "LB05_coref",
+  "domain": "library",
+  "constraint": "user_book_borrowed",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The book in question must be currently checked out to the requesting user.",
+  "action": "return_book",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "return_book",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 2,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_get_user_borrowed",
+    "internal_convert_book_title_to_id",
+    "[says: I can\u2019t return that book for you because it\u2019s not currently checked out on your account.\n\nYou\u2019re logged in as Grimoire, but the only book currently borrowed under your account has ID `81G3WP0`, while ...]"
+  ],
+  "timestamp": "2026-05-22T17:22:41.106167"
+}

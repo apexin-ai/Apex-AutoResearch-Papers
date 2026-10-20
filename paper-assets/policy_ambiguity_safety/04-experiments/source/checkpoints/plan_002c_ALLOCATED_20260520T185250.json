@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_002c",
+  "project": "policy_ambiguity_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:13:38.352Z",
+    "updated_at": "2026-05-20T18:52:50.332Z",
+    "hypothesis": "Claude Sonnet 4.6 exhibits the same binary ambiguity effect (+30-40pp) and type hierarchy (spec > ling) observed in GPT models, confirming cross-model generalizability of C1-C3. As a frontier API model from a different provider, consistent results strengthen the claim that ambiguity effects are model-agnostic.",
+    "parent": "plan_002"
+  },
+  "timestamp": "2026-05-20T18:52:50.346456+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbb7012dfc5cd43fb12",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "code mf1 info delta analysis",
+  "task_key": "worker_code_mf1_info_delta_analysis_20260520T171152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mf1_info_delta_analysis_20260520T171152_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "b2ff3645022f1e3e68bb4ce16ac68b3df2ebb1f8f9e7dd8bc29cb6ea86cf7e4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，输出在 `full_study/analysis/info_delta_analysis.json`。关键发现：\n\n**Per-type info delta**：authorization_scope (36.1±8.6) 和 incompleteness (34.6±8.4) 最大，coreferential (7.8±4.7) 最小，符合预期。\n\n**Logistic regression — info delta 是显著混淆变量**：\n- Model 1 (layer only): layer coef=0.54, p=0.001\n- Model 2 (layer+info_delta): layer coef=0.20, **p=0.31 (不再显著)**；info_delta coef=0.029, p=0.0003\n- Layer 系数下降 63.5%（远超 20% 阈值），说明 info delta 是 layer effect 的主要混淆源\n\n**Sensitivity (排除 incompleteness)**：\n- Spec (auth_scope + cond_prec): 45.0% vs Ling: 34.3%, Δpp=10.67\n- χ²=5.76, **p=0.016**, Cramér's V=0.107, OR=1.56 [1.08, 2.26]\n- 排除 incompleteness 后 layer effect 仍显著，但效应量从 V=0.132 降至 0.107\n\n结论：info delta 确实部分混淆了 layer effect（logistic regression 中 layer 系数不再显著），但 sensitivity test 表明即使排除 info delta 最大的 incompleteness 类型，specification layer 的违规率仍显著高于 linguistic layer。论文中需要报告两个结果并讨论这一限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mf1-info-delta-analysis.md"
+}

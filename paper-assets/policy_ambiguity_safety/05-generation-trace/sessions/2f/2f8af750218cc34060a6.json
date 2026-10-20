@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f8af750218cc34060a6",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "analysis clause risk predictors",
+  "task_key": "worker_analysis_clause_risk_predictors_20260522T150934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_clause_risk_predictors_20260522T150934_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "5f48e1cc053b4d595fa6b2eb88a8bdb519308604981b49e83ef04bc21efc3242"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个产出文件已保存：\n- `artifacts/analysis_clause_risk_predictors.json`\n- `artifacts/analysis_clause_risk_predictors_summary.md`\n\n核心发现：\n\n**OLS 线性回归：R² 极低，没有单一显著预测因子**\n- 语言特征 R²=0.069 > 类型 R²=0.037 > full R²=0.087\n- 10 个语言特征中没有任何一个在 α=.05 下显著\n- 类型控制语言特征后仅增量 ΔR²=0.018\n\n**Random Forest 捕获非线性关系：R²=0.396**\n- Top 3 特征：length_ratio (0.23)、polysemous_ratio (0.23)、token_delta (0.21)\n- 这三个都与 ambiguous/unambiguous 版本之间的\"信息差距\"相关\n\n**关键解读**：那 22% 的 clause-within-type variance 不是由简单的表面语言特征线性驱动的。风险分布在多个弱预测因子的非线性交互中——具体来说，clause 的危险程度与其 disambiguation 需要多少额外信息（length_ratio, token_delta）以及其词汇歧义度（polysemous_ratio）非线性相关。这意味着 clause 风险更多由深层语义/语用属性决定，而非表面句法复杂度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-clause-risk-predictors.md"
+}

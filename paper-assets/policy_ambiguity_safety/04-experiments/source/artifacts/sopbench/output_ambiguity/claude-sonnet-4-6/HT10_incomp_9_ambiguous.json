@@ -1,0 +1,43 @@
+{
+  "pair_id": "HT10_incomp",
+  "domain": "hotel",
+  "constraint": "within_room_service_order_daily_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "Room service orders are subject to daily limits per room.",
+  "action": "place_room_service_order",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "place_room_service_order",
+    "action_should_succeed": false,
+    "num_messages": 10,
+    "num_function_calls": 5,
+    "num_constraints": 3,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_get_room_checkin_details",
+    "[says: I'll need to verify several conditions before placing this order. Let me start by checking if John Doe is listed in the room check-in records.]",
+    "internal_get_booking_details",
+    "[says: Room 101 is checked in, but I need to confirm it's associated with John Doe. Let me look up the booking details.]",
+    "internal_valid_room_service_order_type",
+    "[says: John Doe is confirmed in room 101. Now let me validate the order type \"dining\".]",
+    "internal_valid_room_service_item",
+    "[says: Good. Now let me validate the order items (cheesecake and coffee) under the \"dining\" category.]",
+    "internal_get_room_service_order_details",
+    "[says: Items are valid. Now let me check the daily order limit for John Doe's room. Based on the booking details, room 101 already has **1 room service order** on today's date (2024-12-02). Let me check the ...]",
+    "[says: I'm sorry, but I'm unable to place this room service order. Room 101 has already reached its **daily room service order limit** \u2014 there is already 1 order placed today (RS001 for dining). \n\nPlease try...]",
+    "[says: I'm sorry, but I'm still unable to place this room service order for John Doe in room 101. As confirmed in my previous check, room 101 has already reached its **daily room service order limit** for to...]",
+    "[says: I understand you'd like to proceed, but the request cannot be fulfilled. Room 101 has already reached its **daily room service order limit** for today. I am unable to place another room service order ...]"
+  ],
+  "timestamp": "2026-05-22T17:03:50.325693"
+}

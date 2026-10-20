@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK09_incomp",
+  "domain": "bank",
+  "constraint": "safety_box_eligible",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The user must meet the minimum balance requirement for safety deposit box access.",
+  "action": "set_safety_box",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "set_safety_box",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: To assist you with resetting the contents of your safety box, I need to verify a few things:\n\n1. You must have an account with the username \"jane_doe\".\n2. You must meet the minimum balance requirement...]",
+    "[says: Your account with the username \"jane_doe\" exists. Next, I need to verify if you meet the minimum balance requirement for safety deposit box access.\n\nCould you please provide your current account balan...]",
+    "set_safety_box"
+  ],
+  "timestamp": "2026-05-22T16:54:37.618627"
+}

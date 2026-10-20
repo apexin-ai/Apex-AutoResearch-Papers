@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "501dcffd4a5292c5502f",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "edit r10 integration appendix",
+  "task_key": "worker_edit_r10_integration_appendix_20260521T194657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_r10_integration_appendix_20260521T194657_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "5a95bc6fc468220a5561d9ecdd2a854ab282a11ae01cb1943edffdb1977e1569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改位置：\n\n| 编号 | Label | 行号 | 修改内容 |\n|------|-------|------|----------|\n| M5 | `app:mitigation` | 29 | Coreferential 排除理由扩展（含 `$\\tau^2$-bench` 表述） |\n| A2 | `app:confound` | 158 | Per-type token delta 段落（17.5–36.1 words） |\n| A5 | `app:confound` | 160 | Sans incompleteness C1 效应（$\\Delta=31.0$pp） |\n| A1 | `app:c4_sans_auth` | 249–252 | C4 interaction sans auth scope（替换原 `app:sans_auth_scope`） |\n| A3 | `app:judge_group_ranking` | 277–280 | Judge-group type ranking（替换原版，含 rank reversal 解释） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-r10-integration-appendix.md"
+}

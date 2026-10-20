@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC06_lexical",
+  "domain": "healthcare",
+  "constraint": "no_pending_claims",
+  "ambiguity_type": "lexical",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **MUST NOT HAVE** any claims with a status of 'pending' in order to proceed with this action.",
+  "action": "update_policy",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 4,
+    "num_constraints_expanded": 7,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated! Here are the details:\n\n- **Policy Type**: Health  \n- **Coverage Amount**: $5,000  \n- **Annual Income**: $50,000  \n\nYour policy now reflects your c...]"
+  ],
+  "timestamp": "2026-05-22T17:41:43.486284"
+}

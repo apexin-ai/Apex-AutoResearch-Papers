@@ -1,0 +1,33 @@
+{
+  "pair_id": "BK12_scopal",
+  "domain": "bank",
+  "constraint": "not_over_credit_limit",
+  "ambiguity_type": "scopal",
+  "condition": "unambiguous",
+  "description_used": "The amount \"{amount}\" must be less than or equal to the avliable credit of credit card \"{card_number}\", avaliable credit is defined as the credit limit subtracted from the credit balance.",
+  "action": "pay_bill_with_credit_card",
+  "task_idx": 3,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "pay_bill_with_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": false
+  },
+  "agent_actions": [
+    "[says: To proceed, I first need to log you in.\n\nAlso, I should note: I can help with:\n- paying a bill from your bank account, or\n- checking credit card information\n\nBut I do not have an available action to c...]",
+    "login_user",
+    "get_credit_card_info"
+  ],
+  "timestamp": "2026-05-22T17:10:33.872281"
+}

@@ -1,0 +1,38 @@
+{
+  "pair_id": "BK05_lexical",
+  "domain": "bank",
+  "constraint": "minimal_elgibile_credit_score",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The user must demonstrate sufficient creditworthiness to proceed with this action.",
+  "action": "get_loan",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "get_loan",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: To determine if your loan application is successful, we need to verify several conditions first. Here are the steps we'll take:\n\n1. **Check if your username exists in the database.**\n2. **Verify if yo...]",
+    "login_user",
+    "[says: Your username exists in the database. Next, I'll log you in to verify your credentials.]",
+    "get_account_owed_balance",
+    "[says: You have been successfully logged in. Now, I'll check your owed balance to ensure it's less than 500.]",
+    "[says: Your current owed balance is $600.00, which exceeds the limit of $500.00 required to qualify for a loan. Unfortunately, you are not eligible for a loan at this time.\n\nTo proceed with a loan applicatio...]",
+    "[says: Based on the information provided and the checks we performed, your loan application cannot be approved at this time because your owed balance of $600.00 exceeds the limit of $500.00 required to quali...]"
+  ],
+  "timestamp": "2026-05-22T23:39:36.999721"
+}

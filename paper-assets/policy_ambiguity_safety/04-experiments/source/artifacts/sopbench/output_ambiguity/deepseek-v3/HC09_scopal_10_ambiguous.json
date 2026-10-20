@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC09_scopal",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The provider must offer services that cover the user's policy.",
+  "action": "submit_claim",
+  "task_idx": 10,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_provider_details",
+    "get_claim_history",
+    "[says: I apologize, but I cannot proceed with submitting your claim for the following reasons:\n\n1. **Provider Availability**: The provider \"Kaiser Permanente\" is currently marked as 'Unavailable' in the syst...]"
+  ],
+  "timestamp": "2026-05-22T17:37:07.013553"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371d6212be3d59915153",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "exp plan 016 mitigation v2",
+  "task_key": "worker_exp_plan_016_mitigation_v2_20260522T060527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_016_mitigation_v2_20260522T060527_result.json",
+    "occurrence": 1,
+    "bytes": 80,
+    "sha256": "142ace352487ac7c30f6e7a2793039e02c7458c443df88137ddd188d8b7e69cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时自动关闭，实验早已完成，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan-016-mitigation-v2.md"
+}

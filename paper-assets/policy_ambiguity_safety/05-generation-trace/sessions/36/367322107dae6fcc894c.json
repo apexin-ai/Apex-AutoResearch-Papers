@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "367322107dae6fcc894c",
+  "project": "policy_ambiguity_safety",
+  "kind": "result",
+  "title": "research r14 rho computation",
+  "task_key": "worker_research_r14_rho_computation_20260522T135212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r14_rho_computation_20260522T135212_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "12dfc60ac3fd2a74564d14387703c91b7169f83680b8ab4218574fb2a55b7a0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **6 types (all)**: Spearman ρ = 0.09, p = 0.87 — 近乎无相关\n- **5 types (excl. auth scope)**: Spearman ρ = 0.90, p = 0.037 — 强正相关且显著\n\n排除 auth scope 后，两个 judge group 的 type 排序高度一致。近零相关几乎完全由 auth scope 这一个 type 驱动（该 type 在 GPT-5.4-judged 组排最低 28%，在 GPT-4.1-judged 组排最高 62%）。\n\n结果已写入 `artifacts/r14_rho_computation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r14-rho-computation.md"
+}
