@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **26 projects with manuscript PDFs** and **15 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **27 projects with manuscript PDFs** and **16 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -23,6 +23,7 @@ This catalogue covers **26 projects with manuscript PDFs** and **15 additional p
 | [faith-evidence-ie](paper-assets/faith-evidence-ie/README.md) | [PDF](paper-assets/faith-evidence-ie/01-manuscript/paper.pdf) | 782 | 2,688 | 3,870 | 217,142 |
 | [gated_mfrm_judge_bias](paper-assets/gated_mfrm_judge_bias/README.md) | [PDF](paper-assets/gated_mfrm_judge_bias/01-manuscript/paper.pdf) | 211 | 329 | 973 | 78,434 |
 | [gen-depth-contamination](paper-assets/gen-depth-contamination/README.md) | [PDF](paper-assets/gen-depth-contamination/01-manuscript/paper.pdf) | 487 | 1,332 | 2,243 | 205,665 |
+| [gen-depth-fingerprint](paper-assets/gen-depth-fingerprint/README.md) | [PDF](paper-assets/gen-depth-fingerprint/01-manuscript/paper.pdf) | 650 | 1,256 | 1,964 | 183,002 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
@@ -41,6 +42,7 @@ This catalogue covers **26 projects with manuscript PDFs** and **15 additional p
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [svs_formal_verification](paper-assets/svs_formal_verification/README.md) | No PDF in snapshot | 68 | 28 | 205 | 21,001 |
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
 | [temp-adv-distill-vla](paper-assets/temp-adv-distill-vla/README.md) | No PDF in snapshot | 20 | 25 | 52 | 9,052 |
 | [verification_triggered_retrieval](paper-assets/verification_triggered_retrieval/README.md) | No PDF in snapshot | 11 | 17 | 13 | 4,203 |

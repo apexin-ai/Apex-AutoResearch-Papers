@@ -593,6 +593,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39369059488"
+    },
+    "gen-depth-fingerprint/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 753643407,
+        "etag": "\"db886915e617bfc89547fa95100705e1-90\"",
+        "modified": "2026-05-31T17:32:05+00:00"
+      },
+      "archive_sha256": "1273cf80a9751a0250aeea77fa12eaa84da288bf6d80fb04d6fa73f3da32ef2d",
+      "projects": [
+        "gen-depth-fingerprint",
+        "svs_formal_verification"
+      ],
+      "counts": [
+        {
+          "project": "gen-depth-fingerprint",
+          "title": "Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text",
+          "paper_pdf": "paper.pdf",
+          "code_count": 650,
+          "data_count": 1256,
+          "trace_count": 1964
+        },
+        {
+          "project": "svs_formal_verification",
+          "title": "svs formal verification",
+          "paper_pdf": null,
+          "code_count": 68,
+          "data_count": 28,
+          "trace_count": 205
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39369059488"
     }
   }
 }

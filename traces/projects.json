@@ -410,6 +410,22 @@
       }
     },
     {
+      "project": "gen-depth-fingerprint",
+      "title": "Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text",
+      "catalog": "../paper-assets/gen-depth-fingerprint/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1964,
+        "messages": 183002,
+        "user_turns": 6270,
+        "tool_calls": 75320,
+        "unparsed_lines": 764,
+        "result": 736,
+        "worker": 774,
+        "conversation": 354,
+        "history": 100
+      }
+    },
+    {
       "project": "importance_margin_vla_compress",
       "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
       "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",
@@ -521,6 +537,22 @@
         "worker": 510,
         "conversation": 183,
         "history": 43
+      }
+    },
+    {
+      "project": "svs_formal_verification",
+      "title": "svs formal verification",
+      "catalog": "../paper-assets/svs_formal_verification/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 205,
+        "messages": 21001,
+        "user_turns": 432,
+        "tool_calls": 8269,
+        "unparsed_lines": 92,
+        "worker": 91,
+        "result": 81,
+        "conversation": 32,
+        "history": 1
       }
     },
     {
